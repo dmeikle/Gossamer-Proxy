@@ -1,0 +1,13 @@
+default:
+    component: "components/defaultItem/config/routing.yml"
+    
+about:
+    component: "components/defaultItem/config/routing.yml"
+    
+users:
+    component: "components/users/config/routing.yml"
+    
+    
+app:
+    component: "components/users/config/routing.yml"
+    
