@@ -18,14 +18,16 @@ class AbstractView
     
     protected $config;
     
+    protected $agentType;
     
     private $data = array();
 
     protected $container = null;
     
-    public function __construct(Logger $logger, $ymlKey) {
+    public function __construct(Logger $logger, $ymlKey, array $agentType) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
+        $this->agentType = $agentType;
         $this->loadConfig();
     }
     
