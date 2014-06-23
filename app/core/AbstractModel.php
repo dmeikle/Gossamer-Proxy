@@ -48,15 +48,19 @@ class AbstractModel
     
     const VERB_LIST = 'list';
     
-    const VERB_DELETET = 'delete';
+    const VERB_DELETE = 'delete';
     
     const VERB_GET = 'get';
     
     const VERB_SAVE = 'save';
     
+    const DIRECTIVES = 'directives';
+    
     protected $entity;
     
     protected $childNamespace;
+    
+    protected $tablename;
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {      
         $this->httpRequest = $httpRequest;
@@ -71,6 +75,11 @@ class AbstractModel
         
         return array_pop($pieces);
     }
+    
+    function getTablename() {
+        return $this->tablename;    
+    }
+    
     public function setView(AbstractView $view) {
         $this->view = $view;
     }

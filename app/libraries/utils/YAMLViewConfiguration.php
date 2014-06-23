@@ -33,7 +33,7 @@ class YAMLViewConfiguration
         $explodedPath = explode('/', $routingPath);
         
         $nodeParams = array_merge($this->getYMLNodeParameters($ymlKey), $siteConfig);
-        
+       
         return $nodeParams;
         
     }

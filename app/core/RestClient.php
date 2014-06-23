@@ -186,7 +186,11 @@ class RestClient implements \Iterator, \ArrayAccess {
 
     public function format_query($parameters, $primary='=', $secondary='&'){
         $query = "";
+        
         foreach($parameters as $key => $value){
+            if(is_array($value)) {
+                $value = json_encode($value);
+            }
             $pair = array(urlencode($key), urlencode($value));
             $query .= implode($primary, $pair) . $secondary;
         }

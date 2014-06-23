@@ -11,3 +11,6 @@ users:
 app:
     component: "components/users/config/routing.yml"
     
+
+cart:
+    component: "components/shoppingcart/config/routing.yml"

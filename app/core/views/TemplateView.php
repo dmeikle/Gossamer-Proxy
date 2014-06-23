@@ -32,6 +32,7 @@ class TemplateView extends AbstractView
         $this->loadTemplate($template, $theme);
         $this->renderSections();
     }
+    
     private function renderSections() {
 
         if(is_null($this->sections)) {

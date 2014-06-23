@@ -71,9 +71,11 @@ class RestDataSource implements DataSourceInterface
             'headers' => $this->buildHeaders($credentials)
         ));
 
-        $result = $api->$queryType($entity->getComponentName()."/$verb/", $params);
+        $result = $api->$queryType($entity->getTablename()."/$verb/", $params);
+      
         if($result->info->http_code == 200){
             $decodedResult = $result->decode_response();
+            
             if(is_null($decodedResult)) {
                 return null;
             }
