@@ -1,8 +1,7 @@
 
 all:
     listeners:
-        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
-        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
     
 index:
     listeners:

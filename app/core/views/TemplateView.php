@@ -3,12 +3,18 @@
 namespace core\views;
 
 use core\AbstractView;
+use core\handlers\ImportJSHandler;
+use core\handlers\ImportCSSHandler;
 
 class TemplateView extends AbstractView
 {
     private $sections = null;
     
     private $isMobile = false;
+
+    private $jsIncludeFiles = array();
+
+    private $cssIncludeFiles = array();
     
     private function loadTemplate($template, $theme)
     {
@@ -20,6 +26,7 @@ class TemplateView extends AbstractView
         
        
         $this->template = file_get_contents($filepath);
+
     }
     
     
@@ -31,8 +38,30 @@ class TemplateView extends AbstractView
               
         $this->loadTemplate($template, $theme);
         $this->renderSections();
+        $this->placeJSFiles();
+        $this->placeCSSFiles();
     }
-    
+
+    private  function placeJSFiles() {
+        $jsIncludeString = '';
+
+        foreach($this->jsIncludeFiles as $file) {
+            $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
+        }
+
+        $this->template = str_replace('<!---javascript--->', $jsIncludeString, $this->template);
+    }
+
+    private  function placeCSSFiles() {
+        $cssIncludeString = '';
+
+        foreach($this->cssIncludeFiles as $file) {
+            $cssIncludeString .= "<link href=\"$file\" rel=\"stylesheet\">\r\n";
+        }
+
+        $this->template = str_replace('<!---css--->', $cssIncludeString, $this->template);
+    }
+
     private function renderSections() {
 
         if(is_null($this->sections)) {
@@ -45,10 +74,74 @@ class TemplateView extends AbstractView
 
             $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($section), $this->template);
         }
+
     }
 
     private function loadSectionContent($section) {
 
-        return file_get_contents(__SITE_PATH . '/src/' . $section);
+        $sectionContent = file_get_contents(__SITE_PATH . '/src/' . $section);
+
+        $contentWithJs = $this->renderJs($sectionContent);
+
+        $contentWithCss = $this->renderCss($contentWithJs);
+
+        if(is_array($contentWithCss)) {
+            return implode('', $contentWithCss);
+        }
+
+        return $contentWithCss;
+
+    }
+
+
+    private function renderJs($sectionContent) {
+
+        $frontchunks = explode('<!--- javascript start --->', $sectionContent);
+        if(count($frontchunks) < 2) {
+            return $frontchunks;
+        }
+
+        $frontchunk = array_shift($frontchunks);
+
+        $backchunks = explode('<!--- javascript end --->', current($frontchunks));
+
+        $jslist = explode("\n", ($backchunks[0]));
+
+        $jshandler = new ImportJSHandler($this->logger);
+        $parselist = $jshandler->handlerequest($jslist);
+        $this->jsIncludeFiles = $parselist;
+
+        return $frontchunk .
+            $backchunks[1];
+
+
+    }
+
+    private function renderCss($sectionContent) {
+        if(is_array($sectionContent)){
+            $sectionContent = implode('', $sectionContent);
+        }
+
+        $frontchunks = explode('<!--- css start --->', $sectionContent);
+        if(count($frontchunks) < 2) {
+            return $frontchunks;
+        }
+
+        $frontchunk = array_shift($frontchunks);
+
+        $backchunks = explode('<!--- css end --->', current($frontchunks));
+
+        $cssList = explode("\n", ($backchunks[0]));
+
+        $cssHandler = new ImportCSSHandler($this->logger);
+        $parseList = $cssHandler->handlerequest($cssList);
+        $this->cssIncludeFiles = $parseList;
+
+        $retval =  $frontchunk .  $backchunks[1];
+
+        if(is_array($retval)) {
+            return implode('', $retval);
+        }
+        return $retval;
     }
 }

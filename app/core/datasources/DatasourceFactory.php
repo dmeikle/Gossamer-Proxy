@@ -43,7 +43,7 @@ class DatasourceFactory
         $sourceName = trim($sourceName, "<br>");
         
         $datasourceClass = $dsConfig[$sourceName]['class'];
-       
+
         $datasource = new $datasourceClass($logger);
         unset($parser);
         

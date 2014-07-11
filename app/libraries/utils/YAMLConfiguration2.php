@@ -29,6 +29,7 @@ class YAMLConfiguration2
     
     
     public function getNodeParameters($uri) {
+        echo "URI IN YML $uri<br>";
         if($uri == '/' || $uri == '') {
             $uri = 'default/index';
         }
@@ -73,6 +74,9 @@ class YAMLConfiguration2
 
         $parser->setFilePath(__SITE_PATH . '/config/routing.yml');
         $chunk = array_shift($pieces);
+        if($chunk == 'admin') {
+            $chunk = array_shift($pieces);//drop the admin for the routing file
+        }
         $config = $parser->loadConfig(); 
         unset($parser);
         $this->datasources = $config;
@@ -111,6 +115,7 @@ class YAMLConfiguration2
     
 
     private function getYMLNodeParameters($ymlKey) {
+        echo "yml key $ymlKey<br>";
         return $nodeParams = $this->config[$ymlKey];       
     }
     

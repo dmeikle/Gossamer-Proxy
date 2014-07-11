@@ -30,19 +30,19 @@ class Kernel
     }
     
     public function run() {
-        $this->container->set('EventDispatcher', null, new EventDispatcher(array(), $this->logger));
-       
+        //$this->container->set('EventDispatcher', null, new EventDispatcher(array(), $this->logger));
+
         $controllerNode = $this->container->get('controllerNode');
-        
-        $httpRequest = new HTTPRequest($_REQUEST, $controllerNode['pattern']);
-        $httpResponse = new HTTPResponse;
-        
+
+        $httpRequest = $this->container->get('HTTPRequest');
+        $httpResponse = $this->container->get('HTTPResponse');
+
         $componentName = $controllerNode['component'];
         $controllerName = $controllerNode['controller'];
         $modelName = $controllerNode['model'];
         $viewName = $controllerNode['view'];
         $method = $controllerNode['method']; 
-
+echo "$controllerName $method<br>";
         //EventDispatcher is created in bootstrap
         //first, run any security checks before starting the request
         $event = new Event(KernelEvents::ENTRY_POINT, $httpRequest);
@@ -70,7 +70,7 @@ class Kernel
     }
 
     private function getView() {
-        return new TemplateView();
+        return new TemplateView($this->logger);
     }
     
     private function getLayoutType() {

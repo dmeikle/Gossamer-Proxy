@@ -22,7 +22,7 @@ use core\datasources\core\datasources\DatasourceFactory;
 /**
  * 
  * class AbstractComponent -    this is the base class for the drop in components used to
- *                              preload any filters for the selected component as well as 
+ *                              preload any listeners for the selected component as well as
  *                              any pre-config.
  * 
  * @author Dave Meikle

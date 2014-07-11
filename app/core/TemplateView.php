@@ -2,6 +2,7 @@
 namespace core;
 
 use core\AbstractView;
+use core\handlers\ImportJSHandler;
 use core\ViewInterface;
 
 class TemplateView extends AbstractView implements ViewInterface
@@ -44,7 +45,7 @@ class TemplateView extends AbstractView implements ViewInterface
     }
 
     private function loadSectionContent($section) {
-
+        $content = $this->renderJs();
         return file_get_contents('classes/' . $section . '.php');
     }
 

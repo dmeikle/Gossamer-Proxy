@@ -15,7 +15,7 @@ class HTTPRequest extends AbstractHTTP
     protected $parameters = array();
     
     public function __construct($requestParameters = null, $pattern = '') {
-        
+
        $uri = $_SERVER['REQUEST_URI'];       
        $filter = $this->parseURIParams($pattern);
        $this->postParameters = $_POST;

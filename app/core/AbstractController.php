@@ -112,4 +112,11 @@ class AbstractController
         $this->model->delete($id);
     }
 
+    protected function redirect($uri) {
+        /* Redirect browser */
+        header("Location: $uri");
+
+        /* Make sure that code below does not get executed when we redirect. */
+        exit;
+    }
 }

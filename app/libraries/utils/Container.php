@@ -14,6 +14,7 @@ class Container
     
     public function get($key, $defaultType = null) {
         $directory = $this->getDirectory();
+
         if(!array_key_exists($key, $directory)) {
             if(is_null($defaultType)) {
                 throw new ObjectNotFoundException($key . ' does not exist in container');

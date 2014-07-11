@@ -3,25 +3,56 @@
 
 namespace core\eventlisteners;
 
+use core\datasources\DatasourceFactory;
 use core\eventlisteners\EventHandler;
+use core\http\HTTPRequest;
+use core\http\HTTPResponse;
+use Httpful\Http;
 use Monolog\Logger;
+use libraries\utils\Container;
+
 
 class EventDispatcher{
     
     private $listeners = array();
  
     private $logger = null;
-    
-    public function __construct($config = array(), Logger $logger) {
-       $config = array_filter($config);
+
+    private $httpRequest = null;
+
+    private $httpResponse = null;
+
+    private $datasourceFactory = null;
+
+    private $datasources = null;
+
+
+    public function __construct($config = array(), Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
+        if(!is_null($config)) {
+            $config = array_filter($config);
+        }
+        $this->httpRequest = $httpRequest;
+        $this->httpResponse = $httpResponse;
         $this->logger = $logger;
-        $this->logger->addDebug('EventDispatcher started');
+        $this->logger->addInfo('EventDispatcher started');
         
         if(count($config) > 0) {
             $this->configListeners($config);
         }
     }
-    
+
+    public function setDatasources(DatasourceFactory $factory, array $datasources) {
+        $this->datasourceFactory = $factory;
+        $this->datasources = $datasources;
+    }
+    public function setHttpRequest(HTTPRequest $httpRequest) {
+        $this->httpRequest = $httpRequest;
+    }
+
+    public function setHttpResponse(HTTPResponse $response) {
+        $this->httpResponse = $response;
+    }
+
     public function setLogger($logger) {
         $this->logger = $logger;
     }
@@ -51,7 +82,8 @@ class EventDispatcher{
     private function addEventHandler($uri, array $listeners) {
  
         foreach($listeners as $listener) {
-            $handler = new EventHandler($this->logger);            
+            $handler = new EventHandler($this->logger, $this->httpRequest, $this->httpResponse);
+            $handler->setDatasources($this->datasourceFactory, $this->datasources);
             $handler->addListener($listener['listener']);  
             $this->logger->addDebug('listener added for '. $listener['listener']);          
             $this->listen($uri, $handler);
@@ -66,6 +98,8 @@ class EventDispatcher{
  
     public function dispatch($uri, $state, $params = null) {
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
+        echo "uri is $uri<br>";
+
         if(!array_key_exists($uri, $this->listeners)) {
             $this->logger->addDebug("no listeners found for $uri with state set to $state");            
             return;
@@ -75,7 +109,7 @@ class EventDispatcher{
         foreach ($this->listeners[$uri] as $listener)
         {
             $this->logger->addDebug('dispatching ' . get_class($listener) . ' listener class for uri: ' . $uri);
-           
+
             $listener->setState($state, $params);
         }
     }

@@ -191,7 +191,8 @@ class RestClient implements \Iterator, \ArrayAccess {
             if(is_array($value)) {
                 $value = json_encode($value);
             }
-            $pair = array(urlencode($key), urlencode($value));
+
+            $pair = array(($key), ($value));
             $query .= implode($primary, $pair) . $secondary;
         }
         return rtrim($query, $secondary);

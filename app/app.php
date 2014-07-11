@@ -12,7 +12,7 @@ use core\http\HTTPResponse;
 
 //$dispatcher = new EventDispatcher(array(), $logger);
 //$container->set('eventdispatcher',null, $dispatcher);
-
+echo "app page<br>";
 $httpRequest = new HTTPRequest();
 $httpResponse = new HTTPResponse();
 

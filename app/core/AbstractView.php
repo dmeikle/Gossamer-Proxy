@@ -23,12 +23,15 @@ class AbstractView
     private $data = array();
 
     protected $container = null;
-    
+
+    protected $template = null;
+
     public function __construct(Logger $logger, $ymlKey, array $agentType) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
         $this->loadConfig();
+
     }
     
     public function setContainer(Container $container) {
@@ -78,6 +81,7 @@ class AbstractView
         }
         
         //extract($this->data->content);
-        eval("?>" . $this->template . "<?");
+        eval("?>" . $this->template );
     }
+
 }

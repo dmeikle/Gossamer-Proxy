@@ -21,20 +21,22 @@ class YAMLViewConfiguration
         $parser->setFilePath($routingPath);
         
         return $parser->loadConfig();
-        unset($parser);
     }
     
     public function getViewConfig($uri, $ymlKey) {
         $routingPath = $this->getInitialRouting($uri);
-        
+      echo "yml: $ymlKey<br>";
         $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
         
         $this->config = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $routingPath);
         $explodedPath = explode('/', $routingPath);
-        
-        $nodeParams = array_merge($this->getYMLNodeParameters($ymlKey), $siteConfig);
+        $result = $this->getYMLNodeParameters($ymlKey);
+        if(is_array($result)) {
+            return array_merge($this->getYMLNodeParameters($ymlKey), $siteConfig);
+        }
+
        
-        return $nodeParams;
+        return $siteConfig;
         
     }
     /**
@@ -52,9 +54,12 @@ class YAMLViewConfiguration
         $pieces = array_filter(explode('/', $requestURI));
         $parser->setFilePath(__SITE_PATH . '/config/routing.yml');
         $chunk = array_shift($pieces);
+        if($chunk == 'admin') {
+            $chunk = array_shift($pieces);
+        }
         $config = $parser->loadConfig(); 
         unset($parser);
-     
+
         if(!array_key_exists($chunk, $config)) {
             throw new URINotFoundException($chunk . ' does not exist in YML configuration');
         }
