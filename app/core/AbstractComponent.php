@@ -91,15 +91,14 @@ abstract class AbstractComponent
             $this->controllerName,
             $this->method
         );
-     
-
+  
         if (is_callable($handler)) {
             
             //$commandName = $this->command;
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
             $model->setContainer($this->container);
             $model->setDatasource($this->getDatasource());
-            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType);
+            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest->getAttribute('langFiles'));
             $view->setContainer($this->container);
             $controller = new $this->controllerName($model, $view, $this->logger);
 
@@ -120,6 +119,7 @@ abstract class AbstractComponent
         return $datasource;
     }
     
+    
     /** the __NAMESPACE__ is determined at compile time so we need to place this in the child:
      * return str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
      */
@@ -130,7 +130,7 @@ abstract class AbstractComponent
      */
     private function runFilters(Request $request, Registry $registry) {
        $filterManager = new FilterChainManager();
-
+die("inside runfilters in abstractcomponent");
         try{
             $filterManager->executeChain($this->filters, $_REQUEST, $registry);    
         }catch(UnauthorizedAccessException $e){error_log('unauth');

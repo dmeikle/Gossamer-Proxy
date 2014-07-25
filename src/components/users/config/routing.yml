@@ -1,0 +1,68 @@
+
+          
+users_get:
+    pattern: users/get/*
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: edit
+        view: core\views\TemplateView
+        viewKey: users_get
+        datasource: datasource1
+    methods: [POST]
+    
+users_list:
+    pattern: users/list
+    #defaults: { _controller: UserComponent:User:save }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: users_list
+        datasource: datasource1
+    methods: [POST]
+    
+users_list2:
+    pattern: users/list/*/*
+    #defaults: { _controller: UserComponent:User:save }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: users_list
+        datasource: datasource1
+    methods: [POST]
+
+users_save:
+    pattern:  /users/new
+    defaults: { _controller: ProductBundle:Default:save }
+    datasource: datasource1
+    methods: [POST]
+    
+users_list_alpha_desc:
+    pattern:  /users/listAlphaDesc
+    defaults: { _controller: ProductBundle:Default:listAlphaDesc }   
+    
+    
+users_list_alpha_asc:
+    pattern:  /users/listAlphaAsc
+    defaults: { _controller: ProductBundle:Default:listAlphaAsc }
+    
+
+admin_users_list:
+    pattern: /admin/users/list
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_users_list
+        datasource: datasource1
+    methods: [POST]

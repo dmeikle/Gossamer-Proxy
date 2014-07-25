@@ -59,6 +59,7 @@ class EventDispatcher{
     
     public function configListeners(array $listeners) {
 
+
         foreach($listeners as $uri => $listener) {
             if(!is_array($listener)) {
                 continue;
@@ -80,11 +81,15 @@ class EventDispatcher{
     }
     
     private function addEventHandler($uri, array $listeners) {
- 
+        
         foreach($listeners as $listener) {
             $handler = new EventHandler($this->logger, $this->httpRequest, $this->httpResponse);
             $handler->setDatasources($this->datasourceFactory, $this->datasources);
             $handler->addListener($listener['listener']);  
+            if(array_key_exists('datasource', $listener)) {
+                //manual override - useful for loading info from other models
+                $handler->setDatasourceKey($listener['datasource']);
+            }
             $this->logger->addDebug('listener added for '. $listener['listener']);          
             $this->listen($uri, $handler);
         } 

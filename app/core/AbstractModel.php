@@ -123,10 +123,11 @@ class AbstractModel
     }
     
     public function edit($id) {
+       
         $params = array(
             'id' => intval($id)
         );
-        
+       
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
      
         $this->render($data);

@@ -29,6 +29,8 @@ class EventHandler
 
     private $datasources = null;
 
+    private $datasourceKey = null;
+    
     public function __construct(Logger $logger,HTTPRequest $httpRequest,HTTPResponse $httpResponse ) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
@@ -36,6 +38,10 @@ class EventHandler
     }
 
 
+    public function setDatasourceKey($datasourceKey) {
+        $this->datasourceKey = $datasourceKey;
+    }
+    
     public function setDatasources(DatasourceFactory $factory, array $datasources) {
         $this->datasourceFactory = $factory;
         $this->datasources = $datasources;
@@ -64,6 +70,7 @@ class EventHandler
         foreach($this->listeners as $listener) {
             $eventListener = new $listener($this->logger, $this->httpRequest, $this->httpResponse);
             $eventListener->setDatasources($this->datasourceFactory, $this->datasources);
+            $eventListener->setDatasourceKey($this->datasourceKey);
             $eventListener->execute($this->state, $this->params);
         }
     }

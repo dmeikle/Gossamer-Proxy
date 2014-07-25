@@ -208,6 +208,7 @@ class RestClient implements \Iterator, \ArrayAccess {
             list($key, $value) = explode(':', $line, 2);
             $key = trim(strtolower(str_replace('-', '_', $key)));
             $value = trim($value);
+           
             if(empty($headers[$key]))
                 $headers[$key] = $value;
             elseif(is_array($headers[$key]))
@@ -218,9 +219,9 @@ class RestClient implements \Iterator, \ArrayAccess {
 
         $this->headers = (object) $headers;
         $this->response = strtok("");
-      
+     
     }
-
+    
     public function get_response_format(){
         if(!$this->response)
             throw new RestClientException(
@@ -249,7 +250,9 @@ class RestClient implements \Iterator, \ArrayAccess {
             $this->decoded_response = call_user_func(
                 $this->options['decoders'][$format], $this->response);
         }
-       
-        return json_decode(json_encode($this->decoded_response), true);
+        $result = json_decode(json_encode($this->decoded_response), true);
+        
+        return $result;
     }
+    
 }

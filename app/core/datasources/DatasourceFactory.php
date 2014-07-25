@@ -13,10 +13,10 @@ class DatasourceFactory
     
     public function getDatasource($sourceName, Logger $logger) {
         $datasources = $this->getDatasources();
+        
         if(!array_key_exists($sourceName, $datasources)) {            
             try{
-                $ds = $this->buildDatasourceInstance($sourceName, $logger);
-            
+                $ds = $this->buildDatasourceInstance($sourceName, $logger);            
                 $datasources[$sourceName] = $ds;          
             }catch(\Exception $e) {
                 $logger->addError($sourceName . ' is not a valid datasource');

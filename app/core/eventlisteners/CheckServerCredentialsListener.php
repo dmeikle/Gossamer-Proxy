@@ -9,16 +9,16 @@ use entities\ServerAuthenticationToken;
 use commands\GetCommand;
 
 class CheckServerCredentialsListener extends AbstractListener
-{
+{ 
     
     public function on_entry_point($params) {
-        if (is_null($params->getHeader('serverAuth')) || strlen($params-getHeader('serverAuth') < 1)) {
+        if (is_null($params['Headers']['serverAuth']) || strlen($params['Headers']['serverAuth'] < 1)) {
             $this->logger->addError('CheckServerCredentialsListener::on_entry_point expects serverAuth header');
             throw new InvalidServerIDException('server identification missing from Headers');
         }
-        if(!$this->checkServer($params-getHeader('serverAuth'), $params->getAttribute('ipAddress'))) {
-            $this->logger->addError('CheckServerCredentialsListener::on_entry_point has mismatched serverAuth header');
-            throw new UnauthorizedAccessException();
+        if(!$this->checkServer($params['Headers']['serverAuth'], $params['httpRequest']->getAttribute('ipAddress'))) {
+            $this->logger->addError('CheckServerCredentialsListener::on_entry_point has mismatched serverAuth header using ' . $params['httpRequest']->getAttribute('ipAddress'));
+            throw new UnauthorizedAccessException($params['httpRequest']->getAttribute('ipAddress') . ' is not authorized');
         }
     }
 

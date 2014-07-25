@@ -6,6 +6,7 @@ class URIComparator
 {
     
     public function findPattern($config, $uri){
+        
         foreach($config as $outerkey => $grouping){
            if(array_key_exists('methods', $grouping)) {
                $method = current($grouping['methods']);
@@ -16,7 +17,7 @@ class URIComparator
            }
 
             foreach($grouping as $key => $value){
-                echo "$key<br>";
+               
                 if($key == 'pattern') {
                     if($this->parseWildCard($uri, $value)) {
                        return $outerkey;
@@ -29,7 +30,7 @@ class URIComparator
     }
     
     private function parseWildCard($uri, $pageName) {
-        
+       
         //knock of the trailing parameters at end of URI
         $chunks = explode('?', $uri);
         $trimmedChunks = rtrim($chunks[0], '/');
@@ -39,10 +40,9 @@ class URIComparator
         if(current($uriPieces) == ''){
             array_shift($uriPieces);       
         }
-        //this is based on config file
-        $pagePieces = array_filter(explode('/', $pageName));
-
-        
+        //this is based on config file - remove array_filter as it was dropping last chunk
+        $pagePieces = (explode('/', $pageName));
+ 
         if(count($uriPieces) != count($pagePieces)  || count($pagePieces) < 1) {
             return false;
         }
@@ -51,6 +51,7 @@ class URIComparator
         for($i = 0; $i < count($uriPieces); $i++) {
            if(array_key_exists($i, $pagePieces)) {
                if($pagePieces[$i] == '*') {
+                  
                    continue;
                }
 
@@ -60,7 +61,7 @@ class URIComparator
            }
 
         }
-echo "going with $pageName<br>";
+        
         return true;
     }
 }

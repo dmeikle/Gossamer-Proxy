@@ -1,0 +1,56 @@
+
+          
+default_index:
+    pattern: default/index
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: component_list
+        datasource: datasource1
+    methods: [POST]
+    
+
+default_about:
+    pattern: about
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\AboutController
+        model: components\defaultItem\models\AboutModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: default_about
+        datasource: datasource2
+    methods: [POST]
+
+
+users_list:
+    pattern: app/app.php
+    #defaults: { _controller: UserComponent:User:save }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listone
+        datasource: datasource1
+    methods: [POST]
+
+users_save:
+    pattern:  /users/new
+    defaults: { _controller: ProductBundle:Default:save }
+    datasource: datasource1
+    methods: [POST]
+    
+users_list_alpha_desc:
+    pattern:  /users/listAlphaDesc
+    defaults: { _controller: ProductBundle:Default:listAlphaDesc }   
+    
+    
+users_list_alpha_asc:
+    pattern:  /users/listAlphaAsc
+    defaults: { _controller: ProductBundle:Default:listAlphaAsc }
+    

@@ -6,6 +6,7 @@ use libraries\utils\YAMLViewConfiguration;
 use Monolog\Logger;
 use libraries\utils\Container;
 use core\system\KernelEvents;
+use core\components\locales\utils\LocaleLoader;
 
 class AbstractView
 {
@@ -25,14 +26,24 @@ class AbstractView
     protected $container = null;
 
     protected $template = null;
+    
+    protected $langFileLoader = null;
 
-    public function __construct(Logger $logger, $ymlKey, array $agentType) {
+    public function __construct(Logger $logger, $ymlKey, array $agentType, LocaleLoader $langFileLoader = null) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
+        $this->langFileLoader = $langFileLoader;
         $this->loadConfig();
 
     }
+    public function getString($key) {
+        if(is_null($this->langFileLoader)) {
+            throw new \RuntimeException("LangFileLoader is null - cannot request a string");
+        }
+        return $this->langFileLoader->getString($key);
+    }
+    
     
     public function setContainer(Container $container) {
         $this->container = $container;

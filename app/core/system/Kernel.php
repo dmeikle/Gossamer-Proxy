@@ -36,13 +36,13 @@ class Kernel
 
         $httpRequest = $this->container->get('HTTPRequest');
         $httpResponse = $this->container->get('HTTPResponse');
-
+      
         $componentName = $controllerNode['component'];
         $controllerName = $controllerNode['controller'];
         $modelName = $controllerNode['model'];
         $viewName = $controllerNode['view'];
         $method = $controllerNode['method']; 
-echo "$controllerName $method<br>";
+
         //EventDispatcher is created in bootstrap
         //first, run any security checks before starting the request
         $event = new Event(KernelEvents::ENTRY_POINT, $httpRequest);

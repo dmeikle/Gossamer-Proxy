@@ -1,0 +1,15 @@
+
+
+default_index:
+    template: home.php
+    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
+    
+
+default_about:
+    template: home.php
+    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/defaultItem/views/payload.php"}
+
+users_list2:
+    template: list.php
+    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
+    
