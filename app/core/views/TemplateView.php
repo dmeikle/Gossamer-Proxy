@@ -5,6 +5,8 @@ namespace core\views;
 use core\AbstractView;
 use core\handlers\ImportJSHandler;
 use core\handlers\ImportCSSHandler;
+use core\handlers\URITagHandler;
+
 
 class TemplateView extends AbstractView
 {
@@ -40,6 +42,19 @@ class TemplateView extends AbstractView
         $this->renderSections();
         $this->placeJSFiles();
         $this->placeCSSFiles();
+        $this->renderURITags($template);
+    }
+    
+    private function renderURITags() {
+        $uriHandler = new URITagHandler($this->logger);
+        
+        $uriHandler->setTemplate($this->template);
+        $this->template = $uriHandler->handlerequest();
+        
+    }
+    private function renderHTMLTags() {
+        $congLoader = new \libraries\utils\YAMLConfiguration2($this->logger);
+        
     }
 
     private  function placeJSFiles() {
@@ -70,9 +85,16 @@ class TemplateView extends AbstractView
         }
 
         foreach($this->sections as $sectionName => $section) {
-            $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
-
-            $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($section), $this->template);
+            if(!is_array($section)) {
+                $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
+                $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($section), $this->template);
+            } else {
+                foreach($section as $subSectionName => $subSection) {
+                     $sectionNamePlaceHolder = '<!---' . $subSectionName . '--->';
+                    $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($subSection), $this->template);
+                }
+            }
+            
         }
 
     }

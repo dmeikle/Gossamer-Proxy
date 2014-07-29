@@ -103,7 +103,7 @@ class EventDispatcher{
  
     public function dispatch($uri, $state, $params = null) {
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
-        echo "uri is $uri<br>";
+       
 
         if(!array_key_exists($uri, $this->listeners)) {
             $this->logger->addDebug("no listeners found for $uri with state set to $state");            

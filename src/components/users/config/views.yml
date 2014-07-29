@@ -2,19 +2,19 @@
 
 component_list:
     template: list.php
-    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
+    sections: {"section1": "themes/default/templates/sections/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
     
 users_list2:
     template: list.php
-    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
+    sections: {"section1": "themes/default/templates/sections/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
  
 
 
 users_list:
     template: test.php
-    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
+    sections: {"section1": "themes/default/templates/sections/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/payload.php"}
  
 users_get:
     template: test.php
-    sections: {"section1": "components/users/views/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/get.php"}
+    sections: {"section1": "themes/default/templates/sections/header.php", "section2": "components/users/views/leftnav.php", "section3": "components/users/views/get.php"}
        

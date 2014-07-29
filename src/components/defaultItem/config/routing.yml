@@ -2,7 +2,17 @@
           
 default_index:
     pattern: default/index
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1'} 
+       
+        -
+            'event': 'request_start'
+            'listener': 'components\shoppingcart\listeners\LoadRecentProductsListener'
+            'datasource': 'datasource1'
+            'params': 
+                -
+                    'maxItems': 10
+            
     defaults:
         component: components\defaultItem\DefaultComponent
         controller: components\defaultItem\controllers\DefaultController
@@ -11,8 +21,9 @@ default_index:
         view: core\views\TemplateView
         viewKey: component_list
         datasource: datasource1
-    methods: [POST]
+    methods: [GET]
     
+
 
 default_about:
     pattern: about

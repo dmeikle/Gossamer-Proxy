@@ -57,5 +57,18 @@ abstract class BaseHandler
         return  '/' . $rootFolder . '/components/' . implode('/', $chunks) . $filename;
     }
 
+    protected function getOccurrences($content, $tagName)
+    {
+        $lastPos = 0;
+        $positions = array();
+        while (($lastPos = strpos($content, $tagName, $lastPos))!== false)
+        {
+            $positions[] = $lastPos;
+            $lastPos = $lastPos + strlen($tagName);
+        }
+        
+        return $positions;
+    }
+    
     public abstract function handleRequest($params = array());
 }

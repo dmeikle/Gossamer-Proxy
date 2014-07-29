@@ -36,12 +36,14 @@
     <div id="payload">
       <div class="fb-like" data-href="http://www.glenmeikle.com/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
-    <!---section3--->            
+        <!---section2--->
+        <!---section3---> 
+        <!---section4--->             
     </div>
 
 
     <div id="footer">
-        <!---section4--->
+        <!---section5--->
     </div>
 
 </div>

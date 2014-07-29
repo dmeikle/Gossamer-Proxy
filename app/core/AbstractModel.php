@@ -9,7 +9,7 @@ use core\http\HTTPResponse;
 use core\AbstractView;
 use core\datasources\DataSourceInterface;
 use libraries\utils\Container;
-
+use core\http\HTTPSession;
 
 class AbstractModel
 {
@@ -181,4 +181,35 @@ class AbstractModel
         return $retval;
     }
 
+    protected function formatSelectionBoxOptions(array $options, array $selectedOptions) {
+        $retval = '';
+        foreach($options as $key => $option) {
+            if(!in_array($key, $selectedOptions)) {
+                $retval .= "<option value=\"{$key}\">{$option}</option>\r\n";
+            } else {
+                $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
+            }
+        }
+        return $retval;
+    }
+    
+     public function getSession($key) {
+        $session = $_SESSION;
+       
+        return $this->fixObject($session[$key]);
+    }
+    
+    public function setSession($key, $value) {
+        $_SESSION[$key] = $value;
+    }
+    
+    private function fixObject (&$object)
+    {
+        if (!is_object ($object) && gettype ($object) == 'object'){
+            
+            return ($object = unserialize (serialize ($object)));
+        }
+        
+        return $object;
+    }
 }

@@ -15,7 +15,7 @@ $nodeConfig = $configuration->getNodeParameters($_SERVER['REQUEST_URI']);
 
 $controllerNode = $nodeConfig['defaults'];
 $controllerNode['pattern'] = $nodeConfig['pattern'];
-
+//pr($nodeConfig);
 define('__YML_KEY', $nodeConfig['ymlKey']);  
 define('__VIEW_KEY', $controllerNode['viewKey']);
 
@@ -55,7 +55,7 @@ function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
     $parser->setFilePath(__SITE_PATH . '/config/bootstrap.yml');
     $bootstraps = $parser->loadConfig(); //$parser->findNodeByURI(KernelEvents::REQUEST_START, 'listeners');
     $eventDispatcher->configListeners($bootstraps);
-
+    $retval[] = $bootstraps;
     $subdirectories = getDirectoryList();
     $componentBootstraps = array();
     

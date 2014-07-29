@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(strlen($_SERVER['REQUEST_URI']) < 2) {
     $_SERVER['REQUEST_URI'] = 'default/index';
 }

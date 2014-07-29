@@ -17,4 +17,15 @@ class DefaultModel extends  AbstractModel
         
         $this->entity = 'Default';
     }
+    
+    public function listall($offset = 0, $rows = 20) {
+        $params = array(
+            'offset' => $offset, 'rows' => $rows
+        );
+        $params['locale'] = $this->getDefaultLocale();
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        $data['Products'] = $this->httpRequest->getAttribute('Products');
+        
+        $this->render($data);
+    }
 }

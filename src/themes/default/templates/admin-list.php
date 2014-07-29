@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Admin List</title>
+    <link href="/css/framework.css" rel="stylesheet">
     <!---css--->
 
 
@@ -25,31 +26,26 @@
     <![endif]-->
 </head>
 <body>
-<h1>Hello, world!</h1>
-<div class="blog-masthead">
-    <div class="container">
-        <nav class="blog-nav">
-            <a class="blog-nav-item active" href="/admin">Home</a>
-            <a class="blog-nav-item" href="/admin/cart/categories">Categories</a>
-            <a class="blog-nav-item" href="/admin/cart/products">Products</a>
-            <a class="blog-nav-item" href="/admin/cart/sales">Sales</a>
-            <a class="blog-nav-item" href="/admin/cart/variants">Variants</a>
-        </nav>
+<div id="container">
+
+    <div id="header">
+        <!---section1--->
+     </div>
+
+    <div id="lower">
+    <div id="payload">
+      <div class="fb-like" data-href="http://www.glenmeikle.com/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
-</div>
-<div  class="container" align="center">
-    <table width="800" border="1">
-        <tr>
-            <td colspan="2"><!---section1---></td>
-        </tr>
-        <tr>
-            <td width="200"><!---section2---></td>
-            <td width="600"><!---section3---></td>
-        </tr>
-    </table>
+    <!---section3--->            
+    </div>
+
+
+    <div id="footer">
+        <!---section4--->
+    </div>
 
 </div>
-
+        
 
 <script src="/js/jquery-2.1.1.js"></script>
 <!-- Latest compiled and minified JavaScript -->

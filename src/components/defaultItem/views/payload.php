@@ -1,3 +1,3 @@
 <?php
-echo $payload;
+echo 'payload';
 ?>
