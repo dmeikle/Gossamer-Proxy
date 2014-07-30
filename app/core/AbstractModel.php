@@ -113,6 +113,7 @@ class AbstractModel
 
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
+    
     public function listall($offset = 0, $rows = 20) {
         $params = array(
             'offset' => $offset, 'rows' => $rows

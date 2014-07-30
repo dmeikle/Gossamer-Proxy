@@ -19,7 +19,14 @@ class HTTPRequest extends AbstractHTTP
        $uri = $_SERVER['REQUEST_URI'];       
        $filter = $this->parseURIParams($pattern);
        $this->postParameters = $_POST;
-       $params = array_filter(explode('/', str_replace($filter, '', $uri)));
+       //array filter knocked off any '0' value, so it has been removed
+       //$params = array_filter(explode('/', str_replace($filter, '', $uri)));
+       
+       $params = explode('/', str_replace($filter, '', $uri));
+       if(current($params) == '') {
+           array_shift($params);
+       }
+       
        $this->requestParameters = $params;
     }
     
