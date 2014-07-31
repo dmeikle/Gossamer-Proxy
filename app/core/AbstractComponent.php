@@ -125,23 +125,4 @@ abstract class AbstractComponent
      */
     protected abstract function getChildNamespace();
     
-    /**
-     * runFilters - executes the filter chain based on the component custom web.xml configuration
-     */
-    private function runFilters(Request $request, Registry $registry) {
-       $filterManager = new FilterChainManager();
-die("inside runfilters in abstractcomponent");
-        try{
-            $filterManager->executeChain($this->filters, $_REQUEST, $registry);    
-        }catch(UnauthorizedAccessException $e){error_log('unauth');
-            //by returning this to the client they should configured their
-            //system to respond with a subsequent login request, followed
-            //by repeating their original request
-            return array('code' => '401', 'status' => 'Unauthorized');
-        }catch(ParameterNotPassedException $e){error_log('no param');
-            return array('code' => $e->getCode(), 'status' => $e->getMessage());
-        }
-    
-        return true;
-    }
 }

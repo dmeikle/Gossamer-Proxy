@@ -8,7 +8,7 @@
                 <li><a href="wall-tablets.htm" title="wall art tablets">Wall Tablets</a></li>
             </ul>
         </li>
-        <li><a href="collection.htm">collection</a></li> 
+        <li><a href="/cart/Wall Tablets/">collection</a></li> 
         <li><a href="design.htm">design</a>
             <ul>
                 <li><a href="design.htm">layout 1</a>
