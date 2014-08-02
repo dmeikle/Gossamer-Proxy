@@ -2,66 +2,121 @@
           
 default_index:
     pattern: default/index
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1'} 
+ #   listeners:
+ #       - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1'} 
        
-        -
-            'event': 'request_start'
-            'listener': 'components\shoppingcart\listeners\LoadRecentProductsListener'
-            'datasource': 'datasource1'
-            'params': 
-                -
-                    'maxItems': 10
+  #      -
+  #          'event': 'request_start'
+  #          'listener': 'components\shoppingcart\listeners\LoadRecentProductsListener'
+  #          'datasource': 'datasource1'
+  #          'params': 
+  #              -
+  #                  'maxItems': 10
             
     defaults:
         component: components\defaultItem\DefaultComponent
         controller: components\defaultItem\controllers\DefaultController
         model: components\defaultItem\models\DefaultModel
-        method: listall
+ #       method: listall
+        method: index
         view: core\views\TemplateView
-        viewKey: component_list
+        viewKey: default_index
         datasource: datasource1
     methods: [GET]
     
 
-
 default_about:
     pattern: about
-#    defaults: { _controller: UserComponent:User:2nd }
     defaults:
         component: components\defaultItem\DefaultComponent
-        controller: components\defaultItem\controllers\AboutController
-        model: components\defaultItem\models\AboutModel
-        method: index
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: about
         view: core\views\TemplateView
         viewKey: default_about
         datasource: datasource2
-    methods: [POST]
+    methods: [GET]
 
-
-users_list:
-    pattern: app/app.php
-    #defaults: { _controller: UserComponent:User:save }
+default_about_glen:
+    pattern: glen-meikle
     defaults:
-        component: components\users\UsersComponent
-        controller: components\users\controllers\User
-        model: components\users\models\User
-        method: listone
-        datasource: datasource1
-    methods: [POST]
-
-users_save:
-    pattern:  /users/new
-    defaults: { _controller: ProductBundle:Default:save }
-    datasource: datasource1
-    methods: [POST]
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: glenmeikle
+        view: core\views\TemplateView
+        viewKey: default_about_glen
+        datasource: datasource2
+    methods: [GET]    
     
-users_list_alpha_desc:
-    pattern:  /users/listAlphaDesc
-    defaults: { _controller: ProductBundle:Default:listAlphaDesc }   
+default_wall_tablets:
+    pattern: wall-tablets
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: walltablets
+        view: core\views\TemplateView
+        viewKey: default_wall_tablets
+        datasource: datasource2
+    methods: [GET]       
     
+default_collection:
+    pattern: collection
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: collection
+        view: core\views\TemplateView
+        viewKey: default_collection
+        datasource: datasource2
+    methods: [GET]         
     
-users_list_alpha_asc:
-    pattern:  /users/listAlphaAsc
-    defaults: { _controller: ProductBundle:Default:listAlphaAsc }
+default_design1:
+    pattern: design
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: design1
+        view: core\views\TemplateView
+        viewKey: default_design1
+        datasource: datasource2
+    methods: [GET]         
     
+default_design2:
+    pattern: design2
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: design2
+        view: core\views\TemplateView
+        viewKey: default_design2
+        datasource: datasource2
+    methods: [GET]        
+    
+default_inspiration:
+    pattern: inspiration
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: inspiration
+        view: core\views\TemplateView
+        viewKey: default_inspiration
+        datasource: datasource2
+    methods: [GET]         
+    
+default_contact:
+    pattern: contact
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: contact
+        view: core\views\TemplateView
+        viewKey: default_contact
+        datasource: datasource2
+    methods: [GET]     

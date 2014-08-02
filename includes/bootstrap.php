@@ -13,9 +13,10 @@ $logger = new Logger('namespace');
 $configuration = new YAMLConfiguration2($logger);
 $nodeConfig = $configuration->getNodeParameters($_SERVER['REQUEST_URI']);
 
+
 $controllerNode = $nodeConfig['defaults'];
 $controllerNode['pattern'] = $nodeConfig['pattern'];
-//pr($nodeConfig);
+
 define('__YML_KEY', $nodeConfig['ymlKey']);  
 define('__VIEW_KEY', $controllerNode['viewKey']);
 
@@ -82,6 +83,15 @@ function getDirectoryList() {
         while (false !== ($file = readdir($handle))) {
             if (!in_array($file, $blacklist)) {
                 $retval[] = __SITE_PATH . '/src/components/' . $file;
+            }
+        }
+        closedir($handle);
+    }
+    if ($handle = opendir(__SITE_PATH . '/app/core/components')) {
+        $blacklist = array('.', '..', 'somedir', 'somefile.php');
+        while (false !== ($file = readdir($handle))) {
+            if (!in_array($file, $blacklist)) {
+                $retval[] = __SITE_PATH . '/app/core/components/' . $file;
             }
         }
         closedir($handle);

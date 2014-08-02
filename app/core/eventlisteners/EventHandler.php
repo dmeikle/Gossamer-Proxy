@@ -66,7 +66,7 @@ class EventHandler
 
 
     public function notifyListeners() {
-        $this->logger->addDebug('notifying listeners');
+        $this->logger->addDebug('*** notifying listeners ***');
         foreach($this->listeners as $listener) {
             $eventListener = new $listener($this->logger, $this->httpRequest, $this->httpResponse);
             $eventListener->setDatasources($this->datasourceFactory, $this->datasources);

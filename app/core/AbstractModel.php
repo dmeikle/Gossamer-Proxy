@@ -135,7 +135,8 @@ class AbstractModel
     }
 
     public function getDefaultLocale() {
-        $userPreferences = $this->httpRequest->getParameter('userPreferences');
+       // $userPreferences = $this->httpRequest->getParameter('userPreferences');
+        $userPreferences = $this->getSession('userPreferences');
         if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
             return $userPreferences['defaultLocale'];
         }
@@ -144,6 +145,8 @@ class AbstractModel
 
         return $config['default_locale'];
     }
+    
+    
 
     protected function getFileList($dir, $recurse=false)
     {
@@ -194,23 +197,8 @@ class AbstractModel
         return $retval;
     }
     
-     public function getSession($key) {
-        $session = $_SESSION;
-       
-        return $this->fixObject($session[$key]);
-    }
     
-    public function setSession($key, $value) {
-        $_SESSION[$key] = $value;
-    }
-    
-    private function fixObject (&$object)
-    {
-        if (!is_object ($object) && gettype ($object) == 'object'){
-            
-            return ($object = unserialize (serialize ($object)));
-        }
-        
-        return $object;
+    public function getHttpRequest() {
+        return $this->httpRequest;
     }
 }

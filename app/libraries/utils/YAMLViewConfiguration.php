@@ -19,16 +19,17 @@ class YAMLViewConfiguration
     private function loadConfig($routingPath) {
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath($routingPath);
-        
+       
         return $parser->loadConfig();
     }
     
     public function getViewConfig($uri, $ymlKey) {
         $routingPath = $this->getInitialRouting($uri);
-      echo "yml: $ymlKey<br>";
+     
         $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
         
-        $this->config = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $routingPath);
+        $this->config = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
+       
         $explodedPath = explode('/', $routingPath);
         $result = $this->getYMLNodeParameters($ymlKey);
         if(is_array($result)) {
@@ -94,8 +95,10 @@ class YAMLViewConfiguration
     
 
     private function getYMLNodeParameters($ymlKey) {
-        
-        return $nodeParams = $this->config[$ymlKey];       
+       
+        if(array_key_exists($ymlKey, $this->config)) {
+            return $nodeParams = $this->config[$ymlKey]; 
+        }              
     }
     
     private function iterateComponentConfigurations(Logger $logger, $filename, $node) {

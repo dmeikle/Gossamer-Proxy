@@ -17,7 +17,7 @@ use core\eventlisteners\EventDispatcher;
 use Monolog\Logger;
 use libraries\utils\Container;
 use core\datasources\core\datasources\DatasourceFactory;
-
+use exceptions\HandlerNotCallableException;
 
 /**
  * 
@@ -91,14 +91,14 @@ abstract class AbstractComponent
             $this->controllerName,
             $this->method
         );
-  
+
         if (is_callable($handler)) {
-            
+          
             //$commandName = $this->command;
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
             $model->setContainer($this->container);
             $model->setDatasource($this->getDatasource());
-            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest->getAttribute('langFiles'));
+            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest->getAttribute('langFiles'), $httpRequest->getAttribute('locales'));
             $view->setContainer($this->container);
             $controller = new $this->controllerName($model, $view, $this->logger);
 
@@ -106,7 +106,9 @@ abstract class AbstractComponent
                 $controller,
                 $this->method
             ), !isset($this->params) ? array() : $this->params);
-        }       
+        }  else {
+            throw new HandlerNotCallableException('unable to match method to controller');
+        }     
     }
     
     private function getDatasource() {

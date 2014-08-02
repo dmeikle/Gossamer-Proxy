@@ -28,4 +28,11 @@ class DefaultModel extends  AbstractModel
         
         $this->render($data);
     }
+    
+     public function index(array $params) {  
+         
+        $this->render($params);
+    }
+    
+    
 }

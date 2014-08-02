@@ -7,6 +7,7 @@ use Monolog\Logger;
 use libraries\utils\Container;
 use core\system\KernelEvents;
 use core\components\locales\utils\LocaleLoader;
+use core\http\HTTPRequest;
 
 class AbstractView
 {
@@ -29,11 +30,15 @@ class AbstractView
     
     protected $langFileLoader = null;
 
-    public function __construct(Logger $logger, $ymlKey, array $agentType, LocaleLoader $langFileLoader = null) {
+    protected $localesList = null;
+    
+    public function __construct(Logger $logger, $ymlKey, array $agentType, LocaleLoader $langFileLoader = null, array $localesList = null) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
         $this->langFileLoader = $langFileLoader;
+        $this->localesList = $localesList;
+        
         $this->loadConfig();
 
     }
@@ -51,7 +56,11 @@ class AbstractView
     
     public function setData($data)
     {
+        //add the locales we preloaded here. 
+        ////TODO: we can begin to deprecate any other locale list calls
+        $data['SystemLocalesList'] = $this->localesList;
         $this->data = $data;
+       
     }
 
     public function getData() {
@@ -95,4 +104,15 @@ class AbstractView
         eval("?>" . $this->template );
     }
 
+    public function getDefaultLocale() {
+       // $userPreferences = $this->httpRequest->getParameter('userPreferences');
+        $userPreferences = getSession('userPreferences');
+        if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
+            return $userPreferences['defaultLocale'];
+        }
+
+        $config = $this->httpRequest->getAttribute('defaultPreferences');
+
+        return $config['default_locale'];
+    }
 }

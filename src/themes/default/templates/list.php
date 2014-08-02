@@ -13,10 +13,11 @@
 
 
 
-    <link href="/src/themes/default/templates/css/framework.css" type="text/css" >
+    <link href="/src/themes/default/templates/css/framework.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

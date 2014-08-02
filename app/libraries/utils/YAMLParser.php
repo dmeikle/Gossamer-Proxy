@@ -50,6 +50,7 @@ class YAMLParser
     }
     
     public function loadConfig() {
+       
         return Yaml::parse($this->ymlFilePath);
     }
     

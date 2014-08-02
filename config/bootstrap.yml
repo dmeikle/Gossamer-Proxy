@@ -2,6 +2,7 @@
 all:
     listeners:
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
+        - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1'}
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
     defaults:
         langFiles: 

@@ -82,7 +82,6 @@ class AbstractController
      * @param int limit     max rows to return
      */
     public function listall($offset=0, $limit=20) {
-        echo "offset is $offset<br>";
         $this->model->listall($offset, $limit);
     }
 

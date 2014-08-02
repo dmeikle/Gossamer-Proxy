@@ -23,7 +23,7 @@ class AbstractListener
     
     protected $datasourceKey = null;
     
-    private $container = null;
+    protected $container = null;
 
     public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
         $this->logger = $logger;
@@ -63,6 +63,7 @@ class AbstractListener
         $method = 'on_' . $state;
         $this->logger->addDebug('checking listener for method: ' . $method);
          if (method_exists($this, $method)) {
+        $this->logger->addDebug('class: ' . get_class($this) . ' found');
             call_user_func_array(array($this, $method), array($params));        
         }
     }

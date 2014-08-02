@@ -1,0 +1,10 @@
+locale_change:
+    pattern: locale/change
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: change
+        view: core\views\TemplateView
+        viewKey: locale_change
+        datasource: datasource1

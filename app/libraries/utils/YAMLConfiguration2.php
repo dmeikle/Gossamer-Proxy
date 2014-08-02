@@ -21,7 +21,8 @@ class YAMLConfiguration2
     
     private function loadConfig($routingPath) {
         $parser = new YAMLParser($this->logger);
-        $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $routingPath);
+        $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR  . $routingPath);
+       
         
         $this->config = $parser->loadConfig();
         unset($parser);
@@ -29,18 +30,17 @@ class YAMLConfiguration2
     
     
     public function getNodeParameters($uri) {
-        echo "URI IN YML $uri<br>";
         if($uri == '/' || $uri == '') {
             $uri = 'default/index';
         }
         $routingPath = $this->getInitialRouting($uri);
-      
+     
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-        
+       
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, 'pattern',$uri);
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
-        
+      
         $nodeParams = $this->getYMLNodeParameters($ymlKey);
         $nodeParams['namespace'] = $namespace;
         $nodeParams['ymlKey'] = $ymlKey;
@@ -78,6 +78,7 @@ class YAMLConfiguration2
             $chunk = array_shift($pieces);//drop the admin for the routing file
         }
         $config = $parser->loadConfig(); 
+        
         unset($parser);
         $this->datasources = $config;
 
@@ -85,7 +86,8 @@ class YAMLConfiguration2
             throw new URINotFoundException($chunk . ' does not exist in YML configuration');
         }
         //return the first path
-        foreach($config[$chunk] as $key => $path) {            
+        foreach($config[$chunk] as $key => $path) {
+          
             return $path;            
         }
         
@@ -105,17 +107,18 @@ class YAMLConfiguration2
      */
     public function findConfigKeyByURIPattern($configList, $node, $uriPattern)
     {
+       
         $comparator = new URIComparator();
 
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
         unset($comparator);
-        
+       
         return $uriConfig;
     }
     
 
     private function getYMLNodeParameters($ymlKey) {
-        echo "yml key $ymlKey<br>";
+        
         return $nodeParams = $this->config[$ymlKey];       
     }
     

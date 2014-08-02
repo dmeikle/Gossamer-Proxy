@@ -41,3 +41,24 @@ function pr($item){
     echo'</pre>\r\n';
 }
 
+
+function getSession($key) {
+    $session = $_SESSION;
+
+    return fixObject($session[$key]);
+}
+
+function setSession($key, $value) {
+    $_SESSION[$key] = $value;
+}
+    
+function fixObject (&$object)
+{
+    if (!is_object ($object) && gettype ($object) == 'object'){
+
+        return ($object = unserialize (serialize ($object)));
+    }
+
+    return $object;
+}
+

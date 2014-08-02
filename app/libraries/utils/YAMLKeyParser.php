@@ -15,7 +15,7 @@ class YAMLKeyParser extends YAMLParser
         $this->logger = $logger;
     }
     
-    public function getKeys() {
+    public function getKeys($routingPath='') {
         
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $routingPath);

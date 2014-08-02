@@ -26,7 +26,7 @@ class HTTPRequest extends AbstractHTTP
        if(current($params) == '') {
            array_shift($params);
        }
-       
+       $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
        $this->requestParameters = $params;
     }
     

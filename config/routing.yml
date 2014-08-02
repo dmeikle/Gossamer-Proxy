@@ -1,18 +1,38 @@
+
+locale:
+    component: "app/core/components/locales/config/routing.yml"
+
+
 default:
-    component: "components/defaultItem/config/routing.yml"
+    component: "src/components/defaultItem/config/routing.yml"
     
 about:
-    component: "components/defaultItem/config/routing.yml"
-    
+    component: "src/components/defaultItem/config/routing.yml"
+
+glen-meikle:
+    component: "src/components/defaultItem/config/routing.yml"    
+wall-tablets:
+    component: "src/components/defaultItem/config/routing.yml"     
+collection:
+    component: "src/components/defaultItem/config/routing.yml"     
+design:
+    component: "src/components/defaultItem/config/routing.yml"     
+design2:
+    component: "src/components/defaultItem/config/routing.yml"     
+inspiration:
+    component: "src/components/defaultItem/config/routing.yml"     
+contact:
+    component: "src/components/defaultItem/config/routing.yml"     
+
 users:
-    component: "components/users/config/routing.yml"
+    component: "src/components/users/config/routing.yml"
     
     
 app:
-    component: "components/users/config/routing.yml"
+    component: "src/components/users/config/routing.yml"
     
 
 cart:
-    component: "components/shoppingcart/config/routing.yml"
+    component: "src/components/shoppingcart/config/routing.yml"
 
 
