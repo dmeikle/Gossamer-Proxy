@@ -70,7 +70,7 @@ class AbstractListener
     
     
     protected function getDefaultLocale() {        
-        $userPreferences = $this->httpRequest->getParameter('userPreferences');
+        $userPreferences = getSession('userPreferences');
         if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
             return $userPreferences['defaultLocale'];
         }

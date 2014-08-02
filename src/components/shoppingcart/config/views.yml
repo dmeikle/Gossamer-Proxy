@@ -1,0 +1,175 @@
+default_index:
+    template: home.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/payload.php"
+            "section4": "themes/default/templates/sections/footer.php"
+            
+
+
+cart_categories_list:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/category-list.php"
+            "section4": "themes/default/templates/sections/footer.php"
+    
+
+cart_products_list_by_category:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/product-list.php"
+            "section4": "themes/default/templates/sections/footer.php"
+    
+cart_admin_categories_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/category-list.php"
+            "section4": "themes/default/templates/sections/footer.php"
+    
+cart_admin_category_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/category-edit.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+cart_products_view_selected:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/product-view.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+cart_admin_product_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/product-edit.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+cart_admin_product_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/product-edit.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+cart_admin_products_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/product-list.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+
+cart_admin_product_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/admin/category-list.php"
+            "section4": "themes/default/templates/sections/footer.php"
+
+
+cart_add_basket:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/view-cart.php"
+            "section4": "themes/default/templates/sections/footer.php"
+            
+cart_view_basket:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/view-cart.php"
+            "section4": "themes/default/templates/sections/footer.php"
+            
+
+cart_remove_basket:
+    template: list.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/users/views/leftnav.php"
+            "section3": "components/shoppingcart/views/view-cart.php"
+            "section4": "themes/default/templates/sections/footer.php"
+            
+cart_checkout_1:
+    template: checkout.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/shoppingcart/views/buyer-info.php"
+            "section5": "themes/default/templates/sections/footer.php"
+            
+cart_checkout_2:
+    template: checkout.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/shoppingcart/views/buyer-verify.php"
+            "section3": "components/shoppingcart/views/buyer-verify-contents.php"
+            "section4": "components/shoppingcart/views/buyer-confirm-nav.php"
+            "section5": "themes/default/templates/sections/footer.php"            
+            
+cart_checkout_3:
+    template: checkout.php
+    sections: 
+        -
+            "section1": "themes/default/templates/sections/header.php"
+            "section2": "components/shoppingcart/views/purchase-info.php"
+            "section3": "components/shoppingcart/views/buyer-verify.php"
+            "section4": "components/shoppingcart/views/buyer-verify-contents.php"
+            "section5": "themes/default/templates/sections/footer.php"     
+            
+cart_admin_sales_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"            
+            "section3": "components/shoppingcart/views/admin/sales-list.php"
+            "section5": "themes/default/templates/sections/footer.php"
+            
+cart_admin_sale_remove:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"           
+            "section3": "components/shoppingcart/views/admin/sales-list.php"
+            "section5": "themes/default/templates/sections/footer.php"
+            
+cart_admin_sale_view:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"  
+            "section2": "components/shoppingcart/views/admin/buyer-info.php"
+            "section3": "components/shoppingcart/views/admin/buyer-product-info.php"
+            "section5": "themes/default/templates/sections/footer.php"    

@@ -19,8 +19,6 @@ class LoadLocalesListener extends AbstractListener
         $locales = current($datasource->query('get', $model, 'list', $params));
         foreach($locales as $locale) {
             $retval[$locale['locale']] = $locale;
-            //we've moved the key from the values to the key, remove it from values
-            unset($retval[$locale['locale']]['locale']);
         }
 
         $this->httpRequest->setAttribute('locales', $retval);

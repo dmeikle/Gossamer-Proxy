@@ -118,7 +118,8 @@ class AbstractModel
         $params = array(
             'offset' => $offset, 'rows' => $rows
         );
-        $params['locale'] = $this->getDefaultLocale();
+        $defaultLocale =  $this->getDefaultLocale();
+        $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
         $this->render($data);
     }
@@ -136,7 +137,7 @@ class AbstractModel
 
     public function getDefaultLocale() {
        // $userPreferences = $this->httpRequest->getParameter('userPreferences');
-        $userPreferences = $this->getSession('userPreferences');
+        $userPreferences = getSession('userPreferences');
         if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
             return $userPreferences['defaultLocale'];
         }

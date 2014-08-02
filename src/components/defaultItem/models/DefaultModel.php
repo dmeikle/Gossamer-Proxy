@@ -22,7 +22,8 @@ class DefaultModel extends  AbstractModel
         $params = array(
             'offset' => $offset, 'rows' => $rows
         );
-        $params['locale'] = $this->getDefaultLocale();
+        $defaultLocale =  $this->getDefaultLocale();
+        $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
         $data['Products'] = $this->httpRequest->getAttribute('Products');
         

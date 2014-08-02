@@ -10,10 +10,12 @@ class LocaleLoader
     }
     
     public function getString($key, $default = null) {
+     
         if(array_key_exists($key, $this->localesList)) {
+          
             return $this->localesList[$key];
         }
-        
+      
         return (is_null($default))? $key : $default;
     }
 }

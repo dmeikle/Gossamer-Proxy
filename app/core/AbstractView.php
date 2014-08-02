@@ -8,6 +8,8 @@ use libraries\utils\Container;
 use core\system\KernelEvents;
 use core\components\locales\utils\LocaleLoader;
 use core\http\HTTPRequest;
+use exceptions\LangFileNotSpecifiedException;
+
 
 class AbstractView
 {
@@ -44,7 +46,7 @@ class AbstractView
     }
     public function getString($key) {
         if(is_null($this->langFileLoader)) {
-            throw new \RuntimeException("LangFileLoader is null - cannot request a string");
+            throw new LangFileNotSpecifiedException("LangFileLoader is null - cannot request a string. Check node configuration for langfile element");
         }
         return $this->langFileLoader->getString($key);
     }
