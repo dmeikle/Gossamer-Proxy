@@ -34,12 +34,15 @@ class AbstractView
 
     protected $localesList = null;
     
-    public function __construct(Logger $logger, $ymlKey, array $agentType, LocaleLoader $langFileLoader = null, array $localesList = null) {
+    protected $httpRequest = null;
+    
+    public function __construct(Logger $logger, $ymlKey, array $agentType, HTTPRequest $httpRequest) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
-        $this->langFileLoader = $langFileLoader;
-        $this->localesList = $localesList;
+        $this->langFileLoader = $httpRequest->getAttribute('langFiles');
+        $this->localesList = $httpRequest->getAttribute('locales');
+        $this->httpRequest = $httpRequest;
         
         $this->loadConfig();
 

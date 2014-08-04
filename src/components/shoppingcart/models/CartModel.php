@@ -26,13 +26,14 @@ class CartModel extends AbstractModel{
         
         $data['Basket'] = $basket;
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale']));
+        
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart'));
     }
     
     public function checkout() {        
         $defaultLocale =  $this->getDefaultLocale();
         
-        $this->render(array('Basket' => $this->getBasket(), 'locale' => $defaultLocale['locale']));
+        $this->render(array('Basket' => $this->getBasket(), 'locale' => $defaultLocale['locale'], 'title' => 'cart checkout', 'pageTitle' => 'Cart Checkout'));
     }
     
     public function verify() {
@@ -45,7 +46,9 @@ class CartModel extends AbstractModel{
             'Basket' => $this->getBasket(), 
             'locale' => $defaultLocale['locale'], 
             'client' => $client,
-            'shipping' => $shipping));
+            'shipping' => $shipping, 
+            'title' => 'cart checkout', 
+            'pageTitle' => 'Cart Checkout'));
     }
     
     public function savePurchase() {
@@ -59,7 +62,8 @@ class CartModel extends AbstractModel{
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(
             array(
-                'Basket' => $this->getBasket(), 'client' => $client, 'Purchase' => current($result['Purchase']), 'locale' => $defaultLocale['locale']
+                'title' => 'Purchase Complete', 'pageTitle' => 'Purchase Complete', 'Basket' => $this->getBasket(), 
+                'client' => $client, 'Purchase' => current($result['Purchase']), 'locale' => $defaultLocale['locale']
             )
         );
     }
@@ -105,7 +109,7 @@ class CartModel extends AbstractModel{
     
     private function getBasket() {
        
-        $basket = $this->getSession('BASKET');
+        $basket = getSession('BASKET');
         
        // pr($basket);
         if(is_null($basket)) {
@@ -120,7 +124,7 @@ class CartModel extends AbstractModel{
         $basket = $this->getBasket();          
         
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale']));
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'title' =>' view cart', 'pageTitle' => 'View Cart'));
     }
     
     private function setBasket(Basket $basket) {

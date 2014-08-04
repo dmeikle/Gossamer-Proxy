@@ -13,7 +13,7 @@
   </div>
  
 
-<div id="locales">
+<div id="locales"><i class="fa fa-shopping-cart"></i>  | 
     <?php $locale = $this->getDefaultLocale();?>
     <img id="locale-icon" src="/images/flags/<?php echo $locale['icon'];?>.gif">
 </div>

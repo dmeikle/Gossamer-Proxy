@@ -25,10 +25,10 @@ class ProductModel extends AbstractModel
        
         $params = ((strlen($category) > 0)? array('category' => $category ) : array());
         $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
-
+        
         
         $defaultLocale =  $this->getDefaultLocale();
-       
+    
         $params['locale'] = $defaultLocale['locale'];
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCategory', $params);
@@ -71,7 +71,7 @@ class ProductModel extends AbstractModel
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
       
         
-        $this->render($data);
+        //$this->render($data);
     }
     
     public function delete($itemId) {

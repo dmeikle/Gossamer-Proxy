@@ -44,9 +44,10 @@ cart_admin_sale_view:
         langFiles: 
             - 'src/components/shoppingcart/locales/*/Sales'
             - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/shoppingcart/locales/*/Purchase'
         
 cart_admin_products_list:
-    pattern: admin/cart/products
+    pattern: admin/cart/products/*/*
 #    defaults: { _controller: UserComponent:User:2nd }
     defaults:
         component: components\shoppingcart\ShoppingCartComponent

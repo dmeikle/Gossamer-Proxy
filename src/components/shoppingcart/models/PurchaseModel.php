@@ -61,6 +61,8 @@ class PurchaseModel extends AbstractModel{
        // $params['locale'] = $this->getDefaultLocale();
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
         $data['Purchases'] = current($data['Purchases']);
+       
+        $data['pagination'] = $this->getPagination($data['PurchasesCount'], $offset, $rows);
         $this->render($data);
     }
      

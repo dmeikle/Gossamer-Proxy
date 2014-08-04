@@ -15,6 +15,9 @@ $( document ).ready(function() {
         $('#locale-change').submit();
     });
     
+    $('.fa-shopping-cart').click(function() {
+        window.location = '/cart/view';
+    });
     
     
 });

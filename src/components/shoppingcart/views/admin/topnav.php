@@ -21,7 +21,7 @@
     <ul>
         <li><a class="blog-nav-item active" href="/admin"><?php echo $this->getString('NAV_HOME');?></a></li>
         <li><a class="blog-nav-item" href="/admin/cart/categories"><?php echo $this->getString('NAV_CATEGORIES');?></a></li>
-        <li><a class="blog-nav-item" href="/admin/cart/products"><?php echo $this->getString('NAV_PRODUCTS');?></a></li>
+        <li><a class="blog-nav-item" href="/admin/cart/products/0/20"><?php echo $this->getString('NAV_PRODUCTS');?></a></li>
         <li><a class="blog-nav-item" href="/admin/cart/sales/0/20"><?php echo $this->getString('NAV_SALES');?></a></li>
         <li><a class="blog-nav-item" href="/admin/cart/variants"><?php echo $this->getString('NAV_VARIANTS');?></a></li>
     </ul>

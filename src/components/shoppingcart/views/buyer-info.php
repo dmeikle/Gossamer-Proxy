@@ -405,9 +405,9 @@
   </div> 
   <div style="padding:10px 0px 10px 150px"> 
 	
-	<input class="btn btn-warning" type="submit" name="Submit" value="Cancel">
-            <input class="btn btn-primary" type="reset" name="Submit2" value="Reset">
-            <input class="btn btn-primary" name="Submit" type="submit" id="Submit" value="Submit">
+	<input type="submit" name="Submit" value="Cancel">
+            <input type="reset" name="Submit2" value="Reset">
+            <input name="Submit" type="submit" id="Submit" value="Submit">
   </div> 
 		<input type="hidden" class="hide" name="action" value="update_member_info"> 
 </form> 

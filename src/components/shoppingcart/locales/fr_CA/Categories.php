@@ -11,5 +11,6 @@ return array (
     'LABEL_CATEGORIES_LIST' => 'Liste des Catégories',
     'BUTTON_EDIT' => 'Modifier',
     'BUTTON_DELETE' => 'Effacer',
-    'BUTTON_NEW' => 'Nouveau'    
+    'BUTTON_NEW' => 'Nouveau' ,
+    'LABEL_ACTION' => 'Action'   
 );

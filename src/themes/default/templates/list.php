@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>list template</title>
+    <title><?php echo $title;?></title>
     <link href="/css/framework.css" rel="stylesheet">
     <!---css--->
 
@@ -16,7 +16,8 @@
     <link href="/src/themes/default/templates/css/framework.css" rel="stylesheet" >
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
     <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
     <!-- Bootstrap -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,9 +49,12 @@
 </div>
 
 
-<script src="/js/jquery-2.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
+    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
 <!-- Latest compiled and minified JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/locales.js"></script>
 
 <!---javascript--->
 </body>

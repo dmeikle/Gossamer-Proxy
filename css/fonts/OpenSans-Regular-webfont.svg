@@ -1,0 +1,967 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html class="   ">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    
+    <title>lausuntopalvelu-prototyyppi/OpenSans-Regular-webfont.svg at master · leonidas/lausuntopalvelu-prototyyppi</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta content="@github" name="twitter:site" /><meta content="summary" name="twitter:card" /><meta content="leonidas/lausuntopalvelu-prototyyppi" name="twitter:title" /><meta content="Contribute to lausuntopalvelu-prototyyppi development by creating an account on GitHub." name="twitter:description" /><meta content="https://avatars1.githubusercontent.com/u/20644?v=1&amp;s=400" name="twitter:image:src" />
+<meta content="GitHub" property="og:site_name" /><meta content="object" property="og:type" /><meta content="https://avatars1.githubusercontent.com/u/20644?v=1&amp;s=400" property="og:image" /><meta content="leonidas/lausuntopalvelu-prototyyppi" property="og:title" /><meta content="https://github.com/leonidas/lausuntopalvelu-prototyyppi" property="og:url" /><meta content="Contribute to lausuntopalvelu-prototyyppi development by creating an account on GitHub." property="og:description" />
+
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="conduit-xhr" href="https://ghconduit.com:25035">
+    <link rel="xhr-socket" href="/_sockets">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="repo_source" data-pjax-transient>
+      <meta name="google-analytics" content="UA-3769691-2">
+
+    <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="63C75C43:6942:B3E4FD1:53DF22A0" name="octolytics-dimension-request_id" /><meta content="2839039" name="octolytics-actor-id" /><meta content="dmeikle" name="octolytics-actor-login" /><meta content="836986a49f0da3785f5294c3bb8dd0d94990a20058343a8ed357ad382fb8692d" name="octolytics-actor-hash" />
+    
+
+    
+    
+    <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="ORv5xFWiF69OydZ3Q5Pw9KXba9aZ6u9R77rgv0pNfGjMwqJ54ZGZl8VGcRhDrd3ze17SrAaYKRDmXV5zlW2XqQ==" name="csrf-token" />
+
+    <link href="https://assets-cdn.github.com/assets/github-8488336393a59083828e685a8702f8734352719a.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://assets-cdn.github.com/assets/github2-6f603f8712a3ad84b467294bd7ff80bafef0dfa6.css" media="all" rel="stylesheet" type="text/css" />
+    
+
+
+    <meta http-equiv="x-pjax-version" content="b97903e118817dc3b1b23f8b995593f2">
+
+      
+  <meta name="description" content="Contribute to lausuntopalvelu-prototyyppi development by creating an account on GitHub.">
+
+
+  <meta content="20644" name="octolytics-dimension-user_id" /><meta content="leonidas" name="octolytics-dimension-user_login" /><meta content="3263376" name="octolytics-dimension-repository_id" /><meta content="leonidas/lausuntopalvelu-prototyyppi" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="3263376" name="octolytics-dimension-repository_network_root_id" /><meta content="leonidas/lausuntopalvelu-prototyyppi" name="octolytics-dimension-repository_network_root_nwo" />
+
+  <link href="https://github.com/leonidas/lausuntopalvelu-prototyyppi/commits/master.atom" rel="alternate" title="Recent Commits to lausuntopalvelu-prototyyppi:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_in  env-production windows vis-public page-blob">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper">
+      
+      
+      
+      
+
+
+      <div class="header header-logged-in true">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" aria-label="Homepage">
+  <span class="mega-octicon octicon-mark-github"></span>
+</a>
+
+
+    
+    <a href="/notifications" aria-label="You have no unread notifications" class="notification-indicator tooltipped tooltipped-s" data-hotkey="g n">
+        <span class="mail-status all-read"></span>
+</a>
+
+      <div class="command-bar js-command-bar  in-repository">
+          <form accept-charset="UTF-8" action="/search" class="command-bar-form" id="top_search_form" method="get">
+
+<div class="commandbar">
+  <span class="message"></span>
+  <input type="text" data-hotkey="s, /" name="q" id="js-command-bar-field" placeholder="Search or type a command" tabindex="1" autocapitalize="off"
+    
+    data-username="dmeikle"
+    data-repo="leonidas/lausuntopalvelu-prototyyppi"
+  >
+  <div class="display hidden"></div>
+</div>
+
+    <input type="hidden" name="nwo" value="leonidas/lausuntopalvelu-prototyyppi">
+
+    <div class="select-menu js-menu-container js-select-menu search-context-select-menu">
+      <span class="minibutton select-menu-button js-menu-target" role="button" aria-haspopup="true">
+        <span class="js-select-button">This repository</span>
+      </span>
+
+      <div class="select-menu-modal-holder js-menu-content js-navigation-container" aria-hidden="true">
+        <div class="select-menu-modal">
+
+          <div class="select-menu-item js-navigation-item js-this-repository-navigation-item selected">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" class="js-search-this-repository" name="search_target" value="repository" checked="checked">
+            <div class="select-menu-item-text js-select-button-text">This repository</div>
+          </div> <!-- /.select-menu-item -->
+
+          <div class="select-menu-item js-navigation-item js-all-repositories-navigation-item">
+            <span class="select-menu-item-icon octicon octicon-check"></span>
+            <input type="radio" name="search_target" value="global">
+            <div class="select-menu-item-text js-select-button-text">All repositories</div>
+          </div> <!-- /.select-menu-item -->
+
+        </div>
+      </div>
+    </div>
+
+  <span class="help tooltipped tooltipped-s" aria-label="Show command bar help">
+    <span class="octicon octicon-question"></span>
+  </span>
+
+
+  <input type="hidden" name="ref" value="cmdform">
+
+</form>
+        <ul class="top-nav">
+          <li class="explore"><a href="/explore">Explore</a></li>
+            <li><a href="https://gist.github.com">Gist</a></li>
+            <li><a href="/blog">Blog</a></li>
+          <li><a href="https://help.github.com">Help</a></li>
+        </ul>
+      </div>
+
+    
+
+<ul id="user-links">
+  <li>
+    <a href="/dmeikle" class="name">
+      <img alt="dmeikle" data-user="2839039" height="20" src="https://avatars0.githubusercontent.com/u/2839039?v=1&amp;s=40" width="20" /> dmeikle
+    </a>
+  </li>
+
+  <li class="new-menu dropdown-toggle js-menu-container">
+    <a href="#" class="js-menu-target tooltipped tooltipped-s" aria-label="Create new...">
+      <span class="octicon octicon-plus"></span>
+      <span class="dropdown-arrow"></span>
+    </a>
+
+    <div class="new-menu-content js-menu-content">
+    </div>
+  </li>
+
+  <li>
+    <a href="/settings/profile" id="account_settings"
+      class="tooltipped tooltipped-s"
+      aria-label="Account settings ">
+      <span class="octicon octicon-tools"></span>
+    </a>
+  </li>
+  <li>
+    <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="AYKGamsW72UkWCVhiZ1R4++BHzuJnVPUoxAVI+hPHyW6x6qsY/Jn99CAGadylf1YR4sXiZwBT3HRc04T2M2WIQ==" /></div>
+      <button class="sign-out-button tooltipped tooltipped-s" aria-label="Sign out">
+        <span class="octicon octicon-sign-out"></span>
+      </button>
+</form>  </li>
+
+</ul>
+
+<div class="js-new-dropdown-contents hidden">
+  
+
+<ul class="dropdown-menu">
+  <li>
+    <a href="/new"><span class="octicon octicon-repo"></span> New repository</a>
+  </li>
+  <li>
+    <a href="https://porter.github.com/new"><span class="octicon octicon-move-right"></span> Import repository</a>
+  </li>
+  <li>
+    <a href="/organizations/new"><span class="octicon octicon-organization"></span> New organization</a>
+  </li>
+
+
+    <li class="section-title">
+      <span title="leonidas/lausuntopalvelu-prototyyppi">This repository</span>
+    </li>
+      <li>
+        <a href="/leonidas/lausuntopalvelu-prototyyppi/issues/new"><span class="octicon octicon-issue-opened"></span> New issue</a>
+      </li>
+</ul>
+
+</div>
+
+
+    
+  </div>
+</div>
+
+      
+
+        
+
+
+
+      <div id="start-of-content" class="accessibility-aid"></div>
+          <div class="site" itemscope itemtype="http://schema.org/WebPage">
+    <div id="js-flash-container">
+      
+    </div>
+    <div class="pagehead repohead instapaper_ignore readability-menu">
+      <div class="container">
+        
+<ul class="pagehead-actions">
+
+    <li class="subscription">
+      <form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="P0u+EaZsPj7E/iKzmfNint5CccxIuCQQhc0M0sbFTXzXwIkYkcIrXGhFTQlXU86LEPILzjNMWW0PfiTIiTiRWQ==" /></div>  <input id="repository_id" name="repository_id" type="hidden" value="3263376" />
+
+    <div class="select-menu js-menu-container js-select-menu">
+      <a class="social-count js-social-count" href="/leonidas/lausuntopalvelu-prototyyppi/watchers">
+        14
+      </a>
+      <a href="/leonidas/lausuntopalvelu-prototyyppi/subscription"
+        class="minibutton select-menu-button with-count js-menu-target" role="button" tabindex="0" aria-haspopup="true">
+        <span class="js-select-button">
+          <span class="octicon octicon-eye"></span>
+          Watch
+        </span>
+      </a>
+
+      <div class="select-menu-modal-holder">
+        <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Notifications</span>
+            <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+          </div> <!-- /.select-menu-header -->
+
+          <div class="select-menu-list js-navigation-container" role="menu">
+
+            <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input checked="checked" id="do_included" name="do" type="radio" value="included" />
+                <h4>Not watching</h4>
+                <span class="description">Be notified when participating or @mentioned.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-eye"></span>
+                  Watch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input id="do_subscribed" name="do" type="radio" value="subscribed" />
+                <h4>Watching</h4>
+                <span class="description">Be notified of all conversations.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-eye"></span>
+                  Unwatch
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+            <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <div class="select-menu-item-text">
+                <input id="do_ignore" name="do" type="radio" value="ignore" />
+                <h4>Ignoring</h4>
+                <span class="description">Never be notified.</span>
+                <span class="js-select-button-text hidden-select-button-text">
+                  <span class="octicon octicon-mute"></span>
+                  Stop ignoring
+                </span>
+              </div>
+            </div> <!-- /.select-menu-item -->
+
+          </div> <!-- /.select-menu-list -->
+
+        </div> <!-- /.select-menu-modal -->
+      </div> <!-- /.select-menu-modal-holder -->
+    </div> <!-- /.select-menu -->
+
+</form>
+    </li>
+
+  <li>
+    
+
+  <div class="js-toggler-container js-social-container starring-container ">
+
+    <form accept-charset="UTF-8" action="/leonidas/lausuntopalvelu-prototyyppi/unstar" class="js-toggler-form starred" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="NkBQ8AanhuESXKAFRrjEdGqvSSddRYGm/655bWQpzlMSj973vVyhUFrYMS4YynHiqe6vV+t2GtoMYyG+e2KccQ==" /></div>
+      <button
+        class="minibutton with-count js-toggler-target star-button"
+        aria-label="Unstar this repository" title="Unstar leonidas/lausuntopalvelu-prototyyppi">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="/leonidas/lausuntopalvelu-prototyyppi/stargazers">
+          2
+        </a>
+</form>
+    <form accept-charset="UTF-8" action="/leonidas/lausuntopalvelu-prototyyppi/star" class="js-toggler-form unstarred" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="0nXsmGQpjtBEugJdSOnhVD2D84QJDY/siN41KSaY+K/GtJ2NPwrlLKiSsl5/PS8HaWtywkbY01RiD2phLT62kg==" /></div>
+      <button
+        class="minibutton with-count js-toggler-target star-button"
+        aria-label="Star this repository" title="Star leonidas/lausuntopalvelu-prototyyppi">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="/leonidas/lausuntopalvelu-prototyyppi/stargazers">
+          2
+        </a>
+</form>  </div>
+
+  </li>
+
+
+        <li>
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/fork" class="minibutton with-count js-toggler-target fork-button lighter tooltipped-n" title="Fork your own copy of leonidas/lausuntopalvelu-prototyyppi to your account" aria-label="Fork your own copy of leonidas/lausuntopalvelu-prototyyppi to your account" rel="nofollow" data-method="post">
+            <span class="octicon octicon-repo-forked"></span>
+            Fork
+          </a>
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/network" class="social-count">8</a>
+        </li>
+
+</ul>
+
+        <h1 itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title public">
+          <span class="mega-octicon octicon-repo"></span>
+          <span class="author"><a href="/leonidas" class="url fn" itemprop="url" rel="author"><span itemprop="title">leonidas</span></a></span><!--
+       --><span class="path-divider">/</span><!--
+       --><strong><a href="/leonidas/lausuntopalvelu-prototyyppi" class="js-current-repository js-repo-home-link">lausuntopalvelu-prototyyppi</a></strong>
+
+          <span class="page-context-loader">
+            <img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+          </span>
+
+        </h1>
+      </div><!-- /.container -->
+    </div><!-- /.repohead -->
+
+    <div class="container">
+      <div class="repository-with-sidebar repo-container new-discussion-timeline  ">
+        <div class="repository-sidebar clearfix">
+            
+
+<div class="sunken-menu vertical-right repo-nav js-repo-nav js-repository-container-pjax js-octicon-loaders" data-issue-count-url="/leonidas/lausuntopalvelu-prototyyppi/issues/counts">
+  <div class="sunken-menu-contents">
+    <ul class="sunken-menu-group">
+      <li class="tooltipped tooltipped-w" aria-label="Code">
+        <a href="/leonidas/lausuntopalvelu-prototyyppi" aria-label="Code" class="selected js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-pjax="true" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /leonidas/lausuntopalvelu-prototyyppi">
+          <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+        <li class="tooltipped tooltipped-w" aria-label="Issues">
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/issues" aria-label="Issues" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-hotkey="g i" data-selected-links="repo_issues repo_labels repo_milestones /leonidas/lausuntopalvelu-prototyyppi/issues">
+            <span class="octicon octicon-issue-opened"></span> <span class="full-word">Issues</span>
+            <span class="js-issue-replace-counter"></span>
+            <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>        </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Pull Requests">
+        <a href="/leonidas/lausuntopalvelu-prototyyppi/pulls" aria-label="Pull Requests" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-hotkey="g p" data-selected-links="repo_pulls /leonidas/lausuntopalvelu-prototyyppi/pulls">
+            <span class="octicon octicon-git-pull-request"></span> <span class="full-word">Pull Requests</span>
+            <span class="js-pull-replace-counter"></span>
+            <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+
+        <li class="tooltipped tooltipped-w" aria-label="Wiki">
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/wiki" aria-label="Wiki" class="js-selected-navigation-item sunken-menu-item js-disable-pjax" data-hotkey="g w" data-selected-links="repo_wiki /leonidas/lausuntopalvelu-prototyyppi/wiki">
+            <span class="octicon octicon-book"></span> <span class="full-word">Wiki</span>
+            <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>        </li>
+    </ul>
+    <div class="sunken-menu-separator"></div>
+    <ul class="sunken-menu-group">
+
+      <li class="tooltipped tooltipped-w" aria-label="Pulse">
+        <a href="/leonidas/lausuntopalvelu-prototyyppi/pulse" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="pulse /leonidas/lausuntopalvelu-prototyyppi/pulse">
+          <span class="octicon octicon-pulse"></span> <span class="full-word">Pulse</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+
+      <li class="tooltipped tooltipped-w" aria-label="Graphs">
+        <a href="/leonidas/lausuntopalvelu-prototyyppi/graphs" aria-label="Graphs" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" data-selected-links="repo_graphs repo_contributors /leonidas/lausuntopalvelu-prototyyppi/graphs">
+          <span class="octicon octicon-graph"></span> <span class="full-word">Graphs</span>
+          <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32.gif" width="16" />
+</a>      </li>
+    </ul>
+
+
+  </div>
+</div>
+
+              <div class="only-with-full-nav">
+                
+
+  
+
+<div class="clone-url "
+  data-protocol-type="http"
+  data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><strong>HTTPS</strong> clone URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="https://github.com/leonidas/lausuntopalvelu-prototyyppi.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="https://github.com/leonidas/lausuntopalvelu-prototyyppi.git" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+
+<div class="clone-url open"
+  data-protocol-type="ssh"
+  data-url="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone">
+  <h3><strong>SSH</strong> clone URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="git@github.com:leonidas/lausuntopalvelu-prototyyppi.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="git@github.com:leonidas/lausuntopalvelu-prototyyppi.git" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+
+<div class="clone-url "
+  data-protocol-type="subversion"
+  data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><strong>Subversion</strong> checkout URL</h3>
+  <div class="input-group">
+    <input type="text" class="input-mini input-monospace js-url-field"
+           value="https://github.com/leonidas/lausuntopalvelu-prototyyppi" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="https://github.com/leonidas/lausuntopalvelu-prototyyppi" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+<p class="clone-options">You can clone with
+      <a href="#" class="js-clone-selector" data-protocol="http">HTTPS</a>,
+      <a href="#" class="js-clone-selector" data-protocol="ssh">SSH</a>,
+      or <a href="#" class="js-clone-selector" data-protocol="subversion">Subversion</a>.
+  <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+    <span class="octicon octicon-question"></span>
+  </a>
+</p>
+
+
+  <a href="github-windows://openRepo/https://github.com/leonidas/lausuntopalvelu-prototyyppi" class="minibutton sidebar-button" title="Save leonidas/lausuntopalvelu-prototyyppi to your computer and use it in GitHub Desktop." aria-label="Save leonidas/lausuntopalvelu-prototyyppi to your computer and use it in GitHub Desktop.">
+    <span class="octicon octicon-device-desktop"></span>
+    Clone in Desktop
+  </a>
+
+                <a href="/leonidas/lausuntopalvelu-prototyyppi/archive/master.zip"
+                   class="minibutton sidebar-button"
+                   aria-label="Download leonidas/lausuntopalvelu-prototyyppi as a zip file"
+                   title="Download leonidas/lausuntopalvelu-prototyyppi as a zip file"
+                   rel="nofollow">
+                  <span class="octicon octicon-cloud-download"></span>
+                  Download ZIP
+                </a>
+              </div>
+        </div><!-- /.repository-sidebar -->
+
+        <div id="js-repo-pjax-container" class="repository-content context-loader-container" data-pjax-container>
+          
+
+
+<a href="/leonidas/lausuntopalvelu-prototyyppi/blob/80b5c035e7e09e7a849228457ace112a8687e764/public/fonts/open-sans/OpenSans-Regular-webfont.svg" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a>
+
+<!-- blob contrib key: blob_contributors:v21:66bf9a2324576ea5737ed78843b8af52 -->
+
+<div class="file-navigation">
+  
+
+<div class="select-menu js-menu-container js-select-menu" >
+  <span class="minibutton select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    data-master-branch="master"
+    data-ref="master"
+    title="master"
+    role="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <span class="octicon octicon-git-branch"></span>
+    <i>branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </span>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span class="select-menu-title">Switch branches/tags</span>
+        <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+      </div> <!-- /.select-menu-header -->
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" class="js-select-menu-tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" class="js-select-menu-tab">Tags</a>
+            </li>
+          </ul>
+        </div><!-- /.select-menu-tabs -->
+      </div><!-- /.select-menu-filters -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <div class="select-menu-item js-navigation-item selected">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <a href="/leonidas/lausuntopalvelu-prototyyppi/blob/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg"
+                 data-name="master"
+                 data-skip-pjax="true"
+                 rel="nofollow"
+                 class="js-navigation-open select-menu-item-text css-truncate-target"
+                 title="master">master</a>
+            </div> <!-- /.select-menu-item -->
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div> <!-- /.select-menu-list -->
+
+    </div> <!-- /.select-menu-modal -->
+  </div> <!-- /.select-menu-modal-holder -->
+</div> <!-- /.select-menu -->
+
+  <div class="button-group right">
+    <a href="/leonidas/lausuntopalvelu-prototyyppi/find/master"
+          class="js-show-file-finder minibutton empty-icon tooltipped tooltipped-s"
+          data-pjax
+          data-hotkey="t"
+          aria-label="Quickly jump between files">
+      <span class="octicon octicon-list-unordered"></span>
+    </a>
+    <button class="js-zeroclipboard minibutton zeroclipboard-button"
+          data-clipboard-text="public/fonts/open-sans/OpenSans-Regular-webfont.svg"
+          aria-label="Copy to clipboard"
+          data-copied-hint="Copied!">
+      <span class="octicon octicon-clippy"></span>
+    </button>
+  </div>
+
+  <div class="breadcrumb">
+    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/leonidas/lausuntopalvelu-prototyyppi" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">lausuntopalvelu-prototyyppi</span></a></span></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/leonidas/lausuntopalvelu-prototyyppi/tree/master/public" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">public</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/leonidas/lausuntopalvelu-prototyyppi/tree/master/public/fonts" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">fonts</span></a></span><span class="separator"> / </span><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/leonidas/lausuntopalvelu-prototyyppi/tree/master/public/fonts/open-sans" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">open-sans</span></a></span><span class="separator"> / </span><strong class="final-path">OpenSans-Regular-webfont.svg</strong>
+  </div>
+</div>
+
+
+  <div class="commit commit-loader file-history-tease js-deferred-content" data-url="/leonidas/lausuntopalvelu-prototyyppi/contributors/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg">
+    Fetching contributors…
+
+    <div class="participation">
+      <p class="loader-loading"><img alt="" height="16" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif" width="16" /></p>
+      <p class="loader-error">Cannot retrieve contributors at this time</p>
+    </div>
+  </div>
+
+<div class="file-box">
+  <div class="file">
+    <div class="meta clearfix">
+      <div class="info file-name">
+          <span class="mode" title="File mode">executable file</span>
+          <span class="meta-divider"></span>
+          <span>252 lines (252 sloc)</span>
+          <span class="meta-divider"></span>
+        <span>58.244 kb</span>
+      </div>
+      <div class="actions">
+        <div class="button-group">
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/raw/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg" class="minibutton " id="raw-url">Raw</a>
+            <a href="/leonidas/lausuntopalvelu-prototyyppi/blame/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg" class="minibutton js-update-url-with-hash">Blame</a>
+          <a href="/leonidas/lausuntopalvelu-prototyyppi/commits/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg" class="minibutton " rel="nofollow">History</a>
+        </div><!-- /.button-group -->
+
+          <a class="octicon-button tooltipped tooltipped-nw"
+             href="github-windows://openRepo/https://github.com/leonidas/lausuntopalvelu-prototyyppi?branch=master&amp;filepath=public%2Ffonts%2Fopen-sans%2FOpenSans-Regular-webfont.svg" aria-label="Open this file in GitHub for Windows">
+              <span class="octicon octicon-device-desktop"></span>
+          </a>
+
+              <a class="octicon-button tooltipped tooltipped-n js-update-url-with-hash"
+                 aria-label="Clicking this button will fork this project so you can edit the file"
+                 href="/leonidas/lausuntopalvelu-prototyyppi/edit/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg"
+                 data-method="post" rel="nofollow"><span class="octicon octicon-pencil"></span></a>
+
+            <a class="octicon-button danger tooltipped tooltipped-s"
+               href="/leonidas/lausuntopalvelu-prototyyppi/delete/master/public/fonts/open-sans/OpenSans-Regular-webfont.svg"
+               aria-label="Fork this project and delete file"
+               data-method="post" data-test-id="delete-blob-file" rel="nofollow">
+          <span class="octicon octicon-trashcan"></span>
+        </a>
+      </div><!-- /.actions -->
+    </div>
+      
+  <div class="blob-wrapper data type-xml">
+       <table class="file-code file-diff tab-size-8">
+         <tr class="file-code-line">
+           <td class="blob-line-nums">
+             <span id="L1" rel="#L1">1</span>
+<span id="L2" rel="#L2">2</span>
+<span id="L3" rel="#L3">3</span>
+<span id="L4" rel="#L4">4</span>
+<span id="L5" rel="#L5">5</span>
+<span id="L6" rel="#L6">6</span>
+<span id="L7" rel="#L7">7</span>
+<span id="L8" rel="#L8">8</span>
+<span id="L9" rel="#L9">9</span>
+<span id="L10" rel="#L10">10</span>
+<span id="L11" rel="#L11">11</span>
+<span id="L12" rel="#L12">12</span>
+<span id="L13" rel="#L13">13</span>
+<span id="L14" rel="#L14">14</span>
+<span id="L15" rel="#L15">15</span>
+<span id="L16" rel="#L16">16</span>
+<span id="L17" rel="#L17">17</span>
+<span id="L18" rel="#L18">18</span>
+<span id="L19" rel="#L19">19</span>
+<span id="L20" rel="#L20">20</span>
+<span id="L21" rel="#L21">21</span>
+<span id="L22" rel="#L22">22</span>
+<span id="L23" rel="#L23">23</span>
+<span id="L24" rel="#L24">24</span>
+<span id="L25" rel="#L25">25</span>
+<span id="L26" rel="#L26">26</span>
+<span id="L27" rel="#L27">27</span>
+<span id="L28" rel="#L28">28</span>
+<span id="L29" rel="#L29">29</span>
+<span id="L30" rel="#L30">30</span>
+<span id="L31" rel="#L31">31</span>
+<span id="L32" rel="#L32">32</span>
+<span id="L33" rel="#L33">33</span>
+<span id="L34" rel="#L34">34</span>
+<span id="L35" rel="#L35">35</span>
+<span id="L36" rel="#L36">36</span>
+<span id="L37" rel="#L37">37</span>
+<span id="L38" rel="#L38">38</span>
+<span id="L39" rel="#L39">39</span>
+<span id="L40" rel="#L40">40</span>
+<span id="L41" rel="#L41">41</span>
+<span id="L42" rel="#L42">42</span>
+<span id="L43" rel="#L43">43</span>
+<span id="L44" rel="#L44">44</span>
+<span id="L45" rel="#L45">45</span>
+<span id="L46" rel="#L46">46</span>
+<span id="L47" rel="#L47">47</span>
+<span id="L48" rel="#L48">48</span>
+<span id="L49" rel="#L49">49</span>
+<span id="L50" rel="#L50">50</span>
+<span id="L51" rel="#L51">51</span>
+<span id="L52" rel="#L52">52</span>
+<span id="L53" rel="#L53">53</span>
+<span id="L54" rel="#L54">54</span>
+<span id="L55" rel="#L55">55</span>
+<span id="L56" rel="#L56">56</span>
+<span id="L57" rel="#L57">57</span>
+<span id="L58" rel="#L58">58</span>
+<span id="L59" rel="#L59">59</span>
+<span id="L60" rel="#L60">60</span>
+<span id="L61" rel="#L61">61</span>
+<span id="L62" rel="#L62">62</span>
+<span id="L63" rel="#L63">63</span>
+<span id="L64" rel="#L64">64</span>
+<span id="L65" rel="#L65">65</span>
+<span id="L66" rel="#L66">66</span>
+<span id="L67" rel="#L67">67</span>
+<span id="L68" rel="#L68">68</span>
+<span id="L69" rel="#L69">69</span>
+<span id="L70" rel="#L70">70</span>
+<span id="L71" rel="#L71">71</span>
+<span id="L72" rel="#L72">72</span>
+<span id="L73" rel="#L73">73</span>
+<span id="L74" rel="#L74">74</span>
+<span id="L75" rel="#L75">75</span>
+<span id="L76" rel="#L76">76</span>
+<span id="L77" rel="#L77">77</span>
+<span id="L78" rel="#L78">78</span>
+<span id="L79" rel="#L79">79</span>
+<span id="L80" rel="#L80">80</span>
+<span id="L81" rel="#L81">81</span>
+<span id="L82" rel="#L82">82</span>
+<span id="L83" rel="#L83">83</span>
+<span id="L84" rel="#L84">84</span>
+<span id="L85" rel="#L85">85</span>
+<span id="L86" rel="#L86">86</span>
+<span id="L87" rel="#L87">87</span>
+<span id="L88" rel="#L88">88</span>
+<span id="L89" rel="#L89">89</span>
+<span id="L90" rel="#L90">90</span>
+<span id="L91" rel="#L91">91</span>
+<span id="L92" rel="#L92">92</span>
+<span id="L93" rel="#L93">93</span>
+<span id="L94" rel="#L94">94</span>
+<span id="L95" rel="#L95">95</span>
+<span id="L96" rel="#L96">96</span>
+<span id="L97" rel="#L97">97</span>
+<span id="L98" rel="#L98">98</span>
+<span id="L99" rel="#L99">99</span>
+<span id="L100" rel="#L100">100</span>
+<span id="L101" rel="#L101">101</span>
+<span id="L102" rel="#L102">102</span>
+<span id="L103" rel="#L103">103</span>
+<span id="L104" rel="#L104">104</span>
+<span id="L105" rel="#L105">105</span>
+<span id="L106" rel="#L106">106</span>
+<span id="L107" rel="#L107">107</span>
+<span id="L108" rel="#L108">108</span>
+<span id="L109" rel="#L109">109</span>
+<span id="L110" rel="#L110">110</span>
+<span id="L111" rel="#L111">111</span>
+<span id="L112" rel="#L112">112</span>
+<span id="L113" rel="#L113">113</span>
+<span id="L114" rel="#L114">114</span>
+<span id="L115" rel="#L115">115</span>
+<span id="L116" rel="#L116">116</span>
+<span id="L117" rel="#L117">117</span>
+<span id="L118" rel="#L118">118</span>
+<span id="L119" rel="#L119">119</span>
+<span id="L120" rel="#L120">120</span>
+<span id="L121" rel="#L121">121</span>
+<span id="L122" rel="#L122">122</span>
+<span id="L123" rel="#L123">123</span>
+<span id="L124" rel="#L124">124</span>
+<span id="L125" rel="#L125">125</span>
+<span id="L126" rel="#L126">126</span>
+<span id="L127" rel="#L127">127</span>
+<span id="L128" rel="#L128">128</span>
+<span id="L129" rel="#L129">129</span>
+<span id="L130" rel="#L130">130</span>
+<span id="L131" rel="#L131">131</span>
+<span id="L132" rel="#L132">132</span>
+<span id="L133" rel="#L133">133</span>
+<span id="L134" rel="#L134">134</span>
+<span id="L135" rel="#L135">135</span>
+<span id="L136" rel="#L136">136</span>
+<span id="L137" rel="#L137">137</span>
+<span id="L138" rel="#L138">138</span>
+<span id="L139" rel="#L139">139</span>
+<span id="L140" rel="#L140">140</span>
+<span id="L141" rel="#L141">141</span>
+<span id="L142" rel="#L142">142</span>
+<span id="L143" rel="#L143">143</span>
+<span id="L144" rel="#L144">144</span>
+<span id="L145" rel="#L145">145</span>
+<span id="L146" rel="#L146">146</span>
+<span id="L147" rel="#L147">147</span>
+<span id="L148" rel="#L148">148</span>
+<span id="L149" rel="#L149">149</span>
+<span id="L150" rel="#L150">150</span>
+<span id="L151" rel="#L151">151</span>
+<span id="L152" rel="#L152">152</span>
+<span id="L153" rel="#L153">153</span>
+<span id="L154" rel="#L154">154</span>
+<span id="L155" rel="#L155">155</span>
+<span id="L156" rel="#L156">156</span>
+<span id="L157" rel="#L157">157</span>
+<span id="L158" rel="#L158">158</span>
+<span id="L159" rel="#L159">159</span>
+<span id="L160" rel="#L160">160</span>
+<span id="L161" rel="#L161">161</span>
+<span id="L162" rel="#L162">162</span>
+<span id="L163" rel="#L163">163</span>
+<span id="L164" rel="#L164">164</span>
+<span id="L165" rel="#L165">165</span>
+<span id="L166" rel="#L166">166</span>
+<span id="L167" rel="#L167">167</span>
+<span id="L168" rel="#L168">168</span>
+<span id="L169" rel="#L169">169</span>
+<span id="L170" rel="#L170">170</span>
+<span id="L171" rel="#L171">171</span>
+<span id="L172" rel="#L172">172</span>
+<span id="L173" rel="#L173">173</span>
+<span id="L174" rel="#L174">174</span>
+<span id="L175" rel="#L175">175</span>
+<span id="L176" rel="#L176">176</span>
+<span id="L177" rel="#L177">177</span>
+<span id="L178" rel="#L178">178</span>
+<span id="L179" rel="#L179">179</span>
+<span id="L180" rel="#L180">180</span>
+<span id="L181" rel="#L181">181</span>
+<span id="L182" rel="#L182">182</span>
+<span id="L183" rel="#L183">183</span>
+<span id="L184" rel="#L184">184</span>
+<span id="L185" rel="#L185">185</span>
+<span id="L186" rel="#L186">186</span>
+<span id="L187" rel="#L187">187</span>
+<span id="L188" rel="#L188">188</span>
+<span id="L189" rel="#L189">189</span>
+<span id="L190" rel="#L190">190</span>
+<span id="L191" rel="#L191">191</span>
+<span id="L192" rel="#L192">192</span>
+<span id="L193" rel="#L193">193</span>
+<span id="L194" rel="#L194">194</span>
+<span id="L195" rel="#L195">195</span>
+<span id="L196" rel="#L196">196</span>
+<span id="L197" rel="#L197">197</span>
+<span id="L198" rel="#L198">198</span>
+<span id="L199" rel="#L199">199</span>
+<span id="L200" rel="#L200">200</span>
+<span id="L201" rel="#L201">201</span>
+<span id="L202" rel="#L202">202</span>
+<span id="L203" rel="#L203">203</span>
+<span id="L204" rel="#L204">204</span>
+<span id="L205" rel="#L205">205</span>
+<span id="L206" rel="#L206">206</span>
+<span id="L207" rel="#L207">207</span>
+<span id="L208" rel="#L208">208</span>
+<span id="L209" rel="#L209">209</span>
+<span id="L210" rel="#L210">210</span>
+<span id="L211" rel="#L211">211</span>
+<span id="L212" rel="#L212">212</span>
+<span id="L213" rel="#L213">213</span>
+<span id="L214" rel="#L214">214</span>
+<span id="L215" rel="#L215">215</span>
+<span id="L216" rel="#L216">216</span>
+<span id="L217" rel="#L217">217</span>
+<span id="L218" rel="#L218">218</span>
+<span id="L219" rel="#L219">219</span>
+<span id="L220" rel="#L220">220</span>
+<span id="L221" rel="#L221">221</span>
+<span id="L222" rel="#L222">222</span>
+<span id="L223" rel="#L223">223</span>
+<span id="L224" rel="#L224">224</span>
+<span id="L225" rel="#L225">225</span>
+<span id="L226" rel="#L226">226</span>
+<span id="L227" rel="#L227">227</span>
+<span id="L228" rel="#L228">228</span>
+<span id="L229" rel="#L229">229</span>
+<span id="L230" rel="#L230">230</span>
+<span id="L231" rel="#L231">231</span>
+<span id="L232" rel="#L232">232</span>
+<span id="L233" rel="#L233">233</span>
+<span id="L234" rel="#L234">234</span>
+<span id="L235" rel="#L235">235</span>
+<span id="L236" rel="#L236">236</span>
+<span id="L237" rel="#L237">237</span>
+<span id="L238" rel="#L238">238</span>
+<span id="L239" rel="#L239">239</span>
+<span id="L240" rel="#L240">240</span>
+<span id="L241" rel="#L241">241</span>
+<span id="L242" rel="#L242">242</span>
+<span id="L243" rel="#L243">243</span>
+<span id="L244" rel="#L244">244</span>
+<span id="L245" rel="#L245">245</span>
+<span id="L246" rel="#L246">246</span>
+<span id="L247" rel="#L247">247</span>
+<span id="L248" rel="#L248">248</span>
+<span id="L249" rel="#L249">249</span>
+<span id="L250" rel="#L250">250</span>
+<span id="L251" rel="#L251">251</span>
+<span id="L252" rel="#L252">252</span>
+
+           </td>
+           <td class="blob-line-code"><div class="code-body highlight"><pre><div class='line' id='LC1'><span class="cp">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></div><div class='line' id='LC2'><span class="cp">&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot; &gt;</span></div><div class='line' id='LC3'><span class="nt">&lt;svg</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span></div><div class='line' id='LC4'><span class="nt">&lt;metadata&gt;</span></div><div class='line' id='LC5'>This is a custom SVG webfont generated by Font Squirrel.</div><div class='line' id='LC6'>Copyright   : Digitized data copyright  20102011 Google Corporation</div><div class='line' id='LC7'>Foundry     : Ascender Corporation</div><div class='line' id='LC8'>Foundry URL : httpwwwascendercorpcom</div><div class='line' id='LC9'><span class="nt">&lt;/metadata&gt;</span></div><div class='line' id='LC10'><span class="nt">&lt;defs&gt;</span></div><div class='line' id='LC11'><span class="nt">&lt;font</span> <span class="na">id=</span><span class="s">&quot;OpenSansRegular&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1171&quot;</span> <span class="nt">&gt;</span></div><div class='line' id='LC12'><span class="nt">&lt;font-face</span> <span class="na">units-per-em=</span><span class="s">&quot;2048&quot;</span> <span class="na">ascent=</span><span class="s">&quot;1638&quot;</span> <span class="na">descent=</span><span class="s">&quot;-410&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC13'><span class="nt">&lt;missing-glyph</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;532&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC14'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot; &quot;</span>  <span class="na">horiz-adv-x=</span><span class="s">&quot;532&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC15'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x09;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;532&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC16'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;532&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC17'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;!&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;547&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 106q0 136 120 136q58 0 89.5 -35t31.5 -101q0 -64 -32 -99.5t-89 -35.5q-52 0 -86 31.5t-34 103.5zM170 1462h207l-51 -1059h-105z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC18'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x22;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;821&quot;</span> <span class="na">d=</span><span class="s">&quot;M133 1462h186l-40 -528h-105zM502 1462h186l-41 -528h-104z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC19'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;#&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1323&quot;</span> <span class="na">d=</span><span class="s">&quot;M51 430v129h287l68 340h-277v127h299l82 436h139l-82 -436h305l84 436h134l-84 -436h264v-127h-289l-66 -340h283v-129h-307l-84 -430h-137l84 430h-303l-82 -430h-136l80 430h-262zM475 559h303l66 340h-303z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC20'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;$&quot;</span> <span class="na">d=</span><span class="s">&quot;M131 170v156q83 -37 191.5 -60.5t197.5 -23.5v440q-205 65 -287.5 151t-82.5 222q0 131 101.5 215t268.5 102v182h129v-180q184 -5 355 -74l-52 -131q-149 59 -303 70v-434q157 -50 235 -97.5t115 -109t37 -149.5q0 -136 -102 -224.5t-285 -111.5v-232h-129v223 q-112 0 -217 17.5t-172 48.5zM319 1057q0 -76 45 -122t156 -87v387q-99 -16 -150 -62.5t-51 -115.5zM649 252q217 30 217 184q0 72 -44.5 116.5t-172.5 88.5v-389z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC21'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;%&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1686&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 1026q0 227 74.5 342t220.5 115q145 0 223 -119t78 -338q0 -228 -76.5 -344.5t-224.5 -116.5q-140 0 -217.5 119t-77.5 342zM242 1026q0 -170 37 -255t120 -85q164 0 164 340q0 338 -164 338q-83 0 -120 -84t-37 -254zM365 0l811 1462h147l-811 -1462h-147zM985 440 q0 227 74.5 342t220.5 115q142 0 221.5 -117.5t79.5 -339.5q0 -227 -76.5 -343.5t-224.5 -116.5q-142 0 -218.5 119t-76.5 341zM1122 440q0 -171 37 -255.5t121 -84.5t124 83.5t40 256.5q0 171 -40 253.5t-124 82.5t-121 -82.5t-37 -253.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC22'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x26;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1495&quot;</span> <span class="na">d=</span><span class="s">&quot;M113 379q0 130 69.5 230t249.5 202q-85 95 -115.5 144t-48.5 102t-18 110q0 150 98 234t273 84q162 0 255 -83.5t93 -232.5q0 -107 -68 -197.5t-225 -183.5l407 -391q56 62 89.5 145.5t56.5 182.5h168q-68 -286 -205 -434l299 -291h-229l-185 178q-118 -106 -240 -152 t-272 -46q-215 0 -333.5 106t-118.5 293zM285 383q0 -117 77.5 -185.5t206.5 -68.5q241 0 400 154l-437 424q-111 -68 -157 -112.5t-68 -95.5t-22 -116zM414 1171q0 -69 36 -131.5t123 -150.5q129 75 179.5 138.5t50.5 146.5q0 77 -51.5 125.5t-137.5 48.5q-89 0 -144.5 -48 t-55.5 -129z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC23'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&#39;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;453&quot;</span> <span class="na">d=</span><span class="s">&quot;M133 1462h186l-40 -528h-105z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC24'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;(&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;606&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 561q0 265 77.5 496t223.5 405h162q-144 -193 -216.5 -424t-72.5 -475q0 -240 74 -469t213 -418h-160q-147 170 -224 397t-77 488z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC25'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;)&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;606&quot;</span> <span class="na">d=</span><span class="s">&quot;M61 1462h162q147 -175 224 -406.5t77 -494.5t-77.5 -490t-223.5 -395h-160q139 188 213 417.5t74 469.5q0 244 -72.5 475t-216.5 424z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC26'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;*&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1130&quot;</span> <span class="na">d=</span><span class="s">&quot;M86 1090l29 182l391 -111l-43 395h194l-43 -395l398 111l26 -182l-381 -31l248 -326l-172 -94l-176 362l-160 -362l-176 94l242 326z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC27'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;+&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 653v138h410v428h139v-428h412v-138h-412v-426h-139v426h-410z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC28'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;,&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;502&quot;</span> <span class="na">d=</span><span class="s">&quot;M63 -264q27 104 59.5 257t45.5 245h182l15 -23q-26 -100 -75 -232.5t-102 -246.5h-125z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC29'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;-&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;659&quot;</span> <span class="na">d=</span><span class="s">&quot;M84 473v152h491v-152h-491z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC30'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;.&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;545&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 106q0 67 30.5 101.5t87.5 34.5q58 0 90.5 -34.5t32.5 -101.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC31'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;/&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;752&quot;</span> <span class="na">d=</span><span class="s">&quot;M20 0l545 1462h166l-545 -1462h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC32'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;0&quot;</span> <span class="na">d=</span><span class="s">&quot;M102 733q0 382 119 567t363 185q238 0 361.5 -193t123.5 -559q0 -379 -119.5 -566t-365.5 -187q-236 0 -359 191.5t-123 561.5zM270 733q0 -319 75 -464.5t239 -145.5q166 0 240.5 147.5t74.5 462.5t-74.5 461.5t-240.5 146.5q-164 0 -239 -144.5t-75 -463.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC33'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;1&quot;</span> <span class="na">d=</span><span class="s">&quot;M188 1163l387 299h140v-1462h-162v1042q0 130 8 246q-21 -21 -47 -44t-238 -195z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC34'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;2&quot;</span> <span class="na">d=</span><span class="s">&quot;M100 0v143l385 387q176 178 232 254t84 148t28 155q0 117 -71 185.5t-197 68.5q-91 0 -172.5 -30t-181.5 -109l-88 113q202 168 440 168q206 0 323 -105.5t117 -283.5q0 -139 -78 -275t-292 -344l-320 -313v-8h752v-154h-961z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC35'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;3&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 59v158q95 -47 202.5 -71.5t203.5 -24.5q379 0 379 297q0 266 -418 266h-144v143h146q171 0 271 75.5t100 209.5q0 107 -73.5 168t-199.5 61q-96 0 -181 -26t-194 -96l-84 112q90 71 207.5 111.5t247.5 40.5q213 0 331 -97.5t118 -267.5q0 -140 -78.5 -229 t-222.5 -119v-8q176 -22 261 -112t85 -236q0 -209 -145 -321.5t-412 -112.5q-116 0 -212.5 17.5t-187.5 61.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC36'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;4&quot;</span> <span class="na">d=</span><span class="s">&quot;M43 336v145l694 989h176v-983h217v-151h-217v-336h-159v336h-711zM209 487h545v486q0 143 10 323h-8q-48 -96 -90 -159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC37'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;5&quot;</span> <span class="na">d=</span><span class="s">&quot;M133 59v160q70 -45 174 -70.5t205 -25.5q176 0 273.5 83t97.5 240q0 306 -375 306q-95 0 -254 -29l-86 55l55 684h727v-153h-585l-37 -439q115 23 229 23q231 0 363.5 -114.5t132.5 -313.5q0 -227 -144.5 -356t-398.5 -129q-247 0 -377 79z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC38'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;6&quot;</span> <span class="na">d=</span><span class="s">&quot;M117 625q0 431 167.5 644.5t495.5 213.5q113 0 178 -19v-143q-77 25 -176 25q-235 0 -359 -146.5t-136 -460.5h12q110 172 348 172q197 0 310.5 -119t113.5 -323q0 -228 -124.5 -358.5t-336.5 -130.5q-227 0 -360 170.5t-133 474.5zM287 506q0 -103 40 -192t113.5 -141 t167.5 -52q142 0 220.5 89.5t78.5 258.5q0 145 -73 228t-218 83q-90 0 -165 -37t-119.5 -102t-44.5 -135z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC39'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;7&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 1309v153h973v-133l-598 -1329h-184l606 1309h-797z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC40'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;8&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 373q0 251 306 391q-138 78 -198 168.5t-60 202.5q0 159 117.5 253.5t314.5 94.5q200 0 317 -93t117 -257q0 -108 -67 -197t-214 -162q178 -85 253 -178.5t75 -216.5q0 -182 -127 -290.5t-348 -108.5q-234 0 -360 102.5t-126 290.5zM268 369q0 -120 83.5 -187 t234.5 -67q149 0 232 70t83 192q0 97 -78 172.5t-272 146.5q-149 -64 -216 -141.5t-67 -185.5zM315 1128q0 -92 59 -158t218 -132q143 60 202.5 129t59.5 161q0 101 -72.5 160.5t-199.5 59.5q-125 0 -196 -60t-71 -160z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC41'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;9&quot;</span> <span class="na">d=</span><span class="s">&quot;M106 991q0 228 127.5 360t335.5 132q149 0 260.5 -76.5t171.5 -223t60 -345.5q0 -858 -664 -858q-116 0 -184 20v143q80 -26 182 -26q240 0 362.5 148.5t133.5 455.5h-12q-55 -83 -146 -126.5t-205 -43.5q-194 0 -308 116t-114 324zM270 993q0 -144 72 -226.5t219 -82.5 q91 0 167.5 37t120.5 101t44 134q0 105 -41 194t-114.5 140t-168.5 51q-143 0 -221 -92t-78 -256z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC42'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;:&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;545&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 106q0 67 30.5 101.5t87.5 34.5q58 0 90.5 -34.5t32.5 -101.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5zM152 989q0 135 118 135q123 0 123 -135q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC43'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;545&quot;</span> <span class="na">d=</span><span class="s">&quot;M63 -264q27 104 59.5 257t45.5 245h182l15 -23q-26 -100 -75 -232.5t-102 -246.5h-125zM147 989q0 135 119 135q123 0 123 -135q0 -65 -33 -100t-90 -35q-58 0 -88.5 35t-30.5 100z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC44'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x3c;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 664v98l961 479v-149l-782 -371l782 -328v-151z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC45'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;=&quot;</span> <span class="na">d=</span><span class="s">&quot;M119 449v137h930v-137h-930zM119 858v137h930v-137h-930z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC46'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x3e;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 242v151l783 326l-783 373v149l961 -479v-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC47'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;?&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;879&quot;</span> <span class="na">d=</span><span class="s">&quot;M27 1384q189 99 395 99q191 0 297 -94t106 -265q0 -73 -19.5 -128.5t-57.5 -105t-164 -159.5q-101 -86 -133.5 -143t-32.5 -152v-33h-129v54q0 117 36 192.5t134 159.5q136 115 171.5 173t35.5 140q0 102 -65.5 157.5t-188.5 55.5q-79 0 -154 -18.5t-172 -67.5zM240 106 q0 136 120 136q58 0 89.5 -35t31.5 -101q0 -64 -32 -99.5t-89 -35.5q-52 0 -86 31.5t-34 103.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC48'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;@&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1841&quot;</span> <span class="na">d=</span><span class="s">&quot;M121 571q0 260 107 463t305 314.5t454 111.5q215 0 382.5 -90.5t259 -257t91.5 -383.5q0 -142 -44 -260t-124 -183t-184 -65q-86 0 -145 52t-70 133h-8q-40 -87 -114.5 -136t-176.5 -49q-150 0 -234.5 102.5t-84.5 278.5q0 204 118 331.5t310 127.5q68 0 154 -12.5 t155 -34.5l-25 -470v-22q0 -178 133 -178q91 0 148 107.5t57 279.5q0 181 -74 317t-210.5 209.5t-313.5 73.5q-223 0 -388 -92.5t-252 -264t-87 -396.5q0 -305 161 -469t464 -164q210 0 436 86v-133q-192 -84 -436 -84q-363 0 -563.5 199.5t-200.5 557.5zM686 598 q0 -254 195 -254q207 0 225 313l14 261q-72 20 -157 20q-130 0 -203.5 -90t-73.5 -250z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC49'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;A&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC50'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;B&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1327&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h413q291 0 421 -87t130 -275q0 -130 -72.5 -214.5t-211.5 -109.5v-10q333 -57 333 -350q0 -196 -132.5 -306t-370.5 -110h-510zM371 145h305q177 0 266.5 68.5t89.5 214.5q0 136 -91.5 200t-278.5 64h-291v-547zM371 836h280q180 0 259 56.5t79 190.5 q0 123 -88 177.5t-280 54.5h-250v-479z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC51'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;C&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1292&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 733q0 226 84.5 396t244 262t375.5 92q230 0 402 -84l-72 -146q-166 78 -332 78q-241 0 -380.5 -160.5t-139.5 -439.5q0 -287 134.5 -443.5t383.5 -156.5q153 0 349 55v-149q-152 -57 -375 -57q-323 0 -498.5 196t-175.5 557z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC52'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;D&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1493&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h448q341 0 530 -189t189 -528q0 -362 -196.5 -553.5t-565.5 -191.5h-405zM371 147h207q304 0 457 149.5t153 442.5q0 286 -143.5 431t-426.5 145h-247v-1168z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC53'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;E&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-471h606v-150h-606v-538h645v-152h-815z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC54'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;F&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1057&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-535h606v-151h-606v-625h-170z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC55'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;G&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 731q0 228 91.5 399.5t263.5 262t403 90.5q234 0 436 -86l-66 -150q-198 84 -381 84q-267 0 -417 -159t-150 -441q0 -296 144.5 -449t424.5 -153q152 0 297 35v450h-327v152h497v-711q-116 -37 -236 -56t-278 -19q-332 0 -517 197.5t-185 553.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC56'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;H&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1511&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-622h770v622h170v-1462h-170v688h-770v-688h-170z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC57'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;I&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;571&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1462h-170z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC58'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;J&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;547&quot;</span> <span class="na">d=</span><span class="s">&quot;M-160 -213q71 -20 148 -20q99 0 150.5 60t51.5 173v1462h170v-1448q0 -190 -96 -294.5t-276 -104.5q-94 0 -148 27v145z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC59'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;K&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-725l663 725h201l-588 -635l610 -827h-200l-533 709l-153 -136v-573h-170z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC60'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;L&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1063&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1308h645v-154h-815z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC61'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;M&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1849&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h256l463 -1206h8l467 1206h254v-1462h-170v942q0 162 14 352h-8l-500 -1294h-137l-496 1296h-8q14 -154 14 -366v-930h-157z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC62'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;N&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1544&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h192l797 -1222h8q-2 28 -9 174q-5 114 -5 177v32v839h159v-1462h-194l-799 1227h-8q16 -216 16 -396v-831h-157z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC63'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;O&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC64'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;P&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1233&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h379q548 0 548 -426q0 -222 -151.5 -341.5t-433.5 -119.5h-172v-575h-170zM371 721h153q226 0 327 73t101 234q0 145 -95 216t-296 71h-190v-594z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC65'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;Q&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -281 -113 -467t-319 -252l348 -362h-247l-285 330l-55 -2q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5 q-243 0 -369.5 -153.5t-126.5 -446.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC66'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;R&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1266&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h401q269 0 397.5 -103t128.5 -310q0 -290 -294 -392l397 -657h-201l-354 608h-305v-608h-170zM371 754h233q180 0 264 71.5t84 214.5q0 145 -85.5 209t-274.5 64h-221v-559z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC67'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;S&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1124&quot;</span> <span class="na">d=</span><span class="s">&quot;M106 47v164q90 -38 196 -60t210 -22q170 0 256 64.5t86 179.5q0 76 -30.5 124.5t-102 89.5t-217.5 93q-204 73 -291.5 173t-87.5 261q0 169 127 269t336 100q218 0 401 -80l-53 -148q-181 76 -352 76q-135 0 -211 -58t-76 -161q0 -76 28 -124.5t94.5 -89t203.5 -89.5 q230 -82 316.5 -176t86.5 -244q0 -193 -140 -301t-380 -108q-260 0 -400 67z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC68'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;T&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1133&quot;</span> <span class="na">d=</span><span class="s">&quot;M18 1311v151h1096v-151h-463v-1311h-170v1311h-463z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC69'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;U&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M186 520v942h170v-954q0 -183 100 -281t294 -98q185 0 285 98.5t100 282.5v952h170v-946q0 -250 -151 -393t-415 -143t-408.5 144t-144.5 396z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC70'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;V&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1219&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1462h180l336 -946q58 -163 92 -317q36 162 94 323l334 940h183l-527 -1462h-168z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC71'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;W&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1896&quot;</span> <span class="na">d=</span><span class="s">&quot;M27 1462h180l231 -903q48 -190 70 -344q27 183 80 358l262 889h180l275 -897q48 -155 81 -350q19 142 72 346l230 901h180l-391 -1462h-168l-295 979q-21 65 -47 164t-27 119q-22 -132 -70 -289l-286 -973h-168z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC72'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;X&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1182&quot;</span> <span class="na">d=</span><span class="s">&quot;M8 0l486 764l-453 698h188l363 -579l366 579h181l-453 -692l488 -770h-193l-393 643l-400 -643h-180z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC73'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;Y&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1147&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1462h186l387 -731l390 731h184l-488 -895v-567h-172v559z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC74'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;Z&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1169&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 0v133l776 1176h-752v153h959v-133l-776 -1175h798v-154h-1005z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC75'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;[&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;674&quot;</span> <span class="na">d=</span><span class="s">&quot;M166 -324v1786h457v-141h-289v-1503h289v-142h-457z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC76'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;\&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;752&quot;</span> <span class="na">d=</span><span class="s">&quot;M23 1462h163l547 -1462h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC77'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;]&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;674&quot;</span> <span class="na">d=</span><span class="s">&quot;M51 -182h289v1503h-289v141h457v-1786h-457v142z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC78'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;^&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1110&quot;</span> <span class="na">d=</span><span class="s">&quot;M49 551l434 922h99l477 -922h-152l-372 745l-334 -745h-152z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC79'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;_&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;918&quot;</span> <span class="na">d=</span><span class="s">&quot;M-4 -184h926v-131h-926v131z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC80'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;`&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1182&quot;</span> <span class="na">d=</span><span class="s">&quot;M393 1548v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC81'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;a&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC82'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;b&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1255&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1556h166v-378q0 -127 -8 -228h8q116 164 344 164q216 0 335.5 -147.5t119.5 -417.5t-120.5 -419.5t-334.5 -149.5q-107 0 -195.5 39.5t-148.5 121.5h-12l-35 -141h-119zM342 549q0 -231 77 -330.5t247 -99.5q153 0 228 111.5t75 320.5q0 214 -75 319t-232 105 q-170 0 -245 -97.5t-75 -328.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC83'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;c&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;975&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 541q0 275 132.5 425t377.5 150q79 0 158 -17t124 -40l-51 -141q-55 22 -120 36.5t-115 14.5q-334 0 -334 -426q0 -202 81.5 -310t241.5 -108q137 0 281 59v-147q-110 -57 -277 -57q-238 0 -368.5 146.5t-130.5 414.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC84'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;d&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1255&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 545q0 271 120 421t334 150q223 0 342 -162h13l-7 79l-4 77v446h166v-1556h-135l-22 147h-9q-115 -167 -344 -167q-215 0 -334.5 147t-119.5 418zM287 543q0 -210 77 -317t226 -107q170 0 246.5 92.5t76.5 298.5v35q0 233 -77.5 332.5t-247.5 99.5 q-146 0 -223.5 -113.5t-77.5 -320.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC85'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;e&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1149&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 539q0 265 130.5 421t350.5 156q206 0 326 -135.5t120 -357.5v-105h-755q5 -193 97.5 -293t260.5 -100q177 0 350 74v-148q-88 -38 -166.5 -54.5t-189.5 -16.5q-243 0 -383.5 148t-140.5 411zM291 653h573q0 157 -70 240.5t-200 83.5q-132 0 -210.5 -86t-92.5 -238z &quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC86'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;f&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;694&quot;</span> <span class="na">d=</span><span class="s">&quot;M29 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129h-279v-967h-166v967h-196z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC87'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;g&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1122&quot;</span> <span class="na">d=</span><span class="s">&quot;M39 -186q0 100 64 173t180 99q-42 19 -70.5 59t-28.5 93q0 60 32 105t101 87q-85 35 -138.5 119t-53.5 192q0 180 108 277.5t306 97.5q86 0 155 -20h379v-105l-203 -24q28 -35 50 -91.5t22 -127.5q0 -161 -110 -257t-302 -96q-49 0 -92 8q-106 -56 -106 -141 q0 -45 37 -66.5t127 -21.5h194q178 0 273.5 -75t95.5 -218q0 -182 -146 -277.5t-426 -95.5q-215 0 -331.5 80t-116.5 226zM199 -184q0 -89 75 -135t215 -46q209 0 309.5 62.5t100.5 169.5q0 89 -55 123.5t-207 34.5h-199q-113 0 -176 -54t-63 -155zM289 745q0 -115 65 -174 t181 -59q243 0 243 236q0 247 -246 247q-117 0 -180 -63t-63 -187z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC88'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;h&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1556h166v-471q0 -85 -8 -141h10q49 79 139.5 124.5t206.5 45.5q201 0 301.5 -95.5t100.5 -303.5v-715h-166v709q0 134 -61 200t-191 66q-173 0 -252.5 -94t-79.5 -308v-573h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC89'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;i&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M162 1393q0 57 28 83.5t70 26.5q40 0 69 -27t29 -83t-29 -83.5t-69 -27.5q-42 0 -70 27.5t-28 83.5zM176 0v1096h166v-1096h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC90'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;j&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M-111 -332q69 -20 136 -20q78 0 114.5 42.5t36.5 129.5v1276h166v-1264q0 -324 -299 -324q-95 0 -154 25v135zM162 1393q0 57 28 83.5t70 26.5q40 0 69 -27t29 -83t-29 -83.5t-69 -27.5q-42 0 -70 27.5t-28 83.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC91'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;k&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1075&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1556h164v-825q0 -55 -8 -170h8q43 61 131 160l354 375h197l-444 -467l475 -629h-201l-387 518l-125 -108v-410h-164z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC92'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;l&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1556h166v-1556h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC93'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;m&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1905&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h135l27 -150h8q47 80 132.5 125t191.5 45q257 0 336 -186h8q49 86 142 136t212 50q186 0 278.5 -95.5t92.5 -305.5v-715h-166v713q0 131 -56 196.5t-174 65.5q-155 0 -229 -89t-74 -274v-612h-166v713q0 131 -56 196.5t-175 65.5q-156 0 -228.5 -93.5 t-72.5 -306.5v-575h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC94'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;n&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h135l27 -150h8q51 81 143 125.5t205 44.5q198 0 298 -95.5t100 -305.5v-715h-166v709q0 134 -61 200t-191 66q-172 0 -252 -93t-80 -307v-575h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC95'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;o&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC96'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;p&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1255&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 -492v1588h135l23 -150h8q64 90 149 130t195 40q218 0 336.5 -149t118.5 -418q0 -270 -120.5 -419.5t-334.5 -149.5q-107 0 -195.5 39.5t-148.5 121.5h-12q12 -96 12 -182v-451h-166zM342 549q0 -231 77 -330.5t247 -99.5q142 0 222.5 115t80.5 317 q0 205 -80.5 314.5t-226.5 109.5q-168 0 -243 -93t-77 -296v-37z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC97'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;q&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1255&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 545q0 269 120 420t334 151q225 0 346 -170h9l24 150h131v-1588h-166v469q0 100 11 170h-13q-115 -167 -346 -167q-212 0 -331 149t-119 416zM287 543q0 -207 76.5 -315.5t226.5 -108.5q166 0 242 89t81 300v37q0 230 -78 331t-247 101q-146 0 -223.5 -113.5 t-77.5 -320.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC98'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;r&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;836&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h137l19 -203h8q61 107 147 165t189 58q73 0 131 -12l-23 -154q-68 15 -120 15q-133 0 -227.5 -108t-94.5 -269v-588h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC99'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;s&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;977&quot;</span> <span class="na">d=</span><span class="s">&quot;M106 827q0 134 109 211.5t299 77.5q177 0 346 -72l-59 -135q-165 68 -299 68q-118 0 -178 -37t-60 -102q0 -44 22.5 -75t72.5 -59t192 -81q195 -71 263.5 -143t68.5 -181q0 -153 -114 -236t-320 -83q-218 0 -340 69v154q79 -40 169.5 -63t174.5 -23q130 0 200 41.5 t70 126.5q0 64 -55.5 109.5t-216.5 107.5q-153 57 -217.5 99.5t-96 96.5t-31.5 129z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC100'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;t&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;723&quot;</span> <span class="na">d=</span><span class="s">&quot;M31 967v80l157 69l70 234h96v-254h318v-129h-318v-645q0 -99 47 -152t129 -53q44 0 85 6.5t65 13.5v-127q-27 -13 -79.5 -21.5t-94.5 -8.5q-318 0 -318 335v652h-157z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC101'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;u&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 379v717h168v-711q0 -134 61 -200t191 -66q172 0 251.5 94t79.5 307v576h166v-1096h-137l-24 147h-9q-51 -81 -141.5 -124t-206.5 -43q-200 0 -299.5 95t-99.5 304z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC102'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;v&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1026&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1096h178l236 -650q80 -228 94 -296h8q11 53 69.5 219.5t262.5 726.5h178l-416 -1096h-194z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC103'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;w&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1593&quot;</span> <span class="na">d=</span><span class="s">&quot;M23 1096h174q106 -413 161.5 -629t63.5 -291h8q11 57 35.5 147.5t42.5 143.5l201 629h180l196 -629q56 -172 76 -289h8q4 36 21.5 111t208.5 807h172l-303 -1096h-197l-201 643q-19 59 -71 268h-8q-40 -175 -70 -270l-207 -641h-192z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC104'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;x&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1073&quot;</span> <span class="na">d=</span><span class="s">&quot;M39 0l401 561l-381 535h189l289 -420l288 420h187l-381 -535l401 -561h-188l-307 444l-310 -444h-188z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC105'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;y&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1032&quot;</span> <span class="na">d=</span><span class="s">&quot;M2 1096h178l240 -625q79 -214 98 -309h8q13 51 54.5 174.5t271.5 759.5h178l-471 -1248q-70 -185 -163.5 -262.5t-229.5 -77.5q-76 0 -150 17v133q55 -12 123 -12q171 0 244 192l61 156z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC106'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;z&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;958&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 0v113l598 854h-561v129h743v-129l-590 -838h605v-129h-795z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC107'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;{&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;776&quot;</span> <span class="na">d=</span><span class="s">&quot;M61 498v141q130 2 188 48t58 142v306q0 155 108 241t290 86v-139q-230 -6 -230 -199v-295q0 -215 -223 -254v-12q223 -39 223 -254v-297q0 -102 58.5 -148t171.5 -48v-140q-190 2 -294 87t-104 239v303q0 104 -63 148.5t-183 44.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC108'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;|&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1128&quot;</span> <span class="na">d=</span><span class="s">&quot;M494 -496v2052h141v-2052h-141z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC109'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;}&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;776&quot;</span> <span class="na">d=</span><span class="s">&quot;M72 -184q111 2 169 48t58 148v297q0 114 55 174t168 80v12q-223 39 -223 254v295q0 193 -227 199v139q184 0 289.5 -87t105.5 -240v-306q0 -97 59 -142.5t189 -47.5v-141q-122 0 -185 -44.5t-63 -148.5v-303q0 -153 -102.5 -238.5t-292.5 -87.5v140z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC110'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;~&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 592v151q100 109 244 109q68 0 124.5 -14t145.5 -52q66 -28 115 -41.5t96 -13.5q54 0 118 32t118 89v-150q-102 -110 -244 -110q-72 0 -135 16.5t-135 48.5q-75 32 -120 44t-93 12q-53 0 -116.5 -33.5t-117.5 -87.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC111'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa1;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;547&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 983q0 63 31.5 99t88.5 36q51 0 86 -32t35 -103q0 -135 -121 -135q-60 0 -90 35.5t-30 99.5zM168 -373l51 1057h105l51 -1057h-207z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC112'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa2;&quot;</span> <span class="na">d=</span><span class="s">&quot;M190 741q0 508 396 570v172h135v-164q75 -3 146 -19.5t120 -39.5l-49 -140q-133 51 -242 51q-172 0 -253 -105.5t-81 -322.5q0 -212 79.5 -313.5t246.5 -101.5q141 0 283 59v-147q-105 -54 -252 -60v-200h-133v206q-203 32 -299.5 168.5t-96.5 386.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC113'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa3;&quot;</span> <span class="na">d=</span><span class="s">&quot;M63 0v141q205 47 205 291v223h-198v127h198v316q0 178 112 280.5t302 102.5t360 -84l-61 -133q-154 77 -297 77q-123 0 -185.5 -62t-62.5 -202v-295h422v-127h-422v-221q0 -100 -32.5 -168t-106.5 -112h795v-154h-1029z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC114'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa4;&quot;</span> <span class="na">d=</span><span class="s">&quot;M123 1092l94 92l135 -133q104 73 234 73q127 0 229 -73l137 133l95 -92l-134 -138q74 -113 74 -231q0 -131 -74 -234l131 -135l-92 -92l-137 133q-102 -71 -229 -71q-134 0 -234 73l-135 -133l-92 92l133 136q-74 107 -74 231q0 122 74 229zM313 723q0 -112 78.5 -192 t194.5 -80t195 79.5t79 192.5q0 114 -80 195t-194 81q-116 0 -194.5 -82t-78.5 -194z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC115'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa5;&quot;</span> <span class="na">d=</span><span class="s">&quot;M31 1462h178l375 -727l379 727h174l-416 -770h262v-127h-317v-170h317v-127h-317v-268h-164v268h-316v127h316v170h-316v127h256z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC116'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1128&quot;</span> <span class="na">d=</span><span class="s">&quot;M494 281h141v-777h-141v777zM494 780v776h141v-776h-141z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC117'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa7;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1057&quot;</span> <span class="na">d=</span><span class="s">&quot;M123 57v148q78 -37 175 -59.5t179 -22.5q134 0 204.5 38t70.5 109q0 46 -24 75t-78 58t-169 72q-142 52 -209 97t-100 102t-33 135q0 86 43 154.5t121 105.5q-74 40 -116 95.5t-42 140.5q0 121 103.5 190.5t300.5 69.5q94 0 173.5 -14.5t176.5 -53.5l-53 -131 q-98 39 -165.5 52.5t-143.5 13.5q-116 0 -174 -29.5t-58 -93.5q0 -60 61.5 -102t215.5 -97q186 -68 261 -143.5t75 -182.5q0 -90 -41 -160.5t-115 -111.5q153 -81 153 -227q0 -140 -117 -216.5t-329 -76.5q-218 0 -346 65zM285 829q0 -77 66 -129.5t233 -113.5l49 -19 q137 80 137 191q0 83 -73.5 139t-258.5 113q-68 -19 -110.5 -69t-42.5 -112z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC118'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1182&quot;</span> <span class="na">d=</span><span class="s">&quot;M309 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM690 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC119'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xa9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1704&quot;</span> <span class="na">d=</span><span class="s">&quot;M100 731q0 200 100 375t275 276t377 101q200 0 375 -100t276 -275t101 -377q0 -197 -97 -370t-272 -277t-383 -104q-207 0 -382 103.5t-272.5 276.5t-97.5 371zM205 731q0 -173 87 -323.5t237.5 -237t322.5 -86.5q174 0 323 87t236.5 235.5t87.5 324.5q0 174 -87 323 t-235.5 236.5t-324.5 87.5q-174 0 -323 -87t-236.5 -235.5t-87.5 -324.5zM481 731q0 209 110.5 332t301.5 123q128 0 246 -60l-58 -118q-108 51 -188 51q-125 0 -192.5 -87t-67.5 -241q0 -168 63.5 -249t194.5 -81q86 0 211 45v-124q-48 -20 -98.5 -34t-120.5 -14 q-194 0 -298 120.5t-104 336.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC120'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xaa;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;725&quot;</span> <span class="na">d=</span><span class="s">&quot;M70 989q0 102 77 154.5t242 58.5l117 4v39q0 133 -148 133q-100 0 -204 -51l-43 96q114 56 247 56q130 0 198.5 -52.5t68.5 -173.5v-452h-93l-24 84q-92 -97 -232 -97q-95 0 -150.5 49.5t-55.5 151.5zM193 989q0 -100 112 -100q201 0 201 180v49l-98 -4 q-112 -4 -163.5 -32.5t-51.5 -92.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC121'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xab;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1018&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 524v27l342 407l119 -69l-289 -350l289 -351l-119 -71zM477 524v27l344 407l117 -69l-287 -350l287 -351l-117 -71z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC122'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xac;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 653v138h961v-527h-137v389h-824z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC123'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xad;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;659&quot;</span> <span class="na">d=</span><span class="s">&quot;M84 473v152h491v-152h-491z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC124'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xae;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1704&quot;</span> <span class="na">d=</span><span class="s">&quot;M100 731q0 200 100 375t275 276t377 101q200 0 375 -100t276 -275t101 -377q0 -197 -97 -370t-272 -277t-383 -104q-207 0 -382 103.5t-272.5 276.5t-97.5 371zM205 731q0 -173 87 -323.5t237.5 -237t322.5 -86.5q174 0 323 87t236.5 235.5t87.5 324.5q0 174 -87 323 t-235.5 236.5t-324.5 87.5q-174 0 -323 -87t-236.5 -235.5t-87.5 -324.5zM575 285v891h261q166 0 243.5 -65t77.5 -198q0 -80 -42.5 -141.5t-119.5 -91.5l238 -395h-168l-207 354h-135v-354h-148zM723 762h108q80 0 128.5 41.5t48.5 105.5q0 75 -43 107.5t-136 32.5h-106 v-287z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC125'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xaf;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1024&quot;</span> <span class="na">d=</span><span class="s">&quot;M-6 1556v127h1036v-127h-1036z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC126'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;877&quot;</span> <span class="na">d=</span><span class="s">&quot;M127 1171q0 130 90.5 221t220.5 91t221 -90.5t91 -221.5q0 -84 -41 -155.5t-114 -113.5t-157 -42q-130 0 -220.5 90t-90.5 221zM242 1171q0 -82 58.5 -139t139.5 -57q80 0 137.5 56.5t57.5 139.5q0 84 -56.5 140.5t-138.5 56.5q-83 0 -140.5 -57t-57.5 -140z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC127'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb1;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 653v138h410v428h139v-428h412v-138h-412v-426h-139v426h-410zM104 1v138h961v-138h-961z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC128'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb2;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;711&quot;</span> <span class="na">d=</span><span class="s">&quot;M49 586v104l236 230q89 86 130 134.5t57.5 86.5t16.5 92q0 68 -40 102.5t-103 34.5q-52 0 -101 -19t-118 -69l-66 88q131 111 283 111q132 0 205.5 -65t73.5 -177q0 -80 -44.5 -155.5t-191.5 -213.5l-174 -165h440v-119h-604z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC129'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb3;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;711&quot;</span> <span class="na">d=</span><span class="s">&quot;M33 625v123q147 -68 270 -68q211 0 211 162q0 145 -231 145h-117v107h119q103 0 152.5 39.5t49.5 107.5q0 61 -40 95t-107 34q-66 0 -122 -21.5t-112 -56.5l-69 90q63 45 133 72t164 27q136 0 214.5 -59.5t78.5 -166.5q0 -80 -41 -131.5t-109 -74.5q176 -47 176 -209 q0 -128 -92 -199.5t-260 -71.5q-152 0 -268 56z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC130'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb4;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1182&quot;</span> <span class="na">d=</span><span class="s">&quot;M393 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC131'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb5;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1268&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 -492v1588h166v-715q0 -262 254 -262q171 0 250.5 94.5t79.5 306.5v576h166v-1096h-136l-26 147h-10q-111 -167 -340 -167q-150 0 -238 92h-10q10 -84 10 -244v-320h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC132'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1341&quot;</span> <span class="na">d=</span><span class="s">&quot;M113 1042q0 260 109 387t341 127h557v-1816h-114v1712h-213v-1712h-115v819q-62 -18 -146 -18q-216 0 -317.5 125t-101.5 376z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC133'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb7;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;545&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 723q0 66 31 100.5t87 34.5q58 0 90.5 -34.5t32.5 -100.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC134'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;465&quot;</span> <span class="na">d=</span><span class="s">&quot;M37 -377q45 -8 104 -8q79 0 119.5 20t40.5 74q0 43 -39.5 69.5t-148.5 43.5l88 178h110l-55 -115q180 -39 180 -174q0 -97 -76.5 -150t-226.5 -53q-51 0 -96 9v106z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC135'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xb9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;711&quot;</span> <span class="na">d=</span><span class="s">&quot;M76 1280l262 182h143v-876h-133v579q0 91 6 181q-22 -22 -49 -44.5t-162 -117.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC136'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xba;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;768&quot;</span> <span class="na">d=</span><span class="s">&quot;M66 1135q0 163 84 253.5t235 90.5q152 0 234.5 -91t82.5 -253q0 -164 -85.5 -255.5t-235.5 -91.5q-146 0 -230.5 93t-84.5 254zM188 1135q0 -122 45.5 -183t149.5 -61q105 0 151 61t46 183q0 123 -46 182t-151 59q-103 0 -149 -59t-46 -182z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC137'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xbb;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1018&quot;</span> <span class="na">d=</span><span class="s">&quot;M80 188l287 351l-287 350l117 69l344 -407v-27l-344 -407zM475 188l287 351l-287 350l117 69l344 -407v-27l-344 -407z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC138'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xbc;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1597&quot;</span> <span class="na">d=</span><span class="s">&quot;M252 0l903 1462h143l-903 -1462h-143zM75 1280l262 182h143v-876h-133v579q0 91 6 181q-22 -22 -49 -44.5t-162 -117.5zM817 203v101l408 579h139v-563h125v-117h-125v-202h-145v202h-402zM957 320h262v195q0 134 6 209q-5 -12 -17 -31.5t-27 -41.5l-30 -46 q-15 -22 -26 -39z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC139'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xbd;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1597&quot;</span> <span class="na">d=</span><span class="s">&quot;M184 0l903 1462h143l-903 -1462h-143zM46 1280l262 182h143v-876h-133v579q0 91 6 181q-22 -22 -49 -44.5t-162 -117.5zM895 1v104l236 230q89 86 130 134.5t57.5 86.5t16.5 92q0 68 -40 102.5t-103 34.5q-52 0 -101 -19t-118 -69l-66 88q131 111 283 111 q132 0 205.5 -65t73.5 -177q0 -80 -44.5 -155.5t-191.5 -213.5l-174 -165h440v-119h-604z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC140'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xbe;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1597&quot;</span> <span class="na">d=</span><span class="s">&quot;M26 625v123q147 -68 270 -68q211 0 211 162q0 145 -231 145h-117v107h119q103 0 152.5 39.5t49.5 107.5q0 61 -40 95t-107 34q-66 0 -122 -21.5t-112 -56.5l-69 90q63 45 133 72t164 27q136 0 214.5 -59.5t78.5 -166.5q0 -80 -41 -131.5t-109 -74.5q176 -47 176 -209 q0 -128 -92 -199.5t-260 -71.5q-152 0 -268 56zM344 0l903 1462h143l-903 -1462h-143zM897 203v101l408 579h139v-563h125v-117h-125v-202h-145v202h-402zM1037 320h262v195q0 134 6 209q-5 -12 -17 -31.5t-27 -41.5l-30 -46q-15 -22 -26 -39z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC141'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xbf;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;879&quot;</span> <span class="na">d=</span><span class="s">&quot;M51 -37q0 70 17.5 122.5t49.5 97t76.5 85.5t98.5 88q101 88 133.5 146t32.5 151v31h131v-51q0 -122 -37.5 -196t-134.5 -158q-121 -106 -151.5 -143.5t-43 -76t-12.5 -94.5q0 -100 66 -156.5t188 -56.5q80 0 155 19t173 67l59 -135q-197 -96 -395 -96q-190 0 -298 93 t-108 263zM397 983q0 64 33 99.5t88 35.5q51 0 86 -32t35 -103q0 -135 -121 -135q-59 0 -90 34.5t-31 100.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC142'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM331 1886v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC143'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc1;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM526 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC144'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc2;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM303 1579v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC145'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc3;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM268 1579q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5 q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC146'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc4;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM364 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM745 1731q0 52 26.5 75 t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC147'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc5;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1296&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 0l578 1468h143l575 -1468h-176l-182 465h-586l-180 -465h-172zM412 618h473l-170 453q-33 86 -68 211q-22 -96 -63 -211zM424 1585q0 98 60.5 155.5t160.5 57.5q101 0 163 -59.5t62 -151.5q0 -98 -61.5 -157.5t-163.5 -59.5q-101 0 -161 58.5t-60 156.5zM528 1585 q0 -56 30 -86.5t87 -30.5q52 0 84.5 30.5t32.5 86.5t-33 86.5t-84 30.5t-84 -30.5t-33 -86.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC148'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1788&quot;</span> <span class="na">d=</span><span class="s">&quot;M-2 0l698 1462h969v-151h-580v-471h541v-150h-541v-538h580v-152h-750v465h-514l-227 -465h-176zM469 618h446v693h-118z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC149'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc7;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1292&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 733q0 226 84.5 396t244 262t375.5 92q230 0 402 -84l-72 -146q-166 78 -332 78q-241 0 -380.5 -160.5t-139.5 -439.5q0 -287 134.5 -443.5t383.5 -156.5q153 0 349 55v-149q-152 -57 -375 -57q-323 0 -498.5 196t-175.5 557zM551 -377q45 -8 104 -8q79 0 119.5 20 t40.5 74q0 43 -39.5 69.5t-148.5 43.5l88 178h110l-55 -115q180 -39 180 -174q0 -97 -76.5 -150t-226.5 -53q-51 0 -96 9v106z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC150'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-471h606v-150h-606v-538h645v-152h-815zM320 1886v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC151'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xc9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-471h606v-150h-606v-538h645v-152h-815zM456 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC152'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xca;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-471h606v-150h-606v-538h645v-152h-815zM263 1579v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC153'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xcb;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h815v-151h-645v-471h606v-150h-606v-538h645v-152h-815zM327 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM708 1731q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5 t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC154'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xcc;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;571&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1462h-170zM5 1886v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC155'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xcd;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;571&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1462h-170zM179 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC156'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xce;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;571&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1462h-170zM-57 1579v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC157'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xcf;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;571&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-1462h-170zM5 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM386 1731q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC158'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1479&quot;</span> <span class="na">d=</span><span class="s">&quot;M47 649v150h154v663h434q337 0 527 -187.5t190 -529.5q0 -362 -196.5 -553.5t-565.5 -191.5h-389v649h-154zM371 147h190q610 0 610 592q0 576 -569 576h-231v-516h379v-150h-379v-502z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC159'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd1;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1544&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h192l797 -1222h8q-2 28 -9 174q-5 114 -5 177v32v839h159v-1462h-194l-799 1227h-8q16 -216 16 -396v-831h-157zM411 1579q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5 q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC160'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd2;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5zM514 1886v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC161'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd3;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5zM659 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC162'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd4;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5zM448 1579v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC163'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd5;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5zM418 1579q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC164'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q315 0 492 -200t177 -552q0 -351 -177.5 -552t-493.5 -201q-323 0 -498.5 197.5t-175.5 557.5zM305 733q0 -297 126.5 -450.5t367.5 -153.5q243 0 367 153t124 451q0 295 -123.5 447.5t-365.5 152.5q-243 0 -369.5 -153.5 t-126.5 -446.5zM522 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM903 1731q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC165'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd7;&quot;</span> <span class="na">d=</span><span class="s">&quot;M133 1075l100 101l353 -355l354 355l96 -99l-352 -354l350 -352l-96 -99l-354 351l-348 -351l-101 99l350 352z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC166'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1595&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 357 176 553.5t500 196.5q209 0 366 -94l97 135l120 -80l-106 -148q192 -202 192 -565q0 -351 -177.5 -552t-493.5 -201q-235 0 -383 100l-101 -141l-120 79l108 154q-178 198 -178 563zM305 733q0 -262 101 -416l669 943q-106 73 -274 73 q-243 0 -369.5 -153.5t-126.5 -446.5zM508 211q115 -82 291 -82q243 0 367 153t124 451q0 272 -110 426z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC167'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xd9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M186 520v942h170v-954q0 -183 100 -281t294 -98q185 0 285 98.5t100 282.5v952h170v-946q0 -250 -151 -393t-415 -143t-408.5 144t-144.5 396zM463 1886v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC168'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xda;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M186 520v942h170v-954q0 -183 100 -281t294 -98q185 0 285 98.5t100 282.5v952h170v-946q0 -250 -151 -393t-415 -143t-408.5 144t-144.5 396zM600 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC169'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xdb;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M186 520v942h170v-954q0 -183 100 -281t294 -98q185 0 285 98.5t100 282.5v952h170v-946q0 -250 -151 -393t-415 -143t-408.5 144t-144.5 396zM393 1579v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186 h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC170'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xdc;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1491&quot;</span> <span class="na">d=</span><span class="s">&quot;M186 520v942h170v-954q0 -183 100 -281t294 -98q185 0 285 98.5t100 282.5v952h170v-946q0 -250 -151 -393t-415 -143t-408.5 144t-144.5 396zM461 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5z M842 1731q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC171'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xdd;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1147&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1462h186l387 -731l390 731h184l-488 -895v-567h-172v559zM442 1579v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC172'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xde;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1251&quot;</span> <span class="na">d=</span><span class="s">&quot;M201 0v1462h170v-256h215q281 0 420 -103.5t139 -318.5q0 -227 -151.5 -346t-438.5 -119h-184v-319h-170zM371 465h168q226 0 327 71.5t101 235.5q0 149 -95 218t-297 69h-204v-594z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC173'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xdf;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1274&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1202q0 178 110 271.5t332 93.5q206 0 318.5 -78.5t112.5 -222.5q0 -135 -143 -250q-88 -70 -116 -103.5t-28 -66.5q0 -32 13.5 -53t49 -49.5t113.5 -79.5q140 -95 191 -173.5t51 -179.5q0 -160 -97 -245.5t-276 -85.5q-188 0 -295 69v154q63 -39 141 -62.5 t150 -23.5q215 0 215 182q0 75 -41.5 128.5t-151.5 123.5q-127 82 -175 143.5t-48 145.5q0 63 34.5 116t105.5 106q75 57 107 102t32 98q0 80 -68 122.5t-195 42.5q-276 0 -276 -223v-1204h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC174'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM279 1548v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC175'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe1;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM436 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC176'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe2;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM228 1241v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC177'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe3;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM197 1241q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5q-43 0 -84 18.5t-80.5 41t-76 41 t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC178'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe4;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM279 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM660 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75 q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC179'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe5;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1139&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 332 531 348l186 6v68q0 129 -55.5 190.5t-177.5 61.5q-137 0 -310 -84l-51 127q81 44 177.5 69t193.5 25q196 0 290.5 -87t94.5 -279v-748h-123l-33 156h-8q-82 -103 -163.5 -139.5t-203.5 -36.5q-163 0 -255.5 84t-92.5 239zM268 301q0 -90 54.5 -137 t152.5 -47q155 0 243.5 85t88.5 238v99l-166 -7q-198 -7 -285.5 -61.5t-87.5 -169.5zM358 1456q0 98 60.5 155.5t160.5 57.5q101 0 163 -59.5t62 -151.5q0 -98 -61.5 -157.5t-163.5 -59.5q-101 0 -161 58.5t-60 156.5zM462 1456q0 -56 30 -86.5t87 -30.5q52 0 84.5 30.5 t32.5 86.5t-33 86.5t-84 30.5t-84 -30.5t-33 -86.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC180'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1757&quot;</span> <span class="na">d=</span><span class="s">&quot;M94 303q0 161 124 250.5t378 97.5l184 6v68q0 129 -58 190.5t-177 61.5q-144 0 -307 -84l-52 127q74 41 173.5 67.5t197.5 26.5q130 0 212.5 -43.5t123.5 -138.5q53 88 138.5 136t195.5 48q192 0 308 -133.5t116 -355.5v-107h-701q8 -395 322 -395q91 0 169.5 17.5 t162.5 56.5v-148q-86 -38 -160.5 -54.5t-175.5 -16.5q-289 0 -414 233q-81 -127 -179.5 -180t-232.5 -53q-163 0 -255.5 85t-92.5 238zM268 301q0 -95 53.5 -139.5t141.5 -44.5q145 0 229 84.5t84 238.5v99l-158 -7q-186 -8 -268 -62.5t-82 -168.5zM954 653h519 q0 156 -64 240t-184 84q-121 0 -190.5 -83t-80.5 -241z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC181'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe7;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;975&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 541q0 275 132.5 425t377.5 150q79 0 158 -17t124 -40l-51 -141q-55 22 -120 36.5t-115 14.5q-334 0 -334 -426q0 -202 81.5 -310t241.5 -108q137 0 281 59v-147q-110 -57 -277 -57q-238 0 -368.5 146.5t-130.5 414.5zM363 -377q45 -8 104 -8q79 0 119.5 20t40.5 74 q0 43 -39.5 69.5t-148.5 43.5l88 178h110l-55 -115q180 -39 180 -174q0 -97 -76.5 -150t-226.5 -53q-51 0 -96 9v106z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC182'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1149&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 539q0 265 130.5 421t350.5 156q206 0 326 -135.5t120 -357.5v-105h-755q5 -193 97.5 -293t260.5 -100q177 0 350 74v-148q-88 -38 -166.5 -54.5t-189.5 -16.5q-243 0 -383.5 148t-140.5 411zM291 653h573q0 157 -70 240.5t-200 83.5q-132 0 -210.5 -86t-92.5 -238z M318 1548v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC183'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1149&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 539q0 265 130.5 421t350.5 156q206 0 326 -135.5t120 -357.5v-105h-755q5 -193 97.5 -293t260.5 -100q177 0 350 74v-148q-88 -38 -166.5 -54.5t-189.5 -16.5q-243 0 -383.5 148t-140.5 411zM291 653h573q0 157 -70 240.5t-200 83.5q-132 0 -210.5 -86t-92.5 -238z M471 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC184'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xea;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1149&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 539q0 265 130.5 421t350.5 156q206 0 326 -135.5t120 -357.5v-105h-755q5 -193 97.5 -293t260.5 -100q177 0 350 74v-148q-88 -38 -166.5 -54.5t-189.5 -16.5q-243 0 -383.5 148t-140.5 411zM291 653h573q0 157 -70 240.5t-200 83.5q-132 0 -210.5 -86t-92.5 -238z M259 1241v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC185'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xeb;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1149&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 539q0 265 130.5 421t350.5 156q206 0 326 -135.5t120 -357.5v-105h-755q5 -193 97.5 -293t260.5 -100q177 0 350 74v-148q-88 -38 -166.5 -54.5t-189.5 -16.5q-243 0 -383.5 148t-140.5 411zM291 653h573q0 157 -70 240.5t-200 83.5q-132 0 -210.5 -86t-92.5 -238z M319 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM700 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC186'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xec;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h166v-1096h-166zM-38 1548v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC187'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xed;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h166v-1096h-166zM169 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC188'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xee;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h166v-1096h-166zM-77 1241v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC189'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xef;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h166v-1096h-166zM-20 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM361 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC190'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf0;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1221&quot;</span> <span class="na">d=</span><span class="s">&quot;M113 475q0 230 131.5 361t351.5 131q226 0 326 -121l8 4q-57 214 -262 405l-271 -155l-73 108l233 133q-92 62 -186 111l69 117q156 -73 258 -148l238 138l76 -107l-207 -119q152 -143 234.5 -342t82.5 -428q0 -281 -130.5 -432t-377.5 -151q-222 0 -361.5 134.5 t-139.5 360.5zM281 469q0 -167 87.5 -258.5t249.5 -91.5q175 0 255.5 100.5t80.5 292.5q0 147 -90 232t-246 85q-337 0 -337 -360z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC191'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf1;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h135l27 -150h8q51 81 143 125.5t205 44.5q198 0 298 -95.5t100 -305.5v-715h-166v709q0 134 -61 200t-191 66q-172 0 -252 -93t-80 -307v-575h-166zM278 1241q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99 q-13 -121 -69.5 -189.5t-150.5 -68.5q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC192'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf2;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319zM349 1548v21 h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC193'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf3;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319zM479 1241v25 q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC194'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf4;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319zM282 1241v23 q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC195'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf5;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319zM249 1241 q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC196'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q230 0 365.5 -153t135.5 -414q0 -268 -135 -418.5t-373 -150.5q-147 0 -261 69t-176 198t-62 302zM287 549q0 -210 84 -320t247 -110t247.5 109.5t84.5 320.5q0 209 -84.5 317.5t-249.5 108.5q-163 0 -246 -107t-83 -319zM336 1393 q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM717 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC197'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf7;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 653v138h961v-138h-961zM471 373q0 60 29.5 90.5t83.5 30.5q52 0 81 -31.5t29 -89.5q0 -57 -29.5 -89t-80.5 -32q-52 0 -82.5 31.5t-30.5 89.5zM471 1071q0 60 29.5 90.5t83.5 30.5q52 0 81 -31.5t29 -89.5q0 -57 -29.5 -89t-80.5 -32q-52 0 -82.5 31.5t-30.5 89.5z &quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC198'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf8;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1237&quot;</span> <span class="na">d=</span><span class="s">&quot;M115 549q0 268 134 417.5t372 149.5q154 0 270 -76l84 119l117 -76l-97 -133q127 -152 127 -401q0 -268 -135 -418.5t-373 -150.5q-154 0 -266 69l-84 -117l-114 78l94 131q-129 152 -129 408zM287 549q0 -171 53 -273l465 646q-75 53 -189 53q-163 0 -246 -107t-83 -319 zM434 170q71 -51 184 -51q163 0 247.5 109.5t84.5 320.5q0 164 -51 264z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC199'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xf9;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 379v717h168v-711q0 -134 61 -200t191 -66q172 0 251.5 94t79.5 307v576h166v-1096h-137l-24 147h-9q-51 -81 -141.5 -124t-206.5 -43q-200 0 -299.5 95t-99.5 304zM333 1548v21h203q32 -69 89 -159.5t101 -143.5v-25h-110q-65 52 -154 148t-129 159z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC200'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfa;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 379v717h168v-711q0 -134 61 -200t191 -66q172 0 251.5 94t79.5 307v576h166v-1096h-137l-24 147h-9q-51 -81 -141.5 -124t-206.5 -43q-200 0 -299.5 95t-99.5 304zM506 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC201'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfb;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 379v717h168v-711q0 -134 61 -200t191 -66q172 0 251.5 94t79.5 307v576h166v-1096h-137l-24 147h-9q-51 -81 -141.5 -124t-206.5 -43q-200 0 -299.5 95t-99.5 304zM286 1241v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119 q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC202'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfc;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1257&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 379v717h168v-711q0 -134 61 -200t191 -66q172 0 251.5 94t79.5 307v576h166v-1096h-137l-24 147h-9q-51 -81 -141.5 -124t-206.5 -43q-200 0 -299.5 95t-99.5 304zM342 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5 q-37 0 -63.5 24.5t-26.5 74.5zM723 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC203'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfd;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1032&quot;</span> <span class="na">d=</span><span class="s">&quot;M2 1096h178l240 -625q79 -214 98 -309h8q13 51 54.5 174.5t271.5 759.5h178l-471 -1248q-70 -185 -163.5 -262.5t-229.5 -77.5q-76 0 -150 17v133q55 -12 123 -12q171 0 244 192l61 156zM411 1241v25q48 62 103.5 150t87.5 153h202v-21q-44 -65 -131 -160t-151 -147h-111 z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC204'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfe;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1255&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 -492v2048h166v-466q0 -52 -6 -142h8q66 89 151 128.5t191 39.5q215 0 335 -150t120 -417q0 -268 -120.5 -418.5t-334.5 -150.5q-222 0 -344 161h-12l4 -34q8 -77 8 -140v-459h-166zM342 549q0 -231 77 -330.5t247 -99.5q303 0 303 432q0 215 -74 319.5t-231 104.5 q-168 0 -244 -92t-78 -293v-41z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC205'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xff;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1032&quot;</span> <span class="na">d=</span><span class="s">&quot;M2 1096h178l240 -625q79 -214 98 -309h8q13 51 54.5 174.5t271.5 759.5h178l-471 -1248q-70 -185 -163.5 -262.5t-229.5 -77.5q-76 0 -150 17v133q55 -12 123 -12q171 0 244 192l61 156zM234 1393q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5 t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM615 1393q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC206'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x131;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;518&quot;</span> <span class="na">d=</span><span class="s">&quot;M176 0v1096h166v-1096h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC207'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x152;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1890&quot;</span> <span class="na">d=</span><span class="s">&quot;M125 735q0 360 174 555t494 195q102 0 192 -23h782v-151h-589v-471h551v-150h-551v-538h589v-152h-768q-102 -20 -194 -20q-327 0 -503.5 196.5t-176.5 558.5zM305 733q0 -297 128.5 -450.5t375.5 -153.5q112 0 199 33v1141q-87 30 -197 30q-249 0 -377.5 -152.5 t-128.5 -447.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC208'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x153;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1929&quot;</span> <span class="na">d=</span><span class="s">&quot;M113 549q0 265 131 415t366 150q131 0 233.5 -59.5t164.5 -173.5q58 112 154 172.5t222 60.5q201 0 320 -132.5t119 -358.5v-105h-729q8 -393 338 -393q94 0 174.5 17.5t167.5 56.5v-148q-88 -39 -164 -55t-180 -16q-293 0 -418 235q-62 -116 -166.5 -175.5t-241.5 -59.5 q-223 0 -357 152.5t-134 416.5zM287 549q0 -211 76 -320.5t243 -109.5q163 0 239.5 106.5t76.5 315.5q0 221 -77.5 327.5t-242.5 106.5q-166 0 -240.5 -108t-74.5 -318zM1098 653h544q0 158 -66 240t-194 82q-127 0 -199.5 -82t-84.5 -240z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC209'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x178;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1147&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1462h186l387 -731l390 731h184l-488 -895v-567h-172v559zM294 1731q0 52 26.5 75t63.5 23q38 0 65.5 -23t27.5 -75q0 -50 -27.5 -74.5t-65.5 -24.5q-37 0 -63.5 24.5t-26.5 74.5zM675 1731q0 52 26.5 75t63.5 23t64.5 -23t27.5 -75q0 -50 -27.5 -74.5t-64.5 -24.5 t-63.5 24.5t-26.5 74.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC210'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2c6;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1212&quot;</span> <span class="na">d=</span><span class="s">&quot;M268 1241v23q127 136 178 200t74 105h166q22 -42 76.5 -108.5t179.5 -196.5v-23h-119q-88 55 -221 186q-136 -134 -219 -186h-115z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC211'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2da;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1182&quot;</span> <span class="na">d=</span><span class="s">&quot;M367 1456q0 98 60.5 155.5t160.5 57.5q101 0 163 -59.5t62 -151.5q0 -98 -61.5 -157.5t-163.5 -59.5q-101 0 -161 58.5t-60 156.5zM471 1456q0 -56 30 -86.5t87 -30.5q52 0 84.5 30.5t32.5 86.5t-33 86.5t-84 30.5t-84 -30.5t-33 -86.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC212'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2dc;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1212&quot;</span> <span class="na">d=</span><span class="s">&quot;M264 1241q13 121 70.5 189.5t148.5 68.5q46 0 89 -18.5t82 -41t75 -41t68 -18.5q49 0 73 29.5t39 91.5h99q-13 -121 -69.5 -189.5t-150.5 -68.5q-43 0 -84 18.5t-80.5 41t-76 41t-70.5 18.5q-50 0 -75.5 -30t-39.5 -91h-98z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC213'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2000;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;953&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC214'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2001;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1907&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC215'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2002;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;953&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC216'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2003;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1907&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC217'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2004;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;635&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC218'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2005;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;476&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC219'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2006;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;317&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC220'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2007;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;317&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC221'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2008;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;238&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC222'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2009;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;381&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC223'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x200a;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;105&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC224'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2010;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;659&quot;</span> <span class="na">d=</span><span class="s">&quot;M84 473v152h491v-152h-491z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC225'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2011;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;659&quot;</span> <span class="na">d=</span><span class="s">&quot;M84 473v152h491v-152h-491z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC226'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2012;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;659&quot;</span> <span class="na">d=</span><span class="s">&quot;M84 473v152h491v-152h-491z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC227'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2013;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1024&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 473v152h860v-152h-860z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC228'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2014;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;2048&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 473v152h1884v-152h-1884z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC229'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2018;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;348&quot;</span> <span class="na">d=</span><span class="s">&quot;M25 983q22 90 71 224t105 255h123q-66 -254 -103 -501h-184z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC230'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2019;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;348&quot;</span> <span class="na">d=</span><span class="s">&quot;M25 961q70 285 102 501h182l15 -22q-26 -100 -75 -232.5t-102 -246.5h-122z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC231'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x201a;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;502&quot;</span> <span class="na">d=</span><span class="s">&quot;M63 -264q27 104 59.5 257t45.5 245h182l15 -23q-26 -100 -75 -232.5t-102 -246.5h-125z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC232'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x201c;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;717&quot;</span> <span class="na">d=</span><span class="s">&quot;M25 983q22 90 71 224t105 255h123q-66 -254 -103 -501h-184zM391 983q56 215 178 479h123q-30 -115 -59.5 -259.5t-42.5 -241.5h-184z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC233'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x201d;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;717&quot;</span> <span class="na">d=</span><span class="s">&quot;M25 961q70 285 102 501h182l15 -22q-26 -100 -75 -232.5t-102 -246.5h-122zM391 961q26 100 59 254t46 247h182l14 -22q-24 -91 -72 -224t-104 -255h-125z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC234'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x201e;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;829&quot;</span> <span class="na">d=</span><span class="s">&quot;M25 -263q70 285 102 501h182l15 -22q-26 -100 -75 -232.5t-102 -246.5h-122zM391 -263q26 100 59 254t46 247h182l14 -22q-24 -91 -72 -224t-104 -255h-125z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC235'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2022;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;770&quot;</span> <span class="na">d=</span><span class="s">&quot;M164 748q0 121 56.5 184t164.5 63q105 0 163 -62t58 -185q0 -119 -57.5 -183.5t-163.5 -64.5q-107 0 -164 65.5t-57 182.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC236'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2026;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1606&quot;</span> <span class="na">d=</span><span class="s">&quot;M152 106q0 67 30.5 101.5t87.5 34.5q58 0 90.5 -34.5t32.5 -101.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5zM682 106q0 67 30.5 101.5t87.5 34.5q58 0 90.5 -34.5t32.5 -101.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5zM1213 106 q0 67 30.5 101.5t87.5 34.5q58 0 90.5 -34.5t32.5 -101.5q0 -65 -33 -100t-90 -35q-51 0 -84.5 31.5t-33.5 103.5z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC237'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x202f;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;381&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC238'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2039;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;623&quot;</span> <span class="na">d=</span><span class="s">&quot;M82 524v27l342 407l119 -69l-289 -350l289 -351l-119 -71z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC239'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x203a;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;623&quot;</span> <span class="na">d=</span><span class="s">&quot;M80 188l287 351l-287 350l117 69l344 -407v-27l-344 -407z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC240'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2044;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;266&quot;</span> <span class="na">d=</span><span class="s">&quot;M-391 0l903 1462h143l-903 -1462h-143z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC241'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x205f;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;476&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC242'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2074;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;711&quot;</span> <span class="na">d=</span><span class="s">&quot;M20 788v101l408 579h139v-563h125v-117h-125v-202h-145v202h-402zM160 905h262v195q0 134 6 209q-5 -12 -17 -31.5t-27 -41.5l-30 -46q-15 -22 -26 -39z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC243'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x20ac;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1208&quot;</span> <span class="na">d=</span><span class="s">&quot;M63 506v129h152l-2 42v44l2 80h-152v129h164q39 261 185 407t383 146q201 0 366 -97l-71 -139q-166 86 -295 86q-319 0 -398 -403h510v-129h-524l-2 -57v-64l2 -45h463v-129h-447q37 -180 138.5 -278.5t271.5 -98.5q156 0 309 66v-150q-146 -65 -317 -65 q-237 0 -381.5 134.5t-190.5 391.5h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC244'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2122;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1589&quot;</span> <span class="na">d=</span><span class="s">&quot;M37 1356v106h543v-106h-211v-615h-123v615h-209zM647 741v721h187l196 -559l203 559h180v-721h-127v420l6 137h-8l-211 -557h-104l-201 559h-8l6 -129v-430h-119z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC245'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#x2212;&quot;</span> <span class="na">d=</span><span class="s">&quot;M104 653v138h961v-138h-961z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC246'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xe000;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1095&quot;</span> <span class="na">d=</span><span class="s">&quot;M0 1095h1095v-1095h-1095v1095z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC247'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfb01;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1212&quot;</span> <span class="na">d=</span><span class="s">&quot;M29 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129h-279v-967h-166v967h-196zM856 1393q0 57 28 83.5t70 26.5q40 0 69 -27t29 -83t-29 -83.5t-69 -27.5q-42 0 -70 27.5t-28 83.5zM870 0v1096h166 v-1096h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC248'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfb02;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1212&quot;</span> <span class="na">d=</span><span class="s">&quot;M29 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129h-279v-967h-166v967h-196zM870 0v1556h166v-1556h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC249'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfb03;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1909&quot;</span> <span class="na">d=</span><span class="s">&quot;M717 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129h-279v-967h-166v967h-196zM29 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129 h-279v-967h-166v967h-196zM1551 1393q0 57 28 83.5t70 26.5q40 0 69 -27t29 -83t-29 -83.5t-69 -27.5q-42 0 -70 27.5t-28 83.5zM1565 0v1096h166v-1096h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC250'><span class="nt">&lt;glyph</span> <span class="na">unicode=</span><span class="s">&quot;&amp;#xfb04;&quot;</span> <span class="na">horiz-adv-x=</span><span class="s">&quot;1909&quot;</span> <span class="na">d=</span><span class="s">&quot;M717 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129h-279v-967h-166v967h-196zM29 967v75l196 60v61q0 404 353 404q87 0 204 -35l-43 -133q-96 31 -164 31q-94 0 -139 -62.5t-45 -200.5v-71h279v-129 h-279v-967h-166v967h-196zM1565 0v1556h166v-1556h-166z&quot;</span> <span class="nt">/&gt;</span></div><div class='line' id='LC251'><span class="nt">&lt;/font&gt;</span></div><div class='line' id='LC252'><span class="nt">&lt;/defs&gt;&lt;/svg&gt;</span> </div></pre></div></td>
+         </tr>
+       </table>
+  </div>
+
+  </div>
+</div>
+
+<a href="#jump-to-line" rel="facebox[.linejump]" data-hotkey="l" style="display:none">Jump to Line</a>
+<div id="jump-to-line" style="display:none">
+  <form accept-charset="UTF-8" class="js-jump-to-line-form">
+    <input class="linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" autofocus>
+    <button type="submit" class="button">Go</button>
+  </form>
+</div>
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer">
+    <ul class="site-footer-links right">
+      <li><a href="https://status.github.com/">Status</a></li>
+      <li><a href="http://developer.github.com">API</a></li>
+      <li><a href="http://training.github.com">Training</a></li>
+      <li><a href="http://shop.github.com">Shop</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/about">About</a></li>
+
+    </ul>
+
+    <a href="/" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+    </a>
+
+    <ul class="site-footer-links">
+      <li>&copy; 2014 <span title="0.08683s from github-fe128-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="/site/terms">Terms</a></li>
+        <li><a href="/site/privacy">Privacy</a></li>
+        <li><a href="/security">Security</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+  </div><!-- /.site-footer -->
+</div><!-- /.container -->
+
+
+    <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents js-suggester-field" placeholder=""></textarea>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w"
+      aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <a href="#" class="octicon octicon-x close js-ajax-error-dismiss" aria-label="Dismiss error"></a>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-8c6e10f6700610e693b29e274318b3714523ca3e.js" type="text/javascript"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-8cb2cf90ade4ed9e5f018ba0309e9b3d0bf0c6db.js" type="text/javascript"></script>
+      
+      
+        <script async src="https://www.google-analytics.com/analytics.js"></script>
+  </body>
+</html>
+

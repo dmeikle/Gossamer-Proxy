@@ -98,7 +98,7 @@ abstract class AbstractComponent
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
             $model->setContainer($this->container);
             $model->setDatasource($this->getDatasource());
-            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest->getAttribute('langFiles'), $httpRequest->getAttribute('locales'));
+            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest);
             $view->setContainer($this->container);
             $controller = new $this->controllerName($model, $view, $this->logger);
 

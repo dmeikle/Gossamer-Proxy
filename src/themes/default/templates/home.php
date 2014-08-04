@@ -7,8 +7,9 @@
     <title><?php echo $title;?></title>
         <link href="/src/themes/default/templates/css/framework.css" rel="stylesheet" >
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-        <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
-  
+        <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">  
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        
         <!---css--->
      
         <!-- Bootstrap -->

@@ -68,11 +68,14 @@ class CategoryModel extends  AbstractModel
     }
     
     public function save($id) {
+        
         $params = $this->httpRequest->getPost();
         $params['category']['id'] = $id;
+       
+      
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['category']);
-        
-        $this->render($data);
+      
+       // $this->render($data);
     }
     
     public function delete($categoryId) {

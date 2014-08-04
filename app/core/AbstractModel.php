@@ -10,6 +10,8 @@ use core\AbstractView;
 use core\datasources\DataSourceInterface;
 use libraries\utils\Container;
 use core\http\HTTPSession;
+use libraries\utils\Pagination;
+
 
 class AbstractModel
 {
@@ -115,12 +117,18 @@ class AbstractModel
     }
     
     public function listall($offset = 0, $rows = 20) {
+        
         $params = array(
-            'offset' => $offset, 'rows' => $rows
+            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
         );
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        
+        if(array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
+            $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
+        }
         $this->render($data);
     }
     
@@ -201,5 +209,20 @@ class AbstractModel
     
     public function getHttpRequest() {
         return $this->httpRequest;
+    }
+    
+    protected function getPagination($rawRowCount, $offset, $limit) {
+        if(is_null($rawRowCount)) {
+            return;
+        }
+      
+        $pagination = new Pagination($this->logger);
+        $rowCount2 = array_shift($rawRowCount);
+       
+        $rowCount = $rowCount2['rowCount'];
+       
+        $retval = $pagination->getPagination($rowCount, $offset, $limit);
+       
+        return $retval;
     }
 }

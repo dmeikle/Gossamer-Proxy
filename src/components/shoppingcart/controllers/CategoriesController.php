@@ -12,5 +12,13 @@ class CategoriesController extends AbstractController
         $this->model->listAllByParentId($categoryId, $offset, $limit);
     }
 
-
+     /**
+     * save - saves/updates row
+     *
+     * @param int id    primary key of item to save
+     */
+    public function save($id) {
+        $this->model->save($id);
+        $this->redirect('/admin/cart/categories');
+    }
 }

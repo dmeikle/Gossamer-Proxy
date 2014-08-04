@@ -17,8 +17,9 @@ class LoadDefaultPreferencesListener extends AbstractListener
 
         $loader = new YAMLPreferences($this->logger);
         $config = $loader->loadConfig('defaultpreferences');
+        
         $this->httpRequest->setAttribute('defaultPreferences', $config);
-
+       
     }
 
 }

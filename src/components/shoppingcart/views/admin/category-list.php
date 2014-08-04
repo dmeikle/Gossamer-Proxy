@@ -5,14 +5,19 @@
     <!--- javascript start --->
     @components/shoppingcart/includes/js/category-list.js
     <!--- javascript end --->
-
+ <h3><?php echo $this->getString('LABEL_CATEGORIES_LIST');?></h3>
     <button data-id="0" type="button" class="edit"><?php echo $this->getString('BUTTON_NEW');?></button>
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <?php echo $this->getString('LABEL_CATEGORIES_LIST');?>
-    </div>
+   
 <table class="table table-striped">
-
+    <tr>
+        <td>
+            <?php echo $this->getString('LABEL_CATEGORY');?>
+        </td>
+        <td>
+            <?php echo $this->getString('LABEL_ACTION');?>
+        </td>
+    </tr>
             <?php
 
 

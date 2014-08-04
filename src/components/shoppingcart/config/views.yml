@@ -33,7 +33,6 @@ cart_admin_categories_list:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/category-list.php"
             "section4": "themes/default/templates/sections/footer.php"
     
@@ -42,7 +41,6 @@ cart_admin_category_edit:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/category-edit.php"
             "section4": "themes/default/templates/sections/footer.php"
 
@@ -60,7 +58,6 @@ cart_admin_product_edit:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/product-edit.php"
             "section4": "themes/default/templates/sections/footer.php"
 
@@ -69,7 +66,6 @@ cart_admin_product_save:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/product-edit.php"
             "section4": "themes/default/templates/sections/footer.php"
 
@@ -78,7 +74,6 @@ cart_admin_products_list:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/product-list.php"
             "section4": "themes/default/templates/sections/footer.php"
 
@@ -88,7 +83,6 @@ cart_admin_product_save:
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section2": "components/users/views/leftnav.php"
             "section3": "components/shoppingcart/views/admin/category-list.php"
             "section4": "themes/default/templates/sections/footer.php"
 

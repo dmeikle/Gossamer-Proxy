@@ -20,7 +20,7 @@ $category = current($Category);
 <form method="post">
     <table class="tab-content">
         <tr>
-            <td colspan="2"><?php echo $this->getString('LABEL_ADD_EDIT_CATEGORY');?></td>
+            <td colspan="2"><h3><?php echo $this->getString('LABEL_ADD_EDIT_CATEGORY');?></h3></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -29,7 +29,7 @@ $category = current($Category);
                 foreach($Locales as $locale) {
                     
                     if($locale['isDefault']) {
-                        echo "<li><a class=\"active\" href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
+                        echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
                     } else {
                         echo "<li><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
                     }

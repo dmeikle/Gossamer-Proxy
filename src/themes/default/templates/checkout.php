@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>list template</title>
      <link href="/src/themes/default/templates/css/framework.css" rel="stylesheet" >
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!---css--->
 
 
 
-    <link href="/src/themes/default/templates/css/framework.css" type="text/css" >
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,9 +49,12 @@
 </div>
 
 
-<script src="/js/jquery-2.1.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
+    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
 <!-- Latest compiled and minified JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/locales.js"></script>
 
 <!---javascript--->
 </body>
