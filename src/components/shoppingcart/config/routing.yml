@@ -99,6 +99,37 @@ cart_admin_product_save:
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
 
+cart_admin_volume_discounts:
+    pattern: admin/cart/discounts/*
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VolumeDiscountsController
+        model: components\shoppingcart\models\VolumeDiscountModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: cart_admin_volume_discounts
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Products'
+    methods: [GET]
+
+
+
+cart_admin_volume_discounts_save:
+    pattern: admin/cart/discounts/*
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VolumeDiscountsController
+        model: components\shoppingcart\models\VolumeDiscountModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: cart_admin_volume_discounts_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Products'
+    methods: [POST]
 
 cart_admin_categories_list:
     pattern: admin/cart/categories

@@ -18,6 +18,7 @@ $basket = $this->data['Basket'];
         <td>Item</td>
         <td>Quantity</td>
         <td>Price</td>
+        <td>SubTotal</td>
         <td>Action</td>         
     </tr>
 
@@ -26,7 +27,7 @@ $items = $basket->items();
 if(count($items) == 0) {
     ?>
     <tr>
-        <td align="center" colspan="4">There are no items in your cart</td>  
+        <td align="center" colspan="5">There are no items in your cart</td>  
 </tr>
     
     
@@ -37,14 +38,15 @@ if(count($items) == 0) {
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
             <td><?php echo $item->getQuantity();?></td>
-            <td><?php echo $item->getSubtotal();?></td>
+            <td>$<?php echo $item->getPrice();?></td>
+            <td>$<?php echo $item->getSubtotal();?></td>
             <td><button class="confirm" type="button" data-key="<?php echo $item->getKey();?>">remove</button></td>  
         </tr>               
 <?php
         if(strlen($item->getCustomText()) > 0) {
  ?>
         <tr>
-            <td colspan="2">Options: 
+            <td colspan="3">Options: 
                 <?php echo $item->getCustomText();?>
             </td>
             <td>
@@ -58,7 +60,7 @@ if(count($items) == 0) {
 }
 ?>
 <tr>
-    <td colspan="2" align="right">Subtotal:</td>
+    <td colspan="3" align="right">Subtotal:</td>
     <td>$<?php echo number_format($basket->getSubtotal(), 2);?></td>
     <td></td>
 </tr>

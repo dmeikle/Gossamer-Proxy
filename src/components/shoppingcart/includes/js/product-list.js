@@ -3,4 +3,9 @@ $( document ).ready(function() {
         var id = this.dataset.id;
         window.location.href = '/admin/cart/products/' + id;
     })
+    
+    $('.discount').click(function (e) {
+        var id = this.dataset.id;
+        window.location.href = '/admin/cart/discounts/' + id;
+    })
 });

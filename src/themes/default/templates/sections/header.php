@@ -20,23 +20,25 @@
 <div id="logo"><a title="home decor" class="invisible" href="/">glen meikle</a></div>
 <nav>
         <ul>
-        <li><a href="/" title="asian home decor">home</a></li>
-        <li class="has-sub"><a href="/about">artist profile</a>
+        <li><a href="/" title="asian home decor"><?php echo $this->getString('NAV_HOME');?></a></li>
+        <li class="has-sub"><a href="/about"><?php echo $this->getString('NAV_ARTIST_PROFILE');?></a>
             <ul>
-                <li><a href="/glen-meikle" title="glen meikle">Glen Meikle</a></li>
-                <li><a href="/wall-tablets" title="wall art tablets">Wall Tablets</a></li>
+                <li><a href="/glen-meikle" title="glen meikle"><?php echo $this->getString('NAV_GLEN_MEIKLE');?></a></li>
+                <li><a href="/wall-tablets" title="wall art tablets"><?php echo $this->getString('NAV_WALL_TABLETS');?></a></li>
             </ul>
         </li>
-        <li><a href="/cart/Wall Tablets/">collection</a></li> 
-        <li><a href="/design">design</a>
+        <li><a href="/cart/Wall Tablets/"><?php echo $this->getString('NAV_CART');?></a></li> 
+        <li><a href="/design"><?php echo $this->getString('NAV_DESIGN');?></a>
             <ul>
-                <li><a href="/design">layout 1</a>
-                <li><a href="/design2">layout 2</a>
+                <li><a href="/design"><?php echo $this->getString('NAV_LAYOUT_1');?></a>
+                <li><a href="/design2"><?php echo $this->getString('NAV_LAYOUT_2');?></a>
             </ul>
         </li>
-                                <li><a href="/inspiration" title="chinese wall art">inspiration</a></li>
-        <li><a href="/contact">contact</a></li>
+                                <li><a href="/inspiration" title="chinese wall art"><?php echo $this->getString('NAV_INSPIRATION');?></a></li>
+        <li><a href="/contact"><?php echo $this->getString('NAV_CONTACT');?></a></li>
     </ul>
+  
+ 
 </nav>
 
 <div id="pagetitle"><?php echo $pageTitle;?></div>

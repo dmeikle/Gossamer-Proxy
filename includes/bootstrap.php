@@ -9,7 +9,7 @@ use core\datasources\DatasourceFactory;
 use core\eventlisteners\EventDispatcher;
 
 $logger = new Logger('namespace');
-
+$langFilesList = array();
 $configuration = new YAMLConfiguration2($logger);
 $nodeConfig = $configuration->getNodeParameters($_SERVER['REQUEST_URI']);
 
@@ -30,9 +30,6 @@ $container->set('datasourceFactory','core\datasources\DatasourceFactory');
 $container->set('nodeConfig', null, $nodeConfig);
 $container->set('controllerNode', null, $controllerNode);
 $httpRequest =  new HTTPRequest($_REQUEST, $controllerNode['pattern']);
-if(array_key_exists('langFiles', $controllerNode)) {
-    $httpRequest->setAttribute('langFilesList', $controllerNode['langFiles']);
-}
 
 $httpResponse = new HTTPResponse();
 $eventDispatcher = new EventDispatcher(null, $container->get('Logger'), $httpRequest, $httpResponse);
@@ -44,6 +41,12 @@ $container->set('HTTPResponse', null, $httpResponse);
 
 $container->set('loadedParams', null, iterateComponentConfigurations($eventDispatcher));
 $container->set('EventDispatcher', null, $eventDispatcher);
+if(array_key_exists('langFiles', $controllerNode)) {
+    $langFilesList = array_merge($langFilesList, $controllerNode['langFiles']);    
+}
+
+$httpRequest->setAttribute('langFilesList', $langFilesList);
+
 
 //fire any on_entry events for all uris
 $container->get('EventDispatcher')->dispatch('all', 'entry_point');
@@ -51,10 +54,17 @@ $container->get('EventDispatcher')->dispatch('all', 'entry_point');
 
 function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
     global $logger;
+    global $langFilesList;
+    
     $retval = array();
     $parser = new YAMLParser($logger);
     $parser->setFilePath(__SITE_PATH . '/config/bootstrap.yml');
     $bootstraps = $parser->loadConfig(); //$parser->findNodeByURI(KernelEvents::REQUEST_START, 'listeners');
+    
+    if(array_key_exists('langFiles', $bootstraps['all']['defaults'])) {
+        $langFilesList = $bootstraps['all']['defaults']['langFiles'];
+    }
+
     $eventDispatcher->configListeners($bootstraps);
     $retval[] = $bootstraps;
     $subdirectories = getDirectoryList();
@@ -64,14 +74,14 @@ function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
        // $parser->setFilePath($folder . '/config/bootstrap.yml');
         $parser->setFilePath($folder . '/config/routing.yml');
         $config = $parser->loadConfig(); 
-       
+      
         if(is_array($config)) {
             $eventDispatcher->configListeners($config);  
             $retval[] = $config;
         }
         
     }
-
+    
     return $retval;
 }
 

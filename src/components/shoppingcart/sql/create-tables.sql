@@ -120,3 +120,55 @@ CREATE TABLE `Purchases` (
   `lastModified` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+ CREATE TABLE `VariantGroups` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `priority` INT(11) DEFAULT NULL,
+  UNIQUE KEY `groupID` (`id`)
+); 
+
+CREATE TABLE VariantGroupsI18n (
+  VariantGroups_id INT NOT NULL,
+  `locale` CHAR(5) COLLATE utf8_unicode_ci NOT NULL,
+  `groupName` VARCHAR(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`VariantGroups_id`,`locale`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+ CREATE TABLE `VariantItems` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `VariantGroups_id` BIGINT(20) DEFAULT NULL,
+  `surcharge` FLOAT DEFAULT NULL,
+  `code` VARCHAR(20) DEFAULT NULL,
+  `priority` INT(11) DEFAULT NULL,
+  `display` TINYINT(1) DEFAULT NULL,
+  `image` VARCHAR(100) DEFAULT NULL,
+  UNIQUE KEY `itemID` (`id`)
+) ;
+
+CREATE TABLE VariantItemsI18n (
+    VariantItems_id INT NOT NULL,
+  `locale` CHAR(5) COLLATE utf8_unicode_ci NOT NULL,
+  `variant` VARCHAR(50)  COLLATE utf8_unicode_ci NOT NULL,
+  `description` TEXT  COLLATE utf8_unicode_ci NOT NULL,
+   PRIMARY KEY (`VariantItems_id`,`locale`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+ CREATE TABLE `ProductVariants` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `Products_id` INT(20) NOT NULL DEFAULT '0',
+  `Groups_id` INT(20) DEFAULT NULL,
+  `VariantItems_id` INT(20) NOT NULL DEFAULT '0',
+  `priority` INT(11) DEFAULT NULL,
+  `display` TINYINT(1) DEFAULT NULL,
+  PRIMARY KEY (`Products_id`,`VariantItems_id`),
+  UNIQUE KEY `mapID` (`id`)
+);
+
+ CREATE TABLE `VolumeDiscounts` (
+  `Products_id` INT(11) DEFAULT NULL,
+  `quantity` INT(11) DEFAULT NULL,
+  `discount` FLOAT DEFAULT NULL,
+  UNIQUE KEY Products_id (Products_id)
+);
+

@@ -46,7 +46,21 @@ class BasketItem {
                 $this->title[$item['locale']] = $item['title'];
             }
         }
+        $this->checkVolumeDiscounts($params);
+    }
+    
         
+    private function checkVolumeDiscounts(array $params) {
+        
+        if(array_key_exists('VolumeDiscount', $params)) { //it's an admin load
+            foreach($params['VolumeDiscount'] as $item) {
+                pr($item);
+                if($item["quantity"] <= $this->quantity) {
+                    $this->price = $item['price'];
+                }
+            }
+        }
+       
     }
     public function getTitle($locale) { 
         return $this->title[$locale['locale']];

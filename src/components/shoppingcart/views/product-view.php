@@ -66,6 +66,28 @@ $product = current($Product);
         </div>
         <input name="Submit" type="submit" id="Submit" value="Add To Cart">
     </form>
+    <?php
+   
+    if(array_key_exists('VolumeDiscount', $product)) { ?>
+    <div class="panel">
+    <div class="panel-heading">
+        <?php echo $this->getString('VOLUME_DISCOUNTS');?>
+    </div>
+    <table class="table-striped table-bordered" width="250">
+        
+        <tr>
+            <td>Quantity</td>
+            <td>Price</td>
+        </tr>
+        <?php
+        foreach($product['VolumeDiscount'] as $discount) {
+            echo '<tr><td>' . $discount['quantity'] . '</td><td>' . $discount['price'] .'</td></tr>';
+        }
+        ?>
+    </table>
+    </div>
+   <?php  } ?>
+    
 
     <div id="productFooter">
          <ul class="nav nav-tabs" role="tablist">

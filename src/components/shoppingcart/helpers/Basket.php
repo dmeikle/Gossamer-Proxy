@@ -12,9 +12,6 @@ class Basket {
     
     private $list = null;
     
-    private $subTotal = 0;
-    
-    
     public function add(BasketItem $item) {
         $key = uniqid();
         $this->list[$key] = $item->setKey($key);
@@ -35,7 +32,11 @@ class Basket {
     }
     
     public function getSubtotal() {
-        return $this->subTotal;
+        $total = 0;
+        foreach($this->list as $item) {
+            $total += floatval(str_replace(',','',$item->getSubTotal()));
+        }
+        return $total;
     }
     
     public function next() {

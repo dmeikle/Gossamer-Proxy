@@ -78,15 +78,22 @@ cart_admin_products_list:
             "section4": "themes/default/templates/sections/footer.php"
 
 
-cart_admin_product_save:
+cart_admin_volume_discounts:
     template: admin-list.php
     sections: 
         -
             "section1": "components/shoppingcart/views/admin/topnav.php"
-            "section3": "components/shoppingcart/views/admin/category-list.php"
+            "section3": "components/shoppingcart/views/admin/volume-discounts.php"
             "section4": "themes/default/templates/sections/footer.php"
 
-
+cart_admin_volume_discounts_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "components/shoppingcart/views/admin/topnav.php"
+            "section3": "components/shoppingcart/views/admin/volume-discounts.php"
+            "section4": "themes/default/templates/sections/footer.php"
+    
 cart_add_basket:
     template: list.php
     sections: 

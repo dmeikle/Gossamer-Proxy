@@ -8,7 +8,7 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 
-class ProductModel extends AbstractModel
+class VolumeDiscountModel extends AbstractModel
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -16,26 +16,11 @@ class ProductModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'CartItem';
-        $this->tablename = 'products';
+        $this->entity = 'VolumeDiscount';
+        $this->tablename = 'volumeDiscounts';
     }
     
     
-    public function listAllByCategoryId($category, $offset, $limit) {
-       
-        $params = ((strlen($category) > 0)? array('category' => $category ) : array());
-        $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
-        
-        
-        $defaultLocale =  $this->getDefaultLocale();
-    
-        $params['locale'] = $defaultLocale['locale'];
-        
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCategory', $params);
-        $data['pageTitle'] = 'Art Wall Tablets';
-        $data['title'] = 'Home Decor | Glen Meikle';
-        $this->render($data);
-    }
    
     public function get($itemId) {
         $params = array('id' => $itemId );
@@ -55,9 +40,6 @@ class ProductModel extends AbstractModel
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
        
-        //loaded from event dispatcher
-        $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
-        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], array_column($data['Product'][0]['ProductCategory'], 'Categories_id'));
         $this->render($data);
     }
     
@@ -65,13 +47,10 @@ class ProductModel extends AbstractModel
 
         $params = $this->httpRequest->getPost();
         $params['product']['id'] = $id;
-
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['product']); 
+        $params['id'] = $id;
        
-        $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
-      
-        
-        //$this->render($data);
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params); 
+       
     }
     
     public function delete($itemId) {
