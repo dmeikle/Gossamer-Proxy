@@ -59,6 +59,7 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/locales.js"></script>
     <script src="/js/navigation.js"></script>
+    <script src="/js/admin-locales-list.js"></script>
     
 <!---javascript--->
 

@@ -65,7 +65,7 @@ if(count($items) == 0) {
     <td></td>
 </tr>
 </table>
-      <a href="/cart/" >&lt;&lt; Continue Shopping</a> 
+      <a href="/cart/Wall Tablets" >&lt;&lt; Continue Shopping</a> 
       <a href="/cart/checkout" >Continue To Checkout &gt;&gt;</a>
   </div>
   <form method="post" action="/cart/remove" id="removeItemForm">

@@ -8,3 +8,48 @@ locale_change:
         view: core\views\TemplateView
         viewKey: locale_change
         datasource: datasource1
+        
+locales_list:
+    pattern: admin/locales
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: locales_list
+        datasource: datasource1  
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'   
+            
+   
+locales_edit:
+    pattern: admin/locales/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: locales_edit
+        datasource: datasource1  
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [GET]
+            
+locales_save:
+    pattern: admin/locales/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: locales_save
+        datasource: datasource1  
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [POST]            

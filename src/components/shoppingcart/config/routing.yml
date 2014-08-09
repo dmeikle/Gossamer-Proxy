@@ -111,7 +111,8 @@ cart_admin_volume_discounts:
         viewKey: cart_admin_volume_discounts
         datasource: datasource1
         langFiles: 
-            - 'src/components/shoppingcart/locales/*/Products'
+            - 'src/components/shoppingcart/locales/*/Discounts'
+            - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
 
 
@@ -129,6 +130,7 @@ cart_admin_volume_discounts_save:
         datasource: datasource1
         langFiles: 
             - 'src/components/shoppingcart/locales/*/Products'
+            - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
 
 cart_admin_categories_list:

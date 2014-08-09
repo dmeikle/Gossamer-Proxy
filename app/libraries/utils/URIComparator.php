@@ -6,7 +6,7 @@ class URIComparator
 {
     
     public function findPattern($config, $uri){      
-     
+    
         foreach($config as $outerkey => $grouping){
             
            if(array_key_exists('methods', $grouping)) {

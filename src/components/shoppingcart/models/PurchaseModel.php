@@ -55,7 +55,7 @@ class PurchaseModel extends AbstractModel{
     
     public function listall($offset = 0, $rows = 20) {
         $params = array(
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'Purchases.id desc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'Purchases.id', 'directive::DIRECTION' => 'desc'
         );
         
        // $params['locale'] = $this->getDefaultLocale();

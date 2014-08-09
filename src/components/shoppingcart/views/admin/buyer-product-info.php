@@ -12,7 +12,8 @@ $basket = $this->data['basket'];
     <tr>
         <td><?php echo $this->getString('LABEL_ITEM');?></td>
         <td><?php echo $this->getString('LABEL_QUANTITY');?></td>
-        <td><?php echo $this->getString('LABEL_PRICE');?></td>        
+        <td><?php echo $this->getString('LABEL_PRICE');?></td>  
+        <td><?php echo $this->getString('LABEL_SUBTOTAL');?></td>         
     </tr>
 
 <?php
@@ -32,17 +33,15 @@ if(count($basket) == 0) {
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
             <td><?php echo $item->getQuantity();?></td>
+            <td><?php echo $item->getPrice();?></td>  
             <td><?php echo $item->getSubtotal();?></td>            
         </tr>               
 <?php
         if(strlen($item->getCustomText()) > 0) {
  ?>
         <tr>
-            <td colspan="2">Options: 
+            <td colspan="3">Options: 
                 <?php echo $item->getCustomText();?>
-            </td>
-            <td>
-                
             </td>
             <td></td>
         </tr>
@@ -52,9 +51,9 @@ if(count($basket) == 0) {
 }
 ?>
 <tr>
-    <td colspan="2" align="right"><?php echo $this->getString('LABEL_SUBTOTAL');?>:</td>
+    <td colspan="3" align="right"><?php echo $this->getString('LABEL_SUBTOTAL');?>:</td>
     <td>$<?php echo number_format($basket->getSubtotal(), 2);?></td>
-    <td></td>
+
 </tr>
 </table> 
 

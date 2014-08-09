@@ -35,10 +35,11 @@ class VolumeDiscountModel extends AbstractModel
     public function edit($id) {
        
         $params = array(
-            'id' => intval($id)
+            'Products_id' => intval($id)
         );
        
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+       
        
         $this->render($data);
     }

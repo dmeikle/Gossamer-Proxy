@@ -101,7 +101,7 @@ class TemplateView extends AbstractView
 
     private function loadSectionContent($section) {
 
-        $sectionContent = file_get_contents(__SITE_PATH . '/src/' . $section);
+        $sectionContent = file_get_contents(__SITE_PATH . DIRECTORY_SEPARATOR . $section);
 
         $contentWithJs = $this->renderJs($sectionContent);
 

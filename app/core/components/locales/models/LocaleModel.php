@@ -40,4 +40,43 @@ class LocaleModel extends AbstractModel
         $userPreferences['defaultLocale'] = $locales[$locale];
         setSession('userPreferences', $userPreferences);      
     }
+    
+    
+    public function listall($offset = 0, $rows = 20) {
+      
+        $params = array(
+            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
+        );
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        
+        if(array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
+            $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
+        }
+        $this->render($data);
+    }
+    
+    
+    public function edit($id) {
+       
+        $params = array(
+            'id' => intval($id)
+        );
+     
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $data['thumbnails'] = $this->getFileList(__SITE_PATH . "/images/flags/");
+        $this->render($data);
+    }
+    
+    public function save($id) {
+
+        $params = $this->httpRequest->getPost();
+        $params['locale']['id'] = $id;
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['locale']);       
+      
+        
+        //$this->render($data);
+    }
 }

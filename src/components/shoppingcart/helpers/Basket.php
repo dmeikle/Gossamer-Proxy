@@ -12,10 +12,16 @@ class Basket {
     
     private $list = null;
     
+    private $defaultLocale;
+    
+    public function construct($defaultLocale = 'en_US') {
+        $this->defaultLocale = $defaultLocale;
+    }
     public function add(BasketItem $item) {
         $key = uniqid();
+        
         $this->list[$key] = $item->setKey($key);
-        $this->subTotal += floatval(str_replace(',','',$item->getSubTotal()));
+       
     }
     
     public function remove($key) {
@@ -36,6 +42,16 @@ class Basket {
         foreach($this->list as $item) {
             $total += floatval(str_replace(',','',$item->getSubTotal()));
         }
+        
+        return $total;
+    }
+    
+    public function getTotalWeight() {
+        $total = 0;
+        foreach($this->list as $item) {
+            $total += $item->getWeight();
+        }
+        
         return $total;
     }
     

@@ -272,17 +272,17 @@
   <div style=" width:800px; clear:both"> 
   	<div style=" float:left; width:300px;"> 
     <h2 style="clear:both;">Special Instructions</h2> 
-	<textarea name="shipping[instructions]" cols="30" rows="5" id="instructions"></textarea> 
+	<textarea name="purchase[instructions]" cols="30" rows="5" id="instructions"></textarea> 
 	</div> 
 	<div style=" float:left;"> 
 	<h2 style="clear:both;">Additional Information</h2> 
 	Date of Event:
-	<input type="text" name="eventDate"><br> 
+	<input type="text" name="purchase[eventDate]"><br> 
 	Date Order Required By:
-	<input name="requireDate" type="text" id="requireDate">
+	<input name="purchase[requireDate]" type="text" id="requireDate">
 	<br> 
 	How did you hear of Us:<br> 
-	<select name="refer"> 
+	<select name="purchase[referer]"> 
 		<option value="Friend">Friend</option> 
 		<option value="Surfing">Surfing</option> 
 		<option value="Google Ad">Google Ad</option> 
@@ -305,7 +305,7 @@
       <tbody><tr> 
         <td align="right" width="150"><label>Shipping Type:</label></td> 
 		<td align="left"> 
-	<select name="deliveryMethod" id="deliveryMethod"> 
+	<select name="purchase[deliveryMethod]" id="deliveryMethod"> 
 	<option value="">select shipping</option>
 	<option value="0">Pick Up (GVRD only)</option>
         <option value="1">Canada Ground</option>

@@ -2,8 +2,8 @@
 
 return array (
     'LABEL_TITLE' => 'Customer Purchase',
-    'LABEL_PURCHASE_NUMBER' => 'Brief Description',
-    'LABEL_DATE' => 'Description',
+    'LABEL_PURCHASE_NUMBER' => 'Purchase Number',
+    'LABEL_DATE' => 'Purchase Date',
     'LABEL_FIRSTNAME' => 'Firstname',
     'LABEL_LASTNAME' => 'Lastname',
     'LABEL_CITY' => 'City',

@@ -1,0 +1,37 @@
+<?php
+
+return array (
+    'LABEL_TITLE'=>'标题', 
+    'LABEL_BRIEF_DESCRIPTION'=>'简介', 
+    'LABEL_DESCRIPTION'=>'说明', 
+    'LABEL_PRODUCT_CODE'=>'产品编号', 
+    'LABEL_CATEGORIES'=>'分类', 
+    'LABEL_PRICE_USD'=>'单价', 
+    'LABEL_PRICE_CAD'=>'售价CAD', 
+    'LABEL_SALE_PRICE_USD'=>'售价民航处', 
+    'LABEL_SALE_PRICE_CAD'=>'售价民航处', 
+    'LABEL_LIST_PRICE_USD'=>'原价美元', 
+    'LABEL_LIST_PRICE_CAD'=>'原价民航处', 
+    'LABEL_IS_ON_SALE'=>'减价', 
+    'LABEL_THUMBNAIL'=>'缩略图', 
+    'LABEL_PICTURE'=>'图片', 
+    'LABEL_ITEMS_PER_BOX'=>'商品/盒', 
+    'LABEL_MINIMUM_QTY'=>'最低订购数量', 
+    'LABEL_DELIVERY_TIME'=>'交货时间', 
+    'LABEL_CUSTOMER_RATING'=>'客户评价', 
+    'LABEL_CUSTOMER_VOTES'=>'用户投票', 
+    'LABEL_ITEMS_SOLD'=>'＃项目已售出', 
+    'LABEL_BIG_PICTURE'=>'大图', 
+    'LABEL_WEIGHT'=>'重量', 
+    'LABEL_DATE_IN'=>'创建日期', 
+    'LABEL_HAS_CUSTOM_TEXT'=>'有自定义文本', 
+    'LABEL_SHIPPING_OFFSET'=>'航运偏移', 
+    'LABEL_IN_STOCK'=>'库存', 
+    'LABEL_ENABLED'=>'启用', 
+    'LABEL_DISCONTINUED'=>'停产', 
+    
+    'BUTTON_CREATE_NEW'=>'创建新产品', 
+    'LABEL_PRODUCT_LIST'=>'产品列表', 
+    'BUTTON_EDIT'=>'编辑', 
+    'BUTTON_DELETE'=>'删除' 
+);

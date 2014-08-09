@@ -15,4 +15,11 @@ class LocaleController extends AbstractController
         $this->redirect(($uri));        
     }
     
+    public function save($id) {  
+      
+        $this->model->save(intval($id));      
+        
+       
+        $this->redirect('/admin/locales');        
+    }
 }

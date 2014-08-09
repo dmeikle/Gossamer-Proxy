@@ -7,5 +7,9 @@ foreach($client as $field => $value) {
     echo "<input type=\"hidden\" name=\"client[$field]\" value=\"$value\" />\r\n";
 }
 
+foreach($purchase as $field => $value) {
+    echo "<input type=\"hidden\" name=\"purchase[$field]\" value=\"$value\" />\r\n";
+}
+
 ?>
 </form>

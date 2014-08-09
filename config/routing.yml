@@ -2,6 +2,9 @@
 locale:
     component: "app/core/components/locales/config/routing.yml"
 
+locales:
+    component: "app/core/components/locales/config/routing.yml"
+
 
 default:
     component: "src/components/defaultItem/config/routing.yml"

@@ -68,7 +68,7 @@ $product = current($Product);
     </form>
     <?php
    
-    if(array_key_exists('VolumeDiscount', $product)) { ?>
+    if(array_key_exists('VolumeDiscount', $product) && count($product['VolumeDiscount']) > 0) { ?>
     <div class="panel">
     <div class="panel-heading">
         <?php echo $this->getString('VOLUME_DISCOUNTS');?>

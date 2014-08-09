@@ -24,6 +24,9 @@ class BasketItem {
     
     private $title;
     
+    private $defaultLocale = 'en_US';
+    
+    
     public function __construct(array $params) {
         $this->productId = $params['id'];
         $this->quantity = $params['quantity'];
@@ -34,7 +37,9 @@ class BasketItem {
         } else {
             $this->price = $params['price'];
         }
-        
+        if(array_key_exists('defaultLocale', $params)) {
+            $this->defaultLocale = $params['defaultLocale'];
+        }
         $this->customText = $params['customText'];
         if(array_key_exists('locales', $params)) { //it's a customer load
             foreach($params['locales'] as $locale => $values) {           
@@ -47,6 +52,7 @@ class BasketItem {
             }
         }
         $this->checkVolumeDiscounts($params);
+        
     }
     
         
@@ -63,7 +69,10 @@ class BasketItem {
        
     }
     public function getTitle($locale) { 
-        return $this->title[$locale['locale']];
+       if(array_key_exists($locale['locale'], $this->title)) {
+           return $this->title[$locale['locale']];
+       }
+       return $this->title[$this->defaultLocale]; 
     }
     
     public function getQuantity() {

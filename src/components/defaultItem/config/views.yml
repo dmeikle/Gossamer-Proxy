@@ -4,64 +4,64 @@ default_index:
     template: home.php
     sections: 
         -
-            "section1": "themes/default/templates/sections/header.php"
-            "section2": "components/users/views/leftnav.php"
-            "section3": "components/defaultItem/views/home.php"
-            "section4": "themes/default/templates/sections/footer.php"
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/users/views/leftnav.php"
+            "section3": "src/components/defaultItem/views/home.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
     
 
 default_about:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/about.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/about.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
         
 default_about_glen:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/about-glen-meikle.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/about-glen-meikle.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_wall_tablets:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/wall-tablets.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/wall-tablets.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_design1:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/design.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/design.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_design2:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/design2.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/design2.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_inspiration:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/inspiration.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/inspiration.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_contact:
     template: home.php
     sections: 
-        - "section1": "themes/default/templates/sections/header.php"
-        - "section2": "components/users/views/leftnav.php"
-        - "section3": "components/defaultItem/views/content/contact.html"
-        - "section4": "themes/default/templates/sections/footer.php"
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/contact.html"
+        - "section4": "src/themes/default/templates/sections/footer.php"

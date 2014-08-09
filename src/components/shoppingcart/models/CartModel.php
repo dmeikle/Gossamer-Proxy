@@ -21,6 +21,7 @@ class CartModel extends AbstractModel{
         //load original to avoid tampering with price
         $basketItem = new BasketItem($this->getProduct($params['product']));
         $basket = $this->getBasket();
+        
         $basket->add($basketItem);
         $this->setBasket($basket);
         
@@ -40,12 +41,13 @@ class CartModel extends AbstractModel{
         $params = $this->httpRequest->getPost();
         $client = $params['client'];
         $shipping = $params['shipping'];
-        
+        $purchase = $params['purchase'];     
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(array(
             'Basket' => $this->getBasket(), 
             'locale' => $defaultLocale['locale'], 
             'client' => $client,
+            'purchase' => $purchase,
             'shipping' => $shipping, 
             'title' => 'cart checkout', 
             'pageTitle' => 'Cart Checkout'));
@@ -56,7 +58,9 @@ class CartModel extends AbstractModel{
         $client = $params['client'];
         $shipping = $params['shipping'];
         $params['Basket'] = $this->getBasket()->getItemsAsArray();
-        $params['Purchase'] = $this->generatePurchase();
+        $params['purchase'] = array_merge( $params['purchase'], $this->generatePurchase());
+        $params['purchase']['totalWeight'] = $this->getBasket()->getTotalWeight();
+       
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
         
         $defaultLocale =  $this->getDefaultLocale();
