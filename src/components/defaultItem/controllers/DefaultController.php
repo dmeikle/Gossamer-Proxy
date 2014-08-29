@@ -40,4 +40,8 @@ class DefaultController extends AbstractController
         $params = array('title' => 'Asian Home Decor | Contact', 'pageTitle' => 'Contact');
         $this->model->index($params);
     }
+    public function collection() {
+        $params = array('title' => 'Home Decor | Glen Meikle', 'pageTitle' => 'Art Wall Tablets');
+        $this->model->index($params);
+    }
 }

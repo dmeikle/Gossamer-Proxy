@@ -70,14 +70,14 @@ class RestDataSource implements DataSourceInterface
             'format' => $credentials['format'],
             'headers' => $this->buildHeaders($credentials)
         ));
-
+        $api->setLogger($this->logger);
+        
         $result = $api->$queryType($entity->getTablename()."/$verb/", $params);
-    // pr($result);
-
+pr($result);
         if($result->info->http_code == 200){
             $decodedResult = $result->decode_response();
-            
-            if(is_null($decodedResult)) {
+       
+            if(is_null($decodedResult) || empty($decodedResult)) {
                 return null;
             }
             if(array_key_exists('code', $decodedResult)) {

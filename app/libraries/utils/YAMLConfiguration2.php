@@ -25,6 +25,7 @@ class YAMLConfiguration2
        
         
         $this->config = $parser->loadConfig();
+        
         unset($parser);
     }
     
@@ -37,16 +38,25 @@ class YAMLConfiguration2
      
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-       
+     
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, 'pattern',$uri);
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
       
         $nodeParams = $this->getYMLNodeParameters($ymlKey);
         $nodeParams['namespace'] = $namespace;
         $nodeParams['ymlKey'] = $ymlKey;
-     
+        $nodeParams['componentFolder'] = $this->getComponentFolderName($nodeParams);
+        
         return $nodeParams;
         
+    }
+    private function getComponentFolderName(array $params) {
+        $component = $params['defaults']['component'];
+        $tmp = explode('\\', $component);
+        array_pop($tmp);//drop the component filename
+        array_shift($tmp); //drop the parent folder name
+        
+        return implode('\\', $tmp);
     }
     
     public function getDatasource($ymlKey = null) {
@@ -107,7 +117,6 @@ class YAMLConfiguration2
      */
     public function findConfigKeyByURIPattern($configList, $node, $uriPattern)
     {
-       
         $comparator = new URIComparator();
 
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
@@ -117,8 +126,7 @@ class YAMLConfiguration2
     }
     
 
-    private function getYMLNodeParameters($ymlKey) {
-        
+    private function getYMLNodeParameters($ymlKey) {        
         return $nodeParams = $this->config[$ymlKey];       
     }
     

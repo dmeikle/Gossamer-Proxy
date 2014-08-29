@@ -1,12 +1,21 @@
 <?php
 namespace core\components\locales\utils;
 
+use core\components\locales\exceptions\LangFileNotFoundException;
+
 class LocaleLoader
 {
     private $localesList = array();
     
     public function loadFile($filepath) {
-        $this->localesList = array_merge($this->localesList, include $filepath);
+        
+        if(file_exists($filepath)) {
+            $loadedStrings = include $filepath;
+            $this->localesList = array_merge($this->localesList, $loadedStrings);
+        } else {
+            throw new LangFileNotFoundException($filepath . ' does not exist');
+        }
+        
     }
     
     public function getString($key, $default = null) {

@@ -61,7 +61,13 @@ foreach($Purchases as $purchase) {
 </table>
 </div>
 
-
+<div>
+    <select class="pagination" id="resultsPerPage">
+    <option>10</option>
+    <option>25</option>
+    <option>50</option>
+    <option>100</option>    
+</select>
 <ul class="pagination">
     <?php $firstPagination = current($pagination);?>
     <?php $lastPagination = end($pagination);?>
@@ -72,7 +78,7 @@ foreach($Purchases as $purchase) {
   <li><a class="pagination <?php echo $lastPagination['current'];?>" data-url="/admin/cart/sales" data-offset="<?php echo $lastPagination['data-offset'];?>" data-limit="<?php echo $lastPagination['data-limit'];?>" >&raquo;</a></li>
 </ul>
 
-
+</div>
 <form method="post" action="/admin/cart/sales/remove" id="removeItemForm">
     <input type="hidden" id="purchaseId" name="id" />
 </form>

@@ -40,7 +40,7 @@ class CartModel extends AbstractModel{
     public function verify() {
         $params = $this->httpRequest->getPost();
         $client = $params['client'];
-        $shipping = $params['shipping'];
+        $shipping = (array_key_exists('shipping', $params))? $params['shipping'] : '';
         $purchase = $params['purchase'];     
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(array(
@@ -56,13 +56,13 @@ class CartModel extends AbstractModel{
     public function savePurchase() {
         $params = $this->httpRequest->getPost();
         $client = $params['client'];
-        $shipping = $params['shipping'];
+        $shipping = (array_key_exists('shipping', $params))? $params['shipping'] : '';
         $params['Basket'] = $this->getBasket()->getItemsAsArray();
         $params['purchase'] = array_merge( $params['purchase'], $this->generatePurchase());
         $params['purchase']['totalWeight'] = $this->getBasket()->getTotalWeight();
        
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
-        
+        pr($result);
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(
             array(
@@ -105,7 +105,8 @@ class CartModel extends AbstractModel{
        
         $result = $this->dataSource->query(self::METHOD_GET, new ProductModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_GET, $params);
         $dbProduct = current($result['Product']);
-        $dbProduct['customText'] = $product['customText'];
+        
+        $dbProduct['customText'] = (array_key_exists('customText', $product))? $product['customText'] : '';
         $dbProduct['quantity'] = $product['quantity'];
         
         return $dbProduct;
@@ -115,7 +116,6 @@ class CartModel extends AbstractModel{
        
         $basket = getSession('BASKET');
         
-       // pr($basket);
         if(is_null($basket)) {
             $basket = new Basket();
             $this->setBasket($basket);            

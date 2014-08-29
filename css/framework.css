@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: 'OpenSansRegular';
     src: url('/css/fonts/OpenSans-Regular-webfont.eot');
     src: url('/css/fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -19,11 +19,11 @@
     font-weight: normal;
     font-style: normal;
 
-}
+}*/
 
 
 *{
-	font-family: 'OpenSansRegular';
+	font-family: 'Open Sans', sans-serif;
 	font-size: 12px;
 	line-height: 18px;
 	
@@ -79,8 +79,14 @@ font-family: 'OpenSansSemibold';
 #container #header nav ul li a:active {
 	color:#111;
 }*/
-
-
+#container #header #locales, #container #header-admin #locales {
+    float: right;
+}
+#locales a {
+    border: solid 1px #cccccc;
+    padding: 2px;
+    color: #333
+}
 #container #header nav ul{float:right;}
 #container #header nav ul li {display:block; float:left; margin-left:1px;}
 #container #header nav ul li a { display:block; text-decoration:none; color:#58585a; padding:10px; font-size: 14px; text-transform: capitalize; font-family: 'OpenSansSemibold';}

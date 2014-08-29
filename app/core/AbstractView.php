@@ -13,6 +13,7 @@ use exceptions\LangFileNotSpecifiedException;
 
 class AbstractView
 {
+    protected $renderComplete = false;
     
     protected $templatePath = null;
     
@@ -51,6 +52,7 @@ class AbstractView
         if(is_null($this->langFileLoader)) {
             throw new LangFileNotSpecifiedException("LangFileLoader is null - cannot request a string. Check node configuration for langfile element");
         }
+        
         return $this->langFileLoader->getString($key);
     }
     
@@ -73,7 +75,7 @@ class AbstractView
     }
     
     public function render( $data= array()) {
-       
+      
         $this->container->get('EventDispatcher')->dispatch(KernelEvents::RESPONSE_START, 'response_begin');
         
         $this->setData($data);
@@ -95,18 +97,25 @@ class AbstractView
     
     
     public function __destruct()
-    {
-        if(!is_null($this->data)) {
-            try{
-                // The second parameter of json_decode forces parsing into an associative array
-                extract(json_decode(json_encode($this->data), true));            
-            }catch(\Exception $e) {
-                $this->logger->addError($e->getMessage());
+    {   
+        if(!$this->renderComplete) {
+          
+            if(!is_null($this->data)) {
+                try{
+                    // The second parameter of json_decode forces parsing into an associative array
+                    extract(json_decode(json_encode($this->data), true));            
+                }catch(\Exception $e) {
+                    $this->logger->addError($e->getMessage());
+                }
             }
+         
+
+            //extract($this->data->content);
+            eval("?>" . $this->template ); 
+            $this->template = '';
+            $this->renderComplete = true;
         }
-        
-        //extract($this->data->content);
-        eval("?>" . $this->template );
+       
     }
 
     public function getDefaultLocale() {

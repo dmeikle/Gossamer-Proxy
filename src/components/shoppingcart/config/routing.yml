@@ -236,6 +236,8 @@ cart_view_basket:
         view: core\views\TemplateView
         viewKey: cart_view_basket
         datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
     methods: [GET]   
 
 cart_checkout_1:
@@ -276,7 +278,8 @@ cart_checkout_3:
     
 cart_products_list_by_category:
     pattern: cart/*
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoryIdListener', 'datasource': 'datasource1'}
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\ProductsController
@@ -327,6 +330,8 @@ cart_products_view_selected:
         view: core\views\TemplateView
         viewKey: cart_products_view_selected
         datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
     methods: [GET]
 
 

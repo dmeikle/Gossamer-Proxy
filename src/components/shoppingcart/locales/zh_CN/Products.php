@@ -33,5 +33,6 @@ return array (
     'BUTTON_CREATE_NEW'=>'创建新产品', 
     'LABEL_PRODUCT_LIST'=>'产品列表', 
     'BUTTON_EDIT'=>'编辑', 
-    'BUTTON_DELETE'=>'删除' 
+    'BUTTON_DELETE'=>'删除' ,    
+    'BUTTON_VOLUME_DISCOUNT' => '量大优惠'
 );

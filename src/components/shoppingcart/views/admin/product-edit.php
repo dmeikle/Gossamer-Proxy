@@ -13,7 +13,7 @@ $product = current($Product);
 
 ?>
 
-<form method="post" class="form-horizontal" role="form">
+<form method="post" class="form-horizontal" role="form" accept-charset="utf-8">
 <table width="540" border="0" cellpadding="2">
     <tr>
         <td colspan="2">
@@ -42,7 +42,7 @@ $product = current($Product);
                     <table width="100%">
                         <tr>
                             <td width="120"><?php echo $this->getString('LABEL_TITLE');?>:</td>
-                            <td><input class="form-control" type="text" name="product[locale][<?php echo $locale['locale']; ?>][title]" value="<?php echo $product['locales'][$locale['locale']]['title'];?>"/></td>
+                            <td><input class="form-control" type="text" name="product[locale][<?php echo $locale['locale']; ?>][title]" value="<?php echo htmlspecialchars($product['locales'][$locale['locale']]['title'], ENT_NOQUOTES, 'UTF-8');?>"/></td>
                         </tr>
                         <tr>
                             <td><?php echo $this->getString('LABEL_BRIEF_DESCRIPTION');?>:</td>
@@ -222,7 +222,7 @@ $product = current($Product);
             <input name="Submit" type="submit" id="Submit" value="Submit"></td>
     </tr>
 </table>
-<input type="hidden" name="productID" value="<?php echo $product['productID']?>"/>
+<input type="hidden" name="productID" value="<?php echo $product['id']?>"/>
 <?php if(isset($_REQUEST["clone"]) && "true"==$_REQUEST["clone"]){?>
     <input type="hidden" name="clone" value="true"/>
 <?php } ?>

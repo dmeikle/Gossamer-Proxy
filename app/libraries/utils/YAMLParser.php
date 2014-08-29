@@ -63,6 +63,6 @@ class YAMLParser
     }
     
     public function setFilePath($ymlFilePath) {
-        $this->ymlFilePath = $ymlFilePath;
+        $this->ymlFilePath = str_replace('\\', '/', $ymlFilePath);
     }
 }

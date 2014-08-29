@@ -15,7 +15,7 @@ default_about:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/about.html"
+        - "section3": "src/components/defaultItem/views/content/about.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
         
 default_about_glen:
@@ -23,7 +23,7 @@ default_about_glen:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/about-glen-meikle.html"
+        - "section3": "src/components/defaultItem/views/content/about-glen-meikle.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_wall_tablets:
@@ -31,7 +31,7 @@ default_wall_tablets:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/wall-tablets.html"
+        - "section3": "src/components/defaultItem/views/content/wall-tablets.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_design1:
@@ -39,7 +39,7 @@ default_design1:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/design.html"
+        - "section3": "src/components/defaultItem/views/content/design.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_design2:
@@ -47,7 +47,7 @@ default_design2:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/design2.html"
+        - "section3": "src/components/defaultItem/views/content/design2.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_inspiration:
@@ -55,7 +55,7 @@ default_inspiration:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/inspiration.html"
+        - "section3": "src/components/defaultItem/views/content/inspiration.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_contact:
@@ -63,5 +63,14 @@ default_contact:
     sections: 
         - "section1": "src/themes/default/templates/sections/header.php"
         - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/contact.html"
+        - "section3": "src/components/defaultItem/views/content/contact.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
+        
+
+default_collection:
+    template: home.php
+    sections: 
+        - "section1": "src/themes/default/templates/sections/header.php"
+        - "section2": "src/components/users/views/leftnav.php"
+        - "section3": "src/components/defaultItem/views/content/collection.php"
+        - "section4": "src/themes/default/templates/sections/footer.php"        

@@ -15,7 +15,7 @@
 
 <?php
 $locale = current($Locale);
-pr($locale);
+
 ?>
 <form method="post">
     <table class="tab-content">

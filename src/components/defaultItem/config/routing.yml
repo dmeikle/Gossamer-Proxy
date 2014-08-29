@@ -1,18 +1,7 @@
 
           
 default_index:
-    pattern: default/index
- #   listeners:
- #       - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1'} 
-       
-  #      -
-  #          'event': 'request_start'
-  #          'listener': 'components\shoppingcart\listeners\LoadRecentProductsListener'
-  #          'datasource': 'datasource1'
-  #          'params': 
-  #              -
-  #                  'maxItems': 10
-            
+    pattern: default/index        
     defaults:
         component: components\defaultItem\DefaultComponent
         controller: components\defaultItem\controllers\DefaultController
@@ -22,6 +11,9 @@ default_index:
         view: core\views\TemplateView
         viewKey: default_index
         datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Home'
     methods: [GET]
     
 
@@ -35,6 +27,9 @@ default_about:
         view: core\views\TemplateView
         viewKey: default_about
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/About'
     methods: [GET]
 
 default_about_glen:
@@ -47,6 +42,9 @@ default_about_glen:
         view: core\views\TemplateView
         viewKey: default_about_glen
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/AboutGlen'
     methods: [GET]    
     
 default_wall_tablets:
@@ -59,6 +57,9 @@ default_wall_tablets:
         view: core\views\TemplateView
         viewKey: default_wall_tablets
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/WallTablets'
     methods: [GET]       
     
 default_collection:
@@ -71,6 +72,9 @@ default_collection:
         view: core\views\TemplateView
         viewKey: default_collection
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Collection'
     methods: [GET]         
     
 default_design1:
@@ -83,6 +87,9 @@ default_design1:
         view: core\views\TemplateView
         viewKey: default_design1
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Layout1'
     methods: [GET]         
     
 default_design2:
@@ -95,6 +102,9 @@ default_design2:
         view: core\views\TemplateView
         viewKey: default_design2
         datasource: datasource2
+        langFiles: 
+            - 'src/components/defaultItem/locales/*/Layout2'
+        #    - 'app/core/components/locales/resources/*/Navigation'
     methods: [GET]        
     
 default_inspiration:
@@ -107,6 +117,9 @@ default_inspiration:
         view: core\views\TemplateView
         viewKey: default_inspiration
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Inspiration'
     methods: [GET]         
     
 default_contact:
@@ -119,4 +132,7 @@ default_contact:
         view: core\views\TemplateView
         viewKey: default_contact
         datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     

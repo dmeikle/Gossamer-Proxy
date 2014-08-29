@@ -9,5 +9,9 @@ return array (
     'NAV_GLEN_MEIKLE' => 'Glen Meikle',
     'NAV_WALL_TABLETS' => 'Wall Tablets',
     'NAV_LAYOUT_1' => 'Layout 1',
-    'NAV_LAYOUT_2' => 'Layout 2'
+    'NAV_LAYOUT_2' => 'Layout 2',
+    'NAV_TERMS_OF_USE' => 'Terms of Use',
+    'NAV_PRIVACY_POLICY' => 'Privacy Policy',
+    'NAV_COPYRIGHT' => 'Copyright',
+    'NAV_WEBSITE_BY' => 'Website By'
 );

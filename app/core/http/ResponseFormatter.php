@@ -46,7 +46,7 @@ class ResponseFormatter
         $configs = array_filter($params->getConfigs());
         
         foreach($configs as $key => $outputSet) {
-         // pr($outputSet);
+         // pr($outputSet); 
           //  exit;
            foreach($outputSet as $className => $columns) {           
                if(is_array($outputSet)) {

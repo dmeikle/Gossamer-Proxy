@@ -60,7 +60,7 @@ class BasketItem {
         
         if(array_key_exists('VolumeDiscount', $params)) { //it's an admin load
             foreach($params['VolumeDiscount'] as $item) {
-                pr($item);
+                
                 if($item["quantity"] <= $this->quantity) {
                     $this->price = $item['price'];
                 }

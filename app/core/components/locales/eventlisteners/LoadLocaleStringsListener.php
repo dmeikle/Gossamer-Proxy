@@ -18,7 +18,11 @@ class LoadLocaleStringsListener extends AbstractListener
         $loader = new LocaleLoader($filename);
         
         foreach($config as $filename) {
-            $loader->loadFile($this->getFilepath($filename . '.php'));
+            try{
+                $loader->loadFile($this->getFilepath($filename . '.php'));
+            }catch(\Exception $e) {
+                $this->logger->addError($e->getMessage());
+            }
         }
     
         $this->httpRequest->setAttribute('langFiles', $loader);

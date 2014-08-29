@@ -9,7 +9,7 @@ foreach($Products as $product) {
     ?>
    <div class="product">
        <div class="product-description">
-          <p><?php echo $product['title'];?>: <?php echo $product['description'];?></p>
+          <p><?php echo $product['title'];?>: <?php echo $product['briefDescription'];?></p>
           <p><?php echo $product['product_code'];?></p>
         </div>
         <div class="product-image">

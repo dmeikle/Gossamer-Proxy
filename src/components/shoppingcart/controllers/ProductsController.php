@@ -13,6 +13,7 @@ class ProductsController extends AbstractController
     }
 
     public function get($category, $id, $name) {
+      
         $this->model->get($id);
     }
 
@@ -23,7 +24,7 @@ class ProductsController extends AbstractController
      */
     public function save($id) {
         $this->model->save($id);
-        $this->redirect('/admin/cart/products');
+        $this->redirect('/admin/cart/products/0/20');
     }
 
 }

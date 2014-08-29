@@ -172,3 +172,19 @@ CREATE TABLE VariantItemsI18n (
   UNIQUE KEY Products_id (Products_id)
 );
 
+
+CREATE TABLE `States` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Countries_id` int(11) DEFAULT NULL,
+  `abbr` varchar(3) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+ CREATE TABLE `TaxRates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `States_id` int(11) DEFAULT NULL,
+  `taxRate` float DEFAULT NULL,
+  PRIMARY KEY (`taxID`)
+);

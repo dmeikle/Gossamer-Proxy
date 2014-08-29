@@ -23,14 +23,16 @@ class ProductModel extends AbstractModel
     
     public function listAllByCategoryId($category, $offset, $limit) {
        
-        $params = ((strlen($category) > 0)? array('category' => $category ) : array());
+        $category = $this->httpRequest->getAttribute('category');
+        //$params = ((strlen($category) > 0)? array('category' => $category ) : array());
+        $params = array('categoryId' => $category['id']);
         $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
         
         
         $defaultLocale =  $this->getDefaultLocale();
     
         $params['locale'] = $defaultLocale['locale'];
-        
+       
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCategory', $params);
         $data['pageTitle'] = 'Art Wall Tablets';
         $data['title'] = 'Home Decor | Glen Meikle';
@@ -41,8 +43,10 @@ class ProductModel extends AbstractModel
         $params = array('id' => $itemId );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-      
+     
         $data['pageTitle'] = 'Art Wall Tablets';
+        $data['title'] = 'Home Decor | ' . $data['Product'][0]['locales']['en_US']['title'];
+        
         $this->render($data);
     }
     
@@ -54,24 +58,25 @@ class ProductModel extends AbstractModel
         );
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-       
+ 
         //loaded from event dispatcher
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
         $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], array_column($data['Product'][0]['ProductCategory'], 'Categories_id'));
+     
         $this->render($data);
     }
     
     public function save($id) {
-
+        
         $params = $this->httpRequest->getPost();
         $params['product']['id'] = $id;
+      
+        file_put_contents('/var/www/shoppingcart/logs/test.log', print_r($params, true) . "\r\n", FILE_APPEND);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['product']); 
        
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
       
-        
-        //$this->render($data);
     }
     
     public function delete($itemId) {

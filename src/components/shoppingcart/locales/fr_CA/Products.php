@@ -33,5 +33,6 @@ return array (
     'BUTTON_CREATE_NEW' => 'Créer un Nouveau Produit',
     'LABEL_PRODUCT_LIST' => 'Liste des Produits',
     'BUTTON_EDIT' => 'Modifier',
-    'BUTTON_DELETE' => 'Effacer'  
+    'BUTTON_DELETE' => 'Effacer'  ,    
+    'BUTTON_VOLUME_DISCOUNT' => 'Rabais Sur le Volume'
 );

@@ -113,6 +113,7 @@ class AbstractController
     }
 
     protected function redirect($uri) {
+        echo "redirect $uri";
         /* Redirect browser */
         header("Location: $uri");
 

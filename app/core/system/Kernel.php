@@ -28,8 +28,9 @@ class Kernel
         $this->container = $container;
         $this->logger = $logger;
     }
-    
+     
     public function run() {
+     
         //$this->container->set('EventDispatcher', null, new EventDispatcher(array(), $this->logger));
 
         $controllerNode = $this->container->get('controllerNode');

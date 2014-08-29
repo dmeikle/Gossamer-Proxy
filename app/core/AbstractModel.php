@@ -69,6 +69,7 @@ class AbstractModel
         $this->httpResponse = $httpResponse;
         $this->logger = $logger;
         $this->entity = get_called_class();
+       
     }
     
     public function getComponentName() {

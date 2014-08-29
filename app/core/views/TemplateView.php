@@ -26,7 +26,7 @@ class TemplateView extends AbstractView
             $filepath = __SITE_PATH . "/src/themes/$theme/templates/$template";
         }
         
-       
+      
         $this->template = file_get_contents($filepath);
 
     }

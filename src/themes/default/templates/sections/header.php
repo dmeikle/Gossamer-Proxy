@@ -11,11 +11,13 @@
         <input type="hidden" name="locale" id="locale" />
     </form>
   </div>
- 
 
-<div id="locales"><i class="fa fa-shopping-cart"></i>  | 
-    <?php $locale = $this->getDefaultLocale();?>
-    <img id="locale-icon" src="/images/flags/<?php echo $locale['icon'];?>.gif">
+
+<div id="locales"> <i class="fa fa-shopping-cart"></i>  | 
+    <?php //$locale = $this->getDefaultLocale();?>
+   <!-- <img id="locale-icon" src="/images/flags/<?php echo $locale['icon'];?>.gif">-->
+   <a class="select-locale" data-id="en_US">EN</a> 
+   <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
 </div>
 <div id="logo"><a title="home decor" class="invisible" href="/">glen meikle</a></div>
 <nav>
@@ -34,7 +36,7 @@
                 <li><a href="/design2"><?php echo $this->getString('NAV_LAYOUT_2');?></a>
             </ul>
         </li>
-                                <li><a href="/inspiration" title="chinese wall art"><?php echo $this->getString('NAV_INSPIRATION');?></a></li>
+        <li><a href="/inspiration" title="chinese wall art"><?php echo $this->getString('NAV_INSPIRATION');?></a></li>
         <li><a href="/contact"><?php echo $this->getString('NAV_CONTACT');?></a></li>
     </ul>
   

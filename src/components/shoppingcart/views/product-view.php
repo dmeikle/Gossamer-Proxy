@@ -12,14 +12,14 @@
 
 <?php
 $product = current($Product);
-
+$locale = $this->getDefaultLocale();
 ?>
 <div id="product">
    
     <img src="/images/cart/<?php echo $product['picture'];?>" />
     <form method="post" class="form-horizontal" role="form" id="stats" action="/cart/view">
-         <h3><?php echo $product['locales']['en_US']['title'];?></h3>
-        <div id="briefDescription"><?php echo $product['locales']['en_US']['briefDescription'];?></div>
+         <h3><?php echo $product['locales'][$locale['locale']]['title'];?></h3>
+        <div id="briefDescription"><?php echo $product['locales'][$locale['locale']]['briefDescription'];?></div>
         <div>Product Code: <?php echo $product['product_code'];?></div>
         <div>Price: 
             <?php 
@@ -64,7 +64,7 @@ $product = current($Product);
             ?>
            
         </div>
-        <input name="Submit" type="submit" id="Submit" value="Add To Cart">
+        <input name="Submit" type="submit" id="Submit" value="<?php echo $this->getString('BTN_ADD_TO_CART'); ?>">
     </form>
     <?php
    
@@ -98,7 +98,7 @@ $product = current($Product);
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active" id="description"><?php echo $product['locales']['en_US']['description'];?></div>
+            <div class="tab-pane active" id="description"><?php echo $product['locales'][$locale['locale']]['description'];?></div>
             <div class="tab-pane" id="shipping"><?php echo $product['deliveryTime'];?></div>
             <div class="tab-pane" id="feedback">this is feedback</div>
         </div>

@@ -23,4 +23,8 @@ $( document ).ready(function() {
        window.location.href='/admin/cart/sales/' + id;
     });
     
+    $('#resultsPerPage').change(function() {
+        var num = $('#resultsPerPage').val();
+        window.location.href='/admin/cart/sales/0/' + num;
+    });
 });
