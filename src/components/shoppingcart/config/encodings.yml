@@ -47,4 +47,18 @@ cart_admin_categories_list:
 cart_admin_sales_list:
     firstname: utf8
     lastname: utf8
+
+cart_admin_sale_view:
+    firstname: utf8
+    lastname: utf8
+    company: utf8
+    address1: utf8
+    address2: utf8
+    city: utf8
+    state: utf8
+    country: utf8    
+    instructions: utf8
+    referer: utf8
+    deliveryMethod: utf8
     
+    title: utf8

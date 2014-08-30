@@ -62,7 +62,7 @@ class CartModel extends AbstractModel{
         $params['purchase']['totalWeight'] = $this->getBasket()->getTotalWeight();
        
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
-        pr($result);
+       
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(
             array(
