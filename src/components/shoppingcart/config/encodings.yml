@@ -47,7 +47,10 @@ cart_admin_categories_list:
 cart_admin_sales_list:
     firstname: utf8
     lastname: utf8
-
+cart_admin_sale_remove:
+    firstname: utf8
+    lastname: utf8
+    
 cart_admin_sale_view:
     firstname: utf8
     lastname: utf8
@@ -62,3 +65,8 @@ cart_admin_sale_view:
     deliveryMethod: utf8
     
     title: utf8
+    
+cart_admin_category_edit:
+    category: utf8
+    
+    

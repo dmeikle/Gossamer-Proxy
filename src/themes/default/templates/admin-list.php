@@ -8,9 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin List</title>
-    <!-- href="/css/framework.css" rel="stylesheet"-->
     
-        <link href="/src/themes/default/templates/css/framework.css" rel="stylesheet" >
+        <link href="/css/framework.css" rel="stylesheet" >
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
         <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/src/themes/default/templates/css/framework.css" type="text/css" >

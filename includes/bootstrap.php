@@ -21,7 +21,7 @@ define('__YML_KEY', $nodeConfig['ymlKey']);
 define('__VIEW_KEY', $controllerNode['viewKey']);
 define('__COMPONENT_FOLDER', $nodeConfig['componentFolder']);
 define('__NAMESPACE', $nodeConfig['namespace']);
-echo "ymlkey is ".__YML_KEY.'<br>';
+
 $datasources = $container->get('datasources', array());
 //set the datasource for this model based on its current key
 $datasources[$controllerNode['model']] = $controllerNode['datasource'];

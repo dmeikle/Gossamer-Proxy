@@ -34,7 +34,7 @@ foreach($Purchases as $purchase) {
     ?>
     <tr>
         <td>
-            <?php echo $purchase['id'];?>
+            <?php echo $purchase['Purchases_id'];?>
         </td> 
         <td>
             <?php echo $purchase['firstname'];?> <?php echo $purchase['lastname'];?>
@@ -49,8 +49,8 @@ foreach($Purchases as $purchase) {
             <?php echo $purchase['status'];?>
         </td>
         <td>
-            <button class="view-sale" type="button" data-id="<?php echo $purchase['id'];?>"><?php echo $this->getString('BUTTON_VIEW');?></button>
-            <button class="confirm" type="button" data-id="<?php echo $purchase['id'];?>"><?php echo $this->getString('BUTTON_DELETE');?></button>
+            <button class="view-sale" type="button" data-id="<?php echo $purchase['Purchases_id'];?>"><?php echo $this->getString('BUTTON_VIEW');?></button>
+            <button class="confirm" type="button" data-id="<?php echo $purchase['Purchases_id'];?>"><?php echo $this->getString('BUTTON_DELETE');?></button>
         </td>
         
     </tr>
