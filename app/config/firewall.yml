@@ -1,0 +1,9 @@
+
+admin_login:
+    pattern: admin/cart/products/*/*
+    security: false
+
+admin_area:
+    pattern: admin/cart/sales/*/*
+    authentication: simple_auth
+    fail_url: admin/login

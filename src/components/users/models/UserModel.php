@@ -3,6 +3,9 @@
 namespace components\users\models;
 
 use core\AbstractModel;
+use core\http\HTTPRequest;
+use core\http\HTTPResponse;
+use Monolog\Logger;
 
 class UserModel extends  AbstractModel
 {
@@ -14,5 +17,9 @@ class UserModel extends  AbstractModel
         
         $this->entity = 'User';
         $this->tablename = 'users';        
+    }
+    
+    public function login() {
+        $this->render(array('title' => 'login', 'pageTitle' => 'Login Form'));
     }
 }

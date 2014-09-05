@@ -88,7 +88,7 @@ class YAMLConfiguration2
             $chunk = array_shift($pieces);//drop the admin for the routing file
         }
         $config = $parser->loadConfig(); 
-        
+    
         unset($parser);
         $this->datasources = $config;
 
@@ -126,7 +126,7 @@ class YAMLConfiguration2
     }
     
 
-    private function getYMLNodeParameters($ymlKey) {        
+    private function getYMLNodeParameters($ymlKey) {  
         return $nodeParams = $this->config[$ymlKey];       
     }
     

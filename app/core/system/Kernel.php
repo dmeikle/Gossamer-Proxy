@@ -58,6 +58,7 @@ class Kernel
         
         $cmd = new $componentName($controllerName, $viewName, $modelName, $method,$httpRequest->getParameters(), $this->logger, $this->getLayoutType());  
         $cmd->setContainer($this->container);
+        $token = $this->container->get('securityContext');
 
         return $cmd->handleRequest($httpRequest, $httpResponse);
     }

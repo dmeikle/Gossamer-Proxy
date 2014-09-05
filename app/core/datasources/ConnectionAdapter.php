@@ -2,8 +2,20 @@
 
 namespace core\datasources;
 
+use Monolog\Logger;
+use core\AbstractModel;
+use core\datasources\AdapterInterface;
 
-class ConnectionAdapter
+abstract class ConnectionAdapter
 {
-   
+    protected $datasource = null;
+
+    protected $logger = null;
+    
+    public function __construct(Logger $logger, AdapterInterface $datasource) {
+        $this->datasource = $datasource;
+        $this->logger = $logger;
+    }
+    
+    public abstract function query($queryType, AbstractModel $entity = null, $verb = null, $params = array());
 }

@@ -30,24 +30,24 @@ class YAMLParser
         }
         return null;
     }
-    
-    public function findNodeByURIPattern($uri, $searchfor) {
-
-        $this->logger->addDebug('YAMLParser opening ' . $this->ymlFilePath);
-       
-        $config = $this->loadConfig();
-
-        if(!is_array($config)) {
-            return null;
-        }
-     
-        if(array_key_exists($uri, $config) && array_key_exists($searchFor, $config[$this->getSectionKey($uri)])) {
-          
-            return $config[$this->getSectionKey($uri)][$searchFor];
-                        
-        }
-        return null;   
-    }
+//    
+//    public function findNodeByURIPattern($uri, $searchfor) {
+//
+//        $this->logger->addDebug('YAMLParser opening ' . $this->ymlFilePath);
+//       
+//        $config = $this->loadConfig();
+//
+//        if(!is_array($config)) {
+//            return null;
+//        }
+//     
+//        if(array_key_exists($uri, $config) && array_key_exists($searchFor, $config[$this->getSectionKey($uri)])) {
+//          
+//            return $config[$this->getSectionKey($uri)][$searchFor];
+//                        
+//        }
+//        return null;   
+//    }
     
     public function loadConfig() {
        

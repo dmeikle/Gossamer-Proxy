@@ -29,7 +29,9 @@ contact:
 
 users:
     component: "src/components/users/config/routing.yml"
-    
+ 
+login:
+    component: "src/components/users/config/routing.yml"    
     
 app:
     component: "src/components/users/config/routing.yml"

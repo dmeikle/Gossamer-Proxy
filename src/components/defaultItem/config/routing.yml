@@ -135,4 +135,4 @@ default_contact:
         langFiles: 
             - 'app/core/components/locales/resources/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
-    methods: [GET]     
+    methods: [GET] 

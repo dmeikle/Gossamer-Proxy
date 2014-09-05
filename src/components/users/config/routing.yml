@@ -65,4 +65,19 @@ admin_users_list:
         view: core\views\TemplateView
         viewKey: admin_users_list
         datasource: datasource1
-    methods: [POST]
+    methods: [POST]          
+    
+admin_login:
+    pattern: admin/login
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: default_contact
+        datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]     

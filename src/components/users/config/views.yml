@@ -18,3 +18,10 @@ users_get:
     template: test.php
     sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/get.php"}
        
+admin_login:
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/users/views/login/login-form.php"
+            "section4": "src/themes/default/templates/sections/footer.php"

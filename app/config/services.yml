@@ -1,0 +1,15 @@
+
+'simple_auth': 
+    'handler': 'core\components\security\handlers\AuthenticationHandler'
+    'datasource': 'datasource3'
+    'arguments': 
+        - '@security_context'
+        - '@authentication_manager'
+        
+'simple_auth2': 
+    'handler': 'core\components\security\handlers\AuthenticationHandler'
+    'datasource': 'datasource1'
+    'arguments': 
+        - '@security_context'
+        - '@authentication_manager'   
+        

@@ -31,6 +31,7 @@ class EventDispatcher{
         if(!is_null($config)) {
             $config = array_filter($config);
         }
+       
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         $this->logger = $logger;

@@ -31,7 +31,7 @@ class EventHandler
 
     private $datasourceKey = null;
     
-    public function __construct(Logger $logger,HTTPRequest $httpRequest,HTTPResponse $httpResponse ) {
+    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse ) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
