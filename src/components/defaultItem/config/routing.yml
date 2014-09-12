@@ -1,0 +1,138 @@
+
+          
+default_index:
+    pattern: default/index        
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+ #       method: listall
+        method: index
+        view: core\views\TemplateView
+        viewKey: default_index
+        datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Home'
+    methods: [GET]
+    
+
+default_about:
+    pattern: about
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: about
+        view: core\views\TemplateView
+        viewKey: default_about
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/About'
+    methods: [GET]
+
+default_about_glen:
+    pattern: glen-meikle
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: glenmeikle
+        view: core\views\TemplateView
+        viewKey: default_about_glen
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/AboutGlen'
+    methods: [GET]    
+    
+default_wall_tablets:
+    pattern: wall-tablets
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: walltablets
+        view: core\views\TemplateView
+        viewKey: default_wall_tablets
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/WallTablets'
+    methods: [GET]       
+    
+default_collection:
+    pattern: collection
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: collection
+        view: core\views\TemplateView
+        viewKey: default_collection
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Collection'
+    methods: [GET]         
+    
+default_design1:
+    pattern: design
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: design1
+        view: core\views\TemplateView
+        viewKey: default_design1
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Layout1'
+    methods: [GET]         
+    
+default_design2:
+    pattern: design2
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: design2
+        view: core\views\TemplateView
+        viewKey: default_design2
+        datasource: datasource2
+        langFiles: 
+            - 'src/components/defaultItem/locales/*/Layout2'
+        #    - 'app/core/components/locales/resources/*/Navigation'
+    methods: [GET]        
+    
+default_inspiration:
+    pattern: inspiration
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: inspiration
+        view: core\views\TemplateView
+        viewKey: default_inspiration
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Inspiration'
+    methods: [GET]         
+    
+default_contact:
+    pattern: contact
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: contact
+        view: core\views\TemplateView
+        viewKey: default_contact
+        datasource: datasource2
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET] 

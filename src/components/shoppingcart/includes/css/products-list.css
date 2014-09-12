@@ -1,0 +1,23 @@
+
+.product {
+    width: 600px;
+    clear: both;
+    display: block;
+    margin-bottom: 20px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #999;
+    height: 225px;
+}
+
+.product-description {
+    float: right;
+    width: 350px;
+}
+.product-image {
+    width: 160px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

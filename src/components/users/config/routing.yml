@@ -1,0 +1,114 @@
+
+          
+users_get:
+    pattern: users/get/*
+#    defaults: { _controller: UserComponent:User:2nd }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: edit
+        view: core\views\TemplateView
+        viewKey: users_get
+        datasource: datasource1
+    methods: [POST]
+    
+users_list:
+    pattern: users/list
+    #defaults: { _controller: UserComponent:User:save }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: users_list
+        datasource: datasource1
+    methods: [POST]
+    
+users_list2:
+    pattern: users/list/*/*
+    #defaults: { _controller: UserComponent:User:save }
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: users_list
+        datasource: datasource1
+    methods: [POST]
+
+users_save:
+    pattern:  /users/new
+    defaults: { _controller: ProductBundle:Default:save }
+    datasource: datasource1
+    methods: [POST]
+    
+users_list_alpha_desc:
+    pattern:  /users/listAlphaDesc
+    defaults: { _controller: ProductBundle:Default:listAlphaDesc }   
+    
+    
+users_list_alpha_asc:
+    pattern:  /users/listAlphaAsc
+    defaults: { _controller: ProductBundle:Default:listAlphaAsc }
+    
+
+admin_users_list:
+    pattern: /admin/users/list
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_users_list
+        datasource: datasource1
+    methods: [POST]   
+    
+admin_users_edit:
+    pattern: /admin/users/edit/*
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_users_edit
+        datasource: datasource3
+    methods: [POST]       
+    
+admin_login:
+    pattern: admin/login
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login
+        datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]     
+    
+admin_login_submit:
+    pattern: admin/login
+    listeners:
+        - { 'event': 'login_password_mismatch', 'listener': 'components\users\listeners\PasswordMismatchListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_status_locked', 'listener': 'components\users\listeners\StatusLockedListener', 'datasource': 'datasource3'}
+       # - { 'event': 'login_status_not_active', 'listener': 'components\users\listeners\StatusNotActiveListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [POST]

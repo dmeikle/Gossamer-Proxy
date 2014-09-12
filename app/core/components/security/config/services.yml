@@ -1,0 +1,21 @@
+
+
+security_context:
+    handler: 'core\components\security\core\SecurityContext'
+
+
+authentication_manager:
+    handler: 'core\components\security\core\AuthenticationManager'
+    'arguments': 
+        - '@user_authentication_provider'
+     
+user_authentication_provider:
+    handler: 'core\components\security\authentication\UserAuthenticationProvider'
+    datasource: datasource3
+    
+
+authentication_userlogin_manager:
+    handler: 'core\components\security\core\UserLoginManager'
+    'arguments': 
+        - '@user_authentication_provider'    
+    
