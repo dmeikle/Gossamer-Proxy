@@ -7,7 +7,9 @@ use Monolog\Handler\StreamHandler;
 
 class BaseTest extends \PHPUnit_Framework_TestCase
 {
-    
+    public function testOne() {
+        
+    }
     
     protected function getLogger() {
         
