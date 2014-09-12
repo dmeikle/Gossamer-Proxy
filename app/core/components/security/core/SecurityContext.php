@@ -18,7 +18,7 @@ class SecurityContext implements SecurityContextInterface
     private $token = null;
     
     public function getToken() {
-        $this->token = $token;
+        return $this->token;
     }
 
     final public function isGranted(mixed $attributes, mixed $object = null) {

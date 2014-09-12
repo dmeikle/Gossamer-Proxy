@@ -19,12 +19,15 @@ class Client implements ClientInterface{
     
     protected $ipAddress = null;
     
+    protected $status = null;
+    
     public function __construct(array $params = array()) {
         if(count($params) > 0) {
             $this->password = $params['password'];
+            $this->status = $params['status'];
             $this->roles = $params['roles'];
-            $this->credentials = $params['credentials'];
-            $this->ipAddress = $params['ipAddress'];
+            $this->credentials = (array_key_exists('credentials', $params))? $params['credentials'] : $params['username'];
+            $this->ipAddress = (array_key_exists('ipAddress', $params))? $params['ipAddress'] : '';
         }
     }
     
@@ -61,4 +64,11 @@ class Client implements ClientInterface{
     }
     
     
+    public function setStatus($status) {
+        $this->status = $status;
+    }
+    
+    public function getStatus() {
+        return $this->status;
+    }
 }

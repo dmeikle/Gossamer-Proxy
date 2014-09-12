@@ -42,9 +42,9 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     }
  
     public function authenticate(SecurityContextInterface $context) {
-        $token = $this->generateEmptyToken();
-        $token->setClient($this->getClient());
         
+        $token = $this->generateEmptyToken();
+      
         try{
             $this->userAuthenticationProvider->loadClientByCredentials($token->getClient()->getCredentials());
         }catch(ClientCredentialsNotFoundException $e) {
@@ -70,6 +70,17 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     }
 
     public function generateEmptyToken() {
+        
+        $token = unserialize(getSession('_security_secured_area'));
+    
+        if(is_null($token)) {
+            return $this->generateNewToken();
+        }
+        
+        return $token;
+    }
+    
+    public function generateNewToken() {
         $client = $this->getClient();
         $token = new SecurityToken($client, __YML_KEY, $client->getRoles());
        

@@ -23,4 +23,8 @@ interface ClientInterface {
     public function getCredentials() ;
     
     public function getIpAddress();
+    
+    public function setStatus($status);
+    
+    public function getStatus();
 }

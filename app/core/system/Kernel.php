@@ -6,16 +6,11 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use core\eventlisteners\Event;
 use core\system\KernelEvents;
-use controllers\ActionsRestController;
-use components\users\commands\LoginCommand;
-use core\http\ResponseFormatter;
-//use libraries\utils\YAMLConfiguration;
+use core\components\security\core\TokenInterface;
 use libraries\utils\Container;
 use Monolog\Logger;
 use core\ViewInterface;
 use core\TemplateView;
-use core\eventlisteners\EventDispatcher;
-
 use libraries\utils\MobileDetect;
 
 class Kernel
@@ -58,8 +53,7 @@ class Kernel
         
         $cmd = new $componentName($controllerName, $viewName, $modelName, $method,$httpRequest->getParameters(), $this->logger, $this->getLayoutType());  
         $cmd->setContainer($this->container);
-        $token = $this->container->get('securityContext');
-
+              
         return $cmd->handleRequest($httpRequest, $httpResponse);
     }
 
@@ -82,4 +76,5 @@ class Kernel
         
         return array('isMobile' => $isMobile, 'isTablet' => $isTablet);
     }
+    
 }

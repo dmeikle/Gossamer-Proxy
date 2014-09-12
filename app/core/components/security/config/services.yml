@@ -12,3 +12,10 @@ authentication_manager:
 user_authentication_provider:
     handler: 'core\components\security\authentication\UserAuthenticationProvider'
     datasource: datasource3
+    
+
+authentication_userlogin_manager:
+    handler: 'core\components\security\core\UserLoginManager'
+    'arguments': 
+        - '@user_authentication_provider'    
+    

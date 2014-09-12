@@ -120,12 +120,13 @@ class DBConnection implements AdapterInterface
             return mysqli_insert_id($this->conn);
         }elseif(strtolower(substr($query,0,6) =='update')) {
             return;
-        } else {
-            $this->rowCount = mysqli_query($this->getConnection(), 'SELECT FOUND_ROWS()');
+        } else {       
+            $this->rowCount = mysqli_query($this->getConnection(), 'SELECT FOUND_ROWS()');          
         }
-        
+      
         //mysql_close($conn);
-        if($fetch && $results){           
+        if($fetch && $results){ 
+            echo "fetching";
             $stack=array();        
             while ($ra=mysqli_fetch_array($results, MYSQL_ASSOC)) {                
                  array_push($stack,$ra);
@@ -137,6 +138,7 @@ class DBConnection implements AdapterInterface
         } elseif($fetch && !$results) {
             return;
         }
+       
         $insertId = mysqli_insert_id();
 error_log($query);
 error_log($insertId);

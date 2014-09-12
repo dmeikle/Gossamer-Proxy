@@ -103,6 +103,7 @@ class EventDispatcher{
     }
  
     public function dispatch($uri, $state, $params = null) {
+     
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
        
 

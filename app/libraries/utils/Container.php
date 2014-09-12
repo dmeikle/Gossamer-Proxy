@@ -43,7 +43,7 @@ class Container
         return $this->directory;
     }
     
-    public function set($key, $objectPath, $object = null) {
+    public function set($key, $objectPath = null, $object = null) {
         $directory = $this->getDirectory();
         $directory[$key] = array('objectPath' => $objectPath, 'object' => $object);
         $this->directory = $directory;

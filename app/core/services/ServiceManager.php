@@ -43,21 +43,28 @@ class ServiceManager {
     }
     
     private function assembleService(array $config) {
+        
         $arguments = array();
         if(array_key_exists('arguments', $config)) {
             $arguments = $config['arguments'];
         }
         $injectors = array();
-        //load any constructor parameters
-        foreach($arguments as $argument) {
+
+        //load any  constructor parameters
+        foreach($arguments as $key => $argument) {
             if(substr($argument, 0, 1) == '@') {
-                $key = substr($argument, 1);
+                $argument = substr($argument, 1);
                 //it's another service - looks like we're starting a loop here...
-                $injectors[$key] = $this->getService($key);//strip the '@' and ask for it by its name/key provided
+                if($key == '0') {
+                    $injectors[$argument] = $this->getService($argument);//strip the '@' and ask for it by its name/key provided
+                }else {
+                    $injectors[$key] = $this->getService($argument);//strip the '@' and ask for it by its name/key provided
+                }
+                
             } else {
                 echo "creating new $argument<br>";
                 //load it like a class file - hopefully the author didn't expect any constructor params...
-                $injectors[$argument] = new $argument();
+                $injectors[$key] = new $argument();
             }
         }
         $className = $config['handler'];
@@ -74,7 +81,7 @@ class ServiceManager {
                 $class->setDatasource($this->datasourceFactory->getDatasource($config['datasource'], $this->logger));
             }
         }
-        
+    
         return $class;
     }
     
@@ -86,6 +93,9 @@ class ServiceManager {
      * @return service
      */
     public function getService($key) {
+        if(is_null($key)) {
+            return;
+        }
         if(!array_key_exists($key, $this->services)) {
             $this->services[$key] = $this->assembleService($this->serviceConfig[$key]);
         }
@@ -94,6 +104,12 @@ class ServiceManager {
     }
     
     public function executeService($key) {
-        $this->getService($key)->execute();
+        $service = $this->getService($key);
+        if(is_null($service)) {
+            return;
+        }
+        try{
+            $this->getService($key)->execute();
+        }catch(\Exception $e){}
     }
 }

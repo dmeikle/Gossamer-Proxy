@@ -3,13 +3,13 @@
     'handler': 'core\components\security\handlers\AuthenticationHandler'
     'datasource': 'datasource3'
     'arguments': 
-        - '@security_context'
-        - '@authentication_manager'
+        security_context: '@security_context'
+        authentication_manager: '@authentication_manager'
         
-'simple_auth2': 
+'login_auth': 
     'handler': 'core\components\security\handlers\AuthenticationHandler'
-    'datasource': 'datasource1'
+    'datasource': 'datasource3'
     'arguments': 
-        - '@security_context'
-        - '@authentication_manager'   
-        
+        security_context: '@security_context'
+        authentication_manager: '@authentication_userlogin_manager'   
+     

@@ -127,6 +127,7 @@ class YAMLConfiguration2
     
 
     private function getYMLNodeParameters($ymlKey) {  
+        
         return $nodeParams = $this->config[$ymlKey];       
     }
     

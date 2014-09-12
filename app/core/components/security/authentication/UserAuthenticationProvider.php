@@ -17,16 +17,14 @@ use core\components\security\exceptions\ClientCredentialsNotFoundException;
 class UserAuthenticationProvider extends DatasourceAware implements AuthenticationProviderInterface{
     
     public function loadClientByCredentials($credential) {
-        echo sprintf("select * from UserAuthentications where username = '%s'", $credential);
-        $result = $this->datasource->query(sprintf("select * from UserAuthentications where username = '%s'", $credential));
+     
+        $result = $this->datasource->query(sprintf("select * from UserAuthentications where username = '%s' limit 1", $credential));
         
         if($result) {
-            $result['password'] = '...';
-            
             return new Client(current($result));
         }
-        
-        throw new ClientCredentialsNotFoundException();
+       
+        throw new ClientCredentialsNotFoundException('no user found with credential ' . $credential);
     }
 
     public function refreshClient(ClientInterface $client) {

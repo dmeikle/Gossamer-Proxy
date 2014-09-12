@@ -40,15 +40,17 @@ $eventDispatcher->setDatasources($container->get('datasourceFactory'), $datasour
 $controllerNode = $container->get('controllerNode');
 $container->set('HTTPRequest', null, $httpRequest);
 $container->set('HTTPResponse', null, $httpResponse);
-
-//now lets hook all of our services before we go any further
-$serviceManager = new core\services\ServiceManager($logger, loadServiceConfigurations(), $container->get('datasourceFactory'), $container);
-//TODO: I've loaded the manager - now I need to decide whether to execute it on dispatcher:entry_point or simply call it 'as is'
-
-
-$serviceManager->executeService('simple_auth');
 $container->set('loadedParams', null, iterateComponentConfigurations($eventDispatcher));
 $container->set('EventDispatcher', null, $eventDispatcher);
+//now lets hook all of our services before we go any further
+$serviceManager = new core\services\ServiceManager($logger, loadServiceConfigurations(), $container->get('datasourceFactory'), $container);
+////TODO: I've loaded the manager - now I need to decide whether to execute it on dispatcher:entry_point or simply call it 'as is'
+
+//$serviceManager->executeService('simple_auth');
+$serviceDispatcher = new \core\services\ServiceDispatcher($logger, new YAMLParser($logger));
+$serviceDispatcher->dispatch($serviceManager);
+
+
 if(array_key_exists('langFiles', $controllerNode)) {
     $langFilesList = array_merge($langFilesList, $controllerNode['langFiles']);    
 }
@@ -139,6 +141,6 @@ function loadServiceConfigurations() {
             $serviceBootstraps[] = $config;
         }        
     }
-    
+   
     return $serviceBootstraps;
 }

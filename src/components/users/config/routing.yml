@@ -65,7 +65,19 @@ admin_users_list:
         view: core\views\TemplateView
         viewKey: admin_users_list
         datasource: datasource1
-    methods: [POST]          
+    methods: [POST]   
+    
+admin_users_edit:
+    pattern: /admin/users/edit/*
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\User
+        model: components\users\models\User
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_users_edit
+        datasource: datasource3
+    methods: [POST]       
     
 admin_login:
     pattern: admin/login
@@ -75,9 +87,28 @@ admin_login:
         model: components\users\models\UserModel
         method: login
         view: core\views\TemplateView
-        viewKey: default_contact
+        viewKey: admin_login
         datasource: datasource1
         langFiles: 
             - 'app/core/components/locales/resources/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
+    
+admin_login_submit:
+    pattern: admin/login
+    listeners:
+        - { 'event': 'login_password_mismatch', 'listener': 'components\users\listeners\PasswordMismatchListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_status_locked', 'listener': 'components\users\listeners\StatusLockedListener', 'datasource': 'datasource3'}
+       # - { 'event': 'login_status_not_active', 'listener': 'components\users\listeners\StatusNotActiveListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [POST]
