@@ -72,8 +72,8 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     public function generateEmptyToken() {
         
         $token = unserialize(getSession('_security_secured_area'));
-    
-        if(is_null($token)) {
+   
+        if(!$token) {
             return $this->generateNewToken();
         }
         
