@@ -37,7 +37,7 @@ class DatasourceFactory
     
     private function buildDatasourceInstance($sourceName, Logger $logger) {
         $parser = new YAMLParser($logger);
-        $ymlFilePath = __SITE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'credentials.yml';
+        $ymlFilePath = __SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'credentials.yml';
         $parser->setFilePath($ymlFilePath);
         $dsConfig = $parser->loadConfig();
         $sourceName = trim($sourceName, "<br>");

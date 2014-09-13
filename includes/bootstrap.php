@@ -23,6 +23,7 @@ define('__COMPONENT_FOLDER', $nodeConfig['componentFolder']);
 define('__NAMESPACE', $nodeConfig['namespace']);
 
 $datasources = $container->get('datasources', array());
+
 //set the datasource for this model based on its current key
 $datasources[$controllerNode['model']] = $controllerNode['datasource'];
 $container->set('datasources', 'array', $datasources);
@@ -68,7 +69,7 @@ function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
     
     $retval = array();
     $parser = new YAMLParser($logger);
-    $parser->setFilePath(__SITE_PATH . '/config/bootstrap.yml');
+    $parser->setFilePath(__SITE_PATH . '/app/config/bootstrap.yml');
     $bootstraps = $parser->loadConfig(); //$parser->findNodeByURI(KernelEvents::REQUEST_START, 'listeners');
     
     if(array_key_exists('langFiles', $bootstraps['all']['defaults'])) {

@@ -30,6 +30,6 @@ class LoadLocaleStringsListener extends AbstractListener
     
     private function getFilepath($filename) {
         $locale = $this->getDefaultLocale();        
-        return __SITE_PATH . DIRECTORY_SEPARATOR . str_replace('*', $locale['locale'], $filename);
+        return __SITE_PATH . DIRECTORY_SEPARATOR  . str_replace('*', $locale['locale'], $filename);
     }
 }

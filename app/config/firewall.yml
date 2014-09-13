@@ -18,3 +18,9 @@ admin_login_submit:
     pattern: admin/login
     authentication: login_auth
     methods: [POST]
+    
+admin_area2:
+    pattern: /admin
+    authentication: simple_auth
+    fail_url: admin/login
+    

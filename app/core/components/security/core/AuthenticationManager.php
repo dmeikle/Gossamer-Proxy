@@ -9,7 +9,6 @@
 namespace core\components\security\core;
 
 use core\components\security\core\AuthenticationManagerInterface;
-use libraries\utils\URIComparator;
 use Monolog\Logger;
 use core\services\ServiceInterface;
 use core\components\security\core\SecurityToken;
@@ -44,7 +43,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     public function authenticate(SecurityContextInterface $context) {
         
         $token = $this->generateEmptyToken();
-      
+     
         try{
             $this->userAuthenticationProvider->loadClientByCredentials($token->getClient()->getCredentials());
         }catch(ClientCredentialsNotFoundException $e) {

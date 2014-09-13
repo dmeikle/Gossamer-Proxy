@@ -8,30 +8,30 @@ class URIComparator
     public function findPattern($config, $uri){      
 
         foreach($config as $outerkey => $grouping){
-            
-           if(array_key_exists('methods', $grouping)) {
+           
+            if(array_key_exists('methods', $grouping)) {
                $method = current($grouping['methods']);
 
                 if($method != $_SERVER['REQUEST_METHOD']) {
                     continue;
                 }
-           }
-           
-            foreach($grouping as $key => $value){
-               
-                if($key == 'pattern') {
-                    if($this->parseWildCard($uri, $value)) {
-                     
-                       return $outerkey;
-                    }                   
-                }
             }
-            
+            if(array_key_exists('pattern', $grouping)) {
+               if($grouping['pattern'] == $uri) {
+                   
+                   return $outerkey;
+               }
+                if($this->parseWildCard($uri, $grouping['pattern'])) {
+                    
+                    return $outerkey;
+                } 
+            }            
         }
+        
         return false;
     }
     
-    private function parseWildCard($uri, $pageName) {
+    protected function parseWildCard($uri, $pageName) {
        
         //knock of the trailing parameters at end of URI
         $chunks = explode('?', $uri);

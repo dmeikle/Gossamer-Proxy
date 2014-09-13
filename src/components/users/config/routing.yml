@@ -109,6 +109,6 @@ admin_login_submit:
         viewKey: admin_login_submit
         datasource: datasource1
         langFiles: 
-            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/shoppingcart/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [POST]

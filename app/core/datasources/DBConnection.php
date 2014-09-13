@@ -126,7 +126,7 @@ class DBConnection implements AdapterInterface
       
         //mysql_close($conn);
         if($fetch && $results){ 
-            echo "fetching";
+           
             $stack=array();        
             while ($ra=mysqli_fetch_array($results, MYSQL_ASSOC)) {                
                  array_push($stack,$ra);
@@ -140,8 +140,7 @@ class DBConnection implements AdapterInterface
         }
        
         $insertId = mysqli_insert_id();
-error_log($query);
-error_log($insertId);
+
         return $insertId;
     }
 

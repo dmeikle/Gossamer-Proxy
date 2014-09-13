@@ -15,8 +15,9 @@ class LoadLocalesListener extends AbstractListener
         $params = array();
 
         $datasource = $this->getDatasource(get_class($model));
-      
+     
         $locales = current($datasource->query('get', $model, 'list', $params));
+       
         foreach($locales as $locale) {
             $retval[$locale['locale']] = $locale;
         }

@@ -18,7 +18,7 @@ class YAMLPreferences
 
     public function loadConfig($filename) {
         $parser = new YAMLParser($this->logger);
-        $parser->setFilePath(__SITE_PATH . '/config/' . $filename . '.yml');
+        $parser->setFilePath(__SITE_PATH . '/app/config/' . $filename . '.yml');
 
         return $parser->loadConfig();
 

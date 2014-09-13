@@ -8,7 +8,6 @@ class LocaleLoader
     private $localesList = array();
     
     public function loadFile($filepath) {
-        
         if(file_exists($filepath)) {
             $loadedStrings = include $filepath;
             $this->localesList = array_merge($this->localesList, $loadedStrings);

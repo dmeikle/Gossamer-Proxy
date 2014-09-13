@@ -7,6 +7,7 @@ use core\datasources\DatasourceAware;
 use Monolog\Logger;
 use libraries\utils\Container;
 use libraries\utils\YAMLParser;
+use libraries\utils\URISectionComparator;
 
 /**
  * Description of AuthenticationHandler
@@ -37,15 +38,16 @@ class AuthenticationHandler extends DatasourceAware implements ServiceInterface{
     
     public function execute() {
         $this->container->set('securityContext', $this->securityContext);
+       
         if(is_null($this->node) || !array_key_exists('authentication', $this->node)) {
            
             return;
         }
         if(array_key_exists('security', $this->node) && (!$this->node['security'] || $this->node['security'] == 'false')) {
-          
+         
             return;
         }
-      
+     
         $token = $this->getToken();
         try{
             $this->securityManager->authenticate($this->securityContext);
@@ -65,15 +67,15 @@ class AuthenticationHandler extends DatasourceAware implements ServiceInterface{
 }
        
     private function loadNodeConfig() {
-//        $comparator = new URIComparator();
-//        
+    
         $loader = new YAMLParser($this->logger);
         $loader->setFilePath(__SITE_PATH . '/app/config/firewall.yml');        
         $config = $loader->loadConfig();
-        unset($loader);
-        
-        $parser = new \libraries\utils\YAMLConfiguration2($this->logger);
-        $key = $parser->findConfigKeyByURIPattern($config, '', __URI);
+        unset($loader);        
+
+        $parser = new URISectionComparator();
+        $key = $parser->findPattern($config, __URI);
+       
         unset($parser);
         if(empty($key)) {
             return;

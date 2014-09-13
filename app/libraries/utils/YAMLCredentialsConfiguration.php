@@ -19,7 +19,7 @@ class YAMLCredentialsConfiguration
     
     private function loadConfig() {
         $parser = new YAMLParser($this->logger);
-        $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'credentials.yml');
+        $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'credentials.yml');
         
         $this->config = $parser->loadConfig();
        

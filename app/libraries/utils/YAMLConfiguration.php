@@ -21,7 +21,7 @@ class YAMLConfiguration
         $retval = array();
         $parser = new YAMLParser($logger);
 
-        $parser->setFilePath(__SITE_PATH . '/config/' . $filename .'.yml');
+        $parser->setFilePath(__SITE_PATH . '/app/config/' . $filename .'.yml');
         if(strlen($uriPattern) == 0) {
             $retval[] = $parser->findNodeByURI('all', $node); 
             //just in case it's a usercommand (not component) load any config for it here also

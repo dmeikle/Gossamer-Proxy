@@ -63,7 +63,7 @@ class AbstractListener
         $method = 'on_' . $state;
         $this->logger->addDebug('checking listener for method: ' . $method);
          if (method_exists($this, $method)) {
-        $this->logger->addDebug('class: ' . get_class($this) . ' found');
+            $this->logger->addDebug('class: ' . get_class($this) . ' found');
             call_user_func_array(array($this, $method), array($params));        
         }
     }

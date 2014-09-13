@@ -88,7 +88,6 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     }
     
     private function checkStatus(Client $client) {
-        echo 'check status<br>';
         return ($client->getStatus() == 'active');
     }
     

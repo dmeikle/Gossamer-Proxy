@@ -26,7 +26,7 @@ class YAMLViewConfiguration
     public function getViewConfig($uri, $ymlKey) {
         $routingPath = $this->getInitialRouting($uri);
      
-        $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
+        $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
         
         $this->config = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
        
@@ -53,7 +53,7 @@ class YAMLViewConfiguration
         $parser = new YAMLParser($this->logger);
 
         $pieces = array_filter(explode('/', $requestURI));
-        $parser->setFilePath(__SITE_PATH . '/config/routing.yml');
+        $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
         if($chunk == 'admin') {
             $chunk = array_shift($pieces);
@@ -106,7 +106,7 @@ class YAMLViewConfiguration
         $retval = array();
         $parser = new YAMLParser($logger);
 
-        $parser->setFilePath(__SITE_PATH . '/config/' . $filename .'.yml');
+        $parser->setFilePath(__SITE_PATH . '/app/config/' . $filename .'.yml');
         
             $retval[] = $parser->findNodeByURI('all', $node); 
             //just in case it's a usercommand (not component) load any config for it here also

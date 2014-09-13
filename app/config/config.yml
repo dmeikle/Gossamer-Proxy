@@ -1,2 +1,57 @@
-## YAML Template.
----
+all:
+    uri: '*'
+    filterChain:
+        filter: 'filters\CheckServerCredentialsFilterChain'
+
+
+users_get:
+    uri: '/users/get/'
+    filterChain:
+        filter: 'LoadUserFilterChain'
+        filter: 'LoadApplicationFilterChain'
+        filter: 'CheckAuthorizationChain'
+        filter: 'GenerateAuthorizationTokenFilterChain'
+    #observersChain:
+        #observer:   
+    responseOutputParameters:
+        outputParam: 'User'
+        outputParam: 'Application::productId'
+        outputParam: 'AuthorizationToken'
+        
+
+    
+users_list:
+    uri: '/users/list/'
+    filterChain:
+        filter: 'LoadUserFilterChain'
+        filter: 'CheckAuthorizationChain'  
+    responseOutputParameters:
+        outputParam: 'Users'
+        outputParam: 'AuthorizationToken'
+
+users_login:
+    uri: '/users/login/'
+    filterChain:
+        filter: 'LoadUserFilterChain'
+        filter: 'CheckAuthorizationChain' 
+    observersChain:
+        observer: 'usercommands\GenerateAuthorizationToken' 
+    responseOutputParameters:
+        outputParam: 'User::id'
+        outputParam: 'AuthorizationToken'
+        outputParam: 'UserToken'
+
+
+documents_list:
+    uri: '/documents/list/'
+    observersChain:
+        observer: 'usercommands\GenerateAuthorizationToken' 
+
+        
+
+
+pagecontents_get:
+    uri: '/pageContents/get'
+    responseOutputParameters:
+        outputParam: 'entities\PageContent'
+        outputParam: 'AuthorizationToken'
