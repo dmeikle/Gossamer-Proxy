@@ -92,7 +92,7 @@ class CartModel extends AbstractModel{
         $this->setBasket($basket);        
         
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale']));
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart'));
     }
     
     private function getProduct(array $rawProduct) {
@@ -128,7 +128,8 @@ class CartModel extends AbstractModel{
         $basket = $this->getBasket();          
         
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'title' =>' view cart', 'pageTitle' => 'View Cart'));
+        
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale, 'title' =>' view cart', 'pageTitle' => 'View Cart'));
     }
     
     private function setBasket(Basket $basket) {

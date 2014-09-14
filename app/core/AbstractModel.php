@@ -145,12 +145,14 @@ class AbstractModel
     }
 
     public function getDefaultLocale() {
+       
        // $userPreferences = $this->httpRequest->getParameter('userPreferences');
         $userPreferences = getSession('userPreferences');
         if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
+           
             return $userPreferences['defaultLocale'];
         }
-
+       
         $config = $this->httpRequest->getAttribute('defaultPreferences');
 
         return $config['default_locale'];

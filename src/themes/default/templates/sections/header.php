@@ -2,8 +2,8 @@
     <ul>
     <?php
         
-        foreach($SystemLocalesList as $key => $locale) {
-            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $locale['icon'] . '.gif" /> ' . $locale['languageName'] . '</li>';
+        foreach($SystemLocalesList as $key => $systemlocale) {
+            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
         }
         ?>
     </ul>
@@ -15,7 +15,7 @@
 
 <div id="locales"> <i class="fa fa-shopping-cart"></i>  | 
     <?php //$locale = $this->getDefaultLocale();?>
-   <!-- <img id="locale-icon" src="/images/flags/<?php echo $locale['icon'];?>.gif">-->
+   <!-- <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];?>.gif">-->
    <a class="select-locale" data-id="en_US">EN</a> 
    <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
 </div>

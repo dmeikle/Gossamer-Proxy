@@ -2,8 +2,9 @@
     <ul>
     <?php
         
-        foreach($SystemLocalesList as $key => $locale) {
-            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $locale['icon'] . '.gif" /> ' . $locale['languageName'] . '</li>';
+        foreach($SystemLocalesList as $key => $systemlocale) {
+            
+            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
         }
         ?>
     </ul>

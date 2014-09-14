@@ -23,7 +23,9 @@ $basket = $this->data['Basket'];
     </tr>
 
 <?php
+
 $items = $basket->items();
+
 if(count($items) == 0) {
     ?>
     <tr>

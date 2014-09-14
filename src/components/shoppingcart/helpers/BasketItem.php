@@ -57,8 +57,7 @@ class BasketItem {
     
         
     private function checkVolumeDiscounts(array $params) {
-        
-        if(array_key_exists('VolumeDiscount', $params)) { //it's an admin load
+        if(array_key_exists('VolumeDiscount', $params) && is_array($params['VolumeDiscount'])) { //it's an admin load
             foreach($params['VolumeDiscount'] as $item) {
                 
                 if($item["quantity"] <= $this->quantity) {
@@ -69,10 +68,14 @@ class BasketItem {
        
     }
     public function getTitle($locale) { 
-       if(array_key_exists($locale['locale'], $this->title)) {
-           return $this->title[$locale['locale']];
-       }
-       return $this->title[$this->defaultLocale]; 
+        if(is_array($locale)) {
+            if(array_key_exists($locale['locale'], $this->title)) {
+                return $this->title[$locale['locale']];
+            }
+            return $this->title[$this->defaultLocale]; 
+        }
+        //it's a string passed in
+       return $this->title[$locale]; 
     }
     
     public function getQuantity() {

@@ -99,7 +99,7 @@ class AbstractView
     public function __destruct()
     {   
         if(!$this->renderComplete) {
-          
+       
             if(!is_null($this->data)) {
                 try{
                     // The second parameter of json_decode forces parsing into an associative array
@@ -122,9 +122,10 @@ class AbstractView
        // $userPreferences = $this->httpRequest->getParameter('userPreferences');
         $userPreferences = getSession('userPreferences');
         if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
+           
             return $userPreferences['defaultLocale'];
         }
-
+        
         $config = $this->httpRequest->getAttribute('defaultPreferences');
 
         return $config['default_locale'];
