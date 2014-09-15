@@ -31,7 +31,8 @@ class HTTPResponse
     
     public function getAttribute($key) {
         if(array_key_exists($key, $this->getAttributes())) {
-            return $this->getAttributes()[$key];
+            $attributes = $this->getAttribute();
+            return $attributes[$key];
         }
         
         return null;
