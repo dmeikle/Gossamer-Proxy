@@ -15,14 +15,16 @@ class JSONView extends AbstractView
     }
 
     protected function renderView(){
-error_log("json result");
-        header('Content-Type: application/json');
 
+        header('Content-Type: application/json');
+        $data = $this->getData();
+        //we don't want this in our json
+        unset($data['SystemLocalesList']);
         if(!is_null($this->getData())) {
             try{
                 // The second parameter of json_decode forces parsing into an associative array
                 //extract(json_decode(json_encode($this->data), true));
-                echo json_encode($this->getData());
+                echo json_encode($data);
             }catch(\Exception $e) {
                 $this->logger->addError($e->getMessage());
             }

@@ -134,7 +134,7 @@ class AbstractModel
     }
     
     public function edit($id) {
-       
+      
         $params = array(
             'id' => intval($id)
         );

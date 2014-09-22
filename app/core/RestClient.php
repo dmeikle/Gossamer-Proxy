@@ -217,7 +217,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
        
         $parameters = $uh->encode($parameters); // $this->formatToHexForSending($parameters);
-       
+      
         unset($uh);
         foreach($parameters as $key => $value){
             if(is_array($value)) {

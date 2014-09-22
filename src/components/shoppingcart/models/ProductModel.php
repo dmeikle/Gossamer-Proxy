@@ -58,10 +58,16 @@ class ProductModel extends AbstractModel
         );
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
- 
+        pr($data);
         //loaded from event dispatcher
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
-        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], array_column($data['Product'][0]['ProductCategory'], 'Categories_id'));
+        $productCategories = array();
+        
+        if(!is_null($data['Product'][0]['ProductCategory'])) {
+            $productCategories = array_column($data['Product'][0]['ProductCategory'], 'Categories_id');
+        }
+        
+        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
         $this->render($data);
     }

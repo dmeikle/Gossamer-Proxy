@@ -146,7 +146,7 @@ class UnicodeHandler {
           
             return $ascii;//don't bother to convert it - it's not on our list
         }
-       
+     
         $hex = '0x';
         for ($i = 0; $i < strlen($ascii); $i++) {
             $byte = strtoupper(dechex(ord($ascii{$i})));

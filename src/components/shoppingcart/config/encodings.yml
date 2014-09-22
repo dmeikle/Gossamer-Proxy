@@ -69,4 +69,19 @@ cart_admin_sale_view:
 cart_admin_category_edit:
     category: utf8
     
+cart_admin_category_save:
+    category: utf8
     
+cart_admin_variant_option_save:
+    variant: utf8
+    description: utf8
+    
+cart_admin_variant_option_edit:
+    variant: utf8
+    description: utf8
+    
+cart_admin_variant_options_list:    
+     variant: utf8
+     
+cart_admin_variant_option_select:      
+     variant: utf8  

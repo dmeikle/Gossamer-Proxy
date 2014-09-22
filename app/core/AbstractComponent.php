@@ -107,7 +107,7 @@ abstract class AbstractComponent
                 $this->method
             ), !isset($this->params) ? array() : $this->params);
         }  else {
-            throw new HandlerNotCallableException('unable to match method to controller');
+            throw new HandlerNotCallableException('unable to match method ' . $this->method . ' to controller');
         }     
     }
     
