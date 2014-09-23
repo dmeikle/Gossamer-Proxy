@@ -85,3 +85,16 @@ cart_admin_variant_options_list:
      
 cart_admin_variant_option_select:      
      variant: utf8  
+     groupName: utf8
+     
+cart_admin_variant_edit:
+    groupName: utf8    
+     
+cart_admin_variant_save:
+    groupName: utf8
+    
+cart_admin_variants_list:
+    groupName: utf8
+    
+   
+    

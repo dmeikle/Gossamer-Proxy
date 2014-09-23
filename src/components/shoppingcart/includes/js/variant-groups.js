@@ -21,4 +21,9 @@ $( document ).ready(function() {
         });
     });
     
+    $('.view-variantGroup').click(function (e) {
+        var id = this.dataset.id;
+        window.location.href = '/admin/cart/variants/' + id;
+    })
+    
 });

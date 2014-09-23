@@ -2,7 +2,7 @@
 @components/shoppingcart/includes/js/variant-options-list.js
 <!--- javascript end --->
 <h3>Variant Options</h3>
-<button data-id="0" type="button" class="edit">Create New Option</button>
+<button data-id="0" type="button" class="variant-option-edit">Create New Option</button>
 <table class="table table-striped">
     <tr>
           <th>Option</th>

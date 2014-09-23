@@ -29,7 +29,8 @@ class VariantOptionModel extends AbstractModel
         );
        
         $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        $data = array_key_exists('VariantItems', $result)? array('VariantOptions' => current($result['VariantItems'])) : array();
+       
+        $data = array_key_exists('VariantItems', $result)? array('VariantOptions' => current($result['VariantItems'])) : array('VariantOptions');
         $data['Locales'] = $this->httpRequest->getAttribute('locales');
     
         $this->render($data);
@@ -50,7 +51,7 @@ class VariantOptionModel extends AbstractModel
     public function saveOption($groupId, $optionId) {
         $params = $this->httpRequest->getPost();
         $params['variantItem']['id'] = intval($optionId);
-   
+        $params['variantItem']['VariantGroups_id'] = $groupId;
         file_put_contents('/var/www/shoppingcart/logs/test.log', print_r($params, true) . "\r\n", FILE_APPEND);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['variantItem']); 
@@ -65,9 +66,13 @@ class VariantOptionModel extends AbstractModel
             'VariantItems_id' => intval($optionId)
         );
        
-        $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        $data = $result;
-      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        if(is_null($data)) {
+            $data = array();
+        }
+        if(!array_key_exists('VariantItem', $data)) {
+            $data['VariantItem'] = array();
+        }
         $data['Locales'] = $this->httpRequest->getAttribute('locales');
     
         $this->render($data);

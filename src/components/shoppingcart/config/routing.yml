@@ -213,12 +213,42 @@ cart_admin_category_jsonload:
     methods: [GET]
 
     
+cart_admin_variant_edit:
+    pattern: admin/cart/variant/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]        
+    
+cart_admin_variant_save:
+    pattern: admin/cart/variant/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
+    
 cart_admin_variants_list:
     pattern: admin/cart/variants 
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\VariantsController
-        model: components\shoppingcart\models\VariantModel
+        model: components\shoppingcart\models\VariantGroupModel
         method: listall
         view: core\views\TemplateView
         viewKey: cart_admin_variants_list
@@ -249,7 +279,7 @@ cart_admin_variant_option_select:
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\VariantsController
-        model: components\shoppingcart\models\VariantModel
+        model: components\shoppingcart\models\VariantGroupModel
         method: listAllVariantsAndOptions
         view: core\views\TemplateView
         viewKey: cart_admin_variant_option_select
@@ -258,6 +288,21 @@ cart_admin_variant_option_select:
             - 'src/components/shoppingcart/locales/*/Variants'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
+    
+cart_admin_variant_select_save:
+    pattern: admin/cart/variants/select/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: saveAllVariantsAndOptions
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_select_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
     
 cart_admin_variant_option_edit:
     pattern: admin/cart/variants/*/*
@@ -282,7 +327,7 @@ cart_admin_variant_option_save:
         model: components\shoppingcart\models\VariantOptionModel
         method: saveOption
         view: core\views\TemplateView
-        viewKey: cart_admin_variant_edit
+        viewKey: cart_admin_variant_option_save
         datasource: datasource1
         langFiles: 
             - 'src/components/shoppingcart/locales/*/Variants'

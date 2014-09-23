@@ -1,8 +1,7 @@
 
 
 <?php
-
-$option = current($VariantItem);
+$variantGroup = current($VariantGroup);
 ?>
 
 
@@ -15,7 +14,7 @@ $option = current($VariantItem);
             <td colspan="2">
                 <ul class="nav nav-tabs" role="tablist">
                 <?php
-                foreach($Locales as $locale) {
+                foreach($SystemLocalesList as $locale) {
                     
                     if($locale['isDefault']) {
                         echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
@@ -28,17 +27,13 @@ $option = current($VariantItem);
                <!-- Tab panes -->
                 <div class="tab-content">
                     <?php
-                    reset($Locales);
-                    foreach($Locales as $locale) {?>
+                    reset($SystemLocalesList);
+                    foreach($SystemLocalesList as $locale) {?>
                         <div class="tab-pane<?php echo ($locale['isDefault']) ? ' active':'';?>" id="<?php echo $locale['locale'];?>">
                             <table width="100%">
                                 <tr>
                                     <td width="120"><?php echo $this->getString('LABEL_VARIANT');?>:</td>
-                                    <td><input class="form-control" type="text" name="variantItem[locale][<?php echo $locale['locale']; ?>][variant]" value="<?php echo htmlspecialchars($option['locales'][$locale['locale']]['variant'], ENT_NOQUOTES, 'UTF-8');?>"/></td>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $this->getString('LABEL_DESCRIPTION');?>:</td>
-                                    <td><textarea cols="40" class="form-control" name="variantItem[locale][<?php echo $locale['locale']; ?>][description]"><?php echo $option['locales'][$locale['locale']]['description'];?></textarea></td>
+                                    <td><input class="form-control" type="text" name="variantGroup[locale][<?php echo $locale['locale']; ?>][groupName]" value="<?php echo htmlspecialchars($variantGroup['locales'][$locale['locale']]['groupName'], ENT_NOQUOTES, 'UTF-8');?>"/></td>
                                 </tr>
                             </table>
                         </div>
@@ -47,24 +42,6 @@ $option = current($VariantItem);
                    ?>
                 </div>  
             </td>
-        </tr>
-
-        <tr>
-            <td>
-                surcharge
-            </td>
-            <td>
-               <input type="text" name="variantItem[surcharge]" value="<?php echo $option['surcharge'];?>" />
-            </td>   
-        </tr>
-
-        <tr>
-            <td>
-                code
-            </td>
-            <td>
-               <input type="text" name="variantItem[code]" value="<?php echo $option['code'];?>" />
-            </td>   
         </tr>
 
         <tr>

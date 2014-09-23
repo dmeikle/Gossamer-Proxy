@@ -57,7 +57,8 @@ color: white;}
  
   });
   </script>
-
+<form method="post">
+    <input name="Submit" type="submit" id="Submit" value="Submit">
 <div id="accordion">
   
       <?php
@@ -71,7 +72,7 @@ foreach($variants as $variant) {
 
    <?php
     foreach($variant['child'] as $option) {?>
-       <label><input type="checkbox" name="variant[<?php echo $variant['id'];?>][<?php echo $option['id'];?>]" value="1"><?php echo $option['variant'];?></label>
+       <label><input type="checkbox" name="variant[<?php echo $variant['id'];?>][VariantItems_id][]" value="<?php echo $option['id'];?>"><?php echo $option['variant'];?></label>
       
     <?php 
     }
@@ -83,6 +84,6 @@ foreach($variants as $variant) {
 ?>
     
 </div>
-<form method="post" id="form1">
-    
+
+    <input name="Submit" type="submit" id="Submit" value="Submit">
 </form>

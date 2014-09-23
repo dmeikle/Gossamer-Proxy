@@ -8,7 +8,7 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 
-class VariantModel extends AbstractModel
+class VariantGroupModel extends AbstractModel
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -16,8 +16,8 @@ class VariantModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'ProductVariants';
-        $this->tablename = 'productVariants'; 
+        $this->entity = 'variantGroups';
+        $this->tablename = 'variantGroups'; 
     }
     
     public function getAllVariantsForListing() {
@@ -27,8 +27,8 @@ class VariantModel extends AbstractModel
         $params['locale'] = $defaultLocale['locale'];
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        $variants = current($data['ProductVariants']);
-        
+        $variants = current($data['VariantGroups']);
+      
         $optionModel = new VariantOptionModel($this->httpRequest, $this->httpResponse, $this->logger);
         $optionModel->setDataSource($this->dataSource);
         $data = $optionModel->listAllOptions();
@@ -49,6 +49,18 @@ class VariantModel extends AbstractModel
         $this->render(array('variants' => $retval));
     }
     
+    public function saveAllVariantsAndOptions($id) {
+        
+        $params = $this->httpRequest->getPost();
+        $params['variant']['Products_id'] = $id;
+       
+        $pvim = new ProductVariantItemModel($this->httpRequest, $this->httpResponse, $this->logger);
+        //need to query for SaveProductVariants
+        $data = $this->dataSource->query(self::METHOD_POST, $pvim, 'SaveProductVariants', array('variant' => $params['variant'])); 
+      
+       
+    }
+    
     public function listall($offset = 0, $rows = 20) {
        
         $params = array(
@@ -59,8 +71,8 @@ class VariantModel extends AbstractModel
         $params['locale'] = $defaultLocale['locale'];
        
         $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-     
-        $data = array('ProductVariants' => current($result['ProductVariants']));
+    
+        $data = array('ProductVariants' => current($result['VariantGroups']));
         $data['ProductVariantOptions'] = $this->getAllVariantOptions();
         
         if(array_key_exists(ucfirst($this->tablename) . 'Count', $result)) {
@@ -96,21 +108,24 @@ class VariantModel extends AbstractModel
         );
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-       
-        //loaded from event dispatcher
-        $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
-        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], array_column($data['Product'][0]['ProductCategory'], 'Categories_id'));
-        $this->render($data);
+        if(is_null($data)) {
+            $data = array();
+        }
+        if(!array_key_exists('VariantGroup', $data)) {
+            $data['VariantGroup'] = array();
+        }
+         $this->render($data);
     }
     
     public function save($id) {
 
         $params = $this->httpRequest->getPost();
-        $params['product']['id'] = $id;
+        
+        $params['variantGroup']['id'] = $id;
 
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['product']); 
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['variantGroup']); 
        
-        $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
+       // $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
       
         
         //$this->render($data);
