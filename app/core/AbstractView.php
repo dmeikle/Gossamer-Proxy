@@ -114,6 +114,7 @@ class AbstractView
             eval("?>" . $this->template ); 
             $this->template = '';
             $this->renderComplete = true;
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'render_complete');
         }
        
     }

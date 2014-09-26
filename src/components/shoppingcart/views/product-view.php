@@ -12,6 +12,7 @@
 
 <?php
 $product = current($Product);
+
 $locale = $this->getDefaultLocale();
 ?>
 <div id="product">
@@ -45,13 +46,13 @@ $locale = $this->getDefaultLocale();
         <div>Quantity: 
             <?php
             if($product['minOrderQuantity'] > 0) {
-                echo "<select name=\"product[" . $product['id'] . "][quantity]\">";
+                echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
                 for($i = $product['minOrderQuantity']; $i < ($product['minOrderQuantity'] * 100); $i++) {
                     echo "<option>$i</option>\r\n";
                 }
                 echo "</select>";
             }elseif(($product['numPerBox']) > 1) {
-                echo "<select name=\"product[" . $product['id'] . "][quantity]\">";
+                echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
                 for($i = $product['numPerBox']; $i < ($product['numPerBox'] * 100); $i += $product['numPerBox']) {
                     echo "<option>$i</option>\r\n";
                 }
@@ -60,10 +61,25 @@ $locale = $this->getDefaultLocale();
             ?>
                 <input type="input" name="product[<?php echo $product['id'];?>][quantity]" />
             <?php
+            }?>
+        </div>
+        
+            <?php
+            if(is_array($ProductVariantList)) {
+                foreach($ProductVariantList as $key => $variant) {?>
+                <div><?php echo $key;?>
+                <select class="form-control" name="product[variants][<?php echo $key;?>]">
+                    <?php foreach($variant as $itemKey => $item) {?>
+                    <option value='<?php echo $itemKey;?>'><?php echo $item['variant'];?><?php echo ((0 < $item['surcharge'])? ' + $' . $item['surcharge'] : '');?></option>
+                    <?php                    
+                    }?>
+                </select>
+                </div>
+                    
+               <?php }
             }
             ?>
            
-        </div>
         <input name="Submit" type="submit" id="Submit" value="<?php echo $this->getString('BTN_ADD_TO_CART'); ?>">
     </form>
     <?php

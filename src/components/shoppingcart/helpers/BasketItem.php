@@ -26,20 +26,27 @@ class BasketItem {
     
     private $defaultLocale = 'en_US';
     
+    private $variants = null;
+    
+    private $productVariants = null;
     
     public function __construct(array $params) {
+       
         $this->productId = $params['id'];
         $this->quantity = $params['quantity'];
         $this->weight = $params['weight'];
         $this->shipsSeparately = $params['shipsSeparately'];
+        
         if(array_key_exists('priceUSD', $params)) {
             $this->price = $params['priceUSD'];
         } else {
             $this->price = $params['price'];
         }
+        
         if(array_key_exists('defaultLocale', $params)) {
             $this->defaultLocale = $params['defaultLocale'];
         }
+        
         $this->customText = $params['customText'];
         if(array_key_exists('locales', $params)) { //it's a customer load
             foreach($params['locales'] as $locale => $values) {           
@@ -51,11 +58,38 @@ class BasketItem {
                 $this->title[$item['locale']] = $item['title'];
             }
         }
+        if(array_key_exists('ProductVariant', $params)) {
+            $this->productVariants = $params['ProductVariant'];
+        }
+        
         $this->checkVolumeDiscounts($params);
         
     }
     
+    public function getVariants() {
+        return $this->variants;
+    }
+    
+    public function setVariants(array $values) {
+        foreach($this->productVariants as $variant) {
+            $item = $this->filterVariants($variant, $values);
+            if($item !== false) {
+                $this->variants[] = $item;
+            }
+        }
         
+    }
+
+    private function filterVariants(array $variant, array $values) {
+       
+        foreach($values as $key => $item) {
+            
+            if($item == $variant['VariantItems_id']) {
+                return array($key => array('surcharge' => $variant['surcharge'], 'id' => $item));
+            }
+        }
+        return false;
+    }
     private function checkVolumeDiscounts(array $params) {
         if(array_key_exists('VolumeDiscount', $params) && is_array($params['VolumeDiscount'])) { //it's an admin load
             foreach($params['VolumeDiscount'] as $item) {

@@ -20,7 +20,7 @@ class VariantGroupModel extends AbstractModel
         $this->tablename = 'variantGroups'; 
     }
     
-    public function getAllVariantsForListing() {
+    public function getAllVariantsForListing($productId) {
         
         $params = array();
         $defaultLocale =  $this->getDefaultLocale();
@@ -46,7 +46,25 @@ class VariantGroupModel extends AbstractModel
             $retval[] = $variant;
         }
         
-        $this->render(array('variants' => $retval));
+        $this->render(array('variants' => $retval, 'productVariantItems' => $this->getProductVariants($productId)));
+    }
+    
+    private function getProductVariants($productId) {
+        $product = new ProductModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $params = array('id' => $productId);
+        $result = $this->dataSource->query(self::METHOD_GET, $product, self::VERB_GET, $params);
+     
+        if(array_key_exists('Product', $result)) {
+            $data = current($result['Product']);
+            if(array_key_exists('ProductVariant', $data)) {
+                $columns = array_column($data['ProductVariant'], 'VariantItems_id');
+                
+                return $columns;
+            }
+        } 
+        
+        
+        return array();
     }
     
     public function saveAllVariantsAndOptions($id) {

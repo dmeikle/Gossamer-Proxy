@@ -99,8 +99,8 @@ class RestDataSource implements DataSourceInterface
         }
     }
 
-    private function handleError(\stdClass $result) {
-
+    private function handleError( $result) {
+//pr($result); 
         if($result->code == 1012) {
             //Parameter was missing - perhaps we simply need to force a new login to jiggle the handle
             header('location: /login');

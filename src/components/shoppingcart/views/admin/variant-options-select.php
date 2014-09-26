@@ -71,8 +71,12 @@ foreach($variants as $variant) {
     <p class="selectable">
 
    <?php
-    foreach($variant['child'] as $option) {?>
-       <label><input type="checkbox" name="variant[<?php echo $variant['id'];?>][VariantItems_id][]" value="<?php echo $option['id'];?>"><?php echo $option['variant'];?></label>
+    foreach($variant['child'] as $option) {
+        $isSelected = array_search($option['id'], $productVariantItems) !== FALSE;
+        ?>
+       <label <?php echo ($isSelected)?' class="ui-selected"':'';?>>
+           <input type="checkbox" <?php echo ($isSelected)?' checked':'';?> name="variant[<?php echo $variant['id'];?>][VariantItems_id][]" value="<?php echo $option['id'];?>"><?php echo $option['variant'];?>
+       </label>
       
     <?php 
     }

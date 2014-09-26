@@ -442,7 +442,8 @@ cart_remove_basket:
     
 cart_products_view_selected:
     pattern: cart/*/*/*
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadProductVariantsListener', 'datasource': 'datasource1'}    
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\ProductsController

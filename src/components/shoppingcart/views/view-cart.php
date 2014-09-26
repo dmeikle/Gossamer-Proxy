@@ -1,5 +1,5 @@
 <!--- css start --->
-@components/shoppingcart/includes/css/products-list.css
+@components/shoppingcart/includes/css/view-cart.css
 <!--- css end --->
 
 <!--- javascript start --->
@@ -36,6 +36,7 @@ if(count($items) == 0) {
  <?php   
 } else {
     foreach($items as $item) {
+      
     ?>
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
@@ -45,6 +46,28 @@ if(count($items) == 0) {
             <td><button class="confirm" type="button" data-key="<?php echo $item->getKey();?>">remove</button></td>  
         </tr>               
 <?php
+    $variantList = $item->getVariants();
+    if(!is_null($variantList)) {
+        
+?>
+        <tr>
+            <td align="right">Options:</td><td colspan="2">
+            <?php
+    foreach($variantList as  $variant) {
+      
+        $variantItem = current($variant);?>
+                
+                <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
+                <div class="variantOptionKey"><?php echo key($variant);?></div>
+        
+    <?php
+       }?>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+        <?php
+    }
         if(strlen($item->getCustomText()) > 0) {
  ?>
         <tr>

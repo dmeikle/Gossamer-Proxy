@@ -18,8 +18,10 @@ class CartModel extends AbstractModel{
     
     public function add() {
         $params = $this->httpRequest->getPost();
+      
         //load original to avoid tampering with price
         $basketItem = new BasketItem($this->getProduct($params['product']));
+        $basketItem->setVariants($params['product']['variants']);
         $basket = $this->getBasket();
         
         $basket->add($basketItem);
@@ -105,12 +107,13 @@ class CartModel extends AbstractModel{
        
         $result = $this->dataSource->query(self::METHOD_GET, new ProductModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_GET, $params);
         $dbProduct = current($result['Product']);
-        
+       
         $dbProduct['customText'] = (array_key_exists('customText', $product))? $product['customText'] : '';
         $dbProduct['quantity'] = $product['quantity'];
         
         return $dbProduct;
     }
+    
     
     private function getBasket() {
        

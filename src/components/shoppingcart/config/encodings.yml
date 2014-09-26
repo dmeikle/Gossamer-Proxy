@@ -36,6 +36,8 @@ cart_products_view_selected:
     title: utf8
     briefDescription: utf8
     description: utf8
+    groupName: utf8
+    variant: utf8
     
 cart_add_basket:
     title: utf8
@@ -96,5 +98,4 @@ cart_admin_variant_save:
 cart_admin_variants_list:
     groupName: utf8
     
-   
     

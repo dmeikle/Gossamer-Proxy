@@ -20,8 +20,8 @@ class VariantsController extends AbstractController
         $this->model->getOptionsByVariantId(intval($id));
     }
     
-    public function listAllVariantsAndOptions($id) {
-        $this->model->getAllVariantsForListing();
+    public function listAllVariantsAndOptions($productId) {
+        $this->model->getAllVariantsForListing($productId);
     }
     
     public function saveAllVariantsAndOptions($id) {
