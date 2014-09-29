@@ -42,9 +42,14 @@ class Basket {
     }
     
     public function getSubtotal() {
+        
+        if(is_null($this->list) ) {
+            return 0;
+        }
         $total = 0;
         foreach($this->list as $item) {
             $total += floatval(str_replace(',','',$item->getSubTotal()));
+            $total += floatval(str_replace(',','',$item->getVariantSurcharges()));
         }
         
         return $total;

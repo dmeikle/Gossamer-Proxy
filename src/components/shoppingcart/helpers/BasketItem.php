@@ -70,6 +70,21 @@ class BasketItem {
         return $this->variants;
     }
     
+    public function getVariantSurcharges() {
+        if(is_null($this->variants)) {
+            return 0;
+        }       
+        
+        $total = 0;
+            
+        foreach($this->variants as $variant) {
+            foreach($variant as $key => $item) {
+                $total += intval($item['surcharge']);
+            }
+        }
+        
+        return $total;
+    }
     public function setVariants(array $values) {
         foreach($this->productVariants as $variant) {
             $item = $this->filterVariants($variant, $values);
@@ -90,6 +105,7 @@ class BasketItem {
         }
         return false;
     }
+    
     private function checkVolumeDiscounts(array $params) {
         if(array_key_exists('VolumeDiscount', $params) && is_array($params['VolumeDiscount'])) { //it's an admin load
             foreach($params['VolumeDiscount'] as $item) {
@@ -162,7 +178,8 @@ class BasketItem {
             'weight' => $this->weight,
             'price' => $this->price,
             'customText' => $this->customText,
-            'title' => $this->title        
+            'title' => $this->title,
+            'variants' => $this->variants
         );
     }
 }

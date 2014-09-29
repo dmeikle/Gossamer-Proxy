@@ -21,7 +21,10 @@ class CartModel extends AbstractModel{
       
         //load original to avoid tampering with price
         $basketItem = new BasketItem($this->getProduct($params['product']));
-        $basketItem->setVariants($params['product']['variants']);
+        if(array_key_exists('variants', $params['product'])) {
+            $basketItem->setVariants($params['product']['variants']);
+        }
+        
         $basket = $this->getBasket();
         
         $basket->add($basketItem);
@@ -64,6 +67,11 @@ class CartModel extends AbstractModel{
         $params['purchase']['totalWeight'] = $this->getBasket()->getTotalWeight();
        
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
+       
+        if(is_null($result)) {
+            die('there was an error saving');
+            //there  was an error - handle it here. I suggest making render() receive an optional param to load a different view 
+        }
        
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(
