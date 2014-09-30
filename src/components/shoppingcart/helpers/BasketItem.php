@@ -61,12 +61,31 @@ class BasketItem {
         if(array_key_exists('ProductVariant', $params)) {
             $this->productVariants = $params['ProductVariant'];
         }
+       
+        if(array_key_exists('PurchaseItemsVariants', $params)) {
+            $this->populateVariants($params['PurchaseItemsVariants']);
+        }
         
         $this->checkVolumeDiscounts($params);
         
     }
     
+    /*
+     * because from the database it's a different method of stringing the params onto the object
+     */
+    private function populateVariants(array $variants) {    
+       $this->variants = array();
+        foreach($variants as $variant) {      
+          
+             $this->variants[] = array('color' => array(
+                'surcharge' => $variant['surcharge'],
+                 'id' => $variant['ProductVariants_id']
+             ));
+        }  
+    }
+    
     public function getVariants() {
+        
         return $this->variants;
     }
     
@@ -89,6 +108,7 @@ class BasketItem {
         foreach($this->productVariants as $variant) {
             $item = $this->filterVariants($variant, $values);
             if($item !== false) {
+               
                 $this->variants[] = $item;
             }
         }

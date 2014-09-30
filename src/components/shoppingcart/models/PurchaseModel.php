@@ -37,7 +37,7 @@ class PurchaseModel extends AbstractModel{
       
         $purchaseItems = $purchase['PurchaseItem'];
         unset($purchase['PurchaseItem']);
-         
+        
         $basket = new Basket();        
         $basket->populate($purchaseItems);
        
