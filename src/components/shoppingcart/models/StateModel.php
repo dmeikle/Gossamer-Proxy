@@ -8,7 +8,7 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 
-class ProductModel extends AbstractModel
+class StateModel extends AbstractModel
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -16,28 +16,11 @@ class ProductModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'CartItem';
-        $this->tablename = 'products';
+        $this->entity = 'State';
+        $this->tablename = 'states';
     }
     
     
-    public function listAllByCategoryId($category, $offset, $limit) {
-       
-        $category = $this->httpRequest->getAttribute('category');
-        //$params = ((strlen($category) > 0)? array('category' => $category ) : array());
-        $params = array('categoryId' => $category['id']);
-        $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
-        
-        
-        $defaultLocale =  $this->getDefaultLocale();
-    
-        $params['locale'] = $defaultLocale['locale'];
-       
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCategory', $params);
-        $data['pageTitle'] = 'Art Wall Tablets';
-        $data['title'] = 'Home Decor | Glen Meikle';
-        $this->render($data);
-    }
    
     public function get($itemId) {
         $params = array('id' => $itemId );
@@ -69,7 +52,7 @@ class ProductModel extends AbstractModel
         if(!is_null($data['Product'][0]['ProductCategory'])) {
             $productCategories = array_column($data['Product'][0]['ProductCategory'], 'Categories_id');
         }
-       
+      
         $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
         $this->render($data);

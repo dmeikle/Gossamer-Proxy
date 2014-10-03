@@ -62,6 +62,7 @@ class EventDispatcher{
 
 
         foreach($listeners as $uri => $listener) {
+          
             if(!is_array($listener)) {
                 continue;
             }

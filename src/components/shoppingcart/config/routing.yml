@@ -457,4 +457,38 @@ cart_products_view_selected:
     methods: [GET]
 
 
+cart_admin_taxes_list:
+    pattern: admin/cart/states
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}  
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\TaxesController
+        model: components\shoppingcart\models\TaxModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: cart_admin_taxes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
   
+    
+cart_admin_taxes_save:
+    pattern: admin/cart/states
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}  
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\TaxesController
+        model: components\shoppingcart\models\TaxModel
+        method: saveTaxes
+        view: core\views\TemplateView
+        viewKey: cart_admin_taxes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
+    
