@@ -30,6 +30,7 @@ foreach($Products as $product) {
            <button data-id="<?php echo $product['id'];?>" type="button" class="edit"><?php echo $this->getString('BUTTON_EDIT');?></button>
            <button data-id="<?php echo $product['id'];?>" type="button" class="delete"><?php echo $this->getString('BUTTON_DELETE');?></button>
            <button data-id="<?php echo $product['id'];?>" type="button" class="discount"><?php echo $this->getString('BUTTON_VOLUME_DISCOUNT');?></button>
+           <button data-id="<?php echo $product['id'];?>" type="button" class="variants"><?php echo $this->getString('BUTTON_VARIANT_OPTIONS');?></button>
        </td>
    </tr>
 <?php

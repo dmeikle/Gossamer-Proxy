@@ -1,5 +1,5 @@
 <!--- css start --->
-@components/shoppingcart/includes/css/products-list.css
+@components/shoppingcart/includes/css/view-cart.css
 <!--- css end --->
 
 <!--- javascript start --->
@@ -15,15 +15,17 @@ $basket = $this->data['Basket'];
   <div class="panel-body">
 <table class="table">
     <tr>
-        <td>Item</td>
-        <td>Quantity</td>
-        <td>Price</td>
-        <td>SubTotal</td>
-        <td>Action</td>         
+        <td align="center">Item</td>
+        <td align="center">Quantity</td>
+        <td align="right">Price</td>
+        <td align="right">SubTotal</td>
+        <td align="center">Action</td>         
     </tr>
 
 <?php
+
 $items = $basket->items();
+
 if(count($items) == 0) {
     ?>
     <tr>
@@ -34,15 +36,38 @@ if(count($items) == 0) {
  <?php   
 } else {
     foreach($items as $item) {
+      
     ?>
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
-            <td><?php echo $item->getQuantity();?></td>
-            <td>$<?php echo $item->getPrice();?></td>
-            <td>$<?php echo $item->getSubtotal();?></td>
-            <td><button class="confirm" type="button" data-key="<?php echo $item->getKey();?>">remove</button></td>  
+            <td align="center"><?php echo $item->getQuantity();?></td>
+            <td align="right">$<?php echo $item->getPrice();?></td>
+            <td align="right">$<?php echo $item->getSubtotal();?></td>
+            <td align="center"><button class="confirm" type="button" data-key="<?php echo $item->getKey();?>">remove</button></td>  
         </tr>               
 <?php
+    $variantList = $item->getVariants();
+    if(!is_null($variantList)) {
+        
+?>
+        <tr>
+            <td align="right">Options:</td><td colspan="2">
+            <?php
+    foreach($variantList as  $variant) {
+      
+        $variantItem = current($variant);?>
+                
+                <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
+                <div class="variantOptionKey"><?php echo key($variant);?></div>
+        
+    <?php
+       }?>
+            </td>
+            <td valign="bottom" align="right">$<?php echo money_format('%i', $item->getVariantSurcharges());?></td>
+            <td></td>
+        </tr>
+        <?php
+    }
         if(strlen($item->getCustomText()) > 0) {
  ?>
         <tr>
@@ -61,7 +86,7 @@ if(count($items) == 0) {
 ?>
 <tr>
     <td colspan="3" align="right">Subtotal:</td>
-    <td>$<?php echo number_format($basket->getSubtotal(), 2);?></td>
+    <td align="right">$<?php echo number_format($basket->getSubtotal(), 2);?></td>
     <td></td>
 </tr>
 </table>

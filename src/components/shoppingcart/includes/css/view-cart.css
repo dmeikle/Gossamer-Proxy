@@ -1,0 +1,12 @@
+
+
+
+.variantOptionKey {
+    float: left;
+    
+}
+.variantOptionSurcharge {
+    margin-right: 30px;
+    float:right;
+    clear: both;
+}

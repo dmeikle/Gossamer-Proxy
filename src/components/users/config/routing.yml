@@ -1,5 +1,51 @@
 
-          
+
+portal_login:
+    pattern: portal/entrance
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_login
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/staff/locales/*/login'
+    methods: [GET]     
+    
+portal_login_submit:
+    pattern: portal/entrance
+    listeners:
+        - { 'event': 'login_password_mismatch', 'listener': 'components\users\listeners\PasswordMismatchListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_status_locked', 'listener': 'components\users\listeners\StatusLockedListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_success', 'listener': 'components\users\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
+       # - { 'event': 'login_status_not_active', 'listener': 'components\staff\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\users\UsersComponent
+        controller: components\users\controllers\LoginController
+        model: components\users\models\UserModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [POST]
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+# this is the legacy stuff - might not need it          
 users_get:
     pattern: users/get/*
 #    defaults: { _controller: UserComponent:User:2nd }
@@ -90,7 +136,7 @@ admin_login:
         viewKey: admin_login
         datasource: datasource1
         langFiles: 
-            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/framework/core/components/locales/resources/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
     
@@ -109,6 +155,6 @@ admin_login_submit:
         viewKey: admin_login_submit
         datasource: datasource1
         langFiles: 
-            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/components/shoppingcart/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [POST]

@@ -14,8 +14,12 @@ class Basket {
     
     private $defaultLocale;
     
-    public function construct($defaultLocale = 'en_US') {
-        $this->defaultLocale = $defaultLocale;
+    public function construct($defaultLocale = null) {
+        if(is_null($defaultLocale)) {
+            $this->defaultLocale = 'en_US';
+        }
+        $this->defaultLocale = $defaultLocale['locale'];
+        
     }
     public function add(BasketItem $item) {
         $key = uniqid();
@@ -28,7 +32,7 @@ class Basket {
         if(!array_key_exists($key, $this->list)) {
             throw new BasketItemNotFoundException($key . ' does not exist in basket list');
         }
-        $this->subTotal -= $this->list[$key]->getSubtotal();
+        //$this->subTotal -= $this->list[$key]->getSubtotal();
         
         unset($this->list[$key]);
     }
@@ -38,9 +42,14 @@ class Basket {
     }
     
     public function getSubtotal() {
+        
+        if(is_null($this->list) ) {
+            return 0;
+        }
         $total = 0;
         foreach($this->list as $item) {
             $total += floatval(str_replace(',','',$item->getSubTotal()));
+            $total += floatval(str_replace(',','',$item->getVariantSurcharges()));
         }
         
         return $total;

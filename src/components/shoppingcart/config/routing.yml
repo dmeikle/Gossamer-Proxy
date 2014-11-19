@@ -201,7 +201,6 @@ cart_admin_sale_edit:
 
 cart_admin_category_jsonload:
     pattern: admin/cart/category/jsonLoad/*
-#    defaults: { _controller: UserComponent:User:2nd }
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\CategoriesController
@@ -212,6 +211,127 @@ cart_admin_category_jsonload:
         datasource: datasource1
     methods: [GET]
 
+    
+cart_admin_variant_edit:
+    pattern: admin/cart/variant/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]        
+    
+cart_admin_variant_save:
+    pattern: admin/cart/variant/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
+    
+cart_admin_variants_list:
+    pattern: admin/cart/variants 
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: cart_admin_variants_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+        
+
+cart_admin_variant_options_list:
+    pattern: admin/cart/variants/*  
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantOptionsController
+        model: components\shoppingcart\models\VariantOptionModel
+        method: getOptionsByVariantId
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_option_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
+   
+
+cart_admin_variant_option_select:
+    pattern: admin/cart/variants/select/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: listAllVariantsAndOptions
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_option_select
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
+    
+cart_admin_variant_select_save:
+    pattern: admin/cart/variants/select/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantsController
+        model: components\shoppingcart\models\VariantGroupModel
+        method: saveAllVariantsAndOptions
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_select_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
+    
+cart_admin_variant_option_edit:
+    pattern: admin/cart/variants/*/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantOptionsController
+        model: components\shoppingcart\models\VariantOptionModel
+        method: editOption
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_option_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
+    
+cart_admin_variant_option_save:
+    pattern: admin/cart/variants/*/*
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\VariantOptionsController
+        model: components\shoppingcart\models\VariantOptionModel
+        method: saveOption
+        view: core\views\TemplateView
+        viewKey: cart_admin_variant_option_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Variants'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
 
 cart_categories_list:
     pattern: cart
@@ -321,7 +441,8 @@ cart_remove_basket:
     
 cart_products_view_selected:
     pattern: cart/*/*/*
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadProductVariantsListener', 'datasource': 'datasource1'}    
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\ProductsController

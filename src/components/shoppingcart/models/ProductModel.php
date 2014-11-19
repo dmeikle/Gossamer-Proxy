@@ -7,6 +7,8 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use core\eventlisteners\Event;
+
 
 class ProductModel extends AbstractModel
 {
@@ -43,9 +45,12 @@ class ProductModel extends AbstractModel
         $params = array('id' => $itemId );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-     
+        
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', new Event('before_render_start', $data));
+        
         $data['pageTitle'] = 'Art Wall Tablets';
         $data['title'] = 'Home Decor | ' . $data['Product'][0]['locales']['en_US']['title'];
+        $data['ProductVariantList'] = $this->httpRequest->getAttribute('ProductVariantList');
         
         $this->render($data);
     }
@@ -58,10 +63,16 @@ class ProductModel extends AbstractModel
         );
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
- 
+        
         //loaded from event dispatcher
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
-        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], array_column($data['Product'][0]['ProductCategory'], 'Categories_id'));
+        $productCategories = array();
+        
+        if(!is_null($data['Product'][0]['ProductCategory'])) {
+            $productCategories = array_column($data['Product'][0]['ProductCategory'], 'Categories_id');
+        }
+        pr($data);
+        $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
         $this->render($data);
     }

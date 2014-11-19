@@ -1,10 +1,10 @@
 <?php
 
-define('__SITE_PATH','/var/www/phoenix-portal/htdocs');
 
-require_once('/var/www/phoenix-portal/htdocs/vendor/composer/ClassLoader.php');
+include_once('phpunit.configuration.php');
+require_once('vendor/composer/ClassLoader.php');
  $loader = new Composer\Autoload\ClassLoader();
- 
+
       // register classes with namespaces
       $loader->add('components', __SITE_PATH .'/src');
       $loader->add('usercommands', __SITE_PATH.'/src');
@@ -18,9 +18,9 @@ require_once('/var/www/phoenix-portal/htdocs/vendor/composer/ClassLoader.php');
       $loader->add('libraries', __SITE_PATH.'/app');
       $loader->add('security', __SITE_PATH.'/app');
       $loader->add('Monolog', __SITE_PATH.'/vendor/monolog/monolog/src');
- 
+
       // activate the autoloader
       $loader->register();
- 
+
       // to enable searching the include path (eg. for PEAR packages)
       $loader->setUseIncludePath(true);

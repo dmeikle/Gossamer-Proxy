@@ -174,3 +174,45 @@ cart_admin_sale_view:
             "section2": "src/components/shoppingcart/views/admin/buyer-info.php"
             "section3": "src/components/shoppingcart/views/admin/buyer-product-info.php"
             "section5": "src/themes/default/templates/sections/footer.php"    
+            
+cart_admin_variants_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section3": "src/components/shoppingcart/views/admin/variant-groups.php"
+            "section5": "src/themes/default/templates/sections/footer.php"   
+            
+cart_admin_variant_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section3": "src/components/shoppingcart/views/admin/variant-group-edit.php"
+            "section5": "src/themes/default/templates/sections/footer.php" 
+    
+            
+cart_admin_variant_options_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section3": "src/components/shoppingcart/views/admin/variant-options.php"
+            "section5": "src/themes/default/templates/sections/footer.php" 
+    
+cart_admin_variant_option_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section3": "src/components/shoppingcart/views/admin/variant-option-edit.php"
+            "section5": "src/themes/default/templates/sections/footer.php"
+
+cart_admin_variant_option_select:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section3": "src/components/shoppingcart/views/admin/variant-options-select.php"
+            "section5": "src/themes/default/templates/sections/footer.php"
+    

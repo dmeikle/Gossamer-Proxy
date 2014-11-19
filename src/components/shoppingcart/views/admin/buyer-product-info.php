@@ -1,4 +1,6 @@
-
+<!--- css start --->
+@components/shoppingcart/includes/css/view-cart.css
+<!--- css end --->
 
 <?php
 
@@ -29,6 +31,7 @@ if(count($basket) == 0) {
 } else {
     $items = $basket->items();
     foreach($items as $item) {
+     
     ?>
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
@@ -37,6 +40,28 @@ if(count($basket) == 0) {
             <td><?php echo $item->getSubtotal();?></td>            
         </tr>               
 <?php
+    $variantList = $item->getVariants();
+    
+    if(!is_null($variantList)) {
+        
+?>
+        <tr>
+            <td align="right">Options:</td><td colspan="2">
+            <?php
+    foreach($variantList as  $key => $variant) {
+     $variantItem = current($variant)
+         ?>
+                <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
+                <div class="variantOptionKey"><?php echo key($variant);?></div>
+        
+    <?php
+       }?>
+            </td>
+            <td valign="bottom" align="right">$<?php //echo money_format('%i', $item->getVariantSurcharges());?></td>
+            <td></td>
+        </tr>
+        <?php
+    }
         if(strlen($item->getCustomText()) > 0) {
  ?>
         <tr>

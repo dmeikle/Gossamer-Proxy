@@ -32,7 +32,7 @@ class DefaultModel extends  AbstractModel
     
      public function index(array $params) {  
          
-        $this->render($params);
+        return $params;
     }
     
     

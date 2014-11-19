@@ -17,46 +17,6 @@ default_about:
         - "section2": "src/components/users/views/leftnav.php"
         - "section3": "src/components/defaultItem/views/content/about.php"
         - "section4": "src/themes/default/templates/sections/footer.php"
-        
-default_about_glen:
-    template: home.php
-    sections: 
-        - "section1": "src/themes/default/templates/sections/header.php"
-        - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/about-glen-meikle.php"
-        - "section4": "src/themes/default/templates/sections/footer.php"
-   
-default_wall_tablets:
-    template: home.php
-    sections: 
-        - "section1": "src/themes/default/templates/sections/header.php"
-        - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/wall-tablets.php"
-        - "section4": "src/themes/default/templates/sections/footer.php"
-   
-default_design1:
-    template: home.php
-    sections: 
-        - "section1": "src/themes/default/templates/sections/header.php"
-        - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/design.php"
-        - "section4": "src/themes/default/templates/sections/footer.php"
-   
-default_design2:
-    template: home.php
-    sections: 
-        - "section1": "src/themes/default/templates/sections/header.php"
-        - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/design2.php"
-        - "section4": "src/themes/default/templates/sections/footer.php"
-   
-default_inspiration:
-    template: home.php
-    sections: 
-        - "section1": "src/themes/default/templates/sections/header.php"
-        - "section2": "src/components/users/views/leftnav.php"
-        - "section3": "src/components/defaultItem/views/content/inspiration.php"
-        - "section4": "src/themes/default/templates/sections/footer.php"
    
 default_contact:
     template: home.php
@@ -74,3 +34,13 @@ default_collection:
         - "section2": "src/components/users/views/leftnav.php"
         - "section3": "src/components/defaultItem/views/content/collection.php"
         - "section4": "src/themes/default/templates/sections/footer.php"        
+        
+admin_home:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section3": "src/components/defaultItem/views/admin/home.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+          
+    

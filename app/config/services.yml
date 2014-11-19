@@ -11,5 +11,21 @@
     'datasource': 'datasource3'
     'arguments': 
         security_context: '@security_context'
-        authentication_manager: '@authentication_userlogin_manager'   
+        authentication_manager: '@authentication_userlogin_manager'
+        
+ 
+'staff_login_auth': 
+    'handler': 'core\components\security\handlers\AuthenticationHandler'
+    'datasource': 'datasource3'
+    'arguments': 
+        security_context: '@security_context'
+        authentication_manager: '@authentication_stafflogin_manager'    
+        
+ 
+'user_login_auth': 
+    'handler': 'core\components\security\handlers\AuthenticationHandler'
+    'datasource': 'datasource3'
+    'arguments': 
+        security_context: '@security_context'
+        authentication_manager: '@authentication_userlogin_manager'      
      

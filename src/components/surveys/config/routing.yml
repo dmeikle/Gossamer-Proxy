@@ -1,0 +1,100 @@
+    
+admin_surveys_scopeforms_list:
+    pattern: admin/surveys/scopeforms/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_scopeforms_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            
+admin_surveys_scopeforms_edit:
+    pattern: admin/surveys/scopeforms/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_scopeforms_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            
+            
+   
+admin_surveys_sheetquestions_list:
+    pattern: admin/surveys/sheetquestions/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetquestions_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'   
+   
+admin_surveys_sheetquestions_edit:
+    pattern: admin/surveys/sheetquestions/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetquestions_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            
+          
+            
+
+   
+admin_surveys_sheetanswers_list:
+    pattern: admin/surveys/sheetanswers/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetanswers_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            
+  
+admin_surveys_sheetanswers_search:
+    pattern: admin/surveys/sheetanswers/search
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_surveys_sheetanswers_search
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    
+    
+admin_surveys_sheetanswers_edit:
+    pattern: admin/surveys/sheetanswers/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetanswers_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            

@@ -18,8 +18,13 @@ class CartModel extends AbstractModel{
     
     public function add() {
         $params = $this->httpRequest->getPost();
+      
         //load original to avoid tampering with price
         $basketItem = new BasketItem($this->getProduct($params['product']));
+        if(array_key_exists('variants', $params['product'])) {
+            $basketItem->setVariants($params['product']['variants']);
+        }
+        
         $basket = $this->getBasket();
         
         $basket->add($basketItem);
@@ -63,6 +68,11 @@ class CartModel extends AbstractModel{
        
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
        
+        if(is_null($result)) {
+            die('there was an error saving');
+            //there  was an error - handle it here. I suggest making render() receive an optional param to load a different view 
+        }
+       
         $defaultLocale =  $this->getDefaultLocale();
         $this->render(
             array(
@@ -92,7 +102,7 @@ class CartModel extends AbstractModel{
         $this->setBasket($basket);        
         
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale']));
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart'));
     }
     
     private function getProduct(array $rawProduct) {
@@ -105,12 +115,13 @@ class CartModel extends AbstractModel{
        
         $result = $this->dataSource->query(self::METHOD_GET, new ProductModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_GET, $params);
         $dbProduct = current($result['Product']);
-        
+       
         $dbProduct['customText'] = (array_key_exists('customText', $product))? $product['customText'] : '';
         $dbProduct['quantity'] = $product['quantity'];
         
         return $dbProduct;
     }
+    
     
     private function getBasket() {
        
@@ -128,7 +139,8 @@ class CartModel extends AbstractModel{
         $basket = $this->getBasket();          
         
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'title' =>' view cart', 'pageTitle' => 'View Cart'));
+        
+        $this->render(array('Basket' => $basket, 'locale' => $defaultLocale, 'title' =>' view cart', 'pageTitle' => 'View Cart'));
     }
     
     private function setBasket(Basket $basket) {
