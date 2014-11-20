@@ -72,10 +72,12 @@ class AbstractModel
        
     }
     
+
     protected function isFailedValidationAttempt() {
         return !is_null($this->httpRequest->getAttribute('ERROR_RESULT'));
     }
     
+
     public function getComponentName() {
         $pieces = explode(DIRECTORY_SEPARATOR, $this->childNamespace);
         array_pop($pieces);
@@ -137,11 +139,12 @@ class AbstractModel
     
     public function edit($id) {
      
+
         if($this->isFailedValidationAttempt()) {
            
             return $this->httpRequest->getAttribute('POSTED_PARAMS');
         }
-        
+
         $params = array(
             'id' => intval($id)
         );

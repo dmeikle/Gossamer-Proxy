@@ -53,7 +53,7 @@ class ValidateFormListener extends AbstractListener
        $this->validate($params);
    }
    
-  
+
    private function formatPostedArrayforFramework() {
        $retval = array();
        $key = key($this->httpRequest->getPost());
@@ -61,4 +61,5 @@ class ValidateFormListener extends AbstractListener
        
        return $retval;
    }
+
 }

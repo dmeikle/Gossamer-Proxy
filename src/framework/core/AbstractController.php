@@ -79,10 +79,13 @@ class AbstractController
 
     }
     
+
+    
     protected function isFailedValidationAttempt() {
         return !is_null($this->httpRequest->getAttribute('ERROR_RESULT'));
     }
-    
+
+        
     //injection method intended for overriding the default view in case of Exception
     public function setView(AbstractView $view) {
         $this->view = $view;

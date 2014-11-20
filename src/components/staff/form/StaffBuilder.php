@@ -14,8 +14,9 @@ class StaffBuilder extends AbstractBuilder{
     
     
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-        $builder->addValidationResults($validationResults['Staff']);
-      
+
+        $builder->addValidationResults($validationResults['Staff']);      
+
         $builder->add('firstname', 'text', array('class' => 'form-control', $this->getValue('firstname', $values)))
                 ->add('lastname', 'text', array('class' => 'form-control', $this->getValue('lastname', $values)))
                 ->add('telephone', 'text', array('class' => 'form-control', $this->getValue('firstname', $values)))

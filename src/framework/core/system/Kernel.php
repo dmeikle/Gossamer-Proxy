@@ -74,6 +74,6 @@ class Kernel
         $request->setAttribute('POSTED_PARAMS', getSession('POSTED_PARAMS'));
         setSession('ERROR_RESULT', null);
         setSession('POSTED_PARAMS', null);
-        
+
     }
 }

@@ -31,6 +31,7 @@ class StaffController extends AbstractController
        
         if(is_array($result) && array_key_exists('Staff', $result)) {
             $staff = current($result['Staff']);            
+
             $result['form'] = $this->drawForm($this->model, $staff);
         } else {
              $result['form'] = $this->drawForm($this->model, array());

@@ -74,7 +74,9 @@ class StaffModel extends  AbstractModel implements FormBuilderInterface
     }
 
     public function getFormWrapper() {
-        return 'Staff';
+
+        return $this->entity;
+
     }
 
 }
