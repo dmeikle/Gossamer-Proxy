@@ -32,7 +32,7 @@ class Kernel
 
         $httpRequest = $this->container->get('HTTPRequest');
         $httpResponse = $this->container->get('HTTPResponse');
-      
+
         $componentName = $controllerNode['component'];
         $controllerName = $controllerNode['controller'];
         $modelName = $controllerNode['model'];
@@ -55,7 +55,7 @@ class Kernel
         
         $cmd = new $componentName($controllerName, $viewName, $modelName, $method,$httpRequest->getParameters(), $this->logger, $this->getLayoutType());  
         $cmd->setContainer($this->container);
-              
+       
         return $cmd->handleRequest($httpRequest, $httpResponse);
     }
  

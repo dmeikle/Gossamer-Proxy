@@ -18,7 +18,7 @@ class UsernameExistsListener extends AbstractListener{
        
         $staff = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $post = $this->httpRequest->getPost();
-        $staffData = $post['staff'];
+        $staffData = $post['Staff'];
      
         $params = array('username'=> $staffData['username']);
         

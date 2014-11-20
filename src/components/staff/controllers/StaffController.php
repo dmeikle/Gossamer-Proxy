@@ -12,7 +12,7 @@ use components\staff\form\StaffBuilder;
 class StaffController extends AbstractController
 {
     public function save($id) {
-        
+        $this->render(array());
     }
     public function savePermissions($id) {
         $result = $this->model->savePermissions($id);

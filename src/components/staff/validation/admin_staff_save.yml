@@ -68,7 +68,7 @@ fields:
             class: Required     
             failkey: VALIDATION_REQUIRED_FIELD
         -
-            class: Email
+            class: String
             failkey: VALIDATION_INVALID_CITY
             params:
                 - maxlength: 50 
@@ -78,7 +78,7 @@ fields:
             class: Required     
             failkey: VALIDATION_REQUIRED_FIELD
         -
-            class: Email
+            class: Integer
             failkey: VALIDATION_INVALID_PROVINCE
             params:
                 - maxlength: 50 
@@ -91,9 +91,9 @@ fields:
                 - maxlength: 50 
 
     - password:
-       # - 
-       #     class: Required      
-       #     failkey: VALIDATION_REQUIRED_FIELD          
+        - 
+            class: Required      
+            failkey: VALIDATION_REQUIRED_FIELD          
         - 
             class: Password
             failkey: VALIDATION_INVALID_PASSWORD

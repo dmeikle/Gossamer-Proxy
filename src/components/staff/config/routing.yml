@@ -60,8 +60,8 @@ admin_staff_save:
     pattern: admin/staff/edit/*
     listeners:
         - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_login' }}   
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\NewStaffPasswordsMatchListener', 'params': {'failkey': 'admin_login' }}    
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\NewStaffPasswordValidListener', 'params': {'failkey': 'admin_staff_edit' }}    
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_edit' }}   
         - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}    
     defaults:
         component: components\staff\StaffComponent

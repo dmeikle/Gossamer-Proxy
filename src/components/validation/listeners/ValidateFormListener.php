@@ -33,22 +33,24 @@ class ValidateFormListener extends AbstractListener
     protected function validate($params = array()) {
 
         $result = $this->validator->validateRequest($this->httpRequest->getPost(), true);
-   
+ 
         if(is_array($result) && count($result) > 0) {
         
             setSession('ERROR_RESULT', $result);
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
-            $router = new Router($this->logger);
+            $router = new Router($this->logger, $this->httpRequest);
             $router->redirect($result['FAIL_KEY']);
         }
        
         setSession('ERROR_RESULT', null);
         setSession('POSTED_PARAMS', NULL);
    }
+   
    public function on_request_start($params = array()) {
        $this->validate($params);
    }
+   
    public function on_entry_point($params = array()) {
        $this->validate($params);
    }

@@ -88,7 +88,7 @@ abstract class AbstractComponent
         );
 
         if (is_callable($handler)) {
-        
+      
             //$commandName = $this->command;
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
          
@@ -103,7 +103,8 @@ abstract class AbstractComponent
             $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $this->logger);
           
             $controller->setContainer($this->container);
-            try{
+            try{  
+                
                 return call_user_func_array(array(
                     $controller,
                     $this->method
