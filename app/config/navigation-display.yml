@@ -1,0 +1,166 @@
+
+
+admin_home:
+    text_key: 'ADMIN_HOME'
+    pattern: '/admin/home'
+    display_roles:
+        - IS_ADMIN
+        - IS_STAFF
+        
+staff_list:
+    text_key: 'ADMIN_STAFF'
+    pattern: '/admin/staff/0/20'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+
+        
+admin_scoping:
+    text_key: 'ADMIN_SCOPING'
+    pattern: '/admin/scoping/requests/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_SCOPER
+        - IS_PROJECT_MANAGER
+        
+admin_claims:
+    text_key: 'ADMIN_CLAIMS'
+    pattern: '/admin/claims/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ADMIN
+        - IS_STAFF
+        
+admin_contents:
+    text_key: 'ADMIN_CONTENTS'
+    pattern: '/admin/contents/jobs/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+samples_list:
+    text_key: 'ADMIN_SAMPLES'
+    pattern: '/admin/samples/0/20'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_contacts:
+    text_key: 'ADMIN_CONTACTS'
+    pattern: '/admin/contacts/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_inventory:
+    active: false
+    text_key: 'ADMIN_INVENTORY'
+    pattern: '/admin/inventory'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_keys:
+    active: false
+    text_key: 'ADMIN_KEYS'
+    pattern: '/admin/keys/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_notifications:
+    active: true
+    text_key: 'ADMIN_NOTIFICATIONS'
+    pattern: '/admin/notifications/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_messages:
+    active: true
+    text_key: 'ADMIN_MESSAGES'
+    pattern: '/admin/messaging/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_reminders:
+    active: true
+    text_key: 'ADMIN_REMINDERS'
+    pattern: '/admin/reminders/0/20'
+    display_roles:
+        - IS_STAFF
+        
+admin_satisfaction:
+    active: false
+    text_key: 'ADMIN_SATISFACTION'
+    pattern: '/admin/satisfaction'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+        
+admin_call_matrix:
+    active: false
+    text_key: 'ADMIN_CALL_MATRIX'
+    pattern: '/admin/callmatrix/0/14'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+        
+admin_deficiencies:
+    active: false
+    text_key: 'ADMIN_DEFICIENCIES'
+    pattern: '/admin/deficiencies/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        
+admin_subcontractors:
+    active: false
+    text_key: 'ADMIN_SUBCONTRACTORS'
+    pattern: '/admin/subcontractors/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        
+admin_accounting:
+    active: false
+    text_key: 'ADMIN_ACCOUNTING'
+    pattern: '/admin/accounting'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+        - IS_ACCOUNTING
+        
+admin_workperformed:
+    active: true
+    text_key: 'ADMIN_WORKPERFORMED'
+    pattern: '/admin/workperformed/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+        - IS_ACCOUNTING
+         
+        
+        
+admin_environmental:
+    active: true
+    text_key: 'ADMIN_ENVIRONMENTAL'
+    pattern: '/admin/environmental/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR         
+        - IS_STAFF 
+    
+
+admin_cms:
+    active: true
+    text_key: 'ADMIN_CMS'
+    pattern: '/admin/cms/pages/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR         
+        - IS_EDITOR 
+        

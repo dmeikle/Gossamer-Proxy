@@ -3,7 +3,7 @@
     <?php
         
         foreach($SystemLocalesList as $key => $systemlocale) {
-            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
+            //echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
         }
         ?>
     </ul>
@@ -11,37 +11,38 @@
         <input type="hidden" name="locale" id="locale" />
     </form>
   </div>
+<!--
 
-
-<div id="locales"> <i class="fa fa-shopping-cart"></i>  | 
+<div id="locales">
     <?php //$locale = $this->getDefaultLocale();?>
-   <!-- <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];?>.gif">-->
+   <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];?>.gif">
    <a class="select-locale" data-id="en_US">EN</a> 
    <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
 </div>
-<div id="logo"><a title="home decor" class="invisible" href="/">glen meikle</a></div>
-<nav>
-        <ul>
-        <li><a href="/" title="asian home decor"><?php echo $this->getString('NAV_HOME');?></a></li>
-        <li class="has-sub"><a href="/about"><?php echo $this->getString('NAV_ARTIST_PROFILE');?></a>
-            <ul>
-                <li><a href="/glen-meikle" title="glen meikle"><?php echo $this->getString('NAV_GLEN_MEIKLE');?></a></li>
-                <li><a href="/wall-tablets" title="wall art tablets"><?php echo $this->getString('NAV_WALL_TABLETS');?></a></li>
-            </ul>
-        </li>
-        <li><a href="/cart/Wall Tablets/"><?php echo $this->getString('NAV_CART');?></a></li> 
-        <li><a href="/design"><?php echo $this->getString('NAV_DESIGN');?></a>
-            <ul>
-                <li><a href="/design"><?php echo $this->getString('NAV_LAYOUT_1');?></a>
-                <li><a href="/design2"><?php echo $this->getString('NAV_LAYOUT_2');?></a>
-            </ul>
-        </li>
-        <li><a href="/inspiration" title="chinese wall art"><?php echo $this->getString('NAV_INSPIRATION');?></a></li>
-        <li><a href="/contact"><?php echo $this->getString('NAV_CONTACT');?></a></li>
+-->
+<div id="header">
+      <div id="logo">Phoenix Restorations</div>
+    <div id="account">
+        <a href="/portal/contacts/settings"><span class="glyphicon glyphicon-cog" title="Account Settings"></span></a> 
+          <span class="glyphicon glyphicon-envelope" title="view all messages"></span>
+          <span class="glyphicon glyphicon-comment" title="view all notifications"></span>
+          <span class="glyphicon glyphicon-bell" title="view all alerts"></span>
+          <span class="glyphicon glyphicon-flash" title="view all incident reports"></span>
+    </div>
+<ul id="nav">
+            <li><a href="/admin/home">Home</a></li>
+        
+            <li><a href="/admin/staff/0/20">Claims</a></li>
+        
+            <li><a href="/admin/claims/0/20">Events</a></li>
+        
+            <li><a href="/admin/contents/0/20">Messaging</a></li>
+        
+            <li><a href="/admin/inventory">FAQ</a></li>
+        
+            <li>Invoices</li>
+        
     </ul>
-  
- 
-</nav>
-
-<div id="pagetitle"><?php echo $pageTitle;?></div>
+    <!---section2--->
+  </div>
 

@@ -1,9 +1,9 @@
 
 locale:
-    component: "app/core/components/locales/config/routing.yml"
+    component: "src/framework/core/components/locales/config/routing.yml"
 
 locales:
-    component: "app/core/components/locales/config/routing.yml"
+    component: "src/framework/core/components/locales/config/routing.yml"
 
 
 default:
@@ -11,19 +11,7 @@ default:
     
 about:
     component: "src/components/defaultItem/config/routing.yml"
-
-glen-meikle:
-    component: "src/components/defaultItem/config/routing.yml"    
-wall-tablets:
-    component: "src/components/defaultItem/config/routing.yml"     
-collection:
-    component: "src/components/defaultItem/config/routing.yml"     
-design:
-    component: "src/components/defaultItem/config/routing.yml"     
-design2:
-    component: "src/components/defaultItem/config/routing.yml"     
-inspiration:
-    component: "src/components/defaultItem/config/routing.yml"     
+  
 contact:
     component: "src/components/defaultItem/config/routing.yml"     
 
@@ -31,13 +19,77 @@ users:
     component: "src/components/users/config/routing.yml"
  
 login:
-    component: "src/components/users/config/routing.yml"    
+    component: "src/components/staff/config/routing.yml"    
     
-app:
-    component: "src/components/users/config/routing.yml"
+staff:
+    component: "src/components/staff/config/routing.yml"
     
-
+entrance:
+    component: "src/components/contacts/config/routing.yml"  
+    
 cart:
     component: "src/components/shoppingcart/config/routing.yml"
+    
+home:
+    component: "src/components/defaultItem/config/routing.yml"
+    
+scoping:
+    component: "src/components/scoping/config/routing.yml"
+    
+projects:
+    component: "src/components/projects/config/routing.yml"
+    
+companies:
+    component: "src/components/companies/config/routing.yml"
+    
+claim:
+    component: "src/components/claims/config/routing.yml"
+claims:
+    component: "src/components/claims/config/routing.yml"
+claimlocations:   
+    component: "src/components/claims/config/routing.yml"
+    
+    
+subcontractors:
+    component: "src/components/subcontractors/config/routing.yml"
+    
+callmatrix:
+    component: "src/components/callmatrix/config/routing.yml"
+
+contacts:
+    component: "src/components/contacts/config/routing.yml"
+    
+fileuploads:
+    component: "src/components/fileuploads/config/routing.yml"
+
+scheduling:
+    component: "src/components/scheduling/config/routing.yml"
+contents:
+    component: "src/components/contents/config/routing.yml"
+
+samples:
+    component: "src/components/samples/config/routing.yml"
+    
+workperformed:
+    component: "src/components/workperformed/config/routing.yml"
+    
+surveys:
+    component: "src/components/surveys/config/routing.yml"
+    
+cms:
+    component: "src/framework/core/components/cms/config/routing.yml"
+    
+messaging:
+    component: "src/components/messaging/config/routing.yml"
+    
+notifications:
+    component: "src/components/notifications/config/routing.yml"
+
+reminders:
+    component: "src/components/reminders/config/routing.yml"
+    
 
 
+#this is the default fallback to use if not found
+restoration:   
+    component: "src/components/cms/config/routing.yml" 

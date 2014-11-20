@@ -1,0 +1,123 @@
+/* CSS Document */
+
+
+*{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	
+}
+
+#container {
+	background-color: rgba(255, 255, 255, 0);	
+	padding: 50px;
+	width: 1000px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+
+#container-fluid {
+    background-color: rgba(255, 255, 255, 0);	
+    padding: 50px;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+}
+
+ #header {
+	width: 100%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	height: 210px;
+}
+ #header-admin {
+	width: 100%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	height: 110px;
+}
+
+#header-admin #logo {    
+	background-image: url(/images/logo.png);
+	background-repeat: no-repeat;
+        width: 187px;
+        height: 110px;
+        text-indent: -9999px;
+        float:left;
+}
+#header-admin #nav {
+    clear:both;
+}
+
+ #header-admin ul li{
+	display:inline;
+        margin-left:20px;
+}
+
+ #header-admin .subnav ul li{
+	display:inline;
+        margin:0px 0px 20px 20px;
+}
+
+.form-standard {
+	max-width: 950px;
+}
+#container #lower, #container-fluid #lower {
+    clear:both;
+    margin-top: 40px;
+}
+#container-fluid #lower-reduced {
+	 margin: 40px auto;
+}
+
+#container #lower #payload, #container-fluid #lower-reduced #payload {
+	float: left;
+	width: 900px;
+    margin-top: 20px;
+}
+#container-fluid #lower #payload {
+	float: left;
+	width: 100%;
+        margin-top: 20px;
+}
+ #lower #payload #phase {
+	width: 50px;
+	float: left;
+}
+ #lower #payload #phase a #phase-number {
+	font-size: 36px;
+	line-height: 36px;
+	text-align: center;
+}
+ #lower #payload #address #name {
+	float: left;
+	font-size: 36px;
+	line-height: 40px;
+}
+
+
+#footer{
+    clear:both;
+}
+#footer #footerNav ul li {
+    display: inline;
+}
+
+
+
+
+.selectable .ui-selected {background: #5d69ad; color: white; }
+.selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+.selectable li { padding:5px; margin: 3px;  font-size: 1.4em; }
+.selectable label input{visibility: hidden;}
+.selectable label{display:block; border-radius:5px; border: 1px solid #ccc; cursor: pointer;}  
+.selectable label.ui-selected{background: #5d69ad; color: white;}
+#container #lower #leftcolumn {
+	float: left;
+	width: 100px;
+}

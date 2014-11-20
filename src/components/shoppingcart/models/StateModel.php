@@ -7,6 +7,8 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use core\eventlisteners\Event;
+
 
 class StateModel extends AbstractModel
 {
@@ -27,7 +29,7 @@ class StateModel extends AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', $data);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', new Event('before_render_start', $data));
         
         $data['pageTitle'] = 'Art Wall Tablets';
         $data['title'] = 'Home Decor | ' . $data['Product'][0]['locales']['en_US']['title'];

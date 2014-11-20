@@ -132,7 +132,7 @@ class VariantGroupModel extends AbstractModel
         if(!array_key_exists('VariantGroup', $data)) {
             $data['VariantGroup'] = array();
         }
-         $this->render($data);
+         return $data;
     }
     
     public function save($id) {

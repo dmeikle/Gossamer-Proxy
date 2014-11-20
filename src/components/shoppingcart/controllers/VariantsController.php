@@ -13,7 +13,9 @@ class VariantsController extends AbstractController
 //        $variant = $this->model->get(intval($id));
 //        $optionsModel = new VariantOptionModel();
 //        $options = $optionsModel->getByCategoryId($id);
-        $this->model->edit($id);
+        $result = $this->model->edit($id);
+        
+        $this->render($result);
     }
     
     public function getOptionsByVariantId($id) {

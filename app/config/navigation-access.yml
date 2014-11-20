@@ -1,0 +1,17 @@
+
+admin_home:
+    pattern: 'admin'
+    roles:
+        - IS_ADMINISTRATOR
+        
+admin_staff:
+    pattern: 'admin/staff'
+    roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        
+admin_contacts:
+    pattern: 'admin/contacts'
+    roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR

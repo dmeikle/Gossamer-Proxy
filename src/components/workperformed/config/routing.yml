@@ -1,0 +1,27 @@
+
+
+admin_workperformed_list:
+    pattern: admin/workperformed/*/*
+    defaults:
+        component: components\workperformed\WorkPerformedComponent
+        controller: components\workperformed\controllers\WorkPerformedController
+        model: components\workperformed\models\WorkPerformedModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_workperformed_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            
+admin_workperformed_edit:
+    pattern: admin/workperformed/*
+    defaults:
+        component: components\workperformed\WorkPerformedComponent
+        controller: components\workperformed\controllers\WorkPerformedController
+        model: components\workperformed\models\WorkPerformedModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_workperformed_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            

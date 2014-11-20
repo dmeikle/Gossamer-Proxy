@@ -2,7 +2,6 @@
 namespace components\shoppingcart\listeners;
 
 use core\eventlisteners\AbstractListener;
-use libraries\utils\Registry;
 use components\shoppingcart\models\CategoryModel;
 
 class LoadCategoryIdListener extends AbstractListener

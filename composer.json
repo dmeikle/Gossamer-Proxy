@@ -18,7 +18,11 @@
 		"phpunit/phpunit": "4.0.*"
 	},
 	"require": {
-		"monolog/monolog": "1.2.*"
+		"monolog/monolog": "1.2.*",
+                "willdurand/geocoder": "@stable",
+                "quantumunit/php-validation": "dev-master",
+                "gossamer/form-builder": "dev-master",
+                "gossamer/caching": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}

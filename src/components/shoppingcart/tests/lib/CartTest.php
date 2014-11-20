@@ -4,7 +4,7 @@ namespace components\shoppingcart\tests\lib;
 
 use components\shoppingcart\lib\Cart;
 use core\datasources\DatasourceFactory;
-use components\shoppingcart\tests\BaseTest;
+use tests\BaseTest;
 
 class CartTest extends BaseTest
 {

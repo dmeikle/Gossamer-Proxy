@@ -3,14 +3,20 @@ all:
     listeners:        
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1'}
+         #commented out during debug testing
+        #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
+        - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
+        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}
+        - { 'event': 'response_start', 'listener': 'core\components\access\eventlisteners\LoadNavigationListener'}       
+        - { 'event': 'token_expired', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
+        - { 'event': 'token_missing', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
+        - { 'event': 'response_start', 'listener': 'core\components\locales\eventlisteners\StringifyBeforeRenderListener' }
             
-            
-        
-        
+          
     defaults:
         langFiles: 
-            - 'app/core/components/locales/resources/*/Navigation'
+            - 'src/framework/core/components/locales/resources/*/Navigation'
 index:
     listeners:
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
@@ -18,3 +24,24 @@ index:
     pattern:  /default/index
     defaults: { _controller: ProductBundle:Default:new }
     methods: [GET]
+    
+    
+exception:
+    defaults:        
+        viewKey: exception
+        #datasource: datasource1 - can be used for logging exceptions to database - not written yet
+        
+        
+        
+security:
+    #TODO: note to self - is this even implemented yet?
+    # authorization options are: 
+    #   precise (authorization on each uri) 
+    #       - this one requires a node in navigation-access.yml for each ymlKey that you want authorization on
+    #         if you don't want authorization on a uri/ymlkey then simply do not put the ymlkey/pattern in the 
+    #         navigation-access.yml file
+    #   general (authorization based on a uri section or folder)
+    #       - this one is 'sweeping' authorization. Authorization is based on finding the closest node above
+    #         the current URI, if no current node exists. Just like a folder structure security being defined
+    #         on the closest parent folder security options.
+    authorization: precise 

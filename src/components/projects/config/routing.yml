@@ -1,0 +1,14 @@
+projectaddress_autocomplete:
+    pattern: admin/projects/addresses/search
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: search
+        view: core\views\JSONView
+        viewKey: projectaddress_autocomplete
+        datasource: datasource1
+        
+        
+        
+        

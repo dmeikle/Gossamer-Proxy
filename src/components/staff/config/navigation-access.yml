@@ -1,0 +1,6 @@
+
+admin_staff_list:
+    pattern: 'admin/staff/list'
+    roles:
+        - IS_ADMIN
+        - IS_STAFF

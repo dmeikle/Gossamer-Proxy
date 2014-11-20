@@ -1,0 +1,79 @@
+
+     
+        #claimId/locationId
+admin_messaging_claim_list:
+    pattern: admin/messaging/claim/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\DiscussionModel
+        method: listallByClaim
+        view: core\views\TemplateView
+        viewKey: admin_messaging_claim_list
+        datasource: datasource1
+           
+   
+   #claimId/locationId/discussionId
+admin_messaging_create:
+    pattern: admin/messaging/create/*/*/*
+    methods: [GET]
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: create
+        view: core\views\TemplateView
+        viewKey: admin_messaging_create
+        datasource: datasource1   
+   
+admin_messaging_save:
+    pattern: admin/messaging/create/*/*/*
+    methods: [POST]
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_messaging_save
+        datasource: datasource1   
+        
+        
+admin_messaging_templates_list:
+    pattern: admin/messaging/templates/*/*
+    methods: [POST]
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_messaging_templates_list
+        datasource: datasource1       
+        
+
+admin_messaging_templates_edit:
+    pattern: admin/messaging/templates/*
+    methods: [GET]
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_messaging_templates_edit
+        datasource: datasource1              
+        
+        
+
+        
+admin_messaging_list:
+    pattern: admin/messaging/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_messaging_list
+        datasource: datasource1        

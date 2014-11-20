@@ -1,0 +1,442 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap 101 Template</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.bootstrap3.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+<!-- system framework --->
+<link rel="stylesheet" href="../css/framework.css" />
+    
+    
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed --> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
+<script src="/js/ie10-viewport-bug-workaround.js"></script> 
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+
+
+</head>
+
+<body>
+
+<div id="container-fluid">
+  <div id="header-admin">
+      <div id="logo">Phoenix Restorations</div>
+    
+<ul id="nav">
+            <li><a href="/admin/staff/0/20">Staff</a></li>
+        
+            <li><a href="/admin/scoping/requests/0/20">Scoping</a></li>
+        
+            <li><a href="/admin/claims/0/20">Claims</a></li>
+        
+            <li><a href="/admin/contents/jobs/0/20">Contents</a></li>
+        
+            <li><a href="/admin/samples/0/20">Samples</a></li>
+        
+            <li><a href="/admin/contacts/0/20">Contacts</a></li>
+        
+                <li title="disabled on this release">Inventory</li>
+                        <li title="disabled on this release">Keys</li>
+                    <li><a href="/admin/messages/0/20">Messaging</a></li>
+        
+                <li title="disabled on this release">Satisfaction</li>
+                        <li title="disabled on this release">Call Matrix</li>
+                        <li title="disabled on this release">Deficiencies</li>
+                        <li title="disabled on this release">SubContractors</li>
+                        <li title="disabled on this release">Accounting</li>
+                    <li><a href="/admin/workperformed/0/20">Work Actions</a></li>
+        
+            <li><a href="/admin/content/0/20">Content</a></li>
+        
+            <li><a href="/admin/environmental/0/20">Environmental</a></li>
+        
+            <li><a href="/admin/cms/0/20">ADMIN_CMS</a></li>
+        
+    </ul>
+     
+<ul class="subnav">
+    <li>
+        <a href="/admin/cms/pages/0/20">List All Pages</a>
+    </li>
+    <li>
+        <a href="/admin/cms/pages/0">Create New Page</a>
+    </li>
+    <li>
+        <a href="/admin/cms/sections/0/20">List All Sections</a>
+    </li>
+    <li>
+        <a href="/admin/cms/sections/0">Create New Section</a>
+    </li>
+    
+</ul> 
+  </div>
+  <div id="lower-reduced">
+    <div id="payload">  
+     
+
+<script src="https://cdn.ckeditor.com/4.4.5.1/standard/ckeditor.js"></script>
+
+<script language="javascript">
+
+$(document).ready(function() {
+    $("#page_name").keyup(function(){
+        var text = $("#page_name").val();
+        if(!validate(text)) {
+            $("#page_name_container").addClass('has-error');
+            $('#page_name_message').toggle(true);
+            return;
+        } else {
+            $("#page_name_container").removeClass('has-error');
+            $('#page_name_message').toggle(false);
+        }
+       
+        text = text.replace(/ /g, '-');        
+        $("#permalink").val(text);
+        $("#permalink").trigger('keyup');//fire the change event
+    }); 
+    
+    $('#permalink').keyup(function() {
+        $('#page_name_display').text($("#permalink").val());
+    });
+    
+    function validate(text){
+
+        var reg=/[^a-zA-Z0-9 \_\-]+/;
+        if(reg.test(text)){              
+            return false;
+        }               
+
+    return true;
+    }
+    
+    //setup before functions
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 2000;  //time in ms, 2 seconds
+
+    //on keyup, start the countdown
+    $('#page_name').keyup(function(){
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(checkPageNameExists, doneTypingInterval);
+    });
+
+    //on keydown, clear the countdown 
+    $('#page_name').keydown(function(){
+        clearTimeout(typingTimer);
+    });
+
+    //user is "finished typing," do something
+    function checkPageNameExists () {
+        $.post('/admin/cms/pages/search/' + $('#pageId').val(), {'permalink':$("#page_name_display").text()}, function(data) { //make ajax call to check
+           // $("#user-result").html(data); //dump the data received from PHP page
+            if(data.result != false) {
+                $('#page_name_exists').show();
+                $('#update_page').attr('disabled','disabled');
+            }else {
+                $('#page_name_exists').hide();
+                $('#update_page').removeAttr('disabled');
+            }
+        });
+    }
+    
+    $('#edit-permalink').click(function() {
+        $('#permalink-container').show();
+    });
+    
+    $('#save-permalink').click(function() {
+        $.post('/admin/cms/pages/permalink/save', {'pagename':$("#permalink").val()}, function(data) { //make ajax call to save
+           // $("#user-result").html(data); //dump the data received from PHP page
+            if(data.result == true) {                
+                $('#permalink-container').hide();
+            }
+        });
+    });
+    
+       
+    $('#page_content').change(function(){
+         alert('here');
+        var txt = $('#page_content').text()
+          , charCount = txt.length
+          , wordCount = txt.replace( /[^\w ]/g, "" ).split( /\s+/ ).length
+          ;
+        $( '#wordcount' ).text(wordCount);
+    });
+    
+    $('#update_page').click(function() {
+       CKupdate();
+        $.ajax({
+           type: "POST",
+           url: '/admin/cms/pages/' + $('#pageId').val(),
+           data: $("#form1").serialize(), // serializes the form's elements.
+           success: function(data)
+           {
+               alert(data); // show response from the php script.
+               $('#update_warning').hide();
+           }
+         });
+    });
+    
+    $('#show-preview').click(function() {
+       updatePreview();
+       var dialog = $( "#preview-container" );
+        dialog.position({
+            my: "center",
+            at: "center",
+            of: window
+        });
+       
+       $( "#preview" ).html($('#page_content').val());
+       dialog.show();
+    });
+    
+    function updatePreview() {
+       CKupdate();
+        $.ajax({
+           type: "POST",
+           url: '/admin/cms/pages/' + $('#pageId').val(),
+           data: 'name[locale][en_US][preview]=' + $('#page_content'), // serializes the form's elements.
+           success: function(data)
+           {
+               //$('#update_warning').hide();
+           }
+         });
+    }
+    
+    var currentStatus = '';
+    var isPublished = '';
+    
+    $('#edit-visibility').click(function() {
+        
+        $(this).prev('#page_isPublic').toggle();
+        if($(this).text() == 'cancel') {
+            $(this).text(currentStatus);
+        } else {
+            $(this).text('cancel');
+            currentStatus = $(this).prev('#page_isPublic').children("option").filter(":selected").text(); 
+        }
+    });
+
+    $('#page_isPublic').change(function() {
+        if($(this).val() != currentStatus && confirm("are you sure you want to change the status of this page?")) {           
+            $(this).next().text($(this).children("option").filter(":selected").text());
+            $('#update_warning').show();
+        } else {
+            $(this).next().text(currentStatus);
+        }
+        $(this).toggle();
+    }); 
+    
+    
+    $('#edit-status').click(function() {
+       
+        $(this).prev('#page_isPublished').toggle();
+        if($(this).text() == 'cancel') {
+            $(this).text(isPublished);
+        } else {
+            isPublished = $(this).prev('#page_isPublished').children("option").filter(":selected").text(); 
+            $(this).text('cancel');
+        }
+    });
+    
+    $('#page_isPublished').change(function() {
+        if($(this).val() != isPublished && confirm("are you sure you want to change the publishing of this page?")) {
+            $(this).next().text($(this).children("option").filter(":selected").text());
+            $('#update_warning').show();
+        } else {
+            $(this).next().text(isPublished);
+        }
+        $(this).toggle();
+    }); 
+    
+    function CKupdate(){
+        for ( instance in CKEDITOR.instances ) {
+            CKEDITOR.instances[instance].updateElement();
+        }            
+    }
+
+    $('#undo_page').click(function() {
+        location.reload();
+    });
+    
+    $('#hide-preview').click(function() {
+        $('#preview-container').hide();
+        $('#preview').html('');
+    });
+    
+    $('#view-existing').click(function() {
+        $.ajax({
+            type: "GET",
+            url: '/admin/cms/page/preview/' + $('#pageId').val(),
+            success: function(data)
+            {
+                var page = data.Page;
+                if (typeof page == "undefined") {
+                    return;
+                }
+                showExisting(page[0].content);               
+            }
+        });
+    });
+    
+    function showExisting(content) {
+       
+        var dialog = $( "#preview-container" );
+        dialog.position({
+            my: "center",
+            at: "center",
+            of: window
+        });
+       
+        $( "#preview" ).html(content);
+        dialog.show();
+    }
+});
+</script>
+
+
+<style>
+    #preview-container {
+        background-color: #fff;  
+        position: absolute;  
+        z-index: 10000;
+        width: 900px;
+    }
+    #preview {
+        padding: 10px
+    }
+</style>
+ <div id="preview-container" style="display: none;" class="panel panel-default">
+     <div id="hide-preview" style="float:right; width: 20px; padding: 5px">x</div>
+    	<div class="panel-heading">Pages</div>
+        <div id="preview">
+
+        </div>
+    </div>
+
+      <div class="panel panel-default">
+    	<div class="panel-heading">Pages</div>
+        <form role="form" id="form1">
+            <input type="hidden" id="pageId" value="1" />
+        <table class="table">
+            <tr>
+                <td rowspan="5" width="200" valign="top">
+                    <p>Dashboard</p>
+                    <p>Posts</p>
+                    <p>Pages</p>
+                    <p>Sections</p>
+                    <p>- services</p>
+                    <p>- commercial</p>
+                    <p>- add new</p>
+                    <p>Posts</p>
+                    <p>Comments<br />
+                    </p>
+                </td>                            
+            	<td>
+                    <p class="btn bg-danger" style="display:none" id="page_name_message">Invalid characters in Page name. Please remove</p>
+                    <p class="btn bg-danger" style="display:none" id="page_name_exists">Page name exists.</p>
+                    <div class="form-group" id="page_name_container">
+                        <input class="form-control" name="page[name]" id="page_name" placeholder="page name" pattern="[a-zA-Z0-9_]{0,100}"/>
+                    </div>
+                </td>                
+            </tr>
+            <tr>
+                <td>Permalink: localhost/__slug/<span id="page_name_display"></span> <a href="#" onclick="return false;" class="btn-xs" id="edit-permalink">edit</a> <a href="#" id="view-existing" onclick="return false;" class="preview btn-xs">view existing page</a>
+                    <div id="permalink-container" style="display:none">
+                        <input class="form-control" type="text" name="page[permalink]" id="permalink" />
+                        <button id="save-permalink" class="btn btn-primary btn-xs">Update</button>
+                    </div>
+                <td rowspan="2" valign="top" width="200"><p>Publish</p>
+                  <p>
+                    <input type="button" id="show-preview" name="preview" class="btn btn-xs btn-primary preview" value="Preview Changes" />
+                    <br />
+                    Status: 
+                    
+                    <select name="page[isPublished]" id="page_isPublished" style="display: none">
+                        <option value="1">Published</option>
+                        <option value="0">Offline</option>
+                    </select>
+                    
+                    <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
+                    
+                  Visibility:  
+                 
+                    <select name="page[isPublic]" id="page_isPublic" style="display: none">
+                        <option value="1">Public</option>
+                        <option value="0">Private</option>
+                    </select>                  
+                  <a href="#" onclick="return false;" class="btn-xs" id="edit-visibility">Public</a><br />
+                  
+                  
+                  Revisions: 4 <br />
+                  Published on: Apr 17, 2014 @ 18:12</p>
+                  <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
+                    <input type="button" name="update" id="update_page" class="btn btn-xs btn-primary" value="Update" />
+                    <div class="bg-warning" style="display:none" id="update_warning">Changes have been made. Please click the 'Update' button to save these changes<br /><br/>To undo these changes click the 'Undo Changes' button.</div>
+                  </p>     
+              </td>                                           
+			</tr>
+            <tr>
+              <td>
+                  <textarea name="page[locale][en_US][content]" id="page_content" rows="10" cols="80" placeholder="insert page content here"></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'page_content' );
+            </script>
+              </td>
+           	</tr>
+            <tr>
+              <td>
+              <div style="float:right">Last edited by Dave M on April 17, 2014 a 6:37 pm</div>
+              word count: <span id="wordcount">140</span></td>
+              <td rowspan="3" valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+              <td><p>Summary:</p>
+              <p>
+                <textarea name="page[summary]" class="form-control" id="textarea" cols="45" rows="5"></textarea>
+                Summaries are a brief description of your content
+              </p></td>
+            </tr>
+        </table>
+        <input type="hidden" name="FORM_SECURITY_TOKEN" value="$1$J98VwReO$LDzMOtaG2ST3iZFJT6ed20" />
+</form>
+      </div>
+    </div>
+  </div>
+  <div id="footer"><div id="footerNav">
+    <ul>
+            <li><a href="terms.htm">Terms of Use</a></li> | 
+        <li><a href="privacy.htm">Privacy Policy</a></li>
+
+    </ul>
+</div>
+Copyright (c) 2014 phoenixrestorations.com. 
+NAV_RIGHTS_RESERVED. | NAV_POWERED_BY gossamerCMS framework
+  </div>
+</div>
+
+
+</body>
+</html>

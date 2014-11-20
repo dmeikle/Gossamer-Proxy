@@ -1,0 +1,68 @@
+
+        
+        #project/offset/limit
+admin_notifications_view:
+    pattern: admin/notifications/view/*/*
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationsController
+        model: components\notifications\models\NotificationModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: admin_notifications_view
+        datasource: datasource1
+                
+        
+        #project/notificationId
+admin_notifications_create:
+    pattern: admin/notifications/create/*/*
+    methods: [GET]
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationsController
+        model: components\notifications\models\NotificationModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_notifications_create
+        datasource: datasource1
+
+        #project/notificationId
+admin_notifications_send:
+    pattern: admin/notifications/create/*/*
+    methods: [POST]
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationsController
+        model: components\notifications\models\NotificationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_notifications_send
+        datasource: datasource1
+
+
+
+
+#----------------------------------- keep these at the bottom as default overrides
+
+admin_notifications:
+    pattern: admin/notifications/*/*
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationsController
+        model: components\notifications\models\NotificationModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_notifications
+        datasource: datasource1
+        
+        #project/offset/limit
+admin_notifications_by_project:
+    pattern: admin/notifications/*/*/*
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationsController
+        model: components\notifications\models\NotificationModel
+        method: listallByProject
+        view: core\views\JSONView
+        viewKey: admin_notifications_by_project
+        datasource: datasource1        

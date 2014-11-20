@@ -1,0 +1,38 @@
+
+
+
+cms_view_page_1:
+    pattern: restoration/*
+    defaults:
+        component: components\cms\CmsComponent
+        controller: components\cms\controllers\PagesController
+        model: components\cms\models\PageModel
+        method: viewByPermalink
+        view: core\views\TemplateView
+        viewKey: cms_view_page_1
+        datasource: datasource1
+ 
+
+cms_view_page_2:
+    pattern: restoration/*/*
+    defaults:
+        component: components\cms\CmsComponent
+        controller: components\cms\controllers\PagesController
+        model: components\cms\models\PageModel
+        method: viewByPermalink
+        view: core\views\TemplateView
+        viewKey: cms_view_page_2
+        datasource: datasource1    
+        
+
+
+cms_view_page_3:
+    pattern: restoration/*/*/*
+    defaults:
+        component: components\cms\CmsComponent
+        controller: components\cms\controllers\PagesController
+        model: components\cms\models\PageModel
+        method: viewByPermalink
+        view: core\views\TemplateView
+        viewKey: cms_view_page_3
+        datasource: datasource1          

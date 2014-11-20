@@ -1,0 +1,23 @@
+
+
+
+
+admin_samples_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/samples/views/admin/subnav.php"
+            "section3": "src/components/samples/views/admin/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+
+
+admin_samples_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/samples/views/admin/subnav.php"
+            "section3": "src/components/samples/views/admin/listAllClaims.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    

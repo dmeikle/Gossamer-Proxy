@@ -1,8 +1,5 @@
 
-admin_login:
-    pattern: admin/cart/products/*/*
-    authentication: simple_auth
-    fail_url: admin/login
+
 
 admin_area:
     pattern: admin/cart/sales/*/*
@@ -16,7 +13,7 @@ admin_login_get:
     
 admin_login_submit:
     pattern: admin/login
-    authentication: login_auth
+    authentication: staff_login_auth
     methods: [POST]
     
 admin_area2:
@@ -24,3 +21,11 @@ admin_area2:
     authentication: simple_auth
     fail_url: admin/login
     
+    
+
+    
+portal_login_submit:
+    pattern: portal/entrance
+    authentication: user_login_auth
+    fail_url: portal/entrance
+    methods: [POST]    

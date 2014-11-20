@@ -20,6 +20,6 @@ class UserModel extends  AbstractModel
     }
     
     public function login() {
-        $this->render(array('title' => 'login', 'pageTitle' => 'Login Form'));
+        
     }
 }

@@ -1,0 +1,93 @@
+
+
+admin_propertymanagers_search:
+    
+    
+
+component_list:
+    template: list.php
+    sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
+    
+users_list2:
+    template: list.php
+    sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
+ 
+
+
+contacts_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+ 
+users_get:
+    template: test.php
+    sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/get.php"}
+       
+portal_login:
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/users/views/login/login-form.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+portal_login_submit:
+    template: portal-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section3": "src/components/users/views/login/welcome.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_contacts_edit:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_contacts_save:       
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/permissions.php"
+            "section4": "src/themes/default/templates/sections/footer.php"     
+            
+admin_contacts_permissions_get:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/permissions.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_contact_permissions_save:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/save-success.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+    
+    #-------------------start portal area -----------------------
+    
+contact_settings:  
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/settings.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
