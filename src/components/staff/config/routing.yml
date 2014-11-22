@@ -59,10 +59,7 @@ admin_staff_edit:
 admin_staff_save:
     pattern: admin/staff/edit/*
     listeners:
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\NewStaffPasswordValidListener', 'params': {'failkey': 'admin_staff_edit' }}    
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_edit' }}   
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}    
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }  
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -71,51 +68,73 @@ admin_staff_save:
         view: core\views\TemplateView
         viewKey: admin_staff_save
         datasource: datasource1
-    methods: [POST]       
+    methods: [POST]     
     
-        
-admin_staff_edit_permissions_save:
-    pattern: admin/staff/permissions/*
+    
+admin_staff_credentials_edit:
+    pattern: admin/staff/credentials/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
     defaults:
         component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: save
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: editCredentials
         view: core\views\TemplateView
-        viewKey: admin_staff_edit_permissions_save
+        viewKey: admin_staff_credentials_edit
         datasource: datasource1
-    methods: [POST]
+    methods: [GET]     
+    
 
+admin_staff_credentials_save:
+    pattern: admin/staff/credentials/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_staff_credentials_edit' }}         
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
+        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: saveCredentials
+        view: core\views\TemplateView
+        viewKey: admin_staff_credentials_save
+        datasource: datasource1
+    methods: [POST]    
+  
+    
 admin_staff_permissions_get:
     pattern: admin/staff/permissions/*
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
     defaults:
         component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
+        controller: components\staff\controllers\StaffAuthorizationController
         model: components\staff\models\StaffAuthorizationModel
-        method: edit
+        method: editPermissions
         view: core\views\TemplateView
         viewKey: admin_staff_permissions_get
         datasource: datasource1
     methods: [GET]
     
+        
 admin_staff_permissions_save:
-    pattern: admin/staff/permissions/save/*
+    pattern: admin/staff/permissions/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffAuthorizationsListener', 'datasource': 'datasource3'}
+        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffPermissionsLocallyListener', 'datasource': 'datasource3'}
     defaults:
         component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
+        controller: components\staff\controllers\StaffAuthorizationController
         model: components\staff\models\StaffAuthorizationModel
         method: savePermissions
         view: core\views\TemplateView
         viewKey: admin_staff_permissions_save
         datasource: datasource1
-    methods: [POST]      
+    methods: [POST]
+
     
 
 admin_staff_list:

@@ -4,15 +4,17 @@ namespace components\staff\controllers;
 
 use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilder;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+
 
 class LoginController extends AbstractController
 {
     public function login() {
         
-        $this->render(array('title' => 'login', 'pageTitle' => '', 'form' => $this->drawForm()));
+        $this->render(array('title' => 'login', 'pageTitle' => '', 'form' => $this->drawForm($this->model)));
     }
     
-    private function drawForm() {
+    protected function drawForm(FormBuilderInterface $model, array $values = NULL) {
         $builder = new FormBuilder($this->logger);
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
        

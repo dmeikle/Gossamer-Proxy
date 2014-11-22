@@ -72,6 +72,7 @@ try{
     include __SITE_PATH . '/src/themes/default/templates/errorPages/token.php' ;
     die;
 }catch(\Exception $e) {
+    echo $e->getMessage().'<br>';
     include __SITE_PATH . '/src/themes/default/templates/errorPages/general.php' ;
     die;
 }

@@ -17,7 +17,6 @@ admin_propertymanagers_search:
           
 contacts_get:
     pattern: contacts/get/*
-#    defaults: { _controller: ContactComponent:Contact:2nd }
     defaults:
         component: components\contacts\ContactsComponent
         controller: components\contacts\controllers\ContactController
@@ -34,7 +33,7 @@ admin_contacts_permissions_get:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
     defaults:
         component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
+        controller: components\contacts\controllers\ContactAuthorizationsController
         model: components\contacts\models\ContactAuthorizationModel
         method: edit
         view: core\views\TemplateView
@@ -88,7 +87,7 @@ admin_contacts_save:
     pattern: admin/contacts/*
     methods: [POST]
     listeners:
-        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+     #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
     defaults:
         component: components\contacts\ContactsComponent
         controller: components\contacts\controllers\ContactsController
@@ -98,7 +97,10 @@ admin_contacts_save:
         viewKey: admin_contacts_save
         datasource: datasource1
         
-    
+
+        
+        
+        
 portal_login:
     pattern: portal/entrance
     defaults:

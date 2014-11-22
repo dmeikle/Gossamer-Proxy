@@ -33,13 +33,31 @@ fields:
             params:
                 - maxlength: 50 
 
-    - telephone:
-        - 
-            class: Required     
-            failkey: VALIDATION_REQUIRED_FIELD
+    - mobile:
         -
             class: Telephone
-            failkey: VALIDATION_INVALID_TELEPHONE
+            failkey: VALIDATION_INVALID_MOBILE_TELEPHONE
+            params:
+                - maxlength: 50 
+
+    - home:
+        -
+            class: Telephone
+            failkey: VALIDATION_INVALID_HOME_TELEPHONE
+            params:
+                - maxlength: 50 
+
+    - office:
+        -
+            class: Telephone
+            failkey: VALIDATION_INVALID_OFFICE_TELEPONE
+            params:
+                - maxlength: 50 
+
+    - extension:
+        -
+            class: Integer
+            failkey: VALIDATION_INVALID_EXTENSION
             params:
                 - maxlength: 50 
 

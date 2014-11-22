@@ -16,40 +16,45 @@ class SaveStaffLocallyListener extends AbstractListener{
     const MAX_PASSWORD_HISTORY = 6;
     
     public function on_save_success(Event $event) {
-       // $userAuthorizations = $this->httpRequest->getAttribute('postedParams');
         $params = $event->getParams();
-        $staffId = $params['id'];
-        pr($params);
-        die;
+       
+        $staffId = $params['Staff_id'];
+       
         $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
-        $query = sprintf('select * from StaffAuthorizations where Staff_id = %d', $staffId);
+        $query = sprintf('select * from StaffAuthorizations where Staff_id = %d limit 1', $staffId);
+        $staff;
+        $rowId = null;
+        $rawResult = $datasource->execute($query);
+        if(is_array($rawResult) && count($rawResult) > 0) {
+            $staff = current($rawResult);
+            $rowId = $staff['id'];
+        }
         
-        $staff = $datasource->execute($query);
         $this->setPasswordArray($staff, $params);
-        $query = "insert into StaffAuthorizations (username, password, passwordHistory, status, Staff_id) values ("
+        $query = "insert into StaffAuthorizations (id, username, password, passwordHistory, status, Staff_id) values ( $rowId," 
                 . "'" . $params['username'] . "','" . $params['password'] . "','" . $params['passwordHistory'] 
-                . "','active','" . $params['id'] . "') on duplicate key update "
+                . "','active','" . $params['Staff_id'] . "') on duplicate key update "
                 . "username ='" . $params['username'] . "', password = '" . $params['password'] . "', passwordHistory = '"
                 . $params['passwordHistory'] . "'";
-       
+    
        $datasource->execute($query);
       
     }
 
     private function setPasswordArray(array $staff, &$postedStaff) {
+        
         if(count($staff) < 1) {
             $postedStaff['passwordHistory'] = $postedStaff['password'];
             return ;
         }
-        
         $passwords = explode('|', $staff['passwordHistory']);
-        if(count($passwords) >= self::MAX_PASSWORD_HISTORY) {
+        $passwords[] = $postedStaff['password'];
+        if(count($passwords) > self::MAX_PASSWORD_HISTORY) {
             //remove the first element to make room for the new one
             array_shift($passwords);
         }
         
-        $passwords[] = $postedStaff['password'];
-        $postedStaff['passwordHistory'] = $passwords;
+        $postedStaff['passwordHistory'] = implode('|', $passwords);
     }    
              
 }

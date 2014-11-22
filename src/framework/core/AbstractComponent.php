@@ -62,7 +62,7 @@ abstract class AbstractComponent
         $this->params = $params;
         
         $this->logger = $logger;
-        
+        echo __YML_KEY;
         $this->agentType = $agentType;
     }
     
@@ -104,13 +104,13 @@ abstract class AbstractComponent
           
             $controller->setContainer($this->container);
             try{  
-                
+             
                 return call_user_func_array(array(
                     $controller,
                     $this->method
                 ), !isset($this->params) ? array() : $this->params);
             }catch(\Exception $e) {
-             
+             die($e->getMessage());
                //TODO: this currently is only for the template view
                 //$view = new TemplateExceptionView($this->logger, __YML_KEY, $this->agentType, $httpRequest, $e);
                 $view = new $this->viewName($this->logger, 'exception', $this->agentType, $httpRequest);
@@ -121,6 +121,7 @@ abstract class AbstractComponent
                 return $controller->render(array());
             }
         }  else {
+             
             throw new HandlerNotCallableException('unable to match method ' . $this->method . ' to controller');
         }     
     }

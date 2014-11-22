@@ -25,16 +25,16 @@ class StaffModel extends  AbstractModel implements FormBuilderInterface
     public function save($id) {
         
         $params = $this->httpRequest->getPost();
-        $params['staff']['id'] = intval($id);
-        $params['staff']['password'] = crypt($params['staff']['password']);
-        unset($params['staff']['passwordConfirm']);
+      
+        $params['Staff']['id'] = intval($id);
         
-        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveStaff', $params['staff']);  
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveStaff', $params['Staff']);  
+//        
+//        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $data['Staff'][0]));
+//        $departments = $this->httpRequest->getAttribute('Departments');
         
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $data['Staff'][0]));
-        $departments = $this->httpRequest->getAttribute('Departments');
-        
-        return array('Staff' =>$data['Staff'][0], 'Departments' => $departments, 'roles' => array());
+//        return array('Staff' =>$data['Staff'][0], 'Departments' => $departments, 'roles' => array());
+        return $data;
     }
     
     

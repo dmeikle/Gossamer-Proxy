@@ -33,6 +33,7 @@ class AbstractListener
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
+       // echo get_called_class().'<br>';
     }
 
     public function setDatasourceKey($datasourceKey) {

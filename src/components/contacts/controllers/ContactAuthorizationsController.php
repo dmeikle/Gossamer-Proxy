@@ -10,7 +10,7 @@ use components\contacts\form\ContactBuilder;
 use core\system\Router;
 
 
-class ContactsController extends AbstractController
+class ContactAuthorizationsController extends AbstractController
 {
     /**
      * edit - display an input form based on requested id

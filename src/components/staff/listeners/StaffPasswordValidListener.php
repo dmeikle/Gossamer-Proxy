@@ -12,12 +12,12 @@ use core\system\Router;
  *
  * @author davem
  */
-class NewStaffPasswordValidListener extends AbstractListener{
+class StaffPasswordValidListener extends AbstractListener{
     
     public function on_entry_point(Event $event = null) {
      
         $post = $this->httpRequest->getPost();
-        $staffData = $post['Staff'];
+        $staffData = $post['StaffAuthorization'];
        
         $result = array();
         if($this->checkPasswordEmpty($staffData)) {
@@ -54,7 +54,7 @@ class NewStaffPasswordValidListener extends AbstractListener{
     }
     private function formatErrorResult(array $result) {
         return array (
-            'Staff' => $result
+            'StaffAuthorization' => $result
         );
     }
     

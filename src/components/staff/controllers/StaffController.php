@@ -7,18 +7,22 @@ use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use components\geography\serialization\ProvinceSerializer;
 use components\staff\form\StaffBuilder;
+use core\system\Router;
+
 
 
 class StaffController extends AbstractController
 {
     public function save($id) {
-        $this->render(array());
-    }
-    public function savePermissions($id) {
-        $result = $this->model->savePermissions($id);
         
-        $this->render($result);
+        $result = $this->getEntity('Staff', $this->model->save($id));
+        $entity = $this->getEntity('Staff', $result);
+        
+        //TODO: figure out where to redirect if result holds no 'id' key
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect('admin_staff_credentials_edit', array($result['id'])); 
     }
+    
     
     /**
      * edit - display an input form based on requested id
@@ -30,8 +34,7 @@ class StaffController extends AbstractController
         $result = $this->model->edit($id);
        
         if(is_array($result) && array_key_exists('Staff', $result)) {
-            $staff = current($result['Staff']);            
-
+            $staff = current($result['Staff']);  
             $result['form'] = $this->drawForm($this->model, $staff);
         } else {
              $result['form'] = $this->drawForm($this->model, array());
@@ -41,7 +44,7 @@ class StaffController extends AbstractController
     }
     
     
-    private function drawForm(FormBuilderInterface $model, array $values = null) {
+    protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $staffBuilder = new StaffBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');

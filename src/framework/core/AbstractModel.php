@@ -138,7 +138,7 @@ class AbstractModel
     }
     
     public function edit($id) {
-     
+    
 
         if($this->isFailedValidationAttempt()) {
            

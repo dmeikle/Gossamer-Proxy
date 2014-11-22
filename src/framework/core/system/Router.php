@@ -24,12 +24,12 @@ class Router {
         $this->httpRequest = $httpRequest;
     }
     
-    public function redirect($ymlkey) {
+    public function redirect($ymlkey, array $params = null) {
         $ymlURI = $this->getURLByYamlKey($ymlkey);
         if(is_null($ymlURI)) {
             throw new RedirectKeyNotFoundException('Validation Fail redirect key not found');
         }
-        $redirectUrl =   $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI);
+        $redirectUrl =   $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
         
         if(!is_null($this->logger->addDebug('redirecting to ' . $redirectUrl)));
         /* Redirect browser */
@@ -47,13 +47,27 @@ class Router {
         }
     }
    
-    private function parseRequestUriParameters($uri, $ymlURI) {        
+    private function parseRequestUriParameters($uri, $ymlURI, array $params = null) {        
         $uriList = explode('/', $uri);
         $rawUriList = explode('/', $ymlURI);
-
-        $rawList = implode('/', array_slice($uriList, -(count($rawUriList))));
-
-        return $rawList;
+        if(is_null($params)) {
+            //let's assume the programmer is wanting to re-use the hold params.
+            // redirecting to the previous page perhaps?
+            return implode('/', array_slice($uriList, -(count($rawUriList))));
+        }
+        //we have params - let's rebuild the uri with the passed params
+       
+        $rawList = '';
+        foreach($rawUriList as $chunk) {
+            if($chunk == '*') {
+                //pop the first element off the array
+                $rawList .= '/' . array_shift($params); 
+            } else {
+                $rawList .= '/' . $chunk;
+            }
+        }
+      
+        return substr($rawList, 1);
     }
 
         

@@ -87,7 +87,7 @@ $( document ).ready(function() {
         </tr>
         <tr valign="top">
           <td>Office:</td>
-          <td><?php echo $form['office']; ?></td>
+          <td><?php echo $form['offince']; ?></td>
         </tr>
         <tr valign="top">
           <td>Extension:</td>

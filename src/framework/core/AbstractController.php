@@ -9,8 +9,8 @@ use core\AbstractView;
 use Monolog\Logger;
 use core\system\KernelEvents;
 use libraries\utils\Container;
-
-
+use core\Entity;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * AbstractController Class extending from XMLURIParser
@@ -79,8 +79,14 @@ class AbstractController
 
     }
     
+    protected function getEntity($key, array $values = array()) {
+        $entity = new Entity();
+        $entity->populate($key, $values);
+        
+        return $entity->getArray();
+    }
 
-    
+
     protected function isFailedValidationAttempt() {
         return !is_null($this->httpRequest->getAttribute('ERROR_RESULT'));
     }
@@ -166,5 +172,9 @@ class AbstractController
 
         /* Make sure that code below does not get executed when we redirect. */
         exit;
+    }
+    
+    protected function drawForm(FormBuilderInterface $model, array $values = null) {
+        throw \Exception('drawFrom now overwritten by child class');
     }
 }

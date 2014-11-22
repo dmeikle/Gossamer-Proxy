@@ -45,6 +45,10 @@
         window.location = '/admin/staff/edit/' + $(this).data('id');                
     });
     
+    $('.credentials').click(function(e) {
+       // e.stopPropogation();
+        window.location = '/admin/staff/credentials/' + $(this).data('id');  
+    });
     
 });
 </script>
@@ -92,6 +96,7 @@
                 <td>
                     <button data-id="<?php echo $staff['id'];?>" class="btn btn-primary btn-xs schedule">Schedule</button> 
                     <button data-id="<?php echo $staff['id'];?>" class="btn btn-primary btn-xs edit">Edit</button> 
+                    <button class="btn btn-primary btn-xs credentials" data-id="<?php echo $staff['id'];?>">Credentials</button> 
                     <button class="btn btn-primary btn-xs permissions" data-id="<?php echo $staff['id'];?>">Permissions</button> 
                     <button data-id="<?php echo $staff['id'];?>" class="btn btn-primary btn-xs delete">Delete</button> </td>
             </tr>

@@ -66,3 +66,11 @@ admin_login_roles:
             "section1": "src/themes/default/templates/sections/header.php"
             "section3": "src/components/staff/views/login/error.php"
             "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_staff_credentials_edit:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section3": "src/components/staff/views/admin/credentials.php"
+            "section4": "src/themes/default/templates/sections/footer.php"           

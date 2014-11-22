@@ -125,6 +125,7 @@ class EventDispatcher{
         {
             $this->logger->addDebug('dispatching ' . get_class($listener) . ' listener class for uri: ' . $uri);
             $listener->setState($state, $params);
+          //  echo $state . ' listener class for uri: ' . $uri.'<br>';
         }
         
     }

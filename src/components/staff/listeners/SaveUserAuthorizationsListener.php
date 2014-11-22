@@ -4,6 +4,8 @@
 namespace components\staff\listeners;
 
 use core\eventlisteners\AbstractListener;
+use core\eventlisteners\Event;
+
 
 /**
  * Description of SaveUserAuthorizationsListener
@@ -12,15 +14,18 @@ use core\eventlisteners\AbstractListener;
  */
 class SaveUserAuthorizationsListener extends AbstractListener{
     
-    public function on_save_success($params) {
-        echo "SaveUserAuthorizationsListener";
-           pr($params);
+    public function on_save_success(Event $event) {
+        $params = $event->getParams();
         $staffId = $params['id'];
-         echo sprintf("<br>update StaffAuthorizations set roles = \'" . $this->buildArray($params['userAuthorizations']) .
+         
+        $query = sprintf("update StaffAuthorizations set roles = \'" . $this->buildArray($params['userAuthorizations']) .
            "\' where Staff_id = %d", $staffId);
-        $result = $this->datasource->query(sprintf("update StaffAuthorizations set roles = \'" . $this->buildArray($params['userAuthorizations']) .
-           "\' where Staff_id = %d", $staffId));
-       
+        
+        $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
+        $result = $datasource->query($query); 
+       echo $query.'<br>';
+       pr($result);
+       die;
     }
         
     private function buildArray(array $authorizations) {

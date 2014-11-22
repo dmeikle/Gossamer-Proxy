@@ -14,16 +14,19 @@
             }else{
                 el.addClass('ui-selected');
             }          
-        })
+        });
+        
+        $('.cancel').click(function() {
+            window.location = '/admin/staff/0/20';
+        });
+        
     });
   </script>
 
-
+ 
 <h2 class="form-signin-heading">Staff Permissions - NameGoesHere</h2>
-<form class="form-standard" method="post" role="form" action="/admin/staff/permissions/save/<?php echo $Staff['id'];?>">
-     <table width="100%">
-       <tr>
-         <td valign="top">
+<form class="form-standard" method="post" role="form" >
+     
          <h3>Department</h3>
 
          <table class="table">
@@ -71,12 +74,13 @@
                 </p>
                </td>
              </tr>
-         </table>
-           </td>
-       </tr>
        <tr>
          <td></td>
+         <td>
+            <button class="btn btn-primary cancel" type="button">cancel</button>
+            <button class="btn btn-primary" type="submit">Next</button> 
+         </td>
        </tr>
-     </table>
-    <button class="btn btn-primary" type="submit">Next</button>
+         </table>
+    
 </form>
