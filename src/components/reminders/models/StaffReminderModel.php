@@ -27,7 +27,7 @@ class StaffReminderModel extends ReminderModel{
         $this->tablename = 'staffreminders';
     }
     
-      public function listall($offset = 0, $rows = 20) {
+      public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
         
         $params = array(
             'Staff_id' => $this->getLoggedInStaffId(),

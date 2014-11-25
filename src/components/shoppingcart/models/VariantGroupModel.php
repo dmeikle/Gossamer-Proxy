@@ -79,7 +79,7 @@ class VariantGroupModel extends AbstractModel
        
     }
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
        
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'

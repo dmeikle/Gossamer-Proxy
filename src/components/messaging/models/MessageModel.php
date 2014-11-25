@@ -63,7 +63,7 @@ class MessageModel extends AbstractModel {
         return $data;
     }
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
         
         $data = parent::listall($offset, $rows);
         

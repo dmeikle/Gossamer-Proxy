@@ -33,6 +33,8 @@ $(document).ready(function() {
         });        
     }
   
+    $( "#buildingAge" ).datepicker();
+  
 });
 
 </script>
@@ -40,6 +42,11 @@ $(document).ready(function() {
 <form class="form-standard" role="form" method="post">
                 <h2 class="form-signin-heading">new claim form</h2>
                 <table class="table">
+                    </tr>
+                	<tr>
+                    	<td>Strata No:</td>
+                		<td><input class="form-control" placeholder="Strata No" name="claim[" type="text" /></td>
+                    </tr>
                 	<tr>
                     	<td>Project Name</td>
                 		<td><input class="form-control" placeholder="Project Name" name="claim[projectName]" type="text" /></td>
@@ -49,11 +56,6 @@ $(document).ready(function() {
                 		<td><input class="form-control" placeholder="Property Manager" id="propertyManager"  />                                
                                 <input type="hidden" id="claim_PropertyManagers_id" name="claim[PropertyManagers_id]" />                                
                         </td>
-                    </tr>
-                	<tr>
-                    	<td>Strata No:</td>
-                		<td><input class="form-control" placeholder="Strata No" name="claim[" type="text" /></td>
-                    </tr>
                 	<tr>
                     	<td>Property MGMT Co:</td>
                 		<td><input class="form-control" placeholder="Property MGMT Co" name="dateReceived" type="text" /></td>
@@ -77,6 +79,10 @@ $(document).ready(function() {
                 	<tr>
                     	<td>Phone/Fax/Cell:</td>
                 		<td><input class="form-control" placeholder="Phone/Fax/Cell" name="dateReceived" type="text" /></td>
+                    </tr>
+                	<tr>
+                    	<td>Building Year:</td>
+                	<td><input id="buildingAge" class="form-control" placeholder="building age" name="buildingAge" type="text" /></td>
                     </tr>
                 
                 </table>

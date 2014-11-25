@@ -29,14 +29,19 @@ class ContactsController extends AbstractController
         
         $this->render($result);
     }
-    
-    public function savePermissions($id) {
-        $result = $this->model->savePermissions($id);
-     
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_contacts_permissions_get', array($id));
-        
+      
+    /**
+    * save - saves/updates row
+    * 
+    * @param int id    primary key of item to save
+    */
+    public function save($id) {
+
+       $result = $this->model->save($id);
+
+       $this->render($result);
     }
+
     
     public function view() {
         $result = $this->model->view();

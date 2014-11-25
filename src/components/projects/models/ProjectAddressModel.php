@@ -6,13 +6,14 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of PropertyModel
  *
  * @author davem
  */
-class ProjectAddressModel extends AbstractModel{
+class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -32,6 +33,21 @@ class ProjectAddressModel extends AbstractModel{
         return $this->formatResults($data['ProjectAddresses']);
     }
     
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        
+        $params['ProjectAddress']['id'] = intval($id);
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['ProjectAddress']); 
+        
+        return $data;
+    }
+    
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+        $result = parent::listall($offset, $rows, 'listAddresses');
+        
+        return $result;
+    }
+    
     private function formatResults(array $results) {
         $retval = array();
         
@@ -48,4 +64,9 @@ class ProjectAddressModel extends AbstractModel{
         
         return $retval;
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
 }

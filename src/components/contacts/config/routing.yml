@@ -13,7 +13,21 @@ admin_propertymanagers_search:
         viewKey: admin_propertymanagers_search
         datasource: datasource1 
         
-        
+admin_contacts_company_edit:
+    pattern: admin/contacts/company/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+                
           
 contacts_get:
     pattern: contacts/get/*

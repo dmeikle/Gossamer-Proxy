@@ -53,7 +53,7 @@ class PurchaseModel extends AbstractModel{
         $this->render(array($params['value']));
     }
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
         $params = array(
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'Purchases.id', 'directive::DIRECTION' => 'desc'
         );

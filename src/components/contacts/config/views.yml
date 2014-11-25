@@ -12,7 +12,14 @@ users_list2:
     template: list.php
     sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
  
-
+admin_contacts_company_edit: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/add-company.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
 
 contacts_list:
     template: admin-list-fullscreen.php

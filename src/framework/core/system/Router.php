@@ -4,7 +4,7 @@
 namespace core\system;
 
 use Monolog\Logger;
-use components\validation\exceptions\RedirectKeyNotFoundException;
+use exceptions\RedirectKeyNotFoundException;
 use libraries\utils\YAMLKeyParser;
 use core\http\HTTPRequest;
 
@@ -19,15 +19,16 @@ class Router {
     
     private $httpRequest = null;
     
-    public function __construct(Logger $logger = null, HTTPRequest &$httpRequest) {
+    public function __construct(Logger &$logger = null, HTTPRequest &$httpRequest) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
     }
     
     public function redirect($ymlkey, array $params = null) {
+       
         $ymlURI = $this->getURLByYamlKey($ymlkey);
         if(is_null($ymlURI)) {
-            throw new RedirectKeyNotFoundException('Validation Fail redirect key not found');
+            throw new RedirectKeyNotFoundException('Router redirect key not found');
         }
         $redirectUrl =   $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
         

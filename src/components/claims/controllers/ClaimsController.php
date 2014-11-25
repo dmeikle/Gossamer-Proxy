@@ -3,6 +3,11 @@ namespace components\claims\controllers;
 
 use core\AbstractController;
 use components\companies\serialization\CompanyTypeSerialization;
+use Gossamer\CMS\Forms\FormBuilder;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+use components\claims\form\ClaimBuilder;
+use core\system\Router;
+
 
 
 /**
@@ -35,12 +40,31 @@ class ClaimsController extends AbstractController{
             $companyTypesOptions = $serializer->formatSelectionBoxOptions($companyTypes, array());
             $result['companyTypesOptions'] = $companyTypesOptions;
         }
-        $this->render($result);
+        
+        $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
     
     public function save($id) {
         $result = $this->model->save($id);
         
         $this->render($result);
+    }
+    
+    protected function drawForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $claimBuilder = new ClaimBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+        
+//       
+//        $provinceList = $this->httpRequest->getAttribute('Provinces');
+//       
+//        $serializer = new ProvinceSerializer();
+//        $selectedOptions = array($staffBuilder->getValue('Provinces_id', $values));
+        
+        //$options = array('provinces' => $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions));
+        
+        $options = array();
+        
+        return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
 }

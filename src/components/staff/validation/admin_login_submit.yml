@@ -3,32 +3,12 @@ failkey: admin_login
 #admin_staff_edit
                 
 fields:
-    - firstname:
-        - 
-            class: Required      
-            failkey: VALIDATION_REQUIRED_FIELD
-        - 
-            class: String    
-            failkey: VALIDATION_INVALID_STRING
-            params:
-                maxlength: 20
-
-    - lastname:
-        - 
-            class: Required       
-            failkey: VALIDATION_REQUIRED_FIELD         
-        - 
-            class: String
-            failkey: VALIDATION_INVALID_STRING
-            params:
-                maxlength: 20
-
     - email:
         - 
             class: Required     
             failkey: VALIDATION_REQUIRED_FIELD
         -
-            class: Email
+            class: AlphaNumeric
             failkey: VALIDATION_INVALID_EMAIL
             params:
                 - maxlength: 50 
@@ -37,22 +17,6 @@ fields:
         - 
             class: Required      
             failkey: VALIDATION_REQUIRED_FIELD          
-        - 
-            class: Password
-            failkey: VALIDATION_INVALID_PASSWORD
-            params:
-                maxlength: 20
-
-
-
-    - address:
-        - 
-            class: Required     
-            failkey: VALIDATION_REQUIRED_FIELD
-        -
-            class: Address
-            failkey: VALIDATION_INVALID_ADDRESS
-            params:
-                - maxlength: 50 
+       
 
                 

@@ -21,7 +21,7 @@ class ValidateFormListener extends AbstractListener
         
         $loader = new YamlConfiguration();
         $loader->loadConfig(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/validation/' . __YML_KEY . '.yml');
-        
+      
         if(is_null($validatorName)) {
             $this->validator = new Validator($loader, $this->logger);  
         } else {
@@ -35,7 +35,7 @@ class ValidateFormListener extends AbstractListener
         $result = $this->validator->validateRequest($this->httpRequest->getPost(), true);
  
         if(is_array($result) && count($result) > 0) {
-        
+      
             setSession('ERROR_RESULT', $result);
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             

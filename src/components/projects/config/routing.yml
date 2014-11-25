@@ -11,4 +11,46 @@ projectaddress_autocomplete:
         
         
         
+projectaddress_edit:
+    pattern: admin/projects/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: projectaddress_edit
+        datasource: datasource1
+    methods: [GET]
         
+         
+projectaddress_save:
+    pattern: admin/projects/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener'}  
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: projectaddress_save
+        datasource: datasource1
+    methods: [POST]
+               
+  
+        
+projectaddress_list:
+    pattern: admin/projects/*/*
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: projectaddress_list
+        datasource: datasource1      
+                

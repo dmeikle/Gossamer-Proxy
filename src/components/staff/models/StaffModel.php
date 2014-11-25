@@ -38,7 +38,7 @@ class StaffModel extends  AbstractModel implements FormBuilderInterface
     }
     
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
        
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
@@ -78,5 +78,7 @@ class StaffModel extends  AbstractModel implements FormBuilderInterface
         return $this->entity;
 
     }
+    
+    
 
 }

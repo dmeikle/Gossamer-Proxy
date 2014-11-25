@@ -164,3 +164,13 @@ admin_cms:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         
+        
+projects:
+    active: true
+    text_key: 'ADMIN_PROJECTS'
+    pattern: '/admin/projects/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR         
+        - IS_EDITOR 
+        - IS_STAFF
+    

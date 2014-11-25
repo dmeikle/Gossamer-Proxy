@@ -120,7 +120,7 @@ class AbstractModel
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null) {
         
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
@@ -128,7 +128,7 @@ class AbstractModel
         );
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
         
         if(is_array($data) && array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
@@ -150,7 +150,9 @@ class AbstractModel
         );
      
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-              
+        if(is_array($data) && array_key_exists($this->entity, $data)) {
+            $data = current($data[$this->entity]);
+        }
         return $data;
     }
 

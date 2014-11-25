@@ -138,7 +138,7 @@ class AbstractController
      */
     public function edit($id) {
         $result = $this->model->edit($id);
-        
+  
         $this->render($result);
     }
 
