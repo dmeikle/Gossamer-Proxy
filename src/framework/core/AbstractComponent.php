@@ -62,7 +62,7 @@ abstract class AbstractComponent
         $this->params = $params;
         
         $this->logger = $logger;
-        echo __YML_KEY;
+        
         $this->agentType = $agentType;
     }
     

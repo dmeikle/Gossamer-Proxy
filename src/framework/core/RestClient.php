@@ -28,6 +28,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     public $decoded_response; // Decoded response body.
     private $iterator_positon;
     private $logger = null;
+    private $lastUrl = '';
     
     public function __construct($options=array()){
         $default_options = array(
@@ -186,7 +187,7 @@ class RestClient implements \Iterator, \ArrayAccess {
                 $curlopt[$key] = $value;
             }
         }
-
+        $this->lastUrl =  $client->url;
         curl_setopt_array($client->handle, $curlopt);
 
         $client->parse_response(curl_exec($client->handle));
@@ -257,8 +258,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     
     public function get_response_format(){
         if(!$this->response)
-            throw new RestClientException(
-                "A response must exist before it can be decoded.");
+            throw new RestClientException("last URL: " . $this->lastUrl . "\r\nA response must exist before it can be decoded.");
 
         // User-defined format.
         if(!empty($this->options['format']))

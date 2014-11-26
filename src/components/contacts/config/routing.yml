@@ -63,7 +63,7 @@ admin_contact_permissions_save:
         - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactAuthorizationsListener', 'datasource': 'datasource3'}
     defaults:
         component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
+        controller: components\contacts\controllers\ContactAuthorizationsController
         model: components\contacts\models\ContactAuthorizationModel
         method: savePermissions
         view: core\views\TemplateView

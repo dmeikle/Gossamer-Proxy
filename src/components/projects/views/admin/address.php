@@ -1,4 +1,4 @@
-<?php pr($form); ?>
+
 <h3>Add/Edit Project Address</h3>
 <form method="post" role="form">
     <table class="table">

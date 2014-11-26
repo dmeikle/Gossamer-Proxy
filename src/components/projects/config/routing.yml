@@ -9,7 +9,19 @@ projectaddress_autocomplete:
         viewKey: projectaddress_autocomplete
         datasource: datasource1
         
-        
+floorplans_list:
+    pattern: admin/projects/floorplans/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectFloorPlansController
+        model: components\projects\models\FloorPlanModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: floorplans_list
+        datasource: datasource1
+    methods: [GET]        
         
 projectaddress_edit:
     pattern: admin/projects/*

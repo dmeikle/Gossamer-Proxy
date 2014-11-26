@@ -8,14 +8,14 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 use core\eventlisteners\Event;
- 
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of UserAuthorizationModel
  *
  * @author davem
  */
-class ContactAuthorizationModel extends AbstractModel{
+class ContactAuthorizationModel extends AbstractModel implements FormBuilderInterface{
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -36,7 +36,7 @@ class ContactAuthorizationModel extends AbstractModel{
         }
        
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveAuthorizations', $params);
-        
+        pr($data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $params));        
         
         return array();
@@ -51,13 +51,23 @@ class ContactAuthorizationModel extends AbstractModel{
         );
     
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        $contactAuthorization = current($data['ContactAuthorization']);
+        $contactAuthorization = array('roles' => '');
+        if(is_array($data) && array_key_exists('ContactAuthorization', $data)) {
+            $contactAuthorization = current($data['ContactAuthorization']);
+        }
+        
         $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
 
         $roles = explode('|', $contactAuthorization['roles']);
         if(is_null($roles)) {
             $roles = array();
         }
+        
         return array('roles' => $roles, 'ContactTypes' => $contactTypes, 'Contact' => array('id' => $id));
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
 }

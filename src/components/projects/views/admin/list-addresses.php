@@ -1,6 +1,14 @@
+<script language="javascript">
+$(document).ready(function() {
+    $('.edit').click(function() {
+        window.location = '/admin/projects/' + $(this).data('id');
+    });
 
-
-
+    $('.floorplans').click(function() {
+        window.location = '/admin/projects/floorplans/' + $(this).data('id');
+    });
+});
+</script>
 
 <table class="table table-striped table-hover">
     <thead>
@@ -33,13 +41,16 @@
             <?php echo $address['postalCode'];?>
         </td>
         <td>
-            <?php echo $address['claimsHistoryCount'];?>
+            <?php echo $address['claimsHistoryCount'];?><br>
+            clickable to other page
         </td>
         <td>
-            <?php echo $address['activeClaimsCount'];?>
+            <?php echo $address['activeClaimsCount'];?><br>
+            clickable to other page
         </td>
         <td>
            <input type="" class="btn btn-primary btn-xs edit" data-id="<?php echo $address['id']; ?>" value="Edit" />
+           <input type="" class="btn btn-primary btn-xs floorplans" data-id="<?php echo $address['id']; ?>" value="Floor Plans" />
         </td>
     </tr>
     <?php } ?>

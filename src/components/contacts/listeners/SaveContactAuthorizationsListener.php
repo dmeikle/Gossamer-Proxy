@@ -4,6 +4,8 @@
 namespace components\contacts\listeners;
 
 use core\eventlisteners\AbstractListener;
+use core\eventlisteners\Event;
+
 
 /**
  * Description of SaveUserAuthorizationsListener
@@ -12,7 +14,8 @@ use core\eventlisteners\AbstractListener;
  */
 class SaveContactAuthorizationsListener extends AbstractListener{
     
-    public function on_save_success($params) {
+    public function on_save_success(Event $event) {
+        $params = $event->getParams();
         $datasource = $this->getDatasource('components\contacts\models\ContactAuthorizationModel');
         $contactId = $params['userAuthorizations']['id'];
         

@@ -7,7 +7,7 @@ projectaddress_autocompletetest:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/staff/views/admin/subnav.php"
+            "section2": "src/components/projects/views/admin/subnav.php"
             "section3": "src/components/companies/views/test.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -16,7 +16,7 @@ projectaddress_edit:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/staff/views/admin/subnav.php"
+            "section2": "src/components/projects/views/admin/subnav.php"
             "section3": "src/components/projects/views/admin/address.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -26,6 +26,6 @@ projectaddress_list:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/staff/views/admin/subnav.php"
+            "section2": "src/components/projects/views/admin/subnav.php"
             "section3": "src/components/projects/views/admin/list-addresses.php"
             "section4": "src/themes/default/templates/sections/footer.php"  

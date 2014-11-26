@@ -38,8 +38,8 @@ class ContactsController extends AbstractController
     public function save($id) {
 
        $result = $this->model->save($id);
-
-       $this->render($result);
+       $router = new Router($this->logger, $this->httpRequest);
+       $router->redirect('admin_contacts_permissions_get' , array($id));
     }
 
     

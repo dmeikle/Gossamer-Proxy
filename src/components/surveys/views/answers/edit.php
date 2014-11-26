@@ -1,6 +1,6 @@
 <script language="javascript">
   $(function() {
-    $( "#tabs" ).tabs();
+    $( "#nav-tabs" ).tabs();
   });
   </script>
 
