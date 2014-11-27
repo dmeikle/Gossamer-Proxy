@@ -18,13 +18,14 @@ class AbstractCachableListener extends AbstractListener{
     protected $key = null;
     
     public function execute($state, &$params) {
-        
+       
         $method = 'on_' . $state;
+        error_log('inside cachable - method is ' . $method);
         $this->logger->addDebug('checking cachablelistener for method: ' . $method);
          if (method_exists($this, $method)) {
              //first check cache
             $key = $this->getKey();
-          
+           error_log('inside cachable - key is ' . $key);
             $values = '';
             
             if(!is_null($key)) {

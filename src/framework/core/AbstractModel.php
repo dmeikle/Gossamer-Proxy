@@ -150,9 +150,11 @@ class AbstractModel
         );
      
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        
         if(is_array($data) && array_key_exists($this->entity, $data)) {
             $data = current($data[$this->entity]);
         }
+        
         return $data;
     }
 

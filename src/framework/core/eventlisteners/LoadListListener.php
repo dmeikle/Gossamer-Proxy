@@ -11,7 +11,9 @@ class LoadListListener extends AbstractCachableListener{
     
     
     //while this loads the list into httprequest, you still need to add it from the request
-    //into the data array if needed in the view
+    //into the data array if needed in the view.
+    //this gets called only if it fails the cached values check, so you won't see
+    //any 'get from cache' in this method
     protected function loadList() {
         
         $caching = true;

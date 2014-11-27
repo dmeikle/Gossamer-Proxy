@@ -54,9 +54,6 @@ fields:
                 - maxlength: 50 
 
     - address2:
-        - 
-            class: Required     
-            failkey: VALIDATION_REQUIRED_FIELD
         -
             class: Address
             failkey: VALIDATION_INVALID_ADDRESS

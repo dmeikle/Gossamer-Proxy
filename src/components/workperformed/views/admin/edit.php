@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 </script>
-<form role="form" action="post">
+<form role="form" method="post">
 <table class="table">       
        <tr>
          <td>Name</td>
@@ -18,24 +18,27 @@ $(document).ready(function() {
               <li><a href="#en_US">English</a></li>
               <li><a href="#zh_CN">Chinese</a></li>
             </ul>
-            <div id="en_US">
-                <input class="form-control" name="workperformed[locales][en_US]" value="this is an english action" />
-            </div>
-            <div id="zh_CN">
-              <input class="form-control" name="workperformed[locales][zh_CN]" value="this is a chinese action" />
-            </div>
+            
+            <?php foreach($form['action']['locales'] as $key => $row) { ?>
+                <div id="<?php echo $key; ?>">
+                    <?php echo $row; ?>
+                </div>
+            <?php } ?>
+            
           </div>
          </td>
        </tr>
        <tr>
+         <td>Code</td>
+         <td><?php echo $form['code']; ?></td>
+       </tr>
+       <tr>
          <td>Department</td>
-         <td><select class="form-control" name="select" id="select">
-         </select></td>
+         <td><?php echo $form['Departments_id']; ?></td>
        </tr>
        <tr>
          <td>Phase</td>
-         <td><select class="form-control" name="select2" id="select2">
-         </select></td>
+         <td><?php echo $form['ClaimPhases_id']; ?></td>
        </tr>
        <tr>
          <td>Layer</td>

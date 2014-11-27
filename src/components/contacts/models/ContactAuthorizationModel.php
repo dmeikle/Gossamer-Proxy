@@ -36,7 +36,7 @@ class ContactAuthorizationModel extends AbstractModel implements FormBuilderInte
         }
        
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveAuthorizations', $params);
-        pr($data);
+       
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $params));        
         
         return array();

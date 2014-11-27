@@ -9,8 +9,6 @@ $(document).ready(function() {
 </script>
 
 
-
-
 <h2 class="form-signin-heading">Work Actions List</h2>
      
 <table class="table table-striped table-hover selectable-rows">
@@ -19,43 +17,19 @@ $(document).ready(function() {
         <th width="11%" align="center">Department</th>
         <th width="11%" align="center">Phase</th>               
         <th width="11%" align="center">Layer</th>
-        <th  align="center">Translations</th>
         <th  align="center">Action</th>
     </tr>
+    <?php
+    foreach($ActionPerformeds as $action) {?>
     <tr data-type="editable" valign="top" data-id="2">
-        <td>remove drywall</td>
-        <td>Water Damage</td>
-        <td>Emergency</td>
-        <td>2nd</td>
-        <td>english<br />
-          chinese</td>
+        <td><?php echo $action['action'];?></td>
+        <td><?php echo $Departments[$action['Departments_id']]; ?></td>
+        <td><?php echo $ClaimPhases[$action['ClaimPhases_id']]; ?></td>
+        <td><?php echo $action['layer'];?></td>
         <td>
-            <button data-id="2" class="btn btn-primary edit">Edit</button> 
-            <button data-id="2" class="btn btn-primary delete">Delete</button> 
+            <button data-id="<?php echo $action['id'];?>" class="btn btn-primary edit">Edit</button> 
+            <button data-id="<?php echo $action['id'];?>" class="btn btn-primary delete">Delete</button> 
         </td>
     </tr>
-    <tr data-type="editable" valign="top" data-id="82">
-        <td>remove insulation</td>
-        <td>Water Damage</td>
-        <td>Emergency</td>
-        <td>3rd</td>
-        <td>english<br />
-chinese</td>
-        <td>
-            <button data-id="82" class="btn btn-primary edit">Edit</button> 
-            <button data-id="82" class="btn btn-primary delete">Delete</button> 
-        </td>
-    </tr>
-    <tr data-type="editable" valign="top" data-id="84">
-        <td>remove baseboard</td>
-        <td>Water Damage</td>
-        <td>Emergency</td>
-        <td>1st</td>
-        <td>english<br />
-chinese</td>
-        <td>
-            <button data-id="84" class="btn btn-primary edit">Edit</button>  
-            <button data-id="84" class="btn btn-primary delete">Delete</button> 
-        </td>
-    </tr>
+    <?php }?>
 </table>

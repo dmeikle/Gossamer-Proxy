@@ -32,10 +32,8 @@ class StaffController extends AbstractController
     public function edit($id) {
         
         $result = $this->model->edit($id);
-       
-        if(is_array($result) && array_key_exists('Staff', $result)) {
-            $staff = current($result['Staff']);  
-            $result['form'] = $this->drawForm($this->model, $staff);
+        if(is_array($result)) {            
+            $result['form'] = $this->drawForm($this->model, $result);
         } else {
              $result['form'] = $this->drawForm($this->model, array());
         }

@@ -2,7 +2,7 @@
 all:
     listeners:        
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
-        - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1'}
+        - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1', 'cacheKey': 'locales' }
          #commented out during debug testing
         #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
         - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}

@@ -2,6 +2,9 @@
 
 admin_workperformed_list:
     pattern: admin/workperformed/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
     defaults:
         component: components\workperformed\WorkPerformedComponent
         controller: components\workperformed\controllers\WorkPerformedController
@@ -15,6 +18,10 @@ admin_workperformed_list:
             
 admin_workperformed_edit:
     pattern: admin/workperformed/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
     defaults:
         component: components\workperformed\WorkPerformedComponent
         controller: components\workperformed\controllers\WorkPerformedController
@@ -22,6 +29,22 @@ admin_workperformed_edit:
         method: edit
         view: core\views\TemplateView
         viewKey: admin_workperformed_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            
+admin_workperformed_save:
+    pattern: admin/workperformed/*
+    methods: [POST]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\validation\listeners\ValidateNestedFormListener' }
+    defaults:
+        component: components\workperformed\WorkPerformedComponent
+        controller: components\workperformed\controllers\WorkPerformedController
+        model: components\workperformed\models\WorkPerformedModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_workperformed_save
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'            
