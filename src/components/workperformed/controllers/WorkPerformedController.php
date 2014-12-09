@@ -22,8 +22,10 @@ class WorkPerformedController extends AbstractController
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
+
        // pr($this->model->getEmptyModelStructure());
     
+
         $result = $this->model->edit($id);
         
         $departmentSerializer = new DepartmentSerializer();        
@@ -34,7 +36,9 @@ class WorkPerformedController extends AbstractController
         $result['ClaimPhases'] = $claimPhaseSerializer->formatPhasesForSelection($this->httpRequest->getAttribute('ClaimPhases'));
         unset($claimPhaseSerializer);
         
+
         $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'form' => $this->drawForm($this->model, $result)));
+
     }
     
     public function save($id) {
@@ -66,6 +70,7 @@ class WorkPerformedController extends AbstractController
     
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
+
         $formBuilder = new FormBuilder($this->logger, $model);
         $workBuilder = new WorkPerformedBuilder();
        
@@ -76,11 +81,13 @@ class WorkPerformedController extends AbstractController
      
         $serializer = new WorkPerformedSerializer();
         $selectedOptions = array($workBuilder->getValue('Departments_id', $values));
+
         $options = array('Departments' => $serializer->formatSelectionBoxOptions($departmentsList, $selectedOptions));
         unset($serializer);
      
         $phasesList = $values['ClaimPhases'];
         $claimPhaseSerializer = new ClaimPhaseSerializer();  
+
         $selectedOptions = array($workBuilder->getValue('ClaimPhases_id', $values));         
         $options['ClaimPhases'] = $claimPhaseSerializer->formatSelectionBoxOptions($phasesList, $selectedOptions);
         
@@ -107,5 +114,6 @@ class WorkPerformedController extends AbstractController
         }
         
         return $retval;
+
     }
 }

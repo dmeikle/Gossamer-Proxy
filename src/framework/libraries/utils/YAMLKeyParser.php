@@ -56,7 +56,7 @@ class YAMLKeyParser extends YAMLParser
            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();            
-         
+
             if(is_array($config) && array_key_exists($ymlkey, $config)) { 
             //check to see if it's the correct key based on its methodType
                 if(array_key_exists('methods', $config[$ymlkey]) && in_array($method, $config[$ymlkey]['methods'])) {                   
@@ -71,7 +71,7 @@ class YAMLKeyParser extends YAMLParser
     private function searchKeyInSrc($ymlkey, $filename, $method = 'GET') {
         $subdirectories = $this->getDirectoryList('/src/components/');        
         $parser = new YAMLParser($this->logger);
-       
+
         foreach ($subdirectories as $folder) {           
            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
@@ -83,10 +83,12 @@ class YAMLKeyParser extends YAMLParser
                    
                     return $config[$ymlkey];
                 } 
+
                 if(!array_key_exists('methods', $config[$ymlkey])) {
                     //no method type specified so just return it as is
                     return $config[$ymlkey];
                 }
+
             }
         }
         

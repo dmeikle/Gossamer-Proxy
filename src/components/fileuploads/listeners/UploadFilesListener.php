@@ -5,7 +5,7 @@ use core\eventlisteners\AbstractListener;
 
 class UploadFilesListener extends AbstractListener
 {
- 
+
     public function on_request_start($params = array()) {
         $filenames = array();
        
@@ -15,6 +15,7 @@ class UploadFilesListener extends AbstractListener
        
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
     }
+
 
 
 }

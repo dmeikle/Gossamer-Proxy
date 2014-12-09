@@ -54,7 +54,7 @@ class ClaimsController extends AbstractController{
         $builder = new FormBuilder($this->logger, $model);
         $claimBuilder = new ClaimBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-       
+
         $options = array();
         
         return $claimBuilder->buildForm($builder, $values, $options, $results);

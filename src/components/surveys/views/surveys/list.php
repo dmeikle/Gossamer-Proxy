@@ -14,6 +14,7 @@ $(document).ready(function() {
 </script>
 <a href="/admin/surveys/0">Add New Survey</a>
 
+
 <table class="table table-striped">
     <thead>
         <tr>

@@ -11,8 +11,7 @@ class CompaniesController extends AbstractController
         
         return $this->render($result);
     }
-    
-    
+
     public function searchResults() {
         $result = $this->model->searchResults();
         $searchResults = $this->httpRequest->getAttributes('searchResults');

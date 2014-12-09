@@ -142,6 +142,7 @@ foreach($ScopeRequests as $row) {?>
 <?php } ?>
 </table>
 
+
 <div>
     <select id="resultsPerPage">
         <option>10</option>
@@ -159,3 +160,4 @@ foreach($ScopeRequests as $row) {?>
       <li><a class="pagination <?php echo $lastPagination['current'];?>" data-url="/admin/scoping/requests" data-offset="<?php echo $lastPagination['data-offset'];?>" data-limit="<?php echo $lastPagination['data-limit'];?>" >&raquo;</a></li>
     </ul>
 </div>
+

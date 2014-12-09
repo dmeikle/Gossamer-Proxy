@@ -279,7 +279,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         $loader->setFilePath(__SITE_PATH. DIRECTORY_SEPARATOR . __NAMESPACE . DIRECTORY_SEPARATOR . 
                 __COMPONENT_FOLDER. DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'encodings.yml');
         $config = $loader->loadConfig();
-       
+
         unset($loader);
         
         return $config;

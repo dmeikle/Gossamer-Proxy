@@ -14,6 +14,7 @@ use libraries\utils\Pagination;
 use Gossamer\Caching\CacheManager;
 use core\components\mappings\models\MappingModel;
 
+
 class AbstractModel
 {
     
@@ -93,7 +94,7 @@ class AbstractModel
     public function setContainer(Container $container) {
         $this->container = $container;
     }
-    
+
     public function getEntity($stripNamespace = false) {
         if($stripNamespace) {
             $pieces = explode('\\', $this->entity);
@@ -131,6 +132,7 @@ class AbstractModel
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
+
      
         if(is_array($data) && array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
@@ -256,10 +258,11 @@ class AbstractModel
         return $this->httpRequest;
     }
     
+
     public function getHttpResponse() {
         return $this->httpResponse;
     }
-    
+
     protected function getPagination($rawRowCount, $offset, $limit) {
         if(is_null($rawRowCount)) {
             return;
@@ -304,4 +307,5 @@ class AbstractModel
         
         return $structure;
     }
+
 }

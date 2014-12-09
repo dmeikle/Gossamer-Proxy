@@ -32,6 +32,7 @@ class LoadLocalesListener extends AbstractCachableListener
         
         //now to cache the values
          //note: make sure the cacheKey in routing matches they returned key from REST call - Title cased is automatic
+
         $key = $this->getKey();     
         
         if(is_array($retval) && count($retval) > 0) {

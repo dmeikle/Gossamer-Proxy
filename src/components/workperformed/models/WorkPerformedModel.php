@@ -34,6 +34,5 @@ class WorkPerformedModel extends  AbstractModel implements FormBuilderInterface
 
         return $data;
     }
-    
-    
+
 }

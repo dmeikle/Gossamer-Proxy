@@ -44,8 +44,7 @@ class StaffModel extends  AbstractModel implements FormBuilderInterface
         $params['locale'] = $defaultLocale['locale'];
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listStaff', $params);
-        
-       
+
         //$data['Staffs'] = current($data['Staffs']);
         $data['Departments'] = $this->formatArray($this->httpRequest->getAttribute('Departments'));
         

@@ -15,10 +15,12 @@ $(document).ready(function() {
          <td>
          <div id="tabs">
             <ul>
+
                 <?php
                 foreach($locales as $locale) {?>
                     <li><a href="#<?php echo $locale['locale'];?>"><?php echo $locale['languageName'];?></a></li>
                 <?php } ?>
+
             </ul>
             
             <?php foreach($form['action']['locales'] as $key => $row) { ?>
@@ -45,8 +47,10 @@ $(document).ready(function() {
        <tr>
          <td>Layer</td>
          <td>
+
             <?php echo $form['layer']; ?>
             <span class="alert-info">example: <br />1 - Baseboard<br />2 - Drywall<br />3 - Insulation</span>
+
          </td>
        </tr>
        <tr>

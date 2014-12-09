@@ -105,7 +105,6 @@
               ?>
         </table>
 
-      
 
 <div>
     <select id="resultsPerPage">

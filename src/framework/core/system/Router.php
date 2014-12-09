@@ -27,7 +27,7 @@ class Router {
     public function redirect($ymlkey, array $params = null) {
        
         $ymlURI = $this->getURLByYamlKey($ymlkey);
-        
+
         if(is_null($ymlURI)) {
             throw new RedirectKeyNotFoundException('Router redirect key not found');
         }
@@ -42,9 +42,9 @@ class Router {
     
     private function getURLByYamlKey($ymlkey) {
         $loader = new YAMLKeyParser($this->logger);
-        echo $ymlkey;
+
         $node = $loader->getNodeByKey($ymlkey, 'routing');
-pr($node);
+  
         if(!is_null($node) && count($node) > 0) {
             return $node['pattern'];
         }

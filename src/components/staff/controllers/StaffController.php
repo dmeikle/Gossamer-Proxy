@@ -46,7 +46,7 @@ class StaffController extends AbstractController
         $builder = new FormBuilder($this->logger, $model);
         $staffBuilder = new StaffBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-               
+
         $provinceList = $this->httpRequest->getAttribute('Provinces');
        
         $serializer = new ProvinceSerializer();

@@ -88,7 +88,7 @@
               }
               ?>
         </table>
-      
+
 <div>
     <select id="resultsPerPage">
         <option>10</option>
@@ -106,3 +106,4 @@
       <li><a class="pagination <?php echo $lastPagination['current'];?>" data-url="/admin/contacts" data-offset="<?php echo $lastPagination['data-offset'];?>" data-limit="<?php echo $lastPagination['data-limit'];?>" >&raquo;</a></li>
     </ul>
 </div>
+

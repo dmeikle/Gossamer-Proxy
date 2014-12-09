@@ -9,6 +9,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
+
 /**
  * Description of SheetSelectionModel
  *
@@ -49,6 +50,9 @@ class AnswerModel extends AbstractModel implements FormBuilderInterface{
        
         return $data;
     }
-    
+
+    public function getEmptyModelStructure() {
+        
+    }
 
 }

@@ -1,4 +1,5 @@
 
+
 <h2>Create/Edit Question</h2>
 <script language="javascript">
 
@@ -31,23 +32,27 @@ $(document).ready(function() {
           addAnswer(ui.item);
           addAnswerId(ui.item);
           hideSearch();
+
       },
       source: function( request, response ) {
         var term = request.term;
         if ( term in cache ) {
           response( cache[ term ] );
+
           addAnswerId(ui.item);
           hideSearch();
           return;
         }
  
         $.post( "/admin/surveys/answers/search", request, function( data, status, xhr ) {
+
           cache[ term ] = data;
           response( data );
         });
       }
     });
     
+
     $('#searchToggle').click(function() {
         $('#search').toggle(true);
     });
@@ -129,3 +134,4 @@ $(document).ready(function() {
 
     </table>
 </form>
+

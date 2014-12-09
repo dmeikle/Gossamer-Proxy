@@ -101,7 +101,7 @@ abstract class AbstractComponent
             $view->setContainer($this->container);
           
             $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $this->logger);
-         
+
             $controller->setContainer($this->container);
             try{  
              
@@ -128,7 +128,7 @@ abstract class AbstractComponent
     
     private function getDatasource() {
         $factory = $this->container->get('datasourceFactory');
-       
+
         $sources = $this->container->get('datasources');
         $datasource = $factory->getDatasource($sources[$this->modelName], $this->logger);
         $datasource->setDatasourceKey($sources[$this->modelName]);

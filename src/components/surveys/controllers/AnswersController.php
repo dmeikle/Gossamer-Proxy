@@ -12,11 +12,12 @@ use components\surveys\serialization\AnswerSerializer;
 
 
 /**
- * Description of SheetQuestionsController
+ * Description of AnswersController
  *
  * @author davem
  */
 class AnswersController extends AbstractController{
+
     
     public function search() {
         $result = $this->model->search();
@@ -58,5 +59,5 @@ class AnswersController extends AbstractController{
     
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
-    
+
 }

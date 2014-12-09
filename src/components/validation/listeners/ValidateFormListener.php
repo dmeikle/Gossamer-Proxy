@@ -20,7 +20,9 @@ class ValidateFormListener extends AbstractListener
         $this->httpResponse = $httpResponse;
         
         $loader = new YamlConfiguration();
+
         $loader->loadConfig(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/config/validation/' . __YML_KEY . '.yml');
+
       
         if(is_null($validatorName)) {
             $this->validator = new Validator($loader, $this->logger);  
@@ -60,7 +62,7 @@ class ValidateFormListener extends AbstractListener
        $retval = array();
        $key = key($this->httpRequest->getPost());
        $retval[$key][] = current($this->httpRequest->getPost());
-     
+
        return $retval;
    }
 

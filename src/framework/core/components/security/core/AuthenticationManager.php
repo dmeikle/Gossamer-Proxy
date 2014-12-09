@@ -45,7 +45,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
         $token = $this->generateEmptyToken();
     
         try{
-            
+
             $this->userAuthenticationProvider->loadClientByCredentials($token->getClient()->getCredentials());
            
         }catch(ClientCredentialsNotFoundException $e) {

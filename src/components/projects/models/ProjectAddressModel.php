@@ -37,7 +37,7 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         $params = $this->httpRequest->getPost();
         
         $params['ProjectAddress']['id'] = intval($id);
-        
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['ProjectAddress']); 
         
         return $data;

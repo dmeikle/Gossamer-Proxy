@@ -12,13 +12,14 @@ use components\surveys\form\MultipleChoiceQuestionBuilder;
 use core\system\Router;
 
 
+
 /**
  * Description of SheetQuestionsController
  *
  * @author davem
  */
 class QuestionsController extends AbstractController{
-    
+ 
     
     public function editQuestion($questionTypeId, $id) {
         $results = $this->model->edit($id);
@@ -100,4 +101,5 @@ class QuestionsController extends AbstractController{
         
         return $retval;
     }
+
 }

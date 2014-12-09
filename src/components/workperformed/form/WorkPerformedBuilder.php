@@ -26,9 +26,9 @@ class WorkPerformedBuilder extends AbstractBuilder{
                 ->add('Departments_id', 'select', array('class' => 'form-control',  'options' => $options['Departments']))
                 ->add('submit', 'submit', array('value' => 'Save', 'class' => 'btn btn-lg btn-primary'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary'));                
+
         
         return $builder->getForm();
     }
-
 
 }

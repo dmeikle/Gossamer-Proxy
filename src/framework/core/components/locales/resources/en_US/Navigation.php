@@ -37,4 +37,5 @@ return array (
     'ADMIN_REMINDERS' => 'Reminders',
     'ADMIN_CMS' => 'Website',
     'ADMIN_PROJECTS' => 'Building Addresses'
+
 );

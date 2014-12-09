@@ -28,6 +28,7 @@ projectaddress_list:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/projects/views/admin/subnav.php"
             "section3": "src/components/projects/views/admin/list-addresses.php"
+<<<<<<< HEAD
             "section4": "src/themes/default/templates/sections/footer.php"  
             
 floorplans_edit:  
@@ -48,3 +49,6 @@ floorplans_list:
             "section3": "src/components/projects/views/admin/floorplans/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"          
     
+=======
+            "section4": "src/themes/default/templates/sections/footer.php"  
+>>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f

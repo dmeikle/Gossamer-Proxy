@@ -113,7 +113,9 @@ class HTTPRequest extends AbstractHTTP
         return null;
     }
     
+
     public function getPostParameter($key) {
+
         if(array_key_exists($key, $this->postParameters)) {
             return $this->postParameters[$key];
         }

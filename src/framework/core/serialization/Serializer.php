@@ -9,6 +9,7 @@ namespace core\serialization;
  */
 class Serializer {
    
+
     /**
      * extractRawChildNodeData  - receives raw arrays from child 1 to many
      *  tables and formats it for passing into a selection box as selected
@@ -36,7 +37,7 @@ class Serializer {
     }
     
     public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '') {
-      
+
         if(strlen($subKey) > 0) {           
             $options = $this->extractSubNode($options, $subKey);          
         }

@@ -87,9 +87,12 @@ notifications:
 
 reminders:
     component: "src/components/reminders/config/routing.yml"
+<<<<<<< HEAD
 
 incidents:
     component: "src/components/incidents/config/routing.yml"
+=======
+>>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
     
 
 

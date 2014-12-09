@@ -98,6 +98,7 @@ admin_surveys_sheetanswers_edit:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'          
             
+<<<<<<< HEAD
 ########################################### surveys area
 
            
@@ -274,3 +275,5 @@ admin_surveys_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'             
  
+=======
+>>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f

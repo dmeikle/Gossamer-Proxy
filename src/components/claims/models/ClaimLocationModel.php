@@ -26,7 +26,9 @@ class ClaimLocationModel extends AbstractModel {
     public function saveRoom($locationId, $roomId) {
         $params = $this->httpRequest->getPost();
         
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['rooms']); 
+
         
         return $data;
     }

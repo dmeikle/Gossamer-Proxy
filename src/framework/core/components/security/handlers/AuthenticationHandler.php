@@ -37,7 +37,7 @@ class AuthenticationHandler extends DatasourceAware implements ServiceInterface{
     }
     
     public function execute() {
-    
+
         $this->container->set('securityContext', $this->securityContext);
       
         if(is_null($this->node) || !array_key_exists('authentication', $this->node)) {

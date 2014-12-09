@@ -1,13 +1,16 @@
 
+
 <script language="javascript">
 
 $(document).ready(function() {
     $('.edit').click(function() {
         window.location = '/admin/surveys/answers/' + $(this).data('id');
     })
+
 });
 
 </script>
+
 
 <a href="/admin/surveys/answers/0">Add New Answer</a>
 
