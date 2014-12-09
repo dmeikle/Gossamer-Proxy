@@ -1,0 +1,45 @@
+admin_sections_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/incidents/views/admin/subnav.php"
+            "section3": "src/components/incidents/views/admin/sections/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_sections_create:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/incidents/views/admin/subnav.php"
+            "section3": "src/components/incidents/views/admin/sections/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+    
+admin_incidenttypes_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/incidents/views/admin/subnav.php"
+            "section3": "src/components/incidents/views/admin/incidents/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"    
+    
+admin_incidenttypes_edit: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/incidents/views/admin/subnav.php"
+            "section3": "src/components/incidents/views/admin/incidents/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"       
+            
+admin_incidents_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/incidents/views/admin/subnav.php"
+            "section3": "src/components/incidents/views/admin/incidents/all.php"
+            "section4": "src/themes/default/templates/sections/footer.php"             

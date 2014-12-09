@@ -1,0 +1,45 @@
+admin_companies_search:
+    pattern: admin/companies/search
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_companies_search
+        datasource: datasource1
+
+ 
+   
+admin_companies_list:
+    pattern: admin/companies/*/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_companies_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+   
+admin_companies_edit:
+    pattern: admin/companies/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_companies_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    

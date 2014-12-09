@@ -1,0 +1,34 @@
+
+
+admin_surveys_edit:
+    name: utf8
+    
+admin_surveys_save:
+    name: utf8
+    
+admin_surveys_list:
+    name: utf8
+    
+admin_surveys_answers_save:  
+    answer: utf8 
+    
+admin_surveys_answers_list:  
+    answer: utf8   
+    
+admin_surveys_answers_edit:  
+    answer: utf8  
+    name: utf8
+    
+admin_surveys_questions_save:  
+    question: utf8 
+    
+admin_surveys_questions_list:  
+    question: utf8   
+    
+admin_surveys_questions_edit:  
+    question: utf8  
+    answer: utf8  
+    
+admin_surveys_answers_search:   
+    keywords: utf8
+    answer: utf8

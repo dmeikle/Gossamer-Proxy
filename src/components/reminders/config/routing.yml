@@ -1,0 +1,62 @@
+
+admin_reminders_add:
+    pattern: admin/reminders/*
+    listeners:
+         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByStaffIdListener', 'datasource': 'datasource1', 'methods': [GET]}
+    methods: [GET]   
+    defaults:
+        component: components\reminders\RemindersComponent
+        controller: components\reminders\controllers\RemindersController
+        model: components\reminders\models\StaffReminderModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_reminders_add
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+          
+
+admin_reminders_save:
+    pattern: admin/reminders/*
+    methods: [POST]   
+    defaults:
+        component: components\reminders\RemindersComponent
+        controller: components\reminders\controllers\RemindersController
+        model: components\reminders\models\StaffReminderModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_reminders_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            
+  
+admin_reminders_remove:
+    pattern: admin/reminders/remove/*
+    methods: [POST]   
+    defaults:
+        component: components\reminders\RemindersComponent
+        controller: components\reminders\controllers\RemindersController
+        model: components\reminders\models\StaffReminderModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: admin_reminders_remove
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'           
+            
+            
+admin_reminders_list:
+    pattern: admin/reminders/*/*
+    defaults:
+        component: components\reminders\RemindersComponent
+        controller: components\reminders\controllers\RemindersController
+        model: components\reminders\models\StaffReminderModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_reminders_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+   
+      

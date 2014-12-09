@@ -1,0 +1,37 @@
+<?php
+
+return array (
+    'LABEL_TITLE' => 'Achat de Clientèle',
+    'LABEL_PURCHASE_NUMBER' => 'Nombre d`achat',
+    'LABEL_DATE' => 'Date',
+    'LABEL_FIRSTNAME' => 'Prénom',
+    'LABEL_LASTNAME' => 'Nom de Famille',
+    'LABEL_CITY' => 'Ville',
+    'LABEL_STATE' => 'État',
+    'LABEL_COUNTRY' => 'Pays',
+    'LABEL_ZIP' => 'Code Postal',
+    'LABEL_TELEPHONE' => 'Téléphone',
+    'LABEL_EMAIL' => 'Email',
+    'LABEL_COMPANY' => 'Entreprise',
+    'LABEL_SHIP_FIRSTNAME' => 'Frais de Port Prénom',
+    'LABEL_SHIP_LASTNAME' => 'Frais de Port Nom de Famille',
+    'LABEL_SHIP_CITY' => 'Frais de Port Ville',
+    'LABEL_SHIP_STATE' => 'Frais de Port État',
+    'LABEL_SHIP_COUNTRY' => 'Frais de Port Pays',
+    'LABEL_SHIP_ZIP' => 'Frais de Port Code Postal',
+    'LABEL_SHIP_TELEPHONE' => 'Frais de Port Téléphone',
+    'LABEL_SHIP_EMAIL' => 'Frais de Port Email',
+    'LABEL_SHIP_COMPANY' => 'Frais de Port Company',
+    'LABEL_CART_CONTENTS' => 'Panier: Sommaire',
+    'LABEL_ITEM' => 'Article',
+    'LABEL_QUANTITY' => 'Quantité',
+    'LABEL_PRICE' => 'Prix',
+    'LABEL_ACTION' => 'Action',
+    'BUTTON_CREATE_NEW' => 'Créer un Nouveau Produit',
+    'LABEL_PRODUCT_LIST' => 'Liste des Produits',
+    'BUTTON_EDIT' => 'Modifier',
+    'BUTTON_DELETE' => 'Effacer',
+    'LABEL_PURCHASER_INFORMATION' => 'Informations Sur L`acheteur',
+    'LABEL_SUBTOTAL' => 'total'
+    
+);

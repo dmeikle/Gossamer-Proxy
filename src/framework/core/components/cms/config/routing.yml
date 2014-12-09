@@ -1,0 +1,139 @@
+admin_cms_section_edit:
+    pattern: admin/cms/sections/*
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\SectionsController
+        model: core\components\cms\models\SectionModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_cms_section_edit
+        datasource: datasource1
+  
+                                
+admin_cms_permalink_save:
+    pattern: admin/cms/pages/permalink/save
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: savePermalink
+        view: core\views\JSONView
+        viewKey: admin_cms_permalink_save
+        datasource: datasource1  
+        
+
+admin_cms_page_search:
+    pattern: admin/cms/pages/search/*
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_cms_page_search
+        datasource: datasource1       
+    
+    
+admin_cms_page_edit:
+    pattern: admin/cms/pages/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'core\components\cms\models\SectionModel'}
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_cms_page_edit
+        datasource: datasource1    
+        
+
+admin_cms_page_save:
+    pattern: admin/cms/pages/*
+    methods: [POST]
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_cms_page_save
+        datasource: datasource1    
+        
+                
+admin_cms_pages_list:
+    pattern: admin/cms/pages/*/*
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_cms_pages_list
+        datasource: datasource1
+ 
+admin_cms_page_preview:
+    pattern: admin/cms/page/preview/*
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\PagesController
+        model: core\components\cms\models\PageModel
+        method: preview
+        view: core\views\JSONView
+        viewKey: admin_cms_page_preview
+        datasource: datasource1
+        
+ 
+admin_cms_section_save:
+    pattern: admin/cms/sections/save/*
+    methods: [POST]
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\SectionsController
+        model: core\components\cms\models\SectionModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_cms_section_save
+        datasource: datasource1
+        
+        
+admin_cms_section_list:
+    pattern: admin/cms/sections/*/*
+    methods: [GET]
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\SectionsController
+        model: core\components\cms\models\SectionModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_cms_section_list
+        datasource: datasource1
+        
+        
+admin_cms_section_view:
+    pattern: admin/cms/section/view/*
+    methods: [GET]
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\SectionsController
+        model: core\components\cms\models\SectionModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_cms_section_view
+        datasource: datasource1
+        
+        
+admin_cms_section_remove:
+    pattern: admin/cms/section/remove/*
+    methods: [POST]
+    defaults:
+        component: core\components\cms\CmsComponent
+        controller: core\components\cms\controllers\SectionsController
+        model: core\components\cms\models\SectionModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: admin_cms_section_remove
+        datasource: datasource1
+    
+   

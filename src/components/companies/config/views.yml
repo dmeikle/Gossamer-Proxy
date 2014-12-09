@@ -1,0 +1,30 @@
+
+admin_companies_search1:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/companies/views/admin/subnav.php"
+            "section3": "src/components/companies/views/test.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_companies_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/companies/views/admin/subnav.php"
+            "section3": "src/components/companies/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_companies_edit:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/companies/views/admin/subnav.php"
+            "section3": "src/components/companies/views/admin/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_propertymanagers_search:
+    

@@ -1,0 +1,111 @@
+
+
+
+    
+
+admin_subcontractors_edit:
+    pattern: admin/subcontractors/*
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'  
+    methods: [GET]
+        
+        
+admin_subcontractors_save:
+    pattern: admin/subcontractors/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'  
+    methods: [POST]
+        
+admin_subcontractors_list_contacts:
+    pattern: admin/subcontractors/contacts/*
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorContactsController
+        model: components\subcontractors\models\SubcontractorContactModel
+        method: listallById
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_save_contact
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'  
+   
+        
+admin_subcontractors_save_contact:
+    pattern: admin/subcontractors/contact/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: saveContact
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_save_contact
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'  
+    methods: [POST]
+        
+admin_subcontractors_edit_contact:
+    pattern: admin/subcontractors/contact/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorContactsController
+        model: components\subcontractors\models\SubcontractorContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_edit_contact
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'      
+ 
+
+admin_subcontractors_list:
+    pattern: admin/subcontractors/*/*
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'
+                
+   
+admin_subcontractors_edit:
+    pattern: admin/subcontractors/*
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_subcontractors_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'                

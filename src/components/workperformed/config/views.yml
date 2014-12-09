@@ -1,0 +1,22 @@
+
+
+
+admin_workperformed_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/workperformed/views/admin/subnav.php"
+            "section3": "src/components/workperformed/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+    
+admin_workperformed_edit:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/workperformed/views/admin/subnav.php"
+            "section3": "src/components/workperformed/views/admin/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    

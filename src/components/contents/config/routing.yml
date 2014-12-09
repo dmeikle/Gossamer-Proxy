@@ -1,0 +1,97 @@
+
+
+admin_contents_list:
+    pattern: admin/contents/jobs/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_contents_list
+        datasource: datasource1
+ 
+
+admin_contents_job_list:
+    pattern: admin/contents/jobs/list/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_contents_job_list
+        datasource: datasource1  
+ 
+
+admin_contents_job_edit:
+    pattern: admin/contents/jobs/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contents_job_edit
+        datasource: datasource1 
+ 
+#locationId, offset, rows
+admin_contents_packages_list:
+    pattern: admin/contents/packages/*/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_contents_packages_list
+        datasource: datasource1  
+        
+        
+admin_contents_packages_edit:
+    pattern: admin/contents/packages/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contents_packages_edit
+        datasource: datasource1   
+        
+        #locationId,packageId
+admin_contents_package_items_list:
+    pattern: admin/contents/package/items/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contents_package_items_list
+        datasource: datasource1   
+        
+        #locationId,packageId
+admin_contents_package_items_edit:
+    pattern: admin/contents/package/items/*/*
+    defaults:
+        component: components\contents\ContentsComponent
+        controller: components\contents\controllers\ContentsController
+        model: components\contents\models\ContentModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contents_package_items_list
+        datasource: datasource1 
+        
+#department, offset, limit
+admin_contents_schedules_list:
+    pattern: admin/contents/scheduling/*/*/*
+    defaults:
+        component: components\scheduling\SchedulingComponent
+        controller: components\scheduling\controllers\SchedulesController
+        model: components\scheduling\models\StaffSchedulingModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contents_schedules_list
+        datasource: datasource1         
+        

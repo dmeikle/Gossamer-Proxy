@@ -1,0 +1,176 @@
+
+
+admin_propertymanagers_search:
+    pattern: admin/contacts/propertymanagers/search
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'Contacts', 'listener': 'components\contacts\listeners\PropertyManagerCachableSearchListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactModel'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: contactsSearchResults
+        view: core\views\JSONView
+        viewKey: admin_propertymanagers_search
+        datasource: datasource1 
+        
+admin_contacts_company_edit:
+    pattern: admin/contacts/company/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+                
+          
+contacts_get:
+    pattern: contacts/get/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: contacts_get
+        datasource: datasource1
+    methods: [POST]
+    
+admin_contacts_permissions_get:
+    pattern: admin/contacts/permissions/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_permissions_get
+        datasource: datasource1
+    methods: [GET]    
+
+    
+
+admin_contact_permissions_save:
+    pattern: admin/contacts/permissions/save/*
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactAuthorizationsListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: savePermissions
+        view: core\views\TemplateView
+        viewKey: admin_contact_permissions_save
+        datasource: datasource1
+    methods: [POST]          
+    
+contacts_list:
+    pattern: admin/contacts/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: contacts_list
+        datasource: datasource1
+   
+    
+admin_contacts_edit:
+    pattern: admin/contacts/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+        
+admin_contacts_save:
+    pattern: admin/contacts/*
+    methods: [POST]
+    listeners:
+     #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_contacts_save
+        datasource: datasource1
+        
+
+        
+        
+        
+portal_login:
+    pattern: portal/entrance
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_login
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/contacts/locales/*/login'
+    methods: [GET]     
+    
+portal_login_submit:
+    pattern: portal/entrance
+    listeners:
+        - { 'event': 'portal_password_mismatch', 'listener': 'components\contacts\listeners\PasswordMismatchListener', 'datasource': 'datasource1'}
+        - { 'event': 'portal_status_locked', 'listener': 'components\contacts\listeners\StatusLockedListener', 'datasource': 'datasource1'}
+       # - { 'event': 'portal_status_not_active', 'listener': 'components\contacts\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [POST]
+    
+     
+  
+admin_scoping_add_contact:
+    pattern: admin/scoping/requests/addContact
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_scoping_add_contact
+        datasource: datasource1                 
+        
+        
+contact_settings:
+    pattern: portal/contacts/settings
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: contact_settings
+        datasource: datasource1 
+    

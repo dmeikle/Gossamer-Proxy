@@ -1,0 +1,47 @@
+<?php
+
+namespace components\staff\form;
+
+use Gossamer\CMS\Forms\FormBuilder;
+use Gossamer\CMS\Forms\AbstractBuilder;
+
+/**
+ * Description of StaffBuilder
+ *
+ * @author davem
+ */
+class StaffAuthorizationBuilder extends AbstractBuilder{
+    
+    
+    public function buildCredentialsForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
+
+        if(is_array($validationResults) && array_key_exists('StaffAuthorization', $validationResults)) {
+            $builder->addValidationResults($validationResults['StaffAuthorization']);
+        }
+
+        $builder->add('username', 'text', array('class' => 'form-control', $this->getValue('username', $values)))
+                ->add('password', 'password', array('class' => 'form-control'))
+                ->add('passwordConfirm', 'password', array('class' => 'form-control'))
+                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));                
+        
+        return $builder->getForm();
+    }
+
+    public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
+        
+    }
+
+    public function buildPermissionsForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
+
+        if(is_array($validationResults) && array_key_exists('StaffAuthorization', $validationResults)) {
+            $builder->addValidationResults($validationResults['StaffAuthorization']);
+        }
+
+        //$builder->add('username', 'text', array('class' => 'form-control', $this->getValue('username', $values)))
+        //        ->add('password', 'password', array('class' => 'form-control'))
+         //       ->add('passwordConfirm', 'password', array('class' => 'form-control'))
+         $builder->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));                
+        
+        return $builder->getForm();
+    }
+}

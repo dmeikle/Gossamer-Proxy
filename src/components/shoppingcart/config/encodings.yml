@@ -1,0 +1,101 @@
+
+cart_products_list_by_category:
+    title: utf8
+    briefDescription: utf8
+    
+cart_checkout_3:
+    firstname: utf8
+    lastname: utf8
+    company: utf8
+    address1: utf8
+    address2: utf8
+    city: utf8
+    state: utf8
+    country: utf8
+    
+    instructions: utf8
+    referer: utf8
+    deliveryMethod: utf8
+    
+cart_admin_products_list:
+    title: utf8
+    
+cart_admin_product_edit:
+    title: utf8
+    briefDescription: utf8
+    description: utf8
+    category: utf8
+    
+cart_admin_product_save:
+    title: utf8
+    briefDescription: utf8
+    description: utf8
+    categories: utf8
+    
+cart_products_view_selected:
+    title: utf8
+    briefDescription: utf8
+    description: utf8
+    groupName: utf8
+    variant: utf8
+    
+cart_add_basket:
+    title: utf8
+    briefDescription: utf8  
+    
+cart_admin_categories_list:
+    category: utf8
+
+cart_admin_sales_list:
+    firstname: utf8
+    lastname: utf8
+cart_admin_sale_remove:
+    firstname: utf8
+    lastname: utf8
+    
+cart_admin_sale_view:
+    firstname: utf8
+    lastname: utf8
+    company: utf8
+    address1: utf8
+    address2: utf8
+    city: utf8
+    state: utf8
+    country: utf8    
+    instructions: utf8
+    referer: utf8
+    deliveryMethod: utf8
+    
+    title: utf8
+    
+cart_admin_category_edit:
+    category: utf8
+    
+cart_admin_category_save:
+    category: utf8
+    
+cart_admin_variant_option_save:
+    variant: utf8
+    description: utf8
+    
+cart_admin_variant_option_edit:
+    variant: utf8
+    description: utf8
+    
+cart_admin_variant_options_list:    
+     variant: utf8
+     
+cart_admin_variant_option_select:      
+     variant: utf8  
+     groupName: utf8
+     
+cart_admin_variant_edit:
+    groupName: utf8    
+     
+cart_admin_variant_save:
+    groupName: utf8
+    
+cart_admin_variants_list:
+    groupName: utf8
+    
+    

@@ -1,0 +1,234 @@
+
+
+
+    
+
+admin_scoperequest_edit:
+    pattern: admin/scoping/requests/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeRequestsController
+        model: components\scoping\models\ScopeRequestModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoperequest_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+        
+        
+admin_scoperequest_save:
+    pattern: admin/scoping/requests/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeRequestsController
+        model: components\scoping\models\ScopeRequestModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_scoperequest_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]
+        
+admin_scoperequest_save_contact:
+    pattern: admin/scoping/requests/contact/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeRequestsController
+        model: components\scoping\models\ScopeRequestModel
+        method: saveContact
+        view: core\views\TemplateView
+        viewKey: admin_scoperequest_save_contact
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]
+        
+admin_scoperequest_edit_contact:
+    pattern: admin/scoping/requests/contact/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeRequestsController
+        model: components\scoping\models\ScopeRequestModel
+        method: loadContact
+        view: core\views\TemplateView
+        viewKey: admin_scoperequest_edit_contact
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'      
+ 
+
+admin_scoperequests_list:
+    pattern: admin/scoping/requests/*/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeRequestsController
+        model: components\scoping\models\ScopeRequestModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_scoperequests_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+                        
+admin_scoping_takeoffs_list:
+    pattern: admin/scoping/takeoffs/*/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_scoping_takeoffs_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+
+admin_scoping_takeoffs_edit:
+    pattern: admin/scoping/takeoffs/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoping_takeoffs_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+  
+       
+admin_scoping_edit:
+    pattern: admin/scoping/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ClaimScopeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoping_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            
+      
+admin_scoping_view:
+    pattern: admin/scoping/view/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ClaimScopeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoping_view
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+     
+admin_scoping_location_edit:            
+    pattern: admin/scoping/locations/*/*
+    listeners:
+       # - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\claims\models\ClaimLocationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoping_location_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'        
+     
+admin_scoping_location_rooms:            
+    pattern: admin/scoping/location/rooms/*/*
+    methods: [GET]
+    listeners:
+    #    - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\claims\models\ClaimLocationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scoping_location_rooms
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+admin_scoping_location_rooms_save:            
+    pattern: admin/scoping/location/rooms/*/*
+    methods: [POST]
+    listeners:
+    #    - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: saveRoom
+        view: core\views\TemplateView
+        viewKey: admin_scoping_location_rooms_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'     
+            
+admin_scoping_location_takeoff:            
+    pattern: admin/scoping/takeoff/*
+    methods: [GET]
+    listeners:
+    #    - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: getTakeOff
+        view: core\views\TemplateView
+        viewKey: admin_scoping_location_takeoff
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'                
+
+
+      
+      
+          #locationId, offset, limit
+admin_scoping_rooms_list:
+    pattern: admin/scoping/locations/rooms/*/*/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopeRoomsController
+        model: components\scoping\models\ClaimScopeRoomModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_scoping_rooms_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+        
+          
+admin_scoping_home:
+    pattern: admin/scoping/*/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ClaimScopeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_scoping_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'                   

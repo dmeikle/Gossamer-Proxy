@@ -1,0 +1,276 @@
+    
+admin_surveys_scopeforms_list:
+    pattern: admin/surveys/scopeforms/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_scopeforms_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            
+admin_surveys_scopeforms_edit:
+    pattern: admin/surveys/scopeforms/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_scopeforms_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            
+            
+   
+admin_surveys_sheetquestions_list:
+    pattern: admin/surveys/sheetquestions/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetquestions_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'   
+   
+admin_surveys_sheetquestions_edit:
+    pattern: admin/surveys/sheetquestions/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetquestions_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            
+          
+            
+
+   
+admin_surveys_sheetanswers_list:
+    pattern: admin/surveys/sheetanswers/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetanswers_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            
+  
+admin_surveys_sheetanswers_search:
+    pattern: admin/surveys/sheetanswers/search
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_surveys_sheetanswers_search
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    
+    
+admin_surveys_sheetanswers_edit:
+    pattern: admin/surveys/sheetanswers/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_sheetanswers_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            
+########################################### surveys area
+
+           
+admin_surveys_builder:
+    pattern: admin/surveys/builder/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionTypeModel', 'cacheKey': 'QuestionTypes' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\BuildersController
+        model: components\surveys\models\BuilderModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_builder
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'   
+           
+admin_surveys_answers_search:
+    pattern: admin/surveys/answers/search
+    methods: [POST]
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadAnswersByQuestionListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_surveys_answers_search
+        datasource: datasource1
+            
+admin_surveys_answers_edit:
+    pattern: admin/surveys/answers/*
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_answers_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'                         
+            
+  
+admin_surveys_answers_save:
+    pattern: admin/surveys/answers/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_surveys_answers_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+admin_surveys_questions_edit:
+    pattern: admin/surveys/questions/*/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionTypeModel', 'cacheKey': 'QuestionTypes' }
+        - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadAnswersByQuestionListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: editQuestion
+        view: core\views\TemplateView
+        viewKey: admin_surveys_questions_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+   
+admin_surveys_questions_save:
+    pattern: admin/surveys/questions/*/*
+    methods: [POST]
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\surveys\listeners\SaveQuestionAnswersListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: saveQuestion
+        view: core\views\TemplateView
+        viewKey: admin_surveys_questions_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'              
+
+#this has to be AFTER the edit features so it doesn't override the URI options
+admin_surveys_questions_list:
+    pattern: admin/surveys/questions/list/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionTypeModel', 'cacheKey': 'QuestionTypes' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_questions_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+            
+admin_surveys_answers_list:
+    pattern: admin/surveys/answers/list/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_answers_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+            
+            
+admin_surveys_list:
+    pattern: admin/surveys/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+
+            
+            
+            
+admin_surveys_edit:
+    pattern: admin/surveys/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\SurveyCategoryModel', 'cacheKey': 'SurveyCategorys' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'              
+            
+
+admin_surveys_save:
+    pattern: admin/surveys/*
+    methods: [POST]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\SurveyCategoryModel', 'cacheKey': 'SurveyCategorys' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_surveys_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+ 
