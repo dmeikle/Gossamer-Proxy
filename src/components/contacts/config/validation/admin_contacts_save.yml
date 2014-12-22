@@ -1,6 +1,6 @@
 
 
-failkey: admin_staff_edit
+failkey: admin_contacts_edit
 fields:
 
     - firstname:

@@ -24,6 +24,7 @@ class Client implements ClientInterface{
     protected $status = null;
     
     public function __construct(array $params = array()) {
+        
         if(count($params) > 0) {
             $this->password = $params['password'];
             $this->status = $params['status'];
@@ -31,7 +32,10 @@ class Client implements ClientInterface{
             $this->credentials = (array_key_exists('credentials', $params))? $params['credentials'] : $params['username'];
             $this->ipAddress = (array_key_exists('ipAddress', $params))? $params['ipAddress'] : '';
             $this->id = (array_key_exists('Staff_id', $params))? $params['Staff_id'] : '';
-            if(array_key_exists('User_id', $params)) {
+            
+            if(array_key_exists('Contacts_id', $params)) {
+                $this->id = $params['Contacts_id'];
+            }elseif(array_key_exists('User_id', $params)) {
                 $this->id = $params['User_id'];
             }
         }

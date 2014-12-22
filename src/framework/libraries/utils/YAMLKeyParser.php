@@ -40,6 +40,7 @@ class YAMLKeyParser extends YAMLParser
     
     
     public function getNodeByKey($ymlkey, $filename, $method = 'GET') {
+        echo 'getnodenbbykey';
         //first check core components        
         $result = $this->searchKeyInCore($ymlkey, $filename, $method);
         if(!is_null($result) && is_array($result)) {
@@ -50,7 +51,8 @@ class YAMLKeyParser extends YAMLParser
     }
     
     private function searchKeyInCore($ymlkey, $filename, $method = 'GET') {
-        $subdirectories = $this->getDirectoryList('/src/framework/core/components/');        
+        $subdirectories = $this->getDirectoryList('/src/framework/core/components/');   
+      
         $parser = new YAMLParser($this->logger);
         foreach ($subdirectories as $folder) {           
            
@@ -71,7 +73,7 @@ class YAMLKeyParser extends YAMLParser
     private function searchKeyInSrc($ymlkey, $filename, $method = 'GET') {
         $subdirectories = $this->getDirectoryList('/src/components/');        
         $parser = new YAMLParser($this->logger);
-
+  
         foreach ($subdirectories as $folder) {           
            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
@@ -80,7 +82,6 @@ class YAMLKeyParser extends YAMLParser
             if(is_array($config) && array_key_exists($ymlkey, $config)) { 
             //check to see if it's the correct key based on its methodType
                 if(array_key_exists('methods', $config[$ymlkey]) && in_array($method, $config[$ymlkey]['methods'])) {
-                   
                     return $config[$ymlkey];
                 } 
 

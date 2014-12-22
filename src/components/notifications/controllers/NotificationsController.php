@@ -5,7 +5,7 @@ use core\AbstractController;
 
 
 /**
- * Description of PropertiesController
+ * Description of NotificationsController
  *
  * @author davem
  */

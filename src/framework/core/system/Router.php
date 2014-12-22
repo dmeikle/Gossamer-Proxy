@@ -25,14 +25,14 @@ class Router {
     }
     
     public function redirect($ymlkey, array $params = null) {
-       
+      
         $ymlURI = $this->getURLByYamlKey($ymlkey);
 
         if(is_null($ymlURI)) {
             throw new RedirectKeyNotFoundException('Router redirect key not found');
         }
         $redirectUrl =   $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
-        
+     
         if(!is_null($this->logger->addDebug('redirecting to ' . $redirectUrl)));
         /* Redirect browser */
         header("Location: /$redirectUrl");
@@ -44,7 +44,7 @@ class Router {
         $loader = new YAMLKeyParser($this->logger);
 
         $node = $loader->getNodeByKey($ymlkey, 'routing');
-  
+
         if(!is_null($node) && count($node) > 0) {
             return $node['pattern'];
         }
@@ -54,9 +54,10 @@ class Router {
         $uriList = explode('/', $uri);
         $rawUriList = explode('/', $ymlURI);
         if(is_null($params)) {
+            return $ymlURI;
             //let's assume the programmer is wanting to re-use the hold params.
             // redirecting to the previous page perhaps?
-            return implode('/', array_slice($uriList, -(count($rawUriList))));
+           // return implode('/', array_slice($uriList, -(count($rawUriList))));
         }
         //we have params - let's rebuild the uri with the passed params
        

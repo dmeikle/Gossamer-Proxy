@@ -36,7 +36,7 @@ class YAMLConfiguration
             $uri = 'default/index';
         }
         $routingPath = $this->getInitialRouting($uri);
-     
+  
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
      
@@ -128,8 +128,8 @@ class YAMLConfiguration
     }
     
 
-    private function getYMLNodeParameters($ymlKey) {  
-        
+    private function getYMLNodeParameters($ymlKey) { 
+      
         return $nodeParams = $this->config[$ymlKey];       
     }
     

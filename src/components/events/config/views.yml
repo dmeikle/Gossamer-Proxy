@@ -1,0 +1,123 @@
+
+#-------------------- event types -----------------------
+admin_event_types_edit:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/types/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_event_types_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/types/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+            
+#--------------------- events --------------------------            
+admin_events_list:       
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/events/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_events_edit:       
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/events/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"      
+            
+            
+#---------------- event locations----------------------------            
+            
+admin_eventlocations_edit:    
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/locations/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"      
+            
+admin_eventlocations_list:       
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/locations/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"           
+            
+#--------------- event contacts ------------------------------
+admin_event_contacts_list:     
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/contacts/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"        
+            
+admin_event_contacts_edit:    
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/contacts/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"         
+            
+#-----------------event prospects ----------------------
+
+admin_event_prospects_list:     
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/prospects/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+    
+            
+admin_event_prospects_list_by_event:    
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/prospects/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_event_prospects_edit:  
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/prospects/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"            
+    
+    
+    
+#------------------event attendees ----------------------
+
+admin_eventattendees_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/attendees/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    

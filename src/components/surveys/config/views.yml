@@ -5,11 +5,7 @@ admin_surveys_scopeforms_list:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/surveys/scope-list.php"
-=======
-            "section3": "src/components/surveys/views/surveys/list.php"
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
             "section4": "src/themes/default/templates/sections/footer.php"              
             
 admin_surveys_scopeforms_edit:
@@ -18,11 +14,7 @@ admin_surveys_scopeforms_edit:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/surveys/scope-edit.php"
-=======
-            "section3": "src/components/surveys/views/surveys/edit.php"
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
             "section4": "src/themes/default/templates/sections/footer.php"                  
             
 admin_surveys_sheetquestions_list:
@@ -31,11 +23,7 @@ admin_surveys_sheetquestions_list:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/questions/scope-list.php"
-=======
-            "section3": "src/components/surveys/views/questions/list.php"
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
             "section4": "src/themes/default/templates/sections/footer.php"       
             
 admin_surveys_sheetquestions_edit:     
@@ -44,11 +32,7 @@ admin_surveys_sheetquestions_edit:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/questions/scope-edit.php"
-=======
-            "section3": "src/components/surveys/views/questions/edit.php"
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
             "section4": "src/themes/default/templates/sections/footer.php"     
             
             
@@ -58,11 +42,7 @@ admin_surveys_sheetanswers_list:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/answers/scope-list.php"
-=======
-            "section3": "src/components/surveys/views/answers/list.php"
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
             "section4": "src/themes/default/templates/sections/footer.php"       
             
 admin_surveys_sheetanswers_edit: 
@@ -71,7 +51,6 @@ admin_surveys_sheetanswers_edit:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/scoping/views/subnav.php"
-<<<<<<< HEAD
             "section3": "src/components/surveys/views/answers/scope-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"                
             
@@ -131,10 +110,13 @@ admin_surveys_answers_edit:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/surveys/views/subnav.php"
             "section3": "src/components/surveys/views/answers/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"            
-=======
-            "section3": "src/components/surveys/views/answers/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"                
-            
-admin_surveys_sheetanswers_search:            
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
+            "section4": "src/themes/default/templates/sections/footer.php" 
+
+admin_surveys_questions_select:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/list-by-survey.php"
+            "section4": "src/themes/default/templates/sections/footer.php"

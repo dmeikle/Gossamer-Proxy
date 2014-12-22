@@ -26,6 +26,14 @@ admin_area2:
     
 portal_login_submit:
     pattern: portal/entrance
-    authentication: user_login_auth
+    authentication: contact_login_auth
     fail_url: portal/entrance
     methods: [POST]    
+    
+
+    
+portal_invite_login_submit:
+    pattern: portal/contacts/invite/login
+    authentication: invite_login_auth
+    fail_url: portal/contacts/invite/login
+    methods: [POST]        

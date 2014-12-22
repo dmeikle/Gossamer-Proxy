@@ -41,11 +41,6 @@ class AnswersController extends AbstractController{
         $router->redirect('admin_surveys_answers_list', array(0, 20));
     }
     
-    public function listall($offset = 0, $limit = 20) {
-        $results = $this->model->listall($offset, $limit);
-        
-        $this->render($results);
-    }
     
     public function drawForm(FormBuilderInterface $model, array $values = null) {
       

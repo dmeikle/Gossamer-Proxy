@@ -9,7 +9,7 @@ use core\system\KernelEvents;
 use core\http\HTTPRequest;
 use exceptions\LangFileNotSpecifiedException;
 use core\eventlisteners\Event;
-
+use core\http\HTTPResponse;
 
 class AbstractView
 {
@@ -37,13 +37,16 @@ class AbstractView
     
     protected $httpRequest = null;
     
-    public function __construct(Logger $logger, $ymlKey, array $agentType, HTTPRequest $httpRequest) {
+    protected $httpResponse = null;
+    
+    public function __construct(Logger $logger, $ymlKey, array $agentType, HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
         $this->langFileLoader = $httpRequest->getAttribute('langFiles');
         $this->localesList = $httpRequest->getAttribute('locales');
         $this->httpRequest = $httpRequest;
+        $this->httpResponse = $httpResponse;
         
         $this->loadConfig();
 
@@ -76,11 +79,12 @@ class AbstractView
         ////TODO: we can begin to deprecate any other locale list calls
         $data['SystemLocalesList'] = $this->localesList;
         $navigation = $this->httpRequest->getAttribute('NAVIGATION');
+        
         if(!is_null($navigation)) {
             $data['NAVIGATION'] = $navigation;
         }
-        $this->data = $data;
-       
+        $this->data = array_merge($data, $this->httpResponse->getAttributes());
+       // $this->data = $data;       
     }
 
     public function getData() {

@@ -7,6 +7,7 @@ use components\contacts\serialization\ContactSerializer;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\contacts\form\ContactBuilder;
+use components\contacts\form\ContactDisplayBuilder;
 use core\system\Router;
 
 
@@ -20,6 +21,13 @@ class ContactsController extends AbstractController
     public function edit($id) {
         $result = $this->model->edit($id);
         
+        
+        $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
+        $unformattedTypes = $this->pruneArrayBeforeFormatting($contactTypes);
+        
+        //$contactTypes = $this->httpRequest->getAttribute('ContactTypes'); -pasted in for when this is a loaded list
+       
+        $data['ContactTypes'] = $this->formatSelectionBoxOptions($unformattedTypes, array()); //TODO: array should be a loaded list
          if(is_array($result) && array_key_exists('Contact', $result)) {
             $contact = $result['Contact'];  
             $result['form'] = $this->drawForm($this->model, $contact);
@@ -45,8 +53,8 @@ class ContactsController extends AbstractController
     
     public function view() {
         $result = $this->model->view();
-        
-        $this->render($result);        
+       
+        $this->render(array('form' => $this->drawDisplay($this->model, $result['Contact'])));        
     }
     
     public function contactsSearchResults() {
@@ -67,18 +75,43 @@ class ContactsController extends AbstractController
         $contactBuilder = new ContactBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
         
-       
-        //$provinceList = $this->httpRequest->getAttribute('Provinces');
-       
-//        $serializer = new ProvinceSerializer();
-//        $selectedOptions = array($contactBuilder->getValue('Provinces_id', $values));
-        
-       // $options = array('provinces' => $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions));
         $options = array(
             'companies' => array(),
             'contactTypes' => array()
         );
-        return $contactBuilder->buildForm($builder, $values, $options, $results);
         
+        return $contactBuilder->buildForm($builder, $values, $options, $results);        
+    }
+    
+    protected function drawDisplay(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $displayBuilder = new ContactDisplayBuilder();
+        
+        
+        return $displayBuilder->buildForm($builder, $values);   
+    }
+    
+    
+    public function load() {
+        $result = $this->model->view();
+       
+        $this->render(array('form' => $this->drawForm($this->model, $result['Contact'])));    
+    }
+    
+    public function saveInfo() {
+        $result = $this->model->save($this->model->getLoggedInStaffId());
+       
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect('portal_contact_settings');
+    }
+    
+    public function listallByFriendId($offset, $limit) {
+        $filter = array(
+            'Contacts_id' => $this->model->getLoggedInStaffId()
+        );
+        
+        $results = $this->model->listallWithParams($offset, $limit, $filter);
+        
+        $this->render($results);
     }
 }

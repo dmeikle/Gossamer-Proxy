@@ -46,6 +46,7 @@ class DatasourceFactory
 
         $datasource = new $datasourceClass($logger);
         unset($parser);
+        $datasource->setDatasourceKey($sourceName);
         
         return $datasource;
     }

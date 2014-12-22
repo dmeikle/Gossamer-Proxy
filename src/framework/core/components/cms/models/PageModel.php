@@ -8,7 +8,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of LocaleModel
+ * Description of PageModel
  *
  * @author Dave Meikle
  */ 

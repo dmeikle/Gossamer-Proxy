@@ -18,12 +18,11 @@ class ValidateFormListener extends AbstractListener
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
-        
+      
         $loader = new YamlConfiguration();
 
         $loader->loadConfig(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/config/validation/' . __YML_KEY . '.yml');
 
-      
         if(is_null($validatorName)) {
             $this->validator = new Validator($loader, $this->logger);  
         } else {

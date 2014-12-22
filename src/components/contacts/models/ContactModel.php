@@ -25,6 +25,10 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
        
     }
     
+    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+        return parent::listall($offset, $rows, 'listContacts');
+    }
+    
     public function save($id) {
         
         $params = $this->httpRequest->getPost();
@@ -43,6 +47,8 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         if(is_array($data) && array_key_exists('Contact', $data)) {
             $data['Contact'] = current($data['Contact']);
+        } else {
+            $data['Contact'] = array();
         }
         
         $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
@@ -66,7 +72,16 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
     }   
     
     public function view() {
-        return array();
+       
+        $params = array('id' => $this->getLoggedInStaffId());
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        
+        if(is_array($data) && array_key_exists('Contact', $data)) {
+            $data['Contact'] = current($data['Contact']);
+        }
+        return $data;
+        
     }
 
     public function getFormWrapper() {

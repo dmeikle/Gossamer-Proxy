@@ -109,8 +109,4 @@ $( document ).ready(function() {
             </td>
         </tr>
       </table>
-    
-   
-    
-      
 </form>

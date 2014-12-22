@@ -17,7 +17,7 @@ $(document).ready(function() {
         <th>Comments</th>
         <th>Date Published</th>
     </tr>
-    <?php foreach ($Pages as $page) {?>
+    <?php foreach ($CmsPages as $page) {?>
         <tr>
             <td><?php echo $page['name'];?><br />
                 <div class="pagenav" style="display:none"><a href="/admin/cms/pages/<?php echo $page['id'];?>">Edit</a> | <a href="#">Trash</a> | <a href="#">View</a></div>
@@ -31,3 +31,5 @@ $(document).ready(function() {
     <?php } ?>
     
 </table>
+
+<?php echo $pagination; ?>

@@ -18,7 +18,7 @@ class CheckPasswordInHistoryListener extends AbstractListener{
     public function on_entry_point(Event $event = null) {
       
         $params = $this->httpRequest->getPost();
-          pr($params);
+       
         $member = $this->httpRequest->getAttribute('components\\staff\\models\\StaffAuthorizationModel');
         
         $password = new Password();

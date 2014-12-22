@@ -20,8 +20,7 @@ class StaffAuthenticationProvider extends UserAuthenticationProvider implements 
     public function loadClientByCredentials($credential) {
     
         $result = $this->datasource->query(sprintf("select * from StaffAuthorizations where username = '%s' limit 1", $credential));
-      
-       
+     
         if($result) {
             $client = current($result);
             $client['ipAddress'] = $this->getClientIp();

@@ -43,30 +43,39 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     }
  
     public function authenticate(SecurityContextInterface $context) {
-       
+      
         $token = $this->generateEmptyToken();
-       
+     
         $client = null;
         try{
+          
             $client = $this->userAuthenticationProvider->loadClientByCredentials($token->getClient()->getCredentials());
         }catch(ClientCredentialsNotFoundException $e) {
+            
             $this->logger->addAlert('Client not found ' . $e->getMessage());
             throw $e;
         }
-     
+ 
         //validate the client, if good then add to the context
         if(!is_null($client)) {
            
            $eventParams = array('client' => $client);
+            
+            if(!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
+                error_log('login_password_mismatch');
+                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch',  new Event('login_password_mismatch', $eventParams));               
+            }
             if($this->statusIsLocked($client)) {
+                error_log('login_status_locked');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_locked', new Event('login_status_locked', $eventParams));
                 setSession('_security_secured_area', null);
-            } elseif(!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
-                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch',  new Event('login_password_mismatch', $eventParams));
-               
-            } elseif(!$this->checkStatus($client)) {
+            }
+            if(!$this->checkStatus($client)) {
+                error_log('login_status_not_active');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_not_active',  new Event('login_status_not_active', $eventParams));
-            } elseif(!$this->checkRolesSet($client)) {
+            }
+            if(!$this->checkRolesSet($client)) {
+                error_log('login_roles_not_set');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_roles_not_set',  new Event('login_roles_not_set', $eventParams));
             }
            
@@ -115,18 +124,25 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     public function setParameters(array $params) {
   
         if(!array_key_exists('user_authentication_provider', $params) && 
-                !array_key_exists('staff_authentication_provider', $params)) {
-            throw new ArgumentNotPassedException('user_authentication_provider not specified in config');
+                !array_key_exists('staff_authentication_provider', $params)&& 
+                !array_key_exists('contact_authentication_provider', $params) && 
+                !array_key_exists('invite_authentication_provider', $params)) {
+            throw new ArgumentNotPassedException('authentication_provider not specified in config');
         }
         if(array_key_exists('staff_authentication_provider', $params)) {
             $this->userAuthenticationProvider = $params['staff_authentication_provider'];
-        } else {
+        } elseif (array_key_exists('contact_authentication_provider', $params)) {
+            $this->userAuthenticationProvider = $params['contact_authentication_provider'];
+        } elseif (array_key_exists('user_authentication_provider', $params)) {
            $this->userAuthenticationProvider = $params['user_authentication_provider']; 
+        } else {
+           $this->userAuthenticationProvider = $params['invite_authentication_provider']; 
         }
         
     }
 
     public function generateEmptyToken() {
+       
         $client = $this->getClient();
         $token = new SecurityToken($client, __YML_KEY, $client->getRoles());
        
@@ -134,20 +150,24 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     }
     
     public function getClient() {
+        
         $client = new Client();
         $client->setIpAddress($_SERVER['REMOTE_ADDR']);
         $client->setRoles(array('ROLE_ANONYMOUS_USER'));
         $client->setCredentials($this->getClientCredentials());
         $client->setPassword($this->getPassword());
+      
         return $client;
     }
     
     protected function getClientCredentials() {
+       
         if(array_key_exists('username', $_POST)) {
             return $_POST['username'];
         } elseif(array_key_exists('email', $_POST)) {
             return $_POST['email'];
         }
+        
         //if all else fails check the headers
         return $this->getClientHeaderCredentials();
     }

@@ -81,7 +81,7 @@ abstract class AbstractComponent
      * 
      */
     public function handleRequest(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
-       
+       echo __YML_KEY;
         $handler = array(
             $this->controllerName,
             $this->method
@@ -96,7 +96,7 @@ abstract class AbstractComponent
          
             $model->setDatasource($this->getDatasource());
           
-            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest);
+            $view = new $this->viewName($this->logger, __YML_KEY, $this->agentType, $httpRequest, $httpResponse);
          
             $view->setContainer($this->container);
           
@@ -121,7 +121,7 @@ abstract class AbstractComponent
                 return $controller->render(array());
             }
         }  else {
-             
+             pr($handler);
             throw new HandlerNotCallableException('unable to match method ' . $this->method . ' to controller');
         }     
     }

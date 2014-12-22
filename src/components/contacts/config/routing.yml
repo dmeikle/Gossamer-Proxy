@@ -71,6 +71,41 @@ admin_contact_permissions_save:
         datasource: datasource1
     methods: [POST]          
     
+    
+admin_contacts_credentials_get:
+    pattern: admin/contacts/credentials/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: editCredentials
+        view: core\views\TemplateView
+        viewKey: admin_contacts_credentials_get
+        datasource: datasource1
+    methods: [GET]    
+    
+
+admin_contacts_credentials_save:
+    pattern: admin/contacts/credentials/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\ContactPasswordValidListener', 'params': {'failkey': 'admin_contacts_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\LoadContactCredentialsListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_contacts_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\AdminUsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_contacts_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: saveCredentials
+        view: core\views\TemplateView
+        viewKey: admin_contacts_credentials_save
+        datasource: datasource1
+    methods: [POST]      
+    
+    
+    
 contacts_list:
     pattern: admin/contacts/*/*
     defaults:
@@ -111,7 +146,17 @@ admin_contacts_save:
         viewKey: admin_contacts_save
         datasource: datasource1
         
-
+  
+admin_scoping_add_contact:
+    pattern: admin/scoping/requests/addContact
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_scoping_add_contact
+        datasource: datasource1           
         
         
         
@@ -133,9 +178,12 @@ portal_login:
 portal_login_submit:
     pattern: portal/entrance
     listeners:
-        - { 'event': 'portal_password_mismatch', 'listener': 'components\contacts\listeners\PasswordMismatchListener', 'datasource': 'datasource1'}
-        - { 'event': 'portal_status_locked', 'listener': 'components\contacts\listeners\StatusLockedListener', 'datasource': 'datasource1'}
-       # - { 'event': 'portal_status_not_active', 'listener': 'components\contacts\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateFormListener', 'methods': [POST] }
+        - { 'event': 'login_success', 'listener': 'components\contacts\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
+        #- { 'event': 'login_password_mismatch', 'listener': 'components\contacts\listeners\PasswordMismatchListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_password_mismatch', 'listener': 'components\contacts\listeners\LocalPasswordMismatchListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_status_locked', 'listener': 'components\contacts\listeners\StatusLockedListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_roles_not_set', 'listener': 'components\contacts\listeners\RolesNotSetListener', 'datasource': 'datasource3' }
     defaults:
         component: components\contacts\ContactsComponent
         controller: components\contacts\controllers\LoginController
@@ -149,21 +197,33 @@ portal_login_submit:
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [POST]
     
-     
-  
-admin_scoping_add_contact:
-    pattern: admin/scoping/requests/addContact
+    
+    
+contacts_login_locked:   
+    pattern: portal/entrance/locked
     defaults:
         component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
+        controller: components\contacts\controllers\LoginController
         model: components\contacts\models\ContactModel
-        method: save
+        method: view
         view: core\views\TemplateView
-        viewKey: admin_scoping_add_contact
-        datasource: datasource1                 
+        viewKey: contacts_login_locked
+        datasource: datasource1   
+
+contacts_login_failed:   
+    pattern: portal/entrance/failed
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: contacts_login_failed
+        datasource: datasource1 
+            
         
         
-contact_settings:
+portal_contact_settings:
     pattern: portal/contacts/settings
     defaults:
         component: components\contacts\ContactsComponent
@@ -171,6 +231,139 @@ contact_settings:
         model: components\contacts\models\ContactModel
         method: view
         view: core\views\TemplateView
-        viewKey: contact_settings
+        viewKey: portal_contact_settings
         datasource: datasource1 
+      
+   
+
+portal_contact_invites_edit:
+    pattern: portal/contacts/invites/*
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_edit
+        datasource: datasource1 
+        
+portal_contact_invites_save:
+    pattern: portal/contacts/invites/*
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_save
+        datasource: datasource1         
+        
+portal_contact_invites_list:
+    pattern: portal/contacts/invites/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_list
+        datasource: datasource1 
+          
+
+portal_contact_invites_login:
+    pattern: portal/contacts/invite/login
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_login
+        datasource: datasource1           
+
+portal_contact_invites_login_submit:
+    pattern: portal/contacts/invite/login
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_login_submit
+        datasource: datasource1             
+        
+          
+portal_contacts_list:  
+    pattern: portal/contacts/list/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsFriendsController
+        model: components\contacts\models\ContactFriendModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_contacts_list
+        datasource: datasource1   
+        
+        
+        
+portal_contacts_edit:  
+    pattern: portal/contacts/edit
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: load
+        view: core\views\TemplateView
+        viewKey: portal_contacts_edit
+        datasource: datasource1             
+        
+portal_contacts_save:  
+    pattern: portal/contacts/edit
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: saveInfo
+        view: core\views\TemplateView
+        viewKey: portal_contacts_save
+        datasource: datasource1          
+        
+
+  
+portal_contacts_credentials_get:
+    pattern: portal/contacts/credentials
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: viewCredentials
+        view: core\views\TemplateView
+        viewKey: portal_contacts_credentials_get
+        datasource: datasource1
+    methods: [GET]    
     
+
+portal_contacts_credentials_save:
+    pattern: portal/contacts/credentials
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\ContactPasswordValidListener', 'params': {'failkey': 'portal_contacts_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\LoadLoggedInContactCredentialsListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'portal_contacts_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'portal_contacts_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: portalSaveCredentials
+        view: core\views\TemplateView
+        viewKey: portal_contacts_credentials_save
+        datasource: datasource1
+    methods: [POST] 

@@ -38,7 +38,7 @@ class HTTPResponse
         return null;
     }
     
-    private function getAttributes() {
+    public function getAttributes() {
         if(is_null($this->attributes)) {
             $this->attributes = array();
         }

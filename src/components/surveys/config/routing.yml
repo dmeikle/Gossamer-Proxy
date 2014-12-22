@@ -98,7 +98,7 @@ admin_surveys_sheetanswers_edit:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'          
             
-<<<<<<< HEAD
+
 ########################################### surveys area
 
            
@@ -223,6 +223,25 @@ admin_surveys_answers_list:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
             
+          
+admin_surveys_questions_select:
+    pattern: admin/surveys/surveyquestions/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: listallBySurvey
+        view: core\views\TemplateView
+        viewKey: admin_surveys_questions_select
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            
+            
+            
+            
+            
+            
             
             
 admin_surveys_list:
@@ -275,5 +294,4 @@ admin_surveys_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'             
  
-=======
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
+

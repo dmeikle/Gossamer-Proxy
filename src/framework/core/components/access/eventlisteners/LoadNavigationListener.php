@@ -16,25 +16,26 @@ class LoadNavigationListener extends AbstractListener{
     
     
     public function on_response_start($params) {
-       
+   
         $accessNode = $this->httpRequest->getAttribute('AccessNode');
        
         $userRoles = $this->getUserAccessRoles();  
         
         $navigationNodes = $this->loadNavigation();        
-              
+             
         $navigationItems = $this->loadNavigationElements($navigationNodes, $userRoles); 
         $this->httpRequest->setAttribute('NAVIGATION', $navigationItems);
+       
     }
     
     private function getUserAccessRoles() {
         $token = unserialize(getSession('_security_secured_area'));
         if(is_null($token) || !$token) {
-            return array();
+            return array('IS_ANONYMOUS');
         }
        
         $user = $token->getClient();
-        
+  
         return $user->getRoles();
     }
     

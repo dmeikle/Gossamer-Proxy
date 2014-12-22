@@ -53,8 +53,7 @@ class ProjectAddressesController extends AbstractController{
         $builder = new FormBuilder($this->logger, $model);
         $projectBuilder = new ProjectBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-        
-       
+               
         $provinceList = $this->httpRequest->getAttribute('Provinces');
        
         $provinceSerializer = new ProvinceSerializer();

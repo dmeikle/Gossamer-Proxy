@@ -39,14 +39,14 @@ portal_login:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"
-            "section3": "src/components/users/views/login/login-form.php"
+            "section3": "src/components/contacts/views/login/login-form.php"
             "section4": "src/themes/default/templates/sections/footer.php"
             
 portal_login_submit:
     template: portal-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/header.php"
             "section3": "src/components/users/views/login/welcome.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -86,10 +86,20 @@ admin_contact_permissions_save:
             "section3": "src/components/contacts/views/admin/save-success.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
     
+
+admin_contacts_credentials_get: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contacts/views/admin/subnav.php"
+            "section3": "src/components/contacts/views/admin/credentials.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
     
     #-------------------start portal area -----------------------
     
-contact_settings:  
+portal_contact_settings:  
     template: list.php
     sections: 
         -
@@ -98,3 +108,86 @@ contact_settings:
             "section3": "src/components/contacts/views/settings.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
     
+contacts_login_locked:   
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/locked.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+
+contacts_login_failed:  
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/login/failed.php"
+            "section4": "src/themes/default/templates/sections/footer.php"       
+            
+portal_contacts_edit: 
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"   
+    
+portal_contacts_credentials_get:   
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/credentials.php"
+            "section4": "src/themes/default/templates/sections/footer.php"    
+            
+            
+#---------------- invites ---------------------------            
+portal_contacts_list:     
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"    
+            
+portal_contact_invites_list:          
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/invites/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"      
+
+            
+portal_contact_invites_edit:          
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/invites/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"        
+            
+portal_contact_invites_login:
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/invites/login.php"
+            "section4": "src/themes/default/templates/sections/footer.php"                
+            
+portal_contact_invites_login_submit:   
+    template: portal-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/invites/subnav.php"
+            "section3": "src/components/contacts/views/invites/welcome.php"
+            "section4": "src/themes/default/templates/sections/footer.php"         

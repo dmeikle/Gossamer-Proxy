@@ -3,7 +3,10 @@
 namespace components\contacts\listeners;
 
 use core\eventlisteners\AbstractListener;
-use components\contacts\models\ContactModel;
+use core\eventlisteners\Event;
+use core\system\Router;
+
+
 /**
  * Description of PasswordMismatchListener
  *
@@ -13,22 +16,27 @@ class PasswordMismatchListener extends AbstractListener{
     
     const MAX_LOGIN_FAILURES = 6;
     
-    public function on_login_password_mismatch(array $params) {
-       
+    public function on_login_password_mismatch(Event $event) {
+        $params = $event->getParams();       
         $client = $params['client'];
-        $model = new ContactModel($this->httpRequest, $this->httpResponse, $this->logger);
-        $datasource = $this->getDatasource($model);
-        $datasource->query("update UserAuthentications set failedLogins = failedLogins + 1 where username='" . $client->getCredentials() . "'");
+        
+        $datasource = $this->getDatasource('components\contacts\models\ContactAuthorizationModel');
+ 
+        $datasource->execute("update ContactAuthorizations set failedLogins = failedLogins + 1 where username='" . $client->getCredentials() . "'");
         
         //now check to see if we need to lock them down
-        $result = $datasource->query("select failedLogins from UserAuthentications  where username='" . $client->getCredentials() . "'");
+        $result = $datasource->execute("select failedLogins from ContactAuthorizations where username='" . $client->getCredentials() . "'");
         
         $failedLogins = current($result);
         $value = $failedLogins['failedLogins'];
         if($value >= self::MAX_LOGIN_FAILURES) {
-            $datasource->query("update UserAuthentications set status='locked' where username='" . $client->getCredentials() . "'");
+            $datasource->execute("update ContactAuthorizations set status='locked' where username='" . $client->getCredentials() . "'");            
         }
+       
         unset($datasource);
         unset($model);
+    
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect('contacts_login_failed');
     }
 }

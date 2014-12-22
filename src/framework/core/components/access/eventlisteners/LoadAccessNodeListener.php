@@ -12,7 +12,7 @@ use libraries\utils\URISectionComparator;
 
 
 /**
- * Description of LoadNavigationListener
+ * Description of LoadAccessNodeListener
  *
  * @author davem
  */

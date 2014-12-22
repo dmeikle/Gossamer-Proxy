@@ -1,0 +1,94 @@
+<?php
+
+namespace core\navigation;
+
+use Monolog\Logger;
+
+
+/**
+ * Description of Pagination
+ *
+ * @author davem
+ */
+class Pagination {
+    
+    
+    private $logger;
+    
+    private $rowCount;
+    
+    private $offset;
+    
+    private $limit;
+    
+    
+    public function __construct(Logger $logger) {
+        $this->logger = $logger;
+    }
+   
+    public function getPagination($rowCount, $offset, $limit) {
+        $this->rowCount = $rowCount;
+        $this->offset = $offset;
+        $this->limit = $limit;
+        $retval = array();
+        $numPages = $this->getNumPages();
+        $currentEstablished = false;
+     
+        for($i = 0; $i < $this->getNumPages(); $i++) {
+            $dataOffset = ($i * $limit);
+            $item = array('data-offset' => $dataOffset, 'data-limit' => $limit);
+            if(!$currentEstablished && $offset <= $dataOffset) {
+                $item['current'] = 'current';
+                $currentEstablished = true;
+            } else {
+                $item['current'] = '';
+            }
+            $retval[] = $item;
+        }
+        
+        return $retval;
+    }
+    
+    private function getNumPages() {
+        
+        return $this->rowCount / $this->limit;
+    }
+    
+    public function paginate(array $rowCount, $offset, $limit, $uriPrefix) {
+        if(is_array($rowCount)) {
+            $rowCount = $rowCount[0]['rowCount'];
+        }
+        
+        $pagination = $this->getPagination($rowCount, $offset, $limit);
+        
+        return $this->getHtml($pagination, $uriPrefix);
+    }
+    
+    private function getHtml($pagination, $uriPrefix) {
+      
+        $firstPagination = current($pagination);
+        $lastPagination = end($pagination);
+        $retval = '<div>
+            <select id="resultsPerPage">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>    
+            </select>
+            <ul class="pagination">';
+        $retval .= '<li><a class="pagination ' . $firstPagination['current']. '" data-url="' . $uriPrefix .'" data-offset="' . $firstPagination['data-offset'] . 
+                '" data-limit="' . $firstPagination['data-limit'] . '">&laquo;</a></li>';
+        foreach($pagination as $index => $page) {
+           
+            $pageval = ' <li><a class="pagination ' . $page['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $page['data-offset'] . 
+                    '" data-limit="' . $page['data-limit'] . '" >' . ($index + 1) . '</a></li>';
+           
+            $retval .= $pageval;
+        } 
+        
+        $retval .= ' <li><a class="pagination '. $lastPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $lastPagination['data-offset'] . 
+                '" data-limit="' . $lastPagination['data-limit'] . '" >&raquo;</a></li></ul></div>';
+        
+        return $retval;
+    }
+}

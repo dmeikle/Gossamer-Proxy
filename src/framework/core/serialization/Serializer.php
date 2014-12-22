@@ -36,15 +36,21 @@ class Serializer {
         return $retval;
     }
     
-    public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '') {
+    public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '', $selectedValue = '') {
 
         if(strlen($subKey) > 0) {           
             $options = $this->extractSubNode($options, $subKey);          
         }
-     
+ 
         $retval = '';
         foreach($options as $key => $option) {
-            if(!in_array($key, $selectedOptions)) {
+         
+            if(count($selectedOptions) < 1 && $selectedValue == $key) {
+                //this is for empty selections and passing a selected value in.
+                //eg: creating a new question and selecting a type on page draw
+                $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
+            } elseif(!in_array($key, $selectedOptions)) {
+                
                 $retval .= "<option value=\"{$key}\">{$option}</option>\r\n";
             } else {
                 $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
@@ -65,6 +71,9 @@ class Serializer {
        
         $output = array();
         foreach($array as $row) {
+            if(count($row) < 1) {
+                continue;
+            }
             $output[$row['id']] = $row[$key];
         }
         

@@ -21,7 +21,7 @@
 </div>
 -->
 <div id="header">
-      <div id="logo">Phoenix Restorations</div>
+  
     <div id="account">
         <a href="/portal/contacts/settings"><span class="glyphicon glyphicon-cog" title="Account Settings"></span></a> 
           <span class="glyphicon glyphicon-envelope" title="view all messages"></span>
@@ -29,6 +29,7 @@
           <span class="glyphicon glyphicon-bell" title="view all alerts"></span>
           <span class="glyphicon glyphicon-flash" title="view all incident reports"></span>
     </div>
+    <!--
 <ul id="nav">
             <li><a href="/admin/home">Home</a></li>
         
@@ -43,6 +44,24 @@
             <li>Invoices</li>
         
     </ul>
+    -->
+ 
+<ul id="nav">
+    <?php
+    foreach ($NAVIGATION as $key => $item) {
+       
+        if(array_key_exists('active', $item) && $item['active'] == false) {
+            ?>
+            <li title="disabled on this release"><?php echo $this->getString($item['text_key']);?></li>
+            <?php
+            continue;
+        }
+?>
+        <li><a href="<?php echo $item['pattern'];?>"><?php echo $this->getString($item['text_key']);?></a></li>
+        
+    <?php
+    }?>
+</ul>
     <!---section2--->
   </div>
 

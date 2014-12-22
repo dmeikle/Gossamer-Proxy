@@ -9,21 +9,15 @@ projectaddress_autocomplete:
         viewKey: projectaddress_autocomplete
         datasource: datasource1
         
-<<<<<<< HEAD
+
         
 floorplans_list:
     pattern: admin/projects/floorplans/*
-=======
-floorplans_list:
-    pattern: admin/projects/floorplans/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
+
     defaults:
         component: components\projects\ProjectsComponent
         controller: components\projects\controllers\ProjectFloorPlansController
         model: components\projects\models\FloorPlanModel
-<<<<<<< HEAD
         method: listByProject
         view: core\views\TemplateView
         viewKey: floorplans_list
@@ -73,14 +67,6 @@ floorplans_save:
     methods: [POST]  
     
     
-=======
-        method: listall
-        view: core\views\TemplateView
-        viewKey: floorplans_list
-        datasource: datasource1
-    methods: [GET]        
-        
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
 projectaddress_edit:
     pattern: admin/projects/*
     listeners:

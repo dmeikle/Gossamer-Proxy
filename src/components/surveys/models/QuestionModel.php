@@ -47,4 +47,12 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
+    public function listallBySurvey($id) {
+        $params = array('Surveys_id' => intval($id));       
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+              
+        return $data;
+    }
+    
 }

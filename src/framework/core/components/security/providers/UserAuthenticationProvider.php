@@ -17,7 +17,7 @@ use core\components\security\exceptions\ClientCredentialsNotFoundException;
 class UserAuthenticationProvider extends DatasourceAware implements AuthenticationProviderInterface{
     
     public function loadClientByCredentials($credential) {
-     
+   
         $result = $this->datasource->query(sprintf("select * from UserAuthentications where username = '%s' limit 1", $credential));
       
         if($result) {

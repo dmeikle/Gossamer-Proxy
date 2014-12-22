@@ -112,6 +112,7 @@ class EventDispatcher{
     }
  
     public function dispatch($uri, $state, Event &$params = null) {
+        //error_log("dispatch called for $uri with state set to $state");
        $this->logger->addDebug("dispatch called for $uri with state set to $state");
        $keys = array_keys($this->listeners);
         if(!array_key_exists($uri, $this->listeners)) {
@@ -123,7 +124,8 @@ class EventDispatcher{
        
         foreach ($this->listeners[$uri] as $listener)
         {
-            $this->logger->addDebug('dispatching ' . get_class($listener) . ' listener class for uri: ' . $uri);
+           // error_log('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
+            $this->logger->addDebug('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
             $listener->setState($state, $params);
           //  echo $state . ' listener class for uri: ' . $uri.'<br>';
         }

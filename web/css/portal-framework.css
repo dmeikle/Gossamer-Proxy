@@ -39,3 +39,11 @@
 	display:inline;
         margin:0px 0px 20px 20px;
 }
+
+.textboxAsLabel
+{
+   border: none;
+   background-color: #fff;
+   background: transparent;
+   width: 100%;
+}

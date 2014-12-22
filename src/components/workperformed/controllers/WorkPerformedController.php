@@ -10,6 +10,7 @@ use components\workperformed\serialization\WorkPerformedSerializer;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
+use core\navigation\Pagination;
 
 
 class WorkPerformedController extends AbstractController
@@ -64,6 +65,12 @@ class WorkPerformedController extends AbstractController
         $claimPhaseSerializer = new ClaimPhaseSerializer();        
         $result['ClaimPhases'] = $claimPhaseSerializer->formatPhasesForSelection($this->httpRequest->getAttribute('ClaimPhases'));
         unset($claimPhaseSerializer);
+        
+        if(is_array($result) && array_key_exists($this->model->getEntity() .'sCount', $result)) {
+            $pagination = new Pagination($this->logger);        
+            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() .'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
         
         $this->render($result);
     }

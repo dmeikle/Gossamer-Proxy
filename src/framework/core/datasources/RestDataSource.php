@@ -7,8 +7,10 @@ use core\RestClient;
 use libraries\utils\YAMLCredentialsConfiguration;
 use Monolog\Logger;
 use core\AbstractModel;
+use core\datasources\AdapterInterface;
 
-class RestDataSource implements DataSourceInterface
+
+class RestDataSource implements DataSourceInterface, AdapterInterface
 {
     private $logger = null;
     
@@ -39,6 +41,7 @@ class RestDataSource implements DataSourceInterface
     
     public function setDatasourceKey($keyName) {
         $this->keyname = $keyName;
+        echo "keyname: $keyName<br>";
     }
   
     private function getEntityName(AbstractModel $entity) {
@@ -60,11 +63,10 @@ class RestDataSource implements DataSourceInterface
      */
     public function query($queryType, AbstractModel $entity, $verb, $params) {
         $ymlKey = $this->keyname;
-     
+  
         $configParams = $this->getCredentials($ymlKey);
-       
         $credentials = $configParams['credentials'];
-        
+   
         $api = new RestClient(array(
             'base_url' => $credentials['baseUrl'],
             'format' => $credentials['format'],
@@ -73,7 +75,7 @@ class RestDataSource implements DataSourceInterface
         $api->setLogger($this->logger);
         
         $result = $api->$queryType($entity->getTablename()."/$verb/", $params);
-
+//pr($result);
         if($result->info->http_code == 200){
             $decodedResult = $result->decode_response();
        

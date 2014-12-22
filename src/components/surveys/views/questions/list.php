@@ -41,3 +41,6 @@ $(document).ready(function() {
     ?>
 
 </table>
+
+
+<?php echo $pagination; ?>

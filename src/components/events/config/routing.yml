@@ -1,0 +1,278 @@
+
+
+#--------------------event attendees ----------------------
+
+admin_eventattendees_list:
+    pattern: admin/events/eventattendees/*/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\events\listeners\LoadEventListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventAttendeesController
+        model: components\events\models\EventAttendeeModel
+        method: listallByEventId
+        view: core\views\TemplateView
+        viewKey: admin_eventattendees_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+     
+#--------------------event locations ----------------------      
+    
+admin_eventlocations_edit:
+    pattern: admin/events/eventlocations/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventLocationsController
+        model: components\events\models\EventLocationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_eventlocations_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+admin_eventlocations_save:
+    pattern: admin/events/eventlocations/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventLocationsController
+        model: components\events\models\EventLocationModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_eventlocations_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]   
+    
+admin_eventlocations_list:
+    pattern: admin/events/eventlocations/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventLocationsController
+        model: components\events\models\EventLocationModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_eventlocations_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+    
+    
+    #------------------- event types ---------------------
+       
+    
+admin_event_types_edit:
+    pattern: admin/events/eventtypes/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventTypesController
+        model: components\events\models\EventTypeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_event_types_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+admin_event_types_save:
+    pattern: admin/events/eventtypes/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventTypesController
+        model: components\events\models\EventTypeModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_event_types_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]   
+    
+admin_event_types_list:
+    pattern: admin/events/eventtypes/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventTypesController
+        model: components\events\models\EventTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_event_types_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+    
+    
+
+    
+    
+    #------------------- event contacts ---------------------
+       
+    
+admin_event_contacts_edit:
+    pattern: admin/events/eventcontacts/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventContactsController
+        model: components\events\models\EventContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_event_contacts_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+admin_event_contacts_save:
+    pattern: admin/events/eventcontacts/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventContactsController
+        model: components\events\models\EventContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_event_contacts_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]   
+    
+admin_event_contacts_list:
+    pattern: admin/events/eventcontacts/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventContactsController
+        model: components\events\models\EventContactModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_event_contacts_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+        
+        
+
+
+    
+    
+    #------------------- event prospect ---------------------
+       
+    
+admin_event_prospects_edit:
+    pattern: admin/events/eventprospects/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventProspectsController
+        model: components\events\models\EventProspectModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_event_prospects_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+admin_event_prospects_save:
+    pattern: admin/events/eventprospects/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventProspectsController
+        model: components\events\models\EventProspectModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_event_prospects_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]  
+    
+admin_event_prospects_list:
+    pattern: admin/events/eventprospects/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\events\models\EventModel', 'cacheKey': 'Events' }
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventProspectsController
+        model: components\events\models\EventProspectModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_event_prospects_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET] 
+    
+admin_event_prospects_list_by_event:
+    pattern: admin/events/eventprospects/*/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\events\models\EventModel', 'cacheKey': 'Events' }
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventProspectsController
+        model: components\events\models\EventProspectModel
+        method: listallByEventId
+        view: core\views\TemplateView
+        viewKey: admin_event_prospects_list_by_event
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+                
+                
+# -----------------------events ---------------------                
+        
+admin_events_edit: 
+    pattern: admin/events/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\events\models\EventContactModel', 'cacheKey': 'EventContacts' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\events\models\EventLocationModel', 'cacheKey': 'EventLocations' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\events\models\EventTypeModel', 'cacheKey': 'EventTypes' }
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_events_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]          
+    
+admin_events_save: 
+    pattern: admin/events/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_events_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]   
+    
+admin_events_list: 
+    pattern: admin/events/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_events_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]       

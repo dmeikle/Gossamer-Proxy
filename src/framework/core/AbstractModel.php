@@ -124,23 +124,20 @@ class AbstractModel
     }
     
     public function listall($offset = 0, $rows = 20, $customVerb = null) {
+       
+        return $this->listallWithParams($offset, $rows, array(), $customVerb);
+    }
+    
+    public function listallWithParams($offset = 0, $rows = 20, array $params, $customVerb = null) {
         
-        $params = array(
-            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
-        );
+        $params['directive::OFFSET'] = $offset;
+        $params['directive::LIMIT'] = $rows;
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
-        $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
-
-     
-        if(is_array($data) && array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
-            $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
-        } elseif (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
-            $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
-        }
         
-        return $data;
+        $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
+    
+        return $data; 
     }
     
     public function edit($id) {
@@ -286,7 +283,7 @@ class AbstractModel
     }
     
     
-    protected function getLoggedInStaffId() {
+    public function getLoggedInStaffId() {
         $token = $this->getSecurityToken();
         
         return $token->getClient()->getId();

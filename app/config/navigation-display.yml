@@ -173,7 +173,6 @@ projects:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         - IS_STAFF
-<<<<<<< HEAD
     
         
         
@@ -195,6 +194,46 @@ surveys:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         
-=======
-    
->>>>>>> 7f98e8a2c84a243210c58c0fea0353c9e631487f
+events: 
+    active: true
+    text_key: 'ADMIN_EVENTS'
+    pattern: '/admin/events/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR         
+        - IS_EDITOR 
+        - IS_STAFF
+
+#-------------------CLIENT PORTAL SECTION--------------------
+
+portal_home:
+    active: true
+    text_key: 'PORTAL_HOME'
+    pattern: '/portal/home'
+    display_roles:
+        - IS_PORTAL_MANAGER         
+      
+portal_contacts_list:
+    active: true
+    text_key: 'PORTAL_CONTACTS_LIST'
+    pattern: '/portal/contacts/list/0/20'
+    display_roles:
+        - IS_PORTAL_MANAGER            
+
+
+portal_contacts_settings:
+    active: true
+    text_key: 'PORTAL_CONTACT_SETTINGS'
+    pattern: '/portal/contacts/settings'
+    display_roles:
+        - IS_PORTAL_MANAGER  
+        - IS_CUSTOMER           
+        
+#--------------------------main website ----------------------
+website_login:
+    active: true
+    text_key: 'WEBSITE_LOGIN'
+    pattern: '/portal/entrance'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER           
+        

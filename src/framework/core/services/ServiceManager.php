@@ -8,6 +8,9 @@ use Monolog\Logger;
 use core\datasources\DatasourceAware;
 use core\datasources\DatasourceFactory;
 use libraries\utils\Container;
+use core\components\security\providers\HttpAwareInterface;
+use core\datasources\DataSourceInterface;
+
 
 /**
  * Description of ServiceManager
@@ -58,8 +61,7 @@ class ServiceManager {
                     $injectors[$argument] = $this->getService($argument);//strip the '@' and ask for it by its name/key provided
                 }else {
                     $injectors[$key] = $this->getService($argument);//strip the '@' and ask for it by its name/key provided
-                }
-                
+                }                
             } else {
                 //load it like a class file - hopefully the author didn't expect any constructor params...
                 $injectors[$key] = new $argument();
@@ -75,10 +77,20 @@ class ServiceManager {
         
         if(array_key_exists('datasource', $config)) {
             if($class instanceof DatasourceAware) {
-                $class->setDatasource($this->datasourceFactory->getDatasource($config['datasource'], $this->logger));
+                $conn = $this->datasourceFactory->getDatasource($config['datasource'], $this->logger);               
+                
+                $class->setDatasource($conn);
             }
         }
-    
+                    
+        if($class instanceof HttpAwareInterface) {
+         
+            $class->setHttpRequest($this->container->get('HTTPRequest'));
+            $class->setHttpResponse($this->container->get('HTTPResponse'));
+            $class->setLogger($this->logger);
+             
+        }
+        
         return $class;
     }
     

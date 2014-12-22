@@ -6,6 +6,7 @@ return array (
     'NAV_PRODUCTS' => 'Products',
     'NAV_SALES' => 'Sales',
     'NAV_VARIANTS' => 'Variants',
-    'NAV_LOCALES' => 'Languages'
+    'NAV_LOCALES' => 'Languages',
+    'nav_test' => 'test'
     
 );

@@ -10,7 +10,7 @@ use components\surveys\serialization\QuestionTypeSerializer;
 use components\surveys\form\TextBoxQuestionBuilder;
 use components\surveys\form\MultipleChoiceQuestionBuilder;
 use core\system\Router;
-
+use core\navigation\Pagination;
 
 
 /**
@@ -23,9 +23,9 @@ class QuestionsController extends AbstractController{
     
     public function editQuestion($questionTypeId, $id) {
         $results = $this->model->edit($id);
-        if(!is_array($results) || !array_key_exists('QuestionTypes_id', $results)) {
-            $results['QuestionTypes_id'] = $questionTypeId;
-        }
+        
+        $results['QuestionTypes_id'] = $questionTypeId;
+        
         $answers = $this->drawAnswerList( $this->httpRequest->getAttribute('AnswersList') );
         
         $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'answers' => $answers,
@@ -45,6 +45,18 @@ class QuestionsController extends AbstractController{
         $questionTypeSerializer = new QuestionTypeSerializer();
         $results['QuestionTypes'] = $questionTypeSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('QuestionTypes'), 'type', true);
         
+        if(is_array($results) && array_key_exists($this->model->getEntity() .'sCount', $results)) {
+            $pagination = new Pagination($this->logger);        
+            $results['pagination'] = $pagination->paginate($results[$this->model->getEntity() .'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
+        
+        $this->render($results);
+    }
+    
+    public function listallBySurvey($surveyId) {
+        $results = $this->model->listallBySurvey($surveyId);
+                
         $this->render($results);
     }
     
@@ -63,7 +75,8 @@ class QuestionsController extends AbstractController{
             array($builder->getValue('QuestionTypes_id', $values));      
         }
 
-        $options = array('questiontypes' => $serializer->formatSelectionBoxOptions($questionTypesList, $selectedOptions, 'type'));
+        $options = array('questiontypes' => $serializer->formatSelectionBoxOptions($questionTypesList, $selectedOptions, 'type', $values['QuestionTypes_id']));
+       
         $options['locales'] = $this->httpRequest->getAttribute('locales');
     
         return $builder->buildForm($formBuilder, $values, $options, $results);

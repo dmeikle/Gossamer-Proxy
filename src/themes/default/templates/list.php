@@ -13,8 +13,8 @@
 
 
 <link rel="stylesheet" href="http://localhost/css/framework.css" />
-<link rel="stylesheet" type="text/css" href="../css/selectize/selectize.css" />
-<link rel="stylesheet" type="text/css" href="../css/selectize/selectize.bootstrap3.css" />
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.bootstrap3.css" />
 <link href="/css/portal-framework.css" rel="stylesheet" type="text/css" />
 
 
@@ -27,7 +27,7 @@
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> 
+<script src="/js/ie10-viewport-bug-workaround.js"></script> 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

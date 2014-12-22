@@ -11,6 +11,9 @@ use core\system\KernelEvents;
 use libraries\utils\Container;
 use core\Entity;
 use Gossamer\CMS\Forms\FormBuilderInterface;
+use core\system\Router;
+use core\navigation\Pagination;
+
 
 /**
  * AbstractController Class extending from XMLURIParser
@@ -125,8 +128,22 @@ class AbstractController
      */
     public function listall($offset=0, $limit=20) {
         $result = $this->model->listall($offset, $limit);
-      
+     
+        if(is_array($result) && array_key_exists($this->model->getEntity() .'sCount', $result)) {
+            $pagination = new Pagination($this->logger);        
+            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() .'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
+        
         $this->render($result);
+    }
+    
+    protected function getUriWithoutOffsetLimit() {
+        $pieces = explode('/', __URI);
+        array_pop($pieces);
+        array_pop($pieces);
+        
+        return '/' . implode('/',$pieces);
     }
 
     /**
@@ -152,6 +169,13 @@ class AbstractController
         $this->render($result);
     }
 
+    public function saveAndRedirect($id, $ymlKey, array $params) {
+        $result = $this->model->save($id);
+        
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect($ymlKey, $params);
+    }
+    
     /**
      * delete - removes a row from the database
      * 

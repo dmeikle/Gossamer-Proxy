@@ -17,6 +17,16 @@ staff_authentication_provider:
     handler: 'core\components\security\providers\StaffAuthenticationProvider'
     datasource: datasource3
     
+    
+contact_authentication_provider: 
+    handler: 'core\components\security\providers\ContactAuthenticationProvider'
+    datasource: datasource3   
+    
+#pay attention - this is drawing from db4 on purpose    
+invite_authentication_provider: 
+    handler: 'core\components\security\providers\InviteAuthenticationProvider'
+    datasource: datasource4  
+    
 authentication_userlogin_manager:
     handler: 'core\components\security\core\UserLoginManager'
     'arguments': 
@@ -27,3 +37,14 @@ authentication_stafflogin_manager:
     handler: 'core\components\security\core\UserLoginManager'
     'arguments': 
         - '@staff_authentication_provider'       
+  
+    
+authentication_contactlogin_manager:
+    handler: 'core\components\security\core\UserLoginManager'
+    'arguments': 
+        - '@contact_authentication_provider'    
+         
+authentication_invitelogin_manager:  
+    handler: 'core\components\security\core\UserLoginManager'
+    'arguments': 
+        - '@invite_authentication_provider'       
