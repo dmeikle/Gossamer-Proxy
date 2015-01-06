@@ -179,13 +179,27 @@ claims_list:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: listall
+        method: listallByCompany
         view: core\views\TemplateView
         viewKey: claims_list
         datasource: datasource1
         
+claims_list_by_projectaddress:
+    pattern: portal/claims/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallByProjectAddress
+        view: core\views\TemplateView
+        viewKey: claims_list_by_projectaddress
+        datasource: datasource1        
+        
 claims_view:
     pattern: portal/claims/*
+    listeners:        
+        #make sure they are viewing their claim not someone elses
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\VerifyClaimAccessListener', 'datasource': 'datasource1'}
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController

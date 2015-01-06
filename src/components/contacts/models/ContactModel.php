@@ -88,4 +88,9 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         return $this->entity;
     }
 
+    public function findByEmail($email) {
+        $params = array('email' => $email);
+      
+        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+    }
 }

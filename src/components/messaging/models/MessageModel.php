@@ -40,8 +40,7 @@ class MessageModel extends AbstractModel {
         if(intval($params['discussion']['ClaimsLocations_id']) < 1) {
             unset($params['discussion']['ClaimsLocations_id']);
         }
-        pr($params);
-        
+       
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveMessage', $params); 
       
         return $data;
@@ -72,4 +71,6 @@ class MessageModel extends AbstractModel {
         
         return $data;
     }
+    
+    
 }

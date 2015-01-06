@@ -234,7 +234,31 @@ portal_contact_settings:
         viewKey: portal_contact_settings
         datasource: datasource1 
       
-   
+
+        
+portal_contact_search_by_email:
+    pattern: portal/contacts/find-by-email
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: findByEmail
+        view: core\views\JSONView
+        viewKey: portal_contact_search_by_email
+        datasource: datasource1    
+ 
+portal_contact_invites_invite:
+    pattern: portal/contacts/invites/invite
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: invite
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_invite
+        datasource: datasource1         
+        
 
 portal_contact_invites_edit:
     pattern: portal/contacts/invites/*

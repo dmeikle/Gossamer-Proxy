@@ -111,3 +111,12 @@ claims_view:
             "section4": "src/components/claims/views/view.php"
             "section5": "src/themes/default/templates/sections/footer.php"  
                     
+claims_list_by_projectaddress:     
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/claims/views/subnav.php"
+            #"section3": "src/components/claims/views/leftnav.php"
+            "section4": "src/components/claims/views/list-by-address.php"
+            "section5": "src/themes/default/templates/sections/footer.php"                    

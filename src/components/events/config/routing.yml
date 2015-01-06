@@ -228,7 +228,71 @@ admin_event_prospects_list_by_event:
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [GET]
                 
+   
+# --------------------------event lists ------------------------
+admin_eventlists_list: 
+    pattern: admin/events/lists/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventListsController
+        model: components\events\models\EventListModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_eventlists_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]                 
+ 
+admin_eventlists_edit: 
+    pattern: admin/events/lists/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventListsController
+        model: components\events\models\EventListModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_eventlists_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET] 
+    
+     
+admin_eventlists_save: 
+    pattern: admin/events/lists/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventListsController
+        model: components\events\models\EventListModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_eventlists_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]  
+    
+    
+    
+#--------------------eventlist contacts-----------------------
+admin_eventlist_contacts_list: 
+    pattern: admin/events/list/*/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventListContactsController
+        model: components\events\models\EventListContactModel
+        method: listallByListId
+        view: core\views\TemplateView
+        viewKey: admin_eventlist_contacts_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET] 
+    
+    
                 
+#-----------put this as the final default for admin section ----                
 # -----------------------events ---------------------                
         
 admin_events_edit: 
@@ -275,4 +339,41 @@ admin_events_list:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]       
+    methods: [GET]      
+    
+    
+ 
+
+    
+#--------------------------------------------------------------------------    
+#--------------------------- portal section -------------------------------
+#--------------------------------------------------------------------------
+
+portal_events_list: 
+    pattern: portal/events/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_events_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+portal_events_view: 
+    pattern: portal/events/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: portal_events_view
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET] 
+    

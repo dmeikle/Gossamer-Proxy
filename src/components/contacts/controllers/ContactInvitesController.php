@@ -80,4 +80,7 @@ class ContactInvitesController extends AbstractController
     }
       
     
+    public function invite() {
+        $this->render(array('form' => $this->drawForm($this->model, array())));
+    }
 }

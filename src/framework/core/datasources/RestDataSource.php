@@ -41,7 +41,6 @@ class RestDataSource implements DataSourceInterface, AdapterInterface
     
     public function setDatasourceKey($keyName) {
         $this->keyname = $keyName;
-        echo "keyname: $keyName<br>";
     }
   
     private function getEntityName(AbstractModel $entity) {

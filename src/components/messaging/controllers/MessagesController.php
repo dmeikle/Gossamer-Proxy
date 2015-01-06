@@ -28,4 +28,12 @@ class MessagesController extends AbstractController{
         
         $this->render($result);
     }
+    
+    public function listallByDiscussion($discussionId, $offset = 0, $limit = 20) {
+        
+        $params = array('');
+        $result = $this->model->listallWithParams($offset, $limit, $params);
+        
+        $this->render($result);
+    }
 }

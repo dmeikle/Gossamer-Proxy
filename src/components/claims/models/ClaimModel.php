@@ -69,4 +69,23 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $this->entity;
     }
 
+    /**
+     * listallByProjectAddress - assumes you have already filtered to ensure
+     *                          requester has permission to view this address
+     * 
+     * @param type $addressId
+     * @param type $offset
+     * @param type $limit
+     * 
+     * @return array
+     */
+    public function listallByProjectAddress($addressId, $offset, $limit) {
+        $params = array(
+            'ProjectAddresses_id' => $addressId,
+            'directive::OFFSET' => $offset,
+            'directive::LIMIT' => $limit
+        );
+        
+        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+    }
 }

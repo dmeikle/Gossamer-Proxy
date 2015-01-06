@@ -110,3 +110,29 @@ projectaddress_list:
         viewKey: projectaddress_list
         datasource: datasource1      
                 
+                
+#------------------------------ portal section -------------------------
+
+portal_projects_list:
+    pattern: portal/projects
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectsController
+        model: components\projects\models\ProjectModel
+        method: listallByContactType
+        view: core\views\TemplateView
+        viewKey: portal_projects_list
+        datasource: datasource1
+        
+portal_projects_list_by_company:
+    pattern: portal/projects/company
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\contacts\listeners\LoadLoggedInContactListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactModel' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectsController
+        model: components\projects\models\ProjectModel
+        method: listallByCompany
+        view: core\views\TemplateView
+        viewKey: portal_projects_list_by_company
+        datasource: datasource1   

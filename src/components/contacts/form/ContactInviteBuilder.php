@@ -22,7 +22,7 @@ class ContactInviteBuilder extends AbstractBuilder{
 
         $builder->add('firstname', 'text', array('class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
                 ->add('lastname', 'text', array('class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
-                ->add('email', 'email', array('class' => 'form-control', 'value' => $this->getValue('email', $values)))
+                ->add('username', 'text', array('class' => 'form-control', 'value' => $this->getValue('username', $values)))
                 ->add('password', 'text', array('class' => 'form-control', 'value' => $this->getValue('mobile', $values)))
                // ->add('InviterContacts_id', 'select', array('class' => 'form-control', 'options' => $options['InviterContacts_id']))
                 ->add('invitationDate', 'span', array('class' => 'form-control', 'value' => $this->getValue('extension', $values)))

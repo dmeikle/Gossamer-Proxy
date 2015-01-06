@@ -211,5 +211,16 @@ class AbstractController
         
         return $datasource;
     }
+    
+    protected function getSecurityToken() {
+        $serializedToken = getSession('_security_secured_area');
+        $token = unserialize($serializedToken);
+        
+        return $token;
+    }
+    
+    protected function getLoggedInUser() {
+        pr($this->getSecurityToken());
+    }
 
 }

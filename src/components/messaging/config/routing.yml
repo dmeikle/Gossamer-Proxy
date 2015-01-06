@@ -77,3 +77,18 @@ admin_messaging_list:
         view: core\views\TemplateView
         viewKey: admin_messaging_list
         datasource: datasource1        
+        
+
+
+#-----------------------------begin portal section ------------------------
+
+portal_messaging_list:
+    pattern: portal/messaging/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_messaging_list
+        datasource: datasource1   

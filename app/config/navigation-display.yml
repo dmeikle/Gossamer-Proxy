@@ -226,8 +226,24 @@ portal_contacts_settings:
     pattern: '/portal/contacts/settings'
     display_roles:
         - IS_PORTAL_MANAGER  
-        - IS_CUSTOMER           
+        - IS_CUSTOMER   
         
+
+portal_projects_list:
+    active: true
+    text_key: 'PORTAL_PROJECTS_LIST'
+    pattern: '/portal/projects/company'
+    display_roles:
+        - IS_PORTAL_MANAGER  
+                
+portal_events_list:
+    active: true
+    text_key: 'PORTAL_EVENTS_LIST'
+    pattern: '/portal/events/0/20'
+    display_roles:
+        - IS_PORTAL_MANAGER  
+                
+                        
 #--------------------------main website ----------------------
 website_login:
     active: true

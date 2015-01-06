@@ -1,11 +1,11 @@
 <ul class="subnav">
     <li>
-        <a href="/admin/scheduling/compressed/1/20141015">Compressed View</a>
+        <a href="/portal/events/0/20">List View</a>
     </li>
     <li>
-        <a href="/admin/scheduling/chart/1/20141015">Chart View</a>
+        <a href="">Chart View</a>
     </li>
     <li>
-        <a href="/admin/scheduling/calendar/1/20141015">Calendar View</a>
+        <a href="">Calendar View</a>
     </li>
 </ul>

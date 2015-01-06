@@ -121,3 +121,62 @@ admin_eventattendees_list:
             "section3": "src/components/events/views/admin/attendees/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
+    
+#------------------event lists --------------------
+
+admin_eventlists_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/lists/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_eventlists_edit:  
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/lists/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+            
+            
+            
+#------------------event list contacts-----------------
+
+admin_eventlist_contacts_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/admin/subnav.php"
+            "section3": "src/components/events/views/admin/listcontacts/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+            
+            
+    
+    
+#---------------------------------------------------------
+#------------------ portal section -----------------------
+#---------------------------------------------------------
+portal_events_list:
+    template: list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+portal_events_view:  
+    template: list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/view.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  

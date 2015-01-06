@@ -188,6 +188,15 @@ portal_contact_invites_login_submit:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/contacts/views/invites/subnav.php"
+            #"section2": "src/components/contacts/views/invites/subnav.php"
             "section3": "src/components/contacts/views/invites/welcome.php"
             "section4": "src/themes/default/templates/sections/footer.php"         
+            
+portal_contact_invites_invite:    
+    template: portal-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section2": "src/components/contacts/views/subnav.php"
+            "section3": "src/components/contacts/views/invites/invite.php"
+            "section4": "src/themes/default/templates/sections/footer.php"           

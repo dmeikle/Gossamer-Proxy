@@ -114,4 +114,12 @@ class ContactsController extends AbstractController
         
         $this->render($results);
     }
+    
+    public function findByEmail() {
+        $params = $this->httpRequest->getPost();
+        $result = $this->model->findByEmail($params['email']);
+        
+        $this->render($result);
+    }
+    
 }

@@ -59,4 +59,10 @@ class EventsController extends AbstractController
         
         $this->render($result);
     }
+    
+    public function view($id) {
+        $result = $this->model->edit($id);
+        
+        $this->render(array('event' =>$result));
+    }
 }
