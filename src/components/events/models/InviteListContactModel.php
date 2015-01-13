@@ -8,7 +8,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-class EventListContactModel extends  AbstractModel implements FormBuilderInterface
+class InviteListContactModel extends  AbstractModel implements FormBuilderInterface
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -16,8 +16,8 @@ class EventListContactModel extends  AbstractModel implements FormBuilderInterfa
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'EventListContact';
-        $this->tablename = 'eventlistcontacts';        
+        $this->entity = 'InviteListContact';
+        $this->tablename = 'invitelistcontacts';        
     }
 
     public function save($id) {

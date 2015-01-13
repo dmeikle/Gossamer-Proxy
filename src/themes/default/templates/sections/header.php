@@ -3,7 +3,9 @@
     <?php
         
         foreach($SystemLocalesList as $key => $systemlocale) {
-            //echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
+           // echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
+            
+             echo '<li class="select-locale" data-id="' . $key . '">' . $systemlocale['languageName'] . '</li>';
         }
         ?>
     </ul>
@@ -11,7 +13,7 @@
         <input type="hidden" name="locale" id="locale" />
     </form>
   </div>
-<!--
+
 
 <div id="locales">
     <?php //$locale = $this->getDefaultLocale();?>
@@ -19,7 +21,7 @@
    <a class="select-locale" data-id="en_US">EN</a> 
    <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
 </div>
--->
+
 <div id="header">
   
     <div id="account">

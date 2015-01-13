@@ -10,7 +10,7 @@ use components\events\serialization\EventContactSerializer;
 use components\events\serialization\EventLocationSerializer;
 use components\events\serialization\EventTypeSerializer;
 use core\navigation\Pagination;
-
+use core\eventlisteners\Event;
 
 class EventsController extends AbstractController
 {
@@ -21,7 +21,7 @@ class EventsController extends AbstractController
     }
     
     public function save($id) {
-        parent::saveAndRedirect($id, 'admin_eventlocations_list', array(0,20));
+        parent::saveAndRedirect($id, 'admin_events_list', array(0,20));
     }
        
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -60,9 +60,23 @@ class EventsController extends AbstractController
         $this->render($result);
     }
     
+    public function listallByContact($offset = 0, $limit = 0) {
+        $params = array('Contacts_id' => $this->getLoggedInUser());
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'listByContact');
+        
+        $pagination = new Pagination($this->logger);        
+        $result['pagination'] = $pagination->paginate($result['EventsCount'], $offset, $limit, '/admin/events/events');       
+        unset($pagination);
+        
+        $this->render($result);
+    }
+    
     public function view($id) {
         $result = $this->model->edit($id);
+       
+        $event = new Event('event_loaded', $result);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'event_loaded', $event);
         
-        $this->render(array('event' =>$result));
+        $this->render(array('event' =>$result, 'location' => current($this->httpRequest->getAttribute('EventLocation'))));
     }
 }

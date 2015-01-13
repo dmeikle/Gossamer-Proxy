@@ -12,6 +12,10 @@ $(document).ready(function() {
    $('.prospects').click(function() {
        window.location = '/admin/events/eventprospects/' + $(this).data('id') + '/0/20';
    })
+   
+   $('.invitations').click(function() {
+       window.location = '/admin/events/invitations/' + $(this).data('id') + '/0/20';
+   })
 });
 
 </script>
@@ -48,7 +52,7 @@ $(document).ready(function() {
                 <button data-id="<?php echo $event['id'];?>" class="btn btn-primary edit">Edit</button> 
                 <button data-id="<?php echo $event['id'];?>" class="btn btn-primary attendees">Attendees</button>
                 <button data-id="<?php echo $event['id'];?>" class="btn btn-primary prospects">Prospects</button>
-               
+                <button data-id="<?php echo $event['id'];?>" class="btn btn-primary invitations">Invitation Lists</button>**perhaps make this an editable column?
             </td>
         </tr>
     <?php } ?>

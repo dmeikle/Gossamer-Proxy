@@ -40,7 +40,9 @@ class EventAttendeeModel extends  AbstractModel implements FormBuilderInterface
     public function save($id) {
         
         $params = $this->httpRequest->getPost();
-        $params[$this->entity]['id'] = intval($id);
+        $params[$this->entity]['Events_id'] = intval($id);
+        $params[$this->entity]['Contacts_id'] = $this->getLoggedInStaffId();
+        
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
         
         return $data;

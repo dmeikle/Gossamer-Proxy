@@ -6,6 +6,9 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use libraries\utils\preferences\UserPreferences;
+use libraries\utils\preferences\UserPreferencesManager;
+
 
 /**
  * Description of LocaleModel
@@ -26,7 +29,8 @@ class LocaleModel extends AbstractModel
     
     public function change() {
         $params = $this->httpRequest->getPost();
-        $this->setDefaultLocale($params['locale']);
+        //$this->setDefaultLocale($params['locale']);
+        $this->setDefaultLocaleCookie($params['locale']);
     }
     
     public function setDefaultLocale($locale) {
@@ -41,6 +45,19 @@ class LocaleModel extends AbstractModel
         setSession('userPreferences', $userPreferences);      
     }
     
+    private function setDefaultLocaleCookie($locale) {
+        
+        $manager = new UserPreferencesManager($this->httpRequest);
+        $userPreferences = $manager->getPreferences();
+        
+        if(is_null($userPreferences) || !$userPreferences instanceof UserPreferences) {
+            $userPreferences = new UserPreferences;
+        }
+        
+        $userPreferences->setDefaultLocale($locale);                    
+              
+        $manager->savePreferences($userPreferences->toArray());
+    }
     
     public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
       

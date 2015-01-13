@@ -34,7 +34,12 @@ class EventBuilder extends AbstractBuilder{
                 ->add('tags', 'text', array('class' => 'form-control', 'value' => $this->getValue('tags', $values)))
                 ->add('save', 'submit', array('value' => 'Save', 'class' => 'btn btn-primary'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-primary'));                
-
+                if($this->getValue('id', $values)<> '') {
+                    $builder->add('contactSettings', 'button', array('value' => 'Contact Settings', 'class' => 'btn btn-primary contactSettings', 'data-id' => $this->getValue('id', $values)));   
+                } else {
+                    $builder->add('contactSettings', 'placeholder', array()); 
+                }
+                
         return $builder->getForm();
     }
 

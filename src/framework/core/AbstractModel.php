@@ -13,7 +13,8 @@ use core\http\HTTPSession;
 use libraries\utils\Pagination;
 use Gossamer\Caching\CacheManager;
 use core\components\mappings\models\MappingModel;
-
+use libraries\utils\preferences\UserPreferencesManager;
+use libraries\utils\preferences\UserPreferences;
 
 class AbstractModel
 {
@@ -162,14 +163,14 @@ class AbstractModel
     }
 
     public function getDefaultLocale() {
-       
-       // $userPreferences = $this->httpRequest->getParameter('userPreferences');
-        $userPreferences = getSession('userPreferences');
-        if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
-           
-            return $userPreferences['defaultLocale'];
+        
+        $manager = new UserPreferencesManager($this->httpRequest);
+        $userPreferences = $manager->getPreferences();
+        
+        if(!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+            return array('locale' => $userPreferences->getDefaultLocale());
         }
-       
+              
         $config = $this->httpRequest->getAttribute('defaultPreferences');
 
         return $config['default_locale'];

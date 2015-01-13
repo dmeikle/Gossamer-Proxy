@@ -18,7 +18,14 @@ $(document).ready(function() {
             <th>Action</th>
         </tr>
     </thead>
-    <?php foreach($EventLists as $eventList) {?>
+    <?php
+    
+    
+    foreach($InviteLists as $eventList) {
+        if(count($eventList) < 1) {
+            continue;
+        }
+        ?>
     <tr>
         <td><?php echo $eventList['name']; ?></td>
         <td><?php echo $eventList['dateCreated']; ?></td>

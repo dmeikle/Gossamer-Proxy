@@ -1,24 +1,18 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
-include_once '../src/framework/libraries/utils/YAMLParser.php';
-$a = array(
-    "key1" => "value1",
-    
-    "key2" => "/test2",
-    
-    "key3" => "/test3",
-    
-    "key4" =>  "/test4"
-);
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-$c = new CookieManager();
+namespace core\http;
 
-$c->setCookie('test', $a);
-echo "<br>cookie set<br>reading:<br>";
-print_r( $c->getCookie('test'));
-
+/**
+ * Description of CookieManager
+ *
+ * @author davem
+ */
 
 class CookieManager {
     
@@ -40,9 +34,17 @@ class CookieManager {
         setcookie($name, $cookieValue, time() + 86400, "/"); //86400 = 1 day        
     }
     
-    
-    public function getCookie($cookieName) {        
+    public function getCookie($cookieName) { 
+        
+        if(!array_key_exists($this->config['name'], $_COOKIE)) {
+            return null;
+        }
+        
         $cookie = $_COOKIE[$this->config['name']];
+        
+        if(!array_key_exists($cookieName, $cookie)) {
+            return null;
+        }
         
         $cookieValue = $cookie[$cookieName];
         
@@ -92,22 +94,3 @@ class CookieManager {
    }
    
 }
-
-?>
-
-<?php
-$cookie_name = "user";
-$cookie_value = "John Doe";
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-?>
-<html>
-<body>
-
-<?php
-if(!isset($_COOKIE[$cookie_name])) {
-    echo "Cookie named '" . $cookie_name . "' is not set!";
-} else {
-    echo "Cookie '" . $cookie_name . "' is set!<br>";
-    echo "Value is: " . $_COOKIE[$cookie_name];
-}
-?>

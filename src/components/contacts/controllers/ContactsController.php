@@ -22,12 +22,13 @@ class ContactsController extends AbstractController
         $result = $this->model->edit($id);
         
         
-        $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
-        $unformattedTypes = $this->pruneArrayBeforeFormatting($contactTypes);
+        //$contactTypes = $this->httpRequest->getAttribute('ContactTypes');
+        //pr($contactTypes);
+       // $unformattedTypes = $this->pruneArrayBeforeFormatting($contactTypes);
         
         //$contactTypes = $this->httpRequest->getAttribute('ContactTypes'); -pasted in for when this is a loaded list
        
-        $data['ContactTypes'] = $this->formatSelectionBoxOptions($unformattedTypes, array()); //TODO: array should be a loaded list
+        //$data['ContactTypes'] = $this->formatSelectionBoxOptions($unformattedTypes, array()); //TODO: array should be a loaded list
          if(is_array($result) && array_key_exists('Contact', $result)) {
             $contact = $result['Contact'];  
             $result['form'] = $this->drawForm($this->model, $contact);
@@ -121,5 +122,6 @@ class ContactsController extends AbstractController
         
         $this->render($result);
     }
+    
     
 }

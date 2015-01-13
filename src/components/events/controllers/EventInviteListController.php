@@ -8,7 +8,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\navigation\Pagination;
 
-class EventListContactsController extends AbstractController
+class EventInviteListController extends AbstractController
 {
     public function edit($id) {
         $result = $this->model->edit($id);
@@ -33,8 +33,8 @@ class EventListContactsController extends AbstractController
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
     
-    public function listallByListId($listId, $offset, $limit) {
-        $params = array('EventLists_id' => $listId);
+    public function listallByEventId($eventId, $offset, $limit) {
+        $params = array('Events_id' => $eventId);
         $result = $this->model->listAllWithParams($offset, $limit, $params);
         
         //pagination...

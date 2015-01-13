@@ -6,22 +6,28 @@ use core\AbstractController;
 use components\events\form\ContactBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
-use core\system\Router;
+use core\navigation\Pagination;
 
-
-/**
- * This controller is for ContactInformation people that
- * are linked to an event
- * 
- * This is NOT the controller for accessing business contacts that have
- * rsvp'ed to events.
- */
-class EventContactsController extends AbstractController
+class EventNotificationsController extends AbstractController
 {
     public function edit($id) {
         $result = $this->model->edit($id);
         
-        $this->render(array('form' => $this->drawForm($this->model, $result)));
+       // $this->render(array('form' => $this->drawForm($this->model, $result)));
+        $this->render($result);
+    }
+    
+    public function listAllByEventId($id, $offset, $limit) {
+        $result = $this->model->listAllByEventId($id, $offset, $limit);
+        $result['Event'] = $this->httpRequest->getAttribute('Event');
+      
+        $pagination = new Pagination($this->logger);        
+        $result['pagination'] = $pagination->paginate($result['EventAttendeesCount'], $offset, $limit, '/admin/events/eventattendees');       
+        unset($pagination);
+        if(!array_key_exists('EventAttendees', $result)) {
+            $result['EventAttendees'] = array();
+        }
+        $this->render($result);
     }
     
     public function save($id) {

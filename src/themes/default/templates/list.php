@@ -137,6 +137,6 @@
   <div id="footer">  <!---section5---> </div>
 </div>
 
-
+<script src="/js/locales.js"></script>
 </body>
 </html>

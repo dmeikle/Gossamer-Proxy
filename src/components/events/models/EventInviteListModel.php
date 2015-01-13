@@ -8,11 +8,10 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-
 /**
- * this is for contact information for people associated to an event
+ * this is for clients that have rsvp'ed an event
  */
-class EventContactModel extends  AbstractModel implements FormBuilderInterface
+class EventInviteListModel extends  AbstractModel implements FormBuilderInterface
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -20,8 +19,8 @@ class EventContactModel extends  AbstractModel implements FormBuilderInterface
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'EventContact';
-        $this->tablename = 'eventcontacts';        
+        $this->entity = 'EventInviteList';
+        $this->tablename = 'eventinvitelist';        
     }
 
     public function getFormWrapper() {

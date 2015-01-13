@@ -15,7 +15,7 @@
         <a href="/admin/events/eventprospects/0/20">List All Event Prospects</a>
     </li>
     <li>
-        <a href="/admin/events/lists/0/20">List All Event Lists</a>
+        <a href="/admin/events/lists/0/20">List All Invite Lists</a>
     </li>
 </ul>
 

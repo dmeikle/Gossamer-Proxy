@@ -40,7 +40,7 @@ class YAMLKeyParser extends YAMLParser
     
     
     public function getNodeByKey($ymlkey, $filename, $method = 'GET') {
-        echo 'getnodenbbykey';
+        
         //first check core components        
         $result = $this->searchKeyInCore($ymlkey, $filename, $method);
         if(!is_null($result) && is_array($result)) {
@@ -78,7 +78,7 @@ class YAMLKeyParser extends YAMLParser
            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();            
-            
+            echo 'searching ' . $folder . '/config/' . $filename . '.yml<br>';
             if(is_array($config) && array_key_exists($ymlkey, $config)) { 
             //check to see if it's the correct key based on its methodType
                 if(array_key_exists('methods', $config[$ymlkey]) && in_array($method, $config[$ymlkey]['methods'])) {

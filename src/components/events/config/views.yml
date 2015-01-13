@@ -122,7 +122,7 @@ admin_eventattendees_list:
             "section4": "src/themes/default/templates/sections/footer.php"
     
     
-#------------------event lists --------------------
+#------------------invite lists (unassigned lists to choose from) --------------
 
 admin_eventlists_list:
     template: admin-list-fullscreen.php
@@ -130,7 +130,7 @@ admin_eventlists_list:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/events/views/admin/subnav.php"
-            "section3": "src/components/events/views/admin/lists/list.php"
+            "section3": "src/components/events/views/admin/invitelists/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
             
 admin_eventlists_edit:  
@@ -139,13 +139,12 @@ admin_eventlists_edit:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/events/views/admin/subnav.php"
-            "section3": "src/components/events/views/admin/lists/edit.php"
+            "section3": "src/components/events/views/admin/invitelists/edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"          
+                
             
             
-            
-            
-#------------------event list contacts-----------------
+#------------------invite list contacts (who's on the list) -----------------
 
 admin_eventlist_contacts_list:
     template: admin-list-fullscreen.php
@@ -158,6 +157,28 @@ admin_eventlist_contacts_list:
             
             
             
+#------------------- event invitations (invite lists to add to an event) ------   
+            
+admin_events_invitelists_list:      
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/admin/event-invitationlists/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+            
+            
+#---------------------- event admin notification settings --------------------
+admin_events_notificationsettings_edit:    
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/admin/notifications/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
     
     
 #---------------------------------------------------------
@@ -169,7 +190,7 @@ portal_events_list:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/events/views/subnav.php"
-            "section3": "src/components/events/views/list.php"
+            "section3": "src/components/events/views/events/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
 portal_events_view:  
@@ -178,5 +199,24 @@ portal_events_view:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/events/views/subnav.php"
-            "section3": "src/components/events/views/view.php"
+            "section3": "src/components/events/views/events/view.php"
             "section4": "src/themes/default/templates/sections/footer.php"  
+            
+portal_events_not_found:     
+    template: list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/events/notfound.php"
+            "section4": "src/themes/default/templates/sections/footer.php"        
+            
+portal_events_rsvp_complete:  
+    template: list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/events/views/subnav.php"
+            "section3": "src/components/events/views/events/rsvpcomplete.php"
+            "section4": "src/themes/default/templates/sections/footer.php"           
+            

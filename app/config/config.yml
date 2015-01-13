@@ -47,11 +47,17 @@ documents_list:
     observersChain:
         observer: 'usercommands\GenerateAuthorizationToken' 
 
-        
-
-
 pagecontents_get:
     uri: '/pageContents/get'
     responseOutputParameters:
         outputParam: 'entities\PageContent'
         outputParam: 'AuthorizationToken'
+
+
+        
+#----------------- cookie info ----------------------
+
+cookies:
+    secure: true
+    salt: D!dYewKn0wTh3En1gm@D3v1c#w@zaF*rM1dabL3Encyp+i0nD3v!s?
+    name: phoenix_restorations

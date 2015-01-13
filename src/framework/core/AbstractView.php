@@ -10,6 +10,8 @@ use core\http\HTTPRequest;
 use exceptions\LangFileNotSpecifiedException;
 use core\eventlisteners\Event;
 use core\http\HTTPResponse;
+use libraries\utils\preferences\UserPreferences;
+use libraries\utils\preferences\UserPreferencesManager;
 
 class AbstractView
 {
@@ -147,13 +149,14 @@ class AbstractView
     }
 
     public function getDefaultLocale() {
-       // $userPreferences = $this->httpRequest->getParameter('userPreferences');
-        $userPreferences = getSession('userPreferences');
-        if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
-           
-            return $userPreferences['defaultLocale'];
-        }
+       
+        $manager = new UserPreferencesManager($this->httpRequest);
+        $userPreferences = $manager->getPreferences();
         
+        if(!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+            return array('locale' => $userPreferences->getDefaultLocale());
+        }
+              
         $config = $this->httpRequest->getAttribute('defaultPreferences');
 
         return $config['default_locale'];

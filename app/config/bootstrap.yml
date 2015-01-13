@@ -3,8 +3,8 @@ all:
     listeners:        
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1', 'cacheKey': 'locales' }
-         #commented out during debug testing
-        #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
+        #TODO: commented out during development testing
+       # - { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
         - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
         - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}
@@ -45,3 +45,5 @@ security:
     #         the current URI, if no current node exists. Just like a folder structure security being defined
     #         on the closest parent folder security options.
     authorization: precise 
+    
+    

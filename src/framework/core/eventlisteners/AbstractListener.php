@@ -7,6 +7,8 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use core\http\HTTPRequest;
 use libraries\utils\Container;
+use libraries\utils\preferences\UserPreferences;
+use libraries\utils\preferences\UserPreferencesManager;
 
 
 class AbstractListener
@@ -81,11 +83,14 @@ class AbstractListener
     
     
     protected function getDefaultLocale() {        
-        $userPreferences = getSession('userPreferences');
-        if(!is_null($userPreferences) && array_key_exists('defaultLocale', $userPreferences)) {
-            return $userPreferences['defaultLocale'];
+        
+        $manager = new UserPreferencesManager($this->httpRequest);
+        $userPreferences = $manager->getPreferences();
+        
+        if(!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+            return array('locale' => $userPreferences->getDefaultLocale());
         }
-
+              
         $config = $this->httpRequest->getAttribute('defaultPreferences');
 
         return $config['default_locale'];

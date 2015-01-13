@@ -40,23 +40,23 @@
 }
 </style>
 
-<?php // foreach($Events as $event) {?>
+<?php foreach($Events as $event) {?>
 
-     	
+ 	
                 
 <div id="events">
     <div class="event">
-        <a href="">
+        <a href="../<?php echo $event['id'];?>">
             <div class="date">
            	  <div class="panel panel-default">
                 <div class="panel-heading">
-                        Dec
+                        <?php echo date('M', strtotime($event['eventDate']));?>
                     </div>
                 <div class="day">
-                        12
+                        <?php echo date('d', strtotime($event['eventDate']));?>
                     </div>
                 <div class="dayOfWeek">
-                        Fri
+                        <?php echo date('D', strtotime($event['eventDate']));?>
                     </div>
               </div>
             </div>
@@ -64,25 +64,22 @@
         <div class="description">
             <div class="toggle"><span class="glyphicon glyphicon-plus"></span></div>
             <div class="name">
-                Dr Michael Rekart: Going the Whole Nine Yards @ The Vancouver Club
+                <?php echo $event['name']; ?> @ The Vancouver Club
             </div>
             <div class="time">
-                Dec 12 @ 7:00 am - 8:30 pm
+                <?php echo date('M', strtotime($event['eventDate']));?> <?php echo date('d', strtotime($event['eventDate']));?> @ <?php echo $event['fromTime'];?>
+                 - <?php echo $event['toTime'];?>
             </div>
             <div class="details">
-                <p>Dr Michael Rekart has almost everything a man could want — a home near UBC, a job on campus he can walk to, enough money, two beautiful grown children, friends around the world and many proud accomplishments. But in early December he boards a plane for Sierra Leone, plunging into the heart of the Ebola crisis on behalf of the international humanitarian aid group Medecins Sans Frontiere (Doctors Without Borders).
-    </p>
-    <p>Rekart, 67 and semi-retired, is well aware of the risks.
-    </p>
-    <p>
-    “I am worried that I might get infected,” the part-time professor said in an interview in his office at the University of B.C.’s school of population and public health. “I am worried that if I get infected, it’s possible I could have a fatal outcome.”
-    </p>
-    <p>
-    But for him, there is no choice. He must go.
-    </p>
-    <p>
-        Tom will interview Dr Mike upon his return and will ask about his faith, his family and the forces that drive him to live a rather dangerous life.</p>
-    book here button
+                <?php //echo $event['description']; ?>
+                <?php if($event['cost'] > 0) {?>
+                    Tickets: $<?php echo number_format($event['cost'], 2); ?>
+                <?php } ?>
+                    
+                <?php if($event['logo'] <> '') {?>
+                    <img src="<?php echo $event['logo'];?>" width="150" />
+                <?php } ?>
+                
             </div>
         </div>
     </div>
@@ -90,5 +87,4 @@
 
 
 
-
-<?php // } ?>
+<?php } ?>

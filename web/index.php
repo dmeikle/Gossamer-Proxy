@@ -36,3 +36,8 @@ unset($kernel);
 
 
 $container->get('EventDispatcher')->dispatch(KernelEvents::TERMINATE, 'terminate');
+
+$manager = new libraries\utils\preferences\UserPreferencesManager($httpRequest);
+echo "preferences<pre>";
+print_r($manager->getPreferences());
+echo "</pre>";

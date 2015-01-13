@@ -8,7 +8,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\navigation\Pagination;
 
-class EventListsController extends AbstractController
+class InviteListContactsController extends AbstractController
 {
     public function edit($id) {
         $result = $this->model->edit($id);
@@ -18,7 +18,7 @@ class EventListsController extends AbstractController
     
     
     public function save($id) {
-        parent::saveAndRedirect($id, 'admin_eventlists_list', array(0,20));
+        parent::saveAndRedirect($id, 'admin_eventlist_contacts_list', array(0,20));
     }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -31,5 +31,19 @@ class EventListsController extends AbstractController
         $options = array();
 
         return $builder->buildForm($formBuilder, $values, $options, $results);
+    }
+    
+    public function listallByListId($listId, $offset, $limit) {
+        $params = array('InviteLists_id' => $listId);
+        $result = $this->model->listAllWithParams($offset, $limit, $params);
+        
+        //pagination...
+        if(is_array($result) && array_key_exists('ListContactsCount', $result)) {
+            $pagination = new Pagination($this->logger);        
+            $result['pagination'] = $pagination->paginate($result['ListContactsCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
+        
+        $this->render($result);
     }
 }

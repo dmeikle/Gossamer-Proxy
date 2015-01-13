@@ -13,6 +13,7 @@ use core\Entity;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 use core\navigation\Pagination;
+use core\eventlisteners\Event;
 
 
 /**
@@ -166,12 +167,20 @@ class AbstractController
         
         $result = $this->model->save($id);
         
+        $params = array('entity' => $this->model->getEntity(true));
+        $event = new Event('save_success', $params);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+        
         $this->render($result);
     }
 
     public function saveAndRedirect($id, $ymlKey, array $params) {
         $result = $this->model->save($id);
         
+        $eventParams = array('entity' => $this->model->getEntity(true));
+        $event = new Event('save_success', $eventParams);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+       
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect($ymlKey, $params);
     }
@@ -220,7 +229,9 @@ class AbstractController
     }
     
     protected function getLoggedInUser() {
-        pr($this->getSecurityToken());
+        $token = $this->getSecurityToken();
+        
+        return $token->getClient()->getId();
     }
 
 }

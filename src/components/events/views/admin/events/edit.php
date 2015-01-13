@@ -21,6 +21,11 @@ $(document).ready(function() {
     $( "#Event_eventDate" ).datepicker({dateFormat: "yy-mm-dd", minDate: 0, maxDate: "+12M +10D" });
     $( "#Event_fromTime" ).ptTimeSelect();
     $( "#Event_toTime" ).ptTimeSelect();
+    
+    
+    $(".contactSettings").click(function() {
+        document.location = '/admin/events/settings/' + $(this).data('id');
+    });
 });
 
 </script>
@@ -128,6 +133,7 @@ $(document).ready(function() {
           <td>
           <?php echo $form['cancel']; ?> 
           <?php echo $form['save']; ?>
+          <?php echo $form['contactSettings'] ?>
           </td>
         </tr>
       </table>

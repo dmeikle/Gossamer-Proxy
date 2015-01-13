@@ -85,6 +85,9 @@ admin_event_types_edit:
     
 admin_event_types_save:
     pattern: admin/events/eventtypes/*
+    listeners:
+        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+    
     defaults:
         component: components\events\EventsComponent
         controller: components\events\controllers\EventTypesController
@@ -115,8 +118,10 @@ admin_event_types_list:
 
     
     
-    #------------------- event contacts ---------------------
-       
+#------------------- event contacts ---------------------
+#this is for contacts associated with an event 
+# ie: for more information, call so-and-so at this number...
+#--------------------------------------------------------
     
 admin_event_contacts_edit:
     pattern: admin/events/eventcontacts/*
@@ -165,8 +170,7 @@ admin_event_contacts_list:
 
     
     
-    #------------------- event prospect ---------------------
-       
+#------------------- event prospects ---------------------
     
 admin_event_prospects_edit:
     pattern: admin/events/eventprospects/*
@@ -234,8 +238,8 @@ admin_eventlists_list:
     pattern: admin/events/lists/*/*
     defaults:
         component: components\events\EventsComponent
-        controller: components\events\controllers\EventListsController
-        model: components\events\models\EventListModel
+        controller: components\events\controllers\InviteListsController
+        model: components\events\models\InviteListModel
         method: listall
         view: core\views\TemplateView
         viewKey: admin_eventlists_list
@@ -248,8 +252,8 @@ admin_eventlists_edit:
     pattern: admin/events/lists/*
     defaults:
         component: components\events\EventsComponent
-        controller: components\events\controllers\EventListsController
-        model: components\events\models\EventListModel
+        controller: components\events\controllers\InviteListsController
+        model: components\events\models\InviteListModel
         method: edit
         view: core\views\TemplateView
         viewKey: admin_eventlists_edit
@@ -263,8 +267,8 @@ admin_eventlists_save:
     pattern: admin/events/lists/*
     defaults:
         component: components\events\EventsComponent
-        controller: components\events\controllers\EventListsController
-        model: components\events\models\EventListModel
+        controller: components\events\controllers\InviteListsController
+        model: components\events\models\InviteListModel
         method: save
         view: core\views\TemplateView
         viewKey: admin_eventlists_edit
@@ -280,8 +284,8 @@ admin_eventlist_contacts_list:
     pattern: admin/events/list/*/*/*
     defaults:
         component: components\events\EventsComponent
-        controller: components\events\controllers\EventListContactsController
-        model: components\events\models\EventListContactModel
+        controller: components\events\controllers\InviteListContactsController
+        model: components\events\models\InviteListContactModel
         method: listallByListId
         view: core\views\TemplateView
         viewKey: admin_eventlist_contacts_list
@@ -291,6 +295,64 @@ admin_eventlist_contacts_list:
     methods: [GET] 
     
     
+    
+    
+    
+#------------------Event invitation lists assigned to an Event
+
+admin_events_invitelists_list: 
+    pattern: admin/events/invitations/*/*/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventInviteListController
+        model: components\events\models\EventInviteListModel
+        method: listallByEventId
+        view: core\views\TemplateView
+        viewKey: admin_eventlist_contacts_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+                
+        
+#----------------event admin notification settings ---------------------------               
+                
+admin_events_notificationsettings_edit:                
+    pattern: admin/events/settings/*              
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventNotificationsController
+        model: components\events\models\EventNotificationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_events_notificationsettings_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]              
+                
+  
+admin_events_notificationsettings_save:                
+    pattern: admin/events/settings/*             
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventNotificationsController
+        model: components\events\models\EventNotificationModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_events_notificationsettings_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]                 
+                
+                
+                
+                
+                
+                
+                
                 
 #-----------put this as the final default for admin section ----                
 # -----------------------events ---------------------                
@@ -349,22 +411,60 @@ admin_events_list:
 #--------------------------- portal section -------------------------------
 #--------------------------------------------------------------------------
 
+
+#this needs to only list events that a contact has been granted access to.
+#instead of using listall we will use listAllByContact.
 portal_events_list: 
     pattern: portal/events/*/*
     defaults:
         component: components\events\EventsComponent
         controller: components\events\controllers\EventsController
         model: components\events\models\EventModel
-        method: listall
+        method: listallByContact
         view: core\views\TemplateView
         viewKey: portal_events_list
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [GET]     
+ 
+#this node has to be in front of portal_events_view
+portal_events_not_found: 
+    pattern: portal/events/notfound
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: portal_events_not_found
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET] 
+
+ 
+
+portal_events_rsvp_complete: 
+    pattern: portal/events/rsvpcomplete
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsController
+        model: components\events\models\EventModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: portal_events_rsvp_complete
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    
+
     
 portal_events_view: 
     pattern: portal/events/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\events\listeners\CheckClientAccessToEventListener', 'datasource': 'datasource1' }
+        - { 'event': 'event_loaded', 'listener': 'components\events\listeners\LoadLocationListener', 'datasource': 'datasource1' }
     defaults:
         component: components\events\EventsComponent
         controller: components\events\controllers\EventsController
@@ -375,5 +475,19 @@ portal_events_view:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET] 
+            - 'src/components/events/locales/*/Events'  
+    methods: [GET]  
     
+portal_events_rsvp_save: 
+    pattern: portal/events/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsContactsController
+        model: components\events\models\EventAttendeeModel
+        method: rsvp
+        view: core\views\TemplateView
+        viewKey: portal_events_rsvp_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]        
