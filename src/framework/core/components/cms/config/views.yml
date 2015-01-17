@@ -3,7 +3,7 @@ admin_cms_section_edit:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/framework/core/components/cms/views/admin/subnav.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
             "section3": "src/framework/core/components/cms/views/admin/section-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
             
@@ -12,7 +12,7 @@ admin_cms_section_list:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/framework/core/components/cms/views/admin/subnav.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
             "section3": "src/framework/core/components/cms/views/admin/sections/list.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
     
@@ -21,7 +21,7 @@ admin_cms_pages_list:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/framework/core/components/cms/views/admin/subnav.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
             "section3": "src/framework/core/components/cms/views/admin/list.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
 
@@ -31,7 +31,7 @@ admin_cms_page_edit:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/framework/core/components/cms/views/admin/subnav.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
             "section3": "src/framework/core/components/cms/views/admin/edit.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
             

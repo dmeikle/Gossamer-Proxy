@@ -1,0 +1,101 @@
+
+
+ 
+   
+admin_contactus_list:
+    pattern: admin/contact/*/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_contactus_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+   
+admin_contactus_view:
+    pattern: admin/contact/*
+    methods: [GET]
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: adminView
+        view: core\views\TemplateView
+        viewKey: admin_contactus_view
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    
+
+admin_contactus_save:
+    pattern: admin/contact/*
+    methods: [POST]
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contactus_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'    
+
+
+website_contactus_save:
+    pattern: contact/*
+    methods: [POST]
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: website_contactus_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'     
+
+website_contactus_get:
+    pattern: contact/contactus
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contactus\models\ContactUsTypeModel', 'cacheKey': 'ContactUsTypes'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: website_contactus_get
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            
+website_contactus_complete:
+    pattern: contact/complete
+    methods: [GET]
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsController
+        model: components\contactus\models\ContactUsModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: website_contactus_complete
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    

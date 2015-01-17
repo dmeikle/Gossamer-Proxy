@@ -44,7 +44,7 @@ class UserPreferencesManager {
     
     private function parseCookie(array $values) {
         $userPreferences = new UserPreferences();
-              
+             
         $this->setDefaultLocale($userPreferences, $values);
         $this->setNotificationTypes($userPreferences, $values);
         
@@ -63,7 +63,7 @@ class UserPreferencesManager {
     
     //we are using a cookie - cannot assume it's safe, so let's see what it holds
     private function setDefaultLocale(UserPreferences &$userPreferences, array $values) {
-        
+       
         $preferredLocale = $values['DefaultLocale'];
         $allowableLocales = $this->httpRequest->getAttribute('locales');
         

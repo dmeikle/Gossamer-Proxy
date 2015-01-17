@@ -124,6 +124,16 @@ class AbstractModel
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
     
+
+    public function save($id) {
+        
+        $params = $this->httpRequest->getPost();
+        $params[$this->entity]['id'] = intval($id);
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
+        
+        return $data;
+    }
+    
     public function listall($offset = 0, $rows = 20, $customVerb = null) {
        
         return $this->listallWithParams($offset, $rows, array(), $customVerb);
@@ -154,7 +164,7 @@ class AbstractModel
         );
      
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        
+       
         if(is_array($data) && array_key_exists($this->entity, $data)) {
             $data = current($data[$this->entity]);
         }

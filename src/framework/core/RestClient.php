@@ -296,13 +296,15 @@ class RestClient implements \Iterator, \ArrayAccess {
                 $this->options['decoders'][$format], $this->response);
         }
 
-        
+      
         $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
        
         $this->decoded_response = $uh->decode($this->decoded_response);
+       
         //$this->decoded_response = $uh->decode($this->decoded_response);
         unset($uh);
         $result = json_decode(json_encode($this->decoded_response), true);
+       
         
         return $result;
     }

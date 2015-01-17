@@ -1,0 +1,70 @@
+admin_blogs_edit:
+    pattern: admin/blogs/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+    methods: [GET]
+
+admin_blogs_save:
+    pattern: admin/blogs/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+    methods: [POST]
+    
+admin_blogs_list:
+    pattern: admin/blogs/*/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+        
+admin_blogs_calendar:
+    pattern: admin/blogs/calendar/*/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: showCalendar
+        view: core\views\TemplateView
+        viewKey: admin_blogs_calendar
+        datasource: datasource1    
+
+website_blogs_list:
+    pattern: blogs/*/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: website_blogs_list
+        datasource: datasource1
+    methods: [GET]
+        
+website_blogs_view:
+    pattern: blogs/*/*/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: website_blogs_view
+        datasource: datasource1
+    methods: [GET]
+    

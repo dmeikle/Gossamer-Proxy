@@ -13,18 +13,6 @@ include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
 
-//validator test from composer
-//
-//use Validation\Validator;
-//$loader = new Validation\YamlConfiguration();
-//$loader->loadConfig(__SITE_PATH . '/app/config/validation-config.yml');
-//echo __SITE_PATH . '/app/config/validation-config.yml';
-//
-////YAML key $key = 'new_user_signup'; 
-//$validator = new Validator($loader, $logger); //Monolog\Logger
-//$key = 'new_user_signup';
-//$result = $validator->validateRequest($key, array('firstname' => 'daw3ve'));
-//pr($result);
 
 use core\system\Kernel;
 use core\system\KernelEvents;
@@ -37,7 +25,4 @@ unset($kernel);
 
 $container->get('EventDispatcher')->dispatch(KernelEvents::TERMINATE, 'terminate');
 
-$manager = new libraries\utils\preferences\UserPreferencesManager($httpRequest);
-echo "preferences<pre>";
-print_r($manager->getPreferences());
-echo "</pre>";
+

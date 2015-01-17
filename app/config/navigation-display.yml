@@ -5,6 +5,15 @@ admin_home:
     pattern: '/admin/home'
     display_roles:
         - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        
+admin_contactus:
+    text_key: 'ADMIN_CONTACTUS'
+    pattern: '/admin/contact/0/20'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
         - IS_STAFF
         
 staff_list:
@@ -236,6 +245,7 @@ portal_projects_list:
     display_roles:
         - IS_PORTAL_MANAGER  
                 
+                
 portal_events_list:
     active: true
     text_key: 'PORTAL_EVENTS_LIST'
@@ -253,3 +263,11 @@ website_login:
         - IS_ANONYMOUS 
         - IS_CUSTOMER           
         
+
+website_blogs_list:
+    active: true
+    text_key: 'WEBSITE_BOGS_LIST'
+    pattern: '/blogs/0/20'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER           

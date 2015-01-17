@@ -57,7 +57,7 @@ class UnicodeHandler {
        // file_put_contents('/var/www/shoppingcart/logs/test3.log', "decoupleToArray is now " . print_r($array, true) . "\r\n", FILE_APPEND);
        // $array = $this->convertJsonToArrays($array);
         
-       // file_put_contents('/var/www/shoppingcart/logs/test3.log', "convertJsonToArray is now " . print_r($array, true) . "\r\n", FILE_APPEND);
+        file_put_contents('/var/www/phoenix-portal/logs/test3.log', "convertJsonToArray is now " . print_r($array, true) . "\r\n", FILE_APPEND);
         return $this->convertArrayText($array);
     }
     

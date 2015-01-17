@@ -12,8 +12,8 @@ default:
 about:
     component: "src/components/defaultItem/config/routing.yml"
   
-contact:
-    component: "src/components/defaultItem/config/routing.yml"     
+#contact:
+#    component: "src/components/defaultItem/config/routing.yml"     
 
 users:
     component: "src/components/users/config/routing.yml"
@@ -95,8 +95,11 @@ incidents:
 events:
     component: "src/components/events/config/routing.yml"
 
-
-
+blogs:
+    component: "src/components/blogs/config/routing.yml"
+    
+contact:
+    component: "src/components/contactus/config/routing.yml"
 
 
 #this is the default fallback to use if not found
