@@ -45,9 +45,14 @@ class LoadListListener extends AbstractCachableListener{
             
             $list = $result[$key];           
             
-        }        
-    
+        }  
+       
+        //set it here in case we want to use it still before sending to response
         $this->httpRequest->setAttribute($key, $list);
+       
+        //send it here in case it's being called in an abstract parent and won't
+        //be seen until the response is rendered
+        $this->httpResponse->setAttribute($key, $list);
         
         if($caching && count($list) > 0) {
             $this->saveValuesToCache($key, $list);

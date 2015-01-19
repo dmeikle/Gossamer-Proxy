@@ -39,8 +39,12 @@ class AbstractCachableListener extends AbstractListener{
                 
                 return;
             }            
-            
+            //pass it along the request in case there's more processing to do
             $this->httpRequest->setAttribute(self::getKey(), $values);
+            
+            //add it to the response in case it's an abstract parent calling
+            //this from configuration files and is simply needed in the view
+            $this->httpResponse->setAttribute(self::getKey(), $values);
         }
         
     }

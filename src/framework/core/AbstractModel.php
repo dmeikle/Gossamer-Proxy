@@ -139,6 +139,15 @@ class AbstractModel
         return $this->listallWithParams($offset, $rows, array(), $customVerb);
     }
     
+    public function listallReverse($offset = 0, $rows = 20, $customVerb = null) {
+        $params = array(
+            'directive::ORDER_BY' => 'id',
+            'directive::DIRECTION' => 'desc'
+        );
+        
+        return $this->listallWithParams($offset, $rows, $params, $customVerb);
+    }
+    
     public function listallWithParams($offset = 0, $rows = 20, array $params, $customVerb = null) {
         
         $params['directive::OFFSET'] = $offset;

@@ -42,6 +42,7 @@
         <table class="table table-striped table-hover selectable-rows">
             <tr>
                 <th align="center">Name</th> 
+                <th align="center">Date Received</th> 
                 <th align="center">Company</th> 
                 <th width="11%" align="center">Type</th>              
                 <th width="11%" align="center">Email</th>
@@ -54,15 +55,16 @@
                   ?>
             <tr data-type="editable" valign="top" data-id="<?php echo $contactus['id'];?>">
                 <td><?php echo $contactus['name'];?></td>
+                <td><?php echo $contactus['dateReceived'];?></td>
                 <td><?php echo $contactus['company'];?></td>
-                <td><?php echo $contactus['ContactUsTypes_id'];?></td>
+                <td><?php echo $contactus['contactUsType'];?></td>
                 <td><?php echo $contactus['email']; ?></td>
                 <td><?php echo $contactus['telephone'];?></td>
                 <td><?php echo $contactus['subject'];?></td>
                 <td>
                     <button data-id="<?php echo $contactus['id'];?>" class="view">View</button> 
                     <button data-id="<?php echo $contactus['id'];?>" class="assign">Assign</button> 
-                    <button data-id="<?php echo $contactus['id'];?>" class="close">Close</button> 
+                    <button data-id="<?php echo $contactus['id'];?>" class="finalize">Close</button> 
                 </td>
             </tr>
            

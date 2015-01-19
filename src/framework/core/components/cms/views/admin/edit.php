@@ -246,7 +246,7 @@ $(document).ready(function() {
     }
 </style>
 
-<?php $page = current($Page);?>
+<?php $page = current($CmsPage);?>
 
  <div id="preview-container" style="display: none;" class="panel panel-default">
      <div id="hide-preview" style="float:right; width: 20px; padding: 5px">x</div>
@@ -260,9 +260,9 @@ $(document).ready(function() {
     	<div class="panel-heading">Pages</div>
         <form role="form" id="form1" method="post">
             <input type="hidden" id="pageId" value="<?php echo $page['id']; ?>" />
-        <table class="table">
+        <table class="table" border="1">
             <tr>
-                <td rowspan="5" width="200" valign="top">
+                <td rowspan="6" width="200" valign="top">
                     <p>Dashboard</p>
                     <p>Posts</p>
                     <p>Pages</p>
@@ -278,7 +278,7 @@ $(document).ready(function() {
                     <p>Comments<br />
                     </p>
                 </td>                            
-            	<td>
+                <td><p>Page Name: (internal use only)</p>
                     <p class="btn bg-danger" style="display:none" id="page_name_message">Invalid characters in Page name. Please remove</p>
                     <p class="btn bg-danger" style="display:none" id="page_name_exists">Page name exists.</p>
                     <div class="form-group" id="page_name_container">
@@ -344,6 +344,13 @@ $(document).ready(function() {
               <div style="float:right">Last edited by Dave M on April 17, 2014 a 6:37 pm</div>
               word count: <span id="wordcount">140</span></td>
               <td rowspan="3" valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+              <td><p>Page Title (inside HTML head):</p>
+              <p>
+                <input type="text" name="page[metaTitle]" class="form-control" id="page_metaTitle" value="<?php echo $page['metaTitle']?>" />
+                Summaries are a brief description of your content
+              </p></td>
             </tr>
             <tr>
               <td><p>Summary:</p>

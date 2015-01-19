@@ -33,7 +33,7 @@ class IncidentsController extends AbstractController{
         $result['Departments'] = $this->httpRequest->getAttribute('Departments');
         
         $incidentTypeSerializer = new IncidentTypeSerializer();
-        $result['IncidentTypes'] = $incidentTypeSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('IncidentTypes'), 'incidentType', true);
+        $result['IncidentTypesList'] = $incidentTypeSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('IncidentTypes'), 'incidentType', true);
         
         $this->render($result);
     }    

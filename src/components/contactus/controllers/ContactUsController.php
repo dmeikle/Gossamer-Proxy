@@ -7,6 +7,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\contactus\form\ContactUsBuilder;
 use components\contactus\serialization\ContactUsTypeSerialization;
+use core\navigation\Pagination;
 
 class ContactUsController extends AbstractController
 {
@@ -23,6 +24,41 @@ class ContactUsController extends AbstractController
         
         $this->render(array('form' => $result));
     }
+    public function listallReverse($offset = 0, $limit = 20) {
+        $result = $this->model->listallReverse($offset, $limit);
+     
+        if(is_array($result) && array_key_exists($this->model->getEntity() .'sCount', $result)) {
+            $pagination = new Pagination($this->logger);        
+            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() .'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
+        //get the contactUsType list formated into results
+        $this->formatContactUsType($result);
+        
+        $this->render($result);
+    }
+
+    private function formatContactUsType(array &$result) {
+        $contactUsTypes = $this->httpRequest->getAttribute('ContactUsTypes');
+        $types = array();
+        
+        //first let's format the contactUsTypes list into readable format
+        foreach($contactUsTypes as $type) {
+            $types[$type['id']] = $type['type'];
+        }
+        $retval = array();
+        foreach($result['ContactUss'] as $row) {
+            if(!array_key_exists($row['ContactUsTypes_id'], $types)) {
+                $row['contactUsType'] = 'unspecified';                
+            } else {
+                $row['contactUsType'] = $types[$row['ContactUsTypes_id']];
+            }            
+            
+            $retval[] = $row;
+        }
+       
+        $result['ContactUss'] = $retval;
+    }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
@@ -31,11 +67,11 @@ class ContactUsController extends AbstractController
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
         $contactusTypes = $this->httpRequest->getAttribute('ContactUsTypes');
         
-        $serializer = new ContactUsTypeSerialization();
-                
+        $contactUsSerializer = new ContactUsTypeSerialization();
+        
+        
         $options = array(
-            'companies' => array(),
-            'ContactUsTypes' =>$serializer->pruneContactUsTypes($contactusTypes)
+            'ContactUsTypes' => $contactUsSerializer->formatSelectionBoxOptions($this->httpRequest->getAttribute('ContactUsTypes'), array($values['ContactUsTypes_id']),'type')
         );
         
         

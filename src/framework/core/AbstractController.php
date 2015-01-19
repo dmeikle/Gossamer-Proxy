@@ -139,6 +139,24 @@ class AbstractController
         $this->render($result);
     }
     
+    /**
+     * listall - retrieves rows based on offset, limit
+     * 
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listallReverse($offset=0, $limit=20) {
+        $result = $this->model->listallReverse($offset, $limit);
+     
+        if(is_array($result) && array_key_exists($this->model->getEntity() .'sCount', $result)) {
+            $pagination = new Pagination($this->logger);        
+            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() .'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());       
+            unset($pagination);
+        }
+        
+        $this->render($result);
+    }
+    
     protected function getUriWithoutOffsetLimit() {
         $pieces = explode('/', __URI);
         array_pop($pieces);
@@ -154,7 +172,7 @@ class AbstractController
      */
     public function edit($id) {
         $result = $this->model->edit($id);
-  
+ 
         $this->render($result);
     }
 

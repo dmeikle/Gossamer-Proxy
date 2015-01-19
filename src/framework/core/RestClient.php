@@ -276,14 +276,16 @@ class RestClient implements \Iterator, \ArrayAccess {
     private function loadEncodingConfiguration() {
        
         $loader = new YAMLParser($this->logger);
-        $loader->setFilePath(__SITE_PATH. DIRECTORY_SEPARATOR . __NAMESPACE . DIRECTORY_SEPARATOR . 
+        //check to see if it's a core component, then add 'core' to the path if yes
+        $loader->setFilePath(__SITE_PATH. DIRECTORY_SEPARATOR . __NAMESPACE . DIRECTORY_SEPARATOR . ((strpos(__NAMESPACE, 'framework') !== false) ? 'core' . DIRECTORY_SEPARATOR : '') .
                 __COMPONENT_FOLDER. DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'encodings.yml');
         $config = $loader->loadConfig();
-
-        unset($loader);
         
+        unset($loader);
+       
         return $config;
     }
+    
     public function decode_response(){
        
         if(empty($this->decoded_response)){

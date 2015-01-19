@@ -4,13 +4,13 @@
    
 admin_contactus_list:
     pattern: admin/contact/*/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contactus\models\ContactUsTypeModel', 'cacheKey': 'ContactUsTypes'}
     defaults:
         component: components\contactus\ContactUsComponent
         controller: components\contactus\controllers\ContactUsController
         model: components\contactus\models\ContactUsModel
-        method: listall
+        method: listallReverse
         view: core\views\TemplateView
         viewKey: admin_contactus_list
         datasource: datasource1
@@ -92,7 +92,7 @@ website_contactus_complete:
         component: components\contactus\ContactUsComponent
         controller: components\contactus\controllers\ContactUsController
         model: components\contactus\models\ContactUsModel
-        method: view
+        method: index
         view: core\views\TemplateView
         viewKey: website_contactus_complete
         datasource: datasource1

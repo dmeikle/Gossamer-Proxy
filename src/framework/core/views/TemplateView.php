@@ -6,6 +6,7 @@ use core\AbstractView;
 use core\handlers\ImportJSHandler;
 use core\handlers\ImportCSSHandler;
 use core\handlers\URITagHandler;
+use core\handlers\HTMLTagHandler;
 
 
 class TemplateView extends AbstractView
@@ -39,6 +40,7 @@ class TemplateView extends AbstractView
               
         $this->loadTemplate($template, $theme);
         $this->renderSections();
+        $this->renderHTMLTags();
         $this->placeJSFiles();
         $this->placeCSSFiles();
         $this->renderURITags($template);
@@ -48,12 +50,14 @@ class TemplateView extends AbstractView
         $uriHandler = new URITagHandler($this->logger);
         
         $uriHandler->setTemplate($this->template);
-        $this->template = $uriHandler->handlerequest();
-        
+        $this->template = $uriHandler->handlerequest();        
     }
+    
     private function renderHTMLTags() {
-        $congLoader = new \libraries\utils\YAMLConfiguration($this->logger);
-        
+       $htmlHandler = new HTMLTagHandler($this->logger);
+       
+       $htmlHandler->setTemplate($this->template);
+       $this->template = $htmlHandler->handleRequest($this->data);
     }
 
     private  function placeJSFiles() {
@@ -165,4 +169,5 @@ class TemplateView extends AbstractView
         }
         return $retval;
     }
+    
 }

@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 </script>
 
-
+<h3>List All Reported Incident Occurrences</h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -44,7 +44,7 @@ $(document).ready(function() {
             <?php echo $incident['Staff'][0]['firstname'];?> <?php echo $incident['Staff'][0]['lastname'];?>
         </td>
         <td>
-            <?php echo $IncidentTypes[$incident['IncidentTypes_id']]; ?>
+            <?php echo $IncidentTypesList[$incident['IncidentTypes_id']]; ?>
         </td>
         <td>
             <button data-id="<?php echo $incident['id'];?>" data-typeid="<?php echo $incident['id'];?>" class="btn btn-primary view">View</button>

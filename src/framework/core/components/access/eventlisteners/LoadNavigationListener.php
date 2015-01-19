@@ -24,7 +24,7 @@ class LoadNavigationListener extends AbstractListener{
         $navigationNodes = $this->loadNavigation();        
              
         $navigationItems = $this->loadNavigationElements($navigationNodes, $userRoles); 
-        $this->httpRequest->setAttribute('NAVIGATION', $navigationItems);
+        $this->httpResponse->setAttribute('NAVIGATION', $navigationItems);
        
     }
     

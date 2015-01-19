@@ -27,7 +27,7 @@ admin_cms_pages_list:
 
     
 admin_cms_page_edit:
-    template: admin-list.php
+    template: admin-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"

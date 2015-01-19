@@ -27,7 +27,7 @@ class AbstractView
     
     protected $agentType;
     
-    private $data = array();
+    protected $data = array();
 
     protected $container = null;
 
@@ -93,7 +93,11 @@ class AbstractView
         return $this->data;
     }
     
-    public function render( $data= array()) {
+    public function render( $data = array()) {
+        
+        //get any preloaded items that are in the Response object
+        $data = array_merge((is_null($data) ? array() : $data), $this->httpResponse->getAttributes());
+       
         //do any pre-render here - eg: format validation fail strings
         $params = new Event(KernelEvents::RESPONSE_START, $data);
         $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RESPONSE_START, $params);
@@ -109,6 +113,7 @@ class AbstractView
         $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RESPONSE_END, $params);
         $eventParams = $params->getParams();
         $this->template = $eventParams['content'];
+        
         $this->container->get('EventDispatcher')->dispatch(__URI, KernelEvents::RESPONSE_END);
         
     }

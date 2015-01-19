@@ -101,6 +101,13 @@ class HTTPRequest extends AbstractHTTP
         return null;
     }
     
+    public function popAttribute($key) {
+        $retval = $this->getAttribute($key);
+        unset($this->attributes[$key]);
+        
+        return $retval;
+    }
+    
     public function getParameters() {
         return $this->requestParameters;
     }

@@ -97,8 +97,8 @@ class PageModel extends AbstractModel
         $categoryID = array_key_exists('CmsCategories_id', $data)? $data['CmsCategories_id'] : '0';
         $data['sectionOptionsList'] = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('Sections'), array($categoryID), 'name');
        
-        if(!array_key_exists('Page', $data)) {
-            $data['Page'] = $this->getArray($id);
+        if(!array_key_exists('CmsPage', $data)) {
+            $data['CmsPage'] = $this->getArray($id);
         }
         
         return $data;

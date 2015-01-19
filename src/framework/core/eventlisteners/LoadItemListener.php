@@ -38,7 +38,12 @@ class LoadItemListener extends AbstractCachableListener{
             $item = current($result[$model->getEntity()]);
         }        
       
+        //set it here in case we want to use it still before sending to response
         $this->httpRequest->setAttribute($class, $item);
+        
+        //send it here in case it's being called in an abstract parent and won't
+        //be seen until the response is rendered
+        $this->httpResponse->setAttribute($class, $item);
         
         if($caching && !is_null($item) > 0) {
             $this->saveValuesToCache($key, $item);
