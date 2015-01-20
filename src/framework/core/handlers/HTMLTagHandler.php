@@ -14,11 +14,9 @@ class HTMLTagHandler extends BaseHandler
     
     public function handleRequest($params = array()) {
         $loader = new YAMLKeyParser($this->logger);
-//        $loader->setFilePath(__SITE_PATH. DIRECTORY_SEPARATOR . __NAMESPACE . DIRECTORY_SEPARATOR . ((strpos(__NAMESPACE, 'framework') !== false) ? 'core' . DIRECTORY_SEPARATOR : '') .
-//                __COMPONENT_FOLDER. DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
-        
+       
         $config = $loader->getNodeByKey(__YML_KEY, 'views');
-        if(!array_key_exists('htmltags', $config)) {
+        if(!is_array($config) || !array_key_exists('htmltags', $config)) {
             return $this->template;
         }
         
@@ -31,10 +29,15 @@ class HTMLTagHandler extends BaseHandler
     
     private function getTagValues($htmlTags, $params) {
         $tags = $htmlTags['tags'];
-        
+    
         if(array_key_exists('container', $htmlTags)) {
-            //let's assume we've got a single item to deal with
-            $item = current($params[$htmlTags['container']]);
+            $item = $params[$htmlTags['container']];
+            reset($item);
+            $firstKey = key($item);
+            if(is_numeric($firstKey)){
+                //let's assume we've got a single item to deal with
+                $item = current($item);
+            }
         } else {
             $item = $params;
         } 

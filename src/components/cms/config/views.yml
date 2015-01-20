@@ -12,6 +12,8 @@ cms_view_page_1:
         tags:            
                 title: @metaTitle
                 description: @metaDescription
+                type: website
+                
             
 cms_view_page_2:    
     template: list.php

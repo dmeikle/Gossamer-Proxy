@@ -24,8 +24,7 @@ class BaseFormTokenListener extends AbstractListener{
         $token = $this->getSecurityContextToken();
         $client = null;
         
-        if(is_null($token) || !$token) {
-            echo 'no token';
+        if(is_null($token) || !$token) {           
             $client = new Client();
             $client->setIpAddress($this->getClientIPAddress());
             $client->setCredentials('ANONYMOUS_USER');

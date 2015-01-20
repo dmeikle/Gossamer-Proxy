@@ -50,7 +50,7 @@ website_blogs_list:
         component: components\blogs\BlogsComponent
         controller: components\blogs\controllers\BlogsController
         model: components\blogs\models\BlogModel
-        method: listall
+        method: listallReverse
         view: core\views\TemplateView
         viewKey: website_blogs_list
         datasource: datasource1

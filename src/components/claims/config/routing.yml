@@ -6,7 +6,7 @@ admin_claims_list:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: listall
+        method: listallReverse
         view: core\views\TemplateView
         viewKey: admin_claims_list
         datasource: datasource1
