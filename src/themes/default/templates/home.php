@@ -5,7 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Phoenix Restorations Vancouver Flood Restoration</title>
+    <title>|title|</title>
+    <meta name="description" value="|description|"/>
+    <meta property="og:title" content="|title|"/>
+    <meta property="og:type" content="|type|"/>
+    <meta property="og:image" content="http://www.phoenixrestorations.com/images/logo.png"/>
+    <meta name="google-site-verification" content="_1S_WQ287sMfvdo9KWfWUesHIPp8LVlEz-c02W2l86w" />
+
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link href="/css/framework.css" rel="stylesheet" >
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">

@@ -21,4 +21,8 @@ website_blogs_view:
     subject: utf8
     comments: utf8
     permalink: utf8
-    tags: utf8  
+    tags: utf8
+    
+website_blogs_feed:   
+    subject: utf8 
+    permalink: utf8

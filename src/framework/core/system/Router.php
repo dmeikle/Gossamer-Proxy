@@ -24,6 +24,16 @@ class Router {
         $this->httpRequest = $httpRequest;
     }
     
+    public function getQualifiedUrl($ymlkey, $params = null) {
+        $ymlURI = $this->getURLByYamlKey($ymlkey);
+
+        if(is_null($ymlURI)) {
+            throw new RedirectKeyNotFoundException('Router redirect key not found - check method [GET|POST]?');
+        }
+        
+        return $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
+    }
+    
     public function redirect($ymlkey, array $params = null) {
       
         $ymlURI = $this->getURLByYamlKey($ymlkey);
@@ -41,8 +51,7 @@ class Router {
     }
     
     private function getURLByYamlKey($ymlkey) {
-        $loader = new YAMLKeyParser($this->logger);
-       
+        $loader = new YAMLKeyParser($this->logger);       
 
         $node = $loader->getNodeByKey($ymlkey, 'routing');
 

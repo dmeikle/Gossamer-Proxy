@@ -42,7 +42,19 @@ admin_blogs_calendar:
         method: showCalendar
         view: core\views\TemplateView
         viewKey: admin_blogs_calendar
-        datasource: datasource1    
+        datasource: datasource1  
+    
+website_blogs_feed:
+    pattern: blogs/feed/*/*
+    defaults:
+        component: components\blogs\BlogsComponent
+        controller: components\blogs\controllers\BlogsController
+        model: components\blogs\models\BlogModel
+        method: listallReverse
+        view: core\views\TemplateView
+        viewKey: website_blogs_feed
+        datasource: datasource1
+    methods: [GET]  
 
 website_blogs_list:
     pattern: blogs/*/*

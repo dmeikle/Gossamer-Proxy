@@ -166,4 +166,34 @@ class AbstractView
 
         return $config['default_locale'];
     }
+    
+    /**
+     * getContent - used for pulling information from other uri calls.
+     *              Useful for things like a blog feed embedded in a page
+     * 
+     * @param string $uri
+     */
+    public function getContentByUri($uri, $ssl = false) {
+        $url =  $_SERVER['HTTP_HOST'] . $uri;
+        $fullUrl = "http://$url";
+        if($ssl) {
+            $fullUrl = "https://$url";
+        }
+        
+        return file_get_contents($fullUrl);
+    }
+    
+    public function getContent($ymlkey, $params = array(), $ssl = false) {
+        //website_blogs_feed
+        $router = new system\Router($this->logger, $this->httpRequest);
+        $qualifiedUrl = $router->getQualifiedUrl($ymlkey, $params);
+        $url =  $_SERVER['HTTP_HOST'] . '/' . $qualifiedUrl;
+        $fullUrl = "http://$url";
+        if($ssl) {
+            $fullUrl = "https://$url";
+        }
+        
+        return file_get_contents($fullUrl);
+        
+    }
 }

@@ -5,7 +5,7 @@ default_index:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/users/views/leftnav.php"
+            "section2": "src/themes/default/templates/sections/subnav.php"
             "section3": "src/components/defaultItem/views/home.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     

@@ -33,13 +33,6 @@ website_blogs_list:
             "section2": "src/components/blogs/views/subnav.php"
             "section3": "src/components/blogs/views/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"   
-    
-    htmltags:
-        container: Blogs
-        tags:            
-                title: 'Restoration Services | Flood Fire Smoke Advice'
-                description: @metaDescription
-                type: blog
             
 website_blogs_view:   
     template: list.php
@@ -49,9 +42,9 @@ website_blogs_view:
             "section2": "src/components/blogs/views/subnav.php"
             "section3": "src/components/blogs/views/view.php"
             "section4": "src/themes/default/templates/sections/footer.php"     
-    htmltags:
-        container: blog
-        tags:            
-                title: @metaTitle
-                description: @metaDescription
-                type: blog            
+          
+website_blogs_feed:     
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/blogs/views/feed.php"     
