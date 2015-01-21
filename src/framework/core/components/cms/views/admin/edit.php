@@ -348,7 +348,7 @@ $(document).ready(function() {
             <tr>
               <td><p>Page Title (inside HTML head):</p>
               <p>
-                <input type="text" name="page[metaTitle]" class="form-control" id="page_metaTitle" value="<?php echo $page['metaTitle']?>" />
+                <input type="text" name="page[locale][en_US][metaTitle]" class="form-control" id="page_metaTitle" value="<?php echo $page['locales']['en_US']['metaTitle']?>" />
                 Summaries are a brief description of your content
               </p></td>
             </tr>

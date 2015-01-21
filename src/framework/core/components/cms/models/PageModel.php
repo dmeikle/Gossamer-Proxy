@@ -35,7 +35,8 @@ class PageModel extends AbstractModel
                     'isPublic' => '',
                     'locales' => array(
                         'en_US' => array(
-                            'content' => ''
+                            'content' => '',
+                            'metaTitle' => ''
                         )
                     )));
     }

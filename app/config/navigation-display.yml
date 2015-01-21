@@ -255,6 +255,15 @@ portal_events_list:
                 
                         
 #--------------------------main website ----------------------
+
+website_services:
+    active: true
+    text_key: 'WEBSITE_SERVICES'
+    pattern: '/restoration/services'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER   
+        
 website_login:
     active: true
     text_key: 'WEBSITE_LOGIN'
@@ -270,4 +279,28 @@ website_blogs_list:
     pattern: '/blogs/0/20'
     display_roles:
         - IS_ANONYMOUS 
-        - IS_CUSTOMER           
+        - IS_CUSTOMER       
+        
+website_contact:
+    active: true
+    text_key: 'WEBSITE_CONTACT'
+    pattern: '/contact/contactus'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER      
+        
+website_faqs:
+    active: true
+    text_key: 'WEBSITE_FAQS'
+    pattern: '/restoration/frequently-asked-restoration-questions'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER    
+
+website_about:
+    active: true
+    text_key: 'WEBSITE_ABOUT'
+    pattern: '/restoration/about-phoenix-restorations'
+    display_roles:
+        - IS_ANONYMOUS 
+        - IS_CUSTOMER          

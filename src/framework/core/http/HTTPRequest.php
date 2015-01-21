@@ -18,12 +18,13 @@ class HTTPRequest extends AbstractHTTP
     
     public function __construct($requestParameters = null, $pattern = '') {
 
-       $uri = __REQUEST_URI;       
+       $uri = __REQUEST_URI;   
+      
        $filter = $this->parseURIParams($pattern);
        $this->postParameters = $_POST;
        $this->formatQueryString();
        $params = $this->getParams($filter, $uri);
-       
+    
        if(array_key_exists('HTTP_REFERER', $_SERVER)) {
            $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
        }
@@ -52,20 +53,26 @@ class HTTPRequest extends AbstractHTTP
     }
     
     private function getParams($filter, $uri) {
+     
         if(substr($filter, 0, 1) == '/' && substr($uri, 0, 1) != '/') {
             $filter = substr($filter, 1); //knock the preceding '/' if it's not there - varies from server to server
         }
         //array filter knocked off any '0' value, so it has been removed
         //$params = array_filter(explode('/', str_replace($filter, '', $uri)));
+  
+        $uri = substr($uri, strlen($filter));
       
-        $params = explode('/', str_replace($filter, '', $uri));
+        $params = explode('/', $uri);
+       
         if(current($params) == '') {
            array_shift($params);
         }
+        
         return $params;
     }
     
     private function parseURIParams($pattern) {
+        
         $pieces = explode('/', $pattern);
         $retval = '';
         foreach($pieces as $chunk) {

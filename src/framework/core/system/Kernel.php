@@ -52,7 +52,7 @@ class Kernel
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::REQUEST_START);
 
         $this->logger->addDebug('dispatcher started in index - state set to ' . KernelEvents::REQUEST_START);
-        
+       
         $cmd = new $componentName($controllerName, $viewName, $modelName, $method,$httpRequest->getParameters(), $this->logger, $this->getLayoutType());  
         $cmd->setContainer($this->container);
        
