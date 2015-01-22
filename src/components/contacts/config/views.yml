@@ -46,7 +46,7 @@ portal_login_submit:
     template: portal-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section3": "src/components/users/views/login/welcome.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -103,7 +103,7 @@ portal_contact_settings:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/settings.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
@@ -130,7 +130,7 @@ portal_contacts_edit:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"   
@@ -139,7 +139,7 @@ portal_contacts_credentials_get:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/credentials.php"
             "section4": "src/themes/default/templates/sections/footer.php"    
@@ -150,7 +150,7 @@ portal_contacts_list:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"    
@@ -159,7 +159,7 @@ portal_contact_invites_list:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/invites/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"      
@@ -169,7 +169,7 @@ portal_contact_invites_edit:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/invites/edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"        
@@ -187,7 +187,7 @@ portal_contact_invites_login_submit:
     template: portal-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             #"section2": "src/components/contacts/views/invites/subnav.php"
             "section3": "src/components/contacts/views/invites/welcome.php"
             "section4": "src/themes/default/templates/sections/footer.php"         
@@ -196,7 +196,7 @@ portal_contact_invites_invite:
     template: portal-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/invites/invite.php"
             "section4": "src/themes/default/templates/sections/footer.php"           

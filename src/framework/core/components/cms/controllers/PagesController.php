@@ -6,7 +6,7 @@ use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\components\cms\form\PageBuilder;
-
+use core\components\cms\serialization\SectionsSerializer;
 
 class PagesController extends AbstractController
 {
@@ -54,10 +54,14 @@ class PagesController extends AbstractController
         $options = array();        
         $options['locales'] = $this->httpRequest->getAttribute('locales');
         
-       
-//        $incidentTypeSerializer = new IncidentTypeSerializer();
-//        $rawTypeSections = $values['IncidentTypeSection'];        
-//        $incidentTypeSections = $incidentTypeSerializer->extractRawChildNodeData($rawTypeSections, 'Sections_id');
+        $sections = $this->httpRequest->getAttribute('Sections');
+        $sectionsSerializer = new SectionsSerializer();
+        $sectionsList = $sectionsSerializer->formatSectionsOptionsList($sections, $values);
+        pr($sectionsList);
+        
+        $options['sections'] = $sectionsList;
+        unset($sectionsSerializer);
+        
        
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }

@@ -36,12 +36,21 @@ class Serializer {
         return $retval;
     }
     
+    /**
+     * 
+     * @param array $options - the list of options to draw to the page
+     * @param array $selectedOptions - the list of already selected options from a previous save
+     * @param type $subKey - the name of the column to be used as an associative array key
+     * @param type $selectedValue - the currently selected item
+     
+     * @return string
+     */
     public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '', $selectedValue = '') {
 
         if(strlen($subKey) > 0) {           
             $options = $this->extractSubNode($options, $subKey);          
         }
- 
+
         $retval = '';
         foreach($options as $key => $option) {
          

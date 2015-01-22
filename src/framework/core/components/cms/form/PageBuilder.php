@@ -22,7 +22,7 @@ class PageBuilder extends AbstractBuilder {
         echo 'value: ' .$this->getValue('name', $values);
        // pr($this->getValue('ContactUsTypes', $options));
         $builder->add('name','text',array('class' => 'form-control', 'id'=> 'page_name', 'placeholder' => 'page name', 'pattern' => '[a-zA-Z0-9\-\ _]{0,100}', 'value' => $this->getValue('name', $values)))
-               // ->add('incidentType', 'text', array('class' => 'form-control','value' => $this->buildLocaleValuesArray('incidentType', $values, $options['locales'])), $options['locales'])
+                ->add('CmsSections_id', 'select', array('class' => 'form-control', 'options' => $options['sections']))
                 ->add('pageId','hidden',array('id' => 'pageId', 'value' => $this->getValue('id', $values)))
                 ->add('permalink','text',array('class' => 'form-control', 'id' => 'permalink', 'value' => $this->getValue('permalink', $values)))
                 ->add('isPublished','select',array('style' => 'display: none', 'value' => $this->getValue('isPublished', $values)))

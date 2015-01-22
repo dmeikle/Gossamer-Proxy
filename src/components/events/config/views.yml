@@ -188,7 +188,7 @@ portal_events_list:
     template: list-fullscreen.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/events/views/subnav.php"
             "section3": "src/components/events/views/events/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
@@ -197,7 +197,7 @@ portal_events_view:
     template: list-fullscreen.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/events/views/subnav.php"
             "section3": "src/components/events/views/events/view.php"
             "section4": "src/themes/default/templates/sections/footer.php"  
@@ -206,7 +206,7 @@ portal_events_not_found:
     template: list-fullscreen.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/events/views/subnav.php"
             "section3": "src/components/events/views/events/notfound.php"
             "section4": "src/themes/default/templates/sections/footer.php"        
@@ -215,7 +215,7 @@ portal_events_rsvp_complete:
     template: list-fullscreen.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/events/views/subnav.php"
             "section3": "src/components/events/views/events/rsvpcomplete.php"
             "section4": "src/themes/default/templates/sections/footer.php"           

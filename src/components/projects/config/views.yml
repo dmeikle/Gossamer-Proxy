@@ -53,7 +53,7 @@ portal_projects_list_by_company:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/projects/views/subnav.php"
             "section3": "src/components/projects/views/list-by-company.php"
             "section4": "src/themes/default/templates/sections/footer.php" 

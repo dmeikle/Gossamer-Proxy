@@ -25,46 +25,22 @@
 
 <div id="header">
   
-    <div id="account">
-        <a href="/portal/contacts/settings"><span class="glyphicon glyphicon-cog" title="Account Settings"></span></a> 
-          <span class="glyphicon glyphicon-envelope" title="view all messages"></span>
-          <span class="glyphicon glyphicon-comment" title="view all notifications"></span>
-          <span class="glyphicon glyphicon-bell" title="view all alerts"></span>
-          <span class="glyphicon glyphicon-flash" title="view all incident reports"></span>
-    </div>
-    <!--
+
+
 <ul id="nav">
-            <li><a href="/admin/home">Home</a></li>
+            <li><a href="/restoration/services"><?php echo $this->getString('WEBSITE_SERVICES');?></a></li>
         
-            <li><a href="/admin/staff/0/20">Claims</a></li>
+            <li><a href="/portal/entrance"><?php echo $this->getString('WEBSITE_LOGIN');?></a></li>
         
-            <li><a href="/admin/claims/0/20">Events</a></li>
+            <li><a href="/blogs/0/20"><?php echo $this->getString('WEBSITE_BOGS_LIST');?></a></li>
         
-            <li><a href="/admin/contents/0/20">Messaging</a></li>
+            <li><a href="/contact/contactus"><?php echo $this->getString('WEBSITE_CONTACT');?></a></li>
         
-            <li><a href="/admin/inventory">FAQ</a></li>
+            <li><a href="/restoration/frequently-asked-restoration-questions"><?php echo $this->getString('WEBSITE_FAQS');?></a></li>
         
-            <li>Invoices</li>
+            <li><a href="/restoration/about-phoenix-restorations"><?php echo $this->getString('WEBSITE_ABOUT');?></a></li>
         
     </ul>
-    -->
- 
-<ul id="nav">
-    <?php
-    foreach ($NAVIGATION as $key => $item) {
-       
-        if(array_key_exists('active', $item) && $item['active'] == false) {
-            ?>
-            <li title="disabled on this release"><?php echo $this->getString($item['text_key']);?></li>
-            <?php
-            continue;
-        }
-?>
-        <li><a href="<?php echo $item['pattern'];?>"><?php echo $this->getString($item['text_key']);?></a></li>
-        
-    <?php
-    }?>
-</ul>
     <!---section2--->
   </div>
 

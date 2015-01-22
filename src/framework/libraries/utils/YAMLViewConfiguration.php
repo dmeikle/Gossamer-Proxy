@@ -24,8 +24,8 @@ class YAMLViewConfiguration
     }
     
     public function getViewConfig($uri, $ymlKey) {
+     echo $ymlKey;
         $routingPath = $this->getInitialRouting($uri);
-     
         $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
         
         $this->config = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
@@ -53,22 +53,31 @@ class YAMLViewConfiguration
         $parser = new YAMLParser($this->logger);
 
         $pieces = array_filter(explode('/', $requestURI));
+
         $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
         if($chunk == 'admin' || $chunk == 'portal') {
-            $chunk = array_shift($pieces);
+            $chunk = array_shift($pieces);//drop the admin for the routing file
         }
         $config = $parser->loadConfig(); 
+  
         unset($parser);
+        $this->datasources = $config;
 
+        //if we haven't found anything matching see if we can simply return a default config
         if(!array_key_exists($chunk, $config)) {
-            throw new URINotFoundException($chunk . ' does not exist in YML configuration');
-        }
-        //return the first path
-        foreach($config[$chunk] as $key => $path) {            
-            return str_replace('routing', 'views', $path);            
+            if(!array_key_exists('default', $config)) {
+                throw new URINotFoundException($chunk . ' does not exist in YML configuration');  
+            }
+           
+            return str_replace('routing', 'views',  $config['default']['component']);
         }
         
+        //return the first path
+        foreach($config[$chunk] as $key => $path) {
+         
+            return str_replace('routing', 'views', $path);          
+        }
     }
     
     //$config, 'pattern', '/users/list'

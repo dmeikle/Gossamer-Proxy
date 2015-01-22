@@ -5,10 +5,7 @@ locale:
 locales:
     component: "src/framework/core/components/locales/config/routing.yml"
 
-
-default:
-    component: "src/components/defaultItem/config/routing.yml"
-    
+   
 about:
     component: "src/components/defaultItem/config/routing.yml"
   
@@ -102,6 +99,11 @@ contact:
     component: "src/components/contactus/config/routing.yml"
 
 
-#this is the default fallback to use if not found
 restoration:   
     component: "src/components/cms/config/routing.yml" 
+    
+
+#this is the default fallback to use if not found    
+default:
+    component: "src/components/cms/config/routing.yml"
+    ymlkey: cms_view_page_1

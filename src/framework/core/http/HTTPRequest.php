@@ -16,6 +16,8 @@ class HTTPRequest extends AbstractHTTP
     
     protected $queryString = array();
     
+    protected $uri = null;
+    
     public function __construct($requestParameters = null, $pattern = '') {
 
        $uri = __REQUEST_URI;   
@@ -25,10 +27,12 @@ class HTTPRequest extends AbstractHTTP
        $this->formatQueryString();
        $params = $this->getParams($filter, $uri);
     
+       
        if(array_key_exists('HTTP_REFERER', $_SERVER)) {
            $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
        }
        
+       $this->uri = $uri;
        $this->requestParameters = $params;
     }
     
@@ -40,7 +44,7 @@ class HTTPRequest extends AbstractHTTP
         return null;
     }
     
-    private function formatQueryString() {
+    protected function formatQueryString() {
         $temp = explode('&', $_SERVER['QUERY_STRING']);
         foreach($temp as $row) {
             $pieces = explode('=', $row);
@@ -52,7 +56,7 @@ class HTTPRequest extends AbstractHTTP
         }
     }
     
-    private function getParams($filter, $uri) {
+    protected function getParams($filter, $uri) {
      
         if(substr($filter, 0, 1) == '/' && substr($uri, 0, 1) != '/') {
             $filter = substr($filter, 1); //knock the preceding '/' if it's not there - varies from server to server
@@ -71,7 +75,7 @@ class HTTPRequest extends AbstractHTTP
         return $params;
     }
     
-    private function parseURIParams($pattern) {
+    protected function parseURIParams($pattern) {
         
         $pieces = explode('/', $pattern);
         $retval = '';
@@ -87,7 +91,7 @@ class HTTPRequest extends AbstractHTTP
     public function getHeader($headerName) {
         return $this->headers[$headerName];
     }
-    private function init() {
+    protected function init() {
      
         $this->headers = getallheaders();
         $this->attributes['ipAddress'] = $_SERVER['REMOTE_ADDR'];
@@ -139,6 +143,10 @@ class HTTPRequest extends AbstractHTTP
    
     public function getPost() {
         return $this->postParameters;
+    }
+    
+    public function getUri() {
+        return $this->uri;
     }
 }
 

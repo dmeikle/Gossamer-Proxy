@@ -41,7 +41,7 @@ class LocaleModel extends AbstractModel
             $userPreferences = array();            
         }
         $locales = $this->httpRequest->getAttribute('locales');
-        $userPreferences['defaultLocale'] = $locales[$locale];
+        $userPreferences['DefaultLocale'] = $locales[$locale];
         setSession('userPreferences', $userPreferences);      
     }
     

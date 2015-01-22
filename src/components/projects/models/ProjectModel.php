@@ -50,7 +50,7 @@ class ProjectModel extends AbstractModel implements FormBuilderInterface{
             'DIRECTIVE::OFFSET' => $offset,
             'DIRECTIVE::LIMIT' => $limit);
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCompany', $params);
-       echo 'here';
+      
         return $data;
     }
     

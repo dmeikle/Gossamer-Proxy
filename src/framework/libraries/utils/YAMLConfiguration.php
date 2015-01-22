@@ -20,7 +20,7 @@ class YAMLConfiguration
     }
     
     private function loadConfig($routingPath) {
-      
+   
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR  . $routingPath);
        
@@ -35,12 +35,21 @@ class YAMLConfiguration
         if($uri == '/' || $uri == '') {
             $uri = 'default/index';
         }
-        $routingPath = $this->getInitialRouting($uri);
-  
+        $ymlKey = null;
+        $routing = $this->getInitialRouting($uri);
+        $routingPath = '';
+        if(is_array($routing)) {
+            //we're doing a default override
+            $ymlKey = $routing['ymlkey'];
+            $routingPath = $routing['component'];
+        } else {
+            $routingPath = $routing;
+        }
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-     
-        $ymlKey = $this->findConfigKeyByURIPattern($this->config, 'pattern',$uri);
+        if(is_null($ymlKey)) {
+            $ymlKey = $this->findConfigKeyByURIPattern($this->config, 'pattern',$uri);
+        }        
         
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
       
@@ -94,12 +103,18 @@ class YAMLConfiguration
         unset($parser);
         $this->datasources = $config;
 
+        //if we haven't found anything matching see if we can simply return a default config
         if(!array_key_exists($chunk, $config)) {
-            throw new URINotFoundException($chunk . ' does not exist in YML configuration');
+            if(!array_key_exists('default', $config)) {
+                throw new URINotFoundException($chunk . ' does not exist in YML configuration');  
+            }
+           
+            return $config['default'];
         }
+        
         //return the first path
         foreach($config[$chunk] as $key => $path) {
-          
+         
             return $path;            
         }
         
@@ -129,7 +144,7 @@ class YAMLConfiguration
     
 
     private function getYMLNodeParameters($ymlKey) { 
-      
+        
         return $nodeParams = $this->config[$ymlKey];       
     }
     

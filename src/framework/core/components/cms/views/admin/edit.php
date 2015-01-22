@@ -247,7 +247,6 @@ $(document).ready(function() {
 </style>
 
 
-
  <div id="preview-container" style="display: none;" class="panel panel-default">
      <div id="hide-preview" style="float:right; width: 20px; padding: 5px">x</div>
     	<div class="panel-heading">Pages</div>
@@ -319,9 +318,8 @@ $(document).ready(function() {
                   Published on: Apr 17, 2014 @ 18:12</p> 
                   <p>
                   Section:
-                  <select class="form-control" name="page[CmsCategories_id]" id="page_category">
-                        <?php //echo $sectionOptionsList;?>
-                  </select>
+                  <?php echo $form['CmsSections_id'];?>
+                  
                   </p>
                   <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
                     <input type="button" name="update" id="update_page" class="btn btn-xs btn-primary" value="Update" />
