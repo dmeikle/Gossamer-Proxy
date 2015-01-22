@@ -55,7 +55,7 @@ class TemplateView extends AbstractView
     
     private function renderHTMLTags() {
        $htmlHandler = new HTMLTagHandler($this->logger);
-       
+       $htmlHandler->setDefaultLocale($this->getDefaultLocale());
        $htmlHandler->setTemplate($this->template);
        $this->template = $htmlHandler->handleRequest($this->data);
     }

@@ -9,10 +9,14 @@ $(document).ready(function() {
 });
 
 </script>
-    
+<div id="blogs" >
     <?php foreach($Blogs as $blog) {?>
+    <div class="blog">
 <?php pr($blog); 
 $date = date_create($blog['dateEntered']);
 ?>
 <a href="/blogs/<?php echo $blog['id'];?>/<?php echo date_format($date,"Ymd");?>/<?php echo $blog['permalink'];?>" title="<?php echo $blog['subject'];?>"><?php echo $blog['subject'];?></a>
-    <?php } ?>
+    </div>
+   <?php } ?>
+
+</div>

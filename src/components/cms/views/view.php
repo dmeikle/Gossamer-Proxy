@@ -5,7 +5,8 @@ this page needs styling...<br><br>
 
 
 $page = current($CmsPage);
+$locale = $this->getDefaultLocale();
 
-echo $page['content'];
+echo $page['locales'][$locale['locale']]['content'];
 
 ?>

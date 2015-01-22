@@ -3,6 +3,8 @@
 
 cms_view_page_1:
     pattern: restoration/*
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
     defaults:
         component: components\cms\CmsComponent
         controller: components\cms\controllers\PagesController
@@ -15,6 +17,8 @@ cms_view_page_1:
 
 cms_view_page_2:
     pattern: restoration/*/*
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
     defaults:
         component: components\cms\CmsComponent
         controller: components\cms\controllers\PagesController
@@ -28,6 +32,8 @@ cms_view_page_2:
 
 cms_view_page_3:
     pattern: restoration/*/*/*
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
     defaults:
         component: components\cms\CmsComponent
         controller: components\cms\controllers\PagesController

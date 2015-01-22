@@ -112,26 +112,24 @@ class HTMLTagHandler extends BaseHandler
     }
     
     private function findKey($array, $key) {
+       
+        //check for a locale based string first
+        if(array_key_exists('locales', $array) && array_key_exists('locale', $array)) {
+            if(array_key_exists($key, $array['locales'][$array['locale']])) {
+           
+                return $array['locales'][$this->defaultLocale['locale']][$key];
+            }
+        }
         
         if(array_key_exists($key, $array)) {
             
             return $array[$key];
         }
       
-        if(array_key_exists('locales', $array) && array_key_exists('locale', $array)) {
-            if(array_key_exists($key, $array['locales'][$array['locale']])) {
-               
-                return $array['locales'][$array['locale']][$key];
-            }
-        }
-        
         return false;
     }
     
-    private function getTagString($tag, array $params) {
-        
-    }
-    
+
     public function setTemplate($template) {
         $this->template = $template;
     }

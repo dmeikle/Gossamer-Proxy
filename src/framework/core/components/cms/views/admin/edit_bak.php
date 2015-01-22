@@ -4,7 +4,7 @@
 <script language="javascript">
 
 $(document).ready(function() {
-    $( "#tabs" ).tabs();
+    
     var permalink = $('#permalink').val();
     
     $("#page_name").keyup(function(){
@@ -246,7 +246,7 @@ $(document).ready(function() {
     }
 </style>
 
-
+<?php $page = current($CmsPage);?>
 
  <div id="preview-container" style="display: none;" class="panel panel-default">
      <div id="hide-preview" style="float:right; width: 20px; padding: 5px">x</div>
@@ -259,7 +259,7 @@ $(document).ready(function() {
       <div class="panel panel-default">
     	<div class="panel-heading">Pages</div>
         <form role="form" id="form1" method="post">
-          <?php echo $form['pageId']; ?>
+            <input type="hidden" id="pageId" value="<?php echo $page['id']; ?>" />
         <table class="table" border="1">
             <tr>
                 <td rowspan="6" width="200" valign="top">
@@ -268,9 +268,9 @@ $(document).ready(function() {
                     <p>Pages</p>
                     <p>Sections</p>
                     <ul>
-                    <?php /* foreach($sections as $section) {?>
+                    <?php foreach($sections as $section) {?>
                         <li> <?php echo $section['name'];?></li> 
-                    <?php } */?>
+                    <?php } ?>
                     </ul>
                     
                     <p>- add new</p>
@@ -282,14 +282,14 @@ $(document).ready(function() {
                     <p class="btn bg-danger" style="display:none" id="page_name_message">Invalid characters in Page name. Please remove</p>
                     <p class="btn bg-danger" style="display:none" id="page_name_exists">Page name exists.</p>
                     <div class="form-group" id="page_name_container">
-                       <?php echo $form['name'];?>
+                        <input class="form-control" name="page[name]" id="page_name" placeholder="page name" pattern="[a-zA-Z0-9\-\ _]{0,100}" value="<?php echo $page['name'];?>"/>
                     </div>
                 </td>                
             </tr>
             <tr>
                 <td>Permalink: localhost/<span id="slug">__slug</span>/<span id="page_name_display"><?php echo $page['permalink'];?></span> <a href="#" onclick="return false;" class="btn-xs" id="edit-permalink">edit</a> <a href="#" id="view-existing" onclick="return false;" class="preview btn-xs">view existing page</a>
                     <div id="permalink-container" style="display:none">
-                        <?php echo $form['permalink'];?>
+                        <input class="form-control" type="text" name="page[permalink]" id="permalink" value="<?php echo $page['permalink'];?>" />
                         <input type="button" id="save-permalink" class="btn btn-primary btn-xs" value="Update" />
                     </div>
                 </td>
@@ -300,8 +300,8 @@ $(document).ready(function() {
                     Status: 
                     
                     <select name="page[isPublished]" id="page_isPublished" style="display: none">
-                        <option value="1" <?php //echo ($page['isPublished'] == 1)?'selected':''?>>Published</option>
-                        <option value="0" <?php //echo ($page['isPublished'] != 1)?'selected':''?>>Offline</option>
+                        <option value="1" <?php echo ($page['isPublished'] == 1)?'selected':''?>>Published</option>
+                        <option value="0" <?php echo ($page['isPublished'] != 1)?'selected':''?>>Offline</option>
                     </select>
                     
                     <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
@@ -309,8 +309,8 @@ $(document).ready(function() {
                   Visibility:  
                  
                     <select name="page[isPublic]" id="page_isPublic" style="display: none">
-                        <option value="1" <?php //echo ($page['isPublic'] == 1)?'selected':''?>>Public</option>
-                        <option value="0" <?php //echo ($page['isPublic'] != 1)?'selected':''?>>Private</option>
+                        <option value="1" <?php echo ($page['isPublic'] == 1)?'selected':''?>>Public</option>
+                        <option value="0" <?php echo ($page['isPublic'] != 1)?'selected':''?>>Private</option>
                     </select>                  
                   <a href="#" onclick="return false;" class="btn-xs" id="edit-visibility">Public</a><br />
                   
@@ -320,7 +320,7 @@ $(document).ready(function() {
                   <p>
                   Section:
                   <select class="form-control" name="page[CmsCategories_id]" id="page_category">
-                        <?php //echo $sectionOptionsList;?>
+                        <?php echo $sectionOptionsList;?>
                   </select>
                   </p>
                   <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
@@ -331,42 +331,12 @@ $(document).ready(function() {
 			</tr>
             <tr>
               <td>
-                  <div id="tabs">
-               <ul>
-                    <?php
-                    foreach($locales as $locale) {?>
-                        <li><a href="#<?php echo $locale['locale'];?>"><?php echo $locale['languageName'];?></a></li>
-                    <?php } ?>
-                </ul>
-
-            <div id="tab-content">
-                
-               
-                <?php foreach($locales as $locale) {                   
-                    ?>
-                 <div class="tab-pane<?php echo ($locale['isDefault']) ? ' active':'';?>" id="<?php echo $locale['locale'];?>">
-                <table width="100%">
-                    <tr>
-                        <td>
-                            <?php echo $form['content']['locales'][$locale['locale']];?>
-                            <script>
-                                // Replace the <textarea id="editor1"> with a CKEditor
-                                // instance, using default configuration.
-                               CKEDITOR.replace( 'CmsPage_locale_<?php echo $locale['locale']; ?>_content' );
-                            </script>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> <p>Page Title (inside HTML head tags):</p>
-                            <?php echo $form['metaTitle']['locales'][$locale['locale']];?>
-                    </tr>
-                </table>
-                 </div>
-                <?php } ?>      
-                
-           
-            </div>
-                  </div>
+                  <textarea name="page[locale][en_US][content]" id="page_content" rows="10" cols="80" placeholder="insert page content here"><?php echo $page['locales']['en_US']['content']?></textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'page_content' );
+            </script>
               </td>
            	</tr>
             <tr>
@@ -375,11 +345,17 @@ $(document).ready(function() {
               word count: <span id="wordcount">140</span></td>
               <td rowspan="3" valign="top">&nbsp;</td>
             </tr>
-           
+            <tr>
+              <td><p>Page Title (inside HTML head):</p>
+              <p>
+                <input type="text" name="page[locale][en_US][metaTitle]" class="form-control" id="page_metaTitle" value="<?php echo $page['locales']['en_US']['metaTitle']?>" />
+                Summaries are a brief description of your content
+              </p></td>
+            </tr>
             <tr>
               <td><p>Summary:</p>
               <p>
-                <textarea name="page[summary]" class="form-control" id="textarea" cols="45" rows="5"><?php //echo $page['summary']?></textarea>
+                <textarea name="page[summary]" class="form-control" id="textarea" cols="45" rows="5"><?php echo $page['summary']?></textarea>
                 Summaries are a brief description of your content
               </p></td>
             </tr>
@@ -387,4 +363,3 @@ $(document).ready(function() {
        
 </form>
       </div>
-

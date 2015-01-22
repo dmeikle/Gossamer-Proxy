@@ -3,15 +3,22 @@
 namespace core\handlers;
 
 use Monolog\Logger;
+use libraries\utils\preferences\UserPreferencesManager;
 
 abstract class BaseHandler
 {
     protected $logger = null;
 
+    protected $defaultLocale = null;
+    
     public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
 
+    public function setDefaultLocale(array $locale) {
+        $this->defaultLocale = $locale;
+    }
+    
     protected function checkFileIsStale($filepath, $rootFolder) {
 
         if(!file_exists($this->getDestinationFilepath($filepath, $rootFolder))) {
@@ -69,6 +76,7 @@ abstract class BaseHandler
         
         return $positions;
     }
+    
     
     public abstract function handleRequest($params = array());
 }

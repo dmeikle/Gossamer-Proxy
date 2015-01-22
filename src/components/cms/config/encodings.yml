@@ -1,8 +1,22 @@
 
 
 
+
 cms_view_page_1:
     title: utf8
     content: utf8
     summary: utf8
+    metaTitle: utf8
+    
+cms_view_page_2:
+    title: utf8
+    content: utf8
+    summary: utf8
+    metaTitle: utf8
+    
+cms_view_page_3:
+    title: utf8
+    content: utf8
+    summary: utf8
+    metaTitle: utf8
     

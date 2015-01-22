@@ -6,13 +6,15 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+
 
 /**
  * Description of PageModel
  *
  * @author Dave Meikle
  */ 
-class PageModel extends AbstractModel
+class PageModel extends AbstractModel implements FormBuilderInterface
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -25,6 +27,17 @@ class PageModel extends AbstractModel
     }
     
     public function getArray($id) {
+        $locales = $this->httpRequest->getAttribute('locales');
+        $keys = array_keys($locales);
+       
+        $localesList = array();
+        foreach($keys as $key) {
+            $localesList[$key] = array(
+                            'content' => '',
+                            'metaTitle' => ''
+                        );
+        }
+        
         return array(
                 array('id' => intval($id), 
                     'CmsCategories_id' => '0',
@@ -33,12 +46,8 @@ class PageModel extends AbstractModel
                     'permalink' => '',
                     'isPublished' => '',
                     'isPublic' => '',
-                    'locales' => array(
-                        'en_US' => array(
-                            'content' => '',
-                            'metaTitle' => ''
-                        )
-                    )));
+                    'locales' => $localesList
+                ));
     }
     
     public function search($id) {
@@ -66,10 +75,10 @@ class PageModel extends AbstractModel
     
     public function save($id) {
         $data = $this->httpRequest->getPost();
-        $data['page']['id'] = intval($id);
-        $data['page']['Staff_id'] = $this->getLoggedInStaffId();
+        $data[$this->entity]['id'] = intval($id);
+        $data[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
         
-        $result = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $data['page']);
+        $result = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $data[$this->entity]);
         
         return array('result' => true);
     }
@@ -102,10 +111,15 @@ class PageModel extends AbstractModel
             $data['CmsPage'] = $this->getArray($id);
         }
         
-        return $data;
+        return current($data['CmsPage']);
     }
     
     public function viewByPermalink($section1, $section2 = '', $section3 = '') {
+        $item = $this->httpRequest->getAttribute('components\cms\models\PageModel');
+        if(is_array($item) && count($item) > 0) {
+            return array('CmsPage' => array($item));
+        }
+        
         $params = array();
         if(strlen($section3) > 0) {
             $params = array('permalink' => $section3);
@@ -114,12 +128,17 @@ class PageModel extends AbstractModel
         } else {
             $params = array('permalink' => $section1);
         }       
-     
+        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);                
         if(!is_array($data) || count($data) == 0) {
             throw new \Exception('Page Content Not Found');
         }
-        
+      
         return $data;
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
 }
