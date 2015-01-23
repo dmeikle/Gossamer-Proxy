@@ -8,7 +8,7 @@ use tests\core\http\HTTPRequest;
 /**
  * Description of DefaultRoutingTest
  *
- * @author davem
+ * @author Dave Meikle
  */
 class DefaultRoutingTest extends \tests\BaseTest {
     

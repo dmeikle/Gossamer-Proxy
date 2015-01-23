@@ -11,7 +11,7 @@ namespace core\eventlisteners;
 /**
  * Description of LoadItemListener
  *
- * @author davem
+ * @author Dave Meikle
  */
 class LoadItemListener extends AbstractCachableListener{
     

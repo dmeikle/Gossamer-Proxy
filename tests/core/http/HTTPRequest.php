@@ -8,7 +8,7 @@ use core\http\HTTPRequest as CoreRequest;
 /**
  * Description of HttpRequest
  *
- * @author davem
+ * @author Dave Meikle
  */
 class HTTPRequest extends CoreRequest{
    

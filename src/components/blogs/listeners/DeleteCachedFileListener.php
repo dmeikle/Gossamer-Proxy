@@ -10,7 +10,7 @@ use core\eventlisteners\Event;
 /**
  * Description of DeleteCachedFileListener
  *
- * @author davem
+ * @author Dave Meikle
  */
 class DeleteCachedFileListener extends AbstractCachableListener {
     

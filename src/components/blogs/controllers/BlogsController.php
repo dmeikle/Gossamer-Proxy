@@ -10,7 +10,7 @@ use Gossamer\CMS\Forms\FormBuilder;
 /**
  * Description of PropertiesController
  *
- * @author davem
+ * @author Dave Meikle
  */
 class BlogsController extends AbstractController{
    

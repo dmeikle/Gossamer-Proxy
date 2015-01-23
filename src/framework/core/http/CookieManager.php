@@ -11,7 +11,7 @@ namespace core\http;
 /**
  * Description of CookieManager
  *
- * @author davem
+ * @author Dave Meikle
  */
 
 class CookieManager {
