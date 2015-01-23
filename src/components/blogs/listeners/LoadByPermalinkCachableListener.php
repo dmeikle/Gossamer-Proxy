@@ -1,12 +1,12 @@
 <?php
 
-namespace core\components\cms\listeners;
+namespace components\blogs\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
 
 /**
- * LoadByPermalink - this will allow the cms to cache portions of the page
- * rather than
+ * LoadByPermalink - this will allow the blog to cache portions of the page
+ * rather than redrawing each time
  *
  * @author davem
  */
@@ -29,7 +29,7 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener{
             $key .= '-' . implode('_', $requestParams); 
         }
         
-        $item = $this->getValuesFromCache('cms' . DIRECTORY_SEPARATOR . $key);
+        $item = $this->getValuesFromCache('blogs' . DIRECTORY_SEPARATOR . $key);
         $class = $this->listenerConfig['class'];
         
         if($item === false) {
@@ -43,7 +43,7 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener{
             } 
 
             if($caching && !is_null($item) > 0) {
-                $this->saveValuesToCache('cms' . DIRECTORY_SEPARATOR . $key, $item);
+                $this->saveValuesToCache('blogs' . DIRECTORY_SEPARATOR . $key, $item);
             }
         }    
 

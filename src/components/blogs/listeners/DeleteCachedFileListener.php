@@ -1,7 +1,7 @@
 <?php
 
 
-namespace core\components\cms\listeners;
+namespace components\blogs\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
 use Gossamer\Caching\CacheManager;
@@ -24,7 +24,7 @@ class DeleteCachedFileListener extends AbstractCachableListener {
         }
         
         $params = $this->httpRequest->getPost();
-        $page = ($params['CmsPage']);
+        $page = ($params['Blog']);
        
         //make sure the key passed from routing matches the one specified
         //for saving to cache also...
@@ -34,7 +34,7 @@ class DeleteCachedFileListener extends AbstractCachableListener {
             //same name in other sections
             try{
                 $permalink = $page['permalink'];
-                $key = 'cms' . DIRECTORY_SEPARATOR . $key .  (strlen($permalink) > 0) ? str_replace('-', '_', $permalink) : ''; 
+                $key = 'blogs' . DIRECTORY_SEPARATOR . $key .  (strlen($permalink) > 0) ? str_replace('-', '_', $permalink) : ''; 
             }catch(\Exception $e) {
                         
             }

@@ -76,7 +76,7 @@ class BlogModel extends AbstractModel implements FormBuilderInterface{
         $params[$this->entity]['Author_id'] = $this->getLoggedInStaffId();
         
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
-        pr($params);
+        //pr($params);
         return $data;
     }
 

@@ -101,8 +101,8 @@ class AbstractView
         //do any pre-render here - eg: format validation fail strings
         $params = new Event(KernelEvents::RESPONSE_START, $data);
         $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RESPONSE_START, $params);
-        $this->container->get('EventDispatcher')->dispatch(__URI, KernelEvents::RESPONSE_START, $params);
-        
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_START, $params);
+       
         $this->setData($params->getParams());
         $this->renderView();
         
@@ -114,7 +114,7 @@ class AbstractView
         $eventParams = $params->getParams();
         $this->template = $eventParams['content'];
         
-        $this->container->get('EventDispatcher')->dispatch(__URI, KernelEvents::RESPONSE_END);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END);
         
     }
     
@@ -148,7 +148,8 @@ class AbstractView
             
             $this->template = '';
             $this->renderComplete = true;
-            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'render_complete');
+            $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE);
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, new Event());
         }
        
     }

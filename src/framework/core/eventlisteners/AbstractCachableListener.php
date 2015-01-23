@@ -4,6 +4,7 @@
 namespace core\eventlisteners;
 
 use exceptions\KeyNotSetException;
+use Gossamer\Caching\CacheManager;
 
 /**
  * Description of AbstractCachableListener
@@ -61,20 +62,22 @@ class AbstractCachableListener extends AbstractListener{
         return null;
     }
     
-    protected function saveValuesToCache($key, $values) {
+    protected function saveValuesToCache($key, $values, $static = false) {
+       $manager = new CacheManager($this->logger);
        
-        try{
-            $file = fopen(__CACHE_DIRECTORY . "$key.cache", "w") or die("Unable to open file!");
-        }  catch (\Exception $e) {
-            $this->logger->addError($e->getMessage());
-            
-            return false;
-        }
-        
-        fwrite($file, $this->formatValuesBeforeSaving($values));
-        fclose($file);
-        
-        return true;
+       return $manager->saveToCache($key,  $this->formatValuesBeforeSaving($values), $static);
+//        try{
+//            $file = fopen(__CACHE_DIRECTORY . "$key.cache", "w") or die("Unable to open file!");
+//        }  catch (\Exception $e) {
+//            $this->logger->addError($e->getMessage());
+//            
+//            return false;
+//        }
+//        
+//        fwrite($file, $this->formatValuesBeforeSaving($values));
+//        fclose($file);
+//        
+//        return true;
     }
     
     private function formatValuesBeforeSaving($values) {
@@ -101,14 +104,19 @@ class AbstractCachableListener extends AbstractListener{
         return $retval;
     }
     
-    protected function getValuesFromCache($key) {
-        if(file_exists(__CACHE_DIRECTORY . "$key.cache") && $this->isNotStale(__CACHE_DIRECTORY . "$key.cache")) {
-            
-            $loadedValues = include __CACHE_DIRECTORY . "$key.cache";
-            return $loadedValues;            
-        }
+    protected function getValuesFromCache($key, $static = false) {
         
-        return false;
+        $manager = new CacheManager($this->logger);
+       
+       return $manager->retrieveFromCache($key, $static);   
+       
+//        if(file_exists(__CACHE_DIRECTORY . "$key.cache") && $this->isNotStale(__CACHE_DIRECTORY . "$key.cache")) {
+//            
+//            $loadedValues = include __CACHE_DIRECTORY . "$key.cache";
+//            return $loadedValues;            
+//        }
+        
+   //     return false;
     }
     
     private function isNotStale($filepath) {

@@ -42,6 +42,9 @@ final class KernelEvents
     
     const RESPONSE_END = 'response_end';
 
+    const RENDER_BYPASS = 'render_bypass';
+    
+    const RENDER_COMPLETE = 'render_complete';
     /**
      * The TERMINATE event occurs once a response was sent
      */

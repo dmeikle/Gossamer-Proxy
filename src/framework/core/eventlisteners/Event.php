@@ -9,7 +9,7 @@ class Event
     private $params = null;
     
     
-    public function __construct($eventName, &$params) {
+    public function __construct($eventName = '', &$params = array()) {
         $this->eventName = $eventName;
         $this->params = $params;
     }

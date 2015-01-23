@@ -110,6 +110,7 @@ class AbstractController
         $this->view->render($data);
     } 
     
+  
     
     /**
      * index method - landing page or list view 
