@@ -28,7 +28,7 @@ class PagesController extends AbstractController
         $this->render($result);
     }
     
-    public function viewByPermalink($section1, $section2 = '', $section3 = '') {
+    public function viewByPermalink($section1 = '', $section2 = '', $section3 = '') {
        
         $result = $this->model->viewByPermalink($section1, $section2, $section3);
         

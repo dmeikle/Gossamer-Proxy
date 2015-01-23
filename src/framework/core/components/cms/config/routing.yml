@@ -51,6 +51,8 @@ admin_cms_page_edit:
 
 admin_cms_page_save:
     pattern: admin/cms/pages/*
+    listeners:
+        - { 'event': 'save_success', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\DeleteCachedFileListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
     methods: [POST]
     defaults:
         component: core\components\cms\CmsComponent

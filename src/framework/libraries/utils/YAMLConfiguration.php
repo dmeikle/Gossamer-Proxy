@@ -33,24 +33,16 @@ class YAMLConfiguration
     
     public function getNodeParameters($uri) {
         if($uri == '/' || $uri == '') {
-            $uri = 'default/index';
+            $uri = 'index';
         }
-        $ymlKey = null;
-        $routing = $this->getInitialRouting($uri);
-        $routingPath = '';
-        if(is_array($routing)) {
-            //we're doing a default override
-            $ymlKey = $routing['ymlkey'];
-            $routingPath = $routing['component'];
-        } else {
-            $routingPath = $routing;
-        }
+       
+        $routingPath = $this->getInitialRouting($uri);
+        
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-        if(is_null($ymlKey)) {
-            $ymlKey = $this->findConfigKeyByURIPattern($this->config, 'pattern',$uri);
-        }        
-        
+       
+        $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
+             
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
       
         $nodeParams = $this->getYMLNodeParameters($ymlKey);
@@ -77,6 +69,13 @@ class YAMLConfiguration
         }
         
         return $this->datasources[$pieces[0]]['datasource'];
+    }
+    
+    private function getDefaultRoutingKey(array $config, $uri) {
+       
+        $comparator = new URIComparator();
+        
+        return $comparator->findPattern($config, $uri); 
     }
     
     /**
@@ -109,7 +108,7 @@ class YAMLConfiguration
                 throw new URINotFoundException($chunk . ' does not exist in YML configuration');  
             }
            
-            return $config['default'];
+            return $config['default']['component'];
         }
         
         //return the first path
@@ -132,19 +131,19 @@ class YAMLConfiguration
      * @param string    the node we are searching for
      * @param string    the complete uri we are searching against
      */
-    public function findConfigKeyByURIPattern($configList, $node, $uriPattern)
+    public function findConfigKeyByURIPattern($configList, $uriPattern)
     {
         $comparator = new URIComparator();
 
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
         unset($comparator);
-       
+    
         return $uriConfig;
     }
     
 
     private function getYMLNodeParameters($ymlKey) { 
-        
+       
         return $nodeParams = $this->config[$ymlKey];       
     }
     

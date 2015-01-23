@@ -185,10 +185,10 @@ class AbstractController
         
         $result = $this->model->save($id);
         
-        $params = array('entity' => $this->model->getEntity(true));
+        $params = array('entity' => $this->model->getEntity(true), 'result' => $result, 'id' => $id);
         $event = new Event('save_success', $params);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
-        
+       
         $this->render($result);
     }
 

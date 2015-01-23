@@ -24,7 +24,7 @@ class YAMLViewConfiguration
     }
     
     public function getViewConfig($uri, $ymlKey) {
-     echo $ymlKey;
+    
         $routingPath = $this->getInitialRouting($uri);
         $siteConfig = $this->loadConfig(__SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'views.yml');
         
@@ -110,27 +110,4 @@ class YAMLViewConfiguration
         }              
     }
     
-    private function iterateComponentConfigurations(Logger $logger, $filename, $node) {
-       
-        $retval = array();
-        $parser = new YAMLParser($logger);
-
-        $parser->setFilePath(__SITE_PATH . '/app/config/' . $filename .'.yml');
-        
-            $retval[] = $parser->findNodeByURI('all', $node); 
-            //just in case it's a usercommand (not component) load any config for it here also
-            $retval[] = $parser->findNodeByURI(__YML_KEY, $node); 
-        
-        $subdirectories = $this->getDirectoryList();
-        foreach ($subdirectories as $folder) {
-            $parser->setFilePath($folder . '/config/' . $filename . '.yml');
-            $config = $parser->findNodeByURI(__YML_KEY, $node); 
-           if(is_array($config)) {
-                $retval[] = $config;
-            }
-            
-        }
-       
-        $this->configs = $retval;
-    }
 }

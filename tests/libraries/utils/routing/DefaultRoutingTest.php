@@ -52,7 +52,7 @@ class DefaultRoutingTest extends \tests\BaseTest {
         
         $key = $routing->getDefaultRoutingKey($this->getConfig());
         
-        $this->assertEquals($key, 'cms_view_page_4');
+        $this->assertFalse($key);
     }
     
     private function getConfig() {

@@ -17,9 +17,12 @@ all:
     defaults:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'
-index:
+
+#this is a placeholder to show that you can still call things in bootstrap as long as the 
+# ymlkey matches one from any of the routing files. Want proof? change index2 to index and
+# see an error for CheckServerCredentials on page load entry_point event being dispatched.
+index2:
     listeners:
-        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
     pattern:  /default/index
     defaults: { _controller: ProductBundle:Default:new }

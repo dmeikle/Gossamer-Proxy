@@ -34,7 +34,7 @@ class TemplateView extends AbstractView
     
     
     protected function renderView(){
-        pr($this->config);
+        
         $template = $this->config['template'];
         $theme = $this->config['theme'];
         $this->sections = $this->config['sections'];

@@ -17,7 +17,7 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener{
         $caching = true;
         
         $requestParams = $this->httpRequest->getParameters();
-       pr($this->httpRequest);
+       
         $params['permalink'] = end($requestParams);
        
         $key = $this->getKey();
