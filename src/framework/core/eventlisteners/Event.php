@@ -11,27 +11,50 @@
 
 namespace core\eventlisteners;
 
-class Event
-{
+/**
+ * a container for values to be passed in when dispatching an event
+ */
+class Event {
+
     private $eventName = null;
-    
     private $params = null;
-    
-    
+
+    /**
+     * 
+     * @param type $eventName
+     * 
+     * @param type $params
+     */
     public function __construct($eventName = '', &$params = array()) {
         $this->eventName = $eventName;
         $this->params = $params;
     }
-    
+
+    /**
+     * accessor 
+     * 
+     * @return string
+     */
     public function getEventName() {
         return $this->eventName;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @return string
+     */
     public function getParams() {
         return $this->params;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param mixed $params
+     */
     public function setParams($params) {
         $this->params = $params;
     }
+
 }

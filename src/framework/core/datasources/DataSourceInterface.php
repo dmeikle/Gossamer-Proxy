@@ -11,14 +11,14 @@
 
 namespace core\datasources;
 
-
 use core\AbstractModel;
 
+/**
+ * DataSourceInterface
+ */
+interface DataSourceInterface {
 
-interface DataSourceInterface
-{
     public function query($queryType, AbstractModel $entity, $verb, $params);
-    
+
     public function setDatasourceKey($keyName);
-    
 }

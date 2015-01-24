@@ -14,12 +14,15 @@ namespace core\datasources;
 use core\datasources\DataSourceInterface;
 use core\AbstractModel;
 
-
-class FileDataSource implements DataSourceInterface
-{
+/**
+ * used for reading/writing info to a file datasource
+ * 
+ * @author Dave Meikle
+ */
+class FileDataSource implements DataSourceInterface {
 
     private $keyname;
-    
+
     /**
      * query    - a few of the default parameters passed in will not be used for
      *            the basic simplicity of the File I/O
@@ -30,26 +33,28 @@ class FileDataSource implements DataSourceInterface
      * @param array params      parameters needed for file I/O
      */
     public function query($queryType, AbstractModel $entity, $verb, $params) {
-        //if(is_callable($this->$verb)) {
-            
-            return $this->$verb($params['content'], $params['filepath']);
-        //}
-       
+
+        return $this->$verb($params['content'], $params['filepath']);
     }
-    
+
+    /**
+     * 
+     * @param string $keyName
+     */
     public function setDatasourceKey($keyName) {
         $this->keyname = $keyName;
     }
-    
+
     private function save($content, $filepath) {
         file_put_contents($filepath, $content);
     }
-    
+
     private function delete($content, $filepath) {
         shell_exec('rm -fr ' . $filepath);
     }
-    
+
     private function get($content, $filepath) {
         return array('payload' => file_get_contents($filepath));
     }
+
 }

@@ -19,7 +19,10 @@ use core\components\security\exceptions\ClientCredentialsNotFoundException;
 use components\contacts\models\ContactInviteModel;
 
 /**
- * Description of ContactAuthorizationProvider
+ * Performs the work in determining if an invited person was actually invited.
+ * Invitees are created by Contacts that want to add people to the system for
+ * without administrators needing to do the work in adding them.
+ * eg: I want to add my assistant to my account...
  *
  * @author Dave Meikle
  */
@@ -31,6 +34,13 @@ class InviteAuthenticationProvider extends DatasourceAware implements Authentica
     
     protected $httpResponse = null;
     
+    /**
+     * 
+     * @param type $credential
+     * @return Client
+     * 
+     * @throws ClientCredentialsNotFoundException
+     */
     public function loadClientByCredentials($credential) {
      
         $model = new ContactInviteModel($this->httpRequest, $this->httpResponse, $this->logger);
@@ -48,20 +58,41 @@ class InviteAuthenticationProvider extends DatasourceAware implements Authentica
         throw new ClientCredentialsNotFoundException('no user found with credential ' . $credential);
     }
 
+    /**
+     * 
+     * @param ClientInterface $client
+     * 
+     * @return ClientInterface
+     */
     public function refreshClient(ClientInterface $client) {
         return $this->loadClientByCredentials($client->getCredentials());
     }
 
+    /**
+     * 
+     * @param type $class
+     * 
+     * @return boolean
+     */
     public function supportsClass($class) {
         return $class === 'core\components\security\core\Client';
     }
 
+    /**
+     * 
+     * @param ClientInterface $client
+     * 
+     * @return array
+     */
     public function getRoles(ClientInterface $client) {
         //added this during dev but not complete
         return $client->getRoles();
     }
 
-    
+    /**
+     * 
+     * @return string
+     */
     protected function getClientIp() {
  
         //Just get the headers if we can or else use the SERVER global

@@ -11,25 +11,26 @@
 
 namespace core\eventlisteners;
 
-use filters\FilterChain;
-use libraries\utils\Registry;
-use exceptions\InvalidServerIDException;
-use exceptions\UnauthorizedAccessException;
-use entities\ServerAuthenticationToken;
-use commands\GetCommand;
 use libraries\utils\YAMLPreferences;
 
-class LoadDefaultPreferencesListener extends AbstractListener
-{
+/**
+ * loads the default preferences for any user requests where we don't know
+ * who they are. things like langage to use (en_US) etc...
+ * 
+ * @author Dave Meikle
+ */
+class LoadDefaultPreferencesListener extends AbstractListener {
 
-
+    /**
+     * 
+     * @param type $params
+     */
     public function on_entry_point($params) {
 
         $loader = new YAMLPreferences($this->logger);
         $config = $loader->loadConfig('defaultpreferences');
-        
+
         $this->httpRequest->setAttribute('defaultPreferences', $config);
-       
     }
 
 }

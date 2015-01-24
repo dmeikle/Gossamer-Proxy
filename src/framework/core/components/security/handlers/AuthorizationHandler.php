@@ -20,7 +20,7 @@ use libraries\utils\YAMLParser;
 use libraries\utils\URISectionComparator;
 
 /**
- * Description of AuthorizationHandler
+ * AuthorizationHandler - placeholder - not implemented
  *
  * @author Dave Meikle
  */

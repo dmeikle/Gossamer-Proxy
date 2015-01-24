@@ -11,28 +11,36 @@
 
 namespace core\http;
 
-use Monolog\Logger;
+/**
+ * abstract base class
+ * 
+ * @author Dave Meikle
+ */
+class AbstractHTTP {
 
-class AbstractHTTP
-{
     protected $logger = null;
-    
     protected $headers = null;
-    
     protected $contentType = 'application/json';
-    
     protected $method = null;
-    
     protected $attributes = array();
-    
-   
+
+    /**
+     * accessor
+     * 
+     * @return array
+     */
     public function getAttributes() {
         return $this->attributes;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param string $key
+     * @param mixed $value
+     */
     public function setAttribute($key, $value) {
         $this->attributes[$key] = $value;
     }
-    
-    
+
 }

@@ -14,7 +14,7 @@ namespace core\components\security\providers;
 use core\components\security\core\SecurityToken;
 
 /**
- * Description of UsernamePasswordToken
+ * this class is deprecated
  *
  * @author Dave Meikle
  */

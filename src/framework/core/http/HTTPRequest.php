@@ -11,152 +11,213 @@
 
 namespace core\http;
 
-use exceptions\InvalidServerIdException;
+/**
+ * the HTTPRequest object we will pass around to access request data
+ * 
+ * @author Dave Meikle
+ */
+class HTTPRequest extends AbstractHTTP {
 
-
-class HTTPRequest extends AbstractHTTP
-{
-    
     protected $postParameters = null;
-    
     protected $requestParameters = null;
-    
     protected $parameters = array();
-    
     protected $queryString = array();
-    
     protected $uri = null;
-    
+
+    /**
+     * 
+     * @param type $requestParameters
+     * @param type $pattern
+     */
     public function __construct($requestParameters = null, $pattern = '') {
 
-       $uri = __REQUEST_URI;   
-      
-       $filter = $this->parseURIParams($pattern);
-       $this->postParameters = $_POST;
-       $this->formatQueryString();
-       $params = $this->getParams($filter, $uri);
-    
-       
-       if(array_key_exists('HTTP_REFERER', $_SERVER)) {
-           $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
-       }
-       
-       $this->uri = $uri;
-       $this->requestParameters = $params;
+        $uri = __REQUEST_URI;
+
+        $filter = $this->parseURIParams($pattern);
+        $this->postParameters = $_POST;
+        $this->formatQueryString();
+        $params = $this->getParams($filter, $uri);
+
+
+        if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
+        }
+
+        $this->uri = $uri;
+        $this->requestParameters = $params;
     }
-    
+
+    /**
+     * returns a query param based on key
+     * 
+     * @param type $key
+     * 
+     * @return string|null
+     */
     public function getQueryParameter($key) {
-        if(array_key_exists($key, $this->queryString)) {
+        if (array_key_exists($key, $this->queryString)) {
             return $this->queryString[$key];
         }
-        
+
         return null;
     }
-    
+
+    /**
+     * formats the query string into a readable array
+     */
     protected function formatQueryString() {
         $temp = explode('&', $_SERVER['QUERY_STRING']);
-        foreach($temp as $row) {
+        foreach ($temp as $row) {
             $pieces = explode('=', $row);
             $pieces = array_filter($pieces);
-            if(is_array($pieces) && count($pieces) > 0) {
+            if (is_array($pieces) && count($pieces) > 0) {
                 $this->queryString[$pieces[0]] = $pieces[1];
             }
-            
         }
     }
-    
+
+    /**
+     * removes the base uri and returns only the uri pieces pertinent to the 
+     * request that are used as request parameters now
+     * 
+     * @param string $filter
+     * @param string $uri
+     * 
+     * @return array
+     */
     protected function getParams($filter, $uri) {
-     
-        if(substr($filter, 0, 1) == '/' && substr($uri, 0, 1) != '/') {
+
+        if (substr($filter, 0, 1) == '/' && substr($uri, 0, 1) != '/') {
             $filter = substr($filter, 1); //knock the preceding '/' if it's not there - varies from server to server
         }
         //array filter knocked off any '0' value, so it has been removed
         //$params = array_filter(explode('/', str_replace($filter, '', $uri)));
-  
+
         $uri = substr($uri, strlen($filter));
-      
+
         $params = explode('/', $uri);
-       
-        if(current($params) == '') {
-           array_shift($params);
+
+        if (current($params) == '') {
+            array_shift($params);
         }
-        
+
         return $params;
     }
-    
+
+    /**
+     * 
+     * @param string $pattern
+     * 
+     * @return string
+     */
     protected function parseURIParams($pattern) {
-        
+
         $pieces = explode('/', $pattern);
         $retval = '';
-        foreach($pieces as $chunk) {
-            if('*' != $chunk ) {
+        foreach ($pieces as $chunk) {
+            if ('*' != $chunk) {
                 $retval .= '/' . $chunk;
             }
-        }    
-        
+        }
+
         return $retval;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param type $headerName
+     * 
+     * @return string
+     */
     public function getHeader($headerName) {
         return $this->headers[$headerName];
     }
+
+    /**
+     * initialize values
+     */
     protected function init() {
-     
+
         $this->headers = getallheaders();
         $this->attributes['ipAddress'] = $_SERVER['REMOTE_ADDR'];
-
     }
-    
-    
+
+    /**
+     * accessor
+     * 
+     * @param string $key
+     * @param string $value
+     */
     public function setAttribute($key, $value) {
-       
+
         $this->attributes[$key] = $value;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param string $key
+     * @return string
+     */
     public function getAttribute($key) {
-        if(array_key_exists($key, $this->attributes)) {
+        if (array_key_exists($key, $this->attributes)) {
             return $this->attributes[$key];
         }
-        
+
         return null;
     }
-    
-    public function popAttribute($key) {
-        $retval = $this->getAttribute($key);
-        unset($this->attributes[$key]);
-        
-        return $retval;
-    }
-    
+
+    /**
+     * 
+     * @return array
+     */
     public function getParameters() {
         return $this->requestParameters;
     }
-    
+
+    /**
+     * returns a value from the request string
+     * @param string $key
+     * @return string
+     */
     public function getParameter($key) {
-        if(array_key_exists($key, $this->requestParameters)) {
+        if (array_key_exists($key, $this->requestParameters)) {
             return $this->requestParameters[$key];
         }
-        
+
         return null;
     }
-    
 
+    /**
+     * returns a value that has been posted
+     * @param string $key
+     * @return string|null
+     */
     public function getPostParameter($key) {
 
-        if(array_key_exists($key, $this->postParameters)) {
+        if (array_key_exists($key, $this->postParameters)) {
             return $this->postParameters[$key];
         }
-        
+
         return null;
     }
-   
+
+    /**
+     * accessor
+     * 
+     * @return array
+     */
     public function getPost() {
         return $this->postParameters;
     }
-    
+
+    /**
+     * 
+     * @return string
+     */
     public function getUri() {
         return $this->uri;
     }
+
 }
-
-

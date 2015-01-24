@@ -14,7 +14,8 @@ namespace core\datasources;
 use core\datasources\ConnectionAdapter;
 
 /**
- * Description of DatasourceAware
+ * allows a class to have a connection object - this should be refactored 
+ * into a PHP trait
  *
  * @author Dave Meikle
  */

@@ -16,19 +16,25 @@ use core\eventlisteners\Event;
 use Gossamer\Caching\CacheManager;
 
 /**
- * Description of DeleteFileListener
+ * used to delete a cache file if the administrator has edited a page that 
+ * is cached
  *
  * @author Dave Meikle
  */
 class DeleteCacheFileListener extends AbstractListener {
-    
+
+    /**
+     * 
+     * @param Event $event
+     */
     public function on_save_success(Event $event) {
         $params = $event->getParams();
-       
+
         $manager = new CacheManager($this->logger);
         //the convention in yml is to use the entity name with an 's' appended
         $manager->invalidateCache($params['entity'] . 's');
-        
+
         unset($manager);
     }
+
 }

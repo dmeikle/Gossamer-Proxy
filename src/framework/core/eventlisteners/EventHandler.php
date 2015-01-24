@@ -17,73 +17,109 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use libraries\utils\Container;
 
-class EventHandler
-{
+/**
+ * handles all events that are raised
+ * 
+ * @author Dave Meikle
+ */
+class EventHandler {
+
     private $listeners = array();
-    
     private $state = null;
-    
     private $params = null;
-    
     private $logger = null;
-
     private $container = null;
-
     private $httpRequest = null;
-
     private $httpResponse = null;
-
     private $datasourceFactory = null;
-
     private $datasources = null;
-
     private $datasourceKey = null;
-    
     private $eventDispatcher = null;
-    
-    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse ) {
+
+    /**
+     * 
+     * @param Logger $logger
+     * @param HTTPRequest $httpRequest
+     * @param HTTPResponse $httpResponse
+     */
+    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
     }
 
-
+    /**
+     * accessor
+     * 
+     * @param type $datasourceKey
+     */
     public function setDatasourceKey($datasourceKey) {
         $this->datasourceKey = $datasourceKey;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param DatasourceFactory $factory
+     * @param array $datasources
+     */
     public function setDatasources(DatasourceFactory $factory, array $datasources) {
         $this->datasourceFactory = $factory;
         $this->datasources = $datasources;
     }
 
+    /**
+     * accessor
+     * 
+     * @param Container $container
+     */
     public function setContainer(Container &$container) {
         $this->container = $container;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param HTTPRequest $httpRequest
+     */
     public function setHttpRequest(HTTPRequest $httpRequest) {
         $this->httpRequest = $httpRequest;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param \core\eventlisteners\EventDispatcher $eventDispatcher
+     */
     public function setEventDispatcher(EventDispatcher &$eventDispatcher) {
         $this->eventDispatcher = $eventDispatcher;
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param HTTPResponse $httpResponse
+     */
     public function setHttpResponse(HTTPResponse $httpResponse) {
         $this->httpResponse = $httpResponse;
     }
 
-
+    /**
+     * accessor
+     * 
+     * @param type $listener
+     */
     public function addListener($listener) {
-        
         $this->listeners[] = $listener;
         $this->logger->addDebug($listener['listener'] . ' added to listeners');
     }
 
-
+    /**
+     * traverses list of listeners and executes their calls
+     */
     public function notifyListeners() {
         $this->logger->addDebug('*** notifying listeners ***');
-        foreach($this->listeners as $listener) {
+        foreach ($this->listeners as $listener) {
             $listenerClass = $listener['listener'];
             unset($listener['listener']);
             $eventListener = new $listenerClass($this->logger, $this->httpRequest, $this->httpResponse);
@@ -95,12 +131,17 @@ class EventHandler
         }
     }
 
-    
+    /**
+     * accessor
+     * 
+     * @param string $state
+     * @param string $params
+     */
     public function setState($state, &$params) {
         $this->state = $state;
         $this->params = $params;
-        
+
         $this->notifyListeners();
     }
-    
+
 }

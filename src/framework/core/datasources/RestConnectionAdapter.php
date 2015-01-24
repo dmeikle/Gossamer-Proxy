@@ -14,25 +14,37 @@ namespace core\datasources;
 use core\AbstractModel;
 use Monolog\Logger;
 use core\datasources\ConnectionAdapter;
-use core\datasources\DataSourceInterface;
 use core\datasources\RestDataSource;
 
 /**
- * Description of RestConnectionAdapter
+ * Adapter class for REST data source
  *
  * @author Dave Meikle
  */
 class RestConnectionAdapter extends ConnectionAdapter {
-    
+
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger) {
         parent::__construct($logger, new RestDataSource($logger));
-        
-    }    
-    
-    public function query($queryType, AbstractModel $entity = null, $verb = null, $params = array()) {
-        $this->datasource->setDatasourceKey($this->keyname);
-        return $this->datasource->query($queryType, $entity, $verb, $params);
     }
 
+    /**
+     * 
+     * @param type $queryType
+     * @param AbstractModel $entity
+     * @param type $verb
+     * @param type $params
+     * 
+     * @return array
+     */
+    public function query($queryType, AbstractModel $entity = null, $verb = null, $params = array()) {
+
+        $this->datasource->setDatasourceKey($this->keyname);
+
+        return $this->datasource->query($queryType, $entity, $verb, $params);
+    }
 
 }

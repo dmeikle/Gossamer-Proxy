@@ -15,6 +15,12 @@ use Monolog\Logger;
 use core\AbstractModel;
 use core\datasources\AdapterInterface;
 
+/**
+ * Used to hide the implementation and class type from objects that require
+ * a connection to a datasource.
+ * 
+ * @author Dave Meikle
+ */
 abstract class ConnectionAdapter
 {
     protected $datasource = null;

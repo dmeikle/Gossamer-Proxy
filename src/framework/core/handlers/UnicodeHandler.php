@@ -14,177 +14,223 @@ namespace core\handlers;
 use Monolog\Logger;
 
 /**
- * Description of UnicodeHandler
+ * converts regular text to unicode.
+ * this class was intended for use since we are often saving data to a remote
+ * datasource using REST with cURL. Since cURL isn't foreign language friendly
+ * I've found the simplest solution is to simply convert text to UTF-8 and send
+ * it as hex to the remote source where it doesn't care what it's handling.
+ * 
  *
  * @author Dave Meikle
  */
-class UnicodeHandler extends BaseHandler{
-    
-    
+class UnicodeHandler extends BaseHandler {
+
     private $config = null;
-    
     private $key = null;
-    
     private $action = null;
-    
+
     const DECODE_FLAG = 'decode';
-    
     const ENCODE_FLAG = 'encode';
-    
+
+    /**
+     * 
+     * @param Logger $logger
+     * @param array $configuration
+     */
     public function __construct(Logger $logger, array $configuration) {
         parent::__construct($logger);
         $this->config = $configuration;
     }
-    
-    
+
+    /**
+     * 
+     * @param array $params
+     */
     public function handleRequest($params = array()) {
         $pageConfig = $this->config[__YML_KEY];
         $this->$this->action($params);
     }
 
+    /**
+     * 
+     * @param string $value
+     */
     public function setFlag($value) {
         $this->action = $flag;
-    } 
-    
+    }
+
+    /**
+     * 
+     * @param type $string
+     * @return boolean
+     */
     private function isJson($string) {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
     }
-    
+
+    /**
+     * 
+     * @param type $object
+     * 
+     * @return type
+     */
     private function convertObjectToArray($object) {
         $retval = array();
-        if(!is_object($object) && !is_array($object)) {
+        if (!is_object($object) && !is_array($object)) {
             return $object;
         }
-        if(is_object($object)) {
+        if (is_object($object)) {
             $object = get_object_vars($object);
         }
-        foreach($object as $key => $value) {
-            if(is_object($value) || is_array($value)) {
+        foreach ($object as $key => $value) {
+            if (is_object($value) || is_array($value)) {
                 $retval[$key] = $this->convertObjectToArray($value);
             } else {
                 $retval[$key] = $value;
             }
         }
-        
+
         return $retval;
     }
-    
-    
+
+    /**
+     * 
+     * @param type $parameters
+     * 
+     * @return type
+     */
     public function formatToAsciiAfterReceiving($parameters) {
         //first decouple it from array of objects into an array of arrays
         $array = $this->decoupleToArray($parameters);
-        file_put_contents('/var/www/shoppingcart/logs/test3.log', "decoupleToArray is now " . print_r($array, true) . "\r\n", FILE_APPEND);
-       // $array = $this->convertJsonToArrays($array);
-        
-       // file_put_contents('/var/www/shoppingcart/logs/test3.log', "convertJsonToArray is now " . print_r($array, true) . "\r\n", FILE_APPEND);
+
         return $this->convertArrayText($array);
     }
-    
+
+    /**
+     * 
+     * @param type $parameters
+     * 
+     * @return type
+     */
     private function decoupleToArray($parameters) {
-        
-        if(is_object($parameters)) {
+
+        if (is_object($parameters)) {
             $parameters = get_object_vars($parameters);
         }
 
         return is_array($parameters) ? array_map(__METHOD__, $parameters) : $parameters;
     }
 
-    private function convertJsonToArrays($parameters) {
-        $retval = array();
-        if(!is_array($parameters)) {
-            return $parameters;
-        }
-        foreach($parameters as $key => $value) {
-            if($this->isJson($value)) {
-                file_put_contents('/var/www/shoppingcart/logs/test3.log', "$key isjson $value\r\n", FILE_APPEND);
-                $value = json_decode($value);
-                file_put_contents('/var/www/shoppingcart/logs/test3.log', "$key json_decoded " . print_r($value, true) . "\r\n", FILE_APPEND);
-        
-                $value = $this->decoupleToArray($value);
-                file_put_contents('/var/www/shoppingcart/logs/test3.log', "$key object decoupledtoarray is now  " . print_r($value, true) . "\r\n", FILE_APPEND);
-        
-                //$value = $this->convertJsonToArrays($value);
-            }
-            $retval[$key] = $value;
-        }
-        
-        return $retval;
-    }
+    /**
+     * 
+     * @param array $parameters
+     * @return type
+     */
     private function convertArrayText(array $parameters) {
         $retval = array();
-        foreach($parameters as $key => $value) {
-           if(is_array($value)) {
+        foreach ($parameters as $key => $value) {
+            if (is_array($value)) {
                 $retval[$key] = $this->convertArrayText($value);
-            }else {
+            } else {
                 $retval[$key] = $this->hex2ascii($key, $value);
-
             }
         }
 
         return $retval;
     }
-    
+
+    /**
+     * 
+     * @param type $parameters
+     * @return type
+     */
     public function decode($parameters) {
-        
+
         $result = $this->formatToAsciiAfterReceiving($parameters);
-     
+
         return $result;
     }
-    
+
+    /**
+     * 
+     * @param type $parameters
+     * 
+     * @return type
+     */
     public function encode($parameters) {
-      
+
         return $this->formatToHexForSending($parameters);
     }
-    
+
+    /**
+     * 
+     * @param type $parameters
+     * 
+     * @return array
+     */
     private function formatToHexForSending($parameters) {
         $retval = array();
-        if(!is_array($parameters)){
-           
+        if (!is_array($parameters)) {
+
             return $this->ascii2hex($parameters);
         }
-        foreach($parameters as $key => $value) {
-            if(is_array($value)) {
+        foreach ($parameters as $key => $value) {
+            if (is_array($value)) {
                 $retval[$key] = $this->formatToHexForSending($value);
-            
             } else {
                 $retval[$key] = $this->ascii2hex($key, $value);
             }
         }
-    
+
         return $retval;
     }
-    
+
+    /**
+     * 
+     * @param string $key
+     * @param string $ascii
+     * 
+     * @return string
+     */
     private function ascii2hex($key, $ascii) {
-       if(!in_array($key, $this->config)) {
-           return $ascii;//don't bother to convert it - it's not on our list
-       }
+        if (!in_array($key, $this->config)) {
+            return $ascii; //don't bother to convert it - it's not on our list
+        }
         $hex = '0x';
         for ($i = 0; $i < strlen($ascii); $i++) {
             $byte = strtoupper(dechex(ord($ascii{$i})));
-            $byte = str_repeat('0', 2 - strlen($byte)).$byte;
-            $hex.=$byte." ";
+            $byte = str_repeat('0', 2 - strlen($byte)) . $byte;
+            $hex.=$byte . " ";
         }
-      
+
         return $hex;
     }
-    
-    private function hex2ascii($key, $hex){
-       if(!in_array($key, $this->config)) {
-           return $hex;//don't bother to convert it - it's not on our list
-       }
-        if(is_object($hex) || substr($hex,0,2) !== '0x') {
-           
+
+    /**
+     * 
+     * @param string $key
+     * @param string $hex
+     * 
+     * @return string
+     */
+    private function hex2ascii($key, $hex) {
+        if (!in_array($key, $this->config)) {
+            return $hex; //don't bother to convert it - it's not on our list
+        }
+        if (is_object($hex) || substr($hex, 0, 2) !== '0x') {
+
             return $hex;
         }
-       
-        $ascii='';
-        
-        $hex=str_replace(" ", "", substr($hex, 2));
-        for($i=0; $i<strlen($hex); $i=$i+2) {
+
+        $ascii = '';
+
+        $hex = str_replace(" ", "", substr($hex, 2));
+        for ($i = 0; $i < strlen($hex); $i = $i + 2) {
             $ascii.=chr(hexdec(substr($hex, $i, 2)));
         }
-        
+
         return($ascii);
     }
+
 }

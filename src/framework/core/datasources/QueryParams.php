@@ -11,6 +11,9 @@
 
 namespace core\datasources;
 
+/**
+ * this class has been deprecated
+ */
 class QueryParams
 {
     private $entity;

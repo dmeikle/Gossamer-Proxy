@@ -11,7 +11,11 @@
 
 namespace core\datasources;
 
-interface AdapterInterface
-{
+/**
+ * AdapterInterface
+ * 
+ * @author Dave Meikle
+ */
+interface AdapterInterface {
     
 }

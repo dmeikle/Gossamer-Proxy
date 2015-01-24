@@ -12,25 +12,45 @@
 namespace core\handlers;
 
 use Monolog\Logger;
-use libraries\utils\preferences\UserPreferencesManager;
 
-abstract class BaseHandler
-{
+/**
+ * Base handler to abstract framework 'stuff' away from the developer
+ * 
+ * @author Dave Meikle
+ */
+abstract class BaseHandler {
+
     protected $logger = null;
-
     protected $defaultLocale = null;
-    
+
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
 
+    /**
+     * accessor
+     * 
+     * @param array $locale
+     */
     public function setDefaultLocale(array $locale) {
         $this->defaultLocale = $locale;
     }
-    
+
+    /**
+     * checks the creation date of a cache file to see if it is expired
+     * 
+     * @param type $filepath
+     * @param type $rootFolder
+     * 
+     * @return boolean
+     */
     protected function checkFileIsStale($filepath, $rootFolder) {
 
-        if(!file_exists($this->getDestinationFilepath($filepath, $rootFolder))) {
+        if (!file_exists($this->getDestinationFilepath($filepath, $rootFolder))) {
             return true;
         }
 
@@ -41,20 +61,42 @@ abstract class BaseHandler
         return $sourceTime > $destinationTime;
     }
 
+    /**
+     * 
+     * @param string $filepath
+     * 
+     * @return string
+     */
     protected function getOriginFilePath($filepath) {
 
         return __SITE_PATH . '/src/components' . $filepath;
     }
 
+    /**
+     * returns the location of where to write the cache to
+     * 
+     * @param string $filepath
+     * @param string $rootFolder
+     * 
+     * @return string
+     */
     protected function getDestinationFilepath($filepath, $rootFolder) {
-        $filepath = str_replace('/includes/'  . $rootFolder, '', $filepath);
+        $filepath = str_replace('/includes/' . $rootFolder, '', $filepath);
 
-        return __SITE_PATH . '/web/' . $rootFolder .'/components' . $filepath;
+        return __SITE_PATH . '/web/' . $rootFolder . '/components' . $filepath;
     }
 
+    /**
+     * copies a file from 1 location to another
+     * 
+     * @param string $filepath
+     * @param string $rootFolder
+     * 
+     * @return string
+     */
     protected function copyFile($filepath, $rootFolder) {
         $filepath = trim($filepath);
-        $filepathWithFile = str_replace( '/includes/' . $rootFolder . '/','/', $filepath);
+        $filepathWithFile = str_replace('/includes/' . $rootFolder . '/', '/', $filepath);
 
         $chunks = explode('/', $filepathWithFile);
 
@@ -67,25 +109,33 @@ abstract class BaseHandler
         chmod(__SITE_PATH . '/' . $rootFolder . '/', 0755);
         umask($old_umask);
 
-        copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename );
+        copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
         chmod($parsedToPath, 0755);
 
-        return  '/web/' . $rootFolder . '/components/' . implode('/', $chunks) . $filename;
+        return '/web/' . $rootFolder . '/components/' . implode('/', $chunks) . $filename;
     }
 
-    protected function getOccurrences($content, $tagName)
-    {
+    /**
+     * finds all occurrences of a tag inside of content
+     * 
+     * @param string $content
+     * @param string $tagName
+     * 
+     * @return string
+     */
+    protected function getOccurrences($content, $tagName) {
         $lastPos = 0;
         $positions = array();
-        while (($lastPos = strpos($content, $tagName, $lastPos))!== false)
-        {
+        while (($lastPos = strpos($content, $tagName, $lastPos)) !== false) {
             $positions[] = $lastPos;
             $lastPos = $lastPos + strlen($tagName);
         }
-        
+
         return $positions;
     }
-    
-    
+
+    /**
+     * @param array $params
+     */
     public abstract function handleRequest($params = array());
 }

@@ -16,6 +16,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
+ * HttpAwareInterface
  *
  * @author Dave Meikle
  */
