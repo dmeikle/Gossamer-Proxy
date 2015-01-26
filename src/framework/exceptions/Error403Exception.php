@@ -12,10 +12,10 @@
 namespace exceptions;
 
 /**
- * Description of Error403Exception
+ * Error403Exception
  *
  * @author Dave Meikle
  */
-class Error403Exception extends \Exception{
-    //put your code here
+class Error403Exception extends \Exception {
+    
 }

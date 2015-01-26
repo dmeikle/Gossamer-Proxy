@@ -12,15 +12,15 @@
 namespace libraries\utils;
 
 use database\DBConnection;
+
 /**
  * Request class - used to protect system from directly accessing $_REQUEST values
  *               - and mysql escaping them before permitting access to them
  *
- * Author: Dave Meikle
+ * @author Dave Meikle
  * Copyright: Quantum Unit Solutions 2013
  */
-class RequestParameters
-{
+class RequestParameters {
 
     /**
      * we need a connection so we can access the mysql methods
@@ -42,7 +42,7 @@ class RequestParameters
      *
      * @param string    method (optional)
      */
-    public function __construct($method=null){
+    public function __construct($method = null) {
         $this->method = $method;
     }
 
@@ -53,8 +53,8 @@ class RequestParameters
      *
      * @return DBConnection conn
      */
-    private function getConnection(){
-        if(is_null($this->conn)){
+    private function getConnection() {
+        if (is_null($this->conn)) {
             $this->conn = new DBConnection();
         }
 
@@ -66,7 +66,7 @@ class RequestParameters
      *
      * @param array     params - received params from either $_POST or $_GET
      */
-    public function setParams($params){
+    public function setParams($params) {
         $this->params = $this->scrub($params);
     }
 
@@ -77,10 +77,9 @@ class RequestParameters
      *
      * @return variant
      */
-    public function get($fieldName){
+    public function get($fieldName) {
         return $this->params[$fieldname];
     }
-
 
     /**
      * scrub - mysql escapes passed in values
@@ -89,19 +88,18 @@ class RequestParameters
      *
      * @return string|array the escaped values
      */
-    public function scrub($params){
-       $conn = $this->getConnection();
-        if(!is_array($params)){
+    public function scrub($params) {
+        $conn = $this->getConnection();
+        if (!is_array($params)) {
             return mysqli_real_escape_string($conn, $params);
         }
         $retval = array();
         foreach ($params as $key => $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $retval[$key] = $this->scrub($value);
-            }else{
+            } else {
                 $retval[$key] = mysqli_real_escape_string($conn, $value);
             }
-
         }
 
         return $retval;
@@ -112,7 +110,8 @@ class RequestParameters
      *
      * @return array
      */
-    public function getParams(){
+    public function getParams() {
         return $this->params;
     }
+
 }

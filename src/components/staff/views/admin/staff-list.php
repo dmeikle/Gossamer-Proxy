@@ -55,6 +55,7 @@
 <form method="post" style="float:right">
     here is search
 </form>
+
       <h2 class="form-signin-heading">Staff List</h2>
      
         <table class="table table-striped table-hover selectable-rows">
@@ -74,12 +75,13 @@
                   if($staff['firstname'] == '') {
                       continue;
                   }
-                    
+              
+
             ?>
             <tr data-type="editable" valign="top" data-id="<?php echo $staff['id'];?>">
                 <td><?php echo $staff['lastname'];?>, <?php echo $staff['firstname'];?></td>
-                <td><?php echo (isset($staff['Departments_id'])? $Departments[$staff['Departments_id']] : '(not specified)');?></td>
                 <td><?php echo $staff['title'];?></td>
+                <td><?php echo (isset($staff['Departments_id'])? $DepartmentsList[$staff['Departments_id']] : '(not specified)');?></td>
                 <td><?php echo $staff['email'];?></td>
                 <td><?php echo $staff['telephone'];?></td>
                 <td><?php echo $staff['mobile'];?></td>

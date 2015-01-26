@@ -16,15 +16,14 @@ use core\Config;
 use libraries\service\ConfigManager;
 use exceptions\TableNotFoundException;
 
-
 /**
  * Column Mappings Class - gets entity columns from table and serializes array
  *
  * Author: Dave Meikle
  * Copyright: Quantum Unit Solutions 2013
  */
-class ColumnMappings
-{
+class ColumnMappings {
+
     /**
      * list of tables mapped and loaded
      */
@@ -35,14 +34,13 @@ class ColumnMappings
      */
     private $dbConnection = null;
 
-
     /**
      * constructor
      *
      * @param DBConnection  connection
      */
-    public function __construct(DBConnection $dbConnection){
-        if(!$dbConnection instanceof DBConnection){
+    public function __construct(DBConnection $dbConnection) {
+        if (!$dbConnection instanceof DBConnection) {
             //throw new \RuntimeException('Database Connection must be instance of DBConnection');
         }
 
@@ -56,9 +54,9 @@ class ColumnMappings
      *
      * @return array    list of columns
      */
-    public function getTableColumnList($tableName){
+    public function getTableColumnList($tableName) {
 
-        if(!array_key_exists($tableName, $this->tableList)){
+        if (!array_key_exists($tableName, $this->tableList)) {
 
             $this->addColumnMap($tableName, $this->getColumnMappingsFromConfig($tableName));
         }
@@ -72,7 +70,7 @@ class ColumnMappings
      * @param string    tableName
      * @param array     list of columns
      */
-    private function addColumnMap($tableName, $columns = array()){
+    private function addColumnMap($tableName, $columns = array()) {
 
         $this->tableList[$tableName] = $columns;
     }
@@ -85,38 +83,37 @@ class ColumnMappings
      * @return array    list of columns
      *
      */
-    private function getColumnMappingsFromConfig($tableName){
- error_log($filename = __SITE_PATH . "/../" .  'mappings' . DIRECTORY_SEPARATOR . "$tableName.conf");
-        //$filename = realpath('/tmp/'.__SITE_NAME .'/config') . DIRECTORY_SEPARATOR . "$tableName.conf";
-		$filename = __SITE_PATH . "/../" .  'mappings' . DIRECTORY_SEPARATOR . "$tableName.conf";
-        
-        $configManager = new ConfigManager();
-		$config = $configManager->getConfiguration($filename);
+    private function getColumnMappingsFromConfig($tableName) {
 
-        if(is_null($config)){
+        //$filename = realpath('/tmp/'.__SITE_NAME .'/config') . DIRECTORY_SEPARATOR . "$tableName.conf";
+        $filename = __SITE_PATH . "/../" . 'mappings' . DIRECTORY_SEPARATOR . "$tableName.conf";
+
+        $configManager = new ConfigManager();
+        $config = $configManager->getConfiguration($filename);
+
+        if (is_null($config)) {
             $result = $this->dbConnection->query('SHOW COLUMNS FROM ' . $tableName);
-            
-            if(is_null($result)) {
+
+            if (is_null($result)) {
                 error_log("ColumnMappings: $tableName does not exist");
                 throw new TableNotFoundException('table not found');
             }
             $columnNames = array();
 
-            foreach($result as $object => $values){
-                    foreach($values as $column => $val){
-                            if($column == 'Field' && !in_array($val, $columnNames)){
-                                    array_push($columnNames, $val);
-                            }
+            foreach ($result as $object => $values) {
+                foreach ($values as $column => $val) {
+                    if ($column == 'Field' && !in_array($val, $columnNames)) {
+                        array_push($columnNames, $val);
                     }
+                }
             }
 
-           $config = new Config($columnNames);
+            $config = new Config($columnNames);
 
-           $configManager->saveConfiguration($filename, $config);
+            $configManager->saveConfiguration($filename, $config);
         }
 
         return $config->toArray();
-
     }
 
 }

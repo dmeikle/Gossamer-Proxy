@@ -18,16 +18,15 @@ use core\AbstractView;
  *
  * @author Dave Meikle
  */
-class TemplateExceptionView extends TemplateView{
-    
-    
-    protected function renderView(){
-     
+class TemplateExceptionView extends TemplateView {
+
+    protected function renderView() {
+
         $template = 'exception.php';
         $theme = $this->config['theme'];
         $this->sections = $this->config['sections'];
-              
-        $this->loadTemplate($template, $theme);        
-       
+
+        $this->loadTemplate($template, $theme);
     }
+
 }

@@ -15,23 +15,42 @@ use Monolog\Logger;
 use exceptions\URINotFoundException;
 use libraries\utils\YAMLParser;
 
+/**
+ * loads the view configurations
+ * 
+ * @author Dave Meikle
+ */
 class YAMLViewConfiguration 
 {
     private $logger = null;
     
     private $config = null;
     
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
-    
+    /**
+     * 
+     * @param type $routingPath
+     * @return type
+     */
     private function loadConfig($routingPath) {
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath($routingPath);
        
         return $parser->loadConfig();
     }
-    
+    /**
+     * 
+     * @param string $uri
+     * @param string $ymlKey
+     * 
+     * @return array
+     */
     public function getViewConfig($uri, $ymlKey) {
     
         $routingPath = $this->getInitialRouting($uri);
@@ -111,7 +130,12 @@ class YAMLViewConfiguration
         return $uriConfig;
     }
     
-
+    /**
+     * 
+     * @param string $ymlKey
+     * 
+     * @return type
+     */
     private function getYMLNodeParameters($ymlKey) {
       
         if(array_key_exists($ymlKey, $this->config)) {

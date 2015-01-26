@@ -13,21 +13,33 @@ namespace libraries\utils;
 
 use Monolog\Logger;
 
-class Pagination
-{
+/**
+ * creates the pagination links to be used at the bottom of a list
+ * 
+ * @author Dave Meikle
+ */
+class Pagination {
+
     private $logger;
-    
     private $rowCount;
-    
     private $offset;
-    
     private $limit;
-    
-    
+
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
-   
+
+    /**
+     * 
+     * @param int $rowCount
+     * @param int $offset
+     * @param int $limit
+     * @return string
+     */
     public function getPagination($rowCount, $offset, $limit) {
         $this->rowCount = $rowCount;
         $this->offset = $offset;
@@ -35,11 +47,11 @@ class Pagination
         $retval = array();
         $numPages = $this->getNumPages();
         $currentEstablished = false;
-     
-        for($i = 0; $i < $this->getNumPages(); $i++) {
+
+        for ($i = 0; $i < $this->getNumPages(); $i++) {
             $dataOffset = ($i * $limit);
             $item = array('data-offset' => $dataOffset, 'data-limit' => $limit);
-            if(!$currentEstablished && $offset <= $dataOffset) {
+            if (!$currentEstablished && $offset <= $dataOffset) {
                 $item['current'] = 'current';
                 $currentEstablished = true;
             } else {
@@ -47,12 +59,16 @@ class Pagination
             }
             $retval[] = $item;
         }
-        
+
         return $retval;
     }
-    
+
+    /**
+     * 
+     * @return int
+     */
     private function getNumPages() {
         return $this->rowCount / $this->limit;
     }
-    
+
 }

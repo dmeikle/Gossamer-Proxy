@@ -12,10 +12,10 @@
 namespace exceptions;
 
 /**
- * Description of RedirectKeyNotFoundException
+ * RedirectKeyNotFoundException
  *
  * @author Dave Meikle
  */
-class RedirectKeyNotFoundException extends \Exception{
+class RedirectKeyNotFoundException extends \Exception {
     
 }

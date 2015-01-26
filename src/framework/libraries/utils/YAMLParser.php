@@ -14,64 +14,78 @@ namespace libraries\utils;
 use Symfony\Component\Yaml\Yaml;
 use Monolog\Logger;
 
-class YAMLParser
-{
+/**
+ * parses the yml file
+ * 
+ * @author Dave Meikle
+ */
+class YAMLParser {
+
     protected $ymlFilePath = null;
-    
     protected $logger = null;
-    
+
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger = null) {
         $this->logger = $logger;
     }
-    
-    public function findNodeByURI( $uri, $searchFor) {
+
+    /**
+     * finds a node based on a uri pattern
+     * 
+     * @param string $uri
+     * @param string $searchFor
+     * 
+     * @return array
+     */
+    public function findNodeByURI($uri, $searchFor) {
         $this->logger->addDebug('YAMLParser opening ' . $this->ymlFilePath);
-       
+
         $config = $this->loadConfig();
-        if(!is_array($config)) {
+        if (!is_array($config)) {
             return null;
         }
-       
-        if(array_key_exists($uri, $config) && array_key_exists($searchFor, $config[$this->getSectionKey($uri)])) {
-          
+
+        if (array_key_exists($uri, $config) && array_key_exists($searchFor, $config[$this->getSectionKey($uri)])) {
+
             return $config[$this->getSectionKey($uri)][$searchFor];
-                        
         }
         return null;
     }
-//    
-//    public function findNodeByURIPattern($uri, $searchfor) {
-//
-//        $this->logger->addDebug('YAMLParser opening ' . $this->ymlFilePath);
-//       
-//        $config = $this->loadConfig();
-//
-//        if(!is_array($config)) {
-//            return null;
-//        }
-//     
-//        if(array_key_exists($uri, $config) && array_key_exists($searchFor, $config[$this->getSectionKey($uri)])) {
-//          
-//            return $config[$this->getSectionKey($uri)][$searchFor];
-//                        
-//        }
-//        return null;   
-//    }
-    
+
+    /**
+     * loads the config file
+     * 
+     * @return array
+     */
     public function loadConfig() {
-       
+
         return Yaml::parse($this->ymlFilePath);
     }
-    
+
+    /**
+     * 
+     * @param string $uri
+     * 
+     * @return string
+     */
     private function getSectionKey($uri) {
-        
-        $pieces = explode('/',strtolower($uri));
+
+        $pieces = explode('/', strtolower($uri));
         $pieces = array_filter($pieces);
 
         return implode('_', $pieces);
     }
-    
+
+    /**
+     * accessor
+     * 
+     * @param string $ymlFilePath
+     */
     public function setFilePath($ymlFilePath) {
         $this->ymlFilePath = str_replace('\\', '/', $ymlFilePath);
     }
+
 }

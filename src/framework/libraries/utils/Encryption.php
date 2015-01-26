@@ -12,12 +12,17 @@
 namespace libraries\utils;
 
 /**
- * Description of Encryption
+ * Encrypts any value passed in
  *
  * @author Dave Meikle
  */
 class Encryption {
-    
+
+    /**
+     * generates the hash
+     * 
+     * @param string $password
+     */
     public static function generateHash($password) {
         // A higher "cost" is more secure but consumes more processing power
         $cost = 10;
@@ -31,13 +36,19 @@ class Encryption {
 
         // Value:
         // $2a$10$eImiTXuWVxfM37uY4JANjQ==
-
         // Hash the password with the salt
         $hash = crypt($password, $salt);
-
     }
-    
+
+    /**
+     * 
+     * @param string $password
+     * @param string $hash
+     * 
+     * @return boolean
+     */
     public static function compareHash($password, $hash) {
         return crypt($password, $hash) === $hash;
     }
+
 }

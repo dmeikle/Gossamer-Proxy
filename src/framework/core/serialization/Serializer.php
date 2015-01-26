@@ -12,12 +12,11 @@
 namespace core\serialization;
 
 /**
- * Description of Serializer
+ * base class for taking raw database results and formatting them for use
  *
  * @author Dave Meikle
  */
 class Serializer {
-   
 
     /**
      * extractRawChildNodeData  - receives raw arrays from child 1 to many
@@ -27,75 +26,75 @@ class Serializer {
      *  this works with OneToManyJoinInterface in db-repo
      * 
      * @param array $list - the raw array from the mapping table
-     * @param type $key - the value to extract
+     * @param string $key - the value to extract
      * 
      * @return array
      */
     public function extractRawChildNodeData(array $list, $key, $idKey = false) {
         $retval = array();
-        foreach($list as $node) {
-            if($idKey) {
-                 $retval[$node['id']] = $node[$key];
+        foreach ($list as $node) {
+            if ($idKey) {
+                $retval[$node['id']] = $node[$key];
             } else {
                 $retval[] = $node[$key];
             }
-            
         }
-        
+
         return $retval;
     }
-    
+
     /**
+     * receives an array and returns a default option list for selection box
      * 
      * @param array $options - the list of options to draw to the page
      * @param array $selectedOptions - the list of already selected options from a previous save
-     * @param type $subKey - the name of the column to be used as an associative array key
-     * @param type $selectedValue - the currently selected item
-     
+     * @param string $subKey - the name of the column to be used as an associative array key
+     * @param string $selectedValue - the currently selected item
+
      * @return string
      */
     public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '', $selectedValue = '') {
 
-        if(strlen($subKey) > 0) {           
-            $options = $this->extractSubNode($options, $subKey);          
+        if (strlen($subKey) > 0) {
+            $options = $this->extractSubNode($options, $subKey);
         }
 
         $retval = '';
-        foreach($options as $key => $option) {
-         
-            if(count($selectedOptions) < 1 && $selectedValue == $key) {
+        foreach ($options as $key => $option) {
+
+            if (count($selectedOptions) < 1 && $selectedValue == $key) {
                 //this is for empty selections and passing a selected value in.
                 //eg: creating a new question and selecting a type on page draw
                 $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
-            } elseif(!in_array($key, $selectedOptions)) {
-                
+            } elseif (!in_array($key, $selectedOptions)) {
+
                 $retval .= "<option value=\"{$key}\">{$option}</option>\r\n";
             } else {
                 $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
             }
         }
-        
+
         return $retval;
     }
-    
+
     /**
      * navigates the sub arrays to extract the child elements by subkey
      * @param array $array
-     * @param type $key
+     * @param string $key
      * 
      * @return array
      */
     protected function extractSubNode(array $array, $key) {
-       
+
         $output = array();
-        foreach($array as $row) {
-            if(count($row) < 1) {
+        foreach ($array as $row) {
+            if (count($row) < 1) {
                 continue;
             }
             $output[$row['id']] = $row[$key];
         }
-        
+
         return $output;
     }
-    
+
 }

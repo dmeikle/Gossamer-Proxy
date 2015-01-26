@@ -12,7 +12,6 @@
 namespace core;
 
 /**
- * Description of Entity
  *
  * @author Dave Meikle
  */

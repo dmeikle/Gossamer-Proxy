@@ -12,10 +12,10 @@
 namespace exceptions;
 
 /**
- * Description of KeyNotSetException
+ * KeyNotSetException
  *
  * @author Dave Meikle
  */
-class KeyNotSetException extends \Exception{
+class KeyNotSetException extends \Exception {
     
 }

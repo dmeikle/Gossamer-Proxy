@@ -14,24 +14,35 @@ namespace libraries\utils;
 use libraries\utils\YAMLParser;
 use Monolog\Logger;
 
-class YAMLPreferences
-{
-    protected $ymlFilePath = null;
+/**
+ * loads the preferences
+ * 
+ * @author Dave Meikle
+ */
+class YAMLPreferences {
 
+    protected $ymlFilePath = null;
     protected $logger = null;
 
+    /**
+     * 
+     * @param Logger $logger
+     */
     public function __construct(Logger $logger) {
         $this->logger = $logger;
     }
 
-
+    /**
+     * 
+     * @param string $filename
+     * 
+     * @return array
+     */
     public function loadConfig($filename) {
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath(__SITE_PATH . '/app/config/' . $filename . '.yml');
 
         return $parser->loadConfig();
-
     }
-
 
 }

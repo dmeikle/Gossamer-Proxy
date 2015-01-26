@@ -18,51 +18,48 @@ use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 
+class StaffController extends AbstractController {
 
-
-class StaffController extends AbstractController
-{
     public function save($id) {
-        
+
         $result = $this->getEntity('Staff', $this->model->save($id));
         $entity = $this->getEntity('Staff', $result);
-        
+
         //TODO: figure out where to redirect if result holds no 'id' key
         $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_staff_credentials_edit', array($result['id'])); 
+        $router->redirect('admin_staff_credentials_edit', array($result['id']));
     }
-    
-    
+
     /**
      * edit - display an input form based on requested id
      * 
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
-        
+
         $result = $this->model->edit($id);
-        if(is_array($result)) {            
+        if (is_array($result)) {
             $result['form'] = $this->drawForm($this->model, $result);
         } else {
-             $result['form'] = $this->drawForm($this->model, array());
+            $result['form'] = $this->drawForm($this->model, array());
         }
-        
+
         $this->render($result);
     }
-    
-    
+
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $staffBuilder = new StaffBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
 
         $provinceList = $this->httpRequest->getAttribute('Provinces');
-       
+
         $serializer = new ProvinceSerializer();
         $selectedOptions = array($staffBuilder->getValue('Provinces_id', $values));
-        
+
         $options = array('provinces' => $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions));
-        
+
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
+
 }

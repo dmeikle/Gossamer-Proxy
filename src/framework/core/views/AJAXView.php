@@ -13,30 +13,33 @@ namespace core\views;
 
 use core\AbstractView;
 
-class AJAXView extends AbstractView
-{
-
+/**
+ * Used as the view for all Ajax requests that need the response header
+ * to be application/json and without rendering any other calls.
+ * 
+ * @author Dave Meikle
+ */
+class AJAXView extends AbstractView {
 
     //need this to override the default destruct in parent class
-    public function __destruct()
-    {
-
+    // DO NOT REMOVE
+    public function __destruct() {
+        
     }
 
-    protected function renderView(){
+    protected function renderView() {
 
         header('Content-Type: application/json');
 
-        if(!is_null($this->getData())) {
-            try{
+        if (!is_null($this->getData())) {
+            try {
                 // The second parameter of json_decode forces parsing into an associative array
                 //extract(json_decode(json_encode($this->data), true));
                 echo (current($this->getData()));
-            }catch(\Exception $e) {
+            } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());
             }
         }
-
     }
 
 }
