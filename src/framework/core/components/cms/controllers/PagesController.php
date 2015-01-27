@@ -94,7 +94,7 @@ class PagesController extends AbstractController {
         $options = array();
         $options['locales'] = $this->httpRequest->getAttribute('locales');
 
-        $sections = $this->httpRequest->getAttribute('Sections');
+        $sections = $this->httpRequest->getAttribute('CmsSections');
         $sectionsSerializer = new SectionsSerializer();
         $sectionsList = $sectionsSerializer->formatSectionsOptionsList($sections, $values);
 

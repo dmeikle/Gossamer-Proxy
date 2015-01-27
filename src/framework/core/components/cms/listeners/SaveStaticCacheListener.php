@@ -53,7 +53,12 @@ class SaveStaticCacheListener extends AbstractCachableListener {
             unset($manager);
         }
         //flush the response
-        ob_end_flush();
+        try {
+            while (ob_get_level() > 0) {
+                ob_end_flush();
+            }
+        } catch( Exception $e ) {}
+        
     }
 
 }

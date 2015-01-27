@@ -49,12 +49,14 @@ $(document).ready(function() {
             url: '/admin/cms/section/view/' + id,
             success: function(data)
             {
-                var section = data.Section[0];
-                console.log(section);
-                $('#section_locale_en_US').val(section.locales.en_US.name);
-                $('#section_slug').val(section.slug);
-                $('#section_description').val(section.description);
-                $('#sectionId').val(section.id);
+                console.log(data);
+               
+               // var section = data[0];
+                //$('#section_locale_en_US').val(data.locales.en_US.sectionName);
+                $('#section_locale_en_US').val(data.sectionName);
+                $('#section_slug').val(data.slug);
+                $('#section_description').val(data.description);
+                $('#sectionId').val(data.id);
             }
         });
     }
@@ -89,7 +91,7 @@ $(document).ready(function() {
                 <td width="200" valign="top"><p>Add New Section</p>
                 <p>Name</p>
                 <p>
-                  <input type="text" name="section[locale][en_US][name]" class="form-control" id="section_locale_en_US" />
+                  <input type="text" name="section[locale][en_US][sectionName]" class="form-control" id="section_locale_en_US" />
                 </p>
                 <p>Slug</p>
                 <p>
@@ -117,10 +119,10 @@ $(document).ready(function() {
                     <th scope="col">Action</th>
                   </tr>
                   <?php
-                  foreach($Sections as $section) {
+                  foreach($CmsSections as $section) {
                       ?>                  
                   <tr>
-                    <td><?php echo $section['name'];?></td>
+                    <td><?php echo $section['sectionName'];?></td>
                     <td><?php echo $section['description'];?></td>
                     <td><?php echo $section['slug'];?></td>
                     <td>

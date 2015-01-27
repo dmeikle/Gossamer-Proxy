@@ -158,7 +158,8 @@ class PageModel extends AbstractModel implements FormBuilderInterface {
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         $data['sections'] = $this->httpRequest->getAttribute('Sections');
         $categoryID = array_key_exists('CmsCategories_id', $data) ? $data['CmsCategories_id'] : '0';
-        $data['sectionOptionsList'] = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('Sections'), array($categoryID), 'name');
+        
+        $data['sectionOptionsList'] = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('CmsSections'), array($categoryID), 'sectionName');
 
         if (!array_key_exists('CmsPage', $data)) {
             $data['CmsPage'] = $this->getArray($id);
@@ -179,20 +180,21 @@ class PageModel extends AbstractModel implements FormBuilderInterface {
      */
     public function viewByPermalink($section1, $section2 = '', $section3 = '') {
         $item = $this->httpRequest->getAttribute('components\cms\models\PageModel');
+        
         if (is_array($item) && count($item) > 0) {
             return array('CmsPage' => array($item));
         }
-
-        $params = array();
+        $locale = $this->getDefaultLocale();
+       
         if (strlen($section3) > 0) {
-            $params = array('permalink' => $section3);
+            $params = array('permalink' => $section3, 'CmsSectionsI18n.name' => $section2, 'locale' => $locale['locale']);
         } elseif (strlen($section2) > 0) {
-            $params = array('permalink' => $section2);
+            $params = array('permalink' => $section2, 'CmsSectionsI18n.name' => $section1, 'locale' => $locale['locale']);
         } else {
-            $params = array('permalink' => $section1);
+            $params = array('permalink' => $section1, 'locale' => $locale['locale']);
         }
 
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getByPermalink', $params);
         if (!is_array($data) || count($data) == 0) {
             throw new \Exception('Page Content Not Found');
         }

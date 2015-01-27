@@ -1,5 +1,5 @@
 
-this page needs styling...<br><br>
+this page needs styling...in core<br><br>
 
 <?php
 
@@ -7,6 +7,6 @@ this page needs styling...<br><br>
 $page = current($CmsPage);
 $locale = $this->getDefaultLocale();
 
-echo $page['locales'][$locale['locale']]['content'];
+echo $page['content'];
 
 ?>

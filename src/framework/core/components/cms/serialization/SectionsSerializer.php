@@ -29,7 +29,7 @@ class SectionsSerializer extends Serializer {
      * @return string
      */
     public function formatSectionsOptionsList(array $options = array(), array $cmsPage = array()) {
-        $retval = '';
+        $retval = '<option value="0">Root of Website</option>';
 
         foreach ($options as $row) {
             $retval .= "<option value=\"" . $row['CmsSections_id'] . "\"";
@@ -38,7 +38,7 @@ class SectionsSerializer extends Serializer {
                     $retval .= ' selected';
                 }
             }
-            $retval .= ">" . $row['name'] . "</option>\r\n";
+            $retval .= ">" . $row['sectionName'] . "</option>\r\n";
         }
 
         return $retval;
