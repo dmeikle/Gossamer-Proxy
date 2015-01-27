@@ -20,8 +20,8 @@ $(document).ready(function() {
                    if($('#sectionId').val() == 0) {                       
                         appendRow(section);
                    } 
-                $('#section_locale_en_US').val('');
-                $('#section_slug').val('');
+                $('#section_name').val('');
+                $('#section_locale_en_US_slug').val('');
                 $('#section_description').val('');
                 $('#sectionId').val('0');
                }              
@@ -53,8 +53,8 @@ $(document).ready(function() {
                
                // var section = data[0];
                 //$('#section_locale_en_US').val(data.locales.en_US.sectionName);
-                $('#section_locale_en_US').val(data.sectionName);
-                $('#section_slug').val(data.slug);
+                $('#section_name').val(data.sectionName);
+                $('#section_locale_en_US_slug').val(data.slug);
                 $('#section_description').val(data.description);
                 $('#sectionId').val(data.id);
             }
@@ -91,11 +91,11 @@ $(document).ready(function() {
                 <td width="200" valign="top"><p>Add New Section</p>
                 <p>Name</p>
                 <p>
-                  <input type="text" name="section[locale][en_US][sectionName]" class="form-control" id="section_locale_en_US" />
+                  <input type="text" name="section[sectionName]" class="form-control" id="section_name" />
                 </p>
                 <p>Slug</p>
                 <p>
-                  <input type="text" name="section[slug]" class="form-control" id="section_slug" />
+                  <input type="text" name="section[locale][en_US][slug]" class="form-control" id="section_locale_en_US_slug" />
                 </p>
                 <!--
                 <p>Parent</p>

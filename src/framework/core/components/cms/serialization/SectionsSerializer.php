@@ -29,10 +29,10 @@ class SectionsSerializer extends Serializer {
      * @return string
      */
     public function formatSectionsOptionsList(array $options = array(), array $cmsPage = array()) {
-        $retval = '<option value="0">Root of Website</option>';
+        $retval = '<option value="0" data-slug="">Root of Website</option>';
 
         foreach ($options as $row) {
-            $retval .= "<option value=\"" . $row['CmsSections_id'] . "\"";
+            $retval .= "<option value=\"" . $row['CmsSections_id'] . "\" data-slug=\"" . $row['slug'] . "\"";
             if (array_key_exists('CmsSections_id', $cmsPage)) {
                 if ($cmsPage['CmsSections_id'] == $row['CmsSections_id']) {
                     $retval .= ' selected';
