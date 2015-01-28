@@ -13,9 +13,7 @@
 	clear: both;
 }
 #blog #tags {
-	background-color: #666;
 	padding: 10px;
-	color: #0F9;
 }
 </style>
 
@@ -24,21 +22,32 @@ $rawdate = date_create($blog['dateEntered']);
 
 ?>
 <div id="blog">
-    <div id="dateEntered">
-        <?php echo date_format($rawdate,'g:ia \o\n l F jS\, Y'); ?>
-    </div>
-    <h3>
+     <h3>
         <?php echo $blog['subject'];?>
     </h3>
+    <div id=author">
+        Written by <?php echo $staffName;?>
+    </div>
+     <div id="tags"> 
+       
+        <?php echo $blog['tags'];?>
+    </div>
+    <div class="share_social">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $_SERVER['REQUEST_URI'];?>" target="_blank"><img style="float:left;" src="/images/facebook.png"></a>
+        <a href="https://twitter.com/home?status=<?php echo $_SERVER['REQUEST_URI'];?>" target="_blank"><img style="float:left;" src="/images/twitter.png"></a>
+        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $_SERVER['REQUEST_URI'];?>&amp;title=<?php echo $blog['subject'];?>"><img src="/images/linkedin.jpg"></a>        
+    </div>
+    <div id="dateEntered">
+        <?php echo date_format($rawdate,' F j\, Y'); ?>
+    </div>
+    
+   
     <div id="subject"> 
         <?php echo $blog['comments'];?>
     </div>
-    <div id="tags"> 
-        at <?php echo date_format($rawdate,'g:ia'); ?><br>
-        <?php echo $blog['tags'];?>
-    </div>
+    
     <div id="numViews"> 
-        <?php echo $blog['numViews'];?>
+        <?php // can't do numview since we are caching page... echo $blog['numViews'];?>
     </div>
         
 </div>

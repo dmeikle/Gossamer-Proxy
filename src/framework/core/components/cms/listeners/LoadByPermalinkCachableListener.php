@@ -12,6 +12,7 @@
 namespace core\components\cms\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
+use exceptions\KeyNotSetException;
 
 /**
  * LoadByPermalink - this will allow the cms to cache portions of the page
@@ -21,6 +22,9 @@ use core\eventlisteners\AbstractCachableListener;
  */
 class LoadByPermalinkCachableListener extends AbstractCachableListener {
 
+    
+    use \libraries\utils\traits\LoadConfigFile;
+    
     /**
      * entry point
      * 
@@ -28,7 +32,10 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener {
      */
     public function on_request_start($params) {
 
-        $caching = true;
+        $caching = $this->getCachingFromConfig();
+        if(!$caching) {
+            return;
+        }
 
         $requestParams = $this->httpRequest->getParameters();
 
@@ -69,4 +76,22 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener {
         $this->httpResponse->setAttribute($class, $item);
     }
 
+    /**
+     * loads configuration for cookies from the config file.
+     * relies on included trait LoadConfig
+     */
+    private function getCachingFromConfig() {
+
+        //load from trait
+        $config = $this->loadConfig();
+        
+        if(!array_key_exists('cms', $config)) {
+            throw new KeyNotSetException('cms key not found in config');
+        }
+        if(!array_key_exists('caching', $config['cms'])) {
+            throw new KeyNotSetException('cms:caching key not found in config');
+        }
+      
+        return $config['cms']['caching'] == 'true';
+    }
 }

@@ -16,6 +16,8 @@ use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\components\blogs\form\BlogBuilder;    
 use Gossamer\CMS\Forms\FormBuilder;
+use components\staff\serialization\StaffSerializer;
+use core\eventlisteners\Event;
 
 
 /**
@@ -44,6 +46,9 @@ class BlogsController extends AbstractController{
     public function save($id) {
         parent::saveAndRedirect($id, 'admin_blogs_list', array(0,20));
     }
+    
+    
+    
     public function edit($id) {
         $result = $this->model->edit($id);
         
@@ -51,12 +56,21 @@ class BlogsController extends AbstractController{
     }
     
     public function view($id) {
+        
         $result = $this->model->get($id);
-       // pr($result);
+       
         if(array_key_exists('Blog', $result)) {
             $result = current($result['Blog']);
         }
-        $this->render(array('blog' =>$result));
+        $event = new Event('load_complete', $result);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_complete', $event);
+       
+        $params = $event->getParams();
+        
+        $serializer = new StaffSerializer();
+        $staffName = $serializer->getStaffName($params['staff'], $result['Author_id']);
+     
+        $this->render(array('blog' =>$result, 'staffName' => $staffName));
     }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {

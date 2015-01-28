@@ -14,6 +14,7 @@ namespace core\components\blogs\listeners;
 use core\eventlisteners\AbstractCachableListener;
 use core\eventlisteners\Event;
 use Gossamer\Caching\CacheManager;
+use exceptions\KeyNotSetException;
 
 /**
  * Description of SaveStaticCacheListener
@@ -22,6 +23,8 @@ use Gossamer\Caching\CacheManager;
  */
 class SaveStaticCacheListener extends AbstractCachableListener{
     
+    use \libraries\utils\traits\LoadConfigFile;
+    
     public function on_response_start(Event $event) {
       
         ob_start(); // start the output buffer
@@ -29,7 +32,12 @@ class SaveStaticCacheListener extends AbstractCachableListener{
     }
     
     public function on_render_complete(Event $event) {
-       
+        $caching = $this->getCachingFromConfig();
+        if(!$caching) {    
+            ob_end_flush();
+            return;
+        }  
+        
         $requestParams = $this->httpRequest->getParameters();       
         $params['permalink'] = end($requestParams);
         
@@ -43,5 +51,25 @@ class SaveStaticCacheListener extends AbstractCachableListener{
             unset($manager);
         }
         ob_end_flush();
+    }
+    
+    
+    /**
+     * loads configuration for cookies from the config file.
+     * relies on included trait LoadConfig
+     */
+    private function getCachingFromConfig() {
+
+        //load from trait
+        $config = $this->loadConfig();
+        
+        if(!array_key_exists('blog', $config)) {
+            throw new KeyNotSetException('blog key not found in config');
+        }
+        if(!array_key_exists('caching', $config['blog'])) {
+            throw new KeyNotSetException('blog:caching key not found in config');
+        }
+       
+        return $config['blog']['caching'] == 'true';
     }
 }

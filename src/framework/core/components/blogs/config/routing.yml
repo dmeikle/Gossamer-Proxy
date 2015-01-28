@@ -84,6 +84,7 @@ website_blogs_view:
         - { 'event': 'request_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
         - { 'event': 'response_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
         - { 'event': 'render_complete', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'load_complete', 'listener': 'components\staff\listeners\LoadStaffByIdListener', 'datasource': 'datasource1'}
     defaults:
         component: core\components\blogs\BlogsComponent
         controller: core\components\blogs\controllers\BlogsController

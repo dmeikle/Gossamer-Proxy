@@ -42,6 +42,25 @@ class BlogModel extends AbstractModel implements FormBuilderInterface{
         return $this->formatResults($data['Claims']);
     }
     
+    /**
+     * queries the datasource in reverse order
+     * 
+     * @param int $offset
+     * @param int $rows
+     * @param string $customVerb
+     * 
+     * @return array
+     */
+    public function listallReverse($offset = 0, $rows = 20, $customVerb = null) {
+        $params = array(
+            'directive::ORDER_BY' => 'id',
+            'directive::DIRECTION' => 'desc',
+            'isPublished' => '1',
+            'isPublic' => '1'
+        );
+
+        return $this->listallWithParams($offset, $rows, $params, $customVerb);
+    }
     
     public function get($id) {
         $locale = $this->getDefaultLocale();
@@ -49,7 +68,7 @@ class BlogModel extends AbstractModel implements FormBuilderInterface{
         $params = array(
             'id' => intval($id),
             'locale' => $locale['locale'],
-            'isActive' => '1',
+            //'isActive' => '1',
             'isPublished' => '1',
             'isPublic' => '1'
         );

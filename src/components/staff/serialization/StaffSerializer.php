@@ -67,7 +67,7 @@ class StaffSerializer extends Serializer{
     
     public function getStaffName(array $list, $staffId) {
         foreach($list as $row) {
-            echo $row['id'];
+            
             if($row['id'] == $staffId) {
                 return $row['firstname'] . ' ' . $row['lastname'];
             }

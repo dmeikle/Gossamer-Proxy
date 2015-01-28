@@ -12,6 +12,7 @@
 namespace core\components\blogs\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
+use exceptions\KeyNotSetException;
 
 /**
  * loads completely rendered pages from stored HTML if they exist.
@@ -22,9 +23,15 @@ use core\eventlisteners\AbstractCachableListener;
  */
 class LoadStaticCacheListener extends AbstractCachableListener{
     
+    use \libraries\utils\traits\LoadConfigFile;
+    
     public function on_request_start($params) {
       
-              
+        $caching = $this->getCachingFromConfig();
+        if(!$caching) {            
+            return;
+        }      
+        
         $requestParams = $this->httpRequest->getParameters();       
         $params['permalink'] = end($requestParams);
        
@@ -48,5 +55,25 @@ class LoadStaticCacheListener extends AbstractCachableListener{
             $this->httpRequest->setAttribute($class . '_static', $item);
         }
         
+    }
+    
+    
+    /**
+     * loads configuration for cookies from the config file.
+     * relies on included trait LoadConfig
+     */
+    private function getCachingFromConfig() {
+
+        //load from trait
+        $config = $this->loadConfig();
+        
+        if(!array_key_exists('blog', $config)) {
+            throw new KeyNotSetException('blog key not found in config');
+        }
+        if(!array_key_exists('caching', $config['blog'])) {
+            throw new KeyNotSetException('blog:caching key not found in config');
+        }
+       
+        return $config['blog']['caching'] == 'true';
     }
 }

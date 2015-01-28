@@ -17,7 +17,7 @@ admin_blogs_calendar:
             "section4": "src/themes/default/templates/sections/footer.php"
 
 admin_blogs_edit:
-    template: admin-list.php
+    template: admin-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"

@@ -149,16 +149,16 @@ $(document).ready(function() {
     
     $('#edit-visibility').click(function() {
         
-        $(this).prev('#page_isPublic').toggle();
+        $(this).prev('#Blog_isPublic').toggle();
         if($(this).text() == 'cancel') {
             $(this).text(currentStatus);
         } else {
             $(this).text('cancel');
-            currentStatus = $(this).prev('#page_isPublic').children("option").filter(":selected").text(); 
+            currentStatus = $(this).prev('#Blog_isPublic').children("option").filter(":selected").text(); 
         }
     });
 
-    $('#page_isPublic').change(function() {
+    $('#Blog_isPublic').change(function() {
         if($(this).val() != currentStatus && confirm("are you sure you want to change the status of this page?")) {           
             $(this).next().text($(this).children("option").filter(":selected").text());
             $('#update_warning').show();
@@ -261,44 +261,43 @@ $(document).ready(function() {
 
 
 
+
+
  <div id="preview-container" style="display: none;" class="panel panel-default">
      <div id="hide-preview" style="float:right; width: 20px; padding: 5px">x</div>
     	<div class="panel-heading">Pages</div>
         <div id="preview">
 
         </div>
-    </div>
+</div>
 
-      <div class="panel panel-default">
-    	<div class="panel-heading">Pages</div>
-            <?php echo $form['pageId']; ?>
-        <table class="table">
+<div class="panel panel-default">
+    <div class="panel-heading">Pages</div>
+<?php echo $form['pageId']; ?>
+    <table class="table">
             <tr>
-          <td colspan="2">
-              <ul class="nav nav-tabs" role="tablist">
-              <table class="table">
-                  <tr>
-                      <td colspan="2">
-                          <div id="tabs">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <?php
-                            
-                            foreach($locales as $locale) {                    
-                                if($locale['isDefault']) {
-                                    echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['languageName']}</a></li>\r\n";
-                                } else {
-                                    echo "<li><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['languageName']}</a></li>\r\n";
-                                }
+            <td>left col</td>
+            <td>   
+                <div id="tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <?php
+
+                        foreach($locales as $locale) {                    
+                            if($locale['isDefault']) {
+                                echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['languageName']}</a></li>\r\n";
+                            } else {
+                                echo "<li><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['languageName']}</a></li>\r\n";
                             }
-                            ?>
-                        </ul>
-                          
-                        <div class="tab-content">
-                            <?php 
-                            
-                            foreach($locales as $key => $locale) { ?>
+                        }
+                        ?>                                
+                    </ul>
+
+                    <div class="tab-content">
+                        <?php 
+
+                        foreach($locales as $key => $locale) { ?>
                             <div class="tab-pane<?php echo ($locale['isDefault']) ? ' active':'';?>" id="<?php echo $key;?>">
-                                <table width="100%">
+                                <table width="100%" class="table">
                                     <tr>
                                         <td>Subject:</td>
                                         <td><?php echo $form['subject']['locales'][$key]; ?></td>
@@ -307,13 +306,11 @@ $(document).ready(function() {
                                         <td>Permalink:</td>
                                         <td>
                                             <p class="btn bg-danger" style="display:none" class="page_name_message">Invalid characters in Page name. Please remove</p>
-                    <p class="btn bg-danger" style="display:none" class="page_name_exists">Page name exists.</p>
-                    <div class="form-group" class="page_name_container">
-                       
-                         <?php echo $form['permalink']['locales'][$key]; ?></td>
-                    </div>
-                                            
-                                           
+                                            <p class="btn bg-danger" style="display:none" class="page_name_exists">Page name exists.</p>
+                                            <div class="form-group" class="page_name_container">
+                                                 <?php echo $form['permalink']['locales'][$key]; ?>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Comments:</td>
@@ -330,57 +327,44 @@ $(document).ready(function() {
                                 // instance, using default configuration.
                                 CKEDITOR.replace( 'Blog_locale_<?php echo $key; ?>_comments' );
                             </script>
-                            <?php } ?>
-                        </div>  
-                          </div>
-                       
-                      </td>
-                  </tr>
-                  
-              </table>
-            </div>          
-          </td>
-        </tr>
-           
-            <tr>
-                <td>
-                </td>
-                <td rowspan="2" valign="top" width="200"><p>Publish</p>
-                  <p>
-                    <input type="button" id="show-preview" name="preview" class="btn btn-xs btn-primary preview" value="Preview Changes" />
-                    <br />
-                    Status: 
-                    <?php echo $form['isPublished'];?>
-                    
-                    
-                    <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
-                    
-                  Visibility:  
-                 
-                    <select name="page[isPublic]" id="page_isPublic" style="display: none">
-                        <option value="1" <?php echo ($page['isPublic'] == 1)?'selected':''?>>Public</option>
-                        <option value="0" <?php echo ($page['isPublic'] != 1)?'selected':''?>>Private</option>
-                    </select>                  
-                  <a href="#" onclick="return false;" class="btn-xs" id="edit-visibility">Public</a><br />
-                  
-                  
-                  Published on: Apr 17, 2014 @ 18:12</p> 
-                 
-                  <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
+                  <?php } ?>
+                    </div>  
+                </div>
+
+            </td>
+            <td scope="col">
+                <p>Publish</p>
+                <p>
+                  <input type="button" id="show-preview" name="preview" class="btn btn-xs btn-primary preview" value="Preview Changes" />
+                  <br />
+                  Status: 
+                  <?php echo $form['isPublished'];?>
+
+                  <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
+
+                Visibility:  
+                <?php echo $form['isPublic'];?>
+                <?php echo $form['visibility'] ;?><br />
+
+                <p>
+                    <input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
                     <input type="button" name="update" id="update_page" class="btn btn-xs btn-primary" value="Update" />
-                    <div class="bg-warning" style="display:none" id="update_warning">Changes have been made. Please click the 'Update' button to save these changes<br /><br/>To undo these changes click the 'Undo Changes' button.</div>
-                  </p> 
-              </td>                                           
-			</tr>
-          
-            <tr>
-              <td>
-              <div style="float:right">Last edited by Dave M on <?php echo $form['lastModified'];?></div>
-              </td>
-              <td rowspan="3" valign="top">&nbsp;</td>
+                    <div class="bg-warning" style="display:none" id="update_warning">
+                        Changes have been made. Please click the 'Update' button to save these changes<br /><br/>To undo these changes click the 'Undo Changes' button.
+                    </div>
+                </p> 
+
+            </td>
             </tr>
-            
-        </table>
-       
+
+        <tr>
+            <td></td>
+            <td align="right">
+                Last edited by Dave M on <?php echo $form['lastModified'];?>
+            </td> 
+            <td></td>         
+        </tr>
+    </table>
+
 </form>
-      </div>
+     

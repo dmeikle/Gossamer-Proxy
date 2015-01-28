@@ -105,12 +105,12 @@ abstract class AbstractComponent {
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
             $static = $httpRequest->getAttribute($this->modelName . '_static');
             if (!is_null($static) && strlen($static) > 0) {
-                echo 'static';
-                echo $static;
-                $this->container->get('EventDispatcher')->dispatch('all', system\KernelEvents::RENDER_BYPASS, new Event());
-                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, system\KernelEvents::RENDER_BYPASS, new Event());
-
-                return;
+                echo 'static disabled during dev';
+//                echo $static;
+//                $this->container->get('EventDispatcher')->dispatch('all', system\KernelEvents::RENDER_BYPASS, new Event());
+//                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, system\KernelEvents::RENDER_BYPASS, new Event());
+//
+//                return;
             }
             $model->setContainer($this->container);
 

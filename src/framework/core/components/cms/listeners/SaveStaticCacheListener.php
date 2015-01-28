@@ -22,6 +22,8 @@ use Gossamer\Caching\CacheManager;
  */
 class SaveStaticCacheListener extends AbstractCachableListener {
 
+    use \libraries\utils\traits\LoadConfigFile;
+    
     /**
      * called before we begin to draw our ouput
      * 
@@ -40,6 +42,17 @@ class SaveStaticCacheListener extends AbstractCachableListener {
      */
     public function on_render_complete(Event $event) {
 
+        $caching = $this->getCachingFromConfig();
+        if(!$caching) {
+            try {
+                while (ob_get_level() > 0) {
+                    ob_end_flush();
+                }
+            } catch( Exception $e ) {}
+            
+            return;
+        }
+        
         $requestParams = $this->httpRequest->getParameters();
         $params['permalink'] = end($requestParams);
 
@@ -59,6 +72,25 @@ class SaveStaticCacheListener extends AbstractCachableListener {
             }
         } catch( Exception $e ) {}
         
+    }
+    
+    /**
+     * loads configuration for cookies from the config file.
+     * relies on included trait LoadConfig
+     */
+    private function getCachingFromConfig() {
+
+        //load from trait
+        $config = $this->loadConfig();
+        
+        if(!array_key_exists('cms', $config)) {
+            throw new KeyNotSetException('cms key not found in config');
+        }
+        if(!array_key_exists('caching', $config['cms'])) {
+            throw new KeyNotSetException('cms:caching key not found in config');
+        }
+      
+        return $config['cms']['caching'] == 'true';
     }
 
 }

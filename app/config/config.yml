@@ -1,63 +1,18 @@
-all:
-    uri: '*'
-    filterChain:
-        filter: 'filters\CheckServerCredentialsFilterChain'
 
 
-users_get:
-    uri: '/users/get/'
-    filterChain:
-        filter: 'LoadUserFilterChain'
-        filter: 'LoadApplicationFilterChain'
-        filter: 'CheckAuthorizationChain'
-        filter: 'GenerateAuthorizationTokenFilterChain'
-    #observersChain:
-        #observer:   
-    responseOutputParameters:
-        outputParam: 'User'
-        outputParam: 'Application::productId'
-        outputParam: 'AuthorizationToken'
-        
-
-    
-users_list:
-    uri: '/users/list/'
-    filterChain:
-        filter: 'LoadUserFilterChain'
-        filter: 'CheckAuthorizationChain'  
-    responseOutputParameters:
-        outputParam: 'Users'
-        outputParam: 'AuthorizationToken'
-
-users_login:
-    uri: '/users/login/'
-    filterChain:
-        filter: 'LoadUserFilterChain'
-        filter: 'CheckAuthorizationChain' 
-    observersChain:
-        observer: 'usercommands\GenerateAuthorizationToken' 
-    responseOutputParameters:
-        outputParam: 'User::id'
-        outputParam: 'AuthorizationToken'
-        outputParam: 'UserToken'
-
-
-documents_list:
-    uri: '/documents/list/'
-    observersChain:
-        observer: 'usercommands\GenerateAuthorizationToken' 
-
-pagecontents_get:
-    uri: '/pageContents/get'
-    responseOutputParameters:
-        outputParam: 'entities\PageContent'
-        outputParam: 'AuthorizationToken'
-
-
-        
 #----------------- cookie info ----------------------
 
 cookies:
     secure: true
     salt: D!dYewKn0wTh3En1gm@D3v1c#w@zaF*rM1dabL3Encyp+i0nD3v!s?
     name: phoenix_restorations
+    
+application:
+    #possible choices: debug|production
+    mode: debug
+
+blog:
+    caching: true
+    
+cms:
+    caching: true

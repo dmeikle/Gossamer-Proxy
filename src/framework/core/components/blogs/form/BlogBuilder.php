@@ -13,6 +13,7 @@ namespace core\components\blogs\form;
         
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\AbstractBuilder;
+use Gossamer\CMS\Forms\Factory\ControlFactory;
 
 /**
  * Description of BlogBuilder
@@ -33,15 +34,18 @@ class BlogBuilder extends AbstractBuilder{
                 ->add('comments', 'textarea', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('comments', $values, $options['locales'])), $options['locales'])
                 ->add('tags', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('tags', $values, $options['locales'])), $options['locales'])
                 ->add('BlogCategories_id', 'select', array('class' => 'form-control', 'options' => $options['BlogCategories']))
-                ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('isActive', $values)))
-                ->add('isPublic', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('isPublic', $values)))
+                ->add('isActive', 'select', array('style' => 'display: none', 'value' => '1', 'options' => $this->getPublishOptions($this->getValue('isActive', $values))))
+                ->add('isPublic', 'select', array('style' => 'display: none', 'value' => '1', 'options' => $this->getVisibilityOptions($this->getValue('isPublic', $values))))
                 ->add('isPublished', 'select', array('style' => 'display: none', 'options' => $this->getPublishOptions($this->getValue('isPublished', $values))))
                 ->add('allowComments', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('allowComments', $values)))
                 ->add('logo', 'text', array('class' => 'form-control', 'value' => $this->getValue('logo', $values))) 
                 ->add('pageId', 'hidden', array( 'value' => $this->getValue('id', $values)))
                 ->add('lastModified', 'span', array('value' => $this->formatDate($this->getValue('lastModified', $values))))
                 ->add('save', 'submit', array('value' => 'Save', 'class' => 'btn btn-primary'))
-                ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-primary'));                
+                ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-primary'))
+                ->add('status', ControlFactory::LINK, array('id' => 'edit-status', 'class' => 'btn-xs', 'onclick' => 'return false', 'href' => '#', 'value' => $this->getPublishLinkText($this->getValue('isPublished', $values))))
+                ->add('visibility', ControlFactory::LINK, array('id' => 'edit-visibility', 'class' => 'btn-xs', 'onclick' => 'return false', 'href' => '#', 'value' => $this->getVisibilityLinkText($this->getValue('isPublic', $values))));
+                
 
         return $builder->getForm();
     }
@@ -64,5 +68,34 @@ class BlogBuilder extends AbstractBuilder{
         $publishOptions .= '>Offline</option>';
         
         return $publishOptions;
+    }
+    private function getVisibilityOptions($isPublished) {
+        $publishOptions = '<option value="1"';
+        if($isPublished == 1) {
+            $publishOptions .= ' selected';
+        }
+        $publishOptions .= '>Public</option><option value="0"';
+        if($isPublished == 0) {
+            $publishOptions .= ' selected';
+        }
+        $publishOptions .= '>Private</option>';
+        
+        return $publishOptions;
+    }
+    
+    private function getVisibilityLinkText($isVisible) {
+        if($isVisible == 1) {
+            return 'Public';
+        }
+        
+        return 'Private';
+    }
+    
+    private function getPublishLinkText($isPublished) {
+        if($isPublished == 1) {
+            return 'Publish';
+        }
+        
+        return 'Offline';
     }
 }

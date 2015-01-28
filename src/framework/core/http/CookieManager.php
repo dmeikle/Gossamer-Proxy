@@ -11,6 +11,8 @@
 
 namespace core\http;
 
+
+
 /**
  * Used for encrypting and decrypting cookies we want to access
  *
@@ -20,6 +22,8 @@ class CookieManager {
 
     private $config = null;
 
+    use \libraries\utils\traits\LoadConfigFile;
+    
     public function __construct() {
         $this->getCookieCredentials();
     }
@@ -107,15 +111,15 @@ class CookieManager {
     }
 
     /**
-     * whoops - this should be in the credentials file.
-     * //TODO: refactor this to be configurable outside. *facepalm
+     * loads configuration for cookies from the config file.
+     * relies on included trait LoadConfig
      */
     private function getCookieCredentials() {
-        $this->config = array(
-            'secure' => 'true',
-            'salt' => 'D!dYewKn0wTh3En1gm@D3v1c#w@zaF*rM1dabL3Encyp+i0nD3v!s?',
-            'name' => 'phoenix_restorations'
-        );
+
+        //load from trait
+        $config = $this->loadConfig();
+        
+        $this->config = $config['cookies'];
     }
 
 }
