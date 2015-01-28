@@ -93,7 +93,7 @@ events:
     component: "src/components/events/config/routing.yml"
 
 blogs:
-    component: "src/components/blogs/config/routing.yml"
+    component: "src/framework/core/components/blogs/config/routing.yml"
     
 contact:
     component: "src/components/contactus/config/routing.yml"

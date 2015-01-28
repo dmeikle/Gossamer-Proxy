@@ -139,7 +139,7 @@ $(document).ready(function() {
     
     $('#edit-visibility').click(function() {
         
-        $(this).prev('#page_isPublic').toggle();
+        $(this).prev('#CmsPage_isPublic').toggle();
         if($(this).text() == 'cancel') {
             $(this).text(currentStatus);
         } else {
@@ -148,7 +148,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#page_isPublic').change(function() {
+    $('#CmsPage_isPublic').change(function() {
         if($(this).val() != currentStatus && confirm("are you sure you want to change the status of this page?")) {           
             $(this).next().text($(this).children("option").filter(":selected").text());
             $('#update_warning').show();
@@ -161,19 +161,19 @@ $(document).ready(function() {
     
     $('#edit-status').click(function() {
        
-        $(this).prev('#page_isPublished').toggle();
+        $(this).prev('#CmsPage_isPublished').toggle();
         if($(this).text() == 'cancel') {
             $(this).text(isPublished);
         } else {
-            isPublished = $(this).prev('#page_isPublished').children("option").filter(":selected").text(); 
+            isPublished = $(this).prev('#CmsPage_isPublished').children("option").filter(":selected").text(); 
             $(this).text('cancel');
         }
     });
     
-    $('#page_isPublished').change(function() {
+    $('#CmsPage_isPublished').change(function() {
         if($(this).val() != isPublished && confirm("are you sure you want to change the publishing of this page?")) {
             $(this).next().text($(this).children("option").filter(":selected").text());
-            $('#update_warning').show();
+            $('#update_warning').show();            
         } else {
             $(this).next().text(isPublished);
         }
@@ -230,6 +230,10 @@ $(document).ready(function() {
             $('#update_warning').show();
         }
     });
+    
+    $('#CmsPage_CmsSections_id').on('change', function() {
+       $('#slug').text($(this).find(':selected').data('slug'));
+    });
 });
 </script>
 
@@ -259,7 +263,7 @@ $(document).ready(function() {
     	<div class="panel-heading">Pages</div>
         <form role="form" id="form1" method="post">
           <?php echo $form['pageId']; ?>
-        <table class="table" border="1">
+        <table class="table">
             <tr>
                 <td rowspan="6" width="200" valign="top">
                     <p>Dashboard</p>
@@ -297,14 +301,10 @@ $(document).ready(function() {
                     <input type="button" id="show-preview" name="preview" class="btn btn-xs btn-primary preview" value="Preview Changes" />
                     <br />
                     Status: 
-                    
-                    <select name="page[isPublished]" id="page_isPublished" style="display: none">
-                        <option value="1" <?php //echo ($page['isPublished'] == 1)?'selected':''?>>Published</option>
-                        <option value="0" <?php //echo ($page['isPublished'] != 1)?'selected':''?>>Offline</option>
-                    </select>
+                    <?php echo $form['isPublished'];?>
                     
                     <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
-                    
+                  <!--  
                   Visibility:  
                  
                     <select name="page[isPublic]" id="page_isPublic" style="display: none">
@@ -313,9 +313,9 @@ $(document).ready(function() {
                     </select>                  
                   <a href="#" onclick="return false;" class="btn-xs" id="edit-visibility">Public</a><br />
                   
+                  -->
                   
-                  Revisions: 4 <br />
-                  Published on: Apr 17, 2014 @ 18:12</p> 
+                 </p> 
                   <p>
                   Section:
                   <?php echo $form['CmsSections_id'];?>
@@ -369,15 +369,15 @@ $(document).ready(function() {
            	</tr>
             <tr>
               <td>
-              <div style="float:right">Last edited by Dave M on April 17, 2014 a 6:37 pm</div>
-              word count: <span id="wordcount">140</span></td>
+              <div style="float:right">Last edited by <?php echo $form['staffName']; ?> on <?php echo $form['lastModified']; ?></div>
+              </td>
               <td rowspan="3" valign="top">&nbsp;</td>
             </tr>
            
             <tr>
               <td><p>Summary:</p>
               <p>
-                <textarea name="page[summary]" class="form-control" id="textarea" cols="45" rows="5"><?php //echo $page['summary']?></textarea>
+               <?php echo $form['summary']?>
                 Summaries are a brief description of your content
               </p></td>
             </tr>

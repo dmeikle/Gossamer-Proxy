@@ -29,10 +29,10 @@ class LoadListListener extends AbstractCachableListener {
     protected function loadList() {
 
         $caching = true;
-
+        
         $class = $this->listenerConfig['class'];
         $params = (array_key_exists('params', $this->listenerConfig) ? $this->listenerConfig['params'] : array());
-
+        
         $defaultLocale = $this->getDefaultLocale();
         if (!array_key_exists('locale', $params)) {
             $params['locale'] = $defaultLocale['locale'];
@@ -41,7 +41,7 @@ class LoadListListener extends AbstractCachableListener {
         $model = new $class($this->httpRequest, $this->httpResponse, $this->logger);
         $datasource = $this->getDatasource($class);
 
-        $result = $datasource->query('get', $model, 'list', $params);
+        $result = $datasource->query('get', $model, $this->getVerb(), $params);
         $list = array();
 
         //note: make sure the cacheKey in routing matches they returned key from REST call - Title cased is automatic
@@ -86,4 +86,15 @@ class LoadListListener extends AbstractCachableListener {
         $this->loadList();
     }
 
+    protected function getVerb() {
+        
+        if(array_key_exists('verb', $this->listenerConfig)) {
+            return $this->listenerConfig['verb'];
+        }
+        if(array_key_exists('customVerb', $this->listenerConfig)) {
+            return $this->listenerConfig['customVerb'];
+        }
+        
+        return 'list';
+    }
 }

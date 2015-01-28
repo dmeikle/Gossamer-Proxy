@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\blogs\listeners;
+namespace core\components\blogs\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
 use core\eventlisteners\Event;

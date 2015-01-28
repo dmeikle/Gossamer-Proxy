@@ -171,16 +171,17 @@ $(document).ready(function() {
     
     $('#edit-status').click(function() {
        
-        $(this).prev('#page_isPublished').toggle();
+       // $(this).prev('#Blog_isPublished').toggle();
+       $('#Blog_isPublished').toggle();
         if($(this).text() == 'cancel') {
             $(this).text(isPublished);
         } else {
-            isPublished = $(this).prev('#page_isPublished').children("option").filter(":selected").text(); 
+            isPublished = $(this).prev('#Blog_isPublished').children("option").filter(":selected").text(); 
             $(this).text('cancel');
         }
     });
     
-    $('#page_isPublished').change(function() {
+    $('#Blog_isPublished').change(function() {
         if($(this).val() != isPublished && confirm("are you sure you want to change the publishing of this page?")) {
             $(this).next().text($(this).children("option").filter(":selected").text());
             $('#update_warning').show();
@@ -349,11 +350,8 @@ $(document).ready(function() {
                     <input type="button" id="show-preview" name="preview" class="btn btn-xs btn-primary preview" value="Preview Changes" />
                     <br />
                     Status: 
+                    <?php echo $form['isPublished'];?>
                     
-                    <select name="page[isPublished]" id="page_isPublished" style="display: none">
-                        <option value="1" <?php echo ($page['isPublished'] == 1)?'selected':''?>>Published</option>
-                        <option value="0" <?php echo ($page['isPublished'] != 1)?'selected':''?>>Offline</option>
-                    </select>
                     
                     <a href="#" onclick="return false;" class="btn-xs" id="edit-status">Offline</a><br />
                     
@@ -366,7 +364,6 @@ $(document).ready(function() {
                   <a href="#" onclick="return false;" class="btn-xs" id="edit-visibility">Public</a><br />
                   
                   
-                  Revisions: 4 <br />
                   Published on: Apr 17, 2014 @ 18:12</p> 
                  
                   <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
@@ -378,8 +375,8 @@ $(document).ready(function() {
           
             <tr>
               <td>
-              <div style="float:right">Last edited by Dave M on April 17, 2014 a 6:37 pm</div>
-              word count: <span id="wordcount">140</span></td>
+              <div style="float:right">Last edited by Dave M on <?php echo $form['lastModified'];?></div>
+              </td>
               <td rowspan="3" valign="top">&nbsp;</td>
             </tr>
             

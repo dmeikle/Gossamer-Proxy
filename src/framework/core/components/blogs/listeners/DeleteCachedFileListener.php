@@ -1,7 +1,7 @@
 <?php
 
 
-namespace components\blogs\listeners;
+namespace core\components\blogs\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
 use Gossamer\Caching\CacheManager;

@@ -8,7 +8,7 @@ admin_cms_section_edit:
         view: core\views\TemplateView
         viewKey: admin_cms_section_edit
         datasource: datasource1
-  
+ 
                                 
 admin_cms_permalink_save:
     pattern: admin/cms/pages/permalink/save
@@ -38,7 +38,8 @@ admin_cms_page_edit:
     pattern: admin/cms/pages/*
     methods: [GET]
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'core\components\cms\models\SectionModel'}
+        - { 'event': 'request_start', cacheKey: CmsSections,  'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'core\components\cms\models\SectionModel'}
+        - { 'event': 'request_start', cacheKey: Staffs, verb: listStaff, 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}
     defaults:
         component: core\components\cms\CmsComponent
         controller: core\components\cms\controllers\PagesController
@@ -66,6 +67,8 @@ admin_cms_page_save:
                 
 admin_cms_pages_list:
     pattern: admin/cms/pages/*/*
+    listeners:
+        - { 'event': 'request_start', 'cacheKey': 'CmsSections', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'core\components\cms\models\SectionModel'}
     defaults:
         component: core\components\cms\CmsComponent
         controller: core\components\cms\controllers\PagesController

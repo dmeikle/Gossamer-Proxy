@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\blogs\models;
+namespace core\components\blogs\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;

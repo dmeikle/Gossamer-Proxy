@@ -9,8 +9,8 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\blogs\form;
-
+namespace core\components\blogs\form;
+        
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\AbstractBuilder;
 
@@ -35,13 +35,34 @@ class BlogBuilder extends AbstractBuilder{
                 ->add('BlogCategories_id', 'select', array('class' => 'form-control', 'options' => $options['BlogCategories']))
                 ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('isActive', $values)))
                 ->add('isPublic', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('isPublic', $values)))
-                ->add('isPublished', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('isPublished', $values)))
+                ->add('isPublished', 'select', array('style' => 'display: none', 'options' => $this->getPublishOptions($this->getValue('isPublished', $values))))
                 ->add('allowComments', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => $this->getValue('allowComments', $values)))
                 ->add('logo', 'text', array('class' => 'form-control', 'value' => $this->getValue('logo', $values))) 
                 ->add('pageId', 'hidden', array( 'value' => $this->getValue('id', $values)))
+                ->add('lastModified', 'span', array('value' => $this->formatDate($this->getValue('lastModified', $values))))
                 ->add('save', 'submit', array('value' => 'Save', 'class' => 'btn btn-primary'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-primary'));                
 
         return $builder->getForm();
+    }
+    
+    private function formatDate($dateAsString) {
+        $date = new \DateTime($dateAsString);
+        
+        return date_format($date, 'l jS F Y \a\t g:ia');
+    }
+
+    private function getPublishOptions($isPublished) {
+        $publishOptions = '<option value="1"';
+        if($isPublished == 1) {
+            $publishOptions .= ' selected';
+        }
+        $publishOptions .= '>Publish</option><option value="0"';
+        if($isPublished == 0) {
+            $publishOptions .= ' selected';
+        }
+        $publishOptions .= '>Offline</option>';
+        
+        return $publishOptions;
     }
 }

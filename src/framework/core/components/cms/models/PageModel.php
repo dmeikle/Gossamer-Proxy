@@ -117,6 +117,7 @@ class PageModel extends AbstractModel implements FormBuilderInterface {
         $data = $this->httpRequest->getPost();
         $data[$this->entity]['id'] = intval($id);
         $data[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
+        //$data[$this->entity]['lastModified'] = 'null';
         if($data[$this->entity]['CmsSections_id'] ==0) {
             $data[$this->entity]['CmsSections_id'] = 'null';
         }

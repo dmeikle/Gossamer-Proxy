@@ -1,7 +1,7 @@
 <?php
 
 
-namespace components\blogs;
+namespace core\components\blogs;
 
 use core\AbstractComponent;
 

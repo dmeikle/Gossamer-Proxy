@@ -6,6 +6,7 @@ admin_blogs_save:
     
 admin_blogs_list:
     subject: utf8
+    permalink: utf8
     
 admin_blogs_edit:  
     subject: utf8

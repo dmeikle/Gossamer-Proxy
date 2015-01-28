@@ -16,6 +16,9 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\components\cms\form\PageBuilder;
 use core\components\cms\serialization\SectionsSerializer;
+use components\staff\serialization\StaffSerializer;
+
+use core\navigation\Pagination;
 
 /**
  * controller for the cms pages
@@ -78,7 +81,31 @@ class PagesController extends AbstractController {
 
         $this->render(array('form' => $this->drawForm($this->model, $result), 'page' => $result));
     }
+    
+    /**
+     * listall - retrieves rows based on offset, limit
+     * 
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listall($offset = 0, $limit = 20) {
+        $result = $this->model->listall($offset, $limit);
 
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            unset($pagination);
+        }
+        
+        $sectionSerializer = new SectionsSerializer();
+        $result['sectionsList'] = $sectionSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('CmsSections'), 'sectionName', true);
+        unset($sectionSerializer);
+     
+        
+        
+        $this->render($result);
+    }
+    
     /**
      * draw the input form for the page
      * 
@@ -97,9 +124,12 @@ class PagesController extends AbstractController {
         $sections = $this->httpRequest->getAttribute('CmsSections');
         $sectionsSerializer = new SectionsSerializer();
         $sectionsList = $sectionsSerializer->formatSectionsOptionsList($sections, $values);
-
         $options['sections'] = $sectionsList;
         unset($sectionsSerializer);
+        
+        $staffSerializer = new StaffSerializer();
+        $values['staffName'] = $staffSerializer->getStaffName($this->httpRequest->getAttribute('Staffs'), $values['Staff_id']);
+        unset($staffSerializer);
         
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
