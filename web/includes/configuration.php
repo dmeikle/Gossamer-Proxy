@@ -23,6 +23,7 @@ define('__ABOVE_ROOT_PATH', getParentFolder($site_path));
 define('__REQUEST_METHOD', $_SERVER['REQUEST_METHOD']);
 define ('__SITE_PATH', $site_path);
 define ('__CONFIG_PATH', $site_path . '/app/config/');
+define ('__LOG_PATH', $site_path . '/app/logs/');
 define('__SITE_NAME', $_SERVER['SERVER_NAME']);
 define('__XML_CONFIG_PATH', __SITE_PATH .DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR
     . 'config' . DIRECTORY_SEPARATOR . 'web.xml');

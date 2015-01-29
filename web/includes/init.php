@@ -30,10 +30,10 @@ use Monolog\Handler\StreamHandler;
 use libraries\utils\Container;
 
 $container = new Container();
-$logger = new Logger('rest_service');
-$logger->pushHandler(new StreamHandler( __SITE_PATH . "/../logs/monolog.log", Logger::DEBUG));
-$container->set('Logger', 'Monolog\Logger', $logger);
-$logger->addDebug('logger set into container');
+//$logger = new Logger('rest_service');
+//$logger->pushHandler(new StreamHandler( __SITE_PATH . "/../logs/monolog.log", Logger::DEBUG));
+//$container->set('Logger', 'Monolog\Logger', $logger);
+buildLogger($container);
 
 
 function pr($item){
@@ -61,5 +61,37 @@ function fixObject (&$object)
     }
 
     return $object;
+}
+
+function buildLogger(Container &$container) {
+    $config = loadConfig();    
+    $loggerConfig = $config['logger'];
+    
+    $loggerClass = $loggerConfig['class'];    
+    $logger = new $loggerClass('client-site');
+    
+    $handlerClass = $loggerConfig['handler']['class'];
+    $logLevel = $loggerConfig['handler']['loglevel'];
+    $logFile = $loggerConfig['handler']['logfile'];
+    
+    $maxFiles = null;
+        if(array_key_exists('maxfiles', $loggerConfig['handler'])) {
+        $maxFiles = $loggerConfig['handler']['maxfiles'];
+    }
+    if(is_null($maxFiles)) {
+        $logger->pushHandler(new $handlerClass( __LOG_PATH . $logFile, $logLevel));
+    } else {
+        $logger->pushHandler(new $handlerClass( __LOG_PATH . $logFile, $maxFiles, $logLevel));
+    }
+    $container->set('Logger', $loggerClass, $logger);    
+    $logger->addInfo('logger set into container');
+}
+
+function loadConfig() {
+    $loader = new \libraries\utils\YAMLParser();
+    $loader->setFilePath(__CONFIG_PATH . "config.yml");
+    
+    return $loader->loadConfig();
+    
 }
 

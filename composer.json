@@ -2,7 +2,7 @@
 	"name": "gossamercms/web-repo",
     	"type": "library",
         "description": "RESTful API for database calls",
-	"keywords": ["lightweight","framework", "mvc"],
+	"keywords": ["lightweight","framework", "mvc", "php"],
 	"homepage": "https://github.com/dmeikle/gossamerCMS-V2",
 	"license": "MIT",
 	"authors": [
