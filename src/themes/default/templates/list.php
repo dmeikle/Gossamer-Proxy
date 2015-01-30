@@ -130,6 +130,12 @@
 </head>
 
 <body>
+   
+<?php
+echo $this->getContent('cssmenu_ceilingbar', array());
+?>
+
+    
 <div id="container">
   <!---section1--->
   <div id="lower">
@@ -144,5 +150,7 @@
 </div>
 
 <script src="/js/locales.js"></script>
+
+<!---javascript--->
 </body>
 </html>

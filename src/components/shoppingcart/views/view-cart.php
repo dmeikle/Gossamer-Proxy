@@ -5,6 +5,7 @@
 <!--- javascript start --->
 @components/shoppingcart/includes/js/basket.js
 @components/shoppingcart/includes/js/jquery.confirm.min.js
+@components/shoppingcart/includes/js/checktax.js
 <!--- javascript end --->
 
 <?php
@@ -86,7 +87,21 @@ if(count($items) == 0) {
 ?>
 <tr>
     <td colspan="3" align="right">Subtotal:</td>
-    <td align="right">$<?php echo number_format($basket->getSubtotal(), 2);?></td>
+    <td align="right">$<?php echo number_format($basket->getSubtotal(), 2);?>
+    <input type="hidden" id="subtotal" value="<?php echo $basket->getSubtotal();?>" />
+    </td>
+    <td></td>
+</tr>
+<tr>
+    <td colspan="2" align="right"><select class="form-control" id="stateId">
+            <option value="">Select a State</option>
+        <?php echo($stateList);?></select></td><td align="right"> Tax:</td>
+    <td align="right">$<span id="taxResult"></span></td>
+    <td></td>
+</tr>
+<tr>
+    <td colspan="3" align="right">Total:</td>
+    <td align="right">$<span id="total"></span></td>
     <td></td>
 </tr>
 </table>

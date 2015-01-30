@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\controllers;
 
 use core\AbstractController;
@@ -28,14 +19,20 @@ class VariantsController extends AbstractController
     }
     
     public function getOptionsByVariantId($id) {
-        $this->model->getOptionsByVariantId(intval($id));
+        $result = $this->model->getOptionsByVariantId(intval($id));
+        
+        $this->render($result);
     }
     
     public function listAllVariantsAndOptions($productId) {
-        $this->model->getAllVariantsForListing($productId);
+        $result = $this->model->getAllVariantsForListing($productId);
+        
+        $this->render($result);
     }
     
     public function saveAllVariantsAndOptions($id) {
         $this->model->saveAllVariantsAndOptions($id);
+        
+        $this->render($result);
     }
 }

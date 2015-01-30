@@ -1,4 +1,19 @@
 
+cart_admin_home:
+    pattern: admin/cart
+
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\PurchasesController
+        model: components\shoppingcart\models\PurchaseModel
+        method: getSalesTotals
+        view: core\views\TemplateView
+        viewKey: cart_admin_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Sales'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    
 
 cart_admin_sale_remove:
     pattern: admin/cart/sales/remove
@@ -66,7 +81,8 @@ cart_admin_products_list:
 cart_admin_product_edit:
     pattern: admin/cart/products/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1'}
+        - { 'event': 'response_start', 'cacheKey': 'Categorys', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\shoppingcart\models\CategoryModel'}
+        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadCategoriesListener', 'datasource': 'datasource1', 'cacheKey': 'Categories'}
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\ProductsController
@@ -347,7 +363,8 @@ cart_categories_list:
    
 cart_view_basket:
     pattern: cart/view
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}  
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\CartController
@@ -413,7 +430,8 @@ cart_products_list_by_category:
   
 cart_add_basket:
     pattern: cart/view
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\CartController
@@ -456,4 +474,52 @@ cart_products_view_selected:
     methods: [GET]
 
 
+cart_admin_taxes_list:
+    pattern: admin/cart/states
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}  
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\TaxesController
+        model: components\shoppingcart\models\TaxModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: cart_admin_taxes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
   
+    
+cart_admin_taxes_save:
+    pattern: admin/cart/states
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}  
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\TaxesController
+        model: components\shoppingcart\models\TaxModel
+        method: saveTaxes
+        view: core\views\TemplateView
+        viewKey: cart_admin_taxes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/ShoppingCart'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [POST]
+    
+cart_tax_estimate:
+    pattern: cart/tax/estimate/*/*
+    
+    defaults:
+        component: components\shoppingcart\ShoppingCartComponent
+        controller: components\shoppingcart\controllers\TaxesController
+        model: components\shoppingcart\models\TaxModel
+        method: getTaxByStateSubtotal
+        view: core\views\JSONView
+        viewKey: cart_tax_estimate
+        datasource: datasource1
+    methods: [GET]
+    
+

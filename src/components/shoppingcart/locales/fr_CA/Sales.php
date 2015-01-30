@@ -9,5 +9,6 @@ return array (
     'LABEL_EMAIL' => 'Email',
     'LABEL_PURCHASE_DATE' => 'Date Pruchase',
     'LABEL_STATUS' => 'Statut',
-    'LABEL_ACTION' => 'Action' 
+    'LABEL_ACTION' => 'Action',
+    'LABEL_SUBTOTAL' => 'SubTotal'
 );

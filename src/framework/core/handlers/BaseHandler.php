@@ -49,7 +49,7 @@ abstract class BaseHandler {
      * @return boolean
      */
     protected function checkFileIsStale($filepath, $rootFolder) {
-
+        
         if (!file_exists($this->getDestinationFilepath($filepath, $rootFolder))) {
             return true;
         }
@@ -104,13 +104,16 @@ abstract class BaseHandler {
         $old_umask = umask(0);
         $parsedFromPath = __SITE_PATH . '/src/components';
         $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . '/components' . implode('/', $chunks);
-        chmod(__SITE_PATH . '/' . $rootFolder . '/', 777);
-        mkdir($parsedToPath, 0777, true);
-        chmod(__SITE_PATH . '/' . $rootFolder . '/', 0755);
+       
+        
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
+       
+        @mkdir($parsedToPath, 0777, true);
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0755);
         umask($old_umask);
-
-        copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
-        chmod($parsedToPath, 0755);
+        
+        @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
+        @chmod($parsedToPath, 0755);
 
         return '/web/' . $rootFolder . '/components/' . implode('/', $chunks) . $filename;
     }

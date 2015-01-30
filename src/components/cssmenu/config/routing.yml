@@ -1,0 +1,13 @@
+
+
+cssmenu_ceilingbar:
+    pattern: cssmenu/ceilingbar
+    defaults:
+        component: components\cssmenu\CssMenuComponent
+        controller: components\cssmenu\controllers\CssMenuController
+        model: components\cssmenu\models\CssMenuModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: cssmenu_ceilingbar
+        datasource: datasource1
+    

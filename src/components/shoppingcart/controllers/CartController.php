@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\controllers;
 
 use core\AbstractController;
@@ -18,26 +9,38 @@ class CartController extends AbstractController
     
     public function add() {
        
-        $this->model->add();
+        $result = $this->model->add();
+        
+        $this->render($result);
     }
 
     public function remove() {
-        $this->model->remove();
+        $result = $this->model->remove();
+        
+        $this->render($result);
     }
 
     public function checkout() {
-        $this->model->checkout();
+        $result = $this->model->checkout();
+        
+        $this->render($result);
     }
 
     public function verify() {
-        $this->model->verify();
+        $result = $this->model->verify();
+        
+        $this->render($result);
     }
 
     public function confirm() {
-        $this->model->confirm();
+        $result = $this->model->confirm();
+        
+        $this->render($result);
     }
 
     public function savePurchase() {
-        $this->model->savePurchase();
+        $result = $this->model->savePurchase();
+        
+        $this->render($result);
     }
 }

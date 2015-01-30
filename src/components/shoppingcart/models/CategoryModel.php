@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 use core\AbstractModel;
@@ -27,21 +18,21 @@ class CategoryModel extends  AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Category';
-        $this->tablename = 'categories';
+        $this->entity = 'CartCategory';
+        $this->tablename = 'cartcategories';
         
     }
     
-    public function listAll($offset = 0, $limit = 20) {
-        $params = array();
-        $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
-        
-        $defaultLocale =  $this->getDefaultLocale();
-        $params['locale'] = $defaultLocale['locale'];
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-    
-        $this->render($data);
-    }
+//    public function listAll($offset = 0, $limit = 20, $customVerb = null) {
+//        $params = array();
+//        $params[self::DIRECTIVES] = array('offset' => $offset, 'limit' => $limit);
+//        
+//        $defaultLocale =  $this->getDefaultLocale();
+//        $params['locale'] = $defaultLocale['locale'];
+//        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+//    
+//        return ($data);
+//    }
 
     public function edit($id) {
         //pre-loaded from eventhandler
@@ -52,7 +43,7 @@ class CategoryModel extends  AbstractModel
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         $data['categories'] = $categories;
         $data['thumbnails'] = $this->getFileList(__SITE_PATH . "/images/categories/");
-        $this->render($data);
+        return ($data);
     }
     
     public function listAllByParentId($parentId, $offset, $limit) {
@@ -63,7 +54,7 @@ class CategoryModel extends  AbstractModel
         $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     
-        $this->render($data);
+        return ($data);
     }
     
     public function get($categoryId) {
@@ -73,7 +64,7 @@ class CategoryModel extends  AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
     
-        $this->render($data);
+        return ($data);
     }
     
     public function save($id) {
@@ -84,7 +75,7 @@ class CategoryModel extends  AbstractModel
       
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['category']);
       
-       // $this->render($data);
+       // return ($data);
     }
     
     public function delete($categoryId) {
@@ -92,6 +83,6 @@ class CategoryModel extends  AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
         
-        $this->render($data);
+        return ($data);
     }
 }

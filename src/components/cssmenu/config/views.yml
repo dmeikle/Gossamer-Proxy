@@ -1,0 +1,8 @@
+
+
+
+cssmenu_ceilingbar:    
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/cssmenu/views/ceilingbar.php"     

@@ -80,6 +80,16 @@ if(count($basket) == 0) {
     <td>$<?php echo number_format($basket->getSubtotal(), 2);?></td>
 
 </tr>
+<tr>
+    <td colspan="3" align="right"><?php echo $this->getString('LABEL_TAX');?>:</td>
+    <td>$<?php echo number_format( $purchase['tax1'], 2);?></td>
+
+</tr>
+<tr>
+    <td colspan="3" align="right"><?php echo $this->getString('LABEL_TOTAL');?>:</td>
+    <td>$<?php echo number_format($purchase['total'], 2);?></td>
+
+</tr>
 </table> 
 
       

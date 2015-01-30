@@ -56,11 +56,14 @@ class TemplateView extends AbstractView {
         $this->sections = $this->config['sections'];
 
         $this->loadTemplate($template, $theme);
+        //this HAS to be called before the rest
         $this->renderSections();
+        
         $this->renderHTMLTags();
         $this->placeJSFiles();
         $this->placeCSSFiles();
         $this->renderURITags($template);
+        $this->renderImages();
     }
 
     /**
@@ -82,6 +85,8 @@ class TemplateView extends AbstractView {
         $htmlHandler->setTemplate($this->template);
         $this->template = $htmlHandler->handleRequest($this->data);
     }
+
+    
 
     /**
      * find any JS files to create <script /> tags for
@@ -220,4 +225,24 @@ class TemplateView extends AbstractView {
         return $retval;
     }
 
+    private function renderImages() {
+        
+        //<img src="@components/component-name/includes/images/name-of-another-file.jpg" />
+        $handler = new \core\handlers\ImportImageHandler($this->logger);
+        $handler->handleRequest(array());
+//        $imageList = array();
+//        
+//        //get the first part of the images list
+//        $pieces = explode('<img src="@components/', $this->template);
+//        
+//        //iterate the list and get the filepath
+//        foreach($pieces as $piece) {
+//            pr($piece);
+//            $imageList[] = '/images/components/' . substr($piece, strpos($piece, '"'));
+//        }
+//        pr($imageList);
+//        die;
+//        $this->template = preg_replace('<img src="[\w/\.]+"(\s|)/>', '<img src="\/images\/components', $this->template);
+        
+    }
 }

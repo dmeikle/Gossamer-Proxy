@@ -1,3 +1,5 @@
+
+
 default_index:
     template: home.php
     sections: 
@@ -27,12 +29,25 @@ cart_products_list_by_category:
             "section2": "src/components/users/views/leftnav.php"
             "section3": "src/components/shoppingcart/views/product-list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
+            
+            
+cart_admin_home:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
+            "section3": "src/components/shoppingcart/views/admin/home.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+
     
 cart_admin_categories_list:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/category-list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -40,7 +55,8 @@ cart_admin_category_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/category-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
@@ -57,7 +73,8 @@ cart_admin_product_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/product-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
@@ -65,7 +82,8 @@ cart_admin_product_save:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/product-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
@@ -73,7 +91,8 @@ cart_admin_products_list:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/product-list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
@@ -82,7 +101,8 @@ cart_admin_volume_discounts:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/volume-discounts.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
@@ -90,7 +110,8 @@ cart_admin_volume_discounts_save:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/volume-discounts.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -98,7 +119,8 @@ cart_add_basket:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section2": "src/components/users/views/leftnav.php"
             "section3": "src/components/shoppingcart/views/view-cart.php"
             "section4": "src/themes/default/templates/sections/footer.php"
@@ -154,7 +176,8 @@ cart_admin_sales_list:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"            
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"          
             "section3": "src/components/shoppingcart/views/admin/sales-list.php"
             "section5": "src/themes/default/templates/sections/footer.php"
             
@@ -162,7 +185,8 @@ cart_admin_sale_remove:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"         
             "section3": "src/components/shoppingcart/views/admin/sales-list.php"
             "section5": "src/themes/default/templates/sections/footer.php"
             
@@ -179,7 +203,8 @@ cart_admin_variants_list:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-groups.php"
             "section5": "src/themes/default/templates/sections/footer.php"   
             
@@ -187,7 +212,8 @@ cart_admin_variant_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-group-edit.php"
             "section5": "src/themes/default/templates/sections/footer.php" 
     
@@ -196,7 +222,8 @@ cart_admin_variant_options_list:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-options.php"
             "section5": "src/themes/default/templates/sections/footer.php" 
     
@@ -204,7 +231,8 @@ cart_admin_variant_option_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php" 
             "section3": "src/components/shoppingcart/views/admin/variant-option-edit.php"
             "section5": "src/themes/default/templates/sections/footer.php"
 
@@ -212,7 +240,8 @@ cart_admin_variant_option_select:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"  
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-options-select.php"
             "section5": "src/themes/default/templates/sections/footer.php"
     

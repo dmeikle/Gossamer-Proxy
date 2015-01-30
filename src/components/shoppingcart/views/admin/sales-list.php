@@ -15,7 +15,7 @@
             <?php echo $this->getString('LABEL_CUSTOMER_NAME');?>
         </td>
         <td>
-            <?php echo $this->getString('LABEL_EMAIL');?>
+            <?php echo $this->getString('LABEL_SUBTOTAL');?>
         </td>
         <td>
             <?php echo $this->getString('LABEL_PURCHASE_DATE');?>
@@ -30,7 +30,7 @@
   <?php
 
 foreach($Purchases as $purchase) {
-   
+
     ?>
     <tr>
         <td>
@@ -40,7 +40,7 @@ foreach($Purchases as $purchase) {
             <?php echo $purchase['firstname'];?> <?php echo $purchase['lastname'];?>
         </td> 
         <td>
-            <?php echo $purchase['email'];?>
+            $<?php echo number_format($purchase['subtotal'], 2);?>
         </td>        
         <td>
             <?php echo $purchase['orderDate'];?>

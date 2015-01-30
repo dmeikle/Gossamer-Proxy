@@ -33,7 +33,7 @@ logger:
         maxfiles: 14
         
         logfile: monolog.log
-        loglevel: 200
+        loglevel: 100
 #        100 => 'DEBUG',
 #        200 => 'INFO',
 #        250 => 'NOTICE',

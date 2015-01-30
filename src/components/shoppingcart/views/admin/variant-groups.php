@@ -5,7 +5,7 @@
 <table class="table">
      <?php
 
-            foreach($ProductVariants as $variant) {
+            foreach($CartProductVariants as $variant) {
              ?>
     <tr class="striped-row">
         <td>

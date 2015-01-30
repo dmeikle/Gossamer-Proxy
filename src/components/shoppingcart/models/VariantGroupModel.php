@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 
@@ -25,8 +16,8 @@ class VariantGroupModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'variantGroups';
-        $this->tablename = 'variantGroups'; 
+        $this->entity = 'CartVariantGroups';
+        $this->tablename = 'cartVariantGroups'; 
     }
     
     public function getAllVariantsForListing($productId) {
@@ -55,7 +46,7 @@ class VariantGroupModel extends AbstractModel
             $retval[] = $variant;
         }
         
-        $this->render(array('variants' => $retval, 'productVariantItems' => $this->getProductVariants($productId)));
+        return (array('variants' => $retval, 'productVariantItems' => $this->getProductVariants($productId)));
     }
     
     private function getProductVariants($productId) {
@@ -88,7 +79,7 @@ class VariantGroupModel extends AbstractModel
        
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null) {
        
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
@@ -99,14 +90,14 @@ class VariantGroupModel extends AbstractModel
        
         $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     
-        $data = array('ProductVariants' => current($result['VariantGroups']));
+        $data = array('ProductVariants' => ($result['CartVariantGroups']));
         $data['ProductVariantOptions'] = $this->getAllVariantOptions();
         
         if(array_key_exists(ucfirst($this->tablename) . 'Count', $result)) {
             $data['pagination'] = $this->getPagination($result[ucfirst($this->tablename) . 'Count'], $offset, $rows);
         }
         
-        $this->render($data);
+        return ($data);
     }
    
     private function getAllVariantOptions() {
@@ -124,7 +115,7 @@ class VariantGroupModel extends AbstractModel
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
       
         //$data['pageTitle'] = 'Art Wall Tablets';
-        $this->render($data);
+        return ($data);
     }
     
     
@@ -155,7 +146,7 @@ class VariantGroupModel extends AbstractModel
        // $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
       
         
-        //$this->render($data);
+        //return ($data);
     }
     
     public function delete($itemId) {
@@ -164,7 +155,7 @@ class VariantGroupModel extends AbstractModel
         $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
         pr($data);
         die;
-        $this->render($data);
+        return ($data);
     }
     
     
