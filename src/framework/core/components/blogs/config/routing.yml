@@ -56,6 +56,21 @@ website_blogs_feed:
         datasource: datasource1
     methods: [GET]  
 
+
+
+website_blogs_minimenu: 
+    pattern: blogs/minimenu/*    
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogAdminMenuController
+        model: core\components\blogs\models\BlogModel
+        method: getAdminMiniMenu
+        view: core\views\TemplateView
+        viewKey: website_blogs_minimenu
+        datasource: datasource1
+    methods: [GET] 
+    
+    
 website_blogs_list:
     pattern: blogs/*/*
     listeners:
@@ -74,6 +89,10 @@ website_blogs_list:
         viewKey: website_blogs_list
         datasource: datasource1
     methods: [GET]
+    
+    
+
+    
         
 website_blogs_view:
     pattern: blogs/*/*/*

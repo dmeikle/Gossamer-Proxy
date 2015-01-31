@@ -67,10 +67,12 @@ class HTTPRequest extends AbstractHTTP {
      */
     protected function formatQueryString() {
         $temp = explode('&', $_SERVER['QUERY_STRING']);
+    
         foreach ($temp as $row) {
             $pieces = explode('=', $row);
-            $pieces = array_filter($pieces);
-            if (is_array($pieces) && count($pieces) > 0) {
+            //$pieces = array_filter($pieces);
+           
+            if (is_array($pieces) && count($pieces) > 1) {
                 $this->queryString[$pieces[0]] = $pieces[1];
             }
         }

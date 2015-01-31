@@ -70,7 +70,7 @@ class EventsController extends AbstractController
     }
     
     public function listallByContact($offset = 0, $limit = 0) {
-        $params = array('Contacts_id' => $this->getLoggedInUser());
+        $params = array('Contacts_id' => $this->getLoggedInUser()->getId());
         $result = $this->model->listallWithParams($offset, $limit, $params, 'listByContact');
         
         $pagination = new Pagination($this->logger);        

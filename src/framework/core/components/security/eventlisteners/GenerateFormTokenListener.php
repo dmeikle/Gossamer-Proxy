@@ -48,6 +48,7 @@ class GenerateFormTokenListener extends BaseFormTokenListener {
      * @param FormToken $token
      */
     private function storeFormToken(FormToken $token) {
+       
         setSession('_form_security_token', serialize($token));
     }
 

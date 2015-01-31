@@ -214,29 +214,14 @@ events:
 
 #-------------------CLIENT PORTAL SECTION--------------------
 
-portal_home:
-    active: true
-    text_key: 'PORTAL_HOME'
-    pattern: '/portal/home'
-    display_roles:
-        - IS_PORTAL_MANAGER         
-      
+         
 portal_contacts_list:
     active: true
     text_key: 'PORTAL_CONTACTS_LIST'
     pattern: '/portal/contacts/list/0/20'
     display_roles:
-        - IS_PORTAL_MANAGER            
+        - IS_PORTAL_MANAGER          
 
-
-portal_contacts_settings:
-    active: true
-    text_key: 'PORTAL_CONTACT_SETTINGS'
-    pattern: '/portal/contacts/settings'
-    display_roles:
-        - IS_PORTAL_MANAGER  
-        - IS_CUSTOMER   
-        
 
 portal_projects_list:
     active: true

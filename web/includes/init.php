@@ -30,9 +30,6 @@ use Monolog\Handler\StreamHandler;
 use libraries\utils\Container;
 
 $container = new Container();
-//$logger = new Logger('rest_service');
-//$logger->pushHandler(new StreamHandler( __SITE_PATH . "/../logs/monolog.log", Logger::DEBUG));
-//$container->set('Logger', 'Monolog\Logger', $logger);
 buildLogger($container);
 
 

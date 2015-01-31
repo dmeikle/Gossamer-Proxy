@@ -29,6 +29,8 @@ use libraries\utils\preferences\UserPreferencesManager;
  */
 class AbstractView {
 
+    use \libraries\utils\traits\GetLoggedInUser;
+    
     protected $renderComplete = false;
     protected $templatePath = null;
     protected $logger = null;
@@ -236,8 +238,30 @@ class AbstractView {
         if ($ssl) {
             $fullUrl = "https://$url";
         }
-
-        return file_get_contents($fullUrl);
+        $user = $this->getLoggedInUser();
+        $userId = 0;
+        if(is_object($user)) {
+            $userId = $user->getId();
+        }
+        $locale = $this->getDefaultLocale();
+        
+        return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale']);
     }
 
+    /**
+     * checks the access rights of the logged in user before deciding to
+     * make the call for the menu content
+     * 
+     * @param string $ymlkey
+     * 
+     * @return string
+     */
+    public function getMenu($ymlkey, array $params = array()) {
+        $manager = new navigation\MenuManager();
+        
+        if($manager->checkAccessRights($ymlkey, $this->getLoggedInUser())){
+           
+            return $this->getContent($ymlkey, $params);
+        }
+    }
 }

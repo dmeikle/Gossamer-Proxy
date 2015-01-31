@@ -459,6 +459,18 @@ portal_events_rsvp_complete:
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     
 
+portal_events_ceilingnav:
+    pattern: portal/events/ceilingnav
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventsMenuController
+        model: components\events\models\EventModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: portal_events_ceilingnav
+        datasource: datasource1
+        langFiles:   
+            - 'src/components/events/locales/*/Events'  
     
 portal_events_view: 
     pattern: portal/events/*
@@ -491,3 +503,4 @@ portal_events_rsvp_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [POST]        
+    

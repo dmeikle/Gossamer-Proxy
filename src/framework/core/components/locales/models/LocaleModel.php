@@ -31,7 +31,7 @@ class LocaleModel extends AbstractModel {
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
      */
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse = null, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
@@ -43,10 +43,10 @@ class LocaleModel extends AbstractModel {
     /**
      * changes the locale and stores it in an encrypted cookie
      */
-    public function change() {
-        $params = $this->httpRequest->getPost();
+    public function change($locale = null) {
+        
         //$this->setDefaultLocale($params['locale']);
-        $this->setDefaultLocaleCookie($params['locale']);
+        $this->setDefaultLocaleCookie($locale);
     }
 
     /**

@@ -23,4 +23,11 @@ trait LoadConfigFile {
         
         return $loader->loadConfig();
     }
+    
+    public function loadComponentConfig($ymlkey, $filename = 'routing') {
+        
+        $loader = new \libraries\utils\YAMLKeyParser();
+        
+        return $loader->getNodeByKey($ymlkey, $filename);        
+    }
 }

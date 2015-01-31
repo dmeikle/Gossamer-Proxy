@@ -22,6 +22,7 @@ $rawdate = date_create($blog['dateEntered']);
 
 ?>
 <div id="blog">
+    <div style="float: right"><?php echo $this->getMenu('website_blogs_minimenu', array($blog['id']));?></div>
      <h3>
         <?php echo $blog['subject'];?>
     </h3>

@@ -102,7 +102,11 @@ contact:
 restoration:   
     component: "src/components/cms/config/routing.yml" 
     
+cssmenu:
+    component: "src/components/cssmenu/config/routing.yml"
+   
 
+    
 #this is the default fallback to use if not found    
 default:
     component: "src/components/cms/config/routing.yml"

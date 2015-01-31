@@ -1,0 +1,17 @@
+
+
+cssmenu_ceilingbar:
+    pattern: cssmenu/ceilingbar
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\contacts\listeners\LoadContactByIdListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\cssmenu\CssMenuComponent
+        controller: components\cssmenu\controllers\CssMenuController
+        model: components\cssmenu\models\CssMenuModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: cssmenu_ceilingbar
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/cssmenu/locales/*/menu'
+    
