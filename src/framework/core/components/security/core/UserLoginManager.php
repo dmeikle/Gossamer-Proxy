@@ -78,20 +78,21 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
             //since we want to know WHY a person was not allowed, run each check individually
             if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
-                error_log('login_password_mismatch');
+                $this->logger->addAlert('login_password_mismatch');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
             }
             if ($this->statusIsLocked($client)) {
-                error_log('login_status_locked');
+                $this->logger->addAlert('login_status_locked');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_locked', new Event('login_status_locked', $eventParams));
+               
                 setSession('_security_secured_area', null);
             }
             if (!$this->checkStatus($client)) {
-                error_log('login_status_not_active');
+                $this->logger->addAlert('login_status_not_active');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_not_active', new Event('login_status_not_active', $eventParams));
             }
             if (!$this->checkRolesSet($client)) {
-                error_log('login_roles_not_set');
+                $this->logger->addAlert('login_roles_not_set');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_roles_not_set', new Event('login_roles_not_set', $eventParams));
             }
 

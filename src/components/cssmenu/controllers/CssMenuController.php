@@ -19,7 +19,18 @@ use core\AbstractController;
  */
 class CssMenuController extends AbstractController {
     
+
+    /**
+     * this method is initially written to display a menu for logged in
+     * users. If you want to have a method for everyone..*coff coff*.. write 
+     * another one...
+     */
     public function view() {
-        $this->render();
+                
+        $contact = current($this->httpRequest->getAttribute('Contact'));
+        
+        if(intval($this->httpRequest->getQueryParameter('userid')) > 0) {
+            $this->render($contact);
+        }        
     }
 }

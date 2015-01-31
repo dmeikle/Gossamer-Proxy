@@ -27,7 +27,7 @@ class YAMLKeyParser extends YAMLParser {
      * 
      * @param Logger $logger
      */
-    public function __construct(Logger $logger) {
+    public function __construct(Logger $logger = null) {
         $this->logger = $logger;
     }
 
@@ -94,13 +94,16 @@ class YAMLKeyParser extends YAMLParser {
 
         $parser = new YAMLParser($this->logger);
         foreach ($subdirectories as $folder) {
-
+            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();
 
             if (is_array($config) && array_key_exists($ymlkey, $config)) {
                 //check to see if it's the correct key based on its methodType
                 if (array_key_exists('methods', $config[$ymlkey]) && in_array($method, $config[$ymlkey]['methods'])) {
+                    return $config[$ymlkey];
+                } elseif(!array_key_exists('methods', $config)) { 
+                    //no method specified, so it's ok to use
                     return $config[$ymlkey];
                 }
             }
@@ -126,7 +129,7 @@ class YAMLKeyParser extends YAMLParser {
 
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();
-            //echo 'searching ' . $folder . '/config/' . $filename . '.yml<br>';
+            
             if (is_array($config) && array_key_exists($ymlkey, $config)) {
                 //check to see if it's the correct key based on its methodType
                 if (array_key_exists('methods', $config[$ymlkey]) && in_array($method, $config[$ymlkey]['methods'])) {

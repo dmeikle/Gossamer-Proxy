@@ -24,8 +24,10 @@ class LocaleController extends AbstractController {
      * change a locale from one language to another
      */
     public function change() {
-
-        $this->model->change();
+        
+        $params = $this->httpRequest->getPost();       
+        
+        $this->model->change($params['locale']);
         $uri = $this->model->getHttpRequest()->getAttribute('HTTP_REFERER');
 
         $this->redirect(($uri));

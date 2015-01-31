@@ -39,6 +39,9 @@
 </head>
 
 <body>
+    <?php
+echo $this->getMenu('cssmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
+?>
 <div id="container">
   <div id="header-admin">
       <div id="logo">Phoenix Restorations</div>

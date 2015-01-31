@@ -62,3 +62,21 @@ admin_home:
             - 'src/framework/core/components/locales/resources/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
+    
+ 
+portal_home:
+    pattern: portal/home
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]   
+    
+    

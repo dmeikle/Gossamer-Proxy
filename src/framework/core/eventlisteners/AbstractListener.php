@@ -136,7 +136,12 @@ class AbstractListener {
      * @return Locale
      */
     protected function getDefaultLocale() {
-
+        //check to see if it's in the query string - a menu request perhaps?
+        $queryLocale = $this->httpRequest->getQueryParameter('locale');
+        if(!is_null($queryLocale)) {
+            return array('locale' =>$queryLocale);
+        }
+        
         $manager = new UserPreferencesManager($this->httpRequest);
         $userPreferences = $manager->getPreferences();
 
@@ -149,6 +154,7 @@ class AbstractListener {
         return $config['default_locale'];
     }
 
+    
     /**
      * accessor
      * 

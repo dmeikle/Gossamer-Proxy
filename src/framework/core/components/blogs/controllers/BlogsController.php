@@ -56,7 +56,7 @@ class BlogsController extends AbstractController{
     }
     
     public function view($id) {
-        
+      
         $result = $this->model->get($id);
        
         if(array_key_exists('Blog', $result)) {

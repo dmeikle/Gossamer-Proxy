@@ -132,7 +132,7 @@
 <body>
    
 <?php
-echo $this->getContent('cssmenu_ceilingbar', array());
+echo $this->getMenu('cssmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
 ?>
 
     

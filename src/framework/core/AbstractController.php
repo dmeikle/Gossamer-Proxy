@@ -31,6 +31,8 @@ use core\eventlisteners\Event;
  */
 class AbstractController {
 
+    use \libraries\utils\traits\GetLoggedInUser;
+    
     /**
      * Property: view
      * The view to be implemented within the MVC framework
@@ -291,25 +293,5 @@ class AbstractController {
         return $datasource;
     }
 
-    /**
-     * 
-     * @return SecurityToken
-     */
-    protected function getSecurityToken() {
-        $serializedToken = getSession('_security_secured_area');
-        $token = unserialize($serializedToken);
-
-        return $token;
-    }
-
-    /**
-     * 
-     * @return int
-     */
-    protected function getLoggedInUser() {
-        $token = $this->getSecurityToken();
-
-        return $token->getClient()->getId();
-    }
 
 }

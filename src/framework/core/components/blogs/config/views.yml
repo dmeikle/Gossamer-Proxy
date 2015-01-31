@@ -48,3 +48,9 @@ website_blogs_feed:
     sections: 
         -
             "section1": "src/framework/core/components/blogs/views/feed.php"     
+            
+website_blogs_minimenu:   
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/framework/core/components/blogs/views/adminminimenu.php"          

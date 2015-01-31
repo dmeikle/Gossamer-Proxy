@@ -13,7 +13,10 @@ application:
 
 blog:
     caching: false
-    
+    editors:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+        
 cms:
     caching: false
 

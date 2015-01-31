@@ -65,7 +65,7 @@ class AbstractModel {
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
      */
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse = null, Logger $logger) {
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         $this->logger = $logger;
@@ -427,8 +427,11 @@ class AbstractModel {
      */
     public function getLoggedInStaffId() {
         $token = $this->getSecurityToken();
-
-        return $token->getClient()->getId();
+        
+        if(is_object($token) && $token->getClient() instanceof components\security\core\Client) {
+            return $token->getClient()->getId();
+        }
+        return 0;
     }
 
     /**
