@@ -11,7 +11,6 @@
 namespace components\cssmenu\controllers;
 
 use core\AbstractController;
-use core\components\locales\models\LocaleModel;
 
 /**
  * CssMenuController
@@ -26,9 +25,7 @@ class CssMenuController extends AbstractController {
      * another one...
      */
     public function view() {
-        $locale = new LocaleModel($this->httpRequest, null, $this->logger);
-        $locale->change($this->httpRequest->getQueryParameter('locale'));
-        
+                
         $contact = current($this->httpRequest->getAttribute('Contact'));
         
         if(intval($this->httpRequest->getQueryParameter('userid')) > 0) {
