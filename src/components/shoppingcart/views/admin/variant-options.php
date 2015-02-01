@@ -11,6 +11,7 @@
           <th>Action</th>
         </tr>
   <?php
+  
 foreach($VariantOptions as $option) { ?>
     <tr>
         <td><?php echo $option['variant'];?></td>

@@ -20,9 +20,10 @@
     </tr>
             <?php
 
-
-            foreach($Categorys as $category) {
-
+            foreach($CartCategorys as $category) {
+                if(count($category) == 0) {
+                    continue;
+                }
                 ?>
                 <tr>
                     <td>

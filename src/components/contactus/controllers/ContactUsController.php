@@ -53,10 +53,16 @@ class ContactUsController extends AbstractController
         
         //first let's format the contactUsTypes list into readable format
         foreach($contactUsTypes as $type) {
+            if(count($type) ==0) {
+                continue;
+            }
             $types[$type['id']] = $type['type'];
         }
         $retval = array();
         foreach($result['ContactUss'] as $row) {
+            if(count($row) == 0) {
+                continue;
+            }
             if(!array_key_exists($row['ContactUsTypes_id'], $types)) {
                 $row['contactUsType'] = 'unspecified';                
             } else {

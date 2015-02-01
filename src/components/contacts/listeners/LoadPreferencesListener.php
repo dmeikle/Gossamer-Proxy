@@ -15,7 +15,6 @@ use core\eventlisteners\AbstractListener;
 use core\eventlisteners\Event;
 use components\contacts\models\ContactPreferenceModel;
 use libraries\utils\preferences\UserPreferencesManager;
-use components\contacts\models\ContactPreferenceModel;
 
 /**
  * Description of LoadPreferencesListener

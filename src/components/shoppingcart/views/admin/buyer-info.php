@@ -5,7 +5,7 @@
 
 <?php
 
-$client = $purchase['Client'];
+$client = $purchase['CartClient'];
 
 ?>
 <input style="visibility: hidden" type=hidden" id="clientId" value="<?php echo $client['id'];?>" />

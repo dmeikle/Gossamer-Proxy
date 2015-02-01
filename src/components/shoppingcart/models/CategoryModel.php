@@ -42,7 +42,7 @@ class CategoryModel extends  AbstractModel
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         $data['categories'] = $categories;
-        $data['thumbnails'] = $this->getFileList(__SITE_PATH . "/images/categories/");
+        $data['thumbnails'] = $this->getFileList(__SITE_PATH . "/web/images/categories/");
         return ($data);
     }
     

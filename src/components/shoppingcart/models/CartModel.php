@@ -143,7 +143,7 @@ class CartModel extends AbstractModel{
         );
        
         $result = $this->dataSource->query(self::METHOD_GET, new ProductModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_GET, $params);
-        $dbProduct = current($result['Product']);
+        $dbProduct = current($result['CartProduct']);
        
         $dbProduct['customText'] = (array_key_exists('customText', $product))? $product['customText'] : '';
         $dbProduct['quantity'] = $product['quantity'];
@@ -164,7 +164,7 @@ class CartModel extends AbstractModel{
         return $basket;
     }
     
-    public function listall($offset=0, $limit=20) {
+    public function listall($offset=0, $limit=20, $customVerb = null) {
         $basket = $this->getBasket();          
         
         $defaultLocale =  $this->getDefaultLocale();

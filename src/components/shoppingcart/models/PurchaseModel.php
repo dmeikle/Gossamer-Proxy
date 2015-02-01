@@ -34,11 +34,11 @@ class PurchaseModel extends AbstractModel{
     
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
        
-        $purchase = current($data['Purchase']);
+        $purchase = current($data['CartPurchase']);
        
         $purchase['total'] = $purchase['tax1'] + $purchase['subtotal'];
-        $purchaseItems = $purchase['PurchaseItem'];
-        unset($purchase['PurchaseItem']);
+        $purchaseItems = $purchase['CartPurchaseItem'];
+        unset($purchase['CartPurchaseItem']);
         
         $basket = new Basket();        
         $basket->populate($purchaseItems);
@@ -57,14 +57,14 @@ class PurchaseModel extends AbstractModel{
     
     public function listall($offset = 0, $rows = 20, $customVerb = null) {
         $params = array(
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'Purchases.id', 'directive::DIRECTION' => 'desc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'CartPurchases.id', 'directive::DIRECTION' => 'desc'
         );
-        
+      
        // $params['locale'] = $this->getDefaultLocale();
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
      
        
-        $data['pagination'] = $this->getPagination($data['PurchasesCount'], $offset, $rows);
+        $data['pagination'] = $this->getPagination($data['CartPurchasesCount'], $offset, $rows);
         return ($data);
     }
      

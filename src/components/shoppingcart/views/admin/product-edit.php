@@ -9,8 +9,7 @@ components/shoppingcart/includes/js/product-edit-init.js
 <!--- javascript end --->
 
 <?php
-$product = current($Product);
-
+$product = current($CartProduct);
 ?>
 
 <form method="post" class="form-horizontal" role="form" accept-charset="utf-8">
@@ -20,7 +19,7 @@ $product = current($Product);
 
             <ul class="nav nav-tabs" role="tablist">
                 <?php
-                foreach($Locales as $locale) {
+                foreach($locales as $locale) {
                     
                     if($locale['isDefault']) {
                         echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
@@ -34,7 +33,7 @@ $product = current($Product);
             <!-- Tab panes -->
             <div class="tab-content">
                 <?php
-                foreach($Locales as $locale) {
+                foreach($locales as $locale) {
                    // if($locale['isPrimary']) {
                     ?>
 
@@ -113,7 +112,7 @@ $product = current($Product);
         <td>thumbnail</td>
         <td><select class="form-control" name="product[thumbnail]">
                 <?php
-                $baseFolder = __SITE_PATH . "/images/cart/thumbnails/";
+                $baseFolder = __SITE_PATH . "/web/images/cart/thumbnails/";
 
                 $dirlist=getFileList($baseFolder, true);
                 foreach($dirlist as $file){
@@ -131,7 +130,7 @@ $product = current($Product);
         <td>picture</td>
         <td><select class="form-control" name="product[picture]">
                 <?php
-                $baseFolder = __SITE_PATH . "/images/cart/";
+                $baseFolder = __SITE_PATH . "/web/images/cart/";
                
                 $dirlist=getFileList($baseFolder, true);
                 foreach($dirlist as $file){

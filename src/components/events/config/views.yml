@@ -185,7 +185,7 @@ admin_events_notificationsettings_edit:
 #------------------ portal section -----------------------
 #---------------------------------------------------------
 portal_events_list:
-    template: list-fullscreen.php
+    template: portal-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -194,7 +194,7 @@ portal_events_list:
             "section4": "src/themes/default/templates/sections/footer.php"
     
 portal_events_view:  
-    template: list-fullscreen.php
+    template: portal-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -203,7 +203,7 @@ portal_events_view:
             "section4": "src/themes/default/templates/sections/footer.php"  
             
 portal_events_not_found:     
-    template: list-fullscreen.php
+    template: portal-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -212,7 +212,7 @@ portal_events_not_found:
             "section4": "src/themes/default/templates/sections/footer.php"        
             
 portal_events_rsvp_complete:  
-    template: list-fullscreen.php
+    template: portal-list-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"

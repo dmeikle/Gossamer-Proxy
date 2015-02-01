@@ -30,7 +30,7 @@ class ContactsController extends AbstractController
     public function edit($id) {
         $result = $this->model->edit($id);
         
-       
+      
          if(is_array($result) && array_key_exists('Contact', $result)) {
             $contact = $result['Contact'];  
             $result['form'] = $this->drawForm($this->model, $contact);

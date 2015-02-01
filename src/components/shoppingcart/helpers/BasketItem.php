@@ -31,7 +31,7 @@ class BasketItem {
     private $productVariants = null;
     
     public function __construct(array $params) {
-       
+      
         $this->productId = $params['id'];
         $this->quantity = $params['quantity'];
         $this->weight = $params['weight'];
@@ -53,21 +53,22 @@ class BasketItem {
                 $this->title[$locale] = $params['locales'][$locale]['title'];
             }
         }
-        if(array_key_exists('ProductsI18n', $params)) { //it's an admin load
-            foreach($params['ProductsI18n'] as $item) {
+      
+        if(array_key_exists('CartProductsI18n', $params)) { //it's an admin load
+            foreach($params['CartProductsI18n'] as $item) {
                 $this->title[$item['locale']] = $item['title'];
             }
         }
-        if(array_key_exists('ProductVariant', $params)) {
-            $this->productVariants = $params['ProductVariant'];
+        if(array_key_exists('CartProductVariant', $params)) {
+            $this->productVariants = $params['CartProductVariant'];
         }
        
-        if(array_key_exists('PurchaseItemsVariants', $params)) {
-            $this->populateVariants($params['PurchaseItemsVariants']);
+        if(array_key_exists('CartPurchaseItemsVariants', $params)) {
+            $this->populateVariants($params['CartPurchaseItemsVariants']);
         }
         
         $this->checkVolumeDiscounts($params);
-        
+       
     }
     
     /*
@@ -79,7 +80,7 @@ class BasketItem {
           
              $this->variants[] = array('color' => array(
                 'surcharge' => $variant['surcharge'],
-                 'id' => $variant['ProductVariants_id']
+                 'id' => $variant['CartProductVariants_id']
              ));
         }  
     }
@@ -119,7 +120,7 @@ class BasketItem {
        
         foreach($values as $key => $item) {
             
-            if($item == $variant['VariantItems_id']) {
+            if($item == $variant['CartVariantItems_id']) {
                 return array($key => array('surcharge' => $variant['surcharge'], 'id' => $item));
             }
         }
@@ -138,12 +139,16 @@ class BasketItem {
        
     }
     public function getTitle($locale) { 
+        if(is_null($this->title)) {
+            return '';
+        }
         if(is_array($locale)) {
             if(array_key_exists($locale['locale'], $this->title)) {
                 return $this->title[$locale['locale']];
             }
             return $this->title[$this->defaultLocale]; 
         }
+        
         //it's a string passed in
        return $this->title[$locale]; 
     }

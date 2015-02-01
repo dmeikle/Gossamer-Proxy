@@ -11,7 +11,7 @@
 <!--- css end --->
 
 <?php
-$product = current($Product);
+$product = current($CartProduct);
 
 $locale = $this->getDefaultLocale();
 ?>
@@ -65,8 +65,9 @@ $locale = $this->getDefaultLocale();
         </div>
         
             <?php
-            if(is_array($ProductVariantList)) {
-                foreach($ProductVariantList as $key => $variant) {?>
+           
+            if(is_array($CartProductVariantList)) {
+                foreach($CartProductVariantList as $key => $variant) {?>
                 <div><?php echo $key;?>
                 <select class="form-control" name="product[variants][<?php echo $key;?>]">
                     <?php foreach($variant as $itemKey => $item) {?>
@@ -121,6 +122,6 @@ $locale = $this->getDefaultLocale();
     </div>
    
     <?php
-    pr($product);
+  //  pr($product);
     ?>
 </div>

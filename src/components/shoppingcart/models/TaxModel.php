@@ -21,7 +21,7 @@ class TaxModel extends AbstractModel
     }
     
     
-    public function listall($offset = 0, $rows = 20) {
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
         
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
@@ -30,8 +30,8 @@ class TaxModel extends AbstractModel
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-     
-        $taxRates = ($data['TaxRates']);
+     //pr($data);
+        $taxRates = ($data['CartTaxRates']);
        
         $rates = array();
         foreach($taxRates as $taxRate) {

@@ -1,7 +1,7 @@
 <!--- css start --->
 @components/shoppingcart/includes/css/view-cart.css
 <!--- css end --->
-
+<div style="clear:both"></div>
 <?php
 
 $basket = $this->data['basket'];

@@ -25,6 +25,7 @@ class SaveContactAuthorizationsListener extends AbstractListener{
     public function on_save_success(Event $event) {
         $params = $event->getParams();
         $datasource = $this->getDatasource('components\contacts\models\ContactAuthorizationModel');
+        pr($params);
         $contactId = $params['userAuthorizations']['id'];
         
         $result = $datasource->query(sprintf("update ContactAuthorizations set roles = '" . $this->buildArray($params['userAuthorizations']) .

@@ -90,7 +90,7 @@ class VariantGroupModel extends AbstractModel
        
         $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     
-        $data = array('ProductVariants' => ($result['CartVariantGroups']));
+        $data = array('CartProductVariants' => ($result['CartVariantGroups']));
         $data['ProductVariantOptions'] = $this->getAllVariantOptions();
         
         if(array_key_exists(ucfirst($this->tablename) . 'Count', $result)) {
@@ -105,8 +105,8 @@ class VariantGroupModel extends AbstractModel
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
         $result = $this->dataSource->query(self::METHOD_GET, $variantOptionModel, self::VERB_LIST, $params);
- 
-        return array(current($result['VariantItems'][0]));
+
+        return array(current($result['CartVariantItems'][0]));
     }
     
     public function get($itemId) {

@@ -13,6 +13,9 @@ namespace components\staff\listeners;
 
 use core\eventlisteners\AbstractListener;
 use components\staff\models\StaffModel;
+use core\eventlisteners\Event;
+
+
 /**
  * Description of PasswordMismatchListener
  *
@@ -22,8 +25,8 @@ class PasswordMismatchListener extends AbstractListener{
     
     const MAX_LOGIN_FAILURES = 6;
     
-    public function on_login_password_mismatch(array $params) {
-       
+    public function on_login_password_mismatch(Event $event) {
+        $params = $event->getParams();
         $client = $params['client'];
         $model = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
         $datasource = $this->getDatasource($model);

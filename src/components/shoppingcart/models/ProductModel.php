@@ -18,7 +18,7 @@ class ProductModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Product';
+        $this->entity = 'CartProduct';
         $this->tablename = 'cartproducts';
     }
     
@@ -64,9 +64,8 @@ class ProductModel extends AbstractModel
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
         $productCategories = array();
         
-        
-        if(!is_null($data['Product'][0]['ProductCategory'])) {
-            $productCategories = array_column($data['Product'][0]['ProductCategory'], 'Categories_id');
+        if(!is_null($data['CartProduct'][0]['ProductCategory'])) {
+            $productCategories = array_column($data['CartProduct'][0]['ProductCategory'], 'Categories_id');
         }
         $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
