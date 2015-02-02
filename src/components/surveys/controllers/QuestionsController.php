@@ -52,7 +52,7 @@ class QuestionsController extends AbstractController{
         $results = $this->model->listall($offset, $limit);
         
         $questionTypeSerializer = new QuestionTypeSerializer();
-        $results['QuestionTypes'] = $questionTypeSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('QuestionTypes'), 'type', true);
+        $results['QuestionTypesList'] = $questionTypeSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('QuestionTypes'), 'type', true);
         
         if(is_array($results) && array_key_exists($this->model->getEntity() .'sCount', $results)) {
             $pagination = new Pagination($this->logger);        

@@ -29,7 +29,7 @@ $(document).ready(function() {
     ?>
     <tr>
         <td><?php echo $question['question'];?></td>
-        <td><?php echo $QuestionTypes[$question['QuestionTypes_id']];?></td>
+        <td><?php echo $QuestionTypesList[$question['QuestionTypes_id']];?></td>
         <td><?php echo (($question['isActive'] == '1') ? '<span class="glyphicon glyphicon-ok"></span>' : ''); ?></td>    
         <td><button class="btn btn-primary edit" data-typeid="<?php echo $question['QuestionTypes_id'];?>" data-id="<?php echo $question['id'];?>">Edit</button> 
         <button class="btn btn-primary remove" data-id="<?php echo $question['id'];?>">Delete</button>

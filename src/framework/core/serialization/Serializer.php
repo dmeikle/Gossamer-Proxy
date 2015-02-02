@@ -31,6 +31,7 @@ class Serializer {
      * @return array
      */
     public function extractRawChildNodeData(array $list, $key, $idKey = false) {
+     
         $retval = array();
         foreach ($list as $node) {
             if ($idKey) {

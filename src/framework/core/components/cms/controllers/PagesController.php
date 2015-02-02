@@ -98,7 +98,7 @@ class PagesController extends AbstractController {
         }
         
         $sectionSerializer = new SectionsSerializer();
-        $result['sectionsList'] = $sectionSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('CmsSections'), 'name', true);
+        $result['sectionsList'] = $sectionSerializer->extractRawChildNodeData($this->httpRequest->getAttribute('CmsSections'), 'sectionName', true);
         unset($sectionSerializer);
      
         

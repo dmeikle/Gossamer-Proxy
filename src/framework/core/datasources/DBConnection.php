@@ -30,7 +30,7 @@ class DBConnection implements AdapterInterface {
     protected $host = 'localhost';
     protected $user = 'phoenixdave';
     protected $pass = '0s1r15';
-    protected $db = 'shoppingcart';
+    protected $db = 'phoenix_repo';
     private $lastQuery = '';
     protected $logger = null;
     protected $stack;
