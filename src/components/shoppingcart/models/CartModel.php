@@ -7,14 +7,27 @@ use components\shoppingcart\helpers\BasketItem;
 use components\shoppingcart\helpers\Basket;
 use components\shoppingcart\exceptions\BasketItemNotFoundException;
 use components\shoppingcart\models\ClientModel;
-use components\shoppingcart\models\ClientShippingModel;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+use core\http\HTTPRequest;
+use core\http\HTTPResponse;
+use Monolog\Logger;
 
 /**
  * Description of CartModel
  *
  * @author Dave Meikle
  */
-class CartModel extends AbstractModel{
+class CartModel extends AbstractModel implements FormBuilderInterface{
+    
+    
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
+        parent::__construct($httpRequest, $httpResponse, $logger);
+        
+        $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
+        
+        $this->entity = 'Client';
+        $this->tablename = 'carts';        
+    }
     
     public function add() {
         $params = $this->httpRequest->getPost();
@@ -82,6 +95,9 @@ class CartModel extends AbstractModel{
         $model->setDataSource($this->dataSource);
         
         $result = $model->getTax($stateId, $subtotal);
+        if(!array_key_exists('taxRate', $result)) {
+            return $subtotal;
+        }
         
         return $result['taxRate'] * $subtotal;
     }
@@ -96,7 +112,7 @@ class CartModel extends AbstractModel{
         $params['purchase']['subtotal'] = $this->getBasket()->getSubtotal();
         
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
-       
+      
         if(is_null($result)) {
             die('there was an error saving');
             //there  was an error - handle it here. I suggest making render() receive an optional param to load a different view 
@@ -131,7 +147,9 @@ class CartModel extends AbstractModel{
         $this->setBasket($basket);        
         
         $defaultLocale =  $this->getDefaultLocale();
-        return (array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart'));
+        $stateList = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('stateList'), array());
+        
+        return (array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart', 'stateList' => $stateList));
     }
     
     private function getProduct(array $rawProduct) {
@@ -179,4 +197,9 @@ class CartModel extends AbstractModel{
     private function setBasket(Basket $basket) {
         $_SESSION['BASKET'] = $basket;
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
 }

@@ -44,10 +44,10 @@ class ProductModel extends AbstractModel
         $params = array('id' => $itemId );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        
+        echo "dat";
+       
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', new Event('before_render_start', $data));
-        
-        
+      
         return ($data);
     }
     

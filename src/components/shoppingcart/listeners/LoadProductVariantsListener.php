@@ -14,6 +14,10 @@ class LoadProductVariantsListener extends AbstractListener
  
    public function on_before_render_start(Event $event) {
         $params = $event->getParams();
+        if(is_null($params)) {
+            //didn't find it
+            return;
+        }
        
         $product = current($params['CartProduct']);
         $locale = $this->getDefaultLocale();
@@ -32,6 +36,7 @@ class LoadProductVariantsListener extends AbstractListener
       
         $retval = array();
         foreach($list as $variant) {
+            
             $retval[$variant['groupName']][$variant['VariantItems_id']] = array('variant' =>$variant['variant'], 'surcharge' => $variant['surcharge']);
             
         }

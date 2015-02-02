@@ -1,6 +1,6 @@
 list page
 <?php
-foreach($Categorys as $category) {
+foreach($CartCategorys as $category) {
     ?>
    <div class="category">
        <?php 

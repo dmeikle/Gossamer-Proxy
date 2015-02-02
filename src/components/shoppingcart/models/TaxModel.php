@@ -80,8 +80,10 @@ class TaxModel extends AbstractModel
         $params = array('States_id' => $stateId, 'subtotal' => $subtotal);
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        
-        return current($data['TaxRate']);
+        if(!is_array($data)) {
+            return array();
+        }
+        return current($data['CartTaxRate']);
         
     }
 }

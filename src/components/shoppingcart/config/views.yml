@@ -149,7 +149,7 @@ cart_checkout_1:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/shoppingcart/views/buyer-info.php"
+            "section3": "src/components/shoppingcart/views/buyer-info.php"
             "section5": "src/themes/default/templates/sections/footer.php"
             
 cart_checkout_2:
@@ -157,10 +157,10 @@ cart_checkout_2:
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/shoppingcart/views/buyer-verify.php"
-            "section3": "src/components/shoppingcart/views/buyer-verify-contents.php"
-            "section4": "src/components/shoppingcart/views/buyer-confirm-nav.php"
-            "section5": "src/themes/default/templates/sections/footer.php"            
+            "section3": "src/components/shoppingcart/views/buyer-verify.php"
+            "section4": "src/components/shoppingcart/views/buyer-verify-contents.php"
+            "section5": "src/components/shoppingcart/views/buyer-confirm-nav.php"
+            "section6": "src/themes/default/templates/sections/footer.php"            
             
 cart_checkout_3:
     template: checkout.php

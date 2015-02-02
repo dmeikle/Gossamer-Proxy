@@ -300,6 +300,7 @@ class RestClient implements \Iterator, \ArrayAccess {
        
         if(empty($this->decoded_response)){
             $format = $this->get_response_format();
+           
             if(!array_key_exists($format, $this->options['decoders']))
                 throw new RestClientException("'${format}' is not a supported ".
                     "format, register a decoder to handle this response.");
@@ -307,7 +308,7 @@ class RestClient implements \Iterator, \ArrayAccess {
             $this->decoded_response = call_user_func(
                 $this->options['decoders'][$format], $this->response);
         }
-
+//pr($this->response);
       
         $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
        
@@ -317,7 +318,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         unset($uh);
         $result = json_decode(json_encode($this->decoded_response), true);
        
-        
+       
         return $result;
     }
     

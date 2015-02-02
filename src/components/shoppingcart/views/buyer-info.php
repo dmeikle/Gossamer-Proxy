@@ -2,51 +2,51 @@
 @components/shoppingcart/includes/css/checkout-buyer.css
 <!--- css end --->
 
-<div id="checkout"> 
-<h1>Billing/Shipping Information</h1> 
+<form method="post" action="<gcms:uri='cart_checkout_2'/>">
+    
  
 <form  class="form-horizontal" role="form" method="post" action="<gcms:uri='cart_checkout_2'/>"> 
 
-	<div class="form-group"> 
 	<h3>Billing Information</h3>
  
- 
-	<table border="0" cellpadding="3" width="325"> 
-      <tbody><tr> 
+
+	<table class="table"> 
+      <tbody>
+          <tr> 
         <td align="right" width="125"><label>First Name:</label></td> 
-        <td><input type="text" name="client[firstname]" value=""> 
+        <td><?php echo $form['firstname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Last Name:</label></td> 
-        <td><input type="text" name="client[lastname]" value=""> 
+        <td><?php echo $form['lastname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Email:</label></td> 
-        <td><input type="text" name="client[email]" value=""> 
+        <td><?php echo $form['email']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Company:</label></td> 
-        <td><input type="text" name="client[company]" value=""> 
+        <td><?php echo $form['company']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Phone:</label></td> 
-        <td><input type="text" name="client[telephone]" value=""> 
+        <td><?php echo $form['telephone']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right" valign="top"><label>Street Address:</label></td> 
-        <td><input type="text" name="client[address1]" value=""> 
+        <td><?php echo $form['address1']; ?>
 <br> 
-	    <input type="text" name="client[address2]" value=""> 
+	    <?php echo $form['address2']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>City:</label></td> 
-        <td><input type="text" name="client[city]" value=""> 
+        <td><?php echo $form['city']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -123,7 +123,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>ZIP/Postal Code:</label></td> 
-        <td><input type="text" name="client[zip]" value=""> 
+        <td><?php echo $form['zip']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -136,49 +136,47 @@
         </select></td> 
       </tr> 
     </tbody></table> 
-  </div> 
-
-  <div id="shippinginfo"> 
+	
+	
 	<h3>Shipping Information</h3>(if different)
 <input type="hidden" name="client[shipto]" value="different"> 
-  <div class="infobox"> 
- 
-	<table border="0" cellpadding="3" width="325"> 
+  
+	<table class="table"> 
       <tbody><tr> 
         <td align="right" width="125"><label>First Name:</label></td> 
-        <td><input type="text" name="client[shipFirstname]" value=""> 
+        <td><?php echo $form['shipFirstname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Last Name:</label></td> 
-        <td><input type="text" name="client[shipLastname]" value=""> 
+        <td><?php echo $form['shipLastname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Email:</label></td> 
-        <td><input type="text" name="client[shipEmail]" value=""> 
+        <td><?php echo $form['shipEmail']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Company:</label></td> 
-        <td><input type="text" name="client[shipCompany]" value=""> 
+        <td><?php echo $form['shipCompany']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Phone:</label></td> 
-        <td><input type="text" name="client[shipTelephone]" value=""> 
+        <td><?php echo $form['shipTelephone']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right" valign="top"><label>Street Address:</label></td> 
-        <td><input type="text" name="client[shipAddress1]" value=""> 
+        <td><?php echo $form['shipAddress1']; ?>
 <br> 
-	    <input type="text" name="client[shipAddress2]" value=""> 
+	    <?php echo $form['shipAddress2']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>City:</label></td> 
-        <td><input type="text" name="client[shipCity]" value=""> 
+        <td><?php echo $form['shipCity']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -255,7 +253,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>ZIP/Postal Code:</label></td> 
-        <td><input type="text" name="client[shipZip]" value=""> 
+        <td><?php echo $form['shipZip']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -268,15 +266,15 @@
         </select></td> 
       </tr> 
     </tbody></table> 
-  </div> 
-  </div> 
-  <div style=" width:800px; clear:both"> 
-  	<div style=" float:left; width:300px;"> 
-    <h2 style="clear:both;">Special Instructions</h2> 
+	
+<table class="table">
+	<tr>
+	<td>
+	
+    <h3>Special Instructions</h3> 
 	<textarea name="purchase[instructions]" cols="30" rows="5" id="instructions"></textarea> 
-	</div> 
-	<div style=" float:left;"> 
-	<h2 style="clear:both;">Additional Information</h2> 
+	
+	<h3>Additional Information</h3> 
 	Date of Event:
 	<input type="text" name="purchase[eventDate]"><br> 
 	Date Order Required By:
@@ -298,12 +296,14 @@
 		<option value="Canadian Bride">Canadian Bride</option> 
 		<option value="Other">Other</option> 
 	</select> 
-	</div><br><br><br> 
-	</div> 
-	<h2 style="clear:both;">Shipping Method</h2> 
-	<div class="infoBox"> 
-	<table border="0" cellpadding="3" width="350"> 
-      <tbody><tr> 
+	</td>
+	</tr>
+	</table>
+	<h3>Shipping Method</h3> 
+	
+        <table class="table"> 
+      <tbody>
+	  <tr> 
         <td align="right" width="150"><label>Shipping Type:</label></td> 
 		<td align="left"> 
 	<select name="purchase[deliveryMethod]" id="deliveryMethod"> 
@@ -312,52 +312,33 @@
         <option value="1">Canada Ground</option>
         <option value="2">U.S.A.</option>
         <option value="4">Express Canada</option>
-      </select>
-
-       
-	  </td></tr></tbody></table> 
-	  <div style="width:475px; height:100px; padding-left:10px; border:1px #000000 solid; border-bottom:0px;"> 
-	  	<div style="width:100px; float:left; margin-right:10px;"> 
+      </select>       
+	  </td>
+	  </tr>
+	  </tbody>
+	  </table> 
+	  
+	  <img src="/images/usps.jpg" width="100px" id="id06370483851060271"> 
+	  <div> 
+	  	<div> 
 	  	<img src="/images/usps.jpg" width="100px" id="id06370483851060271"> 
 	  	</div><br> 
 	  	Expedited Ground to USA - approx. 7-10 business days<br> 
 	  	Express Air to USA - approx. 3-5 business days
 	  </div> 
-	  <div style="width:475px; height:70px; padding-left:10px; border:1px #000000 solid; border-top:0px; clear:both;"> 
-	  <div style="width:100px; padding-top:30px; margin-right:10px; float:left;"> 
-	  <img src="/images/canadapost.jpg" width="100px" id="id9282579540740699"> 
-	  </div><br> 
-	  Expedited Ground to Canada - approx. 4-7 business days<br> 
-	  Express Air to Canada - approx. 1-3 business days
-	  </div> 
- 
-  </div> 
-  <!--
-  <h2 style="clear:both;">Payment Type</h2>
-	 <div style="width:475px; padding-left:10px; border:1px #000000 solid;margin-bottom:10px" id="paymentType">
-              
-            <input name="paymentType" id="payment" type="radio" value="creditcard" checked="checked" />
-            Credit Card	 &nbsp;&nbsp;&nbsp; <br />
-            <input name="paymentType" id="payment" type="radio" value="paypal" />
-            Paypal&nbsp;&nbsp;&nbsp; <span class="style2">*requires manually sending funds from your account </span><br />
-          <input name="paymentType" id="payment" type="radio" value="cod" /> 
-          C.O.D. <span class="style2">*Canadian residents only. Please include telephone number </span><br />
-            <input name="paymentType" id="payment" type="radio" value="westernunion" />
-          Western Union <span class="style4">** see below </span><br />
-          <input name="paymentType" id="payment" type="radio" value="cheque" /> 
-          Cheque <span class="style4">** see below</span> <br />
-          <input name="paymentType" id="payment" type="radio" value="money order" /> 
-          Money Order <span class="style4">** see below</span><br />
-		  <span class="style4">** Prepayment required before shipping. Upon receipt of payment, order will be processed. No products are shipped without prior payment by purchaser. </span>
-       
-    </div>
-	--> 
-	<input name="paymentType" id="payment" type="hidden" value="creditcard"> 
-	<h2 style="clear:both;">Payment Information</h2> 
-	
-  <div class="infoBox"> 
-      <script type="text/javascript" language="JavaScript"><!-- expandcontent('creditCard'); --></script> 
-    <table border="0" cellpadding="3" width="350"> 
+            <div> 
+                <div> 
+                <img src="/images/canadapost.jpg" width="100px" id="id9282579540740699"> 
+            </div><br> 
+                Expedited Ground to Canada - approx. 4-7 business days<br> 
+                Express Air to Canada - approx. 1-3 business days
+            </div> 
+			
+          <div style="clear:both"></div>
+<input name="paymentType" id="payment" type="hidden" value="creditcard"> 
+	<h3>Payment Information</h3> 			
+	 <script type="text/javascript" language="JavaScript"><!-- expandcontent('creditCard'); --></script> 
+    <table class="table"> 
       <tbody><tr> 
         <td align="right" width="150">Name on Credit Card: </td> 
         <td><input type="text" name="nameOnCard" maxlength="50" value=""></td> 
@@ -403,13 +384,17 @@
       
       </tr>
     </tbody></table> 
-  </div> 
-  <div style="padding:10px 0px 10px 150px"> 
+	
+	<div style="padding:10px 0px 10px 150px"> 
 	
 	<input type="submit" name="Submit" value="Cancel">
             <input type="reset" name="Submit2" value="Reset">
             <input name="Submit" type="submit" id="Submit" value="Submit">
   </div> 
 		<input type="hidden" class="hide" name="action" value="update_member_info"> 
+	
+			
+	  
+	
 </form> 
-</div>
+</form>

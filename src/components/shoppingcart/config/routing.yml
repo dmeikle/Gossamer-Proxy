@@ -444,7 +444,8 @@ cart_add_basket:
 
 cart_remove_basket:
     pattern: cart/remove
-#    defaults: { _controller: UserComponent:User:2nd }
+    listeners:
+        - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\CartController

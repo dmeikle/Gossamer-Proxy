@@ -10,7 +10,9 @@ class ProductsController extends AbstractController
     public function listAllByCategoryId($categoryId = 0, $offset=0, $limit = 20) {
 
         $result = $this->model->listAllByCategoryId($categoryId, $offset, $limit);
-        
+        if(!array_key_exists('CartProducts', $result)) {
+            $result['CartProducts'] = array();
+        }
         $this->render($result);
     }
 

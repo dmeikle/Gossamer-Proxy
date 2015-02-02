@@ -21,7 +21,7 @@ class LoadCategoryIdListener extends AbstractListener
        $datasource = $this->getDatasource('components\shoppingcart\models\CategoryModel');
        
        $result = $datasource->query('get', $model, 'get', $category);
-       $category = current($result['Category']);
+       $category = current($result['CartCategory']);
 
         $this->httpRequest->setAttribute('category', $category);
         unset($model);

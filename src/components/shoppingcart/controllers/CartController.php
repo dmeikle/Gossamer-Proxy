@@ -3,6 +3,8 @@
 namespace components\shoppingcart\controllers;
 
 use core\AbstractController;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+use Gossamer\CMS\Forms\FormBuilder;
 
 class CartController extends AbstractController
 {
@@ -11,7 +13,7 @@ class CartController extends AbstractController
        
         $result = $this->model->add();
         
-        $this->render($result);
+        $this->render($result);        
     }
 
     public function remove() {
@@ -23,7 +25,7 @@ class CartController extends AbstractController
     public function checkout() {
         $result = $this->model->checkout();
         
-        $this->render($result);
+       $this->render(array('form' => $this->drawForm($this->model, $result))); 
     }
 
     public function verify() {
@@ -42,5 +44,18 @@ class CartController extends AbstractController
         $result = $this->model->savePurchase();
         
         $this->render($result);
+    }
+    
+    protected function drawForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $clientBuilder = new \components\shoppingcart\form\ClientBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+        
+        $options = array(
+            'companies' => array(),
+            'contactTypes' => array()
+        );
+        
+        return $clientBuilder->buildForm($builder, $values, $options, $results);        
     }
 }
