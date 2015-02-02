@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 
@@ -25,8 +16,8 @@ class VariantOptionModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'VariantItem';
-        $this->tablename = 'variantItems';
+        $this->entity = 'CartVariantItem';
+        $this->tablename = 'cartVariantItems';
     }
     
     public function getOptionsByVariantId($id) {
@@ -39,10 +30,10 @@ class VariantOptionModel extends AbstractModel
        
         $result = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
        
-        $data = array_key_exists('VariantItems', $result)? array('VariantOptions' => current($result['VariantItems'])) : array('VariantOptions');
+        $data = array_key_exists('CartVariantItems', $result)? array('VariantOptions' => ($result['CartVariantItems'])) : array('VariantOptions');
         $data['Locales'] = $this->httpRequest->getAttribute('locales');
     
-        $this->render($data);
+        return ($data);
     }
     
     public function listAllOptions() {
@@ -50,12 +41,12 @@ class VariantOptionModel extends AbstractModel
         $params = array('locale' => $defaultLocale['locale']);
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
-    
-    public function listall($offset = 0, $limit = 10) {
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        
-        $this->render(array_key_exists('VariantItems', $data)? $data['VariantItems'] : array());
-    }
+//    
+//    public function listall($offset = 0, $limit = 10) {
+//        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+//        
+//        return (array_key_exists('VariantItems', $data)? $data['VariantItems'] : array());
+//    }
     
     public function saveOption($groupId, $optionId) {
         $params = $this->httpRequest->getPost();
@@ -65,7 +56,7 @@ class VariantOptionModel extends AbstractModel
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['variantItem']); 
        
-        $this->render($data);
+        return ($data);
     }
     
     public function editOption($groupId, $optionId) {
@@ -79,11 +70,11 @@ class VariantOptionModel extends AbstractModel
         if(is_null($data)) {
             $data = array();
         }
-        if(!array_key_exists('VariantItem', $data)) {
-            $data['VariantItem'] = array();
+        if(!array_key_exists('CartVariantItem', $data)) {
+            $data['CartVariantItem'] = array();
         }
         $data['Locales'] = $this->httpRequest->getAttribute('locales');
     
-        $this->render($data);
+        return ($data);
     }
 }

@@ -40,7 +40,10 @@
 }
 </style>
 
-<?php foreach($Events as $event) {?>
+<?php foreach($Events as $event) {
+    if(count($event) == 0) {
+        continue;
+    };?>
 
  	
                 

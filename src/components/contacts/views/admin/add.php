@@ -57,7 +57,8 @@ $( document ).ready(function() {
         <tr valign="top">
           <td>Contact Type:</td>
                   <td><select name="Contact[contactType]" id="contact-type" class="form-control">
-                          <?php echo $ContactTypes; ?>
+                          <option value="1">here for now</option>
+                          <?php // echo $ContactTypes; ?>
               </select></td>
         </tr>
         <tr valign="top" id="companyRow">

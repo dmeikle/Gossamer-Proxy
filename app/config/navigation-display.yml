@@ -211,6 +211,16 @@ events:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         - IS_STAFF
+        
+        
+CART: 
+    active: true
+    text_key: 'ADMIN_CART'
+    pattern: '/admin/cart/sales/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR         
+        - IS_EDITOR 
+        - IS_STAFF        
 
 #-------------------CLIENT PORTAL SECTION--------------------
 

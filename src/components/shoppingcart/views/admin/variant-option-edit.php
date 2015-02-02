@@ -2,7 +2,7 @@
 
 <?php
 
-$option = current($VariantItem);
+$option = current($CartVariantItem);
 ?>
 
 

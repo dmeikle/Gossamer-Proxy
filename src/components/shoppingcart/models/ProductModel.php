@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 
@@ -27,8 +18,8 @@ class ProductModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'CartItem';
-        $this->tablename = 'products';
+        $this->entity = 'CartProduct';
+        $this->tablename = 'cartproducts';
     }
     
     
@@ -45,23 +36,19 @@ class ProductModel extends AbstractModel
         $params['locale'] = $defaultLocale['locale'];
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByCategory', $params);
-        $data['pageTitle'] = 'Art Wall Tablets';
-        $data['title'] = 'Home Decor | Glen Meikle';
-        $this->render($data);
+       
+        return ($data);
     }
    
     public function get($itemId) {
         $params = array('id' => $itemId );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        
+        echo "dat";
+       
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', new Event('before_render_start', $data));
-        
-        $data['pageTitle'] = 'Art Wall Tablets';
-        $data['title'] = 'Home Decor | ' . $data['Product'][0]['locales']['en_US']['title'];
-        $data['ProductVariantList'] = $this->httpRequest->getAttribute('ProductVariantList');
-        
-        $this->render($data);
+      
+        return ($data);
     }
     
     
@@ -77,13 +64,12 @@ class ProductModel extends AbstractModel
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
         $productCategories = array();
         
-        if(!is_null($data['Product'][0]['ProductCategory'])) {
-            $productCategories = array_column($data['Product'][0]['ProductCategory'], 'Categories_id');
+        if(!is_null($data['CartProduct'][0]['ProductCategory'])) {
+            $productCategories = array_column($data['CartProduct'][0]['ProductCategory'], 'Categories_id');
         }
-        pr($data);
         $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
-        $this->render($data);
+        return ($data);
     }
     
     public function save($id) {
@@ -104,6 +90,6 @@ class ProductModel extends AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
         
-        $this->render($data);
+        return ($data);
     }
 }

@@ -4,8 +4,10 @@
 
 <?php
 
-foreach($Products as $product) {
-
+foreach($CartProducts as $product) {
+    if(count($product) == 0) {
+        continue;
+    }
     ?>
    <div class="product">
        <div class="product-description">

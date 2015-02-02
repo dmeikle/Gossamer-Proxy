@@ -20,15 +20,16 @@
     </tr>
             <?php
 
-
-            foreach($Categorys as $category) {
-
+            foreach($CartCategorys as $category) {
+                if(count($category) == 0) {
+                    continue;
+                }
                 ?>
                 <tr>
                     <td>
                         <?php
                     if(strlen($category['thumbnail']) > 0) {?>
-                        <img width="50" src="/images/cart/categories/thumbnails/<?php echo $category['thumbnail'];?>">
+                     <!--   <img width="50" src="/images/cart/categories/thumbnails/<?php echo $category['thumbnail'];?>">-->
                     <?php
                     }
                     echo $category['category'];

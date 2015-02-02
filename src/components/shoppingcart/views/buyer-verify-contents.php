@@ -86,6 +86,16 @@ if(count($items) == 0) {
     <td align="right">$<?php echo number_format($basket->getSubtotal(), 2);?></td>
     <td></td>
 </tr>
+<tr>
+    <td colspan="3" align="right">Tax:</td>
+    <td align="right">$<?php echo number_format($tax, 2);?></td>
+    <td></td>
+</tr>
+<tr>
+    <td colspan="3" align="right">Total:</td>
+    <td align="right">$<?php echo number_format($total, 2);?></td>
+    <td></td>
+</tr>
 </table>
   </div>
   

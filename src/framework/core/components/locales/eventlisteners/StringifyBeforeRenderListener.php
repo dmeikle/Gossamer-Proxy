@@ -60,13 +60,13 @@ class StringifyBeforeRenderListener extends AbstractListener {
 
             return $result;
         }
+        if(!is_object($item)) {
+            preg_match('/\|(.+?)\|/', $item, $content);
 
-        preg_match('/\|(.+?)\|/', $item, $content);
-
-        if (is_array($content) && count($content) > 0) {
-            return str_replace($content[0], $this->locales->getString($content[1]), $item);
+            if (is_array($content) && count($content) > 0) {
+                return str_replace($content[0], $this->locales->getString($content[1]), $item);
+            }
         }
-
         return $item;
     }
 

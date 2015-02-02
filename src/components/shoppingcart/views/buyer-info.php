@@ -2,128 +2,128 @@
 @components/shoppingcart/includes/css/checkout-buyer.css
 <!--- css end --->
 
-<div id="checkout"> 
-<h1>Billing/Shipping Information</h1> 
+<form method="post" action="<gcms:uri='cart_checkout_2'/>">
+    
  
 <form  class="form-horizontal" role="form" method="post" action="<gcms:uri='cart_checkout_2'/>"> 
 
-	<div class="form-group"> 
 	<h3>Billing Information</h3>
  
- 
-	<table border="0" cellpadding="3" width="325"> 
-      <tbody><tr> 
+
+	<table class="table"> 
+      <tbody>
+          <tr> 
         <td align="right" width="125"><label>First Name:</label></td> 
-        <td><input type="text" name="client[firstname]" value=""> 
+        <td><?php echo $form['firstname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Last Name:</label></td> 
-        <td><input type="text" name="client[lastname]" value=""> 
+        <td><?php echo $form['lastname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Email:</label></td> 
-        <td><input type="text" name="client[email]" value=""> 
+        <td><?php echo $form['email']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Company:</label></td> 
-        <td><input type="text" name="client[company]" value=""> 
+        <td><?php echo $form['company']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Phone:</label></td> 
-        <td><input type="text" name="client[telephone]" value=""> 
+        <td><?php echo $form['telephone']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right" valign="top"><label>Street Address:</label></td> 
-        <td><input type="text" name="client[address1]" value=""> 
+        <td><?php echo $form['address1']; ?>
 <br> 
-	    <input type="text" name="client[address2]" value=""> 
+	    <?php echo $form['address2']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>City:</label></td> 
-        <td><input type="text" name="client[city]" value=""> 
+        <td><?php echo $form['city']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>State/Province:</label></td> 
         <td><select name="client[state]" onmousewheel="return false;"> 
-          <option value="">Select State</option> 
-          <option value="AL">Alabama</option> 
-          <option value="AK">Alaska</option> 
-          <option value="AS">American Samoa</option> 
-          <option value="AZ">Arizona</option> 
-          <option value="AR">Arkansas</option> 
-          <option value="CA">California</option> 
-          <option value="CO">Colorado</option> 
-          <option value="CT">Connecticut</option> 
-          <option value="DE">Delaware</option> 
-          <option value="DC">District of Columbia</option> 
-          <option value="FL">Florida</option> 
-          <option value="GA">Georgia</option> 
-          <option value="HI">Hawaii</option> 
-          <option value="ID">Idaho</option> 
-          <option value="IL">Illinois</option> 
-          <option value="IN">Indiana</option> 
-          <option value="IA">Iowa</option> 
-          <option value="KS">Kansas</option> 
-          <option value="KY">Kentucky</option> 
-          <option value="LA">Louisiana</option> 
-          <option value="ME">Maine</option> 
-          <option value="MD">Maryland</option> 
-          <option value="MA">Massachusetts</option> 
-          <option value="MI">Michigan</option> 
-          <option value="MN">Minnesota</option> 
-          <option value="MS">Mississippi</option> 
-          <option value="MO">Missouri</option> 
-          <option value="MT">Montana</option> 
-          <option value="NE">Nebraska</option> 
-          <option value="NV">Nevada</option> 
-          <option value="NH">New Hampshire</option> 
-          <option value="NJ">New Jersey</option> 
-          <option value="NM">New Mexico</option> 
-          <option value="NY">New York</option> 
-          <option value="NC">North Carolina</option> 
-          <option value="ND">North Dakota</option> 
-          <option value="OH">Ohio</option> 
-          <option value="OK">Oklahoma</option> 
-          <option value="OR">Oregon</option> 
-          <option value="PA">Pennsylvania</option> 
-          <option value="PR">Puerto Rico</option> 
-          <option value="RI">Rhode Island</option> 
-          <option value="SC">South Carolina</option> 
-          <option value="SD">South Dakota</option> 
-          <option value="TN">Tennessee</option> 
-          <option value="TX">Texas</option> 
-          <option value="UT">Utah</option> 
-          <option value="VT">Vermont</option> 
-          <option value="VI">Virgin Islands</option> 
-          <option value="VA">Virginia</option> 
-          <option value="WA">Washington</option> 
-          <option value="WV">West Virginia</option> 
-          <option value="WI">Wisconsin</option> 
-          <option value="WY">Wyoming</option> 
-          <option value="AB">Alberta</option> 
-          <option value="BC">British Columbia</option> 
-          <option value="MB">Manitoba</option> 
-          <option value="NB">New Brunswick</option> 
-          <option value="NF">Newfoundland</option> 
-          <option value="NT">Northwest Territories</option> 
-          <option value="NS">Nova Scotia</option> 
-          <option value="ON">Ontario</option> 
-          <option value="PE">Prince Edward Island</option> 
-          <option value="QC">Quebec</option> 
-          <option value="SK">Saskatchewan</option> 
-          <option value="YT">Yukon Territory</option> 
+          <option value='{"state":"", "id":""}'>Select State</option> 
+          <option value='{"state":"AL", "id":"1"}'>Alabama</option> 
+          <option value='{"state":"AK", "id":"2"}'>Alaska</option> 
+          <option value='{"state":"AS", "id":"3"}'>American Samoa</option> 
+          <option value='{"state":"AZ", "id":"4"}'>Arizona</option> 
+          <option value='{"state":"AR", "id":"5"}'>Arkansas</option> 
+          <option value='{"state":"CA", "id":"6"}'>California</option> 
+          <option value='{"state":"CO", "id":"7"}'>Colorado</option> 
+          <option value='{"state":"CT", "id":"8"}'>Connecticut</option> 
+          <option value='{"state":"DE", "id":"9"}'>Delaware</option> 
+          <option value='{"state":"DC", "id":"10"}'>District of Columbia</option> 
+          <option value='{"state":"FL", "id":"11"}'>Florida</option> 
+          <option value='{"state":"GA", "id":"12"}'>Georgia</option> 
+          <option value='{"state":"HI", "id":"13"}'>Hawaii</option> 
+          <option value='{"state":"ID", "id":"14"}'>Idaho</option> 
+          <option value='{"state":"IL", "id":"15"}'>Illinois</option> 
+          <option value='{"state":"IN", "id":"16"}'>Indiana</option> 
+          <option value='{"state":"IA", "id":"17"}'>Iowa</option> 
+          <option value='{"state":"KS", "id":"18"}'>Kansas</option> 
+          <option value='{"state":"KY", "id":"19"}'>Kentucky</option> 
+          <option value='{"state":"LA", "id":"20"}'>Louisiana</option> 
+          <option value='{"state":"ME", "id":"21"}'>Maine</option> 
+          <option value='{"state":"MD", "id":"22"}'>Maryland</option> 
+          <option value='{"state":"MA", "id":"23"}'>Massachusetts</option> 
+          <option value='{"state":"MI", "id":"24"}'>Michigan</option> 
+          <option value='{"state":"MN", "id":"25"}'>Minnesota</option> 
+          <option value='{"state":"MS", "id":"26"}'>Mississippi</option> 
+          <option value='{"state":"MO", "id":"27"}'>Missouri</option> 
+          <option value='{"state":"MT", "id":"28"}'>Montana</option> 
+          <option value='{"state":"NE", "id":"29"}'>Nebraska</option> 
+          <option value='{"state":"NV", "id":"30"}'>Nevada</option> 
+          <option value='{"state":"NH", "id":"31"}'>New Hampshire</option> 
+          <option value='{"state":"NJ", "id":"32"}'>New Jersey</option> 
+          <option value='{"state":"NM", "id":"33"}'>New Mexico</option> 
+          <option value='{"state":"NY", "id":"34"}'>New York</option> 
+          <option value='{"state":"NC", "id":"35"}'>North Carolina</option> 
+          <option value='{"state":"ND", "id":"36"}'>North Dakota</option> 
+          <option value='{"state":"OH", "id":"37"}'>Ohio</option> 
+          <option value='{"state":"OK", "id":"38"}'>Oklahoma</option> 
+          <option value='{"state":"OR", "id":"39"}'>Oregon</option> 
+          <option value='{"state":"PA", "id":"40"}'>Pennsylvania</option> 
+          <option value='{"state":"PR", "id":"41"}'>Puerto Rico</option> 
+          <option value='{"state":"RI", "id":"42"}'>Rhode Island</option> 
+          <option value='{"state":"SC", "id":"43"}'>South Carolina</option> 
+          <option value='{"state":"SD", "id":"44"}'>South Dakota</option> 
+          <option value='{"state":"TN", "id":"45"}'>Tennessee</option> 
+          <option value='{"state":"TX", "id":"46"}'>Texas</option> 
+          <option value='{"state":"UT", "id":"47"}'>Utah</option> 
+          <option value='{"state":"VT", "id":"48"}'>Vermont</option> 
+          <option value='{"state":"VI", "id":"49"}'>Virgin Islands</option> 
+          <option value='{"state":"VA", "id":"50"}'>Virginia</option> 
+          <option value='{"state":"WA", "id":"51"}'>Washington</option> 
+          <option value='{"state":"WV", "id":"52"}'>West Virginia</option> 
+          <option value='{"state":"WI", "id":"53"}'>Wisconsin</option> 
+          <option value='{"state":"WY", "id":"54"}'>Wyoming</option> 
+          <option value='{"state":"AB", "id":"55"}'>Alberta</option> 
+          <option value='{"state":"BC", "id":"56"}'>British Columbia</option> 
+          <option value='{"state":"MB", "id":"57"}'>Manitoba</option> 
+          <option value='{"state":"NB", "id":"58"}'>New Brunswick</option> 
+          <option value='{"state":"NF", "id":"59"}'>Newfoundland</option> 
+          <option value='{"state":"NT", "id":"60"}'>Northwest Territories</option> 
+          <option value='{"state":"NS", "id":"61"}'>Nova Scotia</option> 
+          <option value='{"state":"ON", "id":"62"}'>Ontario</option> 
+          <option value='{"state":"PE", "id":"63"}'>Prince Edward Island</option> 
+          <option value='{"state":"QC", "id":"64"}'>Quebec</option> 
+          <option value='{"state":"SK", "id":"65"}'>Saskatchewan</option> 
+          <option value='{"state":"YT", "id":"66"}'>Yukon Territory</option> 
         </select></td> 
       </tr> 
       <tr> 
         <td align="right"><label>ZIP/Postal Code:</label></td> 
-        <td><input type="text" name="client[zip]" value=""> 
+        <td><?php echo $form['zip']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -136,125 +136,124 @@
         </select></td> 
       </tr> 
     </tbody></table> 
-  </div> 
-
-  <div id="shippinginfo"> 
+	
+	
 	<h3>Shipping Information</h3>(if different)
 <input type="hidden" name="client[shipto]" value="different"> 
-  <div class="infobox"> 
- 
-	<table border="0" cellpadding="3" width="325"> 
+  
+	<table class="table"> 
       <tbody><tr> 
         <td align="right" width="125"><label>First Name:</label></td> 
-        <td><input type="text" name="client[shipFirstname]" value=""> 
+        <td><?php echo $form['shipFirstname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Last Name:</label></td> 
-        <td><input type="text" name="client[shipLastname]" value=""> 
+        <td><?php echo $form['shipLastname']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Email:</label></td> 
-        <td><input type="text" name="client[shipEmail]" value=""> 
+        <td><?php echo $form['shipEmail']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Company:</label></td> 
-        <td><input type="text" name="client[shipCompany]" value=""> 
+        <td><?php echo $form['shipCompany']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>Phone:</label></td> 
-        <td><input type="text" name="client[shipTelephone]" value=""> 
+        <td><?php echo $form['shipTelephone']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right" valign="top"><label>Street Address:</label></td> 
-        <td><input type="text" name="client[shipAddress1]" value=""> 
+        <td><?php echo $form['shipAddress1']; ?>
 <br> 
-	    <input type="text" name="client[shipAddress2]" value=""> 
+	    <?php echo $form['shipAddress2']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>City:</label></td> 
-        <td><input type="text" name="client[shipCity]" value=""> 
+        <td><?php echo $form['shipCity']; ?>
 </td> 
       </tr> 
       <tr> 
         <td align="right"><label>State/Province:</label></td> 
         <td><select name="client[shipState]" onmousewheel="return false;"> 
-          <option value="">Select State</option> 
-          <option value="AL">Alabama</option> 
-          <option value="AK">Alaska</option> 
-          <option value="AZ">Arizona</option> 
-          <option value="AR">Arkansas</option> 
-          <option value="CA">California</option> 
-          <option value="CO">Colorado</option> 
-          <option value="CT">Connecticut</option> 
-          <option value="DE">Delaware</option> 
-          <option value="DC">District of Columbia</option> 
-          <option value="FL">Florida</option> 
-          <option value="GA">Georgia</option> 
-          <option value="HI">Hawaii</option> 
-          <option value="ID">Idaho</option> 
-          <option value="IL">Illinois</option> 
-          <option value="IN">Indiana</option> 
-          <option value="IA">Iowa</option> 
-          <option value="KS">Kansas</option> 
-          <option value="KY">Kentucky</option> 
-          <option value="LA">Louisiana</option> 
-          <option value="ME">Maine</option> 
-          <option value="MD">Maryland</option> 
-          <option value="MA">Massachusetts</option> 
-          <option value="MI">Michigan</option> 
-          <option value="MN">Minnesota</option> 
-          <option value="MS">Mississippi</option> 
-          <option value="MO">Missouri</option> 
-          <option value="MT">Montana</option> 
-          <option value="NE">Nebraska</option> 
-          <option value="NV">Nevada</option> 
-          <option value="NH">New Hampshire</option> 
-          <option value="NJ">New Jersey</option> 
-          <option value="NM">New Mexico</option> 
-          <option value="NY">New York</option> 
-          <option value="NC">North Carolina</option> 
-          <option value="ND">North Dakota</option> 
-          <option value="OH">Ohio</option> 
-          <option value="OK">Oklahoma</option> 
-          <option value="OR">Oregon</option> 
-          <option value="PA">Pennsylvania</option> 
-          <option value="PR">Puerto Rico</option> 
-          <option value="RI">Rhode Island</option> 
-          <option value="SC">South Carolina</option> 
-          <option value="SD">South Dakota</option> 
-          <option value="TN">Tennessee</option> 
-          <option value="TX">Texas</option> 
-          <option value="UT">Utah</option> 
-          <option value="VT">Vermont</option> 
-          <option value="VI">Virgin Islands</option> 
-          <option value="VA">Virginia</option> 
-          <option value="WA">Washington</option> 
-          <option value="WV">West Virginia</option> 
-          <option value="WI">Wisconsin</option> 
-          <option value="WY">Wyoming</option> 
-          <option value="AB">Alberta</option> 
-          <option value="BC">British Columbia</option> 
-          <option value="MB">Manitoba</option> 
-          <option value="NB">New Brunswick</option> 
-          <option value="NF">Newfoundland</option> 
-          <option value="NT">Northwest Territories</option> 
-          <option value="NS">Nova Scotia</option> 
-          <option value="ON">Ontario</option> 
-          <option value="PE">Prince Edward Island</option> 
-          <option value="QC">Quebec</option> 
-          <option value="SK">Saskatchewan</option> 
-          <option value="YT">Yukon Territory</option> 
+           <option value='{"state":"", "id":"0"}'>Select State</option> 
+          <option value='{"state":"AL", "id":"1"}'>Alabama</option> 
+          <option value='{"state":"AK", "id":"2"}'>Alaska</option> 
+          <option value='{"state":"AS", "id":"3"}'>American Samoa</option> 
+          <option value='{"state":"AZ", "id":"4"}'>Arizona</option> 
+          <option value='{"state":"AR", "id":"5"}'>Arkansas</option> 
+          <option value='{"state":"CA", "id":"6"}'>California</option> 
+          <option value='{"state":"CO", "id":"7"}'>Colorado</option> 
+          <option value='{"state":"CT", "id":"8"}'>Connecticut</option> 
+          <option value='{"state":"DE", "id":"9"}'>Delaware</option> 
+          <option value='{"state":"DC", "id":"10"}'>District of Columbia</option> 
+          <option value='{"state":"FL", "id":"11"}'>Florida</option> 
+          <option value='{"state":"GA", "id":"12"}'>Georgia</option> 
+          <option value='{"state":"HI", "id":"13"}'>Hawaii</option> 
+          <option value='{"state":"ID", "id":"14"}'>Idaho</option> 
+          <option value='{"state":"IL", "id":"15"}'>Illinois</option> 
+          <option value='{"state":"IN", "id":"16"}'>Indiana</option> 
+          <option value='{"state":"IA", "id":"17"}'>Iowa</option> 
+          <option value='{"state":"KS", "id":"18"}'>Kansas</option> 
+          <option value='{"state":"KY", "id":"19"}'>Kentucky</option> 
+          <option value='{"state":"LA", "id":"20"}'>Louisiana</option> 
+          <option value='{"state":"ME", "id":"21"}'>Maine</option> 
+          <option value='{"state":"MD", "id":"22"}'>Maryland</option> 
+          <option value='{"state":"MA", "id":"23"}'>Massachusetts</option> 
+          <option value='{"state":"MI", "id":"24"}'>Michigan</option> 
+          <option value='{"state":"MN", "id":"25"}'>Minnesota</option> 
+          <option value='{"state":"MS", "id":"26"}'>Mississippi</option> 
+          <option value='{"state":"MO", "id":"27"}'>Missouri</option> 
+          <option value='{"state":"MT", "id":"28"}'>Montana</option> 
+          <option value='{"state":"NE", "id":"29"}'>Nebraska</option> 
+          <option value='{"state":"NV", "id":"30"}'>Nevada</option> 
+          <option value='{"state":"NH", "id":"31"}'>New Hampshire</option> 
+          <option value='{"state":"NJ", "id":"32"}'>New Jersey</option> 
+          <option value='{"state":"NM", "id":"33"}'>New Mexico</option> 
+          <option value='{"state":"NY", "id":"34"}'>New York</option> 
+          <option value='{"state":"NC", "id":"35"}'>North Carolina</option> 
+          <option value='{"state":"ND", "id":"36"}'>North Dakota</option> 
+          <option value='{"state":"OH", "id":"37"}'>Ohio</option> 
+          <option value='{"state":"OK", "id":"38"}'>Oklahoma</option> 
+          <option value='{"state":"OR", "id":"39"}'>Oregon</option> 
+          <option value='{"state":"PA", "id":"40"}'>Pennsylvania</option> 
+          <option value='{"state":"PR", "id":"41"}'>Puerto Rico</option> 
+          <option value='{"state":"RI", "id":"42"}'>Rhode Island</option> 
+          <option value='{"state":"SC", "id":"43"}'>South Carolina</option> 
+          <option value='{"state":"SD", "id":"44"}'>South Dakota</option> 
+          <option value='{"state":"TN", "id":"45"}'>Tennessee</option> 
+          <option value='{"state":"TX", "id":"46"}'>Texas</option> 
+          <option value='{"state":"UT", "id":"47"}'>Utah</option> 
+          <option value='{"state":"VT", "id":"48"}'>Vermont</option> 
+          <option value='{"state":"VI", "id":"49"}'>Virgin Islands</option> 
+          <option value='{"state":"VA", "id":"50"}'>Virginia</option> 
+          <option value='{"state":"WA", "id":"51"}'>Washington</option> 
+          <option value='{"state":"WV", "id":"52"}'>West Virginia</option> 
+          <option value='{"state":"WI", "id":"53"}'>Wisconsin</option> 
+          <option value='{"state":"WY", "id":"54"}'>Wyoming</option> 
+          <option value='{"state":"AB", "id":"55"}'>Alberta</option> 
+          <option value='{"state":"BC", "id":"56"}'>British Columbia</option> 
+          <option value='{"state":"MB", "id":"57"}'>Manitoba</option> 
+          <option value='{"state":"NB", "id":"58"}'>New Brunswick</option> 
+          <option value='{"state":"NF", "id":"59"}'>Newfoundland</option> 
+          <option value='{"state":"NT", "id":"60"}'>Northwest Territories</option> 
+          <option value='{"state":"NS", "id":"61"}'>Nova Scotia</option> 
+          <option value='{"state":"ON", "id":"62"}'>Ontario</option> 
+          <option value='{"state":"PE", "id":"63"}'>Prince Edward Island</option> 
+          <option value='{"state":"QC", "id":"64"}'>Quebec</option> 
+          <option value='{"state":"SK", "id":"65"}'>Saskatchewan</option> 
+          <option value='{"state":"YT", "id":"66"}'>Yukon Territory</option>
         </select></td> 
       </tr> 
       <tr> 
         <td align="right"><label>ZIP/Postal Code:</label></td> 
-        <td><input type="text" name="client[shipZip]" value=""> 
+        <td><?php echo $form['shipZip']; ?>
 </td> 
       </tr> 
       <tr> 
@@ -267,15 +266,15 @@
         </select></td> 
       </tr> 
     </tbody></table> 
-  </div> 
-  </div> 
-  <div style=" width:800px; clear:both"> 
-  	<div style=" float:left; width:300px;"> 
-    <h2 style="clear:both;">Special Instructions</h2> 
+	
+<table class="table">
+	<tr>
+	<td>
+	
+    <h3>Special Instructions</h3> 
 	<textarea name="purchase[instructions]" cols="30" rows="5" id="instructions"></textarea> 
-	</div> 
-	<div style=" float:left;"> 
-	<h2 style="clear:both;">Additional Information</h2> 
+	
+	<h3>Additional Information</h3> 
 	Date of Event:
 	<input type="text" name="purchase[eventDate]"><br> 
 	Date Order Required By:
@@ -297,12 +296,14 @@
 		<option value="Canadian Bride">Canadian Bride</option> 
 		<option value="Other">Other</option> 
 	</select> 
-	</div><br><br><br> 
-	</div> 
-	<h2 style="clear:both;">Shipping Method</h2> 
-	<div class="infoBox"> 
-	<table border="0" cellpadding="3" width="350"> 
-      <tbody><tr> 
+	</td>
+	</tr>
+	</table>
+	<h3>Shipping Method</h3> 
+	
+        <table class="table"> 
+      <tbody>
+	  <tr> 
         <td align="right" width="150"><label>Shipping Type:</label></td> 
 		<td align="left"> 
 	<select name="purchase[deliveryMethod]" id="deliveryMethod"> 
@@ -311,52 +312,33 @@
         <option value="1">Canada Ground</option>
         <option value="2">U.S.A.</option>
         <option value="4">Express Canada</option>
-      </select>
-
-       
-	  </td></tr></tbody></table> 
-	  <div style="width:475px; height:100px; padding-left:10px; border:1px #000000 solid; border-bottom:0px;"> 
-	  	<div style="width:100px; float:left; margin-right:10px;"> 
+      </select>       
+	  </td>
+	  </tr>
+	  </tbody>
+	  </table> 
+	  
+	  <img src="/images/usps.jpg" width="100px" id="id06370483851060271"> 
+	  <div> 
+	  	<div> 
 	  	<img src="/images/usps.jpg" width="100px" id="id06370483851060271"> 
 	  	</div><br> 
 	  	Expedited Ground to USA - approx. 7-10 business days<br> 
 	  	Express Air to USA - approx. 3-5 business days
 	  </div> 
-	  <div style="width:475px; height:70px; padding-left:10px; border:1px #000000 solid; border-top:0px; clear:both;"> 
-	  <div style="width:100px; padding-top:30px; margin-right:10px; float:left;"> 
-	  <img src="/images/canadapost.jpg" width="100px" id="id9282579540740699"> 
-	  </div><br> 
-	  Expedited Ground to Canada - approx. 4-7 business days<br> 
-	  Express Air to Canada - approx. 1-3 business days
-	  </div> 
- 
-  </div> 
-  <!--
-  <h2 style="clear:both;">Payment Type</h2>
-	 <div style="width:475px; padding-left:10px; border:1px #000000 solid;margin-bottom:10px" id="paymentType">
-              
-            <input name="paymentType" id="payment" type="radio" value="creditcard" checked="checked" />
-            Credit Card	 &nbsp;&nbsp;&nbsp; <br />
-            <input name="paymentType" id="payment" type="radio" value="paypal" />
-            Paypal&nbsp;&nbsp;&nbsp; <span class="style2">*requires manually sending funds from your account </span><br />
-          <input name="paymentType" id="payment" type="radio" value="cod" /> 
-          C.O.D. <span class="style2">*Canadian residents only. Please include telephone number </span><br />
-            <input name="paymentType" id="payment" type="radio" value="westernunion" />
-          Western Union <span class="style4">** see below </span><br />
-          <input name="paymentType" id="payment" type="radio" value="cheque" /> 
-          Cheque <span class="style4">** see below</span> <br />
-          <input name="paymentType" id="payment" type="radio" value="money order" /> 
-          Money Order <span class="style4">** see below</span><br />
-		  <span class="style4">** Prepayment required before shipping. Upon receipt of payment, order will be processed. No products are shipped without prior payment by purchaser. </span>
-       
-    </div>
-	--> 
-	<input name="paymentType" id="payment" type="hidden" value="creditcard"> 
-	<h2 style="clear:both;">Payment Information</h2> 
-	
-  <div class="infoBox"> 
-      <script type="text/javascript" language="JavaScript"><!-- expandcontent('creditCard'); --></script> 
-    <table border="0" cellpadding="3" width="350"> 
+            <div> 
+                <div> 
+                <img src="/images/canadapost.jpg" width="100px" id="id9282579540740699"> 
+            </div><br> 
+                Expedited Ground to Canada - approx. 4-7 business days<br> 
+                Express Air to Canada - approx. 1-3 business days
+            </div> 
+			
+          <div style="clear:both"></div>
+<input name="paymentType" id="payment" type="hidden" value="creditcard"> 
+	<h3>Payment Information</h3> 			
+	 <script type="text/javascript" language="JavaScript"><!-- expandcontent('creditCard'); --></script> 
+    <table class="table"> 
       <tbody><tr> 
         <td align="right" width="150">Name on Credit Card: </td> 
         <td><input type="text" name="nameOnCard" maxlength="50" value=""></td> 
@@ -402,13 +384,17 @@
       
       </tr>
     </tbody></table> 
-  </div> 
-  <div style="padding:10px 0px 10px 150px"> 
+	
+	<div style="padding:10px 0px 10px 150px"> 
 	
 	<input type="submit" name="Submit" value="Cancel">
             <input type="reset" name="Submit2" value="Reset">
             <input name="Submit" type="submit" id="Submit" value="Submit">
   </div> 
 		<input type="hidden" class="hide" name="action" value="update_member_info"> 
+	
+			
+	  
+	
 </form> 
-</div>
+</form>

@@ -14,7 +14,8 @@
 
 
 <?php
-$category = current($Category);
+
+$category = current($CartCategory);
 
 ?>
 <form method="post">
@@ -26,7 +27,7 @@ $category = current($Category);
             <td colspan="2">
                 <ul class="nav nav-tabs" role="tablist">
                 <?php
-                foreach($Locales as $locale) {
+                foreach($locales as $locale) {
                     
                     if($locale['isDefault']) {
                         echo "<li class=\"active\"><a href=\"#{$locale['locale']}\" role=\"tab\" data-toggle=\"tab\">{$locale['locale']}</a></li>\r\n";
@@ -44,14 +45,18 @@ $category = current($Category);
                 <select class="form-control" name="category[parentId]">
                     <option value="0"><?php echo $this->getString('OPTION_PARENT_CATEGORY');?></option>
                     <?php
-
+                 if(count($categories) > 0) {
                     foreach($categories as $key => $parent) {
+                       if(count($parent) == 0) {
+                           continue;;
+                       }
                         echo "<option value=\"" . $key."\"";
-                        if($category['parentId'] == $key) {
+                        if(array_key_exists('parentId', $category) && $category['parentId'] == $key) {
                             echo " selected";
                         }
                         echo ">$parent</option>\r\n";
                     }
+                }
                     ?>
                 </select>
             </td>
@@ -62,8 +67,8 @@ $category = current($Category);
                <!-- Tab panes -->
                 <div class="tab-content">
                     <?php
-                    reset($Locales);
-                    foreach($Locales as $locale) {
+                    reset($locales);
+                    foreach($locales as $locale) {
 
                        $categoryName = "";
                        if(array_key_exists($locale['locale'], $category['locales'])) {

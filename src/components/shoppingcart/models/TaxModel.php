@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 
@@ -25,8 +16,8 @@ class TaxModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Tax';
-        $this->tablename = 'taxrates';
+        $this->entity = 'CartTax';
+        $this->tablename = 'carttaxrates';
     }
     
     
@@ -39,7 +30,8 @@ class TaxModel extends AbstractModel
         $defaultLocale =  $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        $taxRates = current($data['TaxRates']);
+     //pr($data);
+        $taxRates = ($data['CartTaxRates']);
        
         $rates = array();
         foreach($taxRates as $taxRate) {
@@ -51,7 +43,7 @@ class TaxModel extends AbstractModel
         }
         
         $data['stateList'] = $this->httpRequest->getAttribute('stateList');
-        $this->render($data);
+        return ($data);
     
     }
     
@@ -60,14 +52,14 @@ class TaxModel extends AbstractModel
       
         $params = $this->httpRequest->getPost();
         $submitValues = array();
-        pr($params);
+       
         foreach($params['taxes'] as $key => $row) {
             $submitValues[] = array('States_id' => $key, 'taxRate' => $row);
         }
-        pr($submitValues);
+       
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $submitValues); 
        
-      
+      echo 'saved';
     }
     
     public function delete($itemId) {
@@ -75,6 +67,23 @@ class TaxModel extends AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
         
-        $this->render($data);
+        return ($data);
+    }
+    
+    public function getTaxByStateSubtotal($stateId, $subtotal) {
+        $result = $this->getTax($stateId, $subtotal);
+        
+        return (array('tax' =>  (current($result)) * $subtotal));
+    }
+    
+    public function getTax($stateId, $subtotal) {
+        $params = array('States_id' => $stateId, 'subtotal' => $subtotal);
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        if(!is_array($data)) {
+            return array();
+        }
+        return current($data['CartTaxRate']);
+        
     }
 }

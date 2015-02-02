@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 
@@ -25,8 +16,8 @@ class VolumeDiscountModel extends AbstractModel
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'VolumeDiscount';
-        $this->tablename = 'volumeDiscounts';
+        $this->entity = 'CartVolumeDiscount';
+        $this->tablename = 'cartvolumeDiscounts';
     }
     
     
@@ -37,7 +28,7 @@ class VolumeDiscountModel extends AbstractModel
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
       
         $data['pageTitle'] = 'Art Wall Tablets';
-        $this->render($data);
+        return ($data);
     }
     
     
@@ -46,11 +37,11 @@ class VolumeDiscountModel extends AbstractModel
         $params = array(
             'Products_id' => intval($id)
         );
-       
+    
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
        
-       
-        $this->render($data);
+     
+        return ($data);
     }
     
     public function save($id) {
@@ -68,6 +59,6 @@ class VolumeDiscountModel extends AbstractModel
         
         $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
         
-        $this->render($data);
+        return ($data);
     }
 }

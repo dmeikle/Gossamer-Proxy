@@ -104,7 +104,6 @@ restoration:
     
 cssmenu:
     component: "src/components/cssmenu/config/routing.yml"
-   
 
     
 #this is the default fallback to use if not found    

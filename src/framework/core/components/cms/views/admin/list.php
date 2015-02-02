@@ -19,7 +19,11 @@ $(document).ready(function() {
         <th>Comments</th>
         <th>Date Published</th>
     </tr>
-    <?php foreach ($CmsPages as $page) {?>
+    <?php foreach ($CmsPages as $page) {
+        if(count($page) == 0) {
+            continue;
+        }
+?>
         <tr>
             <td><?php echo $page['name'];?><br />
                 <div class="pagenav" style="display:none"><a href="/admin/cms/pages/<?php echo $page['id'];?>">Edit</a> | <a href="#">Trash</a> | <a href="<?php echo $page['permalink'];?>">View</a></div>

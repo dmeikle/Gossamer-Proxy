@@ -1,14 +1,5 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace components\shoppingcart\models;
 
 use core\AbstractModel;
@@ -30,8 +21,8 @@ class PurchaseModel extends AbstractModel{
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Purchase';
-        $this->tablename = 'purchases';
+        $this->entity = 'CartPurchase';
+        $this->tablename = 'cartpurchases';
         
     }
     
@@ -42,16 +33,18 @@ class PurchaseModel extends AbstractModel{
         );
     
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        $purchase = current($data['Purchase']);
-      
-        $purchaseItems = $purchase['PurchaseItem'];
-        unset($purchase['PurchaseItem']);
+       
+        $purchase = current($data['CartPurchase']);
+       
+        $purchase['total'] = $purchase['tax1'] + $purchase['subtotal'];
+        $purchaseItems = $purchase['CartPurchaseItem'];
+        unset($purchase['CartPurchaseItem']);
         
         $basket = new Basket();        
         $basket->populate($purchaseItems);
        
         $defaultLocale =  $this->getDefaultLocale();
-        $this->render(array('purchase' => $purchase, 'basket' => $basket, 'locale' => $defaultLocale['locale']));
+        return (array('purchase' => $purchase, 'basket' => $basket, 'locale' => $defaultLocale['locale']));
     }
     
     public function editPurchase() {
@@ -59,20 +52,20 @@ class PurchaseModel extends AbstractModel{
         $data = array('id' => $params['clientId'], $params['id'] => $params['value']);
         $data = $this->dataSource->query(self::METHOD_PUT, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_SAVE, $data);
         
-        $this->render(array($params['value']));
+        return (array($params['value']));
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null) {
         $params = array(
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'Purchases.id', 'directive::DIRECTION' => 'desc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'CartPurchases.id', 'directive::DIRECTION' => 'desc'
         );
-        
+      
        // $params['locale'] = $this->getDefaultLocale();
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        $data['Purchases'] = current($data['Purchases']);
+     
        
-        $data['pagination'] = $this->getPagination($data['PurchasesCount'], $offset, $rows);
-        $this->render($data);
+        $data['pagination'] = $this->getPagination($data['CartPurchasesCount'], $offset, $rows);
+        return ($data);
     }
      
     public function delete() {
@@ -83,5 +76,7 @@ class PurchaseModel extends AbstractModel{
         $this->listall(0, 20);
     }
     
-    
+    public function getSalesTotals() {
+        return (array());
+    }
 }

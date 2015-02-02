@@ -7,6 +7,6 @@ return array (
     'NAV_SALES' => 'Sales',
     'NAV_VARIANTS' => 'Variants',
     'NAV_LOCALES' => 'Languages',
-    'nav_test' => 'test'
+    'NAV_STATES' => 'State Taxes'
     
 );

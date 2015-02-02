@@ -9,5 +9,6 @@ return array (
     'LABEL_EMAIL'=>'电子邮件', 
     'LABEL_PURCHASE_DATE'=>'购买日期', 
     'LABEL_STATUS'=>'状态', 
-    'LABEL_ACTION'=>'动作'
+    'LABEL_ACTION'=>'动作',
+    'LABEL_SUBTOTAL' => '小计'
 );

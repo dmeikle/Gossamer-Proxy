@@ -62,8 +62,12 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
     }
 
     private function formatArray(array $result) {
+      
         $retval = array();
         foreach ($result as $row) {
+            if(count($row) < 1) {
+                continue;
+            }
             $retval[$row['id']] = $row['name'];
         }
         return $retval;

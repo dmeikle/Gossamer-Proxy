@@ -1,7 +1,7 @@
 <!--- css start --->
 @components/shoppingcart/includes/css/view-cart.css
 <!--- css end --->
-
+<div style="clear:both"></div>
 <?php
 
 $basket = $this->data['basket'];
@@ -78,6 +78,16 @@ if(count($basket) == 0) {
 <tr>
     <td colspan="3" align="right"><?php echo $this->getString('LABEL_SUBTOTAL');?>:</td>
     <td>$<?php echo number_format($basket->getSubtotal(), 2);?></td>
+
+</tr>
+<tr>
+    <td colspan="3" align="right"><?php echo $this->getString('LABEL_TAX');?>:</td>
+    <td>$<?php echo number_format( $purchase['tax1'], 2);?></td>
+
+</tr>
+<tr>
+    <td colspan="3" align="right"><?php echo $this->getString('LABEL_TOTAL');?>:</td>
+    <td>$<?php echo number_format($purchase['total'], 2);?></td>
 
 </tr>
 </table> 

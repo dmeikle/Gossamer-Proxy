@@ -79,7 +79,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
 //pr($result);
         if ($result->info->http_code == 200) {
             $decodedResult = $result->decode_response();
-            //pr($decodedResult);  
+              
             if (is_null($decodedResult) || empty($decodedResult)) {
                 return null;
             }
@@ -103,7 +103,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
     }
 
     private function handleError($result) {
-//pr($result); 
+
         if ($result->code == 1012) {
             //Parameter was missing - perhaps we simply need to force a new login to jiggle the handle
             header('location: /login');

@@ -75,7 +75,7 @@ class UserPreferencesManager {
     
         $preferredLocale = $values['DefaultLocale'];
         $allowableLocales = $this->httpRequest->getAttribute('locales');
-        
+      
         //check to see if the value in the cookie is a valid locale in our list
         foreach($allowableLocales as $locale) {
             if($locale['locale'] == $preferredLocale) {

@@ -38,12 +38,13 @@
     </div>
         <!---section2--->
         <!---section3---> 
-        <!---section4--->             
+        <!---section4--->   
+        <!---section5--->            
     </div>
 
 
     <div id="footer">
-        <!---section5--->
+        <!---section6--->
     </div>
 
 </div>

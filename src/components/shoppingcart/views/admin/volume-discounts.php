@@ -24,8 +24,12 @@
                 <td colspan="3">
                     <table id="fields" width="100%">
                         <?php 
-                        $discounts = current($VolumeDiscounts);
-                        foreach($discounts as $key => $discount) { ?>
+                
+                        foreach($VolumeDiscounts as $key => $discount) {
+                            if(!is_array($discount) || count($discount) == 0) {
+                                continue;
+                            }
+?>
                         <tr>
                             <td width="240"><input type="text" name="volumeDiscount[<?php echo $key; ?>][quantity]" value="<?php echo $discount['quantity'];?>" /></td>
                             <td colspan="2">$<input type="text" name="volumeDiscount[<?php echo $key; ?>][price]"  value="<?php echo $discount['price'];?>" /></td>

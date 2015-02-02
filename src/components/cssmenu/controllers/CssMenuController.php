@@ -19,6 +19,7 @@ use core\AbstractController;
  */
 class CssMenuController extends AbstractController {
     
+
     /**
      * this method is initially written to display a menu for logged in
      * users. If you want to have a method for everyone..*coff coff*.. write 

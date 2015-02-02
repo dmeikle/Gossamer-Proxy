@@ -1,27 +1,25 @@
 <?php
 
-/*
- *  This file is part of the Quantum Unit Solutions development package.
- * 
- *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
+
 
 namespace components\shoppingcart\listeners;
 
 
 use core\eventlisteners\AbstractListener;
-use libraries\utils\Registry;
+use core\eventlisteners\Event;
 use components\shoppingcart\models\ProductVariantItemModel;
 
 class LoadProductVariantsListener extends AbstractListener
 {
  
-   public function on_before_render_start($params = array()) {
+   public function on_before_render_start(Event $event) {
+        $params = $event->getParams();
+        if(is_null($params)) {
+            //didn't find it
+            return;
+        }
        
-        $product = current($params['Product']);
+        $product = current($params['CartProduct']);
         $locale = $this->getDefaultLocale();
         $data = array('id' => $product['id'], 'locale' => $locale['locale']);
         $productVariant = new ProductVariantItemModel($this->httpRequest, $this->httpResponse, $this->logger);
@@ -37,12 +35,13 @@ class LoadProductVariantsListener extends AbstractListener
         $list = current($productVariantList);
       
         $retval = array();
-        foreach($list[0] as $variant) {
+        foreach($list as $variant) {
+            
             $retval[$variant['groupName']][$variant['VariantItems_id']] = array('variant' =>$variant['variant'], 'surcharge' => $variant['surcharge']);
             
         }
      
-        $this->httpRequest->setAttribute('ProductVariantList', $retval);
+        $this->httpResponse->setAttribute('CartProductVariantList', $retval);
    }
    
 }
