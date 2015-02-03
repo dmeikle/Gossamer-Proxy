@@ -13,6 +13,7 @@ namespace core\components\cms\form;
 
 use Gossamer\CMS\Forms\AbstractBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
+use Gossamer\CMS\Forms\Factory\ControlFactory;
 
 /**
  * Builds the user input for for the CMS admin
@@ -46,7 +47,12 @@ class PageBuilder extends AbstractBuilder {
                 ->add('lastModified', 'span', array('value' => $this->formatDate($this->getValue('lastModified', $values))))
                 ->add('staffName', 'span', array('value' => $this->getValue('staffName', $values)))
                 ->add('summary', 'textarea', array('class' => 'form-control',  'value' => $this->getValue('summary', $values)))
-                ->add('submit', 'submit', array('class' => 'btn btn-primary'));
+                ->add('submit', 'submit', array('class' => 'btn btn-primary', 'value' => 'Save'));
+        if(array_key_exists('id', $values) && intval($values['id']) > 0) {
+            $builder->add('update', 'button', array('class' => 'btn btn-xs btn-primary', 'value' => 'Update', 'id' => 'update_page'));
+        } else {
+            $builder->add('update', ControlFactory::PLACEHOLDER, array());
+        }
 
 
         return $builder->getForm();
@@ -58,6 +64,7 @@ class PageBuilder extends AbstractBuilder {
     }
 
     private function getPublishOptions($isPublished) {
+        pr($isPublished);
         $publishOptions = '<option value="1"';
         if($isPublished == 1) {
             $publishOptions .= ' selected';

@@ -28,6 +28,22 @@ use core\navigation\Pagination;
 class PagesController extends AbstractController {
 
     /**
+     * save - saves/updates row
+     * 
+     * @param int id    primary key of item to save
+     */
+    public function save($id) {
+       
+        $params = $this->httpRequest->getPost();
+        
+        if(array_key_exists('submit',$params)) {
+            $this->saveAndRedirect($id, 'admin_cms_pages_list', array(0,20));
+        } else {
+            parent::save($id);
+        }
+    }
+    
+    /**
      * search for a cms file based on keywords
      * 
      * @param string $id
@@ -128,7 +144,11 @@ class PagesController extends AbstractController {
         unset($sectionsSerializer);
         
         $staffSerializer = new StaffSerializer();
-        $values['staffName'] = $staffSerializer->getStaffName($this->httpRequest->getAttribute('Staffs'), $values['Staff_id']);
+        if(array_key_exists('Staff_id', $values)) {
+            $values['staffName'] = $staffSerializer->getStaffName($this->httpRequest->getAttribute('Staffs'), $values['Staff_id']);
+        } else {
+            $values['staffName'] = 'unknown';
+        }
         unset($staffSerializer);
         
         return $builder->buildForm($formBuilder, $values, $options, $results);

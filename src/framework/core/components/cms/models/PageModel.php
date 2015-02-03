@@ -162,7 +162,7 @@ class PageModel extends AbstractModel implements FormBuilderInterface {
         $data['sections'] = $this->httpRequest->getAttribute('Sections');
         $categoryID = array_key_exists('CmsCategories_id', $data) ? $data['CmsCategories_id'] : '0';
         
-        $data['sectionOptionsList'] = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('CmsSections'), array($categoryID), 'name');
+        $data['sectionOptionsList'] = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('CmsSections'), array($categoryID), 'sectionName');
 
         if (!array_key_exists('CmsPage', $data)) {
             $data['CmsPage'] = $this->getArray($id);

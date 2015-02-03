@@ -62,7 +62,7 @@ class YAMLConfiguration {
         }
 
         $routingPath = $this->getInitialRouting($uri);
-
+echo "routing path: $routingPath";
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
 

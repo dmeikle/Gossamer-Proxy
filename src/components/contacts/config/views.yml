@@ -100,11 +100,11 @@ admin_contacts_credentials_get:
     #-------------------start portal area -----------------------
     
 portal_contact_settings:  
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section2": "src/components/contacts/views/subnav.php"
+           # "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/settings.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
     
@@ -127,7 +127,7 @@ contacts_login_failed:
             "section4": "src/themes/default/templates/sections/footer.php"       
             
 portal_contacts_edit: 
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -136,18 +136,18 @@ portal_contacts_edit:
             "section4": "src/themes/default/templates/sections/footer.php"   
     
 portal_contacts_credentials_get:   
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section2": "src/components/contacts/views/subnav.php"
+            #"section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/credentials.php"
             "section4": "src/themes/default/templates/sections/footer.php"    
             
             
 #---------------- invites ---------------------------            
 portal_contacts_list:     
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -156,7 +156,7 @@ portal_contacts_list:
             "section4": "src/themes/default/templates/sections/footer.php"    
             
 portal_contact_invites_list:          
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -166,7 +166,7 @@ portal_contact_invites_list:
 
             
 portal_contact_invites_edit:          
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -175,7 +175,7 @@ portal_contact_invites_edit:
             "section4": "src/themes/default/templates/sections/footer.php"        
             
 portal_contact_invites_login:
-    template: list.php
+    template: portal-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/header.php"

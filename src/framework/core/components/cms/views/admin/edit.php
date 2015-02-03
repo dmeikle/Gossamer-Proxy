@@ -322,7 +322,8 @@ $(document).ready(function() {
                   
                   </p>
                   <p><input type="button" name="update" id="undo_page" class="btn btn-xs btn-primary" value="Undo Changes" />
-                    <input type="button" name="update" id="update_page" class="btn btn-xs btn-primary" value="Update" />
+                   
+                    <?php echo $form['update'];?>
                     <div class="bg-warning" style="display:none" id="update_warning">Changes have been made. Please click the 'Update' button to save these changes<br /><br/>To undo these changes click the 'Undo Changes' button.</div>
                   </p> 
               </td>                                           
@@ -380,6 +381,12 @@ $(document).ready(function() {
                <?php echo $form['summary']?>
                 Summaries are a brief description of your content
               </p></td>
+            </tr>
+            
+            <tr>
+              <td>           
+               <?php echo $form['submit']?>
+             </td>
             </tr>
         </table>
        

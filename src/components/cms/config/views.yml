@@ -31,4 +31,12 @@ cms_view_page_3:
         -
             "section1": "src/themes/default/templates/sections/header.php"
             "section3": "src/components/cms/views/view.php"
+            "section4": "src/themes/default/templates/sections/footer.php"       
+
+cms_view_page_portal_1:    
+    template: portal-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/cms/views/view.php"
             "section4": "src/themes/default/templates/sections/footer.php"            
