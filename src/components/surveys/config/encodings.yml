@@ -32,3 +32,6 @@ admin_surveys_questions_edit:
 admin_surveys_answers_search:   
     keywords: utf8
     answer: utf8
+    
+admin_surveys_panes_questions_list:
+    question: utf8

@@ -1,4 +1,159 @@
+  
     
+   
+admin_surveys_panes_questions_list:
+    pattern: admin/surveys/panes/questions/*/*/*
+    listeners:  
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionModel', 'cacheKey': 'Questions' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPaneQuestionsController
+        model: components\surveys\models\SurveyPaneQuestionModel
+        method: listallByPaneId
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_questions_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            
+admin_surveys_panes_questions_save:
+    pattern: admin/surveys/panes/questions/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPaneQuestionsController
+        model: components\surveys\models\SurveyPaneQuestionModel
+        method: saveToPaneById
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_questions_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
+
+
+admin_surveys_pages_list:
+    pattern: admin/surveys/pages/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPagesController
+        model: components\surveys\models\SurveyPageModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_pages_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            
+admin_surveys_pages_edit:
+    pattern: admin/surveys/pages/*
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPagesController
+        model: components\surveys\models\SurveyPageModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_pages_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+admin_surveys_pages_save:
+    pattern: admin/surveys/pages/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPagesController
+        model: components\surveys\models\SurveyPageModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_surveys_pages_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+
+admin_surveys_pages_panes_list:
+    pattern: admin/surveys/pages/panes/*/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\SurveyPaneModel', 'cacheKey': 'SurveyPanes' }
+    
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPagePanesController
+        model: components\surveys\models\SurveyPagePaneModel
+        method: listallByPageId
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            
+            
+
+
+
+
+
+
+            
+admin_surveys_panes_list:
+    pattern: admin/surveys/panes/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPanesController
+        model: components\surveys\models\SurveyPaneModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            
+admin_surveys_panes_edit:
+    pattern: admin/surveys/panes/*
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPanesController
+        model: components\surveys\models\SurveyPaneModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+admin_surveys_panes_save:
+    pattern: admin/surveys/panes/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPanesController
+        model: components\surveys\models\SurveyPaneModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+          
+   
+admin_surveys_panes_questions_list:
+    pattern: admin/surveys/panes/questions/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPaneQuestionsController
+        model: components\surveys\models\SurveyPaneQuestionModel
+        method: listallByPaneId
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            
+            
+            
+            
 admin_surveys_scopeforms_list:
     pattern: admin/surveys/scopeforms/*/*
     defaults:
@@ -294,4 +449,4 @@ admin_surveys_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'             
  
-
+    

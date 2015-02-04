@@ -1,6 +1,45 @@
 
-
+admin_contactustypes_list:
+    pattern: admin/contact/types/*/*
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsTypeController
+        model: components\contactus\models\ContactUsTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_contactustypes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+admin_contactustypes_edit:
+    pattern: admin/contact/types/*
+    methods: [GET]
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsTypeController
+        model: components\contactus\models\ContactUsTypeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contactustypes_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
  
+admin_contactustypes_save:
+    pattern: admin/contact/types/*
+    methods: [POST]
+    defaults:
+        component: components\contactus\ContactUsComponent
+        controller: components\contactus\controllers\ContactUsTypeController
+        model: components\contactus\models\ContactUsTypeModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_contactustypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
    
 admin_contactus_list:
     pattern: admin/contact/*/*
@@ -133,4 +172,7 @@ website_contactus_save:
         viewKey: website_contactus_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            - 'src/framework/core/components/locales/resources/*/Navigation'           
+            
+            
+            

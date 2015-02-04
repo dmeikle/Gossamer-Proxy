@@ -63,4 +63,22 @@ website_contactus_book_a_meeting_save:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/contactus/views/subnav.php"
             "section3": "src/components/contactus/views/book-a-meeting-complete.php"
-            "section4": "src/themes/default/templates/sections/footer.php"          
+            "section4": "src/themes/default/templates/sections/footer.php"    
+            
+admin_contactustypes_list:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contactus/views/admin/subnav.php"
+            "section3": "src/components/contactus/views/admin/types/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_contactustypes_edit:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/contactus/views/admin/subnav.php"
+            "section3": "src/components/contactus/views/admin/types/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"         

@@ -20,7 +20,7 @@
               <ul>
                  <li><a href='/portal2/about'><span><?php echo $this->getString('NAV_PORTAL_ABOUT');?></span></a></li>
                  <li><a href='/portal2/documentation'><span><?php echo $this->getString('NAV_PORTAL_DOCUMENTATION');?></span></a></li>
-                 <li><a href='#'><span><?php echo $this->getString('NAV_PORTAL_KNOWLEDGEBASE');?></span></a></li>
+                 <li><a href='/portal2/knowledgebase'><span><?php echo $this->getString('NAV_PORTAL_KNOWLEDGEBASE');?></span></a></li>
                  <li class='last'><a href='#'><span><?php echo $this->getString('NAV_PORTAL_FEEDBACK');?></span></a></li>
               </ul>
            </li>

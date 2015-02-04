@@ -28,7 +28,7 @@ class LoadLocaleStringsListener extends AbstractListener {
      * @return LocaleLoader
      */
     public function on_request_start($filename) {
-echo  __YML_KEY . " request start";
+
         $config = $this->httpRequest->getAttribute('langFilesList');
         if (is_null($config)) {
 

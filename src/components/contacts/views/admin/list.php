@@ -12,20 +12,20 @@
     
     $('.status').click(function(e) {
          e.stopPropagation(); 
-         $(this).prev('.staffStatus').toggle();
+         $(this).prev('.contactStatus').toggle();
          if($(this).text() == 'cancel') {
             $(this).text(currentStatus);
          } else {
-            currentStatus = $(this).prev('.staffStatus').val();
+            currentStatus = $(this).prev('.contactStatus').val();
             $(this).text('cancel');
          }
          
     });
     
 
-    $('.staffStatus').change(function() {
+    $('.contactStatus').change(function() {
         
-         if($(this).val() != currentStatus && confirm("are you sure you want to change the status of this employee?")) {
+         if($(this).val() != currentStatus && confirm("are you sure you want to change the status of this contact?")) {
             alert('this will eventually perform a save'); //save();
             $(this).next().text($(this).val());
          } else {
@@ -46,7 +46,7 @@
     });
 });
 </script>
-
+this page has javascript to complete once the layout is determined. including 'unlock' after exceeding max fail login attempts
 
       <h2 class="form-signin-heading">Contact List</h2>
      
@@ -74,7 +74,7 @@
                 <td><?php echo $contact['office'] . ' ' . $contact['extension'];?></td>
                 <td><?php echo $contact['mobile'];?></td>
                 <td>
-                   <select class="staffStatus" style="display: none">
+                   <select class="contactStatus" style="display: none">
                         <option>active</option>
                         <option>suspended</option>
                         <option>locked</option>

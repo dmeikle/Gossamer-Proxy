@@ -120,3 +120,59 @@ admin_surveys_questions_select:
             "section2": "src/components/surveys/views/subnav.php"
             "section3": "src/components/surveys/views/questions/list-by-survey.php"
             "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_surveys_panes_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"            
+            
+        
+admin_surveys_panes_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_surveys_panes_questions_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes-questions/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+admin_surveys_pages_list:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"   
+            
+admin_surveys_pages_edit:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_pages_panes_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages-panes/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    

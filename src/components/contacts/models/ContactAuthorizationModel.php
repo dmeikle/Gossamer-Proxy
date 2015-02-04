@@ -108,12 +108,26 @@ class ContactAuthorizationModel extends AbstractModel implements FormBuilderInte
     }
     
     
+    public function unlock($id) {
+        
+        $params = array();
+        $params['ContactAuthorization']['status'] = 'active';
+        $params['ContactAuthorization']['failedLogins'] = '0';
+        $params['ContactAuthorization']['password'] = crypt($params['ContactAuthorization']['password']);
+        $password = new Password();
+        $params['ContactAuthorization']['passwordHistory'] = $password->formatPasswordHistory($params['ContactAuthorization']['password'], $member);
+        $params['ContactAuthorization']['Contacts_id'] = $id;
+        unset($password);        
+        unset($params['ContactAuthorization']['passwordConfirm']);
+     
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'save', $params['ContactAuthorization']);
+      
+        return $params['ContactAuthorization'];
+    }
+    
+    
     public function getFormWrapper() {
         return $this->entity;
     }
 
-    public function unlock($id) {
-        $params = array('Contacts_id' => intval($id));
-        $this->dataSource->query(self::METHOD_POST, $this, 'saveStatus', $params);
-    }
 }

@@ -62,7 +62,7 @@ class YAMLConfiguration {
         }
 
         $routingPath = $this->getInitialRouting($uri);
-echo "routing path: $routingPath";
+
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
 
@@ -177,7 +177,9 @@ echo "routing path: $routingPath";
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-
+        if($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
+            throw new \exceptions\YamlKeyNotFoundException('Yml Key not found in config routing file.');
+        }
         return $nodeParams = $this->config[$ymlKey];
     }
 
