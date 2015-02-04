@@ -18,7 +18,11 @@ $(document).ready(function() {
     </tr>
     
     <?php
-    foreach($SurveyPanes as $pane) {?>
+    foreach($SurveyPanes as $pane) {
+        if(count($pane) == 0) {
+            return;
+        }
+?>
     <tr>
         <td><?php echo $pane['name'];?></td>
         <td><?php echo $pane['cssClass'];?></td>

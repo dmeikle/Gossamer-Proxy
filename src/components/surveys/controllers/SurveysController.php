@@ -56,4 +56,8 @@ class SurveysController extends AbstractController{
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
 
+    public function getFullSurvey($permalink, $page) {
+        $result = $this->model->getFullSurvey($permalink, $page);
+        
+    }
 }

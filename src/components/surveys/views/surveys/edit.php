@@ -32,6 +32,11 @@ $(document).ready(function() {
          </td>
        </tr>
        <tr>
+         <td>Permalink:</td>
+         <td><?php echo $form['permalink']; ?></td>
+       </tr>
+       <tr>
+       <tr>
          <td>Department</td>
          <td><?php echo $form['SurveyCategories_id']; ?></td>
        </tr>

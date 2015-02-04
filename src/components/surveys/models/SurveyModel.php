@@ -48,5 +48,19 @@ class SurveyModel extends AbstractModel implements FormBuilderInterface{
         
         return $data;
     }
+    
+    public function getFullSurvey($permalink, $page) {
+        $locale = $this->getDefaultLocale();
+        
+        $params = array(
+            'permalink' => $permalink,
+            'page' => $page,
+            'locale' => $locale['locale']
+        );
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getSurveyPage', $params);
+        
+        return $data;
+    }
 
 }

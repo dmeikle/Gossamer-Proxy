@@ -152,7 +152,19 @@ admin_surveys_panes_questions_list:
             - 'src/framework/core/components/locales/resources/*/Navigation'          
             
             
-            
+admin_surveys_respond_by_permalink:
+    pattern: admin/surveys/respond/*/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: getFullSurvey
+        view: core\views\TemplateView
+        viewKey: admin_surveys_respond_by_permalink
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+
             
 admin_surveys_scopeforms_list:
     pattern: admin/surveys/scopeforms/*/*
