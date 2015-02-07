@@ -154,6 +154,7 @@ admin_surveys_panes_questions_list:
             
 admin_surveys_respond_by_permalink:
     pattern: admin/surveys/respond/*/*
+    methods: [GET]
     defaults:
         component: components\surveys\SurveysComponent
         controller: components\surveys\controllers\SurveysController
@@ -164,7 +165,34 @@ admin_surveys_respond_by_permalink:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation' 
-
+            
+admin_surveys_save_by_permalink:
+    pattern: admin/surveys/respond/*/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: saveFullSurvey
+        view: core\views\TemplateView
+        viewKey: admin_surveys_respond_by_permalink
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            
+admin_surveys_panes_not_found:
+    pattern: admin/surveys/notfound
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_not_found
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
             
 admin_surveys_scopeforms_list:
     pattern: admin/surveys/scopeforms/*/*

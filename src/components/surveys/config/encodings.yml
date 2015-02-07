@@ -35,3 +35,8 @@ admin_surveys_answers_search:
     
 admin_surveys_panes_questions_list:
     question: utf8
+    
+admin_surveys_respond_by_permalink:  
+    name: utf8
+    question: utf8
+    answer: utf8

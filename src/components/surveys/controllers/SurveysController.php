@@ -13,6 +13,7 @@ namespace components\surveys\controllers;
 
 use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
+use components\surveys\form\SurveyInputFormBuilder;
 use components\surveys\form\SurveyBuilder;
 use components\surveys\serialization\SurveysSerializer;
 use Gossamer\CMS\Forms\FormBuilder;
@@ -59,5 +60,42 @@ class SurveysController extends AbstractController{
     public function getFullSurvey($permalink, $page) {
         $result = $this->model->getFullSurvey($permalink, $page);
         
+        $this->render(array('form' => $this->drawSurvey($this->model, $result), 'survey' => current($result['survey'])));
+        
+    }
+    
+    protected function drawSurvey(FormBuilderInterface $model, array $values = null) {
+        $formBuilder = new FormBuilder($this->logger, $model);
+        $builder = new SurveyInputFormBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+        
+        $options = array();
+        $options['locales'] = $this->httpRequest->getAttribute('locales');
+        
+        $form = $builder->buildForm($formBuilder, $values, $options, $results);
+        
+        if(is_null($form)) {
+            $router = new Router($this->logger, $this->httpRequest);
+            $router->redirect('admin_surveys_panes_not_found', array());
+        }
+        
+        return $form;
+    }
+    
+    public function saveFullSurvey($permalink, $page) {
+        $this->model->saveFullSurvey($permalink, $page);
+        $params = $this->httpRequest->getPost();
+        
+        if(array_key_exists('next', $params)) {
+            $page = intval($page) + 1;
+        } else {
+            $page = intval($page) -1;
+            if($page < 1) {
+                $page = 1;
+            }
+        }
+        
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect('admin_surveys_respond_by_permalink', array($permalink, $page));
     }
 }

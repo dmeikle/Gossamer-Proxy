@@ -176,3 +176,21 @@ admin_surveys_pages_panes_list:
             "section3": "src/components/surveys/views/pages-panes/list.php"
             "section4": "src/themes/default/templates/sections/footer.php" 
     
+admin_surveys_respond_by_permalink:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_panes_not_found: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey-not-found.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    

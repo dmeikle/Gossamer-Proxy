@@ -14,6 +14,8 @@ namespace components\surveys\form;
 
 use Gossamer\CMS\Forms\AbstractBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
+use Gossamer\CMS\Forms\QuestionBuilder;
+
 /**
  * SurveyInputFormBuilder
  *
@@ -27,12 +29,39 @@ class SurveyInputFormBuilder extends AbstractBuilder{
         if(is_array($validationResults) && array_key_exists('Staff', $validationResults)) {
             $builder->addValidationResults($validationResults['Staff']);
         }
+        $form = array();
+        if(!array_key_exists('panes', $values)) {
+            return null;
+        }
+        //iterate each pane and add the questions
+        $panes = $values['panes'];
+        foreach($panes as $pane) {   
+           
+            $questions = $pane['questions'];
+            $pane['questions'] = $this->buildQuestions($questions);
+            $form['panelist'][] = $pane;
+           
+            
+        }
+     
+        $builder->add('previous', 'submit', array('value' => 'Previous', 'class' => 'btn btn-lg btn-primary previous'))
+                ->add('next', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary next'));                
         
-        $builder->add('answer', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('answer', $values, $options['locales'])), $options['locales'])               
-                ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => ($this->getValue('isActive', $values) ==1?  'true': ''))) 
-                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));                
-        
-        return $builder->getForm();
+        return array_merge($form, $builder->getForm());
     } 
+    
+    private function buildQuestions($questions) {
+        $questionBuilder = new QuestionBuilder();
+      
+        if(is_null($questions)) {
+            return ;
+        }
+        
+        foreach ($questions as $question) {
+            $questionBuilder->add('question', $question['code'], array('class' => 'btn-xs', $question['id'],  'params' => $question));
+        }      
+        
+        return $questionBuilder->getForm();
+    }
     
 }
