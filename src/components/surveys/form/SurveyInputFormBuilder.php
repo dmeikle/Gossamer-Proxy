@@ -56,8 +56,8 @@ class SurveyInputFormBuilder extends AbstractBuilder{
         if(is_null($questions)) {
             return ;
         }
-        
         foreach ($questions as $question) {
+        pr($question);
             $questionBuilder->add('question', $question['code'], array('class' => 'btn-xs', $question['id'],  'params' => $question));
         }      
         

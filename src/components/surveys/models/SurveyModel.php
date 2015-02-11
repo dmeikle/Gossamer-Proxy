@@ -65,13 +65,12 @@ class SurveyModel extends AbstractModel implements FormBuilderInterface{
     
     public function saveFullSurvey($permalink, $page) {
         $params = $this->httpRequest->getPost();
-        pr($params);
-        die;
-        $params[$this->entity]['id'] = intval($id);
-        $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();        
-      
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
         
+        $params['staff']['Staff_id'] = $this->getLoggedInStaffId();        
+        $params['permalink'] = $permalink;
+        pr($params);
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'adminSaveResponses', $params);
+        die;
         return $data;
     }
 

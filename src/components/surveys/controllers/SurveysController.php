@@ -65,6 +65,7 @@ class SurveysController extends AbstractController{
     }
     
     protected function drawSurvey(FormBuilderInterface $model, array $values = null) {
+       
         $formBuilder = new FormBuilder($this->logger, $model);
         $builder = new SurveyInputFormBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
