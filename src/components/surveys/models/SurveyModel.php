@@ -55,11 +55,12 @@ class SurveyModel extends AbstractModel implements FormBuilderInterface{
         $params = array(
             'permalink' => $permalink,
             'page' => $page,
-            'locale' => $locale['locale']
+            'locale' => $locale['locale'],
+            'Staff_id' => $this->getLoggedInStaffId()
         );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'getSurveyPage', $params);
-        
+       pr($data);
         return $data;
     }
     
@@ -68,9 +69,9 @@ class SurveyModel extends AbstractModel implements FormBuilderInterface{
         
         $params['staff']['Staff_id'] = $this->getLoggedInStaffId();        
         $params['permalink'] = $permalink;
-        pr($params);
+       
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'adminSaveResponses', $params);
-        die;
+        
         return $data;
     }
 

@@ -65,16 +65,16 @@ class SurveysController extends AbstractController{
     }
     
     protected function drawSurvey(FormBuilderInterface $model, array $values = null) {
-       
+      
         $formBuilder = new FormBuilder($this->logger, $model);
         $builder = new SurveyInputFormBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
         
         $options = array();
         $options['locales'] = $this->httpRequest->getAttribute('locales');
-        
+       
         $form = $builder->buildForm($formBuilder, $values, $options, $results);
-        
+         
         if(is_null($form)) {
             $router = new Router($this->logger, $this->httpRequest);
             $router->redirect('admin_surveys_panes_not_found', array());

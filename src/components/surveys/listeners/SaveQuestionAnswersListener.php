@@ -36,10 +36,13 @@ class SaveQuestionAnswersListener extends AbstractListener{
         }
         $model = new AnswerModel($this->httpRequest, $this->httpResponse, $this->logger);
            
-            
+        if(!array_key_exists('answerId', $postedParams)) {
+            //nothing to save
+            return;
+        }  
         $params = array('Questions_id' => intval($params['Question'][0]['id']), 'answerIds' => $postedParams['answerId']);
         $datasource = $this->getDatasource('components\surveys\models\AnswerModel');
-     
+    
         $datasource->query('POST', $model, 'saveQuestionAnswers', $params);
 
         unset($model);

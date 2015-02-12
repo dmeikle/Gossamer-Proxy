@@ -49,7 +49,8 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
         $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();        
       
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
-        
+       pr($params);
+      
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $data));
        
         return $data;

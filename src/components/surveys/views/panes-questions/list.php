@@ -15,6 +15,9 @@
 </tr>
 <?php
 foreach($SurveyPaneQuestions as $question) {
+    if(count($question) == 0) {
+        continue;
+    }
 ?>
 <tr>
     <td>
