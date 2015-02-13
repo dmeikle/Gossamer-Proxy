@@ -194,6 +194,20 @@ admin_surveys_panes_not_found:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'
             
+admin_surveys_completed:
+    pattern: admin/surveys/completed
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_surveys_completed
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    
 admin_surveys_scopeforms_list:
     pattern: admin/surveys/scopeforms/*/*
     defaults:
@@ -433,7 +447,19 @@ admin_surveys_questions_select:
             - 'src/framework/core/components/locales/resources/*/Navigation'            
             
             
-            
+  
+admin_surveys_surveypage_list:
+    pattern: admin/surveys/survey/pages/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPagesController
+        model: components\surveys\models\SurveyPageModel
+        method: listallBySurvey
+        view: core\views\TemplateView
+        viewKey: admin_surveys_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'            
             
             
             

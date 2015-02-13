@@ -19,7 +19,7 @@ use core\system\Router;
 
 
 /**
- * Description of ScopingFormsController
+ * SurveyPagesController
  *
  * @author Dave Meikle
  */
@@ -53,4 +53,9 @@ class SurveyPagesController extends AbstractController{
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
 
+    public function listallBySurvey($id) {
+        $result = $this->model->listallBySurvey($id);
+        
+        $this->render($result);
+    }
 }

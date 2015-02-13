@@ -50,8 +50,10 @@ class SurveyPagePaneModel extends AbstractModel implements FormBuilderInterface{
     }
     
     public function listAllByPageId($id) {
+        $locale = $this->getDefaultLocale();
         $params = array(
-            'SurveyPages_id' => intval($id)
+            'SurveyPages_id' => intval($id),
+            'locale' => $locale['locale']
         );
        
       

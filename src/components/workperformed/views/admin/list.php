@@ -23,8 +23,8 @@ $(document).ready(function() {
     foreach($ActionPerformeds as $action) {?>
     <tr data-type="editable" valign="top" data-id="2">
         <td><?php echo $action['action'];?></td>
-        <td><?php echo $Departments[$action['Departments_id']]; ?></td>
-        <td><?php echo $ClaimPhases[$action['ClaimPhases_id']]; ?></td>
+        <td><?php echo $DepartmentsList[$action['Departments_id']]; ?></td>
+        <td><?php echo $ClaimPhasesList[$action['ClaimPhases_id']]; ?></td>
         <td><?php echo $action['layer'];?></td>
         <td>
             <button data-id="<?php echo $action['id'];?>" class="btn btn-primary edit">Edit</button> 

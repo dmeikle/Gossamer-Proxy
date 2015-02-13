@@ -59,9 +59,16 @@ class SurveysController extends AbstractController{
 
     public function getFullSurvey($permalink, $page) {
         $result = $this->model->getFullSurvey($permalink, $page);
+       
+        if(!array_key_exists('page', $result) && $page == 1) {
+            $router = new Router($this->logger, $this->httpRequest);
+            $router->redirect('admin_surveys_panes_not_found', array());
+        }elseif (!array_key_exists('page', $result) ) {
+            $router = new Router($this->logger, $this->httpRequest);
+            $router->redirect('admin_surveys_completed', array());
+        }
         
-        $this->render(array('form' => $this->drawSurvey($this->model, $result), 'survey' => current($result['survey'])));
-        
+        $this->render(array('form' => $this->drawSurvey($this->model, $result), 'survey' => current($result['survey'])));        
     }
     
     protected function drawSurvey(FormBuilderInterface $model, array $values = null) {
@@ -74,12 +81,7 @@ class SurveysController extends AbstractController{
         $options['locales'] = $this->httpRequest->getAttribute('locales');
        
         $form = $builder->buildForm($formBuilder, $values, $options, $results);
-         
-        if(is_null($form)) {
-            $router = new Router($this->logger, $this->httpRequest);
-            $router->redirect('admin_surveys_panes_not_found', array());
-        }
-        
+                
         return $form;
     }
     

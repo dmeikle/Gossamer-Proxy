@@ -68,11 +68,11 @@ class WorkPerformedController extends AbstractController
         $result = $this->model->listall($offset, $limit);
         
         $departmentSerializer = new DepartmentSerializer();        
-        $result['Departments'] = $departmentSerializer->formatDepartmentsArray($this->httpRequest->getAttribute('Departments'));
+        $result['DepartmentsList'] = $departmentSerializer->formatDepartmentsArray($this->httpRequest->getAttribute('Departments'));
         unset($departmentSerializer);
         
         $claimPhaseSerializer = new ClaimPhaseSerializer();        
-        $result['ClaimPhases'] = $claimPhaseSerializer->formatPhasesForSelection($this->httpRequest->getAttribute('ClaimPhases'));
+        $result['ClaimPhasesList'] = $claimPhaseSerializer->formatPhasesForSelection($this->httpRequest->getAttribute('ClaimPhases'));
         unset($claimPhaseSerializer);
         
         if(is_array($result) && array_key_exists($this->model->getEntity() .'sCount', $result)) {

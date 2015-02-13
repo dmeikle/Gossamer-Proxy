@@ -60,7 +60,7 @@ class SurveyModel extends AbstractModel implements FormBuilderInterface{
         );
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'getSurveyPage', $params);
-       pr($data);
+       
         return $data;
     }
     

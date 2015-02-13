@@ -11,8 +11,8 @@ $(document).ready(function() {
         window.location = '/admin/surveys/builder/' + $(this).data('id');
     });
     
-    $('.questions').click(function() {
-        window.location = '/admin/surveys/surveyquestions/' + $(this).data('id');
+    $('.pages').click(function() {
+        window.location = '/admin/surveys/survey/pages/' + $(this).data('id');
     });
     
 });
@@ -37,7 +37,7 @@ $(document).ready(function() {
         <td><?php echo (($survey['isActive'] == '1') ? '<span class="glyphicon glyphicon-ok"></span>' : ''); ?></td>    
         <td><button class="btn btn-primary edit" data-id="<?php echo $survey['id'];?>">Edit</button> 
         <button class="btn btn-primary remove" data-id="<?php echo $survey['id'];?>">Delete</button>
-        <button class="btn btn-primary questions" data-id="<?php echo $survey['id'];?>">Questions</button> 
+        <button class="btn btn-primary pages" data-id="<?php echo $survey['id'];?>">Pages</button> 
         <button class="btn btn-primary builder" data-id="<?php echo $survey['id'];?>">Builder</button></td>
     <?php
     }
