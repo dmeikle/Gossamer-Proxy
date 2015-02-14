@@ -101,4 +101,8 @@ class SurveysController extends AbstractController{
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect('admin_surveys_respond_by_permalink', array($permalink, $page));
     }
+    
+    public function listResponses($surveyId) {
+        echo "this page needs more determination";
+    }
 }

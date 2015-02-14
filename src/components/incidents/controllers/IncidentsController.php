@@ -69,15 +69,16 @@ class IncidentsController extends AbstractController{
         $options = array();        
         $options['locales'] = $this->httpRequest->getAttribute('locales');
         
-        
         $sectionsList = $this->httpRequest->getAttribute('Sections');
        
         $incidentTypeSerializer = new IncidentTypeSerializer();
-        $rawTypeSections = $values['IncidentTypeSection'];
+        $rawTypeSections = array();
+        if(!is_null($values) && array_key_exists('IncidentTypeSection', $values)) {
+            $rawTypeSections = $values['IncidentTypeSection'];
+            $incidentTypeSections = $incidentTypeSerializer->extractRawChildNodeData($rawTypeSections, 'Sections_id');        
+            $options['Sections_id'] = $incidentTypeSerializer->formatSelectionBoxOptions($sectionsList, $incidentTypeSections, 'section');
+        }
         
-        $incidentTypeSections = $incidentTypeSerializer->extractRawChildNodeData($rawTypeSections, 'Sections_id');
-        
-        $options['Sections_id'] = $incidentTypeSerializer->formatSelectionBoxOptions($sectionsList, $incidentTypeSections, 'section');
         $options['scores'] = $this->getScores($values);
         
         return $builder->buildForm($formBuilder, $values, $options, $results);

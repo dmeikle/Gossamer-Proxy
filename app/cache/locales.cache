@@ -1,0 +1,17 @@
+<?php
+return array (
+'en_US' => array (
+'id' => '1',
+'locale' => 'en_US',
+'isDefault' => '1',
+'languageName' => 'English'),
+'zh_CN' => array (
+'id' => '2',
+'locale' => 'zh_CN',
+'isDefault' => '0',
+'languageName' => 'Chinese - Simplified'),
+'hi_IN' => array (
+'id' => '4',
+'locale' => 'hi_IN',
+'isDefault' => '',
+'languageName' => 'Hindi'));

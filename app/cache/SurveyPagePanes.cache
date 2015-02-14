@@ -1,0 +1,12 @@
+<?php
+return array (
+'0' => array (
+'id' => '1',
+'SurveysPages_id' => '2',
+'SurveyPanes_id' => '1',
+'isActive' => '1',
+'lastModified' => '2015-02-03 13:20:43',
+'priority' => '0',
+'name' => 'test',
+'cssClass' => 'asd',
+'SurveysPagesPanes_id' => '1'));

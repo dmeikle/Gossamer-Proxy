@@ -1,0 +1,26 @@
+<?php
+return array (
+'0' => array (
+'id' => '1',
+'name' => 'Accounting',
+'Departments_id' => '1'),
+'1' => array (
+'id' => '2',
+'name' => 'Administration',
+'Departments_id' => '2'),
+'2' => array (
+'id' => '3',
+'name' => 'Content Processing',
+'Departments_id' => '3'),
+'3' => array (
+'id' => '4',
+'name' => 'Construction',
+'Departments_id' => '4'),
+'4' => array (
+'id' => '5',
+'name' => 'Emergency',
+'Departments_id' => '5'),
+'5' => array (
+'id' => '6',
+'name' => 'Scoping',
+'Departments_id' => '6'));

@@ -74,7 +74,20 @@ admin_incidenttypes_list:
         view: core\views\TemplateView
         viewKey: admin_incidenttypes_list
         datasource: datasource1      
-        
+             
+admin_incidents_create:
+    pattern: admin/incidents/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\incidents\models\IncidentTypeModel', 'cacheKey': 'IncidentTypes' }
+    defaults:
+        component: components\incidents\IncidentsComponent
+        controller: components\incidents\controllers\IncidentsController
+        model: components\incidents\models\IncidentModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_incidents_list
+        datasource: datasource1              
              
 admin_incidents_list:
     pattern: admin/incidents/*/*

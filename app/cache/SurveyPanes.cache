@@ -1,0 +1,32 @@
+<?php
+return array (
+'0' => array (
+'id' => '1',
+'name' => 'test ',
+'lastModified' => '2015-02-13 08:32:44',
+'isActive' => '1',
+'cssClass' => 'asd',
+'SurveyPanes_id' => '1',
+'locale' => 'en_US',
+'title' => 'this is an english survey pane',
+'description' => 'descrfiption'),
+'1' => array (
+'id' => '2',
+'name' => 'qweqwe ',
+'lastModified' => '2015-02-13 08:32:46',
+'isActive' => '1',
+'cssClass' => 'qwe',
+'SurveyPanes_id' => '2',
+'locale' => 'en_US',
+'title' => 'this is a 2nd survey pane',
+'description' => 'description2'),
+'2' => array (
+'id' => '3',
+'name' => 'contact info ',
+'lastModified' => '2015-02-13 08:32:47',
+'isActive' => '1',
+'cssClass' => '',
+'SurveyPanes_id' => '3',
+'locale' => 'en_US',
+'title' => 'Contact Information',
+'description' => ''));

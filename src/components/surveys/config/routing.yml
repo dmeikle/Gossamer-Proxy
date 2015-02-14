@@ -88,8 +88,18 @@ admin_surveys_pages_panes_list:
             - 'src/framework/core/components/locales/resources/*/Navigation'          
             
             
-
-
+admin_surveys_responses:
+    pattern: admin/surveys/responses/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveysController
+        model: components\surveys\models\SurveyModel
+        method: listResponses
+        view: core\views\TemplateView
+        viewKey: admin_surveys_panes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
 
 
 

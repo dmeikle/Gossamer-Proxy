@@ -1,0 +1,77 @@
+<?php
+return array (
+'id' => '12',
+'CmsSections_id' => '',
+'lastModified' => '2015-01-20 16:04:48',
+'name' => 'water damage restoration',
+'priority' => '0',
+'permalink' => 'water-damage-restoration',
+'Staff_id' => '2',
+'summary' => '',
+'isPublic' => '0',
+'revision' => '1',
+'isPublished' => '0',
+'isActive' => '1',
+'publishDate' => '',
+'CmsPages_id' => '12',
+'locale' => 'en_US',
+'content' => '<p>Water damage can arise from the impact of water dousing a fire, broken pipes, malfunctioning appliances, storms or sewage backups. Some water carries contaminants and should be considered hazardous until analyzed by an expert. A proper analysis will assist in presenting proper steps for successful and timely mitigation.</p>
+
+<p>Once mitigation of the damage has begun, a recovery plan will then be executed to restore your property and, if possible, contents.</p>
+
+<h2 style="font-style:normal">Water / Sewage</h2>
+
+<p>Flood waters and raw sewage may contain bacteria, blood born pathogens and other organisms which are extremely hazardous to human health. These can be transmitted by touching contaminated items or by tracking them in uncontaminated areas on shoes. On Side is trained to properly handle such risks and remove and restore properly. For this reason, absorbent materials such as carpeting and drywall may not be restorable after direct contact with contaminated water.</p>
+
+<p>Additionally, during a flood clean-up the air quality in the affected area may appear to be the least of your problems, however, it should be tested. On Side uses the latest air scrubbing and disinfection technologies in the event such treatment is required.</p>
+
+<h2 style="font-style:normal">Structural Drying</h2>
+
+<p>Once removal of water damaged items is complete, we can begin the drying process. At On Side, we have a variety of methods available to us: open systems, closed systems, Refrigerant Dehumidifiers, and Desiccant Dehumidifiers. Each method involves air movement which is critical to successful drying. All of our water damage technicians are certified and many have advanced certifications providing them with the knowledge required to establish and execute a drying plan that will quickly, thoroughly and effectively dry the area while eliminating the chances of secondary damage.</p>
+
+<h2 style="font-style:normal">Odour</h2>
+
+<p>Qualified cleaning technicians use the latest technologies and equipment to properly diagnose and eradicate odours from surfaces. Through immediate and thorough cleaning combined with the use of our specialized equipment, we can remove bacteria, organic compounds and/or chemical compounds, which are often the source of the odour.</p>
+',
+'preview' => '',
+'metaTitle' => 'Water Damage Restoration',
+'metaDescription' => '',
+'locales' => array (
+'en_US' => array (
+'CmsPages_id' => '12',
+'locale' => 'en_US',
+'content' => '<p>Water damage can arise from the impact of water dousing a fire, broken pipes, malfunctioning appliances, storms or sewage backups. Some water carries contaminants and should be considered hazardous until analyzed by an expert. A proper analysis will assist in presenting proper steps for successful and timely mitigation.</p>
+
+<p>Once mitigation of the damage has begun, a recovery plan will then be executed to restore your property and, if possible, contents.</p>
+
+<h2 style="font-style:normal">Water / Sewage</h2>
+
+<p>Flood waters and raw sewage may contain bacteria, blood born pathogens and other organisms which are extremely hazardous to human health. These can be transmitted by touching contaminated items or by tracking them in uncontaminated areas on shoes. On Side is trained to properly handle such risks and remove and restore properly. For this reason, absorbent materials such as carpeting and drywall may not be restorable after direct contact with contaminated water.</p>
+
+<p>Additionally, during a flood clean-up the air quality in the affected area may appear to be the least of your problems, however, it should be tested. On Side uses the latest air scrubbing and disinfection technologies in the event such treatment is required.</p>
+
+<h2 style="font-style:normal">Structural Drying</h2>
+
+<p>Once removal of water damaged items is complete, we can begin the drying process. At On Side, we have a variety of methods available to us: open systems, closed systems, Refrigerant Dehumidifiers, and Desiccant Dehumidifiers. Each method involves air movement which is critical to successful drying. All of our water damage technicians are certified and many have advanced certifications providing them with the knowledge required to establish and execute a drying plan that will quickly, thoroughly and effectively dry the area while eliminating the chances of secondary damage.</p>
+
+<h2 style="font-style:normal">Odour</h2>
+
+<p>Qualified cleaning technicians use the latest technologies and equipment to properly diagnose and eradicate odours from surfaces. Through immediate and thorough cleaning combined with the use of our specialized equipment, we can remove bacteria, organic compounds and/or chemical compounds, which are often the source of the odour.</p>
+',
+'preview' => '',
+'metaTitle' => 'Water Damage Restoration',
+'metaDescription' => ''),
+'zh_CN' => array (
+'CmsPages_id' => '12',
+'locale' => 'zh_CN',
+'content' => '',
+'preview' => '',
+'metaTitle' => '',
+'metaDescription' => ''),
+'hi_IN' => array (
+'CmsPages_id' => '12',
+'locale' => 'hi_IN',
+'content' => '',
+'preview' => '',
+'metaTitle' => '',
+'metaDescription' => '')));

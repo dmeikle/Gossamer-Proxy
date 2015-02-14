@@ -15,6 +15,10 @@ $(document).ready(function() {
         window.location = '/admin/surveys/survey/pages/' + $(this).data('id');
     });
     
+    $('.responses').click(function() {
+        window.location = '/admin/surveys/responses/' + $(this).data('id');
+    });
+    
 });
 
 </script>
@@ -38,7 +42,7 @@ $(document).ready(function() {
         <td><button class="btn btn-primary edit" data-id="<?php echo $survey['id'];?>">Edit</button> 
         <button class="btn btn-primary remove" data-id="<?php echo $survey['id'];?>">Delete</button>
         <button class="btn btn-primary pages" data-id="<?php echo $survey['id'];?>">Pages</button> 
-        <button class="btn btn-primary builder" data-id="<?php echo $survey['id'];?>">Builder</button></td>
+        <button class="btn btn-primary responses" data-id="<?php echo $survey['id'];?>">Responses</button></td>
     <?php
     }
     ?>
