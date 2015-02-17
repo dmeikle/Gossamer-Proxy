@@ -28,7 +28,7 @@ class StaffAuthorizationBuilder extends AbstractBuilder{
             $builder->addValidationResults($validationResults['StaffAuthorization']);
         }
 
-        $builder->add('username', 'text', array('class' => 'form-control', $this->getValue('username', $values)))
+        $builder->add('username', 'text', array('class' => 'form-control', 'value' => $this->getValue('username', $values)))
                 ->add('password', 'password', array('class' => 'form-control'))
                 ->add('passwordConfirm', 'password', array('class' => 'form-control'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));                

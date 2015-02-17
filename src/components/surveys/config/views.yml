@@ -210,4 +210,13 @@ admin_surveys_surveypage_list:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/surveys/views/subnav.php"
             "section3": "src/components/surveys/views/survey-pages/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"       
+            "section4": "src/themes/default/templates/sections/footer.php"      
+            
+admin_surveys_view_responses:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/view-response.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          

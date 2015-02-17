@@ -42,6 +42,7 @@ admin_claims:
         - IS_STAFF
         
 admin_contents:
+    active: false
     text_key: 'ADMIN_CONTENTS'
     pattern: '/admin/contents/jobs/0/20'
     display_roles:

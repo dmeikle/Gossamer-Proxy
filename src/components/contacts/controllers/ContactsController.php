@@ -13,6 +13,7 @@ namespace components\contacts\controllers;
 
 use core\AbstractController;
 use components\contacts\serialization\ContactSerializer;
+use components\contacts\serialization\ContactTypeSerializer;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\contacts\form\ContactBuilder;
@@ -74,13 +75,18 @@ class ContactsController extends AbstractController
     }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
+        
         $builder = new FormBuilder($this->logger, $model);
         $contactBuilder = new ContactBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+        $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
+        $contactTypeSerializer = new ContactTypeSerializer();
+        $contactTypesList = $contactTypeSerializer->formatContactTypesList($contactTypes, $values);
+        unset($contactTypeSerializer);
         
         $options = array(
             'companies' => array(),
-            'contactTypes' => array()
+            'contactTypes' => $contactTypesList
         );
         
         return $contactBuilder->buildForm($builder, $values, $options, $results);        

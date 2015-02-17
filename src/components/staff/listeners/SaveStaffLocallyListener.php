@@ -30,14 +30,14 @@ class SaveStaffLocallyListener extends AbstractListener{
        
         $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
         $query = sprintf('select * from StaffAuthorizations where Staff_id = %d limit 1', $staffId);
-        $staff;
-        $rowId = null;
+        $staff = array();
+        $rowId = 'null';
         $rawResult = $datasource->execute($query);
         if(is_array($rawResult) && count($rawResult) > 0) {
             $staff = current($rawResult);
             $rowId = $staff['id'];
         }
-        
+       
         $this->setPasswordArray($staff, $params);
         $query = "insert into StaffAuthorizations (id, username, password, passwordHistory, status, Staff_id) values ( $rowId," 
                 . "'" . $params['username'] . "','" . $params['password'] . "','" . $params['passwordHistory'] 
@@ -45,8 +45,8 @@ class SaveStaffLocallyListener extends AbstractListener{
                 . "username ='" . $params['username'] . "', password = '" . $params['password'] . "', passwordHistory = '"
                 . $params['passwordHistory'] . "'";
     
-       $datasource->execute($query);
-      
+       $datasource->execute("$query");
+   
     }
 
     private function setPasswordArray(array $staff, &$postedStaff) {
