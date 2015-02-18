@@ -27,16 +27,18 @@ class StaffBuilder extends AbstractBuilder{
         if(is_array($validationResults) && array_key_exists('Staff', $validationResults)) {
             $builder->addValidationResults($validationResults['Staff']);
         }
-              
+        if(is_array($values) && array_key_exists('Staff', $values)) {
+            $values = current($values['Staff']);
+        }
 
-        $builder->add('firstname', 'text', array('class' => 'form-control', $this->getValue('firstname', $values)))
-                ->add('lastname', 'text', array('class' => 'form-control', $this->getValue('lastname', $values)))
-                ->add('telephone', 'text', array('class' => 'form-control', $this->getValue('telephone', $values)))
-                ->add('email', 'email', array('class' => 'form-control', $this->getValue('email', $values)))
-                ->add('address1', 'text', array('class' => 'form-control', $this->getValue('address1', $values)))
-                ->add('address2', 'text', array('class' => 'form-control', $this->getValue('address2', $values)))
-                ->add('city', 'text', array('class' => 'form-control', $this->getValue('city', $values)))    
-                ->add('postalCode', 'text', array('class' => 'form-control', $this->getValue('postalCode', $values)))
+        $builder->add('firstname', 'text', array('class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
+                ->add('lastname', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('lastname', $values)))
+                ->add('telephone', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('telephone', $values)))
+                ->add('email', 'email', array('class' => 'form-control', 'value' =>  $this->getValue('email', $values)))
+                ->add('address1', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('address1', $values)))
+                ->add('address2', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('address2', $values)))
+                ->add('city', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('city', $values)))    
+                ->add('postalCode', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('postalCode', $values)))
                 //->add('username', 'text', array('class' => 'form-control', $this->getValue('username', $values)))
                // ->add('password', 'password', array('class' => 'form-control'))
                // ->add('passwordConfirm', 'password', array('class' => 'form-control'))

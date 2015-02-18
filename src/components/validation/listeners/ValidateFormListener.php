@@ -51,7 +51,7 @@ class ValidateFormListener extends AbstractListener
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
             $router = new Router($this->logger, $this->httpRequest);
-            $router->redirect($result['FAIL_KEY']);
+            $router->redirect($result['FAIL_KEY'], $this->httpRequest->getParameters());
         }
        
         setSession('ERROR_RESULT', null);
