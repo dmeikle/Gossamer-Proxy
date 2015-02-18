@@ -336,6 +336,8 @@ portal_contacts_list:
         
 portal_contacts_edit:  
     pattern: portal/contacts/edit
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadListListener', cachekey: ContactTypes, class: 'components\contacts\models\ContactTypeModel', datasource: datasource1 }        
     methods: [GET]
     defaults:
         component: components\contacts\ContactsComponent

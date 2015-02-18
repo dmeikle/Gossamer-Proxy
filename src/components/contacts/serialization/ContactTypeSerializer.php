@@ -28,7 +28,7 @@ class ContactTypeSerializer extends Serializer{
         }
        
         foreach($list as $row) {
-            $retval .= '<option value=\"' . $row['ContactTypes_id'] . '"';
+            $retval .= '<option value="' . $row['ContactTypes_id'] . '"';
             if(array_key_exists('ContactTypes_id', $values) && $row['ContactTypes_id'] == $values['ContactTypes_id']) {
                 $retval .= ' selected';
             }

@@ -42,7 +42,7 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         
         $params = $this->httpRequest->getPost();
         $params['Contact']['id'] = intval($id);
-          
+        
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveContact', $params['Contact']);  
                 
         return array('Contact' =>$data['Contact'][0], 'roles' => array());

@@ -9,42 +9,56 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\components\access\eventlisteners;
+namespace core\components\basicmenu\models;
 
-use core\eventlisteners\AbstractListener;
+use core\AbstractModel;
+use core\http\HTTPRequest;
+use core\http\HTTPResponse;
+use Monolog\Logger;
 use libraries\utils\YAMLParser;
 use libraries\utils\YamlListParser;
 
-/**
- * LoadNavigationListener - Loads the navigation config for a user
- * to determine their available menu options
- *
- * @author Dave Meikle
- */
-class LoadNavigationListener extends AbstractListener {
+class BasicMenuModel extends  AbstractModel 
+{
+    
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
+        parent::__construct($httpRequest, $httpResponse, $logger);
+        
+        $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
+        
+        $this->entity = '';
+        $this->tablename = '';        
+    }
 
+  
+    
     /**
-     *  entry point - this is called at the start of a response object 
-     *  being drawn.
+     * loads the navigation items from the yml config
      * 
-     * @param variant $params
+     * @return array
      */
-    public function on_response_start($params) {
+    protected function loadNavigation() {
+        $loader = new YAMLParser($this->logger);
+        $loader->setFilePath(__CONFIG_PATH . '/navigation-display.yml');
 
+        return $loader->loadConfig();
+    }
+    
+    public function view() {
         $userRoles = $this->getUserAccessRoles();
 
         $navigationNodes = $this->loadNavigation();
 
-        $navigationItems = $this->loadNavigationElements($navigationNodes, $userRoles);
-        $this->httpResponse->setAttribute('NAVIGATION', $navigationItems);
+        return $this->loadNavigationElements($navigationNodes, $userRoles);
+       
     }
-
+    
     /**
      * returns the specified user access roles for a current user
      * 
      * @return array
      */
-    private function getUserAccessRoles() {
+    protected function getUserAccessRoles() {
         $token = unserialize(getSession('_security_secured_area'));
         if (is_null($token) || !$token) {
             return array('IS_ANONYMOUS');
@@ -54,7 +68,7 @@ class LoadNavigationListener extends AbstractListener {
 
         return $user->getRoles();
     }
-
+    
     /**
      * parses the allowable menu items
      * 
@@ -63,22 +77,9 @@ class LoadNavigationListener extends AbstractListener {
      * 
      * @return array
      */
-    private function loadNavigationElements(array $config, array $userRoles) {
+    protected function loadNavigationElements(array $config, array $userRoles) {
         $parser = new YamlListParser();
 
         return $parser->parseList($config, $userRoles, 'display_roles');
     }
-
-    /**
-     * loads the navigation items from the yml config
-     * 
-     * @return array
-     */
-    private function loadNavigation() {
-        $loader = new YAMLParser($this->logger);
-        $loader->setFilePath(__SITE_PATH . '/app/config/navigation-display.yml');
-
-        return $loader->loadConfig();
-    }
-
 }

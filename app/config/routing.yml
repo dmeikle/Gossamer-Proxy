@@ -6,6 +6,9 @@ locales:
     component: "src/framework/core/components/locales/config/routing.yml"
 
    
+basicmenu:
+    component: "src/framework/core/components/basicmenu/config/routing.yml"
+    
 about:
     component: "src/components/defaultItem/config/routing.yml"
   

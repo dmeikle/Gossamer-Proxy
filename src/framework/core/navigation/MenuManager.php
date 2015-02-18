@@ -52,8 +52,8 @@ class MenuManager {
     
     private function getUriRoles($ymlkey) {
         $config = $this->loadComponentConfig($ymlkey, 'security');
-        
-        if(array_key_exists('roles', $config)) {
+       
+        if(!is_null($config) && array_key_exists('roles', $config)) {
             return $config['roles'];
         }
         

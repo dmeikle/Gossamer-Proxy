@@ -42,9 +42,13 @@
     <?php
 echo $this->getMenu('cssmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
 ?>
+    
 <div id="container">
   <div id="header-admin">
       <div id="logo">Phoenix Restorations</div>
+     <?php
+echo $this->getMenu('basicmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
+?>
     <!---section1--->
      <!---section2---> 
   </div>

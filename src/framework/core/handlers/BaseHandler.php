@@ -69,7 +69,7 @@ abstract class BaseHandler {
      */
     protected function getOriginFilePath($filepath) {
 
-        return __SITE_PATH . '/src/components' . $filepath;
+        return __SITE_PATH . '/src' . $filepath;
     }
 
     /**
@@ -83,7 +83,7 @@ abstract class BaseHandler {
     protected function getDestinationFilepath($filepath, $rootFolder) {
         $filepath = str_replace('/includes/' . $rootFolder, '', $filepath);
 
-        return __SITE_PATH . '/web/' . $rootFolder . '/components' . $filepath;
+        return __SITE_PATH . '/web/' . $rootFolder  . $filepath;
     }
 
     /**
@@ -102,10 +102,10 @@ abstract class BaseHandler {
 
         $filename = array_pop($chunks);
         $old_umask = umask(0);
-        $parsedFromPath = __SITE_PATH . '/src/components';
-        $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . '/components' . implode('/', $chunks);
+        $parsedFromPath = __SITE_PATH . '/src';
+        $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
        
-        
+       
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
        
         @mkdir($parsedToPath, 0777, true);
@@ -115,7 +115,41 @@ abstract class BaseHandler {
         @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
         @chmod($parsedToPath, 0755);
 
-        return '/web/' . $rootFolder . '/components/' . implode('/', $chunks) . $filename;
+
+        return '/web/' . $rootFolder . implode('/', $chunks) . $filename;
+    }
+    
+    /**
+     * copies a file from 1 location to another
+     * 
+     * @param string $filepath
+     * @param string $rootFolder
+     * 
+     * @return string
+     */
+    protected function copyCoreFile($filepath, $rootFolder) {
+        $filepath = trim($filepath);
+        $filepathWithFile = str_replace('/includes/' . $rootFolder . '/', '/', $filepath);
+
+        $chunks = explode('/', $filepathWithFile);
+
+        $filename = array_pop($chunks);
+        $old_umask = umask(0);
+        $parsedFromPath = __SITE_PATH . '/src';
+        $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
+       
+       
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
+       
+        @mkdir($parsedToPath, 0777, true);
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0755);
+        umask($old_umask);
+        
+        @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
+        @chmod($parsedToPath, 0755);
+
+
+        return '/web/' . $rootFolder . implode('/', $chunks) . $filename;
     }
 
     /**

@@ -22,7 +22,8 @@
                 "willdurand/geocoder": "@stable",
                 "quantumunit/php-validation": "dev-master",
                 "gossamer/form-builder": "dev-master",
-                "gossamer/caching": "dev-master"
+                "gossamer/caching": "dev-master",
+                "gossamer/pesedget": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}

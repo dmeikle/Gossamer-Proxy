@@ -30,15 +30,17 @@ class PasswordMismatchListener extends AbstractListener{
         $client = $params['client'];
         $model = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
         $datasource = $this->getDatasource($model);
-        $datasource->query("update UserAuthentications set failedLogins = failedLogins + 1 where username='" . $client->getCredentials() . "'");
+      
+        
+        $datasource->query("update StaffAuthorizations set failedLogins = ifnull(failedLogins,0) + 1 where username='" . $client->getCredentials() . "'");
         
         //now check to see if we need to lock them down
-        $result = $datasource->query("select failedLogins from UserAuthentications  where username='" . $client->getCredentials() . "'");
+        $result = $datasource->query("select failedLogins from StaffAuthorizations  where username='" . $client->getCredentials() . "'");
         
         $failedLogins = current($result);
         $value = $failedLogins['failedLogins'];
         if($value >= self::MAX_LOGIN_FAILURES) {
-            $datasource->query("update UserAuthentications set status='locked' where username='" . $client->getCredentials() . "'");
+            $datasource->query("update StaffAuthorizations set status='locked' where username='" . $client->getCredentials() . "'");
         }
         unset($datasource);
         unset($model);

@@ -46,15 +46,25 @@ class ImportCSSHandler extends BaseHandler {
 
             if (substr($tmp, 0, 11) == '@components') {
 
-                $filepath = str_replace('@components', '', $tmp);
+                $filepath = str_replace('@components', 'components', $tmp);
 
                 //we need to import this if it doesn't exist or if the existing is stale
                 if ($this->checkFileIsStale($filepath, 'css')) {
                     $this->copyFile($filepath, 'css');
                 }
 
-                $retval[] = '/css/components' . str_replace('includes/css/', '', $filepath);
-            } elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
+                $retval[] = '/css/' . str_replace('includes/css/', '', $filepath);
+            }elseif(substr($tmp, 0, 16) == '@core/components') {
+                $filepath = str_replace('@core/components', '/framework/core/components', $tmp);
+
+                //we need to import this if it doesn't exist or if the existing is stale
+                if ($this->checkFileIsStale($filepath, 'css')) {
+                    $this->copyFile($filepath, 'css');
+                }
+
+                $retval[] = '/css' . str_replace('includes/css/', '', $filepath);
+            }elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
+            
                 $retval[] = $tmp;
             }
         }
