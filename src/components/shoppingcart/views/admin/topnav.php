@@ -4,7 +4,7 @@
         
         foreach($SystemLocalesList as $key => $systemlocale) {
             
-            echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
+            echo '<li class="select-locale" data-id="' . $key . '">'  . $systemlocale['languageName'] . '</li>';
         }
         ?>
     </ul>

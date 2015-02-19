@@ -63,9 +63,9 @@ class ProductModel extends AbstractModel
         //loaded from event dispatcher
         $data['categoryList'] = $this->httpRequest->getAttribute('categoryList');
         $productCategories = array();
-        
-        if(!is_null($data['CartProduct'][0]['ProductCategory'])) {
-            $productCategories = array_column($data['CartProduct'][0]['ProductCategory'], 'Categories_id');
+       
+        if(!is_null($data['CartProduct'][0]['CartProductCategory'])) {
+            $productCategories = array_column($data['CartProduct'][0]['CartProductCategory'], 'Categories_id');
         }
         $data['categoryOptions'] = $this->formatSelectionBoxOptions($data['categoryList'], $productCategories);
      
