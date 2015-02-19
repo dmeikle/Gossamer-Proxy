@@ -29,6 +29,7 @@ class CheckPasswordInHistoryListener extends AbstractListener{
         $params = $this->httpRequest->getPost();
        
         $member = $this->httpRequest->getAttribute('components\\staff\\models\\StaffAuthorizationModel');
+     
         
         $password = new Password();
         if($password->checkPasswordExists($params['StaffAuthorization']['password'], $member['passwordHistory'])) {
@@ -36,7 +37,7 @@ class CheckPasswordInHistoryListener extends AbstractListener{
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
             $router = new Router($this->logger, $this->httpRequest);
-            $router->redirect($this->listenerConfig['params']['failkey']);
+            $router->redirect($this->listenerConfig['params']['failkey'], array($member['Staff_id']));
         }
         unset($password);
         

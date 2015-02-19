@@ -41,6 +41,12 @@ class SurveysController extends AbstractController{
         $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'form' => $this->drawForm($this->model, $results)));
     }
     
+    public function viewResponse($id, $page) {        
+        $results = $this->model->getCompletedSurvey($id, $page);
+        
+        $this->render($results);
+    }
+    
     public function drawForm(FormBuilderInterface $model, array $values = null) {
         $formBuilder = new FormBuilder($this->logger, $model);
         $builder = new SurveyBuilder();

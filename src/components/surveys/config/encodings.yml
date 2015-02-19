@@ -40,3 +40,8 @@ admin_surveys_respond_by_permalink:
     name: utf8
     question: utf8
     answer: utf8
+    
+admin_surveys_view_responses:  
+    name: utf8
+    question: utf8
+    answer: utf8   

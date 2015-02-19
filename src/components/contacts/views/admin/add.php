@@ -3,7 +3,7 @@
 $( document ).ready(function() {
 
     $('.cancel').click(function (e) {
-        window.location.href='/admin/scoping/requests/0/20';
+        window.location.href='/admin/contacts/0/20';
     });
     
     $('#contact-type').change(function(e) {
@@ -55,11 +55,10 @@ $( document ).ready(function() {
 <form method="post">
     <table class="table">
         <tr valign="top">
-          <td>Contact Type:</td>
-                  <td><select name="Contact[contactType]" id="contact-type" class="form-control">
-                          <option value="1">here for now</option>
-                          <?php // echo $ContactTypes; ?>
-              </select></td>
+            <td>Contact Type:</td>
+            <td>
+                 <?php echo $form['ContactTypes_id']; ?>
+            </td>
         </tr>
         <tr valign="top" id="companyRow">
           <td>Company:</td>

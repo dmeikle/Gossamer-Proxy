@@ -244,7 +244,7 @@ class AbstractView {
             $userId = $user->getId();
         }
         $locale = $this->getDefaultLocale();
-        
+       
         return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale']);
     }
 

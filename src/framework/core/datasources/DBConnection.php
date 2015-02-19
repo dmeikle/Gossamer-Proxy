@@ -28,9 +28,11 @@ class DBConnection implements AdapterInterface {
     // preferably in an environment variable if this were a dedicated server.
 
     protected $host = 'localhost';
+
     protected $user = 'root';
     protected $pass = 'isnothere';
     protected $db = 'shoppingcart';
+
     private $lastQuery = '';
     protected $logger = null;
     protected $stack;

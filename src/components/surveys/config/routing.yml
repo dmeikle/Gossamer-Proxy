@@ -1,5 +1,18 @@
   
-    
+
+admin_surveys_view_responses:
+    pattern: admin/surveys/view/*/*
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyResponsesController
+        model: components\surveys\models\SurveyResponseModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: admin_surveys_view_responses
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'    
    
 admin_surveys_panes_questions_list:
     pattern: admin/surveys/panes/questions/*/*/*
