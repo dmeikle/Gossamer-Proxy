@@ -1,4 +1,10 @@
 
 
 /vendor
+
 /composer.lock
+
+/app/cache/*
+/app/logs/*
+
+/app/config/credentials.yml
