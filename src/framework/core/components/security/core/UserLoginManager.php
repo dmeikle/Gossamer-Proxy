@@ -77,11 +77,6 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
             $eventParams = array('client' => $client);
 
             //since we want to know WHY a person was not allowed, run each check individually
-            if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
-                $this->logger->addAlert('login_password_mismatch');
-                error_log('login_password_mismatch');
-                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
-            }
             if ($this->statusIsLocked($client)) {
                 $this->logger->addAlert('login_status_locked');
                 error_log('login_status_locked');
@@ -89,6 +84,12 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
                
                 setSession('_security_secured_area', null);
             }
+            if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
+                $this->logger->addAlert('login_password_mismatch');
+                error_log('login_password_mismatch');
+                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
+            }
+            
             if (!$this->checkStatus($client)) {
                 $this->logger->addAlert('login_status_not_active');
                 error_log('login_status_not_active');

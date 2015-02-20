@@ -50,8 +50,10 @@ class SurveyPaneQuestionModel extends AbstractModel implements FormBuilderInterf
     }
     
     public function listAllByPaneId($id) {
+        $locale = $this->getDefaultLocale();
         $params = array(
-            'SurveyPanes_id' => intval($id)
+            'SurveyPanes_id' => intval($id),
+            'locale' => $locale['locale']
         );
        
       

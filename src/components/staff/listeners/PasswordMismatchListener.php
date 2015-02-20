@@ -14,6 +14,7 @@ namespace components\staff\listeners;
 use core\eventlisteners\AbstractListener;
 use components\staff\models\StaffModel;
 use core\eventlisteners\Event;
+use core\system\Router;
 
 
 /**
@@ -44,5 +45,8 @@ class PasswordMismatchListener extends AbstractListener{
         }
         unset($datasource);
         unset($model);
+        
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect('admin_login_failed', array());
     }
 }

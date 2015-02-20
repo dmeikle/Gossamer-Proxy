@@ -50,6 +50,11 @@
         window.location = '/admin/staff/credentials/' + $(this).data('id');  
     });
     
+    $('.emergency').click(function(e) {
+       // e.stopPropogation();
+        window.location = '/admin/staff/emergencycontacts/' + $(this).data('id');  
+    });
+    
 });
 </script>
 <form method="post" style="float:right">
@@ -100,6 +105,7 @@
                     <button data-id="<?php echo $staff['id'];?>" class="btn btn-primary btn-xs edit">Edit</button> 
                     <button class="btn btn-primary btn-xs credentials" data-id="<?php echo $staff['id'];?>">Credentials</button> 
                     <button class="btn btn-primary btn-xs permissions" data-id="<?php echo $staff['id'];?>">Permissions</button> 
+                    <button class="btn btn-primary btn-xs emergency" data-id="<?php echo $staff['id'];?>">Emergency Contacts</button> 
                     <button data-id="<?php echo $staff['id'];?>" class="btn btn-primary btn-xs delete">Delete</button> </td>
             </tr>
             <?php 
