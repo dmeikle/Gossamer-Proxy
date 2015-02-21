@@ -49,7 +49,6 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
         $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();        
       
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
-       pr($params);
       
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $data));
        
@@ -64,4 +63,16 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
+    
+    public function search() {
+        $locale = $this->getDefaultLocale();
+        $params = $this->httpRequest->getPost();
+        
+        $params = array('keywords' => $params['term'],
+            'locale' => $locale['locale']);
+       
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
+     
+        return $data['Questions'];
+    }
 }

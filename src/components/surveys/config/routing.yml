@@ -1,4 +1,17 @@
-  
+
+admin_surveys_pages_questions_saveorder:
+    pattern: admin/surveys/panes/questions/saveorder/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\SurveyPaneQuestionsController
+        model: components\surveys\models\SurveyPaneQuestionModel
+        method: saveQuestionsOrder
+        view: core\views\JSONView
+        viewKey: admin_surveys_pages_questions_saveorder
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'   
 
 admin_surveys_view_responses:
     pattern: admin/surveys/view/*/*
@@ -16,8 +29,9 @@ admin_surveys_view_responses:
    
 admin_surveys_panes_questions_list:
     pattern: admin/surveys/panes/questions/*/*/*
-    listeners:  
+    listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionModel', 'cacheKey': 'Questions' }
+        - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadQuestionsByPaneListener', 'datasource': 'datasource1' }
     defaults:
         component: components\surveys\SurveysComponent
         controller: components\surveys\controllers\SurveyPaneQuestionsController
@@ -42,7 +56,7 @@ admin_surveys_panes_questions_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'            
 
-
+    
 admin_surveys_pages_list:
     pattern: admin/surveys/pages/*/*
     defaults:
@@ -362,6 +376,20 @@ admin_surveys_answers_search:
         view: core\views\JSONView
         viewKey: admin_surveys_answers_search
         datasource: datasource1
+        
+admin_surveys_questions_search:
+    pattern: admin/surveys/questions/search
+    methods: [POST]
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadAnswersByQuestionListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_surveys_questions_search
+        datasource: datasource1        
             
 admin_surveys_answers_edit:
     pattern: admin/surveys/answers/*

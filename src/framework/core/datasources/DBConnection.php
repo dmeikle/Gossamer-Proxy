@@ -29,9 +29,9 @@ class DBConnection implements AdapterInterface {
 
     protected $host = 'localhost';
 
-    protected $user = 'root';
-    protected $pass = 'isnothere';
-    protected $db = 'shoppingcart';
+    protected $user = 'phoenixdave';
+    protected $pass = '0s1r15';
+    protected $db = 'phoenix_local';
 
     private $lastQuery = '';
     protected $logger = null;

@@ -34,9 +34,11 @@ class SurveyPaneQuestionsController extends AbstractController{
     }
     
     public function edit($id) {
+      
         $results = $this->model->edit($id);
+        $questions = $this->drawQuestionList($this->httpRequest->getAttribute('QuestionsList'));
         
-        $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'form' => $this->drawForm($this->model, $results)));
+        $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'questions' => $questions, 'form' => $this->drawForm($this->model, $results)));
     }
     
     public function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -66,5 +68,27 @@ class SurveyPaneQuestionsController extends AbstractController{
     public function saveToPaneById($id) {
         $this->mode->saveToPaneById($id);
         
+    }
+    
+    private function drawQuestionList(array $questions = null) {
+        if(!is_array($questions) || count($questions) < 1) {
+            return;
+        }
+        $retval = '<ul id="sortable">';
+        foreach($questions as $question) {
+            if(!array_key_exists('id', $question)) {
+                continue;
+            }
+            $retval .= '<li data-id="' . $question['id'] . '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' . $question['question'] . '</li>';  
+        }
+        $retval .= '</ul>';
+        
+        return $retval;
+    }
+    
+    public function saveQuestionsOrder($id) {
+        $this->model->saveQuestionsOrder($id);
+        
+        $this->render($this->httpRequest->getPost());
     }
 }
