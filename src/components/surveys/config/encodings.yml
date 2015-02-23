@@ -47,5 +47,8 @@ admin_surveys_view_responses:
     answer: utf8   
     
 admin_surveys_questions_search:
+    term: utf8
+    keywords: utf8
     question: utf8
+    answer: utf8
     
