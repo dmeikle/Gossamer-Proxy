@@ -206,6 +206,17 @@ class HTTPRequest extends AbstractHTTP {
     }
 
     /**
+     * allows a controller to add unique identification keys that may not be
+     * hidden in a form as part of site security
+     * 
+     * @param string $key
+     * @param mixed $value
+     */
+    public function setPostParameter($key, $value) {
+        $this->postParameters[$key] = $value;
+    }
+    
+    /**
      * accessor
      * 
      * @return array

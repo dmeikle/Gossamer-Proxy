@@ -20,6 +20,7 @@ use components\surveys\form\TextBoxQuestionBuilder;
 use components\surveys\form\MultipleChoiceQuestionBuilder;
 use core\system\Router;
 use core\navigation\Pagination;
+use components\surveys\serialization\QuestionSerializer;
 
 
 /**
@@ -122,6 +123,15 @@ class QuestionsController extends AbstractController{
         $retval .= '</ul>';
         
         return $retval;
+    }
+    
+    public function search() {
+        $result = $this->model->search();
+        
+        $serializer = new QuestionSerializer();
+        $result = $serializer->formatSearchResults($result);
+        
+        $this->render($result);
     }
 
 }

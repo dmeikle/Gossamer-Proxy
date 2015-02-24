@@ -50,8 +50,11 @@ class SurveyPaneQuestionModel extends AbstractModel implements FormBuilderInterf
     }
     
     public function listAllByPaneId($id) {
+        $locale = $this->getDefaultLocale();
         $params = array(
-            'SurveyPanes_id' => intval($id)
+            'SurveyPanes_id' => intval($id),
+            'locale' => $locale['locale'],
+            'directive::ORDER_BY' => 'priority', 'directive::DIRECTION' => 'ASC'
         );
        
       
@@ -69,4 +72,14 @@ class SurveyPaneQuestionModel extends AbstractModel implements FormBuilderInterf
         return $data;
     }
 
+    public function saveQuestionsOrder($id) {
+        $postedParams = $this->httpRequest->getPost();
+        $params = array('SurveyPanes_id' => intval($id));
+        foreach($postedParams['Questions_id'] as $key => $value) {
+            $params[] = array('Questions_id' => intval($value), 'SurveyPanes_id' => intval($id));
+        }
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+        
+        return $data;
+    }
 }

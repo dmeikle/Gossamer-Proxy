@@ -1,5 +1,4 @@
-
-      <h2 class="form-signin-heading">Add/Edit Staff - NameGoesHere</h2>
+<h2 class="form-signin-heading">Add/Edit Staff Emergency Contact Info - NameGoesHere</h2>
       <form class="form-standard" role="form" method="post">
         <table width="100%">
           <tr>
@@ -19,28 +18,16 @@
                   <td><?php echo $form['telephone']; ?></td>
                 </tr>
                 <tr>
+                  <td>Mobile:</td>
+                  <td><?php echo $form['mobile']; ?></td>
+                </tr>
+                <tr>
                   <td>Email:</td>
                   <td><?php echo $form['email']; ?></td>
                 </tr>
                 <tr>
-                  <td>Address:</td>
-                  <td><?php echo $form['address1']; ?></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><?php echo $form['address2']; ?></td>
-                </tr>
-                <tr>
-                  <td>City:</td>
-                  <td><?php echo $form['city']; ?></td>
-                </tr>
-                <tr>
-                  <td>Province:</td>
-                  <td><?php echo $form['Provinces_id']; ?></td>
-                </tr>
-                <tr>
-                  <td>Postal Code:</td>
-                  <td><?php echo $form['postalCode']; ?></td>
+                  <td>Relation:</td>
+                  <td><?php echo $form['relation']; ?></td>
                 </tr>
                 <tr>
                   <td> </td>

@@ -1,4 +1,31 @@
 
+admin_staff_emergencycontacts_list:
+    pattern: admin/staff/emergencycontacts/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: listallByStaffId
+        view: core\views\TemplateView
+        viewKey: admin_staff_emergencycontacts_list
+        datasource: datasource1
+    methods: [GET]   
+    
+admin_staff_emergencycontacts_save:
+    pattern: admin/staff/emergencycontacts/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_staff_emergencycontacts_list
+        datasource: datasource1
+    methods: [POST]       
           
 staff_get:
     pattern: staff/get/*
@@ -60,6 +87,7 @@ admin_staff_save:
     pattern: admin/staff/edit/*
     listeners:
         - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }  
+    #    - { 'event': 'save_success', 'listener': 'components\staff\listeners\UploadStaffPhotoListener' } 
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -174,6 +202,7 @@ admin_login_submit:
         - { 'event': 'login_password_mismatch', 'listener': 'components\staff\listeners\PasswordMismatchListener', 'datasource': 'datasource3'}
         - { 'event': 'login_status_locked', 'listener': 'components\staff\listeners\StatusLockedListener', 'datasource': 'datasource1'}
         - { 'event': 'login_roles_not_set', 'listener': 'components\staff\listeners\RolesNotSetListener' }
+        - { 'event': 'login_password_mismatch', 'listener': 'components\staff\listeners\RolesNotSetListener' }
         - { 'event': 'login_success', 'listener': 'components\staff\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
        # - { 'event': 'login_status_not_active', 'listener': 'components\staff\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
     defaults:
@@ -204,3 +233,30 @@ admin_login_roles:
             - 'src/components/shoppingcart/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Roles'
     
+admin_login_failed:   
+    pattern: admin/login/failed
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_login_failed
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Roles' 
+            
+admin_status_locked:  
+    pattern: admin/login/locked
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_status_locked
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Roles'           

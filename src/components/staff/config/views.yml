@@ -73,4 +73,28 @@ admin_staff_credentials_edit:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/staff/views/admin/credentials.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+admin_staff_emergencycontacts_list:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section3": "src/components/staff/views/admin/emergencycontacts/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"            
+            
+admin_login_failed:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/staff/views/admin/incorrect-password.php"
             "section4": "src/themes/default/templates/sections/footer.php"           
+            
+admin_status_locked:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/staff/views/admin/status-locked.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          

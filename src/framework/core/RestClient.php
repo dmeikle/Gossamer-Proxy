@@ -179,8 +179,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         elseif(count($parameters)){
             $client->url .= strpos($client->url, '?')? '&' : '?';
            
-            $client->url .= $this->buildGetParameters($parameters); //http_build_query($parameters);
-                
+            $client->url .= $this->buildGetParameters($parameters); //http_build_query($parameters);                
         }
 
         if($client->options['base_url']){
@@ -210,6 +209,10 @@ class RestClient implements \Iterator, \ArrayAccess {
     }
 
     private function buildGetParameters($parameters) {
+        $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
+       
+        $parameters = $uh->encode($parameters); // $this->formatToHexForSending($parameters);
+        unset($uh);
         $retval = '';
         foreach ($parameters as $key => $value) {
             if(is_array($value)) {
@@ -221,8 +224,10 @@ class RestClient implements \Iterator, \ArrayAccess {
                 $retval .= "&" . trim($key) . "=" . urlencode($value);
             }            
         }
+        
         return substr($retval, 1);
     }
+     
     public function format_query($parameters, $primary='=', $secondary='&'){
         $query = "";
         $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());

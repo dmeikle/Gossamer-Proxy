@@ -50,6 +50,11 @@
       <div id="logo">Phoenix Restorations</div>
     <!---section1--->
      <!---section2---> 
+     new nav
+     <?php
+//echo $this->getMenu('basicmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
+?>
+     end new nav
   </div>
   <div id="lower-reduced">
     <div id="payload">  
