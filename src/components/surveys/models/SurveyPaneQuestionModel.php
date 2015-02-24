@@ -54,11 +54,12 @@ class SurveyPaneQuestionModel extends AbstractModel implements FormBuilderInterf
         $params = array(
             'SurveyPanes_id' => intval($id),
             'locale' => $locale['locale'],
+            'isActive' => '1',
             'directive::ORDER_BY' => 'priority', 'directive::DIRECTION' => 'ASC'
         );
        
       
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByPaneId', $params);
         
         return $data;
     }

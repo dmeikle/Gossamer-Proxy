@@ -31,7 +31,7 @@ admin_surveys_panes_questions_list:
     pattern: admin/surveys/panes/questions/*/*/*
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\QuestionModel', 'cacheKey': 'Questions' }
-        - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadQuestionsByPaneListener', 'datasource': 'datasource1' }
+      #  - { 'event': 'request_start', 'listener': 'components\surveys\listeners\LoadQuestionsByPaneListener', 'datasource': 'datasource1' }
     defaults:
         component: components\surveys\SurveysComponent
         controller: components\surveys\controllers\SurveyPaneQuestionsController
@@ -452,6 +452,26 @@ admin_surveys_questions_save:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'              
+
+admin_surveys_questions_answers_save:
+    pattern: admin/surveys/questions/answers/saveorder/*
+    methods: [POST]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\surveys\listeners\SaveQuestionAnswersListener', 'datasource': 'datasource1' }
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_surveys_questions_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation' 
+    
+     
+    
+    
 
 #this has to be AFTER the edit features so it doesn't override the URI options
 admin_surveys_questions_list:

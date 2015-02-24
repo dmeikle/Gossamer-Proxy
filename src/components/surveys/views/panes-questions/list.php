@@ -7,7 +7,7 @@ $(document).ready(function() {
   
     function addQuestion( question ) {
       $( "#sortable" ).append(
-      '<li id="Questions_id-' + question.id + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + question.value + '</li>'); 
+      '<li id="Questions_id-' + question.id + '" class="new"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + question.value + '</li>'); 
     }
     
     function addQuestionId(question) {
@@ -59,6 +59,20 @@ $(document).ready(function() {
     $( "#sortable" ).sortable({
         axis: 'y',
         stop: function (event, ui) {
+        $('#trashcan').empty();
+        $('#trashcan').append('delete me');
+       
+            var data = $(this).sortable('serialize');
+            var url = window.location.pathname.split( '/' );
+           
+            $.ajax({
+                data: data,
+                type: 'POST',
+                url: '/admin/surveys/panes/questions/saveorder/' + url[5]
+            });
+            setLIColors();
+        },
+        receive: function (event, ui) {
             var data = $(this).sortable('serialize');
             var url = window.location.pathname.split( '/' );
             
@@ -74,11 +88,28 @@ $(document).ready(function() {
     
     
     $('#save').click(function() {
+        $('#trashcan').empty();
+        $('#trashcan').append('delete me');
+        
+        var data = $( "#sortable" ).sortable('serialize');
         var url = window.location.pathname.split( '/' );
-        alert(url[5]);
-    var segments = url.split('/');
-    alert(segments[0]);
+
+        $.ajax({
+            data: data,
+            type: 'POST',
+            url: '/admin/surveys/panes/questions/saveorder/' + url[5]
+        });
+        //location.reload();
+        setLIColors();
     });
+    
+    function setLIColors() {
+        $('#sortable').children().removeClass('ui-state-default ui-sortable-handle').addClass('ui-state-default ui-sortable-handle');
+    }
+    
+    $( "#sortable, #trashcan" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
 });
 
 </script>
@@ -87,6 +118,9 @@ $(document).ready(function() {
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 30px; }
   #sortable li span { position: absolute; margin-left: -1.3em; }
+  .new {
+      background-color: infobackground;
+  }
   </style>
   
 <h3>Questions</h3>
@@ -99,7 +133,12 @@ $(document).ready(function() {
     </tr>
     <tr>
         <td>
-            <ul id="sortable">
+           
+            <div id="trashcan" class="connectedSortable">
+                delete list
+            </div>
+            <br><br><br>
+            <ul id="sortable" class="connectedSortable">
 
 
     <?php

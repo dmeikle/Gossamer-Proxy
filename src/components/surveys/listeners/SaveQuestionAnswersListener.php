@@ -34,6 +34,7 @@ class SaveQuestionAnswersListener extends AbstractListener{
                 return;
             }
         }
+        
         $model = new AnswerModel($this->httpRequest, $this->httpResponse, $this->logger);
            
         if(!array_key_exists('answerId', $postedParams)) {
@@ -41,6 +42,21 @@ class SaveQuestionAnswersListener extends AbstractListener{
             return;
         }  
         $params = array('Questions_id' => intval($params['Question'][0]['id']), 'answerIds' => $postedParams['answerId']);
+        $datasource = $this->getDatasource('components\surveys\models\AnswerModel');
+    
+        $datasource->query('POST', $model, 'saveQuestionAnswers', $params);
+
+        unset($model);
+    }
+    
+    public function on_request_start($params) {
+        $params = $this->httpRequest->getParameters();
+        $questionId = intval($params[0]);
+        $postedParams = $this->httpRequest->getPost();
+        $model = new AnswerModel($this->httpRequest, $this->httpResponse, $this->logger);
+           
+          
+        $params = array('Questions_id' => $questionId, 'answerIds' => $postedParams['Answers_id']);
         $datasource = $this->getDatasource('components\surveys\models\AnswerModel');
     
         $datasource->query('POST', $model, 'saveQuestionAnswers', $params);

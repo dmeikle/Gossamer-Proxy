@@ -113,12 +113,12 @@ class QuestionsController extends AbstractController{
         if(!is_array($answers) || count($answers) < 1) {
             return;
         }
-        $retval = '<ul id="sortable">';
+        $retval = '<ul id="sortable" class="connectedSortable">';
         foreach($answers as $answer) {
             if(!array_key_exists('id', $answer)) {
                 continue;
             }
-            $retval .= '<li data-id="' . $answer['id'] . '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' . $answer['answer'] . '</li>';  
+            $retval .= '<li id="Answers_id-' . $answer['id'] . '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' . $answer['answer'] . '</li>';  
         }
         $retval .= '</ul>';
         

@@ -14,7 +14,7 @@ $(document).ready(function() {
   
     function addAnswer( answer ) {
       $( "#sortable" ).append(
-      '<li data-id="' + answer.id + '" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + answer.value + '</li>'); 
+      '<li id="Answers_id-' + answer.id + '" class="new"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>' + answer.value + '</li>'); 
     }
     
     function addAnswerId(answer) {
@@ -69,6 +69,41 @@ $(document).ready(function() {
 
         window.location = '/admin/surveys/questions/' + $(this).val() + '/' + id;
     });
+    
+    
+    $( "#sortable, #trashcan" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+    
+    
+    
+    $( "#sortable" ).sortable({
+        axis: 'y',
+        stop: function (event, ui) {
+        $('#trashcan').empty();
+        $('#trashcan').append('delete me');
+       
+            var data = $(this).sortable('serialize');
+            var url = window.location.pathname.split( '/' );
+          
+            $.ajax({
+                data: data,
+                type: 'POST',
+                url: '/admin/surveys/questions/answers/saveorder/' + url[5]
+            });
+            setLIColors();
+        },
+        receive: function (event, ui) {
+            var data = $(this).sortable('serialize');
+            var url = window.location.pathname.split( '/' );
+            
+            $.ajax({
+                data: data,
+                type: 'POST',
+                url: '/admin/surveys/questions/answers/saveorder/' + url[5]
+            });
+        }
+    });
 });
 
 
@@ -113,6 +148,11 @@ $(document).ready(function() {
         <tr>
             <td>Answers</td>
             <td>
+                
+            <div id="trashcan" class="connectedSortable">
+                delete list
+            </div>
+                
                <?php echo $answers; //($form['answer']);?>    
                 
                 <div class="glyphicon glyphicon-plus" id="searchToggle"> </div><br><input style="display: none" type=text id="search" class="form-control" />
