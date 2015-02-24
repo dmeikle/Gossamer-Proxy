@@ -9,7 +9,7 @@ $client = $purchase['CartClient'];
 
 ?>
 <input style="visibility: hidden" type=hidden" id="clientId" value="<?php echo $client['id'];?>" />
-<div class="panel panel-default">
+<div class="panel panel-default" style="width: 900px">
     <div class="panel-heading">
         <?php echo $this->getString('LABEL_PURCHASER_INFORMATION'); ?>
     </div>

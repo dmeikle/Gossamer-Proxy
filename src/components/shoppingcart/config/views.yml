@@ -195,9 +195,9 @@ cart_admin_sale_view:
     sections: 
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"  
-            "section2": "src/components/shoppingcart/views/admin/buyer-info.php"
+            "section5": "src/components/shoppingcart/views/admin/buyer-info.php"
             "section3": "src/components/shoppingcart/views/admin/buyer-product-info.php"
-            "section5": "src/themes/default/templates/sections/footer.php"    
+            "section4": "src/themes/default/templates/sections/footer.php"    
             
 cart_admin_variants_list:
     template: admin-list.php

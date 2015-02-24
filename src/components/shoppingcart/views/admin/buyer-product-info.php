@@ -46,7 +46,8 @@ if(count($basket) == 0) {
         
 ?>
         <tr>
-            <td align="right">Options:</td><td colspan="2">
+            <td align="right">Options:</td>
+            <td colspan="2">
             <?php
     foreach($variantList as  $key => $variant) {
      $variantItem = current($variant)
@@ -58,7 +59,7 @@ if(count($basket) == 0) {
        }?>
             </td>
             <td valign="bottom" align="right">$<?php //echo money_format('%i', $item->getVariantSurcharges());?></td>
-            <td></td>
+           
         </tr>
         <?php
     }
@@ -94,4 +95,4 @@ if(count($basket) == 0) {
 
       
   </div>
- 
+</div>
