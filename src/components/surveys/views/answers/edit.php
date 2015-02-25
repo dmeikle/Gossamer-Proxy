@@ -5,6 +5,9 @@
 
 $(document).ready(function() {
     $( "#tabs" ).tabs(); 
+    $('#cancel').click(function() {
+        window.location = '/admin/surveys/answers/list/0/20';
+    });
 });
 
 </script>
@@ -41,7 +44,7 @@ $(document).ready(function() {
           <td>&nbsp;</td>
           <td>
               <button class="btn btn-primary">Save</button> 
-              <button class="btn btn-primary" id="cancel">Cancel</button> 
+              <input type="button" class="btn btn-primary" id="cancel" value="Cancel" >
           </td>
         </tr>
 

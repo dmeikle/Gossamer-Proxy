@@ -81,7 +81,7 @@ $(document).ready(function() {
         axis: 'y',
         stop: function (event, ui) {
         $('#trashcan').empty();
-        $('#trashcan').append('delete me');
+        $('#trashcan').append('<span class="glyphicon glyphicon-trash"></span>');
        
             var data = $(this).sortable('serialize');
             var url = window.location.pathname.split( '/' );
@@ -104,18 +104,51 @@ $(document).ready(function() {
             });
         }
     });
+    
+    
+    function setLIColors() {
+        $('#sortable').children().removeClass('ui-state-default ui-sortable-handle').addClass('ui-state-default ui-sortable-handle');
+    }
+    
+    $('#generateId').click(function(e) {
+       e.stopPropagation() ;
+       var url = $(location).attr('href');
+       var pieces = url.split('/');
+       
+       $('#form1').attr('action', "/admin/surveys/questions/generateid/" + pieces[6]);
+       $('#form1').submit();
+       
+       $.ajax({
+           type: 'POST',
+           dataType: 'json',
+           data: $('#form1').serialize(),
+           url: "/admin/surveys/questions/generateid/" + pieces[6],
+           success: function(data) {
+               console.log(data);
+               window.location = '/admin/surveys/questions/' + pieces[6] + '/' + data.id;
+            },
+            fail: function(data) {
+                console.log(data);
+            }
+        });
+       
+       
+    });
 });
 
 
 </script>
 
-    <style>
+    
+<style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 30px; }
   #sortable li span { position: absolute; margin-left: -1.3em; }
-  
+  .new {
+      background-color: infobackground;
+  }
   </style>   
-       
+  <?php echo $form['questionId'];?>
 <form method="post" name="form1" id="form1">
     <table class="table">
         <tr>
@@ -125,7 +158,13 @@ $(document).ready(function() {
           </td>
         </tr>
         <tr>
-            <td>Question</td>
+          <td>Question Name (not displayed)</td>
+          <td>
+             <?php echo $form['name']; ?>          
+          </td>
+        </tr>
+        <tr>
+            <td>Question (displayed on form)</td>
             <td>
             <div id="tabs">
                 <ul>
@@ -144,21 +183,32 @@ $(document).ready(function() {
               </div>
             </td>        
         </tr>
-        <?php if($QuestionTypes_id < 4) {?>
+        <?php if($questionId > 0 && $QuestionTypes_id < 4) {?>
         <tr>
             <td>Answers</td>
             <td>
                 
-            <div id="trashcan" class="connectedSortable">
-                delete list
+                <div id="trashcan" class="connectedSortable" style="float:right" title="drop here to delete answer">
+                <span class="glyphicon glyphicon-trash"></span>
             </div>
                 
                <?php echo $answers; //($form['answer']);?>    
-                
-                <div class="glyphicon glyphicon-plus" id="searchToggle"> </div><br><input style="display: none" type=text id="search" class="form-control" />
+                <?php echo $form['plusSign'];
+                    echo $form['searchBox'];
+                ?>
+               
             </td>
          </tr>
-         <?php  } ?>
+         <?php  } elseif ($questionId == 0 && $QuestionTypes_id < 4) {?>
+         <tr>
+             <td></td>
+             <td>
+                  You must save the current information before adding answers.
+            <input type="button" id="generateId" value="Click here"> now to continue
+             </td>
+         </tr>
+           
+         <?php }?>
         <tr>
           <td>Active</td>
           <td>

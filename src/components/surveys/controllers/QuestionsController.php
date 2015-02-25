@@ -39,7 +39,20 @@ class QuestionsController extends AbstractController{
         $answers = $this->drawAnswerList( $this->httpRequest->getAttribute('AnswersList') );
         
         $this->render(array('locales' => $this->httpRequest->getAttribute('locales'), 'answers' => $answers,
-            'form' => $this->drawForm($this->model, $results), 'QuestionTypes_id' => $results['QuestionTypes_id']));
+            'form' => $this->drawForm($this->model, $results), 'QuestionTypes_id' => $results['QuestionTypes_id'], 'questionId' => intval($id)));
+    }
+    
+    public function generateId($questionTypeId) {
+        $result = $this->model->save(0);
+        if(array_key_exists('Question', $result)) {
+            $question = current($result['Question']);
+            
+            $router = new Router($this->logger, $this->httpRequest);
+            $router->redirect('admin_surveys_questions_edit', array($questionTypeId, $question['id']));
+            //$this->render(array('id' => $question['id']));
+        }
+        
+        $this->render($result);
     }
     
     public function saveQuestion($questionTypeId, $id) {
@@ -71,10 +84,10 @@ class QuestionsController extends AbstractController{
     }
     
     public function drawForm(FormBuilderInterface $model, array $values = null) {
-      
+     
         $formBuilder = new FormBuilder($this->logger, $model);
         $builder = $this->getBuilder($values);
-      
+   echo get_class($builder);
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
         $questionTypesList = $this->httpRequest->getAttribute('QuestionTypes');
      
@@ -101,6 +114,12 @@ class QuestionsController extends AbstractController{
         switch($values['QuestionTypes_id']) {
          
             case 1:
+               
+                return new MultipleChoiceQuestionBuilder();
+            case 2:
+               
+                return new MultipleChoiceQuestionBuilder();
+            case 3:
                
                 return new MultipleChoiceQuestionBuilder();
             default:
@@ -134,4 +153,7 @@ class QuestionsController extends AbstractController{
         $this->render($result);
     }
 
+    public function setInactive($id) {
+        parent::setInactiveAndRedirect($id, 'admin_surveys_questions_list', array(0,20));
+    }
 }

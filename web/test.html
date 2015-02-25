@@ -1,73 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-    
-    <head>
-        
-        
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
+
+    
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+--> 
+<script src="/css/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script> 
+ <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script language="javascript">
+    
+    $(document).ready(function() {
+       
+        $('#addNew').click(function() {
+          $('#inputForm').toggle();
+        });
+        
+        $('#save').click(function() {
+           var row = '<div class="row">'  +
+                   '<div class="hazardName">' + $( "#hazard option:selected" ).text() + '</div>' +
+                   '<div class="riskName">X' + $( "#risk option:selected" ).text() +  $( "#action option:selected" ).text() + '</div>' +
+                   '<a href="#" class="completed">completed</a>'
+                   '</div>' ;
+           
+           $('#results').append(row);
+           $('#inputForm').toggle();
+        });
+        
+        $('#cancel').click(function() {
+            $('#inputForm').toggle();
+        });
+                
+        $(document).on('click', '.completed', function(){
+            $(this).parent().addClass('row-complete');
+        });
+        
+    });
+    
+    
+    
+    
+</script>    
 
 
-    </head>
-    <body>
-        <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-  </ul>
+<style type="text/css">
+    #results .row .hazardName {
+            float: left;
+            width: 200px;
+    }
+    #results .row.row-complete {
+            border: 1px solid #F00;
+    }
+    .row {
+            width: 400px;
+    }
+</style>
+
+
+<div id="results">
+    
 </div>
-        <table class="table table-striped table-hover table-bordered table-responsive">
-            <tr>
-                <td>
-                    this is a column
-                </td>
-                <td>
-                    this is another column <span class="glyphicon glyphicon-pencil"></span>
-                </td>
-            </tr>
-            <tr class="danger">
-                <td>
-                    this is a column
-                </td>
-                <td>
-                    this is another column
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    this is a column
-                </td>
-                <td>
-                    this is another column
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    this is a column
-                </td>
-                <td>
-                    this is another column
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    this is a column
-                </td>
-                <td>
-                    this is another column
-                </td>
-            </tr>
-        </table>
-    </body>
-</html>
+
+<a href="#" id="addNew">+</a>
+
+
+<div id="inputForm" style="display:none">
+    <table>
+  <tr>
+    <th scope="col">Hazard</th>
+    <th scope="col"><select name="select" id="hazard">
+      <option>Human Waste</option>
+      <option>Chemicals</option>
+      <option>Nuclear Waste</option>
+    </select></th>
+  </tr>
+  <tr>
+    <td>Risk</td>
+    <td><select name="select3" id="risk">
+      <option value="-">-</option>
+      <option value="L">L</option>
+      <option value="M">M</option>
+      <option value="H">H</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Work Action</td>
+    <td><select name="select2" id="action">
+      <option value="-">-</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select></td>
+  </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="Save" id="save"> 
+                <input type="button" value="Cancel" id="cancel"> 
+            </td>
+        </tr>
+    </table>
+</div>

@@ -60,7 +60,7 @@ $(document).ready(function() {
         axis: 'y',
         stop: function (event, ui) {
         $('#trashcan').empty();
-        $('#trashcan').append('delete me');
+        $('#trashcan').append('<span class="glyphicon glyphicon-trash"></span>');
        
             var data = $(this).sortable('serialize');
             var url = window.location.pathname.split( '/' );
@@ -128,16 +128,16 @@ $(document).ready(function() {
     <table class="table">    
     <tr>
         <th>
-            Question
+            Question List
         </th>
     </tr>
     <tr>
         <td>
            
-            <div id="trashcan" class="connectedSortable">
-                delete list
+            <div id="trashcan" class="connectedSortable" style="float:right" title="drop here to delete question">
+                <span class="glyphicon glyphicon-trash"></span>
             </div>
-            <br><br><br>
+            
             <ul id="sortable" class="connectedSortable">
 
 

@@ -55,7 +55,8 @@ class SaveQuestionAnswersListener extends AbstractListener{
         $postedParams = $this->httpRequest->getPost();
         $model = new AnswerModel($this->httpRequest, $this->httpResponse, $this->logger);
            
-          
+          pr($postedParams);
+          file_put_contents('/var/www/phoenix-portal/logs/listener.log', print_r($postedParams, true));
         $params = array('Questions_id' => $questionId, 'answerIds' => $postedParams['Answers_id']);
         $datasource = $this->getDatasource('components\surveys\models\AnswerModel');
     

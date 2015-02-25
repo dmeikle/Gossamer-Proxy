@@ -419,7 +419,49 @@ admin_surveys_answers_save:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
-            
+        
+admin_surveys_answers_remove:
+    pattern: admin/surveys/answers/remove/*
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\AnswersController
+        model: components\surveys\models\AnswerModel
+        method: setInactive
+        view: core\views\TemplateView
+        viewKey: admin_surveys_answers_remove
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+  
+admin_surveys_questions_remove:
+    pattern: admin/surveys/questions/remove/*
+    methods: [GET]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: setInactive
+        view: core\views\TemplateView
+        viewKey: admin_surveys_questions_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'             
+
+admin_surveys_questions_generateid:                      
+    pattern: admin/surveys/questions/generateid/*
+    methods: [POST]
+    defaults:
+        component: components\surveys\SurveysComponent
+        controller: components\surveys\controllers\QuestionsController
+        model: components\surveys\models\QuestionModel
+        method: generateId
+        view: core\views\JSONView
+        viewKey: admin_surveys_questions_generateid
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    
+    
 admin_surveys_questions_edit:
     pattern: admin/surveys/questions/*/*
     methods: [GET]
