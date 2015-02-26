@@ -15,10 +15,9 @@ use Monolog\Logger;
 use core\AbstractModel;
 use core\datasources\ConnectionAdapter;
 use core\datasources\DataSourceInterface;
-use Gossamer\Pesedget\Database\DBConnection;
 
 /**
- * DBConnectionAdapter
+ * SQLConnectionAdapter
  *
  * @author Dave Meikle
  */
@@ -26,8 +25,6 @@ class DBConnectionAdapter extends ConnectionAdapter implements DataSourceInterfa
 
     public function __construct(Logger $logger) {
         parent::__construct($logger, new DBConnection());
-        pr($this);
-        die;
     }
 
     public function query($queryType, AbstractModel $entity = null, $verb = null, $params = array()) {

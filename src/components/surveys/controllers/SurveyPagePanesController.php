@@ -61,7 +61,7 @@ class SurveyPagePanesController extends AbstractController{
         }
       
         $surveyPanes = $this->httpRequest->getAttribute('SurveyPanes');
-        $this->render(array('$SurveyPagePanes' => $list, 'SurveyPanes' => $surveyPanes));
+        $this->render(array('SurveyPagePanes' => $list, 'SurveyPanes' => $surveyPanes));
         $this->render($result);
     }
     

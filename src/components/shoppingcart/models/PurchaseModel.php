@@ -39,7 +39,7 @@ class PurchaseModel extends AbstractModel{
         $purchase['total'] = $purchase['tax1'] + $purchase['subtotal'];
         $purchaseItems = $purchase['CartPurchaseItem'];
         unset($purchase['CartPurchaseItem']);
-       
+        
         $basket = new Basket();        
         $basket->populate($purchaseItems);
        

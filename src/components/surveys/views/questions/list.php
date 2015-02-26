@@ -27,11 +27,7 @@ $(document).ready(function() {
         });
 
         $("#dialog-confirm").dialog("open");
-//        if(confirm('Are you sure you want to delete this answer?') == false) {
-//            return;
-//        }
-        
-        //window.location = '/admin/surveys/answers/remove/' + $(this).data('id');
+
     });
     
     $( "#dialog-confirm" ).dialog({

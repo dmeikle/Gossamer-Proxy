@@ -130,7 +130,7 @@ abstract class AbstractComponent {
                     $this->method
                         ), !isset($this->params) ? array() : $this->params);
             } catch (\Exception $e) {
-                die($e->getMessage());
+                //die($e->getMessage());
                 //TODO: this currently is only for the template view
                 //$view = new TemplateExceptionView($this->logger, __YML_KEY, $this->agentType, $httpRequest, $e);
                 $view = new $this->viewName($this->logger, 'exception', $this->agentType, $httpRequest);

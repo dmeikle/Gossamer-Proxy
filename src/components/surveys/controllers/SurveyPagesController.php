@@ -16,6 +16,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use components\surveys\form\SurveyPageBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\system\Router;
+use components\surveys\serialization\SurveyPageSerializer;
 
 
 /**
@@ -55,6 +56,19 @@ class SurveyPagesController extends AbstractController{
 
     public function listallBySurvey($id) {
         $result = $this->model->listallBySurvey($id);
+        
+        $this->render($result);
+    }
+    
+    public function setInactive($id) {
+        parent::setInactiveAndRedirect($id, 'admin_surveys_pages_list', array(0,20));
+    }
+    
+    public function search() {
+        $result = $this->model->search();
+        
+        $serializer = new SurveyPageSerializer();
+        $result = $serializer->formatSearchResults($result);
         
         $this->render($result);
     }

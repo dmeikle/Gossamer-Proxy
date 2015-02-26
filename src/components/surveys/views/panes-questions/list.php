@@ -2,6 +2,9 @@
 
 $(document).ready(function() {
    
+   $('.cancel').click(function() {
+      window.location = '/admin/surveys/panes/0/20' ;
+   });
     
     var cache = {};
   
@@ -122,8 +125,8 @@ $(document).ready(function() {
       background-color: infobackground;
   }
   </style>
-  
-<h3>Questions</h3>
+ 
+<h3>Add/Edit Questions - <?php echo $SurveyPane['name'];?></h3>
 <form method="post" id="form1">
     <table class="table">    
     <tr>
@@ -163,7 +166,7 @@ $(document).ready(function() {
     <tr>
         <td>
             <input type="button" id="save" class="btn btn-default" value="Save" /> 
-            <input type="cancel" class="btn btn-default" value="Cancel" /> 
+            <input type="cancel" class="btn btn-default cancel" value="Cancel" /> 
 
         </td>
     </tr>

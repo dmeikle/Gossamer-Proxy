@@ -29,7 +29,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
 --> 
-<script src="/css/bootstrap/3.1.1-dist/js/bootstrap.min.js"></script> 
+<script src="/js/bootstrap/bootstrap.min.js"></script> 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
 <script src="/js/ie10-viewport-bug-workaround.js"></script> 
 
