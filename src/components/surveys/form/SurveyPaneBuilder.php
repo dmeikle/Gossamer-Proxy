@@ -31,6 +31,7 @@ class SurveyPaneBuilder extends AbstractBuilder{
         }
         
         $builder->add('title', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('title', $values, $options['locales'])), $options['locales'])
+                ->add('description', 'textarea', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('description', $values, $options['locales'])), $options['locales'])
                 ->add('name', 'text',  array('class' => 'form-control', 'value' => $this->getValue('name', $values)))
                 ->add('cssClass', 'text',  array('class' => 'form-control', 'value' => $this->getValue('cssClass', $values)))
                 ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => ($this->getValue('isActive', $values) ==1?  'true': ''))) 

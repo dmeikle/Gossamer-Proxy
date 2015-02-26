@@ -31,6 +31,7 @@ class SurveyBuilder extends AbstractBuilder{
         }
         
         $builder->add('name', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('name', $values, $options['locales'])), $options['locales'])
+                ->add('description', 'textarea', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('description', $values, $options['locales'])), $options['locales'])
                 ->add('permalink', 'text', array('class' => 'form-control', 'value' => $this->getValue('permalink', $values)))
                 ->add('SurveyCategories_id', 'select',  array('class' => 'form-control', 'options' => $options['surveycategories']))
                 ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => ($this->getValue('isActive', $values) ==1?  'true': ''))) 

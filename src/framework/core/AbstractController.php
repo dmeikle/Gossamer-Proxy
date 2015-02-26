@@ -229,7 +229,7 @@ class AbstractController {
      * @param string $ymlKey
      * @param array $params
      */
-    public function saveAndRedirect($id, $ymlKey, array $params) {
+    protected function saveAndRedirect($id, $ymlKey, array $params) {
         $result = $this->model->save($id);
 
         $eventParams = array('entity' => $this->model->getEntity(true));
@@ -293,5 +293,20 @@ class AbstractController {
         return $datasource;
     }
 
+    public function setInactive($id) {
+        $this->model->setInactive($id);
+        
+        $this->render();
+    }
 
+    protected function setInactiveAndRedirect($id, $ymlKey, array $params = array()) {
+        $this->model->setInactive($id);
+        
+        $eventParams = array('entity' => $this->model->getEntity(true));
+        $event = new Event('set_inactive_success', $eventParams);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'set_inactive_success', $event);
+
+        $router = new Router($this->logger, $this->httpRequest);
+        $router->redirect($ymlKey, $params);
+    }
 }

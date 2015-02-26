@@ -64,4 +64,7 @@ class AnswersController extends AbstractController{
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
 
+    public function setInactive($id) {
+        parent::setInactiveAndRedirect($id, 'admin_surveys_answers_list', array(0,20));
+    }
 }

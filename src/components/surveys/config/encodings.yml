@@ -52,3 +52,28 @@ admin_surveys_questions_search:
     question: utf8
     answer: utf8
     
+admin_surveys_panes_search:
+   # term: utf8
+    #keywords: utf8
+    #title: utf8
+    
+admin_surveys_panes_save:
+    title: utf8
+    description: utf8
+    
+admin_surveys_panes_edit:
+    title: utf8
+    description: utf8
+    
+admin_surveys_panes_list:
+    title: utf8
+    description: utf8
+    
+    
+admin_surveys_pages_search:
+    #term: utf8
+    #keywords: utf8
+    #name: utf8
+    
+    
+    

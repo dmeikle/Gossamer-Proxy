@@ -1,3 +1,6 @@
+
+
+<script src="https://cdn.ckeditor.com/4.4.5.1/standard/ckeditor.js"></script>
 <script language="javascript">
 
 $(document).ready(function() {
@@ -28,6 +31,13 @@ $(document).ready(function() {
             <?php foreach($form['title']['locales'] as $key => $row) { ?>
                 <div id="<?php echo $key; ?>">
                     <?php echo $row; ?>
+                     Description:
+                    <?php echo $form['description']['locales'][$key];?>
+                            <script>
+                                // Replace the <textarea id="editor1"> with a CKEditor
+                                // instance, using default configuration.
+                               CKEDITOR.replace( 'SurveyPage_locale_<?php echo $key; ?>_description' );
+                            </script>   
                 </div>
             <?php } ?>
             

@@ -33,9 +33,15 @@ class TextBoxQuestionBuilder extends AbstractBuilder{
         $builder->add('question', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('question', $values, $options['locales'])), $options['locales'])               
                 ->add('isActive', 'check', array('class' => 'form-control', 'value' => '1', 'checked' => ($this->getValue('isActive', $values) ==1?  'true': '')))
                 ->add('QuestionTypes_id', 'select',  array('class' => 'form-control', 'options' => $options['questiontypes']))
+                ->add('name', 'text',  array('class' => 'form-control', 'value' => $this->getValue('name', $values)))
+                ->add('questionId', 'hidden',  array('value' => intval($this->getValue('id', $values))))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary'))
                 ->add('submit', 'submit', array('value' => 'Save', 'class' => 'btn btn-lg btn-primary'));                
         
+        //needed as placeholders for multichoice
+            $builder->add('plusSign','placeholder', array())
+                    ->add('searchBox', 'placeholder', array());
+         
         return $builder->getForm();
     }
 

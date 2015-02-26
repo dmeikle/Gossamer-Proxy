@@ -69,7 +69,8 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
         $params = $this->httpRequest->getPost();
         
         $params = array('keywords' => $params['term'],
-            'locale' => $locale['locale']);
+            'locale' => $locale['locale'],
+            'isActive' => '1');
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
      

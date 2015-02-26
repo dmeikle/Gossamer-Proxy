@@ -69,8 +69,12 @@ class YAMLConfiguration {
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
 
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
-
+        try{
         $nodeParams = $this->getYMLNodeParameters($ymlKey);
+        }catch(\Exception $e) {
+            http_response_code(404);
+            throw new \exceptions\Error404Exception();
+        }
         $nodeParams['namespace'] = $namespace;
         $nodeParams['ymlKey'] = $ymlKey;
         $nodeParams['componentFolder'] = $this->getComponentFolderName($nodeParams);

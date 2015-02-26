@@ -223,8 +223,28 @@ class AbstractModel {
         $params['directive::LIMIT'] = $rows;
         $defaultLocale = $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
-
+        $params['isActive'] = '1';
+        
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
+
+        return $data;
+    }
+
+    /**
+     * sets a row inactive (soft delete) in the database
+     * 
+     * @param int $id
+     * 
+     */
+    public function setInactive($id) {
+
+
+        $params = array(
+            'id' => intval($id),
+            'isActive' => '0'
+        );
+
+        $data = $this->dataSource->query(self::METHOD_PUT, $this, self::VERB_SAVE, $params);
 
         return $data;
     }

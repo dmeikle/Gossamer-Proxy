@@ -16,6 +16,8 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use components\surveys\form\SurveyPaneBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use core\system\Router;
+use components\surveys\serialization\SurveyPaneSerializer;
+
 
 
 /**
@@ -52,5 +54,17 @@ class SurveyPanesController extends AbstractController{
         
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
+    
+    public function setInactive($id) {
+        parent::setInactiveAndRedirect($id, 'admin_surveys_panes_list', array(0,20));
+    }
 
+    public function search() {
+        $result = $this->model->search();
+       
+        $serializer = new SurveyPaneSerializer();
+        $result = $serializer->formatSearchResults($result);
+        
+        $this->render($result);
+    }
 }
