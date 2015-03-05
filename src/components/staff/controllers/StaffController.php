@@ -14,6 +14,7 @@ namespace components\staff\controllers;
 use core\AbstractController;
 use components\geography\serialization\ProvinceSerializer;
 use components\staff\form\StaffBuilder;
+use components\staff\form\StaffEmergencyContactBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
@@ -40,10 +41,12 @@ class StaffController extends AbstractController {
         $result = $this->model->edit($id);
         if (is_array($result)) {
             $result['form'] = $this->drawForm($this->model, $result);
+            $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
         } else {
             $result['form'] = $this->drawForm($this->model, array());
         }
-
+        $result['id'] = intval($id);
+        
         $this->render($result);
     }
 
@@ -62,4 +65,13 @@ class StaffController extends AbstractController {
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
 
+    protected function drawEmergencyContactForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $staffBuilder = new StaffEmergencyContactBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+       
+        $options = array();
+
+        return $staffBuilder->buildForm($builder, $values, $options, $results);
+    }
 }

@@ -15,7 +15,7 @@ use core\AbstractController;
 use components\companies\serialization\CompanyTypeSerialization;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
-use components\claims\form\ClaimBuilder;
+use components\claims\form\ProjectAddressBuilder;
 use core\system\Router;
 
 
@@ -25,10 +25,12 @@ use core\system\Router;
  *
  * @author Dave Meikle
  */
-class ClaimsController extends AbstractController{
+class ProjectAddressesController extends AbstractController{
    
-    public function search() {
-        $result = $this->model->search();
+    public function searchByStrataNumber() {
+        $params = $this->httpRequest->getPost();
+        
+        $result = $this->model->search(array('strataNumber' => $params['term']));
         
         $this->render($result);
     }
@@ -52,17 +54,16 @@ class ClaimsController extends AbstractController{
  
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
-        $claimBuilder = new ClaimBuilder();
+        $claimBuilder = new ProjectAddressBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-
-        $options = array();
+        
+        $provinceSerializer = new \components\geography\serialization\ProvinceSerializer();
+    
+        $options = array(
+            'provinces' => $provinceSerializer->formatSelectionBoxOptions($this->httpRequest->getAttribute('Provinces'),array(), 'province')          
+        );
         
         return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
     
-    public function listallByProjectAddress($addressId, $offset, $limit) {
-        $result = $this->model->listallByProjectAddress($addressId, $offset, $limit);
-        
-        $this->render($result);
-    }
 }

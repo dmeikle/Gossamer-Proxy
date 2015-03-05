@@ -136,7 +136,7 @@ class AbstractView {
     public function render($data = array()) {
 
         //get any preloaded items that are in the Response object
-        $data = array_merge((is_null($data) ? array() : $data), $this->httpResponse->getAttributes());
+        $data = array_merge(is_null($data)? array() : $data, $this->httpResponse->getAttributes());
 
         //do any pre-render here - eg: format validation fail strings
         $params = new Event(KernelEvents::RESPONSE_START, $data);

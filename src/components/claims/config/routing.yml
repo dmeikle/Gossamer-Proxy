@@ -1,3 +1,29 @@
+claims_new_claim_wizard_1:
+    pattern: admin/claims/new/*/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', cachekey: Provinces}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ProjectAddressesController
+        model: components\claims\models\ProjectAddressModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: claims_new_claim_wizard_1
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation' 
+   
+claims_new_claim_wizard_search:
+    pattern: admin/claims/projectaddresses/stratanumber/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ProjectAddressesController
+        model: components\claims\models\ProjectAddressModel
+        method: searchByStrataNumber
+        view: core\views\JSONView
+        viewKey: claims_new_claim_wizard_search
+        datasource: datasource1   
+   
 admin_claims_list:
     pattern: admin/claims/*/*
    # listeners:

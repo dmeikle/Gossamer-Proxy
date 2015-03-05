@@ -659,13 +659,15 @@ admin_surveys_questions_select:
             
 admin_surveys_surveypage_list:
     pattern: admin/surveys/survey/pages/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1', 'class': 'components\surveys\models\SurveyModel', type: uri }
     defaults:
         component: components\surveys\SurveysComponent
         controller: components\surveys\controllers\SurveysSurveyPageController
         model: components\surveys\models\SurveysSurveyPageModel
         method: listallBySurveyId
         view: core\views\TemplateView
-        viewKey: admin_surveys_list
+        viewKey: admin_surveys_surveypage_list
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'            

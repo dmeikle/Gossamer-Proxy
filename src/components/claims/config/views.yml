@@ -1,3 +1,15 @@
+             
+            
+claims_new_claim_wizard_1:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/claims/views/subnav.php"
+            #"section3": "src/components/claims/views/leftnav.php"
+            "section4": "src/components/claims/views/admin/wizard1.php"
+            "section5": "src/themes/default/templates/sections/footer.php"          
+
 admin_claims_list:
     template: admin-list-fullscreen.php
     sections: 
@@ -119,4 +131,4 @@ claims_list_by_projectaddress:
             "section2": "src/components/claims/views/subnav.php"
             #"section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/list-by-address.php"
-            "section5": "src/themes/default/templates/sections/footer.php"                    
+            "section5": "src/themes/default/templates/sections/footer.php"          
