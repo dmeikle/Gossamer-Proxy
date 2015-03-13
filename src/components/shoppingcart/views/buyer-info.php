@@ -2,7 +2,6 @@
 @components/shoppingcart/includes/css/checkout-buyer.css
 <!--- css end --->
 
-<form method="post" action="<gcms:uri='cart_checkout_2'/>">
     
  
 <form  class="form-horizontal" role="form" method="post" action="<gcms:uri='cart_checkout_2'/>"> 
@@ -395,6 +394,4 @@
 	
 			
 	  
-	
-</form> 
 </form>

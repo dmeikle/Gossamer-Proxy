@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 -->
 
- <link rel="stylesheet" href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+ <link rel="stylesheet" href="/css/bootstrap/3.1.1-dist/css/bootstrap.min.css">
      
 <link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
 <link rel="stylesheet" type="text/css" href="/css/selectize/selectize.bootstrap3.css" />
@@ -59,6 +59,7 @@ echo $this->getMenu('cssmenu_adminbar', array('staffid' => $this->getLoggedInUse
   </div>
   <div id="lower-reduced">
     <div id="payload">  
+     <!---section5--->   
      <!---section3--->
     </div>
   </div>

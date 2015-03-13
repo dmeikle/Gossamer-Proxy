@@ -39,7 +39,7 @@
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: #999;
-	height: 110px;
+	overflow: hidden;
 }
 
 #header-admin #logo {    
@@ -131,3 +131,8 @@
     z-index:100; 
     margin-bottom: 10px;
 }
+
+
+
+/**overwrite **/
+.panel{clear:both; width:100%;}

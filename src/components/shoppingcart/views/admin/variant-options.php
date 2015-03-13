@@ -12,7 +12,11 @@
         </tr>
   <?php
   
-foreach($VariantOptions as $option) { ?>
+foreach($VariantOptions as $option) { 
+    if(count($option) == 0) {
+        continue;
+    }
+    ?>
     <tr>
         <td><?php echo $option['variant'];?></td>
         <td><?php echo $option['code'];?></td>

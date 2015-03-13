@@ -9,19 +9,19 @@ $client = $purchase['CartClient'];
 
 ?>
 <input style="visibility: hidden" type=hidden" id="clientId" value="<?php echo $client['id'];?>" />
-<div class="panel panel-default">
+<div class="panel panel-default" style="width: 900px">
     <div class="panel-heading">
         <?php echo $this->getString('LABEL_PURCHASER_INFORMATION'); ?>
     </div>
 <table class="table" id="table" width="100%">
     <tr>
-        <td>
+        <td width="14%">
             <?php echo $this->getString('LABEL_PURCHASE_NUMBER'); ?> #
         </td>
-        <td>
+        <td width="44%">
             <?php echo $purchase['id']; ?>    
         </td>
-        <td>
+        <td align="right">
             <?php echo $this->getString('LABEL_DATE'); ?>: 
         </td>
         <td class="editable">

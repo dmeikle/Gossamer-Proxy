@@ -27,19 +27,23 @@ class VariantGroupModel extends AbstractModel
         $params['locale'] = $defaultLocale['locale'];
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        $variants = current($data['VariantGroups']);
-      
+     
+        $variants = ($data['CartVariantGroups']);
+  
         $optionModel = new VariantOptionModel($this->httpRequest, $this->httpResponse, $this->logger);
         $optionModel->setDataSource($this->dataSource);
         $data = $optionModel->listAllOptions();
-        $optionsList = current($data['VariantItems']);
+     pr($data);
+     die;
+        $optionsList = ($data['CartVariantItems']);
         $data = array();
         $retval = array();
         foreach($variants as $variant) {
+          
             $item = array();
             foreach($optionsList as $option) {
                 $item = array('parent' => $option);                
-                if($variant['VariantGroups_id'] == $option['VariantGroups_id']) {
+                if($variant['CartVariantGroups_id'] == $option['VariantGroups_id']) {
                     $variant['child'][] = $option;
                 }
             }
@@ -70,13 +74,12 @@ class VariantGroupModel extends AbstractModel
     public function saveAllVariantsAndOptions($id) {
         
         $params = $this->httpRequest->getPost();
-        $params['variant']['Products_id'] = $id;
+        $params['variant']['CartProducts_id'] = intval($id);
        
         $pvim = new ProductVariantItemModel($this->httpRequest, $this->httpResponse, $this->logger);
+      
         //need to query for SaveProductVariants
         $data = $this->dataSource->query(self::METHOD_POST, $pvim, 'SaveProductVariants', array('variant' => $params['variant'])); 
-      
-       
     }
     
     public function listall($offset = 0, $rows = 20, $customVerb = null) {
@@ -139,7 +142,8 @@ class VariantGroupModel extends AbstractModel
 
         $params = $this->httpRequest->getPost();
         
-        $params['variantGroup']['id'] = $id;
+        $params['variantGroup']['id'] = (intval($id) == 0) ? 'null' : intval($id);
+pr($params['variantGroup']);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['variantGroup']); 
        

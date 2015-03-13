@@ -31,8 +31,12 @@ class VariantsController extends AbstractController
     }
     
     public function saveAllVariantsAndOptions($id) {
-        $this->model->saveAllVariantsAndOptions($id);
+        $result = $this->model->saveAllVariantsAndOptions($id);
         
         $this->render($result);
+    }
+    
+    public function save($id) {
+        parent::saveAndRedirect($id, 'cart_admin_variants_list', array(0, 20));
     }
 }

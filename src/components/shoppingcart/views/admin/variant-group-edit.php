@@ -27,13 +27,19 @@ $variantGroup = current($VariantGroup);
                <!-- Tab panes -->
                 <div class="tab-content">
                     <?php
+                    
                     reset($SystemLocalesList);
-                    foreach($SystemLocalesList as $locale) {?>
+                    foreach($SystemLocalesList as $locale) {
+                        $value = '';
+                        if(isset($CartVariantGroup)) {
+                            $value = $CartVariantGroup[0]['locales'][$locale['locale']]['name'];
+                        }
+                        ?>
                         <div class="tab-pane<?php echo ($locale['isDefault']) ? ' active':'';?>" id="<?php echo $locale['locale'];?>">
                             <table width="100%">
                                 <tr>
                                     <td width="120"><?php echo $this->getString('LABEL_VARIANT');?>:</td>
-                                    <td><input class="form-control" type="text" name="variantGroup[locale][<?php echo $locale['locale']; ?>][groupName]" value="<?php echo htmlspecialchars($variantGroup['locales'][$locale['locale']]['groupName'], ENT_NOQUOTES, 'UTF-8');?>"/></td>
+                                    <td><input class="form-control" type="text" name="variantGroup[locale][<?php echo $locale['locale']; ?>][name]" value="<?php echo htmlspecialchars($value, ENT_NOQUOTES, 'UTF-8');?>"/></td>
                                 </tr>
                             </table>
                         </div>
