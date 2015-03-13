@@ -243,9 +243,10 @@ class AbstractView {
         if(is_object($user)) {
             $userId = $user->getId();
         }
-        $locale = $this->getDefaultLocale();
-       
-        return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale']);
+        $locale = $this->getDefaultLocale();        
+        $params = http_build_query($params);
+        
+        return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale'] . ((strlen($params) > 0) ? '&' . $params : ''));
     }
 
     /**

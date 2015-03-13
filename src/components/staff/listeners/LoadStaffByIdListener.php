@@ -35,4 +35,18 @@ class LoadStaffByIdListener extends AbstractListener{
         $event->setParams($params);
         unset($model);
     }
+    
+    public function on_request_start($params) {         
+      
+        $model = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
+
+        $staffId = ($this->httpRequest->getQueryParameter('staffid'));
+
+        $datasource = $this->getDatasource('components\staff\models\StaffModel');
+
+        $staff = current($datasource->query('get', $model, 'get', array('id' => $staffId)));
+        
+        unset($model);
+        $this->httpRequest->setAttribute('Staff', $staff);
+    }
 }

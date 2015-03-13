@@ -8,6 +8,12 @@ admin_home:
         - IS_ADMINISTRATOR
         - IS_STAFF
         
+super_user_home:
+    text_key: 'SUPER_USER_HOME'
+    pattern: '/admin/super'
+    display_roles:
+        - IS_SUPER_USER
+        
 admin_contactus:
     text_key: 'ADMIN_CONTACTUS'
     pattern: '/admin/contact/0/20'
@@ -23,6 +29,13 @@ staff_list:
         - IS_ADMIN
         - IS_ADMINISTRATOR
         - IS_STAFF
+    children:
+        staff_add_new:
+            text_key: 'ADMIN_STAFF_ADD_NEW'
+            pattern: '/admin/staff/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_HR_MANAGER
 
         
 admin_scoping:
@@ -32,6 +45,21 @@ admin_scoping:
         - IS_ADMINISTRATOR
         - IS_SCOPER
         - IS_PROJECT_MANAGER
+    children:
+        scoping_list_all:
+            text_key: 'ADMIN_SCOPING_LIST_ALL'
+            pattern: '/admin/scoping/requests/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_SCOPER
+                - IS_PROJECT_MANAGER
+        scoping_takeoffs_list_all:
+            text_key: 'ADMIN_SCOPING_TAKEOFFS_LIST_ALL'
+            pattern: '/admin/scoping/takeoffs/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_SCOPER
+                - IS_PROJECT_MANAGER
         
 admin_claims:
     text_key: 'ADMIN_CLAIMS'
@@ -40,6 +68,29 @@ admin_claims:
         - IS_ADMINISTRATOR
         - IS_ADMIN
         - IS_STAFF
+    children:
+        claims_list_all:
+            text_key: 'ADMIN_CLAIMS_LIST_ALL'
+            pattern: '/admin/claims/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        claims_create_new:
+            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+            pattern: '/admin/claim/1/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+                - IS_PROJECT_MANAGER
+        claims_scheduling:
+            text_key: 'ADMIN_CLAIMS_SCHEDULING'
+            pattern: '/admin/claims/scheduling/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
         
 admin_contents:
     active: false
@@ -63,6 +114,38 @@ admin_contacts:
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
+    children:
+        contacts_list_all:
+            text_key: 'ADMIN_CONTACTS_LIST_ALL'
+            pattern: '/admin/contacts/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER  
+        contacts_add_new:
+            text_key: 'ADMIN_CONTACTS_ADD_NEW'
+            pattern: '/admin/contacts/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER 
+                - IS_PMA  
+        contacts_companies_listall:
+            text_key: 'ADMIN_COMPANIES_LIST_ALL'
+            pattern: '/admin/companies/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER 
+                - IS_PMA
+        contacts_add_new_company:
+            text_key: 'ADMIN_COMPANIES_ADD_NEW'
+            pattern: '/admin/companies/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER 
+                - IS_PMA
         
 admin_inventory:
     active: false
@@ -95,6 +178,12 @@ admin_messages:
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
+    children:
+        messages_listall:
+            text_key: 'ADMIN_MESSAGES_LIST_ALL'
+            pattern: '/admin/messages/0/20'
+            display_roles:
+                - IS_STAFF
         
 admin_reminders:
     active: true
@@ -173,7 +262,42 @@ admin_cms:
     display_roles:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
-        
+    children:
+        admin_cms_list_all:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_PAGES'
+            pattern: '/admin/cms/pages/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+        admin_cms_add_new:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_PAGE'
+            pattern: '/admin/cms/pages/0'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+        admin_cms_list_all_sections:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_SECTIONS'
+            pattern: '/admin/cms/sections/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR
+        admin_cms_list_all_blogs:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_BLOGS'
+            pattern: '/admin/cms/blogs/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+        admin_cms_add_new_blog:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_BLOGS'
+            pattern: '/admin/cms/blogs/0'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR  
         
 projects:
     active: true
@@ -183,6 +307,23 @@ projects:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         - IS_STAFF
+    children:
+        projects:
+            active: true
+            text_key: 'ADMIN_PROJECTS_LIST_ALL'
+            pattern: '/admin/projects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF 
+        projects:
+            active: true
+            text_key: 'ADMIN_PROJECTS_CREATE_NEW'
+            pattern: '/admin/projects/0'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF    
     
         
         
@@ -193,6 +334,13 @@ incidents:
     display_roles:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
+    children:
+        incidents_list_all:
+            active: true
+            text_key: 'ADMIN_INCIDENTS_LIST_ALL'
+            pattern: '/admin/incidents/0/20'
+            display_roles:
+                - IS_STAFF 
   
 
         
@@ -203,6 +351,42 @@ surveys:
     display_roles:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
+    children:
+        surveys_list_all:
+            active: true
+            text_key: 'ADMIN_SURVEYS_LIST_ALL'
+            pattern: '/admin/surveys/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR
+        surveys_list_pages:
+            active: true
+            text_key: 'ADMIN_SURVEYS_LIST_ALL_PAGES'
+            pattern: '/admin/surveys/pages/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+        surveys_list_panes:
+            active: true
+            text_key: 'ADMIN_SURVEYS_LIST_ALL_PANES'
+            pattern: '/admin/surveys/panes/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR  
+        surveys_list_questions:
+            active: true
+            text_key: 'ADMIN_SURVEYS_LIST_ALL_QUESTIONS'
+            pattern: '/admin/surveys/questions/list/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR  
+        surveys_list_answers:
+            active: true
+            text_key: 'ADMIN_SURVEYS_LIST_ALL_ANSWERS'
+            pattern: '/admin/surveys/answers/list/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR     
         
 events: 
     active: true
@@ -212,10 +396,50 @@ events:
         - IS_ADMINISTRATOR         
         - IS_EDITOR 
         - IS_STAFF
+    children:
+        events_list_all: 
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL'
+            pattern: '/admin/events/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF
+        events_list_all_locations: 
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_LOCATIONS'
+            pattern: '/admin/events/locations/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF
+        events_list_all_contacts: 
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_CONTACTS'
+            pattern: '/admin/events/eventcontacts/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF
+        events_list_all_prospects: 
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_PROSPECTS'
+            pattern: '/admin/events/eventprospects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF
+        events_list_all_prospects: 
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_INVITE_LISTS'
+            pattern: '/admin/events/lists/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR         
+                - IS_EDITOR 
+                - IS_STAFF
         
-        
-CART: 
-    active: true
+cart: 
+    active: false
     text_key: 'ADMIN_CART'
     pattern: '/admin/cart/sales/0/20'
     display_roles:

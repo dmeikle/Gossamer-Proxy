@@ -6,3 +6,15 @@ cssmenu_ceilingbar:
     sections: 
         -
             "section1": "src/components/cssmenu/views/ceilingbar.php"     
+            
+cssmenu_superuserbar:   
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/cssmenu/views/ceilingbar-superuser.php"         
+            
+cssmenu_adminbar:  
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/cssmenu/views/ceilingbar-admin.php"            

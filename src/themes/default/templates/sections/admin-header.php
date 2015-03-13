@@ -1,6 +1,6 @@
-
-<ul id="nav">here
-    <?php
+<!--
+<ul id="nav">
+    <?php  /*
     if(!is_null($NAVIGATION)) {
         foreach ($NAVIGATION as $key => $item) {
 
@@ -15,6 +15,7 @@
 
         <?php
         }
-    }?>
-        there
-</ul>
+    }
+    */ ?>
+       
+</ul>-->

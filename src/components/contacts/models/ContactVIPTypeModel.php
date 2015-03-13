@@ -15,10 +15,9 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-use core\eventlisteners\Event;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-class ContactModel extends  AbstractModel implements FormBuilderInterface
+class ContactVIPTypeModel extends  AbstractModel implements FormBuilderInterface
 {
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -26,8 +25,8 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Contact';
-        $this->tablename = 'contacts';        
+        $this->entity = 'ContactVIPType';
+        $this->tablename = 'contactviptypes';        
     }
     
     public function login() {
@@ -43,9 +42,8 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         $params = $this->httpRequest->getPost();
         $params['Contact']['id'] = intval($id);
         
-        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveContact', $params['Contact']);  
-                
-        return array('Contact' =>$data['Contact'][0], 'roles' => array());
+        return $this->dataSource->query(self::METHOD_POST, $this, 'saveContact', $params[$this->entity]);  
+               
     }
     
     

@@ -50,9 +50,10 @@
       <div id="logo">Phoenix Restorations</div>
     <!---section1--->
      <!---section2---> 
-     new nav
+     new nav start
      <?php
-//echo $this->getMenu('basicmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
+     
+echo $this->getMenu('cssmenu_adminbar', array('staffid' => $this->getLoggedInUser()->getId()));
 ?>
      end new nav
   </div>

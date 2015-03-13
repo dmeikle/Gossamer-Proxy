@@ -14,5 +14,40 @@ cssmenu_ceilingbar:
         datasource: datasource1
         langFiles: 
             - 'src/components/cssmenu/locales/*/menu'
+            
+cssmenu_superuserbar:
+    pattern: cssmenu/superuserbar
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffByIdListener', 'datasource': 'datasource1' }
+        #we loaded nav on bootstrap, but lets do it AFTER we've loaded staff since 
+        #these menu events don't have a session for the user
+        - { 'event': 'response_start', 'listener': 'components\cssmenu\listeners\LoadNavigationListener'} 
+    defaults:
+        component: components\cssmenu\CssMenuComponent
+        controller: components\cssmenu\controllers\CssMenuController
+        model: components\cssmenu\models\CssMenuModel
+        method: viewSuper
+        view: core\views\TemplateView
+        viewKey: cssmenu_superuserbar
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/cssmenu/locales/*/menu'            
 
     
+cssmenu_adminbar:
+    pattern: cssmenu/adminbar
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource3' }
+        #we loaded nav on bootstrap, but lets do it AFTER we've loaded staff since 
+        #these menu events don't have a session for the user
+        - { 'event': 'response_start', 'listener': 'components\cssmenu\listeners\LoadNavigationListener' } 
+    defaults:
+        component: components\cssmenu\CssMenuComponent
+        controller: components\cssmenu\controllers\CssMenuController
+        model: components\cssmenu\models\CssMenuModel
+        method: viewSuper
+        view: core\views\TemplateView
+        viewKey: cssmenu_adminbar
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/cssmenu/locales/*/menu'     
