@@ -15,13 +15,13 @@ $client = $purchase['CartClient'];
     </div>
 <table class="table" id="table" width="100%">
     <tr>
-        <td>
+        <td width="14%">
             <?php echo $this->getString('LABEL_PURCHASE_NUMBER'); ?> #
         </td>
-        <td>
+        <td width="44%">
             <?php echo $purchase['id']; ?>    
         </td>
-        <td>
+        <td align="right">
             <?php echo $this->getString('LABEL_DATE'); ?>: 
         </td>
         <td class="editable">

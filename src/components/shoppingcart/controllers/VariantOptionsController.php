@@ -22,6 +22,7 @@ class VariantOptionsController extends AbstractController
     public function saveOption($groupId, $optionId) {
         $result = $this->model->saveOption($groupId, $optionId);
         
-        $this->render($result);
+        parent::redirect('/admin/cart/variants/' . intval($groupId));
+        //$this->render($result);
     }
 }

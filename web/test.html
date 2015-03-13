@@ -1,107 +1,65 @@
-
-
+<!DOCTYPE html> 
+<meta charset="utf-8" /> 
+<title>WebSocket Test</title>
+<script language="javascript" type="text/javascript">
+    var wsUri = "ws://192.168.1.23/"; 
+    var output;  
+    function init() {
+        output = document.getElementById("output");
+        testWebSocket(); 
+    }  
     
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
---> 
-<script src="/css/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script> 
- <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-
-<script language="javascript">
-    
-    $(document).ready(function() {
-       
-        $('#addNew').click(function() {
-          $('#inputForm').toggle();
-        });
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri); 
+        websocket.onopen = function(evt) { 
+            onOpen(evt) 
+        }; 
         
-        $('#save').click(function() {
-           var row = '<div class="row">'  +
-                   '<div class="hazardName">' + $( "#hazard option:selected" ).text() + '</div>' +
-                   '<div class="riskName">X' + $( "#risk option:selected" ).text() +  $( "#action option:selected" ).text() + '</div>' +
-                   '<a href="#" class="completed">completed</a>'
-                   '</div>' ;
-           
-           $('#results').append(row);
-           $('#inputForm').toggle();
-        });
+        websocket.onclose = function(evt) {
+            onClose(evt) 
+        }; 
         
-        $('#cancel').click(function() {
-            $('#inputForm').toggle();
-        });
-                
-        $(document).on('click', '.completed', function(){
-            $(this).parent().addClass('row-complete');
-        });
+        websocket.onmessage = function(evt) { 
+            onMessage(evt) 
+        }; 
         
-    });
+        websocket.onerror = function(evt) {
+            onError(evt)
+        }; 
+    }  
     
+    function onOpen(evt) {
+        writeToScreen("CONNECTED"); 
+        doSend("WebSocket rocks"); 
+    }  
     
+    function onClose(evt) { 
+        writeToScreen("DISCONNECTED"); 
+    }  
     
+    function onMessage(evt) { 
+        writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>'); 
+        websocket.close(); 
+    }  
     
-</script>    
-
-
-<style type="text/css">
-    #results .row .hazardName {
-            float: left;
-            width: 200px;
-    }
-    #results .row.row-complete {
-            border: 1px solid #F00;
-    }
-    .row {
-            width: 400px;
-    }
-</style>
-
-
-<div id="results">
+    function onError(evt) { 
+        writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data); 
+    }  
     
-</div>
+    function doSend(message) { 
+        writeToScreen("SENT: " + message);  
+        websocket.send(message); 
+    }  
+    
+    function writeToScreen(message) {
+        var pre = document.createElement("p"); 
+        pre.style.wordWrap = "break-word";
+        pre.innerHTML = message; 
+        output.appendChild(pre); 
+    }  
+    
+    window.addEventListener("load", init, false);  
+</script>  
 
-<a href="#" id="addNew">+</a>
-
-
-<div id="inputForm" style="display:none">
-    <table>
-  <tr>
-    <th scope="col">Hazard</th>
-    <th scope="col"><select name="select" id="hazard">
-      <option>Human Waste</option>
-      <option>Chemicals</option>
-      <option>Nuclear Waste</option>
-    </select></th>
-  </tr>
-  <tr>
-    <td>Risk</td>
-    <td><select name="select3" id="risk">
-      <option value="-">-</option>
-      <option value="L">L</option>
-      <option value="M">M</option>
-      <option value="H">H</option>
-    </select></td>
-  </tr>
-  <tr>
-    <td>Work Action</td>
-    <td><select name="select2" id="action">
-      <option value="-">-</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select></td>
-  </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="button" value="Save" id="save"> 
-                <input type="button" value="Cancel" id="cancel"> 
-            </td>
-        </tr>
-    </table>
-</div>
+<h2>WebSocket Test</h2>  
+<div id="output"></div> 

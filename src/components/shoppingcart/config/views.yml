@@ -179,7 +179,7 @@ cart_admin_sales_list:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"          
             "section3": "src/components/shoppingcart/views/admin/sales-list.php"
-            "section5": "src/themes/default/templates/sections/footer.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
             
 cart_admin_sale_remove:
     template: admin-list.php
@@ -188,7 +188,7 @@ cart_admin_sale_remove:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"         
             "section3": "src/components/shoppingcart/views/admin/sales-list.php"
-            "section5": "src/themes/default/templates/sections/footer.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
             
 cart_admin_sale_view:   
     template: admin-list.php
@@ -206,7 +206,7 @@ cart_admin_variants_list:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-groups.php"
-            "section5": "src/themes/default/templates/sections/footer.php"   
+            "section4": "src/themes/default/templates/sections/footer.php"   
             
 cart_admin_variant_edit:
     template: admin-list.php
@@ -215,7 +215,7 @@ cart_admin_variant_edit:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-group-edit.php"
-            "section5": "src/themes/default/templates/sections/footer.php" 
+            "section4": "src/themes/default/templates/sections/footer.php" 
     
             
 cart_admin_variant_options_list:
@@ -225,7 +225,7 @@ cart_admin_variant_options_list:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-options.php"
-            "section5": "src/themes/default/templates/sections/footer.php" 
+            "section4": "src/themes/default/templates/sections/footer.php" 
     
 cart_admin_variant_option_edit:
     template: admin-list.php
@@ -234,7 +234,7 @@ cart_admin_variant_option_edit:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php" 
             "section3": "src/components/shoppingcart/views/admin/variant-option-edit.php"
-            "section5": "src/themes/default/templates/sections/footer.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
 
 cart_admin_variant_option_select:
     template: admin-list.php
@@ -243,7 +243,7 @@ cart_admin_variant_option_select:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/components/shoppingcart/views/admin/variant-options-select.php"
-            "section5": "src/themes/default/templates/sections/footer.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
     
 
     
@@ -253,4 +253,4 @@ cart_admin_taxes_list:
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"  
             "section3": "src/components/shoppingcart/views/admin/tax-list.php"
-            "section5": "src/themes/default/templates/sections/footer.php"    
+            "section4": "src/themes/default/templates/sections/footer.php"    

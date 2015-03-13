@@ -50,20 +50,23 @@ class VariantOptionModel extends AbstractModel
     
     public function saveOption($groupId, $optionId) {
         $params = $this->httpRequest->getPost();
-        $params['variantItem']['id'] = intval($optionId);
+        if(intval($optionId) == 0) {
+            $optionId = 'null';
+        }
+        $params['variantItem']['id'] = $optionId;
         $params['variantItem']['VariantGroups_id'] = $groupId;
-        file_put_contents('/var/www/shoppingcart/logs/test.log', print_r($params, true) . "\r\n", FILE_APPEND);
+        //file_put_contents('/var/www/shoppingcart/logs/test.log', print_r($params, true) . "\r\n", FILE_APPEND);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['variantItem']); 
-       
+ 
         return ($data);
     }
     
     public function editOption($groupId, $optionId) {
       
-        $defaultLocale =  $this->getDefaultLocale();
+        
         $params = array(
-            'VariantItems_id' => intval($optionId)
+            'id' => $optionId
         );
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);

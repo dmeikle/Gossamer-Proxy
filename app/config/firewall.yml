@@ -1,10 +1,10 @@
 
 
 
-admin_area:
-    pattern: admin/cart/sales/*/*
-    authentication: simple_auth
-    fail_url: admin/login
+#admin_area:
+#    pattern: admin/cart/sales/*/*
+#    authentication: simple_auth
+#    fail_url: admin/login
     
 admin_login_get:
     pattern: admin/login

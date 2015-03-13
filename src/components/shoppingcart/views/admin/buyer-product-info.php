@@ -36,14 +36,14 @@ if(count($basket) == 0) {
         <tr>
             <td><?php echo $item->getTitle($locale);?></td>
             <td><?php echo $item->getQuantity();?></td>
-            <td><?php echo $item->getPrice();?></td>  
-            <td><?php echo $item->getSubtotal();?></td>            
+            <td>$<?php echo $item->getPrice();?></td>  
+            <td>$<?php echo $item->getSubtotal();?></td>            
         </tr>               
 <?php
     $variantList = $item->getVariants();
     
     if(!is_null($variantList)) {
-        
+       pr($variantList) ;
 ?>
         <tr>
             <td align="right">Options:</td>
@@ -58,7 +58,7 @@ if(count($basket) == 0) {
     <?php
        }?>
             </td>
-            <td valign="bottom" align="right">$<?php //echo money_format('%i', $item->getVariantSurcharges());?></td>
+            <td valign="bottom" align="left">$<?php //echo money_format('%i', $item->getVariantSurcharges());?></td>
            
         </tr>
         <?php
