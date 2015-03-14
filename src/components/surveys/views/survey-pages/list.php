@@ -5,7 +5,7 @@
 $(document).ready(function() {
    
     $('.cancel').click(function() {
-      window.location = '/admin/surveys0/20' ;
+      window.location = '/admin/surveys/0/20' ;
    });
    
     var cache = {};
@@ -37,7 +37,7 @@ $(document).ready(function() {
         if ( term in cache ) {
           response( cache[ term ] );
 
-          addRowId(ui.item);
+        //  addRowId(ui.item);
           hideSearch();
           return;
         }
@@ -146,6 +146,7 @@ $(document).ready(function() {
 
 
     <?php
+   
     foreach($SurveyPages as $page) {
         if(count($page) == 0) {
             continue;

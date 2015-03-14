@@ -102,7 +102,9 @@ class AbstractListener {
             $datasource = $this->datasourceFactory->getDatasource($this->datasourceKey, $this->logger);
             $datasource->setDatasourceKey($this->datasourceKey);
         } else {
-
+            if(!array_key_exists($modelName, $this->datasources)) {
+                throw new \Exception('datasource key missing from listeners configuration');
+            }
             $datasource = $this->datasourceFactory->getDatasource($this->datasources[$modelName], $this->logger);
             $datasource->setDatasourceKey($this->datasources[$modelName]);
         }

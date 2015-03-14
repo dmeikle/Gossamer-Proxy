@@ -71,6 +71,8 @@ staff_list2:
 admin_staff_edit:
     pattern: admin/staff/edit/*
     listeners:
+        
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadEmergencyContactsListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
     defaults:
         component: components\staff\StaffComponent

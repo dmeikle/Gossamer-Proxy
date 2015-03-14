@@ -23,7 +23,7 @@ class LoadContactByIdListener extends AbstractListener {
     
     public function on_request_start($params) {
         
-        $userId = $this->httpRequest->getQueryParameter('userid');
+        $userId = intval($this->httpRequest->getQueryParameter('userid'));
      
         $model = new ContactModel($this->httpRequest, $this->httpResponse, $this->logger);
 

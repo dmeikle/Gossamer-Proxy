@@ -23,9 +23,13 @@ class AnswerSerializer extends Serializer {
     
     public function formatSearchResults(array $results) {
         $retval = array();
-//        print_r($results);
-//        die;
+        if(count($results) == 0) {
+            return;
+        }
         foreach($results as $row) {
+            if(count($row) == 0) {
+                return;
+            }
             $retval[] = array(
                 'id' => $row['id'],
                 'label' => $row['answer'],

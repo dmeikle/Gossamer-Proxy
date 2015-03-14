@@ -68,8 +68,8 @@ class ImportImageHandler extends BaseHandler {
     public function handleRequest($params = array()) {
       
             $directory = __SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . __COMPONENT_FOLDER .
-                    DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
-           
+                    DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;
+        
            $files = @scandir($directory);
            if(!is_array($files)) {
                return;

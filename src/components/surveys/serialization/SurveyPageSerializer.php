@@ -26,6 +26,10 @@ class SurveyPageSerializer extends Serializer {
 //        print_r($results);
 //        die;
         foreach($results as $row) {
+            if(count($row) == 0) {
+                return;
+            }
+           
             $retval[] = array(
                 'id' => $row['id'],
                 'label' => $row['name'],

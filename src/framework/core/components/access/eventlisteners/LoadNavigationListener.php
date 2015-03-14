@@ -32,10 +32,9 @@ class LoadNavigationListener extends AbstractListener {
     public function on_response_start($params) {
 
         $userRoles = $this->getUserAccessRoles();
-
         $navigationNodes = $this->loadNavigation();
-
         $navigationItems = $this->loadNavigationElements($navigationNodes, $userRoles);
+
         $this->httpResponse->setAttribute('NAVIGATION', $navigationItems);
     }
 
@@ -44,7 +43,7 @@ class LoadNavigationListener extends AbstractListener {
      * 
      * @return array
      */
-    private function getUserAccessRoles() {
+    protected function getUserAccessRoles() {
         $token = unserialize(getSession('_security_secured_area'));
         if (is_null($token) || !$token) {
             return array('IS_ANONYMOUS');
@@ -65,8 +64,25 @@ class LoadNavigationListener extends AbstractListener {
      */
     private function loadNavigationElements(array $config, array $userRoles) {
         $parser = new YamlListParser();
-
-        return $parser->parseList($config, $userRoles, 'display_roles');
+     
+        //ok - first prune all the parent elements
+        $parentList = $parser->parseList($config, $userRoles, 'display_roles');
+        if(!is_array($parentList) || count($parentList) == 0) {
+            return;
+        }
+        //now lets prune any child elements for subnavigation - recursively
+        foreach($parentList as $key => $menuItem) {
+           
+           if(array_key_exists('children', $menuItem)) {
+               $parentList[$key]['children'] = $this->loadNavigationElements($menuItem['children'], $userRoles);
+               //if it's empty simply remove it to avoid filtering in the view
+               if(!is_array($parentList[$key]['children']) || count($parentList[$key]['children']) == 0) {
+                   unset($parentList[$key]['children']);
+               }
+           }
+        }
+        
+        return $parentList;
     }
 
     /**
@@ -74,10 +90,11 @@ class LoadNavigationListener extends AbstractListener {
      * 
      * @return array
      */
-    private function loadNavigation() {
+    protected function loadNavigation() {
         $loader = new YAMLParser($this->logger);
+        
         $loader->setFilePath(__SITE_PATH . '/app/config/navigation-display.yml');
-
+        
         return $loader->loadConfig();
     }
 

@@ -55,14 +55,15 @@ class SurveysSurveyPageController extends AbstractController{
 
     public function listallBySurveyId($id) {
         $result = $this->model->listAllBySurveyId($id);
+        
         $list = array();
-        if(count($result) > 0) {
-            $list = current($result);
+        if(array_key_exists('SurveyPages', $result)) {
+           $list = $result['SurveyPages'] ;
         }
-      
+        
         $survey = $this->httpRequest->getAttribute('Survey');
-        $this->render(array('SurveysSurveyPages' => $list, 'Survey' => $survey));
-        $this->render($result);
+       
+        $this->render(array('SurveyPages' => $list, 'Survey' => $survey));        
     }
     
     public function saveToSurveyById($id) {

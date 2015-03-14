@@ -136,7 +136,7 @@ class AbstractView {
     public function render($data = array()) {
 
         //get any preloaded items that are in the Response object
-        $data = array_merge((is_null($data) ? array() : $data), $this->httpResponse->getAttributes());
+        $data = array_merge(is_null($data)? array() : $data, $this->httpResponse->getAttributes());
 
         //do any pre-render here - eg: format validation fail strings
         $params = new Event(KernelEvents::RESPONSE_START, $data);
@@ -243,9 +243,10 @@ class AbstractView {
         if(is_object($user)) {
             $userId = $user->getId();
         }
-        $locale = $this->getDefaultLocale();
-       
-        return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale']);
+        $locale = $this->getDefaultLocale();        
+        $params = http_build_query($params);
+        
+        return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale'] . ((strlen($params) > 0) ? '&' . $params : ''));
     }
 
     /**

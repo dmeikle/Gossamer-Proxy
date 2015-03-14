@@ -2,7 +2,8 @@
 
 $(document).ready(function() {
    
-    $('.cancel').click(function() {
+    $('.return').click(function() {
+        saveRows();
       window.location = '/admin/surveys/pages/0/20' ;
    });
    
@@ -91,6 +92,11 @@ $(document).ready(function() {
     
     
     $('#save').click(function() {
+        saveRows();
+    });
+    
+    function saveRows() {
+        
         $('#trashcan').empty();
         $('#trashcan').append('delete me');
         
@@ -104,7 +110,7 @@ $(document).ready(function() {
         });
         //location.reload();
         setLIColors();
-    });
+    }
     
     function setLIColors() {
         $('#sortable').children().removeClass('ui-state-default ui-sortable-handle').addClass('ui-state-default ui-sortable-handle');
@@ -124,7 +130,7 @@ $(document).ready(function() {
   .new {
       background-color: infobackground;
   }
-  </style>
+  </style> 
 <h3>Panes inside of Page</h3>
 
 <form method="post" id="form1">
@@ -166,7 +172,7 @@ $(document).ready(function() {
     <tr>
         <td>
            <!-- not needed <input type="button" id="save" class="btn btn-default" value="Save" /> -->
-            <input type="cancel" class="btn btn-default cancel" value="Return" /> 
+            <input type="cancel" class="btn btn-default return" value="Return" /> 
 
         </td>
     </tr>

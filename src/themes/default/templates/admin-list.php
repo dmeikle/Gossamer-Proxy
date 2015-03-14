@@ -48,13 +48,14 @@
 <div id="container-fluid">
   <div id="header-admin">
       <div id="logo">Phoenix Restorations</div>
+     <?php
+     
+echo $this->getMenu('cssmenu_adminbar', array('staffid' => $this->getLoggedInUser()->getId()));
+?>
+     
     <!---section1--->
      <!---section2---> 
-     new nav
-     <?php
-//echo $this->getMenu('basicmenu_ceilingbar', array('clientId' => $this->getLoggedInUser()->getId()));
-?>
-     end new nav
+    
   </div>
   <div id="lower-reduced">
     <div id="payload">  

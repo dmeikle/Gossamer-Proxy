@@ -66,7 +66,7 @@ class SurveysSurveyPageModel extends AbstractModel implements FormBuilderInterfa
             'Surveys_id' => intval($id)
         );
         
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        pr($data);
+        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        
     }
 }

@@ -66,10 +66,10 @@ class SurveyPagesController extends AbstractController{
     
     public function search() {
         $result = $this->model->search();
-        
+    
         $serializer = new SurveyPageSerializer();
         $result = $serializer->formatSearchResults($result);
         
-        $this->render($result);
+        $this->render(array('SurveyPage' => $result));
     }
 }

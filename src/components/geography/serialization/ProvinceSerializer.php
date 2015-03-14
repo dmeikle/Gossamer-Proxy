@@ -20,13 +20,18 @@ use core\serialization\Serializer;
  */
 class ProvinceSerializer extends Serializer{
     
-    public function pruneList(array $list) {
+    public function pruneList(array $list = null) {
+        if(is_null($list)) {
+            return '';
+        }
+        
         $retval = array();
         
         foreach($list as $row) {
-            $retval[$row['id']] = $row['province'];
+      
+        $retval[$row['id']] = $row['province'];
         }
-        
+        pr($retval);
         return $retval;
     }
     

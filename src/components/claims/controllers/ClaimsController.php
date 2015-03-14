@@ -33,12 +33,7 @@ class ClaimsController extends AbstractController{
         $this->render($result);
     }
     
-    public function get($id) {
-        $result = $this->model->get($id);
-        
-        $this->render($result);
-    }
-    
+     
     public function edit($id) {
         $result = $this->model->edit($id);              
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
@@ -54,12 +49,7 @@ class ClaimsController extends AbstractController{
         $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
     
-    public function save($id) {
-        $result = $this->model->save($id);
-        
-        $this->render($result);
-    }
-    
+ 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $claimBuilder = new ClaimBuilder();

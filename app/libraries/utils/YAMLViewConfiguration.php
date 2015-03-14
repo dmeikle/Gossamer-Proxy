@@ -55,7 +55,7 @@ class YAMLViewConfiguration
         $pieces = array_filter(explode('/', $requestURI));
         $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
-        if($chunk == 'admin' || $chunk == 'portal') {
+        if($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super') {
             $chunk = array_shift($pieces);
         }
         $config = $parser->loadConfig(); 

@@ -33,4 +33,14 @@ class CssMenuController extends AbstractController {
             $this->render($contact);
         }        
     }
+    
+    
+    public function viewSuper() {
+                
+        $staff = @current($this->httpRequest->getAttribute('Staff'));
+        
+        if(intval($this->httpRequest->getQueryParameter('staffid')) > 0) {
+            $this->render($staff);
+        }        
+    }
 }
