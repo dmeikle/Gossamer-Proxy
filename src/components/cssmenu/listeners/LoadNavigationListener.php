@@ -12,6 +12,7 @@
 namespace components\cssmenu\listeners;
 
 use core\components\access\eventlisteners\LoadNavigationListener as BaseListener;
+use libraries\utils\YAMLParser;
 
 /**
  * LoadNavigationListener - Loads the navigation config for a user
@@ -39,4 +40,25 @@ class LoadNavigationListener extends BaseListener {
         return $roles;
     }
 
+    /**
+     * loads the navigation items from the yml config
+     * 
+     * @return array
+     */
+    protected function loadNavigation() {
+        $loader = new YAMLParser($this->logger);
+        
+        if(array_key_exists('params', $this->listenerConfig) && array_key_exists('file', $this->listenerConfig['params'])) {
+            if(!file_exists(__SITE_PATH . '/app/config/' . $this->listenerConfig['params']['file'] . '.yml')) {
+                echo 'unable to load navigation config file<br>';
+                return;
+            }
+            
+            $loader->setFilePath(__SITE_PATH . '/app/config/' . $this->listenerConfig['params']['file'] . '.yml');
+            
+        } else {
+            $loader->setFilePath(__SITE_PATH . '/app/config/navigation-display.yml');
+        }
+        return $loader->loadConfig();
+    }
 }

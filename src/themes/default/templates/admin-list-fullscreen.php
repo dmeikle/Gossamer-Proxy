@@ -10,7 +10,7 @@
 <!-- Latest compiled and minified CSS
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
  -->
-<link rel="stylesheet" href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap/3.1.1-dist/css/bootstrap.min.css" />
      
      
 <link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
@@ -31,7 +31,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
 -->
-<script src="/css/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+<script src="/js/bootstrap/bootstrap.min.js"></script> 
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug --> 
@@ -51,14 +51,14 @@
 <body>
 <div id="container-fluid">
   <div id="header-admin">
-      <div id="logo">Phoenix Restorations</div>
-    <!---section1--->
-     <!---section2---> 
-     new nav start
+      <div id="logo">Phoenix Restorations</div> 
      <?php
 echo $this->getMenu('cssmenu_adminbar', array('staffid' => $this->getLoggedInUser()->getId()));
 ?>
-     end new nav
+    <!---section1--->
+     <!---section2---> 
+   
+     
   </div>
   <div id="lower">
     <div id="leftcolumn"> </div>

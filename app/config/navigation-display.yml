@@ -10,7 +10,7 @@ admin_home:
         
 super_user_home:
     text_key: 'SUPER_USER_HOME'
-    pattern: '/admin/super'
+    pattern: '/super/home'
     display_roles:
         - IS_SUPER_USER
         
@@ -24,12 +24,19 @@ admin_contactus:
         
 staff_list:
     text_key: 'ADMIN_STAFF'
-    pattern: '/admin/staff/0/20'
+    pattern: '#'
     display_roles:
         - IS_ADMIN
         - IS_ADMINISTRATOR
         - IS_STAFF
     children:
+        staff_list:
+            text_key: 'ADMIN_STAFF'
+            pattern: '/admin/staff/0/20'
+            display_roles:
+                - IS_ADMIN
+                - IS_ADMINISTRATOR
+                - IS_STAFF
         staff_add_new:
             text_key: 'ADMIN_STAFF_ADD_NEW'
             pattern: '/admin/staff/0'

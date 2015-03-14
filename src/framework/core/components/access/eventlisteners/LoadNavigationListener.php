@@ -90,10 +90,11 @@ class LoadNavigationListener extends AbstractListener {
      * 
      * @return array
      */
-    private function loadNavigation() {
+    protected function loadNavigation() {
         $loader = new YAMLParser($this->logger);
+        
         $loader->setFilePath(__SITE_PATH . '/app/config/navigation-display.yml');
-
+        
         return $loader->loadConfig();
     }
 

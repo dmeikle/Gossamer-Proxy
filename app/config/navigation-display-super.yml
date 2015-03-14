@@ -1,0 +1,30 @@
+
+
+admin_home:
+    text_key: 'ADMIN_HOME'
+    pattern: '/admin/home'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+        - IS_SUPER_USER
+        
+        
+admin_contactus:
+    text_key: 'ADMIN_DEFICIENCIES'
+    pattern: '/super/deficiencies/0/20'
+    display_roles:
+        - IS_SUPER_USER
+    children:        
+        deficiencies_statuscodes:
+            text_key: 'ADMIN_DEFICIENCIES_STATUS_CODES'
+            pattern: '/super/deficiencies/codes/0/20'
+            display_roles:
+                - IS_SUPER_USER
+        deficiencies_types:
+            text_key: 'ADMIN_DEFICIENCIES_STATUS_CODES'
+            pattern: '/super/deficiencies/types/0/20'
+            display_roles:
+                - IS_SUPER_USER
+        
+     
