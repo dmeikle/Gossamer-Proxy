@@ -33,8 +33,8 @@ class VariantGroupModel extends AbstractModel
         $optionModel = new VariantOptionModel($this->httpRequest, $this->httpResponse, $this->logger);
         $optionModel->setDataSource($this->dataSource);
         $data = $optionModel->listAllOptions();
-     pr($data);
-     die;
+    
+    
         $optionsList = ($data['CartVariantItems']);
         $data = array();
         $retval = array();

@@ -39,6 +39,7 @@ class VariantOptionModel extends AbstractModel
     public function listAllOptions() {
         $defaultLocale = $this->getDefaultLocale();
         $params = array('locale' => $defaultLocale['locale']);
+        
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
 //    
