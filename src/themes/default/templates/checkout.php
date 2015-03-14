@@ -9,14 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>checkout</title>
      <link href="/css/framework.css" rel="stylesheet" >
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!---css--->
 
 
 
 
-    <!-- Bootstrap -->
-    <link href="/css/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap -->
+ <link rel="stylesheet" href="/css/bootstrap/3.1.1-dist/css/bootstrap.min.css">
+     
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
+<link rel="stylesheet" type="text/css" href="/css/selectize/selectize.bootstrap3.css" />
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" />
+    
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,9 +58,6 @@
 
 </div>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
-    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="/js/bootstrap.min.js"></script>

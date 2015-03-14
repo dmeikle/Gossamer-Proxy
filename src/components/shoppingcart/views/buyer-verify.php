@@ -5,7 +5,7 @@
         <table class="table">
             <tr>
                 <td>
-                    <strong>Name</strong><br>
+                    <strong>Billing Information</strong><br>
                     <?php
                     echo $client['firstname'] . ' ' . $client['lastname'].'<br>';
                     echo $client['address1'] . '<br>';
@@ -29,6 +29,7 @@
                     ?>                    
                 </td>
                 <td>
+                    <strong>Shipping Information (if different)</strong><br>
                     <?php
                     echo $client['shipFirstname'] . ' ' . $client['shipLastname'].'<br>';
                     echo $client['shipAddress1'] . '<br>';                    

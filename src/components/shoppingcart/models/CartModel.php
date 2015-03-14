@@ -62,7 +62,8 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
     
     public function verify() {
         $params = $this->httpRequest->getPost();
-        $client = $params['client'];
+      
+        $client = $params['Client'];
         $shipping = (array_key_exists('shipping', $params))? $params['shipping'] : '';
         $purchase = $params['purchase'];     
         $defaultLocale =  $this->getDefaultLocale();
@@ -104,15 +105,18 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
     
     public function savePurchase() {
         $params = $this->httpRequest->getPost();
+        
         $client = $params['client'];
         $shipping = (array_key_exists('shipping', $params))? $params['shipping'] : '';
         $params['Basket'] = $this->getBasket()->getItemsAsArray();
         $params['purchase'] = array_merge( $params['purchase'], $this->generatePurchase());
         $params['purchase']['totalWeight'] = $this->getBasket()->getTotalWeight();
         $params['purchase']['subtotal'] = $this->getBasket()->getSubtotal();
-        
+        pr($params);
         $result = $this->dataSource->query(self::METHOD_POST, new ClientModel($this->httpRequest, $this->httpResponse, $this->logger), 'SavePurchase', $params);
-      
+      pr($result);
+        
+        die;
         if(is_null($result)) {
             die('there was an error saving');
             //there  was an error - handle it here. I suggest making render() receive an optional param to load a different view 
