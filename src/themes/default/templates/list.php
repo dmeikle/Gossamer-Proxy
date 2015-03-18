@@ -18,7 +18,7 @@
 
 
 
-<link rel="stylesheet" href="http://localhost/css/framework.css" />
+<link rel="stylesheet" href="/css/framework.css" />
 <link rel="stylesheet" type="text/css" href="/css/selectize/selectize.css" />
 <link rel="stylesheet" type="text/css" href="/css/selectize/selectize.bootstrap3.css" />
 <link href="/css/portal-framework.css" rel="stylesheet" type="text/css" />

@@ -33,8 +33,8 @@ class VariantGroupModel extends AbstractModel
         $optionModel = new VariantOptionModel($this->httpRequest, $this->httpResponse, $this->logger);
         $optionModel->setDataSource($this->dataSource);
         $data = $optionModel->listAllOptions();
-     pr($data);
-     die;
+    
+    
         $optionsList = ($data['CartVariantItems']);
         $data = array();
         $retval = array();
@@ -57,12 +57,12 @@ class VariantGroupModel extends AbstractModel
         $product = new ProductModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = array('id' => $productId);
         $result = $this->dataSource->query(self::METHOD_GET, $product, self::VERB_GET, $params);
-     
-        if(array_key_exists('Product', $result)) {
-            $data = current($result['Product']);
-            if(array_key_exists('ProductVariant', $data)) {
-                $columns = array_column($data['ProductVariant'], 'VariantItems_id');
-                
+    
+        if(array_key_exists('CartProduct', $result)) {
+            $data = current($result['CartProduct']);
+            if(array_key_exists('CartProductVariant', $data)) {
+                $columns = array_column($data['CartProductVariant'], 'CartVariantItems_id');
+             
                 return $columns;
             }
         } 

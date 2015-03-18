@@ -71,6 +71,7 @@ foreach($variants as $variant) {
     <p class="selectable">
 
    <?php
+  
     foreach($variant['child'] as $option) {
         $isSelected = array_search($option['id'], $productVariantItems) !== FALSE;
         ?>

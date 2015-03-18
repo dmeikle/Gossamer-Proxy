@@ -3,7 +3,14 @@
 <!--- css end --->
 
     
- 
+<script language="javascript">
+
+$(document).ready(function() {
+   $('#Purchase_eventDate').datepicker();
+   $('#Purchase_requireDate').datepicker();
+});
+
+</script>
 <form  class="form-horizontal" role="form" method="post" action="<gcms:uri='cart_checkout_2'/>"> 
 
 	<h3>Billing Information</h3>
@@ -50,7 +57,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>State/Province:</label></td> 
-        <td><select name="client[state]" onmousewheel="return false;"> 
+        <td><select class="form-control" name="Client[state]" onmousewheel="return false;"> 
           <option value='{"state":"", "id":""}'>Select State</option> 
           <option value='{"state":"AL", "id":"1"}'>Alabama</option> 
           <option value='{"state":"AK", "id":"2"}'>Alaska</option> 
@@ -127,7 +134,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>Country:</label></td> 
-        <td><select name="client[country]" onmousewheel="return false;" onchange="javascript:handleVATZeroRatingVisibility();"> 
+        <td><select class="form-control" name="Client[country]" onmousewheel="return false;" onchange="javascript:handleVATZeroRatingVisibility();"> 
           <option value="">Click to Select</option> 
           <option value=""></option> 
           <option value="CA">Canada</option> 
@@ -138,7 +145,7 @@
 	
 	
 	<h3>Shipping Information</h3>(if different)
-<input type="hidden" name="client[shipto]" value="different"> 
+<input type="hidden" name="Client[shipto]" value="different"> 
   
 	<table class="table"> 
       <tbody><tr> 
@@ -180,7 +187,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>State/Province:</label></td> 
-        <td><select name="client[shipState]" onmousewheel="return false;"> 
+        <td><select class="form-control" name="Client[shipState]" onmousewheel="return false;"> 
            <option value='{"state":"", "id":"0"}'>Select State</option> 
           <option value='{"state":"AL", "id":"1"}'>Alabama</option> 
           <option value='{"state":"AK", "id":"2"}'>Alaska</option> 
@@ -257,7 +264,7 @@
       </tr> 
       <tr> 
         <td align="right"><label>Country:</label></td> 
-        <td><select name="client[shipCountry]" onmousewheel="return false;" onchange="javascript:handleVATZeroRatingVisibility();"> 
+        <td><select class="form-control" name="Client[shipCountry]" onmousewheel="return false;" onchange="javascript:handleVATZeroRatingVisibility();"> 
           <option value="">Click to Select</option> 
           <option value=""></option> 
           <option value="CA">Canada</option> 
@@ -271,16 +278,16 @@
 	<td>
 	
     <h3>Special Instructions</h3> 
-	<textarea name="purchase[instructions]" cols="30" rows="5" id="instructions"></textarea> 
+	<textarea class="form-control" name="purchase[instructions]" cols="30" rows="5" id="instructions"></textarea> 
 	
 	<h3>Additional Information</h3> 
 	Date of Event:
-	<input type="text" name="purchase[eventDate]"><br> 
+	<input class="form-control" type="text" name="purchase[eventDate]" id="Purchase_eventDate"><br> 
 	Date Order Required By:
-	<input name="purchase[requireDate]" type="text" id="requireDate">
+	<input class="form-control" name="purchase[requireDate]" type="text" id="Purchase_requireDate">
 	<br> 
 	How did you hear of Us:<br> 
-	<select name="purchase[referer]"> 
+	<select class="form-control" name="purchase[referer]"> 
 		<option value="Friend">Friend</option> 
 		<option value="Surfing">Surfing</option> 
 		<option value="Google Ad">Google Ad</option> 
@@ -305,7 +312,7 @@
 	  <tr> 
         <td align="right" width="150"><label>Shipping Type:</label></td> 
 		<td align="left"> 
-	<select name="purchase[deliveryMethod]" id="deliveryMethod"> 
+	<select class="form-control" name="purchase[deliveryMethod]" id="deliveryMethod"> 
 	<option value="">select shipping</option>
 	<option value="0">Pick Up (GVRD only)</option>
         <option value="1">Canada Ground</option>
@@ -334,17 +341,17 @@
             </div> 
 			
           <div style="clear:both"></div>
-<input name="paymentType" id="payment" type="hidden" value="creditcard"> 
+<input class="form-control" name="paymentType" id="payment" type="hidden" value="creditcard"> 
 	<h3>Payment Information</h3> 			
 	 <script type="text/javascript" language="JavaScript"><!-- expandcontent('creditCard'); --></script> 
     <table class="table"> 
       <tbody><tr> 
         <td align="right" width="150">Name on Credit Card: </td> 
-        <td><input type="text" name="nameOnCard" maxlength="50" value=""></td> 
+        <td><input class="form-control" type="text" name="nameOnCard" maxlength="50" value=""></td> 
       </tr> 
       <tr> 
         <td align="right"><label>Credit Card Type:</label></td> 
-        <td><select name="cardType" onmousewheel="return false;"> 
+        <td><select class="form-control" name="cardType" onmousewheel="return false;"> 
           <option value="Visa">Visa</option> 
           <option value="Mastercard">Mastercard</option> 
           <option value="Amex">American Express</option> 
@@ -352,13 +359,14 @@
       </tr> 
       <tr> 
         <td align="right"><label>Credit Card Number:</label></td> 
-        <td><input type="text" name="number" value="" autocomplete="off" maxlength="19"></td> 
+        <td><input class="form-control" type="text" name="number" value="" autocomplete="off" maxlength="19"></td> 
       </tr> 
       <tr> 
         <td align="right"><label>Expiration Date:</label> 
           <nobr></nobr></td> 
         <td><div align="left"> 
-          <select name="expiryMonth" onmousewheel="return false;" class="month"> 
+          <select class="form-control" name="expiryMonth" onmousewheel="return false;" class="month">
+              <option value='0'>select month</option>
             <option value="1">01</option> 
             <option value="2">02</option> 
             <option value="3">03</option> 
@@ -372,14 +380,15 @@
             <option value="11">11</option> 
             <option value="12">12</option> 
           </select> 
-          <select name="expiryYear" onmousewheel="return false;" class="year">    
-<option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option>  
+          <select class="form-control" name="expiryYear" onmousewheel="return false;" class="year">    
+              <option value='0'>select year</option>
+<option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option>  <option value="2022">2022</option> <option value="2023">2023</option> <option value="2024">2024</option>    
 	</select> 
         </div></td> 
       </tr> 
       <tr>
         <td align="right">Verification Code: </td>
-        <td><input type="text" name="verification" value="" size="6" autocomplete="off" maxlength="4"></td> 
+        <td><input class="form-control" type="text" name="verification" value="" size="6" autocomplete="off" maxlength="4"></td> 
       
       </tr>
     </tbody></table> 
