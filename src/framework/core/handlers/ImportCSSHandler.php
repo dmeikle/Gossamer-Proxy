@@ -46,7 +46,7 @@ class ImportCSSHandler extends BaseHandler {
 
             if (substr($tmp, 0, 11) == '@components') {
 
-                $filepath = str_replace('@components', 'components', $tmp);
+                $filepath = str_replace('@components', '/components', $tmp);
 
                 //we need to import this if it doesn't exist or if the existing is stale
                 if ($this->checkFileIsStale($filepath, 'css')) {

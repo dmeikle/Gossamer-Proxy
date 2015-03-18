@@ -78,7 +78,7 @@ admin_incidenttypes_list:
 admin_incidents_create:
     pattern: admin/incidents/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\incidents\models\IncidentTypeModel', 'cacheKey': 'IncidentTypes' }
     defaults:
         component: components\incidents\IncidentsComponent
@@ -92,7 +92,7 @@ admin_incidents_create:
 admin_incidents_list:
     pattern: admin/incidents/*/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\incidents\models\IncidentTypeModel', 'cacheKey': 'IncidentTypes' }
     defaults:
         component: components\incidents\IncidentsComponent

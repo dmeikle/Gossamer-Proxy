@@ -139,7 +139,7 @@ admin_staff_credentials_save:
 admin_staff_permissions_get:
     pattern: admin/staff/permissions/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffAuthorizationController
@@ -170,7 +170,7 @@ admin_staff_permissions_save:
 admin_staff_list:
     pattern: admin/staff/*/*
     listeners:
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\DepartmentModel', 'cacheKey': 'Departments'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController

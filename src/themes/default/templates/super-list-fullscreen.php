@@ -49,12 +49,12 @@
 </head>
 
 <body>
-<div id="container-fluid">
-  <div id="header-admin">
-      <div id="logo">Phoenix Restorations</div>
      <?php
 echo $this->getMenu('cssmenu_superuserbar', array('staffid' => $this->getLoggedInUser()->getId()));
 ?>
+<div id="container-fluid">
+  <div id="header-admin">
+      <div id="logo">Phoenix Restorations</div>
     <!---section1--->
      <!---section2---> 
     
