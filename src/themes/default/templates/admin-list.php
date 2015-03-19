@@ -52,7 +52,7 @@
      
 echo $this->getMenu('cssmenu_adminbar', array('staffid' => $this->getLoggedInUser()->getId()));
 ?>
-     
+   
     <!---section1--->
      <!---section2---> 
     

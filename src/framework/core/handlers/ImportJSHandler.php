@@ -46,14 +46,14 @@ class ImportJSHandler extends BaseHandler {
 
             if (substr($tmp, 0, 11) == '@components') {
 
-                $filepath = str_replace('@components', '', $tmp);
+                $filepath = str_replace('@components', '/components', $tmp);
 
                 //we need to import this if it doesn't exist or if the existing is stale
                 if ($this->checkFileIsStale($filepath, 'js')) {
                     $this->copyFile($filepath, 'js');
                 }
 
-                $retval[] = '/js/components' . str_replace('includes/js/', '', $filepath);
+                $retval[] = '/js' . str_replace('includes/js/', '', $filepath);
             }elseif (substr($tmp, 0, 16) == '@core/components') {
 
                 $filepath = str_replace('@core/components', '/framework/core/components', $tmp);
