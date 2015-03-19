@@ -75,6 +75,7 @@ class BasketItem {
      * because from the database it's a different method of stringing the params onto the object
      */
     private function populateVariants(array $variants) {    
+        die('populate');
        $this->variants = array();
         foreach($variants as $variant) {      
           
@@ -86,7 +87,8 @@ class BasketItem {
     }
     
     public function getVariants() {
-        
+        echo 'getvariants<br>';
+        pr($this->variants);
         return $this->variants;
     }
     
@@ -105,6 +107,7 @@ class BasketItem {
         
         return $total;
     }
+    
     public function setVariants(array $values) {
         foreach($this->productVariants as $variant) {
             $item = $this->filterVariants($variant, $values);
@@ -113,15 +116,15 @@ class BasketItem {
                 $this->variants[] = $item;
             }
         }
-        
+     
     }
 
     private function filterVariants(array $variant, array $values) {
-       
+    
         foreach($values as $key => $item) {
-            
-            if($item == $variant['CartVariantItems_id']) {
-                return array($key => array('surcharge' => $variant['surcharge'], 'id' => $item));
+          
+            if($item['id'] == $variant['CartVariantItems_id']) {
+                return array($key => array('surcharge' => $item['surcharge'], 'id' => $variant['CartVariantItems_id'], 'title' => $item['variant']));
             }
         }
         return false;

@@ -8,3 +8,10 @@ cssmenu_ceilingbar:
         - IS_PORTAL_CUSTOMER
         - IS_PORTAL_PROPERTY_MANAGER
         - IS_PORTAL_STRATA
+        
+
+cssmenu_adminbar:
+    roles:
+        - IS_ADMIN
+        - IS_POWER_USER
+        - IS_ADMINISTRATOR

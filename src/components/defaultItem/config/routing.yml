@@ -93,3 +93,5 @@ super_home:
             - 'src/framework/core/components/locales/resources/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]      
+    
+    
