@@ -8,6 +8,9 @@ locales:
    
 basicmenu:
     component: "src/framework/core/components/basicmenu/config/routing.yml"
+
+customers:
+    component: "src/components/customers/config/routing.yml"
     
 about:
     component: "src/components/defaultItem/config/routing.yml"
@@ -109,6 +112,8 @@ cssmenu:
     component: "src/components/cssmenu/config/routing.yml"
 departments:
     component: "src/components/departments/config/routing.yml"
+keys:
+    component: "src/components/keys/config/routing.yml"
 
     
 #this is the default fallback to use if not found    

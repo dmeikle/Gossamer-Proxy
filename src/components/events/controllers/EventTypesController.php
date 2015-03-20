@@ -15,7 +15,7 @@ use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\events\form\EventTypeBuilder;
-use core\system\Router;
+
 
 class EventTypesController extends AbstractController
 {
@@ -26,8 +26,15 @@ class EventTypesController extends AbstractController
     }
     
     
-    public function save($id) {
-        parent::saveAndRedirect($id, 'admin_event_types_list', array(0,20));
+//    public function save($id) {
+//        parent::saveAndRedirect($id, 'admin_event_types_list', array(0,20));
+//    }
+    
+    public function listall($offset = 0, $limit = 20) {
+        $result = $this->model->listall($offset, $limit);
+      
+        //need the drawform called for adding rows through ajax
+        $this->render(array('EventTypes' => $result['EventTypes'], 'EventTypesCount' => $result['EventTypesCount'], 'form' => $this->drawForm($this->model)));
     }
     
     public function drawForm(FormBuilderInterface $model, array $values = null) {

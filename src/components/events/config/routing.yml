@@ -69,22 +69,22 @@ admin_eventlocations_list:
     #------------------- event types ---------------------
        
     
-admin_event_types_edit:
-    pattern: admin/events/eventtypes/*
+super_event_types_edit:
+    pattern: super/events/eventtypes/*
     defaults:
         component: components\events\EventsComponent
         controller: components\events\controllers\EventTypesController
         model: components\events\models\EventTypeModel
         method: edit
-        view: core\views\TemplateView
+        view: core\views\AJAXHTMLView
         viewKey: admin_event_types_edit
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [GET]     
     
-admin_event_types_save:
-    pattern: admin/events/eventtypes/*
+super_event_types_save:
+    pattern: super/events/eventtypes/*
     listeners:
         - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
@@ -93,22 +93,38 @@ admin_event_types_save:
         controller: components\events\controllers\EventTypesController
         model: components\events\models\EventTypeModel
         method: save
-        view: core\views\TemplateView
-        viewKey: admin_event_types_edit
+        view: core\views\JSONView
+        viewKey: super_event_types_save
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [POST]   
     
-admin_event_types_list:
-    pattern: admin/events/eventtypes/*/*
+
+super_eventtypes_remove:
+    pattern: super/events/eventtypes/remove/*
+    defaults:
+        component: components\events\EventsComponent
+        controller: components\events\controllers\EventTypesController
+        model: components\events\models\EventTypeModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_eventtypes_remove
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+    
+        
+super_event_types_list:
+    pattern: super/events/eventtypes/*/*
     defaults:
         component: components\events\EventsComponent
         controller: components\events\controllers\EventTypesController
         model: components\events\models\EventTypeModel
         method: listall
         view: core\views\TemplateView
-        viewKey: admin_event_types_list
+        viewKey: super_event_types_list
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  

@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\staff\models;
+namespace components\customers\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
@@ -17,31 +17,21 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-class StaffRoleModel extends AbstractModel implements FormBuilderInterface {
-
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
+class CustomerRoleModel extends  AbstractModel implements FormBuilderInterface
+{
+    
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
         parent::__construct($httpRequest, $httpResponse, $logger);
-
+        
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
-
-        $this->entity = 'StaffRole';
-        $this->tablename = 'staffroles';
+        
+        $this->entity = 'CustomerRole';
+        $this->tablename = 'customerroles';        
     }
+    
 
-    public function save($id) {
-
-        $params = $this->httpRequest->getPost();
-
-        $params['Staff']['id'] = intval($id);
-
-        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveStaff', $params['Staff']);
-
-        return $data;
-    }
-
-   
     public function getFormWrapper() {
-        return $this->entity;  
+        return $this->entity;
     }
 
 }

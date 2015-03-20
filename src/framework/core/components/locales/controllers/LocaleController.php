@@ -40,10 +40,10 @@ class LocaleController extends AbstractController {
      */
     public function save($id) {
 
-        $this->model->save(intval($id));
+        $result = $this->model->save(intval($id));
 
 
-        $this->redirect('/admin/locales');
+        $this->render($result);
     }
 
 }

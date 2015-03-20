@@ -33,7 +33,7 @@ $(document).ready(function() {
     <table>
         <tr>
           <td colspan="2">
-              <ul class="nav nav-tabs" role="tablist">
+              
               <table class="table">
                   <tr>
                       <td colspan="2">

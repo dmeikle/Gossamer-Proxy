@@ -143,6 +143,23 @@ class AbstractModel {
     public function index(array $params) {
         return $params;
     }
+    
+    /**
+     * queries the datasource and deletes the record
+     * 
+     * @param type $offset
+     * @param type $rows
+     * 
+     * @return array
+     */
+    public function delete($id) {
+        $params = array(
+            'id' => intval($id)
+        );
+
+
+        return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
+    }
 
     /**
      * queries the datasource and returns the result
@@ -172,8 +189,7 @@ class AbstractModel {
 
         $params = $this->httpRequest->getPost();
         $params[$this->entity]['id'] = intval($id);
-        
-       
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
         return $data;

@@ -23,7 +23,7 @@ admin_event_types_edit:
 admin_event_types_save:    
     type: utf8
     
-admin_event_types_list:    
+super_event_types_list:    
     type: utf8
     
 admin_eventattendees_list:

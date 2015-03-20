@@ -7,10 +7,26 @@ locale_change:
         method: change
         view: core\views\TemplateView
         viewKey: locale_change
-        datasource: datasource1
+        datasource: datasource1 
+            
+     
+locales_remove:
+    pattern: super/locales/remove/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: locales_edit
+        datasource: datasource1  
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [POST]
         
 locales_list:
-    pattern: admin/locales
+    pattern: super/locales/*/*
     defaults:
         component: core\components\locales\LocaleComponent
         controller:  core\components\locales\controllers\LocaleController
@@ -21,11 +37,11 @@ locales_list:
         datasource: datasource1  
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'   
-            
-   
+            - 'src/components/shoppingcart/locales/*/Navigation'  
+    
+    
 locales_edit:
-    pattern: admin/locales/*
+    pattern: super/locales/*
     defaults:
         component: core\components\locales\LocaleComponent
         controller:  core\components\locales\controllers\LocaleController
@@ -40,13 +56,13 @@ locales_edit:
     methods: [GET]
             
 locales_save:
-    pattern: admin/locales/*
+    pattern: super/locales/*
     defaults:
         component: core\components\locales\LocaleComponent
         controller:  core\components\locales\controllers\LocaleController
         model:  core\components\locales\models\LocaleModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: locales_save
         datasource: datasource1  
         langFiles: 

@@ -1,4 +1,13 @@
 
+
+
+super_staff_roles_list:
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/staff/views/admin/roles/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
 admin_staff_edit:
     template: admin-list.php
     sections: 

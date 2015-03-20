@@ -1,5 +1,5 @@
 locales_list:
-    template: admin-list.php
+    template: super-list.php
     sections: 
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"
@@ -7,7 +7,7 @@ locales_list:
             "section4": "src/themes/default/templates/sections/footer.php"
     
 locales_edit:
-    template: admin-list.php
+    template: super-list.php
     sections: 
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"

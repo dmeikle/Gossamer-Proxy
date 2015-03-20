@@ -1,20 +1,18 @@
 
 #-------------------- event types -----------------------
-admin_event_types_edit:     
-    template: admin-list.php
+
+#this is an ajax form
+super_event_types_edit:     
+    template: ajax-html.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/events/views/admin/subnav.php"
-            "section3": "src/components/events/views/admin/types/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "section1": "src/components/events/views/admin/types/edit.php"
             
-admin_event_types_list:   
-    template: admin-list.php
+super_event_types_list:   
+    template: super-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/events/views/admin/subnav.php"
             "section3": "src/components/events/views/admin/types/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"          
             

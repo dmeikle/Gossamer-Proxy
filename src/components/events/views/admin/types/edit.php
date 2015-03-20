@@ -1,16 +1,7 @@
 
-
-
-<h2>Add/Edit Event</h2>
-<script language="javascript">
-
-$(document).ready(function() {
-    $( "#tabs" ).tabs(); 
-});
-
-</script>
-<form method="post">
-    <table>
+<?php echo $form['typeId'];?>
+<?php echo $form['defaultLocale'];?>
+    <table class="table" id="table1">
         <tr>
           <td>Type:</td>
           <td>
@@ -33,12 +24,4 @@ $(document).ready(function() {
           </div>          
           </td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>
-          <?php echo $form['save']; ?>
-          <?php echo $form['cancel']; ?>
-          </td>
-        </tr>
       </table>
-</form>

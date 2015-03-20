@@ -1,4 +1,48 @@
 
+super_contacts_roles_save:
+    pattern: super/contacts/roles/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_contacts_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+super_contacts_roles_remove:
+    pattern: super/contacts/roles/remove/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: super_contacts_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+    
+
+super_contacts_roles_list:
+    pattern: super/contacts/roles/*/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_contacts_roles_list
+        datasource: datasource1
+    methods: [GET]   
+    
 
 admin_propertymanagers_search:
     pattern: admin/contacts/propertymanagers/search

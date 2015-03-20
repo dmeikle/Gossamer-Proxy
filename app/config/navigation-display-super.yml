@@ -204,3 +204,17 @@ admin_scoping:
             pattern: '/super/vehicles/0/20'
             display_roles:
                 - IS_SUPER_USER 
+                
+
+#events
+admin_events:
+    text_key: 'ADMIN_EVENTS'
+    pattern: '#'
+    display_roles:
+        - IS_SUPER_USER  
+    children:
+        event_types:
+            text_key: 'ADMIN_EVENT_TYPES'
+            pattern: '/super/events/eventtypes/0/20'
+            display_roles:
+                - IS_SUPER_USER                

@@ -1,4 +1,50 @@
 
+
+    
+super_staff_roles_save:
+    pattern: super/staff/roles/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffRolesController
+        model: components\staff\models\StaffRoleModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_staff_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+super_staff_roles_remove:
+    pattern: super/staff/roles/remove/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffRolesController
+        model: components\staff\models\StaffRoleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: super_staff_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+    
+
+super_staff_roles_list:
+    pattern: super/staff/roles/*/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffRolesController
+        model: components\staff\models\StaffRoleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_staff_roles_list
+        datasource: datasource1
+    methods: [GET]   
+    
 admin_staff_emergencycontacts_list:
     pattern: admin/staff/emergencycontacts/*
     listeners:

@@ -199,4 +199,11 @@ portal_contact_invites_invite:
             "section1": "src/themes/default/templates/sections/portal-header.php"
             "section2": "src/components/contacts/views/subnav.php"
             "section3": "src/components/contacts/views/invites/invite.php"
-            "section4": "src/themes/default/templates/sections/footer.php"           
+            "section4": "src/themes/default/templates/sections/footer.php"    
+            
+super_contacts_roles_list:
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/contacts/views/admin/roles/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"

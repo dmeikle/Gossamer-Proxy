@@ -27,13 +27,25 @@ class EventTypeBuilder extends AbstractBuilder{
         if(is_array($validationResults) && array_key_exists('EventType', $validationResults)) {
             $builder->addValidationResults($validationResults['EventType']);
         }
+        $id = intval($this->getValue('id', $values));
         
         $builder->add('type', 'text', array('class' => 'form-control', 'value' => $this->buildLocaleValuesArray('type', $values, $options['locales'])), $options['locales'])
                 ->add('score', 'text', array('class' => 'form-control', 'value' => $this->getValue('score', $values)))
+                ->add('typeId', 'hidden', array('class' => 'form-control', 'value' => $id))
+                ->add('defaultLocale', 'hidden', array('class' => 'form-control', 'value' => $this->getDefaultLocale($options['locales'])))
                 ->add('save', 'submit', array('value' => 'Save', 'class' => 'btn btn-primary'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-primary'));                
         
         return $builder->getForm();
     }
 
+    private function getDefaultLocale(array $locales) {
+        foreach($locales as $locale) {
+            if($locale['isDefault'] == 1) {
+                return $locale['locale'];
+            }
+        }
+        
+        return '';
+    }
 }

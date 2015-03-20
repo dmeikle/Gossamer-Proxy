@@ -17,13 +17,15 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+
 
 /**
  * Model for the Locales table
  *
  * @author Dave Meikle
  */
-class LocaleModel extends AbstractModel {
+class LocaleModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * 
@@ -107,7 +109,7 @@ class LocaleModel extends AbstractModel {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
         }
 
-        $this->render($data);
+        return $data;
     }
 
     /**
@@ -135,9 +137,15 @@ class LocaleModel extends AbstractModel {
     public function save($id) {
 
         $params = $this->httpRequest->getPost();
-        $params['locale']['id'] = $id;
+        $params['Locale']['id'] = intval($id);
 
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['locale']);
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['Locale']);
+        
+        return $data;
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
     }
 
 }

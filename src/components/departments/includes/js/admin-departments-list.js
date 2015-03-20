@@ -12,7 +12,7 @@ $(document).ready(function() {
           height:140,
           modal: true,
           buttons: {
-            "Delete all items": function() {
+            "Delete item": function() {
                 $.post('/super/departments/remove/' + id);
                 $( this ).dialog( "close" );
                 $('#row_' + id).remove();
@@ -38,7 +38,7 @@ $(document).ready(function() {
  
     function addRow(id, name) {
         var row = '<tr id="row_' + id + 
-                '"><td id="department_6">' + name + '</td><td> <button class="btn btn-primary btn-xs edit" data-id="' + id + 
+                '"><td id="department_' + id +'">' + name + '</td><td> <button class="btn btn-primary btn-xs edit" data-id="' + id + 
                 '">Edit</button> <button class="btn btn-primary btn-xs remove" data-id="' + id + 
                 '">Remove</button> </td> </tr>'
         $('#table1').append(row);

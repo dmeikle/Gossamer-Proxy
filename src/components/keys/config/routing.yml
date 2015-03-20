@@ -1,0 +1,60 @@
+
+
+super_keys_keytypes_list:
+    pattern: super/keys/types/*/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeyTypesController
+        model: components\keys\models\KeyTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_keys_keytypes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+     
+
+super_keys_keytypes_edit:
+    pattern: super/keys/types/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeyTypesController
+        model: components\keys\models\KeyTypeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_keys_keytypes_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+     
+super_keys_keytypes_save:
+    pattern: super/keys/types/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeyTypesController
+        model: components\keys\models\KeyTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_keys_keytypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST] 
+    
+super_keys_keytypes_remove:
+    pattern: super/keys/types/remove/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeyTypesController
+        model: components\keys\models\KeyTypeModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_keys_keytypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+    
