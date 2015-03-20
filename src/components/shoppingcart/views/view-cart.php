@@ -10,6 +10,7 @@
 
 <?php
 $basket = $this->data['Basket'];
+$locale = $this->getDefaultLocale();
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">Shopping Cart Contents: <span class="badge"><?php echo $basket->getCount();?></span></div>
@@ -54,11 +55,14 @@ if(count($items) == 0) {
         <tr>
             <td align="right">Options:</td><td colspan="2">
             <?php
+        pr($variantList);
     foreach($variantList as  $variant) {
       
-        $variantItem = current($variant);?>
+        $variantItem = current($variant);
+        ?>
                 
                 <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
+                <div class="variantOptionTitle"><?php echo $variantItem['variant'][$locale['locale']];?></div>
                 <div class="variantOptionKey"><?php echo key($variant);?></div>
         
     <?php

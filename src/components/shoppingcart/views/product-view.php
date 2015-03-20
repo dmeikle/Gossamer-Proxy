@@ -45,19 +45,39 @@ $locale = $this->getDefaultLocale();
         </div>
         <div>Quantity: 
             <?php
+            $start = 0;
+            $stepAmount = 1;
+            //first establish the start
             if($product['minOrderQuantity'] > 0) {
+                $start = $product['minOrderQuantity'];
+            } elseif($product['numPerBox'] > 0) {
+                $start = $product['numPerBox'];
+            }
+            //now establish the count
+            if($product['numPerBox'] > 0) {
+                $stepAmount = $product['numPerBox'];
+            }
+            if($start > 0) {
                 echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
-                for($i = $product['minOrderQuantity']; $i < ($product['minOrderQuantity'] * 100); $i++) {
+                for($i = $start; $i < ($stepAmount * 100); $i += $stepAmount) {
                     echo "<option>$i</option>\r\n";
                 }
                 echo "</select>";
-            }elseif(($product['numPerBox']) > 1) {
-                echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
-                for($i = $product['numPerBox']; $i < ($product['numPerBox'] * 100); $i += $product['numPerBox']) {
-                    echo "<option>$i</option>\r\n";
-                }
-                echo "</select>";
-            }else{
+            }
+//            if($product['minOrderQuantity'] > 0) {
+//                echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
+//                for($i = $product['minOrderQuantity']; $i < ($product['minOrderQuantity'] * 100); $i++) {
+//                    echo "<option>$i</option>\r\n";
+//                }
+//                echo "</select>";
+//            }elseif(($product['numPerBox']) > 1) {
+//                echo "<select class=\"form-control\" name=\"product[" . $product['id'] . "][quantity]\">";
+//                for($i = $product['numPerBox']; $i < ($product['numPerBox'] * 100); $i += $product['numPerBox']) {
+//                    echo "<option>$i</option>\r\n";
+//                }
+//                echo "</select>";
+//            }
+            else{
             ?>
                 <input type="input" name="product[<?php echo $product['id'];?>][quantity]" />
             <?php

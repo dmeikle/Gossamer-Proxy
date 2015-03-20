@@ -17,7 +17,7 @@ index:
         datasource: datasource1
 
 cms_view_page_1:
-    pattern: 'restoration/*'
+    pattern: '*'
     listeners:
        # - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
         - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
@@ -34,7 +34,7 @@ cms_view_page_1:
  
 
 cms_view_page_2:
-    pattern: restoration/*/*
+    pattern: '*/*'
     listeners:
        # - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
         - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
@@ -52,7 +52,7 @@ cms_view_page_2:
 
 
 cms_view_page_3:
-    pattern: restoration/*/*/*
+    pattern: '*/*/*'
     listeners:
        # - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
         - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}

@@ -1,4 +1,3 @@
-/* CSS Document */
 
 
 *{
@@ -12,104 +11,210 @@
 	background-color: rgba(255, 255, 255, 0);	
 	padding: 50px;
 	width: 1000px;
-	margin-top: 0px;
+	margin-top: 10px;
 	margin-right: auto;
 	margin-bottom: 10px;
 	margin-left: auto;
 }
-
-#container-fluid {
-    background-color: rgba(255, 255, 255, 0);	
-    padding: 50px;
-    margin-top: 0px;
-    margin-right: auto;
-    margin-bottom: 10px;
-    margin-left: auto;
-}
-
- #header {
+#container #header {
 	width: 100%;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: #999;
 	height: 210px;
 }
- #header-admin {
+#container #header, #container #header-admin {
 	width: 100%;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
 	border-bottom-color: #999;
-	overflow: hidden;
+	height: 110px;
 }
 
-#header-admin #logo {    
-	background-image: url(/images/logo.png);
-	background-repeat: no-repeat;
-        width: 187px;
-        height: 110px;
-        text-indent: -9999px;
-        float:left;
-}
-#header-admin #nav {
-    clear:both;
-}
-
- #header-admin ul li{
-	display:inline;
-        margin-left:20px;
-}
-
- #header-admin .subnav ul li{
-	display:inline;
-        margin:0px 0px 20px 20px;
-}
-
-.form-standard {
-	max-width: 950px;
-}
-#container #lower, #container-fluid #lower {
-    clear:both;
-    margin-top: 40px;
-}
-#container-fluid #lower-reduced {
-	 margin: 40px auto;
-}
-
-#container #lower #payload, #container-fluid #lower-reduced #payload {
+#container #header #logo {
+	background-image: url(/images/logo-header_md.jpg);
 	float: left;
-	width: 900px;
-    margin-top: 20px;
+	height: 166px;
+	width: 288px;
 }
-#container-fluid #lower #payload {
+
+#container #header-admin #logo {
+	background-image: url(/images/logo-header_sm.jpg);
 	float: left;
+	height: 83px;
+	width: 144px;
+}
+#container #header #logo .invisible {
+	display: none;
+}
+
+#container #header nav ul {
+	padding: 50px 0 0;
+	/* float: right; */
+}
+
+/*#container #header nav ul li {
+	display: inline;
+	margin-left: 20px;
+	color: #999;
+}
+#container #header nav ul li a {
+	color: #999;
+	letter-spacing: 0px;
+	font-size: 14px;
+	text-decoration: none;
+	text-align: left;
+	font-weight: normal;
+	text-transform: capitalize;
+font-family: 'OpenSansSemibold';
+}
+#container #header nav ul li a:active {
+	color:#111;
+}*/
+#container #header #locales, #container #header-admin #locales {
+    float: right;
+}
+#locales a {
+    border: solid 1px #cccccc;
+    padding: 2px;
+    color: #333
+}
+#container #header nav ul, #container #header-admin nav ul{float:right;}
+#container #header nav ul li, #container #header-admin nav ul li{display:block; float:left; margin-left:1px;}
+#container #header nav ul li a, #container #header-admin nav ul li a{ display:block; text-decoration:none; color:#58585a; padding:10px; font-size: 14px; text-transform: capitalize; font-weight:600;}
+#container #header nav ul li a:hover, #container #header-admin nav ul li a:hover{background:#882734; color:#fff;}
+#container #header nav ul ul, #container #header-admin nav ul ul { position:absolute; visibility:hidden; background:#eaeaea;
+-moz-box-shadow: 1px 1px 2px 1px #CCCCCC;-webkit-box-shadow: 1px 1px 2px 1px #CCCCCC;box-shadow:1px 1px 2px 1px #CCCCCC; z-index:100; margin:0; padding:0;}
+#container #header nav ul ul li, #container #header-admin nav ul ul li{ float:none; margin:0px;padding:10px; border-bottom:1px solid #ccc;}
+#container #header nav ul ul li a, #container #header-admin nav ul ul li a{padding:5px 10px; text-transform:none; font-weight:400;}
+#container #header nav ul ul li a:hover, #container #header-admin nav ul ul li a:hover{background:none; color:#000;}
+#container #header nav ul li:hover ul, #container #header-admin nav ul li:hover{ visibility:visible;}
+
+
+
+
+
+#container #header #pagetitle {
+	margin-top: 35px;
+	font-size: 24px;
+	text-align: center;
+font-weight:600;
+clear:both;
+
+}
+
+#container #lower {
+	clear: both;
 	width: 100%;
-        margin-top: 20px;
+	margin: auto;
+overflow:hidden;
 }
- #lower #payload #phase {
-	width: 50px;
+#container #lower #payload #tablet-list {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#container #lower #image-list {
+	margin-top: 10px;
+	height: 600px;
+	padding-left: 11px;
+}
+
+#container #lower #image-list img {
 	float: left;
+	margin-right: 4px;
+	margin-left: 4px;
+	margin-top: 40px;
 }
- #lower #payload #phase a #phase-number {
-	font-size: 36px;
-	line-height: 36px;
+#container #lower #image-list .quoted-image {
+	float: left;
+	margin-top: 50px;
+	width: 200px;
+	margin-right: 4px;
+	margin-left: 4px;
 	text-align: center;
 }
- #lower #payload #address #name {
+
+
+#container #lower #image-list .tall {
+	height: 260px;
+}
+#container #lower #image-list .wide {
+	width: 240px;
+}
+#container #lower #payload {
+	clear: both;
+	margin-top: 40px;
+	display: block;
+	width: 100%;
+}
+#container #lower #payload .quote {
+	font-family: arial;
+	font-style: italic;
+	color: #333;
+	text-align: center;
+}
+#container #lower #payload .wall-tablet {
+	width: 600px;
+	clear: both;
+	display: block;
+	margin-bottom: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+	height: 225px;
+}
+
+#container #lower #payload .wall-tablet-image {
+	width: 160px;
 	float: left;
-	font-size: 36px;
-	line-height: 40px;
+	margin-left: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#container #lower #payload .wall-tablet .wall-tablet-image img {
+	height: 195px;
+}
+
+#container #lower #payload .wall-tablet-description {
+	float: right;
+	width: 350px;
+}
+#container #lower #payload #design-list .quoted-image {
+	width: 250px;
+	text-align: center;
+	float: left;
+	margin-right: 10px;
+	margin-top: 15px;
 }
 
 
-#footer{
-    clear:both;
+
+
+
+#container #footer {	
+	clear: both;
+	width: 100%;
+	margin-top: 40px;
+	font-family: arial;
+	font-style: italic;
+	color: #333;
+	text-align: center;
+padding-top:30px;
+margin-top:50px;
+border-top:1px solid #ccc;
 }
-#footer #footerNav ul li {
-    display: inline;
+
+#container #footer #footerNav {
+	font-style: normal;
 }
-
-
-
+#container #footer #footerNav ul li {
+	display: inline;
+}
+#container #footer #footerNav ul li a {
+	color: #666;
+}
 
 .selectable .ui-selected {background: #5d69ad; color: white; }
 .selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
@@ -136,3 +241,9 @@
 
 /**overwrite **/
 .panel{clear:both; width:100%;}
+#locales {
+    width: 100px;
+    float: right;
+    margin-right: 100;
+}
+

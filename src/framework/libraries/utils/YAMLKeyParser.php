@@ -76,6 +76,7 @@ class YAMLKeyParser extends YAMLParser {
         if (!is_null($result) && is_array($result)) {
             return $result;
         }
+       
         //now check user components
         return $this->searchKeyInSrc($ymlkey, $filename, $method);
     }
@@ -126,7 +127,7 @@ class YAMLKeyParser extends YAMLParser {
         $parser = new YAMLParser($this->logger);
 
         foreach ($subdirectories as $folder) {
-
+            
             $parser->setFilePath($folder . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();
             

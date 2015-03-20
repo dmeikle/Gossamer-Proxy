@@ -1,6 +1,4 @@
 
-this page needs styling...in core<br><br>
-
 <?php
 
 

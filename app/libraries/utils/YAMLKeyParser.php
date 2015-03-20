@@ -5,7 +5,7 @@ namespace libraries\utils;
 use Symfony\Component\Yaml\Yaml;
 use Monolog\Logger;
 
-class YAMLKeyParser extends YAMLParser
+class YAMLKeyParser_deprecated extends YAMLParser
 {
     protected $ymlFilePath = null;
     

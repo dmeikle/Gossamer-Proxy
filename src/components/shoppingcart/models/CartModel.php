@@ -11,6 +11,8 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use core\eventlisteners\Event;
+
 
 /**
  * Description of CartModel
@@ -31,11 +33,17 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
     
     public function add() {
         $params = $this->httpRequest->getPost();
+     
       
+    
         //load original to avoid tampering with price
-        $basketItem = new BasketItem($this->getProduct($params['product']));
+          $basketItem = new BasketItem($this->getProduct($params));
+//        $params['product']
         if(array_key_exists('variants', $params['product'])) {
-            $basketItem->setVariants($params['product']['variants']);
+            $variants = $this->getVariants($params['product']['variants']);
+           
+            //$basketItem->setVariants($params['product']['variants']);
+            $basketItem->setVariants($variants);
         }
         
         $basket = $this->getBasket();
@@ -47,11 +55,32 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
         $defaultLocale =  $this->getDefaultLocale();
         $stateList = $this->formatSelectionBoxOptions($this->httpRequest->getAttribute('stateList'), array());
         
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'before_render_start', new Event('before_render_start', $params));
+        
         return (array('Basket' => $basket, 
             'locale' => $defaultLocale['locale'], 
             'pageTitle' => 'View Cart', 
             'title' => 'View Cart',
             'stateList' => $stateList));
+    }
+    
+    private function getVariants(array $selectedVariants) {
+        $productVariants = $this->httpRequest->getAttribute('ProductVariantList');
+       
+        $retval = array();
+        foreach($productVariants['CartProductVariantList'] as $variant) {
+           
+            foreach($selectedVariants as $key => $selected) {
+            
+                if($selected == $variant['VariantItems_id']) {
+                    $retval[$key]['variant'][$variant['locale']] = $variant['variant'];
+                    $retval[$key]['surcharge'] = $variant['surcharge'];
+                    $retval[$key]['id'] = $selected;
+                }
+            }
+        }
+        
+        return $retval;
     }
     
     public function checkout() {        
@@ -156,7 +185,10 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
         return (array('Basket' => $basket, 'locale' => $defaultLocale['locale'], 'pageTitle' => 'View Cart', 'title' => 'View Cart', 'stateList' => $stateList));
     }
     
-    private function getProduct(array $rawProduct) {
+    private function getProduct(array $params) {
+        
+        $rawProduct = $params['product'];
+        
         $id = key($rawProduct);
         $product = current($rawProduct);
        
@@ -166,10 +198,11 @@ class CartModel extends AbstractModel implements FormBuilderInterface{
        
         $result = $this->dataSource->query(self::METHOD_GET, new ProductModel($this->httpRequest, $this->httpResponse, $this->logger), self::VERB_GET, $params);
         $dbProduct = current($result['CartProduct']);
-       
+     
         $dbProduct['customText'] = (array_key_exists('customText', $product))? $product['customText'] : '';
         $dbProduct['quantity'] = $product['quantity'];
         
+       
         return $dbProduct;
     }
     

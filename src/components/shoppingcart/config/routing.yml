@@ -432,6 +432,7 @@ cart_add_basket:
     pattern: cart/view
     listeners:
         - { 'event': 'before_render_start', 'listener': 'components\shoppingcart\listeners\LoadAllStatesListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\shoppingcart\listeners\LoadProductVariantsListener', 'datasource': 'datasource1'}
     defaults:
         component: components\shoppingcart\ShoppingCartComponent
         controller: components\shoppingcart\controllers\CartController
