@@ -75,7 +75,7 @@ class BasketItem {
      * because from the database it's a different method of stringing the params onto the object
      */
     private function populateVariants(array $variants) {    
-        die('populate');
+       
        $this->variants = array();
         foreach($variants as $variant) {      
           
