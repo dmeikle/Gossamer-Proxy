@@ -121,13 +121,18 @@ class EventHandler {
         $this->logger->addDebug('*** notifying listeners ***');
         foreach ($this->listeners as $listener) {
             $listenerClass = $listener['listener'];
-            unset($listener['listener']);
-            $eventListener = new $listenerClass($this->logger, $this->httpRequest, $this->httpResponse);
-            $eventListener->setDatasources($this->datasourceFactory, $this->datasources);
-            $eventListener->setDatasourceKey($this->datasourceKey);
-            $eventListener->setEventDispatcher($this->eventDispatcher);
-            $eventListener->setConfig($listener);
-            $eventListener->execute($this->state, $this->params);
+            $handler = array($listenerClass, 'on_' . $this->state);
+            if($this->state == $listener['event'] && is_callable($handler)) {
+                unset($listener['listener']);
+                $eventListener = new $listenerClass($this->logger, $this->httpRequest, $this->httpResponse);
+                $eventListener->setDatasources($this->datasourceFactory, $this->datasources);
+                $eventListener->setDatasourceKey($this->datasourceKey);
+                $eventListener->setEventDispatcher($this->eventDispatcher);
+                $eventListener->setConfig($listener);
+                $eventListener->execute($this->state, $this->params);
+            } else {
+                $this->logger->addError($listenerClass . ' not found by EventHandler::notifyListeners');
+            }
         }
     }
 

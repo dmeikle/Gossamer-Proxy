@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +42,7 @@ $user_colour = array_rand($colours);
 <script language="javascript" type="text/javascript">  
 $(document).ready(function(){
 	//create a new WebSocket object.
-	var wsUri = "ws://192.168.1.24:9000/demo/server.php"; 	
+	var wsUri = "ws://192.168.2.252:9000/server.php?token=123123"; 	
 	websocket = new WebSocket(wsUri); 
 	
 	websocket.onopen = function(ev) { // connection is open 
@@ -62,6 +64,7 @@ $(document).ready(function(){
 		
 		//prepare json data
 		var msg = {
+                roomId: 1,
 		message: mymessage,
 		name: myname,
 		color : '<?php echo $colours[$user_colour]; ?>'

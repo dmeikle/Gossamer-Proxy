@@ -216,7 +216,7 @@ admin_staff_permissions_save:
 admin_staff_list:
     pattern: admin/staff/*/*
     listeners:
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
