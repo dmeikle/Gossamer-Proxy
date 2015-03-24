@@ -13,6 +13,7 @@ class LoadProductVariantsListener extends AbstractListener
 {
  
    public function on_before_render_start(Event $event) {
+       
         $params = $event->getParams();
         if(is_null($params)) {
             //didn't find it
@@ -67,10 +68,10 @@ class LoadProductVariantsListener extends AbstractListener
     * @param array $params
     */
    public function on_request_start($params) {
-      
+
        $params = $this->httpRequest->getPost();
       
-       if(!array_key_exists('variants', $params['product'])) {
+       if(!array_key_exists('product', $params) || !array_key_exists('variants', $params['product'])) {
            return;
        }
        $idList = '';

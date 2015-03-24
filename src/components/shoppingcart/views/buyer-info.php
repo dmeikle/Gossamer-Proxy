@@ -1,4 +1,4 @@
-<!--- css start --->
+ <!--- css start --->
 @components/shoppingcart/includes/css/checkout-buyer.css
 <!--- css end --->
 
@@ -365,6 +365,7 @@ $(document).ready(function() {
         <td align="right"><label>Expiration Date:</label> 
           <nobr></nobr></td> 
         <td><div align="left"> 
+                <?php echo $creditCardForm['expiryMonth'];?>
           <select class="form-control" name="expiryMonth" onmousewheel="return false;" class="month">
               <option value='0'>select month</option>
             <option value="1">01</option> 

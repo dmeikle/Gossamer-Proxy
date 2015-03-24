@@ -53,7 +53,7 @@ class ImportCSSHandler extends BaseHandler {
                     $this->copyFile($filepath, 'css');
                 }
 
-                $retval[] = '/css/' . str_replace('includes/css/', '', $filepath);
+                $retval[] = '/css' . str_replace('includes/css/', '', $filepath);
             }elseif(substr($tmp, 0, 16) == '@core/components') {
                 $filepath = str_replace('@core/components', '/framework/core/components', $tmp);
 

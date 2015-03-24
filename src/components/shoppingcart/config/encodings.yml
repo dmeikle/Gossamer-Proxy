@@ -39,9 +39,15 @@ cart_products_view_selected:
     groupName: utf8
     variant: utf8
     
+    
+cart_view_basket:
+    title: utf8
+    variant: utf8
+    
 cart_add_basket:
     title: utf8
     briefDescription: utf8  
+    variant: utf8
     
 cart_admin_categories_list:
     category: utf8

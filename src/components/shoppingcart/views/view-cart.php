@@ -55,20 +55,20 @@ if(count($items) == 0) {
         <tr>
             <td align="right">Options:</td><td colspan="2">
             <?php
-        pr($variantList);
     foreach($variantList as  $variant) {
       
         $variantItem = current($variant);
+     
         ?>
                 
-                <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
-                <div class="variantOptionTitle"><?php echo $variantItem['variant'][$locale['locale']];?></div>
                 <div class="variantOptionKey"><?php echo key($variant);?></div>
+                <div class="variantOptionTitle"><?php echo $variantItem['title'][$locale['locale']];?></div>
+                <div class="variantOptionSurcharge">+ $<?php echo $variantItem['surcharge'];?></div>
         
     <?php
        }?>
             </td>
-            <td valign="bottom" align="right">$<?php echo money_format('%i', $item->getVariantSurcharges());?></td>
+            <td valign="bottom" class="variantSurchargeTotal" align="right">$<?php echo money_format('%i', $item->getVariantSurcharges());?></td>
             <td></td>
         </tr>
         <?php
