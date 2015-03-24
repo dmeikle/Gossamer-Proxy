@@ -56,9 +56,9 @@ class TaxModel extends AbstractModel
         foreach($params['taxes'] as $key => $row) {
             $submitValues[] = array('States_id' => $key, 'taxRate' => $row);
         }
-       
+       pr($submitValues);
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $submitValues); 
-       
+       die;
       echo 'saved';
     }
     
@@ -72,17 +72,18 @@ class TaxModel extends AbstractModel
     
     public function getTaxByStateSubtotal($stateId, $subtotal) {
         $result = $this->getTax($stateId, $subtotal);
-        
-        return (array('tax' =>  (current($result)) * $subtotal));
+   
+        return (array('tax' =>  (($result['taxRate'])) * $subtotal));
     }
     
     public function getTax($stateId, $subtotal) {
-        $params = array('States_id' => $stateId, 'subtotal' => $subtotal);
+        $params = array('States_id' => intval($stateId), 'subtotal' => floatval($subtotal));
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         if(!is_array($data)) {
             return array();
         }
+        
         return current($data['CartTaxRate']);
         
     }

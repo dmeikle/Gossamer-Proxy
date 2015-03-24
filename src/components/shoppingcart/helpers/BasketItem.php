@@ -87,8 +87,6 @@ class BasketItem {
     }
     
     public function getVariants() {
-        echo 'getvariants<br>';
-        pr($this->variants);
         return $this->variants;
     }
     

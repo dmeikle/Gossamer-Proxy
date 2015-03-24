@@ -5,6 +5,7 @@ namespace components\shoppingcart\controllers;
 use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
+use components\shoppingcart\models\CreditCardModel;
 
 class CartController extends AbstractController
 {
@@ -24,8 +25,9 @@ class CartController extends AbstractController
 
     public function checkout() {
         $result = $this->model->checkout();
+        $creditCardModel = new CreditCardModel($this->httpRequest, null, $this->logger);
         
-       $this->render(array('form' => $this->drawForm($this->model, $result))); 
+       $this->render(array('form' => $this->drawForm($this->model, $result), 'creditCardForm' => $this->drawCreditCardForm($creditCardModel))); 
     }
 
     public function verify() {
@@ -57,5 +59,15 @@ class CartController extends AbstractController
         );
         
         return $clientBuilder->buildForm($builder, $values, $options, $results);        
+    }
+    
+    protected function drawCreditCardForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $cardBuilder = new \components\shoppingcart\form\CreditCardBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+        
+        $options = array();
+        
+        return $cardBuilder->buildForm($builder, $values, $options, $results); 
     }
 }

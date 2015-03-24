@@ -89,7 +89,7 @@ cart_admin_product_edit:
         model: components\shoppingcart\models\ProductModel
         method: edit
         view: core\views\TemplateView
-        viewKey: admin_cart_products_view_selected
+        viewKey: cart_admin_product_edit
         datasource: datasource1
         langFiles: 
             - 'src/components/shoppingcart/locales/*/Products'
@@ -108,7 +108,7 @@ cart_admin_product_save:
         model: components\shoppingcart\models\ProductModel
         method: save
         view: core\views\TemplateView
-        viewKey: admin_cart_products_view_selected
+        viewKey: cart_admin_product_save
         datasource: datasource1
         langFiles: 
             - 'src/components/shoppingcart/locales/*/Products'

@@ -1,12 +1,22 @@
 
 
 
-.variantOptionKey {
+.variantOptionKey{
+    clear: both;
     float: left;
+    width: 40%;
+    text-align: center;
+    
+}
+.variantOptionTitle{
+    float: left;
+    width: 40%;
+    text-align: center;
     
 }
 .variantOptionSurcharge {
-    margin-right: 30px;
-    float:right;
-    clear: both;
+    float:left;
+    text-align: right
 }
+
+

@@ -24,8 +24,8 @@ class ClientBuilder extends AbstractBuilder{
     
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
 
-        if(is_array($validationResults) && array_key_exists('Contact', $validationResults)) {
-            $builder->addValidationResults($validationResults['Contact']);
+        if(is_array($validationResults) && array_key_exists('Client', $validationResults)) {
+            $builder->addValidationResults($validationResults['Client']);
         }
               
 

@@ -129,8 +129,8 @@ $locale = $this->getDefaultLocale();
     <div id="productFooter">
          <ul class="nav nav-tabs" role="tablist">
             <li class="active"><a href="#description" role="tab" data-toggle="tab">Description</a></li>
-            <li><a href="#shipping" role="tab" data-toggle="tab">Shipping</a></li>
-            <li><a href="#feedback" role="tab" data-toggle="tab">Feedback</a></li>
+        <!--    <li><a href="#shipping" role="tab" data-toggle="tab">Shipping</a></li>
+            <li><a href="#feedback" role="tab" data-toggle="tab">Feedback</a></li> -->
         </ul>
 
         <!-- Tab panes -->
