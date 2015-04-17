@@ -54,12 +54,14 @@ class Serializer {
 
      * @return string
      */
-    public function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '', $selectedValue = '') {
+    public function formatSelectionBoxOptions(array $options, array $selectedOptions = null, $subKey = '', $selectedValue = '') {
 
         if (strlen($subKey) > 0) {
             $options = $this->extractSubNode($options, $subKey);
         }
-
+        if(is_null($selectedOptions)) {
+            $selectedOptions = array();
+        }
         $retval = '';
         foreach ($options as $key => $option) {
 

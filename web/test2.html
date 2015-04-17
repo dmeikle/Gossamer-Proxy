@@ -1,53 +1,97 @@
-<!DOCTYPE html>
-<meta charset="utf-8" />
-<title>WebSocket Test</title>
-<script language="javascript" type="text/javascript">
-    var wsUri = "ws://192.168.2.251:9305/server.php";
-    var output;
-    function init() {
-        output = document.getElementById("output");
-        testWebSocket();
-    }
-    function testWebSocket() {
-        websocket = new WebSocket(wsUri);
-        websocket.onopen = function(evt) {
-            onOpen(evt)
-        };
-        websocket.onclose = function(evt) {
-            onClose(evt)
-        };
-        websocket.onmessage = function(evt) {
-            onMessage(evt) 
-        }; 
-        websocket.onerror = function(evt) {
-            onError(evt) 
-        };
-    }  
-    function onOpen(evt) {
-        writeToScreen("CONNECTED");
-        doSend("WebSocket rocks");
-    }  
-    function onClose(evt) {
-        writeToScreen("DISCONNECTED");
-    }
-    function onMessage(evt) {
-        writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
-        websocket.close(); 
-    }  
-    function onError(evt) {
-        writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
-    }  
-    function doSend(message) {
-        writeToScreen("SENT: " + message); 
-        websocket.send(message);
-    }  
-    function writeToScreen(message) {
-        var pre = document.createElement("p");
-        pre.style.wordWrap = "break-word";
-        pre.innerHTML = message;
-        output.appendChild(pre);
-    }  
-    window.addEventListener("load", init, false);
-</script>
-<h2>WebSocket Test</h2> 
-<div id="output"></div> 
+<div class="ui-panel-inner">
+  <link rel="stylesheet" href="/css/components/cssmenu/styles.css">
+  <div id="ceilingbar">
+    <div title="Select Language" id="dialog" style="display: none">
+      <ul>
+        <br>
+        <b>Warning</b>:  Invalid argument supplied for foreach() in <b>/var/www/phoenix-portal/htdocs/src/framework/core/AbstractView.php(193) : eval()'d code</b> on line <b>22</b><br>
+      </ul>
+      <form id="locale-change" action="/locale/change" method="post">
+        <input type="hidden" id="locale" name="locale">
+        <input type="hidden" value="$1$yIlKUz/3$khz4nSYPsCySl9uvxleLe1" name="FORM_SECURITY_TOKEN">
+      </form>
+    </div>
+    <div id="locales"> <img src="/images/flags/.gif" id="locale-icon"> <a data-id="en_US" class="select-locale ui-link">EN</a> <a data-id="zh_CN" class="select-locale ui-link">中文</a> <a data-id="hi_IN" class="select-locale ui-link">Hindi</a> </div>
+    <div id="cssmenu">
+      <ul>
+        <li id="responsive-tab"><a href="#">Menu</a></li>
+        <li class="active"><a href="/admin/home" class="ui-link"><span>Home</span></a></li>
+        <li class="active"><a href="/super/home" class="ui-link"><span>SUPER_USER_HOME</span></a></li>
+        <li class="active"><a href="/admin/contact/0/20" class="ui-link"><span>ADMIN_CONTACTUS</span></a></li>
+        <li class="has-sub"><a href="#" class="ui-link"><span>Staff</span></a>
+          <ul>
+            <li><a href="/admin/staff/0/20" class="ui-link"><span>Staff</span></a></li>
+            <li><a href="/admin/staff/0" class="ui-link"><span>ADMIN_STAFF_ADD_NEW</span></a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="/admin/scoping/requests/0/20" class="ui-link"><span>Scoping</span></a>
+          <ul>
+            <li><a href="/admin/scoping/requests/0/20" class="ui-link"><span>ADMIN_SCOPING_LIST_ALL</span></a></li>
+            <li><a href="/admin/scoping/takeoffs/0/20" class="ui-link"><span>ADMIN_SCOPING_TAKEOFFS_LIST_ALL</span></a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="/admin/claims/0/20" class="ui-link"><span>Claims</span></a>
+          <ul>
+            <li><a href="/admin/claims/0/20" class="ui-link"><span>ADMIN_CLAIMS_LIST_ALL</span></a></li>
+            <li><a href="/admin/claim/1/0" class="ui-link"><span>ADMIN_CLAIMS_CREATE_NEW</span></a></li>
+            <li><a href="/admin/claims/scheduling/0/20" class="ui-link"><span>ADMIN_CLAIMS_SCHEDULING</span></a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="/admin/contents/jobs/0/20" class="ui-link"><span>Contents</span></a></li>
+        <li class="active"><a href="/admin/samples/0/20" class="ui-link"><span>Samples</span></a></li>
+        <li class="has-sub"><a href="/admin/contacts/0/20" class="ui-link"><span>Contacts</span></a>
+          <ul>
+            <li><a href="/admin/contacts/0/20" class="ui-link"><span>ADMIN_CONTACTS_LIST_ALL</span></a></li>
+            <li><a href="/admin/contacts/0" class="ui-link"><span>ADMIN_CONTACTS_ADD_NEW</span></a></li>
+            <li><a href="/admin/companies/0/20" class="ui-link"><span>ADMIN_COMPANIES_LIST_ALL</span></a></li>
+            <li><a href="/admin/companies/0" class="ui-link"><span>ADMIN_COMPANIES_ADD_NEW</span></a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="/admin/inventory" class="ui-link"><span>Inventory</span></a></li>
+        <li class="active"><a href="/admin/keys/0/20" class="ui-link"><span>Keys</span></a></li>
+        <li class="active"><a href="/admin/notifications/0/20" class="ui-link"><span>Notifications</span></a></li>
+        <li class="active"><a href="/admin/messaging/0/20" class="ui-link"><span>Messaging</span></a></li>
+        <li class="active"><a href="/admin/satisfaction" class="ui-link"><span>Satisfaction</span></a></li>
+        <li class="active"><a href="/admin/callmatrix/0/14" class="ui-link"><span>Call Matrix</span></a></li>
+        <li class="active"><a href="/admin/deficiencies/0/20" class="ui-link"><span>Deficiencies</span></a></li>
+        <li class="active"><a href="/admin/subcontractors/0/20" class="ui-link"><span>SubContractors</span></a></li>
+        <li class="active"><a href="/admin/accounting" class="ui-link"><span>Accounting</span></a></li>
+        <li class="active"><a href="/admin/workperformed/0/20" class="ui-link"><span>Work Actions</span></a></li>
+        <li class="active"><a href="/admin/environmental/0/20" class="ui-link"><span>Environmental</span></a></li>
+        <li class="has-sub"><a href="/admin/cms/pages/0/20" class="ui-link"><span>Website</span></a>
+          <ul>
+            <li><a href="/admin/cms/pages/0/20" class="ui-link"><span>List All Pages</span></a></li>
+            <li><a href="/admin/cms/pages/0" class="ui-link"><span>Add New Page</span></a></li>
+            <li><a href="/admin/cms/sections/0/20" class="ui-link"><span>List All Sections</span></a></li>
+            <li><a href="/admin/cms/blogs/0/20" class="ui-link"><span>List All Blogs</span></a></li>
+            <li><a href="/admin/cms/blogs/0" class="ui-link"><span>Add New Blog</span></a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="/admin/projects/0/20" class="ui-link"><span>Building Addresses</span></a>
+          <ul>
+            <li><a href="/admin/projects/0/20" class="ui-link"><span>ADMIN_PROJECTS_LIST_ALL</span></a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="/admin/incidents/0/20" class="ui-link"><span>ADMIN_INCIDENTS</span></a></li>
+        <li class="has-sub"><a href="/admin/surveys/0/20" class="ui-link"><span>ADMIN_SURVEYS</span></a>
+          <ul>
+            <li><a href="/admin/surveys/0/20" class="ui-link"><span>ADMIN_SURVEYS_LIST_ALL</span></a></li>
+            <li><a href="/admin/surveys/pages/0/20" class="ui-link"><span>ADMIN_SURVEYS_LIST_ALL_PAGES</span></a></li>
+            <li><a href="/admin/surveys/panes/0/20" class="ui-link"><span>ADMIN_SURVEYS_LIST_ALL_PANES</span></a></li>
+            <li><a href="/admin/surveys/questions/list/0/20" class="ui-link"><span>ADMIN_SURVEYS_LIST_ALL_QUESTIONS</span></a></li>
+            <li><a href="/admin/surveys/answers/list/0/20" class="ui-link"><span>ADMIN_SURVEYS_LIST_ALL_ANSWERS</span></a></li>
+          </ul>
+        </li>
+        <li class="has-sub"><a href="/admin/events/0/20" class="ui-link"><span>ADMIN_EVENTS</span></a>
+          <ul>
+            <li><a href="/admin/events/0/20" class="ui-link"><span>ADMIN_EVENTS_LIST_ALL</span></a></li>
+            <li><a href="/admin/events/locations/0/20" class="ui-link"><span>ADMIN_EVENTS_LIST_ALL_LOCATIONS</span></a></li>
+            <li><a href="/admin/events/eventcontacts/0/20" class="ui-link"><span>ADMIN_EVENTS_LIST_ALL_CONTACTS</span></a></li>
+            <li><a href="/admin/events/eventprospects/0/20" class="ui-link"><span>ADMIN_EVENTS_LIST_ALL_PROSPECTS</span></a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="/admin/cart/sales/0/20" class="ui-link"><span>ADMIN_CART</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <script src="/js/components/cssmenu/script.js" language="javascript"></script><a data-rel="close" href="#demo-links" class="ui-link">Close panel</a></div>

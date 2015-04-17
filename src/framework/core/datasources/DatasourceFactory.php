@@ -12,7 +12,7 @@
 namespace core\datasources;
 
 use Monolog\Logger;
-use libraries\utils\YAMLParser;
+use Gossamer\Pesedget\Utils\YAMLParser;
 
 /**
  * builds an instance of a connection and stores it for further use to avoid

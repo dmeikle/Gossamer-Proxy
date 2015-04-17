@@ -61,7 +61,7 @@ class SurveyPageModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
-    public function search() {
+    public function search(array $term) {
         $locale = $this->getDefaultLocale();
         $params = $this->httpRequest->getPost();
         

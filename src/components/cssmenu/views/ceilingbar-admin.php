@@ -24,7 +24,6 @@
     <?php
         
         foreach($SystemLocalesList as $key => $systemlocale) {
-           // echo '<li class="select-locale" data-id="' . $key . '"><img src="/images/flags/' . $systemlocale['icon'] . '.gif" /> ' . $systemlocale['languageName'] . '</li>';
             
              echo '<li class="select-locale" data-id="' . $key . '">' . $systemlocale['languageName'] . '</li>';
         }
@@ -36,8 +35,7 @@
   </div>
 
    <div id="locales">
-            <?php //$locale = $this->getDefaultLocale();?>
-           <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];?>.gif">
+         
            <a class="select-locale" data-id="en_US">EN</a> 
            <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
            <a class="select-locale" data-id="hi_IN">Hindi</a>

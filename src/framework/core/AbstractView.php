@@ -238,6 +238,8 @@ class AbstractView {
         if ($ssl) {
             $fullUrl = "https://$url";
         }
+       // $fullUrl .= '/' . implode('/', $params);
+       
         $user = $this->getLoggedInUser();
         $userId = 0;
         if(is_object($user)) {

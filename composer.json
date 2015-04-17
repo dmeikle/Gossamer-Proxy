@@ -23,7 +23,8 @@
                 "quantumunit/php-validation": "dev-master",
                 "gossamer/form-builder": "dev-master",
                 "gossamer/caching": "dev-master",
-                "gossamer/pesedget": "dev-master"
+                "gossamer/pesedget": "dev-master",
+                "gossamer/horus": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}

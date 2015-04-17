@@ -11,7 +11,7 @@
 
 namespace components\contacts\listeners;
 
-use core\eventlisteners\LoadItemListener;
+use core\eventlistenersLoadItemListener;
 
 
 /**

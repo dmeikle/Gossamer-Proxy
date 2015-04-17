@@ -18,3 +18,9 @@ cssmenu_adminbar:
     sections: 
         -
             "section1": "src/components/cssmenu/views/ceilingbar-admin.php"            
+            
+cssmenu_pancakes:   
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/cssmenu/views/verticalmenu-admin.php"       

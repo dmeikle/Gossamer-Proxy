@@ -34,7 +34,7 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         $this->tablename = 'projectaddresses';
     }
     
-    public function search() {
+    public function search(array $term) {
         $params = array('keywords' => $this->httpRequest->getPost());
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 

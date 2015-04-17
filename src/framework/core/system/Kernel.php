@@ -29,7 +29,7 @@ class Kernel {
     private $container = null;
     private $logger = null;
 
-    public function __construct(Container $container, Logger $logger) {
+    public function __construct(Container &$container, Logger $logger) {
         $this->container = $container;
         $this->logger = $logger;
     }

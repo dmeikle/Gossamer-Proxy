@@ -49,7 +49,7 @@ class SurveysSurveyPageModel extends AbstractModel implements FormBuilderInterfa
         return $data;
     }
 
-    public function search() {
+    public function search(array $term) {
         $locale = $this->getDefaultLocale();
         $params = $this->httpRequest->getPost();
         

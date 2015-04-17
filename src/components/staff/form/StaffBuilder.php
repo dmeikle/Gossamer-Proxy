@@ -31,9 +31,9 @@ class StaffBuilder extends AbstractBuilder{
             $values = current($values['Staff']);
         }
 
-        $builder->add('firstname', 'text', array('class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
-                ->add('lastname', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('lastname', $values)))
-                ->add('telephone', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('telephone', $values)))
+        $builder->add('firstname', 'text', array('class' => '', 'value' => $this->getValue('firstname', $values)))
+                ->add('lastname', 'text', array('class' => '', 'value' =>  $this->getValue('lastname', $values)))
+                ->add('telephone', 'text', array('class' => '', 'value' =>  $this->getValue('telephone', $values)))
                 ->add('mobile', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('mobile', $values)))
                 ->add('email', 'email', array('class' => 'form-control', 'value' =>  $this->getValue('email', $values)))
                 ->add('address1', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('address1', $values)))
@@ -56,7 +56,7 @@ class StaffBuilder extends AbstractBuilder{
                 ->add('signature', 'textarea', array('class' => 'form-control', 'value' =>  $this->getValue('signature', $values))) 
                 ->add('StaffTypes_id', 'select', array('class' => 'form-control'))   
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary cancel'))
-                ->add('submit', 'submit', array('value' => 'Save', 'class' => 'btn btn-lg btn-primary'));   
+                ->add('submit', 'button', array('value' => 'Save', 'class' => 'btn btn-lg btn-primary'));   
        
                 if($this->getValue('isActive', $values) == 1) {
                     $builder->add('isActive', 'check', array('value' => '1', 'checked' => true ));

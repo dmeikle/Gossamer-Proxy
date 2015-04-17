@@ -38,7 +38,7 @@ class EventDispatcher {
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      */
-    public function __construct($config = array(), Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
+    public function __construct($config = array(), Logger $logger, HTTPRequest &$httpRequest, HTTPResponse $httpResponse) {
         if (!is_null($config)) {
             $config = array_filter($config);
         }

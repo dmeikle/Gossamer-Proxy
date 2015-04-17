@@ -89,7 +89,7 @@ class WorkPerformedController extends AbstractController
 
         $formBuilder = new FormBuilder($this->logger, $model);
         $workBuilder = new WorkPerformedBuilder();
-       
+      
         $workBuilder->setLocales($this->httpRequest->getAttribute('locales'));
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
        

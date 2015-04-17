@@ -64,7 +64,7 @@ class QuestionModel extends AbstractModel implements FormBuilderInterface{
     }
     
     
-    public function search() {
+    public function search(array $term) {
         $locale = $this->getDefaultLocale();
         $params = $this->httpRequest->getPost();
         

@@ -217,4 +217,42 @@ admin_events:
             text_key: 'ADMIN_EVENT_TYPES'
             pattern: '/super/events/eventtypes/0/20'
             display_roles:
-                - IS_SUPER_USER                
+                - IS_SUPER_USER           
+                
+#warehouse
+admin_tickets:
+    text_key: 'ADMIN_TICKETS'
+    pattern: '#'
+    display_roles:
+        - IS_SUPER_USER  
+    children:
+        ticket_statuses:
+            text_key: 'TICKET_STATUSES'
+            pattern: '/super/tickets/statuses/0/20'
+            display_roles:
+                - IS_SUPER_USER   
+        ticket_types:
+            text_key: 'TICKET_TYPES'
+            pattern: '/super/tickets/types/0/20'
+            display_roles:
+                - IS_SUPER_USER  
+        ticket_priorities:
+            text_key: 'TICKET_PRIORITIES'
+            pattern: '/super/tickets/priorities/0/20'
+            display_roles:
+                - IS_SUPER_USER  
+        ticket_resolutions:
+            text_key: 'TICKET_RESOLUTIONS'
+            pattern: '/super/tickets/resolutions/0/20'
+            display_roles:
+                - IS_SUPER_USER 
+        ticket_actions:
+            text_key: 'TICKET_ACTIONS'
+            pattern: '/super/tickets/actions/0/20'
+            display_roles:
+                - IS_SUPER_USER  
+        ticket_categories:
+            text_key: 'TICKET_CATEGORIES'
+            pattern: '/super/tickets/categories/0/20'
+            display_roles:
+                - IS_SUPER_USER                 

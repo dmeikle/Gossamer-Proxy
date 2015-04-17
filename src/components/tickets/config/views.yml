@@ -1,0 +1,84 @@
+
+
+       
+admin_tickets_list:  
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/tickets/views/admin/subnav.php"
+            "section3": "src/components/tickets/views/admin/tickets/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_tickets_edit:     
+    template: admin-list-jqm.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+           # "section2": "src/components/tickets/views/admin/subnav.php"
+            "section3": "src/components/tickets/views/admin/tickets/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"         
+            
+#----------------- status -----------------------------
+super_ticket_statuses_list:
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/statuses/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"            
+            
+super_ticket_statuses_edit:     
+    template: ajax-html.php
+    sections: 
+        -
+            "section1": "src/components/tickets/views/admin/statuses/edit.php"         
+            
+super_tickets_types_list:  
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/types/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+#---------------------- priorities ----------------------------------
+
+         
+                 
+         
+super_tickets_priorities_list:  
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/priorities/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"     
+            
+#--------------------- resolutions --------------------------------         
+                 
+         
+super_tickets_resolutions_list:  
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/resolutions/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+
+#--------------------- actions --------------------------------         
+                 
+         
+super_tickets_actions_list:  
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/actions/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"           
+            
+
+#--------------------- categories --------------------------------         
+                 
+         
+super_tickets_categories_list:  
+    template: super-list.php
+    sections: 
+        -
+            "section3": "src/components/tickets/views/admin/categories/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"                       

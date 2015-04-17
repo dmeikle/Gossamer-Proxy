@@ -28,8 +28,8 @@ class LoadLocalesListener extends AbstractCachableListener {
      * 
      * @param string $filename
      */
-    public function on_request_start($filename) {
-        
+    public function on_entry_point($filename) {
+       
         $retval = array();
         $model = new LocaleModel($this->httpRequest, $this->httpResponse, $this->logger);
 

@@ -1,5 +1,15 @@
 
-
+admin_staff_search:
+    pattern: admin/staff/search
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: searchByName
+        view: core\views\JSONView
+        viewKey: amin_staff_search
+        datasource: datasource1
+    methods: [GET]   
     
 super_staff_roles_save:
     pattern: super/staff/roles/*
@@ -81,7 +91,7 @@ staff_get:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: edit
-        view: core\views\TemplateView
+        view: core\views\AJAXHTMLView
         viewKey: staff_get
         datasource: datasource1
     methods: [POST]
@@ -101,6 +111,7 @@ staff_list:
 staff_list2:
     pattern: staff/list/*/*
     #defaults: { _controller: UserComponent:User:save }
+        
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -111,8 +122,35 @@ staff_list2:
         datasource: datasource1
     methods: [POST]
 
-
+admin_staff_ajax_edit:
+    pattern: admin/staff/ajaxedit/*
+    listeners:        
+       # - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadEmergencyContactsListener', 'datasource': 'datasource1' }
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: ajaxEdit
+        view: core\views\JSONView
+        viewKey: admin_staff_ajax_edit
+        datasource: datasource1
+    methods: [GET]  
  
+admin_staff_ajax_save:
+    pattern: admin/staff/ajaxsave/*
+    listeners:        
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }  
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: ajaxSave
+        view: core\views\JSONView
+        viewKey: admin_staff_ajax_save
+        datasource: datasource1
+    methods: [POST]  
     
 admin_staff_edit:
     pattern: admin/staff/edit/*
@@ -125,7 +163,7 @@ admin_staff_edit:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: edit
-        view: core\views\TemplateView
+        view: core\views\AJAXHTMLView
         viewKey: admin_staff_edit
         datasource: datasource1
     methods: [GET]       
@@ -216,6 +254,7 @@ admin_staff_permissions_save:
 admin_staff_list:
     pattern: admin/staff/*/*
     listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
     defaults:
         component: components\staff\StaffComponent

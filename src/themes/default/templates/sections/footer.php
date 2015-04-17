@@ -8,7 +8,7 @@
               
        
 
-<?php echo $this->getString('NAV_COPYRIGHT');?> (c) 2015 glenmeikle.com. 
+<?php echo $this->getString('NAV_COPYRIGHT');?> (c) 2015 phoenixrestorations.com. 
 <?php echo $this->getString('NAV_RIGHTS_RESERVED');?>. | 
- <?php echo $this->getString('NAV_WEBSITE_BY');?>  <a target="_blank" href="http://www.quantumunit.com">www.quantumunit.com</a><br />
+
                 <?php echo $this->getString('NAV_POWERED_BY');?> GossamerCMS framework 

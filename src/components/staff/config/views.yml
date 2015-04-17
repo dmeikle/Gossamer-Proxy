@@ -9,16 +9,16 @@ super_staff_roles_list:
             "section4": "src/themes/default/templates/sections/footer.php"
     
 admin_staff_edit:
-    template: admin-list.php
+    template: newsfeed.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/staff/views/admin/subnav.php"
-            "section3": "src/components/staff/views/admin/staff-edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+           # "section1": "src/themes/default/templates/sections/admin-header.php"
+           # "section2": "src/components/staff/views/admin/subnav.php"
+            "section1": "src/components/staff/views/admin/staff-edit.php"
+           # "section4": "src/themes/default/templates/sections/footer.php"
 
 admin_staff_list:
-    template: admin-list-fullscreen.php
+    template: admin-list-jqm.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"

@@ -31,7 +31,7 @@ class ProvinceSerializer extends Serializer{
       
         $retval[$row['id']] = $row['province'];
         }
-        pr($retval);
+      
         return $retval;
     }
     

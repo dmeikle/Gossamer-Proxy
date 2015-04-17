@@ -34,12 +34,22 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         $this->tablename = 'claims';
     }
     
-    public function search() {
+    public function search(array $term) {
         $params = array('keywords' => $this->httpRequest->getPost());
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
       
         return $this->formatResults($data['Claims']);
+    }
+    
+    public function searchByJobNumber(array $term) {
+        
+        $params = array('directive::ORDER_BY' => 'jobNumber', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
+        $params = array_merge($params, $term);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params); 
+        
+        return $data;
     }
     
     private function formatResults(array $results) {

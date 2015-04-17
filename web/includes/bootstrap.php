@@ -6,6 +6,7 @@ use core\AbstractComponent;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use core\datasources\DatasourceFactory;
+#use core\eventlisteners\EventDispatcher;
 use core\eventlisteners\EventDispatcher;
 
 $logger = new Logger('namespace');
@@ -59,7 +60,7 @@ if(array_key_exists('langFiles', $controllerNode)) {
     $langFilesList = array_merge($langFilesList, $controllerNode['langFiles']);    
 }
 
-$httpRequest->setAttribute('langFilesList', $langFilesList);
+$container->get('HTTPRequest')->setAttribute('langFilesList', $langFilesList);
 
 try{
     //fire any on_entry events for all uris
@@ -71,6 +72,11 @@ try{
 }catch(core\components\security\exceptions\TokenMissingException $e) {
     include __SITE_PATH . '/src/themes/default/templates/errorPages/token.php' ;
     die;
+}catch(Validation\Exceptions\ValidationFailedException $e) {
+    //we need it to carry to the component so that we can send a proper view
+    //so ignore this error but set an exception flag in the request we can 
+    //check for
+    $container->get('HTTPRequest')->setAttribute('ExceptionOccurred', true);
 }catch(\Exception $e) {
     echo $e->getMessage().'<br>';
     include __SITE_PATH . '/src/themes/default/templates/errorPages/general.php' ;

@@ -114,6 +114,10 @@ departments:
     component: "src/components/departments/config/routing.yml"
 keys:
     component: "src/components/keys/config/routing.yml"
+tickets:
+    component: "src/components/tickets/config/routing.yml"
+ticker:
+    component: "src/components/ticker/config/routing.yml"
 
     
 #this is the default fallback to use if not found    

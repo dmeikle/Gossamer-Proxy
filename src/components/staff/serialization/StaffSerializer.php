@@ -75,4 +75,22 @@ class StaffSerializer extends Serializer{
         
         return '';
     }
+    
+    
+    public function formatNameResults(array $results) {
+        $retval = array();
+        if(!array_key_exists('Staffs', $results)) {
+            return $retval;
+        }
+        
+        foreach($results['Staffs'] as $row) {
+            $retval[] = array(
+                'id' => $row['id'],
+                'label' => $row['firstname'] . ' ' . $row['lastname'],
+                'value' => $row['firstname'] . ' ' . $row['lastname']
+                );
+        }
+        
+        return $retval;
+    }
 }

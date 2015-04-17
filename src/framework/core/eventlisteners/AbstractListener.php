@@ -43,7 +43,7 @@ class AbstractListener {
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      */
-    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
+    public function __construct(Logger $logger, HTTPRequest &$httpRequest, HTTPResponse $httpResponse) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;

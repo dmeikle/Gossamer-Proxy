@@ -1,0 +1,50 @@
+#container #left-col {
+	width: 100px;
+}
+#container #header {
+	width: 100%;
+}
+#container #header #info {
+	float: right;
+}
+#container #lower {
+	clear: both;
+}
+#container #lower #left-feature {
+	float: left;
+	width: 100%;
+}
+#container #lower #right-feature {
+	float: left;
+	width: 30%;
+}
+#container #lower #right-col {
+	float: right;
+	width: 100px;
+}
+#container #right-panel-slider {
+	width: 80%;
+}
+#container #header #profile-container {
+	float: right;
+	margin-right: 10px;
+}
+#container #header #profile-container #avatar {
+	float: left;
+}
+#container #header #logo {
+	float: left;
+	height: 64px;
+	width: 75px;
+	background-image: url(images/icons/logo.png);
+}
+#container #header form {
+	float: left;
+	width: 30%;
+}
+#container #header #profile-container #nav {
+	float: left;
+	width: 120px;
+	margin-left: 10px;
+	margin-top: 20px;
+}

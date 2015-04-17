@@ -24,7 +24,7 @@ class ValidateFormListener extends AbstractListener
  
     protected $validator = null;
     
-    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse, $validatorName = null) {
+    public function __construct(Logger $logger, HTTPRequest &$httpRequest, HTTPResponse $httpResponse, $validatorName = null) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;

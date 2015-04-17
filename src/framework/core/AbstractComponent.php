@@ -19,6 +19,8 @@ use Monolog\Logger;
 use libraries\utils\Container;
 use exceptions\HandlerNotCallableException;
 use core\eventlisteners\Event;
+use core\views\AJAXExceptionView;
+use Validation\Exceptions\ValidationFailedException;
 
 /**
  * 
@@ -125,16 +127,34 @@ abstract class AbstractComponent {
 
             $controller->setContainer($this->container);
             try {
-
+                //before we attempt to continue, check to see if there is an 
+                //validation exception flag 
+                if(!is_null($httpRequest->getAttribute('ExceptionOccurred'))) {
+                    throw new ValidationFailedException();
+                }
+                
                 return call_user_func_array(array(
                     $controller,
                     $this->method
                         ), !isset($this->params) ? array() : $this->params);
-            } catch (\Exception $e) {
+            }catch(ValidationFailedException $ve) {
+                //stop processing and return the failed list to the view.
+                //currently this is only thrown by ajax requests since a POST
+                //request will redirect to the calling page
+                $view = new AJAXExceptionView($this->logger, 'exception_ajax', $this->agentType, $httpRequest, $httpResponse);
+                $view->setData($httpRequest->getAttribute('ERROR_RESULT'));
+                $view->setContainer($this->container);
+                $view->setYmlKey('exception_ajax');
+                $controller->setView($view);
+
+                return $controller->render($httpRequest->getAttribute('AJAX_ERROR_RESULT'));
+            }
+            catch (\Exception $e) {
+                echo "standard error\r\n";
                 //die($e->getMessage());
                 //TODO: this currently is only for the template view
                 //$view = new TemplateExceptionView($this->logger, __YML_KEY, $this->agentType, $httpRequest, $e);
-                $view = new $this->viewName($this->logger, 'exception', $this->agentType, $httpRequest);
+                $view = new $this->viewName($this->logger, 'exception', $this->agentType, $httpRequest, $httpResponse);
                 $view->setContainer($this->container);
                 $view->setYmlKey('exception');
                 $controller->setView($view);

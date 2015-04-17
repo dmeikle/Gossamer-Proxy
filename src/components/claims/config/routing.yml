@@ -1,3 +1,16 @@
+admin_claims_search:
+    pattern: admin/claims/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: searchByJobNumber
+        view: core\views\JSONView
+        viewKey: admin_claims_search
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation' 
+    
 claims_new_claim_wizard_1:
     pattern: admin/claims/new/*/*
     listeners:
@@ -12,7 +25,7 @@ claims_new_claim_wizard_1:
         datasource: datasource1
     #    langFiles: 
     #        - 'src/components/shoppingcart/locales/*/Navigation' 
-   
+    
 claims_new_claim_wizard_search:
     pattern: admin/claims/projectaddresses/stratanumber/search
     defaults:

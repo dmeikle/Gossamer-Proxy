@@ -1,0 +1,107 @@
+/*
+ This file is part of the Quantum Unit Solutions development package.
+
+ (c) Quantum Unit Solutions <http://github.com/dmeikle/>
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+*/
+/* 
+    Created on : 8-Apr-2015, 2:35:05 PM
+    Author     : davem
+*/
+
+
+#container-fluid{
+	width: 100%;
+}
+#container-fluid #header {
+	width: 100%;
+	background-color: #F90;
+        height: 70px;
+}
+#container-fluid #header #admin-logo {
+	width: 70px;
+	float: left;
+	background-image: url(/images/icons/logo.png);
+	height: 70px;
+}
+#container-fluid #header form {
+	padding: 10px;
+	width: 30%;
+	float: left;
+	height: 20px;
+}
+
+#container-fluid #header #profile-container {
+	float: right;
+	width: 200px;
+}
+#container-fluid #header #profile-container img{	
+    width: 50px;
+    height: 50px;
+    border: solid 1px black;
+       
+}
+
+#container-fluid #header #icons {
+	float: right;
+	width: 240px;
+}
+#container-fluid #header #icons .icon {
+	margin-left: 5px;
+	height: 64px;
+	width: 72px;
+}
+#container-fluid #header #icons .menu {
+	float: left;
+	
+}
+#container-fluid #header #icons .chat {
+	background-image: url(/images/icons/bubbles.png);
+	float: left;
+}
+#container-fluid #header #icons .bell {
+	background-image: url(/images/icons/bell.png);
+	float: left;
+	background-repeat: no-repeat;
+}
+#container-fluid #lower {
+	width: 100%;
+        clear: both;
+}
+#container-fluid #lower #left-col {
+	float: left;
+	width: 50px;
+}
+#container-fluid #lower #left-feature {
+	float: left;
+	width: 740px;
+	border: 1px solid #999;
+}
+#container-fluid #lower #right-feature {
+	width: 300px;
+	float: left;
+}
+#container-fluid #lower #right-col {
+	float: left;
+	width: 50px;
+}
+.form-control-feedback2 {
+    position: absolute !important;
+    right: 0;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    top: 10px !important;
+}
+#left-col {
+	width: 100px;	
+}
+#left-col .nav {
+	display: block;
+}
+	

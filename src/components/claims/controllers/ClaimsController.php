@@ -16,7 +16,7 @@ use components\companies\serialization\CompanyTypeSerialization;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use components\claims\form\ClaimBuilder;
-use core\system\Router;
+use components\claims\serialization\ClaimSerializer;
 
 
 
@@ -33,6 +33,14 @@ class ClaimsController extends AbstractController{
         $this->render($result);
     }
     
+    public function searchByJobNumber() {
+        $results = $this->model->searchByJobNumber(array('jobNumber' => $this->getJobNumber()));
+        
+        $serializer = new ClaimSerializer();
+        $list = $serializer->formatJobNumberResults($results);
+
+        $this->render($list);
+    }
      
     public function edit($id) {
         $result = $this->model->edit($id);              
@@ -64,5 +72,13 @@ class ClaimsController extends AbstractController{
         $result = $this->model->listallByProjectAddress($addressId, $offset, $limit);
         
         $this->render($result);
+    }
+    
+   
+               
+    private function getJobNumber() {
+        $rawJobNumber = $this->httpRequest->getQueryParameter('term');
+        
+        return preg_replace('/[^A-z0-9\-]/', '', substr($rawJobNumber, 0, 10));
     }
 }

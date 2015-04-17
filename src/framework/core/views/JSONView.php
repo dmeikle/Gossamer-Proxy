@@ -29,8 +29,7 @@ class JSONView extends AbstractView {
         unset($data['NAVIGATION']);
         if (!is_null($this->getData())) {
             try {
-                // The second parameter of json_decode forces parsing into an associative array
-                //extract(json_decode(json_encode($this->data), true));
+                
                 echo json_encode($data);
             } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());

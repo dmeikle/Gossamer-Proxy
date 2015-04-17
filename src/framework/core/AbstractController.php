@@ -83,6 +83,21 @@ class AbstractController {
         //$this->model->setView($view);
         $this->httpRequest = $request;
     }
+    
+    public function __call($name, $arguments) {
+        $field = '';
+       
+        if(substr($name, 0, 7) == 'searchBy') {
+            $field = substr($name, 8);
+            $this->model->search(array($field => $this->getSearchArguments()));
+        }       
+    }
+    
+    protected function getSearchArguments() {
+        $rawterm = $this->httpRequest->getQueryParameter('term');
+        
+        return preg_replace('/[^A-z0-9\-]/', '', substr($rawterm, 0, 10));
+    }
 
     /**
      * creates a default entity and populates it

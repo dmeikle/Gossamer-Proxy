@@ -52,6 +52,7 @@ class AbstractModel {
     const VERB_LIST = 'list';
     const VERB_DELETE = 'delete';
     const VERB_GET = 'get';
+    const VERB_SEARCH = 'search';
     const VERB_SAVE = 'save';
     const DIRECTIVES = 'directives';
 
@@ -72,6 +73,16 @@ class AbstractModel {
         $this->entity = get_called_class();
     }
 
+    public function search(array $term) {
+        
+        $params = array('directive::ORDER_BY' => key($term), 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
+        $params = array_merge($params, $term);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params); 
+        
+        return $data;
+    }
+    
     /**
      * 
      * @return boolean

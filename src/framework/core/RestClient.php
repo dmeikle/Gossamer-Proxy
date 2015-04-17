@@ -175,6 +175,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         if(strtoupper($method) == 'POST'){
             $curlopt[CURLOPT_POST] = TRUE;
             $curlopt[CURLOPT_POSTFIELDS] =  $client->format_query($parameters);
+           // echo $client->format_query($parameters);
         }
         elseif(count($parameters)){
             $client->url .= strpos($client->url, '?')? '&' : '?';

@@ -50,7 +50,9 @@ class TemplateView extends AbstractView {
      * calls all the render methods
      */
     protected function renderView() {
-
+//        if(!array_key_exists('template', $this->config)) {
+//            throw new \exceptions\YamlKeyNotFoundException('template not set in views configuration');
+//        }
         $template = $this->config['template'];
         $theme = $this->config['theme'];
         $this->sections = $this->config['sections'];

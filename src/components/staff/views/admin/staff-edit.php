@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"/>
+<script src="/js/jqm/jquery.js"></script>
+<script src="/js/jquery-ui.js"></script>
+
 <script>
 $(function() {
 $( "#tabs" ).tabs();
@@ -55,12 +59,13 @@ $("#dialog-confirm").dialog({
 
 <div id="tabs">
 <ul>
-  <li style="float: right"> <?php echo $form['isActive'];?>This employee is active</li>
+  
   <li><a href="#contact-info">Contact Info</a></li>
   <li><a href="#company-info">Company Info</a></li>
   <li><a href="#personal-info">Personal Info</a></li>
   <li><a href="#emergency-info">Emergency Info</a></li>
   <li><a href="#equipment-info">Equipment</a></li>
+  <li style="float: right"> <?php echo $form['isActive'];?>This employee is active</li>
 </ul>
 <form method="post" role="form" class="form-standard">
   <div id="contact-info">
@@ -181,7 +186,7 @@ $("#dialog-confirm").dialog({
       </tr>
     </table>
   </div>
-    <?php if($id > 0) {?>
+    <?php if(isset($id) && $id > 0) {?>
     <div id="emergency-info">
         <a href="#" class="add-emergency">add emergency contact</a>
         <table class="table">

@@ -11,6 +11,7 @@ di mihi bonum faustum felixque se educerent, et domus mea. cum fiducia et laboro
 
 <div id="newsfeed" style="width:200px;">
 <?php
+getcontent has been changed.
 echo $this->getContent('website_blogs_feed', array(0,5));
 ?>
 </div>
