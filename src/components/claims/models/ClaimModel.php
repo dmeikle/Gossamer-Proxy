@@ -69,9 +69,12 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $retval;
     }
     
-    public function get($id) {
-       
-        return array();
+    public function get($claimId) {
+        $params = array(
+            'jobNumber' => $claimId
+        );
+        
+        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
     }
     
     public function save($id) {
@@ -107,4 +110,14 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
+    
+    public function view($jobNumber) {
+        
+        $params = array('jobNumber' => $jobNumber);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'summary', $params); 
+        
+        return $data;
+    }
+    
 }

@@ -39,6 +39,49 @@ admin_notifications_send:
         viewKey: admin_notifications_send
         datasource: datasource1
 
+#------------------------ templates --------------------------
+        #offset/limit
+super_notifications_templates_list:
+    pattern: super/notifications/templates/*/*
+    methods: [GET]
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationTemplatesController
+        model: components\notifications\models\NotificationTemplateModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_notifications_templates_list
+        datasource: datasource1
+        
+
+super_notifications_templates_edit:
+    pattern: super/notifications/templates/*
+    listeners:
+        - { 'event': 'request_start', datasource: datasource1, 'listener': 'components\notifications\listeners\LoadMessagingTypesListener', 'cacheKey': 'MessagingTypes', 'class': 'components\notifications\models\MessagingTypeModel' }
+    methods: [GET]
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationTemplatesController
+        model: components\notifications\models\NotificationTemplateModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_notifications_templates_edit
+        datasource: datasource1    
+
+super_notifications_templates_save:
+    pattern: super/notifications/templates/*
+    listeners:
+        #- { 'event': 'request_start', datasource: datasource1, 'listener': 'components\notifications\listeners\LoadMessagingTypesListener', 'cacheKey': 'MessagingTypes', 'class': 'components\notifications\models\MessagingTypeModel' }
+    methods: [POST]
+    defaults:
+        component: components\notifications\NotificationsComponent
+        controller: components\notifications\controllers\NotificationTemplatesController
+        model: components\notifications\models\NotificationTemplateModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: super_notifications_templates_save
+        datasource: datasource1        
+
 
 
 

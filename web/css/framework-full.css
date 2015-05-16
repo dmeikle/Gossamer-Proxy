@@ -23,7 +23,7 @@
 #container-fluid #header #admin-logo {
 	width: 70px;
 	float: left;
-	background-image: url(/images/icons/logo.png);
+	background-image: url(http://images.phoenixrestorations.com/nav-icons/logo.png);
 	height: 70px;
 }
 #container-fluid #header form {
@@ -58,11 +58,11 @@
 	
 }
 #container-fluid #header #icons .chat {
-	background-image: url(/images/icons/bubbles.png);
+	background-image: url(http://images.phoenixrestorations.comnav-iconsbubbles.png);
 	float: left;
 }
 #container-fluid #header #icons .bell {
-	background-image: url(/images/icons/bell.png);
+	background-image: url(http://images.phoenixrestorations.comnav-iconsbell.png);
 	float: left;
 	background-repeat: no-repeat;
 }

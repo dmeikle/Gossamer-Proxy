@@ -28,15 +28,16 @@ use core\system\Router;
 class ProjectAddressesController extends AbstractController{
    
     public function search() {
-        $result = $this->model->search();
+        $params = $this->httpRequest->getPost();
+        $result = $this->model->search($params);
         
         $this->render($result);
     }
     
     public function edit($id) {       
         $result = $this->model->edit($id);
-        
-        $result['form'] = $this->drawForm($this->model, $result);
+      
+        //$result['form'] = $this->drawForm($this->model, $result);
         
         $this->render($result);
     }
@@ -69,10 +70,16 @@ class ProjectAddressesController extends AbstractController{
         $provinceSerializer = new ProvinceSerializer();
         $selectedOptions = array($projectBuilder->getValue('Provinces_id', $values));
         $yearSerializer = new YearSerializer();
-        
+        $buildingYear = (array_key_exists('buildingYear', $values) ? $values['buildingYear'] : '');
         $options = array('provinces' => $provinceSerializer->formatSelectionBoxOptions($provinceSerializer->pruneList($provinceList), $selectedOptions), 
-            'years' => $yearSerializer->formatSelectionBoxOptions($yearSerializer->pruneList($this->getYears()), array($values['buildingAge'])));
+            'years' => $yearSerializer->formatSelectionBoxOptions($yearSerializer->pruneList($this->getYears()), array($buildingYear)));
         
         return $projectBuilder->buildForm($builder, $values, $options, $results);
+    }
+    
+    public function getForm($id) {
+        $result = $this->model->edit($id);
+        
+        $this->render(array('form' => $this->drawForm($this->model, is_array($result) ? $result : array())));
     }
 }

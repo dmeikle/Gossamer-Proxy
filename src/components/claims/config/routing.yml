@@ -37,15 +37,33 @@ claims_new_claim_wizard_search:
         viewKey: claims_new_claim_wizard_search
         datasource: datasource1   
    
-admin_claims_list:
-    pattern: admin/claims/*/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+
+admin_claims_view:
+    pattern: admin/claims/view/*
+    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimLocationModel'}
+#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\projects\models\ProjectAddressModel'}
+    
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: listallReverse
+        method: view
+        view: core\views\JSONView
+        viewKey: admin_claims_view
+        datasource: datasource1
+        
+        
+admin_claims_list:
+    pattern: admin/claims/*/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimTypeModel', cacheKey: 'ClaimTypes'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallReverseWithForm
         view: core\views\TemplateView
         viewKey: admin_claims_list
         datasource: datasource1
@@ -120,8 +138,10 @@ admin_claims_edit4:
         
 admin_claim_view:
     pattern: admin/claim/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController

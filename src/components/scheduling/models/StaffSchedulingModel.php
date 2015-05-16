@@ -25,8 +25,13 @@ class StaffSchedulingModel extends  AbstractModel
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
         $this->entity = 'StaffScheduling';
-        $this->tablename = 'staffScheduling';        
+        $this->tablename = 'staffscheduling';        
     }
     
-    
+    public function getSchedule(array $dateRange) {
+                
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $dateRange);
+     
+        return $data;
+    }
 }

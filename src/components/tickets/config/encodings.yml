@@ -21,4 +21,8 @@ admin_tickets_edit:
     department: utf8
     type: utf8
     
+
+admin_tickets_list:
+    category: utf8    
+    
     

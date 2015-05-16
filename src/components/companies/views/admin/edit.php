@@ -1,12 +1,35 @@
 
+<script language="javascript">
+
+$(function() {
+   $('#Company_cancel').click(function(e) {
+      $('#left-feature-slider-edit').toggle(false);
+   });
+   
+   $('#Company_save').click(function(e) {
+       e.stopPropagation();
+       var id = $('#Company_companyId').val();
+      
+       $.ajax({
+            url: '/admin/companies/' + id,
+            type: "post",
+            data: $('#company-form').serialize()
+        });
+       
+      $('#left-feature-slider-edit').toggle(false);
+   });
+   
+});
+
+</script>
 
 
-
-<form role="form" class="form-standard" method="post">
+<form role="form" class="form-standard" method="post" id="company-form">
+    <?php echo $form['companyId'];?>
     <table class="table">
       <tr>
           <td>Name:</td>
-          <td><input type="text" class="form-control" name="company[name]" id="company_name"></td>
+          <td><?php echo $form['name'];?></td>
       </tr>
       <tr>
         <td>Type:</td>
@@ -18,12 +41,12 @@
       </tr>
       <tr>
         <td>Address:</td>
-        <td><input type="text" class="form-control" name="company[address1]" id="company_address1">
-        <input type="text" class="form-control" name="company[address2]" id="company_address2"></td>
+        <td><?php echo $form['address1'];?>
+        <?php echo $form['address2'];?></td>
       </tr>
       <tr>
         <td>City:</td>
-        <td><input type="text" class="form-control" name="company[city]" id="company_city"></td>
+        <td><?php echo $form['city'];?></td>
       </tr>
       <tr>
         <td>Province:</td>
@@ -31,25 +54,24 @@
       </tr>
       <tr>
         <td>Postal Code:</td>
-        <td><input type="text" class="form-control" name="company[postalCode]" id="company_postalCode"></td>
+        <td><?php echo $form['postalCode'];?></td>
       </tr>
       <tr>
         <td>Telephone:</td>
-        <td><input type="text" class="form-control" name="company[telephone]" id="company_telephone"></td>
+        <td><?php echo $form['telephone'];?></td>
       </tr>
       <tr>
         <td>Fax:</td>
-        <td><input type="text" class="form-control" name="company[fax]" id="company_fax"></td>
+        <td><?php echo $form['fax'];?></td>
       </tr>
       <tr>
         <td>URL:</td>
-        <td><input type="text" class="form-control" name="company[url]" id="company_url"></td>
+        <td><?php echo $form['url'];?></td>
       </tr>
       <tr>
         <td>&nbsp;</td>
         <td>
-        	<button class="btn btn-primary" id="save">Save</button> 
-        	<button class="btn btn-primary" id="cancel">Cancel</button>         
+        	<?php echo $form['cancel'];?>  <?php echo $form['save'];?>
         </td>
       </tr>
     </table>

@@ -39,7 +39,7 @@ class LoadItemListener extends AbstractCachableListener {
         }
 
         $result = $datasource->query('get', $model, 'get', $params);
-
+        $item = array();
         if (!is_null($result) && is_array($result)) {
             $item = current($result[$model->getEntity()]);
         }

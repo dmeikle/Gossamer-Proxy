@@ -1,5 +1,5 @@
 <h3>Credentials</h3>
-<form method="post" role="form">
+<form method="post" role="form" id="credentials-form" action="/admin/staff/ajaxcredentials/">
     <table class="table" style="max-width: 700 !important">
         <tr>
            <td>Username:</td>
@@ -14,12 +14,9 @@
            <td>Confirm:</td>
            <td><?php echo $form['passwordConfirm']; ?></td>
          </tr>
+        <tr>
+          <td></td>
+          <td><?php echo $form['cancel']; ?> <?php echo $form['submit']; ?></td>
+        </tr>
        </table>
-     </td>
-   </tr>
-   <tr>
-     <td></td>
-     <td><?php echo $form['submit']; ?></td>
-   </tr>
-   </table>
 </form>

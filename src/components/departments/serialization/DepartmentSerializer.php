@@ -21,4 +21,18 @@ use core\serialization\Serializer;
 class DepartmentSerializer extends Serializer{
     
     
+    public function pruneList(array $list = null) {
+        if(is_null($list)) {
+            return '';
+        }
+        
+        $retval = array();
+   
+        foreach($list as $row) {
+      
+        $retval[$row['id']] = $row['name'];
+        }
+      
+        return $retval;
+    }
 }

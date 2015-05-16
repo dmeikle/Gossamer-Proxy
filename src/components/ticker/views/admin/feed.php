@@ -20,12 +20,16 @@
 <!--- css end --->
 
 <input type="hidden" id="ticker-token" value="<?php echo $token;?>" >
-
-<div class="chat_wrapper">
-    <div id="message_box" class="message_box">
-        
+<div class="panel panel-default">
+    <div class="panel-heading">
+       Work Activity Updates
     </div>
-    <div class="panel">       
-        <a href="#" id="history" class="ui-link">view more results</a>        
+    <div class="chat_wrapper">
+        <div id="message_box" class="message_box">
+
+        </div>
+        <div class="panel">       
+            <a href="#" id="history" class="ui-link">view more results</a>        
+        </div>
     </div>
 </div>

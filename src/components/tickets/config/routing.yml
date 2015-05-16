@@ -28,6 +28,7 @@ admin_tickets_edit:
     pattern: admin/tickets/*
     methods: [GET]
     listeners:
+        - { 'event': 'request_start', 'listener': 'components\tickets\listeners\LoadTicketCommentsListener', 'datasource': 'datasource1'}
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\tickets\models\TicketCategoryModel', 'cacheKey': 'TicketCategorys' }
@@ -48,6 +49,9 @@ admin_tickets_edit:
 admin_tickets_list:
     pattern: admin/tickets/*/*
     methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\tickets\models\TicketTypeModel', 'cacheKey': 'TicketTypes' }
+        
     defaults:
         component: components\tickets\TicketsComponent
         controller: components\tickets\controllers\TicketsController

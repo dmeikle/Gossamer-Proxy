@@ -26,8 +26,10 @@ class StaffEmergencyContactController extends AbstractController {
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
-
-        $result = $this->model->edit($id);
+        $result = array();
+        if(intval($id) > 0) {
+            $result = $this->model->edit($id);
+        }
         if (is_array($result)) {
             $result['form'] = $this->drawForm($this->model, $result);
         } else {
@@ -66,5 +68,9 @@ class StaffEmergencyContactController extends AbstractController {
         $this->httpRequest->setPostParameter('StaffEmergencyContact', $params['StaffEmergencyContact']);
         //we want to add a new row so set id to 0
         $this->saveAndRedirect(0, 'admin_staff_emergencycontacts_list', array($id));
+    }
+    
+    public function getForm() {
+        $this->render($this->drawForm($this->model, $value));
     }
 }

@@ -78,7 +78,7 @@ admin_messaging:
                 - IS_SUPER_USER   
         admin_messagingtypes:
             text_key: 'ADMIN_MESSAGING_TYPES'
-            pattern: '/super/messaging/0/20'
+            pattern: '/super/messaging/types/0/20'
             display_roles:
                 - IS_SUPER_USER  
         admin_notification_settings_types:
@@ -145,6 +145,20 @@ admin_inventory:
             pattern: '/super/inventory/packagetypes/0/20'
             display_roles:
                 - IS_SUPER_USER 
+
+        admin_inventory_categories:
+            text_key: 'ADMIN_INVENTORY_CATEGORIES'
+            pattern: '/super/inventory/categories/0/20'
+            display_roles:
+                - IS_SUPER_USER 
+
+        admin_inventory_types:
+            text_key: 'ADMIN_INVENTORY_TYPES'
+            pattern: '/super/inventory/types/0/20'
+            display_roles:
+                - IS_SUPER_USER 
+
+                
                 
 #security 
 admin_security:

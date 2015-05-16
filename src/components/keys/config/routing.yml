@@ -58,3 +58,50 @@ super_keys_keytypes_remove:
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [POST]     
     
+    
+
+    
+super_keys_retire:
+    pattern: admin/keys/retire/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeysController
+        model: components\keys\models\KeyModel
+        method: retire
+        view: core\views\JSONView
+        viewKey: super_keys_retire
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+
+    
+super_keys_list:
+    pattern: admin/keys/*/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeysController
+        model: components\keys\models\KeyModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_keys_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+    
+    
+    
+super_keys_edit:
+    pattern: admin/keys/*
+    defaults:
+        component: components\keys\KeysComponent
+        controller: components\keys\controllers\KeysController
+        model: components\keys\models\KeyModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_keys_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     

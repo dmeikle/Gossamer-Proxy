@@ -15,8 +15,8 @@ customers:
 about:
     component: "src/components/defaultItem/config/routing.yml"
   
-#contact:
-#    component: "src/components/defaultItem/config/routing.yml"     
+twitter:
+    component: "src/components/twitter/config/routing.yml"     
 
 users:
     component: "src/components/users/config/routing.yml"
@@ -118,6 +118,8 @@ tickets:
     component: "src/components/tickets/config/routing.yml"
 ticker:
     component: "src/components/ticker/config/routing.yml"
+inventory:
+    component: "src/components/inventory/config/routing.yml"
 
     
 #this is the default fallback to use if not found    

@@ -25,7 +25,7 @@ class CssMenuController extends AbstractController {
      * users. If you want to have a method for everyone..*coff coff*.. write 
      * another one...
      */
-    public function view() {
+    public function view($id = null) {
                 
         $contact = current($this->httpRequest->getAttribute('Contact'));
         

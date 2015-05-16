@@ -12,10 +12,11 @@
 namespace components\keys\controllers;
 
 use core\AbstractController;
-use components\departments\form\DepartmentBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
+use components\keys\form\KeyBuilder;
+
 
 class KeysController extends AbstractController {
 
@@ -29,6 +30,11 @@ class KeysController extends AbstractController {
 //        $router->redirect('admin_staff_credentials_edit', array($result['id']));
 //    }
 
+    public function retire($id) {
+        $this->model->retire($id);
+        
+        $this->render(array('success' => 'true'));
+    }
     /**
      * edit - display an input form based on requested id
      * 
@@ -43,12 +49,12 @@ class KeysController extends AbstractController {
 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
-        $departmentBuilder = new DepartmentBuilder();
+        $keyBuilder = new KeyBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');       
 
         $options = array();
 
-        return $departmentBuilder->buildForm($builder, $values, $options, $results);
+        return $keyBuilder->buildForm($builder, $values, $options, $results);
     }
 
 

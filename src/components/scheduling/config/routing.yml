@@ -39,11 +39,12 @@ admin_scheduling_calendar:
         component: components\scheduling\SchedulingComponent
         controller: components\scheduling\controllers\SchedulesController
         model: components\scheduling\models\StaffSchedulingModel
-        method: edit
+        method: calendar
         view: core\views\TemplateView
         viewKey: admin_scheduling_calendar
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/scheduling/locales/*/Calendar'
     methods: [GET]    
         

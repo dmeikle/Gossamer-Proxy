@@ -13,6 +13,7 @@ namespace components\staff\controllers;
 
 use core\AbstractController;
 use components\geography\serialization\ProvinceSerializer;
+use components\departments\serialization\DepartmentSerializer;
 use components\staff\form\StaffBuilder;
 use components\staff\form\StaffEmergencyContactBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
@@ -20,6 +21,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 use core\navigation\Pagination;
 use components\staff\serialization\StaffSerializer;
+use components\staff\serialization\StaffPositionsSerializer;
 
 class StaffController extends AbstractController {
 
@@ -108,12 +110,20 @@ class StaffController extends AbstractController {
      
        
         $provinceList = $this->httpRequest->getAttribute('Provinces');
-
         $serializer = new ProvinceSerializer();
         $selectedOptions = array($staffBuilder->getValue('Provinces_id', $values));
-
         $options = array('provinces' => $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions));
-
+        
+        $positions = $this->httpRequest->getAttribute('StaffPositions');
+        $serializer = new StaffPositionsSerializer();        
+        $selectedOptions = array($staffBuilder->getValue('StaffPositions_id', $values));
+        $options['staffPositions'] = $serializer->formatSelectionBoxOptions($serializer->pruneList($positions), $selectedOptions);
+        
+        $departments = $this->httpRequest->getAttribute('Departments');
+        $serializer = new DepartmentSerializer();        
+        $selectedOptions = array($staffBuilder->getValue('Departments_id', $values));
+        $options['departments'] = $serializer->formatSelectionBoxOptions($serializer->pruneList($departments), $selectedOptions);
+        
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
 
@@ -126,5 +136,25 @@ class StaffController extends AbstractController {
 
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
+    
+    public function backboneEdit($id) {
+        $result = $this->model->edit(intval($id));
+
+        $this->render($result);
+    }
+    
+    public function backboneSave() {
+        $params = $this->httpRequest->getRestParameters();
+        print_r($params);
+        $this->render(array());
+    }
+    
+    public function backboneListall() {
+        $result = $this->model->listall(0,20);
+       
+        $this->render($result['Staffs']);
+    }
+    
+    
     
 }

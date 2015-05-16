@@ -24,7 +24,8 @@
                 "gossamer/form-builder": "dev-master",
                 "gossamer/caching": "dev-master",
                 "gossamer/pesedget": "dev-master",
-                "gossamer/horus": "dev-master"
+                "gossamer/horus": "dev-master",
+                "j7mbo/twitter-api-php": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}

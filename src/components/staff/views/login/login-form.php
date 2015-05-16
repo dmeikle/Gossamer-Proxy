@@ -7,7 +7,7 @@
 
 
 
-<div style="width:400px; margin-left: auto; margin-right: auto">
+<div style="max-width:400px; padding-left: auto; padding-right: auto">
 <h2><?php echo $this->getString('LOGIN_FORM');?></h2>
 <form role="form" method="post">
   <div class="form-group">

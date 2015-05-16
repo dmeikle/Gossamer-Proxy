@@ -15,13 +15,14 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of CompanyModel
  *
  * @author Dave Meikle
  */
-class CompanyModel extends AbstractModel{
+class CompanyModel extends AbstractModel implements FormBuilderInterface{
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -58,5 +59,21 @@ class CompanyModel extends AbstractModel{
     
     public function searchResults() {
         return array();
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
+    public function paginate($offset, $limit) {
+        $params = array(
+            'directive::OFFSET' => intval($offset),
+            'directive::LIMIT' => $intval($limit),
+            'isActive' => '1'
+        );
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'count', $params); 
+        pr($data);
+        die;
     }
 }

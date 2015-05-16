@@ -90,11 +90,14 @@ class TicketBuilder extends AbstractBuilder{
     }
     
     private function getClaimLocation(array $values = null) {
-       
-        if(is_null($values) || !array_key_exists('ClaimsLocation', $values) || !array_key_exists('unitNumber', $values['ClaimsLocation'])) {
+       //the ClaimsLocation key is a join made programmatically to obtain the
+        //name of the unit number
+        if(is_null($values) || !array_key_exists('ClaimsLocation', $values)) {
             return '';
         }
-        
+        if(!is_array($values['ClaimsLocation']) || !array_key_exists('unitNumber', $values['ClaimsLocation'])) {
+            return '';
+        }
         return '<option value="' . $values['ClaimsLocations_id'] . "'>" . $values['ClaimsLocation']['unitNumber'] . '</option>';
     }
 

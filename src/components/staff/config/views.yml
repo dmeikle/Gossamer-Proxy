@@ -18,12 +18,17 @@ admin_staff_edit:
            # "section4": "src/themes/default/templates/sections/footer.php"
 
 admin_staff_list:
-    template: admin-list-jqm.php
+    template: admin-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "section3": "src/components/staff/views/admin/staff-list.php"
+            "featureslider-edit1": "src/components/staff/views/admin/edit.php"
+            "featureslider-edit2": "src/components/staff/views/admin/edit2.php"
+            "featureslider-edit3": "src/components/staff/views/admin/edit3.php"
+            "featureslider-edit4": "src/components/staff/views/admin/edit4.php"
+            "featureslider-edit5": "src/components/staff/views/admin/edit5.php"
             "section4": "src/themes/default/templates/sections/footer.php"
         
     
@@ -53,12 +58,10 @@ admin_staff_edit_permissions_save:
     
     
 admin_staff_permissions_get:  
-    template: admin-list.php
+    template: newsfeed.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/staff/views/admin/permissions.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
+            "section1": "src/components/staff/views/admin/permissions.php" 
             
 admin_staff_permissions_save:
     template: admin-list.php
@@ -77,21 +80,25 @@ admin_login_roles:
             "section4": "src/themes/default/templates/sections/footer.php"
             
 admin_staff_credentials_edit:   
-    template: admin-list.php
+    template: newsfeed.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/staff/views/admin/credentials.php"
-            "section4": "src/themes/default/templates/sections/footer.php"          
+            "section1": "src/components/staff/views/admin/credentials.php"        
             
 admin_staff_emergencycontacts_list:    
-    template: admin-list.php
+    template: newsfeed.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/staff/views/admin/emergencycontacts/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"            
+            "section1": "src/components/staff/views/admin/emergencycontacts/list.php"
             
+            
+admin_staff_permissions_select:
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/staff/views/admin/permissions.php"
+    
+    
 admin_login_failed:  
     template: admin-list.php
     sections: 
@@ -107,3 +114,10 @@ admin_status_locked:
             "section1": "src/themes/default/templates/sections/header.php"
             "section3": "src/components/staff/views/admin/status-locked.php"
             "section4": "src/themes/default/templates/sections/footer.php"          
+
+            
+admin_staff_rest_edit: 
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/staff/views/admin/test.php"   

@@ -47,6 +47,9 @@ class HTTPRequest extends AbstractHTTP {
         $this->requestParameters = $params;
     }
 
+    public function getRestParameters() {
+        return json_decode(file_get_contents("php://input"), true);
+    }
     /**
      * returns a query param based on key
      * 

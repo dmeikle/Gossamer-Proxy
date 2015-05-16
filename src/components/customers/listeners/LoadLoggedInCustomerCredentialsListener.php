@@ -11,7 +11,7 @@
 
 namespace components\customers\listeners;
 
-use core\eventlistenersLoadItemListener;
+use core\eventlisteners\LoadItemListener;
 
 
 /**

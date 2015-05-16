@@ -52,12 +52,12 @@ class Pagination {
 
         for ($i = 0; $i < $this->getNumPages(); $i++) {
             $dataOffset = ($i * $limit);
-            $item = array('data-offset' => $dataOffset, 'data-limit' => $limit);
+            $item = array("data-offset" => "$dataOffset", "data-limit" => $limit);
             if (!$currentEstablished && $offset <= $dataOffset) {
-                $item['current'] = 'current';
+                $item["current"] = 'current';
                 $currentEstablished = true;
             } else {
-                $item['current'] = '';
+                $item["current"] = "";
             }
             $retval[] = $item;
         }
@@ -86,15 +86,20 @@ class Pagination {
      * @return string
      */
     public function paginate(array $rowCount, $offset, $limit, $uriPrefix) {
+        
+        $pagination = $this->getPaginationJson($rowCount, $offset, $limit);
+        
+        return $this->getHtml($pagination, $uriPrefix);
+    }
+
+    public function getPaginationJson(array $rowCount, $offset, $limit) {
         if (is_array($rowCount)) {
             $rowCount = $rowCount[0]['rowCount'];
         }
 
-        $pagination = $this->getPagination($rowCount, $offset, $limit);
-
-        return $this->getHtml($pagination, $uriPrefix);
+        return $this->getPagination($rowCount, $offset, $limit);        
     }
-
+    
     /**
      * draws the HTML we are placing into the page
      * 
@@ -108,12 +113,7 @@ class Pagination {
         $firstPagination = current($pagination);
         $lastPagination = end($pagination);
         $retval = '<div>
-            <select id="resultsPerPage">
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-                <option>100</option>    
-            </select>
+           
             <ul class="pagination">';
         $retval .= '<li><a class="pagination ' . $firstPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $firstPagination['data-offset'] .
                 '" data-limit="' . $firstPagination['data-limit'] . '">&laquo;</a></li>';

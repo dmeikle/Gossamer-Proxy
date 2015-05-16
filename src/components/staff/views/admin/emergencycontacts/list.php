@@ -1,6 +1,6 @@
 
 
-<table class="table">
+<table class="table" id="emergency-contacts-list">
   <tr>
     <th scope="col">Name</th>
     <th scope="col">Telephone</th>
@@ -18,7 +18,7 @@ foreach($EmergencyContacts as $contact) {
         continue;
     }
     ?>
-  <tr>
+  <tr id="row_<?php echo $contact['id'];?>">
     <td><?php echo $contact['lastname'] . ', ' . $contact['firstname'];?></td>
     <td><?php echo $contact['telephone'];?></td>
     <td><?php echo $contact['mobile'];?></td>

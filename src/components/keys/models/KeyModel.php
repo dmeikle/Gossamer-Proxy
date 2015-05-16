@@ -38,5 +38,15 @@ class KeyModel extends AbstractModel implements FormBuilderInterface{
         return $this->entity;
     }
     
-
+    public function retire($id) {
+        
+        $params = array(
+            'id' => intval($id),
+            'returnDate' => date("Y-m-d")
+        );
+        
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+        
+        return true;
+    }
 }

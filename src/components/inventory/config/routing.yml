@@ -1,0 +1,289 @@
+
+
+#---------------------- inventory types -------------------------
+
+super_inventory_inventorytypes_list:
+    pattern: super/inventory/types/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryTypesController
+        model: components\inventory\models\InventoryTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_inventory_inventorytypes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+     
+
+super_inventory_inventorytypes_edit:
+    pattern: super/inventory/types/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryTypesController
+        model: components\inventory\models\InventoryTypeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_inventory_inventorytypes_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+     
+super_inventory_inventorytypes_save:
+    pattern: super/inventory/types/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryTypesController
+        model: components\inventory\models\InventoryTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_inventory_inventorytypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST] 
+    
+super_inventory_inventorytypes_remove:
+    pattern: super/inventory/types/remove/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryTypesController
+        model: components\inventory\models\InventoryTypeModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_inventory_inventorytypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+    
+    
+
+
+#---------------------- package types -------------------------
+
+super_inventory_packagetypes_list:
+    pattern: super/inventory/packagetypes/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\PackageTypesController
+        model: components\inventory\models\PackageTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_inventory_packagetypes_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+     
+
+super_inventory_packagetypes_edit:
+    pattern: super/inventory/packagetypes/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\PackageTypesController
+        model: components\inventory\models\PackageTypeModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_inventory_packagetypes_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+     
+super_inventory_packagetypes_save:
+    pattern: super/inventory/packagetypes/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\PackageTypesController
+        model: components\inventory\models\PackageTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_inventory_packagetypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST] 
+    
+super_inventory_packagetypes_remove:
+    pattern: super/inventory/packagetypes/remove/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\PackageTypesController
+        model: components\inventory\models\PackageTypeModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_inventory_packagetypes_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+        
+
+
+#---------------------- categories -------------------------
+
+super_inventory_categories_list:
+    pattern: super/inventory/categories/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryCategoriesController
+        model: components\inventory\models\InventoryCategoryModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_inventory_categories_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+     
+
+super_inventory_categories_edit:
+    pattern: super/inventory/categories/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryCategoriesController
+        model: components\inventory\models\InventoryCategoryModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: super_inventory_categories_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+     
+super_inventory_categories_save:
+    pattern: super/inventory/categories/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryCategoriesController
+        model: components\inventory\models\InventoryCategoryModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_inventory_categories_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST] 
+    
+super_inventory_categories_remove:
+    pattern: super/inventory/categories/remove/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryCategoriesController
+        model: components\inventory\models\InventoryCategoryModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_inventory_categories_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+  
+                
+
+
+#---------------------- items -------------------------
+
+admin_inventory_items_list:
+    pattern: admin/inventory/items/*/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_inventory_items_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+
+admin_inventory_equipment_list:
+    pattern: admin/inventory/equipment/*/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryItemModel
+        method: listAllEquipment
+        view: core\views\TemplateView
+        viewKey: admin_inventory_equipment_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]   
+
+admin_inventory_materials_list:
+    pattern: admin/inventory/materials/*/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryMaterialsController
+        model: components\inventory\models\InventoryItemModel
+        method: listAllEquipment
+        view: core\views\TemplateView
+        viewKey: admin_inventory_materials_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+
+admin_inventory_items_edit:
+    pattern: admin/inventory/items/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_inventory_items_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+
+    
+admin_inventory_items_save:
+    pattern: admin/inventory/items/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_inventory_items_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST] 
+    
+admin_inventory_items_remove:
+    pattern: admin/inventory/items/remove/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_inventory_items_remove
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [POST]     
+                        

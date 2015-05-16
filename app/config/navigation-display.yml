@@ -157,11 +157,26 @@ admin_contacts:
 admin_inventory:
     active: false
     text_key: 'ADMIN_INVENTORY'
-    pattern: '/admin/inventory'
+    pattern: '#'
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
-        
+    children:        
+        admin_inventory_materials:
+            text_key: 'ADMIN_INVENTORY_MATERIALS'
+            pattern: '/admin/inventory/materials/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+
+        admin_inventory_equipment:
+            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
+            pattern: '/admin/inventory/equipment/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                
+                
 admin_keys:
     active: false
     text_key: 'ADMIN_KEYS'

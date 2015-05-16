@@ -70,7 +70,7 @@ class Serializer {
                 //eg: creating a new question and selecting a type on page draw
                 $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
             } elseif (!in_array($key, $selectedOptions)) {
-
+             
                 $retval .= "<option value=\"{$key}\">{$option}</option>\r\n";
             } else {
                 $retval .= "<option value=\"{$key}\" selected>{$option}</option>\r\n";
@@ -88,10 +88,10 @@ class Serializer {
      * @return array
      */
     protected function extractSubNode(array $array, $key) {
-
+       
         $output = array();
         foreach ($array as $row) {
-            if (count($row) < 1) {
+            if (count($row) < 1 || !is_array($row) || !array_key_exists('id', $row)) {
                 continue;
             }
             $output[$row['id']] = $row[$key];

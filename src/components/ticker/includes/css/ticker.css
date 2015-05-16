@@ -14,10 +14,10 @@
 
 .chat_wrapper {
 	width: 100%;
-	border: 1px solid #999;
         border-radius:5px;
         overflow-y: scroll;
         height: 390px;
+        padding: 0px 10px 10px 15px;
 }
 .chat_wrapper #message_box {
 	width: 96%;
@@ -51,7 +51,7 @@
 	float: left;
 }
 .chat_wrapper #message_box .row .middlecol {
-	width: 195px;
+	width: 415px;
 	float: left;
 	margin-left: 8px;
 }
@@ -63,7 +63,7 @@
 }
 .chat_wrapper #message_box .row .rightcol {
 	float: right;
-	width: 50px;
+	width: 65px;
 }
 .chat_wrapper #message_box .row .rightcol {
 	font-size: 10px;

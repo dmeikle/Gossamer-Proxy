@@ -6,10 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Panel - jQuery Mobile Demos</title>
 <!-- "http://fonts.googleapis.com/css?family=Open+Sans:300,400,700" -->
-<link rel="stylesheet" href="/css/fonts/googlefonts.css" />
-<link rel="stylesheet" href="/css/jqm/jquery.mobile-1.4.5.min.css">
-<link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"/>
-<link rel="stylesheet" href="/css/framework.tablet.css">
+<link rel="stylesheet" type="text/css" href="//css.phoenixrestorations.com/fonts/googlefonts.css" />
+<link rel="stylesheet" type="text/css" href="//css.phoenixrestorations.com/jqm/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" type="text/css" href="//css.phoenixrestorations.com/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="//css.phoenixrestorations.com/framework.tablet.css">
+<link rel="stylesheet" href="//javascript.phoenixrestorations.com/pagination.css">
 
 <!---css--->
 
@@ -38,11 +39,11 @@
     </div>
     
     <div id="left-col"> 
-        <a href="/admin/claims/0/20"><img src="/images/icons/jobs.png" width="64" height="64" alt="Claims"></a>
-        <img src="/images/icons/docs.png" width="64" height="64" alt="Documents"> 
-        <a href="/admin/staff/0/20"><img src="/images/icons/staff.png" width="64" height="64" alt="Staff"></a>
-        <img src="/images/icons/clients.png" width="64" height="64" alt="Clients">
-        <img src="/images/icons/buildings.png" width="64" height="64" alt="Buildings"> 
+        <a href="/admin/claims/0/20"><img src="//images.phoenixrestorations.com/nav-icons/jobs.png" width="64" height="64" alt="Claims"></a>
+        <img src="//images.phoenixrestorations.com/nav-icons/docs.png" width="64" height="64" alt="Documents"> 
+        <a href="/admin/staff/0/20"><img src="//images.phoenixrestorations.com/nav-icons/staff.png" width="64" height="64" alt="Staff"></a>
+        <img src="//images.phoenixrestorations.com/nav-icons/clients.png" width="64" height="64" alt="Clients">
+        <img src="//images.phoenixrestorations.com/nav-icons/buildings.png" width="64" height="64" alt="Buildings"> 
      </div>-->
     <!-- /left-col -->
     <div id="left-feature">

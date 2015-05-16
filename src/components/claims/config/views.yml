@@ -11,11 +11,15 @@ claims_new_claim_wizard_1:
             "section5": "src/themes/default/templates/sections/footer.php"          
 
 admin_claims_list:
-    template: admin-list-fullscreen.php
+    template: admin-list.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/claims/views/admin/subnav.php"
+            "featureslider": "src/components/claims/views/admin/view.php"
+            "featureslider-edit1": "src/components/claims/views/admin/edit1.php"
+            "featureslider-edit2": "src/components/claims/views/admin/edit2.php"
+            "featureslider-edit3": "src/components/claims/views/admin/edit3.php"
+            "featureslider-edit4": "src/components/claims/views/admin/edit4.php"
             "section3": "src/components/claims/views/admin/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
@@ -61,7 +65,7 @@ admin_claim_view:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
-            "section3": "src/components/claims/views/admin/claim.php"
+            "section3": "src/components/claims/views/admin/view-claim-info.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
 admin_claimlocation_view:

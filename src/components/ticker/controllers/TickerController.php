@@ -27,7 +27,7 @@ class TickerController extends AbstractController{
         $ipAddress = urldecode($ipAddress);
         
         $token = $this->model->requestToken($staffId, $ipAddress);
-       error_log($token);
+       
         $this->render(array('token' => $token));
     }
     

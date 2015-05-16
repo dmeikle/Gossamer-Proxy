@@ -36,7 +36,7 @@
 	float: left;
 	height: 64px;
 	width: 75px;
-	background-image: url(images/icons/logo.png);
+	background-image: url(//images.phoenixrestorations.com/nav-icons/logo.png);
 }
 #container #header form {
 	float: left;
@@ -47,4 +47,22 @@
 	width: 120px;
 	margin-left: 10px;
 	margin-top: 20px;
+}
+
+
+/** section for striping table rows **/
+.table-striped thead th, .table-striped tr:last-child{
+    border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(0,0,0.1);
+}
+.table-striped tbody td {
+    border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(0,0,0.05);
+}
+.table-striped tbody tr:last-child td {
+    border-bottom: 0;
+}
+.table-striped tbody tr:nth-child(odd) td {
+    background-color: #eeeeee;
+    border-bottom: rgba(0,0,0,.04);
 }

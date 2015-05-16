@@ -55,11 +55,18 @@ class ClaimBuilder extends AbstractBuilder{
                 ->add('receivedByStaffId', 'text', array('class' => 'form-control', $this->getValue('receivedByStaffId', $values)))
                 ->add('workAuthorizationReceiveDate', 'text', array('class' => 'form-control', $this->getValue('workAuthorizationReceiveDate', $values)))
                 ->add('calledInBy', 'text', array('class' => 'form-control', $this->getValue('calledInBy', $values)))
+                ->add('callInDate', 'text', array('class' => 'form-control', $this->getValue('callInDate', $values)))
+                ->add('calledInPhone', 'text', array('class' => 'form-control', $this->getValue('calledInPhone', $values)))
                 ->add('InsuranceCategories_id', 'text', array('class' => 'form-control', $this->getValue('InsuranceCategories_id', $values)))
                 ->add('OnCallCallInstances_id', 'text', array('class' => 'form-control', $this->getValue('OnCallCallInstances_id', $values)))
                 ->add('parentClaims_id', 'text', array('class' => 'form-control', $this->getValue('parentClaims_id', $values)))
                 ->add('leadTechnicalStaff_id', 'text', array('class' => 'form-control', $this->getValue('leadTechnicalStaff_id', $values)))
                 ->add('projectManager_id', 'text', array('class' => 'form-control', $this->getValue('projectManager_id', $values)))
+                ->add('contactName', 'text', array('class' => 'form-control', $this->getValue('contactName', $values)))
+                ->add('contactPhone', 'text', array('class' => 'form-control', $this->getValue('contactPhone', $values)))
+                ->add('sourceUnit', 'text', array('class' => 'form-control', 'value' => $this->getValue('sourceUnit', $values)))
+                ->add('reason', 'text', array('class' => 'form-control', 'value' => $this->getValue('reason', $values)))
+                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 
                 //->add('Provinces_id', 'select', array('class' => 'form-control', 'options' => $options['provinces']))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));

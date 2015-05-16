@@ -20,18 +20,53 @@ $(document).ready(function(){
 	}
 
         function buildNotificationRow(msg) {
-            
+          console.log(msg);
+          var date = new Date(msg.dateEntered.replace(" ","T"));
+         
             return '<div class="row">'+
                 '<div class="leftcol">icon: ' + (counter++) + '</div>' +
                 '<div class="middlecol">'+
                     '<div class="subject">' + msg.subject + '</div>'+
                     '<div class="message">' + msg.message + '</div>'+
                 '</div>'+
-                '<div class="rightcol">April 1<br />12:25PM</div>'+
+                '<div class="rightcol">' + formatDate(date) + '</div>'+
             '</div>';
               
               
         }
+        
+        function getMonth(monthNumber) {
+            var month = new Array();
+            month[0] = "Jan";
+            month[1] = "Feb";
+            month[2] = "Mar";
+            month[3] = "Apr";
+            month[4] = "May";
+            month[5] = "Jun";
+            month[6] = "Jul";
+            month[7] = "Aug";
+            month[8] = "Sep";
+            month[9] = "Oct";
+            month[10] = "Nov";
+            month[11] = "Dec";
+            
+            return month[monthNumber];
+        }
+        function formatDate(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            
+            return getMonth(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + " " + strTime;
+      }
+
+        
       var counter = 1;  
 	$('#send-btn').click(function(){ //use clicks message send button	
 		var mymessage = $('#message').val(); //get message text

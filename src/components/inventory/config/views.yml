@@ -1,0 +1,64 @@
+
+#-------------------- package types -----------------------
+super_inventory_packagetypes_list:     
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/packagetypes/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+#-------------------- categories -----------------------
+super_inventory_categories_list:     
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/categories/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+                        
+# ------------------- types -----------------------------
+
+super_inventory_inventorytypes_list:    
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/types/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+#--------------------- items --------------------------
+
+admin_inventory_equipment_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/items/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+
+admin_inventory_materials_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/items/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_inventory_items_list:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/items/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_inventory_items_edit:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section3": "src/components/inventory/views/admin/items/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+            

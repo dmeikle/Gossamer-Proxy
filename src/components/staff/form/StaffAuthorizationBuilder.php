@@ -31,7 +31,8 @@ class StaffAuthorizationBuilder extends AbstractBuilder{
         $builder->add('username', 'text', array('class' => 'form-control', 'value' => $this->getValue('username', $values)))
                 ->add('password', 'password', array('class' => 'form-control'))
                 ->add('passwordConfirm', 'password', array('class' => 'form-control'))
-                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));                
+                ->add('cancel', 'button', array('value' => 'Cancel', 'class' => 'btn btn-lg'))
+                ->add('submit', 'button', array('value' => 'Save', 'class' => 'btn btn-lg'));                
         
         return $builder->getForm();
     }
@@ -53,4 +54,13 @@ class StaffAuthorizationBuilder extends AbstractBuilder{
         
         return $builder->getForm();
     }
+    
+//    
+//    public function ajaxEdit($id) {
+//        $result = $this->model->edit(intval($id));
+//        unset($result['emergencyContacts']);
+//    
+//        $this->render(array('Staff' => $result));
+//    }
+    
 }

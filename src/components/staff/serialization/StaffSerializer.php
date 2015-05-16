@@ -14,7 +14,7 @@ namespace components\staff\serialization;
 use core\serialization\Serializer;
 
 /**
- * Description of WorkPerformed
+ * Description of StaffSerializer
  *
  * @author Dave Meikle
  */

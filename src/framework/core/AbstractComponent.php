@@ -95,8 +95,7 @@ abstract class AbstractComponent {
      * 
      */
     public function handleRequest(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
-        // echo __YML_KEY;
-         
+    
         $handler = array(
             $this->controllerName,
             $this->method

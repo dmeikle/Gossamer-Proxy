@@ -17,6 +17,7 @@ use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use components\claims\form\ClaimBuilder;
 use components\claims\serialization\ClaimSerializer;
+use core\navigation\Pagination;
 
 
 
@@ -57,6 +58,13 @@ class ClaimsController extends AbstractController{
         $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
     
+    public function get($claimId) {
+        //$result = $this->model->get($claimId);              
+        $claim = $this->httpRequest->getAttribute('Claim');
+        
+        $this->render(array('claim' => $claim));
+    }
+    
  
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
@@ -64,7 +72,7 @@ class ClaimsController extends AbstractController{
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
 
         $options = array();
-        
+        pr($this->httpRequest->getAttribute('ClaimTypes'));
         return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
     
@@ -80,5 +88,34 @@ class ClaimsController extends AbstractController{
         $rawJobNumber = $this->httpRequest->getQueryParameter('term');
         
         return preg_replace('/[^A-z0-9\-]/', '', substr($rawJobNumber, 0, 10));
+    }
+    
+    public function view($claimNumber = null) {
+        $result = $this->model->view($claimNumber);
+        
+        $this->render($result);
+    }
+    
+    
+    /**
+     * listallReverseWithForm - retrieves rows based on offset, limit
+     * 
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listallReverseWithForm($offset = 0, $limit = 20) {
+        $result = $this->model->listallReverse($offset, $limit);
+
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+            $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            unset($pagination);
+            
+            $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
+        } else {
+            $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
+        }
+
+       // $this->render($result);
     }
 }

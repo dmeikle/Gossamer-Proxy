@@ -21,8 +21,10 @@ class Password {
     const MAX_PASSWORD_HISTORY = 6;
     
     public function formatPasswordHistory($password, array $values = null) {
-        $history = $values['passwordHistory'];
-        
+        $history = '';
+        if(array_key_exists('passwordHistory', $values)) {
+            $history = $values['passwordHistory'];
+        }
         $list = explode('|', $history);
         $list[] = ($password);
         if(count($list) > self::MAX_PASSWORD_HISTORY) {

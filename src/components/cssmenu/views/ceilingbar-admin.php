@@ -33,19 +33,27 @@
         <input type="hidden" name="locale" id="locale" />
     </form>
   </div>
-
+<!--
    <div id="locales">
          
            <a class="select-locale" data-id="en_US">EN</a> 
            <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
            <a class="select-locale" data-id="hi_IN">Hindi</a>
         </div>
-
+-->
 
     <div id='cssmenu'>
         
      
         <ul>
+            <li class='active'><a href="#">Home</a></li>
+            <li class='active'><a href="#">Status</a></li>
+            <li class='active'><a href="#">Profile</a></li>
+            <li class='active'><a href="#">Help</a></li>
+            <li class='active'><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+            <li class='active'><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+            <li class='has-sub'><a href='#'>Quick</a>
+                <ul>                            
             <?php foreach($NAVIGATION as $navItem) {
                 if(array_key_exists('children', $navItem)) { ?>
                     <li class='has-sub'><a href='<?php echo $navItem['pattern'];?>'><span><?php echo $this->getString($navItem['text_key']);?></span></a>
@@ -61,8 +69,9 @@
             <?php
                 }
             }
-            ?>            
-                
+            ?>  
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

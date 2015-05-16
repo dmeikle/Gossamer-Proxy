@@ -11,6 +11,13 @@ projectaddress_autocompletetest:
             "section3": "src/components/companies/views/test.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
+    
+projectaddress_get_form:   
+    template: ajax-html.php
+    sections: 
+        -
+            "section1": "src/components/projects/views/admin/newclaim1.php"
+            
 projectaddress_edit:
     template: admin-list.php
     sections: 
@@ -29,6 +36,7 @@ projectaddress_list:
             "section2": "src/components/projects/views/admin/subnav.php"
             "section3": "src/components/projects/views/admin/list-addresses.php"
             "section4": "src/themes/default/templates/sections/footer.php"  
+            "featureslider-edit": "src/components/projects/views/admin/edit.php"
             
 floorplans_edit:  
     template: admin-list.php

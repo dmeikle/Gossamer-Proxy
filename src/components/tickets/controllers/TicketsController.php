@@ -92,8 +92,10 @@ class TicketsController extends AbstractController{
     }
     
     private function buildDepartments(array $values = null) {
+        
         //loaded from listener
         $departments = $this->httpRequest->getAttribute('Departments');
+        pr($departments);
         $departmentSerializer = new DepartmentSerializer();
         
         return $departmentSerializer->formatSelectionBoxOptions($departments, $values, 'name');

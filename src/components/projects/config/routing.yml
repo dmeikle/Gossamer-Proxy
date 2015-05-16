@@ -65,22 +65,8 @@ floorplans_save:
         viewKey: floorplans_save
         datasource: datasource1
     methods: [POST]  
-    
-    
-projectaddress_edit:
-    pattern: admin/projects/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\projects\ProjectsComponent
-        controller: components\projects\controllers\ProjectAddressesController
-        model: components\projects\models\ProjectAddressModel
-        method: edit
-        view: core\views\TemplateView
-        viewKey: projectaddress_edit
-        datasource: datasource1
-    methods: [GET]
-        
+         
+         
          
 projectaddress_save:
     pattern: admin/projects/*
@@ -92,20 +78,50 @@ projectaddress_save:
         controller: components\projects\controllers\ProjectAddressesController
         model: components\projects\models\ProjectAddressModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: projectaddress_save
         datasource: datasource1
     methods: [POST]
-               
-  
-        
-projectaddress_list:
-    pattern: admin/projects/*/*
+                   
+    
+projectaddress_edit:
+    pattern: admin/projects/view/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
     defaults:
         component: components\projects\ProjectsComponent
         controller: components\projects\controllers\ProjectAddressesController
         model: components\projects\models\ProjectAddressModel
-        method: listall
+        method: edit
+        view: core\views\JSONView
+        viewKey: projectaddress_edit
+        datasource: datasource1
+    methods: [GET]
+        
+projectaddress_get_form:
+    pattern: admin/projects/form/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: getForm
+        view: core\views\AJAXHTMLView
+        viewKey: projectaddress_edit
+        datasource: datasource1
+    methods: [GET]
+  
+        
+projectaddress_list:
+    pattern: admin/projects/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: listallWithForm
         view: core\views\TemplateView
         viewKey: projectaddress_list
         datasource: datasource1      

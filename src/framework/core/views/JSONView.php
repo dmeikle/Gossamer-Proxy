@@ -27,6 +27,9 @@ class JSONView extends AbstractView {
         //we don't want this in our json
         unset($data['SystemLocalesList']);
         unset($data['NAVIGATION']);
+        
+        unset($data['locales']);
+     
         if (!is_null($this->getData())) {
             try {
                 

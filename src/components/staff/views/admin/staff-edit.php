@@ -1,3 +1,4 @@
+<a href="/admin/staff/0/20">go</a>	
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css"/>
 <script src="/js/jqm/jquery.js"></script>
 <script src="/js/jquery-ui.js"></script>

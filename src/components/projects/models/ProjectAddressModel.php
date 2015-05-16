@@ -17,6 +17,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
+
 /**
  * Description of PropertyModel
  *
@@ -33,13 +34,19 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         $this->entity = 'ProjectAddress';
         $this->tablename = 'projectaddresses';
     }
+//    
+//    public function search(array $term) {
+//        $params = array('keywords' => $this->httpRequest->getPost());
+//       
+//        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
+//      
+//        return $this->formatResults($data['ProjectAddresses']);
+//    }
     
     public function search(array $term) {
-        $params = array('keywords' => $this->httpRequest->getPost());
-       
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
-      
-        return $this->formatResults($data['ProjectAddresses']);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $term);
+        
+        return $this->formatResults($data['ProjectAddresses']);        
     }
     
     public function save($id) {
@@ -64,11 +71,12 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         foreach($results as $row) {
             $retval[] = array(
                 'id' => $row['id'],
-                'label' => $row['buildingName'] . "," . $row['address1'] . ", " . $row['address2'].", " .
-                $row['city'],
-                'value' => '<b>' .$row['buildingName'] . "</b><br />" . $row['address1'] . "<br />" . 
-                ((strlen($row['address2']) > 0)? $row['address2'] . '<br />' :'') .
-                $row['city']
+                'label' => $row['strataNumber'] . ' - ' . $row['buildingName'] . "," . $row['address1'] . ", " . $row['city'],
+                //'value' => json_encode(array('strataNumber' => $row['strataNumber'], 'buildingName' => $row['buildingName'], 'address1' => $row['address1'], 'city' => $row['city']))
+                'value' => $row['strataNumber'],
+                'buildingName' => $row['buildingName'],
+                'address1' => $row['address1'], 
+                'city' => $row['city']
                 );
         }
         

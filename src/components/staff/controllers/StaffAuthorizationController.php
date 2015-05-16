@@ -50,14 +50,24 @@ class StaffAuthorizationController extends AbstractController
         $router->redirect('admin_staff_permissions_get', array($id));
     }
     
+    public function ajaxSaveCredentials($id) {
+        $result = $this->model->saveCredentials(intval($id));
+        
+        //update the local user settings
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $result));
+        
+        return $result;
+    }
     /**
      * edit - display an input form based on requested id
      * 
      * @param int id    primary key of item to edit
      */
     public function editCredentials($id) {
-       
-        $result = $this->model->edit($id);
+        $result = array('StaffAuthorization' => array());
+        if(intval($id) > 0) {
+            $result = $this->model->edit($id);
+        }
         
         $result['form'] = $this->drawCredentialsForm($this->model,  $result['StaffAuthorization']);
       
@@ -65,12 +75,18 @@ class StaffAuthorizationController extends AbstractController
     } 
     
     public function editPermissions($id) {
+        $result = array('StaffAuthorization' => array());
+        if(intval($id) > 0) {
+            $result = $this->model->edit($id);
+        }
         
-        $result = $this->model->edit($id);
         $form = $this->drawPermissionsForm($this->model, $result['StaffAuthorization']);
-      
+     
         $departments = $this->httpRequest->getAttribute('Departments');
-        $roles = explode('|', $result['StaffAuthorization']['roles']);
+        $roles = array();
+        if(array_key_exists('roles', $result['StaffAuthorization'])) {
+            $roles = explode('|', $result['StaffAuthorization']['roles']);
+        }
 
         $this->render(array('Departments' => $departments, 'StaffAuthorization' => $result['StaffAuthorization'], 'roles' => $roles));
     }

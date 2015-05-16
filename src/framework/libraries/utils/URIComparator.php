@@ -42,6 +42,7 @@ class URIComparator {
 
                     return $outerkey;
                 }
+                file_put_contents('/var/www/phoenix-portal/logs/routing.log',$uri . " = " . $grouping['pattern']."\r\n", FILE_APPEND);
                 if ($this->parseWildCard($uri, $grouping['pattern'])) {
 
                     return $outerkey;

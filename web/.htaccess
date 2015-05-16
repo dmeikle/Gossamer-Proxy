@@ -1,5 +1,6 @@
 RewriteEngine on
 RewriteBase /
+Header set Access-Control-Allow-Origin "*" 
 
 RewriteCond $1 !\.(gif|jpe?g|png|css|js|images)$ [NC]
 RewriteCond %{REQUEST_FILENAME} !-d

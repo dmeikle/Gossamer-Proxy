@@ -41,6 +41,7 @@ class Pagination {
      * @return string
      */
     public function getPagination($rowCount, $offset, $limit) {
+      
         $this->rowCount = $rowCount;
         $this->offset = $offset;
         $this->limit = $limit;

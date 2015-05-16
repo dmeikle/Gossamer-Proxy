@@ -179,9 +179,52 @@ class AbstractController {
 
         $this->render($result);
     }
-
+    
     /**
      * listall - retrieves rows based on offset, limit
+     * 
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listallWithForm($offset = 0, $limit = 20) {
+        $result = $this->model->listall($offset, $limit);
+        $paginationResult = '';
+      
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+            $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            unset($pagination);
+            
+            $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
+        } else {
+            $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
+        }
+    }
+
+    /**
+     * listallReverseWithForm - retrieves rows based on offset, limit
+     * 
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listallReverseWithForm($offset = 0, $limit = 20) {
+        $result = $this->model->listallReverse($offset, $limit);
+
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+            $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            unset($pagination);
+            
+            $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
+        } else {
+            $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
+        }
+
+       // $this->render($result);
+    }
+
+    /**
+     * listallReverse - retrieves rows based on offset, limit
      * 
      * @param int offset    database page to start at
      * @param int limit     max rows to return
@@ -265,6 +308,17 @@ class AbstractController {
 
         $this->render($result);
     }
+    
+    /**
+     * view - dependent on listeners to provide all data
+     * 
+     * @param int id    primary key of item to retrieve
+     
+    public function view($id = null) {
+        
+
+        $this->render(array());
+    }*/
 
     /**
      * 
@@ -323,5 +377,22 @@ class AbstractController {
 
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect($ymlKey, $params);
+    }
+    
+    public function paginationJson($offset, $limit) {
+        $result = $this->model->paginate($offset, $limit);
+     
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+            $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
+            unset($pagination);
+        } 
+      $count = array();
+      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
+      $count[] = array("offset"=>"2","limit"=>"2","current"=>"");
+      $count[] = array("offset"=>"4","limit"=>"2","current"=>"current");
+      $count[] = array("offset"=>"6","limit"=>"2","current"=>"");
+      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
+        $this->render($count);
     }
 }

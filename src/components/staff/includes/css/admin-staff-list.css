@@ -11,29 +11,59 @@
     Author     : dave meikle
 */
 
-.staff-member {
+.staff-member.pane {
 	font-size:12px;
-	width: 260px;
+	
 	float: left;
 	margin: 10px;
 	border: solid 1px gray;
         border-radius:5px;
 	padding: 5px;	
-	height: 180px;
+	
 }
-.staff-member img {
+.staff-member.pane img {
 	float: left;
 	margin: 0px 5px 5px 0px;
 }
-.staff-member .name {
+.staff-member.pane .name {
 	margin-top:15px;
 	font-weight:600;
 }
-.staff-member .email {
+.staff-member.pane .email {
 	margin-top: 02px;
 	clear:both;
 }
-
+.staff-member.pane .logged-in {
+	float: right;
+}
+/*
 #staff-edit-slider {
-    width: 795px;
+    position: absolute;
+    top: 30px;
+    margin-left: -300px;
+    min-width: 300px;
+    max-width: 750px;
+    width: 100%;
+}
+
+*/
+
+#slide-panel {
+    //width:300px;
+    //height:300px;
+    padding:10px;
+    background:#eee;
+    //margin-left:-300px;
+    position: absolute;
+    top: 30px;
+    position: fixed;
+}
+#opener {
+    float:left;
+    margin:-10px 0px 0px -50px;
+    border-radius:0;
+}
+
+#staff-form {
+    background-color: white;
 }
