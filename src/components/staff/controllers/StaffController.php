@@ -149,8 +149,8 @@ class StaffController extends AbstractController {
         $this->render(array());
     }
     
-    public function backboneListall() {
-        $result = $this->model->listall(0,20);
+    public function backboneListall($offset, $limit) {
+        $result = $this->model->listall($offset, $limit);
        
         $this->render($result['Staffs']);
     }

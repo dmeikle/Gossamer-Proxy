@@ -144,6 +144,17 @@ class RestClient implements \Iterator, \ArrayAccess {
         return $this->execute($url, 'POST', $parameters, $headers);
     }
 
+    
+    
+
+// to curl upload an image:
+//$ch = curl_init();
+//$data = array('name' => 'Foo', 'file' => '@/path/to/image.jpeg');
+//curl_setopt($ch, CURLOPT_URL, 'http://localhost/upload.php');
+//curl_setopt($ch, CURLOPT_POST, 1);
+//curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//curl_exec($ch);
+
     public function execute($url, $method='GET', $parameters=array(), $headers=array()){
         $client = clone $this;
         $client->url = $url;

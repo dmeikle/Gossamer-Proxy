@@ -387,12 +387,13 @@ class AbstractController {
             $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
             unset($pagination);
         } 
-      $count = array();
-      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
-      $count[] = array("offset"=>"2","limit"=>"2","current"=>"");
-      $count[] = array("offset"=>"4","limit"=>"2","current"=>"current");
-      $count[] = array("offset"=>"6","limit"=>"2","current"=>"");
-      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
+//        //TODO: this is simply here for debugging and should be removed
+//      $count = array();
+//      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
+//      $count[] = array("offset"=>"2","limit"=>"2","current"=>"");
+//      $count[] = array("offset"=>"4","limit"=>"2","current"=>"current");
+//      $count[] = array("offset"=>"6","limit"=>"2","current"=>"");
+//      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
         $this->render($count);
     }
 }

@@ -22,8 +22,13 @@ use core\components\security\core\Client;
 class TickerModel extends AbstractModel {
     
     public function requestToken($staffId, $ipAddress) {        
-
-        $webSocketClient = new WebSocketClient('192.168.2.252', 9000);
+echo "ticker model";
+$config = $this->getCredentials();
+        
+        $url = $config['url'];
+        $port = $config['port'];
+        
+        $webSocketClient = new WebSocketClient($url, $port);
         $rawResponse = $webSocketClient->requestNewToken($staffId, $ipAddress);
         unset($webSocketClient);
         $responseArray = $this->parseResponse($rawResponse);
@@ -51,5 +56,19 @@ class TickerModel extends AbstractModel {
         }
         
         return $headers;
+    }
+    
+    
+     private function getCredentials() {
+        $loader = new \libraries\utils\YAMLParser($this->logger);
+        $loader->setFilePath(__CONFIG_PATH . '\config.yml');
+        
+        $config = $loader->loadConfig();
+        if(!array_key_exists('ticker', $config)) {
+            throw new \exceptions\KeyNotSetException('ticker key missing from config');
+        }
+        
+        return $config['ticker'];
+        
     }
 }

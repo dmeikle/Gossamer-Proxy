@@ -1,11 +1,11 @@
 
 admin_twitter_traffic:
-    pattern: admin/twitter/gettraffic/* 
+    pattern: admin/twitter/gettraffic/*/*
     defaults:
         component: components\twitter\TwitterComponent
         controller: components\twitter\controllers\TwitterController
         model: components\twitter\models\TwitterModel
-        method: getTraffic
+        method: requestToken
         view: core\views\AJAXHTMLView
         viewKey: admin_twitter_traffic
         datasource: datasource1

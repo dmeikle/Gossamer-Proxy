@@ -16,4 +16,6 @@
     <td><?php echo $form['toTime']; ?></td>
   </tr>
 </table>
-list staff here
+<?php foreach($Staffs as $staff) {?>
+    <?php echo $staff['firstname'];?>
+<?php } ?>

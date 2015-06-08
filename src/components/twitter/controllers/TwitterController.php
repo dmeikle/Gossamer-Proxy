@@ -28,4 +28,13 @@ class TwitterController extends AbstractController {
        
        $this->render(array('feed' => $serializer->formatResults($result)));
    }
+   
+   public function requestToken($staffId, $ipAddress) {
+        $staffId = intval($staffId);
+        $ipAddress = urldecode($ipAddress);
+        
+        $token = $this->model->requestToken($staffId, $ipAddress);
+       
+        $this->render(array('token' => $token));
+    }
 }

@@ -35,6 +35,9 @@ admin_scheduling_graph:
     
 admin_scheduling_calendar:
     pattern: admin/scheduling/calendar/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}
+        
     defaults:
         component: components\scheduling\SchedulingComponent
         controller: components\scheduling\controllers\SchedulesController

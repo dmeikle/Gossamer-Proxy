@@ -1,6 +1,11 @@
-<!-- css start 
-@components/twitter/includes/css/traffic.css
-<!-- css end --->
+
+
+<!--- javascript start --->
+    @components/twitter/includes/js/admin-traffic.js
+<!--- javascript end --->
+
+
+
 
 <style>
     #twitter-traffic-feed .row {
@@ -23,21 +28,22 @@
         float: right;
     }
 </style>
-
+<input type="hidden" id="traffic-token" value="<?php echo $token;?>" >
 <div id='twitter-traffic-feed'>
     <div class="panel panel-default">
         <div class="panel-heading">
            Traffic Updates
         </div>
+        <div id="traffic-rows" style="overflow-y: scroll; height: 400; overflow-x: hidden">
     <?php
-
+/*
         foreach($feed as $key => $value) {?>
         <div class="row">
                 <div class="date"><?php echo $value['date'];?></div>
                 <div class="subject"><?php echo $value['subject'];?></div>
         </div>
-    <?php } ?>
-
+    <?php } */?>
+        </div>
     </div>
 </div>
 

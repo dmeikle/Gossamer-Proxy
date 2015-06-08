@@ -190,7 +190,7 @@ class AbstractView {
 
 
             //extract($this->data->content);
-            eval("?>" . $this->template);
+           echo (eval("?>" . $this->template));
 
             $this->template = '';
             $this->renderComplete = true;

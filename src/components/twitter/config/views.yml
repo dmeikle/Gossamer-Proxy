@@ -2,7 +2,7 @@
 
        
 admin_twitter_traffic:  
-    template: ajax-html.php
+    template: newsfeed.php
     sections: 
         -
             "section1": "src/components/twitter/views/traffic.php"

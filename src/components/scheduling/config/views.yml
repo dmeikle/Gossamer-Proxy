@@ -28,4 +28,5 @@ admin_scheduling_calendar:
             "section2": "src/components/scheduling/views/subnav.php"
             "section3": "src/components/scheduling/views/admin/calendar.php"
             "section4": "src/themes/default/templates/sections/footer.php"
+          #  "featureslider-edit": "src/components/scheduling/views/admin/edit.php"
     

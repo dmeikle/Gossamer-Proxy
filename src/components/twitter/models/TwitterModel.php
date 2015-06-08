@@ -16,6 +16,8 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 use TwitterAPIExchange;
+use components\twitter\lib\WebSocketClient;
+
 
 /**
  * TicketModel
@@ -67,5 +69,37 @@ class TwitterModel extends AbstractModel {
         
         return $config['twitter'];
         
+    }
+    
+    public function requestToken($staffId, $ipAddress) {        
+
+        $webSocketClient = new WebSocketClient('192.168.2.252', 9001);
+        $rawResponse = $webSocketClient->requestNewToken($staffId, $ipAddress);
+        unset($webSocketClient);
+        $responseArray = $this->parseResponse($rawResponse);
+        $response = '';
+        
+        if(is_array($responseArray)) {
+           return substr(current($responseArray),0, -2);
+        }
+        
+        return null;        
+    }
+
+    private function parseResponse($rawToken) {
+        $headers = array();
+       
+        $lines = preg_split("/\r\n/", $rawToken);
+    
+        foreach($lines as $line)
+        {
+            $line = chop($line);
+            if(preg_match('/\A(\S+): (.*)\z/', $line, $matches))
+            {               
+                $headers[$matches[1]] = $matches[2];
+            }
+        }
+        
+        return $headers;
     }
 }

@@ -30,16 +30,19 @@
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
       options.url = 'http://dev.phoenixrestorations.com' + options.url;
     });
+    var offset = 0;
+    var limit = 20;
+    
     var Users = Backbone.Collection.extend({
-      url: '/admin/staff/rest/0/20'
+      url: '/admin/staff/rest/' + offset + '/' + limit
     });
     
     var User = Backbone.Model.extend({
       urlRoot: '/admin/staff/rest'
     });
     
-    var Paginators = Backbone.Model.extend({
-        urlRoot: '/admin/staff/pagination/0/2'
+    var Paginators = Backbone.Collection.extend({
+        url: '/admin/staff/pagination/0/20'
     });
     
     var PaginatorView = Backbone.View.extend({
@@ -59,15 +62,27 @@
     var paginatorView = new PaginatorView();
     var UserListView = Backbone.View.extend({
       el: '.page',
-      render: function () {
+      render: function (options) {
         var that = this;
-        var users = new Users();
-        users.fetch({
-          success: function (users) {
-            var template = _.template($('#user-list-template').html(), {users: users.models});
-            that.$el.html(template);
-          }
-        })
+        if(options) {
+          offset = options.offset;
+          limit = options.limit;
+          users = new Users({'offset': options.offset, 'limit': options.limit});
+          users.fetch({
+            success: function (users) {
+              var template = _.template($('#user-list-template').html(), {users: users.models});
+              that.$el.html(template);
+            }
+          })
+        } else {
+            var users = new Users({'offset': offset, 'limit': limit});
+            users.fetch({
+              success: function (users) {
+                var template = _.template($('#user-list-template').html(), {users: users.models});
+                that.$el.html(template);
+              }
+            })
+        }
       }
     });
     var userListView = new UserListView();
@@ -133,3 +148,7 @@
     });
     
     Backbone.history.start();
+    
+    $('.pagination').click(function() {
+        userListView.render({offset: $(this).data('offset'), limit: $(this).data('limit')});
+    });

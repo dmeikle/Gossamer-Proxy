@@ -208,7 +208,8 @@ form {
                 </div>
                 <div class="feed">
                     <?php
-                        echo $this->getMenu('admin_twitter_traffic', array(10));
+                        //echo $this->getMenu('admin_twitter_traffic', array(10));
+                        echo $this->getContent('admin_twitter_traffic', array('2', '192.168.2.120'));
                     ?>
                 </div>
             </div>

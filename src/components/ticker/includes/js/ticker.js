@@ -10,7 +10,7 @@
 
 $(document).ready(function(){
 	//create a new WebSocket object.
-	var wsUri = "ws://192.168.2.252:9000/staff/connect?" + encodeURI($('#ticker-token').val()); 
+	var wsUri = "ws://ticker.phoenixrestorations.com:9000/staff/connect?" + encodeURI($('#ticker-token').val()); 
      
 	websocket = new WebSocket(wsUri); 
 	
@@ -19,22 +19,21 @@ $(document).ready(function(){
                 loadHistory();
 	}
 
-        function buildNotificationRow(msg) {
-          console.log(msg);
-          var date = new Date(msg.dateEntered.replace(" ","T"));
+        function buildTickerRow(msg) {
+       
+          //var date =(msg.dateEntered.replace(" ","T"));
          
             return '<div class="row">'+
-                '<div class="leftcol">icon: ' + (counter++) + '</div>' +
+                '<div class="leftcol">icon: ' + (tickerCounter++) + '</div>' +
                 '<div class="middlecol">'+
                     '<div class="subject">' + msg.subject + '</div>'+
                     '<div class="message">' + msg.message + '</div>'+
                 '</div>'+
-                '<div class="rightcol">' + formatDate(date) + '</div>'+
-            '</div>';
-              
+                '<div class="rightcol">' + formatDate(msg.dateEntered) + '</div>'+
+            '</div>';              
               
         }
-        
+  
         function getMonth(monthNumber) {
             var month = new Array();
             month[0] = "Jan";
@@ -52,22 +51,36 @@ $(document).ready(function(){
             
             return month[monthNumber];
         }
+        
         function formatDate(date) {
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
+            var datetime = date.split(' ');
+            var dateArray = datetime[0].split('-');
+            
+            var time = datetime[1].split(':');
+            var hours = time[0] % 12;
+            hours = hours ? hours : 12;// the hour '0' should be '12'
+            var minutes = time[1] < 10 ? '0' + time[1] : time[1];
             var ampm = hours >= 12 ? 'PM' : 'AM';
             
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0'+minutes : minutes;
-            
             var strTime = hours + ':' + minutes + ' ' + ampm;
-            
-            return getMonth(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + " " + strTime;
-      }
+            return getMonth(parseInt(dateArray[1])) + ' ' + dateArray[2] + ' ' + '<br>' + strTime;
+        }
+//        function formatDate(date) {
+//            var hours = date.getHours();
+//            var minutes = date.getMinutes();
+//            var ampm = hours >= 12 ? 'PM' : 'AM';
+//            
+//            hours = hours % 12;
+//            hours = hours ? hours : 12; // the hour '0' should be '12'
+//            minutes = minutes < 10 ? '0'+minutes : minutes;
+//            
+//            var strTime = hours + ':' + minutes + ' ' + ampm;
+//            
+//            return getMonth(date.getMonth()) + " " + date.getDate() + " " + date.getFullYear() + " " + strTime;
+//      }
 
         
-      var counter = 1;  
+      var tickerCounter = 1;  
 	$('#send-btn').click(function(){ //use clicks message send button	
 		var mymessage = $('#message').val(); //get message text
 		var myname = $('#name').val(); //get user name
@@ -128,23 +141,18 @@ $(document).ready(function(){
                     for(i = 0; i < msg.rows.length; i++) {
                         var row = msg.rows[i];
                         start = msg.rows[i].id;
-                        $('#message_box').append(buildNotificationRow(row));
+                        $('#message_box').append(buildTickerRow(row));
+                        
                     }
                 }
-//		if(type == 'usermsg') 
-//		{
-//			$('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
-//		}
-//		if(type == 'system')
-//		{
-//			$('#message_box').append("<div class=\"system_msg\">"+umsg+"</div>");
-//		}
 
-                
 		
-		$('#message').val(''); //reset text
 	};
 	
 	websocket.onerror	= function(ev){$('#message_box').append("<div class=\"system_error\">Error Occurred - "+ev.data+"</div>");}; 
-	websocket.onclose 	= function(ev){$('#message_box').append("<div class=\"system_msg\">Connection Closed</div>");}; 
+        
+        window.onbeforeunload = function() {
+            websocket.onclose 	= function(ev){$('#message_box').append("<div class=\"system_msg\">Connection Closed</div>");};         
+            websocket.close();
+        };
 });

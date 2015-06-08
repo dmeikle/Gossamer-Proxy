@@ -72,7 +72,7 @@ class AbstractModel {
         $this->logger = $logger;
         $this->entity = get_called_class();
     }
-
+/*
     public function search(array $term) {
         
         $params = array('directive::ORDER_BY' => key($term), 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
@@ -82,7 +82,7 @@ class AbstractModel {
         
         return $data;
     }
-    
+    */
     /**
      * 
      * @return boolean

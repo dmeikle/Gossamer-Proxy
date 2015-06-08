@@ -136,14 +136,14 @@
   </script>
   
   <script type="text/template" id="paginator-template">
-      <%  
-          alert('here');        
-    console.log(paginators); %>
+  
                   
       <li><a data-limit="20" data-offset="0" data-url="/admin/staff" class="pagination">«</a></li> 
-     <% _.each(paginators, function(paginator) { %>
+     <%
+        var counter = 1;         
+        _.each(paginators, function(paginator) { %>
             <li>
-                <a data-limit="<%= paginator.limit %>" data-offset="<%= paginator.offset %>" data-url="/admin/staff" class="pagination"><% 1 %></a>
+                <a data-limit="<%= paginator.get('limit') %>" data-offset="<%= paginator.get('offset') %>" data-url="/admin/staff" class="pagination"><%= counter++ %></a>
             </li> 
            
       <% }); %>
