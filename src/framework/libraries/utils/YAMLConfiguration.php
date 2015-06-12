@@ -67,7 +67,7 @@ class YAMLConfiguration {
         $explodedPath = explode('/', $routingPath);
 
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
-        error_log("YML $ymlKey");
+        
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
         try{
             $nodeParams = $this->getYMLNodeParameters($ymlKey);

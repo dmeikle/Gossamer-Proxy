@@ -14,8 +14,8 @@ user_authentication_provider:
     datasource: datasource3
     
 staff_authentication_provider:
-    handler: 'core\components\security\providers\StaffAuthenticationProvider'
-    datasource: datasource3
+    handler: 'components\staff\providers\StaffAuthenticationProvider'
+    datasource: datasource4 
     
     
 contact_authentication_provider: 

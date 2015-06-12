@@ -16,14 +16,18 @@ use core\components\security\core\ClientInterface;
 use core\datasources\DatasourceAware;
 use core\components\security\core\Client;
 use core\components\security\exceptions\ClientCredentialsNotFoundException;
+use core\services\ServiceInterface;
 
 /**
- * Authentictes Users trying to access the system
+ * Authenticates Users trying to access the system
  *
  * @author Dave Meikle
  */
-class UserAuthenticationProvider extends DatasourceAware implements AuthenticationProviderInterface {
+class UserAuthenticationProvider extends DatasourceAware implements AuthenticationProviderInterface, ServiceInterface {
 
+    protected $container;
+    
+    
     /**
      * load the client info
      * 
@@ -98,6 +102,18 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
         }
 
         return $the_ip;
+    }
+
+    public function execute() {
+        
+    }
+
+    public function setContainer(\libraries\utils\Container $container) {
+        $this->container = $container;
+    }
+
+    public function setParameters(array $params) {
+        
     }
 
 }

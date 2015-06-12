@@ -61,8 +61,14 @@ class YAMLParser {
      * @return array
      */
     public function loadConfig() {
-
-        return Yaml::parse($this->ymlFilePath);
+        if(!file_exists($this->ymlFilePath)) {
+            return false;
+        }
+        $contents = file_get_contents($this->ymlFilePath);
+        if(!$contents) {
+            return false;
+        }
+        return Yaml::parse($contents);
     }
 
     /**

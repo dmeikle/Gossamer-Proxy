@@ -31,10 +31,11 @@ class LoadStaffRolesByIdListener extends AbstractListener{
         $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
         $query = sprintf('select roles from StaffAuthorizations where Staff_id = %d limit 1', $staffId);
      
-        $rawResult = $datasource->execute($query);
-       
-        if(is_array($rawResult)) {
-            $this->httpRequest->setAttribute('ROLES', explode('|', $rawResult[0]['roles']));
-        }
+       // $rawResult = $datasource->execute($query);
+       //TODO: this listener is being depricated. just hard code a result in until its retired
+        $rawResult="IS_ADMINISTRATOR|IS_SUPER_USER|IS_MANAGER|IS_POWER_USER|IS_PROJECT_MANAGER";
+        //if(is_array($rawResult)) {
+            $this->httpRequest->setAttribute('ROLES', explode('|', $rawResult));
+        //}
     }
 }

@@ -12,7 +12,7 @@
 namespace components\staff\listeners;
 
 use core\eventlisteners\AbstractListener;
-use components\staff\models\StaffPreferenceModel;
+use components\staff\models\StaffAuthorizationModel;
 use core\eventlisteners\Event;
 
 /**
@@ -24,14 +24,16 @@ class ResetLoginAttemptsListener extends AbstractListener {
 
     public function on_login_success(Event $event) {
         $params = $event->getParams();
-        $client = $params['client'];
-        $model = new StaffPreferenceModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $model = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $datasource = $this->getDatasource($model);
-
-        $datasource->query("update StaffAuthorizations set failedLogins = 0 where username='" . $client->getCredentials() . "'");
-
-        unset($datasource);
-        unset($model);
+        $client = $params['client'];
+        $data = array('Staff_id' => $client->getId(),
+            'failedLogins' => '0');
+       // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
+    
+        $result = $datasource->query('post', $model, 'save', $data);
+        
     }
-
+        
+        
 }

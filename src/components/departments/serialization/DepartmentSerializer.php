@@ -29,8 +29,11 @@ class DepartmentSerializer extends Serializer{
         $retval = array();
    
         foreach($list as $row) {
-      
-        $retval[$row['id']] = $row['name'];
+            
+            if(!array_key_exists('id', $row)) {
+                continue;
+            }
+            $retval[$row['id']] = $row['name'];
         }
       
         return $retval;

@@ -28,8 +28,10 @@ class StaffPositionsSerializer extends Serializer{
         $retval = array();
       
         foreach($list as $row) {
-      
-        $retval[$row['id']] = $row['position'];
+            if(!array_key_exists('id', $row)) {
+                continue;
+            }
+            $retval[$row['id']] = $row['position'];
         }
       
         return $retval;

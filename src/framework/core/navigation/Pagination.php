@@ -52,7 +52,7 @@ class Pagination {
 
         for ($i = 0; $i < $this->getNumPages(); $i++) {
             $dataOffset = ($i * $limit);
-            $item = array("data-offset" => "$dataOffset", "data-limit" => $limit);
+            $item = array("offset" => "$dataOffset", "limit" => $limit);
             if (!$currentEstablished && $offset <= $dataOffset) {
                 $item["current"] = 'current';
                 $currentEstablished = true;
@@ -115,18 +115,18 @@ class Pagination {
         $retval = '<div>
            
             <ul class="pagination">';
-        $retval .= '<li><a class="pagination ' . $firstPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $firstPagination['data-offset'] .
-                '" data-limit="' . $firstPagination['data-limit'] . '">&laquo;</a></li>';
+        $retval .= '<li><a class="pagination ' . $firstPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $firstPagination['offset'] .
+                '" data-limit="' . $firstPagination['limit'] . '">&laquo;</a></li>';
         foreach ($pagination as $index => $page) {
 
-            $pageval = ' <li><a class="pagination ' . $page['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $page['data-offset'] .
-                    '" data-limit="' . $page['data-limit'] . '" >' . ($index + 1) . '</a></li>';
+            $pageval = ' <li><a class="pagination ' . $page['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $page['offset'] .
+                    '" data-limit="' . $page['limit'] . '" >' . ($index + 1) . '</a></li>';
 
             $retval .= $pageval;
         }
 
-        $retval .= ' <li><a class="pagination ' . $lastPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $lastPagination['data-offset'] .
-                '" data-limit="' . $lastPagination['data-limit'] . '" >&raquo;</a></li></ul></div>';
+        $retval .= ' <li><a class="pagination ' . $lastPagination['current'] . '" data-url="' . $uriPrefix . '" data-offset="' . $lastPagination['offset'] .
+                '" data-limit="' . $lastPagination['limit'] . '" >&raquo;</a></li></ul></div>';
 
         return $retval;
     }

@@ -28,8 +28,10 @@ class ProvinceSerializer extends Serializer{
         $retval = array();
         
         foreach($list as $row) {
-      
-        $retval[$row['id']] = $row['province'];
+            if(!array_key_exists('id', $row)) {
+                continue;
+            }
+            $retval[$row['id']] = $row['province'];
         }
       
         return $retval;
