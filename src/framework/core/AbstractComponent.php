@@ -150,6 +150,7 @@ abstract class AbstractComponent {
             }
             catch (\Exception $e) {
                 echo "standard error\r\n";
+                echo $e->getMessage();
                 //die($e->getMessage());
                 //TODO: this currently is only for the template view
                 //$view = new TemplateExceptionView($this->logger, __YML_KEY, $this->agentType, $httpRequest, $e);

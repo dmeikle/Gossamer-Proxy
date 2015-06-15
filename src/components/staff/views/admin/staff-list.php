@@ -19,7 +19,7 @@
     <div class="block-content-outer" style="display: block">
         <div class="block-content-inner">
             <div class="table-responsive">
-                <table ng-controller="StaffController as manager" class="table table-striped table-hover">
+                <table ng-controller="StaffController as manager" cstalass="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Name</div>

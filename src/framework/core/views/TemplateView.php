@@ -58,6 +58,9 @@ class TemplateView extends AbstractView {
         $this->sections = $this->config['sections'];
 
         $this->loadTemplate($template, $theme);
+        //render widgets before replacing section tags with HTML
+        $this->renderWidgets();
+        
         //this HAS to be called before the rest
         $this->renderSections();
         
@@ -116,6 +119,29 @@ class TemplateView extends AbstractView {
         $this->template = str_replace('<!---css--->', $cssIncludeString, $this->template);
     }
 
+    private function renderWidgets() {
+        
+        if (is_null($this->httpRequest->getAttribute('SystemWidgets'))) {
+
+            return;
+        }
+
+        foreach ($this->httpRequest->getAttribute('SystemWidgets') as $sectionName => $section) {
+          
+            if (!is_array($section)) {
+               
+                $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
+                $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($section) . "\r\n" . $sectionNamePlaceHolder, $this->template);
+            } else {
+              
+                foreach ($section as $subSectionName => $subSection) {
+                   
+                    $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
+                    $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($subSection) . "\r\n" . $sectionNamePlaceHolder, $this->template);
+                }
+            }
+        }
+    }
     /**
      * finds all sections within a template and places the appropriate PHP
      * file within that area of the template before rendering all PHP tags

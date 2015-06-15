@@ -73,6 +73,8 @@ admin_staff_rest_create:
 
 admin_staff_home:
     pattern: admin/staff
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController

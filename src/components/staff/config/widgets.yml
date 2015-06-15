@@ -1,0 +1,6 @@
+## YAML Template.
+---
+
+
+staff_list:
+    'src/components/staff/views/admin/staff-list.php'

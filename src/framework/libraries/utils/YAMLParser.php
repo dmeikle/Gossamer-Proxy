@@ -62,6 +62,7 @@ class YAMLParser {
      */
     public function loadConfig() {
         if(!file_exists($this->ymlFilePath)) {
+            
             return false;
         }
         $contents = file_get_contents($this->ymlFilePath);
