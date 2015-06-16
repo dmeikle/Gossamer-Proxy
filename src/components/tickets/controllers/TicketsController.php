@@ -108,4 +108,13 @@ class TicketsController extends AbstractController{
         
         $this->render(array('result' => 'success'));
     }
+    
+    public function getOpenCount() {
+        $result = $this->model->getOpenCount();
+        $retval = array('numRows' => 0);
+        if(is_array($result) && array_key_exists('count', $result)) {
+            $retval = current($result['count']);
+        }
+        $this->render($retval);
+    }
 }

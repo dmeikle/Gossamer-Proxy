@@ -28,6 +28,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
         $datasource = $this->getDatasource($systemWidget);
  
         $results = $datasource->query('get', $systemWidget, 'list', $params);
+      
         if(is_array($results) && array_key_exists('WidgetsSystems', $results)) {
             $this->loadWidgetConfigs($results['WidgetsSystems']);
         }

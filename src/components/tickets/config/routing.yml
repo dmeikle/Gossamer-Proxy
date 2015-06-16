@@ -1,4 +1,20 @@
 
+admin_open_ticket_count_widget: 
+    pattern: admin/tickets/opencount
+    methods: [GET]
+    defaults:
+        component: components\tickets\TicketsComponent
+        controller: components\tickets\controllers\TicketsController
+        model: components\tickets\models\TicketModel
+        method: getOpenCount
+        view: core\views\JSONView
+        viewKey: admin_open_ticket_count_widget
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            
+            
+            
 admin_tickets_change_assignee:
     pattern: admin/tickets/changeassignee/*
     methods: [POST]    
@@ -434,3 +450,5 @@ super_tickets_categories_list:
         datasource: datasource1
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'                  
+            
+            

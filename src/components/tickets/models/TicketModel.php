@@ -69,4 +69,12 @@ class TicketModel extends AbstractModel implements FormBuilderInterface {
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
         
     }
+    
+    public function getOpenCount() {
+        $params = array('status' => '2');
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getOpenCount', $params);
+        
+        return $data;
+    }
 }

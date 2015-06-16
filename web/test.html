@@ -1,36 +1,36 @@
-<!DOCTYPE html>
-<!--
- This file is part of the Quantum Unit Solutions development package.
-
- (c) Quantum Unit Solutions <http://github.com/dmeikle/>
-
- For the full copyright and license information, please view the LICENSE
- file that was distributed with this source code.
--->
-<html ng-app="staff">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script language="javascript" src="/js/bootstrap/bootstrap.min.js"></script>
-    </head>
+<!doctype html>
+<html>
     <body>
-        
-        <div ng-controller="StaffController as manager">
-            
-            <div ng-repeat="staff in manager.items">
-                <div>{{staff.email}}</div>
-                <h3>{{staff.lastname}}, {{staff.firstname}}</h3>
-                <div>{{staff.title}}</div>  
-                <div>{{staff.lastLogin}}</div>    
-                <div>{{staff.mobile}}</div>  
-                <div>{{staff.status}}</div>  
-                <div>{{staff.telephone}}</div>  
-                <button ng-show="staff.editable">Edit</button>
-            </div>
-        </div>
-        <script language="javascript" src="/js/angular/angular.min.js"></script>
-        <script language="javascript" src="/js/angular/app.js"></script>
-        <img src="/images/theme/china.png">
-    </body>
+<div ng-controller="WelcomeController">
+  {{greeting}}
+</div>
+<div ng-controller="TestController">
+  {{testing}}
+</div>
+ <script language="javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
+<script language="javascript">
+(function() {
+ angular.module('demo', [])
+  .controller('WelcomeController', function($scope) {
+      $scope.greeting = 'Welcome!';
+  });
+  })();
+  
+  </script>
+  <script language="javascript">
+  (function() {
+  angular.module('test', [])
+          .controller('TestController', function($scope) {
+              $scope.testing = 'testing2';
+    });
+    
+ 
+})();
+</script>
+<script language="javascript">
+(function() {
+  angular.bootstrap(document, ['test', 'demo']);
+  })();
+</script>
+</body>
 </html>

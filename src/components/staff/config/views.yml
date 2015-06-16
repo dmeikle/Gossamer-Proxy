@@ -39,7 +39,7 @@ admin_staff_home:
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
-            "section3": "src/components/staff/views/admin/staff-list.php"
+           # "section3": "src/components/staff/views/admin/staff-list.php"
             "featureslider-edit1": "src/components/staff/views/admin/edit.php"
             "featureslider-edit2": "src/components/staff/views/admin/edit2.php"
             "featureslider-edit3": "src/components/staff/views/admin/edit3.php"

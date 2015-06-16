@@ -52,7 +52,7 @@ label {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 body {
-  background: #1d1d1d url("../images/required/site-bg@2x.png");
+  background: #1d1d1d url("/images/theme/required/site-bg@2x.png");
   font-size: 13px;
   line-height: 1.618;
 }
@@ -817,7 +817,7 @@ button.rounded {
 .loading {
   width: 24px;
   height: 24px;
-  background: url("../images/required/loading.gif") no-repeat top center;
+  background: url("/images/theme/required/loading.gif") no-repeat top center;
   float: right;
   display: block;
 }
@@ -1337,7 +1337,7 @@ a.highlight-color-purple-link-hover:focus {
 }
 #header-container .header-bar {
   background-color: #1d1d1d !important;
-  background-image: url("../images/required/site-bg@2x.png") !important;
+  background-image: url("/images/theme/required/site-bg@2x.png") !important;
   min-height: 46px;
   border: 0;
   z-index: 9999;
@@ -2014,7 +2014,7 @@ a.highlight-color-purple-link-hover:focus {
 /* ---- 6. Left Column ---- */
 #left-column {
   background-color: #1d1d1d !important;
-  background-image: url("../images/required/site-bg@2x.png") !important;
+  background-image: url("/images/theme/required/site-bg@2x.png") !important;
   float: left;
   position: absolute;
   width: 95px;
@@ -2069,7 +2069,7 @@ a.highlight-color-purple-link-hover:focus {
   display: none !important;
 }
 #mainnav-horizontal {
-  background: url("../images/required/site-bg@2x.png") #1d1d1d;
+  background: url("/images/theme/required/site-bg@2x.png") #1d1d1d;
   display: table;
   width: 100%;
 }

@@ -1,0 +1,5 @@
+## YAML Template.
+---
+
+claims_list_new:
+    'src/components/claims/views/admin/claims-new-count.php'
