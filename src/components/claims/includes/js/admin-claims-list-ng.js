@@ -7,14 +7,20 @@
  *  file that was distributed with this source code.
  */
 
+
+
 (function() {
     
    
-  angular.module('newtickets', [])
-    .controller('ticketsCtrl', function($scope, $http) {
-        $http.get("/admin/tickets/opencount")
+  angular.module('newclaims', [])
+    .controller('claimsCtrl', function($scope, $http) {
+        $http.get("/admin/claims/newcount")
         .success(function(response) {
-            $scope.count = response.numRows;
+            $scope.newCount = response.ClaimsCount[0].rowCount;
+        });
+        $http.get("/admin/claims/opencount")
+        .success(function(response) {
+            $scope.openCount = response.ClaimsCount[0].rowCount;
         });
     });
 

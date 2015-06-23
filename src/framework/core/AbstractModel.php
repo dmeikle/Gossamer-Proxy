@@ -197,10 +197,10 @@ class AbstractModel {
      * @return type
      */
     public function save($id) {
-
         $params = $this->httpRequest->getPost();
         $params[$this->entity]['id'] = intval($id);
 
+error_log(print_r($params, true));
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
         return $data;
@@ -504,6 +504,20 @@ class AbstractModel {
         }
 
         return $structure;
+    }
+    
+    /**
+     * gets the number of rows based on the passed in params (filter)
+     * 
+     * @param array $params
+     * 
+     * @return array
+     */
+    public function getCount(array $params) {        
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getCount', $params); 
+        
+        return $data;
     }
 
 }

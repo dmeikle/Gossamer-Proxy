@@ -38,7 +38,7 @@ class HTTPRequest extends AbstractHTTP {
         $this->formatQueryString();
         $params = $this->getParams($filter, $uri);
 
-
+//pr($requestParameters);
         if (array_key_exists('HTTP_REFERER', $_SERVER)) {
             $this->setAttribute('HTTP_REFERER', $_SERVER["HTTP_REFERER"]);
         }

@@ -212,7 +212,7 @@ class TemplateView extends AbstractView {
 
         $jshandler = new ImportJSHandler($this->logger);
         $parselist = $jshandler->handlerequest($jslist);
-        $this->jsIncludeFiles = $parselist;
+        $this->jsIncludeFiles = array_merge($this->jsIncludeFiles, $parselist);
 
         return $frontchunk .
                 $backchunks[1];
@@ -243,7 +243,7 @@ class TemplateView extends AbstractView {
 
         $cssHandler = new ImportCSSHandler($this->logger);
         $parseList = $cssHandler->handlerequest($cssList);
-        $this->cssIncludeFiles = $parseList;
+        $this->cssIncludeFiles = array_merge($this->cssIncludeFiles, $parseList);
 
         $retval = $frontchunk . $backchunks[1];
 

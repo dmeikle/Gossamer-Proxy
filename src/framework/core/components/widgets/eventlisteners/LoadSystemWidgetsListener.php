@@ -11,7 +11,7 @@
 namespace core\components\widgets\eventlisteners;
 
 use core\eventlisteners\AbstractCachableListener;
-use core\components\widgets\models\SystemWidget;
+use core\components\widgets\models\SystemWidgetModel;
 
 /**
  * LoadSystemWidgetsListener
@@ -21,7 +21,7 @@ use core\components\widgets\models\SystemWidget;
 class LoadSystemWidgetsListener extends AbstractCachableListener{
     
     public function on_request_start($param) {
-        $systemWidget = new SystemWidget($this->httpRequest, $this->httpResponse, $this->logger);
+        $systemWidget = new SystemWidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
       
         $params = array('ymlKey'=> __YML_KEY);
         

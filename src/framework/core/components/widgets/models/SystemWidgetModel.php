@@ -20,7 +20,7 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class SystemWidget extends AbstractModel{
+class SystemWidgetModel extends AbstractModel{
     
     /**
      * 

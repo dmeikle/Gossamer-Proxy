@@ -33,7 +33,7 @@ class GenerateFormTokenListener extends BaseFormTokenListener {
         $sessionToken = $this->getDefaultToken();
         $token = $sessionToken->generateTokenString();
 
-        $tokenString = "<input type=\"hidden\" name=\"FORM_SECURITY_TOKEN\" value=\"$token\" />";
+        $tokenString = "<input type=\"hidden\" name=\"FORM_SECURITY_TOKEN\" id=\"FORM_SECURITY_TOKEN\" value=\"$token\" />";
 
         $content = $values['content'];
         $values['content'] = str_replace('</form>', "$tokenString\r\n</form>", $content);

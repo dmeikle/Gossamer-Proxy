@@ -118,4 +118,22 @@ class ClaimsController extends AbstractController{
 
        // $this->render($result);
     }
+    
+    public function getNewCount() {
+        $params = array('projectManager_id' => 'null', 'isActive' => '1');
+        
+        $result = $this->model->getCount($params);
+        
+        $this->render($result);
+    }
+    
+    public function getOpenCount() {
+        
+        $params = array('projectManager_id' => $this->getLoggedInUser()->getId(), 'isActive' => '1');
+        
+        $result = $this->model->getCount($params);
+        
+        $this->render($result);
+        
+    }
 }

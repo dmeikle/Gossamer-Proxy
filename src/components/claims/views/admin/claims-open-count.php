@@ -11,10 +11,10 @@
         </div>
         <div class="c-wdiget-content-block">
             <div class="c-widget-content-heading" ng-controller="claimsCtrl">
-                {{newCount}}
+                {{openCount}}
             </div>
             <div class="c-widget-content-sub">
-                New Claims
+                open Claims
             </div>
         </div>
     </div>

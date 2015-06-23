@@ -269,4 +269,17 @@ admin_tickets:
             text_key: 'TICKET_CATEGORIES'
             pattern: '/super/tickets/categories/0/20'
             display_roles:
-                - IS_SUPER_USER                 
+                - IS_SUPER_USER             
+                
+#widgets
+super_widgets:
+    text_key: 'ADMIN_WIDGETS'
+    pattern: '#'
+    display_roles:
+        - IS_SUPER_USER  
+    children:
+        event_types:
+            text_key: 'ADMIN_WIDGETS_LIST'
+            pattern: '/super/widgets'
+            display_roles:
+                - IS_SUPER_USER                      

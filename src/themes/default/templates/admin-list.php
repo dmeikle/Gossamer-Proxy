@@ -780,7 +780,7 @@
      
      <script language="javascript">
      (function() {
-         angular.bootstrap(document, ['staff', 'tickets']);
+         angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
      })();
      </script>
     

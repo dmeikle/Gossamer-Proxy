@@ -1,3 +1,25 @@
+admin_claims_newcount:
+    pattern: admin/claims/newcount
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getNewCount
+        view: core\views\JSONView
+        viewKey: admin_claims_newcount
+        datasource: datasource1
+  
+admin_claims_opencount:
+    pattern: admin/claims/opencount
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getOpenCount
+        view: core\views\JSONView
+        viewKey: admin_claims_opencount
+        datasource: datasource1
+        
 admin_claims_search:
     pattern: admin/claims/search
     defaults:
