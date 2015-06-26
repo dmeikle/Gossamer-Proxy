@@ -10,7 +10,7 @@
 (function() {
     
    
-  angular.module('newtickets', [])
+  angular.module('tickets', [])
     .controller('ticketsCtrl', function($scope, $http) {
         $http.get("/admin/tickets/opencount")
         .success(function(response) {

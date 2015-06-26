@@ -10,21 +10,30 @@
 (function() {
   
     var page = 0;
-    var rows = 3;
+    var rows = 10;
     angular.module('staff', [])
         .controller('StaffController', function($scope, $http) {
             var staff = this;
             staff.items = [];
-            $http.get("/admin/staff/rest/" + page + "/" + rows).success(function(response) {
+            staff.user = [];
+            
+            $http.get("/admin/staff/" + page + "/" + rows).success(function(response) {
                 staff.items = response;
             });
 
             $scope.loadPage = function(selectedPage) {
                 page = selectedPage;
-                $http.get("/admin/staff/rest/" + page + "/" + rows).success(function(response) {
-                staff.items = response;
-            });
+                $http.get("/admin/staff/" + page + "/" + rows).success(function(response) {
+                    staff.items = response;
+                });
             }
+            
+            $scope.edit = function(id) {
+                $http.get("/admin/staff/" + id).success(function(response) {
+                    staff.user = response.Staff;
+                    console.log(staff.user);
+                });
+            };
         })
         .directive('paginationStart', function() {
             return {

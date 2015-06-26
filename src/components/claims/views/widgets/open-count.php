@@ -10,9 +10,9 @@
             <span class="icon icon-list-circle"></span>
         </div>
         <div class="c-wdiget-content-block">
-            <div class="c-widget-content-heading" ng-controller="claimsCtrl">
-                {{openCount}}
-            </div>
+            <div class="c-widget-content-heading" >
+                <open-claims-count></open-claims-count>
+            </div>            
             <div class="c-widget-content-sub">
                 open Claims
             </div>

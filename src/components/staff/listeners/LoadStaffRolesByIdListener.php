@@ -13,7 +13,7 @@ namespace components\staff\listeners;
 
 use core\eventlisteners\AbstractListener;
 use core\eventlisteners\Event;
-use components\staff\models\StaffModel;
+use components\staff\models\StaffAuthorizationModel;
 
 /**
  * LoadStaffByIdListener
@@ -26,16 +26,16 @@ class LoadStaffRolesByIdListener extends AbstractListener{
     
     public function on_request_start($params) {         
       
-        $staffId = intval($this->httpRequest->getQueryParameter('staffid'));
+        $staffAuthorizationModel = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $params = $this->httpRequest->getParameters();
         
         $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
-        $query = sprintf('select roles from StaffAuthorizations where Staff_id = %d limit 1', $staffId);
-     
-       // $rawResult = $datasource->execute($query);
-       //TODO: this listener is being depricated. just hard code a result in until its retired
-        $rawResult="IS_ADMINISTRATOR|IS_SUPER_USER|IS_MANAGER|IS_POWER_USER|IS_PROJECT_MANAGER";
-        //if(is_array($rawResult)) {
-            $this->httpRequest->setAttribute('ROLES', explode('|', $rawResult));
-        //}
+        
+        $rawResult = $datasource->query('get', $staffAuthorizationModel, 'get', array('Staff_id' => intval($params[0])) );
+        
+        if(is_array($rawResult) && array_key_exists('StaffAuthorization', $rawResult)) {
+            $roles = explode('|', $rawResult['StaffAuthorization'][0]['roles']);
+            $this->httpResponse->setAttribute('roles', $roles);
+        }
     }
 }

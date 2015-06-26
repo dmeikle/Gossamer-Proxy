@@ -115,7 +115,9 @@ class AbstractView {
         if (!is_null($navigation)) {
             $data['NAVIGATION'] = $navigation;
         }
-        $this->data = array_merge($data, $this->httpResponse->getAttributes());
+        $modules = array('modules' => "'" . implode("','", $this->httpRequest->getModules() ) . "'");
+        
+        $this->data = array_merge($data, $this->httpResponse->getAttributes(), $modules);
         // $this->data = $data;       
     }
 

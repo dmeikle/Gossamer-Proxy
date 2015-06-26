@@ -119,8 +119,8 @@ class ClaimsController extends AbstractController{
        // $this->render($result);
     }
     
-    public function getNewCount() {
-        $params = array('projectManager_id' => 'null', 'isActive' => '1');
+    public function getNewCount($numDays) {
+        $params = array('key' => 'claims_total_active_new', 'range' => intval($numDays));
         
         $result = $this->model->getCount($params);
         
@@ -129,7 +129,7 @@ class ClaimsController extends AbstractController{
     
     public function getOpenCount() {
         
-        $params = array('projectManager_id' => $this->getLoggedInUser()->getId(), 'isActive' => '1');
+        $params = array('projectManager_id' => $this->getLoggedInUser()->getId(), 'isActive' => '1', 'key' => 'claims_total_active_by_status', 'statusType' => '5,8');
         
         $result = $this->model->getCount($params);
         

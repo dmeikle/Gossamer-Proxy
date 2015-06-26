@@ -1,5 +1,5 @@
 admin_claims_newcount:
-    pattern: admin/claims/newcount
+    pattern: admin/claims/newcount/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
@@ -32,7 +32,23 @@ admin_claims_search:
         datasource: datasource1
     #    langFiles: 
     #        - 'src/components/shoppingcart/locales/*/Navigation' 
+
     
+        
+admin_claims_home:
+    pattern: admin/claims
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_claims_home
+        datasource: datasource1
+        
+        
 claims_new_claim_wizard_1:
     pattern: admin/claims/new/*/*
     listeners:

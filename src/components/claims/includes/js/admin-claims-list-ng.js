@@ -12,16 +12,44 @@
 (function() {
     
    
-  angular.module('newclaims', [])
-    .controller('claimsCtrl', function($scope, $http) {
-        $http.get("/admin/claims/newcount")
-        .success(function(response) {
-            $scope.newCount = response.ClaimsCount[0].rowCount;
-        });
-        $http.get("/admin/claims/opencount")
-        .success(function(response) {
-            $scope.openCount = response.ClaimsCount[0].rowCount;
-        });
+  angular.module('claims', [])
+    
+    .controller('OpenClaimsController', function($scope, $http) {
+        
+    })
+    .controller('NewClaimsController', function($scope, $http) {
+
+    })
+    
+    .directive('openClaimsCount', function($http) {
+      
+         return {
+            restrict: 'E',
+            replace: true,
+            template: '<span>{{openCount}}</span>',
+                controller:function($scope) {
+                    $http.get("/admin/claims/opencount")
+                        .success(function(response) {
+                            $scope.openCount = response.ClaimsCount[0].rowCount;
+                        });           
+                }
+          };       
+    })
+    .directive('newClaimsCount', function($http) {
+      
+         return {
+            restrict: 'E',
+            replace: true,
+            template: '<span>{{newCount}}</span>',
+                controller:function($scope) {
+                    $http.get("/admin/claims/newcount/3")
+                        .success(function(response) {
+                            $scope.newCount = response.ClaimsCount[0].rowCount;
+                        });             
+                }
+          };      
     });
+    
+    
 
 })();

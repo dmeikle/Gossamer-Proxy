@@ -1,80 +1,13 @@
 
-    #-------------------testing backbone
-     
-admin_staff_rest_list:
-    pattern: admin/staff/rest/*/*    
-    listeners:
-#        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-#        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
-#        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: backboneListall
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_list
-        datasource: datasource1
-    methods: [GET] 
-   
-admin_staff_rest_paginator:
-    pattern: admin/staff/pagination/*/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: paginationJson
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_paginator
-        datasource: datasource1
-        
-        
-admin_staff_rest_edit:
-    pattern: admin/staff/rest/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: backboneEdit
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_edit
-        datasource: datasource1
-    methods: [GET]  
- 
-admin_staff_rest_save:
-    pattern: admin/staff/rest/*
-    listeners:        
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }  
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: backboneSave
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_save
-        datasource: datasource1
-    methods: [POST]  
-   
-admin_staff_rest_create:
-    pattern: admin/staff/rest
-    listeners:        
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }  
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: backboneSave
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_save
-        datasource: datasource1
-    methods: [POST]   
-#------------------ end backbone
-
 
 admin_staff_home:
     pattern: admin/staff
     listeners:
         - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
+    
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -84,438 +17,63 @@ admin_staff_home:
         viewKey: admin_staff_home
         datasource: datasource1
     methods: [GET] 
-
-admin_staff_search:
-    pattern: admin/staff/search
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: searchByName
-        view: core\views\JSONView
-        viewKey: amin_staff_search
-        datasource: datasource1
-    methods: [GET]   
     
-super_staff_roles_save:
-    pattern: super/staff/roles/*
+admin_staff_create_new:
+    pattern: admin/staff/0  
     listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffRolesController
-        model: components\staff\models\StaffRoleModel
-        method: save
-        view: core\views\JSONView
-        viewKey: super_staff_roles_save
-        datasource: datasource1
-    methods: [POST]   
-    
-super_staff_roles_remove:
-    pattern: super/staff/roles/remove/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffRolesController
-        model: components\staff\models\StaffRoleModel
-        method: delete
-        view: core\views\JSONView
-        viewKey: super_staff_roles_save
-        datasource: datasource1
-    methods: [POST]   
-    
-    
-
-super_staff_roles_list:
-    pattern: super/staff/roles/*/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffRolesController
-        model: components\staff\models\StaffRoleModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: super_staff_roles_list
-        datasource: datasource1
-    methods: [GET]   
-    
-admin_staff_emergencycontacts_list:
-    pattern: admin/staff/emergencycontacts/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffEmergencyContactController
-        model: components\staff\models\StaffEmergencyContactModel
-        method: listallByStaffId
-        view: core\views\JSONView
-        viewKey: admin_staff_emergencycontacts_list
-        datasource: datasource1
-    methods: [GET] 
-    
-admin_staff_emergencycontacts_drawform:
-    pattern: admin/staff/emergencycontacts/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffEmergencyContactController
-        model: components\staff\models\StaffEmergencyContactModel
-        method: getForm
-        view: core\views\JSONView
-        viewKey: admin_staff_emergencycontacts_drawform
-        datasource: datasource1
-    methods: [GET]     
-    
-admin_staff_emergencycontacts_save:
-    pattern: admin/staff/emergencycontacts/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffEmergencyContactController
-        model: components\staff\models\StaffEmergencyContactModel
-        method: save
-        view: core\views\TemplateView
-        viewKey: admin_staff_emergencycontacts_list
-        datasource: datasource1
-    methods: [POST]       
-          
-staff_get:
-    pattern: staff/get/*
-#    defaults: { _controller: UserComponent:User:2nd }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: edit
-        view: core\views\AJAXHTMLView
-        viewKey: staff_get
-        datasource: datasource1
-    methods: [POST]
-    
-staff_list:
-    pattern: staff/list
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: staff_list
-        datasource: datasource1
-    methods: [POST]
-    
-staff_list2:
-    pattern: staff/list/*/*
-    #defaults: { _controller: UserComponent:User:save }
-        
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: staff_list
-        datasource: datasource1
-    methods: [POST]
-
-admin_staff_ajax_edit:
-    pattern: admin/staff/ajaxedit/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: ajaxEdit
-        view: core\views\JSONView
-        viewKey: admin_staff_ajax_edit
-        datasource: datasource1
-    methods: [GET]  
- 
-admin_staff_ajax_save:
-    pattern: admin/staff/ajaxsave/*
-    listeners:        
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }  
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: ajaxSave
-        view: core\views\JSONView
-        viewKey: admin_staff_ajax_save
-        datasource: datasource1
-    methods: [POST]  
-    
-admin_staff_edit:
-    pattern: admin/staff/edit/*
-    listeners:
-        
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadEmergencyContactsListener', 'datasource': 'datasource1' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: edit
-        view: core\views\AJAXHTMLView
-        viewKey: admin_staff_edit
-        datasource: datasource1
-    methods: [GET]       
-    
-    
-admin_staff_save:
-    pattern: admin/staff/edit/*
-    listeners:
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }  
-    #    - { 'event': 'save_success', 'listener': 'components\staff\listeners\UploadStaffPhotoListener' } 
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: save
-        view: core\views\TemplateView
-        viewKey: admin_staff_save
-        datasource: datasource1
-    methods: [POST]     
-    
-    
-admin_staff_credentials_edit:
-    pattern: admin/staff/credentials/*
-    listeners:
-       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: editCredentials
-        view: core\views\AJAXHTMLView
-        viewKey: admin_staff_credentials_edit
-        datasource: datasource1
-    methods: [GET]     
-    
-admin_staff_credentials_ajax_edit:
-    pattern: admin/staff/credentialsajaxedit/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: edit
-        view: core\views\JSONView
-        viewKey: admin_staff_credentials_ajax_edit
-        datasource: datasource1
-    methods: [GET]  
-    
-     
-admin_staff_ajaxcredentials_save:
-    pattern: admin/staff/ajaxcredentials/*
-    listeners:
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }  
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_staff_credentials_edit' }}         
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}    
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: ajaxSaveCredentials
-        view: core\views\JSONView
-        viewKey: admin_staff_ajaxcredentials_save
-        datasource: datasource1
-    methods: [POST] 
- 
-    
-    
-admin_staff_credentials_save:
-    pattern: admin/staff/credentials/*
-    listeners:
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }  
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_staff_credentials_edit' }}         
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_credentials_edit' }} 
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}    
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: saveCredentials
-        view: core\views\JSONView
-        viewKey: admin_staff_credentials_save
-        datasource: datasource1
-    methods: [POST]    
-  
-    
-admin_staff_permissions_get:
-    pattern: admin/staff/permissions/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffRoleModel', 'cacheKey': 'StaffRoles' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: editPermissions
-        view: core\views\AJAXHTMLView
-        viewKey: admin_staff_permissions_get
-        datasource: datasource1
-    methods: [GET]
-    
-admin_staff_permissionsajax_get:
-    pattern: admin/staff/permissionsajax/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: editPermissions
-        view: core\views\JSONView
-        viewKey: admin_staff_permissionsajax_get
-        datasource: datasource1
-    methods: [GET]    
-        
-admin_staff_permissions_save:
-    pattern: admin/staff/permissions/*
-    listeners:
-        - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffPermissionsLocallyListener', 'datasource': 'datasource3'}
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: savePermissions
-        view: core\views\JSONView
-        viewKey: admin_staff_permissions_save
-        datasource: datasource1
-    methods: [POST]
-
-admin_staff_permissions_select:
-    pattern: admin/staff/permissions/*/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
-        method: listall
-        view: core\views\AJAXHTMLView
-        viewKey: admin_staff_permissions_select
-        datasource: datasource1
-    methods: [GET]
-  
-
-admin_staff_list:
-    pattern: admin/staff/*/*
-    listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
-
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: createNew
+        view: core\views\TemplateView
+        viewKey: admin_staff_create_new
+        datasource: datasource1
+    methods: [GET] 
+    
+admin_staff_edit_home:
+    pattern: admin/staff/*  
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffRoleModel', 'cacheKey': 'StaffRoles' }
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource1' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_staff_edit_home
+        datasource: datasource1
+    methods: [GET] 
+    
+admin_staff_rest_list:
+    pattern: admin/staff/*/*    
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: listall
-        view: core\views\TemplateView
-        viewKey: admin_staff_list
+        view: core\views\JSONView
+        viewKey: admin_staff_rest_list
         datasource: datasource1
-    #methods: [GET, POST]  
-    
-admin_login:
-    pattern: admin/login
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\LoginController
-        model: components\staff\models\StaffModel
-        method: login
-        view: core\views\TemplateView
-        viewKey: admin_login
-        datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
-            - 'src/components/staff/locales/*/login'
-            - 'src/components/staff/locales/*/validation'
     methods: [GET]     
     
-admin_login_submit:
-    pattern: admin/login
-    listeners:
-        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateFormListener', 'methods': [POST] }
-        - { 'event': 'login_password_mismatch', 'listener': 'components\staff\listeners\PasswordMismatchListener', 'datasource': 'datasource3'}
-        - { 'event': 'login_status_locked', 'listener': 'components\staff\listeners\StatusLockedListener', 'datasource': 'datasource1'}
-        - { 'event': 'login_roles_not_set', 'listener': 'components\staff\listeners\RolesNotSetListener' }
-        - { 'event': 'login_password_mismatch', 'listener': 'components\staff\listeners\RolesNotSetListener' }
-        - { 'event': 'login_success', 'listener': 'components\staff\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
-       # - { 'event': 'login_status_not_active', 'listener': 'components\staff\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
-        - { 'event': 'login_success', 'listener': 'components\staff\listeners\ResetLoginAttemptsListener', 'datasource': 'datasource1'}
-        - { 'event': 'login_success', 'listener': 'components\staff\listeners\RedirectToHomePageListener', 'datasource': 'datasource1'}
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\LoginController
-        model: components\staff\models\StaffModel
-        method: login
-        view: core\views\TemplateView
-        viewKey: admin_login_submit
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/shoppingcart/locales/*/Navigation'
-            - 'src/components/defaultItem/locales/*/Contact'
-    methods: [POST]
-    
-
-admin_login_roles:
-    pattern: admin/login/roles
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\LoginController
-        model: components\staff\models\StaffModel
-        method: rolesNotSet
-        view: core\views\TemplateView
-        viewKey: admin_login_roles
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/shoppingcart/locales/*/Navigation'
-            - 'src/components/defaultItem/locales/*/Roles'
-    
-admin_login_failed:   
-    pattern: admin/login/failed
+admin_staff_rest_paginator:
+    pattern: admin/staff/pagination/*/*
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: index
-        view: core\views\TemplateView
-        viewKey: admin_login_failed
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/shoppingcart/locales/*/Navigation'
-            - 'src/components/defaultItem/locales/*/Roles' 
-            
-admin_status_locked:  
-    pattern: admin/login/locked
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: index
-        view: core\views\TemplateView
-        viewKey: admin_status_locked
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/shoppingcart/locales/*/Navigation'
-            - 'src/components/defaultItem/locales/*/Roles'           
-            
-admin_save_homepage:
-    pattern: admin/staff/homepage
-    listeners:
-      #  - { 'event': 'request_start', 'listener': 'components\staff\listeners\GetYMLKeyByUrlListener', 'datasource': 'datasource1' }
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffPreferencesController
-        model: components\staff\models\StaffPreferenceModel
-        method: saveHomePage
+        method: paginationJson
         view: core\views\JSONView
-        viewKey: admin_save_homepage
-        datasource: datasource1
-    methods: [POST]  
-    
-    
+        viewKey: admin_staff_rest_paginator
+        datasource: datasource1    

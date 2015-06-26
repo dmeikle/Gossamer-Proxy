@@ -2,5 +2,16 @@
 ---
 
 
-staff_list:
-    'src/components/staff/views/admin/staff-list.php'
+staff_list: 'src/components/staff/views/admin/staff-list.php'
+
+staff_edit_contact: 'src/components/staff/views/widgets/contact-info.php'
+
+staff_edit_employment: 'src/components/staff/views/widgets/employment-info.php'
+
+staff_general_info: 'src/components/staff/views/widgets/general-info.php'
+
+staff_credentials: 'src/components/staff/views/widgets/credentials.php'
+
+staff_emergency_contact_info: 'src/components/staff/views/widgets/emergency-contact-info.php'
+
+staff_roles: 'src/components/staff/views/widgets/staff-roles.php'

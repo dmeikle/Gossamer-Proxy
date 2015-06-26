@@ -19,7 +19,7 @@
     <div class="block-content-outer" style="display: block">
         <div class="block-content-inner">
             <div class="table-responsive">
-                <table ng-controller="StaffController as manager" cstalass="table table-striped table-hover">
+                <table ng-controller="StaffController as manager" class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -39,7 +39,22 @@
                             <td class="col-xs-2 col-md-2 col-lg-2">{{staff.mobile}}</td>  
                             <td class="col-xs-1 col-md-1 col-lg-1">{{staff.status}}</td>     
                             <td class="col-xs-2 col-md-2 col-lg-2">{{staff.lastLogin}}</td>  
-                            <td><button ng-show="staff.editable">Edit</button> </td>
+                            <td>
+                                <div class="edit-pane dropdown">
+                                    <ul>
+                                        <li class="has-sub"><span class="glyphicon glyphicon-cog"></span>                       
+                                            <ul>                            
+                                                <li><a href="#" data-id="{{staff.id}}" class="btn btn-primary btn-xs schedule">Schedule</a></li> 
+                                                <li><a href="/admin/staff/{{staff.id}}" class="btn btn-primary btn-xs edit">Edit</a></li>
+                                                <li><a href="#" class="btn btn-primary btn-xs credentials" data-id="{{staff.id}}">Credentials</a></li> 
+                                                <li><a href="#" class="btn btn-primary btn-xs permissions" data-id="{{staff.id}}">Permissions</a></li> 
+                                                <li><a href="#" class="btn btn-primary btn-xs emergency" data-id="{{staff.id}}">Emergency Contacts</a></li> 
+                                                <li><a href="#" data-id="{{staff.id}}" class="btn btn-primary btn-xs delete">Delete</a></li>
+                                            </ul> 
+                                        </li> 
+                                    </ul>                
+                                </div>                            
+                            </td>
                         </tr>
                     </tbody>
                 </table>

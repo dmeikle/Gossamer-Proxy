@@ -8,8 +8,24 @@ claims_new_claim_wizard_1:
             "section2": "src/components/claims/views/subnav.php"
             #"section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/admin/wizard1.php"
-            "section5": "src/themes/default/templates/sections/footer.php"          
-
+            "section5": "src/themes/default/templates/sections/footer.php"  
+            
+admin_claims_home:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "section2": "src/components/claims/views/admin/subnav.php"
+           # "section3": "src/components/staff/views/admin/staff-list.php"
+            "featureslider-edit1": "src/components/claims/views/admin/edit.php"
+            "featureslider-edit2": "src/components/claims/views/admin/edit2.php"
+            "featureslider-edit3": "src/components/claims/views/admin/edit3.php"
+            "featureslider-edit4": "src/components/claims/views/admin/edit4.php"
+          #  "featureslider-edit5": "src/components/claims/views/admin/edit5.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+    
 admin_claims_list:
     template: admin-list.php
     sections: 

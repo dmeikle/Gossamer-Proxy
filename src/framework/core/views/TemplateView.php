@@ -98,8 +98,10 @@ class TemplateView extends AbstractView {
      */
     private function placeJSFiles() {
         $jsIncludeString = '';
-
-        foreach ($this->jsIncludeFiles as $file) {
+        //remove any duplicates from files calling same includes
+        $list = array_unique($this->jsIncludeFiles);
+        
+        foreach ($list as $file) {
             $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
         }
 
@@ -111,8 +113,10 @@ class TemplateView extends AbstractView {
      */
     private function placeCSSFiles() {
         $cssIncludeString = '';
-
-        foreach ($this->cssIncludeFiles as $file) {
+        //remove any duplicates from files calling same includes
+        $list = array_unique($this->cssIncludeFiles);
+        
+        foreach ($list as $file) {
             $cssIncludeString .= "<link href=\"$file\" rel=\"stylesheet\">\r\n";
         }
 

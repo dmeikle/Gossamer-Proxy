@@ -22,7 +22,7 @@ use core\system\Router;
 use core\navigation\Pagination;
 use components\staff\serialization\StaffSerializer;
 use components\staff\serialization\StaffPositionsSerializer;
-
+echo __YML_KEY;
 class StaffController extends AbstractController {
 
     public function save($id) {
@@ -64,27 +64,41 @@ class StaffController extends AbstractController {
      */
     public function listall($offset = 0, $limit = 20) {
         $result = $this->model->listall($offset, $limit);
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-            unset($pagination);
-        }
-        
+       
+        $this->render($result['Staffs']);
+//        $result = $this->model->listall($offset, $limit);
+//
+//        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+//            $pagination = new Pagination($this->logger);
+//            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+//            unset($pagination);
+//        }
+//        
+//        $result['form'] = $this->drawForm($this->model, array());
+//        $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
+//        $result['id'] = 0;
+//        $this->render($result);
+    }
+    
+    public function index() {
+        $result = array();
         $result['form'] = $this->drawForm($this->model, array());
         $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
         $result['id'] = 0;
         $this->render($result);
     }
     
+    public function createNew() {
+        $this->edit(0);
+    }
     /**
      * edit - display an input form based on requested id
      * 
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
-
-        $result = $this->model->edit($id);
+        $result = (intval($id) > 0) ? $this->model->edit(intval($id)) : array();
+        
         if (is_array($result)) {
             $result['form'] = $this->drawForm($this->model, $result);
             $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
@@ -149,12 +163,6 @@ class StaffController extends AbstractController {
         $this->render(array());
     }
     
-    public function backboneListall($offset, $limit) {
-        $result = $this->model->listall($offset, $limit);
-       
-        $this->render($result['Staffs']);
-    }
-    
-    
+
     
 }

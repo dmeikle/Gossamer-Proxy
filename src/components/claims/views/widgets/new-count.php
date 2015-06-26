@@ -10,8 +10,8 @@
             <span class="icon icon-list-circle"></span>
         </div>
         <div class="c-wdiget-content-block">
-            <div class="c-widget-content-heading" ng-controller="claimsCtrl">
-                {{newCount}}
+            <div class="c-widget-content-heading" >
+                <new-claims-count></new-claims-count>
             </div>
             <div class="c-widget-content-sub">
                 New Claims

@@ -74,8 +74,7 @@ $("#dialog-confirm").dialog({
   <table class="table">
     <tr>
       <td>Firstname:</td>
-      <td>&nbsp;</td>
-      <td colspan="2" rowspan="4"><img src="" width="150" /></td>
+      <td><?php echo $form['firstname']; ?></td>
       </tr>
     <tr>
       <td>Lastname:</td>
@@ -92,12 +91,10 @@ $("#dialog-confirm").dialog({
     <tr>
       <td>Personal Email:</td>
       <td><?php echo $form['personalEmail']; ?></td>
-      <td colspan="2">Email Signature</td>
       </tr>
     <tr>
       <td>Address:</td>
       <td><?php echo $form['address2']; ?><?php echo $form['address1']; ?></td>
-      <td colspan="2" rowspan="4"><?php echo $form['signature']; ?></td>
       </tr>
     <tr>
       <td>City:</td>
@@ -110,6 +107,10 @@ $("#dialog-confirm").dialog({
     <tr>
       <td>Postal Code:</td>
       <td><?php echo $form['postalCode']; ?></td>
+      </tr>
+      <tr>
+          <td>Email Signature</td>          
+        <td><?php echo $form['signature']; ?></td>
       </tr>
   </table>
   </div>

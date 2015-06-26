@@ -23,7 +23,8 @@ class HTTPRequest extends AbstractHTTP {
     protected $parameters = array();
     protected $queryString = array();
     protected $uri = null;
-
+    protected $modules = array();
+    
     /**
      * 
      * @param type $requestParameters
@@ -236,4 +237,13 @@ class HTTPRequest extends AbstractHTTP {
         return $this->uri;
     }
 
+    public function addModule($module) {
+        if(!in_array($module, $this->modules)) {
+            $this->modules[] = $module;
+        }
+    }
+    
+    public function getModules() {
+        return $this->modules;
+    }
 }

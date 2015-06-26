@@ -1,6 +1,6 @@
 ## YAML Template.
 ---
 
-claims_list_new: 'src/components/claims/views/admin/claims-new-count.php'
+claims_list_new: 'src/components/claims/views/widgets/new-count.php'
     
-claims_list_open:  'src/components/claims/views/admin/claims-open-count.php' 
+claims_list_open:  'src/components/claims/views/widgets/open-count.php' 

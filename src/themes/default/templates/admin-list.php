@@ -512,6 +512,8 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
+                                
+                                <!---section4--->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- START Widget: Graph -->
@@ -723,7 +725,7 @@
                     <!-- START Footer Container -->
                     <div id="footer-container">
                         <div class="footer-content">
-                            © <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#?ref=Base5Builder">Circloid</a> was made with <span style="color:#FF0000;">❤</span> and supported by - <a href="http://base5builder.com/" target="_blank" style="font-weight:300;color:#ffffff;background:#1d1d1d;padding:0 3px;">Base<span style="color:#ffa733;font-weight:bold">5</span>Builder</a>
+                           <!---footer--->
                         </div>
                     </div>
                     <!-- END Footer Container -->
@@ -780,7 +782,8 @@
      
      <script language="javascript">
      (function() {
-         angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
+        // angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
+         angular.bootstrap(document, [<?php echo $modules; ?>]);
      })();
      </script>
     
