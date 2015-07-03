@@ -1,3 +1,8 @@
+<!--- javascript start --->
+    
+    @components/staff/includes/js/admin-staff-list-ng.js
+
+<!--- javascript end --->
 
 <div class="col-md-6">
     <div class="block">

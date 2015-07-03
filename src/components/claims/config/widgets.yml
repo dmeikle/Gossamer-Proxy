@@ -4,3 +4,17 @@
 claims_list_new: 'src/components/claims/views/widgets/new-count.php'
     
 claims_list_open:  'src/components/claims/views/widgets/open-count.php' 
+
+claims_list: 'src/components/claims/views/widgets/list-all.php' 
+
+claims_view_header: 'src/components/claims/views/widgets/claim-header.php'
+
+claims_locations_instructions: 'src/components/claims/views/widgets/special-instructions.php'
+
+claims_ecd_accuracy: 'src/components/claims/views/widgets/ecd-accuracy.php'
+
+claims_icon_list: 'src/components/claims/views/widgets/icon-list.php'
+
+claims_location_areas: 'src/components/claims/views/widgets/location-areas-chart.php'
+
+claims_location_comments: 'src/components/claims/views/widgets/location-comments.php'

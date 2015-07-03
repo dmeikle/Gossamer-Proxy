@@ -1,3 +1,8 @@
+<!--- javascript start --->
+    
+    @components/staff/includes/js/admin-staff-list-ng.js
+
+<!--- javascript end --->
 
 
 <div class="col-md-6">
@@ -20,6 +25,14 @@
                     <tr>
                         <td>Company Email:</td>
                         <td><?php echo $form['email']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Company Telephone:</td>
+                        <td><?php echo $form['telephone']; ?></td>
+                    </tr>
+                    <tr>
+                        <td>Company Mobile:</td>
+                        <td><?php echo $form['mobile']; ?></td>
                     </tr>
                     <tr>
                         <td>Staff Type:</td>

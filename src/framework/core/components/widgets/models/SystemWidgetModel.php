@@ -36,4 +36,5 @@ class SystemWidgetModel extends AbstractModel{
         $this->entity = 'SystemWidget';
         $this->tablename = 'systemwidgets';
     }
+    
 }

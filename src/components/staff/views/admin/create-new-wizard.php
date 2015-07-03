@@ -1,4 +1,8 @@
+<!--- javascript start --->
 
+@components/staff/includes/js/admin-staff-list-ng.js
+
+<!--- javascript end --->
 
 <div class="col-md-12">
     <div class="block">
@@ -70,7 +74,10 @@
                         <div class="tab-pane active" id="tab1">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <form method="post" id="wizard-stage-1">
+                                    <form method="post" id="wizard-stage-1" >
+                                        
+                                        <div ng-controller="EditStaffController">
+                                        <?php echo $form['id']; ?>
                                         <div class="form-group">
                                             <label class="control-label">Firstname</label>
                                             <?php echo $form['firstname']; ?>
@@ -81,11 +88,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Telephone</label>
-                                            <?php echo $form['telephone']; ?>
+                                            <?php echo $form['personalTelephone']; ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Mobile</label>
-                                            <?php echo $form['mobile']; ?>
+                                            <?php echo $form['personalMobile']; ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Personal Email address</label>
@@ -108,7 +115,20 @@
                                             <label class="control-label">Postal Code</label>
                                             <?php echo $form['postalCode']; ?>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Date of Birth</label>
+                                            <?php echo $form['dob']; ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Gender</label>
+                                            <?php echo $form['gender']; ?>
+                                        </div>
                           
+                                        <div class="form-group">
+                                            <label class="control-label"></label>
+                                            <?php echo $form['savePersonal']; ?>
+                                        </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -117,6 +137,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <form method="post" id="wizard-stage-2">
+                                        <div ng-controller="EditStaffController">
                                         <div class="form-group">
                                             <label class="control-label">Company Email</label>
                                             <?php echo $form['email']; ?>
@@ -138,6 +159,14 @@
                                             <?php echo $form['employeeNumber']; ?>
                                         </div>
                                         <div class="form-group">
+                                            <label class="control-label">Extension</label>
+                                            <?php echo $form['extension']; ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Company Mobile</label>
+                                            <?php echo $form['mobile']; ?>
+                                        </div>
+                                        <div class="form-group">
                                             <label class="control-label">Hire Date</label>
                                             <?php echo $form['hireDate']; ?>
                                         </div>
@@ -145,7 +174,12 @@
                                             <label class="control-label">Departure Date</label>
                                             <?php echo $form['departureDate']; ?>
                                         </div>
-     
+                          
+                                        <div class="form-group">
+                                            <label class="control-label"></label>
+                                            <?php echo $form['saveEmployment']; ?>
+                                        </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -153,49 +187,64 @@
                         <div class="tab-pane" id="tab3">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <table class="table">
-                                        <tr>
-                                            <td>
-                                                <p class="selectable">
-                                                    <?php foreach ($StaffRoles as $role) { ?>
-                                                     <div class="checkbox">
-                                                        <label class="">
-                                                                <div class="icheckbox_square-blue" style="position: relative;">
-                                                                    <input id="StaffAuthorization_<?php echo $role['role'];?>"  type="checkbox" name="userAuthorizations[<?php echo $role['role'];?>]" value="1"  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                                                </div>
-                                                                <?php echo $role['title'];?>
-                                                        </label>
-                                                    </div>    
+                                    <form method="post" id="wizard-stage-3">
+                                        <div ng-controller="StaffRolesController">
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    <p class="selectable">
+                                                        <?php foreach ($StaffRoles as $role) { ?>
+                                                         <div class="checkbox">
+                                                            <label class="">
+                                                                    <div class="icheckbox_square-blue" style="position: relative;">
+                                                                        <input id="StaffAuthorization_<?php echo $role['role'];?>" ng-model="rolesList['<?php echo $role['role'];?>']" type="checkbox" name="userAuthorizations[<?php echo $role['role'];?>]" value="1"  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+                                                                        <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+                                                                    </div>
+                                                                    <?php echo $role['title'];?>
+                                                            </label>
+                                                        </div>    
 
 
-                                                    <?php } ?>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                                        <?php } ?>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="form-group">
+                                            <label class="control-label"></label>
+                                            <?php echo $form['saveRoles']; ?>
+                                        </div>
+                                        </div>
+                                    </form>
                                     <div class="form-wizard-review-block"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane" id="tab4">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <form method="post" id="wizard-stage-2">
-                                        <div class="form-group">
-                                            <label class="control-label">USername</label>
-                                            <?php echo $form['username']; ?>
+                                <form method="post" id="wizard-stage-4">
+                                    <div class="col-md-6" ng-controller="CredentialsController">
+
+                                        <div class="form-group {{usernameExistsClass}}" >
+                                            <label class="control-label">Username</label>
+                                            <?php echo $aform['username']; ?>
+                                            <small ng-show="isUsernameExists" class="help-block" data-bv-validator="StaffAuthorization[username]" data-bv-for="StaffAuthorization[username]" data-bv-result="INVALID" style="">This username is already in use</small>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Password</label>
-                                            <?php echo $form['password']; ?>
+                                            <?php echo $aform['password']; ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Confirm Password</label>
-                                            <?php echo $form['passwordConfirm']; ?>
-                                        </div>     
-                                    </form>
-                                </div>
+                                            <?php echo $aform['passwordConfirm']; ?>
+                                        </div>  
+                                        <div class="form-group">
+                                            <label class="control-label"></label>
+                                            <?php echo $aform['saveCredentials']; ?>
+                                        </div>   
+                                   
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="tab-pane" id="tab5">

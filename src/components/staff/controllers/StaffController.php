@@ -14,15 +14,16 @@ namespace components\staff\controllers;
 use core\AbstractController;
 use components\geography\serialization\ProvinceSerializer;
 use components\departments\serialization\DepartmentSerializer;
+use components\staff\serialization\StaffTypeSerializer;
 use components\staff\form\StaffBuilder;
+use components\staff\form\StaffAuthorizationBuilder;
 use components\staff\form\StaffEmergencyContactBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
-use core\navigation\Pagination;
 use components\staff\serialization\StaffSerializer;
 use components\staff\serialization\StaffPositionsSerializer;
-echo __YML_KEY;
+
 class StaffController extends AbstractController {
 
     public function save($id) {
@@ -50,7 +51,8 @@ class StaffController extends AbstractController {
         return preg_replace('/[^A-z]/', '', substr($rawName, 0, 10));
     }
     
-    public function ajaxSave($id) {
+    public function ajaxSave($id = null) {
+      
         $result = $this->model->save(intval($id));
         
         $this->render(array('Staff' => $result));
@@ -98,12 +100,22 @@ class StaffController extends AbstractController {
      */
     public function edit($id) {
         $result = (intval($id) > 0) ? $this->model->edit(intval($id)) : array();
-        
+        $staffAuthorization = new \components\staff\models\StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);  
+      
+        $result['form'] = $this->drawForm($this->model, $result);
         if (is_array($result)) {
-            $result['form'] = $this->drawForm($this->model, $result);
             $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
-        } else {
-            $result['form'] = $this->drawForm($this->model, array());
+            
+                   
+            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
+            if(is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {                
+                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);                
+            }
+           
+        }
+       
+        if(intval($id) == 0) {
+            $result['aform'] = $this->drawCredentialsForm($staffAuthorization, array());
         }
         $result['id'] = intval($id);
         
@@ -122,7 +134,7 @@ class StaffController extends AbstractController {
         $staffBuilder = new StaffBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
      
-       
+      
         $provinceList = $this->httpRequest->getAttribute('Provinces');
         $serializer = new ProvinceSerializer();
         $selectedOptions = array($staffBuilder->getValue('Provinces_id', $values));
@@ -138,6 +150,11 @@ class StaffController extends AbstractController {
         $selectedOptions = array($staffBuilder->getValue('Departments_id', $values));
         $options['departments'] = $serializer->formatSelectionBoxOptions($serializer->pruneList($departments), $selectedOptions);
         
+        $types = $this->httpRequest->getAttribute('StaffTypes');
+        $serializer = new StaffTypeSerializer();        
+        $selectedOptions = array($staffBuilder->getValue('StaffTypes_id', $values));
+        $options['staffTypes'] = $serializer->formatSelectionBoxOptions($serializer->pruneList($positions), $selectedOptions);
+       
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
 
@@ -150,7 +167,15 @@ class StaffController extends AbstractController {
 
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
-    
+    protected function drawCredentialsForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $authorizationBuilder = new StaffAuthorizationBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+       
+        $options = array();
+
+        return $authorizationBuilder->buildCredentialsForm($builder, $values, $options, $results);
+    }
     public function backboneEdit($id) {
         $result = $this->model->edit(intval($id));
 

@@ -15,3 +15,5 @@ staff_credentials: 'src/components/staff/views/widgets/credentials.php'
 staff_emergency_contact_info: 'src/components/staff/views/widgets/emergency-contact-info.php'
 
 staff_roles: 'src/components/staff/views/widgets/staff-roles.php'
+
+staff_login: 'src/components/staff/views/widgets/staff-login.php'

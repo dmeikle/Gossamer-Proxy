@@ -26,6 +26,20 @@ class LoadStaffRolesByIdListener extends AbstractListener{
     
     public function on_request_start($params) {         
       
+        $rawResult = $this->getStaffAuthorization($params);
+        
+        if(is_array($rawResult) && array_key_exists('StaffAuthorization', $rawResult)) {
+            $roles = explode('|', $rawResult['StaffAuthorization'][0]['roles']);
+            $this->httpResponse->setAttribute('roles', $roles);
+        }
+    }
+    
+    private function getStaffAuthorization($params) {
+        $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
+        if(is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
+            return $staffAuth;
+        }
+        
         $staffAuthorizationModel = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = $this->httpRequest->getParameters();
         
@@ -33,9 +47,6 @@ class LoadStaffRolesByIdListener extends AbstractListener{
         
         $rawResult = $datasource->query('get', $staffAuthorizationModel, 'get', array('Staff_id' => intval($params[0])) );
         
-        if(is_array($rawResult) && array_key_exists('StaffAuthorization', $rawResult)) {
-            $roles = explode('|', $rawResult['StaffAuthorization'][0]['roles']);
-            $this->httpResponse->setAttribute('roles', $roles);
-        }
+        return $rawResult;
     }
 }

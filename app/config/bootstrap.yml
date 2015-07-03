@@ -5,13 +5,14 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1', 'cacheKey': 'locales' }
         #TODO: commented out during development testing
         - { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
-        - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
+        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
-        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}
-        - { 'event': 'response_start', 'listener': 'core\components\access\eventlisteners\LoadNavigationListener'}       
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
         - { 'event': 'token_expired', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
         - { 'event': 'token_missing', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
         - { 'event': 'response_start', 'listener': 'core\components\locales\eventlisteners\StringifyBeforeRenderListener' }
+        - { 'event': 'response_start', 'listener': 'core\components\access\eventlisteners\LoadNavigationListener'}  
+        - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
             
           
     defaults:

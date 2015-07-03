@@ -111,52 +111,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!---topwidgets--->
-                            <div class="col-sm-6 col-md-3">
-                                <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-blue" data-url="pages-profile.html" style="cursor: pointer;">
-                                    <div class="c-widget-icon">
-                                        <span class="icon icon-user"></span>
-                                    </div>
-                                    <div class="c-wdiget-content-block">
-                                        <div class="c-widget-content-heading">
-                                            296
-                                        </div>
-                                        <div class="c-widget-content-sub">
-                                            Customers Online
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-green" data-url="#" style="cursor: pointer;">
-                                    <div class="c-widget-icon">
-                                        <span class="icon icon-dollar"></span>
-                                    </div>
-                                    <div class="c-wdiget-content-block">
-                                        <div class="c-widget-content-heading">
-                                            $2,094
-                                        </div>
-                                        <div class="c-widget-content-sub">
-                                            Today's Sales
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-md-3">
-                                <div class="c-widget c-widget-quick-info c-widget-size-small highlight-color-yellow" data-url="#" style="cursor: pointer;">
-                                    <div class="c-widget-icon">
-                                        <span class="icon icon-chat"></span>
-                                    </div>
-                                    <div class="c-wdiget-content-block">
-                                        <div class="c-widget-content-heading">
-                                            32
-                                        </div>
-                                        <div class="c-widget-content-sub">
-                                            Customers Chats
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!---topwidgets--->                            
                         </div>
                         <div class="row">
                             <div class="col-md-8">

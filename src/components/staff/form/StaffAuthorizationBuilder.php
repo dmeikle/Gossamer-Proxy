@@ -28,11 +28,11 @@ class StaffAuthorizationBuilder extends AbstractBuilder{
             $builder->addValidationResults($validationResults['StaffAuthorization']);
         }
 
-        $builder->add('username', 'text', array('class' => 'form-control', 'value' => $this->getValue('username', $values)))
-                ->add('password', 'password', array('class' => 'form-control'))
-                ->add('passwordConfirm', 'password', array('class' => 'form-control'))
+        $builder->add('username', 'text', array('ng-model' => 'authorization.username','ng-focus' => 'clearErrors()', 'ng-blur' => 'checkUsernameExists(authorization)', 'class' => 'form-control', 'value' => $this->getValue('username', $values)))
+                ->add('password', 'password', array('ng-model' => 'authorization.password','class' => 'form-control'))
+                ->add('passwordConfirm', 'password', array('ng-model' => 'authorization.passwordConfirm','class' => 'form-control'))
                 ->add('cancel', 'button', array('value' => 'Cancel', 'class' => 'btn btn-lg'))
-                ->add('submit', 'button', array('value' => 'Save', 'class' => 'btn btn-lg'));                
+                ->add('saveCredentials', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'saveCredentials(authorization)'));                
         
         return $builder->getForm();
     }

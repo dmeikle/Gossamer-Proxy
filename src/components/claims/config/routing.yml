@@ -48,6 +48,32 @@ admin_claims_home:
         viewKey: admin_claims_home
         datasource: datasource1
         
+         
+admin_claimslocation_view_comments:
+    pattern: admin/claims/locations/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: listCommentsByJobnumber
+        view: core\views\JSONView
+        viewKey: admin_claimslocation_view_comments
+        datasource: datasource1
+    methods: [GET]
+        
+         
+admin_claimslocation_save_comment:
+    pattern: admin/claims/locations/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claimslocation_view_comments
+        datasource: datasource1
+    methods: [POST]
+    
         
 claims_new_claim_wizard_1:
     pattern: admin/claims/new/*/*
@@ -101,8 +127,8 @@ admin_claims_list:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: listallReverseWithForm
-        view: core\views\TemplateView
+        method: listallReverse
+        view: core\views\JSONView
         viewKey: admin_claims_list
         datasource: datasource1
     #    langFiles: 

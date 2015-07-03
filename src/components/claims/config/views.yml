@@ -81,7 +81,7 @@ admin_claim_view:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
-            "section3": "src/components/claims/views/admin/view-claim-info.php"
+            "section3": "src/components/claims/views/admin/parameters.php"
             "section4": "src/themes/default/templates/sections/footer.php"
     
 admin_claimlocation_view:

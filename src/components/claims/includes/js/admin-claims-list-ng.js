@@ -13,14 +13,40 @@
     
    
   angular.module('claims', [])
-    
+    .controller('ClaimLocationCommentsController', function($scope, $http) {
+        var jobNumber = document.getElementById('claim_jobNumber').value;
+        $scope.comments = {};
+        
+        $http.get("/admin/claims/locations/comments/" + jobNumber)
+                     .success(function(response) {
+                         $scope.comments = response.Comments;
+                     });
+                     
+         ****************need to create object, add form values and token here **********************            
+       $scope.saveComment = function(comment) {
+           $http.post("/admin/claims/locations/comments/" + jobNumber, comment);
+       };
+
+    }) 
     .controller('OpenClaimsController', function($scope, $http) {
         
-    })
-    .controller('NewClaimsController', function($scope, $http) {
+    }) 
+    .controller('ClaimsController', function($scope, $http) {
+       
+        var offset = 0;
+        var limit = 20;
+        
+        var claims = this;
+        claims.claimsList = [];
+           
+        $http.get("/admin/claims/" + offset + '/' + limit)
+                     .success(function(response) {
+                         $scope.claimsList = response.Claims;
+                     });
+       
 
+       
     })
-    
     .directive('openClaimsCount', function($http) {
       
          return {

@@ -12,6 +12,109 @@
     var page = 0;
     var rows = 10;
     angular.module('staff', [])
+        .controller('CredentialsController', function($scope, $http) {
+            $scope.authorization = {};
+            $scope.usernameExistsClass = '';
+            $scope.isUsernameExists = false;
+            
+            $scope.checkUsernameExists = function(authorization) {
+                
+                if(authorization.username.length < 4) {
+                    return;
+                }
+                $.get('/admin/staff/checkusername/0/' + authorization.username).success(function(data) {
+                    if(data.exists === "true") {
+                        $scope.usernameExistsClass = ' has-feedback has-error';
+                        $scope.isUsernameExists = true;
+                    } else {
+                        $scope.isUsernameExists = '';
+                        $scope.isUsernameExists = false;
+                    }
+                });
+            };
+            
+            $scope.saveCredentials = function(authorization) {
+                var id = document.getElementById('Staff_id').value;
+                var data ={};
+                data.StaffAuthorization = authorization;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+                
+                $.post('/admin/staff/credentials/' + id, data).success(function(data) {
+                    if('true' != data.success) {
+                        //do something
+                    }
+                });
+            };
+            
+            $scope.clearErrors = function() {
+               
+                $scope.isUsernameExists = '';
+                $scope.isUsernameExists = false;
+            }
+        })
+        
+        .directive('ngUnique', ['$http', function (async) {
+            return {
+                require: 'ngModel',
+                link: function (scope, elem, attrs, ctrl) {
+
+                    elem.on('blur', function (evt) {
+                        scope.$apply(function () {                   
+                            var val = elem.val();
+                          
+                            var ajaxConfiguration = { method: 'GET', url: '/admin/staff/checkusername/0/' + val };
+                            async(ajaxConfiguration)
+                                .success(function(data, status, headers, config) { 
+                                    if(data.exists === "true") {
+                                        ctrl.$setValidity('unique', 'true');
+                                    } else {
+                                        ctrl.$setValidity('unique', 'false');
+                                    }
+                                });
+                        });
+                    });
+                }
+            }
+        }])
+        .controller('EditStaffController', function($scope, $http) {
+            
+            $scope.savePersonal = function(staff) {
+                if(staff.id === undefined) {
+                    staff.id = 0;
+                }
+                var data ={};
+                data.Staff = staff;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+                $.post('/admin/staff/' + staff.id, data).success(function(data) {
+                    console.log(data.Staff);
+                document.getElementById('Staff_id').value = data.Staff.Staff[0].id;
+                });
+
+            };
+            
+            $scope.saveEmployment = function(staff) {
+                alert('here');
+                var id = document.getElementById('Staff_id').value;
+                
+                var data ={};
+                data.Staff = staff;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+                $.post('/admin/staff/' + id, data);
+            }
+        })
+        .controller('StaffRolesController', function($scope, $http) {
+            $scope.rolesList = {};
+    
+            $scope.saveRoles = function(roles) {   
+                var id = document.getElementById('Staff_id').value;
+                var data = {};
+                data.StaffAuthorization = roles;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+                $.post('/admin/staff/permissions/' + id, data);
+
+            };
+            
+        })
         .controller('StaffController', function($scope, $http) {
             var staff = this;
             staff.items = [];

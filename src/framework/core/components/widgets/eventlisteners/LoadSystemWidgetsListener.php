@@ -20,25 +20,40 @@ use core\components\widgets\models\SystemWidgetModel;
  */
 class LoadSystemWidgetsListener extends AbstractCachableListener{
     
-    public function on_request_start($param) {
-        $systemWidget = new SystemWidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
-      
-        $params = array('ymlKey'=> __YML_KEY);
-        
-        $datasource = $this->getDatasource($systemWidget);
- 
-        $results = $datasource->query('get', $systemWidget, 'list', $params);
-      
+    public function on_request_start($params) {
+       
+        $results = $this->loadConfigurations($params);
         if(is_array($results) && array_key_exists('WidgetsSystems', $results)) {
             $this->loadWidgetConfigs($results['WidgetsSystems']);
         }
         
     }
     
+    private function loadConfigurations($params) {
+        $results = $this->getValuesFromCache('widgetConfigurations_' . __YML_KEY);
+       
+        if($results !== false) {
+            return $results;
+        }
+        
+        $systemWidget = new SystemWidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
+      
+        $params = array('ymlKey'=> __YML_KEY,
+            'directive::ORDER_BY' => 'priority');
+        
+        $datasource = $this->getDatasource($systemWidget);
+ 
+        $results = $datasource->query('get', $systemWidget, 'list', $params);      
+        
+        $this->saveValuesToCache('widgetConfigurations_' . __YML_KEY, $results);
+    }
+    
     private function loadWidgetConfigs(array $widgetList) {
         $parser = new \libraries\utils\YAMLParser();
         $retval = array();
+       
         if(is_array($widgetList) && count($widgetList) > 0 && count($widgetList[0]) > 0) {
+            
             foreach($widgetList as $widgetConfig) {
                 //add the widget component name so we can bootstrap it on page load
                 $this->httpRequest->addModule($widgetConfig['component']);

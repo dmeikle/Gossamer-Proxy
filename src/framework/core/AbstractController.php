@@ -12,6 +12,7 @@
 namespace core;
 
 use core\http\HTTPRequest;
+use core\http\HTTPResponse;
 use core\AbstractModel;
 use core\AbstractView;
 use Monolog\Logger;
@@ -52,6 +53,12 @@ class AbstractController {
     protected $registry;
 
     /**
+     * Property: response
+     * The response object to contain loaded parameters for the view
+     */
+    protected $httpResponse;
+    
+    /**
      * Property: request
      * The request object to contain filtered parameters from the $_REQUEST
      */
@@ -73,7 +80,7 @@ class AbstractController {
      * @param Registry values to be built upon throughout the response
      * 
      */
-    public function __construct(AbstractModel $model, AbstractView $view, Logger $logger, HTTPRequest &$request, Logger $logger) {
+    public function __construct(AbstractModel $model, AbstractView $view, Logger $logger, HTTPRequest &$request, HTTPResponse &$response, Logger $logger) {
 
         $this->controllerName = strtolower(get_class($this));
 
@@ -82,6 +89,7 @@ class AbstractController {
         $this->model = $model;
         //$this->model->setView($view);
         $this->httpRequest = $request;
+        $this->httpResponse = $response;
     }
     
     public function __call($name, $arguments) {

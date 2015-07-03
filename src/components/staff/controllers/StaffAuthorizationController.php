@@ -45,9 +45,11 @@ class StaffAuthorizationController extends AbstractController
         
         //update the local user settings
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $result));
-        
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_staff_permissions_get', array($id));
+//        
+//        $router = new Router($this->logger, $this->httpRequest);
+//        $router->redirect('admin_staff_permissions_get', array($id));
+        //$this->render(array('success' => 'true'));
+        $this->render($result);
     }
     
     public function ajaxSaveCredentials($id) {
@@ -107,5 +109,15 @@ class StaffAuthorizationController extends AbstractController
        
         $options = array();
         return $staffAuthorizationBuilder->buildCredentialsForm($builder, $values, $options, $results);
+    }
+    
+    public function checkUsernameExists($id, $username) {
+        $result = $this->model->get(array('username' => $username));
+        
+        if(is_array($result) && count($result) > 0) {
+            $this->render(array('exists' => 'true'));
+        } else {
+            $this->render(array('exists' => 'false'));
+        }
     }
 }

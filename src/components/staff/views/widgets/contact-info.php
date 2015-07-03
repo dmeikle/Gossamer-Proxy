@@ -1,4 +1,8 @@
+<!--- javascript start --->
+    
+    @components/staff/includes/js/admin-staff-list-ng.js
 
+<!--- javascript end --->
 
 <div class="col-md-6">
     <div class="block">
@@ -28,12 +32,12 @@
                     </tr>
                     <tr>
                         <td>Telephone:</td>
-                        <td><?php echo $form['telephone']; ?></td>
+                        <td><?php echo $form['personalTelephone']; ?></td>
 
                     </tr>
                     <tr>
                         <td>Mobile:</td>
-                        <td><?php echo $form['mobile']; ?></td>
+                        <td><?php echo $form['personalMobile']; ?></td>
 
                     </tr>
                     <tr>

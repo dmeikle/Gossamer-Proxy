@@ -9,6 +9,18 @@
             </a>
         </li>
         <li class="menu-item-top">
+            <a href="/admin/claims" class="top">
+                <span class="main-menu-icon">
+                    <span aria-hidden="true" class="icon icon-dollar"></span>
+                </span>
+                <span class="main-menu-text">Claims</span>
+            </a>
+            <ul style="position: absolute;">
+                <li><a href="/admin/claims">List All Claims</a></li>
+                <li><a href="/admin/claims/0/20">item 2</a></li>
+            </ul>
+        </li>
+        <li class="menu-item-top">
             <a href="/admin/accounting" class="top">
                 <span class="main-menu-icon">
                     <span aria-hidden="true" class="icon icon-dollar"></span>
