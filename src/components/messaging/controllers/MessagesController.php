@@ -66,7 +66,7 @@ class MessagesController extends AbstractController{
     public function viewSelectedMessage($messageId) {
         
         
-        $result['form'] = $this->drawForm($this->model);
+        $result['form'] = $this->drawForm($this->model, array('uniqueId' => $messageId));
         $result['uniqueId'] = $messageId;
         
         $this->render($result);

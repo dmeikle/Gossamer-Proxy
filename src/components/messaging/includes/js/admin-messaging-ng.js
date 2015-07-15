@@ -49,13 +49,15 @@
            $scope.sendReply = function(message) {
                 var data = {};
                 data.Message = message;
+                console.log(message);
+                return;
                 data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
                 
                $.post('/admin/messaging/reply', data);
            };  
            
            $scope.sendMessage = function(message) {
-               alert('here');
+             
                 var data = {};
                 data.Message = message;
                 data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
