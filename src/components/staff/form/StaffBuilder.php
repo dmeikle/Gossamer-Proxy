@@ -52,7 +52,7 @@ class StaffBuilder extends AbstractBuilder{
                 ->add('employeeNumber', 'text', array('ng-model' => 'staff.employeeNumber', 'class' => 'form-control', 'value' =>  $this->getValue('employeeNumber', $values))) 
                 ->add('hireDate', 'text', array('ng-model' => 'staff.hireDate', 'class' => 'form-control datepicker ', 'value' =>  $this->getValue('hireDate', $values))) 
                 ->add('departureDate', 'text', array('ng-model' => 'staff.departureDate', 'class' => 'form-control datepicker', 'value' =>  $this->getValue('departureDate', $values))) 
-                ->add('gender', 'text', array('ng-model' => 'staff.gender', 'class' => 'form-control ', 'options' =>  $this->getValue('gender', $values))) 
+               // ->add('gender', 'radio', array('ng-model' => 'staff.gender', 'class' => 'form-control ', 'question' => 'this is the question', 'params' =>  $this->getGender($values))) 
                 ->add('dob', 'text', array('ng-model' => 'staff.dob', 'class' => 'form-control datepicker ', 'value' =>  $this->getValue('dob', $values))) 
                 ->add('personalEmail', 'text', array('ng-model' => 'staff.personalEmail', 'class' => 'form-control ', 'value' =>  $this->getValue('personalEmail', $values))) 
                 ->add('SIN', 'text', array('ng-model' => 'staff.SIN', 'class' => 'form-control datepicker', 'value' =>  $this->getValue('SIN', $values)))
@@ -75,5 +75,23 @@ class StaffBuilder extends AbstractBuilder{
         return $builder->getForm();
     }
 
+    private function getGender(array $values) {
+        $retval = array('answers' => array(
+                array(
+                    'id' => '3',
+                    'Answers_id' => '3',
+                    'answer' => 'answer #1 here',
+                    'responseId' => '3'
+                    ),
+                array(
+                    'id' => '1',
+                    'Answers_id' => '1',
+                    'answer' => 'answer #2 here',
+                    'responseID' => null
+                    )                
+            ));
+        
+        return $retval;
+    }
 
 }

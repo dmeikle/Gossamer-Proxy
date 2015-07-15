@@ -65,13 +65,14 @@ class YAMLConfiguration {
 
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-
-        $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
         
+        $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
+   
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
         try{
             $nodeParams = $this->getYMLNodeParameters($ymlKey);
         }catch(\Exception $e) {
+        
             error_log($e->getMessage());
             http_response_code(404);
             throw new \exceptions\Error404Exception();
@@ -166,10 +167,10 @@ class YAMLConfiguration {
      * @param string    the complete uri we are searching against
      */
     public function findConfigKeyByURIPattern($configList, $uriPattern) {
-        $comparator = new URIComparator();
+        $comparator = new URIComparator(new \Gossamer\Caching\CacheManager());
 
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
-        
+       
         unset($comparator);
 
         return $uriConfig;
@@ -183,7 +184,7 @@ class YAMLConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-      
+     
         if($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
             throw new \exceptions\YamlKeyNotFoundException('Yml Key not found in config routing file.');
         }

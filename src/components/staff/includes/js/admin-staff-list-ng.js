@@ -126,7 +126,7 @@
 
             $scope.loadPage = function(selectedPage) {
                 page = selectedPage;
-                $http.get("/admin/staff/" + page + "/" + rows).success(function(response) {
+                $.get("/admin/staff/" + page + "/" + rows).success(function(response) {
                     staff.items = response;
                 });
             }

@@ -67,6 +67,7 @@ try{
     $container->get('EventDispatcher')->dispatch('all', 'entry_point');
     $container->get('EventDispatcher')->dispatch(__YML_KEY, 'entry_point');
 }catch(core\components\security\exceptions\TokenExpiredException $e) {
+    pr($e);
     include __SITE_PATH . '/src/themes/default/templates/errorPages/token.php' ;
     die;
 }catch(core\components\security\exceptions\TokenMissingException $e) {

@@ -14,5 +14,19 @@
   angular.module('contacts', [])    
     .controller('ContactsController', function($scope, $http) {
         
-    });
+    })
+    .controller('ClaimContactsController', function($scope, $http) {
+        var jobNumber = document.getElementById('claim_jobNumber').value;
+        var claimContacts = this;
+        claimContacts.contacts = [];
+        
+        
+        $.get("/admin/contacts/claim/" + jobNumber)
+                     .success(function(response) {
+                         claimContacts.contacts = response.ClaimContacts;
+                     });
+                     
+        
+    })
+    ;
 })();

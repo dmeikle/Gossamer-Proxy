@@ -1,7 +1,7 @@
 
 <!--- javascript start --->
 
-@components/claims/includes/js/claims-admin-list-ng.js
+@components/claims/includes/js/admin-claims-list-ng.js
 
 <!--- javascript end --->
 
@@ -19,7 +19,7 @@
         <div class="block-content-outer">
             <div class="block-content-inner mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;">
                 <div id="mCSB_1" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_outside" tabindex="0">
-                    <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr" ng-controller="ClaimLocationCommentsController">
+                    <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr" ng-controller="ClaimCommentsController">
                         <div class="comment-block clearfix" ng-repeat="comment in comments">
                             <div class="comment-image">
                                 <a href="#">
@@ -38,7 +38,7 @@
                             
                         </div>  
                         
-                            <form class="comment-input-block" ng-show="showme">
+                        <form class="comment-input-block" ng-show="showme">
                                 <div class="comment-image">
                                     <a href="#">
                                         <img class="list-thumbnail" src="assets/images/required/profile/profile-pic-4.jpg" width="40" height="40" alt="profile-pic-4">
@@ -46,16 +46,18 @@
                                 </div>
                                 <div class="comment-input-area">
                                     <div class="form-group" style="padding: 10px 20px">
-                                        <textarea ng-model="comment.comment" rows="3" class="form-control input-sm user-comment" placeholder="What's on your mind?"></textarea>
+                                        <textarea id="comments" ng-model="comment.comments" rows="3" class="form-control input-sm user-comment" placeholder="What's on your mind?"></textarea>
                                     </div>
                                     <button class="btn btn-primary btn-xs post-comment" type="submit" ng-click="saveComment(comment)">Post Message</button><br>
                                 </div>
+                            <a name="location_comment"></a>
+                                
                             </form> 
                             <a class="btn btn-default btn-sm" ng-click="showme=true" href="#location_comment">Comment
                                 <span class="glyphicon glyphicon-comment"></span>
                             </a>
                             <a class="btn btn-default btn-sm" ng-click="showme=false" ng-show="showme">Cancel</a>   
-                            <a name="location_comment"></a>
+                            
                        
                     </div>
                 </div>

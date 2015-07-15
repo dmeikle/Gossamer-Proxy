@@ -17,3 +17,5 @@ staff_emergency_contact_info: 'src/components/staff/views/widgets/emergency-cont
 staff_roles: 'src/components/staff/views/widgets/staff-roles.php'
 
 staff_login: 'src/components/staff/views/widgets/staff-login.php'
+
+staff_image_upload: 'src/components/staff/views/widgets/photo-upload.php'

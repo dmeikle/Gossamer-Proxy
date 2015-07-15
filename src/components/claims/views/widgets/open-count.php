@@ -14,7 +14,7 @@
                 <open-claims-count></open-claims-count>
             </div>            
             <div class="c-widget-content-sub">
-                open Claims
+                Open Claims
             </div>
         </div>
     </div>

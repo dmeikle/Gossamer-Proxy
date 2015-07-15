@@ -1,0 +1,13 @@
+
+image_get:
+    pattern: image/get
+    methods: [GET]
+    defaults:
+        component: components\images\ImagesComponent
+        controller: components\images\controllers\ImagesController
+        model: components\images\models\ImageModel
+        method: serveImage
+        view: core\views\ImageView
+        viewKey: image_get
+        datasource: datasource1   
+    

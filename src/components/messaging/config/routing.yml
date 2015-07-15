@@ -1,4 +1,124 @@
 
+
+#-----------------------new layout items --------------------
+
+        #claimId/locationId
+admin_messaging_home:
+    pattern: admin/messaging
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\DiscussionModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_messaging_home
+        datasource: datasource1
+
+
+admin_messaging_view_message:
+    pattern: admin/messaging/view/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: loadMessage
+        view: core\views\JSONView
+        viewKey: admin_messaging_view_message
+        datasource: datasource1
+    methods: [GET]
+
+admin_messaging_compose:
+    pattern: admin/messaging/compose
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: displayInput
+        view: core\views\TemplateView
+        viewKey: admin_messaging_compose
+        datasource: datasource1
+    methods: [GET]
+    
+admin_messaging_send:
+    pattern: admin/messaging/compose
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: sendNewMessage
+        view: core\views\JSONView
+        viewKey: admin_messaging_send
+        datasource: datasource1
+    methods: [POST]
+           
+admin_messaging_foldercounts:
+    pattern: admin/messaging/folderstats
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: getFolderCounts
+        view: core\views\JSONView
+        viewKey: admin_messaging_foldercounts
+        datasource: datasource1
+        
+    
+admin_messaging_send:
+    pattern: admin/messaging/compose/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_messaging_send
+        datasource: datasource1
+    methods: [POST]    
+    
+admin_messaging_view_selected:
+    pattern: admin/messaging/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: viewSelectedMessage
+        view: core\views\TemplateView
+        viewKey: admin_messaging_view_selected
+        datasource: datasource1
+
+           
+admin_messaging_list:
+    pattern: admin/messaging/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: listallByLoggedInUser
+        view: core\views\JSONView
+        viewKey: admin_messaging_list
+        datasource: datasource1
+
+      
+#           offset/limit/column/direction
+admin_messaging_list:
+    pattern: admin/messaging/*/*/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\MessageModel
+        method: listallByLoggedInUser
+        view: core\views\JSONView
+        viewKey: admin_messaging_list
+        datasource: datasource1
+
+
+
+
+
+
+
+
+#------------------------- legacy layout items -----------------
      
         #claimId/locationId
 admin_messaging_claim_list:

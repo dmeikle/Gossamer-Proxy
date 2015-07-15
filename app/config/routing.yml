@@ -8,6 +8,9 @@ locales:
 widgets:
     component: "src/framework/core/components/widgets/config/routing.yml"
   
+image:
+    component: "src/components/images/config/routing.yml"
+    
 basicmenu:
     component: "src/framework/core/components/basicmenu/config/routing.yml"
 

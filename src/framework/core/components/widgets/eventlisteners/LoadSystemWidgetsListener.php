@@ -30,9 +30,10 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
     }
     
     private function loadConfigurations($params) {
-        $results = $this->getValuesFromCache('widgetConfigurations_' . __YML_KEY);
+        $results = $this->getValuesFromCache('widgets/' . __YML_KEY);
        
         if($results !== false) {
+            
             return $results;
         }
         
@@ -45,7 +46,9 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
  
         $results = $datasource->query('get', $systemWidget, 'list', $params);      
         
-        $this->saveValuesToCache('widgetConfigurations_' . __YML_KEY, $results);
+        $this->saveValuesToCache('widgets/' . __YML_KEY, $results);
+        
+        return $results;
     }
     
     private function loadWidgetConfigs(array $widgetList) {

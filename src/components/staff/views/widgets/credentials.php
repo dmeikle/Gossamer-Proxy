@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="profile-info-title">
-        <?php echo $aform["submit"];?>
+        <?php echo $aform["saveCredentials"];?>
         </div>
     </div>
 </div>

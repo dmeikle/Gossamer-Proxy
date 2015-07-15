@@ -4,7 +4,7 @@
 
 <!--- javascript end --->
 
-<div class="col-md-6">
+<div class="col-md-4">
     <div class="block block-size-normal">
         <div class="block-heading">
             <div class="main-text h2">
@@ -16,26 +16,17 @@
             </div>
         </div>
         <div class="block-content-outer">
-            <div class="block-content-inner mCustomScrollbar _mCS_3 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_3" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_outside" tabindex="0"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
-
-                        <div class="sales-value-misc">
-                            <div class="sales-value-misc-intro">
-                                <strong>Customer Info</strong><br>
-                                Mike Jones<br>
-                                604-123-1233<br>
-                                mobile: 123-123-1233
-                            </div>
-                            <div class="sales-value-misc-intro">
-                                <strong>Owner Info</strong><br>
-                                Mike Jones<br>
-                                604-123-1233<br>
-                                mobile: 123-123-1233
-                            </div>
-                            <div class="sales-value-misc-intro">
-                                <strong>Adjuster Info</strong><br>
-                                Mike Jones<br>
-                                604-123-1233<br>
-                                mobile: 123-123-1233
+            <div class="block-content-inner mCustomScrollbar _mCS_3 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;">
+                <div id="mCSB_3" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_outside" tabindex="0">
+                    <div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+                        <div ng-controller="ClaimContactsController as ccCtrl">
+                            <div class="sales-value-misc">
+                                <div class="sales-value-misc-intro" ng-repeat="contact in ccCtrl.contacts">
+                                    <strong>{{contact.type}} Info</strong><br>
+                                    {{contact.firstname}} {{contact.lastname}}<br>
+                                    telephone: {{contact.telephone}}<br>
+                                    mobile: {{contact.mobile}}
+                                </div>
                             </div>
                         </div>
                     </div>

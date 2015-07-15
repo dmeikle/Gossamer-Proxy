@@ -5,6 +5,37 @@
 
 <!--- javascript end --->
 
+<style>
+    
+.edit-nav {
+    position: absolute;
+    background-color: white;
+    border: solid 1px grey;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000
+}
+.edit-nav li {
+    list-style: none;
+}
+.hover, .hover_effect {
+    position: absolute;
+    background-color: white;
+    border: solid 1px grey;
+    padding: 10px;
+    border-radius: 5px;
+    display:block;
+    z-index: 1000
+}
+
+element:hover, element:active {
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-user-select: none;
+-webkit-touch-callout: none
+}
+
+</style>
 
 <div class="block">
     <div class="block-heading">
@@ -40,6 +71,15 @@
                             <td class="col-xs-1 col-md-1 col-lg-1">{{staff.status}}</td>     
                             <td class="col-xs-2 col-md-2 col-lg-2">{{staff.lastLogin}}</td>  
                             <td>
+                                pasted in from other page...
+                                <div class="edit-container"><span class="glyphicon glyphicon-cog"></span>
+                                    <ul class="edit-nav">
+                                        <li><a class="edit" data-id="1" href="#">Edit</a></li>
+                                        <li><a class="permissions" data-id="1" href="#">Permissions</a></li>
+                                        <li><a class="deleteCompany" data-id="1" href="#">Company</a></li>
+                                    </ul>
+                                    <a class="deleteCompany" data-id="1" href="#"></a>
+                                </div>
                                 <div class="edit-pane dropdown">
                                     <ul>
                                         <li class="has-sub"><span class="glyphicon glyphicon-cog"></span>                       

@@ -150,6 +150,21 @@ admin_staff_credentials_save:
     
     
     
+  
+admin_staff_photo_upload:
+    pattern: admin/staff/photo/upload/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: uploadPhoto
+        view: core\views\JSONView
+        viewKey: admin_staff_photo_upload
+        datasource: datasource1
+    methods: [POST] 
+    
+        
+    
 #--------------------------- login section ------------------
 admin_login:
     pattern: admin/login

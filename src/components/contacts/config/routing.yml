@@ -72,7 +72,24 @@ admin_contacts_company_edit:
         viewKey: admin_contacts_edit
         datasource: datasource1
                 
-          
+#----------------------- claim contacts --------------------
+
+claimcontacts_list:
+    pattern: admin/contacts/claim/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ClaimContactsController
+        model: components\contacts\models\ClaimContactModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: claimcontacts_list
+        datasource: datasource1  
+        
+                  
+                  
+                  
+                  
+                  
 contacts_get:
     pattern: contacts/get/*
     defaults:
@@ -437,3 +454,8 @@ portal_contacts_credentials_save:
         viewKey: portal_contacts_credentials_save
         datasource: datasource1
     methods: [POST] 
+    
+    
+
+
+            

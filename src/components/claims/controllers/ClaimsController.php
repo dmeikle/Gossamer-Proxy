@@ -72,7 +72,7 @@ class ClaimsController extends AbstractController{
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
 
         $options = array();
-        pr($this->httpRequest->getAttribute('ClaimTypes'));
+       // pr($this->httpRequest->getAttribute('ClaimTypes'));
         return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
     

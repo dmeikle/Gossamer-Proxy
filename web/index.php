@@ -3,8 +3,6 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 
-    
-
 //these are included in order of operation - do not change!
 include_once('includes/configuration.php');
 include_once('../vendor/autoload.php');

@@ -22,9 +22,41 @@
                          $scope.comments = response.Comments;
                      });
                      
-         ****************need to create object, add form values and token here **********************            
+          
        $scope.saveComment = function(comment) {
-           $http.post("/admin/claims/locations/comments/" + jobNumber, comment);
+           var data = {};
+           var jobNumber = document.getElementById('claim_jobNumber').value;
+           
+           comment.Claims_id = document.getElementById('claim_Claims_id').value;
+           comment.ClaimsLocation_id = document.getElementById('claim_ClaimsLocation_id').value;
+           
+           data.ClaimLocationComment = comment;
+           data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+           
+           $.post("/admin/claims/locations/comments/" + jobNumber, data);
+       };
+
+    }) 
+    .controller('ClaimCommentsController', function($scope, $http) {
+        var jobNumber = document.getElementById('claim_jobNumber').value;
+        $scope.comments = {};
+        
+        $http.get("/admin/claims/comments/" + jobNumber)
+                     .success(function(response) {
+                         $scope.comments = response.Comments;
+                     });
+                     
+          
+       $scope.saveComment = function(comment) {
+           var data = {};
+           var jobNumber = document.getElementById('claim_jobNumber').value;
+           
+           comment.Claims_id = document.getElementById('claim_Claims_id').value;
+           
+           data.ClaimComment = comment;
+           data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+           
+           $.post("/admin/claims/comments/" + jobNumber, data);
        };
 
     }) 
@@ -46,6 +78,34 @@
        
 
        
+    })
+    .controller('ClaimPhotosController', function($scope, $http) {
+        var imageList = this;
+        imageList.items = [];
+        
+        $scope.editingData = [];
+
+        var jobNumber = document.getElementById('claim_jobNumber').value;
+        
+        $http.get("/admin/claim/photos/list/" + jobNumber).success(function(response) {
+            imageList.items = response.photos;           
+        });
+
+
+        $scope.modify = function(photo){
+            $scope.editingData[photo.id] = true;
+        };
+
+        $scope.update = function(photo){
+            console.log(photo);
+
+            var data ={};
+            data.Photo = photo;
+            data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+            $.post('/super/widgets/' + widget.id, data);
+                $scope.editingData[widget.id] = false;
+        };
     })
     .directive('openClaimsCount', function($http) {
       
@@ -70,6 +130,22 @@
                 controller:function($scope) {
                     $http.get("/admin/claims/newcount/3")
                         .success(function(response) {
+                            $scope.newCount = response.ClaimsCount[0].rowCount;
+                        });             
+                }
+          };      
+    })
+    .directive('photosCount', function($http) {
+        var jobNumber = document.getElementById('claim_jobNumber').value;
+
+         return {
+            restrict: 'E',
+            replace: true,
+            template: '<a href="/admin/claims/photos/' + jobNumber + '">{{newCount}}</a>',
+                controller:function($scope) {
+                    $http.get("/admin/claims/photocount/" + jobNumber)
+                        .success(function(response) {
+                            console.log(response);
                             $scope.newCount = response.ClaimsCount[0].rowCount;
                         });             
                 }

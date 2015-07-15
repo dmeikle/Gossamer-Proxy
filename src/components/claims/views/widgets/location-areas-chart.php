@@ -15,7 +15,7 @@
 </style>
 
 
-<div class="col-md-6">
+<div class="col-md-8">
     <div class="block">
         <div class="block-heading">
             <div class="main-text h2">

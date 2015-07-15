@@ -30,6 +30,10 @@
                         <td>Lastname:</td>
                         <td><?php echo $form['lastname']; ?></td>
                     </tr>
+<!--                    <tr>
+                        <td>Gender:</td>
+                        <td><?php //echo $form['gender']; ?></td>
+                    </tr>-->
                     <tr>
                         <td>Telephone:</td>
                         <td><?php echo $form['personalTelephone']; ?></td>

@@ -200,7 +200,6 @@ class AbstractModel {
         $params = $this->httpRequest->getPost();
         $params[$this->entity]['id'] = intval($id);
 
-error_log(print_r($params, true));
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
         return $data;

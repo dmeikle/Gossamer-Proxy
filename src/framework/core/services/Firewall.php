@@ -72,13 +72,17 @@ class Firewall {
      * @return array|null
      */
     public function getFirewallKey(YAMLParser $parser) {
+        
         $parser->setFilePath(__SITE_PATH . '/app/config/firewall.yml');
         $config = $parser->loadConfig();
         $comparator = new URISectionComparator();
         $key = $comparator->findPattern($config, __URI);
+       
         if ($key === false) {
+         
             return null;
         }
+        
         if (array_key_exists('authentication', $config[$key])) {
 
             return $config[$key]['authentication'];

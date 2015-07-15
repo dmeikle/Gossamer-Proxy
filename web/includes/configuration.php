@@ -30,10 +30,11 @@ define('__XML_CONFIG_PATH', __SITE_PATH .DIRECTORY_SEPARATOR . 'classes' . DIREC
 define('__URI', $requestURI);
 define('__REQUEST_URI', $requestURI);
 define('__CACHE_DIRECTORY', __SITE_PATH . '/app/cache/');
+define('__UPLOADED_IMAGES_PATH', $site_path . '/web/images/');
 
 function findConfigKeyByURIPattern($configList, $node, $uriPattern)
 {
-    $comparator = new URIComparator();
+    $comparator = new URIComparator(new \Gossamer\Caching\CacheManager());
     
     $uriConfig = $comparator->findPattern($configList, $uriPattern);
     unset($comparator);

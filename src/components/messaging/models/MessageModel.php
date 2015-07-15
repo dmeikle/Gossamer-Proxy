@@ -15,7 +15,7 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 
 /**
@@ -23,7 +23,7 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class MessageModel extends AbstractModel {
+class MessageModel extends AbstractModel implements FormBuilderInterface {
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -45,12 +45,16 @@ class MessageModel extends AbstractModel {
     
     public function save($id) {
         $params = $this->httpRequest->getPost();
-        $params['message']['fromStaff_id'] = $this->getLoggedInStaffId();
-        if(intval($params['discussion']['ClaimsLocations_id']) < 1) {
-            unset($params['discussion']['ClaimsLocations_id']);
-        }
-       
-        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveMessage', $params); 
+        $params['Message']['fromStaff_id'] = $this->getLoggedInStaffId();
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveMessage', $params[$this->entity]); 
+      
+        return $data;
+    }
+    
+    
+    public function get(array $params) {
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'viewmessage', $params); 
       
         return $data;
     }
@@ -80,6 +84,15 @@ class MessageModel extends AbstractModel {
         
         return $data;
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
     
-    
+    public function getFolderCounts(array $params) {
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listfoldercounts', $params);
+        
+        return $data;
+    }
+
 }

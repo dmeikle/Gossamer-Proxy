@@ -171,6 +171,7 @@ class EventDispatcher {
      * @return void
      */
     public function dispatch($uri, $state, Event &$params = null) {
+       
         //error_log("dispatch called for $uri with state set to $state");
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
         $keys = array_keys($this->listeners);

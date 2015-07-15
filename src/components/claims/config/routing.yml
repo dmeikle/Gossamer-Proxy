@@ -74,7 +74,98 @@ admin_claimslocation_save_comment:
         datasource: datasource1
     methods: [POST]
     
-        
+
+admin_claims_list_comments:
+    pattern: admin/claims/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimCommentsController
+        model: components\claims\models\ClaimCommentModel
+        method: listCommentsByJobnumber
+        view: core\views\JSONView
+        viewKey: admin_claims_list_comments
+        datasource: datasource1
+    methods: [GET]
+    
+    
+admin_claims_save_comment:
+    pattern: admin/claims/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimCommentsController
+        model: components\claims\models\ClaimCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_save_comment
+        datasource: datasource1
+    methods: [POST]
+              
+
+admin_claims_get_photo_count:
+    pattern: admin/claims/photocount/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimModel
+        method: getCount
+        view: core\views\JSONView
+        viewKey: admin_claims_get_photo_count
+        datasource: datasource1
+    methods: [GET]            
+            
+            
+admin_claims_claim_photos_home:
+    pattern: admin/claim/photos/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: drawParams
+        view: core\views\TemplateView
+        viewKey: admin_claims_claim_photos_home
+        datasource: datasource1
+    methods: [GET]           
+            
+            
+admin_claims_list_claim_photos:
+    pattern: admin/claim/photos/list/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: listByClaimId
+        view: core\views\JSONView
+        viewKey: admin_claims_list_claim_photos
+        datasource: datasource1
+    methods: [GET]          
+            
+            
+            
+admin_claims_upload_claim_photos:
+    pattern: admin/claims/photos/upload/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: uploadPhotos
+        view: core\views\JSONView
+        viewKey: admin_claims_upload_claim_photos
+        datasource: datasource1
+    methods: [POST]           
+                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 claims_new_claim_wizard_1:
     pattern: admin/claims/new/*/*
     listeners:
@@ -331,3 +422,5 @@ claims_view:
         view: core\views\TemplateView
         viewKey: claims_view
         datasource: datasource1        
+        
+        

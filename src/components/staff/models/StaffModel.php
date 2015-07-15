@@ -50,10 +50,11 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
         $params['locale'] = $defaultLocale['locale'];
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listStaff', $params);
-try{
-        //$data['Staffs'] = current($data['Staffs']);
-        $data['DepartmentsList'] = $this->formatArray($this->httpRequest->getAttribute('Departments'));
-}catch(\Exception $e) {}
+        try{
+            //$data['Staffs'] = current($data['Staffs']);
+            $data['DepartmentsList'] = $this->formatArray($this->httpRequest->getAttribute('Departments'));
+        }catch(\Exception $e) {}
+        
         if (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
         }
@@ -84,7 +85,12 @@ try{
         return $this->entity;
     }
     
+    public function saveParams(array $params) {
 
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveStaff', $params);
+
+        return $data;
+    }
     
     public function paginate($offset, $limit) {
         $params = array(

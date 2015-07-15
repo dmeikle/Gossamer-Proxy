@@ -282,7 +282,7 @@
                                 </li>
                                 <li class="notifications-alert-more">
                                     <p>
-                                        <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">See all messages<i class="icon icon-arrow-right-bold-round icon-size-small"></i></a>
+                                        <a href="/admin/messaging">See all messages<i class="icon icon-arrow-right-bold-round icon-size-small"></i></a>
                                     </p>
                                 </li>
                             </ul>

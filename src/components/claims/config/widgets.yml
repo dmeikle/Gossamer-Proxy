@@ -18,3 +18,11 @@ claims_icon_list: 'src/components/claims/views/widgets/icon-list.php'
 claims_location_areas: 'src/components/claims/views/widgets/location-areas-chart.php'
 
 claims_location_comments: 'src/components/claims/views/widgets/location-comments.php'
+
+claim_photo_count: 'src/components/claims/views/widgets/photo-count.php'
+
+claim_photo_list: 'src/components/claims/views/widgets/photos-list.php'
+
+claim_photos_upload: 'src/components/claims/views/widgets/photos-upload.php'
+
+admin_claims_list_claim_photos: 'src/components/claims/views/widgets/photos-list.php'
