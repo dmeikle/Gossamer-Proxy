@@ -42,10 +42,15 @@ class LoadStaffRolesByIdListener extends AbstractListener{
         
         $staffAuthorizationModel = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = $this->httpRequest->getParameters();
-        
+        $staffId = 0;
+        if(count($params) > 0 && intval($params[0]) > 0) {
+            $staffId = intval($params[0]);
+        } else {
+            $staffId = $this->getLoggedInStaffId();
+        }
         $datasource = $this->getDatasource('components\staff\models\StaffAuthorizationModel');
         
-        $rawResult = $datasource->query('get', $staffAuthorizationModel, 'get', array('Staff_id' => intval($params[0])) );
+        $rawResult = $datasource->query('get', $staffAuthorizationModel, 'get', array('Staff_id' => $staffId) );
         
         return $rawResult;
     }

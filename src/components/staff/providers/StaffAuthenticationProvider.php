@@ -72,6 +72,7 @@ class StaffAuthenticationProvider extends UserAuthenticationProvider implements 
      * @return array
      */
     public function getRoles(ClientInterface $client) {
+        
         $result = $this->datasource->query("select role from AccessRoles where Staff_id = '%d'", $client->getId());
 
         return $result;

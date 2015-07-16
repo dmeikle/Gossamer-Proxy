@@ -18,7 +18,7 @@ cssmenu_ceilingbar:
 cssmenu_superuserbar:
     pattern: cssmenu/superuserbar
     listeners:
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource3' }
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource1' }
         #we loaded nav on bootstrap, but lets do it AFTER we've loaded staff since 
         #these menu events don't have a session for the user
         - { 'event': 'response_start', 'listener': 'components\cssmenu\listeners\LoadNavigationListener', 'params': {'file': 'navigation-display-super' }} 
@@ -37,7 +37,7 @@ cssmenu_superuserbar:
 cssmenu_adminbar:
     pattern: cssmenu/adminbar
     listeners:
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource3' }
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource1' }
         #we loaded nav on bootstrap, but lets do it AFTER we've loaded staff since 
         #these menu events don't have a session for the user
         - { 'event': 'response_start', 'listener': 'components\cssmenu\listeners\LoadNavigationListener' } 
@@ -57,7 +57,7 @@ cssmenu_adminbar:
 cssmenu_pancakes:
     pattern: cssmenu/adminpancakemenu
     listeners:
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource3' }
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource1' }
         #we loaded nav on bootstrap, but lets do it AFTER we've loaded staff since 
         #these menu events don't have a session for the user
         - { 'event': 'response_start', 'listener': 'components\cssmenu\listeners\LoadNavigationListener' } 

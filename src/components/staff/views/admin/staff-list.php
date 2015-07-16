@@ -5,37 +5,12 @@
 
 <!--- javascript end --->
 
-<style>
+
+<!--- css start --->
     
-.edit-nav {
-    position: absolute;
-    background-color: white;
-    border: solid 1px grey;
-    padding: 10px;
-    border-radius: 5px;
-    display: none;
-    z-index: 1000
-}
-.edit-nav li {
-    list-style: none;
-}
-.hover, .hover_effect {
-    position: absolute;
-    background-color: white;
-    border: solid 1px grey;
-    padding: 10px;
-    border-radius: 5px;
-    display:block;
-    z-index: 1000
-}
+    @components/staff/includes/css/staff-list.css
 
-element:hover, element:active {
--webkit-tap-highlight-color: rgba(0,0,0,0);
--webkit-user-select: none;
--webkit-touch-callout: none
-}
-
-</style>
+<!--- css end --->
 
 <div class="block">
     <div class="block-heading">
