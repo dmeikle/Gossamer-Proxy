@@ -67,7 +67,7 @@ class StaffController extends AbstractController {
     public function listall($offset = 0, $limit = 20) {
         $result = $this->model->listall($offset, $limit);
        
-        $this->render($result['Staffs']);
+        $this->render($result);
 //        $result = $this->model->listall($offset, $limit);
 //
 //        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {

@@ -15,7 +15,22 @@ super_widgets_home:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'    
     methods: [GET]
+    
 
+super_widgets_system_home:
+    pattern: super/widgets/system
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetsSystemController
+        model:  core\components\widgets\models\SystemWidgetModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: super_widgets_system_home
+        datasource: datasource1  
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [GET]    
      
 super_widgets_list:
     pattern: super/widgets/*/*

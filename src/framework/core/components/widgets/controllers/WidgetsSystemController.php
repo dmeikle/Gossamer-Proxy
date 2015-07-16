@@ -17,7 +17,12 @@ use core\AbstractController;
  *
  * @author Dave Meikle
  */
-class WidgetsController extends AbstractController {
+class WidgetsSystemController extends AbstractController {
     
+    public function index() {
+        $result = $this->model->listall(0,20);
+        
+        $this->render($result);
+    }
  
 }

@@ -1,5 +1,5 @@
 admin_scoperequests_list:
-    template: admin-list-fullscreen.php
+    template: admin-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
@@ -45,7 +45,7 @@ admin_scoperequest_save_contact:
             "section4": "src/themes/default/templates/sections/footer.php"
     
 admin_scoping_home:
-    template: admin-list-fullscreen.php
+    template: admin-fullscreen.php
     sections: 
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"

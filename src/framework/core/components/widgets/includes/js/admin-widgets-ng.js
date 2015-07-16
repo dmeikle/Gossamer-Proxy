@@ -10,7 +10,7 @@
 (function() {
   
     var page = 0;
-    var rows = 10;
+    var rows = 50;
     angular.module('widgets', [])
         .controller('WidgetsController', function($scope, $http) {
             var widgets = this;
@@ -33,17 +33,23 @@
             };
             
             $scope.update = function(widget){
-                console.log(widget);
+                var data ={};
+                data.Widget = widget;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
 
+                $.post('/super/widgets/' + widget.id, data);
+                $scope.editingData[widget.id] = false;
 
-            var data ={};
-            data.Widget = widget;
-            data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+            };
+            
+            $scope.save = function(widget){
+                var data ={};
+                data.Widget = widget;
+                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-            $.post('/super/widgets/' + widget.id, data);
-                    $scope.editingData[widget.id] = false;
+                $.post('/super/widgets/0', data);                   
 
-                };
+            };
         });
 
 

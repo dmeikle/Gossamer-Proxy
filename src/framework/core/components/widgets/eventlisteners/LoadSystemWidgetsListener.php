@@ -12,7 +12,7 @@ namespace core\components\widgets\eventlisteners;
 
 use core\eventlisteners\AbstractCachableListener;
 use core\components\widgets\models\SystemWidgetModel;
-use core\components\widgets\exceptions;
+use core\components\widgets\exceptions\FileNotFoundException;
 
 /**
  * LoadSystemWidgetsListener
@@ -45,7 +45,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
         
         $datasource = $this->getDatasource($systemWidget);
  
-        $results = $datasource->query('get', $systemWidget, 'list', $params);      
+        $results = $datasource->query('get', $systemWidget, 'listByPage', $params);      
         
         $this->saveValuesToCache('widgets/' . __YML_KEY, $results);
         
@@ -62,7 +62,8 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
                 //add the widget component name so we can bootstrap it on page load
                 $this->httpRequest->addModule($widgetConfig['module']);
 
-                $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml');
+                $parser->setFilePath($this->getFilepath($widgetConfig));
+                
                 $config = $parser->loadConfig();
                 if($config === false) {
                     //no widgets.yml found
@@ -76,5 +77,16 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
         }
         
         $this->httpRequest->setAttribute('SystemWidgets', $retval);
+    }
+    
+    private function getFilepath(array $widgetConfig) {
+        if(file_exists(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . 
+                DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml')) {
+            return __SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . 
+                DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml';
+        }
+        
+        return __SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . 
+                DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml';
     }
 }
