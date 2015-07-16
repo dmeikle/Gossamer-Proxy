@@ -121,7 +121,7 @@
             staff.user = [];
             
             $http.get("/admin/staff/" + page + "/" + rows).success(function(response) {
-                staff.items = response;
+                staff.items = response.Staffs;
             });
 
             $scope.loadPage = function(selectedPage) {
