@@ -12,6 +12,7 @@ namespace core\components\widgets\eventlisteners;
 
 use core\eventlisteners\AbstractCachableListener;
 use core\components\widgets\models\SystemWidgetModel;
+use core\components\widgets\exceptions;
 
 /**
  * LoadSystemWidgetsListener
@@ -59,13 +60,14 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
             
             foreach($widgetList as $widgetConfig) {
                 //add the widget component name so we can bootstrap it on page load
-                $this->httpRequest->addModule($widgetConfig['component']);
+                $this->httpRequest->addModule($widgetConfig['module']);
 
                 $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml');
                 $config = $parser->loadConfig();
                 if($config === false) {
                     //no widgets.yml found
-                    continue;
+                    throw new FileNotFoundException('No widget config found for ' . $widgetConfig['name']);
+                    //continue;
                 }
                 if(array_key_exists($widgetConfig['htmlKey'], $config)) {
                     $retval[$widgetConfig['sectionName']][] = $config[$widgetConfig['htmlKey']];
