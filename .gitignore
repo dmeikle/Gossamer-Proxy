@@ -4,8 +4,8 @@
 
 /composer.lock
 
-/app/cache/*
-/app/logs/*
+app/cache/*
+app/logs/*
 
 /app/config/credentials.yml
 ./web/assets/default/images/images
