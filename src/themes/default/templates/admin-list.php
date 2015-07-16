@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <!-- Fav and touch icons 
+        <!-- Fav and touch icons
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-72-precomposed.png">
@@ -40,13 +40,10 @@
         <link type="text/css" href="/css/theme/styles-core.css" rel="stylesheet">
         <link type="text/css" href="/css/theme/styles-core-responsive.css" rel="stylesheet">
 
-        
+
         <script type="text/javascript" src="/js/theme/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="/js/theme/jquery-ui.min.js"></script>
-        
-        <!---css--->
-        
-        
+
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script async="" src="/js/theme/analytics.js"></script>
         <script async="" src="/js/theme/analytics.js"></script>
@@ -114,7 +111,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!---topwidgets--->                            
+                            <!---topwidgets--->
                         </div>
                         <div class="row">
                             <div class="col-md-8">
@@ -122,16 +119,16 @@
                                     <div class="col-md-12">
                                         <!-- START Block: Overview Graph -->
                                         <!---section3--->
-                                        
+
                                         <!-- END Block: Overview Graph -->
                                     </div>
                                     <div class="col-md-4">
                                     </div>
                                 </div>
-                                
+
                             </div>
                             <div class="col-md-4">
-                                
+
                                 <!---section4--->
                                 <div class="row">
                                     <div class="col-md-12">
@@ -219,19 +216,19 @@
                                                         <div class="c-widget-content-body">
                                                             <p>
                                                                 <strong>RE: SEO Inquiry</strong><br>
-                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                             </p>
                                                             <p>
-                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                             </p>
                                                         </div>
                                                         <div class="c-widget-content-sub">
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-pencil"></span> 
+                                                                <span class="glyphicon glyphicon-pencil"></span>
                                                                 Write Reply
                                                             </a>
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-trash"></span> 
+                                                                <span class="glyphicon glyphicon-trash"></span>
                                                                 Delete
                                                             </a>
                                                         </div>
@@ -251,11 +248,11 @@
                                                             09 December <small>10:43</small>
                                                         </div>
                                                         <div class="c-widget-content-body">
-                                                            Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                            Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                         </div>
                                                         <div class="c-widget-content-sub">
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-retweet"></span> 
+                                                                <span class="glyphicon glyphicon-retweet"></span>
                                                                 ReTweet This
                                                             </a>
                                                         </div>
@@ -284,7 +281,7 @@
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>
@@ -300,7 +297,7 @@
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>
@@ -312,11 +309,11 @@
                                                                         06 December <small>22:19</small>
                                                                     </div>
                                                                     <div class="c-widget-content-body">
-                                                                        Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                        Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>
@@ -391,23 +388,22 @@
 
         <!-- Demo JS Files -->
         <script type="text/javascript" src="/js/theme/index.js"></script>
-       
 
 
-        <div id="flotTip" style="display: none; position: absolute;"></div>
-        <div class="bootstrap-datetimepicker-widget dropdown-menu">
-            <div class="datepicker">
-                <div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">June 2015</th><th class="next">›</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day active today">11</td><td class="day">12</td><td class="day">13</td></tr><tr><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td></tr><tr><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td></tr><tr><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td></tr><tr><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td><td class="day new">11</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2015</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month active">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2010-2019</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year active">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody></table></div></div></div><div class="bootstrap-datetimepicker-widget dropdown-menu"><div class="datepicker"><div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">June 2015</th><th class="next">›</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day active today">11</td><td class="day">12</td><td class="day">13</td></tr><tr><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td></tr><tr><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td></tr><tr><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td></tr><tr><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td><td class="day new">11</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2015</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month active">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2010-2019</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year active">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody></table></div></div></div><div class="jqvmap-label"></div>
-    
-                <script language="javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
-   
+
+        <div id="flotTip" style="display: none; position: absolute;"></div><div class="bootstrap-datetimepicker-widget dropdown-menu"><div class="datepicker"><div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">June 2015</th><th class="next">›</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day active today">11</td><td class="day">12</td><td class="day">13</td></tr><tr><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td></tr><tr><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td></tr><tr><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td></tr><tr><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td><td class="day new">11</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2015</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month active">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2010-2019</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year active">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody></table></div></div></div><div class="bootstrap-datetimepicker-widget dropdown-menu"><div class="datepicker"><div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">June 2015</th><th class="next">›</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td><td class="day">6</td></tr><tr><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day active today">11</td><td class="day">12</td><td class="day">13</td></tr><tr><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td><td class="day">20</td></tr><tr><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td><td class="day">27</td></tr><tr><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td><td class="day new">4</td></tr><tr><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td><td class="day new">11</td></tr></tbody></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2015</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month active">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev">‹</th><th colspan="5" class="picker-switch">2010-2019</th><th class="next">›</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year active">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody></table></div></div></div><div class="jqvmap-label"></div>
+
+    <!-- Angular and AngularUI -->
+    <script language="javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
+    <script src="js/angular/ui-bootstrap-tpls-0.13.0.min.js" charset="utf-8"></script>
+
      <!---javascript--->
-     
+
      <script language="javascript">
      (function() {
         // angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
          angular.bootstrap(document, [<?php echo $modules; ?>]);
      })();
      </script>
-    
+
     </body></html>
