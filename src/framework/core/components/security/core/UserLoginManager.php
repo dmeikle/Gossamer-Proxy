@@ -194,6 +194,8 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
         } else {
             $this->userAuthenticationProvider = $params['invite_authentication_provider'];
         }
+    
+       //pr($this->userAuthenticationProvider);
     }
 
     /**

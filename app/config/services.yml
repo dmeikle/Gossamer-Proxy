@@ -17,7 +17,7 @@
  
 'staff_login_auth': 
     'handler': 'core\components\security\handlers\AuthenticationHandler'
-    'datasource': 'datasource3'
+    'datasource': 'datasource4'
     'arguments': 
         security_context: '@security_context'
         authentication_manager: '@authentication_stafflogin_manager'    

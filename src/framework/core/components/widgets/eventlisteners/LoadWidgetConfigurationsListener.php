@@ -31,5 +31,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
         if(is_array($results) && array_key_exists('WidgetsSystems', $results)) {
             $this->httpRequest->setAttribute('SystemWidgets', $results['WidgetsSystems']);
         }
+        echo "here is results";
+        pr($results);
     }
 }

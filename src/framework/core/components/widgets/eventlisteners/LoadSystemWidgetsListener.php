@@ -31,9 +31,9 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
     
     private function loadConfigurations($params) {
         $results = $this->getValuesFromCache('widgets/' . __YML_KEY);
-       
+      
         if($results !== false) {
-            
+           
             return $results;
         }
         
