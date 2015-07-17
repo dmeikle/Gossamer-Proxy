@@ -1,16 +1,21 @@
+.Trash-1000
 
-/web/assets/default*
-/vendor
+.sass-cache
 
-/composer.lock
+web/assets/default*
+vendor
+
+composer.lock
 
 app/cache/*
 app/logs/*
 
-/app/config/credentials.yml
-./web/assets/default/images/images
-./web/assets/default-bak/images/images
-./vendor/bin/phpunit
-./web/css/theme
-./web/js/theme
-./web/images/theme
+node_modules
+
+app/config/credentials.yml
+web/assets/default/images/images
+web/assets/default-bak/images/images
+vendor/bin/phpunit
+web/css/theme
+web/js/theme
+web/images/theme

@@ -1,14 +1,14 @@
-/* 
+/*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
 
 (function() {
-  
+
     var page = 0;
     var rows = 10;
     angular.module('staff', [])
@@ -16,9 +16,9 @@
             $scope.authorization = {};
             $scope.usernameExistsClass = '';
             $scope.isUsernameExists = false;
-            
+
             $scope.checkUsernameExists = function(authorization) {
-                
+
                 if(authorization.username.length < 4) {
                     return;
                 }
@@ -32,39 +32,39 @@
                     }
                 });
             };
-            
+
             $scope.saveCredentials = function(authorization) {
                 var id = document.getElementById('Staff_id').value;
                 var data ={};
                 data.StaffAuthorization = authorization;
                 data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
-                
+
                 $.post('/admin/staff/credentials/' + id, data).success(function(data) {
                     if('true' != data.success) {
                         //do something
                     }
                 });
             };
-            
+
             $scope.clearErrors = function() {
-               
+
                 $scope.isUsernameExists = '';
                 $scope.isUsernameExists = false;
-            }
+            };
         })
-        
+
         .directive('ngUnique', ['$http', function (async) {
             return {
                 require: 'ngModel',
                 link: function (scope, elem, attrs, ctrl) {
 
                     elem.on('blur', function (evt) {
-                        scope.$apply(function () {                   
+                        scope.$apply(function () {
                             var val = elem.val();
-                          
+
                             var ajaxConfiguration = { method: 'GET', url: '/admin/staff/checkusername/0/' + val };
                             async(ajaxConfiguration)
-                                .success(function(data, status, headers, config) { 
+                                .success(function(data, status, headers, config) {
                                     if(data.exists === "true") {
                                         ctrl.$setValidity('unique', 'true');
                                     } else {
@@ -74,10 +74,10 @@
                         });
                     });
                 }
-            }
+            };
         }])
         .controller('EditStaffController', function($scope, $http) {
-            
+
             $scope.savePersonal = function(staff) {
                 if(staff.id === undefined) {
                     staff.id = 0;
@@ -91,21 +91,21 @@
                 });
 
             };
-            
+
             $scope.saveEmployment = function(staff) {
                 alert('here');
                 var id = document.getElementById('Staff_id').value;
-                
+
                 var data ={};
                 data.Staff = staff;
                 data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
                 $.post('/admin/staff/' + id, data);
-            }
+            };
         })
         .controller('StaffRolesController', function($scope, $http) {
             $scope.rolesList = {};
-    
-            $scope.saveRoles = function(roles) {   
+
+            $scope.saveRoles = function(roles) {
                 var id = document.getElementById('Staff_id').value;
                 var data = {};
                 data.StaffAuthorization = roles;
@@ -113,13 +113,13 @@
                 $.post('/admin/staff/permissions/' + id, data);
 
             };
-            
+
         })
         .controller('StaffController', function($scope, $http) {
             var staff = this;
             staff.items = [];
             staff.user = [];
-            
+
             $http.get("/admin/staff/" + page + "/" + rows).success(function(response) {
                 staff.items = response.Staffs;
             });
@@ -129,8 +129,8 @@
                 $.get("/admin/staff/" + page + "/" + rows).success(function(response) {
                     staff.items = response;
                 });
-            }
-            
+            };
+
             $scope.edit = function(id) {
                 $http.get("/admin/staff/" + id).success(function(response) {
                     staff.user = response.Staff;
@@ -142,7 +142,7 @@
             return {
               restrict: 'A',
               template: '<a class="" data-limit="" data-offset="" data-url="/admin/staff/rest/0/' + rows + '">&#171;</a>'
-            };       
+            };
         })
         .directive('paginationList', function() {
             return {
@@ -153,9 +153,9 @@
                     paginator.items = [];
                     $http.get("/admin/staff/pagination/0/" + rows).success(function(response) {
                         staff.items = response;
-                    });              
+                    });
                 }
-            }
+            };
         })
         .directive('paginationEnd', function() {
             return {
@@ -179,7 +179,7 @@
             };
 
             function getResultsPage(pageNumber) {
-                $http.get('/admin/staff/pagination/' + + pageNumber + '/' + rows )
+                $http.get('/admin/staff/pagination/' + pageNumber + '/' + rows )
                     .then(function(result) {
                         pagination.rows = result.data;
                         pagination.totalRows = result.data.length;
