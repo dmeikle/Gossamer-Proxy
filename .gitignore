@@ -19,3 +19,4 @@ vendor/bin/phpunit
 web/css/theme
 web/js/theme
 web/images/theme
+documentation
