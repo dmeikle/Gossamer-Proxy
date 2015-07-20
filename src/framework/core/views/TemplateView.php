@@ -36,6 +36,7 @@ class TemplateView extends AbstractView {
      * @param string $theme
      */
     protected function loadTemplate($template, $theme) {
+       
         if ($this->agentType['isMobile']) {
             $filepath = __SITE_PATH . "/src/themes/$theme/mobile/$template";
         } else {
@@ -50,6 +51,7 @@ class TemplateView extends AbstractView {
      * calls all the render methods
      */
     protected function renderView() {
+       
         if(!array_key_exists('template', $this->config)) {
             throw new \exceptions\YamlKeyNotFoundException('template not set in views configuration');
         }
@@ -68,7 +70,9 @@ class TemplateView extends AbstractView {
         $this->placeJSFiles();
         $this->placeCSSFiles();
         $this->renderURITags($template);
+        
         $this->renderImages();
+   
     }
 
     /**

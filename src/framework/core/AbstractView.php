@@ -156,7 +156,10 @@ class AbstractView {
         $eventParams = $params->getParams();
         $this->template = $eventParams['content'];
 
+
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END);
+        
+
     }
 
     /**
@@ -179,6 +182,7 @@ class AbstractView {
      * renders the page on the destruct
      */
     public function __destruct() {
+        ob_start();
         if (!$this->renderComplete) {
 
             if (!is_null($this->data)) {
@@ -192,12 +196,20 @@ class AbstractView {
 
 
             //extract($this->data->content);
-           echo (eval("?>" . $this->template));
-
+           (eval("?>" . $this->template));
+           $result = ob_get_clean();
+           
+           //write it to the page - do not delete! this is not debug
+            print($result);
+            
             $this->template = '';
             $this->renderComplete = true;
-            $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE);
-            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, new Event());
+            
+            $params = array('renderedPage' => $result);
+           
+            $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
+
         }
     }
 

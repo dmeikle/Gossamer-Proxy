@@ -6,6 +6,9 @@ all:
         #TODO: commented out during development testing
         - { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
         - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadCachedRenderedPageListener'} 
+        - { 'event': 'render_complete', 'listener': 'core\eventlisteners\SaveRenderedPageToCacheListener'}
+        
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
         - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
         - { 'event': 'token_expired', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}

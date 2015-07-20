@@ -1,5 +1,4 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+html page<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
@@ -13,12 +12,10 @@
 
 
 
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
-
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -117,11 +114,62 @@
 
 <body>
 <div id="container">
-  <!---section1--->
+  <div style="display: none" id="dialog" title="Select Language">
+    <ul>
+    <li class="select-locale" data-id="en_US">English</li><li class="select-locale" data-id="fr_CA">French</li><li class="select-locale" data-id="zh_CN">Chinese</li>    </ul>
+    <form method="post" action="/locale/change" id="locale-change">
+        <input type="hidden" name="locale" id="locale" />
+    <input type="hidden" name="FORM_SECURITY_TOKEN" id="FORM_SECURITY_TOKEN" value="$1$ivVmomYi$kB3lEmI7cGt0K1uPZLxn7/" />
+</form>
+  </div>
+
   <div id="lower">
-    <!---section3--->
+    
+<div class="row">
+<div class="col-md-6 col-sm-6">
+    <div class="block">
+        <div class="block-heading">
+            <div class="main-text h2">
+                Login Form            </div>
+            <div class="block-controls">
+                <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
+                <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
+            </div>
+        </div>
+        <div class="block-content-outer">
+            <div class="block-content-inner">
+                <form role="form" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" />                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" />                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                <input type="hidden" name="FORM_SECURITY_TOKEN" id="FORM_SECURITY_TOKEN" value="$1$ivVmomYi$kB3lEmI7cGt0K1uPZLxn7/" />
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+<!---section3--->
     <div id="payload">
-     <!---section4--->
+     <div id="footerNav">
+    <ul>
+            <li><a href="terms.htm">terms of service</a></li> | 
+        <li><a href="privacy.htm">privacy policy</a></li>
+
+    </ul>
+</div>
+              
+       
+
+Copyright (c) 2015 phoenixrestorations.com. 
+All Rights Reserved. | 
+
+                Powered By GossamerCMS framework 
     
     </div>
     

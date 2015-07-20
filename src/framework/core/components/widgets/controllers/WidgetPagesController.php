@@ -8,20 +8,16 @@
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
+namespace core\components\widgets\controllers;
 
-namespace core\components\widgets;
+use core\AbstractController;
 
-use core\AbstractComponent;
-echo __YML_KEY;
 /**
- * Locale component
- * 
+ * WidgetPagesController
+ *
  * @author Dave Meikle
  */
-class WidgetsComponent extends AbstractComponent {
-
-    protected function getChildNamespace() {
-        return str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
-    }
-
+class WidgetPagesController extends AbstractController {
+    
+ 
 }

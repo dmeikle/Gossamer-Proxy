@@ -38,6 +38,9 @@ $container->set('nodeConfig', null, $nodeConfig);
 $container->set('controllerNode', null, $controllerNode);
 $httpRequest =  new HTTPRequest($_REQUEST, $controllerNode['pattern']);
 
+//added July 19, 2015 - some areas with no container access might need access to config
+$httpRequest->setNodeConfig($nodeConfig);
+
 $httpResponse = new HTTPResponse();
 $eventDispatcher = new EventDispatcher(null, $container->get('Logger'), $httpRequest, $httpResponse);
 $eventDispatcher->setDatasources($container->get('datasourceFactory'), $datasources);

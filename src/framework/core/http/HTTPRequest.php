@@ -24,6 +24,7 @@ class HTTPRequest extends AbstractHTTP {
     protected $queryString = array();
     protected $uri = null;
     protected $modules = array();
+    protected $nodeConfig;
     
     /**
      * 
@@ -51,6 +52,15 @@ class HTTPRequest extends AbstractHTTP {
     public function getRestParameters() {
         return json_decode(file_get_contents("php://input"), true);
     }
+    
+    public function setNodeConfig(array $config) {
+        $this->nodeConfig = $config;
+    }
+    
+    public function getNodeConfig() {
+        return $this->nodeConfig;
+    }
+    
     /**
      * returns a query param based on key
      * 

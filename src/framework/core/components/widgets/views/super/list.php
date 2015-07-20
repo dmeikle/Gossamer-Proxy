@@ -5,6 +5,7 @@
 @core/components/widgets/includes/js/admin-widgets-ng.js
 
 <!--- javascript end --->
+
 <form method="post">
 <table ng-controller="WidgetsController as widgets" cstalass="table table-striped table-hover">
     <thead>
