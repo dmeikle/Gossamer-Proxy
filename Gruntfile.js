@@ -71,10 +71,10 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'src/components/',
           src: ['**/ng/scss/*.scss'],
-          dest: 'web/components/',
+          dest: 'web/assets/css',
           rename: function(dest, src) {
             var componentName = src.substring(0, src.indexOf('/'));
-            return dest + componentName + '/' + componentName + '.min.css';
+            return dest + '/' + componentName + '.min.css';
           }
         }]
       }
