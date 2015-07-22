@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['app/cache/*.cache'],
+    clean: ['app/cache/*.cache', 'web/components/*', 'web/assets/css/*'],
 
     concat: {
       options: {
@@ -11,38 +11,25 @@ module.exports = function(grunt) {
       },
       dist: {
         expand: true,
-        cwd: 'src/components/',
-        src: ['**/ng/js/*.js'],
+        src: ['src/components/*/ng/js/*.js','src/framework/core/components/*/ng/js/*.js'],
         dest: 'src/components/',
         rename: function(dest, src) {
-          var componentName = src.substring(0, src.indexOf('/'));
+          var srcSplit = src.split('/');
+          var componentName = srcSplit[srcSplit.indexOf('components')+1];
           return dest + componentName + '/ng/' + componentName + '.concat.js';
         }
       }
     },
 
     copy: {
-      html: {
-        files: [{
-          expand: true,
-          cwd: 'src/components/',
-          src: ['**/ng/view/*.html'],
-          dest: 'web/components/',
-          rename: function(dest, src) {
-            var componentName = src.substring(0, src.indexOf('/'));
-            return dest + componentName + '/view/' + componentName + '.html';
-          }
-        }],
-      },
-
       tempJsCopy: {
         files: [{
           expand: true,
-          cwd: 'src/components/',
-          src: ['**/ng/*.concat.js'],
+          src: ['src/components/*/ng/*.concat.js','src/framework/core/components/*/ng/*.concat.js'],
           dest: 'web/components/',
           rename: function(dest, src) {
-            var componentName = src.substring(0, src.indexOf('/'));
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('components')+1];
             return dest + componentName + '/' + componentName + '.concat.js';
           }
         }],
@@ -50,7 +37,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'src/components/**/ng/js/*.js'],
+      files: ['Gruntfile.js', 'src/components/*/ng/*.concat.js','src/framework/core/components/*/ng/*.concat.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -63,18 +50,30 @@ module.exports = function(grunt) {
     },
 
     sass: {
-      dist: {
-        options: {
-          style: 'compressed'
-        },
+      options: {
+        style: 'compressed'
+      },
+      site: {
         files: [{
           expand: true,
-          cwd: 'src/components/',
-          src: ['**/ng/scss/*.scss'],
-          dest: 'web/assets/css',
+          src: ['src/components/*/ng/scss/*.scss'],
+          dest: 'web/assets/css/',
           rename: function(dest, src) {
-            var componentName = src.substring(0, src.indexOf('/'));
-            return dest + '/' + componentName + '.min.css';
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('components')+1];
+            return dest + componentName + '.min.css';
+          }
+        }]
+      },
+      framework: {
+        files: [{
+          expand: true,
+          src: ['src/framework/core/components/*/ng/scss/*.scss','!src/framework/core/components/*/ng/scss/_*.scss'],
+          dest: 'web/assets/css/',
+          rename: function(dest, src) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('components')+1];
+            return dest + componentName + '.min.css';
           }
         }]
       }
@@ -87,11 +86,12 @@ module.exports = function(grunt) {
       dist: {
         files: {
           expand: true,
-          cwd:'src/components/',
-          src: ['**/ng/*.concat.js'],
+          cwd:'src/',
+          src: ['components/*/ng/*.concat.js'],
           dest: 'web/components/',
           rename: function(dest, src) {
-            var componentName = src.substring(0, src.indexOf('/'));
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('components')+1];
             return dest + componentName + '/' + componentName + '.min.js';
           }
         }

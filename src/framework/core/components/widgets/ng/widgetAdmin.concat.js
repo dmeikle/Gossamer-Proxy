@@ -1,3 +1,5 @@
+var module = angular.module('widgetAdmin', []);
+
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   var widgetList = widgetAdminSrv.getWidgetList(0,10);
 
@@ -44,8 +46,6 @@ module.directive('widgetAdminListRow', function(templateSrv){
     }
   };
 });
-
-var module = angular.module('widgetAdmin', []);
 
 module.service('widgetAdminSrv', function($http, $log){
 
