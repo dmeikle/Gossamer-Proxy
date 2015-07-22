@@ -12,7 +12,7 @@
 namespace core\components\widgets;
 
 use core\AbstractComponent;
-echo __YML_KEY;
+
 /**
  * Locale component
  * 

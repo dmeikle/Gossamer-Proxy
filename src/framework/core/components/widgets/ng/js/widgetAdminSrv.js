@@ -9,7 +9,7 @@ module.service('widgetAdminSrv', function($http, $log){
   };
 
   this.getWidgetList = function(startRow, bound){
-    var apiPath = 'http://work.server.phoenix/admin/staff';
+    var apiPath = '/super/widgets';
     return $http.get(apiPath + '/' + startRow + '/' + bound);
   };
 
