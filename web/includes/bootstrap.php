@@ -59,7 +59,7 @@ $serviceDispatcher = new \core\services\ServiceDispatcher($logger, new YAMLParse
 $serviceDispatcher->dispatch($serviceManager);
 
 
-if(array_key_exists('langFiles', $controllerNode)) {
+if(array_key_exists('langFiles', $controllerNode) && is_array($controllerNode['langFiles'])) {
     $langFilesList = array_merge($langFilesList, $controllerNode['langFiles']);    
 }
 
