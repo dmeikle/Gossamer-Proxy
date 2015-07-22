@@ -4,19 +4,19 @@
 <table class="table" id="widgetAdminList">
   <thead>
     <th>
-      Widget Name
+      <?php echo $this->getString('WIDGET_NAME'); ?>
     </th>
     <th>
-      Widget Component
+      <?php echo $this->getString('WIDGET_COMPONENT'); ?>
     </th>
     <th>
-      Widget Module
+      <?php echo $this->getString('WIDGET_MODULE'); ?>
     </th>
     <th>
-      Widget Description
+      <?php echo $this->getString('WIDGET_DESCRIPTION'); ?>
     </th>
     <th>
-      Widget HTML Key
+      <?php echo $this->getString('WIDGET_HTMLKEY'); ?>
     </th>
     <th>
       &nbsp;
