@@ -15,6 +15,6 @@
     <input type='text' name='key' ng-model='widget.key' placeholder='Widget HTML Key'>
   </td>
   <td>
-    <button type='button' name='Confirm' ng-click='addNewWidget'>Confirm</button>
+    <button type='button' name='Confirm' ng-click='addNewWidget'><?php echo $this->getString('WIDGET_CONFIRM'); ?></button>
   </td>
 </tr>
