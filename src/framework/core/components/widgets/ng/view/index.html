@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../bower_components/angular/angular.min.js" charset="utf-8"></script>
+  <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="../scss/widgetAdminStyles.css">
+
+  <!-- Actual Dependencies! -->
+  <script src="../js/widgetAdminModule.js"></script>
+  <script src="../js/widgetAdminCtrl.js"></script>
+  <script src="../js/widgetAdminSrv.js"></script>
+  <script src="../js/widgetAdminDirectives.js"></script>
+
+</head>
+<body ng-app="widgetAdmin">
+  <div ng-controller="viewWidgetsCtrl" class="container-fluid">
+    <widget-admin-list></widget-admin-list>
+  </div>
+</body>
+</html>
