@@ -30,7 +30,7 @@ module.exports = function(grunt) {
           dest: 'web/components/',
           rename: function(dest, src) {
             var componentName = src.substring(0, src.indexOf('/'));
-            return dest + componentName + '/' + componentName + '.html';
+            return dest + componentName + '/view/' + componentName + '.html';
           }
         }],
       },

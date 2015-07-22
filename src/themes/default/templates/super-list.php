@@ -207,8 +207,8 @@
         <script language="javascript">
             (function () {
                 // angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
-                angular.bootstrap(document, [<?php echo $modules; ?>]);
+                angular.bootstrap(document, ['widgetAdmin']); 
             })();
         </script>
-
+<!--,<?php echo $modules; ?>-->
     </body></html>

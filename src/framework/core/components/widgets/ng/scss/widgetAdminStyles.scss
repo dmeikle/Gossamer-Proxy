@@ -1,0 +1,10 @@
+@import '../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+#widgetAdminList {
+  thead th {
+    @extend .col-xs-2;
+  }
+  tbody tr td {
+    @extend .col-xs-2;
+  }
+}
