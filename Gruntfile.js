@@ -13,10 +13,10 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'src/components/',
         src: ['**/ng/js/*.js'],
-        dest: 'web/components/',
+        dest: 'src/components/',
         rename: function(dest, src) {
           var componentName = src.substring(0, src.indexOf('/'));
-          return dest + componentName + '/' + componentName + '.concat.js';
+          return dest + componentName + '/ng/' + componentName + '.concat.js';
         }
       }
     },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'src/components/',
-          src: ['**/ng/view/*.concat.js'],
+          src: ['**/ng/*.concat.js'],
           dest: 'web/components/',
           rename: function(dest, src) {
             var componentName = src.substring(0, src.indexOf('/'));
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'src/components/**/ng/**/*.js'],
+      files: ['Gruntfile.js', 'src/components/**/ng/js/*.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
