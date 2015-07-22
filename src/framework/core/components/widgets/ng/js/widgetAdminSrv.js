@@ -24,6 +24,6 @@ module.service('widgetAdminSrv', function($http, $log){
 });
 
 module.service('templateSrv', function(){
-  this.widgetAdminList = '../view/widgetAdminList.php';
-  this.widgetAdminListRow = '../view/widgetAdminListRow.php';
+  this.widgetAdminList = '/render/widgets/widgetAdminList';
+  this.widgetAdminListRow = '/render/widgets/widgetAdminListRow';
 });

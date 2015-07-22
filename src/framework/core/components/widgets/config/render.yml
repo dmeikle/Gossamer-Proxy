@@ -1,8 +1,11 @@
 ## YAML Template.
 ---
-adminWidgetList:
+widgetAdminList:
     path: 'src/framework/core/components/widgets/ng/views/adminWidgetList.php'
-    langFiles: 
+    langFiles:
         - 'src/components/staff/locales/*/login'
         - 'src/components/staff/locales/*/validation'
-        
+
+widgetAdminListRow:
+    path: 'src/framework/core/components/widgets/ng/views/adminWidgetListRow.php'
+    langFiles:

@@ -73,6 +73,6 @@ module.service('widgetAdminSrv', function($http, $log){
 });
 
 module.service('templateSrv', function(){
-  this.widgetAdminList = '../view/widgetAdminList.html';
-  this.widgetAdminListRow = '../view/widgetAdminListRow.html';
+  this.widgetAdminList = '/render/widgets/widgetAdminList';
+  this.widgetAdminListRow = '/render/widgets/widgetAdminListRow';
 });
