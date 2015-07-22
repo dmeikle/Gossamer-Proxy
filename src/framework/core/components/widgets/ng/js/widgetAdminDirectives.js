@@ -5,8 +5,8 @@ module.directive('widgetAdminList', function($compile, templateSrv){
     templateUrl: template.widgetAdminList,
     link: function(scope, element) {
       scope.addNewWidgetRow = function(){
-        // element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
-        element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+        element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+        // element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
       };
     }
   };

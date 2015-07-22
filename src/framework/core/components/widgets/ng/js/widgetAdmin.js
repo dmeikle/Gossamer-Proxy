@@ -1,1 +1,1 @@
-var module = angular.module('widgetAdmin', []);
+var module = angular.module('widgetAdmin', ['ngSanitize', 'ui.bootstrap']);

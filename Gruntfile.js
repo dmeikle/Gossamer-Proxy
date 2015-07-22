@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       site: {
         files: [{
           expand: true,
-          src: ['src/components/*/ng/scss/*.scss'],
+          src: ['src/components/*/ng/scss/*.scss','src/framework/core/components/*/ng/scss/*.scss'],
           dest: 'web/assets/css/',
           rename: function(dest, src) {
             var srcSplit = src.split('/');
@@ -100,8 +100,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['<%= jshint.files %>'],
-        tasks: ['jshint', 'concat:dist']
+        files: ['<%= clean %>','<%= jshint.files %>', '<%= sass.framework.files %>','<%= sass.site.files %>','<%= copy.tempJsCopy.files %>'],
+        tasks: ['clean', 'jshint', 'sass', 'concat', 'copy']
       },
 
       sass: {

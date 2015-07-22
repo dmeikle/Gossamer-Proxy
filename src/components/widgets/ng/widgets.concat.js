@@ -1,4 +1,4 @@
-var module = angular.module('widgetAdmin', []);
+var module = angular.module('widgetAdmin', ['ngSanitize']);
 
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   var widgetList = widgetAdminSrv.getWidgetList(0,10);
@@ -29,8 +29,8 @@ module.directive('widgetAdminList', function($compile, templateSrv){
     templateUrl: template.widgetAdminList,
     link: function(scope, element) {
       scope.addNewWidgetRow = function(){
-        // element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
-        element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+        element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+        // element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
       };
     }
   };
@@ -58,7 +58,7 @@ module.service('widgetAdminSrv', function($http, $log){
   };
 
   this.getWidgetList = function(startRow, bound){
-    var apiPath = 'http://work.server.phoenix/admin/staff';
+    var apiPath = '/super/widgets';
     return $http.get(apiPath + '/' + startRow + '/' + bound);
   };
 
