@@ -31,11 +31,14 @@ module.service('widgetAdminSrv', function($http, $log){
 
 
   this.deleteWidget = function(widgetId) {
-    return $http.delete(apiPath + widgetId);
+    return $http.delete(apiPath + '/' + widgetId);
   };
 
-  this.updateWidget = function(widgetId, widgetObject) {
-    return $http.patch(apiPath + '/' + widgetId + '/update');
+  this.updateWidget = function(widgetObject) {
+    $log.info(widgetObject);
+    return $http.patch(apiPath + '/' + widgetObject.id).then(function(response){
+      $log.info(response);
+    });
   };
 });
 

@@ -7,19 +7,25 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-  $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-    var end = begin + $scope.numPerPage;
-  });
-
-  $scope.addNewWidget = function(newWidgetObject) {
-    saveWidget(newWidgetObject);
+  saveWidget = function(widgetObject) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
+      $scope.widgetList.unshift(widgetObject);
+      $scope.newWidget = {};
+      $scope.newWidgetForm.$setPristine();
+    });
   };
 
   $scope.selectPage = function(pageNum) {
     $scope.currentPage = pageNum;
   };
 
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    $scope.getWidgetList(row, numRows);
+  });
 
   // Stuff to run on controller load
   $scope.widgetsPerPage = 10;
