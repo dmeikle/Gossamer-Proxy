@@ -2,14 +2,13 @@ module.service('widgetAdminSrv', function($http, $log){
 
   var apiPath = '/super/widgets';
 
-  this.createNewWidget = function(widgetObject){
-    var data = {'widget':{}};
-    data.widget.name = widgetObject.name;
-    data.widget.component = widgetObject.component;
-    data.widget.description = widgetObject.description;
-    data.widget.module = widgetObject.module;
-    data.widget.htmlKey = widgetObject.htmlKey;
-    // return $http.post(apiPath + '/0', data);
+  this.createNewWidget = function(widgetObject, formToken){
+    var data = {'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    data.widget = widgetObject;
+
+    return $http.post(apiPath + '/0', data).then(function(response){
+      $log.info(response);
+    });
   };
 
   this.getWidgetList = function(row, numRows){
