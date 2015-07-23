@@ -1,6 +1,6 @@
 module.service('widgetAdminSrv', function($http, $log){
 
-  var apiPath = '/super/widgets';
+  // var apiPath = ???
 
   this.createNewWidget = function(widgetObject, formToken){
     var requestPath = apiPath + '/0';
@@ -18,27 +18,18 @@ module.service('widgetAdminSrv', function($http, $log){
     });
   };
 
-  this.getWidgetList = function(row, numRows){
-    return $http.get(apiPath + '/' + row + '/' + numRows)
-      .then(function(response){
-        return {
-          widgetList: response.data.Widgets,
-          widgetCount: response.data.WidgetsCount[0].rowCount,
-          pagination: response.data.pagination
-        };
-      });
+  this.getWidgetList = function(startRow, bound){
+    var apiPath = '/super/widgets';
+    return $http.get(apiPath + '/' + startRow + '/' + bound);
   };
 
 
   this.deleteWidget = function(widgetId) {
-    return $http.delete(apiPath + '/' + widgetId);
+    return $http.delete(apiPath + widgetId);
   };
 
-  this.updateWidget = function(widgetObject) {
-    $log.info(widgetObject);
-    return $http.patch(apiPath + '/' + widgetObject.id).then(function(response){
-      $log.info(response);
-    });
+  this.updateWidget = function(widgetId, widgetObject) {
+    return $http.patch(apiPath + '/' + widgetId + '/update');
   };
 });
 
