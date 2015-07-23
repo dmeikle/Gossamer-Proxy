@@ -16,5 +16,13 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     saveWidget(newWidgetObject);
   };
 
+  $scope.selectPage = function(pageNum) {
+    $scope.currentPage = pageNum;
   };
+
+
+  // Stuff to run on controller load
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
+  $scope.getWidgetList(0, $scope.widgetsPerPage);
 });

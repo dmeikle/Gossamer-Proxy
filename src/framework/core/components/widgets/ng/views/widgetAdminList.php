@@ -49,8 +49,12 @@
     </tbody>
   </table>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   <pagination total-items="widgetCount" ng-model="currentPage" ng-change="getWidgetList((currentPage * widgetsPerPage), widgetsPerPage)" max-size="widgetsPerPage"
+=======
+  <pagination total-items="widgetCount" ng-model="currentPage" max-size="widgetsPerPage"
+>>>>>>> Something going on with the params the create api is receiving
     class="pagination" boundary-links="true" rotate="false" num-pages="numPages">
   </pagination>
 >>>>>>> Got pagination working

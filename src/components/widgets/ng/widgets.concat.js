@@ -1,6 +1,7 @@
 var module = angular.module('widgetAdmin', ['ui.bootstrap']);
 
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
+<<<<<<< HEAD
   $scope.widgetsPerPage = 10;
   $scope.currentPage = 1;
   widgetAdminSrv.getWidgetList(0, 10).then(function(response){
@@ -19,6 +20,23 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     $scope.widgetList.unshift(newWidgetOb);
     $scope.newWidget = {};
     $scope.newWidgetForm.$setPristine();
+=======
+  $scope.getWidgetList = function(row, numRows) {
+    widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
+      $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
+      $scope.widgetList = response.widgetList;
+      $scope.widgetCount = response.widgetCount;
+    });
+  };
+
+  $scope.addNewWidget = function(newWidgetOb) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    widgetAdminSrv.createNewWidget(newWidgetOb, formToken).then(function(response) {
+      $scope.widgetList.unshift(newWidgetOb);
+      $scope.newWidget = {};
+      $scope.newWidgetForm.$setPristine();
+    });
+>>>>>>> Something going on with the params the create api is receiving
   };
   $scope.selectPage = function(pageNo) {
     $scope.currentPage = pageNo;
@@ -65,6 +83,7 @@ module.service('widgetAdminSrv', function($http, $log){
 
   var apiPath = '/super/widgets';
 
+<<<<<<< HEAD
   this.createNewWidget = function(widgetObject){
     var data = {'widget':{}};
     data.widget.name = widgetObject.name;
@@ -73,6 +92,16 @@ module.service('widgetAdminSrv', function($http, $log){
     data.widget.module = widgetObject.module;
     data.widget.htmlKey = widgetObject.htmlKey;
     // return $http.post(apiPath + '/0', data);
+=======
+  this.createNewWidget = function(widgetObject, formToken){
+    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    data.Widget = widgetObject;
+    data.FORM_SECURITY_TOKEN = formToken;
+console.log(data);
+    return $.post(apiPath + '/0', data).then(function(response){
+      $log.info(response);
+    });
+>>>>>>> Something going on with the params the create api is receiving
   };
 
   this.getWidgetList = function(row, numRows){

@@ -1,13 +1,14 @@
 var module = angular.module('widgetAdmin', ['ui.bootstrap']);
 
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
-  $scope.widgetsPerPage = 10;
-  $scope.currentPage = 1;
-  widgetAdminSrv.getWidgetList(0, 10).then(function(response){
-    $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
-    $scope.widgetList = response.widgetList;
-    $scope.widgetCount = response.widgetCount;
-  });
+  $scope.getWidgetList = function(row, numRows) {
+    widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
+      $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
+      $scope.widgetList = response.widgetList;
+      $scope.widgetCount = response.widgetCount;
+    });
+  };
+
 
   $scope.$watch('currentPage + numPerPage', function() {
     var begin = (($scope.currentPage - 1) * $scope.numPerPage);
@@ -20,16 +21,11 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     $scope.newWidget = {};
     $scope.newWidgetForm.$setPristine();
   };
-  $scope.selectPage = function(pageNo) {
-    $scope.currentPage = pageNo;
+
+  $scope.selectPage = function(pageNum) {
+    $scope.currentPage = pageNum;
   };
 
-  $scope.$watch('currentPage + numPerPage', function() {
-    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
-    var numRows = $scope.widgetsPerPage;
-
-    $scope.getWidgetList(row, numRows);
-  });
 
   // Stuff to run on controller load
   $scope.widgetsPerPage = 10;
@@ -41,23 +37,7 @@ module.directive('widgetAdminList', function($compile, templateSrv){
   var template = templateSrv;
   return {
     restrict: 'E',
-    priority: 1000,
-    terminal: true,
-    templateUrl: template.widgetAdminList,
-    link: function(scope, element){
-      $compile(element[0].getElementsByTagName('widget-admin-list-row')[0])(scope);
-    }
-  };
-});
-
-module.directive('widgetAdminListRow', function(templateSrv){
-  var template = templateSrv;
-  return {
-    restrict:'E',
-    templateUrl: template.widgetAdminListRow,
-    scope: {
-      newWidget: '=ngModel'
-    }
+    templateUrl: template.widgetAdminList
   };
 });
 
