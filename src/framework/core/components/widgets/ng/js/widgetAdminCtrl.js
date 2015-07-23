@@ -7,14 +7,10 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-  saveWidget = function(widgetObject) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
-      $scope.widgetList.unshift(widgetObject);
-      $scope.newWidget = {};
-      $scope.newWidgetForm.$setPristine();
-    });
-  };
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+    var end = begin + $scope.numPerPage;
+  });
 
   $scope.addNewWidget = function(newWidgetObject) {
     saveWidget(newWidgetObject);

@@ -48,4 +48,10 @@
       </tr>
     </tbody>
   </table>
+<<<<<<< HEAD
+=======
+  <pagination total-items="widgetCount" ng-model="currentPage" ng-change="getWidgetList((currentPage * widgetsPerPage), widgetsPerPage)" max-size="widgetsPerPage"
+    class="pagination" boundary-links="true" rotate="false" num-pages="numPages">
+  </pagination>
+>>>>>>> Got pagination working
 </div>
