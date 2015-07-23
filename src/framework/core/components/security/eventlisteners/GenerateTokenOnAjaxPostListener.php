@@ -26,8 +26,12 @@ class GenerateTokenOnAjaxPostListener extends GenerateFormTokenListener {
      * 
      * @param Event $params
      */
-    public function on_response_end(&$params) {
-
+    public function on_response_start(&$params) {
+        /* AJAX check  */
+        if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
+              return;
+        }
+      
         $values = $params->getParams();
 
         $sessionToken = $this->getDefaultToken();
