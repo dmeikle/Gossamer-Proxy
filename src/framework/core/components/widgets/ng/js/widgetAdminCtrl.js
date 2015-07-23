@@ -7,13 +7,29 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-  $scope.addNewWidget = function(newWidgetOb) {
+  saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    widgetAdminSrv.createNewWidget(newWidgetOb, formToken).then(function(response) {
-      $scope.widgetList.unshift(newWidgetOb);
+    widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
+      $scope.widgetList.unshift(widgetObject);
       $scope.newWidget = {};
       $scope.newWidgetForm.$setPristine();
     });
+  };
+
+  $scope.addNewWidget = function(newWidgetObject) {
+    saveWidget(newWidgetObject);
+  };
+
+  $scope.editWidget = function(widgetObject) {
+    var row = angular.element( document.getElementById('#' + widgetObject.id));
+    var tds = row.children('td');
+    for (var i = 0; i < tds.length; i++) {
+      tds[i].attr('contenteditable', 'true');
+    }
+  };
+
+  $scope.confirmEditedWidget = function(widgetObject) {
+    saveWidget(newWidgetObject);
   };
 
   $scope.selectPage = function(pageNum) {

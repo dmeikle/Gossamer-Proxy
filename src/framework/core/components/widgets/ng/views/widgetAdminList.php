@@ -1,4 +1,3 @@
-
 <div class="table-container">
   <table class="table" id="widgetAdminList">
     <thead>
@@ -45,7 +44,7 @@
         </tr>
       </form>
 
-      <tr ng-repeat="widget in widgetList">
+      <tr ng-repeat="widget in widgetList" id="{{widget.id}}">
         <td>
           {{ widget.name }}
         </td>
@@ -59,10 +58,12 @@
           {{ widget.description }}
         </td>
         <td>
-          {{ widget.key }}
+          {{ widget.htmlKey }}
         </td>
         <td>
-          <button type="button" name="editWidget" ng-click="editWidget(widget.id)">Edit</button>
+          <button type="button" name="editWidget" ng-click="editWidget(widget.id)">
+            <?php echo $this->getString('WIDGET_EDIT'); ?>
+          </button>
         </td>
       </tr>
     </tbody>

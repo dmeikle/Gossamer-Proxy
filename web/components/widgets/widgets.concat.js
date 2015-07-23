@@ -1,5 +1,15 @@
 var module = angular.module('widgetAdmin', ['ui.bootstrap']);
 
+
+module.config(function ($httpProvider) {
+    $httpProvider.defaults.transformRequest = function(data){
+        if (data === undefined) {
+            return data;
+        }
+        return $.param(data);
+    };
+});
+
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   $scope.getWidgetList = function(row, numRows) {
     widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
@@ -9,13 +19,29 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-  $scope.addNewWidget = function(newWidgetOb) {
+  saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    widgetAdminSrv.createNewWidget(newWidgetOb, formToken).then(function(response) {
-      $scope.widgetList.unshift(newWidgetOb);
+    widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
+      $scope.widgetList.unshift(widgetObject);
       $scope.newWidget = {};
       $scope.newWidgetForm.$setPristine();
     });
+  };
+
+  $scope.addNewWidget = function(newWidgetObject) {
+    saveWidget(newWidgetObject);
+  };
+
+  $scope.editWidget = function(widgetObject) {
+    var row = angular.element( document.getElementById('#' + widgetObject.id));
+    var tds = row.children('td');
+    for (var i = 0; i < tds.length; i++) {
+      tds[i].attr('contenteditable', 'true');
+    }
+  };
+
+  $scope.confirmEditedWidget = function(widgetObject) {
+    saveWidget(newWidgetObject);
   };
 
   $scope.selectPage = function(pageNum) {
@@ -48,11 +74,17 @@ module.service('widgetAdminSrv', function($http, $log){
   var apiPath = '/super/widgets';
 
   this.createNewWidget = function(widgetObject, formToken){
+    var requestPath = apiPath + '/0';
     var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
     data.Widget = widgetObject;
     data.FORM_SECURITY_TOKEN = formToken;
-console.log(data);
-    return $.post(apiPath + '/0', data).then(function(response){
+    $log.info(data);
+    return $http({
+      method: 'POST',
+      url:requestPath,
+      data: data,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function(response){
       $log.info(response);
     });
   };
@@ -70,11 +102,14 @@ console.log(data);
 
 
   this.deleteWidget = function(widgetId) {
-    return $http.delete(apiPath + widgetId);
+    return $http.delete(apiPath + '/' + widgetId);
   };
 
-  this.updateWidget = function(widgetId, widgetObject) {
-    return $http.patch(apiPath + '/' + widgetId + '/update');
+  this.updateWidget = function(widgetObject) {
+    $log.info(widgetObject);
+    return $http.patch(apiPath + '/' + widgetObject.id).then(function(response){
+      $log.info(response);
+    });
   };
 });
 
