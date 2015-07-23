@@ -9,24 +9,25 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-
-  $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-    var end = begin + $scope.numPerPage;
-  });
-
   $scope.addNewWidget = function(newWidgetOb) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    widgetAdminSrv.createNewWidget(newWidgetOb, formToken);
-    $scope.widgetList.unshift(newWidgetOb);
-    $scope.newWidget = {};
-    $scope.newWidgetForm.$setPristine();
+    widgetAdminSrv.createNewWidget(newWidgetOb, formToken).then(function(response) {
+      $scope.widgetList.unshift(newWidgetOb);
+      $scope.newWidget = {};
+      $scope.newWidgetForm.$setPristine();
+    });
   };
 
   $scope.selectPage = function(pageNum) {
     $scope.currentPage = pageNum;
   };
 
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    $scope.getWidgetList(row, numRows);
+  });
 
   // Stuff to run on controller load
   $scope.widgetsPerPage = 10;
@@ -47,10 +48,11 @@ module.service('widgetAdminSrv', function($http, $log){
   var apiPath = '/super/widgets';
 
   this.createNewWidget = function(widgetObject, formToken){
-    var data = {'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
-    data.widget = widgetObject;
-
-    return $http.post(apiPath + '/0', data).then(function(response){
+    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    data.Widget = widgetObject;
+    data.FORM_SECURITY_TOKEN = formToken;
+console.log(data);
+    return $.post(apiPath + '/0', data).then(function(response){
       $log.info(response);
     });
   };

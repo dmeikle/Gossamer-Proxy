@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -24,7 +24,7 @@ use libraries\utils\preferences\UserPreferences;
 
 /**
  * abstract base class for models
- * 
+ *
  * @author Dave Meikle
  */
 class AbstractModel {
@@ -61,7 +61,7 @@ class AbstractModel {
     protected $tablename;
 
     /**
-     * 
+     *
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
@@ -74,17 +74,17 @@ class AbstractModel {
     }
 /*
     public function search(array $term) {
-        
+
         $params = array('directive::ORDER_BY' => key($term), 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
         $params = array_merge($params, $term);
-      
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params); 
-        
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
+
         return $data;
     }
     */
     /**
-     * 
+     *
      * @return boolean
      */
     protected function isFailedValidationAttempt() {
@@ -93,7 +93,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @return string
      */
     public function getComponentName() {
@@ -105,7 +105,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @return string
      */
     function getTablename() {
@@ -114,7 +114,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -122,9 +122,9 @@ class AbstractModel {
     }
 
     /**
-     * 
+     *
      * @param type $stripNamespace
-     * 
+     *
      * @return string
      */
     public function getEntity($stripNamespace = false) {
@@ -138,7 +138,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @param DataSourceInterface $dataSource
      */
     public function setDataSource(DataSourceInterface $dataSource) {
@@ -146,21 +146,21 @@ class AbstractModel {
     }
 
     /**
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @return array
      */
     public function index(array $params) {
         return $params;
     }
-    
+
     /**
      * queries the datasource and deletes the record
-     * 
+     *
      * @param type $offset
      * @param type $rows
-     * 
+     *
      * @return array
      */
     public function delete($id) {
@@ -174,10 +174,10 @@ class AbstractModel {
 
     /**
      * queries the datasource and returns the result
-     * 
+     *
      * @param type $offset
      * @param type $rows
-     * 
+     *
      * @return array
      */
     public function listallArray($offset = 0, $rows = 20) {
@@ -191,9 +191,9 @@ class AbstractModel {
 
     /**
      * performs a save to the datasource
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return type
      */
     public function save($id) {
@@ -201,12 +201,12 @@ class AbstractModel {
         $params[$this->entity]['id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
-
+        pr($this->httpRequest);
         return $data;
     }
 
     /**
-     * 
+     *
      * @param type $offset
      * @param type $rows
      * @param type $customVerb
@@ -219,11 +219,11 @@ class AbstractModel {
 
     /**
      * queries the datasource in reverse order
-     * 
+     *
      * @param int $offset
      * @param int $rows
      * @param string $customVerb
-     * 
+     *
      * @return array
      */
     public function listallReverse($offset = 0, $rows = 20, $customVerb = null) {
@@ -237,12 +237,12 @@ class AbstractModel {
 
     /**
      * queries the database with custom passed in params and returns the result
-     * 
+     *
      * @param int $offset
      * @param int $rows
      * @param array $params
      * @param string $customVerb
-     * 
+     *
      * @return array
      */
     public function listallWithParams($offset = 0, $rows = 20, array $params, $customVerb = null) {
@@ -254,7 +254,7 @@ class AbstractModel {
         if(!array_key_exists('isActive', $params)) {
             $params['isActive'] = '1';
         }
-        
+
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
 
         return $data;
@@ -262,9 +262,9 @@ class AbstractModel {
 
     /**
      * sets a row inactive (soft delete) in the database
-     * 
+     *
      * @param int $id
-     * 
+     *
      */
     public function setInactive($id) {
 
@@ -281,9 +281,9 @@ class AbstractModel {
 
     /**
      * retrieves a row from the datasource for editing
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return array
      */
     public function edit($id) {
@@ -309,7 +309,7 @@ class AbstractModel {
 
     /**
      * gets the currently selected user locale
-     * 
+     *
      * @return array
      */
     public function getDefaultLocale() {
@@ -328,10 +328,10 @@ class AbstractModel {
 
     /**
      * retrieves a list of files within a directory
-     * 
+     *
      * @param string $dir
      * @param boolean $recurse
-     * 
+     *
      * @return array
      */
     protected function getFileList($dir, $recurse = false) {
@@ -374,11 +374,11 @@ class AbstractModel {
 
     /**
      * TODO: deprecate this in favor of Serialization classes
-     * 
+     *
      * @param array $options
      * @param array $selectedOptions
      * @param string $subKey
-     * 
+     *
      * @return string
      */
     protected function formatSelectionBoxOptions(array $options, array $selectedOptions, $subKey = '') {
@@ -404,7 +404,7 @@ class AbstractModel {
      * navigates the sub arrays to extract the child elements by subkey
      * @param array $array
      * @param type $key
-     * 
+     *
      * @return array
      */
     private function extractSubNode(array $array, $key) {
@@ -419,7 +419,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @return HttpRequest
      */
     public function getHttpRequest() {
@@ -428,7 +428,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @return HttpResponse
      */
     public function getHttpResponse() {
@@ -437,11 +437,11 @@ class AbstractModel {
 
     /**
      * gets the pagination results for a page
-     * 
+     *
      * @param int $rawRowCount
      * @param int $offset
      * @param int $limit
-     * 
+     *
      * @return string
      */
     protected function getPagination($rawRowCount, $offset, $limit) {
@@ -461,7 +461,7 @@ class AbstractModel {
 
     /**
      * accessor
-     * 
+     *
      * @return SecurityToken
      */
     protected function getSecurityToken() {
@@ -472,12 +472,12 @@ class AbstractModel {
     }
 
     /**
-     * 
+     *
      * @return int
      */
     public function getLoggedInStaffId() {
         $token = $this->getSecurityToken();
-        
+
         if(is_object($token) && $token->getClient() instanceof components\security\core\Client) {
             return $token->getClient()->getId();
         }
@@ -486,7 +486,7 @@ class AbstractModel {
 
     /**
      * retrieves a table structure from a datasource and caches the result
-     * 
+     *
      * @return array
      */
     public function getEmptyModelStructure() {
@@ -504,18 +504,18 @@ class AbstractModel {
 
         return $structure;
     }
-    
+
     /**
      * gets the number of rows based on the passed in params (filter)
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @return array
      */
-    public function getCount(array $params) {        
-      
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getCount', $params); 
-        
+    public function getCount(array $params) {
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getCount', $params);
+
         return $data;
     }
 

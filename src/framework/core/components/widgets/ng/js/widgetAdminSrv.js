@@ -3,9 +3,10 @@ module.service('widgetAdminSrv', function($http, $log){
   var apiPath = '/super/widgets';
 
   this.createNewWidget = function(widgetObject, formToken){
-    var data = {'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
-    data.widget = widgetObject;
-
+    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    data.Widget = widgetObject;
+    data.FORM_SECURITY_TOKEN = formToken;
+console.log(data);
     return $http.post(apiPath + '/0', data).then(function(response){
       $log.info(response);
     });
