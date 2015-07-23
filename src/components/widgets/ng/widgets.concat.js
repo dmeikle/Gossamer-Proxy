@@ -1,24 +1,27 @@
-var module = angular.module('widgetAdmin', ['ngSanitize']);
+var module = angular.module('widgetAdmin', ['ui.bootstrap']);
 
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
-  var widgetList = widgetAdminSrv.getWidgetList(0,10);
-
-  widgetList.success(function(data, status, headers, config){
-
-    $log.info(data);
-    $scope.widgetList = data.Widgets;
-    $scope.widgetCount = data.WidgetsCount;
-    $scope.pagination = data.pagination;
-
-  })
-  .error(function(data, status, headers, config){
-
-    $log.error('Getting the widget list failed! ' + status);
-
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
+  widgetAdminSrv.getWidgetList(0, 10).then(function(response){
+    $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
+    $scope.widgetList = response.widgetList;
+    $scope.widgetCount = response.widgetCount;
   });
 
-  $scope.addNewWidget = function($scope) {
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+    var end = begin + $scope.numPerPage;
+  });
 
+  $scope.addNewWidget = function(newWidgetOb) {
+    widgetAdminSrv.createNewWidget(newWidgetOb);
+    $scope.widgetList.unshift(newWidgetOb);
+    $scope.newWidget = {};
+    $scope.newWidgetForm.$setPristine();
+  };
+  $scope.selectPage = function(pageNo) {
+    $scope.currentPage = pageNo;
   };
 });
 
@@ -26,12 +29,11 @@ module.directive('widgetAdminList', function($compile, templateSrv){
   var template = templateSrv;
   return {
     restrict: 'E',
+    priority: 1000,
+    terminal: true,
     templateUrl: template.widgetAdminList,
-    link: function(scope, element) {
-      scope.addNewWidgetRow = function(){
-        element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
-        // element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
-      };
+    link: function(scope, element){
+      $compile(element[0].getElementsByTagName('widget-admin-list-row')[0])(scope);
     }
   };
 });
@@ -49,17 +51,27 @@ module.directive('widgetAdminListRow', function(templateSrv){
 
 module.service('widgetAdminSrv', function($http, $log){
 
-  // var apiPath = ???
+  var apiPath = '/super/widgets';
 
   this.createNewWidget = function(widgetObject){
-    var widgetName = widgetObject.name;
-    var widgetComponent = widgetObject.component;
-    return $http.put(apiPath + '/new');
+    var data = {'widget':{}};
+    data.widget.name = widgetObject.name;
+    data.widget.component = widgetObject.component;
+    data.widget.description = widgetObject.description;
+    data.widget.module = widgetObject.module;
+    data.widget.htmlKey = widgetObject.htmlKey;
+    // return $http.post(apiPath + '/0', data);
   };
 
-  this.getWidgetList = function(startRow, bound){
-    var apiPath = '/super/widgets';
-    return $http.get(apiPath + '/' + startRow + '/' + bound);
+  this.getWidgetList = function(row, numRows){
+    return $http.get(apiPath + '/' + row + '/' + numRows)
+      .then(function(response){
+        return {
+          widgetList: response.data.Widgets,
+          widgetCount: response.data.WidgetsCount[0].rowCount,
+          pagination: response.data.pagination
+        };
+      });
   };
 
 

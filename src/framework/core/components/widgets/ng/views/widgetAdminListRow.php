@@ -12,7 +12,7 @@
     <input type='text' name='module' ng-model='newWidget.module' placeholder='Widget Module'>
   </td>
   <td>
-    <input type='text' name='key' ng-model='newWidget.key' placeholder='Widget HTML Key'>
+    <input type='text' name='key' ng-model='newWidget.htmlKey' placeholder='Widget HTML Key'>
   </td>
   <td>
     <button type='button' name='Confirm' ng-click='addNewWidget(newWidget)'><?php echo $this->getString('WIDGET_CONFIRM'); ?></button>

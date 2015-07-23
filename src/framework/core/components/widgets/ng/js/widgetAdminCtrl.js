@@ -1,21 +1,24 @@
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
-  var widgetList = widgetAdminSrv.getWidgetList(0,10);
-
-  widgetList.success(function(data, status, headers, config){
-
-    $log.info(data);
-    $scope.widgetList = data.Widgets;
-    $scope.widgetCount = data.WidgetsCount;
-    $scope.pagination = data.pagination;
-
-  })
-  .error(function(data, status, headers, config){
-
-    $log.error('Getting the widget list failed! ' + status);
-
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
+  widgetAdminSrv.getWidgetList(0, 10).then(function(response){
+    $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
+    $scope.widgetList = response.widgetList;
+    $scope.widgetCount = response.widgetCount;
   });
 
-  $scope.addNewWidget = function($scope) {
+  $scope.$watch('currentPage + numPerPage', function() {
+    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
+    var end = begin + $scope.numPerPage;
+  });
 
+  $scope.addNewWidget = function(newWidgetOb) {
+    widgetAdminSrv.createNewWidget(newWidgetOb);
+    $scope.widgetList.unshift(newWidgetOb);
+    $scope.newWidget = {};
+    $scope.newWidgetForm.$setPristine();
+  };
+  $scope.selectPage = function(pageNo) {
+    $scope.currentPage = pageNo;
   };
 });
