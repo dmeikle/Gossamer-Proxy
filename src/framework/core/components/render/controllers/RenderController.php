@@ -20,9 +20,9 @@ use core\AbstractController;
 class RenderController extends AbstractController {
     
     public function renderFile($component, $filename) {
-        
+     
         $config = $this->httpRequest->getAttribute('RENDER_CONFIG');
-        
+      
         $this->render($config);
     }
 }
