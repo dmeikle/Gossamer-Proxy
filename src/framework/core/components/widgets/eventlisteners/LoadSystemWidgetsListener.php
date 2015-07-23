@@ -24,6 +24,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
     public function on_request_start($params) {
        
         $results = $this->loadConfigurations($params);
+        $this->saveValuesToCache('widgets/' . __YML_KEY, $results);
         if(is_array($results) && array_key_exists('WidgetsSystems', $results)) {
             $this->loadWidgetConfigs($results['WidgetsSystems']);
         }
@@ -31,12 +32,12 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
     }
     
     private function loadConfigurations($params) {
-        $results = $this->getValuesFromCache('widgets/' . __YML_KEY);
-      
-        if($results !== false) {
-          
-            return $results;
-        }
+//        $results = $this->getValuesFromCache();
+//      
+//        if($results !== false) {
+//          
+//            return $results;
+//        }
         
         $systemWidget = new SystemWidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
       
@@ -47,7 +48,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
  
         $results = $datasource->query('get', $systemWidget, 'listByPage', $params);      
         
-        $this->saveValuesToCache('widgets/' . __YML_KEY, $results);
+      
         
         return $results;
     }
@@ -88,5 +89,9 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
         
         return __SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'framework' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $widgetConfig['component'] . 
                 DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml';
+    }
+    
+    protected function getKey() {
+        return 'widgets/' . __YML_KEY;
     }
 }

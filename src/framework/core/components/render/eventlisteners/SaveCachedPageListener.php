@@ -8,30 +8,31 @@
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-namespace core\components\render\controllers;
 
-use core\AbstractController;
+namespace core\components\render\eventlisteners;
+
+use core\eventlisteners\AbstractCachableListener;
+use core\eventlisteners\Event;
 
 /**
- * RenderController
+ * SaveCachedPageListener
  *
  * @author Dave Meikle
  */
-class RenderController extends AbstractController {
+class SaveCachedPageListener extends AbstractCachableListener {
     
-    public function renderFile($component, $filename) {
-        
-        $html = $this->httpRequest->getAttribute($this->getKey());
-     
-        $this->render(array('html' => $html));
+  
+    public function on_render_complete(Event $event) {
+        echo "saving to render to cache\r\n";
+        $params = $event->getParams();
+        $this->saveValuesToCache($this->getKey(), $params['renderedPage'], true);
     }
-    
-    private function getKey() {
-       
+ 
+    protected function getKey() {
         list($widget, $file) = $this->httpRequest->getParameters();
         $locale = $this->getDefaultLocale();
         $key = DIRECTORY_SEPARATOR . 'render' . DIRECTORY_SEPARATOR . $widget . DIRECTORY_SEPARATOR . $file . '_' . $locale['locale'];
-     
+      
         return $key;
     }
 }

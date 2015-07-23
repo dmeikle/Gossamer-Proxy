@@ -47,7 +47,7 @@ class AbstractCachableListener extends AbstractListener {
             $values = '';
 
             if (!is_null($key)) {
-                $values = $this->getValuesFromCache($key);
+                $values = $this->getValuesFromCache($key, $this->getIsStaticCache());
             }
 
             if (is_null($key) || $values === false) {
@@ -58,12 +58,23 @@ class AbstractCachableListener extends AbstractListener {
                 return;
             }
             //pass it along the request in case there's more processing to do
-            $this->httpRequest->setAttribute(self::getKey(), $values);
-
+           // $this->httpRequest->setAttribute(self::getKey(), $values);
+            //changed to '$key' because it was losing values in some instances with '/' in the key
+            $this->httpRequest->setAttribute($key, $values);
+            
             //add it to the response in case it's an abstract parent calling
             //this from configuration files and is simply needed in the view
-            $this->httpResponse->setAttribute(self::getKey(), $values);
+           // $this->httpResponse->setAttribute(self::getKey(), $values);
+            //changed to '$key' because it was losing values in some instances with '/' in the key
+            $this->httpResponse->setAttribute($key, $values);
         }
+    }
+    protected function getIsStaticCache() {
+        if(array_key_exists('static', $this->listenerConfig)) {
+            return boolval($this->listenerConfig['static']);
+        }
+        
+        return false;
     }
 
     /**
@@ -101,7 +112,7 @@ class AbstractCachableListener extends AbstractListener {
      * @param type $static
      * @return array|string
      */
-    protected function getValuesFromCache($key, $static = false) {
+    protected function getValuesFromCache($key, $static) {
 
         $manager = new CacheManager($this->logger);
 

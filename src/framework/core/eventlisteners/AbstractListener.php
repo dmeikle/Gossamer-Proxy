@@ -43,11 +43,12 @@ class AbstractListener {
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      */
-    public function __construct(Logger $logger, HTTPRequest &$httpRequest, HTTPResponse $httpResponse) {
+    public function __construct(Logger $logger, HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
         $this->logger = $logger;
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         // echo get_called_class().'<br>';
+        
     }
 
     /**
@@ -127,7 +128,7 @@ class AbstractListener {
 
         $this->logger->addDebug('checking listener for method: ' . $method);
 
-        if (method_exists($this, $method)) {
+        if (method_exists($this, $method)) {       
             $this->logger->addDebug('class: ' . get_class($this) . ' found');
             call_user_func_array(array($this, $method), array($params));
         }

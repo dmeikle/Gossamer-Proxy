@@ -23,6 +23,8 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 use core\navigation\Pagination;
 use core\eventlisteners\Event;
+use libraries\utils\preferences\UserPreferences;
+use libraries\utils\preferences\UserPreferencesManager;
 
 /**
  * AbstractController Class extending from XMLURIParser
@@ -404,4 +406,29 @@ class AbstractController {
 //      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
         $this->render($count);
     }
+    
+    
+    /**
+     * 
+     * @return Locale
+     */
+    protected function getDefaultLocale() {
+        //check to see if it's in the query string - a menu request perhaps?
+        $queryLocale = $this->httpRequest->getQueryParameter('locale');
+        if(!is_null($queryLocale)) {
+            return array('locale' =>$queryLocale);
+        }
+        
+        $manager = new UserPreferencesManager($this->httpRequest);
+        $userPreferences = $manager->getPreferences();
+
+        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+            return array('locale' => $userPreferences->getDefaultLocale());
+        }
+
+        $config = $this->httpRequest->getAttribute('defaultPreferences');
+
+        return $config['default_locale'];
+    }
+
 }

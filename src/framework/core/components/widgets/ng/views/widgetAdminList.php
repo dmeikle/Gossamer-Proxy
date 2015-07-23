@@ -1,0 +1,1 @@
+this is a test <?php echo $this->getString('LOGIN_EMAIL_PROMPT');?>

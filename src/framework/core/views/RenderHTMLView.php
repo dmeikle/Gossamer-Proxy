@@ -27,28 +27,26 @@ class RenderHTMLView extends AbstractView {
 //        
 //    }
 
+    /**
+     * renderView - pass in preloaded HTML template in the data array 
+     * and this will render any tags within before sending out
+     * 
+     * requires key 'html' in the data array
+     */
     protected function renderView() {
 
        // header('Content-Type: application/json');
 
         if (!is_null($this->getData())) {
-            
+           
             try {
-               $this->loadFileToRender();
+               $config = $this->getData();
+               $this->template = $config['html'];
+               
             } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());
             }
         }
     }
 
-    private function loadFileToRender() {
-        $config = $this->getData();
-        $path = __SITE_PATH . DIRECTORY_SEPARATOR . $config['path'];
-        if(!file_exists($path)) {
-           
-            throw new \Exception($config['path'] . ' is not a valid file to render in RenderHTMLView');
-        }
-       
-        $this->template = file_get_contents($path);
-    }
 }

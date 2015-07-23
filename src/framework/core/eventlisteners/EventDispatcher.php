@@ -38,7 +38,7 @@ class EventDispatcher {
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      */
-    public function __construct($config = array(), Logger $logger, HTTPRequest &$httpRequest, HTTPResponse $httpResponse) {
+    public function __construct($config = array(), Logger $logger, HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
         if (!is_null($config)) {
             $config = array_filter($config);
         }
@@ -69,7 +69,7 @@ class EventDispatcher {
      * 
      * @param HTTPRequest $httpRequest
      */
-    public function setHttpRequest(HTTPRequest $httpRequest) {
+    public function setHttpRequest(HTTPRequest &$httpRequest) {
         $this->httpRequest = $httpRequest;
     }
 
@@ -78,7 +78,7 @@ class EventDispatcher {
      * 
      * @param HTTPResponse $response
      */
-    public function setHttpResponse(HTTPResponse $response) {
+    public function setHttpResponse(HTTPResponse &$response) {
         $this->httpResponse = $response;
     }
 
@@ -171,7 +171,7 @@ class EventDispatcher {
      * @return void
      */
     public function dispatch($uri, $state, Event &$params = null) {
-       
+
         //error_log("dispatch called for $uri with state set to $state");
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
         $keys = array_keys($this->listeners);
@@ -183,10 +183,10 @@ class EventDispatcher {
         $this->logger->addDebug("listeners found - iterating");
 
         foreach ($this->listeners[$uri] as $listener) {
-            // error_log('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
+             //echo('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri."\r\n");
             $this->logger->addDebug('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
             $listener->setState($state, $params);
-            // echo $state . ' listener class for uri: ' . $uri.'<br>';
+           //  echo $state . ' listener class for uri: ' . $uri."\r\n";
         }
     }
 

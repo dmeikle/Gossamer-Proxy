@@ -27,9 +27,10 @@ class SaveRenderedPageToCacheListener extends AbstractCachableListener {
    
     public function on_render_complete(Event $event) {
         if(!$this->isCachablePage()) {
+        
             return;
         }
-        
+       
         $filepath =  'pages' . DIRECTORY_SEPARATOR . __YML_KEY;
         
         $params = $event->getParams();
@@ -39,7 +40,7 @@ class SaveRenderedPageToCacheListener extends AbstractCachableListener {
     
     private function isCachablePage() {
         $nodeConfig = $this->httpRequest->getNodeConfig();
-       
+      
         if(!array_key_exists('staticCache', $nodeConfig) || $nodeConfig['staticCache'] != true) {
             return false;
         }

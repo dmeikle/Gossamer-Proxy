@@ -66,7 +66,7 @@ class AbstractModel {
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
      */
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse = null, Logger $logger) {
+    public function __construct(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse = null, Logger $logger) {
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         $this->logger = $logger;
