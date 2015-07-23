@@ -181,7 +181,9 @@ class AbstractController {
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
-            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            
+            //CP-33 changed to json output for new Angular based page draws
+            $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
         }
 
@@ -242,7 +244,9 @@ class AbstractController {
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
-            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+             
+           //CP-33 changed to json output for new Angular based page draws
+            $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
         }
 
