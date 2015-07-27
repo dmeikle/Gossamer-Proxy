@@ -16,6 +16,12 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
+  updateWidget = function(widgetObject, formToken) {
+    widgetAdminSrv.updateWidget(widgetObject, formToken).then(function(response) {
+      $log.info(response);
+    });
+  };
+
   $scope.addNewWidget = function(newWidgetObject) {
     saveWidget(newWidgetObject);
   };
@@ -25,8 +31,9 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   };
 
   $scope.confirmEditedWidget = function(widgetObject) {
-    widgetObject.editing = false;
-    saveWidget(newWidgetObject);
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    updateWidget(widgetObject, formToken);
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
   };
 
   $scope.selectPage = function(pageNum) {

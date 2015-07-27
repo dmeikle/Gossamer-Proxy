@@ -43,8 +43,16 @@ module.service('widgetAdminSrv', function($http, $log){
   };
 
   this.updateWidget = function(widgetObject) {
-    $log.info(widgetObject);
-    return $http.patch(apiPath + '/' + widgetObject.id).then(function(response){
+    var requestPath = apiPath + '/' + widgetObject.id;
+    var data = {};
+    data.Widget = widgetObject;
+    $log.info(data);
+    return $http({
+      method: 'POST',
+      url:requestPath,
+      data: data,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function(response){
       $log.info(response);
     });
   };

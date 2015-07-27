@@ -42,6 +42,12 @@ module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdmi
 >>>>>>> removed reference to sanitize, widget post works
   };
 
+  updateWidget = function(widgetObject, formToken) {
+    widgetAdminSrv.updateWidget(widgetObject, formToken).then(function(response) {
+      $log.info(response);
+    });
+  };
+
   $scope.addNewWidget = function(newWidgetObject) {
     saveWidget(newWidgetObject);
   };
@@ -51,8 +57,9 @@ module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdmi
   };
 
   $scope.confirmEditedWidget = function(widgetObject) {
-    widgetObject.editing = false;
-    saveWidget(newWidgetObject);
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    updateWidget(widgetObject, formToken);
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
   };
 
   $scope.selectPage = function(pageNum) {
@@ -139,8 +146,16 @@ module.service('widgetAdminSrv', function($http, $log){
   };
 
   this.updateWidget = function(widgetObject) {
-    $log.info(widgetObject);
-    return $http.patch(apiPath + '/' + widgetObject.id).then(function(response){
+    var requestPath = apiPath + '/' + widgetObject.id;
+    var data = {};
+    data.Widget = widgetObject;
+    $log.info(data);
+    return $http({
+      method: 'POST',
+      url:requestPath,
+      data: data,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function(response){
       $log.info(response);
     });
   };
