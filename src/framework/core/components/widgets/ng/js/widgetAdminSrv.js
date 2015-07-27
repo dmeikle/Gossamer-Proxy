@@ -60,5 +60,4 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.widgetAdminListRow = '/render/widgets/widgetAdminListRow';
 });
