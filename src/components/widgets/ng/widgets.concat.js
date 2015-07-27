@@ -58,11 +58,8 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   };
 
   $scope.editWidget = function(widgetObject) {
-    var row = angular.element( document.getElementById('#' + widgetObject.id));
-    var tds = row.children('td');
-    for (var i = 0; i < tds.length; i++) {
-      tds[i].attr('contenteditable', 'true');
-    }
+    var row = angular.element( document.getElementById(widgetObject.id));
+    
   };
 
   $scope.confirmEditedWidget = function(widgetObject) {

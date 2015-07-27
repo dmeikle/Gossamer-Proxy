@@ -18,6 +18,14 @@ module.service('widgetAdminSrv', function($http, $log){
     });
   };
 
+  this.toggleEditingWidget = function(widgetObject) {
+    if (widgetObject.editing) {
+      widgetObject.editing = false;
+    } else {
+      widgetObject.editing = true;
+    }
+  };
+
   this.getWidgetList = function(row, numRows){
     return $http.get(apiPath + '/' + row + '/' + numRows)
       .then(function(response){

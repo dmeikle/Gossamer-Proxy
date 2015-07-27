@@ -10,7 +10,7 @@ module.config(function ($httpProvider) {
     };
 });
 
-module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
+module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdminSrv){
   $scope.getWidgetList = function(row, numRows) {
     widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
       $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
@@ -46,15 +46,12 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     saveWidget(newWidgetObject);
   };
 
-  $scope.editWidget = function(widgetObject) {
-    var row = angular.element( document.getElementById('#' + widgetObject.id));
-    var tds = row.children('td');
-    for (var i = 0; i < tds.length; i++) {
-      tds[i].attr('contenteditable', 'true');
-    }
+  $scope.toggleEditingWidget = function(widgetObject) {
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
   };
 
   $scope.confirmEditedWidget = function(widgetObject) {
+    widgetObject.editing = false;
     saveWidget(newWidgetObject);
   };
 
@@ -69,11 +66,20 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   $scope.getWidgetList(0, $scope.widgetsPerPage);
 });
 
-module.directive('widgetAdminList', function($compile, templateSrv){
+module.directive('widgetAdminList', function(templateSrv){
   var template = templateSrv;
   return {
     restrict: 'E',
     templateUrl: template.widgetAdminList
+  };
+});
+
+module.directive('widgetAdminListRow', function(templateSrv){
+  var template = templateSrv;
+  return {
+    restrict: 'E',
+    templateUrl: template.widgetAdminListRow,
+    replace: true
   };
 });
 
@@ -106,6 +112,14 @@ module.service('widgetAdminSrv', function($http, $log){
       $log.info(response);
     });
 >>>>>>> removed reference to sanitize, widget post works
+  };
+
+  this.toggleEditingWidget = function(widgetObject) {
+    if (widgetObject.editing) {
+      widgetObject.editing = false;
+    } else {
+      widgetObject.editing = true;
+    }
   };
 
   this.getWidgetList = function(row, numRows){

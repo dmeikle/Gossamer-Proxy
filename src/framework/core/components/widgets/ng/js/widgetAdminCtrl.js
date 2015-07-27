@@ -16,6 +16,19 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
+  $scope.addNewWidget = function(newWidgetObject) {
+    saveWidget(newWidgetObject);
+  };
+
+  $scope.toggleEditingWidget = function(widgetObject) {
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
+  };
+
+  $scope.confirmEditedWidget = function(widgetObject) {
+    widgetObject.editing = false;
+    saveWidget(newWidgetObject);
+  };
+
   $scope.selectPage = function(pageNum) {
     $scope.currentPage = pageNum;
   };

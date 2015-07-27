@@ -12,27 +12,12 @@ module.exports = function(grunt) {
       dist: {
         expand: true,
         src: ['src/components/*/ng/js/*.js','src/framework/core/components/*/ng/js/*.js'],
-        dest: 'src/components/',
+        dest: 'web/components/',
         rename: function(dest, src) {
           var srcSplit = src.split('/');
           var componentName = srcSplit[srcSplit.indexOf('components')+1];
-          return dest + componentName + '/ng/' + componentName + '.concat.js';
+          return dest + componentName + '/' + componentName + '.concat.js';
         }
-      }
-    },
-
-    copy: {
-      tempJsCopy: {
-        files: [{
-          expand: true,
-          src: ['src/components/*/ng/*.concat.js','src/framework/core/components/*/ng/*.concat.js'],
-          dest: 'web/components/',
-          rename: function(dest, src) {
-            var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('components')+1];
-            return dest + componentName + '/' + componentName + '.concat.js';
-          }
-        }],
       }
     },
 
@@ -101,7 +86,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['<%= clean %>','<%= jshint.files %>', '<%= sass.framework.files %>','<%= sass.site.files %>','<%= copy.tempJsCopy.files %>'],
-        tasks: ['clean', 'jshint', 'sass', 'concat', 'copy']
+        tasks: ['clean', 'jshint', 'sass', 'concat']
       },
 
       sass: {
@@ -122,14 +107,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-debug-task');
 
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['clean', 'jshint', 'sass', 'concat', 'copy']);
+  grunt.registerTask('default', ['clean', 'jshint', 'sass', 'concat']);
 
-  grunt.registerTask('build', ['clean', 'jshint', 'sass', 'concat', 'uglify', 'copy']);
+  grunt.registerTask('build', ['clean', 'jshint', 'sass', 'concat', 'uglify']);
 
 };
