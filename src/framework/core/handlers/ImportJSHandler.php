@@ -26,6 +26,11 @@ use core\handlers\BaseHandler;
  * <!--- javascript start --->
  * @components/component-name/includes/js/name-of-file.js
  * @components/component-name/includes/js/name-of-another-file.js
+ * 
+ * //by placing a preceding '/' before the path, this tells the filter to ignore
+ * //the import from the component folder and just grab it from the root of the website
+ * @/components/component-name/name-of-file.js  
+ * 
  * <!--- javascript end --->
  * 
  * @author Dave Meikle
@@ -64,6 +69,11 @@ class ImportJSHandler extends BaseHandler {
                 }
 
                 $retval[] = '/js' . str_replace('includes/js/', '', $filepath);
+            }elseif (substr($tmp, 0, 13) == '@/components/') {
+
+                //nothing to copy - we are simply going to the root of the 
+                //website components folder             
+                $retval[] =  str_replace('@/components', '/components', $tmp);
             } elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
                 $retval[] = $tmp;
             }

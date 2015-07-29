@@ -5,7 +5,7 @@
 <!--- javascript end --->
 
 
-<table class="class table-striped table-hover">
+<table class="table table-striped table-hover">
     <tr>
         <td>Name</td>
         <td>Description</td>    
@@ -21,7 +21,7 @@
             <td><?php echo $page['ymlKey'];?></td>
             <td><?php echo $page['isActive'];?></td>
             <td><?php echo $page['isSystemPage'];?></td>
-            <td><a href="../<?php echo $page['id'];?>">edit</a></td>
+            <td><a href="../<?php echo $page['id'];?>">edit</a> | <a href="../widgets/<?php echo $page['id'];?>">widgets</a></td>
         </tr>    
     <?php }?>
 </table>

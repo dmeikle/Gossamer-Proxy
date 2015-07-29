@@ -15,7 +15,9 @@ all:
         - { 'event': 'token_missing', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
         - { 'event': 'response_start', 'listener': 'core\components\locales\eventlisteners\StringifyBeforeRenderListener' }
         - { 'event': 'response_start', 'listener': 'core\components\access\eventlisteners\LoadNavigationListener'}  
+        - { 'event': 'response_start', 'listener': 'core\components\security\eventlisteners\GenerateTokenOnAjaxPostListener', 'methods': [POST]}
         - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
+        
             
           
     defaults:

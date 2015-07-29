@@ -20,7 +20,7 @@ use core\AbstractController;
 class RenderController extends AbstractController {
     
     public function renderFile($component, $filename) {
-        
+       
         $html = $this->httpRequest->getAttribute($this->getKey());
      
         $this->render(array('html' => $html));
@@ -33,5 +33,6 @@ class RenderController extends AbstractController {
         $key = DIRECTORY_SEPARATOR . 'render' . DIRECTORY_SEPARATOR . $widget . DIRECTORY_SEPARATOR . $file . '_' . $locale['locale'];
      
         return $key;
+
     }
 }

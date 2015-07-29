@@ -48,8 +48,8 @@ super_widgetpages_save:
             - 'src/components/shoppingcart/locales/*/Navigation'    
     methods: [POST]     
 
-super_widgetpages_save:
-    pattern: super/widgets/pages/*/*
+super_widgetpages_widgets_list:
+    pattern: super/widgets/pages/widgets/*
     defaults:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPagesController
@@ -61,7 +61,7 @@ super_widgetpages_save:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'    
-    methods: [POST]      
+    methods: [GET]      
     
     
 super_widgets_home:
