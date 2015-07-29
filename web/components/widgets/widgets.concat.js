@@ -10,7 +10,7 @@ module.config(function ($httpProvider) {
     };
 });
 
-module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdminSrv){
+module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   $scope.getWidgetList = function(row, numRows) {
     widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
       $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
@@ -19,19 +19,6 @@ module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdmi
     });
   };
 
-<<<<<<< HEAD
-
-  $scope.$watch('currentPage + numPerPage', function() {
-    var begin = (($scope.currentPage - 1) * $scope.numPerPage);
-    var end = begin + $scope.numPerPage;
-  });
-
-  $scope.addNewWidget = function(newWidgetOb) {
-    widgetAdminSrv.createNewWidget(newWidgetOb);
-    $scope.widgetList.unshift(newWidgetOb);
-    $scope.newWidget = {};
-    $scope.newWidgetForm.$setPristine();
-=======
   saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
@@ -39,7 +26,6 @@ module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdmi
       $scope.newWidget = {};
       $scope.newWidgetForm.$setPristine();
     });
->>>>>>> removed reference to sanitize, widget post works
   };
 
   updateWidget = function(widgetObject, formToken) {
@@ -66,6 +52,12 @@ module.controller('viewWidgetsCtrl', function($scope, $log, $compile, widgetAdmi
     $scope.currentPage = pageNum;
   };
 
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    $scope.getWidgetList(row, numRows);
+  });
 
   // Stuff to run on controller load
   $scope.widgetsPerPage = 10;
@@ -94,16 +86,6 @@ module.service('widgetAdminSrv', function($http, $log){
 
   var apiPath = '/super/widgets';
 
-<<<<<<< HEAD
-  this.createNewWidget = function(widgetObject){
-    var data = {'widget':{}};
-    data.widget.name = widgetObject.name;
-    data.widget.component = widgetObject.component;
-    data.widget.description = widgetObject.description;
-    data.widget.module = widgetObject.module;
-    data.widget.htmlKey = widgetObject.htmlKey;
-    // return $http.post(apiPath + '/0', data);
-=======
   this.createNewWidget = function(widgetObject, formToken){
     var requestPath = apiPath + '/0';
     var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
@@ -118,7 +100,6 @@ module.service('widgetAdminSrv', function($http, $log){
     }).then(function(response){
       $log.info(response);
     });
->>>>>>> removed reference to sanitize, widget post works
   };
 
   this.toggleEditingWidget = function(widgetObject) {
@@ -163,5 +144,4 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.widgetAdminListRow = '/render/widgets/widgetAdminListRow';
 });

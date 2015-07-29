@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['app/cache/*.cache', 'web/components/*', 'web/assets/css/*'],
+    clean: ['app/cache/*', 'web/components/*', 'web/assets/css/*'],
 
     concat: {
       options: {
