@@ -44,19 +44,38 @@
         </tr>
       </form>
 
-      <tr ng-repeat="widget in widgetList" id="{{widget.id}}">
+      <tr ng-repeat="widget in widgetList" id="{{widget.id}}" ng-switch="widget.editing">
         <td>
-          {{ widget.name }}
+          <div ng-switch-when="true">
+            <input type='text' name='name' ng-model='widget.name' placeholder='Widget Name'>
+          </div>
+          <div ng-switch-default>
+            {{ widget.name }}
+          </div>
         </td>
         <td>
-          {{ widget.component }}
+          <div ng-switch-when="true">
+            <input type='text' name='component' ng-model='widget.component' placeholder='Widget Name'>
+          </div>
+          <div ng-switch-default>
+            {{ widget.component }}
+          </div>
         </td>
         <td>
-          {{ widget.module }}
+          <div ng-switch-when="true">
+            <input type='text' name='module' ng-model='widget.module' placeholder='Widget Name'>
+          </div>
+          <div ng-switch-default>
+            {{ widget.module }}
+          </div>
         </td>
         <td>
-          {{ widget.description }}
-        </td>
+          <div ng-switch-when="true">
+            <input type='text' name='description' ng-model='widget.description' placeholder='Widget Name'>
+          </div>
+          <div ng-switch-default>
+            {{ widget.description }}
+          </div>
         <td>
           <div ng-switch-when="true">
             <input type='text' name='htmlKey' ng-model='widget.htmlKey' placeholder='Widget Name'>
