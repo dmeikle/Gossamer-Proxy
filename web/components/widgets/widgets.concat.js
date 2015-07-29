@@ -73,15 +73,6 @@ module.directive('widgetAdminList', function(templateSrv){
   };
 });
 
-module.directive('widgetAdminListRow', function(templateSrv){
-  var template = templateSrv;
-  return {
-    restrict: 'E',
-    templateUrl: template.widgetAdminListRow,
-    replace: true
-  };
-});
-
 module.service('widgetAdminSrv', function($http, $log){
 
   var apiPath = '/super/widgets';

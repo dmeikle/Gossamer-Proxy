@@ -66,9 +66,12 @@
           </div>
         </td>
         <td>
-          <button type="button" name="editWidget" ng-click="editWidget(widget.id)">
-            <?php echo $this->getString('WIDGET_EDIT'); ?>
-          </button>
+          <div ng-switch-when="true">
+            <button type="button" name="button" ng-click='confirmEditedWidget(widget)'><?php echo $this->getString('WIDGET_CONFIRM'); ?></button>
+          </div>
+          <div ng-switch-default>
+            <button type='button' name='edit' ng-click='toggleEditingWidget(widget)'><?php echo $this->getString('WIDGET_EDIT'); ?></button>
+          </div>
         </td>
       </tr>
     </tbody>
