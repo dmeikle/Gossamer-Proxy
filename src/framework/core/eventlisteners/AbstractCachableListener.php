@@ -70,8 +70,9 @@ class AbstractCachableListener extends AbstractListener {
         }
     }
     protected function getIsStaticCache() {
+       
         if(array_key_exists('static', $this->listenerConfig)) {
-            return boolval($this->listenerConfig['static']);
+            return  $this->listenerConfig['static'] == 'true';
         }
         
         return false;
