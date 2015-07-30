@@ -10,8 +10,8 @@ super_widgetpages_widgets_list:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPagesController
         model:  core\components\widgets\models\WidgetPageModel
-        method: save
-        view: core\views\TemplateView
+        method: listall
+        view: core\views\JSONView
         viewKey: super_widgetpages_save
         datasource: datasource1
         langFiles:
