@@ -8,9 +8,9 @@ super_widgetpages_widgets_list:
     pattern: super/widgets/pages/widgets/*
     defaults:
         component: core\components\widgets\WidgetsComponent
-        controller:  core\components\widgets\controllers\WidgetPagesController
-        model:  core\components\widgets\models\WidgetPageModel
-        method: listall
+        controller:  core\components\widgets\controllers\WidgetPageWidgetsController
+        model:  core\components\widgets\models\WidgetPageWidgetModel
+        method: listallByPage
         view: core\views\JSONView
         viewKey: super_widgetpages_save
         datasource: datasource1
