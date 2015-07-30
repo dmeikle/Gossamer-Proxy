@@ -1,15 +1,5 @@
 var module = angular.module('widgetAdmin', ['ui.bootstrap']);
 
-
-module.config(function ($httpProvider) {
-    $httpProvider.defaults.transformRequest = function(data){
-        if (data === undefined) {
-            return data;
-        }
-        return $.param(data);
-    };
-});
-
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   $scope.getWidgetList = function(row, numRows) {
     widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
@@ -81,13 +71,11 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
     if (!$scope.selectedPageTemplate) {
       return;
     } else {
-      var pageTemplateObject = $.grep($scope.pageTemplatesList, function(e){
-      if(e.name === $scope.selectedPageTemplate) {
-        return e;
-      }
+      var pageTemplate = $.grep($scope.pageTemplatesList, function(e){
+        return e.name === $scope.selectedPageTemplate;
       });
-      if (pageTemplateObject.length === 1) {
-        pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
+      if (pageTemplate > 0) {
+        pageTemplatesSrv.getPageTemplateWidgetList($scope.selectedPageTemplate)
           .then(function(response){
             $scope.pageTemplateWidgetList = response.pageTemplateWidgetList;
           });
@@ -98,11 +86,28 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
   getPageTemplatesList();
 });
 
-module.directive('widgetAdminList', function(templateSrv){
+module.directive('widgetAdminList', function($compile, templateSrv){
   var template = templateSrv;
   return {
     restrict: 'E',
-    templateUrl: template.widgetAdminList
+    templateUrl: template.widgetAdminList,
+    link: function(scope, element) {
+      scope.addNewWidgetRow = function(){
+        element.getElementsByTagName('td')[0].before($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+        // element.after($compile('<widget-admin-list-row></widget-admin-list-row>')(scope));
+      };
+    }
+  };
+});
+
+module.directive('widgetAdminListRow', function(templateSrv){
+  var template = templateSrv;
+  return {
+    restrict:'E',
+    templateUrl: template.widgetAdminListRow,
+    scope: {
+      newWidget: '=ngModel'
+    }
   };
 });
 
@@ -200,7 +205,7 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
   };
 
   this.getPageTemplateWidgetList = function(pageTemplateObject) {
-    return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
+    return $http.get(apiPath + '/' + pageTemplateObject.id)
       .then(function(response){
         return {
           pageTemplateWidgetList: response.data.asdf

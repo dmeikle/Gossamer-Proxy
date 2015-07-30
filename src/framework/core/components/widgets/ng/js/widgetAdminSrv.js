@@ -37,15 +37,11 @@ module.service('widgetAdminSrv', function($http, $log){
       });
   };
 
-
-  this.deleteWidget = function(widgetId) {
-    return $http.delete(apiPath + '/' + widgetId);
-  };
-
-  this.updateWidget = function(widgetObject) {
+  this.updateWidget = function(widgetObject, formToken) {
     var requestPath = apiPath + '/' + widgetObject.id;
     var data = {};
     data.Widget = widgetObject;
+    data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
       method: 'POST',
@@ -60,4 +56,71 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
+  this.pageTemplate = 'render/widgets/pageTemplate';
+});
+
+
+// Pages service
+
+module.service('pageTemplatesSrv', function($http, templateSrv){
+
+  var apiPath = '/super/widgets/pages';
+
+  this.createNewPageTemplate = function(pageTemplateObject) {
+    var requestPath = apiPath + '/0';
+    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    data.Template = pageTemplateObject;
+    data.FORM_SECURITY_TOKEN = formToken;
+    $log.info(data);
+    return $http({
+      method: 'POST',
+      url:requestPath,
+      data: data,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function(response){
+      $log.info(response);
+    });
+  };
+
+  this.getPageTemplatesList = function() {
+    return $http.get(apiPath + '/0/50')
+      .then(function(response) {
+        return {
+          pageTemplatesList: response.data.WidgetPages
+        };
+    });
+  };
+
+  this.getPageTemplateWidgetList = function(pageTemplateObject) {
+    return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
+      .then(function(response){
+        return {
+          pageTemplateWidgetList: response.data.asdf
+        };
+      });
+  };
+
+  this.updatePageTemplate = function(pageTemplateObject, formToken) {
+    var requestPath = apiPath + '/' + widgetObject.id;
+    var data = {};
+    data.Template = pageTemplateObject;
+    data.FORM_SECURITY_TOKEN = formToken;
+    $log.info(data);
+    return $http({
+      method: 'POST',
+      url:requestPath,
+      data: data,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then(function(response){
+      $log.info(response);
+    });
+  };
+
+  this.toggleEditingPageTemplate = function(pageTemplateObject) {
+    if (pageTemplateObject.editing) {
+      pageTemplateObject.editing = false;
+    } else {
+      pageTemplateObject.editing = true;
+    }
+  };
 });

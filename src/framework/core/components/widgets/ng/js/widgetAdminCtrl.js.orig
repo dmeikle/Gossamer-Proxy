@@ -6,6 +6,53 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
       $scope.widgetCount = response.widgetCount;
     });
   };
+<<<<<<< Updated upstream
+
+  saveWidget = function(widgetObject) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
+      $scope.widgetList.unshift(widgetObject);
+      $scope.newWidget = {};
+      $scope.newWidgetForm.$setPristine();
+    });
+  };
+
+  updateWidget = function(widgetObject, formToken) {
+    widgetAdminSrv.updateWidget(widgetObject, formToken).then(function(response) {
+      $log.info(response);
+    });
+  };
+
+  $scope.addNewWidget = function(newWidgetObject) {
+    saveWidget(newWidgetObject);
+  };
+
+  $scope.toggleEditingWidget = function(widgetObject) {
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
+  };
+
+  $scope.confirmEditedWidget = function(widgetObject) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    updateWidget(widgetObject, formToken);
+    widgetAdminSrv.toggleEditingWidget(widgetObject);
+  };
+
+  $scope.selectPage = function(pageNum) {
+    $scope.currentPage = pageNum;
+  };
+
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    $scope.getWidgetList(row, numRows);
+  });
+
+  // Stuff to run on controller load
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
+  $scope.getWidgetList(0, $scope.widgetsPerPage);
+=======
 
   saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
@@ -69,13 +116,11 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
     if (!$scope.selectedPageTemplate) {
       return;
     } else {
-      var pageTemplateObject = $.grep($scope.pageTemplatesList, function(e){
-      if(e.name === $scope.selectedPageTemplate) {
-        return e;
-      }
+      var pageTemplate = $.grep($scope.pageTemplatesList, function(e){
+        return e.name === $scope.selectedPageTemplate;
       });
-      if (pageTemplateObject.length === 1) {
-        pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
+      if (pageTemplate > 0) {
+        pageTemplatesSrv.getPageTemplateWidgetList($scope.selectedPageTemplate)
           .then(function(response){
             $scope.pageTemplateWidgetList = response.pageTemplateWidgetList;
           });
@@ -84,4 +129,5 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
   });
 
   getPageTemplatesList();
+>>>>>>> Stashed changes
 });
