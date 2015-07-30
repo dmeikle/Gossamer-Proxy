@@ -10,7 +10,6 @@ include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
 
-
 use core\system\Kernel;
 use core\system\KernelEvents;
 
