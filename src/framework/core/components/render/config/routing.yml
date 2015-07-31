@@ -10,13 +10,13 @@ render_file:
         method: renderFile
         view: core\views\RenderHTMLView
         viewKey: render_file
-        datasource: datasource1  
-        langFiles: 
+        datasource: datasource1
+        langFiles:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\ConfigurationListener'}
-        - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\LoadCachedPageListener', static: 'true'}
+        # - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\LoadCachedPageListener', static: 'true'}
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\ConfigureLocaleStringsListener' }
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener' }
         - { 'event': 'render_complete', 'listener': 'core\components\render\eventlisteners\SaveCachedPageListener', static: 'true'}
-       
-    methods: [GET]  
+
+    methods: [GET]

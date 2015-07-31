@@ -77,6 +77,8 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
     });
   }
 
+
+  // TODO This needs to be cleaned up
   $scope.$watch('selectedPageTemplate', function(){
     if (!$scope.selectedPageTemplate) {
       return;
@@ -89,7 +91,7 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
       if (pageTemplateObject.length === 1) {
         pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
           .then(function(response){
-            $scope.pageTemplateWidgetList = response.pageTemplateWidgetList;
+            $scope.pageTemplateSectionList = response.pageTemplateSectionList;
           });
       }
     }
@@ -102,7 +104,16 @@ module.directive('widgetAdminList', function(templateSrv){
   var template = templateSrv;
   return {
     restrict: 'E',
+    transclude: true,
     templateUrl: template.widgetAdminList
+  };
+});
+
+module.directive('pageTemplate', function(templateSrv) {
+  var template = templateSrv.pageTemplate;
+  return {
+    restrict: 'E',
+    templateUrl: template
   };
 });
 
@@ -164,7 +175,7 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.pageTemplate = 'render/widgets/pageTemplate';
+  this.pageTemplate = '/render/widgets/pageTemplate';
 });
 
 
@@ -203,7 +214,7 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
     return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
       .then(function(response){
         return {
-          pageTemplateWidgetList: response.data.asdf
+          pageTemplateSectionList: response.data
         };
       });
   };

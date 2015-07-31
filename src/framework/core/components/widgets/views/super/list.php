@@ -12,7 +12,7 @@
     </datalist>
   </div>
   <div class="col-xs-6 row" ng-controller="pageTemplatesCtrl">
-    <pagetemplate></pagetemplate>
+    <page-template></page-template>
   </div>
   <div ng-controller="viewWidgetsCtrl" class="col-xs-6 row">
       <widget-admin-list></widget-admin-list>

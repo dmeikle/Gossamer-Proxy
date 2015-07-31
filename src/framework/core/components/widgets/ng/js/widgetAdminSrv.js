@@ -56,7 +56,7 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.pageTemplate = 'render/widgets/pageTemplate';
+  this.pageTemplate = '/render/widgets/pageTemplate';
 });
 
 
@@ -95,7 +95,7 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
     return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
       .then(function(response){
         return {
-          pageTemplateWidgetList: response.data.asdf
+          pageTemplateSectionList: response.data
         };
       });
   };

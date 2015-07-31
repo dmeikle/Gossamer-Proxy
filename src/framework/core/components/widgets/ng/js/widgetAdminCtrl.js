@@ -65,6 +65,8 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
     });
   }
 
+
+  // TODO This needs to be cleaned up
   $scope.$watch('selectedPageTemplate', function(){
     if (!$scope.selectedPageTemplate) {
       return;
@@ -77,7 +79,7 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
       if (pageTemplateObject.length === 1) {
         pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
           .then(function(response){
-            $scope.pageTemplateWidgetList = response.pageTemplateWidgetList;
+            $scope.pageTemplateSectionList = response.pageTemplateSectionList;
           });
       }
     }
