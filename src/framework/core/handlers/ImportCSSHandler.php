@@ -63,7 +63,7 @@ class ImportCSSHandler extends BaseHandler {
                 }
 
                 $retval[] = '/css' . str_replace('includes/css/', '', $filepath);
-            }elseif (substr($tmp, 0, 13) == '@/assets/') {
+            }elseif (substr($tmp, 0, 9) == '@/assets/') {
 
                 //nothing to copy - we are simply going to the root of the 
                 //website components folder             
