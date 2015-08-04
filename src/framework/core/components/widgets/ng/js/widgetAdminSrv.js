@@ -56,7 +56,8 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.pageTemplate = '/render/widgets/pageTemplate';
+  this.pageTemplateWidgets = '/render/widgets/pageTemplateWidgets';
+  this.widgetList = '/render/widgets/widgetList';
 });
 
 
@@ -94,6 +95,8 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
   this.getPageTemplateWidgetList = function(pageTemplateObject) {
     return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
       .then(function(response){
+        delete response.data['widgets/super_widgetpages_widgets_list'];
+        delete response.data.modules;
         return {
           pageTemplateSectionList: response.data
         };
