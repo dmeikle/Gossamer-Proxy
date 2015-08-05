@@ -1,7 +1,21 @@
 
 
 
-
+super_widgets_list_unassigned:
+    pattern: super/widgets/unassigned/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetsController
+        model:  core\components\widgets\models\WidgetModel
+        method: listallUnassigned
+        view: core\views\JSONView
+        viewKey: super_widgets_list_unassigned
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
+    
 
 
 super_widgetpages_widgets_list:

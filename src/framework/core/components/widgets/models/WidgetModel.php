@@ -36,4 +36,12 @@ class WidgetModel extends AbstractModel{
         $this->entity = 'Widget';
         $this->tablename = 'widgets';
     }
+    
+    public function listallUnassigned($idList) {
+        $params = array('widgetIds' => $idList);
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listunused', $params);
+        
+        return $data;
+    }
 }

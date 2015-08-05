@@ -20,4 +20,9 @@ use core\AbstractController;
 class WidgetsController extends AbstractController {
     
  
+    public function listallUnassigned($idList) {
+        $result = $this->model->listallUnassigned($idList);
+        
+        $this->render($result);
+    }
 }
