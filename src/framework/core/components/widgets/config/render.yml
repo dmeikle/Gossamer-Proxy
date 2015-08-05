@@ -6,6 +6,14 @@ widgetAdminList:
         - 'src/components/staff/locales/*/login'
         - 'src/components/staff/locales/*/validation'
 
-pageTemplate:
-    path: 'src/framework/core/components/widgets/ng/views/pageTemplate.php'
+pageTemplateWidgets:
+    path: 'src/framework/core/components/widgets/ng/views/pageTemplateWidgets.php'
     langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/validation'
+
+widgetList:
+    path: 'src/framework/core/components/widgets/ng/views/widgetList.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/validation'

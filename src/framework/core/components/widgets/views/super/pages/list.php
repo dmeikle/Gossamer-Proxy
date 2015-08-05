@@ -1,29 +1,30 @@
 <!--- javascript start --->
 
-@core/components/widgets/includes/js/admin-widgets-pages-ng.js
+@/components/widgets/widgets.concat.js
 
 <!--- javascript end --->
 
+<!--- css start --->
 
-<table class="table table-striped table-hover">
-    <tr>
-        <td>Name</td>
-        <td>Description</td>    
-        <td>YML Key</td>
-        <td>Active</td>
-        <td>System</td>
-        <td>Action</td>
-    </tr>
-    <?php foreach($WidgetPages as $page) {?>    
-        <tr>
-            <td><?php echo $page['name'];?></td>
-            <td><?php echo $page['description'];?></td>
-            <td><?php echo $page['ymlKey'];?></td>
-            <td><?php echo $page['isActive'];?></td>
-            <td><?php echo $page['isSystemPage'];?></td>
-            <td><a href="../<?php echo $page['id'];?>">edit</a> | <a href="../widgets/<?php echo $page['id'];?>">widgets</a></td>
-        </tr>    
-    <?php }?>
-</table>
+@/assets/css/widgets.min.css
 
+<!--- css end --->
 
+<div ng-controller="pageTemplatesCtrl">
+  <div class="button-container">
+    <div class="centered-4-cols">
+      <input list="pageTemplates" ng-model="selectedPageTemplate">
+      <datalist id="pageTemplates">
+        <option ng-repeat="template in pageTemplatesList" value="{{template.name}}">
+      </datalist>
+      <button>New Page</button>
+    </div>
+  </div>
+  <div class="table-container" ng-cloak>
+    <page-template-widgets></page-template-widgets>
+    <div class="col-xs-12 col-md-6" ng-controller="viewWidgetsCtrl">
+      <widget-list></widget-list>
+    </div>
+
+  </div>
+</div>

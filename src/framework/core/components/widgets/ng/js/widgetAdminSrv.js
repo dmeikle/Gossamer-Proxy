@@ -2,12 +2,13 @@ module.service('widgetAdminSrv', function($http, $log){
 
   var apiPath = '/super/widgets';
 
+  var self = this;
+
   this.createNewWidget = function(widgetObject, formToken){
     var requestPath = apiPath + '/0';
     var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
     data.Widget = widgetObject;
     data.FORM_SECURITY_TOKEN = formToken;
-    $log.info(data);
     return $http({
       method: 'POST',
       url:requestPath,
@@ -29,13 +30,24 @@ module.service('widgetAdminSrv', function($http, $log){
   this.getWidgetList = function(row, numRows){
     return $http.get(apiPath + '/' + row + '/' + numRows)
       .then(function(response){
+        self.widgetList = response.data.Widgets;
+        self.widgetCount = response.data.WidgetsCount[0].rowCount;
         return {
-          widgetList: response.data.Widgets,
-          widgetCount: response.data.WidgetsCount[0].rowCount,
           pagination: response.data.pagination
         };
       });
   };
+
+  this.getInactiveWidgetList = function(row, numRows, pageTemplate) {
+    return $http.get(apiPath + 'pages/' + pageTemplate.id + '/' + row + '/' + numRows)
+      .then(function(response){
+        self.widgetList = response.data.Widgets;
+        self.widgetCount = response.data.WidgetsCount[0].rowCount;
+        return {
+          pagination: response.data.pagination
+        };
+      });
+  }
 
   this.updateWidget = function(widgetObject, formToken) {
     var requestPath = apiPath + '/' + widgetObject.id;
@@ -56,15 +68,18 @@ module.service('widgetAdminSrv', function($http, $log){
 
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
-  this.pageTemplate = '/render/widgets/pageTemplate';
+  this.pageTemplateWidgets = '/render/widgets/pageTemplateWidgets';
+  this.widgetList = '/render/widgets/widgetList';
 });
 
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http, templateSrv){
+module.service('pageTemplatesSrv', function($http, templateSrv, widgetAdminSrv){
 
   var apiPath = '/super/widgets/pages';
+
+  var self = this;
 
   this.createNewPageTemplate = function(pageTemplateObject) {
     var requestPath = apiPath + '/0';
@@ -85,18 +100,16 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
   this.getPageTemplatesList = function() {
     return $http.get(apiPath + '/0/50')
       .then(function(response) {
-        return {
-          pageTemplatesList: response.data.WidgetPages
-        };
+        self.pageTemplatesList = response.data.WidgetPages;
     });
   };
 
   this.getPageTemplateWidgetList = function(pageTemplateObject) {
     return $http.get(apiPath + '/widgets/' + pageTemplateObject.id)
       .then(function(response){
-        return {
-          pageTemplateSectionList: response.data
-        };
+        delete response.data['widgets/super_widgetpages_widgets_list'];
+        delete response.data.modules;
+        self.pageTemplateSectionList = response.data;
       });
   };
 

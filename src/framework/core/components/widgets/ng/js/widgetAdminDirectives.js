@@ -7,10 +7,20 @@ module.directive('widgetAdminList', function(templateSrv){
   };
 });
 
-module.directive('pageTemplate', function(templateSrv) {
-  var template = templateSrv.pageTemplate;
+module.directive('widgetList', function(templateSrv){
+  var template = templateSrv.widgetList;
   return {
     restrict: 'E',
+    transclude: true,
+    templateUrl: template
+  };
+});
+
+module.directive('pageTemplateWidgets', function(templateSrv) {
+  var template = templateSrv.pageTemplateWidgets;
+  return {
+    restrict: 'E',
+    transclude: true,
     templateUrl: template
   };
 });

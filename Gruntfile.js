@@ -21,8 +21,33 @@ module.exports = function(grunt) {
       }
     },
 
+    copy:{
+      bower_site: {
+        expand:true,
+        src: ['src/components/**/ng/bower_components/*'],
+        dest: 'web/assets/bower_components/',
+        rename: function(dest, src) {
+          var srcSplit = src.split('/');
+          var component = srcSplit.slice(srcSplit.indexOf('bower_components'), srcSplit.length());
+          var componentPath = component.join('/');
+          return dest + componentPath;
+        }
+      },
+      bower_framework: {
+        expand:true,
+        src: ['src/framework/core/components/**/ng/bower_components/**/*'],
+        dest: 'web/assets/bower_components/',
+        rename: function(dest, src) {
+          var srcSplit = src.split('/');
+          var component = srcSplit.slice(srcSplit.indexOf('bower_components')+1, srcSplit.length);
+          var componentPath = component.join('/');
+          return dest + componentPath;
+        }
+      }
+    },
+
     jshint: {
-      files: ['Gruntfile.js', 'src/components/*/ng/*.concat.js','src/framework/core/components/*/ng/*.concat.js'],
+      files: ['Gruntfile.js', 'web/components/*/*.concat.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -69,35 +94,29 @@ module.exports = function(grunt) {
         sourceMap: true
       },
       dist: {
-        files: {
+        files: [{
           expand: true,
-          cwd:'src/',
-          src: ['components/*/ng/*.concat.js'],
+          src: ['web/components/**/*.concat.js'],
           dest: 'web/components/',
           rename: function(dest, src) {
             var srcSplit = src.split('/');
             var componentName = srcSplit[srcSplit.indexOf('components')+1];
             return dest + componentName + '/' + componentName + '.min.js';
           }
-        }
+        }]
       }
     },
 
     watch: {
       scripts: {
-        files: ['<%= clean %>','<%= jshint.files %>', '<%= sass.framework.files %>','<%= sass.site.files %>','<%= copy.tempJsCopy.files %>'],
-        tasks: ['clean', 'jshint', 'sass', 'concat']
+        files: ['<%= jshint.files %>','<%= concat.dist %>'],
+        tasks: ['jshint', 'concat']
       },
 
       sass: {
-        options: { spawn: false },
-        files: ['<%= sass.dist.files %>'],
-        tasks: ['sass:dist']
-      },
-
-      html: {
-        files: ['<%= copy.main.files %>'],
-        tasks: ['copy:main']
+        files: ['<%= sass.site.files %>','<%= sass.framework.files %>'],
+        tasks: ['sass:site','sass:framework'],
+        spawn: false
       }
     }
   });
@@ -107,12 +126,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-debug-task');
+
+  grunt.registerTask('watch', ['watch']);
 
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['clean', 'jshint', 'sass', 'concat']);
+  grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'copy', 'sass']);
 
   grunt.registerTask('build', ['clean', 'jshint', 'sass', 'concat', 'uglify']);
 
