@@ -2,7 +2,7 @@
 
 
 super_widgets_list_unassigned:
-    pattern: super/widgets/unassigned/*
+    pattern: super/widgets/unassigned/*/*/*
     defaults:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetsController
@@ -16,7 +16,7 @@ super_widgets_list_unassigned:
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
     
-
+ 
 
 super_widgetpages_widgets_list:
     pattern: super/widgets/pages/widgets/*

@@ -254,7 +254,7 @@ class AbstractModel {
         if(!array_key_exists('isActive', $params)) {
             $params['isActive'] = '1';
         }
-        
+       
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
 
         return $data;
