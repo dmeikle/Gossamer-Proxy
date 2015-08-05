@@ -21,6 +21,9 @@ class WidgetsController extends AbstractController {
     
  
     public function listallUnassigned($idList) {
+        
+        $filteredList = preg_replace('/[^0-9,]/', '', $idList); // Removes special chars.
+        
         $result = $this->model->listallUnassigned($idList);
         
         $this->render($result);
