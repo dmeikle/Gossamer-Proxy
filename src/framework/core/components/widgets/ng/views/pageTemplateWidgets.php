@@ -13,7 +13,6 @@
             ng-selected="sectionName === section"
             value="{{sectionName}}">{{sectionName}}</option>
         </select>
-        <button>apply</button>
       </div>
     </li>
   </ul>

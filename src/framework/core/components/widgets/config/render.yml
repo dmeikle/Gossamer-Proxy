@@ -8,6 +8,12 @@ widgetAdminList:
 
 pageTemplateWidgets:
     path: 'src/framework/core/components/widgets/ng/views/pageTemplateWidgets.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/validation'
 
 widgetList:
     path: 'src/framework/core/components/widgets/ng/views/widgetList.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/validation'

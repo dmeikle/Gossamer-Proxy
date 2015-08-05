@@ -1,16 +1,20 @@
 module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
-  $scope.getWidgetList = function(row, numRows) {
-    widgetAdminSrv.getWidgetList(row, numRows).then(function(response){
-      $scope.numPages = response.widgetCount / $scope.widgetsPerPage;
-      $scope.widgetList = response.widgetList;
-      $scope.widgetCount = response.widgetCount;
+  $scope.getWidgetList = function(row) {
+    widgetAdminSrv.getWidgetList(row, $scope.widgetsPerPage).then(function(response){
+      $scope.numPages = widgetAdminSrv.widgetCount / $scope.widgetsPerPage;
+      $scope.widgetList = widgetAdminSrv.widgetList;
+      $scope.widgetCount = widgetAdminSrv.widgetCount;
     });
+  };
+
+  $scope.getInactiveWidgetsList = function(row) {
+    widgetAdminSrv.getInactiveWidgetList()
   };
 
   saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
-      $scope.widgetList.unshift(widgetObject);
+      $scope.getWidgetList((($scope.currentPage - 1) * $scope.widgetsPerPage));
       $scope.newWidget = {};
       $scope.newWidgetForm.$setPristine();
     });
@@ -50,19 +54,39 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   // Stuff to run on controller load
   $scope.widgetsPerPage = 10;
   $scope.currentPage = 1;
-  $scope.getWidgetList(0, $scope.widgetsPerPage);
+  // $scope.getWidgetList(0, $scope.widgetsPerPage);
 });
 
 
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
+module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, widgetAdminSrv){
 
   function getPageTemplatesList() {
     pageTemplatesSrv.getPageTemplatesList().then(function(response){
-      $scope.pageTemplatesList = response.pageTemplatesList;
+      $scope.pageTemplatesList = pageTemplatesSrv.pageTemplatesList;
     });
+  }
+
+  function filterWidgetsList() {
+    if (pageTemplatesSrv.pageTemplateSectionList && widgetAdminSrv.inactiveWidgetsList) {
+      var widgetsToDelete = {};
+      for (var section in pageTemplatesSrv.pageTemplateSectionList) {
+        if (pageTemplatesSrv.pageTemplateSectionList.hasOwnProperty(section)) {
+          var key = pageTemplatesSrv.pageTemplateSectionList[section];
+          for (var widget in key) {
+            for (var i = 0; i < widgetAdminSrv.widgetList.length; i++) {
+              if (widgetAdminSrv.widgetList[i] && widgetAdminSrv.inactiveWidgetsList[i].id === key[widget].id) {
+                delete widgetAdminSrv.widgetList[i];
+              }
+            }
+
+          }
+        }
+      }
+    }
+    $scope.inactiveWidgetsList = widgetAdminSrv.widgetsList;
   }
 
 
@@ -72,17 +96,22 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
       return;
     } else {
       var pageTemplateObject = $.grep($scope.pageTemplatesList, function(e){
-      if(e.name === $scope.selectedPageTemplate) {
-        return e;
-      }
+        if(e.name === $scope.selectedPageTemplate) {
+          return e;
+        }
       });
       if (pageTemplateObject.length === 1) {
         pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
           .then(function(response){
-            $scope.pageTemplateSectionList = response.pageTemplateSectionList;
+            $scope.pageTemplateSectionList = pageTemplatesSrv.pageTemplateSectionList;
+            filterWidgetsList();
           });
       }
     }
+  });
+
+  $scope.$watch('currentPage', function() {
+    filterWidgetsList();
   });
 
   getPageTemplatesList();
