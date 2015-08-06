@@ -11,6 +11,7 @@
 namespace core\components\widgets\controllers;
 
 use core\AbstractController;
+use core\components\widgets\serialization\WidgetPageSerializer;
 
 /**
  * WidgetPagesController
@@ -19,5 +20,12 @@ use core\AbstractController;
  */
 class WidgetPagesController extends AbstractController {
     
- 
+    public function listTemplates() {
+        $result = $this->model->listTemplates();
+        
+        $serializer = new WidgetPageSerializer();
+        $result = $serializer->formatPageListResults($result);
+        $this->render($result);
+        
+    }
 }
