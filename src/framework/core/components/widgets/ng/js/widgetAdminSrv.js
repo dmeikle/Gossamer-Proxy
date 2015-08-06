@@ -38,17 +38,6 @@ module.service('widgetAdminSrv', function($http, $log){
       });
   };
 
-  this.getInactiveWidgetList = function(row, numRows, pageTemplate) {
-    return $http.get(apiPath + 'pages/' + pageTemplate.id + '/' + row + '/' + numRows)
-      .then(function(response){
-        self.widgetList = response.data.Widgets;
-        self.widgetCount = response.data.WidgetsCount[0].rowCount;
-        return {
-          pagination: response.data.pagination
-        };
-      });
-  }
-
   this.updateWidget = function(widgetObject, formToken) {
     var requestPath = apiPath + '/' + widgetObject.id;
     var data = {};
@@ -69,13 +58,13 @@ module.service('widgetAdminSrv', function($http, $log){
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
   this.pageTemplateWidgets = '/render/widgets/pageTemplateWidgets';
-  this.widgetList = '/render/widgets/widgetList';
+  this.unusedWidgetList = '/render/widgets/unusedWidgetList';
 });
 
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http, templateSrv, widgetAdminSrv){
+module.service('pageTemplatesSrv', function($http, templateSrv){
 
   var apiPath = '/super/widgets/pages';
 
@@ -110,6 +99,34 @@ module.service('pageTemplatesSrv', function($http, templateSrv, widgetAdminSrv){
         delete response.data['widgets/super_widgetpages_widgets_list'];
         delete response.data.modules;
         self.pageTemplateSectionList = response.data;
+      });
+  };
+
+  this.getUnusedWidgets = function(row, numRows){
+    var usedWidgets = [];
+    for (var section in self.pageTemplateSectionList) {
+      if (self.pageTemplateSectionList.hasOwnProperty(section)) {
+        for (var key in self.pageTemplateSectionList[section]) {
+          if (self.pageTemplateSectionList[section].hasOwnProperty(key)) {
+            usedWidgets.push(self.pageTemplateSectionList[section][key].id);
+          }
+        }
+      }
+    }
+    if (usedWidgets.length > 0) {
+      return $http.get('/super/widgets/unassigned/' + usedWidgets.join() + '/' + row + '/' + numRows)
+        .then(function(response) {
+          self.unusedWidgetList = response.data.Widgets;
+          self.widgetCount = response.data.WidgetsCount[0].rowCount;
+        });
+    }
+    return $http.get('/super/widgets/' + row + '/' + numRows)
+      .then(function(response){
+        self.unusedWidgetList = response.data.Widgets;
+        self.widgetCount = response.data.WidgetsCount[0].rowCount;
+        return {
+          pagination: response.data.pagination
+        };
       });
   };
 

@@ -7,10 +7,6 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
     });
   };
 
-  $scope.getInactiveWidgetsList = function(row) {
-    widgetAdminSrv.getInactiveWidgetList()
-  };
-
   saveWidget = function(widgetObject) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     widgetAdminSrv.createNewWidget(widgetObject, formToken).then(function(response) {
@@ -61,7 +57,7 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, widgetAdminSrv){
+module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
 
   function getPageTemplatesList() {
     pageTemplatesSrv.getPageTemplatesList().then(function(response){
@@ -69,24 +65,13 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, 
     });
   }
 
-  function filterWidgetsList() {
-    if (pageTemplatesSrv.pageTemplateSectionList && widgetAdminSrv.inactiveWidgetsList) {
-      var widgetsToDelete = {};
-      for (var section in pageTemplatesSrv.pageTemplateSectionList) {
-        if (pageTemplatesSrv.pageTemplateSectionList.hasOwnProperty(section)) {
-          var key = pageTemplatesSrv.pageTemplateSectionList[section];
-          for (var widget in key) {
-            for (var i = 0; i < widgetAdminSrv.widgetList.length; i++) {
-              if (widgetAdminSrv.widgetList[i] && widgetAdminSrv.inactiveWidgetsList[i].id === key[widget].id) {
-                delete widgetAdminSrv.widgetList[i];
-              }
-            }
-
-          }
-        }
-      }
-    }
-    $scope.inactiveWidgetsList = widgetAdminSrv.widgetsList;
+  function getUnusedWidgets(row) {
+    pageTemplatesSrv.getUnusedWidgets(row, $scope.widgetsPerPage)
+      .then(function(response){
+        $scope.unusedWidgetList = pageTemplatesSrv.unusedWidgetList;
+        $scope.widgetCount = pageTemplatesSrv.widgetCount;
+        $scope.numPages = pageTemplatesSrv.widgetCount / $scope.widgetsPerPage;
+      });
   }
 
 
@@ -104,15 +89,21 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, 
         pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
           .then(function(response){
             $scope.pageTemplateSectionList = pageTemplatesSrv.pageTemplateSectionList;
-            filterWidgetsList();
+
+            getUnusedWidgets((($scope.currentPage - 1) * $scope.widgetsPerPage));
           });
       }
     }
   });
 
-  $scope.$watch('currentPage', function() {
-    filterWidgetsList();
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    getUnusedWidgets(row, numRows);
   });
 
   getPageTemplatesList();
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
 });

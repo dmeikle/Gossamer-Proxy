@@ -10,7 +10,7 @@
 
 <!--- css end --->
 
-<div ng-controller="pageTemplatesCtrl">
+<div class="container-fluid" ng-controller="pageTemplatesCtrl">
   <div class="button-container">
     <div class="centered-4-cols">
       <input list="pageTemplates" ng-model="selectedPageTemplate">
@@ -21,9 +21,11 @@
     </div>
   </div>
   <div class="table-container" ng-cloak>
-    <page-template-widgets></page-template-widgets>
-    <div class="col-xs-12 col-md-6" ng-controller="viewWidgetsCtrl">
-      <widget-list></widget-list>
+    <div class="col-xs-12 col-md-6">
+      <page-template-widgets></page-template-widgets>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <unused-widget-list></unused-widget-list>
     </div>
 
   </div>

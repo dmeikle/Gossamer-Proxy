@@ -14,7 +14,7 @@
       </th>
     </thead>
     <tbody>
-      <tr ng-repeat="widget in inactiveWidgetsList track by $index" id="{{widget.id}}">
+      <tr ng-repeat="widget in unusedWidgetList" id="{{widget.id}}">
         <td>
           {{ widget.name }}
         </td>

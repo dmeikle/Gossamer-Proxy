@@ -7,8 +7,8 @@ module.directive('widgetAdminList', function(templateSrv){
   };
 });
 
-module.directive('widgetList', function(templateSrv){
-  var template = templateSrv.widgetList;
+module.directive('unusedWidgetList', function(templateSrv){
+  var template = templateSrv.unusedWidgetList;
   return {
     restrict: 'E',
     transclude: true,
