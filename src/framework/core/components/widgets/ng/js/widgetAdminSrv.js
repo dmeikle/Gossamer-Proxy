@@ -6,7 +6,7 @@ module.service('widgetAdminSrv', function($http, $log){
 
   this.createNewWidget = function(widgetObject, formToken){
     var requestPath = apiPath + '/0';
-    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    var data = {};
     data.Widget = widgetObject;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
@@ -64,15 +64,15 @@ module.service('templateSrv', function(){
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http, templateSrv){
+module.service('pageTemplatesSrv', function($http, $log){
 
   var apiPath = '/super/widgets/pages';
 
   var self = this;
 
-  this.createNewPageTemplate = function(pageTemplateObject) {
+  this.createNewPageTemplate = function(pageTemplateObject, formToken) {
     var requestPath = apiPath + '/0';
-    var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
+    var data = {};
     data.Template = pageTemplateObject;
     data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
@@ -130,10 +130,10 @@ module.service('pageTemplatesSrv', function($http, templateSrv){
       });
   };
 
-  this.updatePageTemplate = function(pageTemplateObject, formToken) {
-    var requestPath = apiPath + '/' + widgetObject.id;
+  this.updatePageTemplate = function(object, formToken) {
+    var requestPath = apiPath + '/' + object.id;
     var data = {};
-    data.Template = pageTemplateObject;
+    data.Template = object;
     data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({

@@ -299,3 +299,118 @@
 [Wed Aug 05 14:39:15.692984 2015] [:error] [pid 4786] [client 192.168.56.1:45010] render_file, referer: http://work.server.phoenix/super/widgets/pages/
 [Wed Aug 05 14:39:15.974854 2015] [:error] [pid 4947] [client 192.168.56.1:45012] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
 [Wed Aug 05 14:39:22.514863 2015] [:error] [pid 4879] [client 192.168.56.1:45004] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:23:22.920001 2015] [:error] [pid 5174] [client 192.168.56.1:45416] super_widgets_list_unassigned
+[Wed Aug 05 15:23:41.523049 2015] [:error] [pid 4889] [client 192.168.56.1:45418] super_widgets_list_unassigned
+[Wed Aug 05 15:25:17.158672 2015] [:error] [pid 4801] [client 192.168.56.1:45441] super_widgets_list_unassigned
+[Wed Aug 05 15:36:28.267465 2015] [:error] [pid 5198] [client 192.168.56.1:45602] super_widgets_list_unassigned
+[Wed Aug 05 15:38:19.341575 2015] [:error] [pid 5182] [client 192.168.56.1:45607] super_widgetpages_home
+[Wed Aug 05 15:38:27.575568 2015] [:error] [pid 4784] [client 192.168.56.1:45609] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:38:29.310747 2015] [:error] [pid 5182] [client 192.168.56.1:45607] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:38:30.319149 2015] [:error] [pid 4802] [client 192.168.56.1:45608] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:38:32.942940 2015] [:error] [pid 4879] [client 192.168.56.1:45612] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:38:35.453249 2015] [:error] [pid 4802] [client 192.168.56.1:45608] super_widgetpages_home
+[Wed Aug 05 15:38:37.340237 2015] [:error] [pid 4802] [client 192.168.56.1:45608] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:38:37.748948 2015] [:error] [pid 4801] [client 192.168.56.1:45623] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:39:21.010161 2015] [:error] [pid 4786] [client 192.168.56.1:45636] super_widgetpages_home
+[Wed Aug 05 15:39:22.556889 2015] [:error] [pid 4947] [client 192.168.56.1:45637] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:39:22.823947 2015] [:error] [pid 4879] [client 192.168.56.1:45641] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:39:23.109139 2015] [:error] [pid 4889] [client 192.168.56.1:45640] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:39:29.885284 2015] [:error] [pid 5182] [client 192.168.56.1:45639] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:40:17.639057 2015] [:error] [pid 5198] [client 192.168.56.1:45663] super_widgetpages_home
+[Wed Aug 05 15:40:19.513387 2015] [:error] [pid 4786] [client 192.168.56.1:45667] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:40:20.038329 2015] [:error] [pid 5198] [client 192.168.56.1:45663] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:40:20.997487 2015] [:error] [pid 4784] [client 192.168.56.1:45668] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:40:21.923955 2015] [:error] [pid 4802] [client 192.168.56.1:45664] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:07.514047 2015] [:error] [pid 4879] [client 192.168.56.1:45677] super_widgetpages_home
+[Wed Aug 05 15:41:09.340605 2015] [:error] [pid 5658] [client 192.168.56.1:45681] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:09.947118 2015] [:error] [pid 4889] [client 192.168.56.1:45678] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:10.525239 2015] [:error] [pid 5182] [client 192.168.56.1:45679] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:11.648165 2015] [:error] [pid 4879] [client 192.168.56.1:45677] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:12.910476 2015] [:error] [pid 4879] [client 192.168.56.1:45677] super_widgetpages_home
+[Wed Aug 05 15:41:14.359382 2015] [:error] [pid 5182] [client 192.168.56.1:45679] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:14.638111 2015] [:error] [pid 5666] [client 192.168.56.1:45680] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:14.924413 2015] [:error] [pid 4879] [client 192.168.56.1:45677] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:41:15.827908 2015] [:error] [pid 4889] [client 192.168.56.1:45678] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:50:27.129985 2015] [:error] [pid 4784] [client 192.168.56.1:45757] super_widgetpages_home
+[Wed Aug 05 15:50:28.468160 2015] [:error] [pid 5672] [client 192.168.56.1:45759] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:50:28.742729 2015] [:error] [pid 4786] [client 192.168.56.1:45762] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 15:50:29.075446 2015] [:error] [pid 4802] [client 192.168.56.1:45758] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:06:58.994053 2015] [:error] [pid 5666] [client 192.168.56.1:45892] super_widgetpages_home
+[Wed Aug 05 16:07:01.585853 2015] [:error] [pid 4889] [client 192.168.56.1:45894] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:07:02.856109 2015] [:error] [pid 5658] [client 192.168.56.1:45896] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:07:03.142057 2015] [:error] [pid 5666] [client 192.168.56.1:45892] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:31.526979 2015] [:error] [pid 5672] [client 192.168.56.1:45922] super_widgetpages_home
+[Wed Aug 05 16:11:33.664521 2015] [:error] [pid 5841] [client 192.168.56.1:45925] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:34.001549 2015] [:error] [pid 4879] [client 192.168.56.1:45927] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:34.009227 2015] [:error] [pid 4879] [client 192.168.56.1:45927] PHP Notice:  Undefined index: widgetList in /home/nathan/phoenixcmsportal/src/framework/core/components/render/eventlisteners/ConfigurationListener.php on line 51, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:34.012085 2015] [:error] [pid 4879] [client 192.168.56.1:45927] PHP Fatal error:  Call to undefined function Exception() in /home/nathan/phoenixcmsportal/src/framework/core/components/render/eventlisteners/ConfigureLocaleStringsListener.php on line 32, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:34.265076 2015] [:error] [pid 4786] [client 192.168.56.1:45923] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:40.058850 2015] [:error] [pid 4786] [client 192.168.56.1:45923] super_widgetpages_home
+[Wed Aug 05 16:11:41.897877 2015] [:error] [pid 5666] [client 192.168.56.1:45943] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:42.188349 2015] [:error] [pid 4889] [client 192.168.56.1:45942] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:43.470840 2015] [:error] [pid 4889] [client 192.168.56.1:45942] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:43.470873 2015] [:error] [pid 4889] [client 192.168.56.1:45942] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:43.743366 2015] [:error] [pid 5734] [client 192.168.56.1:45940] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:11:44.722956 2015] [:error] [pid 5903] [client 192.168.56.1:45944] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:20.036223 2015] [:error] [pid 4802] [client 192.168.56.1:45961] super_widgetpages_home
+[Wed Aug 05 16:13:22.435427 2015] [:error] [pid 4879] [client 192.168.56.1:45964] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:23.314410 2015] [:error] [pid 4786] [client 192.168.56.1:45965] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:24.518485 2015] [:error] [pid 4802] [client 192.168.56.1:45961] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:30.604310 2015] [:error] [pid 4802] [client 192.168.56.1:45961] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:30.604342 2015] [:error] [pid 4802] [client 192.168.56.1:45961] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:30.879213 2015] [:error] [pid 5672] [client 192.168.56.1:45962] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:33.716152 2015] [:error] [pid 5672] [client 192.168.56.1:45962] super_widgetpages_home
+[Wed Aug 05 16:13:35.005990 2015] [:error] [pid 5734] [client 192.168.56.1:45970] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:35.325459 2015] [:error] [pid 4889] [client 192.168.56.1:45969] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:36.271499 2015] [:error] [pid 5672] [client 192.168.56.1:45962] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:36.952068 2015] [:error] [pid 5672] [client 192.168.56.1:45962] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:36.952106 2015] [:error] [pid 5672] [client 192.168.56.1:45962] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:13:37.282648 2015] [:error] [pid 4802] [client 192.168.56.1:45961] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:21.204218 2015] [:error] [pid 5658] [client 192.168.56.1:45979] render_file
+[Wed Aug 05 16:15:30.189098 2015] [:error] [pid 5841] [client 192.168.56.1:45980] super_widgetpages_home
+[Wed Aug 05 16:15:31.383224 2015] [:error] [pid 5903] [client 192.168.56.1:45983] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:31.681092 2015] [:error] [pid 4879] [client 192.168.56.1:45981] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:38.502528 2015] [:error] [pid 5666] [client 192.168.56.1:45984] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:39.200554 2015] [:error] [pid 5666] [client 192.168.56.1:45984] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:39.200588 2015] [:error] [pid 5666] [client 192.168.56.1:45984] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:15:39.471096 2015] [:error] [pid 5841] [client 192.168.56.1:45980] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:15.021150 2015] [:error] [pid 5672] [client 192.168.56.1:45990] super_widgetpages_home
+[Wed Aug 05 16:17:16.239395 2015] [:error] [pid 5672] [client 192.168.56.1:45990] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:16.539365 2015] [:error] [pid 4786] [client 192.168.56.1:45994] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:22.745127 2015] [:error] [pid 4786] [client 192.168.56.1:45994] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:22.745161 2015] [:error] [pid 4786] [client 192.168.56.1:45994] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:23.013318 2015] [:error] [pid 4802] [client 192.168.56.1:45991] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:24.294888 2015] [:error] [pid 5921] [client 192.168.56.1:45993] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:41.122112 2015] [:error] [pid 4879] [client 192.168.56.1:46011] super_widgetpages_home
+[Wed Aug 05 16:17:42.553618 2015] [:error] [pid 5930] [client 192.168.56.1:46014] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:42.824138 2015] [:error] [pid 5658] [client 192.168.56.1:46016] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:43.763005 2015] [:error] [pid 5666] [client 192.168.56.1:46012] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:44.540754 2015] [:error] [pid 5666] [client 192.168.56.1:46012] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:44.540794 2015] [:error] [pid 5666] [client 192.168.56.1:46012] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:17:44.814373 2015] [:error] [pid 5734] [client 192.168.56.1:46015] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:45.649003 2015] [:error] [pid 4786] [client 192.168.56.1:46020] super_widgetpages_home
+[Wed Aug 05 16:18:46.983594 2015] [:error] [pid 5921] [client 192.168.56.1:46022] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:47.257181 2015] [:error] [pid 5841] [client 192.168.56.1:46025] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:53.602268 2015] [:error] [pid 4802] [client 192.168.56.1:46021] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:54.347860 2015] [:error] [pid 4802] [client 192.168.56.1:46021] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:54.347894 2015] [:error] [pid 4802] [client 192.168.56.1:46021] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:18:54.634979 2015] [:error] [pid 4786] [client 192.168.56.1:46020] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:33.213206 2015] [:error] [pid 5658] [client 192.168.56.1:46031] super_widgetpages_home
+[Wed Aug 05 16:19:34.902430 2015] [:error] [pid 4879] [client 192.168.56.1:46036] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:35.405998 2015] [:error] [pid 5734] [client 192.168.56.1:46033] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:36.671102 2015] [:error] [pid 5939] [client 192.168.56.1:46035] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:37.349795 2015] [:error] [pid 5939] [client 192.168.56.1:46035] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:37.349842 2015] [:error] [pid 5939] [client 192.168.56.1:46035] PHP Warning:  Division by zero in /home/nathan/phoenixcmsportal/src/framework/core/navigation/Pagination.php on line 75, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:37.822366 2015] [:error] [pid 5985] [client 192.168.56.1:46034] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:46.533365 2015] [:error] [pid 5921] [client 192.168.56.1:46038] super_widgetpages_home
+[Wed Aug 05 16:19:48.291817 2015] [:error] [pid 5988] [client 192.168.56.1:46042] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:48.781870 2015] [:error] [pid 5921] [client 192.168.56.1:46038] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:19:49.886392 2015] [:error] [pid 5841] [client 192.168.56.1:46039] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:21:35.925376 2015] [:error] [pid 4879] [client 192.168.56.1:46046] super_widgetpages_home
+[Wed Aug 05 16:21:37.222754 2015] [:error] [pid 4879] [client 192.168.56.1:46046] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:21:37.497555 2015] [:error] [pid 5939] [client 192.168.56.1:46048] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:21:43.966345 2015] [:error] [pid 4786] [client 192.168.56.1:46050] super_widgets_list, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:23:26.758359 2015] [:error] [pid 5988] [client 192.168.56.1:46079] super_widgetpages_home
+[Wed Aug 05 16:23:32.705149 2015] [:error] [pid 5921] [client 192.168.56.1:46080] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:23:33.008938 2015] [:error] [pid 5734] [client 192.168.56.1:46083] render_file, referer: http://work.server.phoenix/super/widgets/pages/
+[Wed Aug 05 16:23:33.288747 2015] [:error] [pid 5985] [client 192.168.56.1:46086] super_widgetpages_list, referer: http://work.server.phoenix/super/widgets/pages/

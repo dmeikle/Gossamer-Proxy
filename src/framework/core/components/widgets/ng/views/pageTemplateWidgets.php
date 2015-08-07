@@ -1,4 +1,5 @@
 <div class="col-xs-12 col-md-6">
+  <form></form>
   <ul ng-repeat="(section, widgets) in pageTemplateSectionList">
     <li ng-repeat="widget in widgets">
       <div class="widget-info">

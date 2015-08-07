@@ -74,6 +74,13 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
       });
   }
 
+  $scope.updatePageTemplate = function(object) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    pageTemplatesSrv.updatePageTemplate(object, formToken).then(function(response) {
+      $log.info(response);
+    });
+  };
+
 
   // TODO This needs to be cleaned up
   $scope.$watch('selectedPageTemplate', function(){

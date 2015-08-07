@@ -69,7 +69,7 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, widgetAdminSrv){
+module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
 
   function getPageTemplatesList() {
     pageTemplatesSrv.getPageTemplatesList().then(function(response){
@@ -77,25 +77,21 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, 
     });
   }
 
-  function filterWidgetsList() {
-    if (pageTemplatesSrv.pageTemplateSectionList && widgetAdminSrv.widgetList) {
-      var widgetsToDelete = {};
-      for (var section in pageTemplatesSrv.pageTemplateSectionList) {
-        if (pageTemplatesSrv.pageTemplateSectionList.hasOwnProperty(section)) {
-          var key = pageTemplatesSrv.pageTemplateSectionList[section];
-          for (var widget in key) {
-            for (var i = 0; i < widgetAdminSrv.widgetList.length; i++) {
-              if (widgetAdminSrv.widgetList[i] && widgetAdminSrv.widgetList[i].id === key[widget].id) {
-                delete widgetAdminSrv.widgetList[i];
-              }
-            }
-
-          }
-        }
-      }
-    }
-    $scope.widgetsList = widgetAdminSrv.widgetsList;
+  function getUnusedWidgets(row) {
+    pageTemplatesSrv.getUnusedWidgets(row, $scope.widgetsPerPage)
+      .then(function(response){
+        $scope.unusedWidgetList = pageTemplatesSrv.unusedWidgetList;
+        $scope.widgetCount = pageTemplatesSrv.widgetCount;
+        $scope.numPages = pageTemplatesSrv.widgetCount / $scope.widgetsPerPage;
+      });
   }
+
+  $scope.updatePageTemplate = function(object) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    pageTemplatesSrv.updatePageTemplate(object, formToken).then(function(response) {
+      $log.info(response);
+    });
+  };
 
 
   // TODO This needs to be cleaned up
@@ -112,17 +108,23 @@ module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv, 
         pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
           .then(function(response){
             $scope.pageTemplateSectionList = pageTemplatesSrv.pageTemplateSectionList;
-            filterWidgetsList();
+
+            getUnusedWidgets((($scope.currentPage - 1) * $scope.widgetsPerPage));
           });
       }
     }
   });
 
-  $scope.$watch('currentPage', function() {
-    filterWidgetsList();
+  $scope.$watch('currentPage + numPerPage', function() {
+    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+    var numRows = $scope.widgetsPerPage;
+
+    getUnusedWidgets(row, numRows);
   });
 
   getPageTemplatesList();
+  $scope.widgetsPerPage = 10;
+  $scope.currentPage = 1;
 });
 
 module.directive('widgetAdminList', function(templateSrv){
@@ -134,8 +136,8 @@ module.directive('widgetAdminList', function(templateSrv){
   };
 });
 
-module.directive('widgetList', function(templateSrv){
-  var template = templateSrv.widgetList;
+module.directive('unusedWidgetList', function(templateSrv){
+  var template = templateSrv.unusedWidgetList;
   return {
     restrict: 'E',
     transclude: true,
@@ -212,19 +214,19 @@ module.service('widgetAdminSrv', function($http, $log){
 module.service('templateSrv', function(){
   this.widgetAdminList = '/render/widgets/widgetAdminList';
   this.pageTemplateWidgets = '/render/widgets/pageTemplateWidgets';
-  this.widgetList = '/render/widgets/widgetList';
+  this.unusedWidgetList = '/render/widgets/unusedWidgetList';
 });
 
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http, templateSrv, widgetAdminSrv){
+module.service('pageTemplatesSrv', function($http, $log, templateSrv){
 
   var apiPath = '/super/widgets/pages';
 
   var self = this;
 
-  this.createNewPageTemplate = function(pageTemplateObject) {
+  this.createNewPageTemplate = function(pageTemplateObject, formToken) {
     var requestPath = apiPath + '/0';
     var data = {}; //{'Widget':{}, 'FORM_SECURITY_TOKEN': formToken};
     data.Template = pageTemplateObject;
@@ -256,10 +258,38 @@ module.service('pageTemplatesSrv', function($http, templateSrv, widgetAdminSrv){
       });
   };
 
-  this.updatePageTemplate = function(pageTemplateObject, formToken) {
-    var requestPath = apiPath + '/' + widgetObject.id;
+  this.getUnusedWidgets = function(row, numRows){
+    var usedWidgets = [];
+    for (var section in self.pageTemplateSectionList) {
+      if (self.pageTemplateSectionList.hasOwnProperty(section)) {
+        for (var key in self.pageTemplateSectionList[section]) {
+          if (self.pageTemplateSectionList[section].hasOwnProperty(key)) {
+            usedWidgets.push(self.pageTemplateSectionList[section][key].id);
+          }
+        }
+      }
+    }
+    if (usedWidgets.length > 0) {
+      return $http.get('/super/widgets/unassigned/' + usedWidgets.join() + '/' + row + '/' + numRows)
+        .then(function(response) {
+          self.unusedWidgetList = response.data.Widgets;
+          self.widgetCount = response.data.WidgetsCount[0].rowCount;
+        });
+    }
+    return $http.get('/super/widgets/' + row + '/' + numRows)
+      .then(function(response){
+        self.unusedWidgetList = response.data.Widgets;
+        self.widgetCount = response.data.WidgetsCount[0].rowCount;
+        return {
+          pagination: response.data.pagination
+        };
+      });
+  };
+
+  this.updatePageTemplate = function(object, formToken) {
+    var requestPath = apiPath + '/' + object.id;
     var data = {};
-    data.Template = pageTemplateObject;
+    data.Template = object;
     data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
