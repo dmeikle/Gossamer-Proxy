@@ -25,9 +25,9 @@ super_widgetpages_list_templates:
         view: core\views\JSONView
         viewKey: super_widgetpages_get
         datasource: datasource1
-        langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
+    listeners:
+        - { 'event': 'request_start', 'cacheKey': 'PageTemplates', 'listener': 'core\components\widgets\eventlisteners\LoadWidgetPageTemplateListener', 'datasource': 'datasource1'}
+           
     methods: [GET]
 
 
