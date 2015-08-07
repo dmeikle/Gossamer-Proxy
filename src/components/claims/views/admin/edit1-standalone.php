@@ -45,7 +45,7 @@ $(document).ready(function() {
                     </tr>
                 	<tr>
                     	<td>Strata No:</td>
-                		<td><input class="form-control" placeholder="Strata No" name="claim[" type="text" /></td>
+                		<td><input class="form-control" placeholder="Strata No" name="claim[strataNumber]" type="text" /></td>
                     </tr>
                 	<tr>
                     	<td>Project Name</td>

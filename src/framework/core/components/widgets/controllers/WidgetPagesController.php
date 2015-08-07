@@ -21,10 +21,8 @@ use core\components\widgets\serialization\WidgetPageSerializer;
 class WidgetPagesController extends AbstractController {
     
     public function listTemplates() {
-        $result = $this->model->listTemplates();
-        
-        $serializer = new WidgetPageSerializer();
-        $result = $serializer->formatPageListResults($result);
+        $result = $this->httpRequest->getAttribute('PageTemplateDetails');
+       
         $this->render($result);
         
     }
