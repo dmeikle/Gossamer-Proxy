@@ -142,8 +142,9 @@ class EventDispatcher {
                 //manual override - useful for loading info from other models
                 $handler->setDatasourceKey($listener['datasource']);
             }
-
-            $this->logger->addDebug('listener added for ' . $listener['listener']);
+            if(array_key_exists('listener', $listener)) {
+                $this->logger->addDebug('listener added for ' . $listener['listener']);
+            }
             $this->listen($uri, $handler);
         }
     }
