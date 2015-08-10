@@ -1,4 +1,4 @@
-module.directive('widgetAdminList', function(templateSrv){
+  module.directive('widgetAdminList', function(templateSrv) {
   var template = templateSrv;
   return {
     restrict: 'E',
@@ -7,7 +7,7 @@ module.directive('widgetAdminList', function(templateSrv){
   };
 });
 
-module.directive('unusedWidgetList', function(templateSrv){
+module.directive('unusedWidgetList', function(templateSrv) {
   var template = templateSrv.unusedWidgetList;
   return {
     restrict: 'E',

@@ -22,10 +22,11 @@
           {{ widget.description }}
         </td>
         <td>
-          <select name="{{widget.id}}_section" id="{{widget.id}}_section">
-            <option value="disable">disabled</option>
-            <option ng-repeat="(sectionName, widgets) in pageTemplateSectionList"
-              ng-selected="sectionName === section"
+          <select name="{{widget.id}}_section" id="{{widget.id}}_section"
+            ng-model="widget.newSection" ng-change="manipulateWidgetSection(widget)">
+            <option value="disable">disable</option>
+            <option ng-repeat="(sectionName, widgets) in selectedTemplateObject.sections"
+              ng-selected="sectionName === widget.section"
               value="{{sectionName}}">{{sectionName}}</option>
           </select>
         </td>

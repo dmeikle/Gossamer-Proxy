@@ -1,6 +1,6 @@
-module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
+module.controller('viewWidgetsCtrl', function($scope, widgetAdminSrv) {
   $scope.getWidgetList = function(row) {
-    widgetAdminSrv.getWidgetList(row, $scope.widgetsPerPage).then(function(response){
+    widgetAdminSrv.getWidgetList(row, $scope.widgetsPerPage).then(function(response) {
       $scope.numPages = widgetAdminSrv.widgetCount / $scope.widgetsPerPage;
       $scope.widgetList = widgetAdminSrv.widgetList;
       $scope.widgetCount = widgetAdminSrv.widgetCount;
@@ -17,9 +17,7 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
   };
 
   updateWidget = function(widgetObject, formToken) {
-    widgetAdminSrv.updateWidget(widgetObject, formToken).then(function(response) {
-      $log.info(response);
-    });
+    widgetAdminSrv.updateWidget(widgetObject, formToken);
   };
 
   $scope.addNewWidget = function(newWidgetObject) {
@@ -57,60 +55,99 @@ module.controller('viewWidgetsCtrl', function($scope, $log, widgetAdminSrv){
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, $log, pageTemplatesSrv){
+module.controller('pageTemplatesCtrl', function($scope, pageTemplatesSrv) {
 
   function getPageTemplatesList() {
-    pageTemplatesSrv.getPageTemplatesList().then(function(response){
+    pageTemplatesSrv.getPageTemplatesList().then(function(response) {
       $scope.pageTemplatesList = pageTemplatesSrv.pageTemplatesList;
     });
   }
 
-  function getUnusedWidgets(row) {
-    pageTemplatesSrv.getUnusedWidgets(row, $scope.widgetsPerPage)
-      .then(function(response){
+  function getUnusedWidgets() {
+    pageTemplatesSrv.getUnusedWidgets(row, numRows)
+      .then(function(response) {
         $scope.unusedWidgetList = pageTemplatesSrv.unusedWidgetList;
         $scope.widgetCount = pageTemplatesSrv.widgetCount;
         $scope.numPages = pageTemplatesSrv.widgetCount / $scope.widgetsPerPage;
       });
   }
 
-  $scope.updatePageTemplate = function(object) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    pageTemplatesSrv.updatePageTemplate(object, formToken).then(function(response) {
-      $log.info(response);
+  $scope.manipulateWidgetSection = function(object) {
+    switch (object.newSection) {
+      case 'disable':
+        removeWidgetFromSection(object);
+        break;
+      default:
+        addWidgetToSection(object);
+    }
+  };
+
+  addWidgetToSection = function(object) {
+    pageTemplatesSrv.sectionContext(function(template, section){
+      if (section === object.newSection) {
+        removeWidgetFromSection(object);
+        object.section = object.newSection;
+        pageTemplatesSrv.pageTemplatesList[template].sections[section].push(object);
+        updatePageTemplate(pageTemplatesSrv.selectedTemplateObject);
+      }
     });
   };
 
+  removeWidgetFromSection = function(object) {
+    var popObject = function(element) {
+      return element !== object;
+    };
+    pageTemplatesSrv.sectionContext(function(template, section){
+      if (section === object.section) {
+        $scope.pageTemplatesList[template].sections[section] = $scope.pageTemplatesList[template].sections[section]
+          .filter(popObject);
+        object.section = object.newSection;
+        pageTemplatesSrv.pageTemplatesList[template].sections[section] = $scope.pageTemplatesList[template].sections[section];
 
-  // TODO This needs to be cleaned up
-  $scope.$watch('selectedPageTemplate', function(){
-    if (!$scope.selectedPageTemplate) {
-      return;
-    } else {
-      var pageTemplateObject = $.grep($scope.pageTemplatesList, function(e){
-        if(e.name === $scope.selectedPageTemplate) {
-          return e;
-        }
-      });
-      if (pageTemplateObject.length === 1) {
-        pageTemplatesSrv.getPageTemplateWidgetList(pageTemplateObject[0])
-          .then(function(response){
-            $scope.pageTemplateSectionList = pageTemplatesSrv.pageTemplateSectionList;
-
-            getUnusedWidgets((($scope.currentPage - 1) * $scope.widgetsPerPage));
-          });
+        updatePageTemplate(pageTemplatesSrv.selectedTemplateObject);
+        getUnusedWidgets();
       }
+    });
+  };
+
+  updatePageTemplate = function(object) {
+
+
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    pageTemplatesSrv.updatePageTemplate(object, formToken);
+  };
+
+  $scope.populateSelectedTemplate = function(templateName) {
+    if (templateName !== undefined) {
+      pageTemplatesSrv.selectedTemplate = templateName;
+      $scope.selectedTemplate = templateName;
+      pageTemplatesSrv.sectionContext(function(template, section) {
+        $scope.pageTemplatesList[template].sections = pageTemplatesSrv.pageTemplatesList[template].sections;
+      });
+
+      pageTemplatesSrv.widgetContext(function(template, section, widget){
+        $scope.pageTemplatesList[template].sections[section][widget].section = section;
+      });
+
+      pageTemplatesSrv.templateContext(function(template){
+        pageTemplatesSrv.selectedTemplateObject = pageTemplatesSrv.pageTemplatesList[template];
+        $scope.selectedTemplateObject = pageTemplatesSrv.selectedTemplateObject;
+      });
+
+      var pageTemplate = pageTemplatesSrv.selectedTemplateObject;
+
+      getUnusedWidgets(row, numRows, pageTemplate);
     }
-  });
+  };
 
   $scope.$watch('currentPage + numPerPage', function() {
-    var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
-    var numRows = $scope.widgetsPerPage;
-
     getUnusedWidgets(row, numRows);
   });
 
   getPageTemplatesList();
   $scope.widgetsPerPage = 10;
   $scope.currentPage = 1;
+
+  var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
+  var numRows = $scope.widgetsPerPage;
 });

@@ -27,7 +27,7 @@ super_widgetpages_list_templates:
         datasource: datasource1
     listeners:
         - { 'event': 'request_start', 'cacheKey': 'PageTemplates', 'listener': 'core\components\widgets\eventlisteners\LoadWidgetPageTemplateListener', 'datasource': 'datasource1'}
-           
+
     methods: [GET]
 
 
@@ -68,7 +68,7 @@ super_widgetpages_save:
         controller:  core\components\widgets\controllers\WidgetPagesController
         model:  core\components\widgets\models\WidgetPageModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: super_widgetpages_save
         datasource: datasource1
         langFiles:
@@ -94,8 +94,8 @@ super_widgets_list_unassigned:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
-    
- 
+
+
 
 super_widgetpages_widgets_list:
     pattern: super/widgets/pages/widgets/*
