@@ -24,9 +24,12 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
     public function on_request_start($params) {
      
         $results = $this->loadConfigurations($params);
+   
         $this->saveValuesToCache($this->getKey(), $results);
         if(is_array($results) && array_key_exists('Widgets', $results)) {
             $this->httpRequest->setAttribute('unassignedWidgets', $results);
+        } else {
+            $this->httpRequest->setAttribute('unassignedWidgets', array());
         }
         
     }
@@ -37,8 +40,8 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
         $params = $this->httpRequest->getParameters();
         $offset =  intval($params[1]);
         $limit = intval($params[2]);
-        $filteredList = preg_replace('/[^0-9,]/', '', $params[0]); // Removes special chars.
-        $params = array('widgetIds' => $filteredList,
+       
+        $params = array('pageId' => intval($params[0]),
             'directive::OFFSET' =>$offset,
             'directive::LIMIT' => $limit);
         
@@ -72,8 +75,7 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
     
     protected function getKey() {
         $params = $this->httpRequest->getParameters();
-        $filteredList = preg_replace('/[^0-9,]/', '', $params[0]); // Removes special chars.
-        
-        return 'unassignedWidgets_' . $filteredList;
+             
+        return 'widgets' . DIRECTORY_SEPARATOR . 'unassignedWidgets_' . intval($params[0]) . '_' . intval($params[1]) . '_' . intval($params[2]);
     }
 }
