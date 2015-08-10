@@ -21,10 +21,14 @@ class WidgetsController extends AbstractController {
     
  
     public function listallUnassigned($idList, $offset = 0, $rows = 20) {
-        $result = $this->httpRequest->getAttribute('unassignedWidgets');
+        $result = $this->httpRequest->getAttribute($this->getKey());
         
         $this->render($result);
     }
     
-    
+    private function getKey() {
+        $params = $this->httpRequest->getParameters();
+             
+        return 'widgets' . DIRECTORY_SEPARATOR . 'unassignedWidgets_' . intval($params[0]) . '_' . intval($params[1]) . '_' . intval($params[2]);
+    }
 }

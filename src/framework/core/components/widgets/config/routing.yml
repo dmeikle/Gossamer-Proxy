@@ -81,7 +81,7 @@ super_widgetpages_save:
 super_widgets_list_unassigned:
     pattern: super/widgets/unassigned/*/*/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadUnassignedWidgetsListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', addToResponse: false, 'listener': 'core\components\widgets\eventlisteners\LoadUnassignedWidgetsListener', 'datasource': 'datasource1'}
     defaults:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetsController
