@@ -43,4 +43,13 @@ class WidgetPageModel extends AbstractModel{
         
         return $data;
     }
+    
+    public function savePageWidgets($pageId) {
+        $params = $this->httpRequest->getPost();
+        $params['pageId'] = intval($pageId);
+       
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'savewidgets', $params);
+        
+        return $data;
+    }
 }

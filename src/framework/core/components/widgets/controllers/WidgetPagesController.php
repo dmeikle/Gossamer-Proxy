@@ -26,4 +26,9 @@ class WidgetPagesController extends AbstractController {
         $this->render($result);
         
     }
+    
+    public function savePageWidgets($pageId) {
+        $result = $this->model->savePageWidgets($pageId);
+        
+    }
 }

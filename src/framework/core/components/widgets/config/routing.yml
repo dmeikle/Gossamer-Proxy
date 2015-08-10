@@ -67,7 +67,7 @@ super_widgetpages_save:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPagesController
         model:  core\components\widgets\models\WidgetPageModel
-        method: save
+        method: savePageWidgets
         view: core\views\JSONView
         viewKey: super_widgetpages_save
         datasource: datasource1
