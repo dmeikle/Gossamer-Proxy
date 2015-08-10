@@ -27,9 +27,9 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
    
         $this->saveValuesToCache($this->getKey(), $results);
         if(is_array($results) && array_key_exists('Widgets', $results)) {
-            $this->httpRequest->setAttribute('unassignedWidgets', $results);
+            $this->httpRequest->setAttribute($this->getKey(), $results);
         } else {
-            $this->httpRequest->setAttribute('unassignedWidgets', array());
+            $this->httpRequest->setAttribute($this->getKey(), array());
         }
         
     }
