@@ -29,6 +29,10 @@ class WidgetPagesController extends AbstractController {
     
     public function savePageWidgets($pageId) {
         $result = $this->model->savePageWidgets($pageId);
+        $event = new \core\eventlisteners\Event();
         
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+        
+        $this->render(array('success' => 'true'));
     }
 }

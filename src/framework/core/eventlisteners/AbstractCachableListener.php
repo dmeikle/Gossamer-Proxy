@@ -102,6 +102,21 @@ class AbstractCachableListener extends AbstractListener {
      * 
      * @return boolean
      */
+    protected function deleteCache($key) {
+        $manager = new CacheManager($this->logger);
+
+        return $manager->deleteCache($key);
+    }
+
+    /**
+     * save the values into cache
+     * 
+     * @param type $key
+     * @param type $values
+     * @param type $static
+     * 
+     * @return boolean
+     */
     protected function saveValuesToCache($key, $values, $static = false) {
         $manager = new CacheManager($this->logger);
 

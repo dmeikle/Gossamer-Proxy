@@ -20,7 +20,7 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class WidgetModel extends AbstractModel{
+class WidgetModel extends AbstractModel {
     
     /**
      * 

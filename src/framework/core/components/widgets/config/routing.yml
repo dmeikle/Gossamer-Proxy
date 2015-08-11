@@ -63,6 +63,8 @@ super_widgetpages_get:
 
 super_widgetpages_save:
     pattern: super/widgets/pages/*
+    listeners:
+        - { 'event': 'save_success', 'listener': 'core\components\widgets\eventlisteners\DeleteCachedPagesListener', 'datasource': 'datasource1'}
     defaults:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPagesController
