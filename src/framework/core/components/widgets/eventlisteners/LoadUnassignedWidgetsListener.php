@@ -38,18 +38,23 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
 
         $model = new WidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = $this->httpRequest->getParameters();
-        $offset =  intval($params[1]);
-        $limit = intval($params[2]);
-       
-        $params = array('pageId' => intval($params[0]),
+        
+        if(count($params) > 1 ) {
+            $offset =  intval($params[1]);
+            $limit = intval($params[2]);
+            
+            $params = array('pageId' => intval($params[0]),
             'directive::OFFSET' =>$offset,
             'directive::LIMIT' => $limit);
+        } else {
+            $params = array('pageId' => intval($params[0]));
+        }
         
         $datasource = $this->getDatasource($model);
  
         $result = $datasource->query('get', $model, 'listunused', $params);      
         
-        if (is_array($result) && array_key_exists($model->getEntity() . 'sCount', $result)) {
+        if (count($params) > 1 && (is_array($result) && array_key_exists($model->getEntity() . 'sCount', $result))) {
             $pagination = new Pagination($this->logger);
            
             //CP-33 changed to json output for new Angular based page draws
@@ -75,7 +80,10 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
     
     protected function getKey() {
         $params = $this->httpRequest->getParameters();
-             
-        return 'widgets' . DIRECTORY_SEPARATOR . 'unassignedWidgets_' . intval($params[0]) . '_' . intval($params[1]) . '_' . intval($params[2]);
+        $uri = intval($params[0]);
+        if(count($params) > 1 ) {
+            $uri .=  '_' . intval($params[1]) . '_' . intval($params[2]);
+        }
+        return 'widgets' . DIRECTORY_SEPARATOR . 'unassignedWidgets_' . $uri;
     }
 }

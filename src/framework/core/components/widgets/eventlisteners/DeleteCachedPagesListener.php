@@ -24,7 +24,9 @@ use Gossamer\Caching\CacheManager;
 class DeleteCachedPagesListener extends AbstractListener{
     
     public function on_save_success(Event $event) {
-        $mgr = new CacheManager();
-        $mgr->deleteCache('WidgetPageTemplateConfigs');
+        if(file_exists(__CACHE_DIRECTORY . 'WidgetPageTemplateConfigs')) {
+            $mgr = new CacheManager();
+            $mgr->deleteCache('WidgetPageTemplateConfigs');
+        }
     }
 }
