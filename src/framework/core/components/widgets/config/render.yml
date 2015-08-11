@@ -17,3 +17,9 @@ unusedWidgetList:
     langFiles:
         - 'src/components/staff/locales/*/login'
         - 'src/components/staff/locales/*/validation'
+
+newPageTemplateModal:
+    path: 'src/framework/core/components/widgets/ng/views/newPageTemplateModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/validation'

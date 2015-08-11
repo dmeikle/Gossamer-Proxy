@@ -3,9 +3,10 @@
   <div ng-repeat="(key,template) in pageTemplatesList"
     ng-if="template.name === selectedTemplate">
     <ul ng-repeat="(section, widgets) in pageTemplatesList[key].sections track by $index">
+      <h2>{{section}}</h2>
       <li ng-repeat="widget in widgets">
         <div class="widget-info">
-          <h1>{{widget.name}}</h1>
+          <h3>{{widget.name}}</h1>
           <p>{{widget.description}}</p>
         </div>
         <div class="widget-controls">

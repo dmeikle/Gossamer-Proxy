@@ -26,3 +26,7 @@ button {
   @extend .col-md-4;
   @extend .col-md-offset-4;
 }
+
+.hidden {
+  display:none;
+}

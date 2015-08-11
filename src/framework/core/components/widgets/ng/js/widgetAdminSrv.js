@@ -63,6 +63,7 @@ module.service('templateSrv', function() {
   this.widgetAdminList = '/render/widgets/widgetAdminList';
   this.pageTemplateWidgets = '/render/widgets/pageTemplateWidgets';
   this.unusedWidgetList = '/render/widgets/unusedWidgetList';
+  this.newPageTemplateModal = '/render/widgets/newPageTemplateModal';
 });
 
 

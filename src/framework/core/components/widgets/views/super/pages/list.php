@@ -12,20 +12,18 @@
 
 <div class="container-fluid" ng-controller="pageTemplatesCtrl">
   <div class="button-container">
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-12 col-md-6">
       <div class="col-xs-12 col-md-6">
         <input list="pageTemplates" ng-model="selectedPageTemplate" class="form-control"
+          ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
           ng-change="populateSelectedTemplate(selectedPageTemplate)">
         <datalist id="pageTemplates">
           <option ng-repeat="template in pageTemplatesList" value="{{template.name}}">
         </datalist>
       </div>
       <div class="col-xs-12 col-md-4">
-        <button class="pull-right">New Page</button>
+        <button class="pull-right" ng-click="openNewPageTemplateModal()">New Page</button>
       </div>
-    </div>
-    <div class="offset-four">
-      <button ng-click="updatePageTemplate(pageTemplatesList.sections)" class="primary pull-right">Apply</button>
     </div>
   </div>
   <div class="table-container" ng-cloak>

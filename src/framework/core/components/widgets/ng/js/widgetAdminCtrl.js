@@ -13,11 +13,13 @@ module.controller('viewWidgetsCtrl', function($scope, widgetAdminSrv) {
       $scope.getWidgetList((($scope.currentPage - 1) * $scope.widgetsPerPage));
       $scope.newWidget = {};
       $scope.newWidgetForm.$setPristine();
+      document.getElementById('FORM_SECURITY_TOKEN').setAttribute('value', response.FORM_SECURITY_TOKEN);
     });
   };
 
   updateWidget = function(widgetObject, formToken) {
     widgetAdminSrv.updateWidget(widgetObject, formToken);
+    document.getElementById('FORM_SECURITY_TOKEN').setAttribute('value', response.FORM_SECURITY_TOKEN);
   };
 
   $scope.addNewWidget = function(newWidgetObject) {
@@ -55,7 +57,7 @@ module.controller('viewWidgetsCtrl', function($scope, widgetAdminSrv) {
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, pageTemplatesSrv) {
+module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv, templateSrv) {
 
   function getPageTemplatesList() {
     pageTemplatesSrv.getPageTemplatesList().then(function(response) {
@@ -114,11 +116,13 @@ module.controller('pageTemplatesCtrl', function($scope, pageTemplatesSrv) {
 
 
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    pageTemplatesSrv.updatePageTemplate(object, formToken);
+    pageTemplatesSrv.updatePageTemplate(object, formToken).then(function(repsonse){
+      document.getElementById('FORM_SECURITY_TOKEN').setAttribute('value', response.FORM_SECURITY_TOKEN);
+    });
   };
 
   $scope.populateSelectedTemplate = function(templateName) {
-    if (templateName !== undefined) {
+    if (templateName !== undefined  && templateName !== '') {
       pageTemplatesSrv.selectedTemplate = templateName;
       $scope.selectedTemplate = templateName;
       pageTemplatesSrv.sectionContext(function(template, section) {
@@ -144,10 +148,43 @@ module.controller('pageTemplatesCtrl', function($scope, pageTemplatesSrv) {
     getUnusedWidgets(row, numRows);
   });
 
+// Add New Template modal
+  $scope.openNewPageTemplateModal = function() {
+    var template = templateSrv.newPageTemplateModal;
+    var modalInstance = $modal.open({
+      animation: true,
+      templateUrl: template,
+      controller: 'newPageTemplateModalCtrl',
+      size: 'md',
+    });
+
+    modalInstance.result.then(function (newPageTemplate) {
+      for (var section in newPageTemplate.sections) {
+        if (newPageTemplate.sections.hasOwnProperty(section)) {
+          newPageTemplate.sections[section] = {};
+        }
+      }
+      formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+      pageTemplatesSrv.createNewPageTemplate(newPageTemplate, formToken);
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
   getPageTemplatesList();
   $scope.widgetsPerPage = 10;
   $scope.currentPage = 1;
 
   var row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
   var numRows = $scope.widgetsPerPage;
+});
+
+module.controller('newPageTemplateModalCtrl', function($scope, $modalInstance, pageTemplatesSrv){
+  $scope.confirm = function() {
+    $modalInstance.close($scope.newPageTemplate);
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
 });
