@@ -130,7 +130,7 @@ super_widgetpages_widgets_save:
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
-    methods: [GET]    
+    methods: [POST]    
 
 
 super_widgets_home:

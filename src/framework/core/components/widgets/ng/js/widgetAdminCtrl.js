@@ -158,7 +158,11 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
 
   $scope.addWidgetToPage = function(pageTemplate, object, sectionName, ymlKey) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    pageTemplatesSrv.addWidgetToPage(pageTemplate, object, sectionName, ymlKey, formToken);
+    pageTemplatesSrv.addWidgetToPage(pageTemplate, object, sectionName, ymlKey, formToken)
+      .then(function(response){
+            // getWidgetsOnPageTemplate(response.data.Template);
+            getUnusedWidgets();
+      });
   };
 
   $scope.confirm = function() {

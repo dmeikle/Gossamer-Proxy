@@ -68,7 +68,7 @@ module.service('pageTemplatesSrv', function($http, $log) {
       requestPath = apiPath + '/' + object.id;
     }
     var data = {};
-    data.Template = pageTemplateObject;
+    data.Template = object;
     data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
@@ -122,10 +122,11 @@ module.service('pageTemplatesSrv', function($http, $log) {
   this.addWidgetToPage = function(pageTemplate, object, sectionName, ymlKey, formToken) {
     var requestPath = apiPath + '/widgets/' + pageTemplate.id;
     var data = {};
+    data.WidgetPageWidget = {};
     data.WidgetPageWidget.Widgets_id = object.Widgets_id;
     data.WidgetPageWidget.ymlKey = ymlKey;
     data.WidgetPageWidget.sectionName = sectionName;
-    data.WidgetPageWidget.FORM_SECURITY_TOKEN = formToken;
+    data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
       method: 'POST',
