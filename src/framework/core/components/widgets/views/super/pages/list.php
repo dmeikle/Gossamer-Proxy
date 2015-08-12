@@ -11,21 +11,21 @@
 <!--- css end --->
 
 <div class="container-fluid" ng-controller="pageTemplatesCtrl">
-  <h1><?php echo $this->getString('PAGE_TITLE'); ?></h1>
+  <h1><?php echo $this->getString('WIDGET_PAGE_TITLE'); ?></h1>
   <div class="row">
     <div class="col-xs-12 col-md-2 col-md-offset-5">
       <button ng-click="addNewPageTemplate()">
-        <?php echo $this->getString('PAGE_NEW'); ?>
+        <?php echo $this->getString('WIDGET_PAGE_NEW'); ?>
       </button>
     </div>
   </div>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th><?php echo $this->getString('PAGE_NAME'); ?></th>
-        <th><?php echo $this->getString('PAGE_DESCRIPTION'); ?></th>
-        <th><?php echo $this->getString('PAGE_YAML_KEY'); ?></th>
-        <th><?php echo $this->getString('PAGE_IS_SYSTEM'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_NAME'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_DESCRIPTION'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_YAML_KEY'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_IS_SYSTEM'); ?></th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -47,13 +47,13 @@
         </td>
         <td>
           <div class="btn-group" dropdown>
-            <button type="button" class="btn" ng-click="editPageTemplate(template)"><?php echo $this->getString('PAGE_EDIT'); ?></button>
+            <button type="button" class="btn" ng-click="editPageTemplate(template)"><?php echo $this->getString('WIDGET_PAGE_EDIT'); ?></button>
             <button type="button" class="btn" dropdown-toggle>
               <span class="caret"></span>
-              <span class="sr-only"><?php echo $this->getString('PAGE_MORE'); ?></span>
+              <span class="sr-only"><?php echo $this->getString('WIDGET_PAGE_MORE'); ?></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
-              <li role="menuitem"><a href="#" ng-click="deletePageTemplate(template)"><?php echo $this->getString('PAGE_DELETE'); ?></a></li>
+              <li role="menuitem"><a href="#" ng-click="deletePageTemplate(template)"><?php echo $this->getString('WIDGET_PAGE_DELETE'); ?></a></li>
             </ul>
           </div>
         </td>

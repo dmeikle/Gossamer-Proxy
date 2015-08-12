@@ -4,10 +4,10 @@ widgetModal:
     path: 'src/framework/core/components/widgets/ng/views/widgetModal.php'
     langFiles:
         - 'src/components/staff/locales/*/login'
-        - 'src/components/staff/locales/*/validation'
+        - 'src/framework/core/components/widgets/locales/*/Widgets'
 
 pageTemplateModal:
     path: 'src/framework/core/components/widgets/ng/views/pageTemplateModal.php'
     langFiles:
         - 'src/components/staff/locales/*/login'
-        - 'src/components/staff/locales/*/validation'
+        - 'src/framework/core/components/widgets/locales/*/Widgets'

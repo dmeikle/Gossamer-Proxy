@@ -19,8 +19,8 @@ use core\AbstractController;
  */
 class WidgetPageWidgetsController extends AbstractController {
 
-    public function listallByPage($widgetId) {
-        $result = $this->model->listallByPage(intval($widgetId));
+    public function listallByPage($pageId) {
+        $result = $this->model->listallByPage(intval($pageId));
 
         $serializer = new \core\components\widgets\serialization\WidgetPageWidgetsSerializer();
 

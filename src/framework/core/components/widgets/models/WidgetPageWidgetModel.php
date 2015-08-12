@@ -37,8 +37,8 @@ class WidgetPageWidgetModel extends AbstractModel{
         $this->tablename = 'widgetpagewidgets';
     }
     
-    public function listallByPage($widgetId) {
-        $params = array('id' => $widgetId);
+    public function listallByPage($pageId) {
+        $params = array('pageId' => $pageId);
         
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
         

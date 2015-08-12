@@ -5,21 +5,21 @@
 </div>
 <div class="modal-body">
   <div class="form-group">
-    <label for="name"><?php echo $this->getString('PAGE_NAME'); ?></label>
+    <label for="name"><?php echo $this->getString('WIDGET_PAGE_NAME'); ?></label>
     <input class="form-control" type="text" name="name" id="page-template-name" ng-model="pageTemplate.name">
   </div>
   <div class="form-group">
-    <label for="name"><?php echo $this->getString('PAGE_YAML_KEY'); ?></label>
+    <label for="name"><?php echo $this->getString('WIDGET_PAGE_YAML_KEY'); ?></label>
     <input class="form-control" type="text" name="yaml-key" id="page-template-yaml-key" ng-model="pageTemplate.ymlKey">
   </div>
   <div class="form-group">
-    <label for="name"><?php echo $this->getString('PAGE_DESCRIPTION'); ?></label>
+    <label for="name"><?php echo $this->getString('WIDGET_PAGE_DESCRIPTION'); ?></label>
     <input class="form-control" type="text" name="description" id="page-template-description" ng-model="pageTemplate.description">
   </div>
 
   <input class="hidden" type="text" name="system" id="page-template-system" ng-model="pageTemplate.isSystemWidget" value="'1'">
 
-  <h3><?php echo $this->getString('PAGE_WIDGETS') ?></h3>
+  <h3><?php echo $this->getString('WIDGET_PAGE_WIDGETS') ?></h3>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -46,7 +46,7 @@
     </tbody>
   </table>
   <form class="hidden"></form>
-  <h3><?php $this->getString('PAGE_ADD_WIDGET') ?></h3>
+  <h3><?php $this->getString('WIDGET_PAGE_ADD_WIDGET') ?></h3>
   <input list="unusedWidgets" ng-model="widgetToAdd" ng-change="getWidgetByName(widgetToAdd)">
   <datalist id="unusedWidgets">
     <option ng-repeat="widget in unusedWidgetList" value="{{widget.name}}">
@@ -57,11 +57,11 @@
     <option value="topwidgets" selected>Top Widgets</option>
   </select>
   <button ng-click="addWidgetToPage(pageTemplate, widgetObjectToAdd, sectionName, pageTemplate.ymlKey)">
-    <?php $this->getString('PAGE_ADD') ?>
+    <?php $this->getString('WIDGET_PAGE_ADD') ?>
   </button>
 </div>
 <div class="modal-footer">
-  <button class="primary" ng-click="confirm(pageTemplate)"><?php echo $this->getString('PAGE_CONFIRM'); ?></button>
+  <button class="primary" ng-click="confirm(pageTemplate)"><?php echo $this->getString('WIDGET_PAGE_CONFIRM'); ?></button>
 
-  <button ng-click="cancel()"><?php echo $this->getString('PAGE_CANCEL'); ?></button>
+  <button ng-click="cancel()"><?php echo $this->getString('WIDGET_PAGE_CANCEL'); ?></button>
 </div>
