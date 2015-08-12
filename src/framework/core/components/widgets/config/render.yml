@@ -1,25 +1,13 @@
 ## YAML Template.
 ---
-widgetAdminList:
-    path: 'src/framework/core/components/widgets/ng/views/widgetAdminList.php'
+widgetModal:
+    path: 'src/framework/core/components/widgets/ng/views/widgetModal.php'
     langFiles:
         - 'src/components/staff/locales/*/login'
         - 'src/components/staff/locales/*/validation'
 
-pageTemplateWidgets:
-    path: 'src/framework/core/components/widgets/ng/views/pageTemplateWidgets.php'
-    langFiles:
-        - 'src/components/staff/locales/*/login'
-        - 'src/components/staff/locales/*/validation'
-
-unusedWidgetList:
-    path: 'src/framework/core/components/widgets/ng/views/unusedWidgetList.php'
-    langFiles:
-        - 'src/components/staff/locales/*/login'
-        - 'src/components/staff/locales/*/validation'
-
-newPageTemplateModal:
-    path: 'src/framework/core/components/widgets/ng/views/newPageTemplateModal.php'
+pageTemplateModal:
+    path: 'src/framework/core/components/widgets/ng/views/pageTemplateModal.php'
     langFiles:
         - 'src/components/staff/locales/*/login'
         - 'src/components/staff/locales/*/validation'
