@@ -11,7 +11,7 @@ super_widgetpages_home:
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 
@@ -145,7 +145,7 @@ super_widgets_home:
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 
@@ -161,7 +161,7 @@ super_widgets_system_home:
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 super_widgets_list:

@@ -13,6 +13,12 @@ return array(
     'WIDGET_PAGE_CANCEL' => 'Cancel',
     'WIDGET_PAGE_NEW' => 'Create New Page',
     'WIDGET_PAGE_IS_SYSTEM' => 'System Widget',
-    'WIDGET_NEW' => 'Create New Widget'
+    'WIDGET_NEW' => 'Create New Widget',
+    'WIDGET_COMPONENT' => 'Component',
+    'WIDGET_MODULE' => 'Module',
+    'WIDGET_HTMLKEY' => 'HTML Key',
+    'WIDGET_TITLE' => 'Title',
+    'WIDGET_EDIT' => 'Edit',
+    'WIDGET_DELETE' => 'Delete'
     
 );
