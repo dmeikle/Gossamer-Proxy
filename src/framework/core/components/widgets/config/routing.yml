@@ -30,22 +30,6 @@ super_widgetpages_list_templates:
 
     methods: [GET]
 
-
-super_widgetpages_list:
-    pattern: super/widgets/pages/*/*
-    defaults:
-        component: core\components\widgets\WidgetsComponent
-        controller:  core\components\widgets\controllers\WidgetPagesController
-        model:  core\components\widgets\models\WidgetPageModel
-        method: listall
-        view: core\views\JSONView
-        viewKey: super_widgetpages_list
-        datasource: datasource1
-        langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
-    methods: [GET]
-
 super_widgetpages_get:
     pattern: super/widgets/pages/*
     defaults:
@@ -196,3 +180,21 @@ super_widgets_save:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
+
+
+
+
+super_widgetpages_list:
+    pattern: super/widgets/pages/*/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetPagesController
+        model:  core\components\widgets\models\WidgetPageModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: super_widgetpages_list
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]
