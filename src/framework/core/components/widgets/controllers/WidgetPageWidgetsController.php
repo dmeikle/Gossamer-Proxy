@@ -26,4 +26,6 @@ class WidgetPageWidgetsController extends AbstractController {
 
         $this->render($serializer->formatResults($result));
     }
+    
+   
 }

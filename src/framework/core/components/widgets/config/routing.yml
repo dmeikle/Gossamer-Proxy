@@ -110,12 +110,27 @@ super_widgetpages_widgets_list:
         model:  core\components\widgets\models\WidgetPageWidgetModel
         method: listallByPage
         view: core\views\JSONView
-        viewKey: super_widgetpages_save
+        viewKey: super_widgetpages_widgets_list
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
+
+super_widgetpages_widgets_save:
+    pattern: super/widgets/pages/widgets/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetPageWidgetsController
+        model:  core\components\widgets\models\WidgetPageWidgetModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_widgetpages_widgets_save
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'
+    methods: [GET]    
 
 
 super_widgets_home:
