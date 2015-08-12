@@ -25,7 +25,6 @@
       <tr>
         <th><?php echo $this->getString('WIDGET_NAME'); ?></th>
         <th><?php echo $this->getString('WIDGET_DESCRIPTION'); ?></th>
-        <th><?php echo $this->getString('WIDGET_HTMLKEY'); ?></th>
         <th><?php echo $this->getString('WIDGET_SECTION'); ?></th>
         <th><?php echo $this->getString('WIDGET_PRIORITY'); ?></th>
       </tr>
@@ -33,7 +32,7 @@
     <tbody>
       <tr ng-repeat="widget in widgetsOnPage" ng-switch="editing">
         <td>{{widget.name}}</td>
-        <td>{{widget.htmlKey}}</td>
+        <td>{{widget.description}}</td>
         <td>{{widget.sectionName}}</td>
         <td>
           <div ng-switch-when="true">
@@ -49,15 +48,15 @@
   <form class="hidden"></form>
   <h3><?php $this->getString('PAGE_ADD_WIDGET') ?></h3>
   <input list="unusedWidgets" ng-model="widgetToAdd" ng-change="getWidgetByName(widgetToAdd)">
-  <datalist>
-    <option ng-repeat="widget in unusedWidgetList" value="widget.name">
+  <datalist id="unusedWidgets">
+    <option ng-repeat="widget in unusedWidgetList" value="{{widget.name}}">
   </datalist>
   <select id="section-select" ng-model="sectionName">
     <option value="section3">Section 3</option>
     <option value="section4">Section 4</option>
-    <option value="topwidgets">Top Widgets</option>
+    <option value="topwidgets" selected>Top Widgets</option>
   </select>
-  <button ng-click="addWidgetToPage(widgetObjectToAdd, sectionName, pageTemplate.ymlKey)">
+  <button ng-click="addWidgetToPage(pageTemplate, widgetObjectToAdd, sectionName, pageTemplate.ymlKey)">
     <?php $this->getString('PAGE_ADD') ?>
   </button>
 </div>

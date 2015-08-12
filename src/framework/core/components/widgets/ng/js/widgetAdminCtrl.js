@@ -141,23 +141,24 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
 
   var getWidgetsOnPageTemplate = function(pageTemplate) {
     pageTemplatesSrv.getWidgetsOnPageTemplate(pageTemplate)
-      .then(function(response) {
-        $scope.widgetsOnPage = response;
+      .then(function() {
+        $scope.widgetsOnPage = pageTemplatesSrv.widgetsOnPage;
       });
   };
 
   $scope.getWidgetByName = function(widgetName) {
     for (var widget in $scope.unusedWidgetList) {
       if ($scope.unusedWidgetList.hasOwnProperty(widget)) {
-        if (widget.name === widgetName) {
-          $scope.widgetObjectToAdd = widget;
+        if ($scope.unusedWidgetList[widget].name === widgetName) {
+          $scope.widgetObjectToAdd = $scope.unusedWidgetList[widget];
         }
       }
     }
   };
 
-  $scope.addWidgetToPage = function(object, sectionName, ymlKey) {
-    pageTemplatesSrv.addWidgetToPage(object, sectionName, ymlKey, formToken);
+  $scope.addWidgetToPage = function(pageTemplate, object, sectionName, ymlKey) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    pageTemplatesSrv.addWidgetToPage(pageTemplate, object, sectionName, ymlKey, formToken);
   };
 
   $scope.confirm = function() {

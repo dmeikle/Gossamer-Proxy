@@ -92,29 +92,40 @@ module.service('pageTemplatesSrv', function($http, $log) {
   };
 
   this.getWidgetsOnPageTemplate = function(pageTemplate) {
-    if (pageTemplate) {
-      $http.get(apiPath + '/widgets/' + pageTemplate.id)
-        .then(function(response){
-          self.widgetsOnPage = response.data.Widgets;
-          return self.widgetsOnPage;
-        });
-    }
+    return $http.get(apiPath + '/widgets/' + pageTemplate.id)
+      .then(function(response){
+        var widgets = {};
+        for (var section in response.data) {
+          if (response.data.hasOwnProperty(section)) {
+            if (section !== "widgets/super_widgetpages_widgets_list" &&
+                section !== "modules") {
+              widgets = response.data[section];
+              for (var widget in widgets) {
+                if (widgets.hasOwnProperty(widget)) {
+                  widgets[widget].sectionName = section;
+                }
+              }
+            }
+          }
+        }
+        self.widgetsOnPage = widgets;
+      });
   };
 
   this.getUnusedWidgets = function(pageTemplate) {
-    return $http.get('/super/widgets/unassigned/' + pageTemplate.id + '/all')
+    return $http.get('/super/widgets/unassigned/all/' + pageTemplate.id )
       .then(function(response) {
         self.unusedWidgetList = response.data.Widgets;
       });
   };
 
   this.addWidgetToPage = function(pageTemplate, object, sectionName, ymlKey, formToken) {
-    var requestPath = apiPath + '/widgets/' + object.Widgets_id;
+    var requestPath = apiPath + '/widgets/' + pageTemplate.id;
     var data = {};
-    data.Widget = object;
-    data.ymlKey = ymlKey;
-    data.sectionName = sectionName;
-    data.FORM_SECURITY_TOKEN = formToken;
+    data.WidgetPageWidget.Widgets_id = object.Widgets_id;
+    data.WidgetPageWidget.ymlKey = ymlKey;
+    data.WidgetPageWidget.sectionName = sectionName;
+    data.WidgetPageWidget.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
       method: 'POST',
