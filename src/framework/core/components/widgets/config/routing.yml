@@ -114,7 +114,7 @@ super_widgetpages_widgets_list:
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 super_widgetpages_widgets_save:
