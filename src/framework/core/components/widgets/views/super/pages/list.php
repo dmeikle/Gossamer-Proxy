@@ -1,29 +1,67 @@
 <!--- javascript start --->
 
-@core/components/widgets/includes/js/admin-widgets-pages-ng.js
+@/components/widgets/widgets.concat.js
 
 <!--- javascript end --->
 
+<!--- css start --->
 
-<table class="table table-striped table-hover">
-    <tr>
-        <td>Name</td>
-        <td>Description</td>    
-        <td>YML Key</td>
-        <td>Active</td>
-        <td>System</td>
-        <td>Action</td>
-    </tr>
-    <?php foreach($WidgetPages as $page) {?>    
-        <tr>
-            <td><?php echo $page['name'];?></td>
-            <td><?php echo $page['description'];?></td>
-            <td><?php echo $page['ymlKey'];?></td>
-            <td><?php echo $page['isActive'];?></td>
-            <td><?php echo $page['isSystemPage'];?></td>
-            <td><a href="../<?php echo $page['id'];?>">edit</a> | <a href="../widgets/<?php echo $page['id'];?>">widgets</a></td>
-        </tr>    
-    <?php }?>
-</table>
+@/assets/css/widgets.min.css
 
+<!--- css end --->
 
+<div class="container-fluid" ng-controller="pageTemplatesCtrl">
+  <h1><?php echo $this->getString('WIDGET_PAGE_TITLE'); ?></h1>
+  <div class="row">
+    <div class="col-xs-12 col-md-2 col-md-offset-5">
+      <button ng-click="addNewPageTemplate()">
+        <?php echo $this->getString('WIDGET_PAGE_NEW'); ?>
+      </button>
+    </div>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th><?php echo $this->getString('WIDGET_PAGE_NAME'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_DESCRIPTION'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_YAML_KEY'); ?></th>
+        <th><?php echo $this->getString('WIDGET_PAGE_IS_SYSTEM'); ?></th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="template in pageTemplatesList">
+        <td>
+          <a href="#" ng-click="editTemplate(template)">
+            {{template.name}}
+          </a>
+        </td>
+        <td>
+          {{template.description}}
+        </td>
+        <td>
+          {{template.ymlKey}}
+        </td>
+        <td>
+          <input type="checkbox" ng-model="template.isSystemPage" ng-true-value="'1'" disabled="">
+        </td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn" ng-click="editPageTemplate(template)"><?php echo $this->getString('WIDGET_PAGE_EDIT'); ?></button>
+            <button type="button" class="btn" dropdown-toggle>
+              <span class="caret"></span>
+              <span class="sr-only"><?php echo $this->getString('WIDGET_PAGE_MORE'); ?></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="split-button">
+              <li role="menuitem"><a href="#" ng-click="deletePageTemplate(template)"><?php echo $this->getString('WIDGET_PAGE_DELETE'); ?></a></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
+    class="pagination" boundary-links="true" rotate="false">
+  </pagination>
+  <form class="hidden"></form>
+</div>

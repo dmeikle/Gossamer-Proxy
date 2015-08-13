@@ -201,7 +201,7 @@ class AbstractModel {
         $params[$this->entity]['id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
-
+        
         return $data;
     }
 
@@ -254,7 +254,7 @@ class AbstractModel {
         if(!array_key_exists('isActive', $params)) {
             $params['isActive'] = '1';
         }
-        
+       
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
 
         return $data;

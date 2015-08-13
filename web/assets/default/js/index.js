@@ -2,10 +2,9 @@
 // Main Dashboard Functions //
 //////////////////////////////
 
+"use strict";
 
 $(document).ready(function(){
-
-	"use strict";
 
 	/**
 	 * circloidLineChartFlot creates the line chart
@@ -13,7 +12,7 @@ $(document).ready(function(){
 	 */
 	function circloidLineChartFlot(placeholder){
 
-		var colors = $(placeholder).data("graph-colors").split(',');
+		var colors = $(placeholder).data("graph-colors").split(',');		
 
 		var data = {
 			"label1":{
@@ -28,7 +27,7 @@ $(document).ready(function(){
 
 		var options = {
 			series: {
-				lines: {
+				lines: { 
 					show: true,
 					fill: true,
 					lineWidth: 1.5
@@ -36,7 +35,7 @@ $(document).ready(function(){
 				points: {
 					show: true,
 					radius: 6
-				}
+				}	
 			},
 			shadowSize: 0,
 			grid: {
@@ -62,7 +61,7 @@ $(document).ready(function(){
 				defaultTheme : false
 			},
 			colors: colors
-		};
+		}
 
 		$.plot(placeholder, [data.label1, data.label2], options);
 	}
@@ -75,10 +74,10 @@ $(document).ready(function(){
 	 */
 	function circloidDateRangeChart(placeholder, graphPlaceholder, graphType){
 
-		if(graphType === undefined || graphType === null){
+		if(graphType === undefined || graphType == null){
 			graphType = "line";
 		}
-
+		
 		if($(placeholder).find(".date-range-select").val() == "custom"){
 			$(placeholder).find(".date-picker-connected").show();
 		}
@@ -175,7 +174,7 @@ $(document).ready(function(){
 							"data":[[0,0],[1,0],[2,0],[3,1],[4,2],[5,3],[6,4],[7,0],[8,7],[9,2],[10,5],[11,3],[12,0],[13,0],[14,0],[15,0],[16,4],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0]]
 						},
 						"xaxis":[[0,"00:00"],[1,"01:00"],[2,"02:00"],[3,"03:00"],[4,"04:00"],[5,"05:00"],[6,"06:00"],[7,"07:00"],[8,"08:00"],[9,"09:00"],[10,"10:00"],[11,"11:00"],[12,"12:00"],[13,"13:00"],[14,"14:00"],[15,"15:00"],[16,"16:00"],[17,"17:00"],[18,"18:00"],[19,"19:00"],[20,"20:00"],[21,"21:00"],[22,"22:00"],[23,"23:00"]]
-					};
+					}
 				break;
 
 				case "yesterday":
@@ -190,9 +189,9 @@ $(document).ready(function(){
 							"data":[[0,0],[1,0],[2,0],[3,1],[4,2],[5,3],[6,4],[7,0],[8,4],[9,12],[10,9],[11,4],[12,7],[13,5],[14,0],[15,0],[16,4],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0]]
 						},
 						"xaxis":[[0,"00:00"],[1,"01:00"],[2,"02:00"],[3,"03:00"],[4,"04:00"],[5,"05:00"],[6,"06:00"],[7,"07:00"],[8,"08:00"],[9,"09:00"],[10,"10:00"],[11,"11:00"],[12,"12:00"],[13,"13:00"],[14,"14:00"],[15,"15:00"],[16,"16:00"],[17,"17:00"],[18,"18:00"],[19,"19:00"],[20,"20:00"],[21,"21:00"],[22,"22:00"],[23,"23:00"]]
-					};
+					}
 				break;
-
+				
 				case "this_week":
 					// SAMPLE DATA: This "data" variable contains SAMPLE DATA just to show you the format of the data that you need to pass into the chart
 					var data = {
@@ -233,7 +232,7 @@ $(document).ready(function(){
 							"data":[[1,0],[2,0],[3,0],[4,0],[5,2],[6,1],[7,3],[8,0],[9,1],[10,2],[11,1],[12,2],[13,4],[14,3],[15,2],[16,0],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0],[24,0],[25,0],[26,0],[27,0],[28,0],[29,0],[30,0],[31,0]]
 						},
 						"xaxis":[[1,"1"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"6"],[7,"7"],[8,"8"],[9,"9"],[10,"10"],[11,"11"],[12,"12"],[13,"13"],[14,"14"],[15,"15"],[16,"16"],[17,"17"],[18,"18"],[19,"19"],[20,"20"],[21,"21"],[22,"22"],[23,"23"],[24,"24"],[25,"25"],[26,"26"],[27,"27"],[28,"28"],[29,"29"],[30,"30"],[31,"31"]]
-					};
+					}
 				break;
 
 				default:
@@ -268,7 +267,7 @@ $(document).ready(function(){
 
 			var options = {
 				series: {
-					lines: {
+					lines: { 
 						show: true,
 						fill: true,
 						lineWidth: 1.5
@@ -304,7 +303,7 @@ $(document).ready(function(){
 					defaultTheme : false
 				},
 				colors: colors
-			};
+			}
 
 			var plotChart = $.plot(placeholder, [data.label1, data.label2], options);
 
@@ -346,7 +345,7 @@ $(document).ready(function(){
 							"data":[[0,0],[1,0],[2,0],[3,1],[4,2],[5,3],[6,4],[7,0],[8,7],[9,2],[10,5],[11,3],[12,0],[13,0],[14,0],[15,0],[16,4],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0]]
 						},
 						"xaxis":[[0,"00:00"],[1,"01:00"],[2,"02:00"],[3,"03:00"],[4,"04:00"],[5,"05:00"],[6,"06:00"],[7,"07:00"],[8,"08:00"],[9,"09:00"],[10,"10:00"],[11,"11:00"],[12,"12:00"],[13,"13:00"],[14,"14:00"],[15,"15:00"],[16,"16:00"],[17,"17:00"],[18,"18:00"],[19,"19:00"],[20,"20:00"],[21,"21:00"],[22,"22:00"],[23,"23:00"]]
-					};
+					}
 				break;
 
 				case "yesterday":
@@ -361,9 +360,9 @@ $(document).ready(function(){
 							"data":[[0,0],[1,0],[2,0],[3,1],[4,2],[5,3],[6,4],[7,0],[8,4],[9,12],[10,9],[11,4],[12,7],[13,5],[14,0],[15,0],[16,4],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0]]
 						},
 						"xaxis":[[0,"00:00"],[1,"01:00"],[2,"02:00"],[3,"03:00"],[4,"04:00"],[5,"05:00"],[6,"06:00"],[7,"07:00"],[8,"08:00"],[9,"09:00"],[10,"10:00"],[11,"11:00"],[12,"12:00"],[13,"13:00"],[14,"14:00"],[15,"15:00"],[16,"16:00"],[17,"17:00"],[18,"18:00"],[19,"19:00"],[20,"20:00"],[21,"21:00"],[22,"22:00"],[23,"23:00"]]
-					};
+					}
 				break;
-
+				
 				case "this_week":
 					// SAMPLE DATA: This "data" variable contains SAMPLE DATA just to show you the format of the data that you need to pass into the chart
 					var data = {
@@ -376,7 +375,7 @@ $(document).ready(function(){
 						},
 						"xaxis":[[0,"Sun"],[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"],[5,"Fri"],[6,"Sat"]]
 					};
-
+				
 				break;
 
 				case "last_week":
@@ -391,7 +390,7 @@ $(document).ready(function(){
 						},
 						"xaxis":[[0,"Sun"],[1,"Mon"],[2,"Tue"],[3,"Wed"],[4,"Thu"],[5,"Fri"],[6,"Sat"]]
 					};
-
+				
 				break;
 
 				case "this_month":
@@ -406,7 +405,7 @@ $(document).ready(function(){
 							"data":[[1,0],[2,0],[3,0],[4,0],[5,2],[6,1],[7,3],[8,0],[9,1],[10,2],[11,1],[12,2],[13,4],[14,3],[15,2],[16,0],[17,0],[18,0],[19,0],[20,0],[21,0],[22,0],[23,0],[24,0],[25,0],[26,0],[27,0],[28,0],[29,0],[30,0],[31,0]]
 						},
 						"xaxis":[[1,"1"],[2,"2"],[3,"3"],[4,"4"],[5,"5"],[6,"6"],[7,"7"],[8,"8"],[9,"9"],[10,"10"],[11,"11"],[12,"12"],[13,"13"],[14,"14"],[15,"15"],[16,"16"],[17,"17"],[18,"18"],[19,"19"],[20,"20"],[21,"21"],[22,"22"],[23,"23"],[24,"24"],[25,"25"],[26,"26"],[27,"27"],[28,"28"],[29,"29"],[30,"30"],[31,"31"]]
-					};
+					}
 
 				break;
 
@@ -423,7 +422,7 @@ $(document).ready(function(){
 						},
 						"xaxis":[[1,"Jan"],[2,"Feb"],[3,"Mar"],[4,"Apr"],[5,"May"],[6,"Jun"],[7,"Jul"],[8,"Aug"],[9,"Sept"],[10,"Oct"],[11,"Nov"],[12,"Dec"]]
 					};
-
+				
 				break;
 
 				case "last_year":
@@ -438,11 +437,11 @@ $(document).ready(function(){
 						},
 						"xaxis":[[1,"Jan"],[2,"Feb"],[3,"Mar"],[4,"Apr"],[5,"May"],[6,"Jun"],[7,"Jul"],[8,"Aug"],[9,"Sept"],[10,"Oct"],[11,"Nov"],[12,"Dec"]]
 					};
-
+				
 				break;
 			}
 
-			var options = {
+			var options = {	
 				series: {
 					bars: {
 						show: true,
@@ -477,7 +476,7 @@ $(document).ready(function(){
 					defaultTheme : false
 				},
 				colors: colors
-			};
+			}
 
 			var plotChart = $.plot(placeholder, [data.label1, data.label2], options);
 
@@ -516,7 +515,7 @@ $(document).ready(function(){
 				graphSizeMin = graphSizeWidth;
 			}
 
-			if((graphType == "donut") || (graphType === null) || (graphType === undefined) || (graphType === "")){
+			if((graphType == "donut") || (graphType === null) || (graphType === undefined) || (graphType == "")){
 				if((graphSizeMin === undefined) || (graphSizeMin === null)){
 					graphSize = 0.88;
 				}else if(graphSizeMin <= 32){
@@ -531,7 +530,7 @@ $(document).ready(function(){
 			}else{
 				graphSize = 0;
 			}
-
+			
 			// SAMPLE DATA: This "data" variable contains SAMPLE DATA just to show you the format of the data that you need to pass into the chart
 
 			var thisBlock = $(placeholder).closest(".block");
@@ -639,7 +638,7 @@ $(document).ready(function(){
 
 					var options = {
 						series: {
-							pie: {
+							pie: { 
 								show: true,
 								radius:  1,
 								innerRadius: graphSize,
@@ -755,7 +754,7 @@ $(document).ready(function(){
 		}
 
 		if(legend === undefined){
-			legend = true;
+			legend = true
 		}
 
 		var data = [
@@ -767,7 +766,7 @@ $(document).ready(function(){
 		];
 		var options = {
 			series: {
-				pie: {
+				pie: { 
 					show: true,
 					radius:  1,
 					innerRadius: graphSize,
@@ -811,22 +810,21 @@ $(document).ready(function(){
 	 * @param  {string} placeholder		id of graph
 	 */
 	function circloidMapWorld(placeholder){
-		if ($(placeholder).data("graph-colors")) {
-			var colors = $(placeholder).data("graph-colors").split(',');
 
-			$(placeholder).vectorMap({
-				map: 'world_en',
-				backgroundColor: '#FFFFFF',
-				color: '#ffffff',
-				hoverOpacity: 0.7,
-				selectedColor: '#666666',
-				enableZoom: true,
-				showTooltip: true,
-				values: sample_data,
-				scaleColors: colors,
-				normalizeFunction: 'polynomial'
-			});
-		}
+		var colors = $(placeholder).data("graph-colors").split(',');	
+
+		$(placeholder).vectorMap({
+			map: 'world_en',
+			backgroundColor: '#FFFFFF',
+			color: '#ffffff',
+			hoverOpacity: 0.7,
+			selectedColor: '#666666',
+			enableZoom: true,
+			showTooltip: true,
+			values: sample_data,
+			scaleColors: colors,
+			normalizeFunction: 'polynomial'
+		});
 	}
 
 	/* Call Functions */
@@ -847,8 +845,8 @@ $(document).ready(function(){
 
 	circloidDialChart("#discount-randomizer");
 	circloidDialChart("#vouchers");
-
+	
 	circloidDonutChartFlot("#budget-allocation", "small", false);
-
+	
 	circloidMapWorld("#world-map-1");
 });

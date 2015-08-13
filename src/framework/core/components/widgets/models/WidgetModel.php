@@ -20,7 +20,7 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class WidgetModel extends AbstractModel{
+class WidgetModel extends AbstractModel {
     
     /**
      * 
@@ -36,4 +36,5 @@ class WidgetModel extends AbstractModel{
         $this->entity = 'Widget';
         $this->tablename = 'widgets';
     }
+    
 }
