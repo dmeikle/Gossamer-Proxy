@@ -27,6 +27,7 @@
         <th><?php echo $this->getString('WIDGET_DESCRIPTION'); ?></th>
         <th><?php echo $this->getString('WIDGET_SECTION'); ?></th>
         <th><?php echo $this->getString('WIDGET_PRIORITY'); ?></th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -41,6 +42,9 @@
           <div ng-switch-default>
             {{ widget.priority }}
           </div>
+        </td>
+        <td>
+          <button ng-click="removeWidgetFromPage(widget)">Remove</button>
         </td>
       </tr>
     </tbody>

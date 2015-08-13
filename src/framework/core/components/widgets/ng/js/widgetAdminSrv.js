@@ -94,15 +94,15 @@ module.service('pageTemplatesSrv', function($http, $log) {
   this.getWidgetsOnPageTemplate = function(pageTemplate) {
     return $http.get(apiPath + '/widgets/' + pageTemplate.id)
       .then(function(response){
-        var widgets = {};
+        var widgets = [];
         for (var section in response.data) {
           if (response.data.hasOwnProperty(section)) {
             if (section !== "widgets/super_widgetpages_widgets_list" &&
                 section !== "modules") {
-              widgets = response.data[section];
-              for (var widget in widgets) {
-                if (widgets.hasOwnProperty(widget)) {
-                  widgets[widget].sectionName = section;
+              for (var widget in response.data[section]) {
+                if (response.data[section].hasOwnProperty(widget)) {
+                  response.data[section][widget].sectionName = section;
+                  widgets.push(response.data[section][widget]);
                 }
               }
             }
@@ -113,6 +113,12 @@ module.service('pageTemplatesSrv', function($http, $log) {
   };
 
   this.getUnusedWidgets = function(pageTemplate) {
+    if (!pageTemplate) {
+      return $http.get('/super/widgets/unassigned/all/0')
+        .then(function(response){
+          self.unusedWidgetList = response.data.Widgets;
+        });
+    }
     return $http.get('/super/widgets/unassigned/all/' + pageTemplate.id )
       .then(function(response) {
         self.unusedWidgetList = response.data.Widgets;
@@ -136,6 +142,13 @@ module.service('pageTemplatesSrv', function($http, $log) {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(function(response) {
+      $log.info(response);
+    });
+  };
+
+  this.removeWidgetFromPage = function(pageTemplate, widget) {
+    var requestPath = apiPath + '/widgets/remove/' + pageTemplate.ymlKey + '/' + widget.id;
+    return $http.delete(requestPath).then(function(response) {
       $log.info(response);
     });
   };

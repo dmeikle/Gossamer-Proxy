@@ -132,7 +132,7 @@ module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv
 module.controller('pageTemplateModalInstanceController', function($scope, $modalInstance, pageTemplate, pageTemplatesSrv) {
   $scope.pageTemplate = pageTemplate;
 
-  var getUnusedWidgets = function(pageTemplate, row, numRows) {
+  var getUnusedWidgets = function(pageTemplate) {
     pageTemplatesSrv.getUnusedWidgets(pageTemplate)
       .then(function(response) {
         $scope.unusedWidgetList = pageTemplatesSrv.unusedWidgetList;
@@ -140,10 +140,12 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
   };
 
   var getWidgetsOnPageTemplate = function(pageTemplate) {
-    pageTemplatesSrv.getWidgetsOnPageTemplate(pageTemplate)
-      .then(function() {
-        $scope.widgetsOnPage = pageTemplatesSrv.widgetsOnPage;
-      });
+    if (pageTemplate) {
+      pageTemplatesSrv.getWidgetsOnPageTemplate(pageTemplate)
+        .then(function() {
+          $scope.widgetsOnPage = pageTemplatesSrv.widgetsOnPage;
+        });
+    }
   };
 
   $scope.getWidgetByName = function(widgetName) {
@@ -160,8 +162,16 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     pageTemplatesSrv.addWidgetToPage(pageTemplate, object, sectionName, ymlKey, formToken)
       .then(function(response){
-            // getWidgetsOnPageTemplate(response.data.Template);
-            getUnusedWidgets();
+        getWidgetsOnPageTemplate($scope.pageTemplate);
+        getUnusedWidgets();
+      });
+  };
+
+  $scope.removeWidgetFromPage = function(widget) {
+    pageTemplatesSrv.removeWidgetFromPage($scope.pageTemplate, widget)
+      .then(function(response) {
+        getWidgetsOnPageTemplate($scope.pageTemplate);
+        getUnusedWidgets();
       });
   };
 

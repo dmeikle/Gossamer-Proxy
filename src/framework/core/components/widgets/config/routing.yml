@@ -112,7 +112,7 @@ super_widgets_pages_remove:
 
 
 super_widgets_pages_widgets_remove:
-    pattern: super/widgets/pages/widgets/remove/*
+    pattern: super/widgets/pages/widgets/remove/*/*
     defaults:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPageWidgetsController
@@ -123,7 +123,7 @@ super_widgets_pages_widgets_remove:
         datasource: datasource1
         langFiles:
     methods: [DELETE]
-    
+
 
 super_widgets_list_unassigned:
     pattern: super/widgets/unassigned/*/*/*
@@ -172,7 +172,7 @@ super_widgetpages_widgets_save:
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
-    methods: [POST]    
+    methods: [POST]
 
 
 super_widgets_home:
