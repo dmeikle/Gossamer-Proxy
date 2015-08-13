@@ -25,6 +25,7 @@ return array(
     'WIDGET_PAGE_EDIT' => 'Edit',
     'WIDGET_DELETE' => 'Delete',
     'WIDGET_PAGE_DELETE' => 'Delete',
-    'WIDGET_PRIORITY' => 'Priority'
+    'WIDGET_PRIORITY' => 'Priority',
+    'WIDGET_PAGE_ADD' => 'Add Widget'
     
 );
