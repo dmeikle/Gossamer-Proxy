@@ -46,7 +46,7 @@ module.controller('widgetsCtrl', function($scope, $modal,  widgetsSrv, templateS
 
   $scope.deleteWidget = function(widget) {
     widgetsSrv.deleteWidget(widget).then(function(){
-      getWidgetList(row);
+      $scope.getWidgetList(row);
     });
   };
 
