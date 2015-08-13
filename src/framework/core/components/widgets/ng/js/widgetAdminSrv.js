@@ -75,7 +75,8 @@ module.service('pageTemplatesSrv', function($http, $log) {
       requestPath = apiPath + '/' + object.id;
     }
     var data = {};
-    data.PageWidget = object;
+    object.isSystemPage = 1;
+    data.WidgetPage = object;
     data.FORM_SECURITY_TOKEN = formToken;
     $log.info(data);
     return $http({
