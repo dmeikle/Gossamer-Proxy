@@ -28,4 +28,9 @@ class WidgetPageWidgetsController extends AbstractController {
     }
     
    
+    public function deletePageWidget($ymlKey, $widgetId) {
+        $result = $this->model->deletePageWidget($ymlKey, intval($widgetId));
+        
+        $this->render($result);
+    }
 }
