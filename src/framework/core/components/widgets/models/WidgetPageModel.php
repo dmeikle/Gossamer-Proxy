@@ -36,4 +36,20 @@ class WidgetPageModel extends AbstractModel{
         $this->entity = 'WidgetPage';
         $this->tablename = 'widgetpages';
     }
+    
+    public function listTemplates() {
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listtemplates', array());
+        
+        return $data;
+    }
+    
+    public function savePageWidgets($pageId) {
+        $params = $this->httpRequest->getPost();
+        $params['pageId'] = intval($pageId);
+       
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'savewidgets', $params['Template']);
+        
+        return $data;
+    }
 }

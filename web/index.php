@@ -9,8 +9,7 @@ include_once('../vendor/autoload.php');
 include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
-
-
+error_log(__YML_KEY."\r\n");
 use core\system\Kernel;
 use core\system\KernelEvents;
 

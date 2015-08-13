@@ -11,6 +11,7 @@
 namespace core\components\widgets\controllers;
 
 use core\AbstractController;
+use core\components\widgets\serialization\WidgetPageSerializer;
 
 /**
  * WidgetPagesController
@@ -19,5 +20,19 @@ use core\AbstractController;
  */
 class WidgetPagesController extends AbstractController {
     
- 
+    public function listTemplates() {
+        $result = $this->httpRequest->getAttribute('PageTemplateDetails');
+       
+        $this->render($result);
+        
+    }
+    
+    public function savePageWidgets($pageId) {
+        $result = $this->model->savePageWidgets($pageId);
+        $event = new \core\eventlisteners\Event();
+        
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+        
+        $this->render(array('success' => 'true'));
+    }
 }

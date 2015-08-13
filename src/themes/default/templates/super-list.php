@@ -40,13 +40,12 @@
         <link type="text/css" href="/css/theme/styles-core.css" rel="stylesheet">
         <link type="text/css" href="/css/theme/styles-core-responsive.css" rel="stylesheet">
 
-        <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
-        <script language="javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
-
         <script type="text/javascript" src="/js/theme/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="/js/theme/jquery-ui.min.js"></script>
 
+        <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
 
         <!---css--->
 

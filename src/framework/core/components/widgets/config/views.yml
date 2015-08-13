@@ -33,3 +33,11 @@ super_widgetpages_list:
             "section1": "src/components/shoppingcart/views/admin/topnav.php"
             "section3": "src/framework/core/components/widgets/views/super/pages/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
+
+super_widgetpages_home:
+    template: super-list.php
+    sections:
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section3": "src/framework/core/components/widgets/views/super/pages/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"

@@ -21,3 +21,5 @@ web/js/theme
 web/images/theme
 documentation
 bower_components
+web/assets
+web/components
