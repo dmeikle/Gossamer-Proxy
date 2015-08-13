@@ -45,9 +45,12 @@ module.controller('widgetsCtrl', function($scope, $modal,  widgetsSrv, templateS
   };
 
   $scope.deleteWidget = function(widget) {
-    widgetsSrv.deleteWidget(widget).then(function(){
-      $scope.getWidgetList(row);
-    });
+    var confirmed = confirm('Are you sure you want to delete ' + widget.name + '?');
+    if (confirmed) {
+      widgetsSrv.deleteWidget(widget).then(function(){
+        $scope.getWidgetList(row);
+      });
+    }
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
@@ -122,10 +125,13 @@ module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv
   };
 
   $scope.deletePageTemplate = function(pageTemplate) {
-    pageTemplatesSrv.deletePageTemplate(pageTemplate)
-      .then(function() {
-        getPageTemplatesList(row, numRows);
-      });
+    var confirmed  = confirm('Are you sure you want to delete ' + pageTemplate.name + '?' );
+    if (confirmed) {
+      pageTemplatesSrv.deletePageTemplate(pageTemplate)
+        .then(function() {
+          getPageTemplatesList(row, numRows);
+        });
+    }
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
@@ -183,11 +189,14 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
   };
 
   $scope.removeWidgetFromPage = function(widget) {
-    pageTemplatesSrv.removeWidgetFromPage($scope.pageTemplate, widget)
-      .then(function(response) {
-        getWidgetsOnPageTemplate($scope.pageTemplate);
-        getUnusedWidgets();
-      });
+    var confirmed = confirm('Do you want to remove ' + widget.name + '?');
+    if (confirmed) {
+      pageTemplatesSrv.removeWidgetFromPage($scope.pageTemplate, widget)
+        .then(function(response) {
+          getWidgetsOnPageTemplate($scope.pageTemplate);
+          getUnusedWidgets();
+        });
+    }
   };
 
   $scope.saveAndContinue = function(pageTemplate) {
