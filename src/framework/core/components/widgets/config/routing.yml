@@ -83,6 +83,48 @@ super_widgets_list_unassigned_all:
 
 
 
+super_widgets_remove:
+    pattern: super/widgets/remove/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetsController
+        model:  core\components\widgets\models\WidgetModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_widgets_remove
+        datasource: datasource1
+        langFiles:
+    methods: [POST, DELETE]
+
+
+super_widgets_pages_remove:
+    pattern: super/widgets/pages/remove/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetPagesController
+        model:  core\components\widgets\models\WidgetPageModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: super_widgets_pages_remove
+        datasource: datasource1
+        langFiles:
+    methods: [POST, DELETE]
+
+
+super_widgets_pages_widgets_remove:
+    pattern: super/widgets/pages/widgets/remove/*
+    defaults:
+        component: core\components\widgets\WidgetsComponent
+        controller:  core\components\widgets\controllers\WidgetPageWidgetsController
+        model:  core\components\widgets\models\WidgetPageWidgetModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: super_widgets_pages_widgets_remove
+        datasource: datasource1
+        langFiles:
+    methods: [POST, DELETE]
+    
+
 super_widgets_list_unassigned:
     pattern: super/widgets/unassigned/*/*/*
     listeners:

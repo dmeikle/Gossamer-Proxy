@@ -44,4 +44,23 @@ class WidgetPageWidgetModel extends AbstractModel{
         
         return $data;
     }
+    
+    
+    /**
+     * queries the datasource and deletes the record
+     * 
+     * @param type $offset
+     * @param type $rows
+     * 
+     * @return array
+     */
+    public function delete($ymlKey, $widgetId) {
+        $params = array(
+            'Widgets_id' => intval($widgetId),
+            'ymlKey' => $ymlKey
+        );
+
+
+        return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
+    }
 }
