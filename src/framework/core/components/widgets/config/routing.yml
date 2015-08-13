@@ -94,7 +94,7 @@ super_widgets_remove:
         viewKey: super_widgets_remove
         datasource: datasource1
         langFiles:
-    methods: [POST, DELETE]
+    methods: [DELETE]
 
 
 super_widgets_pages_remove:
@@ -108,7 +108,7 @@ super_widgets_pages_remove:
         viewKey: super_widgets_pages_remove
         datasource: datasource1
         langFiles:
-    methods: [POST, DELETE]
+    methods: [DELETE]
 
 
 super_widgets_pages_widgets_remove:
@@ -122,7 +122,7 @@ super_widgets_pages_widgets_remove:
         viewKey: super_widgets_pages_widgets_remove
         datasource: datasource1
         langFiles:
-    methods: [POST, DELETE]
+    methods: [DELETE]
     
 
 super_widgets_list_unassigned:
