@@ -1,4 +1,4 @@
-module.service('widgetsSrv', function($http, $log) {
+module.service('widgetsSrv', function($http) {
 
   var apiPath = '/super/widgets';
 
@@ -21,8 +21,6 @@ module.service('widgetsSrv', function($http, $log) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-    }).then(function(response) {
-      $log.info(response);
     });
   };
 
@@ -47,9 +45,7 @@ module.service('widgetsSrv', function($http, $log) {
 
   this.deleteWidget = function(widget) {
     var requestPath = apiPath + '/remove/' + widget.id;
-    return $http.delete(requestPath).then(function(response) {
-      $log.info(response);
-    });
+    return $http.delete(requestPath);
   };
 });
 
@@ -61,7 +57,7 @@ module.service('templateSrv', function() {
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http, $log) {
+module.service('pageTemplatesSrv', function($http) {
 
   var apiPath = '/super/widgets/pages';
 
@@ -78,7 +74,6 @@ module.service('pageTemplatesSrv', function($http, $log) {
     object.isSystemPage = 1;
     data.WidgetPage = object;
     data.FORM_SECURITY_TOKEN = formToken;
-    $log.info(data);
     return $http({
       method: 'POST',
       url: requestPath,
@@ -87,7 +82,6 @@ module.service('pageTemplatesSrv', function($http, $log) {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(function(response) {
-      $log.info(response);
       return response;
     });
   };
@@ -142,7 +136,6 @@ module.service('pageTemplatesSrv', function($http, $log) {
     data.WidgetPageWidget.ymlKey = ymlKey;
     data.WidgetPageWidget.sectionName = sectionName;
     data.FORM_SECURITY_TOKEN = formToken;
-    $log.info(data);
     return $http({
       method: 'POST',
       url: requestPath,
@@ -150,23 +143,17 @@ module.service('pageTemplatesSrv', function($http, $log) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-    }).then(function(response) {
-      $log.info(response);
     });
   };
 
   this.removeWidgetFromPage = function(pageTemplate, widget) {
     var requestPath = apiPath + '/widgets/remove/' + pageTemplate.ymlKey + '/' + widget.id;
-    return $http.delete(requestPath).then(function(response) {
-      $log.info(response);
-    });
+    return $http.delete(requestPath);
   };
 
   this.deletePageTemplate = function(pageTemplate) {
     var requestPath = apiPath + '/remove/' + pageTemplate.id;
-    return $http.delete(requestPath).then(function(response) {
-      $log.info(response);
-    });
+    return $http.delete(requestPath);
   };
 
 });
