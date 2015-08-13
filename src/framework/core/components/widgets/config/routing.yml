@@ -117,7 +117,7 @@ super_widgets_pages_widgets_remove:
         component: core\components\widgets\WidgetsComponent
         controller:  core\components\widgets\controllers\WidgetPageWidgetsController
         model:  core\components\widgets\models\WidgetPageWidgetModel
-        method: delete
+        method: deletePageWidget
         view: core\views\JSONView
         viewKey: super_widgets_pages_widgets_remove
         datasource: datasource1

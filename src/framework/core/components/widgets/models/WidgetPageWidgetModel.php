@@ -54,7 +54,7 @@ class WidgetPageWidgetModel extends AbstractModel{
      * 
      * @return array
      */
-    public function delete($ymlKey, $widgetId) {
+    public function deletePageWidget($ymlKey, $widgetId) {
         $params = array(
             'Widgets_id' => intval($widgetId),
             'ymlKey' => $ymlKey
