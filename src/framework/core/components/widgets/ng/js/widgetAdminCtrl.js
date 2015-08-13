@@ -175,6 +175,8 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     pageTemplatesSrv.addWidgetToPage(pageTemplate, object, sectionName, ymlKey, formToken)
       .then(function(response){
+        $scope.widgetToAdd = undefined;
+        document.getElementById('widgetToAdd').value = '';
         getWidgetsOnPageTemplate($scope.pageTemplate);
         getUnusedWidgets();
       });

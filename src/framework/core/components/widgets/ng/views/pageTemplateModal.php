@@ -52,7 +52,7 @@
     </table>
     <form class="hidden"></form>
     <h3><?php $this->getString('WIDGET_PAGE_ADD_WIDGET') ?></h3>
-    <input list="unusedWidgets" ng-model="widgetToAdd" ng-change="getWidgetByName(widgetToAdd)">
+    <input list="unusedWidgets" id="widgetToAdd" ng-model="widgetToAdd" ng-change="getWidgetByName(widgetToAdd)">
     <datalist id="unusedWidgets">
       <option ng-repeat="widget in unusedWidgetList" value="{{widget.name}}">
     </datalist>
