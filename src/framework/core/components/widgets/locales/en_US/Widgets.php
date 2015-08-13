@@ -13,7 +13,7 @@ return array(
     'WIDGET_CONFIRM' => 'Confirm',
     'WIDGET_CANCEL' => 'Cancel',
     'WIDGET_PAGE_CONFIRM' => 'Confirm',
-    'WIDGET_PAGE_CANCEL' => 'Cancel',
+    'WIDGET_PAGE_CANCEL' => 'Close',
     'WIDGET_PAGE_NEW' => 'Create New Page',
     'WIDGET_PAGE_IS_SYSTEM' => 'System Widget',
     'WIDGET_NEW' => 'Create New Widget',
@@ -26,6 +26,7 @@ return array(
     'WIDGET_DELETE' => 'Delete',
     'WIDGET_PAGE_DELETE' => 'Delete',
     'WIDGET_PRIORITY' => 'Priority',
-    'WIDGET_PAGE_ADD' => 'Add Widget'
+    'WIDGET_PAGE_ADD' => 'Add Widget',
+    'WIDGET_PAGE_ADD_WIDGET' => 'Add New Widgets'
     
 );

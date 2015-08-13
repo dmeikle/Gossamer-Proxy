@@ -51,7 +51,7 @@
       </tbody>
     </table>
     <form class="hidden"></form>
-    <h3><?php $this->getString('WIDGET_PAGE_ADD_WIDGET') ?></h3>
+    <h3><?php echo $this->getString('WIDGET_PAGE_ADD_WIDGET') ?></h3>
     <input list="unusedWidgets" ng-model="widgetToAdd" ng-change="getWidgetByName(widgetToAdd)">
     <datalist id="unusedWidgets">
       <option ng-repeat="widget in unusedWidgetList" value="{{widget.name}}">
@@ -62,7 +62,7 @@
       <option value="topwidgets" selected>Top Widgets</option>
     </select>
     <button ng-click="addWidgetToPage(pageTemplate, widgetObjectToAdd, sectionName, pageTemplate.ymlKey)">
-      <?php $this->getString('WIDGET_PAGE_ADD') ?>
+      <?php echo $this->getString('WIDGET_PAGE_ADD') ?>
     </button>
   </div>
 
