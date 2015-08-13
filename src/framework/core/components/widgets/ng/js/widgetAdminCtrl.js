@@ -185,6 +185,13 @@ module.controller('pageTemplateModalInstanceController', function($scope, $modal
       });
   };
 
+  $scope.saveAndContinue = function(pageTemplate) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    pageTemplatesSrv.savePageTemplate(pageTemplate, formToken).then(function(response) {
+      $scope.pageTemplate = response.data.WidgetPage[0];
+    });
+  };
+
   $scope.confirm = function() {
     $modalInstance.close($scope.pageTemplate);
   };

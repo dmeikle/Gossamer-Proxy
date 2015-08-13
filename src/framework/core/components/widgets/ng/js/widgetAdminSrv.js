@@ -88,6 +88,7 @@ module.service('pageTemplatesSrv', function($http, $log) {
       }
     }).then(function(response) {
       $log.info(response);
+      return response;
     });
   };
 
