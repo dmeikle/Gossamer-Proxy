@@ -122,7 +122,10 @@ module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv
   };
 
   $scope.deletePageTemplate = function(pageTemplate) {
-    pageTemplatesSrv.deletePageTemplate(pageTemplate);
+    pageTemplatesSrv.deletePageTemplate(pageTemplate)
+      .then(function() {
+        getPageTemplatesList(row, numRows);
+      });
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
