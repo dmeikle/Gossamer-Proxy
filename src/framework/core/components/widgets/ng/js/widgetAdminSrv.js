@@ -44,6 +44,13 @@ module.service('widgetsSrv', function($http, $log) {
         };
       });
   };
+
+  this.deleteWidget = function(widget) {
+    var requestPath = apiPath + '/remove/' + widget.id;
+    return $http.delete(requestPath).then(function(response) {
+      $log.info(response);
+    });
+  };
 });
 
 module.service('templateSrv', function() {
@@ -152,4 +159,12 @@ module.service('pageTemplatesSrv', function($http, $log) {
       $log.info(response);
     });
   };
+
+  this.deletePageTemplate = function(pageTemplate) {
+    var requestPath = apiPath + '/remove/' + pageTemplate.id;
+    return $http.delete(requestPath).then(function(response) {
+      $log.info(response);
+    });
+  };
+
 });

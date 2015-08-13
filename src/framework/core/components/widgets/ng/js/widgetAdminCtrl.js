@@ -44,6 +44,12 @@ module.controller('widgetsCtrl', function($scope, $modal,  widgetsSrv, templateS
     openWidgetModal();
   };
 
+  $scope.deleteWidget = function(widget) {
+    widgetsSrv.deleteWidget(widget).then(function(){
+      getWidgetList(row);
+    });
+  };
+
   $scope.$watch('currentPage + numPerPage', function() {
     row = (($scope.currentPage - 1) * $scope.widgetsPerPage);
     numRows = $scope.widgetsPerPage;
@@ -113,6 +119,10 @@ module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv
 
   $scope.editPageTemplate = function(pageTemplate) {
     openPageTemplateModal(pageTemplate);
+  };
+
+  $scope.deletePageTemplate = function(pageTemplate) {
+    pageTemplatesSrv.deletePageTemplate(pageTemplate);
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
