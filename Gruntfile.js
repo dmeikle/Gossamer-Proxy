@@ -9,14 +9,26 @@ module.exports = function(grunt) {
       options: {
         separator: '\n'
       },
-      dist: {
+      site: {
         expand: true,
-        src: ['src/components/*/ng/js/*.js','src/framework/core/components/*/ng/js/*.js'],
-        dest: 'web/components/',
-        rename: function(dest, src) {
+        cwd: 'src/components/',
+        src: ['*/ng/js/*.js'],
+        dest: 'dist/js/',
+        rename: function(dest, src, options) {
           var srcSplit = src.split('/');
-          var componentName = srcSplit[srcSplit.indexOf('components')+1];
-          return dest + componentName + '/' + componentName + '.concat.js';
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+          return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
+        }
+      },
+      framework: {
+        expand:true,
+        cwd: 'src/framework/core/components/',
+        src:['*/ng/js/*.js'],
+        dest: 'dist/js/',
+        rename: function(dest, src, options) {
+          var srcSplit = src.split('/');
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+          return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
         }
       }
     },
@@ -24,30 +36,34 @@ module.exports = function(grunt) {
     copy:{
       bower_site: {
         expand:true,
-        src: ['src/components/**/ng/bower_components/*'],
-        dest: 'web/assets/bower_components/',
-        rename: function(dest, src) {
+        cwd: 'src/components/',
+        src: ['*/ng/bower_components/**/*'],
+        dest: 'dist/bower_components/',
+        rename: function(dest, src, options) {
           var srcSplit = src.split('/');
-          var component = srcSplit.slice(srcSplit.indexOf('bower_components'), srcSplit.length());
+          var component = srcSplit.slice(srcSplit.indexOf('bower_components')+1, srcSplit.length);
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
           var componentPath = component.join('/');
-          return dest + componentPath;
+          return options.cwd + componentName + '/' + dest + '/' + componentPath;
         }
       },
       bower_framework: {
         expand:true,
-        src: ['src/framework/core/components/**/ng/bower_components/**/*'],
-        dest: 'web/assets/bower_components/',
-        rename: function(dest, src) {
+        cwd: 'src/framework/core/components/',
+        src: ['*/ng/bower_components/**/*'],
+        dest: 'dist/bower_components',
+        rename: function(dest, src, options) {
           var srcSplit = src.split('/');
           var component = srcSplit.slice(srcSplit.indexOf('bower_components')+1, srcSplit.length);
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
           var componentPath = component.join('/');
-          return dest + componentPath;
+          return options.cwd + componentName + '/' + dest + '/' + componentPath;
         }
       }
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'web/components/*/*.concat.js'],
+      files: ['Gruntfile.js', 'src/components/*/dist/js/*.concat.js','src/framework/core/components/*/dist/js/*.concat.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -66,24 +82,26 @@ module.exports = function(grunt) {
       site: {
         files: [{
           expand: true,
-          src: ['src/components/*/ng/scss/*.scss','src/framework/core/components/*/ng/scss/*.scss'],
-          dest: 'web/assets/css/',
-          rename: function(dest, src) {
+          cwd: 'src/components/',
+          src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
+          dest: 'dist/css/',
+          rename: function(dest, src, options) {
             var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('components')+1];
-            return dest + componentName + '.min.css';
+            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+            return options.cwd + componentName + '/' + dest + componentName + '.min.css';
           }
         }]
       },
       framework: {
         files: [{
           expand: true,
-          src: ['src/framework/core/components/*/ng/scss/*.scss','!src/framework/core/components/*/ng/scss/_*.scss'],
-          dest: 'web/assets/css/',
-          rename: function(dest, src) {
+          cwd: 'src/framework/core/components/',
+          src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
+          dest: 'dist/css/',
+          rename: function(dest, src, options) {
             var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('components')+1];
-            return dest + componentName + '.min.css';
+            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+            return options.cwd + componentName + '/' + dest + componentName + '.min.css';
           }
         }]
       }
@@ -93,15 +111,31 @@ module.exports = function(grunt) {
       options: {
         sourceMap: true
       },
-      dist: {
+      site: {
         files: [{
           expand: true,
-          src: ['web/components/**/*.concat.js'],
-          dest: 'web/components/',
-          rename: function(dest, src) {
+          cwd: 'src/components/',
+          src: ['*/dist/js/*.concat.js'],
+          dest: 'dist/js/',
+          rename: function(dest, src, options) {
             var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('components')+1];
-            return dest + componentName + '/' + componentName + '.min.js';
+            var componentName = srcSplit[srcSplit.indexOf('dist')-1];
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '.min.js');
+            return options.cwd + componentName + '/' + dest + componentName + '.min.js';
+          }
+        }]
+      },
+      framework: {
+        files: [{
+          expand:true,
+          cwd: 'src/framework/core/components/',
+          src: ['*/dist/js/*.concat.js'],
+          dest: 'dist/js/',
+          rename: function(dest, src, options) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('dist')-1];
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '.min.js');
+            return options.cwd + componentName + '/' + dest + componentName + '.min.js';
           }
         }]
       }
