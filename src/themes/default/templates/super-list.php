@@ -18,21 +18,11 @@
         <title>|title|</title>
 
         <!-- Required CSS Files -->
-        <link type="text/css" href="/css/theme/bootstrap.min.css" rel="stylesheet">
         <link href="/css/theme/css" rel="stylesheet" type="text/css">
 
-
-
-        <script type="text/javascript" src="/js/theme/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="/js/theme/jquery-ui.min.js"></script>
-
-        <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
         <!-- head start -->
         <!---head--->
-        <!-- head end -->
-        
+        <!-- head finish -->
         <!---css--->
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -94,7 +84,7 @@
                                 <h1>
                                     <span aria-hidden="true" class="icon icon-grid-big"></span>
                                     <span class="main-text">
-                                       
+
                                     </span>
                                 </h1>
                             </div>
@@ -148,10 +138,7 @@
             <!-- END Body Container -->
         </div><!-- /.container -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <!-- Required JS Files -->
-        <script type="text/javascript" src="/js/theme/bootstrap.min.js"></script>
-
-
+        <!-- include rendered JS Files -->
         <!---javascript--->
 
         <script language="javascript">

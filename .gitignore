@@ -23,3 +23,6 @@ documentation
 bower_components
 web/assets
 web/components
+
+src/components/*/dist
+src/framework/core/components/*/dist

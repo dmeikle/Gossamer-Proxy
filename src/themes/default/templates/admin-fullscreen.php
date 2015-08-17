@@ -48,7 +48,10 @@
         <script type="text/javascript" src="/js/theme/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="/js/theme/jquery-ui.min.js"></script>
 
-
+        <!-- head start -->
+        <!---head--->
+        <!-- head end -->
+        
         <!---css--->
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

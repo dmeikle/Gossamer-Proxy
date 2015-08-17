@@ -2,16 +2,18 @@
 ---
 
 
-staff_list: 
+staff_list:
     file: 'src/components/staff/views/admin/staff-list.php'
     head:
-        - //ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js
-        - //cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js
+        - @components/widgets/dist/bower_components/angular/angular.min.js
+        - @components/widgets/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/widgets/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/widgets/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
-        - //ajax.googleapis.com/ajax/libs/angularjs/1.3.14/test.js
+        - @components/staff/dist/js/staff.concat.js
     css:
-        
-        
+        - @components/staff/dist/css/staff.min.css
+
 staff_edit_contact: 'src/components/staff/views/widgets/contact-info.php'
 
 staff_edit_employment: 'src/components/staff/views/widgets/employment-info.php'
@@ -24,6 +26,16 @@ staff_emergency_contact_info: 'src/components/staff/views/widgets/emergency-cont
 
 staff_roles: 'src/components/staff/views/widgets/staff-roles.php'
 
-staff_login: 'src/components/staff/views/widgets/staff-login.php'
+staff_login:
+    file: 'src/components/staff/views/widgets/staff-login.php'
+    head:
+        - @components/staff/dist/bower_components/angular/angular.min.js
+        - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @components/staff/dist/js/staff.concat.js
+    css:
+        - @components/staff/dist/css/staff.min.css
 
 staff_image_upload: 'src/components/staff/views/widgets/photo-upload.php'

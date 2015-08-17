@@ -1,3 +1,0 @@
-var lkjlkj;
-
-var asdfasdf;

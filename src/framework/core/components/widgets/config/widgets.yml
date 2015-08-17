@@ -1,3 +1,13 @@
 
 
-widgets_list: 'src/framework/core/components/widgets/views/widgets/super/list.php'
+widgets_list:
+    file: 'src/framework/core/components/widgets/views/widgets/super/list.php'
+    head:
+        - src/components/widgets/dist/bower_components/angular/angular.min.js
+        - src/components/widgets/dist/bower_components/jquery/dist/jquery.min.js
+        - src/components/widgets/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - src/components/widgets/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - src/components/widgets/dist/js/widgets.min.js
+    css:
+        - src/components/widgets/dist/css/widgets.min.css
