@@ -69,6 +69,7 @@ class TemplateView extends AbstractView {
         $this->renderSections();
         
         $this->renderHTMLTags();
+        $this->placeHeadJSFiles();
         $this->placeJSFiles();
         $this->placeCSSFiles();
         $this->renderURITags($template);
@@ -110,6 +111,22 @@ class TemplateView extends AbstractView {
         $this->template = $htmlHandler->handleRequest($this->data);
     }
 
+    
+
+    /**
+     * find any JS files to create <script /> tags for
+     */
+    private function placeHeadJSFiles() {
+        $jsIncludeString = '';
+        //remove any duplicates from files calling same includes
+        $list = array_unique($this->headFiles);
+        
+        foreach ($list as $file) {
+            $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
+        }
+
+        $this->template = str_replace('<!---head--->', $jsIncludeString, $this->template);
+    }
     
 
     /**
@@ -208,7 +225,7 @@ class TemplateView extends AbstractView {
     private function loadSectionContent($section) {
 
         $sectionContent = file_get_contents(__SITE_PATH . DIRECTORY_SEPARATOR . $section);
-
+        
         $contentWithJs = $this->renderJs($sectionContent);
 
         $contentWithCss = $this->renderCss($contentWithJs);
@@ -220,6 +237,7 @@ class TemplateView extends AbstractView {
         return $contentWithCss;
     }
 
+ 
     /**
      * finds all JS include references and calls the handler to do the work
      * 
