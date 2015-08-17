@@ -127,7 +127,6 @@ class TemplateView extends AbstractView {
 
         $this->template = str_replace('<!---head--->', $jsIncludeString, $this->template);
     }
-    
 
     /**
      * find any JS files to create <script /> tags for
@@ -225,8 +224,10 @@ class TemplateView extends AbstractView {
     private function loadSectionContent($section) {
 
         $sectionContent = file_get_contents(__SITE_PATH . DIRECTORY_SEPARATOR . $section);
-        
-        $contentWithJs = $this->renderJs($sectionContent);
+
+
+        $contentWithHeadJs = $this->renderHeadJs($sectionContent);
+        $contentWithJs = $this->renderJs($contentWithHeadJs);
 
         $contentWithCss = $this->renderCss($contentWithJs);
 
@@ -239,6 +240,36 @@ class TemplateView extends AbstractView {
 
  
     /**
+     * finds all Head JS include references and calls the handler to do the work
+     * 
+     * @param string $sectionContent
+     * 
+     * @return string
+     */
+    private function renderHeadJs($sectionContent) {
+
+        $frontchunks = explode('<!--- head start --->', $sectionContent);
+       
+        if (count($frontchunks) < 2) {
+            return $sectionContent;
+        }
+
+        $frontchunk = array_shift($frontchunks);
+
+        $backchunks = explode('<!--- head end --->', current($frontchunks));
+
+        $jslist = explode("\n", ($backchunks[0]));
+        
+        $jslist = array_diff($jslist, array(''));
+
+        $jshandler = new ImportJSHandler($this->logger);
+        $parselist = $jshandler->handlerequest($jslist);
+        $this->headFiles = array_merge($this->headFiles, $parselist);
+
+        return $frontchunk . $backchunks[1];
+    }
+
+    /**
      * finds all JS include references and calls the handler to do the work
      * 
      * @param string $sectionContent
@@ -246,7 +277,7 @@ class TemplateView extends AbstractView {
      * @return string
      */
     private function renderJs($sectionContent) {
-
+       
         $frontchunks = explode('<!--- javascript start --->', $sectionContent);
         if (count($frontchunks) < 2) {
             return $frontchunks;

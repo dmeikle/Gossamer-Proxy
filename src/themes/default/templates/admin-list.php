@@ -40,7 +40,6 @@
         <link type="text/css" href="/css/theme/styles-core.css" rel="stylesheet">
         <link type="text/css" href="/css/theme/styles-core-responsive.css" rel="stylesheet">
 
-
         <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
         <script language="javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
@@ -52,9 +51,12 @@
         <script async="" src="/js/theme/analytics.js"></script>
         <script async="" src="/js/theme/analytics.js"></script>
         <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
-<!-- head start -->
+
+        <!-- head start -->
         <!---head--->
-<!-- head end -->        
+        <!-- head end -->
+        
+
         <!--[if IE 7]>
         <link type="text/css" href="assets/css/required/misc/style-ie7.css" rel="stylesheet">
         <script type="text/javascript" src="assets/fonts/lte-ie7.js"></script>

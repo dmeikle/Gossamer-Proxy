@@ -29,7 +29,10 @@
         <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
-
+        <!-- head start -->
+        <!---head--->
+        <!-- head end -->
+        
         <!---css--->
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

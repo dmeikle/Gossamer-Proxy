@@ -79,7 +79,7 @@ class ImportJSHandler extends BaseHandler {
                 //nothing to copy - we are simply going to the root of the 
                 //website components folder             
                 $retval[] =  str_replace('@/assets', '/assets', $tmp);
-            } elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
+            } elseif (strlen($tmp) > 5) {//abitrary length just to show we hold something greater than whitespace
                 $retval[] = $tmp;
             }
         }
