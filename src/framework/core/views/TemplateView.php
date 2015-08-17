@@ -28,7 +28,8 @@ class TemplateView extends AbstractView {
     private $isMobile = false;
     private $jsIncludeFiles = array();
     private $cssIncludeFiles = array();
-
+    private $headFiles = array();
+    
     /**
      * loads the template
      * 
@@ -58,7 +59,8 @@ class TemplateView extends AbstractView {
         $template = $this->config['template'];
         $theme = $this->config['theme'];
         $this->sections = $this->config['sections'];
-
+        
+        
         $this->loadTemplate($template, $theme);
         //render widgets before replacing section tags with HTML
         $this->renderWidgets();
@@ -75,6 +77,19 @@ class TemplateView extends AbstractView {
    
     }
 
+    private function setWidgetConfigs(array $config) {
+        
+        if(array_key_exists('head', $config) && count($config['head']) > 0) {
+            $this->headFiles = array_merge($config['head'], $this->headFiles);
+        }
+        if(array_key_exists('javascript', $config) && count($config['javascript']) > 0 ) {
+            $this->jsIncludeFiles = array_merge($this->jsIncludeFiles, $config['javascript']);
+        }
+        if(array_key_exists('css', $config) && count($config['css']) > 0) {
+            $this->cssIncludeFiles = array_merge($config['css'], $this->cssIncludeFiles);
+        }
+    }
+    
     /**
      * render the URI tags
      */
@@ -133,19 +148,26 @@ class TemplateView extends AbstractView {
 
             return;
         }
-
+        
         foreach ($this->httpRequest->getAttribute('SystemWidgets') as $sectionName => $section) {
-          
+            
             if (!is_array($section)) {
-               
+                if(is_array($subSection)) {
+                    $this->setWidgetConfigs($section);
+                }
+                $filename = (is_array($section) && array_key_exists('file', $section)) ? $section['file'] : $section;
+                
                 $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
-                $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($section) . "\r\n" . $sectionNamePlaceHolder, $this->template);
-            } else {
-              
+                $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($filename) . "\r\n" . $sectionNamePlaceHolder, $this->template);
+            } else {              
                 foreach ($section as $subSectionName => $subSection) {
-                   
+                    if(is_array($subSection)) {
+                        $this->setWidgetConfigs($subSection);
+                    }
+                    $filename = (is_array($subSection) && array_key_exists('file', $subSection)) ? $subSection['file'] : $subSection;
+                  
                     $sectionNamePlaceHolder = '<!---' . $sectionName . '--->';
-                    $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($subSection) . "\r\n" . $sectionNamePlaceHolder, $this->template);
+                    $this->template = str_replace($sectionNamePlaceHolder, $this->loadSectionContent($filename) . "\r\n" . $sectionNamePlaceHolder, $this->template);
                 }
             }
         }

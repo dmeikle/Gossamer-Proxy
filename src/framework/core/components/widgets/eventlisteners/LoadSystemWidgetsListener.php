@@ -71,10 +71,16 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
                     throw new FileNotFoundException('No widget config found for ' . $widgetConfig['name']);
                     //continue;
                 }
+                
                 if(array_key_exists($widgetConfig['htmlKey'], $config)) {
-                    $retval[$widgetConfig['sectionName']][] = $config[$widgetConfig['htmlKey']];
+//                    if(is_array($config[$widgetConfig['htmlKey']]) && array_key_exists('file', $config[$widgetConfig['htmlKey']])) {
+//                        $retval[$widgetConfig['sectionName']][] = $config[$widgetConfig['htmlKey']]['file'];
+//                    } else {
+                        $retval[$widgetConfig['sectionName']][] = $config[$widgetConfig['htmlKey']];
+                   // }
                 }
             }
+           
         }
         
         $this->httpRequest->setAttribute('SystemWidgets', $retval);

@@ -2,8 +2,16 @@
 ---
 
 
-staff_list: 'src/components/staff/views/admin/staff-list.php'
-
+staff_list: 
+    file: 'src/components/staff/views/admin/staff-list.php'
+    head:
+        - //ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js
+        - //cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js
+    javascript:
+        
+    css:
+        
+        
 staff_edit_contact: 'src/components/staff/views/widgets/contact-info.php'
 
 staff_edit_employment: 'src/components/staff/views/widgets/employment-info.php'
