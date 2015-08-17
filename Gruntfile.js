@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['app/cache/*', 'web/components/*', 'web/assets/css/*'],
+    clean: ['src/components/*/dist/*', 'src/framework/core/components/*/dist/*'],
 
     concat: {
       options: {
@@ -167,7 +167,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'copy', 'sass']);
+  grunt.registerTask('default', ['clean','concat', 'jshint', 'uglify', 'copy', 'sass']);
 
   grunt.registerTask('build', ['clean', 'jshint', 'sass', 'concat', 'uglify']);
 
