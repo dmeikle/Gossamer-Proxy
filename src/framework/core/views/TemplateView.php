@@ -69,6 +69,7 @@ class TemplateView extends AbstractView {
         $this->renderSections();
         
         $this->renderHTMLTags();
+        $this->placeHeadJSFiles();
         $this->placeJSFiles();
         $this->placeCSSFiles();
         $this->renderURITags($template);
@@ -111,6 +112,21 @@ class TemplateView extends AbstractView {
     }
 
     
+
+    /**
+     * find any JS files to create <script /> tags for
+     */
+    private function placeHeadJSFiles() {
+        $jsIncludeString = '';
+        //remove any duplicates from files calling same includes
+        $list = array_unique($this->headFiles);
+        
+        foreach ($list as $file) {
+            $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
+        }
+
+        $this->template = str_replace('<!---head--->', $jsIncludeString, $this->template);
+    }
 
     /**
      * find any JS files to create <script /> tags for
@@ -209,7 +225,8 @@ class TemplateView extends AbstractView {
 
         $sectionContent = file_get_contents(__SITE_PATH . DIRECTORY_SEPARATOR . $section);
 
-        $contentWithJs = $this->renderJs($sectionContent);
+        $contentWithHeadJs = $this->renderHeadJs($sectionContent);
+        $contentWithJs = $this->renderJs($contentWithHeadJs);
 
         $contentWithCss = $this->renderCss($contentWithJs);
 
@@ -221,6 +238,36 @@ class TemplateView extends AbstractView {
     }
 
     /**
+     * finds all Head JS include references and calls the handler to do the work
+     * 
+     * @param string $sectionContent
+     * 
+     * @return string
+     */
+    private function renderHeadJs($sectionContent) {
+
+        $frontchunks = explode('<!--- head start --->', $sectionContent);
+       
+        if (count($frontchunks) < 2) {
+            return $sectionContent;
+        }
+
+        $frontchunk = array_shift($frontchunks);
+
+        $backchunks = explode('<!--- head end --->', current($frontchunks));
+
+        $jslist = explode("\n", ($backchunks[0]));
+        
+        $jslist = array_diff($jslist, array(''));
+
+        $jshandler = new ImportJSHandler($this->logger);
+        $parselist = $jshandler->handlerequest($jslist);
+        $this->headFiles = array_merge($this->headFiles, $parselist);
+
+        return $frontchunk . $backchunks[1];
+    }
+
+    /**
      * finds all JS include references and calls the handler to do the work
      * 
      * @param string $sectionContent
@@ -228,7 +275,9 @@ class TemplateView extends AbstractView {
      * @return string
      */
     private function renderJs($sectionContent) {
-
+        if(is_array($sectionContent)) {
+            pr($sectionContent);
+        }
         $frontchunks = explode('<!--- javascript start --->', $sectionContent);
         if (count($frontchunks) < 2) {
             return $frontchunks;

@@ -54,7 +54,10 @@
         <script async="" src="/js/theme/analytics.js"></script>
         <script async="" src="/js/theme/analytics.js"></script>
         <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
-
+        <!-- head start -->
+        <!---head--->
+        <!-- head end -->
+        
         <!--[if IE 7]>
         <link type="text/css" href="assets/css/required/misc/style-ie7.css" rel="stylesheet">
         <script type="text/javascript" src="assets/fonts/lte-ie7.js"></script>

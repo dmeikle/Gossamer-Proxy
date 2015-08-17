@@ -1,6 +1,7 @@
 <!--- javascript start --->
 
   @/components/widgets/widgets.concat.js
+  @/components/widgets/test.js
 
 <!--- javascript end --->
 
@@ -9,6 +10,12 @@
 @/assets/css/widgets.min.css
 
 <!--- css end --->
+
+<!--- head start --->
+
+@//cdn.something.here.js
+
+<!--- head end --->
 
 <div class="container-fluid" ng-controller="widgetsCtrl">
   <h1><?php echo $this->getString('WIDGET_TITLE'); ?></h1>
