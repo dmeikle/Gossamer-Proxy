@@ -20,12 +20,18 @@
 
 
   <!-- Optional CSS Files -->
+   <link type="text/css" href="/css/theme/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/theme/css" rel="stylesheet" type="text/css">
   <link type="text/css" href="/css/theme/jqvmap.css" rel="stylesheet">
   <link type="text/css" href="/css/theme/circloid-jqvmap.css" rel="stylesheet">
   <link type="text/css" href="/css/theme/fullcalendar.min.css" rel="stylesheet">
   <link type="text/css" href="/css/theme/circloid-fullcalendar.css" rel="stylesheet">
   <link type="text/css" href="/css/theme/fullcalendar.print.css" rel="stylesheet" media="print">
   <link type="text/css" href="/css/theme/bootstrap-datetimepicker.min.css" rel="stylesheet">
+  
+       <link type="text/css" href="/css/theme/styles-core.css" rel="stylesheet">
+        <link type="text/css" href="/css/theme/styles-core-responsive.css" rel="stylesheet">
+        
   <!-- css start -->
   <!---css--->
   <!-- css end -->
