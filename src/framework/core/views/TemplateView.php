@@ -79,15 +79,19 @@ class TemplateView extends AbstractView {
     }
 
     private function setWidgetConfigs(array $config) {
-        
+     
         if(array_key_exists('head', $config) && count($config['head']) > 0) {
             $this->headFiles = array_merge($config['head'], $this->headFiles);
         }
         if(array_key_exists('javascript', $config) && count($config['javascript']) > 0 ) {
-            $this->jsIncludeFiles = array_merge($this->jsIncludeFiles, $config['javascript']);
+            $jshandler = new ImportJSHandler($this->logger);
+            $parselist = $jshandler->handlerequest($config['javascript']);
+            $this->jsIncludeFiles = array_merge($this->jsIncludeFiles, $parselist);
         }
         if(array_key_exists('css', $config) && count($config['css']) > 0) {
-            $this->cssIncludeFiles = array_merge($config['css'], $this->cssIncludeFiles);
+            $cssHandler = new ImportCSSHandler($this->logger);
+            $parseList = $cssHandler->handlerequest($config['css']);
+            $this->cssIncludeFiles = array_merge($this->cssIncludeFiles, $parseList);
         }
     }
     
@@ -159,13 +163,14 @@ class TemplateView extends AbstractView {
     }
 
     private function renderWidgets() {
-        
+      
         if (is_null($this->httpRequest->getAttribute('SystemWidgets'))) {
 
             return;
         }
-        
-        foreach ($this->httpRequest->getAttribute('SystemWidgets') as $sectionName => $section) {
+        $widgetList = $this->httpRequest->getAttribute('SystemWidgets');
+      
+        foreach ($widgetList as $sectionName => $section) {
             
             if (!is_array($section)) {
                 if(is_array($subSection)) {
@@ -225,7 +230,6 @@ class TemplateView extends AbstractView {
 
         $sectionContent = file_get_contents(__SITE_PATH . DIRECTORY_SEPARATOR . $section);
 
-
         $contentWithHeadJs = $this->renderHeadJs($sectionContent);
         $contentWithJs = $this->renderJs($contentWithHeadJs);
 
@@ -249,24 +253,25 @@ class TemplateView extends AbstractView {
     private function renderHeadJs($sectionContent) {
 
         $frontchunks = explode('<!--- head start --->', $sectionContent);
-       
-        if (count($frontchunks) < 2) {
+     
+        if (count($frontchunks) < 2 && count($this->headFiles) == 0) {
             return $sectionContent;
         }
+        if(count($frontchunks) > 0) {
+            $frontchunk = array_shift($frontchunks);
 
-        $frontchunk = array_shift($frontchunks);
+            $backchunks = explode('<!--- head end --->', current($frontchunks));
 
-        $backchunks = explode('<!--- head end --->', current($frontchunks));
+            $jslist = explode("\n", ($backchunks[0]));
 
-        $jslist = explode("\n", ($backchunks[0]));
-        
-        $jslist = array_diff($jslist, array(''));
+            $this->headFiles = array_merge($jslist, $this->headFiles);
+        }
 
         $jshandler = new ImportJSHandler($this->logger);
-        $parselist = $jshandler->handlerequest($jslist);
-        $this->headFiles = array_merge($this->headFiles, $parselist);
+        $this->headFiles = $jshandler->handlerequest($this->headFiles);
+        //$this->headFiles = array_merge($this->headFiles, $parselist);
 
-        return $frontchunk . $backchunks[1];
+        return $frontchunk . (count($backchunks) > 1 ? $backchunks[1] : '');
     }
 
     /**
@@ -293,8 +298,7 @@ class TemplateView extends AbstractView {
         $parselist = $jshandler->handlerequest($jslist);
         $this->jsIncludeFiles = array_merge($this->jsIncludeFiles, $parselist);
 
-        return $frontchunk .
-                $backchunks[1];
+        return $frontchunk . (count($backchunks) > 1 ? $backchunks[1] : '');
     }
 
     /**

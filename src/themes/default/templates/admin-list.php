@@ -26,11 +26,9 @@
   <link type="text/css" href="/css/theme/circloid-fullcalendar.css" rel="stylesheet">
   <link type="text/css" href="/css/theme/fullcalendar.print.css" rel="stylesheet" media="print">
   <link type="text/css" href="/css/theme/bootstrap-datetimepicker.min.css" rel="stylesheet">
-  <!-- add CSS files here -->
-
-  <!-- head start -->
-  <!---head--->
-  <!-- head end -->
+  <!-- css start -->
+  <!---css--->
+  <!-- css end -->
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script async="" src="/js/theme/analytics.js"></script>

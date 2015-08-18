@@ -44,6 +44,7 @@ class ImportJSHandler extends BaseHandler {
      * @return type
      */
     public function handleRequest($params = array()) {
+ 
         $retval = array();
         //check to see if there are any escaped rows then import them
         foreach ($params as $row) {
@@ -80,6 +81,7 @@ class ImportJSHandler extends BaseHandler {
                 //website components folder             
                 $retval[] =  str_replace('@/assets', '/assets', $tmp);
             } elseif (strlen($tmp) > 5) {//abitrary length just to show we hold something greater than whitespace
+
                 $retval[] = $tmp;
             }
         }
