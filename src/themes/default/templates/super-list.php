@@ -1,50 +1,70 @@
 <!DOCTYPE html>
 <!-- circloid super fullscreen -->
 <html lang="en" >
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-        <!-- Fav and touch icons
+  <!-- Fav and touch icons
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-57-precomposed.png">
-        -->
-        <title>|title|</title>
+-->
+  <title>|title|</title>
 
-        <!-- Required CSS Files -->
-        <link href="/css/theme/css" rel="stylesheet" type="text/css">
 
-        <!-- head start -->
-        <!---head--->
-        <!-- head finish -->
-        <!---css--->
+<!-- angular import for system page -->
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
 
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script async src="/js/theme/analytics.js"></script>
-        <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
+  <!-- Optional CSS Files -->
+  <link type="text/css" href="/css/theme/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/theme/css" rel="stylesheet" type="text/css">
+  <link type="text/css" href="/css/theme/jqvmap.css" rel="stylesheet">
+  <link type="text/css" href="/css/theme/circloid-jqvmap.css" rel="stylesheet">
+  <link type="text/css" href="/css/theme/fullcalendar.min.css" rel="stylesheet">
+  <link type="text/css" href="/css/theme/circloid-fullcalendar.css" rel="stylesheet">
+  <link type="text/css" href="/css/theme/fullcalendar.print.css" rel="stylesheet" media="print">
+  <link type="text/css" href="/css/theme/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-        <!--[if IE 7]>
+  <link type="text/css" href="/css/theme/styles-core.css" rel="stylesheet">
+  <link type="text/css" href="/css/theme/styles-core-responsive.css" rel="stylesheet">
+
+  <!-- css start -->
+  <!---css--->
+  <!-- css end -->
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script async="" src="/js/theme/analytics.js"></script>
+  <script async="" src="/js/theme/analytics.js"></script>
+  <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
+
+  <!-- head start -->
+  <!---head--->
+  <!-- head end -->
+
+
+  <!--[if IE 7]>
         <link type="text/css" href="assets/css/required/misc/style-ie7.css" rel="stylesheet">
         <script type="text/javascript" src="assets/fonts/lte-ie7.js"></script>
         <![endif]-->
-        <!--[if IE 8]>
+  <!--[if IE 8]>
         <link type="text/css" href="assets/css/required/misc/style-ie8.css" rel="stylesheet">
         <![endif]-->
-        <!--[if lte IE 8]>
+  <!--[if lte IE 8]>
         <script type="text/javascript" src="assets/css/required/misc/excanvas.min.js"></script>
         <![endif]-->
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="/js/theme/jquery.mousewheel.min.js"></script></head>
+  <script src="/js/theme/jquery.mousewheel.min.js"></script>
+</head>
     <body cz-shortcut-listen="true">
         <div class="container-fluid">
             <!-- START Header Container -->
@@ -137,9 +157,7 @@
             </div>
             <!-- END Body Container -->
         </div><!-- /.container -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- include rendered JS Files -->
-        <!---javascript--->
+
 
         <script language="javascript">
             (function () {
@@ -148,4 +166,53 @@
             })();
         </script>
 <!--,<?php echo $modules; ?>-->
-    </body></html>
+    </body>
+
+      <!-- Required JS Files -->
+      <script type="text/javascript" src="/js/theme/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.easing.1.3-min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.mCustomScrollbar.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.mousewheel-3.0.6.min.js"></script>
+      <script type="text/javascript" src="/js/theme/retina.min.js"></script>
+      <script type="text/javascript" src="/js/theme/icheck.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.ui.touch-punch.min.js"></script>
+      <script type="text/javascript" src="/js/theme/circloid-functions.js"></script>
+
+      <!-- Optional JS Files -->
+      <script type="text/javascript" src="/js/theme/circloid-functions-optional.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.vmap.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.vmap.world.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.vmap.sampledata.js"></script> <!-- JQVMap Sample Data -->
+      <script type="text/javascript" src="/js/theme/jquery.flot.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.JUMlib.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.resize.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.tooltip.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.pie.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.stack.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.time.min.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.flot.orderBars.js"></script>
+      <script type="text/javascript" src="/js/theme/jquery.easypiechart.min.js"></script>
+      <script type="text/javascript" src="/js/theme/moment.js"></script>
+      <script type="text/javascript" src="/js/theme/fullcalendar.min.js"></script>
+      <script type="text/javascript" src="/js/theme/bootstrap-datetimepicker.min.js"></script>
+      <!-- add optional JS plugin files here -->
+
+      <!-- REQUIRED: User Editable JS Files -->
+      <script type="text/javascript" src="/js/theme/script.js"></script>
+      <!-- add additional User Editable files here -->
+
+      <!-- Demo JS Files -->
+      <script type="text/javascript" src="/js/theme/index.js"></script>
+
+      <!-- REQUIRED: User Editable JS Files -->
+      <script type="text/javascript" src="/js/theme/script.js"></script>
+      <!-- add additional User Editable files here -->
+
+      <!-- Demo JS Files -->
+      <script type="text/javascript" src="/js/theme/index.js"></script>
+
+      <!---javascript--->
+
+
+
+    </html>

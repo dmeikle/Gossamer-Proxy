@@ -8,8 +8,7 @@
       <span class="icon-bar"></span>
     </button>
     <a href="/" class="navbar-brand">
-        <img class="default-logo" src="/images/logo.png" height="44" alt="Logo">
-        <img class="small-logo" src="/images/theme/logo-small.png" width="48" height="44" alt="Logo">
+      <img class="default-logo" src="/images/logo.png" alt="Logo">
     </a>
   </div>
 

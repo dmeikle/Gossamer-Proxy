@@ -2,43 +2,43 @@
 
 admin_staff_edit_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "section3": "src/components/staff/views/admin/parameters.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-    
-    
- 
-    
+
+
+
+
 admin_staff_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "leftnav": "src/themes/default/templates/sections/topnav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-            
-admin_staff_create_new: 
+
+admin_staff_create_new:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "section3": "src/components/staff/views/admin/create-new-wizard.php"
-            "footer": "src/themes/default/templates/sections/footer.php"           
-            
+            "footer": "src/themes/default/templates/sections/footer.php"
 
 
-#--------------------- login section -------------------------            
+
+#--------------------- login section -------------------------
 admin_login:
     template: list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/header.php"
-           
-            "section4": "src/themes/default/templates/sections/footer.php"            
+
+            "section4": "src/themes/default/templates/sections/footer.php"

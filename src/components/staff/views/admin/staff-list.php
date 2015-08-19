@@ -5,15 +5,7 @@
 
 <!--- javascript end --->
 
-
-    
-<!--- head start --->
-
-    //ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js
-    //cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js
-
-<!--- head end --->
-
+<style>
 .edit-nav {
     position: absolute;
     background-color: white;
