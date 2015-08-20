@@ -4,15 +4,12 @@
 
 <!--- javascript end --->
 
-<div class="container-fluid" ng-controller="widgetsCtrl">
-  <h1><?php echo $this->getString('WIDGET_TITLE'); ?></h1>
-  <div class="row">
-    <div class="col-xs-12 col-md-2 col-md-offset-5">
-      <button ng-click="addNewWidget()">
-        <?php echo $this->getString('WIDGET_NEW'); ?>
-      </button>
-    </div>
-  </div>
+<div class="widget" ng-controller="widgetsCtrl">
+  <h1 class="pull-left"><?php echo $this->getString('WIDGET_TITLE'); ?></h1>
+
+  <button class="pull-right" ng-click="addNewWidget()">
+    <?php echo $this->getString('WIDGET_NEW'); ?>
+  </button>
   <div class="col-xs-12">
       <div class="table-container">
         <table class="table" id="widgetAdminList">
