@@ -11,8 +11,8 @@ module.controller('widgetsCtrl', function($scope, $modal,  widgetsSrv, templateS
     widgetsSrv.createNewWidget(widgetObject, formToken).then(function(response) {
       $scope.getWidgetList(row, numRows);
     });
-  };
 
+  };
   var openWidgetModal = function(widget) {
     var template = templateSrv.widgetModal;
     var modalInstance = $modal.open({

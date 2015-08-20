@@ -1,4 +1,8 @@
+<!--- javascript start --->
 
+@/components/widgets/widgets.concat.js
+
+<!--- javascript end --->
 
 <div class="container-fluid" ng-controller="widgetsCtrl">
   <h1><?php echo $this->getString('WIDGET_TITLE'); ?></h1>

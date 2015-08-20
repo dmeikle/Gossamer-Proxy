@@ -13,7 +13,7 @@ super_widgets_home:
     template: super-list.php
     sections:
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "header": "src/themes/default/templates/sections/topnav.php"
             "section3": "src/framework/core/components/widgets/views/super/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
 
@@ -38,6 +38,6 @@ super_widgetpages_home:
     template: super-list.php
     sections:
         -
-            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "header": "src/themes/default/templates/sections/topnav.php"
             "section3": "src/framework/core/components/widgets/views/super/pages/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"

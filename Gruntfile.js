@@ -104,6 +104,11 @@ module.exports = function(grunt) {
             return options.cwd + componentName + '/' + dest + componentName + '.min.css';
           }
         }]
+      },
+      theme: {
+        files: {
+          'web/css/core.min.css':'src/themes/default/core.scss'
+        }
       }
     },
 
@@ -141,17 +146,55 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
-      scripts: {
-        files: ['<%= jshint.files %>','<%= concat.dist %>'],
-        tasks: ['jshint', 'concat']
+    watch_concat: {
+        files: {
+          expand: true,
+          cwd: 'src/components/',
+          src: ['*/ng/js/*.js'],
+          dest: 'dist/js/',
+          rename: function(dest, src, options) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+            return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
+          }
+        },
+        framework: {
+          expand:true,
+          cwd: 'src/framework/core/components/',
+          src:['*/ng/js/*.js'],
+          dest: 'dist/js/',
+          rename: function(dest, src, options) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+            return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
+          }
       },
 
-      sass: {
-        files: ['<%= sass.site.files %>','<%= sass.framework.files %>'],
-        tasks: ['sass:site','sass:framework'],
+      jshint: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['jshint']
+      },
+
+      sass_site: {
+        files: ['**/ng/scss/*.scss', '!**/ng/scss/_*.scss'],
+        tasks: ['sass:site'],
         spawn: false
+      },
+
+      sass_framework: {
+        expand: true,
+        cwd: 'src/framework/core/components/',
+        src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
+        tasks: ['sass:framework'],
+        spawn:false
+      },
+
+      sass_theme: {
+        files: 'src/themes/default/core.scss',
+        tasks: ['sass:framework'],
+        spawn:false
       }
+
     }
   });
 
@@ -163,7 +206,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-sass');
 
-  grunt.registerTask('watch', ['watch']);
+  // grunt.registerTask('watch', ['watch']);
 
   grunt.registerTask('test', ['jshint', 'qunit']);
 

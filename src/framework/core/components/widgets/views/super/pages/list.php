@@ -10,7 +10,7 @@
 
 <!--- css end --->
 
-<div class="container-fluid" ng-controller="pageTemplatesCtrl">
+<div class="widget" ng-controller="pageTemplatesCtrl">
   <h1><?php echo $this->getString('WIDGET_PAGE_TITLE'); ?></h1>
   <div class="row">
     <div class="col-xs-12 col-md-2 col-md-offset-5">

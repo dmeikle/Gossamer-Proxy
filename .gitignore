@@ -2,7 +2,6 @@
 
 .sass-cache
 
-web/assets/default*
 vendor
 
 composer.lock
