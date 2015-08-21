@@ -146,28 +146,15 @@ module.exports = function(grunt) {
       }
     },
 
-    watch_concat: {
-        files: {
-          expand: true,
-          cwd: 'src/components/',
-          src: ['*/ng/js/*.js'],
-          dest: 'dist/js/',
-          rename: function(dest, src, options) {
-            var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
-            return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
-          }
-        },
-        framework: {
-          expand:true,
-          cwd: 'src/framework/core/components/',
-          src:['*/ng/js/*.js'],
-          dest: 'dist/js/',
-          rename: function(dest, src, options) {
-            var srcSplit = src.split('/');
-            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
-            return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
-          }
+    watch:{
+      concat_site: {
+        files: ['src/components/*/ng/js/*.js'],
+        tasks: ['concat:site']
+      },
+
+      concat_framework:{
+        files:['src/framework/core/components/*/ng/js/*.js'],
+        tasks: ['concat:framework']
       },
 
       jshint: {
@@ -175,26 +162,33 @@ module.exports = function(grunt) {
         tasks: ['jshint']
       },
 
+      uglify_site: {
+        files: ['src/components/*/dist/js/*.concat.js'],
+        tasks: ['uglify:site']
+      },
+
+      uglify_framework: {
+        files: ['src/framework/core/components/*/dist/js/*.concat.js'],
+        tasks: ['uglify:framework']
+      },
+
       sass_site: {
-        files: ['**/ng/scss/*.scss', '!**/ng/scss/_*.scss'],
+        files: ['src/components/*/ng/scss/*.scss', '!src/components/*/ng/scss/_*.scss'],
         tasks: ['sass:site'],
         spawn: false
       },
 
       sass_framework: {
-        expand: true,
-        cwd: 'src/framework/core/components/',
-        src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
+        files: ['src/framework/core/components/*/ng/scss/*.scss', '!src/framework/core/components/*/ng/scss/_*.scss'],
         tasks: ['sass:framework'],
         spawn:false
       },
 
       sass_theme: {
         files: 'src/themes/default/core.scss',
-        tasks: ['sass:framework'],
+        tasks: ['sass:theme'],
         spawn:false
       }
-
     }
   });
 
