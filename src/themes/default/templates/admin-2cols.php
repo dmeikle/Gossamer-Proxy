@@ -11,9 +11,6 @@
 
   <title>|title|</title>
 
-  <!-- css import for page -->
-  <link rel="stylesheet" href="/css/core.min.css">
-
   <!-- css start -->
   <!---css--->
   <!-- css end -->
@@ -46,9 +43,12 @@
 <body cz-shortcut-listen="true">
   <!---header--->
   <div class="clearfix"></div>
-  <main class="content full-width">
+  <main class="content">
     <!---section3--->
   </main>
+  <div class="cards">
+    <!---section4--->
+  </div>
   <div class="clearfix"></div>
   <!---footer--->
 </body>

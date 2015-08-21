@@ -13,7 +13,7 @@ super_widgets_home:
     template: super-list.php
     sections:
         -
-            "header": "src/themes/default/templates/sections/topnav.php"
+            "header": "src/themes/default/templates/sections/header.php"
             "context-button": "src/framework/core/components/widgets/views/super/context-button.php"
             "section3": "src/framework/core/components/widgets/views/super/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"

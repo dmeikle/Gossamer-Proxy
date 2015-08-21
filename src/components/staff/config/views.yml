@@ -17,8 +17,8 @@ admin_staff_home:
     template: admin-list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/themes/default/templates/sections/topnav.php"
+            "header": "src/themes/default/templates/sections/header.php"
+            "context-button": "src/components/staff/views/admin/context-button.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "footer": "src/themes/default/templates/sections/footer.php"
 

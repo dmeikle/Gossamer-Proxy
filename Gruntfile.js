@@ -77,7 +77,8 @@ module.exports = function(grunt) {
 
     sass: {
       options: {
-        style: 'compressed'
+        outputStyle: 'compressed',
+        sourceMap: true
       },
       site: {
         files: [{
@@ -200,12 +201,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-sass');
 
-  // grunt.registerTask('watch', ['watch']);
-
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['clean','concat', 'jshint', 'uglify', 'copy', 'sass']);
+  grunt.registerTask('default', ['watch'] );
 
-  grunt.registerTask('build', ['clean', 'jshint', 'sass', 'concat', 'uglify']);
+  grunt.registerTask('build', ['clean','concat', 'jshint', 'uglify', 'copy', 'sass']);
 
 };

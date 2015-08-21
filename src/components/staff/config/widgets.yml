@@ -7,6 +7,7 @@ staff_list:
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
         - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @components/staff/dist/js/staff.concat.js
