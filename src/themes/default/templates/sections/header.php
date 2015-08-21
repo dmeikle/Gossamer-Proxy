@@ -15,11 +15,11 @@
 
     <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
       <ul class="navbar-left">
-        <li><a href="#" class="active">Home</a></li>
+        <li><a href="/admin/dashboard" class="active">Home</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Claims <span class="caret"></span></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">Claims <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Open Claims</a></li>
+            <li><a href="/admin/claims">Claims List</a></li>
             <li><a href="#">Your Claims</a></li>
             <li><a href="#">New Claim</a></li>
           </ul>
@@ -28,28 +28,18 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Directory <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/admin/staff">Staff</a></li>
             <li><a href="">Clients</a></li>
             <li><a href="">Customers</a></li>
           </ul>
         </li>
+        <li>
+          <a href="/admin/staff">Staff</a>
+        </li>
       </ul>
 
       <ul class="navbar-right">
-        <li class="dropdown">
-          <div class="btn-group">
-            <button type="button" class="primary">New &lt;type&gt; Ticket</button>
-            <button type="button" class="primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#">New Type1 Ticket</a></li>
-              <li><a href="#">New Type2 Ticket</a></li>
-              <li><a href="#">New Type3 Ticket</a></li>
-            </ul>
-          </div>
+        <li class="dropdown" id="context-button">
+          <!---context-button--->
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

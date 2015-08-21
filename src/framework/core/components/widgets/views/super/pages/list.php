@@ -11,12 +11,10 @@
 <!--- css end --->
 
 <div class="widget" ng-controller="pageTemplatesCtrl">
-  <div class="row">
-    <h1 class="pull-left"><?php echo $this->getString('WIDGET_PAGE_TITLE'); ?></h1>
-    <button class="pull-right" ng-click="addNewPageTemplate()">
-      <?php echo $this->getString('WIDGET_PAGE_NEW'); ?>
-    </button>
-  </div>
+  <h1 class="pull-left"><?php echo $this->getString('WIDGET_PAGE_TITLE'); ?></h1>
+  <button class="pull-right" ng-click="addNewPageTemplate()">
+    <?php echo $this->getString('WIDGET_PAGE_NEW'); ?>
+  </button>
 
   <table class="table table-striped table-hover">
     <thead>

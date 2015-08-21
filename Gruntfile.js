@@ -185,7 +185,7 @@ module.exports = function(grunt) {
       },
 
       sass_theme: {
-        files: 'src/themes/default/core.scss',
+        files: ['src/themes/default/core.scss', 'src/themes/default/styles/*.scss'],
         tasks: ['sass:theme'],
         spawn:false
       }

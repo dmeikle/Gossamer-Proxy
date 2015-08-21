@@ -1,0 +1,17 @@
+// Footer
+
+footer {
+  background-color: $gray-light;
+  padding:1rem;
+  box-shadow:0 .25rem .25rem rgba(0,0,0,.25) inset;
+  ul {
+    list-style:none;
+    padding-left:1rem;
+  }
+  a {
+    color: $navbar-default-link-color;
+    &:hover, &:active, &:focus {
+      color: $navbar-default-link-hover-color;
+    }
+  }
+}
