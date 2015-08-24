@@ -22,23 +22,16 @@ use core\components\widgets\exceptions\FileNotFoundException;
 class LoadSystemWidgetsListener extends AbstractCachableListener{
     
     public function on_request_start($params) {
-       
         $results = $this->loadConfigurations($params);
         $this->saveValuesToCache('widgets/' . __YML_KEY, $results);
+        
         if(is_array($results) && array_key_exists('WidgetsSystems', $results)) {
             $this->loadWidgetConfigs($results['WidgetsSystems']);
-        }
-        
+        }        
     }
     
     private function loadConfigurations($params) {
-//        $results = $this->getValuesFromCache();
-//      
-//        if($results !== false) {
-//          
-//            return $results;
-//        }
-        
+
         $systemWidget = new SystemWidgetModel($this->httpRequest, $this->httpResponse, $this->logger);
       
         $params = array('ymlKey'=> __YML_KEY,
@@ -48,7 +41,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
  
         $results = $datasource->query('get', $systemWidget, 'listByPage', $params);      
         
-      
+     
         
         return $results;
     }
@@ -82,7 +75,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
             }
            
         }
-        
+     
         $this->httpRequest->setAttribute('SystemWidgets', $retval);
     }
     

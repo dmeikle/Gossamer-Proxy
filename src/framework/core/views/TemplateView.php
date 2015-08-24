@@ -83,6 +83,7 @@ class TemplateView extends AbstractView {
         if(array_key_exists('head', $config) && count($config['head']) > 0) {
             $this->headFiles = array_merge($config['head'], $this->headFiles);
         }
+  
         if(array_key_exists('javascript', $config) && count($config['javascript']) > 0 ) {
             $jshandler = new ImportJSHandler($this->logger);
             $parselist = $jshandler->handlerequest($config['javascript']);

@@ -11,6 +11,7 @@ staff_list:
         - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @components/staff/dist/js/staff.concat.js
+        - @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
 
