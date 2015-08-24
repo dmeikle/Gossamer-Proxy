@@ -1,10 +1,10 @@
 
-
+#------------------------ timesheets ----------------------------
 accounting_timesheets_list:
     pattern: admin/accounting/timesheets/*/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetController
+        controller: components\accounting\controllers\TimesheetsController
         model: components\accounting\models\TimesheetModel
         method: listall
         view: core\views\TemplateView
@@ -16,7 +16,7 @@ accounting_timesheets_edit:
     pattern: admin/accounting/timesheets/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetController
+        controller: components\accounting\controllers\TimesheetsController
         model: components\accounting\models\TimesheetModel
         method: edit
         view: core\views\JSONView
@@ -29,10 +29,49 @@ accounting_timesheets_save:
     pattern: admin/accounting/timesheets/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetController
+        controller: components\accounting\controllers\TimesheetsController
         model: components\accounting\models\TimesheetModel
         method: save
         view: core\views\JSONView
         viewKey: accounting_timesheets_save
         datasource: datasource1 
     methods: [POST]
+    
+
+#------------------------ purchase orders ----------------------------
+accounting_pos_list:
+    pattern: admin/accounting/pos/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_pos_list
+        datasource: datasource1
+
+
+accounting_pos_edit:
+    pattern: admin/accounting/pos/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_pos_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_pos_save:
+    pattern: admin/accounting/pos/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_pos_save
+        datasource: datasource1 
+    methods: [POST]    
