@@ -1,0 +1,38 @@
+
+
+accounting_timesheets_list:
+    pattern: admin/accounting/timesheets/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetController
+        model: components\accounting\models\TimesheetModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_timesheets_list
+        datasource: datasource1
+
+
+accounting_timesheets_edit:
+    pattern: admin/accounting/timesheets/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetController
+        model: components\accounting\models\TimesheetModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_timesheets_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_timesheets_save:
+    pattern: admin/accounting/timesheets/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetController
+        model: components\accounting\models\TimesheetModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_timesheets_save
+        datasource: datasource1 
+    methods: [POST]
