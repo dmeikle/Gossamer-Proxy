@@ -1,0 +1,11 @@
+## YAML Template.
+---
+staffScheduleModal:
+    path: 'src/components/staff/ng/views/staffScheduleModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+
+staffEditModal:
+    path: 'src/components/staff/ng/views/staffEditModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'

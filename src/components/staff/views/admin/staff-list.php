@@ -1,10 +1,3 @@
-
-<!--- javascript start --->
-
-    @/components/staff/staff.concat.js
-
-<!--- javascript end --->
-
 <div class="widget" ng-controller="staffListCtrl">
   <h1>Staff List</h1>
   <table class="table table-striped table-hover">
