@@ -659,4 +659,199 @@ accounting_generalcostitems_save:
         view: core\views\JSONView
         viewKey: accounting_generalcostitems_save
         datasource: datasource1 
+    methods: [POST]                                                                   
+    
+
+#------------------------ Accounting Invoice Descriptions ----------------------------
+accounting_invoicedescriptions_list:
+    pattern: admin/accounting/invoicedescriptions/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceDescriptionsController
+        model: components\accounting\models\AccountingInvoiceDescriptionModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_invoicedescriptions_list
+        datasource: datasource1
+
+
+accounting_invoicedescriptions_edit:
+    pattern: admin/accounting/invoicedescriptions/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceDescriptionsController
+        model: components\accounting\models\AccountingInvoiceDescriptionModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_invoicedescriptions_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_invoicedescriptions_save:
+    pattern: admin/accounting/invoicedescriptions/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceDescriptionsController
+        model: components\accounting\models\AccountingInvoiceDescriptionModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_invoicedescriptions_save
+        datasource: datasource1 
+    methods: [POST]                                                                            
+    
+
+#------------------------ CostCard Item Category ----------------------------
+accounting_costcarditemcategories_list:
+    pattern: admin/accounting/costcarditemcategories/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemCategoriesController
+        model: components\accounting\models\CostCardItemCategoryModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_costcarditemcategories_list
+        datasource: datasource1
+
+
+accounting_costcarditemcategories_edit:
+    pattern: admin/accounting/costcarditemcategories/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemCategoriesController
+        model: components\accounting\models\CostCardItemCategoryModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_costcarditemcategories_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_costcarditemcategories_save:
+    pattern: admin/accounting/costcarditemcategories/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemCategoriesController
+        model: components\accounting\models\CostCardItemCategoryModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_costcarditemcategories_save
+        datasource: datasource1 
+    methods: [POST]                                                                           
+    
+
+#------------------------ Purchase Order Types ----------------------------
+accounting_purchaseordertypes_list:
+    pattern: admin/accounting/purchaseordertypes/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderTypesController
+        model: components\accounting\models\PurchaseOrderTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_purchaseordertypes_list
+        datasource: datasource1
+
+
+accounting_purchaseordertypes_edit:
+    pattern: admin/accounting/purchaseordertypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderTypesController
+        model: components\accounting\models\PurchaseOrderTypeModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordertypes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_purchaseordertypes_save:
+    pattern: admin/accounting/purchaseordertypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderTypesController
+        model: components\accounting\models\PurchaseOrderTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordertypes_save
+        datasource: datasource1 
+    methods: [POST]                                                                                  
+    
+
+#------------------------ Tax Types ----------------------------
+accounting_taxtypes_list:
+    pattern: admin/accounting/taxtypes/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingTaxTypesController
+        model: components\accounting\models\AccountingTaxTypeModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_taxtypes_list
+        datasource: datasource1
+
+
+accounting_taxtypes_edit:
+    pattern: admin/accounting/taxtypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingTaxTypesController
+        model: components\accounting\models\AccountingTaxTypeModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_taxtypes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_taxtypes_save:
+    pattern: admin/accounting/taxtypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingTaxTypesController
+        model: components\accounting\models\AccountingTaxTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_taxtypes_save
+        datasource: datasource1 
+    methods: [POST]                                                                                          
+    
+
+#------------------------ payment methods ----------------------------
+accounting_paymentmethods_list:
+    pattern: admin/accounting/paymentmethods/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingPaymentMethodsController
+        model: components\accounting\models\AccountingPaymentMethodModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_paymentmethods_list
+        datasource: datasource1
+
+
+accounting_paymentmethods_edit:
+    pattern: admin/accounting/paymentmethods/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingPaymentMethodsController
+        model: components\accounting\models\AccountingPaymentMethodModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_paymentmethods_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_paymentmethods_save:
+    pattern: admin/accounting/paymentmethods/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingPaymentMethodsController
+        model: components\accounting\models\AccountingPaymentMethodModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_paymentmethods_save
+        datasource: datasource1 
     methods: [POST]                       
