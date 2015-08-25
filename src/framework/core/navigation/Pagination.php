@@ -45,7 +45,7 @@ class Pagination {
     public function getPagination($rowCount, $offset, $limit) {
         $this->rowCount = $rowCount;
         $this->offset = $offset;
-        $this->limit = $limit;
+        $this->limit = (intval($limit) == 0)? 1 : intval($limit);
         $retval = array();
         $numPages = $this->getNumPages();
         $currentEstablished = false;

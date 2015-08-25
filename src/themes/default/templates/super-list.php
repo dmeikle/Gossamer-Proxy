@@ -16,6 +16,10 @@
         <link rel="apple-touch-icon-precomposed" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-57-precomposed.png">
         -->
         <title>|title|</title>
+        
+        <!-- IMPORTING ANGULAR SO IT CAN BLOCK DOM RENDER!!!!!!!! -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.0/ui-bootstrap-tpls.min.js"></script>
 
         <!-- Required CSS Files -->
         <link href="/css/theme/css" rel="stylesheet" type="text/css">
@@ -44,7 +48,8 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script src="/js/theme/jquery.mousewheel.min.js"></script></head>
+        <script src="/js/theme/jquery.mousewheel.min.js"></script>
+    </head>
     <body cz-shortcut-listen="true">
         <div class="container-fluid">
             <!-- START Header Container -->
@@ -144,7 +149,7 @@
         <script language="javascript">
             (function () {
                 // angular.bootstrap(document, ['staff', 'newtickets', 'newclaims']);
-                angular.bootstrap(document, ['widgetAdmin']);
+                angular.bootstrap(document, ['accountingAdmin']);
             })();
         </script>
 <!--,<?php echo $modules; ?>-->

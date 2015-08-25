@@ -1,5 +1,16 @@
 
 #------------------------ timesheets ----------------------------
+accounting_timesheets_home:
+    pattern: admin/accounting/timesheets
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_timesheets_home
+        datasource: datasource1
+        
 accounting_timesheets_list:
     pattern: admin/accounting/timesheets/*/*
     defaults:
@@ -854,4 +865,55 @@ accounting_paymentmethods_save:
         view: core\views\JSONView
         viewKey: accounting_paymentmethods_save
         datasource: datasource1 
-    methods: [POST]                       
+    methods: [POST]                                                                               
+    
+
+#------------------------ Cost Cart Item Types ----------------------------
+
+accounting_costcarditemtypes_home:
+    pattern: super/accounting/costcarditemtypes
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemTypesController
+        model: components\accounting\models\CostCardItemTypeModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: accounting_costcarditemtypes_home
+        datasource: datasource1
+        
+accounting_costcarditemtypes_list:
+    pattern: super/accounting/costcarditemtypes/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemTypesController
+        model: components\accounting\models\CostCardItemTypeModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_costcarditemtypes_list
+        datasource: datasource1
+
+
+accounting_costcarditemtypes_edit:
+    pattern: super/accounting/costcarditemtypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemTypesController
+        model: components\accounting\models\CostCardItemTypeModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_costcarditemtypes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_costcarditemtypes_save:
+    pattern: super/accounting/costcarditemtypes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardItemTypesController
+        model: components\accounting\models\CostCardItemTypeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_costcarditemtypes_save
+        datasource: datasource1 
+    methods: [POST]                          

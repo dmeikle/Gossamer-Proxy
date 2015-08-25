@@ -4,25 +4,27 @@
 
 web/assets/default*
 vendor
+vendor/bin/phpunit
 
 composer.lock
 
 app/cache/*
 app/logs/*
+app/config/credentials.yml
 
 node_modules
 
-app/config/credentials.yml
+
+web/assets
 web/assets/default/images/images
 web/assets/default-bak/images/images
-vendor/bin/phpunit
 web/css/theme
 web/js/theme
 web/images/theme
+web/components
+
 documentation
 bower_components
-web/assets
-web/components
 
 src/components/*/dist
 src/framework/core/components/*/dist

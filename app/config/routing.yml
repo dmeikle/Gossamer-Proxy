@@ -9,8 +9,7 @@ widgets:
     component: "src/framework/core/components/widgets/config/routing.yml"
   
 render:
-    component: "src/framework/core/components/render/config/routing.yml"
-  
+    component: "src/framework/core/components/render/config/routing.yml" 
   
 image:
     component: "src/components/images/config/routing.yml"
@@ -132,6 +131,9 @@ ticker:
     component: "src/components/ticker/config/routing.yml"
 inventory:
     component: "src/components/inventory/config/routing.yml"
+
+accounting:
+    component: "src/components/accounting/config/routing.yml" 
 
     
 #this is the default fallback to use if not found    

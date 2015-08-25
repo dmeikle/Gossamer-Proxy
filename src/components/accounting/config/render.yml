@@ -1,0 +1,12 @@
+## YAML Template.
+---
+CostCardItemTypeModal:
+    path: 'src/components/accounting/ng/views/costCardItemTypeModal.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/CostCartItemTypes'
+
+pageTemplateModal:
+    path: 'src/framework/core/components/widgets/ng/views/pageTemplateModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/login'
+        - 'src/framework/core/components/widgets/locales/*/Widgets'
