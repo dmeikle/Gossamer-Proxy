@@ -74,4 +74,589 @@ accounting_pos_save:
         view: core\views\JSONView
         viewKey: accounting_pos_save
         datasource: datasource1 
-    methods: [POST]    
+    methods: [POST]  
+    
+
+#------------------------ purchase orders items received----------------------------
+accounting_positems_list:
+    pattern: admin/accounting/positems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
+        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_positems_list
+        datasource: datasource1
+
+
+accounting_positems_edit:
+    pattern: admin/accounting/positems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
+        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_positems_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_positems_save:
+    pattern: admin/accounting/positems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
+        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_positems_save
+        datasource: datasource1 
+    methods: [POST]   
+    
+
+#------------------------ general costs ----------------------------
+accounting_generalcosts_list:
+    pattern: admin/accounting/generalcosts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_generalcosts_list
+        datasource: datasource1
+
+
+accounting_generalcosts_edit:
+    pattern: admin/accounting/generalcosts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_generalcosts_save:
+    pattern: admin/accounting/generalcosts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_save
+        datasource: datasource1 
+    methods: [POST]       
+    
+
+#------------------------ credit accounts ----------------------------
+accounting_creditaccounts_list:
+    pattern: admin/accounting/creditaccounts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CreditAccountsController
+        model: components\accounting\models\CreditAccountModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_creditaccounts_list
+        datasource: datasource1
+
+
+accounting_creditaccounts_edit:
+    pattern: admin/accounting/creditaccounts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CreditAccountsController
+        model: components\accounting\models\CreditAccountModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_creditaccounts_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_creditaccounts_save:
+    pattern: admin/accounting/creditaccounts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CreditAccountsController
+        model: components\accounting\models\CreditAccountModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_creditaccounts_save
+        datasource: datasource1 
+    methods: [POST]           
+    
+
+#------------------------ debit accounts ----------------------------
+accounting_debitaccounts_list:
+    pattern: admin/accounting/debitaccounts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\DebitAccountsController
+        model: components\accounting\models\DebitAccountModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_debitaccounts_list
+        datasource: datasource1
+
+
+accounting_debitaccounts_edit:
+    pattern: admin/accounting/debitaccounts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\DebitAccountsController
+        model: components\accounting\models\DebitAccountModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_debitaccounts_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_debitaccounts_save:
+    pattern: admin/accounting/debitaccounts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\DebitAccountsController
+        model: components\accounting\models\DebitAccountModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_debitaccounts_save
+        datasource: datasource1 
+    methods: [POST]            
+    
+
+#------------------------ work order accounts ----------------------------
+accounting_workorders_list:
+    pattern: admin/accounting/workorders/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrdersController
+        model: components\accounting\models\WorkOrderModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_workorders_list
+        datasource: datasource1
+
+
+accounting_workorders_edit:
+    pattern: admin/accounting/workorders/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrdersController
+        model: components\accounting\models\WorkOrderModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_workorders_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_workorders_save:
+    pattern: admin/accounting/workorders/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrdersController
+        model: components\accounting\models\WorkOrderModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_workorders_save
+        datasource: datasource1 
+    methods: [POST]               
+    
+
+#------------------------ work order requests ----------------------------
+accounting_workorderrequests_list:
+    pattern: admin/accounting/workorderrequests/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrderRequestsController
+        model: components\accounting\models\WorkOrderRequestModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_workorderrequests_list
+        datasource: datasource1
+
+
+accounting_workorderrequests_edit:
+    pattern: admin/accounting/workorderrequests/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrderRequestsController
+        model: components\accounting\models\WorkOrderRequestModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_workorderrequests_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_workorderrequests_save:
+    pattern: admin/accounting/workorderrequests/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\WorkOrderRequestsController
+        model: components\accounting\models\WorkOrderRequestModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_workorderrequests_save
+        datasource: datasource1 
+    methods: [POST]                      
+    
+
+#------------------------ purchase order notes ----------------------------
+accounting_purchaseordernotes_list:
+    pattern: admin/accounting/purchaseordernotes/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_purchaseordernotes_list
+        datasource: datasource1
+
+
+accounting_purchaseordernotes_edit:
+    pattern: admin/accounting/purchaseordernotes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordernotes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_purchaseordernotes_save:
+    pattern: admin/accounting/purchaseordernotes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordernotes_save
+        datasource: datasource1 
+    methods: [POST]                      
+    
+
+#------------------------ Breakdown Report ----------------------------
+accounting_breakdownreports_list:
+    pattern: admin/accounting/breakdownreports/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportsController
+        model: components\accounting\models\BreakdownReportModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_breakdownreports_list
+        datasource: datasource1
+
+
+accounting_breakdownreports_edit:
+    pattern: admin/accounting/breakdownreports/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportsController
+        model: components\accounting\models\BreakdownReportModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_breakdownreports_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_breakdownreports_save:
+    pattern: admin/accounting/breakdownreports/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportsController
+        model: components\accounting\models\BreakdownReportModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_breakdownreports_save
+        datasource: datasource1 
+    methods: [POST]                      
+    
+
+#------------------------ Breakdown Report Item ----------------------------
+accounting_breakdownreportitems_list:
+    pattern: admin/accounting/breakdownreportitems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportItemsController
+        model: components\accounting\models\BreakdownReportItemModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_breakdownreportitems_list
+        datasource: datasource1
+
+
+accounting_breakdownreportitems_edit:
+    pattern: admin/accounting/breakdownreportitems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportItemsController
+        model: components\accounting\models\BreakdownReportItemModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_breakdownreportitems_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_breakdownreportitems_save:
+    pattern: admin/accounting/breakdownreportitems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\BreakdownReportItemsController
+        model: components\accounting\models\BreakdownReportItemModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_breakdownreportitems_save
+        datasource: datasource1 
+    methods: [POST]                             
+    
+
+#------------------------ Cost Card ----------------------------
+accounting_costcards_list:
+    pattern: admin/accounting/costcards/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_costcards_list
+        datasource: datasource1
+
+
+accounting_costcards_edit:
+    pattern: admin/accounting/costcards/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_costcards_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_costcards_save:
+    pattern: admin/accounting/costcards/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_costcards_save
+        datasource: datasource1 
+    methods: [POST]                                 
+    
+
+#------------------------ Supplies Used ----------------------------
+accounting_suppliesused_list:
+    pattern: admin/accounting/suppliesused/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_suppliesused_list
+        datasource: datasource1
+
+
+accounting_suppliesused_edit:
+    pattern: admin/accounting/suppliesused/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_suppliesused_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_suppliesused_save:
+    pattern: admin/accounting/suppliesused/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_suppliesused_save
+        datasource: datasource1 
+    methods: [POST]                                          
+    
+
+#------------------------ Accounting General Cost ----------------------------
+accounting_generalcosts_list:
+    pattern: admin/accounting/generalcosts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_generalcosts_list
+        datasource: datasource1
+
+
+accounting_generalcosts_edit:
+    pattern: admin/accounting/generalcosts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_generalcosts_save:
+    pattern: admin/accounting/generalcosts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_save
+        datasource: datasource1 
+    methods: [POST]                                                    
+    
+
+#------------------------ Accounting Cash Receipt ----------------------------
+accounting_cashreceipts_list:
+    pattern: admin/accounting/cashreceipts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_cashreceipts_list
+        datasource: datasource1
+
+
+accounting_cashreceipts_edit:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_cashreceipts_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_cashreceipts_save:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_cashreceipts_save
+        datasource: datasource1 
+    methods: [POST]                                                   
+    
+
+#------------------------ Accounting Invoice Extra ----------------------------
+accounting_invoiceextras_list:
+    pattern: admin/accounting/invoiceextras/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceExtrasController
+        model: components\accounting\models\AccountingInvoiceExtraModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_invoiceextras_list
+        datasource: datasource1
+
+
+accounting_invoiceextras_edit:
+    pattern: admin/accounting/invoiceextras/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceExtrasController
+        model: components\accounting\models\AccountingInvoiceExtraModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_invoiceextras_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_invoiceextras_save:
+    pattern: admin/accounting/invoiceextras/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingInvoiceExtrasController
+        model: components\accounting\models\AccountingInvoiceExtraModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_invoiceextras_save
+        datasource: datasource1 
+    methods: [POST]                                                                
+    
+
+#------------------------ Accounting General Cost Item ----------------------------
+accounting_generalcostitems_list:
+    pattern: admin/accounting/generalcostitems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingGeneralCostItemsController
+        model: components\accounting\models\AccountingGeneralCostItemModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: accounting_generalcostitems_list
+        datasource: datasource1
+
+
+accounting_generalcostitems_edit:
+    pattern: admin/accounting/generalcostitems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingGeneralCostItemsController
+        model: components\accounting\models\AccountingGeneralCostItemModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_generalcostitems_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+accounting_generalcostitems_save:
+    pattern: admin/accounting/generalcostitems/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingGeneralCostItemsController
+        model: components\accounting\models\AccountingGeneralCostItemModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_generalcostitems_save
+        datasource: datasource1 
+    methods: [POST]                       
