@@ -1,4 +1,15 @@
-
+admin_staff_search:
+    pattern: admin/staff/search
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_staff_home
+        datasource: datasource1
+    methods: [GET] 
+    
 
 admin_staff_home:
     pattern: admin/staff
