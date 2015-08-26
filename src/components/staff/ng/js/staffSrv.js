@@ -38,6 +38,12 @@ module.service('staffListSrv', function($http){
 
   this.autocomplete = function(searchObject) {
     var value = searchObject.val;
+    var column = searchObject.col;
+
+    return $http.get(apiPath + 'search?' + column + '=' + value)
+    .then(function(response){
+      self.autocompleteList = response.data.Staffs;
+    });
   };
 
   this.filterListBy = function(row, numRows, config) {

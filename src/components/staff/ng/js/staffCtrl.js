@@ -20,7 +20,10 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   }
 
   function fetchAutocomplete() {
-    staffListSrv.autocomplete($scope.basicSearch);
+    staffListSrv.autocomplete($scope.basicSearch)
+      .then(function(){
+        $scope.autocomplete = staffListSrv.autocompleteList;
+      });
   }
 
   $scope.openStaffScheduleModal = function(staff) {

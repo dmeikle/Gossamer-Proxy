@@ -7,7 +7,8 @@
       <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
       <option ng-repeat="value in autocomplete" value="value.name"></option>
     </datalist>
-    <select name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col">
+    <select name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col"
+      ng-init="basicSearch.col = 'name'">
       <option value="name" ng-selected="true"><?php echo $this->getString('STAFF_NAME');?></option>
       <option value="ext"><?php echo $this->getString('STAFF_EXT');?></option>
       <option value="phone"><?php echo $this->getString('STAFF_PHONE');?></option>
