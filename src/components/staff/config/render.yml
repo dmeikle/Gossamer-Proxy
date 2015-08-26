@@ -9,3 +9,11 @@ staffEditModal:
     path: 'src/components/staff/ng/views/staffEditModal.php'
     langFiles:
         - 'src/components/staff/locales/*/login'
+
+staffSearch:
+    path: 'src/components/staff/ng/views/staffSearch.php'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions' }
+        

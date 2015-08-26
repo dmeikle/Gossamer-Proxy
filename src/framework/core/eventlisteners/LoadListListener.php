@@ -86,6 +86,10 @@ class LoadListListener extends AbstractCachableListener {
         $this->loadList();
     }
 
+    public function on_filerender_start($params) {
+        $this->loadList();
+    }
+
     protected function getVerb() {
         
         if(array_key_exists('verb', $this->listenerConfig)) {

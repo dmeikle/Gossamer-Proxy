@@ -41,11 +41,17 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
     }
 
     public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
-
+        $queryParams = $this->httpRequest->getQueryParameters();
+        
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
         );
+        
+        foreach($queryParams as $key => $value) {
+            $params['directive::' . strtoupper($key)] = $value;
+        }
+        
         $defaultLocale = $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
 
