@@ -16,6 +16,13 @@ module.service('staffListSrv', function($http){
       });
   };
 
+  this.getStaffDetail = function(object) {
+    return $http.get(apiPath + object.id)
+      .then(function(response) {
+        self.staffDetail = response.data;
+      });
+  };
+
   this.saveStaff = function(staff, formToken) {
     var requestPath;
     if (!staff.id) {
@@ -37,8 +44,8 @@ module.service('staffListSrv', function($http){
   };
 
   this.autocomplete = function(searchObject) {
-    var value = searchObject.val;
-    var column = searchObject.col;
+    var value = searchObject.val[0];
+    var column = searchObject.col[0];
 
     return $http.get(apiPath + 'search?' + column + '=' + value)
     .then(function(response){
@@ -46,8 +53,17 @@ module.service('staffListSrv', function($http){
     });
   };
 
-  this.filterListBy = function(row, numRows, config) {
-    return $http.get(apiPath + row + '/' + numRows + '?' + config)
+  this.filterListBy = function(row, numRows, searchObject) {
+    var config = {};
+    for (var i = 0; i < searchObject.col.length; i++) {
+      config[searchObject.col[i]] = searchObject.val[i];
+    }
+
+    return $http({
+      url: apiPath + row + '/' + numRows,
+      method: 'GET',
+      params: config
+      })
       .then(function(response){
         self.staffList = response.data.Staffs;
         self.staffCount = response.data.StaffsCount[0].rowCount;

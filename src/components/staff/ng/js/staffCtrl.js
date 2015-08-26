@@ -25,6 +25,13 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
         $scope.autocomplete = staffListSrv.autocompleteList;
       });
   }
+  function openSidePanel(clickedObject) {
+    $scope.selectedStaff = clickedObject;
+  }
+
+  function closeSidePanel() {
+    $scope.selectedStaff = undefined;
+  }
 
   $scope.openStaffScheduleModal = function(staff) {
     var template = templateSrv.staffScheduleModal;
@@ -63,8 +70,24 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
       });
   };
 
-  $scope.submitBasicSearch = function(searchObject) {
-    staffListSrv.basicSearch(searchObject);
+  $scope.search = function(searchObject) {
+    staffListSrv.filterListBy(row, numRows, searchObject)
+      .then(function(){
+        $scope.staffList = staffListSrv.searchResults;
+      });
+  };
+
+  $scope.selectRow = function(clickedObject) {
+    if (clickedObject.clicked === undefined || clickedObject.clicked === false) {
+      clickedObject.clicked = true;
+      staffListSrv.getStaffDetail(clickedObject)
+        .then(function(){
+          openSidePanel(staffListSrv.staffDetail);
+        });
+      return;
+    }
+    clickedObject.clicked = false;
+    closeSidePanel();
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
