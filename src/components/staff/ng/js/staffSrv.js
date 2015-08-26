@@ -55,9 +55,14 @@ module.service('staffListSrv', function($http){
 
   this.filterListBy = function(row, numRows, searchObject) {
     var config = {};
-    for (var i = 0; i < searchObject.col.length; i++) {
-      config[searchObject.col[i]] = searchObject.val[i];
+    if (searchObject.val[0]) {
+      for (var i = 0; i < searchObject.col.length; i++) {
+        config[searchObject.col[i]] = searchObject.val[i];
+      }
+    } else {
+      config = undefined;
     }
+
 
     return $http({
       url: apiPath + row + '/' + numRows,
@@ -65,8 +70,8 @@ module.service('staffListSrv', function($http){
       params: config
       })
       .then(function(response){
-        self.staffList = response.data.Staffs;
-        self.staffCount = response.data.StaffsCount[0].rowCount;
+        self.searchResults = response.data.Staffs;
+        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });
   };
 });

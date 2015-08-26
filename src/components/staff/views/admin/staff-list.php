@@ -1,9 +1,12 @@
 <div class="widget" ng-controller="staffListCtrl">
   <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
     <h1 class="pull-left">Staff List</h1>
-    <button class="pull-right"><?php echo $this->getString('STAFF_NEW');?></button>
+    <button class="pull-right" ng-click="openStaffEditModal()"><?php echo $this->getString('STAFF_NEW');?></button>
     <div class="clearfix"></div>
     <div class="pull-right">
+      <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
+        <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
+      </button>
       <input type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
       <datalist id="autocomplete-list">
         <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
@@ -15,7 +18,7 @@
         <option value="ext"><?php echo $this->getString('STAFF_EXT');?></option>
         <option value="phone"><?php echo $this->getString('STAFF_PHONE');?></option>
       </select>
-      <button ng-click="search(basicSearch)">
+      <button class="primary" ng-click="search(basicSearch)">
         <?php echo $this->getString('STAFF_SEARCH') ?>
       </button>
     </div>
