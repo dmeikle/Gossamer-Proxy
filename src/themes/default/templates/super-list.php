@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- super-list -->
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,7 +49,7 @@
 
 <script language="javascript">
   (function() {
-    angular.bootstrap(document, ['widgetAdmin']);
+    angular.bootstrap(document, [<?php echo $modules;?>]);
   })();
 </script>
 

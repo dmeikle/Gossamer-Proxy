@@ -879,7 +879,7 @@ accounting_costcarditemtypes_home:
         controller: components\accounting\controllers\CostCardItemTypesController
         model: components\accounting\models\CostCardItemTypeModel
         method: index
-        view: core\views\TemplateView
+        view: core\views\AngularTemplateView
         viewKey: accounting_costcarditemtypes_home
         datasource: datasource1
         

@@ -24,7 +24,7 @@ use core\handlers\HTMLTagHandler;
  */
 class TemplateView extends AbstractView {
 
-    private $sections = null;
+    protected $sections = null;
     private $isMobile = false;
     private $jsIncludeFiles = array();
     private $cssIncludeFiles = array();
@@ -99,7 +99,7 @@ class TemplateView extends AbstractView {
     /**
      * render the URI tags
      */
-    private function renderURITags() {
+    protected function renderURITags() {
         $uriHandler = new URITagHandler($this->logger);
 
         $uriHandler->setTemplate($this->template);
@@ -109,7 +109,7 @@ class TemplateView extends AbstractView {
     /**
      * render the HTML tags
      */
-    private function renderHTMLTags() {
+    protected function renderHTMLTags() {
         $htmlHandler = new HTMLTagHandler($this->logger);
         $htmlHandler->setDefaultLocale($this->getDefaultLocale());
         $htmlHandler->setTemplate($this->template);
@@ -121,7 +121,7 @@ class TemplateView extends AbstractView {
     /**
      * find any JS files to create <script /> tags for
      */
-    private function placeHeadJSFiles() {
+    protected function placeHeadJSFiles() {
         $jsIncludeString = '';
         //remove any duplicates from files calling same includes
         $list = array_unique($this->headFiles);
@@ -136,7 +136,7 @@ class TemplateView extends AbstractView {
     /**
      * find any JS files to create <script /> tags for
      */
-    private function placeJSFiles() {
+    protected function placeJSFiles() {
         $jsIncludeString = '';
         //remove any duplicates from files calling same includes
         $list = array_unique($this->jsIncludeFiles);
@@ -151,7 +151,7 @@ class TemplateView extends AbstractView {
     /**
      * find any CSS files to create <script /> tags for
      */
-    private function placeCSSFiles() {
+    protected function placeCSSFiles() {
         $cssIncludeString = '';
         //remove any duplicates from files calling same includes
         $list = array_unique($this->cssIncludeFiles);
@@ -163,7 +163,7 @@ class TemplateView extends AbstractView {
         $this->template = str_replace('<!---css--->', $cssIncludeString, $this->template);
     }
 
-    private function renderWidgets() {
+    protected function renderWidgets() {
       
         if (is_null($this->httpRequest->getAttribute('SystemWidgets'))) {
 
@@ -200,7 +200,7 @@ class TemplateView extends AbstractView {
      * 
      * @return void
      */
-    private function renderSections() {
+    protected function renderSections() {
 
         if (is_null($this->sections)) {
 
@@ -337,7 +337,7 @@ class TemplateView extends AbstractView {
         return $retval;
     }
 
-    private function renderImages() {
+    protected function renderImages() {
         
         //<img src="@components/component-name/includes/images/name-of-another-file.jpg" />
         $handler = new \core\handlers\ImportImageHandler($this->logger);
