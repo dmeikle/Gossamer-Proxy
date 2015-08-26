@@ -48,26 +48,28 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   };
 
   $scope.openStaffEditModal = function(staff) {
-    var template = templateSrv.staffEditModal;
-    var modalInstance = $modal.open({
-      templateUrl: template,
-      controller: 'staffModalCtrl',
-      size: 'lg',
-      resolve: {
-        staff: function() {
-          return staff;
-        }
-      }
-    });
 
-    modalInstance.result
-      .then(function(staff) {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        staffListSrv.saveStaff(staff, formToken)
-          .then(function() {
-            getStaffList();
-          });
-      });
+    alert('Imagine an edit user page here');
+    // var template = templateSrv.staffEditModal;
+    // var modalInstance = $modal.open({
+    //   templateUrl: template,
+    //   controller: 'staffModalCtrl',
+    //   size: 'lg',
+    //   resolve: {
+    //     staff: function() {
+    //       return staff;
+    //     }
+    //   }
+    // });
+    //
+    // modalInstance.result
+    //   .then(function(staff) {
+    //     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    //     staffListSrv.saveStaff(staff, formToken)
+    //       .then(function() {
+    //         getStaffList();
+    //       });
+    //   });
   };
 
   $scope.openStaffAdvancedSearchModal = function() {
@@ -89,15 +91,20 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   };
 
   $scope.search = function(searchObject) {
-    staffListSrv.filterListBy(row, numRows, searchObject)
-      .then(function(){
-        if (staffListSrv.searchResults) {
-          $scope.staffList = staffListSrv.searchResults;
-          $scope.totalItems = staffListSrv.searchResultsCount;
-        } else {
-          getStaffList();
-        }
-      });
+    if (searchObject.val) {
+      staffListSrv.filterListBy(row, numRows, searchObject)
+        .then(function(){
+          if (staffListSrv.searchResults) {
+            $scope.staffList = staffListSrv.searchResults;
+            $scope.totalItems = staffListSrv.searchResultsCount;
+          } else {
+            getStaffList();
+          }
+        });
+    } else {
+      getStaffList();
+    }
+
   };
 
   $scope.selectRow = function(clickedObject) {

@@ -56,7 +56,7 @@ module.service('staffListSrv', function($http){
   this.filterListBy = function(row, numRows, searchObject) {
     var config = {};
     if (searchObject.val[0]) {
-      for (var i = 0; i < searchObject.col.length; i++) {
+      for (var i = 0; i < Object.keys(searchObject.col).length; i++) {
         config[searchObject.col[i]] = searchObject.val[i];
       }
     } else {

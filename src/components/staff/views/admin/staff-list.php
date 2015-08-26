@@ -46,7 +46,7 @@
             <td></td>
             <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-click="selectRow(staff)" ng-class="{'selected': staff.clicked}">
+          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-click="selectRow(staff)" ng-class="{'selected': staff.clicked, 'inactive': staff.status=='inactive'}">
               <td><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
               <td>{{staff.title}}</td>
               <td>{{staff.telephone}}</td>
@@ -75,6 +75,20 @@
 
   <div class="widget-side-panel">
     <h1>{{selectedStaff.firstname}} {{selectedStaff.lastname}}</h1>
+    <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
+    <p>{{selectedStaff.telephone}}</p>
+    <h4><?php echo $this->getString('STAFF_MOBILE')?></h3>
+    <p>{{selectedStaff.mobile}}</p>
+    <h4><?php echo $this->getString('STAFF_EMAIL')?></h3>
+    <p>{{selectedStaff.email}}</p>
+    <h4><?php echo $this->getString('STAFF_CITY')?></h3>
+    <p>{{selectedStaff.city}}</p>
+    <h4><?php echo $this->getString('STAFF_POSTALCODE')?></h3>
+    <p>{{selectedStaff.postalCode}}</p>
+    <h4><?php echo $this->getString('STAFF_TITLE')?></h3>
+    <p>{{selectedStaff.title}}</p>
+    <h4><?php echo $this->getString('STAFF_EMPLOYEENUM')?></h3>
+    <p>{{selectedStaff.employeeNumber}}</p>
   </div>
   <div class="clearfix"></div>
   <form class="hidden"></form>
