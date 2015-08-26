@@ -1,29 +1,40 @@
-.Trash-1000
 
 .sass-cache
-
-vendor
-
-composer.lock
+.Trash-1000
 
 app/cache/*
 app/logs/*
+app/config/credentials.yml
+
+bower_components
+
+composer.lock
+
+
+documentation
+
 logs
+
 
 node_modules
 
-app/config/credentials.yml
-vendor/bin/phpunit
-documentation
-
-bower_components
 src/components/*/dist
 src/framework/core/components/*/dist
 
-web/components/*
-web/images/claims/*
-web/images/components/*
-web/js/angular/*
+vendor
+
+web/assets
+web/assets/default/images/images
+web/assets/default-bak/images/images
+
 web/css/components/*
 web/css/framework/*
+web/css/theme
+web/components
 
+web/images/claims/*
+web/images/components/*
+web/images/theme
+
+web/js/angular
+web/js/theme

@@ -61,7 +61,8 @@ function fixObject (&$object)
 }
 
 function buildLogger(Container &$container) {
-    $config = loadConfig();    
+    $config = loadConfig();   
+   
     $loggerConfig = $config['logger'];
     
     $loggerClass = $loggerConfig['class'];    

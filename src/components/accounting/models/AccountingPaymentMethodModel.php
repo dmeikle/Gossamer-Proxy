@@ -17,11 +17,11 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of TimesheetModel
+ * Description of AccountingPaymentMethodModel
  *
  * @author Dave Meikle
  */
-class TimesheetModel extends AbstractModel{
+class AccountingPaymentMethodModel extends AbstractModel{
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -29,7 +29,7 @@ class TimesheetModel extends AbstractModel{
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'Timesheet';
-        $this->tablename = 'timesheets';
+        $this->entity = 'AccountingPaymentMethod';
+        $this->tablename = 'accountingpaymentmethods';
     }
 }

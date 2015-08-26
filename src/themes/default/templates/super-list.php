@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
   <title>|title|</title>
 
@@ -21,8 +23,10 @@
     crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
 
+
   <!-- css import for system page -->
   <link rel="stylesheet" href="/css/core.min.css">
+
 
   <!-- css start -->
   <!---css--->
@@ -48,5 +52,6 @@
     angular.bootstrap(document, ['widgetAdmin']);
   })();
 </script>
+
 
 </html>

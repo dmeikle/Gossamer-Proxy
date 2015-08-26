@@ -1,0 +1,32 @@
+
+
+
+accounting_timesheets_list:
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "section2": "src/components/accounting/views/admin/subnav.php"
+            "section3": "src/components/accounting/views/admin/parameters.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+
+
+
+accounting_pos_list:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "section2": "src/components/accounting/views/admin/subnav.php"
+            "section3": "src/components/accounting/views/admin/parameters.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+            
+accounting_costcarditemtypes_home:           
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            
+            "section3": "src/components/accounting/views/costCardItemTypes/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"    
