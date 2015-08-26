@@ -29,6 +29,7 @@ web/assets/default-bak/images/images
 
 web/css/components/*
 web/css/framework/*
+
 web/css/theme
 web/components
 
@@ -38,3 +39,4 @@ web/images/theme
 
 web/js/angular
 web/js/theme
+

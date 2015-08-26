@@ -156,6 +156,11 @@ class EventDispatcher {
      * @param EventHandler $handler
      */
     public function listen($uri, EventHandler $handler) {
+        //CP-2 added this while working on calling listeners during core/components/render call
+        //no need to add handlers that will never match our request
+        if($uri != 'all' && $uri != __YML_KEY) {
+            return;
+        }
         $this->logger->addDebug('adding eventhandler for ' . $uri . ' to listeners list');
 
         $this->listeners[$uri][] = $handler;

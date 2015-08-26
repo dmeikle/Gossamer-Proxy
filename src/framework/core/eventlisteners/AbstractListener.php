@@ -185,7 +185,8 @@ class AbstractListener {
      */
     protected function getLoggedInStaffId() {
         $token = $this->getSecurityToken();
-
+//TODO: remove this debug
+        return 2;
         return $token->getClient()->getId();
     }
 

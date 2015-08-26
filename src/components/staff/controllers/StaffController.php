@@ -36,6 +36,13 @@ class StaffController extends AbstractController {
         $router->redirect('admin_staff_credentials_edit', array($result['id']));
     }
     
+    public function search() {
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+        
+        $this->render($result);
+    }
+    
+    
     public function searchByName() {
         $results = $this->model->search(array('firstname' => $this->getName()));
         

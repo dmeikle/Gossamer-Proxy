@@ -1,63 +1,95 @@
-<div class="widget">
-    <div class="block-heading">
-        <div class="main-text h2">
-            Staff List
-        </div>
-        <div class="block-controls">
-            <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
-            <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>
-        </div>
+<div class="widget" ng-controller="staffListCtrl">
+  <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
+    <h1 class="pull-left">Staff List</h1>
+    <button class="pull-right" ng-click="openStaffEditModal()"><?php echo $this->getString('STAFF_NEW');?></button>
+    <div class="clearfix"></div>
+    <div class="pull-right">
+      <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
+        <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
+      </button>
+      <input type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
+      <datalist id="autocomplete-list">
+        <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
+        <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
+      </datalist>
+      <select name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col[0]"
+        ng-init="basicSearch.col[0] = 'name'">
+        <option value="name" ng-selected="true"><?php echo $this->getString('STAFF_NAME');?></option>
+        <option value="ext"><?php echo $this->getString('STAFF_EXT');?></option>
+        <option value="phone"><?php echo $this->getString('STAFF_PHONE');?></option>
+      </select>
+      <button class="primary" ng-click="search(basicSearch)">
+        <?php echo $this->getString('STAFF_SEARCH') ?>
+      </button>
     </div>
-    <div class="block-content-outer" style="display: block">
-        <div class="block-content-inner">
-            <div class="table-responsive">
-                <table ng-controller="StaffController as manager" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Ext</th>
-                            <th>Mobile</th>
-                            <th>Status</th>
-                            <th>Last Login</th>
-                            <th>cog</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="staff in manager.items" >
-                            <td class="col-xs-2 col-md-2 col-lg-2"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
-                            <td class="col-xs-2 col-md-2 col-lg-2">{{staff.title}}</td>
-                            <td class="col-xs-1 col-md-1 col-lg-1">{{staff.telephone}}</td>
-                            <td class="col-xs-2 col-md-2 col-lg-2">{{staff.mobile}}</td>
-                            <td class="col-xs-1 col-md-1 col-lg-1">{{staff.status}}</td>
-                            <td class="col-xs-2 col-md-2 col-lg-2">{{staff.lastLogin}}</td>
-                            <td>
-                              <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <li><a href="#" data-id="{{staff.id}}" class="btn btn-primary btn-xs schedule">Schedule</a></li>
-                                  <li><a href="/admin/staff/{{staff.id}}" class="btn btn-primary btn-xs edit">Edit</a></li>
-                                  <li><a href="#" class="btn btn-primary btn-xs emergency" data-id="{{staff.id}}">Emergency Contacts</a></li>
-                                  <li><a href="#" data-id="{{staff.id}}" class="btn btn-primary btn-xs delete">Delete</a></li>
-                                </ul>
-                              </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th><?php echo $this->getString('STAFF_NAME'); ?></th>
+                <th><?php echo $this->getString('STAFF_TITLE'); ?></th>
+                <th><?php echo $this->getString('STAFF_EXT'); ?></th>
+                <th><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+                <th><?php echo $this->getString('STAFF_STATUS'); ?></th>
+                <th><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
+                <th class="cog-col">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr ng-if="loading">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <span class="spinner-loader"></span>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-click="selectRow(staff)" ng-class="{'selected': staff.clicked, 'inactive': staff.status=='inactive'}">
+              <td><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
+              <td>{{staff.title}}</td>
+              <td>{{staff.telephone}}</td>
+              <td>{{staff.mobile}}</td>
+              <td>{{staff.status}}</td>
+              <td>{{staff.lastLogin}}</td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
+                    <li><a ng-click="openStaffEditModal(staff)">Edit</a></li>
+                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a href="#">Delete</a></li>
+                  </ul>
+                </div>
+              </td>
+          </tr>
+        </tbody>
+    </table>
 
+    <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
+      class="pagination" boundary-links="true" rotate="false">
+    </pagination>
+  </div>
 
-                    <ul class="pagination" ng-controller="PaginationController as paginator" style="margin: 0">
-                        <li pagination-start></li>
-                        <li ng-repeat="row in paginator.rows">
-                            <a ng-click="manager.loadPage(2)" class=" {{ row.current}}" data-limit="{{ row.limit}}" data-offset="{{ row.offset}}" data-url="/admin/staff/rest/{{$index}}/{{ paginator.rowsPerPage}}">{{ $index + 1}}</a>
-                        </li>
-                        <li pagination-end></li>
-                    </ul>
-                    <dir-pagination-controls on-page-change="paginator.pageChanged(newPageNumber)"></dir-pagination-controls>
-
-            </div>
-        </div>
-    </div>
-
+  <div class="widget-side-panel">
+    <h1>{{selectedStaff.firstname}} {{selectedStaff.lastname}}</h1>
+    <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
+    <p>{{selectedStaff.telephone}}</p>
+    <h4><?php echo $this->getString('STAFF_MOBILE')?></h3>
+    <p>{{selectedStaff.mobile}}</p>
+    <h4><?php echo $this->getString('STAFF_EMAIL')?></h3>
+    <p>{{selectedStaff.email}}</p>
+    <h4><?php echo $this->getString('STAFF_CITY')?></h3>
+    <p>{{selectedStaff.city}}</p>
+    <h4><?php echo $this->getString('STAFF_POSTALCODE')?></h3>
+    <p>{{selectedStaff.postalCode}}</p>
+    <h4><?php echo $this->getString('STAFF_TITLE')?></h3>
+    <p>{{selectedStaff.title}}</p>
+    <h4><?php echo $this->getString('STAFF_EMPLOYEENUM')?></h3>
+    <p>{{selectedStaff.employeeNumber}}</p>
+  </div>
+  <div class="clearfix"></div>
+  <form class="hidden"></form>
 </div>

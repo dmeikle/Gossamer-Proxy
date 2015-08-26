@@ -47,7 +47,7 @@
   <!---header--->
   <div class="clearfix"></div>
   <main class="content full-width">
-    <!---section3--->
+    <!---content--->
   </main>
   <div class="clearfix"></div>
   <!---footer--->
