@@ -22,7 +22,9 @@ class RenderController extends AbstractController {
     public function renderFile($component, $filename) {
 
         $html = $this->httpRequest->getAttribute($this->getKey());
-
+       
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'filerender_start');
+       
         $this->render(array('html' => $html));
     }
 
