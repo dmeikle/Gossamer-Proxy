@@ -1,0 +1,19 @@
+{
+  "name": "widgets-component",
+  "version": "0.1.0",
+  "authors": [
+    "Nathan DeVuono <nathan.devuono@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "angular-bootstrap": "~0.13.1"
+  }
+}
