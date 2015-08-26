@@ -35,4 +35,16 @@ module.service('staffListSrv', function($http){
       }
     });
   };
+
+  this.autocomplete = function(searchObject) {
+    var value = searchObject.val;
+  };
+
+  this.filterListBy = function(row, numRows, config) {
+    return $http.get(apiPath + row + '/' + numRows + '?' + config)
+      .then(function(response){
+        self.staffList = response.data.Staffs;
+        self.staffCount = response.data.StaffsCount[0].rowCount;
+      });
+  };
 });

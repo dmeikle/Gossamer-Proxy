@@ -1,9 +1,26 @@
 module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv) {
+
+  // Stuff to run on controller load
+  $scope.itemsPerPage = 20;
+  $scope.currentPage = 1;
+
+  $scope.basicSearch = {};
+  $scope.autocomplete = {};
+
+  var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+  var numRows = $scope.itemsPerPage;
+
   function getStaffList() {
     staffListSrv.getStaffList(row, numRows).then(function(response){
       $scope.staffList = staffListSrv.staffList;
       $scope.totalItems = staffListSrv.staffCount;
+    }).then(function() {
+      $scope.loading = false;
     });
+  }
+
+  function fetchAutocomplete() {
+    staffListSrv.autocomplete($scope.basicSearch);
   }
 
   $scope.openStaffScheduleModal = function(staff) {
@@ -43,19 +60,24 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
       });
   };
 
+  $scope.submitBasicSearch = function(searchObject) {
+    staffListSrv.basicSearch(searchObject);
+  };
+
   $scope.$watch('currentPage + numPerPage', function() {
+    $scope.loading = true;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
 
     getStaffList(row, numRows);
   });
 
-  // Stuff to run on controller load
-  $scope.itemsPerPage = 10;
-  $scope.currentPage = 1;
-
-  var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-  var numRows = $scope.itemsPerPage;
+  $scope.$watch('basicSearch.val', function(){
+    if ($scope.basicSearch.val !== undefined) {
+      $scope.autocomplete.loading = true;
+      fetchAutocomplete();
+    }
+  });
 });
 
 module.controller('staffModalCtrl', function($modalInstance, $scope, staff){
