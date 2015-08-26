@@ -75,6 +75,10 @@ class HTTPRequest extends AbstractHTTP {
 
         return null;
     }
+    
+    public function getQueryParameters() {
+        return $this->queryString;
+    }
 
     /**
      * formats the query string into a readable array
