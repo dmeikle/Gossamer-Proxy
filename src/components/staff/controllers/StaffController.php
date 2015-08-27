@@ -91,9 +91,7 @@ class StaffController extends AbstractController {
     
     public function index() {
         $result = array();
-        $result['form'] = $this->drawForm($this->model, array());
-        $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
-        $result['id'] = 0;
+       
         $this->render($result);
     }
     

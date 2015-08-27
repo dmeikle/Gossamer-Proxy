@@ -182,7 +182,7 @@ super_widgets_home:
         controller:  core\components\widgets\controllers\WidgetsController
         model:  core\components\widgets\models\SystemWidgetModel
         method: index
-        view: core\views\TemplateView
+        view: core\views\AngularTemplateView
         viewKey: super_widgets_home
         datasource: datasource1
         langFiles:
