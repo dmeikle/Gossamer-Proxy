@@ -64,6 +64,7 @@ class TemplateView extends AbstractView {
         $this->loadTemplate($template, $theme);
         //render widgets before replacing section tags with HTML
         $this->renderWidgets();
+        $this->setViewConfigs($this->config);
         
         //this HAS to be called before the rest
         $this->renderSections();
@@ -78,7 +79,7 @@ class TemplateView extends AbstractView {
    
     }
 
-    private function setWidgetConfigs(array $config) {
+    private function setViewConfigs(array $config) {
      
         if(array_key_exists('head', $config) && count($config['head']) > 0) {
             $this->headFiles = array_merge($config['head'], $this->headFiles);
@@ -175,7 +176,7 @@ class TemplateView extends AbstractView {
             
             if (!is_array($section)) {
                 if(is_array($subSection)) {
-                    $this->setWidgetConfigs($section);
+                    $this->setViewConfigs($section);
                 }
                 $filename = (is_array($section) && array_key_exists('file', $section)) ? $section['file'] : $section;
                 
@@ -184,7 +185,7 @@ class TemplateView extends AbstractView {
             } else {              
                 foreach ($section as $subSectionName => $subSection) {
                     if(is_array($subSection)) {
-                        $this->setWidgetConfigs($subSection);
+                        $this->setViewConfigs($subSection);
                     }
                     $filename = (is_array($subSection) && array_key_exists('file', $subSection)) ? $subSection['file'] : $subSection;
                   
