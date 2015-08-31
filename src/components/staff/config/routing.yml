@@ -27,19 +27,13 @@ admin_staff_home:
     staticCache: true
 
 admin_staff_create_new:
-    pattern: admin/staff/0
+    pattern: admin/staff/create
     listeners:
-     #   - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffRoleModel', 'cacheKey': 'StaffRoles' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: createNew
+        method: index
         view: core\views\TemplateView
         viewKey: admin_staff_create_new
         datasource: datasource1
@@ -73,7 +67,7 @@ admin_staff_rest_save:
 
 
 admin_staff_edit_home:
-    pattern: admin/staff/*
+    pattern: admin/staff/edit/*
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffRoleModel', 'cacheKey': 'StaffRoles' }
         - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffAuthorizationsByIdListener', 'datasource': 'datasource1' }
@@ -87,7 +81,7 @@ admin_staff_edit_home:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: edit
-        view: core\views\JSONView
+        view: core\views\TemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1
     methods: [GET]
