@@ -20,7 +20,7 @@ use core\system\Router;
  *
  * @author Dave Meikle
  */
-class StaffPasswordValidListener extends AbstractListener{
+class StaffPasswordValidListener extends AbstractListener {
     
     public function on_entry_point(Event $event = null) {
      
@@ -35,9 +35,11 @@ class StaffPasswordValidListener extends AbstractListener{
         }elseif($this->invalidPasswordFormat($staffData)) {
             $result['password'] = 'VALIDATION_PASSWORD_COMPLEXITY';
         }
-    
-        if(is_array($result) && count($result) > 0) {
         
+        if(is_array($result) && count($result) > 0) {
+            if($this->listenerConfig['params']['failkey'] == 'false') { //don't do a redirect, just throw an error
+                throw new \exceptions\JSONException($this->getString($result['password']), 605 );
+            }
             setSession('ERROR_RESULT', $this->formatErrorResult($result));
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
@@ -73,4 +75,5 @@ class StaffPasswordValidListener extends AbstractListener{
        
        return $retval;
    }
+   
 }

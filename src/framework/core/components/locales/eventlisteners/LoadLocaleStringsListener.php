@@ -14,6 +14,7 @@ namespace core\components\locales\eventlisteners;
 use \core\eventlisteners\AbstractListener;
 use core\components\locales\utils\LocaleLoader;
 
+
 /**
  * loads the strings based on currently selected locale
  * 
@@ -21,6 +22,11 @@ use core\components\locales\utils\LocaleLoader;
  */
 class LoadLocaleStringsListener extends AbstractListener {
 
+    
+    public function on_entry_point($filename) {
+        $this->loadStrings($filename);
+    }
+    
     /**
      * 
      * @param string  $filename
@@ -28,7 +34,10 @@ class LoadLocaleStringsListener extends AbstractListener {
      * @return LocaleLoader
      */
     public function on_request_start($filename) {
-
+        $this->loadStrings($filename);
+    }
+    
+    public function loadStrings($filename) {
         $config = $this->httpRequest->getAttribute('langFilesList');
         if (is_null($config)) {
 

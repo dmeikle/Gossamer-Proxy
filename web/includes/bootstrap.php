@@ -81,6 +81,10 @@ try{
     //so ignore this error but set an exception flag in the request we can 
     //check for
     $container->get('HTTPRequest')->setAttribute('ExceptionOccurred', true);
+}catch(\exceptions\JSONException $e) {
+    echo $e->getMessage();
+    die;
+    
 }catch(\Exception $e) {
     echo $e->getMessage().'<br>';
     include __SITE_PATH . '/src/themes/default/templates/errorPages/general.php' ;

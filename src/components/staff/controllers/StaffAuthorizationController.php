@@ -71,7 +71,7 @@ class StaffAuthorizationController extends AbstractController
             $result = $this->model->edit($id);
         }
         
-        $result['form'] = $this->drawCredentialsForm($this->model,  $result['StaffAuthorization']);
+       // $result['form'] = $this->drawCredentialsForm($this->model,  $result['StaffAuthorization']);
       
         $this->render($result);
     } 
