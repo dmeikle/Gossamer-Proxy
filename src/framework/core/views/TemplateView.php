@@ -80,7 +80,7 @@ class TemplateView extends AbstractView {
     }
 
     private function setViewConfigs(array $config) {
-     
+
         if(array_key_exists('head', $config) && count($config['head']) > 0) {
             $this->headFiles = array_merge($config['head'], $this->headFiles);
         }
@@ -94,6 +94,7 @@ class TemplateView extends AbstractView {
             $cssHandler = new ImportCSSHandler($this->logger);
             $parseList = $cssHandler->handlerequest($config['css']);
             $this->cssIncludeFiles = array_merge($this->cssIncludeFiles, $parseList);
+           
         }
     }
     

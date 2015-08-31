@@ -6,8 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>|title|</title>
-<!--- head --->
-<!--- css --->
+<!---head--->
+
+  <link rel="stylesheet" href="/css/core.min.css">
+
+<!---css--->
 </head>
 
 <body>
