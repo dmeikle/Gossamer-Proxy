@@ -106,11 +106,13 @@
           </div>
           <div class="form-group">
             <label for="StaffTypes_id"><?php echo $this->getString('STAFF_STAFFTYPE_ID'); ?></label>
+            <?php echo $form['StaffTypes_id'];?>
             <input class="form-control" type="text" name="StaffTypes_id"
               id="staff-StaffTypes_id" ng-model="staff.StaffTypes_id">
           </div>
           <div class="form-group">
             <label for="StaffPositions_id"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></label>
+            <?php echo $form['StaffPositions_id'];?>
             <input class="form-control" type="text" name="StaffPositions_id"
               id="staff-StaffPositions_id" ng-model="staff.StaffPositions_id">
           </div>
@@ -141,7 +143,8 @@
           </div>
           <div class="form-group">
             <label for="HiringAgencies_id"><?php echo $this->getString('STAFF_HIRINGAGENCY_ID'); ?></label>
-            
+            <!-- need to write the hiring agencies component still -->
+            <?php  echo $form['HiringAgencies_id'];?>
           </div>
         </div>
       </div>
