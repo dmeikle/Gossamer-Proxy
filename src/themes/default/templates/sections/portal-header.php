@@ -47,7 +47,7 @@
             <li>Invoices</li>
         
     </ul>
-    -->
+    
  
 <ul id="nav">
     <?php
@@ -64,7 +64,7 @@
         
     <?php
     }?>
-</ul>
+</ul>-->
     <!---section2--->
   </div>
 
