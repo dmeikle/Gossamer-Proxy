@@ -22,6 +22,10 @@ use core\eventlisteners\Event;
 
 class StaffAuthorizationController extends AbstractController
 {
+    public function displayResetForm() {
+        $this->render(array('form' => $this->drawCredentialsForm($this->model), array()));
+    }
+    
     public function save($id) {
         echo 'in basic save';
         $result = $this->model->save($id);

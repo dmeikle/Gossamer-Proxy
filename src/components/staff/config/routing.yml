@@ -264,6 +264,48 @@ admin_staff_photo_upload:
 
 
 #--------------------------- login section ------------------
+
+
+
+admin_login_reset_submit:
+    pattern: admin/login/reset
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: resetLogin
+        view: core\views\TemplateView
+        viewKey: admin_login_reset_submit
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/staff/locales/*/login'
+            - 'src/components/staff/locales/*/validation'
+    methods: [GET]
+    staticCache: true
+
+admin_login_reset:
+    pattern: admin/login/reset
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: displayResetForm
+        view: core\views\TemplateView
+        viewKey: admin_login_reset
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/staff/locales/*/login'
+            - 'src/components/staff/locales/*/validation'
+    methods: [GET]
+    staticCache: true
+
+
 admin_login:
     pattern: admin/login
     listeners:
