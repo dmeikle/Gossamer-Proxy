@@ -98,18 +98,6 @@ admin_staff_get:
         datasource: datasource1
     methods: [GET]
 
-admin_staff_rest_list:
-    pattern: admin/staff/*/*
-    defaults:
-        component: components\staff\StaffComponent
-        controller: components\staff\controllers\StaffController
-        model: components\staff\models\StaffModel
-        method: listall
-        view: core\views\JSONView
-        viewKey: admin_staff_rest_list
-        datasource: datasource1
-    methods: [GET]
-
 admin_staff_rest_paginator:
     pattern: admin/staff/pagination/*/*
     defaults:
@@ -142,14 +130,28 @@ admin_staff_permissions_save:
 
 
 
+admin_staff_credentials_get:
+    pattern: admin/staff/credentials/*
+    listeners:
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_staff_credentials_get
+        datasource: datasource1
+    methods: [GET]
+
+
 admin_staff_credentials_save:
     pattern: admin/staff/credentials/*
     listeners:
        # - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_staff_credentials_edit' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'false' }}
         - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_staff_credentials_edit' }}
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_staff_credentials_edit' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'false' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'false' }}
       #  - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}
     defaults:
         component: components\staff\StaffComponent
@@ -159,6 +161,8 @@ admin_staff_credentials_save:
         view: core\views\JSONView
         viewKey: admin_staff_credentials_save
         datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/validation'
     methods: [POST]
 
 
@@ -268,3 +272,18 @@ admin_status_locked:
             - 'src/components/defaultItem/locales/*/Roles'
 
 #--------------------------- end login ---------------------
+
+
+
+
+admin_staff_rest_list:
+    pattern: admin/staff/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_staff_rest_list
+        datasource: datasource1
+    methods: [GET]

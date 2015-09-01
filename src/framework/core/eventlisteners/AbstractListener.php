@@ -190,4 +190,11 @@ class AbstractListener {
         return $token->getClient()->getId();
     }
 
+    
+   protected function getString($key) {
+       $langFiles = $this->httpRequest->getAttribute('langFiles');
+       
+       
+       return $langFiles->getString($key);
+   }
 }

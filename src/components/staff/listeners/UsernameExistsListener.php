@@ -24,8 +24,9 @@ use core\system\Router;
  */
 class UsernameExistsListener extends AbstractListener{
     
-    public function on_request_start(Event $event = null) {
-       
+    //CP-87 - change from request_start to entry_point
+    public function on_entry_point(Event $event = null) {
+      
         $staff = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $post = $this->httpRequest->getPost();
         $staffData = $post['StaffAuthorization'];
@@ -38,7 +39,9 @@ class UsernameExistsListener extends AbstractListener{
         $results = $datasource->query('get', $staff, 'get', $params);
      
         if(is_array($results) && array_key_exists('StaffAuthorization', $results) && $this->isDifferentUser($currentStaffId, $results)) {
-           
+            if($this->listenerConfig['params']['failkey'] == 'false') { //don't do a redirect, just throw an error
+                throw new \exceptions\JSONException($this->getString('VALIDATION_USERNAME_EXISTS'), 605 );
+            }
             setSession('ERROR_RESULT', $this->formatErrorResult());
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
@@ -52,7 +55,7 @@ class UsernameExistsListener extends AbstractListener{
     
     private function isDifferentUser($currentId, array $result) {
         $resultStaff = current($result['StaffAuthorization']);
-        
+       
         return (intval($currentId) != $resultStaff['Staff_id']);
     }
     

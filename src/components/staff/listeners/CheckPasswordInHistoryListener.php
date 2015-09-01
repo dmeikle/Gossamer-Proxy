@@ -36,6 +36,9 @@ class CheckPasswordInHistoryListener extends AbstractListener{
             return;
         }
         if($password->checkPasswordExists($params['StaffAuthorization']['password'], $member['passwordHistory'])) {
+            if($this->listenerConfig['params']['failkey'] == 'false') { //don't do a redirect, just throw an error
+                throw new \exceptions\JSONException($this->getString('VALIDATION_PASSWORD_IN_HISTORY'), 605 );
+            }
             setSession('ERROR_RESULT', array ('StaffAuthorization' => array('password' => 'VALIDATION_PASSWORD_IN_HISTORY')));
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             

@@ -10,6 +10,7 @@ include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
 //echo(__YML_KEY."\r\n");
+
 use core\system\Kernel;
 use core\system\KernelEvents;
 
