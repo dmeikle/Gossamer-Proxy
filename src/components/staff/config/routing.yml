@@ -271,6 +271,7 @@ admin_login_reset_submit:
     pattern: admin/login/reset
     listeners:
         - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffAuthorizationByUsernameListener', 'datasource': 'datasource1' }
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffAuthorizationController
@@ -283,8 +284,7 @@ admin_login_reset_submit:
             - 'src/framework/core/components/locales/resources/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
-    methods: [GET]
-    staticCache: true
+    methods: [POST]
 
 admin_login_reset:
     pattern: admin/login/reset
