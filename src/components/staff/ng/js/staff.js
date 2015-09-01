@@ -1,4 +1,4 @@
-var module = angular.module('staff', ['ui.bootstrap']);
+var module = angular.module('staffAdmin', ['ui.bootstrap']);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function(data){

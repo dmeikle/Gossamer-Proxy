@@ -5,23 +5,9 @@ admin_staff_edit_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
-            "content": "src/components/staff/views/admin/parameters.php"
+            "content": "src/components/staff/views/admin/staff-edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-
-
-
-
-admin_staff_home:
-    template: admin-list.php
-    sections:
-        -
-            "header": "src/themes/default/templates/sections/admin-header.php"
-            "context-button": "src/components/staff/views/admin/context-button.php"
-            "content": "src/components/staff/views/admin/staff-list.php"
-            "section2": "src/components/staff/views/admin/subnav.php"
-            "footer": "src/themes/default/templates/sections/footer.php" 
     angular:
         bootstrap_modules:
             - staffAdmin
@@ -35,8 +21,33 @@ admin_staff_home:
         #- @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
-        
-        
+
+
+
+admin_staff_home:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "context-button": "src/components/staff/views/admin/context-button.php"
+            "content": "src/components/staff/views/admin/staff-list.php"
+            "section2": "src/components/staff/views/admin/subnav.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - staffAdmin
+    head:
+        - @components/staff/dist/bower_components/angular/angular.min.js
+        - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @components/staff/dist/js/staff.concat.js
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/staff/dist/css/staff.min.css
+
+
 
 admin_staff_create_new:
     template: admin-list.php

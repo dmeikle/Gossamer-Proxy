@@ -14,7 +14,7 @@ admin_staff_search:
 admin_staff_home:
     pattern: admin/staff
     listeners:
-       
+
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -81,7 +81,7 @@ admin_staff_edit_home:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: edit
-        view: core\views\TemplateView
+        view: core\views\AngularTemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1
     methods: [GET]

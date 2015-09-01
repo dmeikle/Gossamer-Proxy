@@ -3,7 +3,7 @@ module.service('templateSrv', function() {
   this.staffEditModal = '/render/staff/staffEditModal';
 });
 
-module.service('staffListSrv', function($http){
+module.service('staffSrv', function($http){
   var apiPath = '/admin/staff/';
 
   var self = this;
