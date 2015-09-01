@@ -14,7 +14,7 @@ use core\system\Kernel;
 use core\system\KernelEvents;
 
 $kernel = new Kernel($container, $logger);
-$kearnel->run();
+$kernel->run();
 
 unset($kernel);
 
