@@ -19,19 +19,22 @@ module.service('staffSrv', function($http){
   this.getStaffDetail = function(object) {
     return $http.get(apiPath + object.id)
       .then(function(response) {
-        self.staffDetail = response.data;
+        response.data.Staff.dob = new Date(response.data.Staff.dob);
+        response.data.Staff.hireDate = new Date(response.data.Staff.hireDate);
+        response.data.Staff.departureDate = new Date(response.data.Staff.departureDate);
+        self.staffDetail = response.data.Staff;
       });
   };
 
-  this.saveStaff = function(staff, formToken) {
+  this.save = function(object, formToken) {
     var requestPath;
-    if (!staff.id) {
-      requestPath = apiPath + '/0';
+    if (!object.id) {
+      requestPath = apiPath + '0';
     } else {
-      requestPath = apiPath + '/' + staff.id;
+      requestPath = apiPath + object.id;
     }
     var data = {};
-    data.Widget = staff;
+    data.Staff = object;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',

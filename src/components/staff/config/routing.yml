@@ -122,9 +122,9 @@ admin_staff_edit_home:
         viewKey: admin_staff_edit_home
         datasource: datasource1
     methods: [GET]
-    
-    
-    
+
+
+
 
 admin_staff_benefits_list:
     pattern: admin/staff/benefits/*
@@ -136,7 +136,7 @@ admin_staff_benefits_list:
         view: core\views\JSONView
         viewKey: admin_staff_benefits_list
         datasource: datasource1
-    methods: [GET]  
+    methods: [GET]
 
 admin_staff_benefits_listbydate:
     pattern: admin/staff/benefits/*/*
@@ -148,11 +148,11 @@ admin_staff_benefits_listbydate:
         view: core\views\JSONView
         viewKey: admin_staff_benefits_listbydate
         datasource: datasource1
-    methods: [GET]  
-    
-    
-    
-    
+    methods: [GET]
+
+
+
+
 
 
 admin_staff_get:
@@ -161,9 +161,9 @@ admin_staff_get:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: edit
+        method: get
         view: core\views\JSONView
-        viewKey: admin_staff_edit_home
+        viewKey: admin_staff_get
         datasource: datasource1
     methods: [GET]
 
@@ -408,4 +408,3 @@ admin_staff_rest_list:
         viewKey: admin_staff_rest_list
         datasource: datasource1
     methods: [GET]
-
