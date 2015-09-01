@@ -19,6 +19,7 @@
     <?php echo $form['password'];?>
   </div>
     <div style="text-align:right">
+        <a href="/admin/login/reset"><?php echo $this->getString('LOGIN_LOST_PASSWORD');?></a> 
   <button type="submit" class="btn btn-primary"><?php echo $this->getString('LOGIN_SIGNIN');?></button>
     </div>
 </form>

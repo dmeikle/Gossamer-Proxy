@@ -67,3 +67,20 @@ admin_login:
         #- @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
+        
+admin_login_reset:   
+    template: list.php
+    sections:
+        -
+            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "section3": "src/components/staff/views/login/reset.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - staffAdmin
+    head:
+    javascript:
+        - @components/staff/dist/js/staff.concat.js
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/staff/dist/css/staff.min.css     
