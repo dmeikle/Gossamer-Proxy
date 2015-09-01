@@ -91,6 +91,37 @@ admin_staff_edit_home:
         viewKey: admin_staff_edit_home
         datasource: datasource1
     methods: [GET]
+    
+    
+    
+
+admin_staff_benefits_list:
+    pattern: admin/staff/benefits/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffBenefitsController
+        model: components\staff\models\StaffBenefitModel
+        method: listAllByStaff
+        view: core\views\JSONView
+        viewKey: admin_staff_benefits_list
+        datasource: datasource1
+    methods: [GET]  
+
+admin_staff_benefits_listbydate:
+    pattern: admin/staff/benefits/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffBenefitsController
+        model: components\staff\models\StaffBenefitModel
+        method: listAllByDate
+        view: core\views\JSONView
+        viewKey: admin_staff_benefits_listbydate
+        datasource: datasource1
+    methods: [GET]  
+    
+    
+    
+    
 
 admin_staff_rest_list:
     pattern: admin/staff/*/*
