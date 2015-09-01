@@ -51,6 +51,43 @@ admin_staff_check_username_exists:
         datasource: datasource1
     methods: [GET]
 
+admin_staff_emergencycontacts_list:
+    pattern: admin/staff/emergencycontacts/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactsController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: listAllByStaffId
+        view: core\views\JSONView
+        viewKey: admin_staff_emergencycontacts_list
+        datasource: datasource1
+    methods: [GET]
+
+admin_staff_emergencycontacts_get:
+    pattern: admin/staff/emergencycontacts/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactsController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_staff_emergencycontacts_get
+        datasource: datasource1
+    methods: [GET]
+
+admin_staff_emergencycontacts_delete:
+    pattern: admin/staff/emergencycontacts/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactsController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: deleteContact
+        view: core\views\JSONView
+        viewKey: admin_staff_emergencycontacts_delete
+        datasource: datasource1
+    methods: [DELETE]
+
+
 admin_staff_rest_save:
     pattern: admin/staff/*
     listeners:

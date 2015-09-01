@@ -79,4 +79,22 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
         return $this->entity;
     }
 
+    
+     /**
+     * queries the datasource and deletes the record
+     * 
+     * @param type $offset
+     * @param type $rows
+     * 
+     * @return array
+     */
+    public function deleteContact($staffId, $contactId) {
+        $params = array(
+            'Staff_id' => intval($staffId),
+            'id' => intval($contactId)
+        );
+
+        return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
+    }
+    
 }

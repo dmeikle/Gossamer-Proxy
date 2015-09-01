@@ -168,7 +168,6 @@ class AbstractModel {
             'id' => intval($id)
         );
 
-
         return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
     }
 
