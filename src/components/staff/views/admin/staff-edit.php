@@ -13,7 +13,7 @@
         <h1>Personal Information</h1>
 
         <div ng-if="staff.loading">
-          <div class="spinner-loader"></div>
+          <span class="spinner-loader"></span>
         </div>
 
         <div ng-if="!staff.loading">
@@ -80,7 +80,7 @@
         <h1>Employment Information</h1>
 
         <div ng-if="staff.loading">
-          <div class="spinner-loader"></div>
+          <span class="spinner-loader"></span>
         </div>
 
         <div ng-if="!staff.loading">
@@ -140,9 +140,8 @@
               id="staff-alarmPassword" ng-model="staff.alarmPassword">
           </div>
           <div class="form-group">
-            <label for="HiringAgencies_id"><?php echo $this->getString('STAFF_MOBILE'); ?></label>
-            <input class="form-control" type="text" name="HiringAgencies_id"
-              id="staff-HiringAgencies_id" ng-model="staff.HiringAgencies_id">
+            <label for="HiringAgencies_id"><?php echo $this->getString('STAFF_HIRINGAGENCY_ID'); ?></label>
+            
           </div>
         </div>
       </div>

@@ -16,6 +16,10 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
   }
 
   $scope.save = function(object) {
+    object.dob = object.dob.toISOString().substring(0, 10);
+    object.hireDate = object.hireDate.toISOString().substring(0, 10);
+    object.departureDate = object.departureDate.toISOString().substring(0, 10);
+
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     staffSrv.save(object, formToken).then(function() {
       getStaffDetail();
