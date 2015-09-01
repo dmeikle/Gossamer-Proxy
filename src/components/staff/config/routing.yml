@@ -86,6 +86,7 @@ admin_staff_edit_home:
         datasource: datasource1
     methods: [GET]
 
+
 admin_staff_get:
     pattern: admin/staff/*
     defaults:
@@ -97,6 +98,7 @@ admin_staff_get:
         viewKey: admin_staff_edit_home
         datasource: datasource1
     methods: [GET]
+
 
 admin_staff_rest_paginator:
     pattern: admin/staff/pagination/*/*
@@ -115,8 +117,6 @@ admin_staff_rest_paginator:
 
 admin_staff_permissions_save:
     pattern: admin/staff/permissions/*
-    listeners:
-       # - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffPermissionsLocallyListener', 'datasource': 'datasource3'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffAuthorizationController
@@ -126,6 +126,18 @@ admin_staff_permissions_save:
         viewKey: admin_staff_permissions_save
         datasource: datasource1
     methods: [POST]
+
+admin_staff_permissions_get:
+    pattern: admin/staff/permissions/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: getPermissions
+        view: core\views\JSONView
+        viewKey: admin_staff_permissions_get
+        datasource: datasource1
+    methods: [GET]
 
 
 
@@ -275,7 +287,6 @@ admin_status_locked:
 
 
 
-
 admin_staff_rest_list:
     pattern: admin/staff/*/*
     defaults:
@@ -287,3 +298,4 @@ admin_staff_rest_list:
         viewKey: admin_staff_rest_list
         datasource: datasource1
     methods: [GET]
+
