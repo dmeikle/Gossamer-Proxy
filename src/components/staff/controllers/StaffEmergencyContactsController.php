@@ -18,7 +18,7 @@ use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 
-class StaffEmergencyContactController extends AbstractController {
+class StaffEmergencyContactsController extends AbstractController {
 
     /**
      * edit - display an input form based on requested id
@@ -41,10 +41,14 @@ class StaffEmergencyContactController extends AbstractController {
 
     public function listallByStaffId($id) {
         $result = $this->model->listallWithParams(0,20, array('Staff_id' => intval($id)));
-        if(array_key_exists('EmergencyContacts', $result)) {
-            $result = $result['EmergencyContacts'];
-        }
-        $this->render(array('EmergencyContacts' => $result, 'form' => $this->drawForm($this->model)));
+       
+        $this->render($result);
+    }
+    
+    public function deleteContact($staffId, $contactId) {
+        $this->model->deleteContact($staffId, $contactId);
+        
+        $this->render(array('success' => 'true'));
     }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -73,4 +77,17 @@ class StaffEmergencyContactController extends AbstractController {
     public function getForm() {
         $this->render($this->drawForm($this->model, $value));
     }
+    
+    public function get($staffId, $contactId) {
+        $offset = 0;
+        $limit = 20;
+        $params = array('Staff_id' => intval($staffId),
+                'id' => intval($contactId)
+                );
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'get');
+        
+        $this->render($result);
+    }
+    
+    
 }
