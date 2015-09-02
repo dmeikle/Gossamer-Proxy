@@ -124,21 +124,3 @@ module.controller('staffModalCtrl', function($modalInstance, $scope, staff) {
     $modalInstance.dismiss('cancel');
   };
 });
-
-
-// EDIT controller
-
-module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
-
-  // Run on load
-  getStaffDetail();
-
-  function getStaffDetail() {
-    var object = {};
-    object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/')+1, $location.absUrl().length);
-
-    staffSrv.getStaffDetail(object).then(function() {
-      $scope.staff = staffSrv.staffDetail;
-    });
-  }
-});

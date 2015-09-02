@@ -64,7 +64,8 @@ class StaffBuilder extends AbstractBuilder{
                 ->add('submit', 'button', array('value' => 'Save', 'class' => 'btn btn-primary save-staff')) 
                 ->add('savePersonal', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'savePersonal(staff)')) 
                 ->add('saveEmployment', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'saveEmployment(staff)'))
-                ->add('saveRoles', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'saveRoles(staff)'));   
+                ->add('saveRoles', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'saveRoles(staff)')) 
+                ->add('HiringAgencies_id', 'select', array('ng-model' => 'staff.HiringAgencies_id', 'class' => 'form-control'));   
        
                 if($this->getValue('isActive', $values) == 1) {
                     $builder->add('isActive', 'check', array('value' => '1', 'checked' => true ));

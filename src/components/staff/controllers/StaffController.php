@@ -61,33 +61,11 @@ class StaffController extends AbstractController {
     public function ajaxSave($id = null) {
       
         $result = $this->model->save(intval($id));
-        
-        $this->render(array('Staff' => $result));
+        error_log(print_r($result, true));
+        $this->render($result);
     }
     
-    /**
-     * listall - retrieves rows based on offset, limit
-     * 
-     * @param int offset    database page to start at
-     * @param int limit     max rows to return
-     */
-    public function listall($offset = 0, $limit = 20) {
-        $result = $this->model->listall($offset, $limit);
-       
-        $this->render($result);
-//        $result = $this->model->listall($offset, $limit);
-//
-//        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-//            $pagination = new Pagination($this->logger);
-//            $result['pagination'] = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-//            unset($pagination);
-//        }
-//        
-//        $result['form'] = $this->drawForm($this->model, array());
-//        $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
-//        $result['id'] = 0;
-//        $this->render($result);
-    }
+
     
     public function index() {
         $result = array();
@@ -127,7 +105,7 @@ class StaffController extends AbstractController {
         $this->render($result);
     }
 
-    public function ajaxEdit($id) {
+    public function get($id) {
         $result = $this->model->edit(intval($id));
         unset($result['emergencyContacts']);
     

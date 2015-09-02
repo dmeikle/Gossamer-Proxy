@@ -1,7 +1,7 @@
 <div class="widget" ng-controller="staffListCtrl">
   <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
     <h1 class="pull-left">Staff List</h1>
-    <button class="pull-right" ng-click="openStaffEditModal()"><?php echo $this->getString('STAFF_NEW');?></button>
+    <a href="staff/edit/0" class="pull-right"><?php echo $this->getString('STAFF_NEW');?></a>
     <div class="clearfix"></div>
     <div class="pull-right">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
