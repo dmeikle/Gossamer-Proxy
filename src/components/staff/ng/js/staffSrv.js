@@ -19,22 +19,46 @@ module.service('staffSrv', function($http){
   this.getStaffDetail = function(object) {
     return $http.get(apiPath + object.id)
       .then(function(response) {
-        response.data.Staff.dob = new Date(response.data.Staff.dob);
-        response.data.Staff.hireDate = new Date(response.data.Staff.hireDate);
-        response.data.Staff.departureDate = new Date(response.data.Staff.departureDate);
+        if (response.data.Staff.dob) {
+          response.data.Staff.dob = new Date(response.data.Staff.dob.replace('-', '/'));
+        }
+        if (response.data.Staff.hireDate) {
+          response.data.Staff.hireDate = new Date(response.data.Staff.hireDate.replace('-', '/'));
+        }
+        if (response.data.Staff.departureDate) {
+          response.data.Staff.departureDate = new Date(response.data.Staff.departureDate.replace('-', '/'));
+        }
         self.staffDetail = response.data.Staff;
       });
   };
 
   this.save = function(object, formToken) {
+    var copiedObject = jQuery.extend(true, {}, object);
+    for (var property in copiedObject) {
+      if (copiedObject.hasOwnProperty(property)) {
+        if (copiedObject[property] === null || copiedObject[property] === '') {
+          delete copiedObject[property];
+        }
+      }
+    }
+    if (copiedObject.dob) {
+      copiedObject.dob = object.dob.toISOString().substring(0, 10);
+    }
+    if (copiedObject.hireDate) {
+      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
+    }
+    if (copiedObject.departureDate) {
+      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
+    }
+
     var requestPath;
     if (!object.id) {
       requestPath = apiPath + '0';
     } else {
-      requestPath = apiPath + object.id;
+      requestPath = apiPath + copiedObject.id;
     }
     var data = {};
-    data.Staff = object;
+    data.Staff = copiedObject;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
