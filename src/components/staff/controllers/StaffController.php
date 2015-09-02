@@ -61,8 +61,8 @@ class StaffController extends AbstractController {
     public function ajaxSave($id = null) {
       
         $result = $this->model->save(intval($id));
-        
-        $this->render(array('Staff' => $result));
+        error_log(print_r($result, true));
+        $this->render($result);
     }
     
 
