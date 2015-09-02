@@ -11,7 +11,7 @@
 <h2><?php echo $this->getString('LOGIN_RESET_FORM');?></h2>
 <form role="form" method="post">
   <div class="form-group">
-    <label for="email"><?php echo $this->getString('LOGIN_ENTER_EMAIL');?></label>
+    <label for="email"><?php echo $this->getString('LOGIN_ENTER_USERNAME');?></label>
     <?php echo $form['username'];?>
   </div>
     <div style="text-align:right">

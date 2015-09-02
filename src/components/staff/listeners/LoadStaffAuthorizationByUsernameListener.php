@@ -28,7 +28,7 @@ class LoadStaffAuthorizationByUsernameListener extends AbstractListener {
         $datasource = $this->getDatasource($model);
         $result = $datasource->query('get', $model, 'get', $params);
         if(array_key_exists('StaffAuthorization', $result)) {
-            $this->httpRequest->setAttribute('StaffAuthorization', $result['StaffAuthorization']);
+            $this->httpRequest->setAttribute('StaffAuthorization', current($result['StaffAuthorization']));
         }
     }
 }

@@ -30,18 +30,13 @@ class StaffAuthorizationController extends AbstractController
     //TODO: change this to rely on the first part coming from the listener
     //      then change the routing to use the temppassword model
     public function resetLogin() {
+       
         $offset = 0;
         $limit = 1;
         $params = $this->httpRequest->getPost();
+        $staffAuthorization = $this->httpRequest->getAttribute('StaffAuthorization');
         
-        //first find the row
-        $result = $this->model->listAllWithParams($offset, $limit, $params, 'get');
-        //now create a temppassword
-        $tempPwdModel = new StaffTempPasswordModel($this->httpRequest, $this->httpResponse, $this->logger);
-        $datasources = $this->container->get('datasources');
-        pr($datasources);
-        $tempPwdModel->setDataSource($datasources['components\staff\models\StaffTempPasswordModel']);
-        $result = $tempPwdModel->createTempPassword($result['StaffAuthorization']);
+        $result = $this->model->createTempPassword($staffAuthorization);
     }
     
     public function save($id) {

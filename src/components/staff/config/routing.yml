@@ -275,7 +275,7 @@ admin_login_reset_submit:
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffAuthorizationController
-        model: components\staff\models\StaffAuthorizationModel
+        model: components\staff\models\StaffTempPasswordModel
         method: resetLogin
         view: core\views\TemplateView
         viewKey: admin_login_reset_submit
