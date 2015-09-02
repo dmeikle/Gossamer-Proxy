@@ -5,7 +5,7 @@
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
-        <h1 class="pull-left">Personal Information</h1>
+        <h1 class="pull-left"><?php echo $this->getString('STAFF_PERSONAL_INFO'); ?></h1>
         <div class="pull-right">
           <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
         </div>
@@ -71,13 +71,16 @@
               id="staff-gender" ng-model="staff.gender">
           </div>
         </div>
+        <div class="card">
+          <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+        </div>
       </div>
 
 
     </div>
     <div class="cards">
       <div class="card">
-        <h1 class="pull-left">Employment Information</h1>
+        <h1 class="pull-left"><?php echo $this->getString('STAFF_EMPLOYMENT_INFO'); ?></h1>
         <div class="pull-right">
           <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
         </div>
@@ -155,7 +158,7 @@
     </div>
     <div class="cards">
       <div class="card">
-        <h1>General Info</h1>
+        <h1><?php echo $this->getString('STAFF_GENERAL_INFO'); ?></h1>
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
@@ -164,32 +167,47 @@
           <h3>{{staff.firstname}} {{staff.lastname}}</h3>
           <h4>{{staff.title}}</h4>
           <div class="cardleft">
-            <table>
+            <table class="cardtable">
               <tbody>
                 <tr>
                   <td><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></td>
-                  <td>{{staff.Departments_id}}</td>
+                  <td get-department></td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString(''); ?></td>
-                  <td></td>
+                  <td><?php echo $this->getString('STAFF_EMAIL'); ?></td>
+                  <td>{{staff.email}}</td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString(''); ?></td>
-                  <td></td>
+                  <td><?php echo $this->getString('STAFF_MOBILE'); ?></td>
+                  <td>{{staff.mobile}}</td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString(''); ?></td>
-                  <td></td>
+                  <td><?php echo $this->getString('STAFF_EXTENSION'); ?></td>
+                  <td>{{staff.extension}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="cardright">
-
+          <img ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
+      </div>
+
+      <div class="card">
+        <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
+        <button ng-click="alert('Password reset will be here')">
+          <?php echo $this->getString('STAFF_CLICK_HERE'); ?>
+        </button>
+        <p>
+          <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
+        </p>
+
+      </div>
+
+      <div class="card">
+        <h1><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
       </div>
     </div>
     <div class="clearfix"></div>
