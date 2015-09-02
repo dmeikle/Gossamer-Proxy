@@ -267,6 +267,44 @@ admin_staff_photo_upload:
 
 
 
+admin_login_confirmreset:
+    pattern: admin/login/confirmreset/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffTempPasswordModel
+        method: confirmReset
+        view: core\views\TemplateView
+        viewKey: admin_login_confirmreset
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/staff/locales/*/login'
+            - 'src/components/staff/locales/*/validation'
+    methods: [GET]
+
+admin_login_confirmreset_submit:
+    pattern: admin/login/confirmreset/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_login_confirmreset' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryByRestURIListener', 'params': {'failkey': 'admin_login_confirmreset' }}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffTempPasswordModel
+        method: confirmResetSubmit
+        view: core\views\TemplateView
+        viewKey: admin_login_confirmreset_submit
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/staff/locales/*/login'
+            - 'src/components/staff/locales/*/validation'
+    methods: [POST]
+
 admin_login_reset_submit:
     pattern: admin/login/reset
     listeners:

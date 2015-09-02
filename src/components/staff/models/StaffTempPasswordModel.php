@@ -33,18 +33,33 @@ class StaffTempPasswordModel extends AbstractModel implements FormBuilderInterfa
             'Staff_id' => $userAuthorization['Staff_id'],
             'password' => $this->randomPassword()
         );
-pr($userAuthorization);
+
         return $this->dataSource->query(self::METHOD_POST, $this, self::METHOD_SAVE, $params);
     }
 
+    public function confirmReset(array $params) {
+        
+        return $this->dataSource->query(self::METHOD_GET, $this, 'ResetTempPassword', $params);        
+    }
    
     public function getFormWrapper() {
         return $this->entity;  
     }
 
     private function randomPassword( $length = 8 ) {
-    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
-    $password = substr( str_shuffle( $chars ), 0, $length );
-    return $password;
-}
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+        $password = substr( str_shuffle( $chars ), 0, $length );
+        
+        return $password;
+    }
+    
+    public function confirmResetSubmit(array $staff) {
+   
+        $params = array(
+            'password' => crypt($staff['StaffTempPassword']['password']),
+            'uri' => $staff['uri']
+        );       
+        
+        return $this->dataSource->query(self::METHOD_GET, $this, 'SaveResetTempPassword', $params);  
+    }
 }

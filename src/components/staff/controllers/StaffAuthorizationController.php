@@ -27,8 +27,6 @@ class StaffAuthorizationController extends AbstractController
     }
     
     
-    //TODO: change this to rely on the first part coming from the listener
-    //      then change the routing to use the temppassword model
     public function resetLogin() {
        
         $offset = 0;
@@ -37,6 +35,38 @@ class StaffAuthorizationController extends AbstractController
         $staffAuthorization = $this->httpRequest->getAttribute('StaffAuthorization');
         
         $result = $this->model->createTempPassword($staffAuthorization);
+       
+        $this->render(array());
+    }
+    
+    public function confirmReset($id) {
+       $params = array(
+           'uri' => preg_replace('/[^a-zA-Z0-9_\-]/s','', $id)
+       );
+       
+       $result = $this->model->confirmReset($params);
+       
+       if(!is_array($result) || count($result) == 0) {
+           throw new \exceptions\Error404Exception();
+       }
+       
+       $this->render(array('form' => $this->drawCredentialsForm($this->model, array())));
+    }
+    
+    public function confirmResetSubmit($id) {
+        $params = $this->httpRequest->getPost();
+        $params['uri'] = preg_replace('/[^a-zA-Z0-9_\-]/s','', $id);
+       
+        $result = $this->model->confirmResetSubmit($params);
+        
+        if(!array_key_exists('StaffTempPassword', $result)) {
+            echo "either not found or inactive 1";
+        }
+        if(array_key_exists('status', $result['StaffTempPassword'][0]) && $result['StaffTempPassword'][0]['status'] == 'active') {
+            $this->render(array());
+        } else {
+            echo "either not found or inactive 2";
+        }
     }
     
     public function save($id) {
