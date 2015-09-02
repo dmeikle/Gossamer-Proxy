@@ -2,16 +2,14 @@
   <div class="widget">
 
     <h1 class="pull-left"><?php echo $this->getString('STAFF_EDIT') ?> {{staff.firstname}} {{staff.lastname}}</h1>
-    <div class="pull-right">
-    <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
-
-    <button ng-click="discardChanges()"><?php echo $this->getString('STAFF_DISCARD');?></button>
-    </div>
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
-        <h1>Personal Information</h1>
-
+        <h1 class="pull-left">Personal Information</h1>
+        <div class="pull-right">
+          <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        </div>
+        <div class="clearfix"></div>
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
@@ -75,11 +73,15 @@
         </div>
       </div>
 
-      
+
     </div>
     <div class="cards">
       <div class="card">
-        <h1>Employment Information</h1>
+        <h1 class="pull-left">Employment Information</h1>
+        <div class="pull-right">
+          <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        </div>
+        <div class="clearfix"></div>
 
         <div ng-if="loading">
           <span class="spinner-loader"></span>
@@ -105,6 +107,10 @@
             <label for="staff-employeeNumber"><?php echo $this->getString('STAFF_EMPLOYEENUM'); ?></label>
             <input class="form-control" type="text" name="employeeNumber"
               id="staff-employeeNumber" ng-model="staff.employeeNumber">
+          </div>
+          <div class="form-group">
+            <label for="Departments_id"><?php echo $this->getString('STAFF_STAFFDEPARTMENT_ID'); ?></label>
+            <?php echo $form['Departments_id'];?>
           </div>
           <div class="form-group">
             <label for="staff-StaffTypes_id"><?php echo $this->getString('STAFF_STAFFTYPE_ID'); ?></label>
@@ -150,6 +156,40 @@
     <div class="cards">
       <div class="card">
         <h1>General Info</h1>
+        <div ng-if="loading">
+          <span class="spinner-loader"></span>
+        </div>
+
+        <div ng-if="!loading">
+          <h3>{{staff.firstname}} {{staff.lastname}}</h3>
+          <h4>{{staff.title}}</h4>
+          <div class="cardleft">
+            <table>
+              <tbody>
+                <tr>
+                  <td><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></td>
+                  <td>{{staff.Departments_id}}</td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cardright">
+
+        </div>
+        <div class="clearfix"></div>
       </div>
     </div>
     <div class="clearfix"></div>
