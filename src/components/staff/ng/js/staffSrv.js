@@ -20,13 +20,13 @@ module.service('staffSrv', function($http){
     return $http.get(apiPath + object.id)
       .then(function(response) {
         if (response.data.Staff.dob) {
-          response.data.Staff.dob = new Date(response.data.Staff.dob.replace('-', '/'));
+          response.data.Staff.dob = new Date(response.data.Staff.dob);
         }
         if (response.data.Staff.hireDate) {
-          response.data.Staff.hireDate = new Date(response.data.Staff.hireDate.replace('-', '/'));
+          response.data.Staff.hireDate = new Date(response.data.Staff.hireDate);
         }
         if (response.data.Staff.departureDate) {
-          response.data.Staff.departureDate = new Date(response.data.Staff.departureDate.replace('-', '/'));
+          response.data.Staff.departureDate = new Date(response.data.Staff.departureDate);
         }
         self.staffDetail = response.data.Staff;
       });
@@ -36,7 +36,7 @@ module.service('staffSrv', function($http){
     var copiedObject = jQuery.extend(true, {}, object);
     for (var property in copiedObject) {
       if (copiedObject.hasOwnProperty(property)) {
-        if (copiedObject[property] === null || copiedObject[property] === '') {
+        if (copiedObject[property] === null) {
           delete copiedObject[property];
         }
       }

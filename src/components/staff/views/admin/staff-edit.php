@@ -2,16 +2,14 @@
   <div class="widget">
 
     <h1 class="pull-left"><?php echo $this->getString('STAFF_EDIT') ?> {{staff.firstname}} {{staff.lastname}}</h1>
-    <div class="pull-right">
-    <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
-
-    <button ng-click="discardChanges()"><?php echo $this->getString('STAFF_DISCARD');?></button>
-    </div>
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
-        <h1>Personal Information</h1>
-
+        <h1 class="pull-left">Personal Information</h1>
+        <div class="pull-right">
+          <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        </div>
+        <div class="clearfix"></div>
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
@@ -65,7 +63,7 @@
           <div class="form-group">
             <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
             <input class="form-control" type="date" name="dob"
-              id="staff-dob" ng-model="staff.dob">
+              id="staff-dob" ng-model="staff.dob" ng-model-options="{timezone: '+0000'}">
           </div>
           <div class="form-group">
             <label for="staff-gender"><?php echo $this->getString('STAFF_GENDER'); ?></label>
@@ -75,11 +73,15 @@
         </div>
       </div>
 
-      
+
     </div>
     <div class="cards">
       <div class="card">
-        <h1>Employment Information</h1>
+        <h1 class="pull-left">Employment Information</h1>
+        <div class="pull-right">
+          <button class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        </div>
+        <div class="clearfix"></div>
 
         <div ng-if="loading">
           <span class="spinner-loader"></span>
@@ -107,6 +109,10 @@
               id="staff-employeeNumber" ng-model="staff.employeeNumber">
           </div>
           <div class="form-group">
+            <label for="Departments_id"><?php echo $this->getString('STAFF_STAFFDEPARTMENT_ID'); ?></label>
+            <?php echo $form['Departments_id'];?>
+          </div>
+          <div class="form-group">
             <label for="staff-StaffTypes_id"><?php echo $this->getString('STAFF_STAFFTYPE_ID'); ?></label>
             <?php echo $form['StaffTypes_id'];?>
           </div>
@@ -122,12 +128,12 @@
           <div class="form-group">
             <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
             <input class="form-control" type="date" name="hireDate"
-              id="staff-hireDate" ng-model="staff.hireDate">
+              id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}">
           </div>
           <div class="form-group">
             <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
             <input class="form-control" type="date" name="departureDate"
-              id="staff-departureDate" ng-model="staff.departureDate">
+              id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}">
           </div>
           <div class="form-group">
             <label for="staff-extension"><?php echo $this->getString('STAFF_EXTENSION'); ?></label>
@@ -150,6 +156,40 @@
     <div class="cards">
       <div class="card">
         <h1>General Info</h1>
+        <div ng-if="loading">
+          <span class="spinner-loader"></span>
+        </div>
+
+        <div ng-if="!loading">
+          <h3>{{staff.firstname}} {{staff.lastname}}</h3>
+          <h4>{{staff.title}}</h4>
+          <div class="cardleft">
+            <table>
+              <tbody>
+                <tr>
+                  <td><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></td>
+                  <td>{{staff.Departments_id}}</td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><?php echo $this->getString(''); ?></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="cardright">
+
+        </div>
+        <div class="clearfix"></div>
       </div>
     </div>
     <div class="clearfix"></div>
