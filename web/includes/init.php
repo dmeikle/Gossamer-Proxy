@@ -16,6 +16,7 @@
       $loader->add('listeners', __SITE_PATH.'/src/framework');
       $loader->add('libraries', __SITE_PATH.'/src/framework');
       $loader->add('security', __SITE_PATH.'/src/framework');
+      $loader->add('extensions', __SITE_PATH .'/src');
  
       // activate the autoloader
       $loader->register();

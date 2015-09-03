@@ -6,7 +6,7 @@ super_widgetpages_home:
         controller:  core\components\widgets\controllers\WidgetPagesController
         model:  core\components\widgets\models\WidgetPageModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: super_widgetpages_home
         datasource: datasource1
         langFiles:
@@ -182,7 +182,7 @@ super_widgets_home:
         controller:  core\components\widgets\controllers\WidgetsController
         model:  core\components\widgets\models\SystemWidgetModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: super_widgets_home
         datasource: datasource1
         langFiles:
@@ -198,7 +198,7 @@ super_widgets_system_home:
         controller:  core\components\widgets\controllers\WidgetsSystemController
         model:  core\components\widgets\models\SystemWidgetModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: super_widgets_system_home
         datasource: datasource1
         langFiles:

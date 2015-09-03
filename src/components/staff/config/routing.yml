@@ -20,7 +20,7 @@ admin_staff_home:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_staff_home
         datasource: datasource1
     methods: [GET]
