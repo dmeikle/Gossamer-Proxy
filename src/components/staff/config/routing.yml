@@ -290,7 +290,7 @@ admin_login_confirmreset_submit:
     listeners:
         - { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'admin_login_confirmreset' }}
         - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }
-        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryByRestURIListener', 'params': {'failkey': 'admin_login_confirmreset' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryByURIListener', 'params': {'failkey': 'admin_login_confirmreset' }}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffAuthorizationController

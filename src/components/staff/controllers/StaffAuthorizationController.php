@@ -59,13 +59,12 @@ class StaffAuthorizationController extends AbstractController
        
         $result = $this->model->confirmResetSubmit($params);
         
-        if(!array_key_exists('StaffTempPassword', $result)) {
-            echo "either not found or inactive 1";
-        }
-        if(array_key_exists('status', $result['StaffTempPassword'][0]) && $result['StaffTempPassword'][0]['status'] == 'active') {
-            $this->render(array());
+        if(is_null($result) || !array_key_exists('StaffTempPassword', $result)) {
+            $this->render(array('result' => 'LOGIN_RESET_NOT_FOUND'));            
+        }elseif(array_key_exists('status', $result['StaffTempPassword'][0]) && $result['StaffTempPassword'][0]['status'] == 'active') {
+            $this->render(array('result' => 'LOGIN_RESET_COMPLETE'));
         } else {
-            echo "either not found or inactive 2";
+            $this->render(array('result' => 'LOGIN_RESET_NOT_FOUND'));
         }
     }
     

@@ -1,4 +1,4 @@
 
 
 
-the process is complete
+<?php echo $this->getString($result);?>

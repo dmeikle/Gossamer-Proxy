@@ -15,6 +15,7 @@ use core\eventlisteners\AbstractListener;
 use core\eventlisteners\Event;
 use components\users\lib\Password;
 use core\system\Router;
+use components\staff\models\StaffTempPasswordModel;
 
 /**
  * 
@@ -22,27 +23,25 @@ use core\system\Router;
  *
  * @author Dave Meikle
  */
-class CheckPasswordInHistoryByRestURIListener extends AbstractListener{
+class CheckPasswordInHistoryByURIListener extends AbstractListener{
     
     public function on_entry_point(Event $event = null) {
       
-        $params = $this->httpRequest->getPost();
+        $params = $this->httpRequest->getParameters();
+        $postedParams = $this->httpRequest->getPost();
        
-        $member = $this->httpRequest->getAttribute('components\\staff\\models\\StaffTempPasswordModel');
-             pr($params);
-             die;
-             
-             
-             
-             //TODO: need to get it to check for password history based on uri
-             
-             
+        $model = new StaffTempPasswordModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $datasource = $this->getDatasource('components\staff\models\StaffTempPasswordModel');
+
+        $staffAuthorization = $datasource->query('get', $model, 'GetLoginByUri', array('uri' => $params[0]));
+     
         $password = new Password();
-        if(!array_key_exists('StaffTempPassword', $params) || !array_key_exists('passwordHistory', $member)) {
-            //perhaps a new member with no credentials yet
+        if(!array_key_exists('StaffAuthorization', $staffAuthorization) || count($staffAuthorization['StaffAuthorization'][0]) < 1) {
+            $this->httpRequest->setAttribute('result', 'false');
+            
             return;
         }
-        if($password->checkPasswordExists($params['StaffAuthorization']['password'], $member['passwordHistory'])) {
+        if($password->checkPasswordExists($postedParams['StaffTempPassword']['password'], $staffAuthorization['StaffAuthorization'][0]['passwordHistory'])) {
             if($this->listenerConfig['params']['failkey'] == 'false') { //don't do a redirect, just throw an error
                 throw new \exceptions\JSONException($this->getString('VALIDATION_PASSWORD_IN_HISTORY'), 605 );
             }
@@ -50,10 +49,11 @@ class CheckPasswordInHistoryByRestURIListener extends AbstractListener{
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
             $router = new Router($this->logger, $this->httpRequest);
-            $router->redirect($this->listenerConfig['params']['failkey'], array($member['Staff_id']));
+            $router->redirect($this->listenerConfig['params']['failkey'], array($params[0]));
         }
         unset($password);
         
+            $this->httpRequest->setAttribute('result', 'true');
     }
     
     
