@@ -17,3 +17,26 @@ module.directive('getDepartment', function(){
     }
   };
 });
+
+module.directive('checkUsernameExists', function(staffSrv, $q){
+  return {
+    restrict:'A',
+    scope:false,
+    require:['ngModel'],
+    link: function(scope, element, attrs, ctrl) {
+      if (scope.$parent && scope.$parent.staff) {
+        var object = scope.$parent.staff;
+        ctrl[0].$asyncValidators.usernameExists = function(modelValue, viewValue){
+          object.username = modelValue;
+          return staffSrv.checkUsernameExists(object).then(function(){
+            if (staffSrv.usernameExists === "true") {
+              return $q.reject('Username Exists');
+            } else {
+              return true;
+            }
+          });
+        };
+      }
+    }
+  };
+});
