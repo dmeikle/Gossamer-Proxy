@@ -59,7 +59,7 @@ module.service('staffSrv', function($http) {
     }
 
     var requestPath;
-    if (!object.id) {
+    if (!copiedObject.id) {
       requestPath = apiPath + '0';
     } else {
       requestPath = apiPath + copiedObject.id;
@@ -74,6 +74,16 @@ module.service('staffSrv', function($http) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
+    });
+  };
+
+  this.saveCredentials = function(object, formToken) {
+    return $http({
+      url: apiPath + 'credentials/' + object.id,
+      method: 'POST',
+      params: object
+    }).then(function(response) {
+      self.credentialStatus = response.data;
     });
   };
 

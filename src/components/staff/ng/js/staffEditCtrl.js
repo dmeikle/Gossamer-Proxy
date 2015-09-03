@@ -14,21 +14,12 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
       $scope.staff = staffSrv.staffDetail;
       $scope.loading = false;
 
-      staffSrv.getStaffCreds(object).then(function(){
+      staffSrv.getStaffCreds(object).then(function() {
         $scope.authorization.username = staffSrv.staffCreds.username;
         $scope.authorizationLoading = false;
       });
     });
-
-
   }
-
-  // $scope.checkUsernameExists = function(object) {
-  //   object.id = $scope.staff.id;
-  //   staffSrv.checkUsernameExists(object).then(function(){
-  //     StaffAuthorization_username.$setValidity(staffSrv.usernameExists);
-  //   });
-  // };
 
   $scope.save = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
@@ -39,5 +30,21 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
 
   $scope.discardChanges = function() {
     getStaffDetail();
+  };
+
+  $scope.submitCredentials = function(object) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    object.id = $scope.staff.id;
+    switch (object.emailUser) {
+      case true:
+        staffSrv.generateEmailReset(object, formToken);
+        break;
+      default:
+        staffSrv.saveCredentials(object, formToken);
+    }
+  };
+
+  $scope.resetCredentials = function() {
+    $scope.authorization.username = staffSrv.staffCreds.username;
   };
 });

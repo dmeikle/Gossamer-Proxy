@@ -200,7 +200,7 @@
         <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
 
         <div class="form clearfix" ng-if="!authorizationLoading">
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-success':StaffAuthorization_username.StaffAuthorization_username.$valid, 'has-error':!StaffAuthorization_username.$valid }">
             <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
             <?php echo $aform['username']; ?>
           </div>
@@ -219,8 +219,11 @@
               <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
             </p>
           </div>
-          <button class="primary" ng-click="submitCredentials()">
+          <button class="primary" ng-click="submitCredentials(authorization)">
             <?php echo $this->getString('STAFF_SUBMIT'); ?>
+          </button>
+          <button ng-click="resetCredentials()">
+            <?php echo $this->getString('STAFF_RESET'); ?>
           </button>
         </div>
 
