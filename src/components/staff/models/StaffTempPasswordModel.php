@@ -54,12 +54,21 @@ class StaffTempPasswordModel extends AbstractModel implements FormBuilderInterfa
     }
     
     public function confirmResetSubmit(array $staff) {
-   
+  
         $params = array(
-            'password' => crypt($staff['StaffTempPassword']['password']),
+            'password' => $this->encryptPassword($staff['StaffTempPassword']['password']),
             'uri' => $staff['uri']
         );       
         
         return $this->dataSource->query(self::METHOD_GET, $this, 'SaveResetTempPassword', $params);  
+    }
+    
+    private function encryptPassword($password) {
+        $newPwd = '';
+        do {
+            $newPwd = crypt($password);            
+        }while(strpos($newPwd, '/'));
+        echo $newPwd.'<br>';
+        return $newPwd;
     }
 }

@@ -27,24 +27,13 @@ class PasswordMismatchListener extends AbstractListener{
     const MAX_LOGIN_FAILURES = 6;
     
     public function on_login_password_mismatch(Event $event) {
-        $params = $event->getParams();
-        $client = $params['client'];
-        $model = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
-        $datasource = $this->getDatasource($model);
-      
         
-        $datasource->query("update StaffAuthorizations set failedLogins = ifnull(failedLogins,0) + 1 where username='" . $client->getCredentials() . "'");
+        $staff = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $params = $this->httpRequest->getParameters();
+        die('here');
+        $datasource = $this->getDatasource($staff);
         
-        //now check to see if we need to lock them down
-        $result = $datasource->query("select failedLogins from StaffAuthorizations  where username='" . $client->getCredentials() . "'");
-        
-        $failedLogins = current($result);
-        $value = $failedLogins['failedLogins'];
-        if($value >= self::MAX_LOGIN_FAILURES) {
-            $datasource->query("update StaffAuthorizations set status='locked' where username='" . $client->getCredentials() . "'");
-        }
-        unset($datasource);
-        unset($model);
+        $rawResult = $datasource->query('post', $staff, 'incrementfailedlogin', array('Staff_id' => intval($params[0])));
         
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect('admin_login_failed', array());

@@ -6,6 +6,17 @@
 #    authentication: simple_auth
 #    fail_url: admin/login
     
+admin_login_reset:
+    pattern: admin/login/reset
+    security: false
+    methods: [POST]
+ 
+admin_login_confirmreset_submit:
+    pattern: admin/login/confirmreset/*
+    security: false
+    methods: [POST]
+    
+    
 admin_login_get:
     pattern: admin/login
     security: false

@@ -84,7 +84,10 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
                 setSession('_security_secured_area', null);
             }
             if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
-                $this->logger->addAlert('login_password_mismatch');              
+                $this->logger->addAlert('login_password_mismatch');
+                echo $client->getPassword() . ' ' . $token->getClient()->getPassword() .'<br>';
+                echo __YML_KEY;
+                die('mismatch');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
             }
             

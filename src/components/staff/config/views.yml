@@ -123,3 +123,15 @@ admin_login_confirmreset_submit:
     javascript:
     css:
         - @components/staff/dist/css/staff.min.css        
+
+admin_login_failed:     
+    template: list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/portal-header.php"
+            "payload": "src/components/staff/views/login/failed.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css 
