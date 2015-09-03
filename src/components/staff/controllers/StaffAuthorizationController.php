@@ -172,10 +172,12 @@ class StaffAuthorizationController extends AbstractController
     public function checkUsernameExists($id, $username) {
         $result = $this->model->get(array('username' => $username));
         
-        if(is_array($result) && count($result) > 0) {
-            $this->render(array('exists' => 'true'));
-        } else {
-            $this->render(array('exists' => 'false'));
+        if(is_array($result) && array_key_exists('StaffAuthorization', $result) && count($result['StaffAuthorization']) > 0) {
+            if($result['StaffAuthorization'][0]['Staff_id'] != intval($id)){
+                $this->render(array('exists' => 'true'));
+            } else {
+                $this->render(array('exists' => 'false'));
+            }
         }
     }
 }

@@ -321,7 +321,7 @@ admin_cms:
                 - IS_ADMINISTRATOR         
                 - IS_EDITOR  
         
-projects:
+admin_projects:
     active: true
     text_key: 'ADMIN_PROJECTS'
     pattern: '/admin/projects/0/20'
@@ -349,7 +349,7 @@ projects:
     
         
         
-incidents:
+admin_incidents:
     active: true
     text_key: 'ADMIN_INCIDENTS'
     pattern: '/admin/incidents/0/20'
@@ -366,7 +366,7 @@ incidents:
   
 
         
-surveys:
+admin_surveys:
     active: true
     text_key: 'ADMIN_SURVEYS'
     pattern: '/admin/surveys/0/20'
@@ -410,7 +410,7 @@ surveys:
                 - IS_ADMINISTRATOR         
                 - IS_EDITOR     
         
-events: 
+admin_events: 
     active: true
     text_key: 'ADMIN_EVENTS'
     pattern: '/admin/events/0/20'
@@ -460,7 +460,7 @@ events:
                 - IS_EDITOR 
                 - IS_STAFF
         
-cart: 
+admin_cart: 
     active: false
     text_key: 'ADMIN_CART'
     pattern: '/admin/cart/sales/0/20'

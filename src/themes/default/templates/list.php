@@ -15,11 +15,11 @@
 
 <body>
 <div id="container">
-  <!---section1--->
+  <!---header--->
   <div id="lower">
     <!---section3--->
     <div id="payload">
-     <!---section4--->
+     <!---payload--->
 
     </div>
 
