@@ -14,7 +14,7 @@ namespace components\staff\controllers;
 use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
-use components\geography\serialization\ProvinceSerializer;
+use components\staff\models\StaffTempPasswordModel;
 use components\staff\form\StaffAuthorizationBuilder;
 use core\system\Router;
 use core\eventlisteners\Event;
@@ -24,6 +24,48 @@ class StaffAuthorizationController extends AbstractController
 {
     public function displayResetForm() {
         $this->render(array('form' => $this->drawCredentialsForm($this->model), array()));
+    }
+    
+    
+    public function resetLogin() {
+       
+        $offset = 0;
+        $limit = 1;
+        $params = $this->httpRequest->getPost();
+        $staffAuthorization = $this->httpRequest->getAttribute('StaffAuthorization');
+        
+        $result = $this->model->createTempPassword($staffAuthorization);
+       
+        $this->render(array());
+    }
+    
+    public function confirmReset($id) {
+       $params = array(
+           'uri' => preg_replace('/[^a-zA-Z0-9_\-]/s','', $id)
+       );
+       
+       $result = $this->model->confirmReset($params);
+       
+       if(!is_array($result) || count($result) == 0) {
+           throw new \exceptions\Error404Exception();
+       }
+       
+       $this->render(array('form' => $this->drawCredentialsForm($this->model, array())));
+    }
+    
+    public function confirmResetSubmit($id) {
+        $params = $this->httpRequest->getPost();
+        $params['uri'] = preg_replace('/[^a-zA-Z0-9_\-]/s','', $id);
+       
+        $result = $this->model->confirmResetSubmit($params);
+        
+        if(is_null($result) || !array_key_exists('StaffTempPassword', $result)) {
+            $this->render(array('result' => 'LOGIN_RESET_NOT_FOUND'));            
+        }elseif(array_key_exists('status', $result['StaffTempPassword'][0]) && $result['StaffTempPassword'][0]['status'] == 'active') {
+            $this->render(array('result' => 'LOGIN_RESET_COMPLETE'));
+        } else {
+            $this->render(array('result' => 'LOGIN_RESET_NOT_FOUND'));
+        }
     }
     
     public function save($id) {

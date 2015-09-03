@@ -68,14 +68,9 @@ admin_login:
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
             "section3": "src/components/staff/views/login/login-form.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    angular:
-        bootstrap_modules:
-            - staffAdmin
+            "section4": "src/themes/default/templates/sections/footer.php"   
     head:
     javascript:
-        - @components/staff/dist/js/staff.concat.js
-        #- @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
 
@@ -86,12 +81,45 @@ admin_login_reset:
             "section1": "src/themes/default/templates/sections/portal-header.php"
             "section3": "src/components/staff/views/login/reset.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    angular:
-        bootstrap_modules:
-            - staffAdmin
     head:
     javascript:
-        - @components/staff/dist/js/staff.concat.js
-        #- @components/staff/dist/js/staff.min.js
     css:
-        - @components/staff/dist/css/staff.min.css
+
+        - @components/staff/dist/css/staff.min.css     
+
+admin_login_reset_submit:
+    template: list.php
+    sections:
+        -
+            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "section3": "src/components/staff/views/login/reset-complete.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css 
+        
+admin_login_confirmreset:
+    template: list.php
+    sections:
+        -
+            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "section3": "src/components/staff/views/login/confirm-reset.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css     
+        
+        
+admin_login_confirmreset_submit:     
+    template: list.php
+    sections:
+        -
+            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "section3": "src/components/staff/views/login/confirm-reset-complete.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css        

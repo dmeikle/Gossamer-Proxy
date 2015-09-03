@@ -23,9 +23,14 @@ use core\system\Router;
 class StaffPasswordValidListener extends AbstractListener {
     
     public function on_entry_point(Event $event = null) {
-     
+        
         $post = $this->httpRequest->getPost();
-        $staffData = $post['StaffAuthorization'];
+        $staffData = array();
+        if(array_key_exists('StaffAuthorization', $post)) {
+            $staffData = $post['StaffAuthorization'];
+        } else if (array_key_exists('StaffTempPassword', $post)) {
+            $staffData = $post['StaffTempPassword'];
+        }
        
         $result = array();
         if($this->checkPasswordEmpty($staffData)) {
@@ -43,8 +48,11 @@ class StaffPasswordValidListener extends AbstractListener {
             setSession('ERROR_RESULT', $this->formatErrorResult($result));
             setSession('POSTED_PARAMS', $this->formatPostedArrayforFramework());
             
+            $params = $this->httpRequest->getParameters();
+            $key = $params[0];
+            
             $router = new Router($this->logger, $this->httpRequest);
-            $router->redirect($this->listenerConfig['params']['failkey']);
+            $router->redirect($this->listenerConfig['params']['failkey'], array($key));
         }
        
         setSession('ERROR_RESULT', null);
