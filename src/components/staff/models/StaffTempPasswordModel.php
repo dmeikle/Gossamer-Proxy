@@ -68,7 +68,7 @@ class StaffTempPasswordModel extends AbstractModel implements FormBuilderInterfa
         do {
             $newPwd = crypt($password);            
         }while(strpos($newPwd, '/'));
-        echo $newPwd.'<br>';
+        
         return $newPwd;
     }
 }
