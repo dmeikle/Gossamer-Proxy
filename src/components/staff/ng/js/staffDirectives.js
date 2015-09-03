@@ -60,8 +60,10 @@ module.directive('checkUsernameExists', function(staffSrv, $q) {
           object.username = modelValue;
           return staffSrv.checkUsernameExists(object).then(function() {
             if (staffSrv.usernameExists === "true") {
+              object.usernamValid = false;
               return $q.reject('Username Exists');
             } else {
+              object.usernameValid = true;
               return true;
             }
           });
