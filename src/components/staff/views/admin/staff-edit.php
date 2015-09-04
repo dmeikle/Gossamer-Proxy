@@ -71,12 +71,11 @@
               id="staff-gender" ng-model="staff.gender">
           </div>
         </div>
-        <div class="card">
-          <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
-        </div>
       </div>
 
-
+      <div class="card">
+        <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+      </div>
     </div>
     <div class="cards">
       <div class="card">
@@ -189,7 +188,7 @@
             </table>
           </div>
         </div>
-        <div class="cardright">
+        <div class="cardright" ng-if="!loading">
           <img ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
@@ -197,12 +196,43 @@
 
       <div class="card">
         <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
-        <button ng-click="alert('Password reset will be here')">
-          <?php echo $this->getString('STAFF_CLICK_HERE'); ?>
-        </button>
-        <p>
-          <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
-        </p>
+
+        <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
+
+        <form name="authorizationForm" class="form clearfix" ng-if="!authorizationLoading">
+          <div class="alert alert-warning" ng-if="credentialStatus.success === 'false'">
+            <p>
+              {{credentialStatus.message}}
+            </p>
+          </div>
+          <div class="form-group" ng-class="{'has-success':staff.usernameValid, 'has-error':!staff.usernameValid}">
+            <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
+            <?php echo $aform['username']; ?>
+          </div>
+          <div class="form-group">
+            <label for="StaffAuthorization_password"><?php echo $this->getString('STAFF_PASSWORD'); ?></label>
+            <?php echo $aform['password']; ?>
+            <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
+          </div>
+          <div class="form-group" ng-class="{'has-success':authorization.password !== undefined && authorization.password === authorization.passwordConfirm,
+            'has-error':authorization.password !== undefined && authorization.password !== authorization.passwordConfirm}">
+            <label for="StaffAuthorization_passwordConfirm"><?php echo $this->getString('STAFF_PASSWORD_CONFIRM'); ?></label>
+            <?php echo $aform['passwordConfirm']; ?>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="authorization.emailUser">
+            <label for="staff-emailUser"><?php echo $this->getString('STAFF_EMAILUSER'); ?></label>
+            <p class="help-block">
+              <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
+            </p>
+          </div>
+          <button class="primary" ng-click="submitCredentials(authorization)">
+            <?php echo $this->getString('STAFF_SUBMIT'); ?>
+          </button>
+          <button ng-click="resetCredentials()">
+            <?php echo $this->getString('STAFF_RESET'); ?>
+          </button>
+        </form>
 
       </div>
 
