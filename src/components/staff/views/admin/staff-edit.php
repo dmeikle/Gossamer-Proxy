@@ -199,8 +199,8 @@
 
         <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
 
-        <div class="form clearfix" ng-if="!authorizationLoading">
-          <div ng-if="credentialStatus.success = 'false'">
+        <form name="authorizationForm" class="form clearfix" ng-if="!authorizationLoading">
+          <div class="alert alert-warning" ng-if="credentialStatus.success === 'false'">
             <p>
               {{credentialStatus.message}}
             </p>
@@ -230,7 +230,7 @@
           <button ng-click="resetCredentials()">
             <?php echo $this->getString('STAFF_RESET'); ?>
           </button>
-        </div>
+        </form>
 
       </div>
 
