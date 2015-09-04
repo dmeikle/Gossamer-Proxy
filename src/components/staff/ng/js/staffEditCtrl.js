@@ -51,4 +51,8 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
     $scope.authorization.password = undefined;
     $scope.authorization.passwordConfirm = undefined;
   };
+
+  $scope.clearErrors = function() {
+    $scope.credentialStatus = undefined;
+  };
 });

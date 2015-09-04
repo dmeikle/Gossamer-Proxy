@@ -199,8 +199,8 @@
 
         <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
 
-        <div class="form clearfix" ng-if="!authorizationLoading">
-          <div ng-if="credentialStatus.success = 'false'">
+        <form name="authorizationForm" class="form clearfix" ng-if="!authorizationLoading">
+          <div class="alert alert-warning" ng-if="credentialStatus.success === 'false'">
             <p>
               {{credentialStatus.message}}
             </p>
@@ -212,8 +212,10 @@
           <div class="form-group">
             <label for="StaffAuthorization_password"><?php echo $this->getString('STAFF_PASSWORD'); ?></label>
             <?php echo $aform['password']; ?>
+            <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
           </div>
-          <div class="form-group">
+          <div class="form-group" ng-class="{'has-success':authorization.password !== undefined && authorization.password === authorization.passwordConfirm,
+            'has-error':authorization.password !== undefined && authorization.password !== authorization.passwordConfirm}">
             <label for="StaffAuthorization_passwordConfirm"><?php echo $this->getString('STAFF_PASSWORD_CONFIRM'); ?></label>
             <?php echo $aform['passwordConfirm']; ?>
           </div>
@@ -230,7 +232,7 @@
           <button ng-click="resetCredentials()">
             <?php echo $this->getString('STAFF_RESET'); ?>
           </button>
-        </div>
+        </form>
 
       </div>
 

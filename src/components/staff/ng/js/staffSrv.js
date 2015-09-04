@@ -78,10 +78,15 @@ module.service('staffSrv', function($http) {
   };
 
   this.saveCredentials = function(object, formToken) {
+    var data = {};
+    data.StaffAuthorization = object;
     return $http({
-      url: apiPath + 'credentials/' + object.id,
       method: 'POST',
-      params: object
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: apiPath + 'credentials/' + object.id,
+      data: data
     }).then(function(response) {
       self.credentialStatus = response.data;
     });
