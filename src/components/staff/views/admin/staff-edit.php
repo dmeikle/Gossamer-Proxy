@@ -212,6 +212,7 @@
           <div class="form-group">
             <label for="StaffAuthorization_password"><?php echo $this->getString('STAFF_PASSWORD'); ?></label>
             <?php echo $aform['password']; ?>
+            <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
           </div>
           <div class="form-group" ng-class="{'has-success':authorization.password !== undefined && authorization.password === authorization.passwordConfirm,
             'has-error':authorization.password !== undefined && authorization.password !== authorization.passwordConfirm}">

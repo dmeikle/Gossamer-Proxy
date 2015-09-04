@@ -79,7 +79,7 @@ module.service('staffSrv', function($http) {
 
   this.saveCredentials = function(object, formToken) {
     var data = {};
-    data.Staff = object;
+    data.StaffAuthorization = object;
     return $http({
       method: 'POST',
       headers: {
