@@ -69,10 +69,15 @@ class ImportCSSHandler extends BaseHandler {
                 //website components folder             
                 $retval[] =  str_replace('@/assets', '/assets', $tmp);
             }elseif (substr($tmp, 0, 12) == '@extensions/') {
+                
+                $filepath = str_replace('@extensions/', '/extensions/', $tmp);
 
-                //nothing to copy - we are simply going to the root of the 
-                //website components folder             
-                $retval[] =  str_replace('@/extensions', '/css/extensions', $tmp);
+                //we need to import this if it doesn't exist or if the existing is stale
+                if ($this->checkFileIsStale($filepath, 'css')) {
+                    $this->copyFile($filepath, 'css');
+                }  
+                
+                $retval[] =  str_replace('@extensions', '/css/extensions', $tmp);
             }elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
             
                 $retval[] = $tmp;

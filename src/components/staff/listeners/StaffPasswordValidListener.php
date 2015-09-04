@@ -23,7 +23,7 @@ use core\system\Router;
 class StaffPasswordValidListener extends AbstractListener {
     
     public function on_entry_point(Event $event = null) {
-        
+        pr($this->httpRequest);
         $post = $this->httpRequest->getPost();
         $staffData = array();
         if(array_key_exists('StaffAuthorization', $post)) {
@@ -31,7 +31,7 @@ class StaffPasswordValidListener extends AbstractListener {
         } else if (array_key_exists('StaffTempPassword', $post)) {
             $staffData = $post['StaffTempPassword'];
         }
-       
+       pr($staffData);
         $result = array();
         if($this->checkPasswordEmpty($staffData)) {
             $result['password'] = 'VALIDATION_PASSWORD_REQUIRED';

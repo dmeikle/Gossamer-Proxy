@@ -82,15 +82,14 @@ class ImportJSHandler extends BaseHandler {
                 $retval[] =  str_replace('@/assets', '/assets', $tmp);
             }elseif (substr($tmp, 0, 12) == '@extensions/') {
                 
-                right here - need to finish the copy path
-echo "found " . str_replace('@extensions', '/js/xt', $tmp) . "<br>";
-                $filepath = str_replace('@core/components', '/framework/core/components', $tmp);
+                $filepath = str_replace('@extensions/', '/extensions/', $tmp);
 
                 //we need to import this if it doesn't exist or if the existing is stale
                 if ($this->checkFileIsStale($filepath, 'js')) {
                     $this->copyFile($filepath, 'js');
-                }            
-                $retval[] =  str_replace('@extensions', '/js/xt', $tmp);
+                }  
+                
+                $retval[] =  str_replace('@extensions', '/js/extensions', $tmp);
             } elseif (strlen($tmp) > 5) {//abitrary length just to show we hold something greater than whitespace
 
                 $retval[] = $tmp;

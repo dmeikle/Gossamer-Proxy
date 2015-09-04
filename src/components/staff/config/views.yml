@@ -71,10 +71,8 @@ admin_login:
             "section4": "src/themes/default/templates/sections/footer.php"   
     head:
     javascript:
-        - @extensions/angular/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
-        - @extensions/angular/dist/css/staff.min.css
 
 admin_login_reset:
     template: list.php

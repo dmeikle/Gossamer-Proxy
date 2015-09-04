@@ -104,16 +104,16 @@ abstract class BaseHandler {
         $old_umask = umask(0);
         $parsedFromPath = __SITE_PATH . '/src';
         $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
-    echo "$parsedFromPath<br>$parsedToPath<br>";
-        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 666);
-    
-        mkdir($parsedToPath, 0666, true);
-        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0666);
+     
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
+   
+        @mkdir($parsedToPath, 0777, true);
+        @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0777);
         @umask($old_umask);
         
-        copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
+        @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
 
-        @chmod($parsedToPath, 0444);
+        @chmod($parsedToPath, 0755);
 
         return '/web/' . $rootFolder . implode('/', $chunks) . $filename;
     }
