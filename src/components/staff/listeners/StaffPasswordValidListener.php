@@ -60,6 +60,9 @@ class StaffPasswordValidListener extends AbstractListener {
     }
     
     private function checkPasswordEmpty(array $staffData) {
+        if(!array_key_exists('password', $staffData)) {
+            return true;
+        }
         return strlen($staffData['password']) == 0;
     }
     
