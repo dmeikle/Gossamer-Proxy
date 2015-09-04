@@ -68,6 +68,11 @@ class ImportCSSHandler extends BaseHandler {
                 //nothing to copy - we are simply going to the root of the 
                 //website components folder             
                 $retval[] =  str_replace('@/assets', '/assets', $tmp);
+            }elseif (substr($tmp, 0, 12) == '@extensions/') {
+
+                //nothing to copy - we are simply going to the root of the 
+                //website components folder             
+                $retval[] =  str_replace('@/extensions', '/css/extensions', $tmp);
             }elseif (strlen($tmp > 5)) {//abitrary length just to show we hold something greater than whitespace
             
                 $retval[] = $tmp;
