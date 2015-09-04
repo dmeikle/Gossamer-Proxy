@@ -78,7 +78,16 @@ module.service('staffSrv', function($http) {
   };
 
   this.saveCredentials = function(object, formToken) {
-    return $http.post(apiPath + 'credentials/' + object.id, object).then(function(response) {
+    var data = {};
+    data.Staff = object;
+    return $http({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: apiPath + 'credentials/' + object.id,
+      data: data
+    }).then(function(response) {
       self.credentialStatus = response.data;
     });
   };
