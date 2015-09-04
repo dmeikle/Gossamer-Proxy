@@ -40,11 +40,15 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
         staffSrv.generateEmailReset(object, formToken);
         break;
       default:
-        staffSrv.saveCredentials(object, formToken);
+        staffSrv.saveCredentials(object, formToken).then(function(){
+          $scope.credentialStatus = staffSrv.credentialStatus;
+        });
     }
   };
 
   $scope.resetCredentials = function() {
     $scope.authorization.username = staffSrv.staffCreds.username;
+    $scope.authorization.password = undefined;
+    $scope.authorization.passwordConfirm = undefined;
   };
 });

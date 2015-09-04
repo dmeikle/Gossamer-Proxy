@@ -200,6 +200,11 @@
         <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
 
         <div class="form clearfix" ng-if="!authorizationLoading">
+          <div ng-if="credentialStatus.success = 'false'">
+            <p>
+              {{credentialStatus.message}}
+            </p>
+          </div>
           <div class="form-group" ng-class="{'has-success':staff.usernameValid, 'has-error':!staff.usernameValid}">
             <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
             <?php echo $aform['username']; ?>
@@ -237,6 +242,3 @@
     <form class="hide"></form>
   </div>
 </div>
-
-
-<?php pr($this->data);?>
