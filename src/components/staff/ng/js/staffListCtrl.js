@@ -1,4 +1,4 @@
-module.controller('staffListCtrl', function($scope, $modal, staffSrv, templateSrv) {
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
