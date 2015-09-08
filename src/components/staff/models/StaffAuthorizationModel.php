@@ -61,9 +61,8 @@ class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterf
         $params = $this->httpRequest->getPost();
         if(intval($id) > 0) {
             $params['staff']['id'] = intval($id);
-            $params['userAuthorizations']['id'] = intval($id); 
         }
-     
+    
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveAuthorizations', $params);
       
         return $params['userAuthorizations'];
