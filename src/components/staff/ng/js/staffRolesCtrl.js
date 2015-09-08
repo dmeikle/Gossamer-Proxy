@@ -1,4 +1,4 @@
-module.controller('staffRolesCtrl', function($scope, $location, staffSrv) {
+module.controller('staffRolesCtrl', function($scope, $location, staffRolesSrv) {
   // Stuff to run on controller load
   $scope.staffRoles = {};
   $scope.staffRoles.loading = true;
@@ -7,8 +7,8 @@ module.controller('staffRolesCtrl', function($scope, $location, staffSrv) {
   function getStaffRoles() {
     var object = {};
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-    staffSrv.getStaffRoles(object).then(function() {
-      $scope.staffRoles = staffSrv.staffRoles;
+    staffRolesSrv.getStaffRoles(object).then(function() {
+      $scope.staffRoles = staffRolesSrv.staffRoles;
       $scope.staffRoles.loading = false;
     });
   }
@@ -16,7 +16,7 @@ module.controller('staffRolesCtrl', function($scope, $location, staffSrv) {
   $scope.submitRoles = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-    staffSrv.saveRoles(object, formToken).then(function() {
+    staffRolesSrv.saveRoles(object, formToken).then(function() {
       getStaffRoles();
     });
   };

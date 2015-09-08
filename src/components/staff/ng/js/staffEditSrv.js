@@ -1,9 +1,4 @@
-module.service('templateSrv', function() {
-  this.staffScheduleModal = '/render/staff/staffScheduleModal';
-  this.staffEditModal = '/render/staff/staffEditModal';
-});
-
-module.service('staffSrv', function($http) {
+module.service('staffEditSrv', function($http) {
   var apiPath = '/admin/staff/';
 
   var self = this;
@@ -36,19 +31,6 @@ module.service('staffSrv', function($http) {
     return $http.get(apiPath + 'credentials/' + object.id)
       .then(function(response) {
         self.staffCreds = response.data.StaffAuthorization;
-      });
-  };
-
-  this.getStaffRoles = function(object) {
-    return $http.get(apiPath + 'permissions/' + object.id)
-      .then(function(response){
-        var rolesObject = {};
-        for (var role in response.data.roles) {
-          if (response.data.roles.hasOwnProperty(role)) {
-            rolesObject[response.data.roles[role]] = true;
-          }
-        }
-        self.staffRoles = rolesObject;
       });
   };
 
@@ -90,6 +72,16 @@ module.service('staffSrv', function($http) {
     });
   };
 
+  this.checkUsernameExists = function(object) {
+    return $http({
+        url: apiPath + 'checkusername/' + object.id + '/' + object.username,
+        method: 'GET'
+      })
+      .then(function(response) {
+        self.usernameExists = response.data.exists;
+      });
+  };
+
   this.saveCredentials = function(object, formToken) {
     var data = {};
     data.StaffAuthorization = object;
@@ -106,75 +98,5 @@ module.service('staffSrv', function($http) {
     });
   };
 
-  this.saveRoles = function(object,formToken) {
-    var id = object.id;
-    delete object.loading;
-    delete object.id;
 
-    var rolesArray = [];
-    for (var role in object) {
-      if (object.hasOwnProperty(role) && object[role] === true) {
-        object[role] = role;
-        if (object[role].length > 0) {
-          rolesArray.push(object[role]);
-        }
-      }
-    }
-
-    var data = {};
-    data.StaffAuthorization = rolesArray;
-    data.FORM_SECURITY_TOKEN = formToken;
-    return $http({
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      url: apiPath + 'permissions/' + id,
-      data: data
-    }).then(function(response){
-
-    });
-  };
-
-  this.autocomplete = function(searchObject) {
-    var value = searchObject.val[0];
-    var column = searchObject.col[0];
-
-    return $http.get(apiPath + 'search?' + column + '=' + value)
-      .then(function(response) {
-        self.autocompleteList = response.data.Staffs;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object) {
-    var config = {};
-    if (object.val[0]) {
-      for (var i = 0; i < Object.keys(object.col).length; i++) {
-        config[object.col[i]] = object.val[i];
-      }
-    } else {
-      config = undefined;
-    }
-
-
-    return $http({
-        url: apiPath + row + '/' + numRows,
-        method: 'GET',
-        params: config
-      })
-      .then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
-  this.checkUsernameExists = function(object) {
-    return $http({
-        url: apiPath + 'checkusername/' + object.id + '/' + object.username,
-        method: 'GET'
-      })
-      .then(function(response) {
-        self.usernameExists = response.data.exists;
-      });
-  };
 });

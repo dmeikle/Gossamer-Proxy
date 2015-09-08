@@ -295,6 +295,10 @@
       <div class="card">
         <h1><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
       </div>
+
+      <div class="card" ng-controller="staffBenefitsCtrl">
+        <h1><?php echo $this->getString('STAFF_BENEFITS_INFO'); ?></h1>
+      </div>
     </div>
     <div class="clearfix"></div>
     <form class="hide"></form>
