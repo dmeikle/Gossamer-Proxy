@@ -23,8 +23,7 @@ module.service('staffRolesSrv', function($http) {
 
     var rolesArray = [];
     for (var role in object) {
-      if (object.hasOwnProperty(role)) {
-        object[role] = role;
+      if (object.hasOwnProperty(role) && object[role].length > 0 && object[role] === true) {
         rolesArray.push(object[role]);
       }
     }
