@@ -204,7 +204,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'qunit']);
 
-  grunt.registerTask('default', ['watch'] );
+  grunt.registerTask('default', ['build','watch'] );
 
   grunt.registerTask('build', ['clean','concat', 'jshint', 'uglify', 'copy', 'sass']);
 
