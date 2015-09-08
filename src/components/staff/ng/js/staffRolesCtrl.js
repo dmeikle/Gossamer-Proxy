@@ -16,7 +16,7 @@ module.controller('staffRolesCtrl', function($scope, $location, staffSrv) {
   $scope.submitRoles = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-    staffSrv.saveRoles(object).then(function() {
+    staffSrv.saveRoles(object, formToken).then(function() {
       getStaffRoles();
     });
   };

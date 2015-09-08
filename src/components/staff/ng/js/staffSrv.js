@@ -107,19 +107,20 @@ module.service('staffSrv', function($http) {
   };
 
   this.saveRoles = function(object,formToken) {
-    delete object.loading;
     var id = object.id;
+    delete object.loading;
+    delete object.id;
 
-    // var rolesArray = [];
-    // for (var role in object) {
-    //   if (object.hasOwnProperty(role)) {
-    //     object[role] = role;
-    //     rolesArray.push(object[role]);
-    //   }
-    // }
+    var rolesArray = [];
+    for (var role in object) {
+      if (object.hasOwnProperty(role)) {
+        object[role] = role;
+        rolesArray.push(object[role]);
+      }
+    }
 
     var data = {};
-    data.StaffRole = object;
+    data.StaffRole = rolesArray;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
