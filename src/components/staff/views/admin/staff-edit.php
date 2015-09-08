@@ -298,6 +298,12 @@
 
       <div class="card" ng-controller="staffBenefitsCtrl">
         <h1><?php echo $this->getString('STAFF_BENEFITS_INFO'); ?></h1>
+        <div ng-if="staffBenefitsLoading"><span class="spinner-loader"></span></div>
+
+        <div ng-if="!staffBenefitsLoading">
+          
+        </div>
+
       </div>
     </div>
     <div class="clearfix"></div>
