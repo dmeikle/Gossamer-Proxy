@@ -110,16 +110,16 @@ module.service('staffSrv', function($http) {
     delete object.loading;
     var id = object.id;
 
-    var rolesArray = [];
-    for (var role in object) {
-      if (object.hasOwnProperty(role)) {
-        object[role] = role;
-        rolesArray.push(object[role]);
-      }
-    }
+    // var rolesArray = [];
+    // for (var role in object) {
+    //   if (object.hasOwnProperty(role)) {
+    //     object[role] = role;
+    //     rolesArray.push(object[role]);
+    //   }
+    // }
 
     var data = {};
-    data.roles = rolesArray;
+    data.StaffRole = object;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
