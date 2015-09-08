@@ -53,10 +53,10 @@
               <td>{{staff.mobile}}</td>
               <td>{{staff.status}}</td>
               <td>{{staff.lastLogin}}</td>
-              <td>
+              <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
                     <li><a href="staff/edit/{{staff.id}}">Edit</a></li>
                     <li><a href="#">Emergency Contacts</a></li>

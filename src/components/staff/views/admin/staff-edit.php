@@ -73,8 +73,62 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" ng-controller="staffRolesCtrl">
         <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+        <div ng-if="staffRoles.loading">
+          <div class="spinner-loader"></div>
+        </div>
+        <div ng-if="!staffRoles.loading">
+          <div class="cardleft">
+            <div class="form-group">
+              <input type="checkbox" name="administrator" id="staff-roles-administrator" ng-model="staffRoles.IS_ADMINISTRATOR">
+              <label for="staff-roles-administrator"><?php echo $this->getString('STAFF_ROLES_ADMINISTRATOR'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="super-user" id="staff-roles-super-user" ng-model="staffRoles.IS_SUPER_USER">
+              <label for="staff-roles-super-user"><?php echo $this->getString('STAFF_ROLES_SUPERUSER'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="manager" id="staff-roles-manager" ng-model="staffRoles.IS_MANAGER">
+              <label for="staff-roles-manager"><?php echo $this->getString('STAFF_ROLES_MANAGER'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="developer" id="staff-roles-developer" ng-model="staffRoles.IS_DEVELOPER">
+              <label for="staff-roles-developer"><?php echo $this->getString('STAFF_ROLES_DEVELOPER'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="reception" id="staff-roles-reception" ng-model="staffRoles.IS_RECEPTION">
+              <label for="staff-roles-reception"><?php echo $this->getString('STAFF_ROLES_RECEPTION'); ?></label>
+            </div>
+          </div>
+          <div class="cardright">
+            <div class="form-group">
+              <input type="checkbox" name="data-entry" id="staff-roles-data-entry" ng-model="staffRoles.IS_DATA_ENTRY">
+              <label for="staff-roles-data-entry"><?php echo $this->getString('STAFF_ROLES_DATA_ENTRY'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="website-editor" id="staff-roles-website-editor" ng-model="staffRoles.IS_WEBSITE_EDITOR">
+              <label for="staff-roles-website-editor"><?php echo $this->getString('STAFF_ROLES_WEBSITE_EDITOR'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="staff" id="staff-roles-staff" ng-model="staffRoles.IS_STAFF">
+              <label for="staff-roles-staff"><?php echo $this->getString('STAFF_ROLES_STAFF'); ?></label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="human-resources" id="staff-roles-human-resources" ng-model="staffRoles.IS_HUMAN_RESOURCES">
+              <label for="staff-roles-human-resources"><?php echo $this->getString('STAFF_ROLES_HUMAN_RESOURCES'); ?></label>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="cardfooter">
+            <button class="primary" ng-click="submitRoles(staffRoles)">
+              <?php echo $this->getString('STAFF_SUBMIT'); ?>
+            </button>
+            <button ng-click="resetCredentials()">
+              <?php echo $this->getString('STAFF_RESET'); ?>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="cards">
@@ -189,7 +243,7 @@
           </div>
         </div>
         <div class="cardright" ng-if="!loading">
-          <img ng-src="/images/staff/{{staff.imageName}}">
+          <img class="pull-right" ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
       </div>
@@ -226,12 +280,14 @@
               <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
             </p>
           </div>
-          <button class="primary" ng-click="submitCredentials(authorization)">
-            <?php echo $this->getString('STAFF_SUBMIT'); ?>
-          </button>
-          <button ng-click="resetCredentials()">
-            <?php echo $this->getString('STAFF_RESET'); ?>
-          </button>
+          <div class="cardfooter">
+            <button class="primary" ng-click="submitCredentials(authorization)">
+              <?php echo $this->getString('STAFF_SUBMIT'); ?>
+            </button>
+            <button ng-click="resetCredentials()">
+              <?php echo $this->getString('STAFF_RESET'); ?>
+            </button>
+          </div>
         </form>
 
       </div>

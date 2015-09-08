@@ -39,6 +39,19 @@ module.service('staffSrv', function($http) {
       });
   };
 
+  this.getStaffRoles = function(object) {
+    return $http.get(apiPath + 'permissions/' + object.id)
+      .then(function(response){
+        var rolesObject = {};
+        for (var role in response.data.roles) {
+          if (response.data.roles.hasOwnProperty(role)) {
+            rolesObject[response.data.roles[role]] = true;
+          }
+        }
+        self.staffRoles = rolesObject;
+      });
+  };
+
   this.save = function(object, formToken) {
     var copiedObject = jQuery.extend(true, {}, object);
     for (var property in copiedObject) {
@@ -80,6 +93,7 @@ module.service('staffSrv', function($http) {
   this.saveCredentials = function(object, formToken) {
     var data = {};
     data.StaffAuthorization = object;
+    data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
       headers: {
@@ -89,6 +103,36 @@ module.service('staffSrv', function($http) {
       data: data
     }).then(function(response) {
       self.credentialStatus = response.data;
+    });
+  };
+
+  this.saveRoles = function(object,formToken) {
+    var id = object.id;
+    delete object.loading;
+    delete object.id;
+
+    var rolesArray = [];
+    for (var role in object) {
+      if (object.hasOwnProperty(role) && object[role] === true) {
+        object[role] = role;
+        if (object[role].length > 0) {
+          rolesArray.push(object[role]);
+        }
+      }
+    }
+
+    var data = {};
+    data.StaffAuthorization = rolesArray;
+    data.FORM_SECURITY_TOKEN = formToken;
+    return $http({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: apiPath + 'permissions/' + id,
+      data: data
+    }).then(function(response){
+
     });
   };
 

@@ -78,6 +78,7 @@ class StaffAuthorizationController extends AbstractController
     }
     
     public function savePermissions($id) {
+        
         $result = $this->model->savePermissions($id);
         
         //update the local user settings
