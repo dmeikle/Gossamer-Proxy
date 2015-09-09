@@ -121,6 +121,8 @@ admin_staff_edit_home:
         view: core\views\AngularTemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/staff'
     methods: [GET]
 
 

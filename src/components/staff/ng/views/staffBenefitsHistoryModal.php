@@ -1,7 +1,10 @@
 <div class="modal-header">
   <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
-  <button class="pull-right" ng-click="addNewBenefits()">
+  <button ng-if="!addingNew" class="pull-right" ng-click="addNewBenefits()">
     <?php echo $this->getString('STAFF_UPDATE');?>
+  </button>
+  <button ng-if="addingNew" class="pull-right" ng-click="saveNewBenefits()">
+    <?php echo $this->getString('STAFF_SAVE');?>
   </button>
   <div class="clearfix"></div>
 </div>
