@@ -77,6 +77,7 @@
           <div class="clearfix"></div>
           <div class="cardfooter">
             <button class="primary pull-right" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -137,6 +138,7 @@
                 <?php echo $this->getString('STAFF_RESET'); ?>
               </button>
             </div>
+            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -223,6 +225,7 @@
           <div class="clearfix"></div>
           <div class="cardfooter">
             <button class="primary pull-right" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -273,9 +276,10 @@
           </div>
           <div class="clearfix"></div>
           <div class="cardfooter">
-            <button class="primary" ng-click="openStaffBenefitsHistoryModal()">
+            <button class="primary pull-right" ng-click="openStaffBenefitsHistoryModal()">
               <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
             </button>
+            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -367,6 +371,7 @@
                 <?php echo $this->getString('STAFF_RESET'); ?>
               </button>
             </div>
+            <div class="clearfix"></div>
           </div>
         </form>
 
