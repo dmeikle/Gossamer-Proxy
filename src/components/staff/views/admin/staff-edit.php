@@ -223,19 +223,19 @@
             <table class="cardtable">
               <tbody>
                 <tr>
-                  <td><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></td>
+                  <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
                   <td get-department></td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString('STAFF_EMAIL'); ?></td>
+                  <td><strong><?php echo $this->getString('STAFF_EMAIL'); ?></strong></td>
                   <td>{{staff.email}}</td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString('STAFF_MOBILE'); ?></td>
+                  <td><strong><?php echo $this->getString('STAFF_MOBILE'); ?></strong></td>
                   <td>{{staff.mobile}}</td>
                 </tr>
                 <tr>
-                  <td><?php echo $this->getString('STAFF_EXTENSION'); ?></td>
+                  <td><strong><?php echo $this->getString('STAFF_EXTENSION'); ?></strong></td>
                   <td>{{staff.extension}}</td>
                 </tr>
               </tbody>
@@ -301,9 +301,44 @@
         <div ng-if="staffBenefitsLoading"><span class="spinner-loader"></span></div>
 
         <div ng-if="!staffBenefitsLoading">
-          
+          <table class="cardtable">
+            <tbody>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].StaffPositions_id}}</td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].Departments_id}}</td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_SALARY'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].salary | currency:$}}</td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_IS_HOURLY'); ?></strong></td>
+                <td bool-to-string data-value="{{staffBenefits[staffBenefits.length-1].isHourly}}"></td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].accruedVacationMonthly}}</td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].accruedSickMonthly}}</td>
+              </tr>
+              <tr>
+                <td><strong><?php echo $this->getString('STAFF_STARTDATE'); ?></strong></td>
+                <td>{{staffBenefits[staffBenefits.length-1].startDate}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
+        <div class="cardfooter">
+          <button class="primary" ng-click="openStaffBenefitsHistoryModal()">
+            <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
+          </button>
+        </div>
       </div>
     </div>
     <div class="clearfix"></div>
