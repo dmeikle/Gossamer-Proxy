@@ -10,6 +10,8 @@ accounting_timesheets_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_timesheets_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
         
 
 accounting_timesheets_list:
@@ -19,7 +21,7 @@ accounting_timesheets_list:
         controller: components\accounting\controllers\TimesheetsController
         model: components\accounting\models\TimesheetModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_timesheets_list
         datasource: datasource1
 
