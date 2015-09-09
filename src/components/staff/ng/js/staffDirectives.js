@@ -48,7 +48,7 @@ module.directive('getDepartment', function() {
   };
 });
 
-module.directive('checkUsernameExists', function(staffSrv, $q) {
+module.directive('checkUsernameExists', function(staffEditSrv, $q) {
   return {
     restrict: 'A',
     scope: false,
@@ -58,8 +58,8 @@ module.directive('checkUsernameExists', function(staffSrv, $q) {
         var object = scope.$parent.staff;
         ctrl[0].$asyncValidators.usernameExists = function(modelValue, viewValue) {
           object.username = modelValue;
-          return staffSrv.checkUsernameExists(object).then(function() {
-            if (staffSrv.usernameExists === "true") {
+          return staffEditSrv.checkUsernameExists(object).then(function() {
+            if (staffEditSrv.usernameExists === "true") {
               object.usernamValid = false;
               return $q.reject('Username Exists');
             } else {
@@ -68,6 +68,24 @@ module.directive('checkUsernameExists', function(staffSrv, $q) {
             }
           });
         };
+      }
+    }
+  };
+});
+
+module.directive('boolToString', function() {
+  return {
+    restrict: 'A',
+    replace: true,
+    scope: false,
+    link: function(scope, element, attrs) {
+      switch (attrs.value) {
+        case '0':
+          element[0].innerText = 'No';
+        break;
+        default:
+          element[0].innerText = 'Yes';
+
       }
     }
   };
