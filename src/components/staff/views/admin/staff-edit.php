@@ -333,11 +333,12 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="cardfooter">
-          <button class="primary" ng-click="openStaffBenefitsHistoryModal()">
-            <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
-          </button>
+
+          <div class="cardfooter">
+            <button class="primary" ng-click="openStaffBenefitsHistoryModal()">
+              <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
+            </button>
+          </div>
         </div>
       </div>
     </div>
