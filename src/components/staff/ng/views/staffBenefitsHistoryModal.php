@@ -1,11 +1,16 @@
 <div class="modal-header">
   <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
-  <button ng-if="!addingNew" class="pull-right" ng-click="addNewBenefits()">
+  <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()">
     <?php echo $this->getString('STAFF_UPDATE');?>
   </button>
-  <button ng-if="addingNew" class="pull-right" ng-click="saveNewBenefits()">
-    <?php echo $this->getString('STAFF_SAVE');?>
-  </button>
+  <div ng-if="addingNew" class="btn-group pull-right">
+    <button class="primary" ng-click="saveNewBenefits(staff)">
+      <?php echo $this->getString('STAFF_SAVE');?>
+    </button>
+    <button ng-click="toggleAddNewBenefits()">
+      <?php echo $this->getString('STAFF_RESET');?>
+    </button>
+  </div>
   <div class="clearfix"></div>
 </div>
 <div class="modal-body">
@@ -25,11 +30,16 @@
       <tr ng-if="addingNew">
         <td><?php echo $form['StaffPositions_id']; ?></td>
         <td><?php echo $form['Departments_id']; ?></td>
-        <td><?php echo $form['StaffPositions_id']; ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><input class="form-control" type="number" name="staff-salary" id="staff-salary" ng-model="staff.salary"></td>
+        <td>
+          <select class="form-control" ng-model="staff.isHourly" name="staff-hourly" id="staff-hourly">
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+          </select>
+        </td>
+        <td><input class="form-control" type="number" name="staff-accruedVacationMonthly" id="staff-accruedVacationMonthly" ng-model="staff.accruedVacationMonthly"></td>
+        <td><input class="form-control" type="number" name="staff-accruedSickMonthly" id="staff-accruedSickMonthly" ng-model="staff.accruedSickMonthly"></td>
+        <td><input class="form-control" type="date" name="staff-startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone:+0000}"></td>
       </tr>
       <tr ng-repeat="benefits in staffBenefits">
         <td>{{benefits.StaffPositions_id}}</td>
@@ -38,14 +48,22 @@
         <td bool-to-string data-value="{{benefits.isHourly}}"></td>
         <td>{{benefits.accruedVacationMonthly}}</td>
         <td>{{benefits.accruedSickMonthly}}</td>
-        <td>{{benefits.startDate}}</td>
+        <td>{{benefits.startDate | date:'dd-MM-yyyy':+0000}}</td>
       </tr>
     </tbody>
   </table>
+  <form class="hidden"></form>
 </div>
 <div class="modal-footer">
-  <button class="primary">
+  <button ng-if="!addingNew" class="primary" ng-click="close()">
     <?php echo $this->getString('STAFF_CLOSE'); ?>
   </button>
+  <div ng-if="addingNew" class="btn-group pull-right">
+    <button class="primary" ng-click="saveNewBenefits(staff)">
+      <?php echo $this->getString('STAFF_SAVE');?>
+    </button>
+    <button ng-click="toggleAddNewBenefits()">
+      <?php echo $this->getString('STAFF_RESET');?>
+    </button>
+  </div>
 </div>
-<?php pr($this->data); ?>

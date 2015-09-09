@@ -5,6 +5,11 @@ module.service('staffBenefitsSrv', function($http) {
 
   this.getStaffBenefits = function(object) {
     return $http.get(apiPath + object.id).then(function(response) {
+      for (var benefits in response.data.StaffBenefits) {
+        if (response.data.StaffBenefits.hasOwnProperty(benefits)) {
+          response.data.StaffBenefits[benefits].startDate = new Date(response.data.StaffBenefits[benefits].startDate);
+        }
+      }
       self.staffBenefits = response.data.StaffBenefits;
     });
   };

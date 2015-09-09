@@ -130,7 +130,7 @@
           </div>
           <div class="clearfix"></div>
           <div class="cardfooter">
-            <div class="pull-right">
+            <div class="pull-right btn-group">
               <button class="primary" ng-click="submitRoles(staffRoles)">
                 <?php echo $this->getString('STAFF_SUBMIT'); ?>
               </button>
@@ -269,7 +269,7 @@
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_STARTDATE'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].startDate}}</td>
+                  <td>{{staffBenefits[staffBenefits.length-1].startDate | date:'dd-MM-yyyy':+0000}}</td>
                 </tr>
               </tbody>
             </table>
@@ -363,7 +363,7 @@
           </div>
 
           <div class="cardfooter">
-            <div class="pull-right">
+            <div class="pull-right btn-group">
               <button class="primary" ng-click="submitCredentials(authorization)">
                 <?php echo $this->getString('STAFF_SUBMIT'); ?>
               </button>
