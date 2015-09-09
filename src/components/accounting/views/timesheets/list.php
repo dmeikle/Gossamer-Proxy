@@ -1,1 +1,3 @@
-this is the list page
+<div ng-controller="pageTemplatesCtrl">
+    this is the list page!! {{itemsPerPage}}
+</div>

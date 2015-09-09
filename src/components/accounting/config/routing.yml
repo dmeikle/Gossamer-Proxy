@@ -6,8 +6,8 @@ accounting_timesheets_home:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\TimesheetsController
         model: components\accounting\models\TimesheetModel
-        method: listall
-        view: extensions/angular/views/AngularTemplateView
+        method: index
+        view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_timesheets_home
         datasource: datasource1
         

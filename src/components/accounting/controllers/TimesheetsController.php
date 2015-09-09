@@ -15,7 +15,7 @@ use core\AbstractController;
 
 
 /**
- * Description of PropertiesController
+ * Description of TimesheetsController
  *
  * @author Dave Meikle
  */
