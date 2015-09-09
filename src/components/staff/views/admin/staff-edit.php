@@ -340,7 +340,6 @@
               <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
               <?php echo $aform['username']; ?>
             </div>
-            <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
           </div>
           <div class="cardright">
             <div class="form-group">
@@ -354,6 +353,7 @@
             </div>
           </div>
           <div class="clearfix"></div>
+          <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
           <div class="form-group">
             <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="authorization.emailUser">
             <label for="staff-emailUser"><?php echo $this->getString('STAFF_EMAILUSER'); ?></label>

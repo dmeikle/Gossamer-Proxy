@@ -23,9 +23,9 @@
     </thead>
     <tbody>
       <tr ng-if="addingNew">
-        <td><?php echo $form['Staff_StaffPositions_id']; ?></td>
-        <td><?php echo $form['Staff_Departments_id']; ?></td>
-        <td><?php echo $form['Staff_StaffPositions_id']; ?></td>
+        <td><?php echo $form['StaffPositions_id']; ?></td>
+        <td><?php echo $form['Departments_id']; ?></td>
+        <td><?php echo $form['StaffPositions_id']; ?></td>
         <td></td>
         <td></td>
         <td></td>
