@@ -38,8 +38,6 @@ module.service('staffRolesSrv', function($http) {
       },
       url: apiPath + 'permissions/' + id,
       data: data
-    }).then(function(response) {
-
     });
   };
 });
