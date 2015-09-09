@@ -43,7 +43,7 @@ return array(
   'STAFF_EMAILUSER' => 'Generate Password via Email',
   'STAFF_SEND_TO_USER' => 'Check this box to send an email to the user with which they can generate a new password',
   'STAFF_SUBMIT' => 'Submit',
-  'STAFF_RESET' => 'Reset',
+  'STAFF_RESET' => 'Clear',
   'STAFF_SAVE' => 'Save',
   'STAFF_EDIT' => 'Edit',
   'STAFF_EMERGENCY_INFO' => 'Emergency Information',
