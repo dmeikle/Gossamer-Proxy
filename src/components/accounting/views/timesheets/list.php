@@ -3,7 +3,9 @@
     <h1 class="pull-left">Timesheet List</h1>
 <!--    <a href="staff/edit/0" class="pull-right"><?php echo $this->getString('STAFF_NEW');?></a>-->
     <div class="clearfix"></div>
-    
+    <div class="pull-left">
+        <button class="primary" data-toggle="modal" data-target="#new-timesheet">New Timesheet</button>
+    </div>
     <div class="pull-right">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
@@ -23,7 +25,7 @@
         <?php echo $this->getString('STAFF_SEARCH') ?>
       </button>
     </div>
-    
+    <div class="clearfix"></div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -59,7 +61,7 @@
           </tr>
           <tr ng-if="!loading" ng-repeat="timesheet in timesheetList" ng-click="selectRow(timesheet)" ng-class="{'selected': timesheet.clicked}">
               <td>{{timesheet.lastname}}, {{timesheet.firstname}}</td>
-              <td>{{timesheet.jobNumber}}</td>
+              <td>{{timesheet.numJobs}}</td>
               <td>{{timesheet.title}}</td>
               <td>{{timesheet.typeOfStaff}}</td>
               <td>{{timesheet.description}}</td>
@@ -92,4 +94,37 @@
       class="pagination" boundary-links="true" rotate="false">
     </pagination>
   </div>
+</div>
+
+<!-- Add New Timesheet Modal -->
+<div class="modal fade" id="new-timesheet" tabindex="-1" role="dialog" aria-labelledby="newTimesheet" ng-controller="timesheetListCtrl">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">New Timesheet</h4>
+            </div>
+            <div class="modal-body">
+                <div class="laborer">
+                    Laborer:
+                    <select class="form-control laborer-select">
+                        <option value="one">-select-</option>
+                        <option value="two">Homer</option>
+                        <option value="three">Marge</option>
+                        <option value="four">Bart</option>
+                        <option value="five">Lisa</option>
+                        <option value="five">Maggie</option>
+                    </select>                
+                </div>
+                
+                <div class="date">
+                    Date: {{ yesterday | date:'yyyy-MM-dd' }}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
 </div>

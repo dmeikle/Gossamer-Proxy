@@ -9,6 +9,22 @@ module.controller('timesheetListCtrl', function($scope, $modal,  costCardItemTyp
         $scope.loading = false;
         $scope.timesheetList = timesheetSrv.timesheetList;  
     });
-   console.log('timesheet List 2!');
-    //test
+    console.log('timesheet List 2!');
+
+//    $scope.date = new Date();
+//    //$scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
+//    $scope.yesterday = 'yesterday!!';
+
+    //console.log($scope.yesterday);
+    
+    //Get the dates
+    $scope.getDates = function(){
+        console.log('Getting dates');
+        $scope.date = new Date();
+        $scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
+        //$scope.yesterday = 'yesterday!!';
+        //$scope.$apply();
+    };
+    
+    $scope.getDates();
 });
