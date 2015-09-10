@@ -5,6 +5,16 @@ table{
     }
 }
 #new-timesheet{
+    .laborer, .date, .total-hours{
+        display:inline;
+    }
+    .date{
+        margin-left:100px;
+    }
+    .total-hours{
+        float:right;
+        margin-right:40px;
+    }
     .laborer-select{
         width:auto;
         display:inline-block;

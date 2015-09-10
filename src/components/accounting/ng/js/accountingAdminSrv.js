@@ -161,16 +161,27 @@ module.service('pageTemplatesSrv', function($http) {
 
 // Timesheet service
 module.service('timesheetSrv', function($http) {
-    var apiPath = '/admin/accounting/timesheets';
-
+    var apiPath = '/admin/accounting/timesheets/';
+    var staff_apiPath = '/admin/staff/';
     var self = this;
     
+    //Get the list of timesheets
     this.getTimesheetList = function(row, numRows){
-        return $http.get(apiPath + '/' + row + '/' + numRows)
+        return $http.get(apiPath + row + '/' + numRows)
         .then(function(response) {
-            console.log(self);
             self.timesheetList = response.data.Timesheets;
-            //self.staffCount = response.data.StaffsCount[0].rowCount;
+        });
+    };
+    
+    //Autocomplete
+    this.autocomplete = function(searchObject) {
+        var value = searchObject.val[0];
+        var column = 'name';
+
+        return $http.get(staff_apiPath + 'search?' + column + '=' + value)
+            .then(function(response) {
+            console.log(response);
+            self.autocompleteList = response.data.Staffs;
         });
     };
 });

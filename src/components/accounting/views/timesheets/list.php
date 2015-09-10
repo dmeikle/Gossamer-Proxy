@@ -107,19 +107,57 @@
             <div class="modal-body">
                 <div class="laborer">
                     Laborer:
-                    <select class="form-control laborer-select">
-                        <option value="one">-select-</option>
-                        <option value="two">Homer</option>
-                        <option value="three">Marge</option>
-                        <option value="four">Bart</option>
-                        <option value="five">Lisa</option>
-                        <option value="five">Maggie</option>
-                    </select>                
+                    <input type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]">
+                    <datalist id="timesheet-autocomplete-list">
+                        <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
+                        <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
+                    </datalist>           
                 </div>
                 
                 <div class="date">
                     Date: {{ yesterday | date:'yyyy-MM-dd' }}
                 </div>
+                
+                <div class="total-hours">
+                    Total Hours
+                </div>
+                
+                
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="select-col">&nbsp;</th>
+                            <th><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_LABOUR_CATEGORY'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_REG'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_OT'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_DOT'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_SREG'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_SOT'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_SDOT'); ?></th>
+                            <th><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
