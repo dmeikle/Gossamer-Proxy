@@ -63,3 +63,8 @@ staffBenefitsHistoryModal:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
                 - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }
+
+editEmergencyContactModal:
+    path: 'src/components/staff/ng/views/editEmergencyContactModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'

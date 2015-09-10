@@ -23,3 +23,26 @@
     @extend .widgetfooter;
   }
 }
+.cardheader {
+  @extend .widgetheader;
+}
+
+.card img {
+  height:128px;
+  width:128px;
+}
+
+.cardtable {
+  width:100%;
+  font-size:.8em;
+
+  thead {
+    border-bottom: 1px solid $gray-lighter;
+  }
+  td {
+    padding:.25em;
+  }
+  .cog-col {
+    width:30px;
+  }
+}
