@@ -16,6 +16,11 @@ return array(
     'ACCOUNTING_DATE' => 'Date',
     'ACCOUNTING_EXPORTED' => 'Exported',
     'ACCOUNTING_TOTAL' => 'Total',
+    'ACCOUNTING_NEW_TIMESHEET' => 'New Timesheet',
+    'ACCOUNTING_NEW_TIMESHEET_ROW' => 'New Row',
+    'ACCOUNTING_NEW_TIMESHEET_INSERT' => 'Insert Row(s)',
+    'ACCOUNTING_NEW_TIMESHEET_DELETE' => 'Delete Row(s)',
+
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name'
 

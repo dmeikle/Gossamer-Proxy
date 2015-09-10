@@ -4,7 +4,7 @@
 <!--    <a href="staff/edit/0" class="pull-right"><?php echo $this->getString('STAFF_NEW');?></a>-->
     <div class="clearfix"></div>
     <div class="pull-left">
-        <button class="primary" data-toggle="modal" data-target="#new-timesheet">New Timesheet</button>
+        <button class="primary" data-toggle="modal" data-target="#new-timesheet"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
     </div>
     <div class="pull-right">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
@@ -141,22 +141,50 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr ng-repeat="row in newTimesheet track by $index">
+                            <td>
+                                <input class="checkbox" type="checkbox" ng-model="row.selected">
+                            </td>
+                            <td>
+                                <input ng-model="row.claim">
+                            </td>
+                            <td>
+                                <input ng-model="row.phase">
+                            </td>
+                            <td>
+                                <input ng-model="row.category">
+                            </td>
+                            <td>
+                                <input ng-model="row.description">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.reg" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.ot" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.dot" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.sreg" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.sot" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.sdot" ng-change="updateTotal(row)">
+                            </td>
+                            <td>
+                                <input class="hours" ng-model="row.total">
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                
+                <button class="primary" ng-click="addTimesheetRow()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_ROW') ?></button>
+                <button class="primary" ng-click="insertTimesheetRows()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_INSERT') ?></button>
+                <button class="default" ng-click="removeTimesheetRows()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_DELETE') ?></button>
                 
             </div>
             <div class="modal-footer">

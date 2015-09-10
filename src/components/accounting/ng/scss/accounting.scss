@@ -5,6 +5,9 @@ table{
     }
 }
 #new-timesheet{
+    .modal-lg{
+        width:1200px;
+    }
     .laborer, .date, .total-hours{
         display:inline;
     }
@@ -19,5 +22,14 @@ table{
         width:auto;
         display:inline-block;
         margin-left:10px;
+    }
+    table{
+        input{
+            width: 100px;
+        }
+        .hours, .checkbox{
+            width:50px;
+            text-align:center;
+        }
     }
 }

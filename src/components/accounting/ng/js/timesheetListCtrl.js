@@ -38,6 +38,79 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     });
     
+    //Timesheet template
+    var timesheetTemplate = {
+        selected: false,
+        claim: '',
+        phase: '',
+        category: '',
+        description: '',
+        reg: '0',
+        ot: '0',
+        dot: '0',
+        sreg: '0',
+        sot: '0',
+        sdot: '0',
+        total: '0'
+    };
+    
+    //New Timesheet
+    $scope.newTimesheet = [timesheetTemplate];
+    
+    $scope.updateTotal = function(row){
+        row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot);
+    };
+    
+    $scope.addTimesheetRow = function(){
+        $scope.newTimesheet.push({
+        selected: false,
+        claim: '',
+        phase: '',
+        category: '',
+        description: '',
+        reg: '0',
+        ot: '0',
+        dot: '0',
+        sreg: '0',
+        sot: '0',
+        sdot: '0',
+        total: '0'
+    });
+    };
+    
+    $scope.insertTimesheetRows = function(){
+        for (var i in $scope.newTimesheet){
+            
+            if($scope.newTimesheet[i].selected === true){
+                //console.log('selected row = ' + i+1);
+                console.log($scope.newTimesheet[i]);
+                $scope.newTimesheet.splice(parseInt(i)+1, 0,
+                {
+                    selected: false,
+                    claim: '',
+                    phase: '',
+                    category: '',
+                    description: '',
+                    reg: '0',
+                    ot: '0',
+                    dot: '0',
+                    sreg: '0',
+                    sot: '0',
+                    sdot: '0',
+                    total: '0'
+                });                
+            }            
+        }
+    };
+    
+    $scope.removeTimesheetRows = function(){
+        for (var i in $scope.newTimesheet){
+            
+            if($scope.newTimesheet[i].selected === true){
+                $scope.newTimesheet.splice(parseInt(i), 1);                
+            }            
+        }
+    };
     //Call the functions
     $scope.getDates();
     
