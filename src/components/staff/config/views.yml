@@ -88,7 +88,7 @@ admin_login_reset:
         - @components/staff/dist/css/staff.min.css
 
 admin_login_reset_submit:
-    template: list.php
+    template: message.php
     sections:
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -100,7 +100,7 @@ admin_login_reset_submit:
         - @components/staff/dist/css/staff.min.css
 
 admin_login_confirmreset:
-    template: list.php
+    template: message.php
     sections:
         -
             "header": "src/themes/default/templates/sections/portal-header.php"
@@ -113,7 +113,7 @@ admin_login_confirmreset:
 
 
 admin_login_confirmreset_submit:
-    template: list.php
+    template: message.php
     sections:
         -
             "header": "src/themes/default/templates/sections/portal-header.php"
@@ -125,7 +125,7 @@ admin_login_confirmreset_submit:
         - @components/staff/dist/css/staff.min.css
 
 admin_login_failed:
-    template: error.php
+    template: message.php
     sections:
         -
             "header": "src/themes/default/templates/sections/portal-header.php"

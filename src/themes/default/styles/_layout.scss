@@ -7,6 +7,12 @@
   padding:0 .25rem;
 }
 
+.message-wrapper {
+  @extend .container;
+  min-height: 95vh; //Magic number-ey for now
+
+}
+
 .userimage {
   border-radius:50%;
   margin-right:.5em;

@@ -28,7 +28,7 @@
 <body cz-shortcut-listen="true">
   <!---header--->
   <div class="clearfix"></div>
-  <main class="content full-width">
+  <main class="message-wrapper">
     <!---content--->
   </main>
   <div class="clearfix"></div>
