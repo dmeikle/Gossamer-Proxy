@@ -25,6 +25,19 @@ accounting_timesheets_list:
         viewKey: accounting_timesheets_list
         datasource: datasource1
 
+        
+
+accounting_timesheets_breakdown:
+    pattern: admin/accounting/timesheets/breakdown/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: listBreakdown
+        view: core\views\JSONView
+        viewKey: accounting_timesheets_breakdown
+        datasource: datasource1
+
 
 accounting_timesheets_edit:
     pattern: admin/accounting/timesheets/*
