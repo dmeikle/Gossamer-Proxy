@@ -4,10 +4,8 @@ table{
         vertical-align: middle!important;
     }
 }
-#new-timesheet{
-    .modal-lg{
-        width:1200px;
-    }
+.modal-lg{
+    width:1200px;
     .laborer, .date, .total-hours{
         display:inline;
     }

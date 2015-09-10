@@ -1,8 +1,9 @@
-
 <!-- Add New Timesheet Modal -->
+<!--
 <div class="modal fade" id="new-timesheet" tabindex="-1" role="dialog" aria-labelledby="newTimesheet" ng-controller="timesheetListCtrl">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+-->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">New Timesheet</h4>
@@ -103,6 +104,8 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary">Save</button>
             </div>
+<!--
         </div>
     </div>
 </div>
+-->

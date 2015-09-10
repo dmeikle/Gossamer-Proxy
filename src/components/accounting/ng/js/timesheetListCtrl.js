@@ -1,4 +1,4 @@
-module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv, $parse) {
+module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv) {
     // Stuff to run on controller load
     $scope.rowsPerPage = 20;
     $scope.currentPage = 1;
