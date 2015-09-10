@@ -149,6 +149,18 @@ admin_staff_benefits_listbydate:
         viewKey: admin_staff_benefits_listbydate
         datasource: datasource1
     methods: [GET]
+    
+admin_staff_benefits_save:
+    pattern: admin/staff/benefits/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffBenefitsController
+        model: components\staff\models\StaffBenefitModel
+        method: saveNewBenefit
+        view: core\views\JSONView
+        viewKey: admin_staff_benefits_save
+        datasource: datasource1
+    methods: [POST]
 
 
 
