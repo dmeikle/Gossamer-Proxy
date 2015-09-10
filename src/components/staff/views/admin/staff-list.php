@@ -58,7 +58,7 @@
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
-                    <li><a href="staff/edit/{{staff.id}}">Edit</a></li>
+                    <li><a href="edit/{{staff.id}}">Edit</a></li>
                     <li><a href="#">Emergency Contacts</a></li>
                     <li><a href="#">Delete</a></li>
                   </ul>

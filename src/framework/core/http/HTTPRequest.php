@@ -181,6 +181,10 @@ class HTTPRequest extends AbstractHTTP {
      * @return string
      */
     public function getAttribute($key) {
+        if(is_null($this->attributes)) {
+            return null;
+        }
+        
         if (array_key_exists($key, $this->attributes)) {
             return $this->attributes[$key];
         }

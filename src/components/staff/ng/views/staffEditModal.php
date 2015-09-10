@@ -1,3 +1,6 @@
+
+
+
 <div class="modal-header" ng-switch="staff.id">
   <h1 ng-switch-when="undefined" class="modal-title">Add New Staff Member</h1>
   <h1 class="modal-title" ng-switch-default>{{staff.firstname}} {{staff.lastname}}</h1>
@@ -67,6 +70,10 @@
         <label for="address2"><?php echo $this->getString('STAFF_ADDRESS2'); ?></label>
         <input class="form-control" type="tel" name="address2"
           id="staff-address2" ng-model="staff.address2">
+      </div>
+      <div class="form-group">
+        <label for="city"><?php echo $this->getString('STAFF_PROVINCE'); ?></label>
+        <?php echo $form['Provinces_id'];?>
       </div>
       <div class="form-group">
         <label for="city"><?php echo $this->getString('STAFF_CITY'); ?></label>

@@ -1,10 +1,10 @@
 RewriteEngine on
 RewriteBase /
 
-#Header set Access-Control-Allow-Origin "*" 
+#Header set Access-Control-Allow-Origin "*"
 Options +FollowSymLinks
 
-RewriteCond $1 !\.(gif|jpe?g|png|css|js|images|ttf|woff)$ [NC]
+RewriteCond $1 !\.(gif|jpe?g|png|css|js|images|ttf|woff|woff2)$ [NC]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 

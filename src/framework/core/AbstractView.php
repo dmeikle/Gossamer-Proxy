@@ -198,7 +198,7 @@ class AbstractView {
             //extract($this->data->content);
            (eval("?>" . $this->template));
            $result = ob_get_clean();
-           
+          
            //write it to the page - do not delete! this is not debug
             print($result);
             
