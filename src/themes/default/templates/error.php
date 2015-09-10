@@ -28,7 +28,7 @@
 <body cz-shortcut-listen="true">
   <!---header--->
   <div class="clearfix"></div>
-  <main class="content">
+  <main class="content full-width">
     <!---content--->
   </main>
   <div class="clearfix"></div>
@@ -37,10 +37,12 @@
 
   <!---javascript--->
 
-  <script language="javascript">
+
+  <!-- No angular for now! -->
+  <!-- <script language="javascript">
     (function() {
       angular.bootstrap(document, [<?php echo $modules; ?>]);
     })();
-  </script>
+  </script> -->
 
 </html>
