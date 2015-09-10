@@ -52,13 +52,22 @@
                                 <input ng-model="row.claim">
                             </td>
                             <td>
-                                <input ng-model="row.phase">
+                                <select name="ClaimPhases_id" ng-model="row.phase">
+                                    <?php foreach($ClaimPhases as $phase) {
+                                        echo '<option value="' . $phase['id'] . '">' . $phase['description'] . '</option>';
+                                       } ?>
+                                </select>
                             </td>
                             <td>
-                                <input ng-model="row.category">
+                                <select name="ClaimPhases_id" ng-model="row.category">
+                                    <?php foreach($StaffPositions as $position) {
+                                        echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
+                                       }
+                                       ?>
+                                </select>
                             </td>
                             <td>
-                                <textarea ng-model="row.description"></textarea>
+                                <input ng-model="row.description">
                             </td>
                             <td>
                                 <input class="hours" ng-model="row.reg" ng-change="updateTotal(row)">
