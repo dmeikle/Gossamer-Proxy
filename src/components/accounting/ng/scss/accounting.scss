@@ -18,12 +18,19 @@ table{
         float:right;
         margin-right:40px;
     }
-    .laborer-select{
-        width:auto;
-        display:inline-block;
-        margin-left:10px;
+    .laborer{
+        input{
+            margin-left:10px;
+        }
     }
     table{
+        td{
+            vertical-align: top!important;
+        }
+        textarea{
+            max-width: 200px;
+            min-width: 200px;
+        }
         input{
             width: 100px;
         }

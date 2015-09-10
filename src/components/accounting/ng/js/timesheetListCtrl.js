@@ -1,4 +1,4 @@
-module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv) {
+module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv, $parse) {
     // Stuff to run on controller load
     $scope.rowsPerPage = 20;
     $scope.currentPage = 1;
@@ -58,7 +58,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.newTimesheet = [timesheetTemplate];
     
     $scope.updateTotal = function(row){
-        row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot);
+        row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
     };
     
     $scope.addTimesheetRow = function(){
@@ -78,6 +78,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     });
     };
     
+    //Insert rows below currently selected items
     $scope.insertTimesheetRows = function(){
         for (var i in $scope.newTimesheet){
             
@@ -103,14 +104,31 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     };
     
+    //Remove Rows from timesheet
     $scope.removeTimesheetRows = function(){
-        for (var i in $scope.newTimesheet){
+        console.log('--DELETE ROWS---');
+        var test = $scope.newTimesheet;
+        var newArray = test;
+        
+        for (var i = $scope.newTimesheet.length-1; i >= 0; i--){
             
+            console.log('Timesheet ' + $scope.newTimesheet[i].claim);
             if($scope.newTimesheet[i].selected === true){
-                $scope.newTimesheet.splice(parseInt(i), 1);                
+                console.log('Timesheet ' + $scope.newTimesheet[i].claim + ' is being deleted!');
+                newArray.splice(parseInt(i), 1);                
             }            
         }
+        
+        $scope.newTimesheet = newArray;
     };
+    
+    //check the selected rows
+    $scope.checkSelected = function(){
+        for (var i in $scope.newTimesheet){
+            
+        }
+    };
+    
     //Call the functions
     $scope.getDates();
     

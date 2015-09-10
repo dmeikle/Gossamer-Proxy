@@ -52,9 +52,17 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>  
             <td>
               <span class="spinner-loader"></span>
             </td>
+            <td></td>  
+            <td></td>
+            <td></td>  
+            <td></td>  
             <td></td>
             <td></td>
             <td></td>
@@ -126,7 +134,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="select-col">&nbsp;</th>
+                            <th class="select-col"><input class="select-all" type="checkbox"></th>
                             <th><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_LABOUR_CATEGORY'); ?></th>
@@ -155,7 +163,7 @@
                                 <input ng-model="row.category">
                             </td>
                             <td>
-                                <input ng-model="row.description">
+                                <textarea ng-model="row.description"></textarea>
                             </td>
                             <td>
                                 <input class="hours" ng-model="row.reg" ng-change="updateTotal(row)">
@@ -182,8 +190,8 @@
                     </tbody>
                 </table>
                 
-                <button class="primary" ng-click="addTimesheetRow()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_ROW') ?></button>
-                <button class="primary" ng-click="insertTimesheetRows()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_INSERT') ?></button>
+                <button class="btn-info" ng-click="addTimesheetRow()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_ROW') ?></button>
+                <button class="btn-info" ng-click="insertTimesheetRows()" ng-disabled=""><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_INSERT') ?></button>
                 <button class="default" ng-click="removeTimesheetRows()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET_DELETE') ?></button>
                 
             </div>
