@@ -59,3 +59,12 @@ table.table tbody tr.selected {
   font-size:.8em;
   padding:.3em .5em;
 }
+
+.input-group input[datepicker-popup] {
+  width: 16rem;
+}
+.modal-body {
+  .input-group input[datepicker-popup] {
+    width: 7rem;
+  }
+}

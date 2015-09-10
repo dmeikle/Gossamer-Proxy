@@ -59,4 +59,6 @@ return array(
   'STAFF_ROLES_WEBSITE_EDITOR' => 'Website Editor',
   'STAFF_ROLES_STAFF' => 'Staff',
   'STAFF_ROLES_HUMAN_RESOURCES' => 'Human Resources',
+  'STAFF_UPDATE' => 'Add',
+  'STAFF_CLOSE' => 'Close',
 );

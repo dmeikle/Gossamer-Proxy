@@ -4,7 +4,15 @@ module.controller('staffEditCtrl', function($scope, $location, staffEditSrv) {
   $scope.loading = true;
   $scope.authorizationLoading = true;
   $scope.authorization = {};
+  $scope.isOpen = {};
   getStaffDetail();
+
+  // datepicker stuffs
+  $scope.dateOptions = {'starting-day':1};
+  $scope.openDatepicker = function(event) {
+    var datepicker = event.target.parentElement.dataset.datepickername;
+    $scope.isOpen[datepicker] = true;
+  };
 
   function getStaffDetail() {
     var object = {};
