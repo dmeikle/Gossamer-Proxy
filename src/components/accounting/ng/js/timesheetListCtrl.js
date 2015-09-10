@@ -132,5 +132,37 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     //Call the functions
     $scope.getDates();
     
+    //Modals
+    $scope.openTimesheetModal = function() {
+        var template = templateSrv.timesheetModal;
+        $modal.open({
+          templateUrl: template,
+          controller: 'timesheetListCtrl',
+          size: 'lg',
+//          resolve: {
+//            staff: function() {
+//              return staff;
+//            }
+//          }
+        });
+    };
+
+//  $scope.openStaffAdvancedSearchModal = function() {
+//    var template = templateSrv.staffEditModal;
+//    var modalInstance = $modal.open({
+//      templateUrl: template,
+//      controller: 'staffModalCtrl',
+//      size: 'lg'
+//    });
+//
+//    modalInstance.result
+//      .then(function(staff) {
+//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+//        staffListSrv.saveStaff(staff, formToken)
+//          .then(function() {
+//            getStaffList();
+//          });
+//      });
+//  };
     
 });
