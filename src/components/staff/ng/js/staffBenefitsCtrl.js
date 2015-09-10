@@ -47,6 +47,7 @@ module.controller('staffBenefitsHistoryModalCtrl', function($modalInstance, $sco
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 
     staffBenefitsSrv.save(object, formToken).then(function() {
+      $scope.addingNew = false;
       var object = {};
       object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 

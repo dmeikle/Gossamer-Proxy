@@ -15,16 +15,19 @@ module.service('staffBenefitsSrv', function($http) {
   };
 
   this.save = function(object, formToken) {
+    var copiedObject = jQuery.extend(true, {}, object);
+
+    copiedObject.startDate = object.startDate.toISOString().substring(0, 10);
 
     var data = {};
-    data.StaffBenefits = object;
+    data.StaffBenefit = copiedObject;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      url: apiPath + object.id,
+      url: apiPath + copiedObject.id,
       data: data
     });
   };
