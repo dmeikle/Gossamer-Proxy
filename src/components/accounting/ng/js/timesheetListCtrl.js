@@ -5,8 +5,8 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     $scope.loading = true;
     
-    $scope.basicSearch = {};
-    $scope.autocomplete = {};
+//    $scope.basicSearch = {};
+//    $scope.autocomplete = {};
     
     timesheetSrv.getTimesheetList(0,20).then(function(){
         $scope.loading = false;
@@ -14,12 +14,47 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     });
     console.log('timesheet List 2!');
 
+   
+    
+    //Modals
+    $scope.openTimesheetModal = function() {
+        var template = templateSrv.timesheetModal;
+        $modal.open({
+          templateUrl: template,
+          controller: 'timesheetModalCtrl',
+          size: 'lg',
+//          resolve: {
+//            staff: function() {
+//              return staff;
+//            }
+//          }
+        });
+    };
+
+    
+});
+
+module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv) {
+    $scope.basicSearch = {};
+    $scope.autocomplete = {};
+    $scope.confirm = function() {
+        $modalInstance.close($scope.staff);
+    };
+
+    $scope.cancel = function() {
+        $modalInstance.dismiss('cancel');
+    };
     //Get the dates
     $scope.getDates = function(){
         //console.log('Getting dates');
         $scope.date = new Date();
         $scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
     };
+    
+
+    
+    //Call the functions
+    $scope.getDates();
     
     //Autocomplete
     function fetchAutocomplete() {
@@ -29,11 +64,10 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
             $scope.autocomplete = timesheetSrv.autocompleteList;
             //console.log($scope.autocomplete);
         });
-    }   
-    
+    }
     $scope.$watch('basicSearch.val', function() {
         //console.log($scope.basicSearch.val);
-        if ($scope.basicSearch.val !== undefined) {
+        if ($scope.basicSearch.val) {
             $scope.autocomplete.loading = true;
             fetchAutocomplete();
         }
@@ -76,11 +110,6 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
                 $scope.timesheetSelected = false;
             }
         }
-        //console.log($scope.basicSearch.val);
-//        if ($scope.basicSearch.val !== undefined) {
-//            $scope.autocomplete.loading = true;
-//            fetchAutocomplete();
-//        }
     }, true);
     
     //Timesheet template
@@ -101,9 +130,78 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     //New Timesheet
     $scope.newTimesheet = [timesheetTemplate];
-    
-    $scope.updateTotal = function(row){
-        row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
+    $scope.sumTotal = {
+        reg:0,
+        ot: 0,
+        dot: 0,
+        sreg: 0,
+        sot: 0,
+        sdot: 0,
+        total: 0
+    };
+    $scope.updateTotal = function(row, col, hours){
+        row.total = 0;
+        
+        var hours = {
+            reg: parseInt(row.reg),
+            ot: parseInt(row.ot),
+            dot: parseInt(row.dot),
+            sreg: parseInt(row.sreg),
+            sot: parseInt(row.sot),
+            sdot: parseInt(row.sdot)
+        }
+ 
+//        console.log(row);
+//        for(var j = 5; j < Object.keys(row).length; j++){
+//            console.log(row[j]);
+//            if(row[j] === ''){
+//                row.total += 0;
+//            } else {
+//                row.total += parseInt(row[j]);
+//            }
+//        }
+        if(row[col] === ''){
+            hours[col] = 0;
+        }
+        
+        //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
+        row.total = hours.reg + hours.ot + hours.dot + hours.sreg + hours.sot + hours.sdot;
+
+        
+        //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
+        //row.total += 
+        $scope.sumTotal[col] = 0;
+        $scope.sumTotal.total = 0;
+//        switch (col){
+//            case: 'reg'; 
+//        }
+        
+//        $scope.sumTotal = {
+//            reg:0,
+//            ot: 0,
+//            dot: 0,
+//            sreg: 0,
+//            sot: 0,
+//            sdot: 0,
+//            total: 0
+//        };
+        
+        for(var i in $scope.newTimesheet){
+            var hoursTotal = {
+                reg: parseInt(row.reg),
+                ot: parseInt(row.ot),
+                dot: parseInt(row.dot),
+                sreg: parseInt(row.sreg),
+                sot: parseInt(row.sot),
+                sdot: parseInt(row.sdot)
+            }
+            if($scope.newTimesheet[i][col] === ''){
+                $scope.sumTotal[col] += 0;
+            } else {
+                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+                $scope.sumTotal.total += parseInt($scope.newTimesheet[i].total);
+            }
+        }
     };
     
     $scope.addTimesheetRow = function(){
@@ -192,42 +290,17 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     };
     
-    //Call the functions
-    $scope.getDates();
-    
-    //Modals
-    $scope.openTimesheetModal = function() {
-        var template = templateSrv.timesheetModal;
-        $modal.open({
-          templateUrl: template,
-          controller: 'timesheetListCtrl',
-          size: 'lg',
-//          resolve: {
-//            staff: function() {
-//              return staff;
-//            }
-//          }
-        });
-    };
-    
     $scope.setCategory = function(positionID){
         console.log('position ID = ' + positionID);
         if($scope.newTimesheet.length == 1){
             $scope.newTimesheet[0].category = positionID;
         }
     };
-
     
-});
-
-module.controller('timesheetModalCtrl', function($modalInstance, $scope) {
-  $scope.staff = staff;
-
-  $scope.confirm = function() {
-    $modalInstance.close($scope.staff);
-  };
-
-  $scope.cancel = function() {
-    $modalInstance.dismiss('cancel');
-  };
+    //On Text Click
+    $scope.checkEmpty = function (row, col) {
+        if(row[col] === ''){
+            row[col] = 0;
+        }
+    };
 });

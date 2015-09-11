@@ -70,40 +70,40 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <input class="form-control" ng-model="row.reg" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg'); updateTotal(row, 'reg', row.reg)">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row, 'ot', row.ot)">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row, 'dot', row.dot)">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row, 'sreg', row.sreg)">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row, 'sot', row.sot)">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row, 'sdot', row.sdot)">
                             </td>
                             <td>
                                {{row.total}}
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="totalRow">
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Total:</td>
-                            <td>total reg</td>
-                            <td>total ot</td>
-                            <td>total dot</td>
-                            <td>total sreg</td>
-                            <td>total sot</td>
-                            <td>total sdot</td>
-                            <td>total!</td>
+                            <td>{{sumTotal.reg}}</td>
+                            <td>{{sumTotal.ot}}</td>
+                            <td>{{sumTotal.dot}}</td>
+                            <td>{{sumTotal.sreg}}</td>
+                            <td>{{sumTotal.sot}}</td>
+                            <td>{{sumTotal.sdot}}</td>
+                            <td>{{sumTotal.total}}</td>
                         </tr>
                     </tbody>
                 </table>
