@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div class="laborer">
                     Laborer:
-                    <input type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]">
+                    <input type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-model-options="{debounce:500}" ng-change="search(basicSearch);">
                     <datalist id="timesheet-autocomplete-list">
                         <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                         <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
@@ -53,18 +53,17 @@
                                 <input ng-model="row.claim">
                             </td>
                             <td>
-                                <select name="ClaimPhases_id" ng-model="row.phase">
+                                <select class="form-control" name="ClaimPhases_id" ng-model="row.phase">
                                     <?php foreach($ClaimPhases as $phase) {
                                         echo '<option value="' . $phase['id'] . '">' . $phase['description'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
                             <td>
-                                <select name="ClaimPhases_id" ng-model="row.category">
+                                <select name="ClaimCategory_id" ng-model="row.category" ng-init="row.category">
                                     <?php foreach($StaffPositions as $position) {
                                         echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
-                                       }
-                                       ?>
+                                       } ?>
                                 </select>
                             </td>
                             <td>
@@ -96,8 +95,8 @@
                 </table>
                 
                 <button class="btn-info" ng-click="addTimesheetRow()">New Row</button>
-                <button class="btn-info" ng-click="insertTimesheetRows()" ng-disabled="">Insert Row(s)</button>
-                <button class="default" ng-click="removeTimesheetRows()">Delete Row(s)</button>
+                <button class="btn-info" ng-click="insertTimesheetRows()" ng-disabled="!timesheetSelected">Insert Row(s)</button>
+                <button class="btn-warning" ng-click="removeTimesheetRows()" ng-disabled="!timesheetSelected">Delete Row(s)</button>
                 
             </div>
             <div class="modal-footer">

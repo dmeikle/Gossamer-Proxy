@@ -24,11 +24,12 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     //Autocomplete
     function fetchAutocomplete() {
         //console.log($scope.basicSearch);
-          timesheetSrv.autocomplete($scope.basicSearch)
-              .then(function() {
-              $scope.autocomplete = timesheetSrv.autocompleteList;
-          });
-    }
+        timesheetSrv.autocomplete($scope.basicSearch)
+            .then(function() {
+            $scope.autocomplete = timesheetSrv.autocompleteList;
+            console.log($scope.autocomplete);
+        });
+    }   
     
     $scope.$watch('basicSearch.val', function() {
         //console.log($scope.basicSearch.val);
@@ -38,12 +39,51 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     });
     
+    //Search
+    $scope.search = function(searchObject) {
+        console.log('Search Object = ' + searchObject);
+        if (searchObject.val) {
+            timesheetSrv.filterListBy(0, 20, searchObject)
+                .then(function() {
+                if (timesheetSrv.searchResults) {
+                    $scope.staffList = timesheetSrv.searchResults;
+                    $scope.totalItems = timesheetSrv.searchResultsCount;
+                    console.log($scope.staffList);
+                } else {
+                    getStaffList();
+                }
+            });
+        } else {
+            getStaffList();
+        }
+    };
+    
+    
+    $scope.timesheetSelected = false;
+    
+    $scope.$watch('newTimesheet', function() {
+        console.log('Time sheet updated!');
+        for(var i in $scope.newTimesheet){
+            if($scope.newTimesheet[i].selected === true){
+                $scope.timesheetSelected = true;
+                return;
+            } else {
+                $scope.timesheetSelected = false;
+            }
+        }
+        //console.log($scope.basicSearch.val);
+//        if ($scope.basicSearch.val !== undefined) {
+//            $scope.autocomplete.loading = true;
+//            fetchAutocomplete();
+//        }
+    }, true);
+    
     //Timesheet template
     var timesheetTemplate = {
         selected: false,
         claim: '',
         phase: '',
-        category: '',
+        category: 'Manager',
         description: '',
         reg: '0',
         ot: '0',
@@ -161,7 +201,18 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 //          }
         });
     };
-
+    
+    
+    $scope.setCategory = function(value){
+        var laborerPos = value.split(' - ');
+        console.log(laborerPos[1]);
+        $scope.search(laborerPos[0]);
+        
+        for(var i in $scope.newTimesheet){
+            $scope.newTimesheet[i].category = laborerPos[1];
+            console.log('added category' + $scope.newTimesheet[i].category);
+        }
+    };
 //  $scope.openStaffAdvancedSearchModal = function() {
 //    var template = templateSrv.staffEditModal;
 //    var modalInstance = $modal.open({
