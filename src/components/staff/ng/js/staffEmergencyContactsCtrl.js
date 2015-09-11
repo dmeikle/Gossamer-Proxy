@@ -34,6 +34,17 @@ module.controller('staffEmergencyContactsCtrl', function($scope, $location, $mod
       });
     });
   };
+
+  $scope.delete = function(contact) {
+    var confirmed = confirm('Are you sure you want to delete ' + contact.firstname + ' ' + contact.lastname + '?');
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+    if (confirmed) {
+      staffEmergencyContactsSrv.delete(contact, formToken).then(function() {
+        getStaffEmergencyInfo();
+      });
+    }
+  };
 });
 
 module.controller('staffEmergencyContactModalCtrl', function($scope, $location, $modalInstance, contact) {

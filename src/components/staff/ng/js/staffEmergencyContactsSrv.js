@@ -23,8 +23,15 @@ module.service('staffEmergencyContactsSrv', function($http) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      url: apiPath + object.Staff_id + '/' + contactId,
+      url: apiPath + object.staffId + '/' + contactId,
       data: data
+    });
+  };
+
+  this.delete = function(object, formToken) {
+    return $http({
+      method:'DELETE',
+      url: apiPath + object.Staff_id + '/' + object.StaffEmergencyContacts_id
     });
   };
 });

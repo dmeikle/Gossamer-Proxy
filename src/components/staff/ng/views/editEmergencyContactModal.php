@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <h1 ng-if="!contact"><?php echo $this->getString('STAFF_EMERGENCY_ADDNEW') ?></h1>
-  <h1 ng-if="contact"><?php echo $this->getString('STAFF_EDIT') ?> {{contact.firstname}} {{contact.lastname}}</h1>
+  <h1 ng-if="!contact.id"><?php echo $this->getString('STAFF_EMERGENCY_ADDNEW') ?></h1>
+  <h1 ng-if="contact.id"><?php echo $this->getString('STAFF_EDIT') ?> {{contact.firstname}} {{contact.lastname}}</h1>
 </div>
 <div class="modal-body clearfix">
   <div class="col-xs-12 col-md-6">

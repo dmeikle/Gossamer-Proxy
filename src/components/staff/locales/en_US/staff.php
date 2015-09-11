@@ -66,5 +66,6 @@ return array(
   'STAFF_EMERGENCY_MOBILE' => 'Mobile Phone',
   'STAFF_EMERGENCY_EMAIL' => 'Email',
   'STAFF_NEW' => 'Add New',
-  'STAFF_CANCEL' => 'Cancel'
+  'STAFF_CANCEL' => 'Cancel',
+  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact'
 );

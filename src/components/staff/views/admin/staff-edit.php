@@ -394,7 +394,7 @@
       <div class="card" ng-controller="staffEmergencyContactsCtrl">
         <div class="cardheader">
           <h1 class="pull-left"><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
-          <button ng-if="!loading" class="primary pull-right"><?php echo $this->getString('STAFF_NEW')?></button>
+          <button ng-if="!loading" class="primary pull-right" ng-click="openEditEmergencyContactModal()"><?php echo $this->getString('STAFF_NEW')?></button>
         </div>
         <div ng-if="loading"><span class="spinner-loader"></span></div>
         <div ng-if="!loading">
@@ -423,7 +423,7 @@
                     <button class="dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                       <li><a ng-click="openEditEmergencyContactModal(contact)">Edit</a></li>
-                      <li><a href="#">Delete</a></li>
+                      <li><a ng-click="delete(contact)">Delete</a></li>
                     </ul>
                   </div>
                 </td>
