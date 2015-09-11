@@ -69,10 +69,14 @@ class YAMLConfiguration {
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
    
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
+        if(strlen($ymlKey) == 0 ) {
+            return array();
+        }
         try{
-            $nodeParams = $this->getYMLNodeParameters($ymlKey);
+                $nodeParams = $this->getYMLNodeParameters($ymlKey);
+            
         }catch(\Exception $e) {
-        
+            error_log("error getting node parameters $ymlKey");
             error_log($e->getMessage());
             http_response_code(404);
             throw new \exceptions\Error404Exception();

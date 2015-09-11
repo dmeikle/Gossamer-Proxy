@@ -61,12 +61,13 @@ class StaffEmergencyContactsController extends AbstractController {
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
 
-    public function save($id) {
+    public function saveContact($staffId, $contactId) {
         
         //we need to stuff the Staff_id into the params, but don't want it in 
         //the page where a hacker can change its values
         $params = $this->httpRequest->getPost();
-        $params['StaffEmergencyContact']['Staff_id'] = intval($id);
+        $params['StaffEmergencyContact']['Staff_id'] = intval($staffId);
+        $params['StaffEmergencyContact']['id'] = intval($contactId);
         
       
         $this->httpRequest->setPostParameter('StaffEmergencyContact', $params['StaffEmergencyContact']);
