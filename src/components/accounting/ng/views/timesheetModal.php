@@ -30,7 +30,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="select-col"><input class="select-all" type="checkbox"></th>
+                            <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                             <th>Claim</th>
                             <th>Phase</th>
                             <th>Category</th>
@@ -47,7 +47,7 @@
                     <tbody>
                         <tr ng-repeat="row in newTimesheet track by $index">
                             <td>
-                                <input class="checkbox" type="checkbox" ng-model="row.selected">
+                                <input class="checkbox" type="checkbox" ng-model="row.selected" ng-click="checkSelected(row.selected)">
                             </td>
                             <td>
                                 <input ng-model="row.claim">

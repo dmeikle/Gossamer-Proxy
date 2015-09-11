@@ -122,10 +122,25 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         $scope.newTimesheet = newArray;
     };
     
+    
+    //Select All
+    $scope.selectAllToggle = function(value){
+        if(value === true){
+            for(var i in $scope.newTimesheet){
+                $scope.newTimesheet[i].selected = true;
+            }
+        } else {
+            for(var j in $scope.newTimesheet){
+                $scope.newTimesheet[j].selected = false;
+            }
+        }
+    };
+    
+    
     //check the selected rows
-    $scope.checkSelected = function(){
-        for (var i in $scope.newTimesheet){
-            
+    $scope.checkSelected = function(value){
+        if(value === false){
+            $scope.selectAll = false;
         }
     };
     

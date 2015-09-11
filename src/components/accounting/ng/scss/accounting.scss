@@ -25,6 +25,9 @@ table{
         td{
             vertical-align: top!important;
         }
+        select{
+            font-size:20px;
+        }
         textarea{
             max-width: 200px;
             min-width: 200px;
@@ -32,9 +35,14 @@ table{
         input{
             width: 100px;
         }
-        .hours, .checkbox{
+        .hours{
             width:50px;
             text-align:center;
+        }
+        .checkbox, .select-all{
+            width:60px;
+            text-align:center;
+            margin:0;
         }
     }
 }
