@@ -26,7 +26,7 @@ class AngularTemplateView extends TemplateView {
     protected function renderView() {
        
         if(!array_key_exists('template', $this->config)) {
-            throw new \exceptions\YamlKeyNotFoundException('template not set in views configuration');
+            throw new \exceptions\YamlKeyNotFoundException(__YML_KEY . ' template not set in views configuration');
         }
         
         $this->configureAngular();
