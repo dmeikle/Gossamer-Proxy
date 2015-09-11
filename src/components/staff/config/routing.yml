@@ -65,12 +65,12 @@ admin_staff_emergencycontacts_list:
 
 
 admin_staff_emergencycontacts_save:
-    pattern: admin/staff/emergencycontacts/*
+    pattern: admin/staff/emergencycontacts/*/*
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
         model: components\staff\models\StaffEmergencyContactModel
-        method: save
+        method: saveContact
         view: core\views\JSONView
         viewKey: admin_staff_emergencycontacts_save
         datasource: datasource1
