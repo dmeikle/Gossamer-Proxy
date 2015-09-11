@@ -7,7 +7,6 @@
 
   h1 {
     margin-top:0;
-    border-bottom: 1px solid $gray-lighter;
   }
 }
 .mailcontent {
@@ -17,8 +16,31 @@
   padding:1em 0;
 }
 
+.widgetheader {
+  @extend .clearfix;
+  border-bottom: 1px solid $gray-lighter;
+}
+
 .widgetfooter {
   padding: .75rem 0.25rem .25rem;
   border-top: 1px solid $gray-lighter;
   margin-bottom:0;
+}
+
+.widget-content {
+  @extend .col-xs-12;
+
+  &.panel-open {
+    @extend .col-md-8;
+    & ~ .widget-side-panel {
+      @extend .col-xs-12;
+      @extend .col-md-4;
+      border-left:solid 1px $gray-lighter;
+    }
+  }
+}
+
+.widget-side-panel {
+  width:0px;
+  overflow-x:hidden;
 }

@@ -59,4 +59,13 @@ return array(
   'STAFF_ROLES_WEBSITE_EDITOR' => 'Website Editor',
   'STAFF_ROLES_STAFF' => 'Staff',
   'STAFF_ROLES_HUMAN_RESOURCES' => 'Human Resources',
+  'STAFF_EMERGENCY_NAME' => 'Name',
+  'STAFF_EMERGENCY_RELATIONSHIP' => 'Relation',
+  'STAFF_EMERGENCY_TELEPHONE' => 'Phone',
+  'STAFF_EMERGENCY_WORKTELEPHONE' => 'Work Phone',
+  'STAFF_EMERGENCY_MOBILE' => 'Mobile Phone',
+  'STAFF_EMERGENCY_EMAIL' => 'Email',
+  'STAFF_NEW' => 'Add New',
+  'STAFF_CANCEL' => 'Cancel',
+  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact'
 );

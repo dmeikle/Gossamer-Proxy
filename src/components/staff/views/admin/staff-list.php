@@ -7,7 +7,7 @@
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
-      <input type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
+      <input type="text" list="autocomplete-list" ng-model="basicSearch.val[0]" ng-model-options="{debounce:500}">
       <datalist id="autocomplete-list">
         <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
         <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>

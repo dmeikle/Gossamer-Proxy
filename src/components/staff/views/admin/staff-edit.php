@@ -5,9 +5,11 @@
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
-        <h1 class="pull-left"><?php echo $this->getString('STAFF_PERSONAL_INFO'); ?></h1>
-        <div class="pull-right">
-          <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        <div class="cardheader">
+          <h1 class="pull-left"><?php echo $this->getString('STAFF_PERSONAL_INFO'); ?></h1>
+          <div class="pull-right">
+            <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+          </div>
         </div>
         <div class="clearfix"></div>
         <div ng-if="loading">
@@ -83,7 +85,9 @@
       </div>
 
       <div class="card" ng-controller="staffRolesCtrl">
-        <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+        <div class="cardheader">
+          <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+        </div>
         <div ng-if="staffRoles.loading">
           <div class="spinner-loader"></div>
         </div>
@@ -145,9 +149,11 @@
     </div>
     <div class="cards">
       <div class="card">
-        <h1 class="pull-left"><?php echo $this->getString('STAFF_EMPLOYMENT_INFO'); ?></h1>
-        <div class="pull-right">
-          <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+        <div class="cardheader">
+          <h1 class="pull-left"><?php echo $this->getString('STAFF_EMPLOYMENT_INFO'); ?></h1>
+          <div class="pull-right">
+            <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+          </div>
         </div>
         <div class="clearfix"></div>
 
@@ -230,7 +236,10 @@
         </div>
       </div>
       <div class="card" ng-controller="staffBenefitsCtrl">
-        <h1><?php echo $this->getString('STAFF_BENEFITS_INFO'); ?></h1>
+        <div class="cardheader">
+          <h1><?php echo $this->getString('STAFF_BENEFITS_INFO'); ?></h1>
+        </div>
+
         <div ng-if="staffBenefitsLoading"><span class="spinner-loader"></span></div>
 
         <div ng-if="!staffBenefitsLoading">
@@ -276,7 +285,7 @@
           </div>
           <div class="clearfix"></div>
           <div class="cardfooter">
-            <button class="primary pull-right" ng-click="openStaffBenefitsHistoryModal()">
+            <button class="btn-link pull-right" ng-click="openStaffBenefitsHistoryModal()">
               <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
             </button>
             <div class="clearfix"></div>
@@ -287,7 +296,10 @@
     </div>
     <div class="cards">
       <div class="card">
-        <h1><?php echo $this->getString('STAFF_GENERAL_INFO'); ?></h1>
+        <div class="cardheader">
+          <h1><?php echo $this->getString('STAFF_GENERAL_INFO'); ?></h1>
+        </div>
+
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
@@ -325,7 +337,9 @@
       </div>
 
       <div class="card">
-        <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
+        <div class="cardheader">
+          <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
+        </div>
 
         <div ng-if="authorizationLoading"><span class="spinner-loader"></span></div>
 
@@ -377,8 +391,48 @@
 
       </div>
 
-      <div class="card">
-        <h1><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
+      <div class="card" ng-controller="staffEmergencyContactsCtrl">
+        <div class="cardheader">
+          <h1 class="pull-left"><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
+          <button ng-if="!loading" class="primary pull-right" ng-click="openEditEmergencyContactModal()"><?php echo $this->getString('STAFF_NEW')?></button>
+        </div>
+        <div ng-if="loading"><span class="spinner-loader"></span></div>
+        <div ng-if="!loading">
+          <table class="cardtable">
+            <thead>
+              <tr>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_NAME'); ?></td>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_RELATIONSHIP'); ?></td>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_MOBILE'); ?></td>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_TELEPHONE'); ?></td>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_WORKTELEPHONE'); ?></td>
+                <td><?php echo $this->getString('STAFF_EMERGENCY_EMAIL'); ?></td>
+                <td class="cog-col">&nbsp;</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="contact in staffEmergencyContacts">
+                <td><strong>{{contact.firstname}} {{contact.lastname}}</strong></td>
+                <td>{{contact.relation}}</td>
+                <td>{{contact.mobile}}</td>
+                <td>{{contact.telephone}}</td>
+                <td>{{contact.workTelephone}}</td>
+                <td>{{contact.email}}</td>
+                <td class="row-controls">
+                  <div class="dropdown">
+                    <button class="dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                      <li><a ng-click="openEditEmergencyContactModal(contact)">Edit</a></li>
+                      <li><a ng-click="delete(contact)">Delete</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="clearfix"></div>
+        </div>
+
       </div>
 
     </div>

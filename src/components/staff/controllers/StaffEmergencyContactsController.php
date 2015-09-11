@@ -62,17 +62,9 @@ class StaffEmergencyContactsController extends AbstractController {
     }
 
     public function saveContact($staffId, $contactId) {
+        $result = $this->model->saveContact($staffId, $contactId);
         
-        //we need to stuff the Staff_id into the params, but don't want it in 
-        //the page where a hacker can change its values
-        $params = $this->httpRequest->getPost();
-        $params['StaffEmergencyContact']['Staff_id'] = intval($staffId);
-        $params['StaffEmergencyContact']['id'] = intval($contactId);
-        
-      
-        $this->httpRequest->setPostParameter('StaffEmergencyContact', $params['StaffEmergencyContact']);
-        //we want to add a new row so set id to 0
-        $this->saveAndRedirect(0, 'admin_staff_emergencycontacts_list', array($id));
+        $this->render($result);
     }
     
     public function getForm() {
