@@ -11,8 +11,8 @@
             <div class="modal-body">
                 <div class="laborer">
                     Laborer:
-                    <input type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-model-options="{debounce:500}" ng-change="search(basicSearch);">
-                    <datalist id="timesheet-autocomplete-list">
+                    <input class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-blur="search()">
+                    <datalist id="timesheet-autocomplete-list" ng-click="setCategory(basicSearch)">
                         <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                         <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
                     </datalist>           
@@ -50,7 +50,7 @@
                                 <input class="checkbox" type="checkbox" ng-model="row.selected" ng-click="checkSelected(row.selected)">
                             </td>
                             <td>
-                                <input ng-model="row.claim">
+                                <input class="form-control" ng-model="row.claim">
                             </td>
                             <td>
                                 <select class="form-control" name="ClaimPhases_id" ng-model="row.phase">
@@ -60,36 +60,50 @@
                                 </select>
                             </td>
                             <td>
-                                <select name="ClaimCategory_id" ng-model="row.category" ng-init="row.category">
+                                <select class="form-control" name="ClaimCategory_id" ng-model="row.category" ng-init="row.category">
                                     <?php foreach($StaffPositions as $position) {
                                         echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
                             <td>
-                                <input ng-model="row.description">
+                                <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.reg" ng-change="updateTotal(row)">
+                                <input class="form-control" ng-model="row.reg" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.ot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.dot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.sreg" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.sot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.sdot" ng-change="updateTotal(row)">
+                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row)">
                             </td>
                             <td>
-                                <input class="hours" ng-model="row.total">
+                               {{row.total}}
                             </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total:</td>
+                            <td>total reg</td>
+                            <td>total ot</td>
+                            <td>total dot</td>
+                            <td>total sreg</td>
+                            <td>total sot</td>
+                            <td>total sdot</td>
+                            <td>total!</td>
                         </tr>
                     </tbody>
                 </table>

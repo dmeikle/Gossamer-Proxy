@@ -6,7 +6,7 @@ table{
 }
 .modal-lg{
     width:1200px;
-    .laborer, .date, .total-hours{
+    .laborer, .date, .total-hours, .form-control{
         display:inline;
     }
     .date{
@@ -20,6 +20,9 @@ table{
         input{
             margin-left:10px;
         }
+        .form-control{
+            width:auto;   
+        }
     }
     table{
         td{
@@ -29,7 +32,7 @@ table{
             }
         }
         select{
-            font-size:20px;
+            font-size:16px;
         }
         textarea{
             max-width: 200px;

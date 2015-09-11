@@ -16,7 +16,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 
     //Get the dates
     $scope.getDates = function(){
-        console.log('Getting dates');
+        //console.log('Getting dates');
         $scope.date = new Date();
         $scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
     };
@@ -27,7 +27,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         timesheetSrv.autocomplete($scope.basicSearch)
             .then(function() {
             $scope.autocomplete = timesheetSrv.autocompleteList;
-            console.log($scope.autocomplete);
+            //console.log($scope.autocomplete);
         });
     }   
     
@@ -40,21 +40,26 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     });
     
     //Search
-    $scope.search = function(searchObject) {
-        console.log('Search Object = ' + searchObject);
+    $scope.search = function() {
+        var searchObject = $scope.basicSearch;
+        console.log('starting search...');
+        console.log(searchObject);
         if (searchObject.val) {
             timesheetSrv.filterListBy(0, 20, searchObject)
                 .then(function() {
                 if (timesheetSrv.searchResults) {
+                    console.log(timesheetSrv.searchResults);
                     $scope.staffList = timesheetSrv.searchResults;
                     $scope.totalItems = timesheetSrv.searchResultsCount;
-                    console.log($scope.staffList);
-                } else {
-                    getStaffList();
+                    //console.log($scope.staffList);
+                    if($scope.totalItems == 1){
+                        $scope.positionID = $scope.staffList[0].StaffPositions_id;
+                        console.log($scope.staffList);
+                        $scope.setCategory($scope.positionID);
+                        $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
+                    }
                 }
             });
-        } else {
-            getStaffList();
         }
     };
     
@@ -83,7 +88,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         selected: false,
         claim: '',
         phase: '',
-        category: 'Manager',
+        category: '',
         description: '',
         reg: '0',
         ot: '0',
@@ -103,19 +108,22 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     $scope.addTimesheetRow = function(){
         $scope.newTimesheet.push({
-        selected: false,
-        claim: '',
-        phase: '',
-        category: '',
-        description: '',
-        reg: '0',
-        ot: '0',
-        dot: '0',
-        sreg: '0',
-        sot: '0',
-        sdot: '0',
-        total: '0'
-    });
+            selected: false,
+            claim: '',
+            phase: '',
+            category: '',
+            description: '',
+            reg: '0',
+            ot: '0',
+            dot: '0',
+            sreg: '0',
+            sot: '0',
+            sdot: '0',
+            total: '0'
+        });
+        if($scope.laborerPositionID !== ''){
+            $scope.newTimesheet[$scope.newTimesheet.length-1].category = $scope.laborerPositionID;
+        }
     };
     
     //Insert rows below currently selected items
@@ -124,7 +132,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
             
             if($scope.newTimesheet[i].selected === true){
                 //console.log('selected row = ' + i+1);
-                console.log($scope.newTimesheet[i]);
+                //console.log($scope.newTimesheet[i]);
                 $scope.newTimesheet.splice(parseInt(i)+1, 0,
                 {
                     selected: false,
@@ -202,33 +210,24 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         });
     };
     
-    
-    $scope.setCategory = function(value){
-        var laborerPos = value.split(' - ');
-        console.log(laborerPos[1]);
-        $scope.search(laborerPos[0]);
-        
-        for(var i in $scope.newTimesheet){
-            $scope.newTimesheet[i].category = laborerPos[1];
-            console.log('added category' + $scope.newTimesheet[i].category);
+    $scope.setCategory = function(positionID){
+        console.log('position ID = ' + positionID);
+        if($scope.newTimesheet.length == 1){
+            $scope.newTimesheet[0].category = positionID;
         }
     };
-//  $scope.openStaffAdvancedSearchModal = function() {
-//    var template = templateSrv.staffEditModal;
-//    var modalInstance = $modal.open({
-//      templateUrl: template,
-//      controller: 'staffModalCtrl',
-//      size: 'lg'
-//    });
-//
-//    modalInstance.result
-//      .then(function(staff) {
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//        staffListSrv.saveStaff(staff, formToken)
-//          .then(function() {
-//            getStaffList();
-//          });
-//      });
-//  };
+
     
+});
+
+module.controller('timesheetModalCtrl', function($modalInstance, $scope) {
+  $scope.staff = staff;
+
+  $scope.confirm = function() {
+    $modalInstance.close($scope.staff);
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
 });

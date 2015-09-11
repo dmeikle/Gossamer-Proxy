@@ -2,6 +2,7 @@
 module.service('timesheetSrv', function($http) {
     var apiPath = '/admin/accounting/timesheets/';
     var staff_apiPath = '/admin/staff/';
+    var staff_search_apiPath = '/admin/staff/search';
     var self = this;
     
     var row = 0;
@@ -22,7 +23,7 @@ module.service('timesheetSrv', function($http) {
 
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            console.log(response);
+            //console.log(response);
             self.autocompleteList = response.data.Staffs;
         });
     };
@@ -30,30 +31,35 @@ module.service('timesheetSrv', function($http) {
     //Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
-        console.log('Filter List');
-        console.log(object);
+        //console.log('Filter List');
+        //console.log(object);
         if (object.val[0]) {
+            
+            var name = object.val[0].split(' ');
             for (var i = 0; i < Object.keys(object).length; i++) {
              //   config[object[i]] = object.val[i];
-                config.name = object.val[i]; 
+                //config.firstname = object.val[i];
+                config.firstname = name[0];
+                config.lastname = name[1];
+
             }
         } else {
             config = undefined;
         }
-        console.log(config);
+        //console.log(config);
 
 
         return $http({
-            url: staff_apiPath + row + '/' + numRows,
+            url: staff_search_apiPath,
             method: 'GET',
             params: config
         })
             .then(function(response) {
-            console.log(response.data.Staffs);
+            console.log(response);
             //self.searchResults = response.data.Timesheets;
             //self.searchResultsCount = response.data.Timesheets[0].rowCount;
             self.searchResults = response.data.Staffs;
-            self.searchResultsCount = response.data.StaffsCount[0].rowCount;
+            self.searchResultsCount = response.data.Staffs.length;
         });
     };
 });
