@@ -63,6 +63,20 @@ admin_staff_emergencycontacts_list:
         datasource: datasource1
     methods: [GET]
 
+
+admin_staff_emergencycontacts_save:
+    pattern: admin/staff/emergencycontacts/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactsController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_staff_emergencycontacts_save
+        datasource: datasource1
+    methods: [POST]
+    
+    
 admin_staff_emergencycontacts_get:
     pattern: admin/staff/emergencycontacts/*/*
     defaults:

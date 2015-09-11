@@ -33,7 +33,7 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
 
         $params = $this->httpRequest->getPost();
 
-        $params[$this->entity]['id'] = intval($id);
+        $params[$this->entity]['Staff_id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
