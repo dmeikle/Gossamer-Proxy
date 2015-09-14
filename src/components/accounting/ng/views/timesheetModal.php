@@ -54,8 +54,8 @@
                             </td>
                             <td>
                                 <select class="form-control" name="ClaimPhases_id" ng-model="row.phase">
-                                    <?php foreach($ClaimPhases as $phase) {
-                                        echo '<option value="' . $phase['id'] . '">' . $phase['description'] . '</option>';
+                                    <?php foreach($AccountingPhaseCodes as $phase) {
+                                        echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
