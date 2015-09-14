@@ -74,10 +74,16 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <input class="form-control toll" ng-model="row.toll1">
+                                <select class="form-control" ng-model="row.toll1" ng-init="row.category">
+                                    <?php
+                                    echo $TollBridges; ?>
+                                </select>
                             </td>
                             <td>
-                                <input class="form-control toll" ng-model="row.toll2">
+                                <select class="form-control" ng-model="row.toll2" ng-init="row.category">
+                                    <?php
+                                    echo $TollBridges; ?>
+                                </select>
                             </td>
                             <td>
                                 <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
