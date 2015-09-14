@@ -10,12 +10,12 @@
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
-      <input type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
+      <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
       <datalist id="autocomplete-list">
         <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
         <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
       </datalist>
-      <select name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col[0]"
+      <select class="form-control" name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col[0]"
         ng-init="basicSearch.col[0] = 'name'">
         <option value="name" ng-selected="true"><?php echo $this->getString('STAFF_NAME');?></option>
         <option value="ext"><?php echo $this->getString('STAFF_EXT');?></option>
