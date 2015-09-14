@@ -16,7 +16,7 @@ module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staff
 
   $scope.openStaffBenefitsHistoryModal = function() {
     var template = templateSrv.staffBenefitsHistoryModal;
-    $modal.open({
+    var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'staffBenefitsHistoryModalCtrl',
       size: 'lg',
@@ -26,13 +26,25 @@ module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staff
         }
       }
     });
+
+    modalInstance.result.then(function() {
+      getStaffBenefits();
+    });
   };
 });
 
 module.controller('staffBenefitsHistoryModalCtrl', function($modalInstance, $scope, $location, staffBenefits, staffBenefitsSrv) {
   $scope.staffBenefits = staffBenefits;
   $scope.staff = {};
+  $scope.isOpen = {};
   $scope.addingNew = false;
+
+  // datepicker stuffs
+  $scope.dateOptions = {'starting-day':1};
+  $scope.openDatepicker = function(event) {
+    var datepicker = event.target.parentElement.dataset.datepickername;
+    $scope.isOpen[datepicker] = true;
+  };
 
   $scope.toggleAddNewBenefits = function() {
     if ($scope.addingNew === true) {
@@ -57,11 +69,7 @@ module.controller('staffBenefitsHistoryModalCtrl', function($modalInstance, $sco
     });
   };
 
-  $scope.confirm = function() {
-    $modalInstance.close($scope.staffBenefits);
-  };
-
   $scope.close = function() {
-    $modalInstance.dismiss('close');
+    $modalInstance.close();
   };
 });

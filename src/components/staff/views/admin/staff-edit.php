@@ -67,8 +67,16 @@
             </div>
             <div class="form-group">
               <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
-              <input class="form-control" type="date" name="dob"
-                id="staff-dob" ng-model="staff.dob" ng-model-options="{timezone: '+0000'}">
+              <div class="input-group">
+                <input type="date" name="dob" id="staff-dob" ng-model="staff.dob" ng-model-options="{timezone: '+0000'}"
+                  class="form-control" datepicker-popup is-open="isOpen.dob"
+                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
+                <span class="input-group-btn" data-datepickername="dob">
+                  <button type="button" class="btn-default" data-datepickername="dob" ng-click="openDatepicker($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
             </div>
             <div class="form-group">
               <label for="staff-gender"><?php echo $this->getString('STAFF_GENDER'); ?></label>
@@ -204,13 +212,29 @@
             </div>
             <div class="form-group">
               <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
-              <input class="form-control" type="date" name="hireDate"
-                id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}">
+              <div class="input-group">
+                <input type="date" name="hireDate" id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}"
+                  class="form-control" datepicker-popup is-open="isOpen.hireDate"
+                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
+                <span class="input-group-btn" data-datepickername="hireDate">
+                  <button type="button" class="btn-default" data-datepickername="hireDate" ng-click="openDatepicker($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
             </div>
             <div class="form-group">
               <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
-              <input class="form-control" type="date" name="departureDate"
-                id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}">
+              <div class="input-group">
+                <input type="date" name="departureDate" id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}"
+                  class="form-control" datepicker-popup is-open="isOpen.departureDate"
+                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
+                <span class="input-group-btn" data-datepickername="departureDate">
+                  <button type="button" class="btn-default" data-datepickername="departureDate" ng-click="openDatepicker($event)">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
             </div>
             <div class="form-group">
               <label for="staff-extension"><?php echo $this->getString('STAFF_EXTENSION'); ?></label>
@@ -248,19 +272,19 @@
               <tbody>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].StaffPositions_id}}</td>
+                  <td>{{staffBenefits[0].position}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].Departments_id}}</td>
+                  <td>{{staffBenefits[0].department}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_SALARY'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].salary | currency:$}}</td>
+                  <td>{{staffBenefits[0].salary | currency:$}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_IS_HOURLY'); ?></strong></td>
-                  <td bool-to-string data-value="{{staffBenefits[staffBenefits.length-1].isHourly}}"></td>
+                  <td bool-to-string data-value="{{staffBenefits[0].isHourly}}"></td>
                 </tr>
               </tbody>
             </table>
@@ -270,15 +294,15 @@
               <tbody>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].accruedVacationMonthly}}</td>
+                  <td>{{staffBenefits[0].accruedVacationMonthly}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].accruedSickMonthly}}</td>
+                  <td>{{staffBenefits[0].accruedSickMonthly}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_STARTDATE'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].startDate | date:'dd-MM-yyyy':+0000}}</td>
+                  <td>{{staffBenefits[0].startDate | date:'dd-MM-yyyy':+0000}}</td>
                 </tr>
               </tbody>
             </table>
