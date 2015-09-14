@@ -168,6 +168,25 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     
     $scope.updateTotalSum = function(){
         
+        var colValues = ['reg', 'ot', 'dot', 'sreg', 'sot', 'sdot'];
+        
+        for (var j in colValues){
+            
+        }
+        $scope.sumTotal[col] = 0;
+        $scope.sumTotal.total = 0;
+
+        for(var i in $scope.newTimesheet){
+            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
+            var totalRow = parseInt($scope.newTimesheet[i].total);
+
+            if($scope.newTimesheet[i][col] === ''){
+                $scope.sumTotal[col] += 0;
+            } else {                
+                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+                $scope.sumTotal.total += totalRow;
+            }
+        }
     };
     
     //Add a row to the bottom of the timesheet
