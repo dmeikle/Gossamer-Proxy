@@ -31,7 +31,6 @@ return array(
   'STAFF_TITLE' => 'Title',
   'STAFF_HIREDATE' => 'Hire Date',
   'STAFF_DEPARTUREDATE' => 'Departure Date',
-  'STAFF_EXTENSION' => 'Extension',
   'STAFF_HIRINGAGENCY_ID' => 'Hiring Agency',
   'STAFF_ALARMPSWD' => 'Alarm Code',
   'STAFF_EXTENSION' => 'Extension',
@@ -67,5 +66,12 @@ return array(
   'STAFF_EMERGENCY_EMAIL' => 'Email',
   'STAFF_NEW' => 'Add New',
   'STAFF_CANCEL' => 'Cancel',
-  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact'
+  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact',
+  'STAFF_NAME' => 'Name',
+  'STAFF_STATUS' => 'Status',
+  'STAFF_LAST_LOGIN' => 'Last Seen',
+  'STAFF_SEARCH' => 'Search',
+  'STAFF_ADVANCED_SEARCH' => 'Advanced Search',
+  'STAFF_UPDATE' => 'Update',
+  'STAFF_CLOSE' => 'Close'
 );

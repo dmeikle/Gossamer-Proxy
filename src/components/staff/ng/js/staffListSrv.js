@@ -13,9 +13,8 @@ module.service('staffListSrv', function($http) {
 
   this.autocomplete = function(searchObject) {
     var value = searchObject.val[0];
-    var column = searchObject.col[0];
 
-    return $http.get(apiPath + 'search?' + column + '=' + value)
+    return $http.get(apiPath + 'search?name=' + value)
       .then(function(response) {
         self.autocompleteList = response.data.Staffs;
       });
@@ -23,9 +22,13 @@ module.service('staffListSrv', function($http) {
 
   this.filterListBy = function(row, numRows, object) {
     var config = {};
-    if (object.val[0]) {
-      for (var i = 0; i < Object.keys(object.col).length; i++) {
-        config[object.col[i]] = object.val[i];
+    if (object.val[0].length === 1) {
+      for (var i = 0; i < Object.keys(object.val).length; i++) {
+        config.name = object.val[i];
+      }
+    } else if (object.val[0].length >= 1) {
+      for (var j = 0; j < Object.keys(object.col).length; j++) {
+        config[object.col[j]] = object.val[j];
       }
     } else {
       config = undefined;
