@@ -68,7 +68,7 @@ admin_login:
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
             "section3": "src/components/staff/views/login/login-form.php"
-            "section4": "src/themes/default/templates/sections/footer.php"   
+            "section4": "src/themes/default/templates/sections/footer.php"
     head:
     javascript:
     css:
@@ -85,10 +85,10 @@ admin_login_reset:
     javascript:
     css:
 
-        - @components/staff/dist/css/staff.min.css     
+        - @components/staff/dist/css/staff.min.css
 
 admin_login_reset_submit:
-    template: list.php
+    template: message.php
     sections:
         -
             "section1": "src/themes/default/templates/sections/portal-header.php"
@@ -97,41 +97,41 @@ admin_login_reset_submit:
     head:
     javascript:
     css:
-        - @components/staff/dist/css/staff.min.css 
-        
-admin_login_confirmreset:
-    template: list.php
-    sections:
-        -
-            "header": "src/themes/default/templates/sections/portal-header.php"
-            "payload": "src/components/staff/views/login/confirm-reset.php"
-            "footer": "src/themes/default/templates/sections/footer.php"
-    head:
-    javascript:
-    css:
-        - @components/staff/dist/css/staff.min.css     
-        
-        
-admin_login_confirmreset_submit:     
-    template: list.php
-    sections:
-        -
-            "header": "src/themes/default/templates/sections/portal-header.php"
-            "payload": "src/components/staff/views/login/confirm-reset-complete.php"
-            "footer": "src/themes/default/templates/sections/footer.php"
-    head:
-    javascript:
-    css:
-        - @components/staff/dist/css/staff.min.css        
+        - @components/staff/dist/css/staff.min.css
 
-admin_login_failed:     
-    template: list.php
+admin_login_confirmreset:
+    template: message.php
     sections:
         -
             "header": "src/themes/default/templates/sections/portal-header.php"
-            "payload": "src/components/staff/views/login/failed.php"
+            "content": "src/components/staff/views/login/confirm-reset.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     head:
     javascript:
     css:
-        - @components/staff/dist/css/staff.min.css 
+        - @components/staff/dist/css/staff.min.css
+
+
+admin_login_confirmreset_submit:
+    template: message.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/portal-header.php"
+            "content": "src/components/staff/views/login/confirm-reset-complete.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css
+
+admin_login_failed:
+    template: message.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/portal-header.php"
+            "content": "src/components/staff/views/login/failed.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    head:
+    javascript:
+    css:
+        - @components/staff/dist/css/staff.min.css

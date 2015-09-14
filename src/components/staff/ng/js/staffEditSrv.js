@@ -1,9 +1,4 @@
-module.service('templateSrv', function() {
-  this.staffScheduleModal = '/render/staff/staffScheduleModal';
-  this.staffEditModal = '/render/staff/staffEditModal';
-});
-
-module.service('staffSrv', function($http) {
+module.service('staffEditSrv', function($http) {
   var apiPath = '/admin/staff/';
 
   var self = this;
@@ -77,48 +72,6 @@ module.service('staffSrv', function($http) {
     });
   };
 
-  this.saveCredentials = function(object, formToken) {
-    return $http({
-      url: apiPath + 'credentials/' + object.id,
-      method: 'POST',
-      params: object
-    }).then(function(response) {
-      self.credentialStatus = response.data;
-    });
-  };
-
-  this.autocomplete = function(searchObject) {
-    var value = searchObject.val[0];
-    var column = searchObject.col[0];
-
-    return $http.get(apiPath + 'search?' + column + '=' + value)
-      .then(function(response) {
-        self.autocompleteList = response.data.Staffs;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object) {
-    var config = {};
-    if (object.val[0]) {
-      for (var i = 0; i < Object.keys(object.col).length; i++) {
-        config[object.col[i]] = object.val[i];
-      }
-    } else {
-      config = undefined;
-    }
-
-
-    return $http({
-        url: apiPath + row + '/' + numRows,
-        method: 'GET',
-        params: config
-      })
-      .then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
   this.checkUsernameExists = function(object) {
     return $http({
         url: apiPath + 'checkusername/' + object.id + '/' + object.username,
@@ -128,4 +81,22 @@ module.service('staffSrv', function($http) {
         self.usernameExists = response.data.exists;
       });
   };
+
+  this.saveCredentials = function(object, formToken) {
+    var data = {};
+    data.StaffAuthorization = object;
+    data.FORM_SECURITY_TOKEN = formToken;
+    return $http({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: apiPath + 'credentials/' + object.id,
+      data: data
+    }).then(function(response) {
+      self.credentialStatus = response.data;
+    });
+  };
+
+
 });

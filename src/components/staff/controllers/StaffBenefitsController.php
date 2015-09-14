@@ -29,9 +29,16 @@ class StaffBenefitsController extends AbstractController {
         $offset = 0;
         $limit = 100;
         $params = array('Staff_id' => intval($staffId),
-            'date' => $date);
+            'date' =>  date("Y-m-d", strtotime($date))
+            );
         
         $result = $this->model->listAllWithParams($offset, $limit, $params, 'get');
+        
+        $this->render($result);
+    }
+    
+    public function save($staffId) {
+        $result = $this->model->save(intval($staffId));
         
         $this->render($result);
     }

@@ -1,4 +1,4 @@
-module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
+module.controller('staffEditCtrl', function($scope, $location, staffEditSrv) {
 
   // Run on load
   $scope.loading = true;
@@ -10,12 +10,12 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
     var object = {};
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 
-    staffSrv.getStaffDetail(object).then(function() {
-      $scope.staff = staffSrv.staffDetail;
+    staffEditSrv.getStaffDetail(object).then(function() {
+      $scope.staff = staffEditSrv.staffDetail;
       $scope.loading = false;
 
-      staffSrv.getStaffCreds(object).then(function() {
-        $scope.authorization.username = staffSrv.staffCreds.username;
+      staffEditSrv.getStaffCreds(object).then(function() {
+        $scope.authorization.username = staffEditSrv.staffCreds.username;
         $scope.authorizationLoading = false;
       });
     });
@@ -23,7 +23,7 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
 
   $scope.save = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    staffSrv.save(object, formToken).then(function() {
+    staffEditSrv.save(object, formToken).then(function() {
       getStaffDetail();
     });
   };
@@ -37,18 +37,22 @@ module.controller('staffEditCtrl', function($scope, $location, staffSrv) {
     object.id = $scope.staff.id;
     switch (object.emailUser) {
       case true:
-        staffSrv.generateEmailReset(object, formToken);
+        staffEditSrv.generateEmailReset(object, formToken);
         break;
       default:
-        staffSrv.saveCredentials(object, formToken).then(function(){
-          $scope.credentialStatus = staffSrv.credentialStatus;
+        staffEditSrv.saveCredentials(object, formToken).then(function(){
+          $scope.credentialStatus = staffEditSrv.credentialStatus;
         });
     }
   };
 
   $scope.resetCredentials = function() {
-    $scope.authorization.username = staffSrv.staffCreds.username;
+    $scope.authorization.username = staffEditSrv.staffCreds.username;
     $scope.authorization.password = undefined;
     $scope.authorization.passwordConfirm = undefined;
+  };
+
+  $scope.clearErrors = function() {
+    $scope.credentialStatus = undefined;
   };
 });

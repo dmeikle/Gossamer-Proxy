@@ -33,7 +33,7 @@ web/css/framework
 web/css/theme
 web/components
 web/css/extensions
-web/css/extensions/!.htaccess
+!web/css/extensions/.htaccess
 
 web/images/claims
 web/images/components
@@ -42,4 +42,4 @@ web/images/theme
 web/js/angular
 web/js/theme
 web/js/extensions
-web/js/extensions/!.htaccess
+!web/js/extensions/.htaccess

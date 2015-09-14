@@ -28,6 +28,14 @@ class StaffBenefitModel extends AbstractModel implements FormBuilderInterface {
         $this->tablename = 'staffbenefits';
     }
 
+    public function save($staffId) {
+        $params = $this->httpRequest->getPost();
+        $params['StaffBenefit']['Staff_id'] = $staffId;
+        //$params['StaffBenefit']['startDate'] = date("Y-m-d", strtotime($params['StaffBenefits']['startDate']));
+        unset($params['StaffBenefit']['id']);
+        
+        return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['StaffBenefit']);
+    }
 
     public function getFormWrapper() {
 
