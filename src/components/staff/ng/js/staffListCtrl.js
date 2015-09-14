@@ -26,20 +26,11 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
       });
   }
 
-  function openSidePanel(clickedObject) {
-    $scope.selectedStaff = clickedObject;
-  }
-
-  function closeSidePanel() {
-    $scope.selectedStaff = undefined;
-  }
-
   $scope.openAddNewStaffModal = function() {
     var template = templateSrv.staffAddNewModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller:'staffModalCtrl',
-      // windowClass: 'modal-xl'
       size:'xl'
     });
 
@@ -99,18 +90,24 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   };
 
+  function openSidePanel(clickedObject) {
+    $scope.selectedStaff = staffListSrv.staffDetail;
+  }
+
+  function closeSidePanel() {
+    $scope.selectedStaff.clicked = false;
+  }
+
   $scope.selectRow = function(clickedObject) {
+    $scope.selectedStaff.clicked = false;
     $scope.selectedStaff = undefined;
     if (clickedObject.clicked === undefined || clickedObject.clicked === false) {
-      clickedObject.clicked = true;
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
+          staffListSrv.staffDetail.clicked = true;
           openSidePanel(staffListSrv.staffDetail);
         });
-      return;
     }
-    clickedObject.clicked = false;
-    closeSidePanel();
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
