@@ -43,16 +43,18 @@
             <td></td>
             <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-click="selectRow(staff)" ng-class="{'selected': staff.clicked, 'inactive': staff.status=='inactive'}">
-              <td><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
-              <td>{{staff.title}}</td>
-              <td>{{staff.telephone}}</td>
-              <td>{{staff.mobile}}</td>
-              <td>{{staff.status}}</td>
-              <td>{{staff.lastLogin}}</td>
+          <tr ng-if="!loading" ng-repeat="staff in staffList"
+            ng-class="{'selected': staff.clicked, 'inactive bg-warning text-warning': staff.status=='inactive'}">
+              <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
+              <td ng-click="selectRow(staff)">{{staff.title}}</td>
+              <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
+              <td ng-click="selectRow(staff)">{{staff.mobile}}</td>
+              <td ng-click="selectRow(staff)">{{staff.status}}</td>
+              <td ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
               <td class="row-controls">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
                     <li><a href="edit/{{staff.id}}">Edit</a></li>

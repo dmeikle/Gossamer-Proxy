@@ -41,6 +41,22 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   };
 
+  $scope.openAddNewStaffModal = function() {
+    var template = templateSrv.staffAddNewModal;
+    var modalInstance = $modal.open({
+      templateUrl: template,
+      controller:'staffModalCtrl',
+      // windowClass: 'modal-xl'
+      size:'xl'
+    });
+
+    modalInstance.result.then(function(staff) {
+      staffEditSrv.save(staff).then(function() {
+        getStaffList();
+      });
+    });
+  };
+
   $scope.openStaffScheduleModal = function(staff) {
     var template = templateSrv.staffScheduleModal;
     $modal.open({

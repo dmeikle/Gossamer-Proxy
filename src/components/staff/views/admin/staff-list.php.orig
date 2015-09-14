@@ -1,7 +1,6 @@
 <div class="widget" ng-controller="staffListCtrl">
   <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
     <h1 class="pull-left">Staff List</h1>
-<<<<<<< HEAD
     <div class="toolbar form-inline">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
@@ -19,22 +18,6 @@
         </datalist>
       </div>
       <button ng-click="openAddNewStaffModal()" class="btn-primary"><?php echo $this->getString('STAFF_NEW');?></button>
-=======
-    <a href="staff/edit/0" class="pull-right btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
-    <div class="clearfix"></div>
-    <div class="searchbar form-inline">
-      <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
-        <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
-      </button>
-      <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
-      <datalist id="autocomplete-list">
-        <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
-        <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-      </datalist>
-      <button class="primary" ng-click="search(basicSearch)">
-        <?php echo $this->getString('STAFF_SEARCH') ?>
-      </button>
->>>>>>> Ready to start staff/new
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -60,12 +43,8 @@
             <td></td>
             <td></td>
           </tr>
-<<<<<<< HEAD
           <tr ng-if="!loading" ng-repeat="staff in staffList"
             ng-class="{'selected': staff.clicked, 'inactive bg-warning text-warning': staff.status=='inactive'}">
-=======
-          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-class="{'selected': staff.clicked, 'inactive': staff.status=='inactive'}">
->>>>>>> Ready to start staff/new
               <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
               <td ng-click="selectRow(staff)">{{staff.title}}</td>
               <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
@@ -74,8 +53,7 @@
               <td ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
               <td class="row-controls">
                 <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
                     <li><a href="edit/{{staff.id}}">Edit</a></li>
@@ -94,12 +72,9 @@
   </div>
 
   <div class="widget-side-panel">
-<<<<<<< HEAD
     <div class="pull-right">
       <button><span class="glyphicon glyphicon-remove"></span></button>
     </div>
-=======
->>>>>>> Ready to start staff/new
     <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
     <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
     <p>{{selectedStaff.telephone}}</p>
