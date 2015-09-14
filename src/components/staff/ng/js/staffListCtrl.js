@@ -41,22 +41,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   };
 
-  $scope.openAddNewStaffModal = function() {
-    var template = templateSrv.staffAddNewModal;
-    var modalInstance = $modal.open({
-      templateUrl: template,
-      controller:'staffModalCtrl',
-      // windowClass: 'modal-xl'
-      size:'xl'
-    });
-
-    modalInstance.result.then(function(staff) {
-      staffEditSrv.save(staff).then(function() {
-        getStaffList();
-      });
-    });
-  };
-
   $scope.openStaffScheduleModal = function(staff) {
     var template = templateSrv.staffScheduleModal;
     $modal.open({
@@ -115,12 +99,10 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   }
 
   $scope.selectRow = function(clickedObject) {
-    $scope.selectedStaff.clicked = false;
     $scope.selectedStaff = undefined;
     if (clickedObject.clicked === undefined || clickedObject.clicked === false) {
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
-          staffListSrv.staffDetail.clicked = true;
           openSidePanel(staffListSrv.staffDetail);
         });
     }
