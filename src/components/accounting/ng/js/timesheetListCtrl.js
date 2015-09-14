@@ -91,6 +91,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                         console.log($scope.staffList);
                         $scope.setCategory($scope.positionID);
                         $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
+                        $scope.hourlyRate = $scope.staffList[0].HourlyRate;
+                        console.log("hourly rate " + $scope.hourlyRate);
                     }
                 }
             });
@@ -151,64 +153,22 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             sdot: parseInt(row.sdot)
         };
  
-//        console.log(row);
-//        for(var j = 5; j < Object.keys(row).length; j++){
-//            console.log(row[j]);
-//            if(row[j] === ''){
-//                row.total += 0;
-//            } else {
-//                row.total += parseInt(row[j]);
-//            }
-//        }
         if(row[col] === ''){
             rowHours[col] = 0;
         }
-        
-        //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
+
         row.total = rowHours.reg + rowHours.ot + rowHours.dot + rowHours.sreg + rowHours.sot + rowHours.sdot;
 
-        
-        //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
-        //row.total += 
+
         $scope.sumTotal[col] = 0;
         $scope.sumTotal.total = 0;
-//        switch (col){
-//            case: 'reg'; 
-//        }
-        
-//        $scope.sumTotal = {
-//            reg:0,
-//            ot: 0,
-//            dot: 0,
-//            sreg: 0,
-//            sot: 0,
-//            sdot: 0,
-//            total: 0
-//        };
+
         
         //
         for(var i in $scope.newTimesheet){
             var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
             var totalRow = parseInt($scope.newTimesheet[i].total);
-            
-            console.log('total hours');
-            console.log(totalCol);
-//            var hoursTotal = {
-//                reg: parseInt(row.reg),
-//                ot: parseInt(row.ot),
-//                dot: parseInt(row.dot),
-//                sreg: parseInt(row.sreg),
-//                sot: parseInt(row.sot),
-//                sdot: parseInt(row.sdot)
-//            };
-            
-//            if($scope.newTimesheet[i][col] === ''){
-//                $scope.sumTotal[col] += 0;
-//            } else {
-//                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-//                $scope.sumTotal.total += parseInt($scope.newTimesheet[i].total);
-//            }
-                 
+
             if($scope.newTimesheet[i][col] === ''){
                 $scope.sumTotal[col] += 0;
             } else {
@@ -261,7 +221,10 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     sdot: '0',
                     total: '0'
                 });                
-            }            
+            }
+            if($scope.laborerPositionID !== ''){
+                $scope.newTimesheet[$scope.newTimesheet.length-1].category = $scope.laborerPositionID;
+            }
         }
     };
     

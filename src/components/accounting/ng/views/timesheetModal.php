@@ -41,7 +41,7 @@
                             <th>SReg</th>
                             <th>SOT</th>
                             <th>SDOT</th>
-                            <th>Total</th>
+                            <th>TotalH</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,7 +88,7 @@
                                 <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'sdot')">
                             </td>
                             <td class="total">
-                               {{row.total}}
+                               <strong>{{row.total}}</strong>
                             </td>
                         </tr>
                         <tr class="totalRow">
@@ -103,7 +103,7 @@
                             <td>{{sumTotal.sreg}}</td>
                             <td>{{sumTotal.sot}}</td>
                             <td>{{sumTotal.sdot}}</td>
-                            <td>{{sumTotal.total}}</td>
+                            <td><strong>{{sumTotal.total}}</strong></td>
                         </tr>
                     </tbody>
                 </table>
