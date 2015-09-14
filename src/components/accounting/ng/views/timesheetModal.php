@@ -5,7 +5,7 @@
         <div class="modal-content">
 -->
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">New Timesheet</h4>
             </div>
             <div class="modal-body">
@@ -70,24 +70,24 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg'); updateTotal(row, 'reg', row.reg)">
+                                <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row, 'ot', row.ot)">
+                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'ot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row, 'dot', row.dot)">
+                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'dot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row, 'sreg', row.sreg)">
+                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'sreg')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row, 'sot', row.sot)">
+                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'sot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row, 'sdot', row.sdot)">
+                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'sdot')">
                             </td>
-                            <td>
+                            <td class="total">
                                {{row.total}}
                             </td>
                         </tr>
@@ -114,7 +114,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
                 <button type="button" class="btn btn-primary">Save</button>
             </div>
 <!--

@@ -142,14 +142,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.updateTotal = function(row, col, hours){
         row.total = 0;
         
-        var hours = {
+        var rowHours = {
             reg: parseInt(row.reg),
             ot: parseInt(row.ot),
             dot: parseInt(row.dot),
             sreg: parseInt(row.sreg),
             sot: parseInt(row.sot),
             sdot: parseInt(row.sdot)
-        }
+        };
  
 //        console.log(row);
 //        for(var j = 5; j < Object.keys(row).length; j++){
@@ -161,11 +161,11 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 //            }
 //        }
         if(row[col] === ''){
-            hours[col] = 0;
+            rowHours[col] = 0;
         }
         
         //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
-        row.total = hours.reg + hours.ot + hours.dot + hours.sreg + hours.sot + hours.sdot;
+        row.total = rowHours.reg + rowHours.ot + rowHours.dot + rowHours.sreg + rowHours.sot + rowHours.sdot;
 
         
         //row.total = parseInt(row.reg) + parseInt(row.ot) + parseInt(row.dot) + parseInt(row.sreg) + parseInt(row.sot) + parseInt(row.sdot);
@@ -186,20 +186,35 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 //            total: 0
 //        };
         
+        //
         for(var i in $scope.newTimesheet){
-            var hoursTotal = {
-                reg: parseInt(row.reg),
-                ot: parseInt(row.ot),
-                dot: parseInt(row.dot),
-                sreg: parseInt(row.sreg),
-                sot: parseInt(row.sot),
-                sdot: parseInt(row.sdot)
-            }
+            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
+            var totalRow = parseInt($scope.newTimesheet[i].total);
+            
+            console.log('total hours');
+            console.log(totalCol);
+//            var hoursTotal = {
+//                reg: parseInt(row.reg),
+//                ot: parseInt(row.ot),
+//                dot: parseInt(row.dot),
+//                sreg: parseInt(row.sreg),
+//                sot: parseInt(row.sot),
+//                sdot: parseInt(row.sdot)
+//            };
+            
+//            if($scope.newTimesheet[i][col] === ''){
+//                $scope.sumTotal[col] += 0;
+//            } else {
+//                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+//                $scope.sumTotal.total += parseInt($scope.newTimesheet[i].total);
+//            }
+                 
             if($scope.newTimesheet[i][col] === ''){
                 $scope.sumTotal[col] += 0;
             } else {
+                
                 $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-                $scope.sumTotal.total += parseInt($scope.newTimesheet[i].total);
+                $scope.sumTotal.total += totalRow;
             }
         }
     };
