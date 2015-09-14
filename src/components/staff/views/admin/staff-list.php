@@ -1,20 +1,23 @@
 <div class="widget" ng-controller="staffListCtrl">
   <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
     <h1 class="pull-left">Staff List</h1>
-    <a href="staff/edit/0" class="pull-right btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
-    <div class="clearfix"></div>
-    <div class="searchbar form-inline">
+    <div class="toolbar form-inline">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
-      <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
-      <datalist id="autocomplete-list">
-        <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
-        <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-      </datalist>
-      <button class="primary" ng-click="search(basicSearch)">
-        <?php echo $this->getString('STAFF_SEARCH') ?>
-      </button>
+      <div class="input-group">
+        <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
+        <span class="input-group-btn">
+          <button class="btn-default" ng-click="search(basicSearch)">
+            <?php echo $this->getString('STAFF_SEARCH') ?>
+          </button>
+        </span>
+        <datalist id="autocomplete-list">
+          <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
+          <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
+        </datalist>
+      </div>
+      <button ng-click="openAddNewStaffModal()" class="btn-primary"><?php echo $this->getString('STAFF_NEW');?></button>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -40,7 +43,8 @@
             <td></td>
             <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="staff in staffList" ng-class="{'selected': staff.clicked, 'inactive': staff.status=='inactive'}">
+          <tr ng-if="!loading" ng-repeat="staff in staffList"
+            ng-class="{'selected': staff.clicked, 'inactive bg-warning text-warning': staff.status=='inactive'}">
               <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
               <td ng-click="selectRow(staff)">{{staff.title}}</td>
               <td ng-click="selectRow(staff)">{{staff.telephone}}</td>

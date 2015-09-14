@@ -8,8 +8,6 @@
 }
 
 .inactive {
-    @extend .bg-warning;
-    @extend .text-warning;
     td:first-of-type:after {
     font-family:'Glyphicons Halflings';
     content:'\e023';
