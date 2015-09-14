@@ -151,21 +151,21 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
         row.total = rowHours.reg + rowHours.ot + rowHours.dot + rowHours.sreg + rowHours.sot + rowHours.sdot;
 
-
-        $scope.sumTotal[col] = 0;
-        $scope.sumTotal.total = 0;
-
-        for(var i in $scope.newTimesheet){
-            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
-            var totalRow = parseInt($scope.newTimesheet[i].total);
-
-            if($scope.newTimesheet[i][col] === ''){
-                $scope.sumTotal[col] += 0;
-            } else {                
-                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-                $scope.sumTotal.total += totalRow;
-            }
-        }
+        $scope.updateTotalSum();
+//        $scope.sumTotal[col] = 0;
+//        $scope.sumTotal.total = 0;
+//
+//        for(var i in $scope.newTimesheet){
+//            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
+//            var totalRow = parseInt($scope.newTimesheet[i].total);
+//
+//            if($scope.newTimesheet[i][col] === ''){
+//                $scope.sumTotal[col] += 0;
+//            } else {                
+//                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+//                $scope.sumTotal.total += totalRow;
+//            }
+//        }
     };
     
     $scope.updateTotalSum = function(){
@@ -173,21 +173,32 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var colValues = ['reg', 'ot', 'dot', 'sreg', 'sot', 'sdot'];
         
         for (var j in colValues){
+            var col = colValues[j];
+            $scope.sumTotal[col] = 0;
             
-        }
-        $scope.sumTotal[col] = 0;
-        $scope.sumTotal.total = 0;
-
-        for(var i in $scope.newTimesheet){
-            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
-            var totalRow = parseInt($scope.newTimesheet[i].total);
-
-            if($scope.newTimesheet[i][col] === ''){
-                $scope.sumTotal[col] += 0;
-            } else {                
-                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-                $scope.sumTotal.total += totalRow;
+            for(var i in $scope.newTimesheet){
+                var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
+                
+                if($scope.newTimesheet[i][col] === ''){
+                    $scope.sumTotal[col] += 0;
+                } else {                
+                    $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+                }
             }
+        }
+        
+        
+        $scope.sumTotal.total = 0;
+        for(var p in $scope.newTimesheet){
+            //var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
+            var totalRow = parseInt($scope.newTimesheet[p].total);
+
+         //   if($scope.newTimesheet[i][col] === ''){
+         //       $scope.sumTotal[col] += 0;
+         //   } else {                
+         //       $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
+                $scope.sumTotal.total += totalRow;
+         //   }
         }
     };
     
@@ -236,9 +247,10 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     sdot: '0',
                     total: '0'
                 });                
-            }
-            if($scope.laborerPositionID !== ''){
-                $scope.newTimesheet[$scope.newTimesheet.length-1].category = $scope.laborerPositionID;
+                //console.log('Position ID = ' + $scope.laborerPositionID);
+                if($scope.laborerPositionID !== ''){
+                    $scope.newTimesheet[parseInt(i)+1].category = $scope.laborerPositionID;
+                }
             }
         }
     };
@@ -257,6 +269,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             }            
         }
         
+        $scope.updateTotalSum();
         $scope.newTimesheet = newArray;
     };
     

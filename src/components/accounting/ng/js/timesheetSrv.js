@@ -56,4 +56,39 @@ module.service('timesheetSrv', function($http) {
             self.searchResultsCount = response.data.Staffs.length;
         });
     };
+    
+    //Save a Timesheet
+    this.saveTimesheet = function(timesheet, formToken){
+        var data = {};
+        data.timesheet = timesheet;
+        data.FORM_SECURITY_TOKEN = formToken;
+        
+        return $http({
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            //url: apiPath + 'credentials/' + object.id,
+            data: data
+        }).then(function(response) {
+            console.log(response);
+      //      self.credentialStatus = response.data;
+        });
+    };
+    
+//    this.saveCredentials = function(object, formToken) {
+//        var data = {};
+//        data.StaffAuthorization = object;
+//        data.FORM_SECURITY_TOKEN = formToken;
+//        return $http({
+//            method: 'POST',
+//            headers: {
+//            'Content-Type': 'application/x-www-form-urlencoded'
+//            },
+//            url: apiPath + 'credentials/' + object.id,
+//            data: data
+//        }).then(function(response) {
+//            self.credentialStatus = response.data;
+//        });
+//    };
 });
