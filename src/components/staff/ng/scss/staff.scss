@@ -4,13 +4,23 @@
   table-layout:fixed;
 }
 .cog-col {
-  width:80px;
+  width:40px;
 }
 
 .inactive {
-  background-color:rgba(243,156,18,.4);
-  &:hover {
-    background-color:darken(rgba(243,156,18,.4), 10%);
+    @extend .bg-warning;
+    @extend .text-warning;
+    td:first-of-type:after {
+    font-family:'Glyphicons Halflings';
+    content:'\e023';
+
+    color:orange;
+
+    position:relative;
+    left:1em;
+  }
+  td:nth-of-type {
+    color:orange;
   }
 }
 

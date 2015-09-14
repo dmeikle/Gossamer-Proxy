@@ -42,8 +42,8 @@
         <td><input class="form-control" type="date" name="staff-startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone:+0000}"></td>
       </tr>
       <tr ng-repeat="benefits in staffBenefits">
-        <td>{{benefits.StaffPositions_id}}</td>
-        <td>{{benefits.Departments_id}}</td>
+        <td>{{benefits.position}}</td>
+        <td>{{benefits.department}}</td>
         <td>{{benefits.salary | currency}}</td>
         <td bool-to-string data-value="{{benefits.isHourly}}"></td>
         <td>{{benefits.accruedVacationMonthly}}</td>

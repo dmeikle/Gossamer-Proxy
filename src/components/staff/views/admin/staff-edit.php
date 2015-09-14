@@ -248,11 +248,11 @@
               <tbody>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].StaffPositions_id}}</td>
+                  <td>{{staffBenefits[staffBenefits.length-1].position}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
-                  <td>{{staffBenefits[staffBenefits.length-1].Departments_id}}</td>
+                  <td>{{staffBenefits[staffBenefits.length-1].department}}</td>
                 </tr>
                 <tr>
                   <td><strong><?php echo $this->getString('STAFF_SALARY'); ?></strong></td>
