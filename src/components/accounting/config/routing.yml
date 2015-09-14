@@ -1,4 +1,42 @@
 
+accounting_phasecodes_list:
+    pattern: admin/accounting/phasecodes/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PhaseCodesController
+        model: components\accounting\models\PhaseCodeModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_phasecodes_list
+        datasource: datasource1
+        
+        
+accounting_phasecodes_get:
+    pattern: admin/accounting/phasecodes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PhaseCodesController
+        model: components\accounting\models\PhaseCodeModel
+        method: get
+        view: core\views\JSONView
+        viewKey: accounting_phasecodes_list
+        datasource: datasource1
+    methods: [GET]
+        
+        
+accounting_phasecodes_get:
+    pattern: admin/accounting/phasecodes/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PhaseCodesController
+        model: components\accounting\models\PhaseCodeModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_phasecodes_list
+        datasource: datasource1
+    methods: [POST]
+    
+
 #------------------------ timesheets ----------------------------
 accounting_timesheets_home:
     pattern: admin/accounting/timesheets
