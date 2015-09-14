@@ -1,0 +1,81 @@
+// TODO Potential media query problem with iPad Minis.. Look into adjusting breakpoint?
+.wrapper {
+  @extend .container-fluid;
+  @media (max-width: $screen-md-min) {
+    width:100%;
+  }
+  padding:0 .25rem;
+}
+
+.message-wrapper {
+  @extend .container;
+  min-height: 95vh; //Magic number-ey for now
+
+}
+
+.userimage {
+  border-radius:50%;
+  margin-right:.5em;
+}
+.navbar-brand {
+  margin:0;
+  img {
+    width: 90px;
+    position: relative;
+    top: -10px;
+    left: -10px;
+  }
+}
+
+button {
+  @extend .btn;
+  &.primary {
+    @extend .btn-primary;
+  }
+}
+
+<<<<<<< HEAD
+.input-group {
+  button {
+    border-radius:0 4px 4px 0;
+    border-left:0;
+
+    margin-left:-1px;
+  }
+}
+
+.toolbar {
+  padding: .5em 0;
+  text-align:right;
+
+  > button {
+    margin-left:1em;
+  }
+=======
+.searchbar {
+  padding: .5em 0;
+  text-align:right;
+>>>>>>> Ready to start staff/new
+}
+
+.table>tbody>tr>td {
+  padding:.5em;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  margin:0;
+}
+
+.row-controls button {
+  font-size:.75em;
+}
+<<<<<<< HEAD
+
+.modal-xl, .modal-content {
+  width:80em;
+}
+=======
+>>>>>>> Ready to start staff/new
