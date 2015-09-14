@@ -148,7 +148,8 @@
       <div class="clearfix"></div>
     </div>
   </div>
-  <div class="cards">
+  <!-- TODO:This will eventually be transformed into a wizard and will have steps to fill out all pertinent information -ndev -->
+  <!-- <div class="cards">
     <div class="card" ng-controller="staffRolesCtrl">
       <div class="cardheader">
         <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
@@ -195,7 +196,7 @@
       </div>
       <div class="clearfix"></div>
     </div>
-  </div>
+  </div> -->
   <div class="clearfix"></div>
 </div>
 <div class="clearfix"></div>
