@@ -5,10 +5,10 @@ staffScheduleModal:
     langFiles:
         - 'src/components/staff/locales/*/login'
 
-staffEditModal:
-    path: 'src/components/staff/ng/views/staffEditModal.php'
+staffAddNewModal:
+    path: 'src/components/staff/ng/views/staffAddNewModal.php'
     langFiles:
-        - 'src/components/staff/locales/*/login'
+        - 'src/components/staff/locales/*/staff'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
