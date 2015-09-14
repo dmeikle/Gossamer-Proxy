@@ -1,4 +1,4 @@
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv) {
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -33,6 +33,22 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   function closeSidePanel() {
     $scope.selectedStaff = undefined;
   }
+
+  $scope.openAddNewStaffModal = function() {
+    var template = templateSrv.staffAddNewModal;
+    var modalInstance = $modal.open({
+      templateUrl: template,
+      controller:'staffModalCtrl',
+      // windowClass: 'modal-xl'
+      size:'xl'
+    });
+
+    modalInstance.result.then(function(staff) {
+      staffEditSrv.save(staff).then(function() {
+        getStaffList();
+      });
+    });
+  };
 
   $scope.openStaffScheduleModal = function(staff) {
     var template = templateSrv.staffScheduleModal;
@@ -113,8 +129,8 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   });
 });
 
-module.controller('staffModalCtrl', function($modalInstance, $scope, staff) {
-  $scope.staff = staff;
+module.controller('staffModalCtrl', function($modalInstance, $scope) {
+  $scope.staff = {};
 
   $scope.confirm = function() {
     $modalInstance.close($scope.staff);
