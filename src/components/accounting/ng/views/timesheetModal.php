@@ -22,9 +22,11 @@
                     Date: {{ yesterday | date:'yyyy-MM-dd' }}
                 </div>
                 
+<!--
                 <div class="total-hours">
                     Total Hours
                 </div>
+-->
                 
                 
                 <table class="table table-striped table-hover">

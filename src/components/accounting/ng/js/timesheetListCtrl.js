@@ -22,11 +22,13 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 //              return staff;
 //            }
 //          }
-        }).catch(function(error) {
-            // error contains a detailed error message.
-            $scope.error.showError = true;
-            $scope.error.message = 'Could not connect to the database, please try again.';
-            console.log(error);
+            
+//        })
+//            .catch(function(error) {
+//            // error contains a detailed error message.
+//            $scope.error.showError = true;
+//            $scope.error.message = 'Could not connect to the database, please try again.';
+//            console.log(error);
         });
     };    
 });
@@ -68,23 +70,18 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Search
     $scope.search = function() {
         var searchObject = $scope.basicSearch;
-        console.log('starting search...');
         console.log(searchObject);
         if (searchObject.val) {
             timesheetSrv.filterListBy(0, 20, searchObject)
                 .then(function() {
                 if (timesheetSrv.searchResults) {
-                    console.log(timesheetSrv.searchResults);
                     $scope.staffList = timesheetSrv.searchResults;
                     $scope.totalItems = timesheetSrv.searchResultsCount;
-                    //console.log($scope.staffList);
                     if($scope.totalItems == 1){
                         $scope.positionID = $scope.staffList[0].StaffPositions_id;
-                        console.log($scope.staffList);
                         $scope.setCategory($scope.positionID);
                         $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
                         $scope.hourlyRate = $scope.staffList[0].HourlyRate;
-                        console.log("hourly rate " + $scope.hourlyRate);
                     }
                 }
             });
@@ -134,7 +131,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     };
     
     //Update the hour totals
-    $scope.updateTotal = function(row, col, hours){
+    $scope.updateTotal = function(row, col){
         row.total = 0;
         
         var rowHours = {
@@ -162,12 +159,15 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
             if($scope.newTimesheet[i][col] === ''){
                 $scope.sumTotal[col] += 0;
-            } else {
-                
+            } else {                
                 $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
                 $scope.sumTotal.total += totalRow;
             }
         }
+    };
+    
+    $scope.updateTotalSum = function(){
+        
     };
     
     //Add a row to the bottom of the timesheet
@@ -221,11 +221,10 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Remove Rows from timesheet
     $scope.removeTimesheetRows = function(){
         console.log('--DELETE ROWS---');
-        var test = $scope.newTimesheet;
-        var newArray = test;
+        var timesheet = $scope.newTimesheet;
+        var newArray = timesheet;
         
-        for (var i = $scope.newTimesheet.length-1; i >= 0; i--){
-            
+        for (var i = $scope.newTimesheet.length-1; i >= 0; i--){            
             console.log('Timesheet ' + $scope.newTimesheet[i].claim);
             if($scope.newTimesheet[i].selected === true){
                 console.log('Timesheet ' + $scope.newTimesheet[i].claim + ' is being deleted!');
