@@ -73,6 +73,9 @@
   </div>
 
   <div class="widget-side-panel">
+    <div class="pull-right">
+      <button><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
     <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
     <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
     <p>{{selectedStaff.telephone}}</p>
