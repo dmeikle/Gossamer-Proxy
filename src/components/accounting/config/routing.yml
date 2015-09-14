@@ -100,7 +100,8 @@ accounting_timesheets_save:
         view: core\views\JSONView
         viewKey: accounting_timesheets_save
         datasource: datasource1 
-
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\accounting\listeners\SaveTollListener', 'datasource': 'datasource1' }        
     methods: [POST]
     
     
