@@ -35,6 +35,8 @@
                             <th>Phase</th>
                             <th>Category</th>
                             <th>Description</th>
+                            <th>Toll1</th>
+                            <th>Toll2</th>
                             <th>Reg</th>
                             <th>OT</th>
                             <th>DOT</th>
@@ -70,6 +72,12 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
+                                <input class="form-control toll" ng-model="row.toll1">
+                            </td>
+                            <td>
+                                <input class="form-control toll" ng-model="row.toll2">
+                            </td>
+                            <td>
                                 <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
                             </td>
                             <td>
@@ -92,6 +100,8 @@
                             </td>
                         </tr>
                         <tr class="totalRow">
+                            <td></td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

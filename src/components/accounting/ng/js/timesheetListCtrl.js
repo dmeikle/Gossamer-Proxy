@@ -1,20 +1,14 @@
 module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv) {
     // Stuff to run on controller load
     $scope.rowsPerPage = 20;
-    $scope.currentPage = 1;
-    
+    $scope.currentPage = 1;    
     $scope.loading = true;
-    
-//    $scope.basicSearch = {};
-//    $scope.autocomplete = {};
     
     timesheetSrv.getTimesheetList(0,20).then(function(){
         $scope.loading = false;
         $scope.timesheetList = timesheetSrv.timesheetList;  
     });
-    console.log('timesheet List 2!');
-
-   
+    console.log('timesheet List 2!');   
     
     //Modals
     $scope.openTimesheetModal = function() {
@@ -28,10 +22,13 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 //              return staff;
 //            }
 //          }
+        }).catch(function(error) {
+            // error contains a detailed error message.
+            $scope.error.showError = true;
+            $scope.error.message = 'Could not connect to the database, please try again.';
+            console.log(error);
         });
-    };
-
-    
+    };    
 });
 
 module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv) {
@@ -44,29 +41,24 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
+    
     //Get the dates
     $scope.getDates = function(){
-        //console.log('Getting dates');
         $scope.date = new Date();
         $scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
     };
-    
-
     
     //Call the functions
     $scope.getDates();
     
     //Autocomplete
     function fetchAutocomplete() {
-        //console.log($scope.basicSearch);
         timesheetSrv.autocomplete($scope.basicSearch)
             .then(function() {
             $scope.autocomplete = timesheetSrv.autocompleteList;
-            //console.log($scope.autocomplete);
         });
     }
     $scope.$watch('basicSearch.val', function() {
-        //console.log($scope.basicSearch.val);
         if ($scope.basicSearch.val) {
             $scope.autocomplete.loading = true;
             fetchAutocomplete();
@@ -97,11 +89,10 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                 }
             });
         }
-    };
-    
-    
+    };   
     $scope.timesheetSelected = false;
     
+    //watch the timesheet for updates
     $scope.$watch('newTimesheet', function() {
         console.log('Time sheet updated!');
         for(var i in $scope.newTimesheet){
@@ -141,6 +132,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         sdot: 0,
         total: 0
     };
+    
+    //Update the hour totals
     $scope.updateTotal = function(row, col, hours){
         row.total = 0;
         
@@ -163,8 +156,6 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         $scope.sumTotal[col] = 0;
         $scope.sumTotal.total = 0;
 
-        
-        //
         for(var i in $scope.newTimesheet){
             var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
             var totalRow = parseInt($scope.newTimesheet[i].total);
@@ -179,6 +170,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         }
     };
     
+    //Add a row to the bottom of the timesheet
     $scope.addTimesheetRow = function(){
         $scope.newTimesheet.push({
             selected: false,
@@ -204,8 +196,6 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         for (var i in $scope.newTimesheet){
             
             if($scope.newTimesheet[i].selected === true){
-                //console.log('selected row = ' + i+1);
-                //console.log($scope.newTimesheet[i]);
                 $scope.newTimesheet.splice(parseInt(i)+1, 0,
                 {
                     selected: false,
