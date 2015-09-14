@@ -1,5 +1,5 @@
 <div class="widget" ng-controller="staffListCtrl">
-  <div class="widget-content" ng-class="{'panel-open': selectedStaff}">
+  <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Staff List</h1>
     <div class="toolbar form-inline">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
@@ -44,7 +44,7 @@
             <td></td>
           </tr>
           <tr ng-if="!loading" ng-repeat="staff in staffList"
-            ng-class="{'selected': staff.clicked, 'inactive bg-warning text-warning': staff.status=='inactive'}">
+            ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
               <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
               <td ng-click="selectRow(staff)">{{staff.title}}</td>
               <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
@@ -57,7 +57,7 @@
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
-                    <li><a href="edit/{{staff.id}}">Edit</a></li>
+                    <li><a href="/admin/staff/edit/{{staff.id}}">Edit</a></li>
                     <li><a href="#">Emergency Contacts</a></li>
                     <li><a href="#">Delete</a></li>
                   </ul>
@@ -74,23 +74,29 @@
 
   <div class="widget-side-panel">
     <div class="pull-right">
-      <button><span class="glyphicon glyphicon-remove"></span></button>
+      <button ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
-    <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
-    <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
-    <p>{{selectedStaff.telephone}}</p>
-    <h4><?php echo $this->getString('STAFF_MOBILE')?></h3>
-    <p>{{selectedStaff.mobile}}</p>
-    <h4><?php echo $this->getString('STAFF_EMAIL')?></h3>
-    <p>{{selectedStaff.email}}</p>
-    <h4><?php echo $this->getString('STAFF_CITY')?></h3>
-    <p>{{selectedStaff.city}}</p>
-    <h4><?php echo $this->getString('STAFF_POSTALCODE')?></h3>
-    <p>{{selectedStaff.postalCode}}</p>
-    <h4><?php echo $this->getString('STAFF_TITLE')?></h3>
-    <p>{{selectedStaff.title}}</p>
-    <h4><?php echo $this->getString('STAFF_EMPLOYEENUM')?></h3>
-    <p>{{selectedStaff.employeeNumber}}</p>
+    <div ng-if="sidePanelLoading">
+      <span class="spinner-loader"></span>
+    </div>
+
+    <div ng-if="!sidePanelLoading">
+      <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
+      <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
+      <p>{{selectedStaff.telephone}}</p>
+      <h4><?php echo $this->getString('STAFF_MOBILE')?></h3>
+      <p>{{selectedStaff.mobile}}</p>
+      <h4><?php echo $this->getString('STAFF_EMAIL')?></h3>
+      <p>{{selectedStaff.email}}</p>
+      <h4><?php echo $this->getString('STAFF_CITY')?></h3>
+      <p>{{selectedStaff.city}}</p>
+      <h4><?php echo $this->getString('STAFF_POSTALCODE')?></h3>
+      <p>{{selectedStaff.postalCode}}</p>
+      <h4><?php echo $this->getString('STAFF_TITLE')?></h3>
+      <p>{{selectedStaff.title}}</p>
+      <h4><?php echo $this->getString('STAFF_EMPLOYEENUM')?></h3>
+      <p>{{selectedStaff.employeeNumber}}</p>
+    </div>
   </div>
   <div class="clearfix"></div>
   <form class="hidden"></form>

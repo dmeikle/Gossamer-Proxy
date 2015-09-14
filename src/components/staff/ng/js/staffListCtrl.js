@@ -7,6 +7,8 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   $scope.basicSearch = {};
   $scope.autocomplete = {};
 
+  $scope.previouslyClickedObject = {};
+
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
 
@@ -90,20 +92,20 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   };
 
-  function openSidePanel(clickedObject) {
-    $scope.selectedStaff = staffListSrv.staffDetail;
-  }
-
-  function closeSidePanel() {
-    $scope.selectedStaff.clicked = false;
-  }
+  $scope.closeSidePanel = function() {
+    $scope.sidePanelOpen = false;
+  };
 
   $scope.selectRow = function(clickedObject) {
-    $scope.selectedStaff = undefined;
-    if (clickedObject.clicked === undefined || clickedObject.clicked === false) {
+    if ($scope.previouslyClickedObject !== clickedObject) {
+      $scope.previouslyClickedObject = clickedObject;
+      $scope.sidePanelLoading = true;
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
-          openSidePanel(staffListSrv.staffDetail);
+          $scope.selectedStaff = staffListSrv.staffDetail;
+          $scope.sidePanelOpen = true;
+          $scope.sidePanelLoading = false;
+
         });
     }
   };
