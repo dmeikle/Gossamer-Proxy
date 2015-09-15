@@ -212,29 +212,13 @@
             </div>
             <div class="form-group">
               <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
-              <div class="input-group">
-                <input type="date" name="hireDate" id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}"
-                  class="form-control" datepicker-popup is-open="isOpen.hireDate"
-                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
-                <span class="input-group-btn" data-datepickername="hireDate">
-                  <button type="button" class="btn-default" data-datepickername="hireDate" ng-click="openDatepicker($event)">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
-              </div>
+              <input class="form-control" type="date" name="hireDate"
+                id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}">
             </div>
             <div class="form-group">
               <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
-              <div class="input-group">
-                <input type="date" name="departureDate" id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}"
-                  class="form-control" datepicker-popup is-open="isOpen.departureDate"
-                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
-                <span class="input-group-btn" data-datepickername="departureDate">
-                  <button type="button" class="btn-default" data-datepickername="departureDate" ng-click="openDatepicker($event)">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
-              </div>
+              <input class="form-control" type="date" name="departureDate"
+                id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}">
             </div>
             <div class="form-group">
               <label for="staff-extension"><?php echo $this->getString('STAFF_EXTENSION'); ?></label>
