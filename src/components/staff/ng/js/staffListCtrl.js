@@ -94,6 +94,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.closeSidePanel = function() {
     $scope.sidePanelOpen = false;
+    $scope.previouslyClickedObject = undefined;
   };
 
   $scope.selectRow = function(clickedObject) {
