@@ -1,6 +1,6 @@
 module.service('templateSrv', function() {
   this.staffScheduleModal = '/render/staff/staffScheduleModal';
-  this.staffEditModal = '/render/staff/staffEditModal';
+  this.staffAddNewModal = '/render/staff/staffAddNewModal';
   this.staffBenefitsHistoryModal = '/render/staff/staffBenefitsHistoryModal';
   this.editEmergencyContactModal = '/render/staff/editEmergencyContactModal';
 });

@@ -4,18 +4,23 @@
   table-layout:fixed;
 }
 .cog-col {
-  width:80px;
+  width:40px;
 }
 
 .inactive {
-  background-color:rgba(243,156,18,.4);
-  &:hover {
-    background-color:darken(rgba(243,156,18,.4), 10%);
+    td:first-of-type:after {
+    font-family:'Glyphicons Halflings';
+    content:'\e023';
+
+    color:orange;
+
+    position:relative;
+    left:1em;
   }
 }
 
 @mixin width-transition {
-  transition: width ease .7s;
+  transition: width ease .35s;
 }
 
 .widget-content {
@@ -54,4 +59,9 @@ table.table tbody tr.selected {
   .input-group input[datepicker-popup] {
     width: 7rem;
   }
+}
+
+.staff-picture {
+  width:100px;
+  max-height:100px;
 }

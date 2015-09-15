@@ -213,7 +213,7 @@
             <div class="form-group">
               <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
               <div class="input-group">
-                <input type="date" name="hireDate" id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}"
+                <input type="date" name="dob" id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}"
                   class="form-control" datepicker-popup is-open="isOpen.hireDate"
                   datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
                 <span class="input-group-btn" data-datepickername="hireDate">
@@ -355,7 +355,7 @@
           </div>
         </div>
         <div class="cardright" ng-if="!loading">
-          <img class="pull-right" ng-src="/images/staff/{{staff.imageName}}">
+          <img class="staff-picture pull-right" ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
       </div>

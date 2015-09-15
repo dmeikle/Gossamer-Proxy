@@ -1,4 +1,4 @@
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv) {
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -6,6 +6,8 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
 
   $scope.basicSearch = {};
   $scope.autocomplete = {};
+
+  $scope.previouslyClickedObject = {};
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
@@ -26,13 +28,20 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
       });
   }
 
-  function openSidePanel(clickedObject) {
-    $scope.selectedStaff = clickedObject;
-  }
+  $scope.openAddNewStaffModal = function() {
+    var template = templateSrv.staffAddNewModal;
+    var modalInstance = $modal.open({
+      templateUrl: template,
+      controller:'staffModalCtrl',
+      size:'xl'
+    });
 
-  function closeSidePanel() {
-    $scope.selectedStaff = undefined;
-  }
+    modalInstance.result.then(function(staff) {
+      staffEditSrv.save(staff).then(function() {
+        getStaffList();
+      });
+    });
+  };
 
   $scope.openStaffScheduleModal = function(staff) {
     var template = templateSrv.staffScheduleModal;
@@ -83,18 +92,22 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
 
   };
 
+  $scope.closeSidePanel = function() {
+    $scope.sidePanelOpen = false;
+  };
+
   $scope.selectRow = function(clickedObject) {
-    $scope.selectedStaff = undefined;
-    if (clickedObject.clicked === undefined || clickedObject.clicked === false) {
-      clickedObject.clicked = true;
+    if ($scope.previouslyClickedObject !== clickedObject) {
+      $scope.previouslyClickedObject = clickedObject;
+      $scope.sidePanelLoading = true;
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
-          openSidePanel(staffListSrv.staffDetail);
+          $scope.selectedStaff = staffListSrv.staffDetail;
+          $scope.sidePanelOpen = true;
+          $scope.sidePanelLoading = false;
+
         });
-      return;
     }
-    clickedObject.clicked = false;
-    closeSidePanel();
   };
 
   $scope.$watch('currentPage + numPerPage', function() {
@@ -113,8 +126,8 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
   });
 });
 
-module.controller('staffModalCtrl', function($modalInstance, $scope, staff) {
-  $scope.staff = staff;
+module.controller('staffModalCtrl', function($modalInstance, $scope) {
+  $scope.staff = {};
 
   $scope.confirm = function() {
     $modalInstance.close($scope.staff);
