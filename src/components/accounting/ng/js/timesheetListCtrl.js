@@ -98,7 +98,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.$watch('newTimesheet', function() {
         console.log('Time sheet updated!');
         for(var i in $scope.newTimesheet){
-            if($scope.newTimesheet[i].selected === true){
+            if($scope.newTimesheet[i].isSelected === true){
                 $scope.timesheetSelected = true;
                 return;
             } else {
@@ -109,33 +109,33 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     
     //Timesheet template
     var timesheetTemplate = {
-        selected: false,
-        //staffID:'',
-        claim: '',
-        phase: '',
-        category: '',
+        isSelected: false,
+        Claims_id: '',
+        AccountingPhaseCodes_id: '',
+        StaffTypes_id: '',
         description: '',
         toll1: 'test',
         toll2: '',
-        reg: '0',
-        ot: '0',
-        dot: '0',
-        sreg: '0',
-        sot: '0',
-        sdot: '0',
+        regularHours: '0',
+        overtimeHours: '0',
+        doubleOTHours: '0',
+        statRegularHours: '0',
+        statOTHours: '0',
+        statDOTHours: '0',
         total: '0'
     };
     
     //New Timesheet
     $scope.newTimesheet = [timesheetTemplate];
-    console.log($scope.newTimesheet);
+    //console.log($scope.newTimesheet);
+    
     $scope.sumTotal = {
-        reg:0,
-        ot: 0,
-        dot: 0,
-        sreg: 0,
-        sot: 0,
-        sdot: 0,
+        regularHours: '0',
+        overtimeHours: '0',
+        doubleOTHours: '0',
+        statRegularHours: '0',
+        statOTHours: '0',
+        statDOTHours: '0',
         total: 0
     };
     
@@ -144,12 +144,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         row.total = 0;
         
         var rowHours = {
-            reg: parseInt(row.reg),
-            ot: parseInt(row.ot),
-            dot: parseInt(row.dot),
-            sreg: parseInt(row.sreg),
-            sot: parseInt(row.sot),
-            sdot: parseInt(row.sdot)
+            reg: parseInt(row.regularHours),
+            ot: parseInt(row.overtimeHours),
+            dot: parseInt(row.doubleOTHours),
+            sreg: parseInt(row.statRegularHours),
+            sot: parseInt(row.statOTHours),
+            sdot: parseInt(row.statDOTHours)
         };
  
         if(row[col] === ''){
@@ -159,12 +159,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         row.total = rowHours.reg + rowHours.ot + rowHours.dot + rowHours.sreg + rowHours.sot + rowHours.sdot;
 
         $scope.updateTotalSum();
-        console.log('ROW TOLLS = ' + row.toll1 + ' ' + row.toll2);
+        //console.log('ROW TOLLS = ' + row.toll1 + ' ' + row.toll2);
     };
     
     $scope.updateTotalSum = function(){
         
-        var colValues = ['reg', 'ot', 'dot', 'sreg', 'sot', 'sdot'];
+        var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDOTHours'];
         
         for (var j in colValues){
             var col = colValues[j];
@@ -191,23 +191,23 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Add a row to the bottom of the timesheet
     $scope.addTimesheetRow = function(){
         $scope.newTimesheet.push({
-            selected: false,
-            claim: '',
-            phase: '',
-            category: '',
+            isSelected: false,
+            Claims_id: '',
+            AccountingPhaseCodes_id: '',
+            StaffTypes_id: '',
             description: '',
-            toll1: '',
+            toll1: 'test',
             toll2: '',
-            reg: '0',
-            ot: '0',
-            dot: '0',
-            sreg: '0',
-            sot: '0',
-            sdot: '0',
+            regularHours: '0',
+            overtimeHours: '0',
+            doubleOTHours: '0',
+            statRegularHours: '0',
+            statOTHours: '0',
+            statDOTHours: '0',
             total: '0'
         });
         if($scope.laborerPositionID !== ''){
-            $scope.newTimesheet[$scope.newTimesheet.length-1].category = $scope.laborerPositionID;
+            $scope.newTimesheet[$scope.newTimesheet.length-1].StaffTypes_id = $scope.laborerPositionID;
         }
     };
     
@@ -215,27 +215,27 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.insertTimesheetRows = function(){
         for (var i in $scope.newTimesheet){
             
-            if($scope.newTimesheet[i].selected === true){
+            if($scope.newTimesheet[i].isSelected === true){
                 $scope.newTimesheet.splice(parseInt(i)+1, 0,
                 {
-                    selected: false,
-                    claim: '',
-                    phase: '',
-                    category: '',
+                    isSelected: false,
+                    Claims_id: '',
+                    AccountingPhaseCodes_id: '',
+                    StaffTypes_id: '',
                     description: '',
-                    toll1: '',
+                    toll1: 'test',
                     toll2: '',
-                    reg: '0',
-                    ot: '0',
-                    dot: '0',
-                    sreg: '0',
-                    sot: '0',
-                    sdot: '0',
+                    regularHours: '0',
+                    overtimeHours: '0',
+                    doubleOTHours: '0',
+                    statRegularHours: '0',
+                    statOTHours: '0',
+                    statDOTHours: '0',
                     total: '0'
                 });                
                 //console.log('Position ID = ' + $scope.laborerPositionID);
                 if($scope.laborerPositionID !== ''){
-                    $scope.newTimesheet[parseInt(i)+1].category = $scope.laborerPositionID;
+                    $scope.newTimesheet[parseInt(i)+1].StaffTypes_id = $scope.laborerPositionID;
                 }
             }
         }
@@ -248,9 +248,9 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var newArray = timesheet;
         
         for (var i = $scope.newTimesheet.length-1; i >= 0; i--){            
-            console.log('Timesheet ' + $scope.newTimesheet[i].claim);
-            if($scope.newTimesheet[i].selected === true){
-                console.log('Timesheet ' + $scope.newTimesheet[i].claim + ' is being deleted!');
+            console.log('Timesheet ' + $scope.newTimesheet[i].Claims_id);
+            if($scope.newTimesheet[i].isSelected === true){
+                console.log('Timesheet ' + $scope.newTimesheet[i].Claims_id + ' is being deleted!');
                 newArray.splice(parseInt(i), 1);                
             }            
         }
@@ -264,11 +264,11 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.selectAllToggle = function(value){
         if(value === true){
             for(var i in $scope.newTimesheet){
-                $scope.newTimesheet[i].selected = true;
+                $scope.newTimesheet[i].isSelected = true;
             }
         } else {
             for(var j in $scope.newTimesheet){
-                $scope.newTimesheet[j].selected = false;
+                $scope.newTimesheet[j].isSelected = false;
             }
         }
     };
@@ -284,7 +284,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.setCategory = function(positionID){
         console.log('position ID = ' + positionID);
         if($scope.newTimesheet.length == 1){
-            $scope.newTimesheet[0].category = positionID;
+            $scope.newTimesheet[0].StaffTypes_id = positionID;
         }
     };
     

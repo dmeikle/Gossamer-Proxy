@@ -86,22 +86,22 @@
                                 </select>
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.regularHours" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
+                                <input class="hours form-control" ng-model="row.regularHours" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'regularHours')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'ot')">
+                                <input class="hours form-control" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'overtimeHours')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'dot')">
+                                <input class="hours form-control" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'doubleOTHours')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.statRegularHours" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'sreg')">
+                                <input class="hours form-control" ng-model="row.statRegularHours" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'statRegularHours')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.statOTHours" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'sot')">
+                                <input class="hours form-control" ng-model="row.statOTHours" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'statOTHours')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'sdot')">
+                                <input class="hours form-control" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'statDOTHours')">
                             </td>
                             <td class="total">
                                <strong>{{row.total}}</strong>
@@ -115,12 +115,12 @@
                             <td></td>
                             <td></td>
                             <td>Total:</td>
-                            <td>{{sumTotal.reg}}</td>
-                            <td>{{sumTotal.ot}}</td>
-                            <td>{{sumTotal.dot}}</td>
-                            <td>{{sumTotal.sreg}}</td>
-                            <td>{{sumTotal.sot}}</td>
-                            <td>{{sumTotal.sdot}}</td>
+                            <td>{{sumTotal.regularHours}}</td>
+                            <td>{{sumTotal.overtimeHours}}</td>
+                            <td>{{sumTotal.doubleOTHours}}</td>
+                            <td>{{sumTotal.statRegularHours}}</td>
+                            <td>{{sumTotal.statOTHours}}</td>
+                            <td>{{sumTotal.statDOTHours}}</td>
                             <td><strong>{{sumTotal.total}}</strong></td>
                         </tr>
                     </tbody>
