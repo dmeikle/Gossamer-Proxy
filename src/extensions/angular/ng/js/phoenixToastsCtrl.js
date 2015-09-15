@@ -1,7 +1,9 @@
 module.controller('toastsCtrl', function($scope, toastsSrv) {
-  $scope.toasterService = toastsSrv;
 
-  $scope.$watch('toasterService.alerts', function() {
+  $scope.addNewAlert = toastsSrv.newAlert;
 
-  });
+  $scope.alerts = toastsSrv.alerts;
+
+  $scope.dismissAlert = toastsSrv.dismissAlert;
+
 });

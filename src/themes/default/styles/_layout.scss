@@ -13,6 +13,21 @@
 
 }
 
+.notification-area {
+  margin:0 auto;
+  width:40%;
+
+  position:fixed;
+  left:30%;
+  top:0;
+  z-index:10;
+}
+
+.alert {
+  padding:.5em 1em;
+  margin:.5em;
+}
+
 .userimage {
   border-radius:50%;
   margin-right:.5em;

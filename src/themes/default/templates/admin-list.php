@@ -26,6 +26,7 @@
 </head>
 
 <body cz-shortcut-listen="true">
+  <!---notifications--->
   <!---header--->
   <div class="clearfix"></div>
   <main class="content full-width">
