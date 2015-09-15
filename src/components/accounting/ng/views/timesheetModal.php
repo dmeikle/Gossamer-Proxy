@@ -51,20 +51,20 @@
                     <tbody>
                         <tr ng-repeat="row in newTimesheet track by $index">
                             <td>
-                                <input class="checkbox" type="checkbox" ng-model="row.selected" ng-click="checkSelected(row.selected)">
+                                <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                             </td>
                             <td>
-                                <input class="form-control" ng-model="row.claim">
+                                <input class="form-control" ng-model="row.Claims_id">
                             </td>
                             <td>
-                                <select class="form-control" name="ClaimPhases_id" ng-model="row.phase">
+                                <select class="form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
                                     <?php foreach($AccountingPhaseCodes as $phase) {
                                         echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" name="ClaimCategory_id" ng-model="row.category" ng-init="row.category">
+                                <select class="form-control" name="StaffTypes_id" ng-model="row.StaffTypes_id" ng-init="row.StaffTypes_id">
                                     <?php foreach($StaffPositions as $position) {
                                         echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
                                        } ?>
@@ -86,22 +86,22 @@
                                 </select>
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.reg" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
+                                <input class="hours form-control" ng-model="row.regularHours" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'reg')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.ot" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'ot')">
+                                <input class="hours form-control" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'ot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.dot" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'dot')">
+                                <input class="hours form-control" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'dot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sreg" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'sreg')">
+                                <input class="hours form-control" ng-model="row.statRegularHours" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'sreg')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sot" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'sot')">
+                                <input class="hours form-control" ng-model="row.statOTHours" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'sot')">
                             </td>
                             <td>
-                                <input class="hours form-control" ng-model="row.sdot" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'sdot')">
+                                <input class="hours form-control" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'sdot')">
                             </td>
                             <td class="total">
                                <strong>{{row.total}}</strong>

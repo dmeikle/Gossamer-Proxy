@@ -32,4 +32,11 @@ class TimesheetModel extends AbstractModel{
         $this->entity = 'Timesheet';
         $this->tablename = 'timesheets';
     }
+    
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        unset($params['FORM_SECURITY_TOKEN']);
+        
+        return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+    }
 }

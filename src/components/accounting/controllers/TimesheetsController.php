@@ -12,7 +12,7 @@
 namespace components\accounting\controllers;
 
 use core\AbstractController;
-
+use components\accounting\models\TimesheetItemModel;
 
 /**
  * Description of TimesheetsController
@@ -33,4 +33,5 @@ class TimesheetsController extends AbstractController{
         
         $this->render($result);
     }
+    
 }
