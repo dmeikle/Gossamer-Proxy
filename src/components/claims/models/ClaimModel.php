@@ -35,7 +35,7 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
     }
     
     public function search(array $term) {
-        $params = array('keywords' => $this->httpRequest->getPost());
+        $params = array('keywords' => $this->httpRequest->getQueryParameter('Claims_id'));
        
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
       

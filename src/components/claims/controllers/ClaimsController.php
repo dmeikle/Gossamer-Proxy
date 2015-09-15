@@ -85,7 +85,7 @@ class ClaimsController extends AbstractController{
    
                
     private function getJobNumber() {
-        $rawJobNumber = $this->httpRequest->getQueryParameter('Claims_id');
+        $rawJobNumber = $this->httpRequest->getQueryParameter('Claims_id'); //changed from 'term'
         
         return preg_replace('/[^A-z0-9\-]/', '', substr($rawJobNumber, 0, 10));
     }

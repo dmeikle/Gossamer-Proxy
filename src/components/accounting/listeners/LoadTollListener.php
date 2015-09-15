@@ -31,7 +31,7 @@ class LoadTollListener extends \core\eventlisteners\AbstractCachableListener {
         $retval = '';
         
         foreach($result['AccountingGeneralCostItems'] as $row) {
-            $retval .= '<option value="' . $row['id'] . '">' . $row['abbreviation'] . "<option>\r\n";
+            $retval .= '<option value="' . $row['cost'] . '">' . $row['abbreviation'] . "<option>\r\n";
         }
         
         $this->saveValuesToCache($this->getKey(), $retval);
