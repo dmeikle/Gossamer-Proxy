@@ -62,6 +62,8 @@ module.service('timesheetSrv', function($http) {
         
         var data = {};
         data.timesheet = timesheet;
+        data.timesheetItems = timesheetItems;
+        data.tolls = tolls;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({
             method: 'POST',
