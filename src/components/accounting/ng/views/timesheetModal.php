@@ -74,13 +74,13 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll1" ng-init="row.category">
+                                <select class="form-control" ng-model="row.toll1" ng-init="row.toll1">
                                     <?php
                                     echo $TollBridges; ?>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll2" ng-init="row.category">
+                                <select class="form-control" ng-model="row.toll2" ng-init="row.toll2">
                                     <?php
                                     echo $TollBridges; ?>
                                 </select>
@@ -133,7 +133,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" ng-click="saveTimesheet(newTimesheet)">Save</button>
             </div>
 <!--
         </div>

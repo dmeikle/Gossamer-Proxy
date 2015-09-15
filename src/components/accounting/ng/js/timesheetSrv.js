@@ -68,7 +68,7 @@ module.service('timesheetSrv', function($http) {
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
             },
-            //url: apiPath + 'credentials/' + object.id,
+            url: apiPath + object.id,
             data: data
         }).then(function(response) {
             console.log(response);

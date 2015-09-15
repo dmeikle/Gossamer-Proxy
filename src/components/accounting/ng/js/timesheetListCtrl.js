@@ -36,6 +36,8 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv) {
     $scope.basicSearch = {};
     $scope.autocomplete = {};
+    
+    //Modal Controls
     $scope.confirm = function() {
         $modalInstance.close($scope.staff);
     };
@@ -82,11 +84,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                         $scope.setCategory($scope.positionID);
                         $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
                         $scope.hourlyRate = $scope.staffList[0].HourlyRate;
+                        
+                        $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;                        
                     }
                 }
             });
         }
-    };   
+    };
+    
     $scope.timesheetSelected = false;
     
     //watch the timesheet for updates
@@ -105,11 +110,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Timesheet template
     var timesheetTemplate = {
         selected: false,
+        staffID:'',
         claim: '',
         phase: '',
         category: '',
         description: '',
-        toll1: '',
+        toll1: 'test',
         toll2: '',
         reg: '0',
         ot: '0',
@@ -122,6 +128,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     
     //New Timesheet
     $scope.newTimesheet = [timesheetTemplate];
+    console.log($scope.newTimesheet);
     $scope.sumTotal = {
         reg:0,
         ot: 0,
@@ -152,20 +159,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         row.total = rowHours.reg + rowHours.ot + rowHours.dot + rowHours.sreg + rowHours.sot + rowHours.sdot;
 
         $scope.updateTotalSum();
-//        $scope.sumTotal[col] = 0;
-//        $scope.sumTotal.total = 0;
-//
-//        for(var i in $scope.newTimesheet){
-//            var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
-//            var totalRow = parseInt($scope.newTimesheet[i].total);
-//
-//            if($scope.newTimesheet[i][col] === ''){
-//                $scope.sumTotal[col] += 0;
-//            } else {                
-//                $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-//                $scope.sumTotal.total += totalRow;
-//            }
-//        }
+        console.log('ROW TOLLS = ' + row.toll1 + ' ' + row.toll2);
     };
     
     $scope.updateTotalSum = function(){
@@ -185,20 +179,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
                 }
             }
-        }
-        
+        }        
         
         $scope.sumTotal.total = 0;
         for(var p in $scope.newTimesheet){
-            //var totalCol = Object.keys($scope.newTimesheet[i]).length-1;
             var totalRow = parseInt($scope.newTimesheet[p].total);
-
-         //   if($scope.newTimesheet[i][col] === ''){
-         //       $scope.sumTotal[col] += 0;
-         //   } else {                
-         //       $scope.sumTotal[col] += parseInt($scope.newTimesheet[i][col]);
-                $scope.sumTotal.total += totalRow;
-         //   }
+            $scope.sumTotal.total += totalRow;
         }
     };
     
@@ -307,5 +293,50 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         if(row[col] === ''){
             row[col] = 0;
         }
+    };
+    
+    //Remove Tolls
+    $scope.removeTolls = function (object){
+        var newObj = object;
+        
+        for (var i in newObj){
+            delete newObj[i].toll1;
+            delete newObj[i].toll2;
+        }
+        return newObj;
+    };
+    
+    //Get Tolls
+    $scope.getTolls = function (object){
+        var newObj = [];
+        
+        for (var i in object){
+            newObj.push(object[i].toll1);
+            newObj.push(object[i].toll2);
+        }
+        
+        return newObj;
+    };
+    
+    //Save timesheet
+    $scope.saveTimesheet = function (timesheet){
+        console.log('Saving Timesheet...');
+        console.log(timesheet);
+        console.log($scope.newTimesheet);
+//        var sheet = {
+//            //timesheet_ID: '',
+//            laborer: $scope.laborerName,
+//            date: $scope.yesterday
+//            //numJobs: ''
+//        }
+//        
+        var tolls = $scope.getTolls(timesheet);
+        var sheetItems = $scope.removeTolls(timesheet);
+        
+        console.log('Timesheet Item:');
+        console.log(sheetItems);
+        console.log('Tolls:');
+        console.log(tolls);
+    
     };
 });
