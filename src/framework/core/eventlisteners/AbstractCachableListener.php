@@ -43,7 +43,7 @@ class AbstractCachableListener extends AbstractListener {
         if (method_exists($this, $method)) {
             //first check cache
             $key = $this->getKey();
-
+error_log("key is $key " . get_class($this));
             $values = '';
 
             if (!is_null($key)) {
