@@ -68,3 +68,25 @@ editEmergencyContactModal:
     path: 'src/components/staff/ng/views/editEmergencyContactModal.php'
     langFiles:
         - 'src/components/staff/locales/*/staff'
+
+staffAdvancedSearchFilters:
+    path: 'src/components/staff/ng/views/staffAdvancedSearchFilters.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'
+    listeners:
+            - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+            - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+            - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions' }
+            - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }
+            -
+                event: 'filerender_start'
+                listener: 'core\components\render\eventlisteners\FormBuilderListener'
+                datasource: 'datasource1'
+                formBuilder: 'components\staff\form\StaffBuilder'
+                model: 'components\staff\models\StaffModel'
+                cacheKey: 'StaffForm'
+                dependencies:
+                    - { dependency: Departments, key: departments, value: id, text: name}
+                    - { dependency: Provinces, key: provinces, value: id, text: province }
+                    - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
+                    - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }

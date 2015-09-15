@@ -2,7 +2,7 @@
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Staff List</h1>
     <div class="toolbar form-inline">
-      <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
+      <button class="btn-link" ng-click="openStaffAdvancedSearch()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
       <div class="input-group">
@@ -80,7 +80,13 @@
       <span class="spinner-loader"></span>
     </div>
 
-    <div ng-if="!sidePanelLoading">
+    <div ng-if="!sidePanelLoading && searching">
+      <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH');?></h1>
+      <div class="form-group" id="staffAdvancedSearchForm">
+      </div>
+    </div>
+
+    <div ng-if="!sidePanelLoading && !searching">
       <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
       <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
       <p>{{selectedStaff.telephone}}</p>

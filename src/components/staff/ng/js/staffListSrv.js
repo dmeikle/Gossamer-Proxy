@@ -61,4 +61,12 @@ module.service('staffListSrv', function($http) {
         self.staffDetail = response.data.Staff;
       });
   };
+
+  this.getAdvancedSearchFilters = function() {
+    return $http.get('/render/staff/staffAdvancedSearchFilters').then(function(response) {
+      var filters = document.implementation.createHTMLDocument('filters');
+      filters.documentElement.innerHTML = response.data;
+      self.advancedSearchFilters = filters;
+    });
+  };
 });

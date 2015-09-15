@@ -57,22 +57,14 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   };
 
-  $scope.openStaffAdvancedSearchModal = function() {
-    var template = templateSrv.staffEditModal;
-    var modalInstance = $modal.open({
-      templateUrl: template,
-      controller: 'staffModalCtrl',
-      size: 'lg'
+  $scope.openStaffAdvancedSearch = function() {
+    $scope.sidePanelOpen = true;
+    $scope.sidePanelLoading = true;
+    staffListSrv.getAdvancedSearchFilters().then(function() {
+      $scope.sidePanelLoading = false;
+      $scope.searching = true;
+      var breakpointme;
     });
-
-    modalInstance.result
-      .then(function(staff) {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        staffListSrv.saveStaff(staff, formToken)
-          .then(function() {
-            getStaffList();
-          });
-      });
   };
 
   $scope.search = function(searchObject) {
@@ -94,7 +86,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.closeSidePanel = function() {
     $scope.sidePanelOpen = false;
-    $scope.previouslyClickedObject = undefined;
   };
 
   $scope.selectRow = function(clickedObject) {
