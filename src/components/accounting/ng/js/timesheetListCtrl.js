@@ -91,7 +91,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                         $scope.staffID = $scope.staffList[0].id;
                         $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
                         $scope.hourlyRate = $scope.staffList[0].HourlyRate;                        
-                        $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;                        
+                        $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;                       
                     }
                 }
             });
@@ -101,10 +101,21 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Claims Autocomplete
     //Fetch claims
     function fetchClaims(search) {
+        console.log('fetching claims...');
         timesheetSrv.claimsAutocomplete(search)
             .then(function() {
-            $scope.claimsAutocomplete = timesheetSrv.claimsList;
+            if(timesheetSrv.claimsCount > 0){
+                console.log('found ' + timesheetSrv.claimsCount  + ' matching claims'); 
+                $scope.claimsAutocomplete = timesheetSrv.claimsList;
+            } else {
+                console.log('no matching claims found!');
+            }
         });
+    }
+    
+    //Clear the Claims list
+    $scope.clearClaimsList = function(){
+        $scope.claimsAutocomplete = {};
     }
     
     //Search Claims

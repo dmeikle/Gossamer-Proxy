@@ -54,36 +54,36 @@
                                 <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                             </td>
                             <td>
-                                <input class="form-control" ng-model="row.Claims_id" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" >
+                                <input class="claim form-control" type="text" ng-model="row.Claims_id" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList()">
                                 <datalist id="timesheet-claims-list">
                                     <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                                    <option ng-repeat="value in claimsAutocomplete" value="{{value.claim}}"></option>
+                                    <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}"></option>
                                 </datalist>
                             </td>
                             <td>
-                                <select class="form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
+                                <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
                                     <?php foreach($AccountingPhaseCodes as $phase) {
                                         echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" name="StaffTypes_id" ng-model="row.StaffTypes_id" ng-init="row.StaffTypes_id">
+                                <select class="category form-control" name="StaffTypes_id" ng-model="row.StaffTypes_id" ng-init="row.StaffTypes_id">
                                     <?php foreach($StaffPositions as $position) {
                                         echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
                                        } ?>
                                 </select>
                             </td>
                             <td>
-                                <input class="form-control" ng-model="row.description">
+                                <input class="description form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll1">
+                                <select class="toll form-control" ng-model="row.toll1">
                                     <option value="toll">Toll</option><?php echo $TollBridges; ?><option value="toll">Toll</option>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll2">
+                                <select class="toll form-control" ng-model="row.toll2">
                                     <?php echo $TollBridges; ?>
                                 </select>
                             </td>
