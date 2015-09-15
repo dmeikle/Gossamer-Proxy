@@ -4,11 +4,16 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.currentPage = 1;    
     $scope.loading = true;
     
-    timesheetSrv.getTimesheetList(0,20).then(function(){
-        $scope.loading = false;
-        $scope.timesheetList = timesheetSrv.timesheetList;  
+    timesheetSrv.getTimesheetList(0,20)
+        .then(function(){
+            $scope.loading = false;
+            $scope.timesheetList = timesheetSrv.timesheetList;
+            if(timesheetSrv.error.showError === true){
+                $scope.error.showError = true;
+                //$scope.error.message = 'Could not reach the database, please try again.';
+            }
     });
-    console.log('timesheet List 2!');   
+       
     
     //Modals
     $scope.openTimesheetModal = function() {
@@ -52,16 +57,17 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         $scope.yesterday = $scope.date.setDate($scope.date.getDate() - 1);
     };
     
-    //Call the functions
+    //Call getDates
     $scope.getDates();
     
-    //Autocomplete
+    //Laborer Autocomplete
     function fetchAutocomplete() {
         timesheetSrv.autocomplete($scope.basicSearch)
             .then(function() {
             $scope.autocomplete = timesheetSrv.autocompleteList;
         });
     }
+    
     $scope.$watch('basicSearch.val', function() {
         if ($scope.basicSearch.val) {
             $scope.autocomplete.loading = true;
@@ -72,7 +78,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Search
     $scope.search = function() {
         var searchObject = $scope.basicSearch;
-        console.log(searchObject);
+        //console.log(searchObject);
         if (searchObject.val) {
             timesheetSrv.filterListBy(0, 20, searchObject)
                 .then(function() {
@@ -91,6 +97,35 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             });
         }
     };
+    
+    //Claims Autocomplete
+    //Fetch claims
+    function fetchClaims(search) {
+        timesheetSrv.claimsAutocomplete(search)
+            .then(function() {
+            $scope.claimsAutocomplete = timesheetSrv.claimsList;
+        });
+    }
+    
+    //Search Claims
+//    $scope.claimsSearch = function() {
+//        var searchObject = $scope.claimsSearch;
+//        if (searchObject.val) {
+//            timesheetSrv.filterClaims(0, 20, searchObject)
+//            .then(function() {
+//                if(timesheetSrv.claimResults) {
+//                    console.log(timesheetSrv.claimResults);
+//                }
+//            });
+//        }
+//    };
+    
+    $scope.watchClaims = function(row){
+        console.log(row);
+       // $scope.newTimesheet[row].Claims_id;
+        fetchClaims(row.Claims_id);
+    };
+    
     
     $scope.timesheetSelected = false;
     
@@ -248,7 +283,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var newArray = timesheet;
         
         for (var i = $scope.newTimesheet.length-1; i >= 0; i--){            
-            console.log('Timesheet ' + $scope.newTimesheet[i].Claims_id);
+            //console.log('Timesheet ' + $scope.newTimesheet[i].Claims_id);
             if($scope.newTimesheet[i].isSelected === true){
                 console.log('Timesheet ' + $scope.newTimesheet[i].Claims_id + ' is being deleted!');
                 newArray.splice(parseInt(i), 1);                

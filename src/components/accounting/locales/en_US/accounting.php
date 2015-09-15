@@ -22,7 +22,9 @@ return array(
     'ACCOUNTING_NEW_TIMESHEET_DELETE' => 'Delete Row(s)',
 
     'STAFF_LOADING' => 'Loading',
-    'STAFF_NAME' => 'Name'
+    'STAFF_NAME' => 'Name',
+    
+    'ACCOUNTING_TIMESHEET_DB_ERROR' => 'Could not connect to the database, please try again.'
 
 );
 

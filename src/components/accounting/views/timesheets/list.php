@@ -3,7 +3,7 @@
     <h1 class="pull-left">Timesheet List</h1>
 <!--    <a href="staff/edit/0" class="pull-right"><?php echo $this->getString('STAFF_NEW');?></a>-->
     <div class="clearfix"></div>
-    <div class="alert alert-danger" role="alert" ng-if="error.showError">{{error.message}}</div>
+    <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
     <div class="pull-left">
         <button class="primary" ng-click="openTimesheetModal()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
     </div>
