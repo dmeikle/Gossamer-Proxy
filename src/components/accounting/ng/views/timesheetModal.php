@@ -54,7 +54,11 @@
                                 <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                             </td>
                             <td>
-                                <input class="form-control" ng-model="row.Claims_id">
+                                <input class="form-control" ng-model="row.Claims_id" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" >
+                                <datalist id="timesheet-claims-list">
+                                    <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
+                                    <option ng-repeat="value in claimsAutocomplete" value="{{value.claim}}"></option>
+                                </datalist>
                             </td>
                             <td>
                                 <select class="form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
@@ -74,15 +78,13 @@
                                 <input class="form-control" ng-model="row.description">
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll1" ng-init="row.toll1">
-                                    <?php
-                                    echo $TollBridges; ?>
+                                <select class="form-control" ng-model="row.toll1">
+                                    <option value="toll">Toll</option><?php echo $TollBridges; ?><option value="toll">Toll</option>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" ng-model="row.toll2" ng-init="row.toll2">
-                                    <?php
-                                    echo $TollBridges; ?>
+                                <select class="form-control" ng-model="row.toll2">
+                                    <?php echo $TollBridges; ?>
                                 </select>
                             </td>
                             <td>
