@@ -33,7 +33,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     };    
 });
 
-module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv) {
+module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv, $filter) {
     $scope.basicSearch = {};
     $scope.autocomplete = {};
     
@@ -82,9 +82,9 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     if($scope.totalItems == 1){
                         $scope.positionID = $scope.staffList[0].StaffPositions_id;
                         $scope.setCategory($scope.positionID);
+                        $scope.staffID = $scope.staffList[0].id;
                         $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
-                        $scope.hourlyRate = $scope.staffList[0].HourlyRate;
-                        
+                        $scope.hourlyRate = $scope.staffList[0].HourlyRate;                        
                         $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;                        
                     }
                 }
@@ -110,7 +110,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Timesheet template
     var timesheetTemplate = {
         selected: false,
-        staffID:'',
+        //staffID:'',
         claim: '',
         phase: '',
         category: '',
@@ -311,32 +311,37 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var newObj = [];
         
         for (var i in object){
-            newObj.push(object[i].toll1);
-            newObj.push(object[i].toll2);
+            newObj.push({toll1: object[i].toll1, toll2: object[i].toll2});
+            //newObj.push(object[i].toll2);
         }
         
         return newObj;
     };
     
     //Save timesheet
-    $scope.saveTimesheet = function (timesheet){
+    $scope.saveTimesheet = function (object){
         console.log('Saving Timesheet...');
-        console.log(timesheet);
-        console.log($scope.newTimesheet);
-//        var sheet = {
-//            //timesheet_ID: '',
-//            laborer: $scope.laborerName,
-//            date: $scope.yesterday
-//            //numJobs: ''
-//        }
-//        
-        var tolls = $scope.getTolls(timesheet);
-        var sheetItems = $scope.removeTolls(timesheet);
+        console.log(object);
         
-        console.log('Timesheet Item:');
+        var timesheet = {
+            staffID: $scope.staffID,
+            workDate: $filter('date')($scope.yesterday, 'yyyy-MM-dd')
+        };        
+       
+        
+        var tolls = $scope.getTolls(object);
+        var sheetItems = $scope.removeTolls(object);
+        
+        console.log('Timesheet:');
+        console.log(timesheet);
+        console.log('Timesheet Items:');
         console.log(sheetItems);
         console.log('Tolls:');
         console.log(tolls);
+        
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
+        timesheetSrv.saveTimesheet(timesheet, formToken);
     
     };
 });

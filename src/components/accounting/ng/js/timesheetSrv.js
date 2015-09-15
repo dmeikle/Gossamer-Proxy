@@ -59,16 +59,16 @@ module.service('timesheetSrv', function($http) {
     
     //Save a Timesheet
     this.saveTimesheet = function(timesheet, formToken){
+        
         var data = {};
         data.timesheet = timesheet;
         data.FORM_SECURITY_TOKEN = formToken;
-        
         return $http({
             method: 'POST',
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + object.id,
+            url: apiPath + '0',
             data: data
         }).then(function(response) {
             console.log(response);
