@@ -58,7 +58,7 @@ module.service('timesheetSrv', function($http) {
     };
     
     //Save a Timesheet
-    this.saveTimesheet = function(timesheet, formToken){
+    this.saveTimesheet = function(timesheet, timesheetItems, tolls, formToken){
         
         var data = {};
         data.timesheet = timesheet;

@@ -330,18 +330,18 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
        
         
         var tolls = $scope.getTolls(object);
-        var sheetItems = $scope.removeTolls(object);
+        var timesheetItems = $scope.removeTolls(object);
         
         console.log('Timesheet:');
         console.log(timesheet);
         console.log('Timesheet Items:');
-        console.log(sheetItems);
+        console.log(timesheetItems);
         console.log('Tolls:');
         console.log(tolls);
         
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        timesheetSrv.saveTimesheet(timesheet, formToken);
+        timesheetSrv.saveTimesheet(timesheet, timesheetItems, tolls, formToken);
     
     };
 });
