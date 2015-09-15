@@ -52,7 +52,7 @@ button {
   }
 }
 
-.table>tbody>tr>td {
+.table>tbody>tr>td:not(.row-controls) {
   padding:.5em;
   white-space: nowrap;
   overflow:hidden;

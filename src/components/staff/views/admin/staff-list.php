@@ -74,7 +74,7 @@
 
   <div class="widget-side-panel">
     <div class="pull-right">
-      <button ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
+      <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
     <div ng-if="sidePanelLoading">
       <span class="spinner-loader"></span>
