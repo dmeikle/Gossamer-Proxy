@@ -4,6 +4,7 @@ admin_staff_edit_home:
     template: admin-list.php
     sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "header": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "content": "src/components/staff/views/admin/staff-edit.php"
@@ -58,6 +59,7 @@ admin_staff_create_new:
     template: admin-list.php
     sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
@@ -71,6 +73,7 @@ admin_login:
     template: list.php
     sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "section1": "src/themes/default/templates/sections/portal-header.php"
             "section3": "src/components/staff/views/login/login-form.php"
             "section4": "src/themes/default/templates/sections/footer.php"

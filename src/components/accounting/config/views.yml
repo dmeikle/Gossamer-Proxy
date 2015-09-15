@@ -3,33 +3,36 @@
 
 accounting_timesheets_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "header": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/accounting/views/timesheets/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-        
-        
 
 
-accounting_pos_list:    
+
+
+accounting_pos_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/accounting/views/admin/subnav.php"
             "section3": "src/components/accounting/views/admin/parameters.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-            
-accounting_costcarditemtypes_home:           
+
+accounting_costcarditemtypes_home:
     template: super-list.php
-    sections: 
+    sections:
         -
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "section1": "src/themes/default/templates/sections/admin-header.php"            
             "section3": "src/components/accounting/views/costCardItemTypes/list.php"
-            "footer": "src/themes/default/templates/sections/footer.php"    
+            "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - accountingAdmin

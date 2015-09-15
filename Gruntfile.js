@@ -30,6 +30,17 @@ module.exports = function(grunt) {
           var componentName = srcSplit[srcSplit.indexOf('ng')-1];
           return options.cwd + componentName + '/' + dest + componentName + '.concat.js';
         }
+      },
+      extensions: {
+        expand:true,
+        cwd: 'src/extensions/',
+        src:['*/ng/js/*.js'],
+        dest: 'dist/js/',
+        rename: function(dest, src, options) {
+          var srcSplit = src.split('/');
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+          return options.cwd + componentName + '/' + dest + componentName + '-extension.concat.js';
+        }
       }
     },
 
@@ -63,7 +74,9 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'src/components/*/dist/js/*.concat.js','src/framework/core/components/*/dist/js/*.concat.js'],
+      files: ['Gruntfile.js', 'src/components/*/dist/js/*.concat.js',
+      'src/framework/core/components/*/dist/js/*.concat.js',
+      'src/extensions/*/dist/js/*.concat.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -145,6 +158,20 @@ module.exports = function(grunt) {
             return options.cwd + componentName + '/' + dest + componentName + '.min.js';
           }
         }]
+      },
+      extensions: {
+        files: [{
+          expand:true,
+          cwd: 'src/extensions/',
+          src: ['*/dist/js/*.concat.js'],
+          dest: 'dist/js/',
+          rename: function(dest, src, options) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('dist')-1];
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '-extension.min.js');
+            return options.cwd + componentName + '/' + dest + componentName + '-extension.min.js';
+          }
+        }]
       }
     },
 
@@ -157,6 +184,11 @@ module.exports = function(grunt) {
       concat_framework:{
         files:['src/framework/core/components/*/ng/js/*.js'],
         tasks: ['concat:framework']
+      },
+
+      concat_extensions:{
+        files:['src/extensions/*/ng/js/*.js'],
+        tasks: ['concat:extensions']
       },
 
       jshint: {
@@ -172,6 +204,11 @@ module.exports = function(grunt) {
       uglify_framework: {
         files: ['src/framework/core/components/*/dist/js/*.concat.js'],
         tasks: ['uglify:framework']
+      },
+
+      uglify_extensions: {
+        files: ['src/extensions/*/dist/js/*.concat.js'],
+        tasks: ['uglify:extensions']
       },
 
       sass_site: {
