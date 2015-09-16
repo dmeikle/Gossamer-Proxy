@@ -16,12 +16,17 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
        
     
     //Modals
-    $scope.openTimesheetModal = function() {
+    $scope.openTimesheetModal = function(timesheet) {
         var template = templateSrv.timesheetModal;
         $modal.open({
-          templateUrl: template,
-          controller: 'timesheetModalCtrl',
-          size: 'lg',
+            templateUrl: template,
+            controller: 'timesheetModalCtrl',
+            size: 'lg',
+            resolve: {
+                timesheet: function () {
+                    return timesheet;
+                }
+            }
 //          resolve: {
 //            staff: function() {
 //              return staff;
@@ -29,11 +34,6 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
 //          }
             
 //        })
-//            .catch(function(error) {
-//            // error contains a detailed error message.
-//            $scope.error.showError = true;
-//            $scope.error.message = 'Could not connect to the database, please try again.';
-//            console.log(error);
         });
     };    
 });

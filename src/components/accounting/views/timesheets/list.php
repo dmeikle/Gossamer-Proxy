@@ -5,7 +5,7 @@
     <div class="clearfix"></div>
     <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
     <div class="pull-left">
-        <button class="primary" ng-click="openTimesheetModal()"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
+        <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
     </div>
     <div class="pull-right">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
@@ -87,11 +87,8 @@
               <td>
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
-                    <li><a href="staff/edit/{{staff.id}}">Edit</a></li>
-                    <li><a href="#">Emergency Contacts</a></li>
-                    <li><a href="#">Delete</a></li>
+                  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                    <li><a ng-click="openTimesheetModal(timesheet)">Edit</a></li>
                   </ul>
                 </div>
               </td>
