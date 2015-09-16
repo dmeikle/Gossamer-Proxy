@@ -36,6 +36,17 @@
                 <label for="timesheet-date"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
                 <input class="form-control" type="date" name="timesheet-date" id="timesheet-date" ng-model="timesheetDate">
             </div>
+            <div class="form-group vehicle">
+                <label for="vehicle-num"><?php echo $this->getString('ACCOUNTING_VEHICLE_NUMBER'); ?></label>
+                <select class="form-control" name="vehicle-num" ng-model="vehicleNumber" ng-change="getVehicleTolls(vehicleNumber)">
+                    <?php
+                    //pr($Vehicles);    
+
+                    foreach($Vehicles as $vehicle) {
+                        echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
+                    } ?>
+                </select>
+            </div>
         </div>
 
     <!--
@@ -95,13 +106,15 @@
                     <td>
                         <select class="toll form-control" ng-model="row.toll1">
     <!--                                    <option value="toll">Toll</option>-->
-                                <?php echo $TollBridges; ?>
+                                <?php// echo $TollBridges; ?>
     <!--                                    <option value="toll">Toll</option>-->
+                            
+                            <option ng-repeat="toll in tolls" value="toll.cost">{{toll.bridge}}</option>
                         </select>
                     </td>
                     <td>
                         <select class="toll form-control" ng-model="row.toll2">
-                            <?php echo $TollBridges; ?>
+                            <?php// echo $TollBridges; ?>
                         </select>
                     </td>
                     <td>

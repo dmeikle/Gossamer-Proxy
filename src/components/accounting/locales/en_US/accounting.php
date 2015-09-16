@@ -3,6 +3,7 @@
 return array(
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_DATE' => 'Date',
+    'ACCOUNTING_VEHICLE_NUMBER' => 'Vehicle #',
     'ACCOUNTING_CLAIM' => 'Claims',
     'ACCOUNTING_PHASE' => 'Phase',
     'ACCOUNTING_LABOUR_CATEGORY' => 'Category',
