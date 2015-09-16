@@ -62,6 +62,8 @@ accounting_timesheets_list:
         view: core\views\JSONView
         viewKey: accounting_timesheets_list
         datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
 
         
 

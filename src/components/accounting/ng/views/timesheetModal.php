@@ -10,6 +10,8 @@
         <h4 class="modal-title" id="myModalLabel">New Timesheet</h4>
     </div>
     <div class="modal-body">
+        
+<!--
         <div class="laborer">
             Laborer:
             <input class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-blur="search()">
@@ -18,9 +20,22 @@
                 <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
             </datalist>           
         </div>
-
-        <div class="date">
-            Date: {{ yesterday | date:'yyyy-MM-dd' }}
+-->
+        <div class="pull-left">
+            <div class="form-group laborer">
+                <label for="timesheet-date"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
+                <input class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-blur="search()">
+                <datalist id="timesheet-autocomplete-list" ng-click="setCategory(basicSearch)">
+                    <option ng-if="!autocomplete.length > 0" value="">Loading</option>
+                    <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
+                </datalist> 
+            </div>
+        </div>
+        <div class="pull-right">
+            <div class="form-group date">
+                <label for="timesheet-date"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
+                <input class="form-control" type="date" name="timesheet-date" id="timesheet-date" ng-model="timesheetDate">
+            </div>
         </div>
 
     <!--
