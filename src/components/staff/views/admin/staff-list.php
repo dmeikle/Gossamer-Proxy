@@ -94,7 +94,7 @@
     </div>
 
     <div ng-if="!sidePanelLoading && !searching">
-      <h1><a href="edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
+      <h1><a href="/admin/staff/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
       <h4><?php echo $this->getString('STAFF_TELEPHONE')?></h3>
       <p>{{selectedStaff.telephone}}</p>
       <h4><?php echo $this->getString('STAFF_MOBILE')?></h3>

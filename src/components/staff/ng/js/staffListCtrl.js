@@ -71,12 +71,14 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   };
 
   $scope.search = function(searchObject) {
+    $scope.loading = true;
     if (searchObject) {
       staffListSrv.filterListBy(row, numRows, searchObject, apiPath)
         .then(function() {
           if (staffListSrv.searchResults) {
             $scope.staffList = staffListSrv.searchResults;
             $scope.totalItems = staffListSrv.searchResultsCount;
+            $scope.loading = false;
           } else {
             getStaffList();
           }
@@ -92,6 +94,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     }
     if ($scope.selectedStaff) {
       $scope.selectedStaff = undefined;
+      $scope.previouslyClickedObject = undefined;
     }
     if (!$scope.selectedStaff && !$scope.searching) {
       $scope.sidePanelOpen = false;
