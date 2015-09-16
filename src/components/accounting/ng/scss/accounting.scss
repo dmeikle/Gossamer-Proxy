@@ -11,13 +11,16 @@ table{
     }
 }
 .modal-lg{
-    width:1200px;
+    width:1300px;
     .laborer, .date, .total-hours, .form-control{
         display:inline;
     }
     .date{
         float:right;
         margin-right:10px;
+        label{
+            margin-right:10px;
+        }
     }
     .laborer{
         input{
@@ -42,16 +45,19 @@ table{
             min-width: 200px;
         }
         input{
-            width: 100px;
+            width: 100%;
+        }
+        .claims, .phase, .category, description{
+            min-width:100px;
         }
         .hours{
             width:50px;
             text-align:center;
         }
         .checkbox, .select-all{
-            width:60px;
+            width:30px;
             text-align:center;
-            margin:0;
+            margin:auto;
         }
         .total{
             vertical-align: middle!important;
@@ -63,7 +69,7 @@ table{
             }
         }
         .toll{
-            width:50px;
+            width:75px;
         }
     }
 }

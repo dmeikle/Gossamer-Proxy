@@ -71,6 +71,7 @@ module.service('timesheetSrv', function($http) {
             .then(function(response) {
             console.log(response);
             self.claimsList = response.data;
+            self.claimsCount = Object.keys(response.data).length-2;
         });
     };
     

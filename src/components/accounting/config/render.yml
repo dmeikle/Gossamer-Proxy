@@ -14,7 +14,7 @@ pageTemplateModal:
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
     langFiles:
-        - 'src/components/accounting/locales/*/Timesheets'
+        - 'src/components/accounting/locales/*/accounting'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions' }
