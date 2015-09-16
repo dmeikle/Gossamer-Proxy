@@ -32,7 +32,7 @@ class LoadVehicleTollsListener extends AbstractCachableListener {
        
         unset($model);
         
-        $this->httpResponse->setAttribute('VehicleTolls', $tolls);
+        $this->httpResponse->setAttribute($this->getResponseKey(), $tolls);
         
         $this->saveValuesToCache($this->getKey(), $tolls);
     }
