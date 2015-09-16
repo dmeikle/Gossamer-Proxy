@@ -1,48 +1,16 @@
-module.service('staffListSrv', function($http) {
+module.service('staffListSrv', function($http, searchSrv) {
+
   var apiPath = '/admin/staff/';
 
   var self = this;
+
+  self.advancedSearch = {};
 
   this.getStaffList = function(row, numRows) {
     return $http.get(apiPath + row + '/' + numRows)
       .then(function(response) {
         self.staffList = response.data.Staffs;
         self.staffCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
-  this.autocomplete = function(searchObject) {
-    var value = searchObject.val[0];
-
-    return $http.get(apiPath + 'search?name=' + value)
-      .then(function(response) {
-        self.autocompleteList = response.data.Staffs;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object) {
-    var config = {};
-    if (object.val[0].length === 1) {
-      for (var i = 0; i < Object.keys(object.val).length; i++) {
-        config.name = object.val[i];
-      }
-    } else if (object.val[0].length >= 1) {
-      for (var j = 0; j < Object.keys(object.col).length; j++) {
-        config[object.col[j]] = object.val[j];
-      }
-    } else {
-      config = undefined;
-    }
-
-
-    return $http({
-        url: apiPath + row + '/' + numRows,
-        method: 'GET',
-        params: config
-      })
-      .then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });
   };
 
@@ -62,11 +30,28 @@ module.service('staffListSrv', function($http) {
       });
   };
 
+  this.autocomplete = function(searchObject) {
+    return searchSrv.autocomplete(searchObject, apiPath).then(function() {
+      self.autocompleteList = searchSrv.autocompleteList;
+    });
+  };
+
+  this.filterListBy = function(row, numRows, searchObject, apiPath) {
+    return searchSrv.filterListBy(row, numRows, searchObject, apiPath).then(function() {
+      self.searchResults = searchSrv.searchResults;
+      self.searchResultsCount = searchSrv.searchResultsCount;
+    });
+  };
+
   this.getAdvancedSearchFilters = function() {
-    return $http.get('/render/staff/staffAdvancedSearchFilters').then(function(response) {
-      var filters = document.implementation.createHTMLDocument('filters');
-      filters.documentElement.innerHTML = response.data;
-      self.advancedSearchFilters = filters;
+    return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
+      self.advancedSearch.fields = searchSrv.advancedSearch.fields;
+    });
+  };
+
+  this.search = function(row, numRows, searchObject, apiPath) {
+    return searchSrv.search(row, numRows, searchObject, apiPath).then(function() {
+      self.autocompleteList = searchSrv.autocompleteList;
     });
   };
 });

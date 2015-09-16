@@ -6,9 +6,10 @@
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
       <div class="input-group">
-        <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.val[0]">
+        <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
+          ng-model-options="{debounce:500}" ng-change="fetchAutocomplete(basicSearch.query)">
         <span class="input-group-btn">
-          <button class="btn-default" ng-click="search(basicSearch)">
+          <button class="btn-default" ng-click="search(basicSearch.query)">
             <?php echo $this->getString('STAFF_SEARCH') ?>
           </button>
         </span>
@@ -82,7 +83,13 @@
 
     <div ng-if="!sidePanelLoading && searching">
       <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH');?></h1>
-      <div class="form-group" id="staffAdvancedSearchForm">
+      <staff-advanced-search-filters>
+
+      </staff-advanced-search-filters>
+      <div class="cardfooter">
+        <div class="pull-right">
+          <button class="primary" ng-click="search(advancedSearch.query)"><?php echo $this->getString('STAFF_SUBMIT')?></button>
+        </div>
       </div>
     </div>
 

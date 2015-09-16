@@ -5,12 +5,15 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   $scope.currentPage = 1;
 
   $scope.basicSearch = {};
+  $scope.advancedSearch = {};
   $scope.autocomplete = {};
 
   $scope.previouslyClickedObject = {};
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
+
+  var apiPath = '/admin/staff/';
 
   function getStaffList() {
     staffListSrv.getStaffList(row, numRows).then(function(response) {
@@ -21,19 +24,19 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   }
 
-  function fetchAutocomplete() {
-    staffListSrv.autocomplete($scope.basicSearch)
+  $scope.fetchAutocomplete = function(searchObject) {
+    staffListSrv.autocomplete(searchObject)
       .then(function() {
         $scope.autocomplete = staffListSrv.autocompleteList;
       });
-  }
+  };
 
   $scope.openAddNewStaffModal = function() {
     var template = templateSrv.staffAddNewModal;
     var modalInstance = $modal.open({
       templateUrl: template,
-      controller:'staffModalCtrl',
-      size:'xl'
+      controller: 'staffModalCtrl',
+      size: 'xl'
     });
 
     modalInstance.result.then(function(staff) {
@@ -59,17 +62,17 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.openStaffAdvancedSearch = function() {
     $scope.sidePanelOpen = true;
+    $scope.selectedStaff = undefined;
     $scope.sidePanelLoading = true;
     staffListSrv.getAdvancedSearchFilters().then(function() {
       $scope.sidePanelLoading = false;
       $scope.searching = true;
-      var breakpointme;
     });
   };
 
   $scope.search = function(searchObject) {
-    if (searchObject.val) {
-      staffListSrv.filterListBy(row, numRows, searchObject)
+    if (searchObject) {
+      staffListSrv.filterListBy(row, numRows, searchObject, apiPath)
         .then(function() {
           if (staffListSrv.searchResults) {
             $scope.staffList = staffListSrv.searchResults;
@@ -81,14 +84,22 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     } else {
       getStaffList();
     }
-
   };
 
   $scope.closeSidePanel = function() {
-    $scope.sidePanelOpen = false;
+    if ($scope.searching) {
+      $scope.searching = false;
+    }
+    if ($scope.selectedStaff) {
+      $scope.selectedStaff = undefined;
+    }
+    if (!$scope.selectedStaff && !$scope.searching) {
+      $scope.sidePanelOpen = false;
+    }
   };
 
   $scope.selectRow = function(clickedObject) {
+    $scope.searching = false;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
       $scope.sidePanelLoading = true;
@@ -97,7 +108,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
           $scope.selectedStaff = staffListSrv.staffDetail;
           $scope.sidePanelOpen = true;
           $scope.sidePanelLoading = false;
-
         });
     }
   };
@@ -108,13 +118,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     numRows = $scope.itemsPerPage;
 
     getStaffList(row, numRows);
-  });
-
-  $scope.$watch('basicSearch.val', function() {
-    if ($scope.basicSearch.val !== undefined) {
-      $scope.autocomplete.loading = true;
-      fetchAutocomplete();
-    }
   });
 });
 
