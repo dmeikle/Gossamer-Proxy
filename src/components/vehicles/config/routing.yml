@@ -1,4 +1,24 @@
 
+
+#------------------------ vehicle tolls -----------------
+
+
+
+admin_vehiclestolls_list:
+    pattern: admin/vehicles/tolls/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\vehicles\listeners\LoadVehicleTollsListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\vehicles\VehiclesComponent
+        controller: components\vehicles\controllers\VehicleTollsController
+        model: components\vehicles\models\VehicleTollModel
+        method: listTolls
+        view: core\views\JSONView
+        viewKey: admin_vehiclestolls_list
+        datasource: datasource1
+                
+
+
 #----------------------- vehicle types ---------------------                
 
 
@@ -102,4 +122,6 @@ admin_vehicles_list:
         langFiles: 
             - 'src/components/vehicles/locales/*/Navigation'
                 
+      
+        
       

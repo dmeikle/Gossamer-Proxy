@@ -135,6 +135,9 @@ inventory:
 accounting:
     component: "src/components/accounting/config/routing.yml" 
 
+vehicles:
+    component: "src/components/vehicles/config/routing.yml"
+
     
 #this is the default fallback to use if not found    
 default:
