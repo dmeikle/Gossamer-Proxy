@@ -16,6 +16,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   var apiPath = '/admin/staff/';
 
   function getStaffList() {
+    $scope.loading = true;
     staffListSrv.getStaffList(row, numRows).then(function(response) {
       $scope.staffList = staffListSrv.staffList;
       $scope.totalItems = staffListSrv.staffCount;
@@ -27,7 +28,8 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   $scope.fetchAutocomplete = function(searchObject) {
     staffListSrv.autocomplete(searchObject)
       .then(function() {
-        $scope.autocomplete = staffListSrv.autocompleteList;
+        $scope.staffList = searchSrv.searchResults;
+        $scope.totalItems = searchSrv.searchResultsCount;
       });
   };
 
@@ -70,22 +72,28 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   };
 
+  $scope.resetAdvancedSearch = function() {
+    $scope.advancedSearch.query = {};
+    getStaffList();
+  };
+
   $scope.search = function(searchObject) {
-    $scope.loading = true;
-    if (searchObject) {
+    if (searchObject && Object.keys(searchObject).length > 0) {
+      $scope.searchSubmitted = true;
+      $scope.loading = true;
       staffListSrv.filterListBy(row, numRows, searchObject, apiPath)
         .then(function() {
-          if (staffListSrv.searchResults) {
-            $scope.staffList = staffListSrv.searchResults;
-            $scope.totalItems = staffListSrv.searchResultsCount;
-            $scope.loading = false;
-          } else {
-            getStaffList();
-          }
+          $scope.staffList = staffListSrv.searchResults;
+          $scope.totalItems = staffListSrv.searchResultsCount;
+          $scope.loading = false;
         });
-    } else {
-      getStaffList();
     }
+  };
+
+  $scope.resetSearch = function() {
+    $scope.searchSubmitted = false;
+    $scope.basicSearch.query = {};
+    getStaffList();
   };
 
   $scope.closeSidePanel = function() {

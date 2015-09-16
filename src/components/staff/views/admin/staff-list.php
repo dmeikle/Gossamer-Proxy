@@ -8,13 +8,16 @@
       <div class="input-group">
         <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
           ng-model-options="{debounce:500}" ng-change="fetchAutocomplete(basicSearch.query)">
-        <span class="input-group-btn">
-          <button class="btn-default" ng-click="search(basicSearch.query)">
-            <?php echo $this->getString('STAFF_SEARCH') ?>
+        <span class="input-group-addon" ng-if="!searchSubmitted">
+          <span class="glyphicon glyphicon-search"></span>
+        </span>
+        <span ng-if="searchSubmitted" class="input-group-btn">
+          <button class="btn-default" ng-click="resetSearch()">
+            <span class="glyphicon glyphicon-remove"></span>
           </button>
         </span>
         <datalist id="autocomplete-list">
-          <option ng-if="!autocomplete.length > 0" value=""><?php echo $this->getString('STAFF_LOADING'); ?></option>
+          <option ng-if="!autocomplete" value="" disabled><?php echo $this->getString('STAFF_LOADING'); ?></option>
           <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
         </datalist>
       </div>
@@ -87,9 +90,9 @@
 
       </staff-advanced-search-filters>
       <div class="cardfooter">
-        <div class="pull-right">
+        <div class="btn-group pull-right">
           <button class="primary" ng-click="search(advancedSearch.query)"><?php echo $this->getString('STAFF_SUBMIT')?></button>
-          <button class="btn-default" ng-click="advancedSearch.query = {};"><?php echo $this->getString('STAFF_RESET')?></button>
+          <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('STAFF_RESET')?></button>
         </div>
       </div>
     </div>

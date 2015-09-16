@@ -32,7 +32,8 @@ module.service('staffListSrv', function($http, searchSrv) {
 
   this.autocomplete = function(searchObject) {
     return searchSrv.autocomplete(searchObject, apiPath).then(function() {
-      self.autocompleteList = searchSrv.autocompleteList;
+      self.searchResults = searchSrv.searchResults;
+      self.searchResultsCount = searchSrv.searchResultsCount;
     });
   };
 

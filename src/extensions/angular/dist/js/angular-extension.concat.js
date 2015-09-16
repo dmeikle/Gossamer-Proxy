@@ -1,8 +1,13 @@
-var module = angular.module('phoenixRestorations', [
-  // 'accounting',
-  // 'staff',
-  // 'widgets'
-]);
+var module = angular.module('phoenixRestorations', []);
+
+module.config(function ($httpProvider) {
+    $httpProvider.defaults.transformRequest = function(data){
+        if (data === undefined) {
+            return data;
+        }
+        return $.param(data);
+    };
+});
 
 module.service('searchSrv', function($http) {
 
@@ -27,7 +32,8 @@ module.service('searchSrv', function($http) {
 
   this.autocomplete = function(object, apiPath) {
       return self.search(object, apiPath + 'search').then(function(response) {
-        self.autocompleteList = response.data.Staffs;
+        self.searchResults = response.data.Staffs;
+        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });
   };
 
