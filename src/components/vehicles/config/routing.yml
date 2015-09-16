@@ -7,7 +7,7 @@
 admin_vehiclestolls_list:
     pattern: admin/vehicles/tolls/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'components\vehicles\listeners\LoadVehicleTollsListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\vehicles\listeners\LoadVehicleTollsListener', 'datasource': 'datasource1', responseKey: VehicleTolls}
     defaults:
         component: components\vehicles\VehiclesComponent
         controller: components\vehicles\controllers\VehicleTollsController
