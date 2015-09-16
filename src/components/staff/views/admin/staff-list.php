@@ -89,6 +89,7 @@
       <div class="cardfooter">
         <div class="pull-right">
           <button class="primary" ng-click="search(advancedSearch.query)"><?php echo $this->getString('STAFF_SUBMIT')?></button>
+          <button class="btn-default" ng-click="advancedSearch.query = {};"><?php echo $this->getString('STAFF_RESET')?></button>
         </div>
       </div>
     </div>
