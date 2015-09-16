@@ -80,10 +80,10 @@
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
                     <td>
-                        <input class="claim form-control" type="text" ng-model="row.Claims_id" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList()">
+                        <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
                         <datalist id="timesheet-claims-list">
                             <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}"></option>
+                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
                         </datalist>
                     </td>
                     <td>
@@ -109,11 +109,12 @@
                                 <?php// echo $TollBridges; ?>
     <!--                                    <option value="toll">Toll</option>-->
                             
-                            <option ng-repeat="toll in tolls" value="toll.cost">{{toll.bridge}}</option>
+                            <option ng-repeat="toll in tolls" value="{{toll.cost}}">{{toll.abbreviation}}</option>
                         </select>
                     </td>
                     <td>
                         <select class="toll form-control" ng-model="row.toll2">
+                            <option ng-repeat="toll in tolls" value="{{toll.cost}}">{{toll.abbreviation}}</option>
                             <?php// echo $TollBridges; ?>
                         </select>
                     </td>
