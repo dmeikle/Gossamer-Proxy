@@ -1,6 +1,6 @@
 module.service('templateSrv', function() {
-  this.staffScheduleModal = '/render/staff/staffScheduleModal';
-  this.staffAddNewModal = '/render/staff/staffAddNewModal';
-  this.staffBenefitsHistoryModal = '/render/staff/staffBenefitsHistoryModal';
-  this.editEmergencyContactModal = '/render/staff/editEmergencyContactModal';
+  this.companyScheduleModal = '/render/companies/companyScheduleModal';
+  this.companyAddNewModal = '/render/companies/companyAddNewModal';
+  this.companyBenefitsHistoryModal = '/render/companies/companyBenefitsHistoryModal';
+  this.editEmergencyContactModal = '/render/companies/editEmergencyContactModal';
 });

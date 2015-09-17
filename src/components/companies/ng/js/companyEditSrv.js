@@ -3,36 +3,30 @@ module.service('companyEditSrv', function($http) {
 
   var self = this;
 
-  this.getStaffList = function(row, numRows) {
+  this.getCompanyList = function(row, numRows) {
     return $http.get(apiPath + row + '/' + numRows)
       .then(function(response) {
-        self.staffList = response.data.Staffs;
-        self.staffCount = response.data.StaffsCount[0].rowCount;
+        self.companyList = response.data.Companys;
+        self.companyCount = response.data.CompanysCount[0].rowCount;
       });
   };
 
-  this.getStaffDetail = function(object) {
+  this.getCompanyDetail = function(object) {
     return $http.get(apiPath + object.id)
       .then(function(response) {
-        if (response.data.Staff.dob) {
-          response.data.Staff.dob = new Date(response.data.Staff.dob);
-        }
-        if (response.data.Staff.hireDate) {
-          response.data.Staff.hireDate = new Date(response.data.Staff.hireDate);
-        }
-        if (response.data.Staff.departureDate) {
-          response.data.Staff.departureDate = new Date(response.data.Staff.departureDate);
-        }
-        self.staffDetail = response.data.Staff;
+//        if (response.data.Company.dob) {
+//          response.data.Company.dob = new Date(response.data.Company.dob);
+//        }
+//        if (response.data.Company.hireDate) {
+//          response.data.Company.hireDate = new Date(response.data.Company.hireDate);
+//        }
+//        if (response.data.Company.departureDate) {
+//          response.data.Company.departureDate = new Date(response.data.Company.departureDate);
+//        }
+        self.companyDetail = response.data.Company;
       });
   };
 
-  this.getStaffCreds = function(object) {
-    return $http.get(apiPath + 'credentials/' + object.id)
-      .then(function(response) {
-        self.staffCreds = response.data.StaffAuthorization;
-      });
-  };
 
   this.save = function(object, formToken) {
     var copiedObject = jQuery.extend(true, {}, object);
@@ -43,15 +37,15 @@ module.service('companyEditSrv', function($http) {
         }
       }
     }
-    if (copiedObject.dob) {
-      copiedObject.dob = object.dob.toISOString().substring(0, 10);
-    }
-    if (copiedObject.hireDate) {
-      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
-    }
-    if (copiedObject.departureDate) {
-      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
-    }
+//    if (copiedObject.dob) {
+//      copiedObject.dob = object.dob.toISOString().substring(0, 10);
+//    }
+//    if (copiedObject.hireDate) {
+//      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
+//    }
+//    if (copiedObject.departureDate) {
+//      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
+//    }
 
     var requestPath;
     if (!copiedObject.id) {
@@ -60,7 +54,7 @@ module.service('companyEditSrv', function($http) {
       requestPath = apiPath + copiedObject.id;
     }
     var data = {};
-    data.Staff = copiedObject;
+    data.Company = copiedObject;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
@@ -69,32 +63,6 @@ module.service('companyEditSrv', function($http) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-    });
-  };
-
-  this.checkUsernameExists = function(object) {
-    return $http({
-        url: apiPath + 'checkusername/' + object.id + '/' + object.username,
-        method: 'GET'
-      })
-      .then(function(response) {
-        self.usernameExists = response.data.exists;
-      });
-  };
-
-  this.saveCredentials = function(object, formToken) {
-    var data = {};
-    data.StaffAuthorization = object;
-    data.FORM_SECURITY_TOKEN = formToken;
-    return $http({
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      url: apiPath + 'credentials/' + object.id,
-      data: data
-    }).then(function(response) {
-      self.credentialStatus = response.data;
     });
   };
 

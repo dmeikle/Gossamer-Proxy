@@ -11,3 +11,53 @@ admin_companies_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_companies_home
         datasource: datasource1
+
+admin_companies_get:
+    pattern: admin/companies/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_companies_get
+        datasource: datasource1 
+    methods: [GET]   
+    
+
+admin_companies_edit:
+    pattern: admin/companies/edit/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: edit
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_companies_list
+        datasource: datasource1 
+    methods: [GET]      
+
+
+    
+admin_company_contacts_list:
+    pattern: admin/companies/contacts/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyContactModel
+        method: listallByCompanyId
+        view: core\views\JSONView
+        viewKey: admin_company_contacts_list
+        datasource: datasource1 
+        
+        
+admin_companies_list:
+    pattern: admin/companies/*/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_companies_list
+        datasource: datasource1  

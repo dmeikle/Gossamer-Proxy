@@ -1,11 +1,11 @@
-module.controller('companyEditCtrl', function($scope, $location, staffEditSrv) {
+module.controller('companyEditCtrl', function($scope, $location, companyEditSrv) {
 
   // Run on load
   $scope.loading = true;
   $scope.authorizationLoading = true;
   $scope.authorization = {};
   $scope.isOpen = {};
-  getStaffDetail();
+  getCompanyDetail();
 
   // datepicker stuffs
   $scope.dateOptions = {'starting-day':1};
@@ -14,16 +14,16 @@ module.controller('companyEditCtrl', function($scope, $location, staffEditSrv) {
     $scope.isOpen[datepicker] = true;
   };
 
-  function getStaffDetail() {
+  function getCompanyDetail() {
     var object = {};
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 
-    staffEditSrv.getStaffDetail(object).then(function() {
-      $scope.staff = staffEditSrv.staffDetail;
+    companyEditSrv.getCompanyDetail(object).then(function() {
+      $scope.company = companyEditSrv.companyDetail;
       $scope.loading = false;
 
-      staffEditSrv.getStaffCreds(object).then(function() {
-        $scope.authorization.username = staffEditSrv.staffCreds.username;
+      companyEditSrv.getCompanyCreds(object).then(function() {
+        $scope.authorization.username = companyEditSrv.companyCreds.username;
         $scope.authorizationLoading = false;
       });
     });
@@ -31,34 +31,16 @@ module.controller('companyEditCtrl', function($scope, $location, staffEditSrv) {
 
   $scope.save = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    staffEditSrv.save(object, formToken).then(function() {
-      getStaffDetail();
+    companyEditSrv.save(object, formToken).then(function() {
+      getCompanyDetail();
     });
   };
 
   $scope.discardChanges = function() {
-    getStaffDetail();
+    getCompanyDetail();
   };
 
-  $scope.submitCredentials = function(object) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    object.id = $scope.staff.id;
-    switch (object.emailUser) {
-      case true:
-        staffEditSrv.generateEmailReset(object, formToken);
-        break;
-      default:
-        staffEditSrv.saveCredentials(object, formToken).then(function(){
-          $scope.credentialStatus = staffEditSrv.credentialStatus;
-        });
-    }
-  };
 
-  $scope.resetCredentials = function() {
-    $scope.authorization.username = staffEditSrv.staffCreds.username;
-    $scope.authorization.password = undefined;
-    $scope.authorization.passwordConfirm = undefined;
-  };
 
   $scope.clearErrors = function() {
     $scope.credentialStatus = undefined;

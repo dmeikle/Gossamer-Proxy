@@ -36,7 +36,14 @@ class CompaniesController extends AbstractController
     public function edit($id) {
         $result = $this->model->edit(intval($id));
         
+        return $this->render(array('form' => $this->drawForm($this->model, $result)));
+    }
+
+    public function get($id) {
+        $result = $this->model->edit(intval($id));
+        
         return $this->render($result);
+
     }
     
     /**
@@ -44,7 +51,7 @@ class CompaniesController extends AbstractController
      * 
      * @param int offset    database page to start at
      * @param int limit     max rows to return
-     */
+     
     public function listall($offset = 0, $limit = 20) {
         $result = $this->model->listall($offset, $limit);
         $paginationResult = '';
@@ -59,7 +66,7 @@ class CompaniesController extends AbstractController
             $this->render(array('Companys' => $result, 'form' => $this->drawForm($this->model, array())));
         }
     }
-    
+    */
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $companyBuilder = new CompanyBuilder();
@@ -88,5 +95,11 @@ class CompaniesController extends AbstractController
         
         $list = array_key_exists('Companys', $result) ? $result['Companys'] : array();
         $this->render($list);
+    }
+    
+    public function listallByCompanyId($companyId) {
+        $result = $this->model->listallByCompanyId(intval($companyId));
+        
+        $this->render($result);
     }
 }

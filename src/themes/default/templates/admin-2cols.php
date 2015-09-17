@@ -15,8 +15,8 @@
   <!---css--->
   <!-- css end -->
 
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
+  <!-- css import for page -->
+  <link rel="stylesheet" href="/css/core.min.css">
 
   <!-- head start -->
   <!---head--->
@@ -44,10 +44,11 @@
   <!---header--->
   <div class="clearfix"></div>
   <main class="content">
-    <!---section3--->
+    <!---content--->
   </main>
   <div class="cards">
-    <!---section4--->
+      <!---widgets--->
+    <!---sidecolumn--->
   </div>
   <div class="clearfix"></div>
   <!---footer--->

@@ -1,16 +1,16 @@
-module.service('companyListSrv', function($http, searchSrv) {
+module.service('companyClientsListSrv', function($http, searchSrv) {
 
-  var apiPath = '/admin/companies/';
+  var apiPath = '/admin/companies/clients/';
 
   var self = this;
 
   self.advancedSearch = {};
 
-  this.getCompanyList = function(row, numRows) {
-    return $http.get(apiPath + row + '/' + numRows)
+  this.getCompanyClientsList = function(companyId, row, numRows) {
+    return $http.get(apiPath + companyId + '/' + row + '/' + numRows)
       .then(function(response) {
-        self.companyList = response.data.Companys;
-        self.companyCount = response.data.CompanysCount[0].rowCount;
+        self.companyClientsList = response.data.CompanyClients;
+        self.companyClientsCount = response.data.CompanyClientsCount[0].rowCount;
       });
   };
 

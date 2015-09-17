@@ -1,4 +1,4 @@
-module.controller('companyListCtrl', function($scope, $modal, companyListSrv, companyEditSrv, templateSrv) {
+module.controller('companyClientsListCtrl', function($scope, $modal, companyClientsListSrv, companyClientsTemplateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -13,20 +13,24 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
 
-  var apiPath = '/admin/companies/';
-
-  function getCompanyList() {
+  var apiPath = '/admin/companies/clients/';
+  
+  getCompanyClientsList();
+  
+  function getCompanyClientsList() {      
     $scope.loading = true;
-    companyListSrv.getCompanyList(row, numRows).then(function(response) {
-      $scope.companyList = companyListSrv.companyList;
-      $scope.totalItems = companyListSrv.companyCount;
+    
+    var companyId = document.getElementById('Company_companyId').value;
+    companyClientsListSrv.getCompanyClientsList(companyId, row, numRows).then(function(response) {
+      $scope.companyClientsList = companyClientsListSrv.companyList;
+      $scope.totalItems = companyClientsListSrv.companyCount;
     }).then(function() {
       $scope.loading = false;
     });
   }
 
   $scope.openAddNewModal = function() {
-    var template = companyTemplateSrv.AddNewModal;
+    var template = companyClientsTemplateSrv.AddNewModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'companyModalCtrl',
@@ -35,7 +39,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
 
     modalInstance.result.then(function(company) {
       companyEditSrv.save(company).then(function() {
-        getCompanyList();
+        getCompanyClientsList();
       });
     });
   };
@@ -45,7 +49,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
     $scope.sidePanelOpen = true;
     $scope.selectedCompany = undefined;
     $scope.sidePanelLoading = true;
-    companyListSrv.getAdvancedSearchFilters().then(function() {
+    companyClientsListSrv.getAdvancedSearchFilters().then(function() {
       $scope.sidePanelLoading = false;
       $scope.searching = true;
     });
@@ -53,16 +57,16 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
 
   $scope.resetAdvancedSearch = function() {
     $scope.advancedSearch.query = {};
-    getCompanyList();
+    getCompanyClientsList();
   };
 
   $scope.search = function(searchObject) {
     if (searchObject && Object.keys(searchObject).length > 0) {
       $scope.searchSubmitted = true;
       $scope.loading = true;
-      companyListSrv.search(searchObject).then(function() {
-        $scope.companyList = companyListSrv.searchResults;
-        $scope.totalItems = companyListSrv.searchResultsCount;
+      companyClientsListSrv.search(searchObject).then(function() {
+        $scope.companyList = companyClientsListSrv.searchResults;
+        $scope.totalItems = companyClientsListSrv.searchResultsCount;
         $scope.loading = false;
       });
     }
@@ -71,7 +75,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
   $scope.resetSearch = function() {
     $scope.searchSubmitted = false;
     $scope.basicSearch.query = {};
-    getCompanyList();
+    getCompanyClientsList();
   };
 
   $scope.closeSidePanel = function() {
@@ -93,9 +97,9 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
     $scope.sidePanelOpen = true;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
-      companyListSrv.getCompanyDetail(clickedObject)
+      companyClientsListSrv.getCompanyDetail(clickedObject)
         .then(function() {
-          $scope.selectedCompany = companyListSrv.companyDetail;
+          $scope.selectedCompany = companyClientsListSrv.companyDetail;
           $scope.sidePanelLoading = false;
         });
     }
@@ -106,7 +110,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
 
-    getCompanyList(row, numRows);
+    getCompanyClientsList(row, numRows);
   });
 });
 
