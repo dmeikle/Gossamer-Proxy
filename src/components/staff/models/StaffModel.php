@@ -49,7 +49,8 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
         );
         
         foreach($queryParams as $key => $value) {
-            $params['directive::' . strtoupper($key)] = $value;
+            //$params['directive::' . strtoupper($key)] = $value; //commented out to fix advanced search
+            $params[$key] = $value;
         }
         
         $defaultLocale = $this->getDefaultLocale();
