@@ -133,6 +133,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     };
     $scope.timesheet = [];
     
+    $scope.loading = true;
     //Check to see if a timesheet ID exists
     if(timesheet.id){
         console.log(timesheet);
@@ -174,10 +175,11 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                 }
                 $scope.updateTotalSum();
                 console.log($scope.timesheet);
+                $scope.loading = false;
             }
         });
     } else {       
-    
+        $scope.loading = false;
         //New Timesheet
         $scope.timesheet = [timesheetTemplate];
         $scope.timesheetDate = $scope.yesterday;

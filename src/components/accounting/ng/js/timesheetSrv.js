@@ -65,7 +65,10 @@ module.service('timesheetSrv', function($http) {
 //            config = undefined;
 //        }
         
-        if (object || !object.split(' ')) {            
+        var splitObject = object.split(' ');
+        console.log(splitObject);
+        
+        if (object || splitObject.length === 1) {            
             //var name = object.split(' ');
             //for (var i = 0; i < Object.keys(object).length; i++) {
                 config.name = object;

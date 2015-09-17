@@ -59,21 +59,6 @@
             <thead>
                 <tr>
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
-<!--
-                    <th>Claim</th>
-                    <th>Phase</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Toll1</th>
-                    <th>Toll2</th>
-                    <th>Reg</th>
-                    <th>OT</th>
-                    <th>DOT</th>
-                    <th>SReg</th>
-                    <th>SOT</th>
-                    <th>SDOT</th>
-                    <th>TotalH</th>
--->
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CLAIM'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CATEGORY'); ?></th>
@@ -90,7 +75,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="row in timesheet track by $index">
+                <tr ng-if="loading">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <span class="spinner-loader"></span>
+                    </td>
+                    <td></td>  
+                    <td></td>  
+                    <td></td>
+                    <td></td>  
+                    <td></td>  
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                <tr ng-if="!loading" ng-repeat="row in timesheet track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
