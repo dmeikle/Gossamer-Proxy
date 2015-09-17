@@ -29,7 +29,7 @@ module.service('staffRolesSrv', function($http) {
     }
 
     var data = {};
-    data.StaffRole = rolesArray;
+    data.StaffAuthorization = rolesArray;
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
