@@ -31,7 +31,7 @@ staff_list:
         - IS_STAFF
     children:
         staff_list:
-            text_key: 'ADMIN_STAFF'
+            text_key: 'ADMIN_STAFF_LIST'
             pattern: '/admin/staff/0/20'
             display_roles:
                 - IS_ADMIN
