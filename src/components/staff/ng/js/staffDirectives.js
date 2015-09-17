@@ -90,3 +90,20 @@ module.directive('boolToString', function() {
     }
   };
 });
+
+module.directive('staffAdvancedSearchFilters', function(staffListSrv, $compile) {
+  return {
+    restrict:'E',
+    replace:true,
+    scope:false,
+    link: function(scope, element, attrs) {
+      var fields = staffListSrv.advancedSearch.fields;
+      for (var filter in fields) {
+        if (fields.hasOwnProperty(filter)) {
+          element[0].appendChild(fields[filter]);
+        }
+      }
+      $compile(element.contents())(scope);
+    }
+  };
+});
