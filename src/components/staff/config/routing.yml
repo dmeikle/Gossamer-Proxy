@@ -8,6 +8,9 @@ admin_staff_search:
         view: core\views\JSONView
         viewKey: admin_staff_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/staff'
+            - 'app/locales/*/website'
     methods: [GET]
 
 
@@ -24,7 +27,8 @@ admin_staff_home:
         viewKey: admin_staff_home
         datasource: datasource1
         langFiles:
-            - 'src/components/staff/locales/*/staff'
+        - 'src/components/staff/locales/*/staff'
+        - 'app/locales/*/website'
     methods: [GET]
     staticCache: true
 
