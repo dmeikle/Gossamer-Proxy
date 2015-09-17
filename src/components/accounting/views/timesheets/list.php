@@ -32,9 +32,6 @@
             <tr>
                 <th><?php echo $this->getString('ACCOUNTING_LABORER'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_LABOUR_CATEGORY'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_REG'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_OT'); ?></th>
@@ -53,8 +50,8 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td></td>  
+            <td></td>  
             <td></td>
             <td></td>  
             <td>
@@ -62,8 +59,6 @@
             </td>
             <td></td>  
             <td></td>
-            <td></td>  
-            <td></td>  
             <td></td>
             <td></td>
             <td></td>
@@ -71,9 +66,6 @@
           <tr ng-if="!loading" ng-repeat="timesheet in timesheetList" ng-click="selectRow(timesheet)" ng-class="{'selected': timesheet.clicked}">
               <td>{{timesheet.lastname}}, {{timesheet.firstname}}</td>
               <td>{{timesheet.numJobs}}</td>
-              <td>{{timesheet.title}}</td>
-              <td>{{timesheet.typeOfStaff}}</td>
-              <td>{{timesheet.description}}</td>
               <td>{{timesheet.hourlyRate | currency}}</td>
               <td>{{timesheet.regularHours}}</td>
               <td>{{timesheet.overtimeHours}}</td>

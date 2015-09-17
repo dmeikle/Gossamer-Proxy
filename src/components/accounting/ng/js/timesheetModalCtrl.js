@@ -101,7 +101,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.timesheetSelected = false;
 
     //watch the timesheet for updates
-    $scope.$watch('newTimesheet', function() {
+    $scope.$watch('timesheet', function() {
         console.log('Time sheet updated!');
         for(var i in $scope.timesheet){
             if($scope.timesheet[i].isSelected === true){
@@ -173,6 +173,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     $scope.timesheet[i].total = parseFloat($scope.timesheetItems[i].totalHours);
                     
                 }
+                console.log('updating total sum...');
                 $scope.updateTotalSum();
                 console.log($scope.timesheet);
                 $scope.loading = false;
