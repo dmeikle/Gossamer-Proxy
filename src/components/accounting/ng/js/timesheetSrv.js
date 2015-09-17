@@ -1,6 +1,7 @@
 // Timesheet service
 module.service('timesheetSrv', function($http) {
     var apiPath = '/admin/accounting/timesheets/';
+    var timesheet_items_apiPath = '/admin/accounting/timesheetitems/';
     var staff_apiPath = '/admin/staff/';
     var staff_search_apiPath = '/admin/staff/search';
     var claim_apiPath = '/admin/claims/';
@@ -25,9 +26,22 @@ module.service('timesheetSrv', function($http) {
         });
     };
     
+    //Get timesheet items for an ID
+    this.getTimesheetItems = function(id, row, numRows){
+        console.log('getting timesheet items for:');
+        //console.log(timesheet_items_apiPath + id + '/' + row + '/' + numRows);
+
+        return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
+        .then(function(response){
+            console.log(response.data.Timesheets);
+            self.timesheetItems = response.data.Timesheets;
+        });
+    };
+    
     //Staff Autocomplete
     this.autocomplete = function(searchObject) {
-        var value = searchObject.val[0];
+        //var value = searchObject.val[0];
+        var value = searchObject;
         var column = 'name';
 
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
@@ -40,13 +54,23 @@ module.service('timesheetSrv', function($http) {
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
-        if (object.val[0]) {
-            
-            var name = object.val[0].split(' ');
-            for (var i = 0; i < Object.keys(object).length; i++) {
-                config.firstname = name[0];
-                config.lastname = name[1];
-            }
+//        if (object.val[0]) {
+//            
+//            var name = object.val[0].split(' ');
+//            for (var i = 0; i < Object.keys(object).length; i++) {
+//                config.firstname = name[0];
+//                config.lastname = name[1];
+//            }
+//        } else {
+//            config = undefined;
+//        }
+        
+        if (object || !object.split(' ')) {            
+            //var name = object.split(' ');
+            //for (var i = 0; i < Object.keys(object).length; i++) {
+                config.name = object;
+                //config.lastname = name[1];
+            //}
         } else {
             config = undefined;
         }

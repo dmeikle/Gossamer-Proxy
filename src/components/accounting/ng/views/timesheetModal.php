@@ -23,8 +23,8 @@
 -->
         <div class="pull-left">
             <div class="form-group laborer">
-                <label for="timesheet-date"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
-                <input class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-blur="search()">
+                <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
+                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="search()">
                 <datalist id="timesheet-autocomplete-list" ng-click="setCategory(basicSearch)">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
@@ -59,6 +59,7 @@
             <thead>
                 <tr>
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
+<!--
                     <th>Claim</th>
                     <th>Phase</th>
                     <th>Category</th>
@@ -72,10 +73,24 @@
                     <th>SOT</th>
                     <th>SDOT</th>
                     <th>TotalH</th>
+-->
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CLAIM'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CATEGORY'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DESCRIPTION'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_REGULAR_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_OVERTIME_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DOUBLE_OT_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_REGULAR_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_OVERTIME_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOTAL_HOURS'); ?></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="row in newTimesheet track by $index">
+                <tr ng-repeat="row in timesheet track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
@@ -119,22 +134,22 @@
                         </select>
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.regularHours" ng-change="updateTotal(row, 'reg', row.reg)" ng-blur="checkEmpty(row, 'regularHours')">
+                        <input class="hours form-control" type="number" ng-model="row.regularHours" ng-change="updateTotal(row, 'regularHours')" ng-blur="checkEmpty(row, 'regularHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'ot', row.ot)" ng-blur="checkEmpty(row, 'overtimeHours')">
+                        <input class="hours form-control" type="number" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'overtimeHours')" ng-blur="checkEmpty(row, 'overtimeHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'dot', row.dot)" ng-blur="checkEmpty(row, 'doubleOTHours')">
+                        <input class="hours form-control" type="number" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'doubleOTHours')" ng-blur="checkEmpty(row, 'doubleOTHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.statRegularHours" ng-change="updateTotal(row, 'sreg', row.sreg)" ng-blur="checkEmpty(row, 'statRegularHours')">
+                        <input class="hours form-control" type="number" ng-model="row.statRegularHours" ng-change="updateTotal(row, 'statRegularHours')" ng-blur="checkEmpty(row, 'statRegularHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.statOTHours" ng-change="updateTotal(row, 'sot', row.sot)" ng-blur="checkEmpty(row, 'statOTHours')">
+                        <input class="hours form-control" type="number" ng-model="row.statOTHours" ng-change="updateTotal(row, 'statOTHours')" ng-blur="checkEmpty(row, 'statOTHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'sdot', row.sdot)" ng-blur="checkEmpty(row, 'statDOTHours')">
+                        <input class="hours form-control" type="number" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'statDOTHours')" ng-blur="checkEmpty(row, 'statDOTHours')">
                     </td>
                     <td class="total">
                        <strong>{{row.total}}</strong>
