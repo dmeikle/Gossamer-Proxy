@@ -8,9 +8,6 @@ admin_staff_search:
         view: core\views\JSONView
         viewKey: admin_staff_home
         datasource: datasource1
-        langFiles:
-            - 'src/components/staff/locales/*/staff'
-            - 'app/locales/*/website'
     methods: [GET]
 
 
@@ -81,8 +78,8 @@ admin_staff_emergencycontacts_save:
         viewKey: admin_staff_emergencycontacts_save
         datasource: datasource1
     methods: [POST]
-    
-    
+
+
 admin_staff_emergencycontacts_get:
     pattern: admin/staff/emergencycontacts/*/*
     defaults:
