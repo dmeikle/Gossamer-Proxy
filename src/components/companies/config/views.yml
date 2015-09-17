@@ -1,30 +1,26 @@
 
-admin_companies_search1:
+
+
+admin_companies_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/companies/views/test.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-            
-admin_companies_list:
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "featureslider-edit": "src/components/companies/views/admin/edit.php"
-            "featureslider": "src/components/companies/views/admin/view.php"
-            "section3": "src/components/companies/views/admin/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    
-admin_companies_edit:   
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "context-button": "src/components/companies/views/admin/context-button.php"
+            "content": "src/components/companies/views/admin/list.php"
             "section2": "src/components/companies/views/admin/subnav.php"
-            "section3": "src/components/companies/views/admin/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
-            
-admin_propertymanagers_search:
-    
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - companiesAdmin
+    head:
+        - @components/companies/dist/bower_components/angular/angular.min.js
+        - @components/companies/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/companies/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/companies/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+    javascript:
+        - @components/companies/dist/js/companies.concat.js
+    css:
+        - @components/companies/dist/css/companies.min.css
