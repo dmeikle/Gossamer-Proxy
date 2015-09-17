@@ -24,8 +24,7 @@ admin_staff_home:
         viewKey: admin_staff_home
         datasource: datasource1
         langFiles:
-            - '/src/components/staff/locales/*/staff'
-            - '/app/locales/*/website'
+            - 'src/components/staff/locales/*/staff'
     methods: [GET]
     staticCache: true
 
@@ -68,12 +67,12 @@ admin_staff_emergencycontacts_list:
 
 
 admin_staff_emergencycontacts_save:
-    pattern: admin/staff/emergencycontacts/*/*
+    pattern: admin/staff/emergencycontacts/*
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
         model: components\staff\models\StaffEmergencyContactModel
-        method: saveContact
+        method: save
         view: core\views\JSONView
         viewKey: admin_staff_emergencycontacts_save
         datasource: datasource1
