@@ -30,15 +30,8 @@ module.service('staffListSrv', function($http, searchSrv) {
       });
   };
 
-  this.autocomplete = function(searchObject) {
-    return searchSrv.autocomplete(searchObject, apiPath).then(function() {
-      self.searchResults = searchSrv.searchResults;
-      self.searchResultsCount = searchSrv.searchResultsCount;
-    });
-  };
-
-  this.filterListBy = function(row, numRows, searchObject, apiPath) {
-    return searchSrv.filterListBy(row, numRows, searchObject, apiPath).then(function() {
+  this.search = function(searchObject) {
+    return searchSrv.search(searchObject, apiPath).then(function() {
       self.searchResults = searchSrv.searchResults;
       self.searchResultsCount = searchSrv.searchResultsCount;
     });
@@ -47,12 +40,6 @@ module.service('staffListSrv', function($http, searchSrv) {
   this.getAdvancedSearchFilters = function() {
     return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
       self.advancedSearch.fields = searchSrv.advancedSearch.fields;
-    });
-  };
-
-  this.search = function(row, numRows, searchObject, apiPath) {
-    return searchSrv.search(row, numRows, searchObject, apiPath).then(function() {
-      self.autocompleteList = searchSrv.autocompleteList;
     });
   };
 });

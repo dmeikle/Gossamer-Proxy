@@ -26,16 +26,16 @@
   </select>
 </div>
 <div class="form-group">
+  <label for="advancedSearch-title"><?php echo $this->getString('STAFF_TITLE');?></label>
+  <input type="text" class="form-control" id="advancedSearch-title" name="title" ng-model="advancedSearch.query.title">
+</div>
+<div class="form-group">
   <label for="advancedSearch-mobile"><?php echo $this->getString('STAFF_MOBILE');?></label>
   <input type="tel" class="form-control" id="advancedSearch-mobile" name="mobile" ng-model="advancedSearch.query.mobile">
 </div>
 <div class="form-group">
   <label for="advancedSearch-city"><?php echo $this->getString('STAFF_CITY');?></label>
   <input type="text" class="form-control" id="advancedSearch-city" name="city" ng-model="advancedSearch.query.city">
-</div>
-<div class="form-group">
-  <label for="advancedSearch-title"><?php echo $this->getString('STAFF_TITLE');?></label>
-  <input type="text" class="form-control" id="advancedSearch-title" name="title" ng-model="advancedSearch.query.title">
 </div>
 <div class="form-group">
   <label for="advancedSearch-gender"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID');?></label>

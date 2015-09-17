@@ -4,7 +4,7 @@ module.service('searchSrv', function($http) {
 
   this.advancedSearch = {};
 
-  this.search = function(object, apiPath) {
+  this.searchCall = function(object, apiPath) {
     config = {};
     for (var param in object) {
       if (object.hasOwnProperty(param)) {
@@ -19,15 +19,8 @@ module.service('searchSrv', function($http) {
     });
   };
 
-  this.autocomplete = function(object, apiPath) {
-      return self.search(object, apiPath + 'search').then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object, apiPath) {
-    return self.search(object, apiPath + row + '/' + numRows).then(function(response) {
+  this.search = function(object, apiPath) {
+      return self.searchCall(object, apiPath + 'search').then(function(response) {
         self.searchResults = response.data.Staffs;
         self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });

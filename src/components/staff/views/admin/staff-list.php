@@ -7,7 +7,7 @@
       </button>
       <div class="input-group">
         <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
-          ng-model-options="{debounce:500}" ng-change="fetchAutocomplete(basicSearch.query)">
+          ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)">
         <span class="input-group-addon" ng-if="!searchSubmitted">
           <span class="glyphicon glyphicon-search"></span>
         </span>
@@ -84,18 +84,18 @@
       <span class="spinner-loader"></span>
     </div>
 
-    <div ng-if="!sidePanelLoading && searching">
+    <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
       <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH');?></h1>
       <staff-advanced-search-filters>
 
       </staff-advanced-search-filters>
       <div class="cardfooter">
         <div class="btn-group pull-right">
-          <button class="primary" ng-click="search(advancedSearch.query)"><?php echo $this->getString('STAFF_SUBMIT')?></button>
+          <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('STAFF_SUBMIT')?>">
           <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('STAFF_RESET')?></button>
         </div>
       </div>
-    </div>
+    </form>
 
     <div ng-if="!sidePanelLoading && !searching">
       <h1><a href="/admin/staff/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>

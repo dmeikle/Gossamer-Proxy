@@ -25,14 +25,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   }
 
-  $scope.fetchAutocomplete = function(searchObject) {
-    staffListSrv.autocomplete(searchObject)
-      .then(function() {
-        $scope.staffList = searchSrv.searchResults;
-        $scope.totalItems = searchSrv.searchResultsCount;
-      });
-  };
-
   $scope.openAddNewStaffModal = function() {
     var template = templateSrv.staffAddNewModal;
     var modalInstance = $modal.open({
@@ -81,12 +73,11 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     if (searchObject && Object.keys(searchObject).length > 0) {
       $scope.searchSubmitted = true;
       $scope.loading = true;
-      staffListSrv.filterListBy(row, numRows, searchObject, apiPath)
-        .then(function() {
-          $scope.staffList = staffListSrv.searchResults;
-          $scope.totalItems = staffListSrv.searchResultsCount;
-          $scope.loading = false;
-        });
+      staffListSrv.search(searchObject).then(function() {
+        $scope.staffList = staffListSrv.searchResults;
+        $scope.totalItems = staffListSrv.searchResultsCount;
+        $scope.loading = false;
+      });
     }
   };
 
