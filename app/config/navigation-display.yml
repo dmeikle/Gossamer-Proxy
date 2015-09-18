@@ -1,8 +1,9 @@
 
-
+# USER CONTEXT MENU - DROPDOWN ON THE RIGHT
 admin_home:
     text_key: 'ADMIN_HOME'
     pattern: '/admin/home'
+    section: usermenu
     display_roles:
         - IS_ADMIN
         - IS_ADMINISTRATOR
@@ -11,17 +12,152 @@ admin_home:
 super_user_home:
     text_key: 'SUPER_USER_HOME'
     pattern: '/super/home'
+    section: usermenu
     display_roles:
         - IS_SUPER_USER
 
 admin_contactus:
     text_key: 'ADMIN_CONTACTUS'
     pattern: '/admin/contact/0/20'
+    section: usermenu
     display_roles:
         - IS_ADMIN
         - IS_ADMINISTRATOR
         - IS_STAFF
 
+admin_notifications:
+    active: true
+    text_key: 'ADMIN_NOTIFICATIONS'
+    pattern: '/admin/notifications/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+
+admin_messages:
+    active: true
+    text_key: 'ADMIN_MESSAGES'
+    pattern: '/admin/messaging/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+    children:
+        messages_listall:
+            text_key: 'ADMIN_MESSAGES_LIST_ALL'
+            pattern: '/admin/messages/0/20'
+            display_roles:
+                - IS_STAFF
+
+admin_reminders:
+    active: true
+    text_key: 'ADMIN_REMINDERS'
+    pattern: '/admin/reminders/0/20'
+    section: usermenu
+    display_roles:
+        - IS_STAFF
+
+
+admin_cms:
+    active: true
+    text_key: 'ADMIN_CMS'
+    pattern: '/admin/cms/pages/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+    children:
+        admin_cms_list_all:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_PAGES'
+            pattern: '/admin/cms/pages/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_add_new:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_PAGE'
+            pattern: '/admin/cms/pages/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_list_all_sections:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_SECTIONS'
+            pattern: '/admin/cms/sections/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_list_all_blogs:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_BLOGS'
+            pattern: '/admin/cms/blogs/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_add_new_blog:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_BLOGS'
+            pattern: '/admin/cms/blogs/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+
+admin_events:
+    active: true
+    text_key: 'ADMIN_EVENTS'
+    pattern: '/admin/events/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+        - IS_STAFF
+    children:
+        events_list_all:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL'
+            pattern: '/admin/events/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_locations:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_LOCATIONS'
+            pattern: '/admin/events/locations/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_contacts:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_CONTACTS'
+            pattern: '/admin/events/eventcontacts/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_prospects:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_PROSPECTS'
+            pattern: '/admin/events/eventprospects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_prospects:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_INVITE_LISTS'
+            pattern: '/admin/events/lists/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+
+
+
+
+# MAIN NAVIGATION - ADMIN SECTION
 staff_list:
     text_key: 'ADMIN_STAFF'
     pattern: '#'
@@ -185,35 +321,6 @@ admin_keys:
         - IS_ADMINISTRATOR
         - IS_STAFF
 
-admin_notifications:
-    active: true
-    text_key: 'ADMIN_NOTIFICATIONS'
-    pattern: '/admin/notifications/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
-admin_messages:
-    active: true
-    text_key: 'ADMIN_MESSAGES'
-    pattern: '/admin/messaging/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-    children:
-        messages_listall:
-            text_key: 'ADMIN_MESSAGES_LIST_ALL'
-            pattern: '/admin/messages/0/20'
-            display_roles:
-                - IS_STAFF
-
-admin_reminders:
-    active: true
-    text_key: 'ADMIN_REMINDERS'
-    pattern: '/admin/reminders/0/20'
-    display_roles:
-        - IS_STAFF
-
 admin_satisfaction:
     active: false
     text_key: 'ADMIN_SATISFACTION'
@@ -275,51 +382,6 @@ admin_environmental:
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
-
-
-admin_cms:
-    active: true
-    text_key: 'ADMIN_CMS'
-    pattern: '/admin/cms/pages/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    children:
-        admin_cms_list_all:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_PAGES'
-            pattern: '/admin/cms/pages/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_add_new:
-            active: true
-            text_key: 'ADMIN_CMS_ADD_NEW_PAGE'
-            pattern: '/admin/cms/pages/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_list_all_sections:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_SECTIONS'
-            pattern: '/admin/cms/sections/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_list_all_blogs:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_BLOGS'
-            pattern: '/admin/cms/blogs/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_add_new_blog:
-            active: true
-            text_key: 'ADMIN_CMS_ADD_NEW_BLOGS'
-            pattern: '/admin/cms/blogs/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
 
 admin_projects:
     active: true
@@ -409,56 +471,6 @@ admin_surveys:
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
-
-admin_events:
-    active: true
-    text_key: 'ADMIN_EVENTS'
-    pattern: '/admin/events/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
-    children:
-        events_list_all:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL'
-            pattern: '/admin/events/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_locations:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_LOCATIONS'
-            pattern: '/admin/events/locations/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_contacts:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_CONTACTS'
-            pattern: '/admin/events/eventcontacts/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_prospects:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_PROSPECTS'
-            pattern: '/admin/events/eventprospects/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_prospects:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_INVITE_LISTS'
-            pattern: '/admin/events/lists/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
 
 admin_cart:
     active: false
