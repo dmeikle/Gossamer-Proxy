@@ -1,31 +1,28 @@
-<div class="content full-width" ng-controller="staffEditCtrl">
+<div class="content full-width" ng-controller="staffEditCtrl" ng-cloak>
   <div class="widget">
-
-    <h1 class="pull-left"><?php echo $this->getString('STAFF_EDIT') ?> {{staff.firstname}} {{staff.lastname}}</h1>
+    <h1 ng-if="!staff"><?php echo $this->getString('STAFF_CREATE'); ?></h1>
+    <h1 class="pull-left" ng-if="staff"><?php echo $this->getString('STAFF_EDIT') ?> {{staff.firstname}} {{staff.lastname}}</h1>
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
         <div class="cardheader">
           <h1 class="pull-left"><?php echo $this->getString('STAFF_PERSONAL_INFO'); ?></h1>
-          <div class="pull-right">
-            <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
-          </div>
         </div>
         <div class="clearfix"></div>
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
 
-        <div ng-if="!loading">
+        <form ng-if="!loading" ng-submit="save(staff)">
           <div class="cardleft">
             <div class="form-group">
               <label for="staff-firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></label>
-              <input class="form-control" type="text" name="firstname"
+              <input class="form-control" type="text" name="firstname" required
                 id="staff-firstname" ng-model="staff.firstname">
             </div>
             <div class="form-group">
               <label for="staff-lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></label>
-              <input class="form-control" type="text" name="lastname"
+              <input class="form-control" type="text" name="lastname" required
                 id="staff-lastname" ng-model="staff.lastname">
             </div>
             <div class="form-group">
@@ -47,7 +44,7 @@
           <div class="cardright">
             <div class="form-group">
               <label for="staff-address1"><?php echo $this->getString('STAFF_ADDRESS1'); ?></label>
-              <input class="form-control" type="tel" name="address1"
+              <input class="form-control" type="tel" name="address1" required
                 id="staff-address1" ng-model="staff.address1">
             </div>
             <div class="form-group">
@@ -57,12 +54,12 @@
             </div>
             <div class="form-group">
               <label for="staff-city"><?php echo $this->getString('STAFF_CITY'); ?></label>
-              <input class="form-control" type="tel" name="city"
+              <input class="form-control" type="tel" name="city" required
                 id="staff-city" ng-model="staff.city">
             </div>
             <div class="form-group">
               <label for="staff-postalCode"><?php echo $this->getString('STAFF_POSTALCODE'); ?></label>
-              <input class="form-control" type="tel" name="postalCode"
+              <input class="form-control" type="tel" name="postalCode" required
                 id="staff-postalCode" ng-model="staff.postalCode">
             </div>
             <div class="form-group">
@@ -86,10 +83,11 @@
           </div>
           <div class="clearfix"></div>
           <div class="cardfooter">
-            <button class="primary pull-right" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+            <input type="submit" class="btn btn-primary pull-right" ng-disabled="!staff.firstname || !staff.lastname"
+              value="<?php echo $this->getString('STAFF_SAVE');?>">
             <div class="clearfix"></div>
           </div>
-        </div>
+        </form>
       </div>
 
       <div class="card" ng-controller="staffRolesCtrl">
@@ -100,53 +98,55 @@
           <div class="spinner-loader"></div>
         </div>
         <div ng-if="!staffRoles.loading">
-          <div class="cardleft">
-            <div class="form-group">
-              <input type="checkbox" name="administrator" id="staff-roles-administrator" ng-model="staffRoles.IS_ADMINISTRATOR">
-              <label for="staff-roles-administrator"><?php echo $this->getString('STAFF_ROLES_ADMINISTRATOR'); ?></label>
+          <fieldset ng-disabled="!staff">
+            <div class="cardleft">
+              <div class="form-group">
+                <input type="checkbox" name="administrator" id="staff-roles-administrator" ng-model="staffRoles.IS_ADMINISTRATOR">
+                <label for="staff-roles-administrator"><?php echo $this->getString('STAFF_ROLES_ADMINISTRATOR'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="super-user" id="staff-roles-super-user" ng-model="staffRoles.IS_SUPER_USER">
+                <label for="staff-roles-super-user"><?php echo $this->getString('STAFF_ROLES_SUPERUSER'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="manager" id="staff-roles-manager" ng-model="staffRoles.IS_MANAGER">
+                <label for="staff-roles-manager"><?php echo $this->getString('STAFF_ROLES_MANAGER'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="developer" id="staff-roles-developer" ng-model="staffRoles.IS_DEVELOPER">
+                <label for="staff-roles-developer"><?php echo $this->getString('STAFF_ROLES_DEVELOPER'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="reception" id="staff-roles-reception" ng-model="staffRoles.IS_RECEPTION">
+                <label for="staff-roles-reception"><?php echo $this->getString('STAFF_ROLES_RECEPTION'); ?></label>
+              </div>
             </div>
-            <div class="form-group">
-              <input type="checkbox" name="super-user" id="staff-roles-super-user" ng-model="staffRoles.IS_SUPER_USER">
-              <label for="staff-roles-super-user"><?php echo $this->getString('STAFF_ROLES_SUPERUSER'); ?></label>
+            <div class="cardright">
+              <div class="form-group">
+                <input type="checkbox" name="data-entry" id="staff-roles-data-entry" ng-model="staffRoles.IS_DATA_ENTRY">
+                <label for="staff-roles-data-entry"><?php echo $this->getString('STAFF_ROLES_DATA_ENTRY'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="website-editor" id="staff-roles-website-editor" ng-model="staffRoles.IS_WEBSITE_EDITOR">
+                <label for="staff-roles-website-editor"><?php echo $this->getString('STAFF_ROLES_WEBSITE_EDITOR'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="staff" id="staff-roles-staff" ng-model="staffRoles.IS_STAFF">
+                <label for="staff-roles-staff"><?php echo $this->getString('STAFF_ROLES_STAFF'); ?></label>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="human-resources" id="staff-roles-human-resources" ng-model="staffRoles.IS_HUMAN_RESOURCES">
+                <label for="staff-roles-human-resources"><?php echo $this->getString('STAFF_ROLES_HUMAN_RESOURCES'); ?></label>
+              </div>
             </div>
-            <div class="form-group">
-              <input type="checkbox" name="manager" id="staff-roles-manager" ng-model="staffRoles.IS_MANAGER">
-              <label for="staff-roles-manager"><?php echo $this->getString('STAFF_ROLES_MANAGER'); ?></label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="developer" id="staff-roles-developer" ng-model="staffRoles.IS_DEVELOPER">
-              <label for="staff-roles-developer"><?php echo $this->getString('STAFF_ROLES_DEVELOPER'); ?></label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="reception" id="staff-roles-reception" ng-model="staffRoles.IS_RECEPTION">
-              <label for="staff-roles-reception"><?php echo $this->getString('STAFF_ROLES_RECEPTION'); ?></label>
-            </div>
-          </div>
-          <div class="cardright">
-            <div class="form-group">
-              <input type="checkbox" name="data-entry" id="staff-roles-data-entry" ng-model="staffRoles.IS_DATA_ENTRY">
-              <label for="staff-roles-data-entry"><?php echo $this->getString('STAFF_ROLES_DATA_ENTRY'); ?></label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="website-editor" id="staff-roles-website-editor" ng-model="staffRoles.IS_WEBSITE_EDITOR">
-              <label for="staff-roles-website-editor"><?php echo $this->getString('STAFF_ROLES_WEBSITE_EDITOR'); ?></label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="staff" id="staff-roles-staff" ng-model="staffRoles.IS_STAFF">
-              <label for="staff-roles-staff"><?php echo $this->getString('STAFF_ROLES_STAFF'); ?></label>
-            </div>
-            <div class="form-group">
-              <input type="checkbox" name="human-resources" id="staff-roles-human-resources" ng-model="staffRoles.IS_HUMAN_RESOURCES">
-              <label for="staff-roles-human-resources"><?php echo $this->getString('STAFF_ROLES_HUMAN_RESOURCES'); ?></label>
-            </div>
-          </div>
+          </fieldset>
           <div class="clearfix"></div>
           <div class="cardfooter">
             <div class="pull-right btn-group">
-              <button class="primary" ng-click="submitRoles(staffRoles)">
+              <button class="primary" ng-click="submitRoles(staffRoles)" ng-disabled="!staff">
                 <?php echo $this->getString('STAFF_SUBMIT'); ?>
               </button>
-              <button ng-click="resetCredentials()">
+              <button ng-click="resetCredentials()" ng-disabled="!staff">
                 <?php echo $this->getString('STAFF_RESET'); ?>
               </button>
             </div>
@@ -159,9 +159,6 @@
       <div class="card">
         <div class="cardheader">
           <h1 class="pull-left"><?php echo $this->getString('STAFF_EMPLOYMENT_INFO'); ?></h1>
-          <div class="pull-right">
-            <button ng-if="!loading" class="primary" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
-          </div>
         </div>
         <div class="clearfix"></div>
 
@@ -169,11 +166,11 @@
           <span class="spinner-loader"></span>
         </div>
 
-        <div ng-if="!loading">
+        <form ng-submit="save(staff)" ng-if="!loading">
           <div class="cardleft">
             <div class="form-group">
               <label for="staff-telephone"><?php echo $this->getString('STAFF_TELEPHONE'); ?></label>
-              <input class="form-control" type="tel" name="telephone"
+              <input class="form-control" type="tel" name="telephone" required
                 id="staff-telephone" ng-model="staff.telephone">
             </div>
             <div class="form-group">
@@ -183,12 +180,12 @@
             </div>
             <div class="form-group">
               <label for="staff-email"><?php echo $this->getString('STAFF_EMAIL'); ?></label>
-              <input class="form-control" type="email" name="email"
+              <input class="form-control" type="email" name="email" required
                 id="staff-email" ng-model="staff.email">
             </div>
             <div class="form-group">
               <label for="staff-employeeNumber"><?php echo $this->getString('STAFF_EMPLOYEENUM'); ?></label>
-              <input class="form-control" type="text" name="employeeNumber"
+              <input class="form-control" type="text" name="employeeNumber" ng-disabled="!$rootScope.staff"
                 id="staff-employeeNumber" ng-model="staff.employeeNumber">
             </div>
             <div class="form-group">
@@ -254,10 +251,11 @@
           </div>
           <div class="clearfix"></div>
           <div class="cardfooter">
-            <button class="primary pull-right" ng-click="save(staff)"><?php echo $this->getString('STAFF_SAVE');?></button>
+            <input type="submit" class="btn btn-primary pull-right" ng-disabled="!staff.telephone || !staff.email"
+              value="<?php echo $this->getString('STAFF_SAVE');?>">
             <div class="clearfix"></div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="card" ng-controller="staffBenefitsCtrl">
         <div class="cardheader">
@@ -266,7 +264,11 @@
 
         <div ng-if="staffBenefitsLoading"><span class="spinner-loader"></span></div>
 
-        <div ng-if="!staffBenefitsLoading">
+        <div ng-if="!staffBenefitsLoading && !staffBenefits">
+          <?php echo $this->getString('STAFF_BENEFITS_NONE'); ?>
+        </div>
+
+        <div ng-if="!staffBenefitsLoading && staffBenefits">
           <div class="cardleft">
             <table class="cardtable">
               <tbody>
@@ -308,12 +310,12 @@
             </table>
           </div>
           <div class="clearfix"></div>
-          <div class="cardfooter">
-            <button class="btn-link pull-right" ng-click="openStaffBenefitsHistoryModal()">
-              <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
-            </button>
-            <div class="clearfix"></div>
-          </div>
+        </div>
+        <div class="cardfooter">
+          <button class="btn-link pull-right" ng-click="openStaffBenefitsHistoryModal()">
+            <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
+          </button>
+          <div class="clearfix"></div>
         </div>
       </div>
 
@@ -355,7 +357,7 @@
           </div>
         </div>
         <div class="cardright" ng-if="!loading">
-          <img class="staff-picture pull-right" ng-src="/images/staff/{{staff.imageName}}">
+          <img ng-if="staff.imageName" class="staff-picture pull-right" ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
       </div>
@@ -373,27 +375,29 @@
               {{credentialStatus.message}}
             </p>
           </div>
-          <div class="cardleft">
-            <div class="form-group" ng-class="{'has-success':staff.usernameValid, 'has-error':!staff.usernameValid}">
-              <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
-              <?php echo $aform['username']; ?>
+          <fieldset ng-disabled="!staff">
+            <div class="cardleft">
+              <div class="form-group" ng-class="{'has-success':staff.usernameValid, 'has-error':!staff.usernameValid}">
+                <label for="StaffAuthorization_username"><?php echo $this->getString('STAFF_USERNAME'); ?></label>
+                <?php echo $aform['username']; ?>
+              </div>
             </div>
-          </div>
-          <div class="cardright">
-            <div class="form-group">
-              <label for="StaffAuthorization_password"><?php echo $this->getString('STAFF_PASSWORD'); ?></label>
-              <?php echo $aform['password']; ?>
+            <div class="cardright">
+              <div class="form-group">
+                <label for="StaffAuthorization_password"><?php echo $this->getString('STAFF_PASSWORD'); ?></label>
+                <?php echo $aform['password']; ?>
+              </div>
+              <div class="form-group" ng-class="{'has-success':authorization.password !== undefined && authorization.password === authorization.passwordConfirm,
+                'has-error':authorization.password !== undefined && authorization.password !== authorization.passwordConfirm}">
+                <label for="StaffAuthorization_passwordConfirm"><?php echo $this->getString('STAFF_PASSWORD_CONFIRM'); ?></label>
+                <?php echo $aform['passwordConfirm']; ?>
+              </div>
             </div>
-            <div class="form-group" ng-class="{'has-success':authorization.password !== undefined && authorization.password === authorization.passwordConfirm,
-              'has-error':authorization.password !== undefined && authorization.password !== authorization.passwordConfirm}">
-              <label for="StaffAuthorization_passwordConfirm"><?php echo $this->getString('STAFF_PASSWORD_CONFIRM'); ?></label>
-              <?php echo $aform['passwordConfirm']; ?>
-            </div>
-          </div>
+          </fieldset>
           <div class="clearfix"></div>
           <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES');?></p>
           <div class="form-group">
-            <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="authorization.emailUser">
+            <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="authorization.emailUser" ng-disabled="!staff">
             <label for="staff-emailUser"><?php echo $this->getString('STAFF_EMAILUSER'); ?></label>
             <p class="help-block">
               <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
@@ -402,10 +406,10 @@
 
           <div class="cardfooter">
             <div class="pull-right btn-group">
-              <button class="primary" ng-click="submitCredentials(authorization)">
+              <button class="primary" ng-click="submitCredentials(authorization)" ng-disabled="!staff">
                 <?php echo $this->getString('STAFF_SUBMIT'); ?>
               </button>
-              <button ng-click="resetCredentials()">
+              <button ng-click="resetCredentials()" ng-disabled="!staff">
                 <?php echo $this->getString('STAFF_RESET'); ?>
               </button>
             </div>
@@ -418,11 +422,17 @@
       <div class="card" ng-controller="staffEmergencyContactsCtrl">
         <div class="cardheader">
           <h1 class="pull-left"><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
-          <button ng-if="!loading" class="primary pull-right" ng-click="openEditEmergencyContactModal()"><?php echo $this->getString('STAFF_NEW')?></button>
+          <button ng-if="!loading" class="primary pull-right"
+            ng-click="openEditEmergencyContactModal()"  ng-disabled="!staff">
+            <?php echo $this->getString('STAFF_NEW')?>
+          </button>
         </div>
         <div ng-if="loading"><span class="spinner-loader"></span></div>
         <div ng-if="!loading">
-          <table class="cardtable">
+          <p ng-if="!staffEmergencyContacts">
+            <?php echo $this->getString('STAFF_EMERGENCY_NONE');?>
+          </p>
+          <table ng-if="staffEmergencyContacts" class="cardtable">
             <thead>
               <tr>
                 <td><?php echo $this->getString('STAFF_EMERGENCY_NAME'); ?></td>

@@ -47,7 +47,7 @@ return array(
   'STAFF_EDIT' => 'Edit',
   'STAFF_EMERGENCY_INFO' => 'Emergency Information',
   'STAFF_BENEFITS_INFO' => 'Salary/Benefits Information',
-  'STAFF_BENEFITS_HISTORY' => 'View History',
+  'STAFF_BENEFITS_HISTORY' => 'More Information',
   'STAFF_ACCESS_LEVELS' => 'Access Levels',
   'STAFF_ROLES_ADMINISTRATOR' => 'Administrator',
   'STAFF_ROLES_SUPERUSER' => 'Super User',
@@ -73,5 +73,8 @@ return array(
   'STAFF_SEARCH' => 'Search',
   'STAFF_ADVANCED_SEARCH' => 'Advanced Search',
   'STAFF_UPDATE' => 'Update',
-  'STAFF_CLOSE' => 'Close'
+  'STAFF_CLOSE' => 'Close',
+  'STAFF_CREATE' => 'Add New Staff Member',
+  'STAFF_BENEFITS_NONE' => 'No history found. Click More Information to add salary/benefits.',
+  'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.'
 );
