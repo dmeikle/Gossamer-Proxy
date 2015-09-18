@@ -9,8 +9,8 @@ module.service('timesheetSrv', function($http) {
     var vehicle_toll_apiPath = '/admin/vehicles/tolls/';
     var self = this;
     
-    var row = 0;
-    var numRows = 20;
+//    var row = 0;
+//    var numRows = 20;
     self.error = {};
     self.error.showError = false;
     
@@ -18,8 +18,9 @@ module.service('timesheetSrv', function($http) {
     this.getTimesheetList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
         .then(function(response) {
-            //console.log(response)
+            console.log(response.data.TimesheetsCount);
             self.timesheetList = response.data.Timesheets;
+            self.timesheetCount = response.data.TimesheetsCount[0].rowCount;
         }, function(response){
             //Handle any errors
             self.error.showError = true;
