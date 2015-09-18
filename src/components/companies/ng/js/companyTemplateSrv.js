@@ -1,6 +1,6 @@
-module.service('templateSrv', function() {
+module.service('companyTemplateSrv', function() {
   this.companyScheduleModal = '/render/companies/companyScheduleModal';
-  this.companyAddNewModal = '/render/companies/companyAddNewModal';
+  this.AddNewModal = '/render/companies/companyAddNewModal';
   this.companyBenefitsHistoryModal = '/render/companies/companyBenefitsHistoryModal';
   this.editEmergencyContactModal = '/render/companies/editEmergencyContactModal';
 });

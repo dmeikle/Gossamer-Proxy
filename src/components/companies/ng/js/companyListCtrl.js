@@ -1,4 +1,4 @@
-module.controller('companyListCtrl', function($scope, $modal, companyListSrv, companyEditSrv, templateSrv) {
+module.controller('companyListCtrl', function($scope, $modal, companyListSrv, companyEditSrv, companyTemplateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -25,7 +25,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
     });
   }
 
-  $scope.openAddNewModal = function() {
+  $scope.openAddNewCompanyModal = function() {
     var template = companyTemplateSrv.AddNewModal;
     var modalInstance = $modal.open({
       templateUrl: template,
