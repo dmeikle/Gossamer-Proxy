@@ -1,0 +1,11 @@
+## YAML Template.
+---
+
+companyAddNewModal:
+    path: 'src/components/companies/ng/views/companyAddNewModal.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', 'cacheKey': 'Countrys' }
+       
