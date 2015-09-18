@@ -39,4 +39,32 @@ class TimesheetModel extends AbstractModel{
         
         return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
     }
+    
+    /**
+     * retrieves a row from the datasource for editing
+     * 
+     * @param int $id
+     * 
+     * @return array
+     */
+    public function edit($id) {
+
+
+        if ($this->isFailedValidationAttempt()) {
+
+            return $this->httpRequest->getAttribute('POSTED_PARAMS');
+        }
+
+        $params = array(
+            'id' => intval($id)
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+        if (is_array($data) && array_key_exists($this->entity, $data)) {
+            return $data;
+        }
+
+        return array();
+    }
 }
