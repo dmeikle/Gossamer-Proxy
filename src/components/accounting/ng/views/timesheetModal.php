@@ -24,8 +24,8 @@
         <div class="pull-left">
             <div class="form-group laborer">
                 <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
-                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="search()">
-                <datalist id="timesheet-autocomplete-list" ng-click="setCategory(basicSearch)">
+                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="getStaffID(laborer)">
+                <datalist id="timesheet-autocomplete-list">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
                 </datalist> 
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group vehicle">
                 <label for="vehicle-num"><?php echo $this->getString('ACCOUNTING_VEHICLE_NUMBER'); ?></label>
-                <select class="form-control" name="vehicle-num" ng-model="vehicleNumber" ng-change="getVehicleTolls(vehicleNumber)">
+                <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
                     <?php
                     //pr($Vehicles);    
 
@@ -61,7 +61,6 @@
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CLAIM'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CATEGORY'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DESCRIPTION'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
@@ -76,7 +75,6 @@
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -109,13 +107,6 @@
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
                             <?php foreach($AccountingPhaseCodes as $phase) {
                                 echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                               } ?>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="category form-control" name="StaffTypes_id" ng-model="row.StaffTypes_id" ng-init="row.StaffTypes_id">
-                            <?php foreach($StaffPositions as $position) {
-                                echo '<option value="' . $position['id'] . '">' . $position['position'] . '</option>';
                                } ?>
                         </select>
                     </td>
@@ -156,11 +147,10 @@
                         <input class="hours form-control" type="number" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'statDOTHours')" ng-blur="checkEmpty(row, 'statDOTHours')">
                     </td>
                     <td class="total">
-                       <strong>{{row.total}}</strong>
+                       <strong>{{row.totalHours}}</strong>
                     </td>
                 </tr>
                 <tr class="totalRow">
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -173,7 +163,7 @@
                     <td>{{sumTotal.statRegularHours}}</td>
                     <td>{{sumTotal.statOTHours}}</td>
                     <td>{{sumTotal.statDOTHours}}</td>
-                    <td><strong>{{sumTotal.total}}</strong></td>
+                    <td><strong>{{sumTotal.totalHours}}</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -185,7 +175,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(newTimesheet)">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheet)">Save</button>
     </div>
 </form>
 <!--

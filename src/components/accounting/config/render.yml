@@ -17,7 +17,6 @@ timesheetModal:
         - 'src/components/accounting/locales/*/accounting'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
-        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }
         - { 'event': 'filerender_start', 'listener': 'components\accounting\listeners\LoadTollListener', 'datasource': 'datasource1', 'cacheKey': 'TollBridges', static: 'true' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles'  }

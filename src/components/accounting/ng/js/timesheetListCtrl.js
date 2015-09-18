@@ -8,6 +8,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         .then(function(){
             $scope.loading = false;
             $scope.timesheetList = timesheetSrv.timesheetList;
+        console.log($scope.timesheetList);
             if(timesheetSrv.error.showError === true){
                 $scope.error.showError = true;
                 //$scope.error.message = 'Could not reach the database, please try again.';

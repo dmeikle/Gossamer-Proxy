@@ -18,8 +18,20 @@ module.service('timesheetSrv', function($http) {
     this.getTimesheetList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
         .then(function(response) {
-
+            //console.log(response)
             self.timesheetList = response.data.Timesheets;
+        }, function(response){
+            //Handle any errors
+            self.error.showError = true;
+        });
+    };
+    
+    //Get the a specific timesheet
+    this.getTimesheet = function(id){
+        return $http.get(apiPath + id)
+        .then(function(response) {
+            console.log(response);
+            self.timesheetItems = response.data.TimesheetItem;
         }, function(response){
             //Handle any errors
             self.error.showError = true;
@@ -28,12 +40,13 @@ module.service('timesheetSrv', function($http) {
     
     //Get timesheet items for an ID
     this.getTimesheetItems = function(id, row, numRows){
-        console.log('getting timesheet items for:');
+        console.log('getting timesheet items...');
         //console.log(timesheet_items_apiPath + id + '/' + row + '/' + numRows);
 
         return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
         .then(function(response){
-            console.log(response.data.Timesheets);
+            
+            console.log(response);
             self.timesheetItems = response.data.Timesheets;
         });
     };
@@ -42,8 +55,10 @@ module.service('timesheetSrv', function($http) {
     this.autocomplete = function(searchObject) {
         //var value = searchObject.val[0];
         var value = searchObject;
-        var column = 'name';
-
+        var column = 'name';     
+        
+        
+        
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
             console.log(response);
@@ -75,6 +90,7 @@ module.service('timesheetSrv', function($http) {
                 //config.lastname = name[1];
             //}
         } else {
+            
             config = undefined;
         }
         
@@ -102,6 +118,8 @@ module.service('timesheetSrv', function($http) {
             self.claimsCount = Object.keys(response.data).length-2;
         });
     };
+    
+    //Get Claim label
     
     //Claim Search
     this.filterClaims = function(row, numRows, object) {

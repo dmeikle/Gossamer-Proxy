@@ -23,12 +23,16 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
     //Laborer Autocomplete
     function fetchAutocomplete() {
-        timesheetSrv.autocomplete($scope.laborer)
-            .then(function() {
-            $scope.autocomplete = timesheetSrv.autocompleteList;
-            console.log('autocomplete List:');
-            console.log(timesheetSrv.autocompleteList);
-        });
+        if($scope.laborer.search(' ') === -1){
+            console.log('performing autocomplete...');
+            timesheetSrv.autocomplete($scope.laborer)
+                .then(function() {
+                $scope.autocomplete = timesheetSrv.autocompleteList;
+                console.log('autocomplete List:');
+                console.log(timesheetSrv.autocompleteList);
+
+            });
+        }
     }
 
     $scope.$watch('laborer', function() {
@@ -37,7 +41,22 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             fetchAutocomplete();
         }
     });
-
+    
+    
+    //get staff id
+    $scope.getStaffID = function(name){
+        console.log('getting staff ID');
+        console.log($scope.autocomplete);
+        var splitName = name.split(' ');
+        console.log(splitName);
+        for(var i in $scope.autocomplete){
+            if(splitName[0] === $scope.autocomplete[i].firstname && splitName[1] === $scope.autocomplete[i].lastname){
+                //console.log(name + ' id = ' + $scope.autocomplete[i].id);
+                $scope.staffID = $scope.autocomplete[i].id;
+            }
+        }
+    };
+    
     //Search
     $scope.search = function() {
         var searchObject = $scope.laborer;
@@ -129,7 +148,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         statRegularHours: 0,
         statOTHours: 0,
         statDOTHours: 0,
-        total: 0
+        totalHours: 0
     };
     $scope.timesheet = [];
     
@@ -139,12 +158,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         console.log(timesheet);
         $scope.laborer = timesheet.firstname + ' ' + timesheet.lastname;
         
+        //console.log($scope.vehicleNumber);
         var workDate = Date.parse((timesheet.workDate.replace(/-/g,"/")));
         
         //console.log(workDate);
         $scope.timesheetDate = new Date(workDate);
         //console.log($scope.timesheetDate);
-        timesheetSrv.getTimesheetItems(timesheet.id, 0, 20)
+        //timesheetSrv.getTimesheetItems(timesheet.id, 0, 20)
+        timesheetSrv.getTimesheet(timesheet.id)
         .then(function(){
             console.log('done getting timesheet items!');
             //console.log(timesheetSrv.timesheetItems);
@@ -153,9 +174,17 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             if(timesheetSrv.timesheetItems){
                 //console.log('timesheet items exist!');
                 //console.log(timesheetSrv.timesheetItems);
+                //timesheetSrv.claim(timesheet.id)
+                
+                $scope.vehicleID = timesheet.Vehicles_id;
                 $scope.timesheetItems = timesheetSrv.timesheetItems;
                 //$scope.timesheet = timesheetSrv.timesheetItems;
                 for (var i in $scope.timesheetItems){
+                    //timesheetSrv.getTimesheet(timesheet.id)
+//                    .then(function(){
+//                        $scope.timesheet[i].jobNumber = timesheetSrv.
+//                    });
+                    
                     $scope.timesheet.push({});
                     console.log('timesheet item ' + i);
                     //console.log($scope.timesheetItems[i].regularHours);
@@ -170,12 +199,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     $scope.timesheet[i].statRegularHours = parseFloat($scope.timesheetItems[i].statRegularHours);
                     $scope.timesheet[i].statOTHours = parseFloat($scope.timesheetItems[i].statOTHours);
                     $scope.timesheet[i].statDOTHours = parseFloat($scope.timesheetItems[i].statDOTHours);
-                    $scope.timesheet[i].total = parseFloat($scope.timesheetItems[i].totalHours);
+                    $scope.timesheet[i].totalHours = parseFloat($scope.timesheetItems[i].totalHours);
                     
                 }
-                console.log('updating total sum...');
+                //console.log('updating total sum...');
                 $scope.updateTotalSum();
-                console.log($scope.timesheet);
+                //console.log($scope.timesheet);
                 $scope.loading = false;
             }
         });
@@ -194,7 +223,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         statRegularHours: 0,
         statOTHours: 0,
         statDOTHours: 0,
-        total: 0
+        totalHours: 0
     };
 
     //Update the hour totals
@@ -204,7 +233,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         //console.log(row[col]);
         //console.log(row.regularHours);
         
-        row.total = 0;
+        row.totalHours = 0;
         
         var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDOTHours'];
         
@@ -219,14 +248,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         
         //Check for null/NaN values and replace them with 0
         for(var i in rowHours){
-            console.log(rowHours[i]);
+            //console.log(rowHours[i]);
             if(isNaN(rowHours[i])){
                 rowHours[i] = 0;
             }
         }
         //console.log(rowHours);
         
-        row.total = rowHours.regularHours + rowHours.overtimeHours + rowHours.doubleOTHours + rowHours.statRegularHours + rowHours.statOTHours + rowHours.statDOTHours;
+        row.totalHours = rowHours.regularHours + rowHours.overtimeHours + rowHours.doubleOTHours + rowHours.statRegularHours + rowHours.statOTHours + rowHours.statDOTHours;
 
         $scope.updateTotalSum();
         //console.log('ROW TOLLS = ' + row.toll1 + ' ' + row.toll2);
@@ -244,8 +273,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                 var totalCol = Object.keys($scope.timesheet[i]).length-1;
 
                 if($scope.timesheet[i][col] === null || isNaN($scope.timesheet[i][col])){
-                    console.log('empty number');
-                    console.log($scope.timesheet[i][col]);
+                    //console.log('empty number');
+                    //console.log($scope.timesheet[i][col]);
 
                     $scope.sumTotal[col] += 0;
                 } else {
@@ -254,10 +283,10 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             }
         }
 
-        $scope.sumTotal.total = 0;
+        $scope.sumTotal.totalHours = 0;
         for(var p in $scope.timesheet){
-            var totalRow = parseInt($scope.timesheet[p].total);
-            $scope.sumTotal.total += totalRow;
+            var totalRow = parseInt($scope.timesheet[p].totalHours);
+            $scope.sumTotal.totalHours += totalRow;
         }
     };
 
@@ -278,7 +307,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             statRegularHours: 0,
             statOTHours: 0,
             statDOTHours: 0,
-            total: 0
+            totalHours: 0
         });
         if($scope.laborerPositionID !== ''){
             $scope.timesheet[$scope.timesheet.length-1].StaffTypes_id = $scope.laborerPositionID;
@@ -306,7 +335,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                     statRegularHours: 0,
                     statOTHours: 0,
                     statDOTHours: 0,
-                    total: 0
+                    totalHours: 0
                 });
                 //console.log('Position ID = ' + $scope.laborerPositionID);
                 if($scope.laborerPositionID !== ''){
@@ -397,6 +426,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
     //Get Tolls
     $scope.getTolls = function (object, date){
+        console.log(object);
         var newObj = [];
 
         for (var i in object){
@@ -427,10 +457,11 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var timesheet = {
             staffID: $scope.staffID,
             workDate: date,
-            //Vehicle_id: 
+            Vehicles_id: $scope.vehicleID,
+            totalHours: $scope.sumTotal.totalHours
         };
 
-
+        
         var tolls = $scope.getTolls(object, date);
         var timesheetItems = $scope.removeTolls(object);
 

@@ -66,8 +66,12 @@ table{
             text-align: center;
         }
         .totalRow{
+            background-color:none!important;
             td{
                 text-align: center;
+            }
+            &:hover{
+                background-color:none!important;
             }
         }
         .toll{
