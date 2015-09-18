@@ -33,7 +33,7 @@ module.controller('staffEditCtrl', function($scope, $location, staffEditSrv) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     staffEditSrv.save(object, formToken).then(function() {
       if ($location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length) === '0') {
-        $location.path('/admin/staff/edit/' + staffEditSrv.staffDetail.id);
+        window.location.pathname = '/admin/staff/edit/' + staffEditSrv.staffDetail.id;
       }
       getStaffDetail();
     });

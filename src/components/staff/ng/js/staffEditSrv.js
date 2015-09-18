@@ -72,7 +72,7 @@ module.service('staffEditSrv', function($http) {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(function(response) {
-      self.staffDetail = response.data.Staff;
+      self.staffDetail = response.data.Staff[0];
     });
   };
 

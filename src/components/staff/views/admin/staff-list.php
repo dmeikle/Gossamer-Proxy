@@ -21,7 +21,7 @@
           <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
         </datalist>
       </div>
-      <button ng-click="openAddNewStaffModal()" class="btn-primary"><?php echo $this->getString('STAFF_NEW');?></button>
+      <a href="/admin/staff/edit/0" class="btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
