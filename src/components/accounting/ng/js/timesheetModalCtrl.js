@@ -4,7 +4,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //console.log(timesheet);
     //Modal Controls
     $scope.confirm = function() {
-        $modalInstance.close($scope.staff);
+        $modalInstance.close();
+        //$modalInstance.close($scope.staff);
     };
 
     $scope.cancel = function() {
@@ -142,6 +143,15 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         description: '',
         toll1: 'test',
         toll2: '',
+//        tolls: [{
+//            Claims_id: '',
+//            workDate: '',
+//            cost: ''
+//        },{
+//            Claims_id: '',
+//            workDate: '',
+//            cost: ''
+//        }],
         regularHours: 0,
         overtimeHours: 0,
         doubleOTHours: 0,
@@ -153,37 +163,24 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.timesheet = [];
     
     $scope.loading = true;
+    
     //Check to see if a timesheet ID exists
     if(timesheet.id){
         console.log(timesheet);
         $scope.laborer = timesheet.firstname + ' ' + timesheet.lastname;
-        
-        //console.log($scope.vehicleNumber);
         var workDate = Date.parse((timesheet.workDate.replace(/-/g,"/")));
-        
-        //console.log(workDate);
         $scope.timesheetDate = new Date(workDate);
-        //console.log($scope.timesheetDate);
-        //timesheetSrv.getTimesheetItems(timesheet.id, 0, 20)
         timesheetSrv.getTimesheet(timesheet.id)
         .then(function(){
             console.log('done getting timesheet items!');
-            //console.log(timesheetSrv.timesheetItems);
+            console.log(timesheetSrv.timesheetItems);
             
             //if one exists, populate the timesheet with the timesheetitems
             if(timesheetSrv.timesheetItems){
-                //console.log('timesheet items exist!');
-                //console.log(timesheetSrv.timesheetItems);
-                //timesheetSrv.claim(timesheet.id)
-                
                 $scope.vehicleID = timesheet.Vehicles_id;
                 $scope.timesheetItems = timesheetSrv.timesheetItems;
                 //$scope.timesheet = timesheetSrv.timesheetItems;
                 for (var i in $scope.timesheetItems){
-                    //timesheetSrv.getTimesheet(timesheet.id)
-//                    .then(function(){
-//                        $scope.timesheet[i].jobNumber = timesheetSrv.
-//                    });
                     
                     $scope.timesheet.push({});
                     console.log('timesheet item ' + i);
@@ -427,12 +424,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Get Tolls
     $scope.getTolls = function (object, date){
         console.log(object);
-        var newObj = [];
+        //var newObj = [];
 
         for (var i in object){
             //newObj.push({toll1: object[i].toll1, toll2: object[i].toll2});
             //newObj.push(object[i].toll2);
-
+            var newObj = [];
             newObj.push({Claims_id: object[i].Claims_id,
                          workDate: date,
                          cost: object[i].toll1
@@ -442,7 +439,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
                          workDate: date,
                          cost: object[i].toll2
                         });
-
+            object[i].tolls = newObj;
         }
 
         return newObj;
@@ -474,7 +471,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        timesheetSrv.saveTimesheet(timesheet, timesheetItems, tolls, formToken);
-
+        //timesheetSrv.saveTimesheet(timesheet, timesheetItems, tolls, formToken);
+        //$modalInstance.close();        
     };
 });

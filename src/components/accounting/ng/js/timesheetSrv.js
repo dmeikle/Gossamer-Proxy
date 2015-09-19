@@ -29,10 +29,11 @@ module.service('timesheetSrv', function($http) {
     
     //Get the a specific timesheet
     this.getTimesheet = function(id){
+        console.log('getting timesheet for id: ' + id);
         return $http.get(apiPath + id)
         .then(function(response) {
             console.log(response);
-            self.timesheetItems = response.data.TimesheetItem;
+            self.timesheetItems = response.data.Timesheet[1].TimesheetItems;
         }, function(response){
             //Handle any errors
             self.error.showError = true;
