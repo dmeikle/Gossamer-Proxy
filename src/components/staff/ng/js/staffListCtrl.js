@@ -1,4 +1,4 @@
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv) {
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv, tablesSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -9,6 +9,15 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   $scope.autocomplete = {};
 
   $scope.previouslyClickedObject = {};
+
+  // Load up the table service so we can watch it!
+  $scope.tablesSrv = tablesSrv;
+  $scope.$watch('tablesSrv.sortResult', function() {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+      $scope.staffList = tablesSrv.sortResult.Staffs;
+      $scope.loading = false;
+    }
+  });
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
@@ -121,7 +130,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     }
   };
 
-  $scope.$watch('currentPage + numPerPage', function() {
+  $scope.$watch('currentPage + itemsPerPage', function() {
     $scope.loading = true;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
