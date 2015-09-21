@@ -15,6 +15,13 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   var apiPath = '/admin/staff/';
 
+  $scope.setItemsPerPage = function(number) {
+    $scope.itemsPerPage = number;
+    row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+    numRows = $scope.itemsPerPage;
+    getStaffList();
+  };
+
   function getStaffList() {
     $scope.loading = true;
     staffListSrv.getStaffList(row, numRows).then(function(response) {

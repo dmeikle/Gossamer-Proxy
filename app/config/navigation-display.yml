@@ -15,6 +15,16 @@ super_user_home:
     section: usermenu
     display_roles:
         - IS_SUPER_USER
+    children:
+        admin_workperformed:
+            active: true
+            text_key: 'ADMIN_WORKPERFORMED'
+            pattern: '/admin/workperformed/0/20'
+            display_roles:
+              - IS_ADMINISTRATOR
+              - IS_PROJECT_MANAGER
+              - IS_PM_ASSISTANT
+              - IS_ACCOUNTING
 
 admin_contactus:
     text_key: 'ADMIN_CONTACTUS'
@@ -154,10 +164,180 @@ admin_events:
                 - IS_EDITOR
                 - IS_STAFF
 
+admin_call_matrix:
+    active: false
+    text_key: 'ADMIN_CALL_MATRIX'
+    pattern: '/admin/callmatrix/0/14'
+    section: 'usermenu'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+
 
 
 
 # MAIN NAVIGATION - ADMIN SECTION
+
+admin_accounting:
+    active: false
+    text_key: 'ADMIN_ACCOUNTING'
+    pattern: '/admin/accounting'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+        - IS_ACCOUNTING
+
+admin_contents:
+    active: false
+    text_key: 'ADMIN_CONTENTS'
+    pattern: '/admin/contents/jobs/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+
+customer_service:
+    text_key: 'CUSTOMER_SERVICE'
+    display_roles:
+        - IS_STAFF
+    children:
+        admin_incidents:
+            active: true
+            text_key: 'ADMIN_INCIDENTS'
+            pattern: '/admin/incidents/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+            children:
+                incidents_list_all:
+                    active: true
+                    text_key: 'ADMIN_INCIDENTS_LIST_ALL'
+                    pattern: '/admin/incidents/0/20'
+                    display_roles:
+                        - IS_STAFF
+        admin_deficiencies:
+            active: false
+            text_key: 'ADMIN_DEFICIENCIES'
+            pattern: '/admin/deficiencies/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+
+directory:
+    text_key: 'DIRECTORY'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+    children:
+        admin_contacts:
+            text_key: 'ADMIN_CONTACTS'
+            pattern: '/admin/contacts/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+            children:
+                contacts_list_all:
+                    text_key: 'ADMIN_CONTACTS_LIST_ALL'
+                    pattern: '/admin/contacts/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                contacts_add_new:
+                    text_key: 'ADMIN_CONTACTS_ADD_NEW'
+                    pattern: '/admin/contacts/0'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                        - IS_PMA
+                contacts_companies_listall:
+                    text_key: 'ADMIN_COMPANIES_LIST_ALL'
+                    pattern: '/admin/companies/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                        - IS_PMA
+                contacts_add_new_company:
+                    text_key: 'ADMIN_COMPANIES_ADD_NEW'
+                    pattern: '/admin/companies/0'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                        - IS_PMA
+        admin_claims:
+            text_key: 'ADMIN_CLAIMS'
+            pattern: '/admin/claims/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ADMIN
+                - IS_STAFF
+            children:
+                claims_list_all:
+                    text_key: 'ADMIN_CLAIMS_LIST_ALL'
+                    pattern: '/admin/claims/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                claims_create_new:
+                    text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+                    pattern: '/admin/claim/1/0'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_PROJECT_MANAGER
+                        - IS_PMA
+                        - IS_PROJECT_MANAGER
+                claims_scheduling:
+                    text_key: 'ADMIN_CLAIMS_SCHEDULING'
+                    pattern: '/admin/claims/scheduling/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                        - IS_PROJECT_MANAGER
+                admin_keys:
+                    active: false
+                    text_key: 'ADMIN_KEYS'
+                    pattern: '/admin/keys/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+
+        admin_subcontractors:
+            active: false
+            text_key: 'ADMIN_SUBCONTRACTORS'
+            pattern: '/admin/subcontractors/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+        admin_projects:
+            active: true
+            text_key: 'ADMIN_PROJECTS'
+            pattern: '/admin/projects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+            children:
+                projects:
+                    active: true
+                    text_key: 'ADMIN_PROJECTS_LIST_ALL'
+                    pattern: '/admin/projects/0/20'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_EDITOR
+                        - IS_STAFF
+                projects:
+                    active: true
+                    text_key: 'ADMIN_PROJECTS_CREATE_NEW'
+                    pattern: '/admin/projects/0'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_EDITOR
+                        - IS_STAFF
+
 staff_list:
     text_key: 'ADMIN_STAFF'
     pattern: '#'
@@ -204,45 +384,6 @@ admin_scoping:
                 - IS_SCOPER
                 - IS_PROJECT_MANAGER
 
-admin_claims:
-    text_key: 'ADMIN_CLAIMS'
-    pattern: '/admin/claims/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_ADMIN
-        - IS_STAFF
-    children:
-        claims_list_all:
-            text_key: 'ADMIN_CLAIMS_LIST_ALL'
-            pattern: '/admin/claims/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-        claims_create_new:
-            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-            pattern: '/admin/claim/1/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-                - IS_PROJECT_MANAGER
-        claims_scheduling:
-            text_key: 'ADMIN_CLAIMS_SCHEDULING'
-            pattern: '/admin/claims/scheduling/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-
-admin_contents:
-    active: false
-    text_key: 'ADMIN_CONTENTS'
-    pattern: '/admin/contents/jobs/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
 samples_list:
     text_key: 'ADMIN_SAMPLES'
     pattern: '/admin/samples/0/20'
@@ -250,45 +391,6 @@ samples_list:
         - IS_ADMIN
         - IS_ADMINISTRATOR
         - IS_STAFF
-
-admin_contacts:
-    text_key: 'ADMIN_CONTACTS'
-    pattern: '/admin/contacts/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-    children:
-        contacts_list_all:
-            text_key: 'ADMIN_CONTACTS_LIST_ALL'
-            pattern: '/admin/contacts/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-        contacts_add_new:
-            text_key: 'ADMIN_CONTACTS_ADD_NEW'
-            pattern: '/admin/contacts/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-        contacts_companies_listall:
-            text_key: 'ADMIN_COMPANIES_LIST_ALL'
-            pattern: '/admin/companies/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-        contacts_add_new_company:
-            text_key: 'ADMIN_COMPANIES_ADD_NEW'
-            pattern: '/admin/companies/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-                - IS_PMA
 
 admin_inventory:
     active: false
@@ -313,14 +415,6 @@ admin_inventory:
                 - IS_STAFF
 
 
-admin_keys:
-    active: false
-    text_key: 'ADMIN_KEYS'
-    pattern: '/admin/keys/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
 admin_satisfaction:
     active: false
     text_key: 'ADMIN_SATISFACTION'
@@ -330,51 +424,6 @@ admin_satisfaction:
         - IS_PROJECT_MANAGER
         - IS_PM_ASSISTANT
 
-admin_call_matrix:
-    active: false
-    text_key: 'ADMIN_CALL_MATRIX'
-    pattern: '/admin/callmatrix/0/14'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
-
-admin_deficiencies:
-    active: false
-    text_key: 'ADMIN_DEFICIENCIES'
-    pattern: '/admin/deficiencies/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-
-admin_subcontractors:
-    active: false
-    text_key: 'ADMIN_SUBCONTRACTORS'
-    pattern: '/admin/subcontractors/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-
-admin_accounting:
-    active: false
-    text_key: 'ADMIN_ACCOUNTING'
-    pattern: '/admin/accounting'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
-        - IS_ACCOUNTING
-
-admin_workperformed:
-    active: true
-    text_key: 'ADMIN_WORKPERFORMED'
-    pattern: '/admin/workperformed/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
-        - IS_ACCOUNTING
-
-
-
 admin_environmental:
     active: true
     text_key: 'ADMIN_ENVIRONMENTAL'
@@ -382,51 +431,6 @@ admin_environmental:
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
-
-admin_projects:
-    active: true
-    text_key: 'ADMIN_PROJECTS'
-    pattern: '/admin/projects/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
-    children:
-        projects:
-            active: true
-            text_key: 'ADMIN_PROJECTS_LIST_ALL'
-            pattern: '/admin/projects/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        projects:
-            active: true
-            text_key: 'ADMIN_PROJECTS_CREATE_NEW'
-            pattern: '/admin/projects/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-
-
-
-admin_incidents:
-    active: true
-    text_key: 'ADMIN_INCIDENTS'
-    pattern: '/admin/incidents/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    children:
-        incidents_list_all:
-            active: true
-            text_key: 'ADMIN_INCIDENTS_LIST_ALL'
-            pattern: '/admin/incidents/0/20'
-            display_roles:
-                - IS_STAFF
-
-
 
 admin_surveys:
     active: true

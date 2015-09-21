@@ -71,9 +71,18 @@
         </tbody>
     </table>
 
-    <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
+    <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
       class="pagination" boundary-links="true" rotate="false">
     </pagination>
+
+    <div class="pull-right">
+      <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
+      <ul class="btn-group pull-right">
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
+      </ul>
+    </div>
   </div>
 
   <div class="widget-side-panel">

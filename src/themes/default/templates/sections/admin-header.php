@@ -22,7 +22,11 @@
               //it's not active (do not display) but during development let's see everything
               //we can remove this line when we are ready to hide them from the real users
               ?>
-              <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
+              <li title="disabled on this release">
+                <a class="disabled">
+                  <?php echo $this->getString($item['text_key']); ?>
+                </a>
+              </li>
               <?php
               continue;
             }
@@ -37,9 +41,15 @@
 
             <?php } else { ?>
               <li class='dropdown'>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $item['pattern']; ?>">
-                  <?php echo $this->getString($item['text_key']) . $caret; ?>
-                </a>
+                <?php if (array_key_exists('pattern', $item) && strlen($item['pattern']) > 0) { ?>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $item['pattern']; ?>">
+                    <?php echo $this->getString($item['text_key']) . $caret; ?>
+                  </a>
+                <?php } else { ?>
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                    <?php echo $this->getString($item['text_key']) . $caret; ?>
+                  </a>
+                <?php } ?>
                 <ul class="dropdown-menu">
                     <?php
                       foreach ($item['children'] as $childKey => $childItem) {
@@ -50,7 +60,30 @@
                             <li title="disabled on this release"><?php echo $this->getString($childItem['text_key']); ?></li>
                             <?php
                             continue;
-                        } ?>
+                        } elseif (array_key_exists('children', $childItem)) {
+                          ?>
+                          <li class="dropdown-header">
+                              <?php echo $this->getString($childItem['text_key']); ?>
+                              <li>
+                                <a href="<?php echo $childItem['pattern']; ?>">
+                                  <?php echo $this->getString($childItem['text_key']); ?>
+                                </a>
+                              </li>
+                              <?php
+                                foreach ($childItem['children'] as $subChildKey => $subChildItem) {
+                                  ?>
+                                  <li>
+                                    <a href="<?php echo $subChildItem['pattern']; ?>">
+                                      <?php echo $this->getString($subChildItem['text_key']); ?>
+                                    </a>
+                                  </li>
+                                  <?php
+                                }
+                               ?>
+                          </li>
+                          <?php
+                          continue;
+                        }?>
                         <li>
                           <a href="<?php echo $childItem['pattern']; ?>">
                             <?php echo $this->getString($childItem['text_key']); ?>
@@ -81,7 +114,11 @@
                   //it's not active (do not display) but during development let's see everything
                   //we can remove this line when we are ready to hide them from the real users
                   ?>
-                  <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
+                  <li title="disabled on this release">
+                    <a class="disabled">
+                      <?php echo $this->getString($item['text_key']); ?>
+                    </a>
+                  </li>
                   <?php
                   continue;
                 }
@@ -94,32 +131,27 @@
                 if (!$hasChildren) { ?>
                   <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
 
-                <?php } else { ?>
-                  <li class='dropdown'>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $item['pattern']; ?>">
-                      <?php echo $this->getString($item['text_key']) . $caret; ?>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <?php
-                          foreach ($item['children'] as $childKey => $childItem) {
-                            if (array_key_exists('active', $childItem) && $childItem['active'] == false) {
-                                //it's not active (do not display) but during development let's see everything
-                                //we can remove this line when we are ready to hide them from the real users
-                                ?>
-                                <li title="disabled on this release"><?php echo $this->getString($childItem['text_key']); ?></li>
-                                <?php
-                                continue;
-                            } ?>
-                            <li>
-                              <a href="<?php echo $childItem['pattern']; ?>">
-                                <?php echo $this->getString($childItem['text_key']); ?>
-                              </a>
-                            </li>
-                          <?php } ?>
-                    </ul><!--- close child ul -->
+                <?php } elseif ($hasChildren) {
+                  ?>
+                  <li class="dropdown-header">
+                    <?php echo $this->getString($item['text_key']); ?>
+                    <li>
+                      <a href="<?php echo $item['pattern']; ?>">
+                        <?php echo $this->getString($item['text_key']); ?>
+                      </a>
+                    </li>
+                    <?php
+                    foreach ($item['children'] as $childKey => $childItem) {
+                    ?>
+                    <li>
+                      <a href="<?php echo $childItem['pattern']; ?>">
+                        <?php echo $this->getString($childItem['text_key']); ?>
+                      </a>
+                    </li>
                   </li>
                 <?php } ?>
               <?php } ?>
+            <?php } ?>
             <?php } ?>
           </ul>
         </li>

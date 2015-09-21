@@ -70,3 +70,8 @@ button {
 .row-controls button {
   font-size:.75em;
 }
+
+nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
+  padding-left:7px;
+  padding-right:7px;
+}
