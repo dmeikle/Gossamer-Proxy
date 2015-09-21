@@ -26,7 +26,7 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th><?php echo $this->getString('STAFF_NAME'); ?></th>
+                <th column-sortable><?php echo $this->getString('STAFF_NAME'); ?></th>
                 <th><?php echo $this->getString('STAFF_TITLE'); ?></th>
                 <th><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
                 <th><?php echo $this->getString('STAFF_MOBILE'); ?></th>

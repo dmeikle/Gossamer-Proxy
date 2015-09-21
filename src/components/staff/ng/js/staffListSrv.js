@@ -32,8 +32,8 @@ module.service('staffListSrv', function($http, searchSrv) {
 
   this.search = function(searchObject) {
     return searchSrv.search(searchObject, apiPath).then(function() {
-      self.searchResults = searchSrv.searchResults;
-      self.searchResultsCount = searchSrv.searchResultsCount;
+      self.searchResults = searchSrv.searchResults.Staffs;
+      self.searchResultsCount = searchSrv.searchResultsCount.StaffsCount[0].rowCount;
     });
   };
 
