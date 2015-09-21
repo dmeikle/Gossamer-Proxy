@@ -26,12 +26,13 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th column-sortable><?php echo $this->getString('STAFF_NAME'); ?></th>
-                <th><?php echo $this->getString('STAFF_TITLE'); ?></th>
-                <th><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
-                <th><?php echo $this->getString('STAFF_MOBILE'); ?></th>
-                <th><?php echo $this->getString('STAFF_STATUS'); ?></th>
-                <th><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
+                <th column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
+                <th column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
+                <th column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
+                <th column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
+                <th column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+                <th column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
+                <th column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
                 <th class="cog-col">&nbsp;</th>
             </tr>
         </thead>
@@ -49,7 +50,8 @@
           </tr>
           <tr ng-if="!loading" ng-repeat="staff in staffList"
             ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
-              <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
+              <td ng-click="selectRow(staff)">{{staff.firstname}}</td>
+              <td ng-click="selectRow(staff)">{{staff.lastname}}</td>
               <td ng-click="selectRow(staff)">{{staff.title}}</td>
               <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
               <td ng-click="selectRow(staff)">{{staff.mobile}}</td>

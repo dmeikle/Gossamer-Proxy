@@ -13,8 +13,9 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   // Load up the table service so we can watch it!
   $scope.tablesSrv = tablesSrv;
   $scope.$watch('tablesSrv.sortResult', function() {
-    if (tablesSrv.sortResult !== {}) {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
       $scope.staffList = tablesSrv.sortResult.Staffs;
+      $scope.loading = false;
     }
   });
 

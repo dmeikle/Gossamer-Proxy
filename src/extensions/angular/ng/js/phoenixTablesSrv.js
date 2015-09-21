@@ -13,8 +13,8 @@ module.service('tablesSrv', function(searchSrv) {
   };
 
   this.clearSort = function(apiPath) {
-    searchSrv.searchCall(undefined, apiPath + '/0/20').then(function() {
-      self.sortResult = searchSrv.searchResults;
+    searchSrv.searchCall(undefined, apiPath + '/0/20').then(function(response) {
+      self.sortResult = response.data;
     });
   };
 });

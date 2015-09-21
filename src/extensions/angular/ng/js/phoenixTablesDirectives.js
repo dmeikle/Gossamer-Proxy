@@ -5,32 +5,46 @@ module.directive('columnSortable', function($compile, $location) {
     link: function(scope, element, attrs) {
       var a = document.createElement('a');
       a.setAttribute('ng-click', 'sortByColumn($event)');
+      a.setAttribute('href', '');
       a.innerText = element[0].innerText;
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
       clear.setAttribute('ng-click', 'clearSort()');
-      clear.setAttribute('class', 'clear-sort');
+      clear.setAttribute('href', '');
+      clear.setAttribute('class', 'pull-right glyphicon');
+      clear.setAttribute('ng-class', "{'glyphicon-remove': sortedBy ==='" + element[0].dataset.column + "'}");
       element[0].appendChild(a);
       element[0].appendChild(clear);
       $compile(element.contents())(scope);
     },
     controller: function($scope, tablesSrv) {
       $scope.sorting = {};
+      $scope.sortedBy = {};
 
       var a = document.createElement('a');
       a.href = $location.absUrl();
-      var apiPath = a.pathname;
+      var apiPath;
+      if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
+        apiPath = a.pathname;
+      } else {
+        apiPath = a.pathname.slice(0, -1);
+      }
       $scope.sortByColumn = function(event) {
-        if (!$scope.sorting[event.target.innerText] || $scope.sorting[event.target.innerText] === 'desc') {
-          $scope.sorting[event.target.innerText] = 'asc';
-        } else if ($scope.sorting[event.target.innerText] === 'asc') {
-          $scope.sorting[event.target.innerText] = 'desc';
+        $scope.loading = true;
+        var column = event.target.parentElement.dataset.column;
+        $scope.sortedBy = column;
+        if (!$scope.sorting[column] || $scope.sorting[column] === 'desc') {
+          $scope.sorting[column] = 'asc';
+        } else {
+          $scope.sorting[column] = 'desc';
         }
-        tablesSrv.sortByColumn(event.target.innerText, $scope.sorting[event.target.innerText], apiPath);
+        tablesSrv.sortByColumn(column, $scope.sorting[column], apiPath);
       };
 
       $scope.clearSort = function() {
+        $scope.loading = true;
+        $scope.sortedBy = undefined;
         tablesSrv.clearSort(apiPath);
       };
     }
