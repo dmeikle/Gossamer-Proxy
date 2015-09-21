@@ -31,6 +31,7 @@ return array(
   'STAFF_TITLE' => 'Title',
   'STAFF_HIREDATE' => 'Hire Date',
   'STAFF_DEPARTUREDATE' => 'Departure Date',
+  'STAFF_EXTENSION' => 'Extension',
   'STAFF_HIRINGAGENCY_ID' => 'Hiring Agency',
   'STAFF_ALARMPSWD' => 'Alarm Code',
   'STAFF_EXTENSION' => 'Extension',
@@ -47,7 +48,7 @@ return array(
   'STAFF_EDIT' => 'Edit',
   'STAFF_EMERGENCY_INFO' => 'Emergency Information',
   'STAFF_BENEFITS_INFO' => 'Salary/Benefits Information',
-  'STAFF_BENEFITS_HISTORY' => 'More Information',
+  'STAFF_BENEFITS_HISTORY' => 'View History',
   'STAFF_ACCESS_LEVELS' => 'Access Levels',
   'STAFF_ROLES_ADMINISTRATOR' => 'Administrator',
   'STAFF_ROLES_SUPERUSER' => 'Super User',
@@ -58,6 +59,7 @@ return array(
   'STAFF_ROLES_WEBSITE_EDITOR' => 'Website Editor',
   'STAFF_ROLES_STAFF' => 'Staff',
   'STAFF_ROLES_HUMAN_RESOURCES' => 'Human Resources',
+<<<<<<< HEAD
   'STAFF_EMERGENCY_NAME' => 'Name',
   'STAFF_EMERGENCY_RELATIONSHIP' => 'Relation',
   'STAFF_EMERGENCY_TELEPHONE' => 'Phone',
@@ -66,15 +68,9 @@ return array(
   'STAFF_EMERGENCY_EMAIL' => 'Email',
   'STAFF_NEW' => 'Add New',
   'STAFF_CANCEL' => 'Cancel',
-  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact',
-  'STAFF_NAME' => 'Name',
-  'STAFF_STATUS' => 'Status',
-  'STAFF_LAST_LOGIN' => 'Last Seen',
-  'STAFF_SEARCH' => 'Search',
-  'STAFF_ADVANCED_SEARCH' => 'Advanced Search',
-  'STAFF_UPDATE' => 'Update',
+  'STAFF_EMERGENCY_ADDNEW' => 'Add New Emergency Contact'
+=======
+  'STAFF_UPDATE' => 'Add',
   'STAFF_CLOSE' => 'Close',
-  'STAFF_CREATE' => 'Add New Staff Member',
-  'STAFF_BENEFITS_NONE' => 'No history found. Click More Information to add salary/benefits.',
-  'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.'
+>>>>>>> 6ba364eefd79c11312e0cd96f5bd402f82add03c
 );

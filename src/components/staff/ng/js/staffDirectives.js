@@ -38,7 +38,7 @@ module.directive('getDepartment', function() {
     replace: true,
     link: function(scope, element, attrs) {
       for (var department in departments) {
-        if (departments.hasOwnProperty(department)) {
+        if (departments.hasOwnProperty(department) && scope.$parent.staff) {
           if (departments[department].id === scope.$parent.staff.Departments_id) {
             element.text(departments[department].name);
           }
@@ -87,6 +87,23 @@ module.directive('boolToString', function() {
           element[0].innerText = 'Yes';
 
       }
+    }
+  };
+});
+
+module.directive('staffAdvancedSearchFilters', function(staffListSrv, $compile) {
+  return {
+    restrict:'E',
+    replace:true,
+    scope:false,
+    link: function(scope, element, attrs) {
+      var fields = staffListSrv.advancedSearch.fields;
+      for (var filter in fields) {
+        if (fields.hasOwnProperty(filter)) {
+          element[0].appendChild(fields[filter]);
+        }
+      }
+      $compile(element.contents())(scope);
     }
   };
 });
