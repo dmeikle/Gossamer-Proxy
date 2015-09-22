@@ -41,6 +41,13 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     });
   }
 
+  $scope.fetchAutocomplete = function(viewVal) {
+    var searchObject = {};
+    searchObject.name = viewVal;
+
+    return staffListSrv.fetchAutocomplete(searchObject);
+  };
+
   $scope.openAddNewStaffModal = function() {
     var template = templateSrv.staffAddNewModal;
     var modalInstance = $modal.open({
@@ -86,10 +93,12 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   };
 
   $scope.search = function(searchObject) {
-    if (searchObject && Object.keys(searchObject).length > 0) {
+    $scope.noResults = undefined;
+    var copiedObject = angular.copy(searchObject);
+    if (copiedObject && Object.keys(copiedObject).length > 0) {
       $scope.searchSubmitted = true;
       $scope.loading = true;
-      staffListSrv.search(searchObject).then(function() {
+      staffListSrv.search(copiedObject).then(function() {
         $scope.staffList = staffListSrv.searchResults;
         $scope.totalItems = staffListSrv.searchResultsCount;
         $scope.loading = false;
