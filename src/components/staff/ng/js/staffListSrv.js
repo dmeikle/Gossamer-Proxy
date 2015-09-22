@@ -30,7 +30,31 @@ module.service('staffListSrv', function($http, searchSrv) {
       });
   };
 
+  this.fetchAutocomplete = function(searchObject) {
+    return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
+      self.autocomplete = searchSrv.autocomplete.Staffs;
+      self.autocompleteValues = [];
+      if (searchObject.name) {
+        for (var staff in self.autocomplete) {
+          if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
+            self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
+          }
+        }
+      }
+      if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+        return self.autocompleteValues;
+      } else if (self.autocompleteValues[0] === 'undefined undefined') {
+        return undefined;
+      }
+    });
+  };
+
   this.search = function(searchObject) {
+    if (searchObject.name.indexOf(' ') > 0) {
+      searchObject.firstname = searchObject.name.split(' ')[0];
+      searchObject.lastname = searchObject.name.split(' ')[1];
+      delete searchObject.name;
+    }
     return searchSrv.search(searchObject, apiPath).then(function() {
       self.searchResults = searchSrv.searchResults.Staffs;
       self.searchResultsCount = searchSrv.searchResultsCount.StaffsCount[0].rowCount;
