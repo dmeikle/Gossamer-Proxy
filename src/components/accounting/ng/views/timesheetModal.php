@@ -104,9 +104,9 @@
                         </datalist>
                     </td>
                     <td>
-                        <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id">
+                        <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row.AccountingPhaseCodes_id)">
                             <?php foreach($AccountingPhaseCodes as $phase) {
-                                echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
+                                echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                } ?>
                         </select>
                     </td>
@@ -114,18 +114,19 @@
                         <input class="description form-control" ng-model="row.description">
                     </td>
                     <td>
-                        <select class="toll form-control" ng-model="row.toll1">
-    <!--                                    <option value="toll">Toll</option>-->
-                                <?php// echo $TollBridges; ?>
-    <!--                                    <option value="toll">Toll</option>-->
-                            
-                            <option ng-repeat="toll in tolls" value="{{toll.cost}}">{{toll.abbreviation}}</option>
+                        <select class="toll form-control" ng-model="row.toll1">                            
+                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll1[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
+                        
+<!--
+                        <select class="toll form-control" ng-model="row.toll1">                            
+                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}">{{toll.abbreviation}}</option>
+                        </select>
+-->
                     </td>
                     <td>
                         <select class="toll form-control" ng-model="row.toll2">
-                            <option ng-repeat="toll in tolls" value="{{toll.cost}}">{{toll.abbreviation}}</option>
-                            <?php// echo $TollBridges; ?>
+                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll2[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
                     </td>
                     <td>
@@ -144,7 +145,7 @@
                         <input class="hours form-control" type="number" ng-model="row.statOTHours" ng-change="updateTotal(row, 'statOTHours')" ng-blur="checkEmpty(row, 'statOTHours')">
                     </td>
                     <td>
-                        <input class="hours form-control" type="number" ng-model="row.statDOTHours" ng-change="updateTotal(row, 'statDOTHours')" ng-blur="checkEmpty(row, 'statDOTHours')">
+                        <input class="hours form-control" type="number" ng-model="row.statDoubleOTHours" ng-change="updateTotal(row, 'statDoubleOTHours')" ng-blur="checkEmpty(row, 'statDoubleOTHours')">
                     </td>
                     <td class="total">
                        <strong>{{row.totalHours}}</strong>
@@ -162,7 +163,7 @@
                     <td>{{sumTotal.doubleOTHours}}</td>
                     <td>{{sumTotal.statRegularHours}}</td>
                     <td>{{sumTotal.statOTHours}}</td>
-                    <td>{{sumTotal.statDOTHours}}</td>
+                    <td>{{sumTotal.statDoubleOTHours}}</td>
                     <td><strong>{{sumTotal.totalHours}}</strong></td>
                 </tr>
             </tbody>
@@ -175,7 +176,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheet)">Save</button>
+        <button type="button" class="btn btn-primary" ng-click="clearTimesheet()">Save and New</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheet)">Save and Close</button>
     </div>
 </form>
 <!--

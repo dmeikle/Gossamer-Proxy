@@ -25,12 +25,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Laborer Autocomplete
     function fetchAutocomplete() {
         if($scope.laborer.search(' ') === -1){
-            console.log('performing autocomplete...');
+            //console.log('performing autocomplete...');
             timesheetSrv.autocomplete($scope.laborer)
                 .then(function() {
                 $scope.autocomplete = timesheetSrv.autocompleteList;
-                console.log('autocomplete List:');
-                console.log(timesheetSrv.autocompleteList);
+                //console.log('autocomplete List:');
+                //console.log(timesheetSrv.autocompleteList);
 
             });
         }
@@ -47,13 +47,15 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //get staff id
     $scope.getStaffID = function(name){
         console.log('getting staff ID');
-        console.log($scope.autocomplete);
-        var splitName = name.split(' ');
-        console.log(splitName);
-        for(var i in $scope.autocomplete){
-            if(splitName[0] === $scope.autocomplete[i].firstname && splitName[1] === $scope.autocomplete[i].lastname){
-                //console.log(name + ' id = ' + $scope.autocomplete[i].id);
-                $scope.staffID = $scope.autocomplete[i].id;
+        //console.log(name);
+        if(name !== undefined){       
+            var splitName = name.split(' ');
+            console.log(splitName);
+            for(var i in $scope.autocomplete){
+                if(splitName[0] === $scope.autocomplete[i].firstname && splitName[1] === $scope.autocomplete[i].lastname){
+                    //console.log(name + ' id = ' + $scope.autocomplete[i].id);
+                    $scope.staffID = $scope.autocomplete[i].id;
+                }
             }
         }
     };
@@ -101,8 +103,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     $scope.clearClaimsList = function(row){
         for(var i in $scope.claimsAutocomplete){
             if($scope.claimsAutocomplete[i].label === row.jobNumber){
-                console.log('matching id!');
-                //var claimID =
+                console.log('found matching claim id!');
                 row.Claims_id = $scope.claimsAutocomplete[i].id;
             }
         }
@@ -112,9 +113,28 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     };
 
     $scope.watchClaims = function(row){
-        console.log(row);
+       // console.log(row);
        // $scope.timesheet[row].Claims_id;
         fetchClaims(row.jobNumber);
+    };
+    
+    $scope.getRateVarianceOptions = function(event){
+        console.log(event.target);
+        //var variantsList = $(event.srcElement.children).find('option');
+        $scope.rateVarianceList = $(event.target).find('option');
+        //console.log($scope.rateVarianceList[1].attributes.value);
+        console.log($scope.rateVarianceList);
+    };
+    
+    $scope.getRateVariance = function(phaseID){
+        for (var i in $scope.rateVarianceList){
+            console.log($scope.rateVarianceList[i]);
+            if($scope.rateVarianceList[i].attributes.value || !Number.isInteger($scope.rateVarianceList[i])){                
+                if($scope.rateVarianceList[i].attributes.value === phaseID){
+                    console.log('rate variance = ' + $scope.rateVarianceList[i].attributes['data-ratevariance']);
+                }
+            }
+        }
     };
 
 
@@ -122,7 +142,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
     //watch the timesheet for updates
     $scope.$watch('timesheet', function() {
-        console.log('Time sheet updated!');
+        //console.log('Time sheet updated!');
         for(var i in $scope.timesheet){
             if($scope.timesheet[i].isSelected === true){
                 $scope.timesheetSelected = true;
@@ -141,23 +161,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         AccountingPhaseCodes_id: '',
         StaffTypes_id: '',
         description: '',
-        toll1: 'test',
+        toll1: '',
         toll2: '',
-//        tolls: [{
-//            Claims_id: '',
-//            workDate: '',
-//            cost: ''
-//        },{
-//            Claims_id: '',
-//            workDate: '',
-//            cost: ''
-//        }],
         regularHours: 0,
         overtimeHours: 0,
         doubleOTHours: 0,
         statRegularHours: 0,
         statOTHours: 0,
-        statDOTHours: 0,
+        statDoubleOTHours: 0,
         totalHours: 0
     };
     $scope.timesheet = [];
@@ -167,6 +178,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Check to see if a timesheet ID exists
     if(timesheet.id){
         console.log(timesheet);
+        $scope.timesheetID = timesheet.id;
+        $scope.staffID = timesheet.Staff_id;
         $scope.laborer = timesheet.firstname + ' ' + timesheet.lastname;
         var workDate = Date.parse((timesheet.workDate.replace(/-/g,"/")));
         $scope.timesheetDate = new Date(workDate);
@@ -175,30 +188,37 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             console.log('done getting timesheet items!');
             console.log(timesheetSrv.timesheetItems);
             
-            //if one exists, populate the timesheet with the timesheetitems
+            //if timesheet items exists, populate the timesheet
             if(timesheetSrv.timesheetItems){
-                $scope.vehicleID = timesheet.Vehicles_id;
                 $scope.timesheetItems = timesheetSrv.timesheetItems;
-                //$scope.timesheet = timesheetSrv.timesheetItems;
-                for (var i in $scope.timesheetItems){
-                    
-                    $scope.timesheet.push({});
-                    console.log('timesheet item ' + i);
-                    //console.log($scope.timesheetItems[i].regularHours);
-                    $scope.timesheet[i].jobNumber = $scope.timesheetItems[i].jobNumber;
-                    $scope.timesheet[i].description = $scope.timesheetItems[i].description;
-                    $scope.timesheet[i].StaffTypes_id = $scope.timesheetItems[i].StaffTypes_id;
-                    
-                    $scope.timesheet[i].AccountingPhaseCodes_id = $scope.timesheetItems[i].AccountingPhaseCodes_id;
-                    $scope.timesheet[i].regularHours = parseFloat($scope.timesheetItems[i].regularHours);
-                    $scope.timesheet[i].overtimeHours = parseFloat($scope.timesheetItems[i].overtimeHours);
-                    $scope.timesheet[i].doubleOTHours = parseFloat($scope.timesheetItems[i].doubleOTHours);
-                    $scope.timesheet[i].statRegularHours = parseFloat($scope.timesheetItems[i].statRegularHours);
-                    $scope.timesheet[i].statOTHours = parseFloat($scope.timesheetItems[i].statOTHours);
-                    $scope.timesheet[i].statDOTHours = parseFloat($scope.timesheetItems[i].statDOTHours);
-                    $scope.timesheet[i].totalHours = parseFloat($scope.timesheetItems[i].totalHours);
-                    
-                }
+                
+                //Get the vehicle IDs and tolls   
+                $scope.vehicleID = timesheet.Vehicles_id;
+                $scope.getVehicleTolls($scope.vehicleID, $scope.timesheetItems);                                       
+                                       
+                $scope.timesheet = timesheetSrv.timesheetItems;
+//                for (var i in $scope.timesheetItems){
+//                    
+//                    $scope.timesheet.push({});
+//                    console.log('timesheet item ' + i);
+//                    //console.log($scope.timesheetItems[i].regularHours);
+//                    $scope.timesheet[i].Claims_id = $scope.timesheetItems[i].Claims_id;
+//                    $scope.timesheet[i].jobNumber = $scope.timesheetItems[i].jobNumber;
+//                    $scope.timesheet[i].description = $scope.timesheetItems[i].description;
+//                    $scope.timesheet[i].StaffTypes_id = $scope.timesheetItems[i].StaffTypes_id;
+//                    
+//                    $scope.timesheet[i].AccountingPhaseCodes_id = $scope.timesheetItems[i].AccountingPhaseCodes_id;
+//                    $scope.timesheet[i].regularHours = parseFloat($scope.timesheetItems[i].regularHours);
+//                    $scope.timesheet[i].overtimeHours = parseFloat($scope.timesheetItems[i].overtimeHours);
+//                    $scope.timesheet[i].doubleOTHours = parseFloat($scope.timesheetItems[i].doubleOTHours);
+//                    $scope.timesheet[i].statRegularHours = parseFloat($scope.timesheetItems[i].statRegularHours);
+//                    $scope.timesheet[i].statOTHours = parseFloat($scope.timesheetItems[i].statOTHours);
+//                    $scope.timesheet[i].statDOTHours = parseFloat($scope.timesheetItems[i].statDoubleOTHours);
+//                    $scope.timesheet[i].totalHours = parseFloat($scope.timesheetItems[i].totalHours);
+//                    
+//                    //$scope.timesheet[i].toll1 = parseFloat($scope.timesheetItems[i].toll1);
+//                    //$scope.timesheet[i].toll2 = parseFloat($scope.timesheetItems[i].toll2);
+//                }
                 //console.log('updating total sum...');
                 $scope.updateTotalSum();
                 //console.log($scope.timesheet);
@@ -208,7 +228,9 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     } else {       
         $scope.loading = false;
         //New Timesheet
-        $scope.timesheet = [timesheetTemplate];
+        $scope.timesheetID = null;
+        //$scope.timesheet = [timesheetTemplate];
+        $scope.timesheet = [angular.extend({}, timesheetTemplate)];
         $scope.timesheetDate = $scope.yesterday;
     }
     //console.log($scope.timesheet);
@@ -220,7 +242,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         statRegularHours: 0,
         statOTHours: 0,
         statDOTHours: 0,
-        totalHours: 0
+        statDoubleOTHours: 0
     };
 
     //Update the hour totals
@@ -232,7 +254,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         
         row.totalHours = 0;
         
-        var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDOTHours'];
+        var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDoubleOTHours'];
         
         var rowHours = {
             regularHours: parseFloat(row.regularHours),
@@ -240,7 +262,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
             doubleOTHours: parseFloat(row.doubleOTHours),
             statRegularHours: parseFloat(row.statRegularHours),
             statOTHours: parseFloat(row.statOTHours),
-            statDOTHours: parseFloat(row.statDOTHours)
+            statDoubleOTHours: parseFloat(row.statDoubleOTHours)
         };
         
         //Check for null/NaN values and replace them with 0
@@ -252,7 +274,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         }
         //console.log(rowHours);
         
-        row.totalHours = rowHours.regularHours + rowHours.overtimeHours + rowHours.doubleOTHours + rowHours.statRegularHours + rowHours.statOTHours + rowHours.statDOTHours;
+        row.totalHours = rowHours.regularHours + rowHours.overtimeHours + rowHours.doubleOTHours + rowHours.statRegularHours + rowHours.statOTHours + rowHours.statDoubleOTHours;
 
         $scope.updateTotalSum();
         //console.log('ROW TOLLS = ' + row.toll1 + ' ' + row.toll2);
@@ -260,7 +282,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
     $scope.updateTotalSum = function(){
 
-        var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDOTHours'];
+        var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDoubleOTHours'];
 
         for (var j in colValues){
             var col = colValues[j];
@@ -289,23 +311,24 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
 
     //Add a row to the bottom of the timesheet
     $scope.addTimesheetRow = function(){
-        $scope.timesheet.push({
-            isSelected: false,
-            Claims_id: '',
-            jobNumber: '',
-            AccountingPhaseCodes_id: '',
-            StaffTypes_id: '',
-            description: '',
-            toll1: '',
-            toll2: '',
-            regularHours: 0,
-            overtimeHours: 0,
-            doubleOTHours: 0,
-            statRegularHours: 0,
-            statOTHours: 0,
-            statDOTHours: 0,
-            totalHours: 0
-        });
+//        $scope.timesheet.push({
+//            isSelected: false,
+//            Claims_id: '',
+//            jobNumber: '',
+//            AccountingPhaseCodes_id: '',
+//            StaffTypes_id: '',
+//            description: '',
+//            toll1: '',
+//            toll2: '',
+//            regularHours: 0,
+//            overtimeHours: 0,
+//            doubleOTHours: 0,
+//            statRegularHours: 0,
+//            statOTHours: 0,
+//            statDoubleOTHours: 0,
+//            totalHours: 0
+//        });
+        $scope.timesheet.push(angular.extend({}, timesheetTemplate));
         if($scope.laborerPositionID !== ''){
             $scope.timesheet[$scope.timesheet.length-1].StaffTypes_id = $scope.laborerPositionID;
         }
@@ -316,24 +339,24 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         for (var i in $scope.timesheet){
 
             if($scope.timesheet[i].isSelected === true){
-                $scope.timesheet.splice(parseInt(i)+1, 0,
-                {
-                    isSelected: false,
-                    Claims_id: '',
-                    jobNumber: '',
-                    AccountingPhaseCodes_id: '',
-                    StaffTypes_id: '',
-                    description: '',
-                    toll1: '',
-                    toll2: '',
-                    regularHours: 0,
-                    overtimeHours: 0,
-                    doubleOTHours: 0,
-                    statRegularHours: 0,
-                    statOTHours: 0,
-                    statDOTHours: 0,
-                    totalHours: 0
-                });
+                $scope.timesheet.splice(parseInt(i)+1, 0, angular.extend({}, timesheetTemplate));
+//                {
+//                    isSelected: false,
+//                    Claims_id: '',
+//                    jobNumber: '',
+//                    AccountingPhaseCodes_id: '',
+//                    StaffTypes_id: '',
+//                    description: '',
+//                    toll1: '',
+//                    toll2: '',
+//                    regularHours: 0,
+//                    overtimeHours: 0,
+//                    doubleOTHours: 0,
+//                    statRegularHours: 0,
+//                    statOTHours: 0,
+//                    statDoubleOTHours: 0,
+//                    totalHours: 0
+//                });
                 //console.log('Position ID = ' + $scope.laborerPositionID);
                 if($scope.laborerPositionID !== ''){
                     $scope.timesheet[parseInt(i)+1].StaffTypes_id = $scope.laborerPositionID;
@@ -360,7 +383,6 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         $scope.timesheet = newArray;
     };
 
-
     //Select All
     $scope.selectAllToggle = function(value){
         if(value === true){
@@ -374,18 +396,46 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         }
     };
 
+    $scope.selectToll1 = [[]];
+    $scope.selectToll2 = [[]];
+    
     //Get vehicle ID tolls
-    $scope.vehicleNumber = '';
-    $scope.getVehicleTolls = function(vehicleID){
+    //$scope.vehicleNumber = '';
+    $scope.getVehicleTolls = function(vehicleID, timesheetItems){
         console.log('getting tolls for ' + vehicleID);
         timesheetSrv.getTolls(vehicleID)
         .then(function(){
             console.log('done getting tolls');
             $scope.tolls = timesheetSrv.vehicleTolls;
             console.log($scope.tolls);
+            
+            if(timesheetItems){
+                for(var i in timesheetItems){
+                    if(i > 0){
+                        $scope.selectToll1.push([]);
+                        $scope.selectToll2.push([]);
+                    }
+                                    
+                    for(var j in $scope.tolls){
+                        console.log('toll: ' + $scope.tolls[j].cost);
+                        
+                        if(timesheetItems[i].toll1 === $scope.tolls[j].cost){
+                            console.log('matching toll1!');
+                            $scope.timesheet[i].toll1 = $scope.tolls[j].cost;
+                            $scope.selectToll1[i][j] = true;
+                        }
+                        
+                        if(timesheetItems[i].toll2 === $scope.tolls[j].cost){
+                            console.log('matching toll2!');
+                            $scope.timesheet[i].toll2 = $scope.tolls[j].cost;
+                            $scope.selectToll2[i][j] = true;
+                        }
+                    }
+                }
+            }
         });
+        
     };
-
 
     //check the selected rows
     $scope.checkSelected = function(value){
@@ -401,10 +451,8 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         }
     };
 
-    //On Text Click
+    //Check if an hour value is empty, replace it with 0
     $scope.checkEmpty = function (row, col) {
-        //console.log('checking empty');
-        //console.log(row[col]);
         if(row[col] === null || isNaN(row[col])){
             row[col] = 0;
         }
@@ -417,6 +465,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         for (var i in newObj){
             delete newObj[i].toll1;
             delete newObj[i].toll2;
+            newObj[i].Timesheet_id = $scope.timesheetID;
         }
         return newObj;
     };
@@ -424,12 +473,12 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Get Tolls
     $scope.getTolls = function (object, date){
         console.log(object);
-        //var newObj = [];
+        var newObj = [];
 
         for (var i in object){
             //newObj.push({toll1: object[i].toll1, toll2: object[i].toll2});
             //newObj.push(object[i].toll2);
-            var newObj = [];
+            newObj = [];
             newObj.push({Claims_id: object[i].Claims_id,
                          workDate: date,
                          cost: object[i].toll1
@@ -452,6 +501,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         var date = $filter('date')($scope.timesheetDate, 'yyyy-MM-dd');
 
         var timesheet = {
+            Timesheet_id: $scope.timesheetID,
             staffID: $scope.staffID,
             workDate: date,
             Vehicles_id: $scope.vehicleID,
@@ -466,12 +516,39 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         console.log(timesheet);
         console.log('Timesheet Items:');
         console.log(timesheetItems);
-        console.log('Tolls:');
-        console.log(tolls);
+//        console.log('Tolls:');
+//        console.log(tolls);
 
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        //timesheetSrv.saveTimesheet(timesheet, timesheetItems, tolls, formToken);
+        timesheetSrv.saveTimesheet(timesheet, timesheetItems, formToken);
         //$modalInstance.close();        
     };
+    
+    //Clear timesheet
+    $scope.clearTimesheet = function (){
+        console.log('clearing timesheet');
+        $scope.laborer = '';
+        $scope.vehicleID = '';
+        
+        $scope.timesheet = [{
+            isSelected: false,
+            Claims_id: '',
+            jobNumber: '',
+            AccountingPhaseCodes_id: '',
+            StaffTypes_id: '',
+            description: '',
+            toll1: '',
+            toll2: '',
+            regularHours: 0,
+            overtimeHours: 0,
+            doubleOTHours: 0,
+            statRegularHours: 0,
+            statOTHours: 0,
+            statDoubleOTHours: 0,
+            totalHours: 0
+        }];
+        
+    };
+    
 });

@@ -18,7 +18,7 @@ module.service('timesheetSrv', function($http) {
     this.getTimesheetList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
         .then(function(response) {
-            console.log(response.data.TimesheetsCount);
+            //console.log(response.data.TimesheetsCount);
             self.timesheetList = response.data.Timesheets;
             self.timesheetCount = response.data.TimesheetsCount[0].rowCount;
         }, function(response){
@@ -32,8 +32,19 @@ module.service('timesheetSrv', function($http) {
         console.log('getting timesheet for id: ' + id);
         return $http.get(apiPath + id)
         .then(function(response) {
-            console.log(response);
+            //console.log(response);
             self.timesheetItems = response.data.Timesheet[1].TimesheetItems;
+            console.log(self.timesheetItems);
+            for(var i in self.timesheetItems){
+                self.timesheetItems[i].regularHours = parseFloat(self.timesheetItems[i].regularHours);
+                self.timesheetItems[i].overtimeHours = parseFloat(self.timesheetItems[i].overtimeHours);
+                self.timesheetItems[i].doubleOTHours = parseFloat(self.timesheetItems[i].doubleOTHours);
+                self.timesheetItems[i].statRegularHours = parseFloat(self.timesheetItems[i].statRegularHours);
+                self.timesheetItems[i].statOTHours = parseFloat(self.timesheetItems[i].statOTHours);
+                self.timesheetItems[i].statDoubleOTHours = parseFloat(self.timesheetItems[i].statDoubleOTHours);
+                self.timesheetItems[i].totalHours = parseFloat(self.timesheetItems[i].totalHours);
+            }
+            //self.timesheetItems.
         }, function(response){
             //Handle any errors
             self.error.showError = true;
@@ -42,13 +53,13 @@ module.service('timesheetSrv', function($http) {
     
     //Get timesheet items for an ID
     this.getTimesheetItems = function(id, row, numRows){
-        console.log('getting timesheet items...');
+        console.log('getting timesheet items for id = ' + id);
         //console.log(timesheet_items_apiPath + id + '/' + row + '/' + numRows);
 
         return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
         .then(function(response){
             
-            console.log(response);
+            //console.log(response);
             self.timesheetItems = response.data.Timesheets;
         });
     };
@@ -63,7 +74,7 @@ module.service('timesheetSrv', function($http) {
         
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            console.log(response);
+            //console.log(response);
             self.autocompleteList = response.data.Staffs;
         });
     };
@@ -81,16 +92,17 @@ module.service('timesheetSrv', function($http) {
 //        } else {
 //            config = undefined;
 //        }
+        if(object){            
+            var splitObject = object.split(' ');
+            console.log(splitObject);
         
-        var splitObject = object.split(' ');
-        console.log(splitObject);
-        
-        if (object || splitObject.length === 1) {            
-            //var name = object.split(' ');
-            //for (var i = 0; i < Object.keys(object).length; i++) {
-                config.name = object;
-                //config.lastname = name[1];
-            //}
+            if (object || splitObject.length === 1) {            
+                //var name = object.split(' ');
+                //for (var i = 0; i < Object.keys(object).length; i++) {
+                    config.name = object;
+                    //config.lastname = name[1];
+                //}
+            }
         } else {
             
             config = undefined;
@@ -102,7 +114,7 @@ module.service('timesheetSrv', function($http) {
             params: config
         })
             .then(function(response) {
-            console.log(response);
+            //console.log(response);
             self.searchResults = response.data.Staffs;
             self.searchResultsCount = response.data.Staffs.length;
         });
@@ -115,7 +127,7 @@ module.service('timesheetSrv', function($http) {
         
         return $http.get(claim_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            console.log(response);
+            //console.log(response);
             self.claimsList = response.data;
             self.claimsCount = Object.keys(response.data).length-2;
         });
@@ -138,7 +150,7 @@ module.service('timesheetSrv', function($http) {
             params: config
         })
             .then(function(response) {
-            console.log(response);
+            //console.log(response);
             //self.claimResults = response.data.Staffs;
             //self.searchResultsCount = response.data.Staffs.length;
         });
@@ -146,19 +158,26 @@ module.service('timesheetSrv', function($http) {
     
     
     //Save a Timesheet
-    this.saveTimesheet = function(timesheet, timesheetItems, tolls, formToken){
+    this.saveTimesheet = function(timesheet, timesheetItems, formToken){
+        console.log('saving timesheet...');
+        var timesheetID = '';
+        if(timesheet.Timesheet_id){
+            timesheetID = parseInt(timesheet.Timesheet_id);
+        } else {
+            timesheetID = '0';
+        }
         
         var data = {};
         data.timesheet = timesheet;
         data.timesheetItems = timesheetItems;
-        data.tolls = tolls;
+        //data.tolls = tolls;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({
             method: 'POST',
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + '0',
+            url: apiPath + timesheetID,
             data: data
         }).then(function(response) {
             console.log(response);
@@ -170,8 +189,8 @@ module.service('timesheetSrv', function($http) {
     this.getTolls = function(vehicleID){
         return $http.get(vehicle_toll_apiPath + vehicleID)
             .then(function(response) {
-            console.log('Vehicle Tolls:');
-            console.log(response);
+            //console.log('Vehicle Tolls:');
+            //console.log(response);
             self.vehicleTolls = response.data.VehicleTolls;
             //self.claimsCount = Object.keys(response.data).length-2;
         });
