@@ -30,12 +30,12 @@ class CompanyBuilder extends AbstractBuilder {
         }
 
         $builder->add('name', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('name', $values)))
-                //->add('CompanyTypes_id', 'select', array('class' => 'form-control', 'options' => $options['companyTypes']))
+                ->add('CompanyTypes_id', 'select', array('class' => 'form-control', 'options' => $options['companyTypes']))
                 ->add('address1', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('address1', $values)))
                 ->add('address2', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('address2', $values)))
                 ->add('city', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('city', $values)))
-                //->add('Provinces_id', 'select', array('class' => 'form-control', 'value' =>  $this->getValue('Provinces_id', $values)))
-                //->add('Countries_id', 'select', array('class' => 'form-control', 'value' =>  $this->getValue('Countries_id', $values)))
+                ->add('Provinces_id', 'select', array('class' => 'form-control', 'options' =>  $options['provinces']))
+                ->add('Countries_id', 'select', array('class' => 'form-control', 'options' =>  $options['countries']))
                 ->add('postalCode', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('postalCode', $values)))
                 ->add('fax', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('fax', $values)))
                 ->add('telephone', 'text', array('class' => 'form-control', 'value' =>  $this->getValue('telephone', $values)))

@@ -16,7 +16,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\companies\form\CompanyBuilder;
 use components\geography\serialization\ProvinceSerializer;
-use core\navigation\Pagination;
+use core\serialization\Serializer;
 
 class CompaniesController extends AbstractController
 {
@@ -84,24 +84,33 @@ class CompaniesController extends AbstractController
         $builder = new FormBuilder($this->logger, $model);
         $companyBuilder = new CompanyBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-     
+        $options = array();
        
-//        $provinceList = $this->httpRequest->getAttribute('Provinces');
-//
-//        $serializer = new ProvinceSerializer();
-//        $selectedOptions = array($staffBuilder->getValue('Provinces_id', $values));
-//
-//        $options = array('provinces' => $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions));
-            $options = array();
+        $provinceList = $this->httpRequest->getAttribute('Provinces');
+        $serializer = new ProvinceSerializer();
+        $selectedOptions = array($companyBuilder->getValue('Provinces_id', $values));
+        $options['provinces'] = $serializer->formatSelectionBoxOptions($serializer->pruneList($provinceList), $selectedOptions);
+        
+        $typesList = $this->httpRequest->getAttribute('CompanyTypes');
+        $serializer = new Serializer();
+        $selectedOptions = array($companyBuilder->getValue('CompanyTypes_id', $values));
+        $options['companyTypes'] = $serializer->formatSelectionBoxOptions($typesList, $selectedOptions, 'type');
+        
+        $countries = $this->httpRequest->getAttribute('Countrys');
+        $selectedOptions = array($companyBuilder->getValue('Countries_id', $values));
+        $options['countries'] = $serializer->formatSelectionBoxOptions($countries, $selectedOptions, 'country');
+        
+        
+           
         return $companyBuilder->buildForm($builder, $values, $options, $results);
     }
-    
-    public function backboneListall($offset, $limit) {
-        $result = $this->model->listall($offset, $limit);
-        
-        $list = array_key_exists('Companys', $result) ? $result['Companys'] : array();
-        $this->render($list);
-    }
+//    
+//    public function backboneListall($offset, $limit) {
+//        $result = $this->model->listall($offset, $limit);
+//        
+//        $list = array_key_exists('Companys', $result) ? $result['Companys'] : array();
+//        $this->render($list);
+//    }
     
     public function pagination($offset, $limit) {
         $result = $this->model->getPagination($offset, $limit);

@@ -30,7 +30,9 @@ admin_companies_get:
 admin_companies_edit:
     pattern: admin/companies/edit/*
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', cacheKey: CompanyTypes}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', cacheKey: Provinces}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', cacheKey: Countrys}
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController

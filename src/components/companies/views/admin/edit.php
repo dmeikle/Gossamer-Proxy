@@ -1,28 +1,4 @@
 
-<script language="javascript">
-
-$(function() {
-   $('#Company_cancel').click(function(e) {
-      $('#left-feature-slider-edit').toggle(false);
-   });
-   
-   $('#Company_save').click(function(e) {
-       e.stopPropagation();
-       var id = $('#Company_companyId').val();
-      
-       $.ajax({
-            url: '/admin/companies/' + id,
-            type: "post",
-            data: $('#company-form').serialize()
-        });
-       
-      $('#left-feature-slider-edit').toggle(false);
-   });
-   
-});
-
-</script>
-
 
 <form role="form" class="form-standard" method="post" id="company-form">
     <?php echo $form['companyId'];?>
@@ -34,9 +10,7 @@ $(function() {
       <tr>
         <td>Type:</td>
         <td>
-            <select class="form-control" name="company[CompanyTypes_id]">
-                <option>load company types</option>
-            </select>
+            <?php echo $form['CompanyTypes_id'];?>
         </td>
       </tr>
       <tr>
@@ -50,7 +24,11 @@ $(function() {
       </tr>
       <tr>
         <td>Province:</td>
-        <td>&nbsp;</td>
+        <td><?php echo $form['Provinces_id'];?></td>
+      </tr>
+      <tr>
+        <td>Province:</td>
+        <td><?php echo $form['Countries_id'];?></td>
       </tr>
       <tr>
         <td>Postal Code:</td>

@@ -49,15 +49,15 @@ class Serializer {
      * 
      * @param array $options - the list of options to draw to the page
      * @param array $selectedOptions - the list of already selected options from a previous save
-     * @param string $subKey - the name of the column to be used as an associative array key
+     * @param string $textKey - the name of the column to be used as visible text
      * @param string $selectedValue - the currently selected item
 
      * @return string
      */
-    public function formatSelectionBoxOptions(array $options, array $selectedOptions = null, $subKey = '', $selectedValue = '') {
+    public function formatSelectionBoxOptions(array $options, array $selectedOptions = null, $textKey = '', $selectedValue = '') {
 
-        if (strlen($subKey) > 0) {
-            $options = $this->extractSubNode($options, $subKey);
+        if (strlen($textKey) > 0) {
+            $options = $this->extractSubNode($options, $textKey);
         }
         if(is_null($selectedOptions)) {
             $selectedOptions = array();
