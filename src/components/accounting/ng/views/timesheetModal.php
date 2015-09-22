@@ -24,11 +24,17 @@
         <div class="pull-left">
             <div class="form-group laborer">
                 <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
-                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="getStaffID(laborer)">
+                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="getStaffInfo(laborer)">
                 <datalist id="timesheet-autocomplete-list">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
                 </datalist> 
+            </div>
+            
+            <div class="form-group rate">
+                <label for="timesheet-rate"><?php echo $this->getString('ACCOUNTING_TIMESHEET_RATE'); ?></label>
+<!--                <input name="timesheet-rate" class="form-control" type="number" ng-model="rate">                 -->
+                {{hourlyRate | currency}}
             </div>
         </div>
         <div class="pull-right">
@@ -61,6 +67,7 @@
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CLAIM'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_ITEM_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DESCRIPTION'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
@@ -80,6 +87,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
@@ -92,7 +100,7 @@
                     <td></td>
                 </tr>
                 
-                <tr ng-if="!loading" ng-repeat="row in timesheet track by $index">
+                <tr ng-if="!loading" ng-repeat="row in timesheetItems track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
@@ -104,11 +112,14 @@
                         </datalist>
                     </td>
                     <td>
-                        <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row.AccountingPhaseCodes_id)">
+                        <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
                             <?php foreach($AccountingPhaseCodes as $phase) {
                                 echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                } ?>
                         </select>
+                    </td>
+                    <td>
+                        <input class="rate form-control" ng-model="row.hourlyRate">
                     </td>
                     <td>
                         <input class="description form-control" ng-model="row.description">
@@ -157,6 +168,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                     <td>Total:</td>
                     <td>{{sumTotal.regularHours}}</td>
                     <td>{{sumTotal.overtimeHours}}</td>
@@ -177,7 +189,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
         <button type="button" class="btn btn-primary" ng-click="clearTimesheet()">Save and New</button>
-        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheet)">Save and Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems)">Save and Close</button>
     </div>
 </form>
 <!--

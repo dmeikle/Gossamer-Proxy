@@ -23,6 +23,8 @@ return array(
     'ACCOUNTING_NEW_TIMESHEET_INSERT' => 'Insert Row(s)',
     'ACCOUNTING_NEW_TIMESHEET_DELETE' => 'Delete Row(s)',
     
+    'ACCOUNTING_TIMESHEET_RATE' => 'Rate',
+    'ACCOUNTING_TIMESHEET_ITEM_RATE' => 'Rate ($)',
     'ACCOUNTING_TIMESHEET_CLAIM' => 'Claim',
     'ACCOUNTING_TIMESHEET_PHASE' => 'Phase',
     'ACCOUNTING_TIMESHEET_CATEGORY' => 'Category',

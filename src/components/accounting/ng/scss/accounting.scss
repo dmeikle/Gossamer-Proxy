@@ -12,18 +12,33 @@ table{
 }
 .modal-lg{
     width:1300px;
-    .laborer, .date, .total-hours, .form-control{
-        display:inline;
+    .form-group{
+        display:block;
+        label{
+            margin-right:10px;
+        }
+        input{
+            display:inline;
+            width: auto;
+        }
+    }
+    .laborer, .date, .rate, .total-hours, .form-control{
+//        display:inline;
+    }
+    .rate{
+        label{
+            margin-right:43px;
+        }
     }
     .date{
         float:right;
         margin-right:10px;
     }
-    .pull-right{
-        label{
-            margin-right:10px;
-        }
-    }
+//    .pull-right{
+//        label{
+//            margin-right:10px;
+//        }
+//    }
     .laborer{
         input{
             margin-left:10px;
@@ -48,6 +63,10 @@ table{
         }
         input{
             width: 100%;
+        }
+        .rate{
+            width:70px;
+            text-align:center;
         }
         .claims, .phase, .category, description{
             min-width:100px;
