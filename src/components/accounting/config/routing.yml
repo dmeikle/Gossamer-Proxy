@@ -1,3 +1,16 @@
+admin_accounting_search:
+    pattern: admin/accounting/timesheets/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_accounting_search
+        datasource: datasource1
+    methods: [GET]
+
+
 
 accounting_phasecodes_list:
     pattern: admin/accounting/phasecodes/*/*

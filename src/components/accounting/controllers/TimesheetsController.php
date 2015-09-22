@@ -34,4 +34,9 @@ class TimesheetsController extends AbstractController{
         $this->render($result);
     }
     
+    public function search() {
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+        
+        $this->render($result);
+    }
 }

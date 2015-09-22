@@ -67,4 +67,25 @@ class TimesheetModel extends AbstractModel{
 
         return array();
     }
+    
+    public function search(array $params) {
+        $offset = 0;
+        $rows = 20;
+        
+        $params = array_merge($params, array(
+            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
+        ));
+        $defaultLocale = $this->getDefaultLocale();
+        $params['locale'] = $defaultLocale['locale'];
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'list', $params);
+     
+        
+        if (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
+            $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
+        }
+
+        return $data;
+    }
 }
