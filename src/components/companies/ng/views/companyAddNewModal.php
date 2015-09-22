@@ -1,5 +1,7 @@
+
+
 <div class="modal-header" ng-switch="company.id">
-  <h1 class="modal-title"><?php echo $this->getString('COMPANY_NEW_ADDNEW'); ?></h1>
+  <h1 class="modal-title"><?php echo $this->getString('COMPANY_ADD_NEW'); ?></h1>
 </div>
 <div class="modal-body">
   <div class="cards col-md-12">
@@ -16,7 +18,20 @@
             id="company-name" ng-model="company.name">
         </div>
         <div class="form-group">
-          <label for="company-address1"><?php echo $this->getString('COMPANY_ADDDRESS'); ?></label>
+          <label for="company-type"><?php echo $this->getString('COMPANY_TYPE'); ?></label>
+          <select class="form-control" id="company-Provinces_id" ng-model='company.CompanyTypes_id'>
+              <?php foreach($CompanyTypes as $type) {?>
+              <option value="<?php echo $type['id'];?>"><?php echo $type['type'];?></option>              
+              <?php } ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="company-telephone"><?php echo $this->getString('COMPANY_TELEPHONE'); ?></label>
+          <input class="form-control" type="text" name="telephone"
+            id="company-telephone" ng-model="company.telephone">
+        </div>
+        <div class="form-group">
+          <label for="company-address1"><?php echo $this->getString('COMPANY_ADDRESS'); ?></label>
           <input class="form-control" type="text" name="address1"
             id="company-address1" ng-model="company.address1">
           <input class="form-control" type="text" name="address2"

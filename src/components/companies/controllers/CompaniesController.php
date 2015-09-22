@@ -46,6 +46,19 @@ class CompaniesController extends AbstractController
 
     }
     
+    public function listallClaims($companyId) {
+        $offset = 0;
+        $limit = 20;
+        $params = array(
+            'Companies_id' => intval($companyId),
+            'directive::DIRECTION' => 'desc',
+            'directive::ORDER_BY' => 'dateReceived');
+        
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'listbycompany');
+        
+        $this->render($result);
+    }
+    
     /**
      * listall - retrieves rows based on offset, limit
      * 

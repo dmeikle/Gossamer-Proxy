@@ -27,6 +27,7 @@
         <thead>
             <tr>
                 <th><?php echo $this->getString('COMPANY_NAME'); ?></th>
+                <th><?php echo $this->getString('COMPANY_TYPE'); ?></th>
                 <th><?php echo $this->getString('COMPANY_ADDRESS'); ?></th>
                 <th><?php echo $this->getString('COMPANY_CITY'); ?></th>
                 <th><?php echo $this->getString('COMPANY_POSTALCODE'); ?></th>
@@ -51,6 +52,7 @@
           <tr ng-if="!loading" ng-repeat="company in companyList"
             ng-class="{'selected': company === previouslyClickedObject, 'inactive bg-warning text-warning': company.status=='inactive'}">
               <td ng-click="selectRow(company)">{{company.name}}</a></td>
+              <td ng-click="selectRow(company)">{{company.type}}</a></td>
               <td ng-click="selectRow(company)">{{company.address1}}</td>
               <td ng-click="selectRow(company)">{{company.city}}</td>
               <td ng-click="selectRow(company)">{{company.postalCode}}</td>
@@ -62,7 +64,7 @@
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="/admin/companies/edit/{{company.id}}">Edit</a></li>
+                    <li><a href="/admin/companies/edit/{{company.Companies_id}}">Edit</a></li>
                     <li><a href="#">Delete</a></li>
                   </ul>
                 </div>
@@ -100,21 +102,34 @@
     <div ng-if="!sidePanelLoading && !searching">
       <h1><a href="/admin/company/edit/{{selectedCompany.id}}">{{selectedCompany.firstname}} {{selectedCompany.lastname}}</a></h1>
       <h4><?php echo $this->getString('COMPANY_NAME')?></h3>
-      <p>{{selectedCompany.name}}</p>
-      <h4><?php echo $this->getString('COMPANY_ADDRESS')?></h3>
-      <p>{{selectedCompany.address}}</p>
-      <h4><?php echo $this->getString('COMPANY_CITY')?></h3>
-      <p>{{selectedCompany.city}}</p>
-      <h4><?php echo $this->getString('COMPANY_POSTALCODE')?></h3>
-      <p>{{selectedCompany.postalCode}}</p>
-      <h4><?php echo $this->getString('COMPANY_TELEPHONE')?></h3>
-      <p>{{selectedCompany.telephone}}</p>
-      <h4><?php echo $this->getString('COMPANY_FAX')?></h3>
-      <p>{{selectedCompany.fax}}</p>
-      <h4><?php echo $this->getString('COMPANY_URL')?></h3>
-      <p>{{selectedCompany.url}}</p>
+      <p><a href="/admin/companies/edit/{{selectedCompany.Companies_id}}">{{selectedCompany.name}}</a></p>
+      <div ng-repeat="claim in claimsList" class="sidePanelRow">
+          <div class="name">{{ claim.jobNumber }}</div>
+          <div class="dateReceived"><?php echo $this->getString('CLAIMS_DATE_RECEIVED')?> {{ claim.dateReceived }}</div>
+          <div class="claimType">{{ claim.icon }}  {{ claim.typeOfClaim }} {{ claim.ClaimTypes_other }}</div> 
+          <div class="deductable"><?php echo $this->getString('CLAIMS_DEDUCTABLE')?> {{ claim.deductable }}</div>
+          <div class="reason"><?php echo $this->getString('CLAIMS_REASON')?> <br />{{ claim.reason }}</div>
+          <div class="unassignedJobNumber">{{ claim.unassignedJobNumber }}</div>
+          <div class="projectManager">{{ claim.firstname }} {{ claim.lastname }}</div>    
+          <div class="claimStatus">{{ claim.status }}</div>          
+      </div>
     </div>
   </div>
   <div class="clearfix"></div>
   <form class="hidden"></form>
 </div>
+<style>
+    .sidePanelRow .name {
+        font-weight: 600;
+        float: left;
+    }
+    .sidePanelRow .dateReceived {
+        float: right;
+    }
+    
+    .sidePanelRow .claimType {
+        clear: both;
+    }
+    
+    
+</style>

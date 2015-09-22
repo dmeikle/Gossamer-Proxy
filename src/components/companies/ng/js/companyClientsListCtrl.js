@@ -92,6 +92,7 @@ module.controller('companyClientsListCtrl', function($scope, $modal, companyClie
   };
 
   $scope.selectRow = function(clickedObject) {
+     
     $scope.searching = false;
     $scope.sidePanelLoading = true;
     $scope.sidePanelOpen = true;

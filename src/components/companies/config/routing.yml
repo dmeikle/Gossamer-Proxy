@@ -11,6 +11,8 @@ admin_companies_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_companies_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/companies/locales/*/Company'
 
 admin_companies_get:
     pattern: admin/companies/*
@@ -27,6 +29,8 @@ admin_companies_get:
 
 admin_companies_edit:
     pattern: admin/companies/edit/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel'}
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
@@ -61,6 +65,19 @@ admin_company_contacts_list:
         view: core\views\JSONView
         viewKey: admin_company_contacts_list
         datasource: datasource1 
+
+        
+        
+admin_company_claims:
+    pattern: admin/companies/claims/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\claims\models\ClaimModel
+        method: listallClaims
+        view: core\views\JSONView
+        viewKey: admin_company_claims
+        datasource: datasource1          
         
         
 admin_companies_list:
@@ -73,3 +90,4 @@ admin_companies_list:
         view: core\views\JSONView
         viewKey: admin_companies_list
         datasource: datasource1  
+       

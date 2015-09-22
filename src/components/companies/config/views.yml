@@ -23,7 +23,7 @@ admin_companies_home:
     javascript:
         - @components/companies/dist/js/companies.concat.js
     css:
-        - @components/companies/dist/css/company.min.css
+        - @components/companies/includes/css/companies.css
         
         
 

@@ -1,21 +1,21 @@
 module.service('companyClientsListSrv', function($http, searchSrv) {
 
-  var apiPath = '/admin/companies/clients/';
+  var apiPath = '/admin/companies/contacts/';
 
   var self = this;
 
   self.advancedSearch = {};
 
   this.getCompanyClientsList = function(companyId, row, numRows) {
-    return $http.get(apiPath + companyId + '/' + row + '/' + numRows)
+    return $http.get(apiPath + companyId )
       .then(function(response) {
-        self.companyClientsList = response.data.CompanyClients;
-        self.companyClientsCount = response.data.CompanyClientsCount[0].rowCount;
+        self.companyClientsList = response.data.Contacts;
+        self.companyClientsCount = response.data.Contacts[0].rowCount;
       });
   };
 
   this.getCompanyDetail = function(object) {
-    return $http.get(apiPath + object.id)
+    return $http.get(apiPath + object.Companies_id)
       .then(function(response) {
 //        if (response.data.Company.dob) {
 //          response.data.Company.dob = new Date(response.data.Company.dob);

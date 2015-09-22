@@ -1,4 +1,4 @@
-module.controller('companyListCtrl', function($scope, $modal, companyListSrv, companyEditSrv, companyTemplateSrv) {
+module.controller('companyListCtrl', function($scope, $modal, companyListSrv, companyClaimsListSrv, companyEditSrv, companyTemplateSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -88,14 +88,16 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
   };
 
   $scope.selectRow = function(clickedObject) {
+      
     $scope.searching = false;
     $scope.sidePanelLoading = true;
     $scope.sidePanelOpen = true;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
-      companyListSrv.getCompanyDetail(clickedObject)
+      companyClaimsListSrv.getClaimsList(clickedObject.Companies_id, 0, 100)
         .then(function() {
-          $scope.selectedCompany = companyListSrv.companyDetail;
+          $scope.selectedCompany = clickedObject;
+          $scope.claimsList = companyClaimsListSrv.claimsList;
           $scope.sidePanelLoading = false;
         });
     }
