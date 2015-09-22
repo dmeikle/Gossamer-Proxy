@@ -1,1 +1,1 @@
-var module = angular.module('staffAdmin', ['ui.bootstrap']);
+var module = angular.module('staffAdmin', ['ui.bootstrap', 'dropzone']);

@@ -10,17 +10,22 @@ admin_staff_edit_home:
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
+            - rootApp
             - staffAdmin
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
         - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
         - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - /js/extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
     javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/staff/dist/js/staff.concat.js
         #- @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
 
 
 
@@ -35,15 +40,16 @@ admin_staff_home:
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
+            - rootApp
             - staffAdmin
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
         - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
         - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
-    javascript:
         - @components/staff/dist/js/staff.concat.js
         #- @components/staff/dist/js/staff.min.js
     css:

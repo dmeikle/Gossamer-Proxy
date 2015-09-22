@@ -73,5 +73,7 @@ return array(
   'STAFF_SEARCH' => 'Search',
   'STAFF_ADVANCED_SEARCH' => 'Advanced Search',
   'STAFF_UPDATE' => 'Update',
-  'STAFF_CLOSE' => 'Close'
+  'STAFF_CLOSE' => 'Close',
+  'STAFF_PHOTOUPLOAD' => 'Upload User Photo',
+  'STAFF_PHOTOUPLOAD_UPLOADHERE' => 'Drag a photo or click here to upload a user photo',
 );

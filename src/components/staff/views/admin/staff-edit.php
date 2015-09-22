@@ -354,7 +354,7 @@
             </table>
           </div>
         </div>
-        <div class="cardright" ng-if="!loading">
+        <div class="cardright" ng-if="!loading && staff.imageName">
           <img class="staff-picture pull-right" ng-src="/images/staff/{{staff.imageName}}">
         </div>
         <div class="clearfix"></div>
@@ -413,6 +413,22 @@
           </div>
         </form>
 
+      </div>
+
+      <div class="card" ng-controller="staffPhotoCtrl">
+        <div class="cardheader">
+          <h1><?php echo $this->getString('STAFF_PHOTOUPLOAD') ?></h1>
+        </div>
+        <div ng-if="loading">
+          <span class="spinner-loader"></span>
+        </div>
+        <div ng-if="!loading">
+            <div dropzone="dropzoneConfig" class="dropzone">
+              <p class="text-center">
+                <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
+              </p>
+            </div>
+        </div>
       </div>
 
       <div class="card" ng-controller="staffEmergencyContactsCtrl">

@@ -1,4 +1,4 @@
-var module = angular.module('phoenixRestorations', []);
+var module = angular.module('rootApp', []);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function(data){
@@ -9,13 +9,38 @@ module.config(function ($httpProvider) {
     };
 });
 
+angular.module('dropzone', []).directive('dropzone', function () {
+  return function (scope, element, attrs) {
+    var config, dropzone;
+
+    config = scope[attrs.dropzone];
+
+    // create a Dropzone for the element with the given options
+    dropzone = new Dropzone(element[0], config.options);
+
+    // bind the given event handlers
+    angular.forEach(config.eventHandlers, function (handler, event) {
+      dropzone.on(event, handler);
+    });
+  };
+});
+
+module.service('photoSrv', function($http) {
+  this.getPhoto = function(apiPath) {
+    return $http({
+      url:apiPath,
+      method:'GET'
+    });
+  };
+});
+
 module.service('searchSrv', function($http) {
 
   var self = this;
 
   this.advancedSearch = {};
 
-  this.search = function(object, apiPath) {
+  this.searchCall = function(object, apiPath) {
     config = {};
     for (var param in object) {
       if (object.hasOwnProperty(param)) {
@@ -30,15 +55,8 @@ module.service('searchSrv', function($http) {
     });
   };
 
-  this.autocomplete = function(object, apiPath) {
-      return self.search(object, apiPath + 'search').then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object, apiPath) {
-    return self.search(object, apiPath + row + '/' + numRows).then(function(response) {
+  this.search = function(object, apiPath) {
+      return self.searchCall(object, apiPath + 'search').then(function(response) {
         self.searchResults = response.data.Staffs;
         self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });
