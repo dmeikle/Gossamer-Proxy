@@ -43,6 +43,34 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         }
     });
     
+    //Laborer Typeahead
+    $scope.fetchLaborerAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+
+        return staffListSrv.fetchAutocomplete(searchObject);
+    };
+    
+    $scope.search = function(searchObject) {
+        $scope.noResults = undefined;
+        var copiedObject = angular.copy(searchObject);
+        if (copiedObject && Object.keys(copiedObject).length > 0) {
+          $scope.searchSubmitted = true;
+          $scope.loading = true;
+          staffListSrv.search(copiedObject).then(function() {
+            $scope.staffList = staffListSrv.searchResults;
+            $scope.totalItems = staffListSrv.searchResultsCount;
+            $scope.loading = false;
+          });
+        }
+    };
+    
+    $scope.resetSearch = function() {
+        $scope.searchSubmitted = false;
+        $scope.basicSearch.query = {};
+        getStaffList();
+    };
+    
     $scope.hourlyRate = 0;
     //get staff id and rate
     $scope.getStaffInfo = function(name){
@@ -66,28 +94,28 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     };
     
     //Search
-    $scope.search = function() {
-        var searchObject = $scope.laborer;
-        //console.log(searchObject);
-        if (searchObject) {
-            timesheetSrv.filterListBy(0, 20, searchObject)
-                .then(function() {
-                if (timesheetSrv.searchResults) {
-                    //console.log('got search results');
-                    $scope.staffList = timesheetSrv.searchResults;
-                    $scope.totalItems = timesheetSrv.searchResultsCount;
-                    if($scope.totalItems === 1){
-                        $scope.positionID = $scope.staffList[0].StaffPositions_id;
-                        $scope.setCategory($scope.positionID);
-                        $scope.staffID = $scope.staffList[0].id;
-                        $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
-                        $scope.hourlyRate = parseFloat($scope.staffList[0].HourlyRate);
-                        $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;
-                    }
-                }
-            });
-        }
-    };
+//    $scope.search = function() {
+//        var searchObject = $scope.laborer;
+//        //console.log(searchObject);
+//        if (searchObject) {
+//            timesheetSrv.filterListBy(0, 20, searchObject)
+//                .then(function() {
+//                if (timesheetSrv.searchResults) {
+//                    //console.log('got search results');
+//                    $scope.staffList = timesheetSrv.searchResults;
+//                    $scope.totalItems = timesheetSrv.searchResultsCount;
+//                    if($scope.totalItems === 1){
+//                        $scope.positionID = $scope.staffList[0].StaffPositions_id;
+//                        $scope.setCategory($scope.positionID);
+//                        $scope.staffID = $scope.staffList[0].id;
+//                        $scope.laborerPositionID = $scope.staffList[0].StaffPositions_id;
+//                        $scope.hourlyRate = parseFloat($scope.staffList[0].HourlyRate);
+//                        $scope.laborerName = $scope.staffList[0].lastname + ', ' + $scope.staffList[0].firstname;
+//                    }
+//                }
+//            });
+//        }
+//    };
 
     //Claims Autocomplete
     //Fetch claims

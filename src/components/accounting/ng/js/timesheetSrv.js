@@ -9,8 +9,6 @@ module.service('timesheetSrv', function($http) {
     var vehicle_toll_apiPath = '/admin/vehicles/tolls/';
     var self = this;
     
-//    var row = 0;
-//    var numRows = 20;
     self.error = {};
     self.error.showError = false;
     
@@ -18,7 +16,6 @@ module.service('timesheetSrv', function($http) {
     this.getTimesheetList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
         .then(function(response) {
-            //console.log(response.data.TimesheetsCount);
             self.timesheetList = response.data.Timesheets;
             self.timesheetCount = response.data.TimesheetsCount[0].rowCount;
         }, function(response){
@@ -29,10 +26,8 @@ module.service('timesheetSrv', function($http) {
     
     //Get the a specific timesheet
     this.getTimesheet = function(id){
-        console.log('getting timesheet for id: ' + id);
         return $http.get(apiPath + id)
         .then(function(response) {
-            //console.log(response);
             self.timesheetItems = response.data.Timesheet[1].TimesheetItems;
             console.log(self.timesheetItems);
             for(var i in self.timesheetItems){
@@ -44,7 +39,6 @@ module.service('timesheetSrv', function($http) {
                 self.timesheetItems[i].statDoubleOTHours = parseFloat(self.timesheetItems[i].statDoubleOTHours);
                 self.timesheetItems[i].totalHours = parseFloat(self.timesheetItems[i].totalHours);
             }
-            //self.timesheetItems.
         }, function(response){
             //Handle any errors
             self.error.showError = true;
@@ -53,12 +47,8 @@ module.service('timesheetSrv', function($http) {
     
     //Get timesheet items for an ID
     this.getTimesheetItems = function(id, row, numRows){
-        console.log('getting timesheet items for id = ' + id);
-        //console.log(timesheet_items_apiPath + id + '/' + row + '/' + numRows);
-
         return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
-        .then(function(response){
-            
+        .then(function(response){            
             //console.log(response);
             self.timesheetItems = response.data.Timesheets;
         });
@@ -66,15 +56,10 @@ module.service('timesheetSrv', function($http) {
     
     //Staff Autocomplete
     this.autocomplete = function(searchObject) {
-        //var value = searchObject.val[0];
         var value = searchObject;
-        var column = 'name';     
-        
-        
-        
+        var column = 'name';        
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            //console.log(response);
             self.autocompleteList = response.data.Staffs;
         });
     };
@@ -82,29 +67,14 @@ module.service('timesheetSrv', function($http) {
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
-//        if (object.val[0]) {
-//            
-//            var name = object.val[0].split(' ');
-//            for (var i = 0; i < Object.keys(object).length; i++) {
-//                config.firstname = name[0];
-//                config.lastname = name[1];
-//            }
-//        } else {
-//            config = undefined;
-//        }
         if(object){            
             var splitObject = object.split(' ');
             console.log(splitObject);
         
             if (object || splitObject.length === 1) {            
-                //var name = object.split(' ');
-                //for (var i = 0; i < Object.keys(object).length; i++) {
-                    config.name = object;
-                    //config.lastname = name[1];
-                //}
+                config.name = object;
             }
-        } else {
-            
+        } else {            
             config = undefined;
         }
         
@@ -114,7 +84,6 @@ module.service('timesheetSrv', function($http) {
             params: config
         })
             .then(function(response) {
-            //console.log(response);
             self.searchResults = response.data.Staffs;
             self.searchResultsCount = response.data.Staffs.length;
         });
@@ -127,13 +96,10 @@ module.service('timesheetSrv', function($http) {
         
         return $http.get(claim_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            //console.log(response);
             self.claimsList = response.data;
             self.claimsCount = Object.keys(response.data).length-2;
         });
     };
-    
-    //Get Claim label
     
     //Claim Search
     this.filterClaims = function(row, numRows, object) {
@@ -150,9 +116,6 @@ module.service('timesheetSrv', function($http) {
             params: config
         })
             .then(function(response) {
-            //console.log(response);
-            //self.claimResults = response.data.Staffs;
-            //self.searchResultsCount = response.data.Staffs.length;
         });
     };
     
@@ -181,7 +144,6 @@ module.service('timesheetSrv', function($http) {
             data: data
         }).then(function(response) {
             console.log(response);
-      //      self.credentialStatus = response.data;
         });
     };
     
@@ -189,10 +151,26 @@ module.service('timesheetSrv', function($http) {
     this.getTolls = function(vehicleID){
         return $http.get(vehicle_toll_apiPath + vehicleID)
             .then(function(response) {
-            //console.log('Vehicle Tolls:');
-            //console.log(response);
             self.vehicleTolls = response.data.VehicleTolls;
-            //self.claimsCount = Object.keys(response.data).length-2;
+        });
+    };
+    
+    this.fetchLaborerAutocomplete = function(searchObject) {
+        return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
+            self.autocomplete = searchSrv.autocomplete.Staffs;
+            self.autocompleteValues = [];
+            if (searchObject.name) {
+                for (var staff in self.autocomplete) {
+                    if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
+                        self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
+                    }
+                }
+            }
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
         });
     };
 });
