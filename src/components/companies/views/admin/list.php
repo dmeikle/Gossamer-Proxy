@@ -1,3 +1,21 @@
+<!-- placed here until properly styled -->
+<style>
+    .sidePanelRow .name {
+        font-weight: 600;
+        float: left;
+    }
+    .sidePanelRow .dateReceived {
+        float: right;
+    }
+    
+    .sidePanelRow .claimType {
+        clear: both;
+    }
+    
+    
+</style>
+
+
 <div class="widget" ng-controller="companyListCtrl">
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Company List</h1>
@@ -118,18 +136,3 @@
   <div class="clearfix"></div>
   <form class="hidden"></form>
 </div>
-<style>
-    .sidePanelRow .name {
-        font-weight: 600;
-        float: left;
-    }
-    .sidePanelRow .dateReceived {
-        float: right;
-    }
-    
-    .sidePanelRow .claimType {
-        clear: both;
-    }
-    
-    
-</style>

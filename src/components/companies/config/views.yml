@@ -35,12 +35,11 @@ admin_companies_edit:
             "header": "src/themes/default/templates/sections/admin-header.php"
             "context-button": "src/components/companies/views/admin/context-button.php"
             "content": "src/components/companies/views/admin/edit.php"
-            "section2": "src/components/companies/views/admin/subnav.php"
+            "sidecolumn": "src/components/companies/views/admin/edit-rightcol.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - companyAdmin
-            - companyClientsAdmin
     head:
         - @components/companies/dist/bower_components/angular/angular.min.js
         - @components/companies/dist/bower_components/jquery/dist/jquery.min.js
