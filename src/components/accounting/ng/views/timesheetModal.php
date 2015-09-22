@@ -1,9 +1,4 @@
-<!-- Add New Timesheet Modal -->
-<!--
-<div class="modal fade" id="new-timesheet" tabindex="-1" role="dialog" aria-labelledby="newTimesheet" ng-controller="timesheetListCtrl">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
--->
+<!-- Timesheet Modal -->
 <form>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
@@ -11,29 +6,42 @@
     </div>
     <div class="modal-body">
         
-<!--
-        <div class="laborer">
-            Laborer:
-            <input class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="basicSearch.val[0]" ng-blur="search()">
-            <datalist id="timesheet-autocomplete-list" ng-click="setCategory(basicSearch)">
-                <option ng-if="!autocomplete.length > 0" value="">Loading</option>
-                <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-            </datalist>           
-        </div>
--->
         <div class="pull-left">
+<!--
             <div class="form-group laborer">
-                <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
+                <label for="timesheet-laborer"><?php// echo $this->getString('ACCOUNTING_LABORER'); ?></label>
                 <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="getStaffInfo(laborer)">
                 <datalist id="timesheet-autocomplete-list">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
                 </datalist> 
             </div>
+-->
+            
+            <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
+
+            <form ng-submit="search(basicSearch.query)" class="input-group">
+                <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
+                  typeahead="value for value in fetchLaborerAutocomplete($viewValue)"
+                  typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
+                  typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
+                <div class="resultspane" ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> <?php// echo $this->getString('STAFF_NORESULTS') ?>
+                </div>
+                <span class="input-group-btn" ng-if="!searchSubmitted">
+                  <button type="submit" class="btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
+                <span ng-if="searchSubmitted" class="input-group-btn">
+                  <button type="reset" class="btn-default" ng-click="resetSearch()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                </span>
+            </form>
             
             <div class="form-group rate">
                 <label for="timesheet-rate"><?php echo $this->getString('ACCOUNTING_TIMESHEET_RATE'); ?></label>
-<!--                <input name="timesheet-rate" class="form-control" type="number" ng-model="rate">                 -->
                 {{hourlyRate | currency}}
             </div>
         </div>
