@@ -17,9 +17,9 @@ accounting_timesheets_home:
         - @components/accounting/dist/bower_components/jquery/dist/jquery.min.js
         - @components/accounting/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/accounting/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        #- @extensions/angular/ng/js/phoenixSearchSrv.js
     javascript:
         - @components/accounting/dist/js/accounting.concat.js
-        #- @components/accounting/dist/js/accounting.min.js
     css:
         - @components/accounting/dist/css/accounting.min.css
 
