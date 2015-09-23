@@ -46,4 +46,10 @@ module.service('searchSrv', function($http) {
       self.sortResult = response.data;
     });
   };
+
+  this.fetchAutocomplete = function(config, apiPath) {
+    return self.searchCall(config, apiPath + 'search').then(function(response) {
+      self.autocomplete = response.data;
+    });
+  };
 });

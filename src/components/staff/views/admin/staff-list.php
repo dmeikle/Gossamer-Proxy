@@ -5,22 +5,27 @@
       <button class="btn-link" ng-click="openStaffAdvancedSearch()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
-      <div class="input-group">
-        <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
-          ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)">
-        <span class="input-group-addon" ng-if="!searchSubmitted">
-          <span class="glyphicon glyphicon-search"></span>
+      <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
+
+      <form ng-submit="search(basicSearch.query)" class="input-group">
+        <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
+          typeahead="value for value in fetchAutocomplete($viewValue)"
+          typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
+          typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
+        <div class="resultspane" ng-show="noResults">
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('STAFF_NORESULTS') ?>
+        </div>
+        <span class="input-group-btn" ng-if="!searchSubmitted">
+          <button type="submit" class="btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
         </span>
         <span ng-if="searchSubmitted" class="input-group-btn">
-          <button class="btn-default" ng-click="resetSearch()">
+          <button type="reset" class="btn-default" ng-click="resetSearch()">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
         </span>
-        <datalist id="autocomplete-list">
-          <option ng-if="!autocomplete" value="" disabled><?php echo $this->getString('STAFF_LOADING'); ?></option>
-          <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-        </datalist>
-      </div>
+      </form>
       <a href="/admin/staff/edit/0" class="btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
