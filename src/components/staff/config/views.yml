@@ -41,6 +41,7 @@ admin_staff_home:
     angular:
         bootstrap_modules:
             - rootApp
+            - staffAdmin
 
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
