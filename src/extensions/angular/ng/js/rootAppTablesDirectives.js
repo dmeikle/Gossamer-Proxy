@@ -9,7 +9,7 @@ module.directive('columnSortable', function($compile, $location) {
       a.appendChild(document.createElement('span'));
       a.children[0].innerText = element[0].innerText + ' ';
       a.appendChild(document.createElement('span'));
-      a.children[1].setAttribute('class', 'glyphicon glyphicon-sort');
+      a.children[1].setAttribute('class', 'small glyphicon glyphicon-sort');
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
