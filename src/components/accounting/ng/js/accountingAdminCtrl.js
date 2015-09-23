@@ -88,7 +88,6 @@ module.controller('costCardItemTypeModalInstanceController', function($scope, $m
 // Pages controller
 
 module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv, templateSrv) {
-
   function getPageTemplatesList(row, numRows) {
     pageTemplatesSrv.getPageTemplatesList(row, numRows).then(function(response) {
       $scope.pageTemplatesList = pageTemplatesSrv.pageTemplatesList;

@@ -15,10 +15,22 @@ use core\AbstractController;
 
 
 /**
- * Description of PropertiesController
+ * Description of TimesheetsController
  *
  * @author Dave Meikle
  */
 class TimesheetsController extends AbstractController{
    
+    public function listBreakdown($staffId, $date) {
+        $offset = 0;
+        $limit = 20;
+        $params = array(
+            'Staff_id' => intval($staffId),
+            'date' => date("Y-m-d", strtotime($date))
+        );
+      
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'breakdown');
+        
+        $this->render($result);
+    }
 }

@@ -37,8 +37,9 @@ class AngularTemplateView extends TemplateView {
     protected function configureAngular() {
 
         if(!array_key_exists('angular', $this->config) || !array_key_exists('bootstrap_modules', $this->config['angular'])) {
-            echo 'returning';
-            return;
+           
+            return;            
+
         }
 
         $moduleList = $this->data['modules'];
