@@ -49,12 +49,7 @@ module.service('staffListSrv', function($http, searchSrv) {
     });
   };
 
-  this.search = function(searchObject) {
-    if (searchObject.name.indexOf(' ') > 0) {
-      searchObject.firstname = searchObject.name.split(' ')[0];
-      searchObject.lastname = searchObject.name.split(' ')[1];
-      delete searchObject.name;
-    }
+  this.search = function(searchObject) {    
     return searchSrv.search(searchObject, apiPath).then(function() {
       self.searchResults = searchSrv.searchResults.Staffs;
       self.searchResultsCount = searchSrv.searchResultsCount.StaffsCount[0].rowCount;
