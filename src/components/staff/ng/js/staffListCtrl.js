@@ -1,4 +1,8 @@
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv) {
+
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv, toastsSrv) {
+
+  $scope.newAlert = toastsSrv.newAlert;
+
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
