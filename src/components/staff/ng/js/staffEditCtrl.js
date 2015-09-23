@@ -1,4 +1,4 @@
-module.controller('staffEditCtrl', function($scope, $location, staffEditSrv) {
+module.controller('staffEditCtrl', function($scope, $location, staffEditSrv, staffPhotoSrv) {
 
   // Run on load
   $scope.loading = true;
@@ -6,6 +6,14 @@ module.controller('staffEditCtrl', function($scope, $location, staffEditSrv) {
   $scope.authorization = {};
   $scope.isOpen = {};
   getStaffDetail();
+
+  // Load staffPhotoSrv so we can watch it
+  $scope.staffPhotoSrv = staffPhotoSrv;
+  $scope.$watch('staffPhotoSrv.photo', function() {
+    if ($scope.staffPhotoSrv.photo !== undefined && $scope.staff.imageName !== undefined) {
+      $scope.staff.imageName = $scope.staffPhotoSrv.photo;
+    }
+  });
 
   // datepicker stuffs
   $scope.dateOptions = {'starting-day':1};

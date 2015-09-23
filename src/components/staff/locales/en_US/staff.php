@@ -76,5 +76,8 @@ return array(
   'STAFF_CLOSE' => 'Close',
   'STAFF_CREATE' => 'Add New Staff Member',
   'STAFF_BENEFITS_NONE' => 'No history found. Click More Information to add salary/benefits.',
-  'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.'
+  'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.',
+  'STAFF_PHOTOUPLOAD' => 'Upload User Photo',
+  'STAFF_PHOTOUPLOAD_UPLOADHERE' => 'Drag a photo or click here to upload a user photo',
+
 );
