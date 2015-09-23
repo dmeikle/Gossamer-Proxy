@@ -58,28 +58,30 @@
                             //we can remove this line when we are ready to hide them from the real users
                             ?>
                             <li title="disabled on this release"><?php echo $this->getString($childItem['text_key']); ?></li>
+                            <li class="divider" role="separator"></li>
                             <?php
                             continue;
                         } elseif (array_key_exists('children', $childItem)) {
                           ?>
                           <li class="dropdown-header">
-                              <?php echo $this->getString($childItem['text_key']); ?>
-                              <li>
-                                <a href="<?php echo $childItem['pattern']; ?>">
-                                  <?php echo $this->getString($childItem['text_key']); ?>
-                                </a>
-                              </li>
-                              <?php
-                                foreach ($childItem['children'] as $subChildKey => $subChildItem) {
-                                  ?>
-                                  <li>
-                                    <a href="<?php echo $subChildItem['pattern']; ?>">
-                                      <?php echo $this->getString($subChildItem['text_key']); ?>
-                                    </a>
-                                  </li>
-                                  <?php
-                                }
-                               ?>
+                            <?php echo $this->getString($childItem['text_key']); ?>
+                            <li>
+                              <a href="<?php echo $childItem['pattern']; ?>">
+                                <?php echo $this->getString($childItem['text_key']); ?>
+                              </a>
+                            </li>
+                            <?php
+                              foreach ($childItem['children'] as $subChildKey => $subChildItem) {
+                                ?>
+                                <li>
+                                  <a href="<?php echo $subChildItem['pattern']; ?>">
+                                    <?php echo $this->getString($subChildItem['text_key']); ?>
+                                  </a>
+                                </li>
+                                <?php
+                              }
+                             ?>
+                            <li class="divider" role="separator"></li>
                           </li>
                           <?php
                           continue;
@@ -130,7 +132,7 @@
                 //now, let's display the link for the top parent item nav
                 if (!$hasChildren) { ?>
                   <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
-
+                  <li class="divider" role="separator"></li>
                 <?php } elseif ($hasChildren) {
                   ?>
                   <li class="dropdown-header">
@@ -148,8 +150,9 @@
                         <?php echo $this->getString($childItem['text_key']); ?>
                       </a>
                     </li>
-                  </li>
-                <?php } ?>
+                  <?php } ?>
+                  <li class="divider" role="separator"></li>
+                </li>
               <?php } ?>
             <?php } ?>
             <?php } ?>

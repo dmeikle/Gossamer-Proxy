@@ -33,12 +33,9 @@
   margin-right:.5em;
 }
 .navbar-brand {
-  margin:0;
+  padding:0;
   img {
     width: 90px;
-    position: relative;
-    top: -10px;
-    left: -10px;
   }
 }
 
@@ -89,10 +86,6 @@ button {
 nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
   padding-left:7px;
   padding-right:7px;
-}
-
-.dropdown-menu {
-  width:100%;
 }
 
 .resultspane {

@@ -5,9 +5,9 @@ body {
 th {
   background-color: $navbar-default-bg;
   color: $navbar-default-color;
-  a {
+  > a {
     color:#f3f3f3;
-    &:hover, &:active {
+    &:hover, &:active, &:focus {
       color:#fff;
     }
   }

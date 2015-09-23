@@ -33,7 +33,6 @@ admin_staff_home:
     template: admin-list.php
     sections:
         -
-            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "header": "src/themes/default/templates/sections/admin-header.php"
             "context-button": "src/components/staff/views/admin/context-button.php"
             "content": "src/components/staff/views/admin/staff-list.php"
@@ -42,7 +41,7 @@ admin_staff_home:
     angular:
         bootstrap_modules:
             - rootApp
-            - staffAdmin    
+
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
         - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
