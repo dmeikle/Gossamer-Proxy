@@ -38,7 +38,7 @@
                 <th column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
                 <th column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
                 <th column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
-                <th class="cog-col">&nbsp;</th>
+                <th sort-by-button class="cog-col">&nbsp;</th>
             </tr>
         </thead>
         <tbody>

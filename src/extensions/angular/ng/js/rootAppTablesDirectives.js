@@ -50,3 +50,30 @@ module.directive('columnSortable', function($compile, $location) {
     }
   };
 });
+
+module.directive('sortByButton', function(rootTemplateSrv, $http) {
+  return {
+    restrict: 'A',
+    scope:false,
+    transclude:true,
+    link: function(scope, element, attrs) {
+      var buttonDOM = document.createElement('div');
+      buttonDOM.innerHTML = '<div class="dropdown"><a href="" data-toggle="dropdown"><span class="glyphicon glyphicon-sort"></span></a><ul class="dropdown-menu"></ul></div>';
+      var columns = [];
+      for (var th in element[0].parentElement.children) {
+        if (element[0].parentElement.children.hasOwnProperty(th) &&
+        element[0].parentElement.children[th].className.indexOf('cog-col') === -1) {
+          columns.push(element[0].parentElement.children[th]);
+        }
+      }
+
+      for (var column in columns) {
+        if (columns.hasOwnProperty(column)) {
+          var a = document.createElement('a');
+          a.setAttribute('data-column', columns[column].dataset.column);
+          a.setAttribute('innerText', columns[column].innerText);
+        }
+      }
+    }
+  };
+});
