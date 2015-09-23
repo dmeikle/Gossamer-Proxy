@@ -31,6 +31,7 @@ web/assets/default-bak/images/images
 web/css/components
 web/css/framework
 
+web/css/core.min.css*
 web/css/theme
 web/components
 web/css/extensions
