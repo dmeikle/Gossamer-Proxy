@@ -84,11 +84,13 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
         }
       }
 
-      buttonDOM.appendChild(document.createElement('li'));
-      buttonDOM.children[buttonDOM.children.length - 1].appendChild(document.createElement('a'));
-      buttonDOM.children[buttonDOM.children.length - 1][0].setAttribute('ng-click', 'clearGrouping()');
-      buttonDOM.children[buttonDOM.children.length - 1][0].appendChild(document.createElement('span'));
-      buttonDOM.children[buttonDOM.children.length - 1][0][0].setAttribute('class', 'glyphicon glyphicon-remove');
+      var ul = buttonDOM.getElementsByClassName('dropdown-menu')[0];
+
+      ul.appendChild(document.createElement('li'));
+      ul.children[ul.children.length - 1].appendChild(document.createElement('a'));
+      ul.children[ul.children.length - 1].children[0].setAttribute('ng-click', 'clearGrouping()');
+      ul.children[ul.children.length - 1].children[0].appendChild(document.createElement('span'));
+      ul.children[ul.children.length - 1].children[0].children[0].setAttribute('class', 'glyphicon glyphicon-remove');
 
       element[0].appendChild(buttonDOM);
       $compile(element.contents())(scope);
@@ -106,6 +108,10 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
       $scope.groupBy = function(columnName) {
         $scope.loading = true;
         tablesSrv.groupBy(apiPath, columnName);
+      };
+
+      $scope.clearGrouping = function() {
+        tablesSrv.clearGrouping();
       };
     }
   };
