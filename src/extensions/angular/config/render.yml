@@ -1,0 +1,6 @@
+## YAML Template.
+---
+sortByButton:
+    path: 'src/extensions/angular/ng/views/sortByButton.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'

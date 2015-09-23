@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['src/components/*/dist/*', 'src/framework/core/components/*/dist/*'],
+    clean: ['src/components/*/dist/*', 'src/framework/core/components/*/dist/*', 'src/extensions/*/dist/*'],
 
     concat: {
       options: {
@@ -61,6 +61,19 @@ module.exports = function(grunt) {
       bower_framework: {
         expand:true,
         cwd: 'src/framework/core/components/',
+        src: ['*/ng/bower_components/**/*'],
+        dest: 'dist/bower_components',
+        rename: function(dest, src, options) {
+          var srcSplit = src.split('/');
+          var component = srcSplit.slice(srcSplit.indexOf('bower_components')+1, srcSplit.length);
+          var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+          var componentPath = component.join('/');
+          return options.cwd + componentName + '/' + dest + '/' + componentPath;
+        }
+      },
+      bower_extensions: {
+        expand:true,
+        cwd: 'src/extensions/',
         src: ['*/ng/bower_components/**/*'],
         dest: 'dist/bower_components',
         rename: function(dest, src, options) {

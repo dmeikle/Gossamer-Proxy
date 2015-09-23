@@ -1,6 +1,5 @@
 module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staffBenefitsSrv, templateSrv) {
   // stuff to run on controller load
-  $scope.staffBenefits = {};
   $scope.staffBenefitsLoading = true;
   getStaffBenefits();
 

@@ -124,6 +124,10 @@ class StaffAuthorizationController extends AbstractController
     } 
     
     public function getPermissions($id) {
+        if(intval($id) == 0) {
+            $this->render(array());
+            return;
+        }
         $result = $this->model->edit(intval($id));
         
         if(array_key_exists('StaffAuthorization', $result)) {

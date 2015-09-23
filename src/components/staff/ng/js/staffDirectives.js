@@ -38,7 +38,7 @@ module.directive('getDepartment', function() {
     replace: true,
     link: function(scope, element, attrs) {
       for (var department in departments) {
-        if (departments.hasOwnProperty(department)) {
+        if (departments.hasOwnProperty(department) && scope.$parent.staff) {
           if (departments[department].id === scope.$parent.staff.Departments_id) {
             element.text(departments[department].name);
           }

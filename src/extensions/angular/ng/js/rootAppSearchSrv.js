@@ -21,8 +21,8 @@ module.service('searchSrv', function($http) {
 
   this.search = function(object, apiPath) {
       return self.searchCall(object, apiPath + 'search').then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
+        self.searchResults = response.data;
+        self.searchResultsCount = response.data;
       });
   };
 
@@ -34,6 +34,22 @@ module.service('searchSrv', function($http) {
       for (var i = 0; i < elementList.body.children.length; i++) {
         self.advancedSearch.fields.push(elementList.body.children[i]);
       }
+    });
+  };
+
+  this.sortByColumn = function(config, apiPath) {
+    return $http({
+      url:apiPath,
+      method: 'GET',
+      params: config
+    }).then(function(response) {
+      self.sortResult = response.data;
+    });
+  };
+
+  this.fetchAutocomplete = function(config, apiPath) {
+    return self.searchCall(config, apiPath + 'search').then(function(response) {
+      self.autocomplete = response.data;
     });
   };
 });

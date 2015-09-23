@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
-  <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()">
-    <?php echo $this->getString('STAFF_UPDATE');?>
+  <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!staff">
+    <?php echo $this->getString('STAFF_NEW');?>
   </button>
   <div ng-if="addingNew" class="btn-group pull-right">
     <button class="primary" ng-click="saveNewBenefits(staff)">

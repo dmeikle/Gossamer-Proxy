@@ -24,7 +24,8 @@ admin_staff_home:
         viewKey: admin_staff_home
         datasource: datasource1
         langFiles:
-            - 'src/components/staff/locales/*/staff'
+        - 'src/components/staff/locales/*/staff'
+        - 'app/locales/*/website'
     methods: [GET]
     staticCache: true
 
@@ -167,7 +168,7 @@ admin_staff_benefits_listbydate:
         viewKey: admin_staff_benefits_listbydate
         datasource: datasource1
     methods: [GET]
-
+    
 admin_staff_benefits_save:
     pattern: admin/staff/benefits/*
     defaults:

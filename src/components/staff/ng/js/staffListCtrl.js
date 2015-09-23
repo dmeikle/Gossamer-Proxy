@@ -1,5 +1,7 @@
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv) {
 
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv, tablesSrv, toastsSrv) {
+
+  $scope.newAlert = toastsSrv.newAlert;
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -10,10 +12,26 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.previouslyClickedObject = {};
 
+  // Load up the table service so we can watch it!
+  $scope.tablesSrv = tablesSrv;
+  $scope.$watch('tablesSrv.sortResult', function() {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+      $scope.staffList = tablesSrv.sortResult.Staffs;
+      $scope.loading = false;
+    }
+  });
+
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
 
   var apiPath = '/admin/staff/';
+
+  $scope.setItemsPerPage = function(number) {
+    $scope.itemsPerPage = number;
+    row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+    numRows = $scope.itemsPerPage;
+    getStaffList();
+  };
 
   function getStaffList() {
     $scope.loading = true;
@@ -24,6 +42,13 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
       $scope.loading = false;
     });
   }
+
+  $scope.fetchAutocomplete = function(viewVal) {
+    var searchObject = {};
+    searchObject.name = viewVal;
+
+    return staffListSrv.fetchAutocomplete(searchObject);
+  };
 
   $scope.openAddNewStaffModal = function() {
     var template = templateSrv.staffAddNewModal;
@@ -70,10 +95,12 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
   };
 
   $scope.search = function(searchObject) {
-    if (searchObject && Object.keys(searchObject).length > 0) {
+    $scope.noResults = undefined;
+    var copiedObject = angular.copy(searchObject);
+    if (copiedObject && Object.keys(copiedObject).length > 0) {
       $scope.searchSubmitted = true;
       $scope.loading = true;
-      staffListSrv.search(searchObject).then(function() {
+      staffListSrv.search(copiedObject).then(function() {
         $scope.staffList = staffListSrv.searchResults;
         $scope.totalItems = staffListSrv.searchResultsCount;
         $scope.loading = false;
@@ -102,19 +129,19 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.selectRow = function(clickedObject) {
     $scope.searching = false;
-    $scope.sidePanelLoading = true;
-    $scope.sidePanelOpen = true;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
+      $scope.sidePanelLoading = true;
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
           $scope.selectedStaff = staffListSrv.staffDetail;
+          $scope.sidePanelOpen = true;
           $scope.sidePanelLoading = false;
         });
     }
   };
 
-  $scope.$watch('currentPage + numPerPage', function() {
+  $scope.$watch('currentPage + itemsPerPage', function() {
     $scope.loading = true;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
