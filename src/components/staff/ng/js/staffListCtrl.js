@@ -1,9 +1,7 @@
 
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templateSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv, tablesSrv, toastsSrv) {
 
   $scope.newAlert = toastsSrv.newAlert;
-
-
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -14,10 +12,26 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
 
   $scope.previouslyClickedObject = {};
 
+  // Load up the table service so we can watch it!
+  $scope.tablesSrv = tablesSrv;
+  $scope.$watch('tablesSrv.sortResult', function() {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+      $scope.staffList = tablesSrv.sortResult.Staffs;
+      $scope.loading = false;
+    }
+  });
+
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
 
   var apiPath = '/admin/staff/';
+
+  $scope.setItemsPerPage = function(number) {
+    $scope.itemsPerPage = number;
+    row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+    numRows = $scope.itemsPerPage;
+    getStaffList();
+  };
 
   function getStaffList() {
     $scope.loading = true;
@@ -118,7 +132,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, templa
     }
   };
 
-  $scope.$watch('currentPage + numPerPage', function() {
+  $scope.$watch('currentPage + itemsPerPage', function() {
     $scope.loading = true;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;

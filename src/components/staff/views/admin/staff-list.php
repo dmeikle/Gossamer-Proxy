@@ -21,17 +21,18 @@
           <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
         </datalist>
       </div>
-      <button ng-click="openAddNewStaffModal()" class="btn-primary"><?php echo $this->getString('STAFF_NEW');?></button>
+      <a href="/admin/staff/edit/0" class="btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th><?php echo $this->getString('STAFF_NAME'); ?></th>
-                <th><?php echo $this->getString('STAFF_TITLE'); ?></th>
-                <th><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
-                <th><?php echo $this->getString('STAFF_MOBILE'); ?></th>
-                <th><?php echo $this->getString('STAFF_STATUS'); ?></th>
-                <th><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
+                <th column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
+                <th column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
+                <th column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
+                <th column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
+                <th column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+                <th column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
+                <th column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
                 <th class="cog-col">&nbsp;</th>
             </tr>
         </thead>
@@ -49,7 +50,8 @@
           </tr>
           <tr ng-if="!loading" ng-repeat="staff in staffList"
             ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
-              <td ng-click="selectRow(staff)"><a href="mailto:{{staff.email}}">{{staff.lastname}}, {{staff.firstname}}</a></td>
+              <td ng-click="selectRow(staff)">{{staff.firstname}}</td>
+              <td ng-click="selectRow(staff)">{{staff.lastname}}</td>
               <td ng-click="selectRow(staff)">{{staff.title}}</td>
               <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
               <td ng-click="selectRow(staff)">{{staff.mobile}}</td>
@@ -71,9 +73,18 @@
         </tbody>
     </table>
 
-    <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
+    <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
       class="pagination" boundary-links="true" rotate="false">
     </pagination>
+
+    <div class="pull-right">
+      <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
+      <ul class="btn-group pull-right">
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
+        <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
+      </ul>
+    </div>
   </div>
 
   <div class="widget-side-panel">
