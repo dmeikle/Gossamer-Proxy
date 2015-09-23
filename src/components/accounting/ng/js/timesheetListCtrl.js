@@ -9,6 +9,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     var numRows = $scope.itemsPerPage;    
     
     function getTimesheetList(){
+        $scope.loading = true;
         console.log(row + ' ' + numRows);
         
         timesheetSrv.getTimesheetList(row,numRows)
@@ -35,7 +36,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     //Modals
     $scope.openTimesheetModal = function(timesheet) {
         var template = templateSrv.timesheetModal;
-        $modal.open({
+        var modal = $modal.open({
             templateUrl: template,
             controller: 'timesheetModalCtrl',
             size: 'lg',
@@ -52,5 +53,10 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
             
 //        })
         });
-    };    
+        modal.result.then(function(timesheet){
+            //$scope.timesheet
+            getTimesheetList();
+        });
+    };
+    
 });
