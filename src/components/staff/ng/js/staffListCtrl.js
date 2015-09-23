@@ -30,7 +30,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     $scope.itemsPerPage = number;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
-    getStaffList();
   };
 
   function getStaffList() {
