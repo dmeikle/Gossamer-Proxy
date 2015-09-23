@@ -46,7 +46,7 @@ class AngularTemplateView extends TemplateView {
         if($moduleList == "''") {
             $moduleList = '';//lose the empty quotes
         }
-        $modules = "'phoenixRestorations'";
+        $modules = "";
         foreach($this->config['angular']['bootstrap_modules'] as $module) {
 
             $modules .= ",'$module'";
