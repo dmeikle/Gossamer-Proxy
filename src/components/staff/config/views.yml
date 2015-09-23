@@ -42,8 +42,7 @@ admin_staff_home:
     angular:
         bootstrap_modules:
             - rootApp
-            - staffAdmin
-    app: phoenixRestorations
+            - staffAdmin    
     head:
         - @components/staff/dist/bower_components/angular/angular.min.js
         - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
