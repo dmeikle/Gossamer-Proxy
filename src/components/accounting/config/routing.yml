@@ -1,3 +1,16 @@
+admin_accounting_search:
+    pattern: admin/accounting/timesheets/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_accounting_search
+        datasource: datasource1
+    methods: [GET]
+
+
 
 accounting_phasecodes_list:
     pattern: admin/accounting/phasecodes/*/*
@@ -62,6 +75,8 @@ accounting_timesheets_list:
         view: core\views\JSONView
         viewKey: accounting_timesheets_list
         datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
 
         
 
@@ -100,9 +115,36 @@ accounting_timesheets_save:
         view: core\views\JSONView
         viewKey: accounting_timesheets_save
         datasource: datasource1 
-
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\accounting\listeners\SaveTollListener', 'datasource': 'datasource1' }        
     methods: [POST]
     
+    
+#---------------------- timesheet items ------------------------------
+
+accounting_timesheetitems_list:
+    pattern: admin/accounting/timesheetitems/*/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetItemsController
+        model: components\accounting\models\TimesheetItemModel
+        method: listallByTimesheet
+        view: core\views\JSONView
+        viewKey: accounting_timesheetitems_list
+        datasource: datasource1
+        
+
+accounting_timesheetitems_edit:
+    pattern: admin/accounting/timesheetitems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetItemsController
+        model: components\accounting\models\TimesheetItemModel
+        method: editByTimesheet
+        view: core\views\JSONView
+        viewKey: accounting_timesheetitems_edit
+        datasource: datasource1        
+        
 
 #------------------------ purchase orders ----------------------------
 accounting_pos_list:

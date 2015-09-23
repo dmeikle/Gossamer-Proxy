@@ -60,17 +60,27 @@ class AbstractCachableListener extends AbstractListener {
             //pass it along the request in case there's more processing to do
            // $this->httpRequest->setAttribute(self::getKey(), $values);
             //changed to '$key' because it was losing values in some instances with '/' in the key
-            $this->httpRequest->setAttribute($key, $values);
+            $this->httpRequest->setAttribute($this->getResponseKey(), $values);
             
             if(!array_key_exists('addToResponse', $this->listenerConfig) || $this->listenerConfig['addToResponse'] == 'true') {
                 //add it to the response in case it's an abstract parent calling
                 //this from configuration files and is simply needed in the view
                // $this->httpResponse->setAttribute(self::getKey(), $values);
                 //changed to '$key' because it was losing values in some instances with '/' in the key
-                $this->httpResponse->setAttribute($key, $values);
+                $this->httpResponse->setAttribute($this->getResponseKey(), $values);
             }
         }
     }
+    
+    protected function getResponseKey() {
+        
+        if(array_key_exists('responseKey', $this->listenerConfig)) {
+            return  $this->listenerConfig['responseKey'] ;
+        }
+        
+        return $this->getKey();
+    }
+    
     protected function getIsStaticCache() {
        
         if(array_key_exists('static', $this->listenerConfig)) {
