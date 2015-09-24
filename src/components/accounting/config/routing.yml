@@ -76,12 +76,8 @@ accounting_timesheets_breakdown:
         view: core\views\JSONView
         viewKey: accounting_timesheets_breakdown
         datasource: datasource1
-<<<<<<< HEAD
-=======
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-
->>>>>>> CP-96
         
 
 accounting_timesheets_list:
