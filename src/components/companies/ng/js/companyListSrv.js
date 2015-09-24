@@ -17,15 +17,6 @@ module.service('companyListSrv', function($http, searchSrv) {
   this.getCompanyDetail = function(object) {
     return $http.get(apiPath + object.Companies_id)
       .then(function(response) {
-//        if (response.data.Company.dob) {
-//          response.data.Company.dob = new Date(response.data.Company.dob);
-//        }
-//        if (response.data.Company.hireDate) {
-//          response.data.Company.hireDate = new Date(response.data.Company.hireDate);
-//        }
-//        if (response.data.Company.departureDate) {
-//          response.data.Company.departureDate = new Date(response.data.Company.departureDate);
-//        }
         self.companyDetail = response.data;
       });
   };

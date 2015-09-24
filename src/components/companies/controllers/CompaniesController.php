@@ -21,9 +21,9 @@ use core\serialization\Serializer;
 class CompaniesController extends AbstractController
 {
     public function search() {
-        $result = $this->model->search();
-        
-        return $this->render($result);
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+
+        $this->render($result);
     }
 
     public function searchResults() {

@@ -1,4 +1,15 @@
 
+admin_companies_sarch:
+    pattern: admin/companies/search
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_companies_search
+        datasource: datasource1 
+    methods: [GET]   
 
 
 admin_companies_home:
