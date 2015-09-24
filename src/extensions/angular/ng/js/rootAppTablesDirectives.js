@@ -9,7 +9,12 @@ module.directive('columnSortable', function($compile, $location) {
       a.appendChild(document.createElement('span'));
       a.children[0].innerText = element[0].innerText + ' ';
       a.appendChild(document.createElement('span'));
-      a.children[1].setAttribute('class', 'small glyphicon glyphicon-sort');
+      a.children[1].setAttribute('class', 'table-header-sortable glyphicon');
+      a.children[1].setAttribute('ng-class',
+        "{'glyphicon-chevron-down':sortedBy === '" + element[0].dataset.column +
+        "' && sorting[" + element[0].dataset.column + "] === 'asc', " +
+        "'glyphicon-chevron-up':sortedBy === '" + element[0].dataset.column +
+        "' && sorting[" + element[0].dataset.column + "] === 'desc'}");
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
@@ -61,7 +66,7 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
     transclude: true,
     link: function(scope, element, attrs) {
       var buttonDOM = document.createElement('div');
-      buttonDOM.setAttribute('class','dropdown');
+      buttonDOM.setAttribute('class', 'dropdown');
       buttonDOM.innerHTML = '<button class="btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-magnet"></span></button>';
       buttonDOM.innerHTML += '<ul class="dropdown-menu pull-right"></ul>';
 
