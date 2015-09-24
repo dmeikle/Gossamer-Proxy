@@ -30,7 +30,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     $scope.itemsPerPage = number;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
-    getStaffList();
   };
 
   function getStaffList() {
@@ -129,13 +128,13 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   $scope.selectRow = function(clickedObject) {
     $scope.searching = false;
+    $scope.sidePanelOpen = true;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
       $scope.sidePanelLoading = true;
       staffListSrv.getStaffDetail(clickedObject)
         .then(function() {
           $scope.selectedStaff = staffListSrv.staffDetail;
-          $scope.sidePanelOpen = true;
           $scope.sidePanelLoading = false;
         });
     }
