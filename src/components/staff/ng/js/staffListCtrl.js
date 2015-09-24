@@ -20,6 +20,15 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
       $scope.loading = false;
     }
   });
+  $scope.$watch('tablesSrv.grouped', function() {
+      $scope.grouped = tablesSrv.grouped;
+      if ($scope.grouped === true) {
+        if(tablesSrv.groupResult && tablesSrv.groupResult.Staffs) $scope.staffList = tablesSrv.groupResult.Staffs;
+        $scope.loading = false;
+      } else if ($scope.grouped === false) {
+        getStaffList();
+      }
+  });
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;

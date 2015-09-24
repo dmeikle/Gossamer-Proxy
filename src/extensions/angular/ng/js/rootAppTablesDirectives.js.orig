@@ -11,12 +11,21 @@ module.directive('columnSortable', function($compile, $location) {
       a.appendChild(document.createElement('span'));
       a.children[0].innerText = element[0].innerText + ' ';
       a.appendChild(document.createElement('span'));
+<<<<<<< HEAD
       a.children[1].setAttribute('class', 'small glyphicon');
       a.children[1].setAttribute('ng-class',
         "{'glyphicon-sort-by-attributes':sortedBy === '" + element[0].dataset.column +
         "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
         "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
         "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
+=======
+      a.children[1].setAttribute('class', 'table-header-sortable glyphicon');
+      a.children[1].setAttribute('ng-class',
+        "{'glyphicon-chevron-down':sortedBy === '" + element[0].dataset.column +
+        "' && sorting[" + element[0].dataset.column + "] === 'asc', " +
+        "'glyphicon-chevron-up':sortedBy === '" + element[0].dataset.column +
+        "' && sorting[" + element[0].dataset.column + "] === 'desc'}");
+>>>>>>> 77a3b0856455c14478bde38245dad625845318f7
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
@@ -42,29 +51,20 @@ module.directive('columnSortable', function($compile, $location) {
       }
       $scope.sortByColumn = function(event) {
         $scope.loading = true;
-        column = event.target.parentElement.parentElement.dataset.column;
+        var column = event.target.parentElement.parentElement.dataset.column;
         $scope.sortedBy = column;
         if (!$scope.sorting[column] || $scope.sorting[column] === 'desc') {
           $scope.sorting[column] = 'asc';
         } else {
           $scope.sorting[column] = 'desc';
         }
-
-        var columns = [];
-        if ($scope.grouped === true) {
-          columns.push($scope.groupedBy);
-        }
-        columns.push(column);
-
-        tablesSrv.sortByColumn(columns, $scope.sorting[column], apiPath);
+        tablesSrv.sortByColumn(column, $scope.sorting[column], apiPath);
       };
 
       $scope.clearSort = function() {
         $scope.loading = true;
-        $scope.sorting[$scope.sortedBy] = undefined;
-        var groupedBy = $scope.groupedBy;
         $scope.sortedBy = undefined;
-        tablesSrv.clearSort($scope.groupedBy, apiPath);
+        tablesSrv.clearSort(apiPath);
       };
     }
   };
@@ -93,7 +93,7 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
         if (columns.hasOwnProperty(column)) {
           var li = document.createElement('li');
           var a = document.createElement('a');
-          a.setAttribute('ng-click', 'groupBy("' + columns[column].dataset.column + '")');
+          a.setAttribute('ng-click', 'groupBy(' + columns[column].dataset.column + ')');
           a.innerText = columns[column].innerText;
           li.appendChild(a);
           buttonDOM.getElementsByClassName('dropdown-menu')[0].appendChild(li);
@@ -123,7 +123,6 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
 
       $scope.groupBy = function(columnName) {
         $scope.loading = true;
-        $scope.groupedBy = columnName;
         tablesSrv.groupBy(apiPath, columnName);
       };
 
