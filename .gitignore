@@ -1,6 +1,7 @@
 
 .sass-cache
 .Trash-1000
+nbproject/*
 
 app/cache/*
 app/logs/*
