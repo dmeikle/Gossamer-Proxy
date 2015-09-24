@@ -185,6 +185,28 @@ admin_staff_benefits_save:
 
 
 
+#--------------------------- timesheets ---------------------
+
+
+admin_staff_timesheets:
+    pattern: admin/staff/timesheets
+    listeners:
+
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_staff_timesheets
+        datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/staff'
+            - 'app/locales/*/website'
+    methods: [GET]
+    #staticCache: true
+
+#--------------------------- end timesheets ---------------------
 
 admin_staff_get:
     pattern: admin/staff/*
@@ -209,6 +231,7 @@ admin_staff_rest_paginator:
         view: core\views\JSONView
         viewKey: admin_staff_rest_paginator
         datasource: datasource1
+
 
 
 
@@ -477,3 +500,4 @@ admin_staff_rest_list:
         viewKey: admin_staff_rest_list
         datasource: datasource1
     methods: [GET]
+

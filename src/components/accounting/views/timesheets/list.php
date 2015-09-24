@@ -1,4 +1,4 @@
-<div class="widget" ng-controller="timesheetListCtrl">
+<div ng-controller="timesheetListCtrl">
     <div class="widget-content" ng-class="{'panel-open': selectedTimesheet}">
     <h1 class="pull-left">Timesheet List</h1>
     <div class="clearfix"></div>

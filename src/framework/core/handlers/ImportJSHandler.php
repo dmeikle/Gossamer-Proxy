@@ -88,7 +88,7 @@ class ImportJSHandler extends BaseHandler {
                 if ($this->checkFileIsStale($filepath, 'js')) {
                     $this->copyFile($filepath, 'js');
                 }  
-                
+          
                 $retval[] =  str_replace('@extensions', '/js/extensions', $tmp);
             } elseif (strlen($tmp) > 5) {//abitrary length just to show we hold something greater than whitespace
 
