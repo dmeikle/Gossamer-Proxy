@@ -24,13 +24,13 @@ class LoadTollListener extends \core\eventlisteners\AbstractCachableListener {
         
         $model = new AccountingGeneralCostItemModel($this->httpRequest, $this->httpResponse, $this->logger);
  
-        $datasource = $this->getDatasource('components\accounting\models\AccountingGeneralCostItemModel');
+        $datasource = $this->getDatasource('components\accounting\models\AccountingGeneralCostTypeModel');
         $params= array('AccountsPayableItemTypes_id' => '1');
         
         $result = $datasource->query('get', $model, 'list', $params);
         $retval = '';
         
-        foreach($result['AccountingGeneralCostItems'] as $row) {
+        foreach($result['AccountingGeneralCostTypes'] as $row) {
             $retval .= '<option value="' . $row['cost'] . '">' . $row['abbreviation'] . "<option>\r\n";
         }
         
