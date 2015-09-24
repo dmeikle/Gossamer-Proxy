@@ -17,7 +17,7 @@ module.controller('staffEmergencyContactsCtrl', function($scope, $location, $mod
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'staffEmergencyContactModalCtrl',
-      size: 'lg',
+      size: 'md',
       resolve: {
         contact: function() {
           return contact;

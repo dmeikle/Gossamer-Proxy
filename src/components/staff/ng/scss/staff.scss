@@ -4,18 +4,23 @@
   table-layout:fixed;
 }
 .cog-col {
-  width:80px;
+  width:40px;
 }
 
 .inactive {
-  background-color:rgba(243,156,18,.4);
-  &:hover {
-    background-color:darken(rgba(243,156,18,.4), 10%);
+    td:first-of-type:after {
+    font-family:'Glyphicons Halflings';
+    content:'\e023';
+
+    color:orange;
+
+    position:relative;
+    left:1em;
   }
 }
 
 @mixin width-transition {
-  transition: width ease .7s;
+  transition: width ease .35s;
 }
 
 .widget-content {
@@ -46,3 +51,87 @@ table.table tbody tr.selected {
   font-size:.8em;
   padding:.3em .5em;
 }
+
+.input-group input[datepicker-popup] {
+  width: 16rem;
+}
+.modal-body {
+  .input-group input[datepicker-popup] {
+    width: 7rem;
+  }
+}
+
+.staff-picture {
+  width:100px;
+  max-height:100px;
+}
+.staff-timesheet-modal{
+    .modal-dialog{
+        width:1300px!important;
+    }
+    .form-group{
+        display:block;
+        label{
+            margin-right:10px;
+        }
+        input{
+            display:inline;
+            width: auto;
+        }
+    }
+    .date{
+        float:right;
+        margin-right:10px;
+    }
+    td{
+        vertical-align: top!important;
+        &:nth-child(1){
+            vertical-align: middle!important;
+        }
+    }
+    select{
+        font-size:16px;
+    }
+    .checkbox, .select-all{
+        width:30px;
+        text-align:center;
+        margin:auto;
+    }
+    input{
+        width: 100%;
+    }
+    .toll{
+        width:75px;
+    }
+    .hours{
+        width:50px;
+        text-align:center;
+    }
+    .unit-number{
+        width:85px;
+    }
+//    th.hours{
+//        width:60px;
+//    }
+    .total{
+        vertical-align:middle!important;
+    }
+    .totalRow{
+        td{
+            text-align:center;
+        }
+    }
+    table{
+        display: inline-block;
+        th{
+            &:nth-child(1){
+                width:30px;
+            }
+        }
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+} 

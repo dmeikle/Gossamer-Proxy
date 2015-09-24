@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
-  <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()">
-    <?php echo $this->getString('STAFF_UPDATE');?>
+  <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!staff">
+    <?php echo $this->getString('STAFF_NEW');?>
   </button>
   <div ng-if="addingNew" class="btn-group pull-right">
     <button class="primary" ng-click="saveNewBenefits(staff)">
@@ -39,11 +39,22 @@
         </td>
         <td><input class="form-control" type="number" name="staff-accruedVacationMonthly" id="staff-accruedVacationMonthly" ng-model="staff.accruedVacationMonthly"></td>
         <td><input class="form-control" type="number" name="staff-accruedSickMonthly" id="staff-accruedSickMonthly" ng-model="staff.accruedSickMonthly"></td>
-        <td><input class="form-control" type="date" name="staff-startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone:+0000}"></td>
+        <td>
+          <div class="input-group">
+            <input type="date" name="startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone: '+0000'}"
+              class="form-control" datepicker-popup is-open="isOpen.startDate"
+              datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE');?>" />
+            <span class="input-group-btn" data-datepickername="startDate">
+              <button type="button" class="btn-default" data-datepickername="startDate" ng-click="openDatepicker($event)">
+                <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+            </span>
+          </div>
+      </td>
       </tr>
       <tr ng-repeat="benefits in staffBenefits">
-        <td>{{benefits.StaffPositions_id}}</td>
-        <td>{{benefits.Departments_id}}</td>
+        <td>{{benefits.position}}</td>
+        <td>{{benefits.department}}</td>
         <td>{{benefits.salary | currency}}</td>
         <td bool-to-string data-value="{{benefits.isHourly}}"></td>
         <td>{{benefits.accruedVacationMonthly}}</td>

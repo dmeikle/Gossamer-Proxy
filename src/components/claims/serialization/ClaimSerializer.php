@@ -23,7 +23,7 @@ class ClaimSerializer extends Serializer {
     public function formatJobNumberResults(array $results) {
         $retval = array();
         if(!array_key_exists('Claims', $results)) {
-            return '';
+            return array();
         }
         
         foreach($results['Claims'] as $row) {
