@@ -70,7 +70,7 @@ module.directive('columnSortable', function($compile, $location) {
   };
 });
 
-module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
+module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
   return {
     restrict: 'A',
     scope: false,
@@ -128,6 +128,7 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
       };
 
       $scope.clearGrouping = function() {
+        $scope.groupedBy = undefined;
         tablesSrv.clearGrouping();
       };
     }

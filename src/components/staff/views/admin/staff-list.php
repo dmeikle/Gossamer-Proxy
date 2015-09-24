@@ -1,7 +1,7 @@
 <div class="widget" ng-controller="staffListCtrl">
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Staff List</h1>
-    <div class="toolbar form-inline">
+    <div ng-hide="grouped" class="toolbar form-inline">
       <button class="btn-link" ng-click="openStaffAdvancedSearch()">
         <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
       </button>
@@ -31,37 +31,39 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
-                <th column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
-                <th column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
-                <th column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
-                <th column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
-                <th column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
-                <th column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
-                <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+                <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
+                <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
+                <th ng-hide="groupedBy === 'title'" column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
+                <th ng-hide="groupedBy === 'telephone'" column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
+                <th ng-hide="groupedBy === 'mobile'" column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+                <th ng-hide="groupedBy === 'status'" column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
+                <th ng-hide="groupedBy === 'lastLogin'" column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
+                <th group-by-button class="cog-col row-controls">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
           <tr ng-if="loading">
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
+            <td ng-hide="groupedBy === 'firstname'"></td>
+            <td ng-hide="groupedBy === 'lastname'"></td>
+            <td ng-hide="groupedBy === 'title'"></td>
+            <td ng-hide="groupedBy === 'telephone'">
               <span class="spinner-loader"></span>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td ng-hide="groupedBy === 'mobile'"></td>
+            <td ng-hide="groupedBy === 'status'"></td>
+            <td ng-hide="groupedBy === 'lastLogin'"></td>
+            <td>&nbsp;</td>
           </tr>
+          [ng-show="groupedBy"][ng-repeat]
           <tr ng-if="!loading" ng-repeat="staff in staffList"
             ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
-              <td ng-click="selectRow(staff)">{{staff.firstname}}</td>
-              <td ng-click="selectRow(staff)">{{staff.lastname}}</td>
-              <td ng-click="selectRow(staff)">{{staff.title}}</td>
-              <td ng-click="selectRow(staff)">{{staff.telephone}}</td>
-              <td ng-click="selectRow(staff)">{{staff.mobile}}</td>
-              <td ng-click="selectRow(staff)">{{staff.status}}</td>
-              <td ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
+              <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(staff)">{{staff.firstname}}</td>
+              <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(staff)">{{staff.lastname}}</td>
+              <td ng-hide="groupedBy === 'title'" ng-click="selectRow(staff)">{{staff.title}}</td>
+              <td ng-hide="groupedBy === 'telephone'" ng-click="selectRow(staff)">{{staff.telephone}}</td>
+              <td ng-hide="groupedBy === 'mobile'" ng-click="selectRow(staff)">{{staff.mobile}}</td>
+              <td ng-hide="groupedBy === 'status'" ng-click="selectRow(staff)">{{staff.status}}</td>
+              <td ng-hide="groupedBy === 'lastLogin'" ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
               <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
