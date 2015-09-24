@@ -29,11 +29,12 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
         $this->tablename = 'staffemergencycontacts';
     }
 
-    public function save($id) {
+    public function saveContact($staffId, $contactId) {
 
         $params = $this->httpRequest->getPost();
 
-        $params[$this->entity]['id'] = intval($id);
+        $params[$this->entity]['Staff_id'] = intval($staffId);
+        $params[$this->entity]['id'] = intval($contactId);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 

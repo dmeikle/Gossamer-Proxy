@@ -63,6 +63,20 @@ admin_staff_emergencycontacts_list:
         datasource: datasource1
     methods: [GET]
 
+
+admin_staff_emergencycontacts_save:
+    pattern: admin/staff/emergencycontacts/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffEmergencyContactsController
+        model: components\staff\models\StaffEmergencyContactModel
+        method: saveContact
+        view: core\views\JSONView
+        viewKey: admin_staff_emergencycontacts_save
+        datasource: datasource1
+    methods: [POST]
+    
+    
 admin_staff_emergencycontacts_get:
     pattern: admin/staff/emergencycontacts/*/*
     defaults:
@@ -121,6 +135,8 @@ admin_staff_edit_home:
         view: core\views\AngularTemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/staff'
     methods: [GET]
 
 
@@ -149,6 +165,18 @@ admin_staff_benefits_listbydate:
         viewKey: admin_staff_benefits_listbydate
         datasource: datasource1
     methods: [GET]
+    
+admin_staff_benefits_save:
+    pattern: admin/staff/benefits/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffBenefitsController
+        model: components\staff\models\StaffBenefitModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_staff_benefits_save
+        datasource: datasource1
+    methods: [POST]
 
 
 

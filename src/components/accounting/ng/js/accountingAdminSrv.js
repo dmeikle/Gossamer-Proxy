@@ -158,19 +158,3 @@ module.service('pageTemplatesSrv', function($http) {
   };
 
 });
-
-// Timesheet service
-module.service('timesheetSrv', function($http) {
-    var apiPath = '/admin/accounting/timesheets';
-
-    var self = this;
-    
-    this.getTimesheetList = function(row, numRows){
-        return $http.get(apiPath + '/' + row + '/' + numRows)
-        .then(function(response) {
-            console.log(self);
-            self.timesheetList = response.data.Timesheets;
-            //self.staffCount = response.data.StaffsCount[0].rowCount;
-        });
-    };
-});

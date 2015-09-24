@@ -1,5 +1,108 @@
+.pull-right{
+    .form-control{
+        display:inline!important;
+        width:auto;
+    }
+}
 table{
+    margin-top:10px;
     td{
         vertical-align: middle!important;
+    }
+}
+.modal-lg{
+    width:1300px;
+    .form-group{
+        display:block;
+        label{
+            margin-right:10px;
+        }
+        input{
+            display:inline;
+            width: auto;
+        }
+    }
+    .laborer, .date, .rate, .total-hours, .form-control{
+//        display:inline;
+    }
+    .rate{
+        label{
+            margin-right:43px;
+        }
+    }
+    .date{
+        float:right;
+        margin-right:10px;
+    }
+//    .pull-right{
+//        label{
+//            margin-right:10px;
+//        }
+//    }
+    .laborer{
+        input{
+            margin-left:10px;
+        }
+        .form-control{
+            width:auto;   
+        }
+    }
+    table{
+        td{
+            vertical-align: top!important;
+            &:nth-child(1){
+                vertical-align: middle!important;
+            }
+        }
+        select{
+            font-size:16px;
+        }
+        textarea{
+            max-width: 200px;
+            min-width: 200px;
+        }
+        input{
+            width: 100%;
+        }
+        .rate{
+            width:70px;
+            text-align:center;
+        }
+        .claims, .phase, .category, description{
+            min-width:100px;
+        }
+        .hours{
+            width:50px;
+            text-align:center;
+        }
+        .checkbox, .select-all{
+            width:30px;
+            text-align:center;
+            margin:auto;
+        }
+        .total{
+            vertical-align: middle!important;
+            text-align: center;
+        }
+        .totalRow{
+            background-color:none!important;
+            td{
+                text-align: center;
+            }
+            &:hover{
+                background-color:none!important;
+            }
+        }
+        .toll{
+            width:75px;
+        }
+        input[type='number'] {
+            -moz-appearance:textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
     }
 }

@@ -47,7 +47,8 @@ class ConfigurationListener extends AbstractCachableListener {
         $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
 
         $config = $parser->loadConfig();
-        //set up any listeners that the file requires
+        
+//set up any listeners that the file requires
         $this->loadListeners($config, $file);
 
         return $config[$file];
