@@ -160,10 +160,14 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     };
     
     $scope.getRateVariance = function(row, phaseID){
-        for (var i = 0; i < $scope.rateVarianceList.length; i++){ 
+        for (var i = 0; i < $scope.rateVarianceList.length; i++){
             if($scope.rateVarianceList[i].attributes.value.nodeValue === phaseID){
-                console.log('rate variance = ' + $scope.rateVarianceList[i].attributes['data-ratevariance'].nodeValue);
+                //console.log('rate variance = ' + $scope.rateVarianceList[i].attributes['data-ratevariance'].nodeValue);
+                console.log('rate variance list = ');
+                console.log($scope.rateVarianceList[i]);
                 row.rateVariance = $scope.rateVarianceList[i].attributes['data-ratevariance'].nodeValue;
+                row.ClaimPhases_id = $scope.rateVarianceList[i].attributes['data-claimphase_id'].nodeValue;
+                
                 row.hourlyRate = parseFloat($scope.hourlyRate * row.rateVariance);
             }
         }
@@ -194,6 +198,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
         StaffTypes_id: '',
         hourlyRate: $scope.hourlyRate,
         rateVariance:'1',
+        ClaimPhases_id: '',
         description: '',
         toll1: '',
         toll2: '',
