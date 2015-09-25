@@ -1,5 +1,14 @@
 
-module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffEditSrv, templateSrv, tablesSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, templateSrv, tablesSrv, toastsSrv) {
+
+  var a = document.createElement('a');
+  a.href = $location.absUrl();
+  var apiPath;
+  if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
+    apiPath = a.pathname;
+  } else {
+    apiPath = a.pathname.slice(0, -1);
+  }
 
   $scope.newAlert = toastsSrv.newAlert;
   // Stuff to run on controller load
@@ -20,7 +29,7 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
       $scope.loading = false;
     }
   });
-  $scope.$watch('tablesSrv.grouped', function() {
+  $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.Staffs'], function() {
       $scope.grouped = tablesSrv.grouped;
       if ($scope.grouped === true) {
         if(tablesSrv.groupResult && tablesSrv.groupResult.Staffs) $scope.staffList = tablesSrv.groupResult.Staffs;
@@ -32,8 +41,6 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
-
-  var apiPath = '/admin/staff/';
 
   $scope.setItemsPerPage = function(number) {
     $scope.itemsPerPage = number;
@@ -149,12 +156,16 @@ module.controller('staffListCtrl', function($scope, $modal, staffListSrv, staffE
     }
   };
 
-  $scope.$watch('currentPage + itemsPerPage', function() {
+  $scope.$watchGroup(['currentPage','itemsPerPage'], function() {
     $scope.loading = true;
     row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     numRows = $scope.itemsPerPage;
 
-    getStaffList(row, numRows);
+    if ($scope.grouped) {
+      tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
+    } else {
+      getStaffList(row, numRows);
+    }
   });
 });
 

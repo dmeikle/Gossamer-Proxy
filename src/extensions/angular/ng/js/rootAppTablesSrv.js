@@ -24,10 +24,10 @@ module.service('tablesSrv', function(searchSrv) {
     });
   };
 
-  this.groupBy = function(apiPath, columnName) {
+  this.groupBy = function(apiPath, columnName, row, numRows) {
     var config = {};
     config['directive::ORDER_BY'] = columnName;
-    searchSrv.searchCall(config, apiPath + '/0/20').then(function(response) {
+    searchSrv.searchCall(config, apiPath + '/' + row + '/' + numRows).then(function(response) {
       self.grouped = true;
       self.groupResult = response.data;
     });

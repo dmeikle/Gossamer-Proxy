@@ -103,6 +103,8 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
       var ul = buttonDOM.getElementsByClassName('dropdown-menu')[0];
 
       ul.appendChild(document.createElement('li'));
+      ul.children[ul.children.length - 1].setAttribute('class', 'divider');
+      ul.appendChild(document.createElement('li'));
       ul.children[ul.children.length - 1].appendChild(document.createElement('a'));
       ul.children[ul.children.length - 1].children[0].setAttribute('ng-click', 'clearGrouping()');
       ul.children[ul.children.length - 1].children[0].appendChild(document.createElement('span'));
@@ -121,10 +123,13 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
         apiPath = a.pathname.slice(0, -1);
       }
 
+      var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var numRows = $scope.itemsPerPage;
+
       $scope.groupBy = function(columnName) {
         $scope.loading = true;
         $scope.groupedBy = columnName;
-        tablesSrv.groupBy(apiPath, columnName);
+        tablesSrv.groupBy(apiPath, columnName, row, numRows);
       };
 
       $scope.clearGrouping = function() {

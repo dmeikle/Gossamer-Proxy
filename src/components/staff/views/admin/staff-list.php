@@ -29,55 +29,82 @@
       <a href="/admin/staff/edit/0" class="btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
-                <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
-                <th ng-hide="groupedBy === 'title'" column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
-                <th ng-hide="groupedBy === 'telephone'" column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
-                <th ng-hide="groupedBy === 'mobile'" column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
-                <th ng-hide="groupedBy === 'status'" column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
-                <th ng-hide="groupedBy === 'lastLogin'" column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
-                <th group-by-button class="cog-col row-controls">&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr ng-if="loading">
-            <td ng-hide="groupedBy === 'firstname'"></td>
-            <td ng-hide="groupedBy === 'lastname'"></td>
-            <td ng-hide="groupedBy === 'title'"></td>
-            <td ng-hide="groupedBy === 'telephone'">
-              <span class="spinner-loader"></span>
-            </td>
-            <td ng-hide="groupedBy === 'mobile'"></td>
-            <td ng-hide="groupedBy === 'status'"></td>
-            <td ng-hide="groupedBy === 'lastLogin'"></td>
-            <td>&nbsp;</td>
+      <thead>
+          <tr>
+              <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
+              <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
+              <th ng-hide="groupedBy === 'title'" column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
+              <th ng-hide="groupedBy === 'telephone'" column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
+              <th ng-hide="groupedBy === 'mobile'" column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+              <th ng-hide="groupedBy === 'status'" column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
+              <th ng-hide="groupedBy === 'lastLogin'" column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
+              <th group-by-button class="cog-col row-controls"></th>
           </tr>
-          [ng-show="groupedBy"][ng-repeat]
-          <tr ng-if="!loading" ng-repeat="staff in staffList"
-            ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
-              <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(staff)">{{staff.firstname}}</td>
-              <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(staff)">{{staff.lastname}}</td>
-              <td ng-hide="groupedBy === 'title'" ng-click="selectRow(staff)">{{staff.title}}</td>
-              <td ng-hide="groupedBy === 'telephone'" ng-click="selectRow(staff)">{{staff.telephone}}</td>
-              <td ng-hide="groupedBy === 'mobile'" ng-click="selectRow(staff)">{{staff.mobile}}</td>
-              <td ng-hide="groupedBy === 'status'" ng-click="selectRow(staff)">{{staff.status}}</td>
-              <td ng-hide="groupedBy === 'lastLogin'" ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
-              <td class="row-controls">
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                  <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
-                    <li><a href="/admin/staff/edit/{{staff.id}}">Edit</a></li>
-                    <li><a href="#">Emergency Contacts</a></li>
-                    <li><a href="#">Delete</a></li>
-                  </ul>
-                </div>
-              </td>
-          </tr>
-        </tbody>
+      </thead>
+      <tbody ng-if="loading">
+        <tr>
+          <td ng-hide="groupedBy === 'firstname'"></td>
+          <td ng-hide="groupedBy === 'lastname'"></td>
+          <td ng-hide="groupedBy === 'title'"></td>
+          <td ng-hide="groupedBy === 'telephone'">
+            <span class="spinner-loader"></span>
+          </td>
+          <td ng-hide="groupedBy === 'mobile'"></td>
+          <td ng-hide="groupedBy === 'status'"></td>
+          <td ng-hide="groupedBy === 'lastLogin'"></td>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr ng-if="!loading && grouped && staff[groupedBy] !== staffList[$index-1][groupedBy]" ng-repeat-start="staff in staffList">
+          <th colspan="7">
+            <span ng-if="groupedBy === 'firstname'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_FIRSTNAME'); ?>
+            </span>
+            <span ng-if="groupedBy === 'lastname'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_LASTNAME'); ?>
+            </span>
+            <span ng-if="groupedBy === 'title'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_TITLE'); ?>
+            </span>
+            <span ng-if="groupedBy === 'extension'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_EXTENSION'); ?>
+            </span>
+            <span ng-if="groupedBy === 'mobile'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_MOBILE'); ?>
+            </span>
+            <span ng-if="groupedBy === 'status'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_STATUS'); ?>
+            </span>
+            <span ng-if="groupedBy === 'lastLogin'">
+              <?php echo $this->getString('STAFF_GROUPEDBY_LASTLOGIN'); ?>
+            </span>
+            {{staff[groupedBy]}}
+          </th>
+        </tr>
+        <tr ng-if="!loading" ng-repeat-end
+          ng-class="{'selected': staff === previouslyClickedObject, 'inactive bg-warning text-warning': staff.status=='inactive'}">
+          <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(staff)">{{staff.firstname}}</td>
+          <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(staff)">{{staff.lastname}}</td>
+          <td ng-hide="groupedBy === 'title'" ng-click="selectRow(staff)">{{staff.title}}</td>
+          <td ng-hide="groupedBy === 'telephone'" ng-click="selectRow(staff)">{{staff.telephone}}</td>
+          <td ng-hide="groupedBy === 'mobile'" ng-click="selectRow(staff)">{{staff.mobile}}</td>
+          <td ng-hide="groupedBy === 'status'" ng-click="selectRow(staff)">{{staff.status}}</td>
+          <td ng-hide="groupedBy === 'lastLogin'" ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
+          <td class="row-controls">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+              <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
+                <li><a href="/admin/staff/edit/{{staff.id}}">Edit</a></li>
+                <li><a href="#">Emergency Contacts</a></li>
+                <li><a href="#">Delete</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
     <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
