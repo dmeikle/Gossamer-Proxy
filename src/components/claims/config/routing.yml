@@ -44,7 +44,7 @@ admin_claims_home:
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
         method: index
-        view: core\views\TemplateView
+        view: core\views\AngularTemplateView
         viewKey: admin_claims_home
         datasource: datasource1
         
