@@ -33,6 +33,7 @@ module.directive('columnSortable', function($compile, $location) {
       } else {
         apiPath = a.pathname.slice(0, -1);
       }
+
       $scope.sortByColumn = function(event) {
         $scope.loading = true;
         var column = event.target.parentElement.parentElement.dataset.column;
@@ -61,7 +62,7 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
     transclude: true,
     link: function(scope, element, attrs) {
       var buttonDOM = document.createElement('div');
-      buttonDOM.setAttribute('class','dropdown');
+      buttonDOM.setAttribute('class', 'dropdown');
       buttonDOM.innerHTML = '<button class="btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-magnet"></span></button>';
       buttonDOM.innerHTML += '<ul class="dropdown-menu pull-right"></ul>';
 
