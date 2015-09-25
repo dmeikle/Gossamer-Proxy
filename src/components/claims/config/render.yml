@@ -1,0 +1,6 @@
+## YAML Template.
+---
+editEmergencyContactModal:
+    path: 'src/components/claims/ng/views/claimsAddNewModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'

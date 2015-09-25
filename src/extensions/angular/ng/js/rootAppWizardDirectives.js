@@ -1,9 +1,9 @@
-module.directive('createNewWizard', function($compile, $location) {
+module.directive('addNewWizard', function($compile, $location) {
   return {
     restricted:'E',
     scope:false,
     link: function(scope, element, attrs) {
-
+      var breakpointme;
     },
     controller: function($scope, createNewWizardSrv) {
       var a = document.createElement('a');

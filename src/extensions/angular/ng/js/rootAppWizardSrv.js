@@ -1,3 +1,3 @@
-module.service('createNewWizardSrv', function($http) {
+module.service('addNewWizardSrv', function($http) {
 
 });
