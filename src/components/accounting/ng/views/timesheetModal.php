@@ -123,7 +123,7 @@
                     <td>
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
                             <?php foreach($AccountingPhaseCodes as $phase) {
-                                echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
+                                echo '<option data-claimphase_id="' . $phase['ClaimPhases_id'] . '" data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                                } ?>
                         </select>
                     </td>

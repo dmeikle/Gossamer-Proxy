@@ -480,7 +480,8 @@ class AbstractModel {
         if(is_object($token) && $token->getClient() instanceof components\security\core\Client) {
             return $token->getClient()->getId();
         }
-        return 0;
+        
+        return null;
     }
 
     /**

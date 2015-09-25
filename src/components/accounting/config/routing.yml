@@ -63,6 +63,23 @@ accounting_timesheets_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+
+        
+
+accounting_timesheets_breakdown:
+    pattern: admin/accounting/timesheets/breakdown/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: listBreakdown
+        view: core\views\JSONView
+        viewKey: accounting_timesheets_breakdown
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+
+
         
 
 accounting_timesheets_list:
@@ -74,21 +91,6 @@ accounting_timesheets_list:
         method: listall
         view: core\views\JSONView
         viewKey: accounting_timesheets_list
-        datasource: datasource1
-        langFiles:
-            - 'src/components/accounting/locales/*/accounting'
-
-        
-
-accounting_timesheets_breakdown:
-    pattern: admin/accounting/timesheets/breakdown/*/*
-    defaults:
-        component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetsController
-        model: components\accounting\models\TimesheetModel
-        method: listBreakdown
-        view: core\views\JSONView
-        viewKey: accounting_timesheets_breakdown
         datasource: datasource1
 
 

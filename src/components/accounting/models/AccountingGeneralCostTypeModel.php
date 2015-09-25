@@ -17,7 +17,7 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of PurchaseOrderModel
+ * Description of AccountingGeneralCostTypeModel
  *
  * @author Dave Meikle
  */
