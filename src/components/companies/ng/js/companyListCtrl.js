@@ -61,7 +61,7 @@ module.controller('companyListCtrl', function($scope, $modal, companyListSrv, co
       $scope.searchSubmitted = true;
       $scope.loading = true;
       companyListSrv.search(searchObject).then(function() {
-        $scope.companyList = companyListSrv.searchResults;
+        $scope.companyList = companyListSrv.searchResults;        
         $scope.totalItems = companyListSrv.searchResultsCount;
         $scope.loading = false;
       });

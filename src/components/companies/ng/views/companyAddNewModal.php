@@ -3,6 +3,7 @@
 <div class="modal-header" ng-switch="company.id">
   <h1 class="modal-title"><?php echo $this->getString('COMPANY_ADD_NEW'); ?></h1>
 </div>
+<form method="post">
 <div class="modal-body">
   <div class="cards col-md-12">
     <div class="card">
@@ -78,13 +79,13 @@
       <div class="clearfix"></div>
     </div>
   </div>
-
+</form>
 
   <div class="clearfix"></div>
 </div>
 <div class="clearfix"></div>
 <div class="modal-footer">
-  <button class="primary" ng-click="confirm(widget)"><?php echo $this->getString('COMPANY_CONFIRM'); ?></button>
+  <button class="primary" ng-click="confirm(company)"><?php echo $this->getString('COMPANY_CONFIRM'); ?></button>
 
   <button ng-click="cancel()"><?php echo $this->getString('COMPANY_CANCEL'); ?></button>
 </div>

@@ -1,11 +1,11 @@
 
 
-<form role="form" class="form-standard" method="post" id="company-form">
+<form role="form" class="form-standard" method="post" id="company-form" ng-controller="companyEditCtrl">
     <?php echo $form['companyId'];?>
     <table class="table">
       <tr>
           <td>Name:</td>
-          <td><?php echo $form['name'];?></td>
+          <td ng-init="name = 'dave'"><?php echo $form['name'];?></td>
       </tr>
       <tr>
         <td>Type:</td>
@@ -50,6 +50,10 @@
         <td>&nbsp;</td>
         <td>
         	<?php echo $form['cancel'];?>  <?php echo $form['save'];?>
+<button class="primary" ng-click="save(company)" ng-disabled="!company">
+                <?php echo $this->getString('COMPANY_CONFIRM'); ?>
+              </button>
+  <button ng-click="cancel()"><?php echo $this->getString('COMPANY_CANCEL'); ?></button>
         </td>
       </tr>
     </table>

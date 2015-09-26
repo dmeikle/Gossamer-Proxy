@@ -16,6 +16,6 @@ return array (
     'COMPANY_CANCEL' => 'Cancel',
     'COMPANY_NEW' => 'New Company',
     'COMPANY_ADVANCED_SEARCH' => 'Advanced Search',
-    'COMPANY_TYPE' => 'Company Type'
-    
+    'COMPANY_TYPE' => 'Company Type',
+    'CLAIMS_DATE_RECEIVED' => 'Date Received'
 );

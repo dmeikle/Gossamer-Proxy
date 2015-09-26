@@ -67,7 +67,7 @@
             <td></td>
             <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="company in companyList"
+          <tr ng-if="!loading" ng-repeat="company in companyList track by $index"
             ng-class="{'selected': company === previouslyClickedObject, 'inactive bg-warning text-warning': company.status=='inactive'}">
               <td ng-click="selectRow(company)">{{company.name}}</a></td>
               <td ng-click="selectRow(company)">{{company.type}}</a></td>
@@ -105,7 +105,7 @@
     </div>
 
     <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
-      <h1><?php echo $this->getString('ADVANCED_SEARCH');?></h1>
+      <h1><?php echo $this->getString('COMPANY_ADVANCED_SEARCH');?></h1>
       <company-advanced-search-filters>
 
       </company-advanced-search-filters>

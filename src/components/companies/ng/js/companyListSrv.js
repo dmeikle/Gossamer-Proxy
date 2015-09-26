@@ -23,8 +23,8 @@ module.service('companyListSrv', function($http, searchSrv) {
 
   this.search = function(searchObject) {
     return searchSrv.search(searchObject, apiPath).then(function() {
-      self.searchResults = searchSrv.searchResults;
-      self.searchResultsCount = searchSrv.searchResultsCount;
+      self.searchResults = searchSrv.searchResults.Companys;      
+      self.searchResultsCount = searchSrv.searchResults.CompanysCount[0].rowCount;
     });
   };
 

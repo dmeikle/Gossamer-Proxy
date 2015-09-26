@@ -5,7 +5,7 @@ module.controller('companyEditCtrl', function($scope, $location, companyEditSrv)
   $scope.authorizationLoading = true;
   $scope.authorization = {};
   $scope.isOpen = {};
-  getCompanyDetail();
+  //getCompanyDetail();
 
   // datepicker stuffs
   $scope.dateOptions = {'starting-day':1};
@@ -21,16 +21,12 @@ module.controller('companyEditCtrl', function($scope, $location, companyEditSrv)
     companyEditSrv.getCompanyDetail(object).then(function() {
       $scope.company = companyEditSrv.companyDetail;
       $scope.loading = false;
-
-      companyEditSrv.getCompanyCreds(object).then(function() {
-        $scope.authorization.username = companyEditSrv.companyCreds.username;
-        $scope.authorizationLoading = false;
-      });
     });
   }
 
   $scope.save = function(object) {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    object.id=object.companyId;
     companyEditSrv.save(object, formToken).then(function() {
       getCompanyDetail();
     });

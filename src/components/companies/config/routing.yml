@@ -57,13 +57,15 @@ admin_companies_edit:
 
 admin_companies_save:
     pattern: admin/companies/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener', 'methods': [POST] }
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
         model: components\companies\models\CompanyModel
         method: save
         view: core\views\JSONView
-        viewKey: admin_companies_list
+        viewKey: admin_companies_save
         datasource: datasource1 
     methods: [POST]      
 

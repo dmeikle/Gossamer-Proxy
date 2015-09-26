@@ -10,3 +10,18 @@ companyAddNewModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', 'cacheKey': 'Countrys' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
  
+companyAdvancedSearchFilters:
+    path: 'src/components/companies/ng/views/companyAdvancedSearchFilters.php'
+    langFiles:
+        - 'src/components/companies/locales/*/Company'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
+        -
+             event: 'filerender_start'
+             listener: 'core\components\render\eventlisteners\FormBuilderListener'
+             datasource: 'datasource1'
+             formBuilder: 'components\companies\form\CompanyBuilder'
+             model: 'components\companies\models\CompanyModel'
+             cacheKey: 'CompanySearchForm'
+             dependencies:
+                 - { dependency: CompanyTypes, key: companyTypes, value: id, text: type}

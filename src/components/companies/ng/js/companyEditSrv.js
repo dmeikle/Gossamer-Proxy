@@ -12,6 +12,7 @@ module.service('companyEditSrv', function($http) {
   };
 
   this.getCompanyDetail = function(object) {
+      console.log(object);
     return $http.get(apiPath + object.id)
       .then(function(response) {
 //        if (response.data.Company.dob) {
