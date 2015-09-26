@@ -29,7 +29,7 @@ class LoadTollListener extends \core\eventlisteners\AbstractCachableListener {
         
         $result = $datasource->query('get', $model, 'list', $params);
         $retval = '';       
-        pr($result);
+        //pr($result);
         foreach($result['AccountingGeneralCostTypes'] as $row) {
             $retval .= '<option value="' . $row['cost'] . '">' . $row['abbreviation'] . "<option>\r\n";
         }

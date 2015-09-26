@@ -11,15 +11,17 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         $modalInstance.dismiss('cancel');
     };
 
-    //Get the dates
-    $scope.getDates = function(){
-        var date = new Date();
-        //date.setDate(date.getDate() - 1);
-        $scope.yesterday = date;
-    };
+    //Get the dates and Timepicker info
+    var date = new Date();
+    //date.setDate(date.getDate() - 1);
+    $scope.today = date;
 
-    //Call getDates
-    $scope.getDates();
+    //Timepicker
+    $scope.mstep = 15;
+    $scope.hstep = 1;
+    $scope.timeFrom = date.setHours(0,0,0,0);
+    $scope.timeTo = date.setHours(0,0,0,0);
+
 
     //Laborer Autocomplete
     function fetchAutocomplete() {
@@ -190,21 +192,15 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         Claims_id: '',
         jobNumber: '',
         AccountingPhaseCodes_id: '',
-        //StaffTypes_id: '',
-        //hourlyRate: $scope.hourlyRate,
-        //rateVariance:'1',
         address: '',
         city: '',
         toll1: '',
         toll2: '',
-        timeFrom: '',
-        timeTo: '',
+        timeFrom: $scope.timeFrom,
+        timeTo: $scope.timeTo,
         regularHours: 0,
         overtimeHours: 0,
         doubleOTHours: 0,
-        //statRegularHours: 0,
-        //statOTHours: 0,
-        //statDoubleOTHours: 0,
         totalHours: 0
     };
     $scope.timesheetItems = [];   
@@ -214,12 +210,12 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         $scope.loading = true;      
         $scope.loading = false;
         $scope.timesheetItems = [angular.extend({}, timesheetTemplate)];
-        $scope.timesheetDate = $scope.yesterday;
+        $scope.timesheetDate = $scope.today;
     };
 
-    $scope.loadTimesheetItems();
-    //console.log($scope.timesheet);
-
+    $scope.loadTimesheetItems();   
+    
+    //Summing up the row and column totals
     $scope.sumTotal = {
         regularHours: 0,
         overtimeHours: 0,
@@ -233,12 +229,7 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
 
     //Update the hour totals
     $scope.updateTotal = function(row, col){
-        //console.log('update total:');
-        //console.log(col);
-        //console.log(row[col]);
-        //console.log(row.regularHours);
-
-        row.totalHours = 0;
+       row.totalHours = 0;
 
         var colValues = ['regularHours', 'overtimeHours', 'doubleOTHours', 'statRegularHours', 'statOTHours', 'statDoubleOTHours'];
 
@@ -431,8 +422,6 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         var newObj = [];
 
         for (var i in object){
-            //newObj.push({toll1: object[i].toll1, toll2: object[i].toll2});
-            //newObj.push(object[i].toll2);
             newObj = [];
             newObj.push({Claims_id: object[i].Claims_id,
                          workDate: date,
@@ -448,13 +437,22 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
 
         return newObj;
     };
+    
+    $scope.getHours = function (object){
+        for(var i in object){
+            console.log($scope.timesheetItems);
+            object[i].timeFrom = $filter('date')(object[i].time, 'HH-mm');
+            object[i].timeTo = $filter('date')(object[i].timeTo, 'HH-mm');            
+        }
+        return object;
+    }
 
     //Save timesheet
     $scope.saveTimesheet = function (object){
         console.log('Saving Timesheet...');
         console.log(object);
         var date = $filter('date')($scope.timesheetDate, 'yyyy-MM-dd');
-
+        
         var timesheet = {
             Timesheet_id: $scope.timesheetID,
             staffID: $scope.staffID,
@@ -464,9 +462,9 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
             totalHours: $scope.sumTotal.totalHours
         };
 
-
         var tolls = $scope.getTolls(object, date);
-        var timesheetItems = $scope.removeTolls(object);
+        //var timesheetItems = $scope.removeTolls(object);
+        var timesheetItems = $scope.getHours(object);
 
         console.log('Timesheet:');
         console.log(timesheet);
@@ -477,7 +475,7 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
 
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        staffTimesheetSrv.saveTimesheet(timesheet, timesheetItems, formToken);
+        //staffTimesheetSrv.saveTimesheet(timesheet, timesheetItems, formToken);
         //$modalInstance.close();        
     };
 
@@ -487,24 +485,7 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         $scope.laborer = '';
         $scope.vehicleID = '';
 
-
-        $scope.timesheetItems = [{
-            isSelected: false,
-            Claims_id: '',
-            jobNumber: '',
-            AccountingPhaseCodes_id: '',
-            StaffTypes_id: '',
-            description: '',
-            toll1: '',
-            toll2: '',
-            regularHours: 0,
-            overtimeHours: 0,
-            doubleOTHours: 0,
-            statRegularHours: 0,
-            statOTHours: 0,
-            statDoubleOTHours: 0,
-            totalHours: 0
-        }];
+        $scope.timesheetItems = angular.extend({}, [timesheetTemplate]);
 
     };
 
