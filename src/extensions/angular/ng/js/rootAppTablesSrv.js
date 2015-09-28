@@ -17,4 +17,20 @@ module.service('tablesSrv', function(searchSrv) {
       self.sortResult = response.data;
     });
   };
+
+  this.groupBy = function(apiPath, columnName) {
+    var config = {};
+    config['directive::GROUP_BY'] = columnName;
+    searchSrv.searchCall(config, apiPath + '/0/20').then(function(response) {
+      self.grouped = true;
+      self.groupResult = response.data;
+    });
+  };
+
+  this.clearGrouping = function(apiPath) {
+    self.grouped = false;
+  };
+
+  // Watch tablesSrv.grouped in your controller, detect change, then grab .groupResult
+  // and make that the contents of your page
 });

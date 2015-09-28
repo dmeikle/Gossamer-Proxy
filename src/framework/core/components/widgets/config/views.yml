@@ -33,8 +33,8 @@ super_widgets_system_home:
     angular:
         bootstrap_modules:
             - widgetAdmin
-            
-            
+
+
 super_widgetpages_list:
     template: super-list.php
     sections:
@@ -45,8 +45,8 @@ super_widgetpages_list:
     angular:
         bootstrap_modules:
             - widgetAdmin
-            
-            
+
+
 super_widgetpages_home:
     template: super-list.php
     sections:

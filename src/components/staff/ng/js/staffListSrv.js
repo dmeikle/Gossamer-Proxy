@@ -1,45 +1,16 @@
-module.service('staffListSrv', function($http) {
+module.service('staffListSrv', function($http, searchSrv) {
+
   var apiPath = '/admin/staff/';
 
   var self = this;
+
+  self.advancedSearch = {};
 
   this.getStaffList = function(row, numRows) {
     return $http.get(apiPath + row + '/' + numRows)
       .then(function(response) {
         self.staffList = response.data.Staffs;
         self.staffCount = response.data.StaffsCount[0].rowCount;
-      });
-  };
-
-  this.autocomplete = function(searchObject) {
-    var value = searchObject.val[0];
-    var column = searchObject.col[0];
-
-    return $http.get(apiPath + 'search?' + column + '=' + value)
-      .then(function(response) {
-        self.autocompleteList = response.data.Staffs;
-      });
-  };
-
-  this.filterListBy = function(row, numRows, object) {
-    var config = {};
-    if (object.val[0]) {
-      for (var i = 0; i < Object.keys(object.col).length; i++) {
-        config[object.col[i]] = object.val[i];
-      }
-    } else {
-      config = undefined;
-    }
-
-
-    return $http({
-        url: apiPath + row + '/' + numRows,
-        method: 'GET',
-        params: config
-      })
-      .then(function(response) {
-        self.searchResults = response.data.Staffs;
-        self.searchResultsCount = response.data.StaffsCount[0].rowCount;
       });
   };
 
@@ -57,5 +28,37 @@ module.service('staffListSrv', function($http) {
         }
         self.staffDetail = response.data.Staff;
       });
+  };
+
+  this.fetchAutocomplete = function(searchObject) {
+    return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
+      self.autocomplete = searchSrv.autocomplete.Staffs;
+      self.autocompleteValues = [];
+      if (searchObject.name) {
+        for (var staff in self.autocomplete) {
+          if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
+            self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
+          }
+        }
+      }
+      if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+        return self.autocompleteValues;
+      } else if (self.autocompleteValues[0] === 'undefined undefined') {
+        return undefined;
+      }
+    });
+  };
+
+  this.search = function(searchObject) {    
+    return searchSrv.search(searchObject, apiPath).then(function() {
+      self.searchResults = searchSrv.searchResults.Staffs;
+      self.searchResultsCount = searchSrv.searchResultsCount.StaffsCount[0].rowCount;
+    });
+  };
+
+  this.getAdvancedSearchFilters = function() {
+    return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
+      self.advancedSearch.fields = searchSrv.advancedSearch.fields;
+    });
   };
 });

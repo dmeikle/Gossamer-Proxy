@@ -1,4 +1,4 @@
-var module = angular.module('phoenixRestorations', []);
+var module = angular.module('rootApp', []);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function(data){

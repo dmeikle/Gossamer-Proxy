@@ -19,6 +19,7 @@ logs
 node_modules
 
 src/components/*/dist
+src/extensions/*/dist
 src/framework/core/components/*/dist
 
 vendor
