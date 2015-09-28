@@ -261,7 +261,7 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
 
         $scope.sumTotal.totalHours = 0;
         for(var p in $scope.timesheetItems){
-            var totalRow = parseInt($scope.timesheetItems[p].totalHours);
+            var totalRow = parseFloat($scope.timesheetItems[p].totalHours);
             $scope.sumTotal.totalHours += totalRow;
         }
     };
@@ -411,5 +411,4 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         $scope.vehicleID = '';
         $scope.timesheetItems = angular.extend({}, [timesheetTemplate]);
     };
-
 });

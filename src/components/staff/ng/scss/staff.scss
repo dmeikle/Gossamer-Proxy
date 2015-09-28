@@ -65,6 +65,11 @@ table.table tbody tr.selected {
   width:100px;
   max-height:100px;
 }
+
+.modal-spinner{
+    vertical-align: middle;
+    margin-left: 30px!important;
+}
 .staff-timesheet-modal{
     .pull-right{
         select{
@@ -114,7 +119,7 @@ table.table tbody tr.selected {
     .time-col{
         width:120px;
     }
-    .select-col .heading{
+    .heading{
         min-height:36px;
     }
 /*    .hours{
@@ -133,7 +138,7 @@ table.table tbody tr.selected {
     .totalRow{
         td{
             text-align:center;
-        }
+        }        
     }
     table{
         th{
@@ -146,6 +151,9 @@ table.table tbody tr.selected {
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
+    }
+    input[type=number] {
+        -moz-appearance:textfield;
     }
     #timesheetGrid{
         @extend table;
@@ -192,6 +200,9 @@ table.table tbody tr.selected {
             }
             .heading{
                 background-color: #ABABAB!important;
+            }
+            .field{
+                height:86px;
             }
         }
     }
