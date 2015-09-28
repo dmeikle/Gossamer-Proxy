@@ -1,0 +1,439 @@
+
+super_customers_roles_save:
+    pattern: super/customers/roles/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerRolesController
+        model: components\customers\models\CustomerRoleModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_customers_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+super_customers_roles_remove:
+    pattern: super/customers/roles/remove/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerRolesController
+        model: components\customers\models\CustomerRoleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: super_customers_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+    
+
+super_customers_roles_list:
+    pattern: super/customers/roles/*/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerRolesController
+        model: components\customers\models\CustomerRoleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_customers_roles_list
+        datasource: datasource1
+    methods: [GET]   
+    
+
+admin_propertymanagers_search:
+    pattern: admin/customers/propertymanagers/search
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'Customers', 'listener': 'components\customers\listeners\PropertyManagerCachableSearchListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerModel'}
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: customersSearchResults
+        view: core\views\JSONView
+        viewKey: admin_propertymanagers_search
+        datasource: datasource1 
+        
+admin_customers_company_edit:
+    pattern: admin/customers/company/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys'}
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_customers_edit
+        datasource: datasource1
+                
+          
+customers_get:
+    pattern: customers/get/*
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerController
+        model: components\customers\models\CustomerModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: customers_get
+        datasource: datasource1
+    methods: [POST]
+    
+admin_customers_permissions_get:
+    pattern: admin/customers/permissions/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_customers_permissions_get
+        datasource: datasource1
+    methods: [GET]    
+
+    
+
+admin_customer_permissions_save:
+    pattern: admin/customers/permissions/save/*
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\customers\listeners\SaveCustomerAuthorizationsListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: savePermissions
+        view: core\views\TemplateView
+        viewKey: admin_customer_permissions_save
+        datasource: datasource1
+    methods: [POST]          
+    
+    
+admin_customers_credentials_get:
+    pattern: admin/customers/credentials/*
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: editCredentials
+        view: core\views\TemplateView
+        viewKey: admin_customers_credentials_get
+        datasource: datasource1
+    methods: [GET]    
+    
+
+admin_customers_credentials_save:
+    pattern: admin/customers/credentials/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\CustomerPasswordValidListener', 'params': {'failkey': 'admin_customers_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\LoadCustomerCredentialsListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_customers_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\AdminUsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_customers_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\customers\listeners\SaveCustomerLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: saveCredentials
+        view: core\views\TemplateView
+        viewKey: admin_customers_credentials_save
+        datasource: datasource1
+    methods: [POST]      
+    
+    
+    
+customers_list:
+    pattern: admin/customers/*/*
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: customers_list
+        datasource: datasource1
+   
+    
+admin_customers_edit:
+    pattern: admin/customers/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes'}
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_customers_edit
+        datasource: datasource1
+        
+admin_customers_save:
+    pattern: admin/customers/*
+    methods: [POST]
+    listeners:
+     #   - { 'event': 'save_success', 'listener': 'components\customers\listeners\SaveCustomerLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_customers_save
+        datasource: datasource1
+        
+  
+admin_scoping_add_customer:
+    pattern: admin/scoping/requests/addCustomer
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_scoping_add_customer
+        datasource: datasource1           
+        
+        
+        
+portal_login:
+    pattern: portal/entrance
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_login
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/customers/locales/*/login'
+    methods: [GET]     
+    
+portal_login_submit:
+    pattern: portal/entrance
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateFormListener', 'methods': [POST] }
+        - { 'event': 'login_success', 'listener': 'components\customers\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_success', 'listener': 'components\customers\listeners\LoadPreferencesListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_password_mismatch', 'listener': 'components\customers\listeners\LocalPasswordMismatchListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_status_locked', 'listener': 'components\customers\listeners\StatusLockedListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_roles_not_set', 'listener': 'components\customers\listeners\RolesNotSetListener', 'datasource': 'datasource3' }
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Customer'
+    methods: [POST]
+    
+    
+    
+customers_login_locked:   
+    pattern: portal/entrance/locked
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: customers_login_locked
+        datasource: datasource1   
+
+customers_login_failed:   
+    pattern: portal/entrance/failed
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: customers_login_failed
+        datasource: datasource1 
+            
+        
+        
+portal_customer_settings:
+    pattern: portal/customers/settings
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: portal_customer_settings
+        datasource: datasource1 
+      
+
+        
+portal_customer_search_by_email:
+    pattern: portal/customers/find-by-email
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: findByEmail
+        view: core\views\JSONView
+        viewKey: portal_customer_search_by_email
+        datasource: datasource1    
+ 
+portal_customer_invites_invite:
+    pattern: portal/customers/invites/invite
+    methods: [GET]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerInvitesController
+        model: components\customers\models\CustomerInviteModel
+        method: invite
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_invite
+        datasource: datasource1         
+        
+
+portal_customer_invites_edit:
+    pattern: portal/customers/invites/*
+    methods: [GET]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerInvitesController
+        model: components\customers\models\CustomerInviteModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_edit
+        datasource: datasource1 
+        
+portal_customer_invites_save:
+    pattern: portal/customers/invites/*
+    methods: [POST]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerInvitesController
+        model: components\customers\models\CustomerInviteModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_save
+        datasource: datasource1         
+        
+portal_customer_invites_list:
+    pattern: portal/customers/invites/*/*
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerInvitesController
+        model: components\customers\models\CustomerInviteModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_list
+        datasource: datasource1 
+          
+
+portal_customer_invites_login:
+    pattern: portal/customers/invite/login
+    methods: [GET]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_login
+        datasource: datasource1           
+
+portal_customer_invites_login_submit:
+    pattern: portal/customers/invite/login
+    methods: [POST]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\LoginController
+        model: components\customers\models\CustomerInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_customer_invites_login_submit
+        datasource: datasource1             
+        
+          
+portal_customers_list:  
+    pattern: portal/customers/list/*/*
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersFriendsController
+        model: components\customers\models\CustomerFriendModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_customers_list
+        datasource: datasource1   
+        
+        
+        
+portal_customers_edit:  
+    pattern: portal/customers/edit
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadListListener', cachekey: CustomerTypes, class: 'components\customers\models\CustomerTypeModel', datasource: datasource1 }        
+    methods: [GET]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: load
+        view: core\views\TemplateView
+        viewKey: portal_customers_edit
+        datasource: datasource1             
+        
+portal_customers_save:  
+    pattern: portal/customers/edit
+    methods: [POST]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: saveInfo
+        view: core\views\TemplateView
+        viewKey: portal_customers_save
+        datasource: datasource1          
+        
+
+  
+portal_customers_credentials_get:
+    pattern: portal/customers/credentials
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: viewCredentials
+        view: core\views\TemplateView
+        viewKey: portal_customers_credentials_get
+        datasource: datasource1
+    methods: [GET]    
+    
+
+portal_customers_credentials_save:
+    pattern: portal/customers/credentials
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\CustomerPasswordValidListener', 'params': {'failkey': 'portal_customers_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\LoadLoggedInCustomerCredentialsListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'portal_customers_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\customers\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'portal_customers_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\customers\listeners\SaveCustomerLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomerAuthorizationsController
+        model: components\customers\models\CustomerAuthorizationModel
+        method: portalSaveCredentials
+        view: core\views\TemplateView
+        viewKey: portal_customers_credentials_save
+        datasource: datasource1
+    methods: [POST] 

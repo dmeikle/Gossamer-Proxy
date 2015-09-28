@@ -1,0 +1,63 @@
+
+
+#----------------- cookie info ----------------------
+
+cookies:
+    secure: true
+    salt: D!dYewKn0wTh3En1gm@D3v1c#w@zaF*rM1dabL3Encyp+i0nD3v!s?
+    name: phoenix_restorations
+    
+application:
+    #possible choices: debug|production
+    mode: debug
+
+blog:
+    caching: false
+    editors:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+        
+cms:
+    caching: false
+
+#this is an afterthought. Originally the system was written with Monolog\Logger
+#being a pervasive aspect of the logging. In hindsight this should have been
+#simply an Adapter Pattern. Putting this configuration in is an initial step
+#towards implementing a logging class behind an adapter method
+logger:
+    class: Monolog\Logger
+    handler:
+        #use this one to make a log that never rotates
+        #class: Monolog\Handler\StreamHandler
+        
+        #use this one to rotate the logs every day
+        class: Monolog\Handler\RotatingFileHandler 
+        #use this for RotatingFileHandler only. Comment out if using standard StreamHandler
+        maxfiles: 14
+        
+        logfile: monolog.log
+        loglevel: 100
+#        100 => 'DEBUG',
+#        200 => 'INFO',
+#        250 => 'NOTICE',
+#        300 => 'WARNING',
+#        400 => 'ERROR',
+#        500 => 'CRITICAL',
+#        550 => 'ALERT',
+#        600 => 'EMERGENCY'
+
+twitter:
+    credentials:
+        oauth_access_token: 874094586-baTudjt9mnnLqDTKiBD3Ir2jhzmHrRR8HItGVWbS
+        oauth_access_token_secret: s5q9rrfJgJftVp3L73Fw5NVtKB2Rx5nAYiX2KMUyUuJmV
+        consumer_key: YMz5fs0XbKG6AQE3f5x9FxtX2
+        consumer_secret: iIaxj9XBN6OQVuoJx3scC6bGzA1nBzjDCBYdBH1sBB8kkC9R00
+    connection:
+        url: 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+        screen_name: am730traffic
+        count: 5
+        method: GET
+    
+ticker:
+    url: ticker.phoenixrestorations.com
+    port: 9000

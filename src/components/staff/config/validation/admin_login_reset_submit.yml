@@ -1,0 +1,16 @@
+
+failkey: admin_login_reset
+#admin_staff_edit
+                
+fields:
+    - username:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: AlphaNumeric
+            failkey: VALIDATION_INVALID_EMAIL
+            params:
+                - maxlength: 50 
+
+                

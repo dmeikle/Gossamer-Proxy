@@ -1,0 +1,53 @@
+
+
+
+    
+
+admin_scheduling_compressed:
+    pattern: admin/scheduling/compressed/*/*
+
+    defaults:
+        component: components\scheduling\SchedulingComponent
+        controller: components\scheduling\controllers\SchedulesController
+        model: components\scheduling\models\StaffSchedulingModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scheduling_compressed
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]
+    
+admin_scheduling_graph:
+    pattern: admin/scheduling/chart/*/*
+
+    defaults:
+        component: components\scheduling\SchedulingComponent
+        controller: components\scheduling\controllers\SchedulesController
+        model: components\scheduling\models\StaffSchedulingModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_scheduling_graph
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]  
+    
+admin_scheduling_calendar:
+    pattern: admin/scheduling/calendar/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}
+        
+    defaults:
+        component: components\scheduling\SchedulingComponent
+        controller: components\scheduling\controllers\SchedulesController
+        model: components\scheduling\models\StaffSchedulingModel
+        method: calendar
+        view: core\views\TemplateView
+        viewKey: admin_scheduling_calendar
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/scheduling/locales/*/Calendar'
+    methods: [GET]    
+        

@@ -1,0 +1,14 @@
+
+     
+        #claimId/locationId
+admin_messaging_claim_list:
+    pattern: admin/messaging/claim/*/*
+    defaults:
+        component: components\messaging\MessagingComponent
+        controller: components\messaging\controllers\MessagesController
+        model: components\messaging\models\DiscussionModel
+        method: listallByClaim
+        view: core\views\TemplateView
+        viewKey: admin_messaging_claim_list
+        datasource: datasource1
+     

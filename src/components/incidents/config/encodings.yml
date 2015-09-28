@@ -1,0 +1,13 @@
+
+admin_incidenttypes_edit:
+    incidentType: utf8
+    
+admin_incidenttypes_save:
+    incidentType: utf8
+    
+admin_incidenttypes_list:
+    incidentType: utf8
+    
+admin_incidents_list:
+    incidentType: utf8
+    

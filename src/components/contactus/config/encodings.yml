@@ -1,0 +1,12 @@
+
+
+
+admin_contactustypes_edit:
+    type: utf8
+    
+admin_contactustypes_list:
+    type: utf8
+    
+admin_contactustypes_save:
+    type: utf8
+    

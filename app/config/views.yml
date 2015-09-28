@@ -1,0 +1,20 @@
+exception:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            #"section2": "src/components/staff/views/admin/subnav.php"
+            "section3": "src/themes/default/templates/sections/exception.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    theme: default
+    
+exception_ajax:
+    template: ajax-html.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+          
+    theme: default    
+
+theme:
+    default

@@ -1,0 +1,56 @@
+admin_blogs_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/framework/core/components/blogs/views/admin/subnav.php"
+            "section3": "src/framework/core/components/blogs/views/admin/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+
+admin_blogs_calendar:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/framework/core/components/blogs/views/admin/subnav.php"
+            "section3": "src/framework/core/components/blogs/views/calendar.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+
+admin_blogs_edit:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/framework/core/components/blogs/views/admin/subnav.php"
+            "section3": "src/framework/core/components/blogs/views/admin/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+            
+website_blogs_list: 
+    template: list.php
+    sections: 
+        -
+            "header": "src/themes/default/templates/sections/header.php"
+            "section2": "src/framework/core/components/blogs/views/subnav.php"
+            "payload": "src/framework/core/components/blogs/views/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"   
+            
+website_blogs_view:   
+    template: list.php
+    sections: 
+        -
+            "header": "src/themes/default/templates/sections/header.php"
+            "section2": "src/framework/core/components/blogs/views/subnav.php"
+            "payload": "src/framework/core/components/blogs/views/view.php"
+            "footer": "src/themes/default/templates/sections/footer.php"     
+          
+website_blogs_feed:     
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/framework/core/components/blogs/views/feed.php"     
+            
+website_blogs_minimenu:   
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/framework/core/components/blogs/views/adminminimenu.php"          

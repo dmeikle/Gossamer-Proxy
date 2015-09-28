@@ -1,0 +1,11 @@
+
+
+
+admin_ticker_request_token:
+    template: newsfeed.php
+    sections: 
+        -
+            "section1": "src/components/ticker/views/admin/feed.php"
+           
+    
+    

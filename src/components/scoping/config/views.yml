@@ -1,0 +1,147 @@
+admin_scoperequests_list:
+    template: admin-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_scoperequest_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+
+admin_scoperequest_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/addContact.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoperequest_edit_contact:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/addContact.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoperequest_save_contact:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/addContact.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_home:
+    template: admin-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/requests/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/scopes/scope.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_location_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/scopes/addLocation.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+ 
+admin_scoping_location_rooms:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/scopes/rooms.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+        
+admin_scoping_location_rooms_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/scopes/scope.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_location_takeoff:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/takeoffs/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_takeoffs_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/takeoffs/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+ 
+admin_scoping_takeoffs_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/takeoffs/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+admin_scoping_rooms_list: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/rooms/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"   
+            
+admin_scoping_rooms_edit: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/rooms/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_scoping_view:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/scoping/views/rooms/view.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+     
+     
+    

@@ -1,0 +1,6 @@
+
+default_locale:
+    locale: en_US
+    languageName: "US English"
+    isDefault: 1
+    icon: us

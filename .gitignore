@@ -1,43 +1,48 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
 
-# Folder config file
-Desktop.ini
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+.sass-cache
+.Trash-1000
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+app/cache/*
+app/logs/*
+app/config/credentials.yml
 
-# Windows shortcuts
-*.lnk
+bower_components
 
-# =========================
-# Operating System Files
-# =========================
+composer.lock
 
-# OSX
-# =========================
 
-.DS_Store
-.AppleDouble
-.LSOverride
+documentation
 
-# Thumbnails
-._*
+logs
 
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+node_modules
+
+src/components/*/dist
+src/extensions/*/dist
+src/framework/core/components/*/dist
+
+vendor
+
+web/assets
+web/assets/default/images/images
+web/assets/default-bak/images/images
+
+web/css/components
+web/css/framework
+
+web/css/theme
+web/components
+web/css/extensions
+!web/css/extensions/.htaccess
+
+web/images/claims
+web/images/components
+web/images/theme
+
+web/js/angular
+web/js/theme
+web/js/extensions
+!web/js/extensions/.htaccess
+

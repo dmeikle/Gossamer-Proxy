@@ -1,0 +1,35 @@
+
+
+callmatrix_list_by_date:
+    pattern: admin/callmatrix/*/*
+    defaults:
+        component: components\callmatrix\CallMatrixComponent
+        controller: components\callmatrix\controllers\CallMatrixController
+        model: components\callmatrix\models\OnCallInstanceModel
+        method: listByDate
+        view: core\views\TemplateView
+        viewKey: callmatrix_list_by_date
+        datasource: datasource1
+        
+callmatrix_calendar:
+    pattern: admin/callmatrix/calendar/*/*
+    defaults:
+        component: components\callmatrix\CallMatrixComponent
+        controller: components\callmatrix\controllers\CallMatrixController
+        model: components\callmatrix\models\OnCallInstanceModel
+        method: showCalendar
+        view: core\views\TemplateView
+        viewKey: callmatrix_calendar
+        datasource: datasource1    
+
+callmatrix_calendar_add_staff:
+    pattern: admin/callmatrix/calendar/*/*/add
+    defaults:
+        component: components\callmatrix\CallMatrixComponent
+        controller: components\callmatrix\controllers\CallMatrixController
+        model: components\callmatrix\models\OnCallInstanceModel
+        method: showAddStaff
+        view: core\views\TemplateView
+        viewKey: callmatrix_calendar_add_staff
+        datasource: datasource1 
+    methods: [GET]

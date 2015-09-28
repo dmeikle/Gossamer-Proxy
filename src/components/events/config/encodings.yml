@@ -1,0 +1,34 @@
+
+admin_events_edit:
+    name: utf8
+    description: utf8
+    type: utf8
+    
+admin_events_save:
+    name: utf8
+    description: utf8
+    
+
+admin_events_list:
+    name: utf8
+    description: utf8    
+    
+portal_events_list:    
+    name: utf8
+    description: utf8   
+    
+admin_event_types_edit:    
+    type: utf8
+    
+admin_event_types_save:    
+    type: utf8
+    
+super_event_types_list:    
+    type: utf8
+    
+admin_eventattendees_list:
+    name: utf8
+    
+portal_events_view:
+    name: utf8
+    description: utf8

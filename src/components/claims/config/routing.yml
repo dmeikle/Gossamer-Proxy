@@ -1,0 +1,426 @@
+admin_claims_newcount:
+    pattern: admin/claims/newcount/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getNewCount
+        view: core\views\JSONView
+        viewKey: admin_claims_newcount
+        datasource: datasource1
+  
+admin_claims_opencount:
+    pattern: admin/claims/opencount
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getOpenCount
+        view: core\views\JSONView
+        viewKey: admin_claims_opencount
+        datasource: datasource1
+        
+admin_claims_search:
+    pattern: admin/claims/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: searchByJobNumber
+        view: core\views\JSONView
+        viewKey: admin_claims_search
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation' 
+
+    
+        
+admin_claims_home:
+    pattern: admin/claims
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_claims_home
+        datasource: datasource1
+        
+         
+admin_claimslocation_view_comments:
+    pattern: admin/claims/locations/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: listCommentsByJobnumber
+        view: core\views\JSONView
+        viewKey: admin_claimslocation_view_comments
+        datasource: datasource1
+    methods: [GET]
+        
+         
+admin_claimslocation_save_comment:
+    pattern: admin/claims/locations/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claimslocation_view_comments
+        datasource: datasource1
+    methods: [POST]
+    
+
+admin_claims_list_comments:
+    pattern: admin/claims/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimCommentsController
+        model: components\claims\models\ClaimCommentModel
+        method: listCommentsByJobnumber
+        view: core\views\JSONView
+        viewKey: admin_claims_list_comments
+        datasource: datasource1
+    methods: [GET]
+    
+    
+admin_claims_save_comment:
+    pattern: admin/claims/comments/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimCommentsController
+        model: components\claims\models\ClaimCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_save_comment
+        datasource: datasource1
+    methods: [POST]
+              
+
+admin_claims_get_photo_count:
+    pattern: admin/claims/photocount/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimModel
+        method: getCount
+        view: core\views\JSONView
+        viewKey: admin_claims_get_photo_count
+        datasource: datasource1
+    methods: [GET]            
+            
+            
+admin_claims_claim_photos_home:
+    pattern: admin/claim/photos/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: drawParams
+        view: core\views\TemplateView
+        viewKey: admin_claims_claim_photos_home
+        datasource: datasource1
+    methods: [GET]           
+            
+            
+admin_claims_list_claim_photos:
+    pattern: admin/claim/photos/list/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: listByClaimId
+        view: core\views\JSONView
+        viewKey: admin_claims_list_claim_photos
+        datasource: datasource1
+    methods: [GET]          
+            
+            
+            
+admin_claims_upload_claim_photos:
+    pattern: admin/claims/photos/upload/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: uploadPhotos
+        view: core\views\JSONView
+        viewKey: admin_claims_upload_claim_photos
+        datasource: datasource1
+    methods: [POST]           
+                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+claims_new_claim_wizard_1:
+    pattern: admin/claims/new/*/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', cachekey: Provinces}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ProjectAddressesController
+        model: components\claims\models\ProjectAddressModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: claims_new_claim_wizard_1
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation' 
+    
+claims_new_claim_wizard_search:
+    pattern: admin/claims/projectaddresses/stratanumber/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ProjectAddressesController
+        model: components\claims\models\ProjectAddressModel
+        method: searchByStrataNumber
+        view: core\views\JSONView
+        viewKey: claims_new_claim_wizard_search
+        datasource: datasource1   
+   
+
+admin_claims_view:
+    pattern: admin/claims/view/*
+    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimLocationModel'}
+#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\projects\models\ProjectAddressModel'}
+    
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: view
+        view: core\views\JSONView
+        viewKey: admin_claims_view
+        datasource: datasource1
+        
+        
+admin_claims_list:
+    pattern: admin/claims/*/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimTypeModel', cacheKey: 'ClaimTypes'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallReverse
+        view: core\views\JSONView
+        viewKey: admin_claims_list
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation'  
+   
+admin_claims_edit1:
+    pattern: admin/claim/1/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel'}
+    methods: [GET]
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_claims_edit1
+        datasource: datasource1       
+ 
+admin_claims_edit2:
+    pattern: admin/claim/1/*
+    methods: [POST]
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_claims_edit2
+        datasource: datasource1 
+        
+admin_claims_edit3:
+    pattern: admin/claim/3/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_claims_edit3
+        datasource: datasource1  
+        
+admin_claims_edit4:
+    pattern: admin/claim/4/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_claims_edit4
+        datasource: datasource1  
+        
+        
+#admin_claims_edit4:
+#    pattern: admin/claim/*/4
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+#    defaults:
+#        component: components\claims\ClaimsComponent
+#        controller: components\claims\controllers\ClaimsController
+#        model: components\claims\models\ClaimModel
+#        method: edit
+#        view: core\views\TemplateView
+#        viewKey: admin_claims_edit4
+#        datasource: datasource1  
+        
+admin_claim_view:
+    pattern: admin/claim/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: get
+        view: core\views\TemplateView
+        viewKey: admin_claim_view
+        datasource: datasource1
+        
+        
+admin_claimlocation_edit_work:
+    pattern: admin/claimlocations/work/*/*/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsWorkModel
+        method: listWork
+        view: core\views\TemplateView
+        viewKey: admin_claimlocation_edit_work
+        datasource: datasource1   
+        
+admin_claimlocation_work_history:
+    pattern: admin/claimlocations/work/*/*
+   # listeners:
+   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsWorkModel
+        method: locationHistory
+        view: core\views\TemplateView
+        viewKey: admin_claimlocation_work_history
+        datasource: datasource1   
+        
+admin_claimlocations_by_claimid:
+    pattern: admin/claimlocations/claim/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: listLocationsByClaimId
+        view: core\views\JSONView
+        viewKey: admin_claimlocations_by_claimid
+        datasource: datasource1
+    methods: [GET]         
+        
+    
+
+admin_upload_location_photo:
+    pattern: admin/claimlocations/photos/upload/*/*
+    listeners:        
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsPhotoModel
+        method: saveClaimsLocationPhotos
+        view: core\views\JSONView
+        viewKey: admin_upload_location_photo
+        datasource: datasource1
+    methods: [GET]        
+        
+        
+admin_claims_scheduling_list:
+    pattern: admin/claims/scheduling/*/*
+    defaults:
+        component: components\scheduling\SchedulingComponent
+        controller: components\scheduling\controllers\SchedulesController
+        model: components\scheduling\models\StaffSchedulingModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_claims_scheduling_list
+        datasource: datasource1
+    
+  
+admin_claimlocation_view:
+    pattern: admin/claimlocations/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: viewLocation
+        view: core\views\TemplateView
+        viewKey: admin_claimlocation_view
+        datasource: datasource1  
+        
+        
+    #-----------------------------start client portal section --------------------------------
+claims_list:
+    pattern: portal/claims/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallByCompany
+        view: core\views\TemplateView
+        viewKey: claims_list
+        datasource: datasource1
+        
+claims_list_by_projectaddress:
+    pattern: portal/claims/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallByProjectAddress
+        view: core\views\TemplateView
+        viewKey: claims_list_by_projectaddress
+        datasource: datasource1        
+        
+claims_view:
+    pattern: portal/claims/*
+    listeners:        
+        #make sure they are viewing their claim not someone elses
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\VerifyClaimAccessListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: claims_view
+        datasource: datasource1        
+        
+        

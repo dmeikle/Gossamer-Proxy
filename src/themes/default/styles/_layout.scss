@@ -1,0 +1,109 @@
+// TODO Potential media query problem with iPad Minis.. Look into adjusting breakpoint?
+.wrapper {
+  @extend .container-fluid;
+  @media (max-width: $screen-md-min) {
+    width:100%;
+  }
+  padding:0 .25rem;
+}
+
+.message-wrapper {
+  @extend .container;
+  min-height: 95vh; //Magic number-ey for now
+
+}
+
+.notification-area {
+  margin:0 auto;
+  width:40%;
+
+  position:fixed;
+  left:30%;
+  top:0;
+  z-index:10;
+}
+
+.alert {
+  padding:.5em 1em;
+  margin:.5em;
+}
+
+.userimage {
+  border-radius:50%;
+  margin-right:.5em;
+}
+.navbar-brand {
+  padding:0;
+  img {
+    width: 90px;
+  }
+}
+
+button {
+  @extend .btn;
+  &.primary {
+    @extend .btn-primary;
+  }
+}
+
+.input-group {
+  button {
+    border-radius:0 4px 4px 0;
+    border-left:0;
+
+    margin-left:-1px;
+  }
+}
+
+.toolbar {
+  padding: .5em 0;
+  text-align:right;
+
+  > button {
+    margin-left:1em;
+  }
+}
+
+.table {
+  margin-bottom:0;
+}
+
+.table>tbody>tr>td:not(.row-controls) {
+  padding:.5em;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  margin:0;
+}
+
+.row-controls button {
+  font-size:.75em;
+}
+
+nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
+  padding-left:7px;
+  padding-right:7px;
+}
+
+.resultspane {
+  position:absolute;
+  top:2.2em;
+  text-align:left;
+
+
+  // stolen from .dropdown-menu
+  min-width: 160px;
+  width:100%;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  background-clip: padding-box;
+}

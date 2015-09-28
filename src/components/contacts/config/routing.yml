@@ -1,0 +1,461 @@
+
+super_contacts_roles_save:
+    pattern: super/contacts/roles/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_contacts_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+super_contacts_roles_remove:
+    pattern: super/contacts/roles/remove/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: super_contacts_roles_save
+        datasource: datasource1
+    methods: [POST]   
+    
+    
+
+super_contacts_roles_list:
+    pattern: super/contacts/roles/*/*
+    listeners:
+       # - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactRolesController
+        model: components\contacts\models\ContactRoleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: super_contacts_roles_list
+        datasource: datasource1
+    methods: [GET]   
+    
+
+admin_propertymanagers_search:
+    pattern: admin/contacts/propertymanagers/search
+    listeners:
+        - { 'event': 'response_start', 'cacheKey': 'Contacts', 'listener': 'components\contacts\listeners\PropertyManagerCachableSearchListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactModel'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: contactsSearchResults
+        view: core\views\JSONView
+        viewKey: admin_propertymanagers_search
+        datasource: datasource1 
+        
+admin_contacts_company_edit:
+    pattern: admin/contacts/company/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+                
+#----------------------- claim contacts --------------------
+
+claimcontacts_list:
+    pattern: admin/contacts/claim/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ClaimContactsController
+        model: components\contacts\models\ClaimContactModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: claimcontacts_list
+        datasource: datasource1  
+        
+                  
+                  
+                  
+                  
+                  
+contacts_get:
+    pattern: contacts/get/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: contacts_get
+        datasource: datasource1
+    methods: [POST]
+    
+admin_contacts_permissions_get:
+    pattern: admin/contacts/permissions/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_permissions_get
+        datasource: datasource1
+    methods: [GET]    
+
+    
+
+admin_contact_permissions_save:
+    pattern: admin/contacts/permissions/save/*
+    listeners:
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactAuthorizationsListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: savePermissions
+        view: core\views\TemplateView
+        viewKey: admin_contact_permissions_save
+        datasource: datasource1
+    methods: [POST]          
+    
+    
+admin_contacts_credentials_get:
+    pattern: admin/contacts/credentials/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: editCredentials
+        view: core\views\TemplateView
+        viewKey: admin_contacts_credentials_get
+        datasource: datasource1
+    methods: [GET]    
+    
+
+admin_contacts_credentials_save:
+    pattern: admin/contacts/credentials/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\ContactPasswordValidListener', 'params': {'failkey': 'admin_contacts_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\LoadContactCredentialsListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'admin_contacts_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\AdminUsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'admin_contacts_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: saveCredentials
+        view: core\views\TemplateView
+        viewKey: admin_contacts_credentials_save
+        datasource: datasource1
+    methods: [POST]      
+    
+    
+    
+contacts_list:
+    pattern: admin/contacts/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: contacts_list
+        datasource: datasource1
+   
+    
+admin_contacts_edit:
+    pattern: admin/contacts/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+        
+admin_contacts_save:
+    pattern: admin/contacts/*
+    methods: [POST]
+    listeners:
+     #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_contacts_save
+        datasource: datasource1
+        
+  
+admin_scoping_add_contact:
+    pattern: admin/scoping/requests/addContact
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_scoping_add_contact
+        datasource: datasource1           
+        
+        
+        
+portal_login:
+    pattern: portal/entrance
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_login
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/contacts/locales/*/login'
+    methods: [GET]     
+    
+portal_login_submit:
+    pattern: portal/entrance
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateFormListener', 'methods': [POST] }
+        - { 'event': 'login_success', 'listener': 'components\contacts\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_success', 'listener': 'components\contacts\listeners\LoadPreferencesListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_password_mismatch', 'listener': 'components\contacts\listeners\LocalPasswordMismatchListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_status_locked', 'listener': 'components\contacts\listeners\StatusLockedListener', 'datasource': 'datasource3'}
+        - { 'event': 'login_roles_not_set', 'listener': 'components\contacts\listeners\RolesNotSetListener', 'datasource': 'datasource3' }
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: admin_login_submit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/shoppingcart/locales/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [POST]
+    
+    
+    
+contacts_login_locked:   
+    pattern: portal/entrance/locked
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: contacts_login_locked
+        datasource: datasource1   
+
+contacts_login_failed:   
+    pattern: portal/entrance/failed
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: contacts_login_failed
+        datasource: datasource1 
+            
+        
+        
+portal_contact_settings:
+    pattern: portal/contacts/settings
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: portal_contact_settings
+        datasource: datasource1 
+      
+
+        
+portal_contact_search_by_email:
+    pattern: portal/contacts/find-by-email
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: findByEmail
+        view: core\views\JSONView
+        viewKey: portal_contact_search_by_email
+        datasource: datasource1    
+ 
+portal_contact_invites_invite:
+    pattern: portal/contacts/invites/invite
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: invite
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_invite
+        datasource: datasource1         
+        
+
+portal_contact_invites_edit:
+    pattern: portal/contacts/invites/*
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_edit
+        datasource: datasource1 
+        
+portal_contact_invites_save:
+    pattern: portal/contacts/invites/*
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_save
+        datasource: datasource1         
+        
+portal_contact_invites_list:
+    pattern: portal/contacts/invites/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactInvitesController
+        model: components\contacts\models\ContactInviteModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_list
+        datasource: datasource1 
+          
+
+portal_contact_invites_login:
+    pattern: portal/contacts/invite/login
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_login
+        datasource: datasource1           
+
+portal_contact_invites_login_submit:
+    pattern: portal/contacts/invite/login
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\LoginController
+        model: components\contacts\models\ContactInviteModel
+        method: login
+        view: core\views\TemplateView
+        viewKey: portal_contact_invites_login_submit
+        datasource: datasource1             
+        
+          
+portal_contacts_list:  
+    pattern: portal/contacts/list/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsFriendsController
+        model: components\contacts\models\ContactFriendModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: portal_contacts_list
+        datasource: datasource1   
+        
+        
+        
+portal_contacts_edit:  
+    pattern: portal/contacts/edit
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadListListener', cachekey: ContactTypes, class: 'components\contacts\models\ContactTypeModel', datasource: datasource1 }        
+    methods: [GET]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: load
+        view: core\views\TemplateView
+        viewKey: portal_contacts_edit
+        datasource: datasource1             
+        
+portal_contacts_save:  
+    pattern: portal/contacts/edit
+    methods: [POST]
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: saveInfo
+        view: core\views\TemplateView
+        viewKey: portal_contacts_save
+        datasource: datasource1          
+        
+
+  
+portal_contacts_credentials_get:
+    pattern: portal/contacts/credentials
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: viewCredentials
+        view: core\views\TemplateView
+        viewKey: portal_contacts_credentials_get
+        datasource: datasource1
+    methods: [GET]    
+    
+
+portal_contacts_credentials_save:
+    pattern: portal/contacts/credentials
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\ContactPasswordValidListener', 'params': {'failkey': 'portal_contacts_credentials_get' }} 
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\LoadLoggedInContactCredentialsListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactAuthorizationModel' }  
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'portal_contacts_credentials_get' }}         
+        - { 'event': 'entry_point', 'listener': 'components\contacts\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'portal_contacts_credentials_get' }} 
+        - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3'}    
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactAuthorizationsController
+        model: components\contacts\models\ContactAuthorizationModel
+        method: portalSaveCredentials
+        view: core\views\TemplateView
+        viewKey: portal_contacts_credentials_save
+        datasource: datasource1
+    methods: [POST] 
+    
+    
+
+
+            

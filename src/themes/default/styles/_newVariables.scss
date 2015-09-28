@@ -1,0 +1,19 @@
+$font-size-base: 16px;
+$font-family-sans-serif:'Lato', sans-serif;
+
+// Basics of a navbar
+$navbar-border-radius:             0;
+$navbar-default-color:             #fff;
+$navbar-default-bg:                #03A9F4;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
+$navbar-margin-bottom:             0;
+
+
+// Navbar links
+$navbar-default-link-color:                #f3f3f3;
+$navbar-default-link-hover-color:          #fff;
+$navbar-default-link-hover-bg:             transparent;
+$navbar-default-link-active-color:         #fff;
+$navbar-default-link-active-bg:            lighten($navbar-default-bg, 6.5%);
+$navbar-default-link-disabled-color:       #fff;
+$navbar-default-link-disabled-bg:          transparent;

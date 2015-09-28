@@ -1,0 +1,97 @@
+
+          
+default_index:
+    pattern: default/index        
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+ #       method: listall
+        method: index
+        view: core\views\TemplateView
+        viewKey: default_index
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Home'
+    methods: [GET]
+    
+
+default_about:
+    pattern: about
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: about
+        view: core\views\TemplateView
+        viewKey: default_about
+        datasource: datasource2
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/About'
+    methods: [GET]
+     
+default_contact:
+    pattern: contact
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: contact
+        view: core\views\TemplateView
+        viewKey: default_contact
+        datasource: datasource2
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET] 
+    
+ 
+admin_home:
+    pattern: admin/home
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]     
+    
+ 
+portal_home:
+    pattern: portal/home
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: admin_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]   
+    
+super_home:
+    pattern: super/home
+    defaults:
+        component: components\defaultItem\DefaultComponent
+        controller: components\defaultItem\controllers\DefaultController
+        model: components\defaultItem\models\DefaultModel
+        method: index
+        view: core\views\TemplateView
+        viewKey: super_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+    methods: [GET]      
+    
+    

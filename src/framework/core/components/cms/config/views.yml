@@ -1,0 +1,52 @@
+admin_cms_section_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
+            "section3": "src/framework/core/components/cms/views/admin/section-edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_cms_section_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
+            "section3": "src/framework/core/components/cms/views/admin/sections/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_cms_pages_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
+            "section3": "src/framework/core/components/cms/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+
+    
+admin_cms_page_edit:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/cms/views/admin/subnav.php"
+            "section3": "src/framework/core/components/cms/views/admin/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+cms_view_page_1:    
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            #"section2": "src/framework/core/components/cms/views/subnav.php"
+            "section3": "src/framework/core/components/cms/views/view.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+    
+admin_cms_page_search:    
+admin_cms_page_save:    
+admin_cms_section_save:
+admin_cms_section_view:
+    

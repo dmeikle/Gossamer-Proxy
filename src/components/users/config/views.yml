@@ -1,0 +1,19 @@
+
+
+
+portal_login:
+    template: list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/header.php"
+            "section3": "src/components/users/views/login/login-form.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+portal_login_submit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "section3": "src/components/defaultItem/views/admin/home.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    

@@ -1,0 +1,222 @@
+       
+admin_surveys_scopeforms_list:  
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/scope-list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"              
+            
+admin_surveys_scopeforms_edit:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/scope-edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"                  
+            
+admin_surveys_sheetquestions_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/scope-list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"       
+            
+admin_surveys_sheetquestions_edit:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/scope-edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"     
+            
+            
+admin_surveys_sheetanswers_list:   
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/answers/scope-list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"       
+            
+admin_surveys_sheetanswers_edit: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/scoping/views/subnav.php"
+            "section3": "src/components/surveys/views/answers/scope-edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"                
+            
+admin_surveys_sheetanswers_search:           
+    
+    
+admin_surveys_list: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"    
+            
+admin_surveys_edit:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"        
+            
+            
+admin_surveys_questions_list:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"     
+            
+admin_surveys_questions_edit:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_surveys_answers_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/answers/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"        
+            
+admin_surveys_answers_edit:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/answers/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+
+admin_surveys_questions_select:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/questions/list-by-survey.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+            
+admin_surveys_panes_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"            
+            
+        
+admin_surveys_panes_edit:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_surveys_panes_questions_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/panes-questions/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          
+            
+admin_surveys_pages_list:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"   
+            
+admin_surveys_pages_edit:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages/edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_pages_panes_list:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/pages-panes/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_respond_by_permalink:  
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_panes_not_found: 
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey-not-found.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_surveys_completed:    
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey-completed.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_surveys_surveypage_list:     
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/survey-pages/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"      
+            
+admin_surveys_view_responses:   
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/surveys/views/subnav.php"
+            "section3": "src/components/surveys/views/surveys/view-response.php"
+            "section4": "src/themes/default/templates/sections/footer.php"          

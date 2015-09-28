@@ -1,0 +1,25 @@
+* {
+    //color: red;
+   // border: solid 1px black;
+}
+
+#product img {
+    width: 300px;
+    float: left;
+    margin: 0px 50px 50px 0px;
+}
+
+#product #stats {
+    float:left;
+    width: 430px;
+}
+
+#product #productFooter {
+    clear:both;
+    width: 90%
+}
+
+#product .strikethrough{
+    text-decoration: line-through;
+    color: red;
+}

@@ -1,0 +1,24 @@
+
+
+failkey: super_tickets_categories_list
+fields:
+
+    - category:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: String
+            failkey: VALIDATION_INVALID_CATEGORY
+            params:
+                - maxlength: 50 
+
+    - prefix:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: String
+            failkey: VALIDATION_INVALID_PREFIX
+            params:
+                - maxlength: 5 

@@ -1,0 +1,89 @@
+
+#------------------- new layout items --------------
+
+admin_messaging_home:           
+    template: admin-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            #"section3": "src/components/messaging/views/templates/add.php"
+            "footer": "src/themes/default/templates/sections/footer.php"  
+            
+ 
+admin_messaging_view_selected:                
+    template: admin-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            #"section3": "src/components/messaging/views/templates/add.php"
+            "footer": "src/themes/default/templates/sections/footer.php"    
+            
+admin_messaging_compose:    
+    template: admin-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            #"section3": "src/components/messaging/views/templates/add.php"
+            "footer": "src/themes/default/templates/sections/footer.php"              
+
+#------------------ legacy layout items -----------
+
+admin_messaging_list:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+    
+admin_messaging_create:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/admin/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"    
+    
+admin_messaging_save:
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/admin/sent.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+            
+admin_messaging_claim_list:
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/admin/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php" 
+    
+admin_messaging_templates_list:   
+    template: admin-list-fullscreen.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/templates/list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"  
+            
+admin_messaging_templates_edit:         
+    template: admin-list.php
+    sections: 
+        -
+            "section1": "src/themes/default/templates/sections/admin-header.php"
+            "section2": "src/components/messaging/views/admin/subnav.php"
+            "section3": "src/components/messaging/views/templates/add.php"
+            "section4": "src/themes/default/templates/sections/footer.php"     
+            
+       

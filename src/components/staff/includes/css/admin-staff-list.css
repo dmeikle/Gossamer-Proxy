@@ -1,0 +1,69 @@
+/*
+ This file is part of the Quantum Unit Solutions development package.
+
+ (c) Quantum Unit Solutions <http://github.com/dmeikle/>
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+*/
+/* 
+    Created on : 10-Apr-2015, 1:38:43 PM
+    Author     : dave meikle
+*/
+
+.staff-member.pane {
+	font-size:12px;
+	
+	float: left;
+	margin: 10px;
+	border: solid 1px gray;
+        border-radius:5px;
+	padding: 5px;	
+	
+}
+.staff-member.pane img {
+	float: left;
+	margin: 0px 5px 5px 0px;
+}
+.staff-member.pane .name {
+	margin-top:15px;
+	font-weight:600;
+}
+.staff-member.pane .email {
+	margin-top: 02px;
+	clear:both;
+}
+.staff-member.pane .logged-in {
+	float: right;
+}
+/*
+#staff-edit-slider {
+    position: absolute;
+    top: 30px;
+    margin-left: -300px;
+    min-width: 300px;
+    max-width: 750px;
+    width: 100%;
+}
+
+*/
+
+#slide-panel {
+    //width:300px;
+    //height:300px;
+    padding:10px;
+    background:#eee;
+    //margin-left:-300px;
+    position: absolute;
+    top: 30px;
+    position: fixed;
+}
+#opener {
+    float:left;
+    margin:-10px 0px 0px -50px;
+    border-radius:0;
+}
+
+#staff-form {
+    background-color: white;
+}

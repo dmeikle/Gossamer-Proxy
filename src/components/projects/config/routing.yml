@@ -1,0 +1,154 @@
+projectaddress_autocomplete:
+    pattern: admin/projects/addresses/search
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: search
+        view: core\views\JSONView
+        viewKey: projectaddress_autocomplete
+        datasource: datasource1
+        
+
+        
+floorplans_list:
+    pattern: admin/projects/floorplans/*
+
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectFloorPlansController
+        model: components\projects\models\FloorPlanModel
+        method: listByProject
+        view: core\views\TemplateView
+        viewKey: floorplans_list
+        datasource: datasource1
+    methods: [GET]  
+    
+floorplans_delete:
+    pattern: admin/projects/floorplans/*
+    listeners:        
+        - { 'event': 'delete_success', 'listener': 'components\projects\listeners\DeleteFloorPlanPhotoListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectFloorPlansController
+        model: components\projects\models\FloorPlanModel
+        method: delete
+        view: core\views\TemplateView
+        viewKey: floorplans_delete
+        datasource: datasource1
+    methods: [POST]        
+        
+floorplans_edit:
+    pattern: admin/projects/floorplans/*/*
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectFloorPlansController
+        model: components\projects\models\FloorPlanModel
+        method: editFloorPlan
+        view: core\views\TemplateView
+        viewKey: floorplans_edit
+        datasource: datasource1
+    methods: [GET]  
+        
+floorplans_save:
+    pattern: admin/projects/floorplans/*/*
+    listeners:        
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener'}  
+        - { 'event': 'request_start', 'listener': 'components\projects\listeners\UploadFloorPlanPhotosListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\fileuploads\listeners\GenerateThumbnailsListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectFloorPlansController
+        model: components\projects\models\FloorPlanModel
+        method: saveFloorPlan
+        view: core\views\TemplateView
+        viewKey: floorplans_save
+        datasource: datasource1
+    methods: [POST]  
+         
+         
+         
+projectaddress_save:
+    pattern: admin/projects/*
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener'}  
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: save
+        view: core\views\JSONView
+        viewKey: projectaddress_save
+        datasource: datasource1
+    methods: [POST]
+                   
+    
+projectaddress_edit:
+    pattern: admin/projects/view/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: projectaddress_edit
+        datasource: datasource1
+    methods: [GET]
+        
+projectaddress_get_form:
+    pattern: admin/projects/form/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: getForm
+        view: core\views\AJAXHTMLView
+        viewKey: projectaddress_edit
+        datasource: datasource1
+    methods: [GET]
+  
+        
+projectaddress_list:
+    pattern: admin/projects/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: listallWithForm
+        view: core\views\TemplateView
+        viewKey: projectaddress_list
+        datasource: datasource1      
+                
+                
+#------------------------------ portal section -------------------------
+
+portal_projects_list:
+    pattern: portal/projects
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectsController
+        model: components\projects\models\ProjectModel
+        method: listallByContactType
+        view: core\views\TemplateView
+        viewKey: portal_projects_list
+        datasource: datasource1
+        
+portal_projects_list_by_company:
+    pattern: portal/projects/company
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\contacts\listeners\LoadLoggedInContactListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactModel' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectsController
+        model: components\projects\models\ProjectModel
+        method: listallByCompany
+        view: core\views\TemplateView
+        viewKey: portal_projects_list_by_company
+        datasource: datasource1   
