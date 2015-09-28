@@ -35,6 +35,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     //Modals
     $scope.openTimesheetModal = function(timesheet) {
+        $scope.modalLoading = true;
         var template = templateSrv.timesheetModal;
         var modal = $modal.open({
             templateUrl: template,
@@ -53,8 +54,10 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
             
 //        })
         });
+        modal.opened.then(function(){
+            $scope.modalLoading = false;
+        });
         modal.result.then(function(timesheet){
-            //$scope.timesheet
             getTimesheetList();
         });
     };

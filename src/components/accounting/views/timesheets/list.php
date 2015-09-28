@@ -4,7 +4,7 @@
     <div class="clearfix"></div>
     <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
     <div class="pull-left">
-        <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
+        <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
     </div>
     <div class="pull-right">
       <button class="btn-link" ng-click="openStaffAdvancedSearchModal()">
@@ -75,7 +75,7 @@
               <td>{{timesheet.workDate}}</td>
               <td>{{timesheet.isExported}}</td>
               <td>{{timesheet.totalHours}}</td>
-              <td>
+              <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
@@ -91,4 +91,5 @@
       class="pagination" boundary-links="true" rotate="false">
     </pagination>
   </div>
+<div class="clearfix"></div>
 </div>
