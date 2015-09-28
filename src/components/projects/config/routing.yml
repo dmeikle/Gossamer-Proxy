@@ -19,7 +19,8 @@ admin_projects_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_projects_home
         datasource: datasource1
-        
+        langFiles:
+            -  'src/components/projects/locales/*/Project' 
 
 admin_projects_get:
     pattern: admin/projects/*

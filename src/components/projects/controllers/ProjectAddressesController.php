@@ -30,7 +30,7 @@ class ProjectAddressesController extends AbstractController{
     public function search() {
         $result = $this->model->search($this->httpRequest->getQueryParameters());
 
-        $this->render(array('ProjectAddress' => $result));
+        $this->render($result);
     }
     
     public function edit($id) {       

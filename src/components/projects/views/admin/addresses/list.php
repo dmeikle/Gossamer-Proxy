@@ -1,9 +1,9 @@
 <div class="widget" ng-controller="projectAddressesListCtrl">
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-    <h1 class="pull-left">Staff List</h1>
+    <h1 class="pull-left"><?php echo $this->getString('PROJECTS_LIST') ?></h1>
     <div class="toolbar form-inline">
-      <button class="btn-link" ng-click="openStaffAdvancedSearch()">
-        <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
+      <button class="btn-link" ng-click="openAdvancedSearch()">
+        <?php echo $this->getString('PROJECTS_ADVANCED_SEARCH') ?>
       </button>
       <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
@@ -13,7 +13,7 @@
           typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
           typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
         <div class="resultspane" ng-show="noResults">
-          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('STAFF_NORESULTS') ?>
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('PROJECTS__NORESULTS') ?>
         </div>
         <span class="input-group-btn" ng-if="!searchSubmitted">
           <button type="submit" class="btn-default">
@@ -26,19 +26,20 @@
           </button>
         </span>
       </form>
-      <a href="/admin/staff/edit/0" class="btn btn-primary"><?php echo $this->getString('STAFF_NEW');?></a>
+      <a href="/admin/projects/edit/0" class="btn btn-primary"><?php echo $this->getString('PROJECTS_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th column-sortable data-column="firstname"><?php echo $this->getString('STAFF_FIRSTNAME'); ?></th>
-                <th column-sortable data-column="lastname"><?php echo $this->getString('STAFF_LASTNAME'); ?></th>
-                <th column-sortable data-column="title"><?php echo $this->getString('STAFF_TITLE'); ?></th>
-                <th column-sortable data-column="telephone"><?php echo $this->getString('STAFF_EXTENSION'); ?></th>
-                <th column-sortable data-column="mobile"><?php echo $this->getString('STAFF_MOBILE'); ?></th>
-                <th column-sortable data-column="status"><?php echo $this->getString('STAFF_STATUS'); ?></th>
-                <th column-sortable data-column="lastLogin"><?php echo $this->getString('STAFF_LAST_LOGIN'); ?></th>
-                <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+                <th column-sortable data-column="buildingName"><?php echo $this->getString('PROJECTS_BUILDINGNAME'); ?></th>
+                <th column-sortable data-column="address1"><?php echo $this->getString('PROJECTS_ADDRESS'); ?></th>
+                <th column-sortable data-column="city"><?php echo $this->getString('PROJECTS_CITY'); ?></th>
+                <th column-sortable data-column="postalCode"><?php echo $this->getString('PROJECTS_POSTALCODE'); ?></th>
+                <th column-sortable data-column="Provinces_id"><?php echo $this->getString('PROJECTS_PROVINCE'); ?></th>
+                <th column-sortable data-column="strataNumber"><?php echo $this->getString('PROJECTS_STRATANUMBER'); ?></th>
+                <th column-sortable data-column="activeClaimsCount"><?php echo $this->getString('PROJECTS_CLAIMSCOUNT'); ?></th>
+                <th column-sortable><?php echo $this->getString('PROJECTS_HISTORYCOUNT'); ?></th>
+                <th sort-by-button class="cog-col row-controls">&nbsp; data-column="claimsHistoryCount"</th>
             </tr>
         </thead>
         <tbody>
@@ -99,14 +100,14 @@
     </div>
 
     <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
-      <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH');?></h1>
+      <h1><?php echo $this->getString('PROJECTS__ADVANCED_SEARCH');?></h1>
       <project-address-advanced-search-filters>
 
       </project-address-advanced-search-filters>
       <div class="cardfooter">
         <div class="btn-group pull-right">
-          <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('STAFF_SUBMIT')?>">
-          <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('STAFF_RESET')?></button>
+          <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('PROJECTS__SUBMIT')?>">
+          <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('PROJECTS__RESET')?></button>
         </div>
       </div>
     </form>
