@@ -58,11 +58,12 @@ class TimesheetModel extends AbstractModel{
     }
     
     public function save($id) {
-        $params = array(
-            'id' => intval($id),
-            'Staff_id' => $this->getLoggedInStaffId()
-        );
-        
+        $params = $this->httpRequest->getPost();
+        unset($params['FORM_SECURITY_TOKEN']);
+        $params['timesheetItems']['enteredByStaff_id'] = $this->getLoggedInStaffId();
+        $params['timesheet']['id'] = intval($id);
+        $params['timesheet']['staffID'] = $this->getLoggedInStaffId();
+       
         $result = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
     }
 }
