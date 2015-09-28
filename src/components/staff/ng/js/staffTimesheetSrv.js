@@ -7,6 +7,7 @@ module.service('staffTimesheetSrv', function($http) {
     var claim_apiPath = '/admin/claims/';
     var claim_search_apiPath = '/admin/claims/search';
     var vehicle_toll_apiPath = '/admin/vehicles/tolls/';
+    var staffTimesheetPath = '/admin/staff/timesheets/';
     var self = this;
 
     self.error = {};
@@ -73,7 +74,7 @@ module.service('staffTimesheetSrv', function($http) {
     //Staff Autocomplete
     this.autocomplete = function(searchObject) {
         var value = searchObject;
-        var column = 'name';        
+        var column = 'name';
         return $http.get(staff_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
             self.autocompleteList = response.data.Staffs;
@@ -83,14 +84,14 @@ module.service('staffTimesheetSrv', function($http) {
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
-        if(object){            
+        if(object){
             var splitObject = object.split(' ');
             console.log(splitObject);
 
-            if (object || splitObject.length === 1) {            
+            if (object || splitObject.length === 1) {
                 config.name = object;
             }
-        } else {            
+        } else {
             config = undefined;
         }
 
@@ -109,9 +110,9 @@ module.service('staffTimesheetSrv', function($http) {
     this.claimsAutocomplete = function(searchObject){
         var value = searchObject;
         var column = 'Claims_id';
-
         return $http.get(claim_apiPath + 'search?' + column + '=' + value)
             .then(function(response) {
+            //console.log(response);
             self.claimsList = response.data;
             self.claimsCount = Object.keys(response.data).length-2;
         });
@@ -121,11 +122,11 @@ module.service('staffTimesheetSrv', function($http) {
     this.filterClaims = function(row, numRows, object) {
         console.log(object);
         var config = {};
-        if (object.val[0]) {  
+        if (object.val[0]) {
             config.claim = object.val[0];
         } else {
             config = undefined;
-        }        
+        }
         return $http({
             url: claim_search_apiPath,
             method: 'GET',
@@ -145,7 +146,6 @@ module.service('staffTimesheetSrv', function($http) {
         } else {
             timesheetID = '0';
         }
-
         var data = {};
         data.timesheet = timesheet;
         data.timesheetItems = timesheetItems;
@@ -156,7 +156,7 @@ module.service('staffTimesheetSrv', function($http) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + timesheetID,
+            url: staffTimesheetPath + timesheetID,
             data: data
         }).then(function(response) {
             console.log(response);

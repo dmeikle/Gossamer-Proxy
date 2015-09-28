@@ -49,14 +49,14 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>  
-            <td></td>  
             <td></td>
-            <td></td>  
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
               <span class="spinner-loader"></span>
             </td>
-            <td></td>  
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -75,7 +75,7 @@
               <td>{{timesheet.workDate}}</td>
               <td>{{timesheet.isExported}}</td>
               <td>{{timesheet.totalHours}}</td>
-              <td>
+              <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">

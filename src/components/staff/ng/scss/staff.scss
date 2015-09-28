@@ -66,6 +66,12 @@ table.table tbody tr.selected {
   max-height:100px;
 }
 .staff-timesheet-modal{
+    .pull-right{
+        select{
+            display: inline;
+            width: auto;
+        }
+    }
     .modal-dialog{
         width:1300px!important;
     }
@@ -136,21 +142,21 @@ table.table tbody tr.selected {
             }
         }
     }
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
     #timesheetGrid{
         @extend table;
         font-size: 0.85em;
         display:block;
         clear:both;
-        line-height: 1.428571429;        
+        line-height: 1.428571429;
         .row{
             margin-right:0;
             margin-left:0;
-            margin-bottom:8px;            
+            margin-bottom:8px;
             div{
                 padding:0;
                 .heading{
@@ -217,6 +223,6 @@ table.table tbody tr.selected {
     .hours{
         .field{
             padding: 24px 0.5em!important;
-        }        
+        }
     }
-} 
+}

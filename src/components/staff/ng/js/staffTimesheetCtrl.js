@@ -1,6 +1,5 @@
 module.controller('staffTimesheetCtrl', function($scope, $modal, templateSrv) {
-    console.log('its here!');
-    
+
     //Modals
     $scope.openStaffTimesheetModal = function() {
         var template = templateSrv.staffTimesheetModal;
@@ -22,5 +21,5 @@ module.controller('staffTimesheetCtrl', function($scope, $modal, templateSrv) {
 
             //        })
         });
-    };    
+    };
 });
