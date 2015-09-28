@@ -5,7 +5,7 @@ claimsAddNewModal:
     langFiles:
         - 'src/components/claims/locales/*/claims'
 
-claimsAddNewPages:
+addNewWizardPages:
     path: 'src/components/claims/ng/views/addNewWizardPages.php'
     langFiles:
         - 'src/components/claims/locales/*/claims'

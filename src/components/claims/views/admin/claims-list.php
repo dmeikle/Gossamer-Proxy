@@ -7,4 +7,5 @@
       </button>
     </div>
   </div>
+  <form class="hidden"></form>
 </div>

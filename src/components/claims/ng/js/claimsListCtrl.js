@@ -12,7 +12,9 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
     var modalInstance = $modal.open({
       templateUrl: '/render/claims/claimsAddNewModal',
       controller: 'claimsModalCtrl',
-      size: 'lg'
+      size: 'lg',
+      keyboard: false,
+      backdrop:"static"
     });
 
     modalInstance.result.then(function(claim) {
@@ -25,7 +27,7 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
 
 module.controller('claimsModalCtrl', function($modalInstance, $scope) {
   $scope.confirm = function() {
-    $modalInstance.close($scope.staff);
+    $modalInstance.close($scope.claim);
   };
 
   $scope.cancel = function() {

@@ -107,3 +107,7 @@ nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
   box-shadow: 0 6px 12px rgba(0,0,0,0.175);
   background-clip: padding-box;
 }
+
+ul {
+  list-style:none;
+}
