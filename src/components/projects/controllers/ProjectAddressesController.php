@@ -28,10 +28,9 @@ use core\system\Router;
 class ProjectAddressesController extends AbstractController{
    
     public function search() {
-        $params = $this->httpRequest->getPost();
-        $result = $this->model->search($params);
-        
-        $this->render($result);
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+
+        $this->render(array('ProjectAddress' => $result));
     }
     
     public function edit($id) {       
@@ -39,7 +38,7 @@ class ProjectAddressesController extends AbstractController{
       
         //$result['form'] = $this->drawForm($this->model, $result);
         
-        $this->render($result);
+        $this->render(array('ProjectAddress' => $result));
     }
     
     private function getYears() {

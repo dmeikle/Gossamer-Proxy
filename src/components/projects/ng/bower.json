@@ -1,0 +1,20 @@
+{
+  "name": "projects-component",
+  "version": "0.1.0",
+  "authors": [
+    "Dave Meikle <davemeikle@ymail.com>"
+  ],
+  "description": "Projects Component",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap": "~0.13.3",
+    "bootstrap-sass": "~3.3.5"
+  }
+}
