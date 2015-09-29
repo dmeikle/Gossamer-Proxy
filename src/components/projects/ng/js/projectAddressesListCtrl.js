@@ -60,7 +60,7 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
 
         modalInstance.result.then(function (projectAddress) {
             projectAddressesEditSrv.save(projectAddress).then(function () {
-                getProjectAddressList();
+                getList();
             });
         });
     };
