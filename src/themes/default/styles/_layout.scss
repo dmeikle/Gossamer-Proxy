@@ -108,6 +108,10 @@ nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
   background-clip: padding-box;
 }
 
+.modal-body .resultspane {
+  top:inherit;
+}
+
 ul {
   list-style:none;
 }

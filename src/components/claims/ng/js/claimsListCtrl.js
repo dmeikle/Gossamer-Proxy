@@ -25,7 +25,29 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
   };
 });
 
-module.controller('claimsModalCtrl', function($modalInstance, $scope) {
+module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEditSrv) {
+  $scope.addNewClient = false;
+
+  $scope.claim = {};
+
+  // datepicker stuffs
+  $scope.isOpen = {};
+  $scope.dateOptions = {'starting-day':1};
+  $scope.openDatepicker = function(event) {
+    var datepicker = event.target.parentElement.dataset.datepickername;
+    $scope.isOpen[datepicker] = true;
+  };
+
+  $scope.save = function(object, formToken) {
+    return claimsEditSrv.save(object, formToken, $scope.currentPage + 1).then(function() {
+
+    });
+  };
+
+  $scope.toggleAdding = function() {
+    $scope.addNewClient = !$scope.addNewClient;
+  };
+
   $scope.confirm = function() {
     $modalInstance.close($scope.claim);
   };

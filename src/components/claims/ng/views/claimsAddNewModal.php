@@ -14,14 +14,17 @@
     </button>
   </div>
   <div class="pull-right btn-group">
-    <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
+    <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0" ng-if="!addNewClient">
       <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
     </button>
-    <button class="primary" ng-click="nextPage()" ng-if="currentPage < wizardPages.length - 1">
-      <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
+    <button class="btn-default" ng-click="toggleAdding()" ng-if="addNewClient">
+      <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
     </button>
-    <button class="primary" ng-click="confirm()" ng-if="currentPage === wizardPages.length - 1">
-      <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
-    </button>
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 1 && !addNewClient"
+      value="<?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>">
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage === wizardPages.length - 1"
+      value="<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>">
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 1 && addNewClient"
+      value="<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>">
   </div>
 </div>

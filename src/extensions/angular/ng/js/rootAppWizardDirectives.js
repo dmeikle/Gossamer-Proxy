@@ -20,13 +20,14 @@ module.directive('addNewWizard', function($compile, $location, addNewWizardSrv) 
       var wizard = document.getElementsByTagName('add-new-wizard')[0];
 
       $scope.nextPage = function() {
-        $scope.currentPage++;
-        if (claim.id && claim.id !== 0) {
+        if ($scope.claim && $scope.claim.id && $scope.claim.id !== 0) {
+          $scope.currentPage++;
           switchPage();
         } else {
           $scope.modalLoading = true;
           var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-          claimsEditSrv.save($scope.claim).then(function() {
+          $scope.save($scope.claim, formToken).then(function() {
+            $scope.currentPage++;
             switchPage();
             $scope.modalLoading = false;
           });
