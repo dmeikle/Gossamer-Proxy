@@ -113,8 +113,8 @@ module.service('staffTimesheetSrv', function($http) {
         return $http.get(claimsPath + 'search?' + column + '=' + value)
             .then(function(response) {
             //console.log(response);
-            self.claimsList = response.data;
-            self.claimsCount = Object.keys(response.data).length-2;
+            self.claimsList = response.data.Claims;
+            self.claimsCount = response.data.ClaimsCount[0].numRows;
         });
     };
 

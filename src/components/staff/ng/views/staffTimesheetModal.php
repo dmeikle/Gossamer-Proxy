@@ -16,7 +16,7 @@
             
             <div class="form-group vehicle">
               <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
-                <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
+                <select class="form-control" name="vehicle-num" ng-model="timesheet.Vehicles_id" ng-change="getVehicleTolls(timesheet.Vehicles_id)">
                     <?php
                     foreach($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
@@ -41,7 +41,7 @@
                         <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
                         <datalist id="timesheet-claims-list">
                             <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
+                            <option ng-repeat="value in claimsAutocomplete track by $index" value="{{value.jobNumber}}" data="{{value.id}}"></option>
                         </datalist>
                     </div>
                 </div>
@@ -154,6 +154,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row total-row">
+                <div class="col-md-1 col-md-offset-10">
+                    <strong>Total:</strong>
+                </div>
+                <div class="col-md-1">
+                    {{timesheet.totalHours}}
+                </div>
+            </div>
         </div>
         
         <button class="btn-info" ng-click="addTimesheetRow()">New Row</button>
@@ -163,7 +171,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="clearTimesheet()">Save and New</button>
-        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems)">Save and Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems); clearTimesheet()">Save and New</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems); confirm();">Save and Close</button>
     </div>
 </form>

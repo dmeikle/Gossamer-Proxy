@@ -1,4 +1,4 @@
-<div ng-controller="staffTimesheetCtrl">
+<div class="widget" ng-controller="staffTimesheetCtrl">
     <div class="widget-content" ng-class="{'panel-open': selectedTimesheet}">
         <h1 class="pull-left">Timesheet List</h1>
         <div class="clearfix"></div>
@@ -7,4 +7,5 @@
             <button class="primary" ng-click="openStaffTimesheetModal()"><?php echo $this->getString('STAFF_TIMESHEET_NEW') ?></button><span ng-cloak ng-if="loadingModal" class="modal-spinner spinner-loader"></span>
         </div>        
     </div>
+    <div class="clearfix"></div>
 </div>

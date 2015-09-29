@@ -115,19 +115,20 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
         $scope.prevDate = workDate;
     };
 
-    //Claims Autocomplete
     //Fetch claims
-    function fetchClaims(search, row) {
+    function getClaims(search, row) {
         console.log('fetching claims...');
         staffTimesheetSrv.claimsAutocomplete(search)
             .then(function() {
             if(staffTimesheetSrv.claimsCount > 0){
                 console.log('found ' + staffTimesheetSrv.claimsCount  + ' matching claims');
                 $scope.claimsAutocomplete = staffTimesheetSrv.claimsList;
+                console.log($scope.claimsAutocomplete);
                 if(staffTimesheetSrv.claimsCount === 1){
-                    console.log(staffTimesheetSrv.claimsList);
+                    console.log('Only 1 Claim!');
                     row.Claims_id = $scope.claimsAutocomplete[0].id;
-                    //row.
+                    //row.address = $scope.claimsAutocomplete[0].address1;
+                    //row.city = $scope.claimsAutocomplete[0].city;
                 }
             } else {
                 console.log('no matching claims found!');
@@ -137,17 +138,22 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
 
     //Clear the Claims list
     $scope.clearClaimsList = function(row){
+        console.log('--CLEARING CLAIMS LIST--');
+        console.log($scope.claimsAutocomplete);
+        console.log(row.jobNumber);
         for(var i in $scope.claimsAutocomplete){
-            if($scope.claimsAutocomplete[i].label === row.jobNumber){
+            if($scope.claimsAutocomplete[i].jobNumber === row.jobNumber){
                 console.log('found matching claim id!');
                 row.Claims_id = $scope.claimsAutocomplete[i].id;
+                row.address = $scope.claimsAutocomplete[i].address1;
+                row.city = $scope.claimsAutocomplete[i].city;
             }
         }
-        $scope.claimsAutocomplete = {};
+        //$scope.claimsAutocomplete = {};
     };
 
     $scope.watchClaims = function(row){
-        fetchClaims(row.jobNumber, row);
+        getClaims(row.jobNumber, row);
     };
 
     //Rate Variance (phase)
@@ -179,7 +185,13 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
             }
         }
     }, true);
-
+    
+    $scope.timesheet = {
+        Timesheet_id: '',
+        workDate: '',
+        Vehicles_id: '',
+        totalHours: '0'
+    };
     //Timesheet template
     var timesheetTemplate = {
         isSelected: false,
@@ -203,7 +215,7 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
     $scope.loadTimesheetItems = function(){
         $scope.loading = true;
         $scope.loading = false;
-        $scope.timesheetItems = [angular.extend({}, timesheetTemplate)];
+        $scope.timesheetItems = angular.copy([timesheetTemplate]);
         $scope.timesheetDate = $scope.today;
     };
 
@@ -264,13 +276,14 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
             var totalRow = parseFloat($scope.timesheetItems[p].totalHours);
             $scope.sumTotal.totalHours += totalRow;
         }
+        $scope.timesheet.totalHours = $scope.sumTotal.totalHours;
     };
 
     //Add a row to the bottom of the timesheet
     $scope.addTimesheetRow = function(){
-        console.log($scope.hourlyRate);
+        console.log($scope.timesheetItems);
         timesheetTemplate.hourlyRate = $scope.hourlyRate;
-        $scope.timesheetItems.push(angular.extend({}, timesheetTemplate));
+        $scope.timesheetItems.push(angular.copy(timesheetTemplate));
         if($scope.laborerPositionID !== ''){
             $scope.timesheetItems[$scope.timesheetItems.length-1].StaffTypes_id = $scope.laborerPositionID;
         }
@@ -377,38 +390,30 @@ module.controller('staffTimesheetModalCtrl', function($modalInstance, $scope, st
     };
 
     //Save timesheet
-    $scope.saveTimesheet = function (object){
+    $scope.saveTimesheet = function (){
         console.log('Saving Timesheet...');
-        console.log(object);
+        //console.log($scope.timesheet);
         var date = $filter('date')($scope.timesheetDate, 'yyyy-MM-dd');
+        
+        $scope.timesheet.workDate = date;
 
-        var timesheet = {
-            Timesheet_id: $scope.timesheetID,
-            workDate: date,
-            Vehicles_id: $scope.vehicleID,
-            totalHours: $scope.sumTotal.totalHours
-            //staffID: $scope.staffID,
-            //  hourlyRate: $scope.hourlyRate,
-        };
-
-        var timesheetItems = $scope.getHours(object);
+        var timesheetItems = $scope.getHours($scope.timesheetItems);
 
         console.log('Timesheet:');
-        console.log(timesheet);
+        console.log($scope.timesheet);
         console.log('Timesheet Items:');
         console.log(timesheetItems);
 
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        staffTimesheetSrv.saveTimesheet(timesheet, timesheetItems, formToken);
+        staffTimesheetSrv.saveTimesheet($scope.timesheet, timesheetItems, formToken);
         //$modalInstance.close();
     };
 
     //Clear timesheet
     $scope.clearTimesheet = function (){
         console.log('clearing timesheet');
-        $scope.laborer = '';
-        $scope.vehicleID = '';
-        $scope.timesheetItems = angular.extend({}, [timesheetTemplate]);
+        $scope.timesheet.Vehicles_id = '';
+        $scope.timesheetItems = angular.copy([timesheetTemplate]);
     };
 });

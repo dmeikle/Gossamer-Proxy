@@ -14,13 +14,6 @@ module.controller('staffTimesheetCtrl', function($scope, $modal, templateSrv) {
 //                    return timesheet;
 //                }
 //            }
-            //          resolve: {
-            //            staff: function() {
-            //              return staff;
-            //            }
-            //          }
-
-            //        })
         }).opened.then(function(){
             $scope.loadingModal = false;
         });
