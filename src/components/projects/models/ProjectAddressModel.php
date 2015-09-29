@@ -65,24 +65,6 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         return $result;
     }
     
-    private function formatResults(array $results) {
-        $retval = array();
-        
-        foreach($results as $row) {
-            $retval[] = array(
-                'id' => $row['id'],
-                'label' => $row['strataNumber'] . ' - ' . $row['buildingName'] . "," . $row['address1'] . ", " . $row['city'],
-                //'value' => json_encode(array('strataNumber' => $row['strataNumber'], 'buildingName' => $row['buildingName'], 'address1' => $row['address1'], 'city' => $row['city']))
-                'value' => $row['strataNumber'],
-                'buildingName' => $row['buildingName'],
-                'address1' => $row['address1'], 
-                'city' => $row['city']
-                );
-        }
-        
-        return $retval;
-    }
-
     public function getFormWrapper() {
         return $this->entity;
     }
