@@ -182,12 +182,12 @@ claims_new_claim_wizard_1:
     #        - 'src/components/shoppingcart/locales/*/Navigation' 
     
 claims_new_claim_wizard_search:
-    pattern: admin/claims/projectaddresses/stratanumber/search
+    pattern: admin/claims/projectaddresses/search
     defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ProjectAddressesController
-        model: components\claims\models\ProjectAddressModel
-        method: searchByStrataNumber
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: search
         view: core\views\JSONView
         viewKey: claims_new_claim_wizard_search
         datasource: datasource1   
