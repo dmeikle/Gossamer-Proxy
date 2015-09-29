@@ -209,21 +209,7 @@ admin_claims_view:
         viewKey: admin_claims_view
         datasource: datasource1
         
-        
-admin_claims_list:
-    pattern: admin/claims/*/*
-    listeners:
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimTypeModel', cacheKey: 'ClaimTypes'}
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimsController
-        model: components\claims\models\ClaimModel
-        method: listallReverse
-        view: core\views\JSONView
-        viewKey: admin_claims_list
-        datasource: datasource1
-    #    langFiles: 
-    #        - 'src/components/shoppingcart/locales/*/Navigation'  
+
    
 admin_claims_edit1:
     pattern: admin/claim/1/*
@@ -239,7 +225,7 @@ admin_claims_edit1:
         viewKey: admin_claims_edit1
         datasource: datasource1       
  
-admin_claims_edit2:
+admin_claims_edit1_save:
     pattern: admin/claim/1/*
     methods: [POST]
     defaults:
@@ -247,34 +233,48 @@ admin_claims_edit2:
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
         method: save
-        view: core\views\TemplateView
-        viewKey: admin_claims_edit2
+        view: core\views\JSONView
+        viewKey: admin_claims_edit1_save
         datasource: datasource1 
+
+admin_claims_edit2_save:
+    pattern: admin/claim/2/*
+    methods: [POST]
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_edit2_save
+        datasource: datasource1         
         
-admin_claims_edit3:
+admin_claims_edit3_save:
     pattern: admin/claim/3/*
+    methods: [POST]
    # listeners:
    #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: edit
-        view: core\views\TemplateView
-        viewKey: admin_claims_edit3
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_edit3_save
         datasource: datasource1  
         
-admin_claims_edit4:
+admin_claims_edit4_save:
     pattern: admin/claim/4/*
+    methods: [POST]
    # listeners:
    #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: edit
-        view: core\views\TemplateView
-        viewKey: admin_claims_edit4
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_edit4_save
         datasource: datasource1  
         
         
@@ -290,7 +290,23 @@ admin_claims_edit4:
 #        view: core\views\TemplateView
 #        viewKey: admin_claims_edit4
 #        datasource: datasource1  
+
         
+admin_claims_list:
+    pattern: admin/claims/*/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimTypeModel', cacheKey: 'ClaimTypes'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: listallReverse
+        view: core\views\JSONView
+        viewKey: admin_claims_list
+        datasource: datasource1
+    #    langFiles: 
+    #        - 'src/components/shoppingcart/locales/*/Navigation'  
+    
 admin_claim_view:
     pattern: admin/claim/*
     listeners:
