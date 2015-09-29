@@ -112,7 +112,6 @@ module.service('staffTimesheetSrv', function($http) {
         var column = 'Claims_id';
         return $http.get(claimsPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            //console.log(response);
             self.claimsList = response.data.Claims;
             self.claimsCount = response.data.ClaimsCount[0].numRows;
         });
