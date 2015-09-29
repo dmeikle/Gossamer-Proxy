@@ -26,7 +26,7 @@ admin_claims_search:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: searchByJobNumber
+        method: search
         view: core\views\JSONView
         viewKey: admin_claims_search
         datasource: datasource1
