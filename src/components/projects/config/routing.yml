@@ -34,7 +34,21 @@ admin_projects_get:
         view: core\views\JSONView
         viewKey: admin_projects_get
         datasource: datasource1  
-        
+    methods: [GET]   
+
+admin_projects_save:
+    pattern: admin/projects/*
+    listeners:
+    #    - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+    defaults:
+        component: components\projects\ProjectsComponent
+        controller: components\projects\controllers\ProjectAddressesController
+        model: components\projects\models\ProjectAddressModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_projects_save
+        datasource: datasource1  
+    methods: [POST]       
 
 admin_projects_edit:
     pattern: admin/projects/edit/*

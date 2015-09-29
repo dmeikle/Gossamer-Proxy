@@ -1,3 +1,3 @@
 module.service('projectAddressesTemplateSrv', function() {
-  this.projectAddressAddNewModal = '/render/projects/projectAddressAddNewModal';
+  this.projectAddressesAddNewModal = '/render/projects/projectAddressAddNewModal';
 });

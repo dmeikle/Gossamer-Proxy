@@ -50,7 +50,7 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
         return projectAddressesListSrv.fetchAutocomplete(searchObject);
     };
 
-    $scope.openAddNewProjectAddressModal = function () {
+    $scope.openNewBuildingModal = function () {
         var template = projectAddressesTemplateSrv.projectAddressesAddNewModal;
         var modalInstance = $modal.open({
             templateUrl: template,
@@ -58,8 +58,8 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
             size: 'xl'
         });
 
-        modalInstance.result.then(function (projectAddresses) {
-            projectAddressesEditSrv.save(projectAddresses).then(function () {
+        modalInstance.result.then(function (projectAddress) {
+            projectAddressesEditSrv.save(projectAddress).then(function () {
                 getProjectAddressList();
             });
         });

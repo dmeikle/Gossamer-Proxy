@@ -13,7 +13,7 @@
           typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
           typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
         <div class="resultspane" ng-show="noResults">
-          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('PROJECTS__NORESULTS') ?>
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('PROJECTS_NORESULTS') ?>
         </div>
         <span class="input-group-btn" ng-if="!searchSubmitted">
           <button type="submit" class="btn-default">
@@ -26,7 +26,7 @@
           </button>
         </span>
       </form>
-      <a href="/admin/projects/edit/0" class="btn btn-primary"><?php echo $this->getString('PROJECTS_NEW');?></a>
+      <a  ng-click="openNewBuildingModal('')" class="btn btn-primary"><?php echo $this->getString('PROJECTS_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -100,7 +100,7 @@
     </div>
 
     <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
-      <h1><?php echo $this->getString('PROJECTS__ADVANCED_SEARCH');?></h1>
+      <h1><?php echo $this->getString('PROJECTS_ADVANCED_SEARCH');?></h1>
       <project-address-advanced-search-filters>
 
       </project-address-advanced-search-filters>

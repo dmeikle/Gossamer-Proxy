@@ -55,8 +55,7 @@ class ProjectAddressesController extends AbstractController{
     public function save($id) {       
         $result = $this->model->save($id);
         
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('projectaddress_list', array('0', '20'));
+        $this->render($result);
     }
 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
