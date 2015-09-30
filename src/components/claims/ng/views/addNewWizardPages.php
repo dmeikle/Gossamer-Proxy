@@ -151,7 +151,7 @@
             <?php echo $this->getString('CLAIMS_CALLEDINBY');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.query.calledInBy}}
+            {{claim.query.calledInBy}}&nbsp;
           </div>
         </li>
         <li>
@@ -159,7 +159,7 @@
             <?php echo $this->getString('CLAIMS_CALLEDINPHONE');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.query.calledInPhone}}
+            {{claim.query.calledInPhone}}&nbsp;
           </div>
         </li>
         <li>
@@ -167,7 +167,7 @@
             <?php echo $this->getString('CLAIMS_CONTACT_NAME');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.query.contactName}}
+            {{claim.query.contactName}}&nbsp;
           </div>
         </li>
         <li>
@@ -175,7 +175,7 @@
             <?php echo $this->getString('CLAIMS_CONTACT_PHONE');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.query.contactPhone}}
+            {{claim.query.contactPhone}}&nbsp;
           </div>
         </li>
         <li>
@@ -183,7 +183,7 @@
             <?php echo $this->getString('CLAIMS_MANAGEMENT');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.ProjectAddress.management}}
+            {{claim.ProjectAddress.management}}&nbsp;
           </div>
         </li>
         <li>
@@ -191,7 +191,7 @@
             <?php echo $this->getString('CLAIMS_STRATA');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.ProjectAddress.strata}}
+            {{claim.ProjectAddress.strata}}&nbsp;
           </div>
         </li>
         <li>
@@ -199,7 +199,7 @@
             <?php echo $this->getString('CLAIMS_STRATANUM');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.ProjectAddress.strataNumber}}
+            {{claim.ProjectAddress.strataNumber}}&nbsp;
           </div>
         </li>
         <li>
@@ -207,7 +207,7 @@
             <?php echo $this->getString('CLAIMS_TYPE');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.ProjectAddress.propertyType}}
+            {{claim.ProjectAddress.propertyType}}&nbsp;
           </div>
         </li>
         <li>
@@ -228,7 +228,7 @@
             <?php echo $this->getString('CLAIMS_ASBESTOSTEST');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.query.asbestosTestRequired}}
+            {{claim.query.asbestosTestRequired}}&nbsp;
           </div>
         </li>
         <li>

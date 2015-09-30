@@ -8,19 +8,12 @@ module.directive('addNewWizard', function($compile, $location, addNewWizardSrv) 
 
       scope.modalLoading = true;
 
-      if (!addNewWizardSrv.wizardPages) {
-        addNewWizardSrv.getWizardPages(apiPath).then(function() {
-          scope.wizardPages = addNewWizardSrv.wizardPages;
-          element[0].appendChild(scope.wizardPages[0]);
-          $compile(element.contents())(scope);
-          scope.modalLoading = false;
-        });
-      } else {
+      addNewWizardSrv.getWizardPages(apiPath).then(function() {
         scope.wizardPages = addNewWizardSrv.wizardPages;
         element[0].appendChild(scope.wizardPages[0]);
         $compile(element.contents())(scope);
         scope.modalLoading = false;
-      }
+      });
     },
     controller: function($scope) {
       $scope.currentPage = 0;
