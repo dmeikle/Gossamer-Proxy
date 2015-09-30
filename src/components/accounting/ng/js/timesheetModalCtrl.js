@@ -1,7 +1,7 @@
 module.controller('timesheetModalCtrl', function($modalInstance, $scope, timesheetSrv, $filter, timesheet) {
     $scope.basicSearch = {};
     $scope.autocomplete = {};
-    
+    $scope.autocomplete.loading = false;
     $scope.hourlyRate = 0;
     $scope.timesheetItems = [];
     $scope.timesheetSelected = false;
@@ -26,7 +26,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     //Laborer Autocomplete
     function fetchAutocomplete() {
         if($scope.laborer.search(' ') === -1){
-            timesheetSrv.autocomplete($scope.laborer)
+            timesheetSrv.staffAutocomplete($scope.laborer)
                 .then(function() {
                 $scope.autocomplete = timesheetSrv.autocompleteList;
             });
@@ -34,6 +34,7 @@ module.controller('timesheetModalCtrl', function($modalInstance, $scope, timeshe
     }
 
     $scope.$watch('laborer', function() {
+        //$scope.autocomplete = {};
         if ($scope.laborer) {
             $scope.autocomplete.loading = true;
             fetchAutocomplete();

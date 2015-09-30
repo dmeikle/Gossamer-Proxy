@@ -11,6 +11,7 @@ accounting_timesheets_home:
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
+            - rootApp
             - accountingAdmin
     head:
         - @components/accounting/dist/bower_components/angular/angular.min.js
@@ -19,6 +20,7 @@ accounting_timesheets_home:
         - @components/accounting/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
         #- @extensions/angular/ng/js/phoenixSearchSrv.js
     javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
         - @components/accounting/dist/js/accounting.concat.js
     css:
         - @components/accounting/dist/css/accounting.min.css

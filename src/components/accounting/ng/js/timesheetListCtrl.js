@@ -6,6 +6,10 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.loading = true;
     $scope.previouslyClickedObject = {};
     
+    $scope.basicSearch = {};
+    $scope.advancedSearch = {};
+    $scope.autocomplete = {};
+    
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;    
     
@@ -87,4 +91,41 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     };
     
+    //Typeahead
+    $scope.fetchAutocomplete = function(viewVal, searchPath) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return timesheetSrv.fetchAutocomplete(searchObject, searchPath);
+    };
+    
+    //Search
+    $scope.search = function(searchObject) {
+        $scope.noResults = undefined;
+        var copiedObject = angular.copy(searchObject);
+        if (copiedObject && Object.keys(copiedObject).length > 0) {
+            $scope.searchSubmitted = true;
+            $scope.loading = true;
+            timesheetSrv.search(copiedObject).then(function() {
+                $scope.timesheetList = timesheetSrv.searchResults;
+                $scope.totalItems = timesheetSrv.searchResultsCount;
+                $scope.loading = false;
+            });
+        }
+    };
+    
+    $scope.resetSearch = function() {
+        $scope.searchSubmitted = false;
+        $scope.basicSearch.query = {};
+        getTimesheetList();
+    };
+    
+    $scope.openTimesheetAdvancedSearch = function() {
+        $scope.sidePanelOpen = true;
+        $scope.selectedTimesheet = undefined;
+        $scope.sidePanelLoading = true;
+        timesheetSrv.getAdvancedSearchFilters().then(function() {
+            $scope.sidePanelLoading = false;
+            $scope.searching = true;
+        });
+    };
 });

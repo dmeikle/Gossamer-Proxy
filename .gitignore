@@ -9,7 +9,7 @@ app/config/credentials.yml
 bower_components
 
 composer.lock
-
+nbproject/
 
 documentation
 

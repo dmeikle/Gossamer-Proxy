@@ -3,6 +3,9 @@
 return array(
     'ACCOUNTING_SEARCH' => 'Search',
     'ACCOUNTING_ADVANCED_SEARCH' => 'Advanced Search',
+    'ACCOUNTING_SUBMIT' => 'Submit',
+    'ACCOUNTING_RESET' => 'Reset',
+    
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
     'ACCOUNTING_DATE' => 'Date',
