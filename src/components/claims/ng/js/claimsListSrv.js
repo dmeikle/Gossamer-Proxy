@@ -4,35 +4,28 @@ module.service('claimsListSrv', function($http, searchSrv) {
 
   var self = this;
 
+
+
   self.advancedSearch = {};
 
-  this.getStaffList = function(row, numRows) {
+  this.getClaimsList = function(row, numRows) {
     return $http.get(apiPath + row + '/' + numRows)
       .then(function(response) {
-        self.claimsList = response.data.Staffs;
-        self.claimsCount = response.data.StaffsCount[0].rowCount;
+        self.claimsList = response.data.Claims;
+        self.claimsCount = response.data.ClaimsCount[0].rowCount;
       });
   };
 
-  this.getStaffDetail = function(object) {
+  this.getClaimDetail = function(object) {
     return $http.get(apiPath + object.id)
-      .then(function(response) {
-        if (response.data.Staff.dob) {
-          response.data.Staff.dob = new Date(response.data.Staff.dob);
-        }
-        if (response.data.Staff.hireDate) {
-          response.data.Staff.hireDate = new Date(response.data.Staff.hireDate);
-        }
-        if (response.data.Staff.departureDate) {
-          response.data.Staff.departureDate = new Date(response.data.Staff.departureDate);
-        }
-        self.claimDetail = response.data.Staff;
+      .then(function(response) {        
+        self.claimDetail = response.data.Claim;
       });
   };
 
   this.fetchAutocomplete = function(searchObject) {
     return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
-      self.autocomplete = searchSrv.autocomplete.Staffs;
+      self.autocomplete = searchSrv.autocomplete.Claims;
       self.autocompleteValues = [];
       if (searchObject.name) {
         for (var claim in self.autocomplete) {
@@ -51,8 +44,8 @@ module.service('claimsListSrv', function($http, searchSrv) {
 
   this.search = function(searchObject) {    
     return searchSrv.search(searchObject, apiPath).then(function() {
-      self.searchResults = searchSrv.searchResults.Staffs;
-      self.searchResultsCount = searchSrv.searchResultsCount.StaffsCount[0].rowCount;
+      self.searchResults = searchSrv.searchResults.Claims;
+      self.searchResultsCount = searchSrv.searchResultsCount.ClaimsCount[0].rowCount;
     });
   };
 

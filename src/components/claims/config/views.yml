@@ -21,16 +21,19 @@ admin_claims_home:
         bootstrap_modules:
             - rootApp
             - claimsAdmin
+
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
         - /js/extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
+
         #- @components/staff/dist/js/staff.min.js
     css:
         - @components/claims/dist/css/claims.min.css
@@ -39,16 +42,32 @@ admin_claims_home:
     
 admin_claims_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "featureslider": "src/components/claims/views/admin/view.php"
-            "featureslider-edit1": "src/components/claims/views/admin/edit1.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+           # "section3": "src/components/staff/views/admin/staff-list.php"
+            "featureslider-edit1": "src/components/claims/views/admin/edit.php"
             "featureslider-edit2": "src/components/claims/views/admin/edit2.php"
             "featureslider-edit3": "src/components/claims/views/admin/edit3.php"
             "featureslider-edit4": "src/components/claims/views/admin/edit4.php"
-            "section3": "src/components/claims/views/admin/list.php"
+          #  "featureslider-edit5": "src/components/claims/views/admin/edit5.php"
             "section4": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claims
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
     
 admin_claims_edit1:
     template: admin-list.php

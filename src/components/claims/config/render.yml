@@ -1,0 +1,11 @@
+## YAML Template.
+---
+claimsAddNewModal:
+    path: 'src/components/claims/ng/views/claimsAddNewModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+
+addNewWizardPages:
+    path: 'src/components/claims/ng/views/addNewWizardPages.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'

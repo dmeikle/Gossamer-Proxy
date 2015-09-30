@@ -29,7 +29,7 @@ use core\navigation\Pagination;
 class ClaimsController extends AbstractController{
    
     public function search() {
-        $result = $this->model->search();
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
         
         $this->render($result);
     }

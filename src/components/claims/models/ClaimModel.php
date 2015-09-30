@@ -34,12 +34,11 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         $this->tablename = 'claims';
     }
     
-    public function search(array $term) {
-        $params = array('keywords' => $this->httpRequest->getQueryParameter('Claims_id'));
-       
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
+    public function search(array $params) {
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
       
-        return $this->formatResults($data['Claims']);
+        return $data;
     }
     
     public function searchByJobNumber(array $term) {
@@ -52,23 +51,7 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
-    private function formatResults(array $results) {
-        $retval = array();
-        
-        foreach($results as $row) {
-            $retval[] = array(
-                'id' => $row['id'],
-                'label' => $row['buildingName'] . "," . $row['address1'] . ", " . $row['address2'].", " .
-                $row['city'],
-                'value' => '<b>' .$row['buildingName'] . "</b><br />" . $row['address1'] . "<br />" . 
-                ((strlen($row['address2']) > 0)? $row['address2'] . '<br />' :'') .
-                $row['city']
-                );
-        }
-        
-        return $retval;
-    }
-    
+ 
     public function get($claimId) {
         $params = array(
             'jobNumber' => $claimId

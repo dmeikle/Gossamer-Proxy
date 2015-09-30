@@ -1,0 +1,241 @@
+<div>
+  <div class="wizard-page clearfix" ng-submit="nextPage()" ng-hide="addNewClient || loading">
+    <h2><?php echo $this->getString('CLAIMS_ADDNEW_CREATENEW'); ?></h2>
+    <form id="wizard-form" name="wizard-form" class="form-inline col-xs-12 col-md-6">
+      <div class="form-group">
+        <label>
+          <input type="radio" name="claim-by" id="claim-by-strata" class="form-control" ng-model="claim.by" value="strata" required>
+          <?php echo $this->getString('CLAIMS_ADDNEW_STRATA'); ?>
+        </label>
+        <input type="text" ng-model="claim.strata" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'strata'"
+          typeahead="value.strata + ' #' + value.strataNumber for value in autocompleteStrata($viewValue)" typeahead-loading="loadingTypeaheadStrata"
+          typeahead-no-results="noResultsStrata" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'strata'"
+          typeahead-on-select="selectAddress($item, $model, $label)">
+        <div class="resultspane" ng-show="noResultsStrata">
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+        </div>
+        <i ng-show="loadingTypeaheadStrata" class="glyphicon glyphicon-refresh"></i>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="radio" name="claim-by" id="claim-by-building" class="form-control" ng-model="claim.by" value="building">
+          <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING'); ?>
+        </label>
+        <input type="text" ng-model="claim.building" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'building'"
+          typeahead="value for value in autocompleteBuilding($viewValue)" typeahead-loading="loadingTypeaheadBuilding"
+          typeahead-no-results="noResultsBuilding" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'building'">
+        <div class="resultspane" ng-show="noResultsBuilding">
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+        </div>
+        <i ng-show="loadingTypeaheadBuilding" class="glyphicon glyphicon-refresh"></i>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="radio" name="claim-by" id="claim-by-address" class="form-control" ng-model="claim.by" value="address">
+          <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS'); ?>
+        </label>
+        <input type="text" ng-model="claim.address" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'address'"
+          typeahead="value for value in autocompleteAddress($viewValue)" typeahead-loading="loadingTypeaheadAddress"
+          typeahead-no-results="noResultsAddress" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'address'">
+        <div class="resultspane" ng-show="noResultsAddress">
+          <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+        </div>
+        <i ng-show="loadingTypeaheadAddress" class="glyphicon glyphicon-refresh"></i>
+      </div>
+    </form>
+    <div class="col-xs-12 col-md-6">
+      <button class="btn-default" ng-click="toggleAdding()">
+        <?php echo $this->getString('CLAIMS_ADDNEW_ORNEW'); ?>
+      </button>
+    </div>
+  </div>
+  <form class="clearfix form-horizontal" ng-submit="" ng-show="addNewClient" name="wizard-add-new" id="wizard-add-new">
+    <div class="form-group">
+      <div class="col-xs-12 col-md-6">
+        <label for="addNew-strata">
+          <?php echo $this->getString('CLAIMS_ADDNEW_STRATA');?>
+        </label>
+        <input class="form-control" type="text" name="addNew-strata" id="addNew-strata" ng-model="addNew.strata">
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label for="addNew-building">
+          <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING');?>
+        </label>
+        <input class="form-control" type="text" name="addNew-building" id="addNew-building" ng-model="addNew.building">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-12 col-md-6">
+        <label>
+          <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS');?>
+        </label>
+        <input class="form-control" type="text">
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <label>
+          <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS');?>
+        </label>
+        <input class="form-control" type="text">
+      </div>
+    </div>
+  </form>
+</div>
+<form ng-submit="nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+  <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONTACTDETAILS'); ?></h2>
+  <div class="clearfix">
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label><?php echo $this->getString('CLAIMS_CALLEDIN_NAME');?></label>
+        <input class="form-control" type="text" name="calledInBy" id="claim-calledInBy" ng-model="claim.query.calledInBy">
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label><?php echo $this->getString('CLAIMS_CALLEDIN_PHONE');?></label>
+        <input class="form-control" type="tel" name="calledInPhone" id="claim-calledInPhone" ng-model="claim.query.calledInPhone">
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label><?php echo $this->getString('CLAIMS_CONTACT_FIRSTNAME');?></label>
+        <input class="form-control" type="text" name="contactName" id="claim-contactName" ng-model="claim.query.contactName">
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label><?php echo $this->getString('CLAIMS_CONTACT_PHONE');?></label>
+        <input class="form-control" type="tel" name="contactPhone" id="claim-contactPhone" ng-model="claim.query.contactPhone">
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <label for="claim-date">
+          <?php echo $this->getString('CLAIM_DATE'); ?>
+        </label>
+        <div class="input-group">
+          <input type="date" name="date" id="claim-date" ng-model="claim.query.date" ng-model-options="{timezone: '+0000'}"
+            class="form-control" datepicker-popup is-open="isOpen.date"
+            datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('CLAIM_CLOSE');?>" />
+          <span class="input-group-btn" data-datepickername="date">
+            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="form-group">
+        <div class="input-group">
+          <label>
+            <?php echo $this->getString('CLAIM_TIME'); ?>
+            <timepicker name="time" id="claim-time" ng-model="claim.query.date" show-meridian="true" required></timepicker>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<form ng-submit="nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+  <div class="clearfix">
+    <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONFIRMATION'); ?></h2>
+    <div>
+      <ul>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_CALLEDINBY');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.query.calledInBy}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_CALLEDINPHONE');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.query.calledInPhone}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_CONTACT_NAME');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.query.contactName}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_CONTACT_PHONE');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.query.contactPhone}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_MANAGEMENT');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.management}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_STRATA');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.strata}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_STRATANUM');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.strataNumber}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_ADDRESS');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.address1}} <br>
+            <span ng-if="claim.projectAddress.neighborhood">
+              {{claim.ProjectAddress.neighborhood}} <br>
+            </span>
+            {{claim.ProjectAddress.city}} <br>
+            {{claim.ProjectAddress.postalCode}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_TYPE');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.propertyType}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_NOTES');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.notes}}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="checkbox" name="confirm" id="claim-confirm" ng-model="claim.confirm" class="form-control">
+    <label for="claim-confirm">
+      <?php echo $this->getString('CLAIMS_CONFIRM'); ?>
+    </label>
+  </div>
+</form>
+<form id="wizard-form" name="wizard-form" class="wizard-page" ng-submit="confirm()">
+  <h2><?php echo $this->getString('CLAIMS_ADDNEW_DISPATCH'); ?></h2>
+</form>

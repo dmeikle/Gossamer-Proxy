@@ -1,5 +1,4 @@
-
-var module = angular.module('claimsAdmin', ['ui.bootstrap', 'dropzone']);
+var module = angular.module('projectAddressesAdmin', ['ui.bootstrap', 'dropzone']);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function(data){
@@ -8,6 +7,4 @@ module.config(function ($httpProvider) {
         }
         return $.param(data);
     };
-
 });
-

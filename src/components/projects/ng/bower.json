@@ -1,16 +1,11 @@
 {
-
-  "name": "Claims Component",
+  "name": "projects-component",
   "version": "0.1.0",
   "authors": [
     "Dave Meikle <davemeikle@ymail.com>"
   ],
-  "description": "",
-  "main": "",
-  "moduleType": [],
+  "description": "Projects Component",
   "license": "MIT",
-  "homepage": "",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -19,7 +14,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular-bootstrap": "~0.13.4",
-    "bootstrap-sass": "~3.3.5"
+    "angular": "~1.0",
+    "angular-bootstrap": "~0.13.3",
+    "bootstrap-sass": "~3.3.5",
+    "jquery": "~3.0.0"
+    
   }
 }

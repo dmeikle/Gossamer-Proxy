@@ -153,7 +153,7 @@ module.exports = function(grunt) {
           rename: function(dest, src, options) {
             var srcSplit = src.split('/');
             var componentName = srcSplit[srcSplit.indexOf('dist')-1];
-            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '.min.js');
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + ".min.js\r\n");
             return options.cwd + componentName + '/' + dest + componentName + '.min.js';
           }
         }]
@@ -167,7 +167,7 @@ module.exports = function(grunt) {
           rename: function(dest, src, options) {
             var srcSplit = src.split('/');
             var componentName = srcSplit[srcSplit.indexOf('dist')-1];
-            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '.min.js');
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + ".min.js\r\n");
             return options.cwd + componentName + '/' + dest + componentName + '.min.js';
           }
         }]
@@ -181,7 +181,7 @@ module.exports = function(grunt) {
           rename: function(dest, src, options) {
             var srcSplit = src.split('/');
             var componentName = srcSplit[srcSplit.indexOf('dist')-1];
-            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '-extension.min.js');
+            grunt.log.write(options.cwd + componentName + '/' + dest + componentName + '-extension.min.js' + "\r\n");
             return options.cwd + componentName + '/' + dest + componentName + '-extension.min.js';
           }
         }]
