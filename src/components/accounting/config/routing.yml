@@ -63,6 +63,8 @@ accounting_timesheets_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
 
         
 

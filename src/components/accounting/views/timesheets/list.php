@@ -70,7 +70,7 @@
             <td></td>
             <td></td>
           </tr>
-            <tr ng-if="!loading" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
+            <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
               <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate | currency}}</td>
@@ -91,9 +91,12 @@
                   </ul>
                 </div>
               </td>
-          </tr>
-        </tbody>
+          </tr>            
+        </tbody>        
     </table>
+    <div ng-if="noSearchResults" class="results-message warning">
+        <?php echo $this->getString('ACCOUNTING_NO_RESULTS');?>
+    </div>
 
     <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></pagination>
     </div>
@@ -125,13 +128,14 @@
                 </div>
                 
                 <input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
-                <input placeholder="Phase Codes ID" class="form-control" name="phase" ng-model="advSearch.AccountingPhaseCodes_id">
+                
+                <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
+                    <option value="" selected>-Phase Code-</option>
+                    <?php foreach($AccountingPhaseCodes as $phase) {
+    echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';} ?>
+                </select>
                 
             </div>
-            
-            
-            
-            
             
             <div class="cardfooter">
                 <div class="btn-group pull-right">

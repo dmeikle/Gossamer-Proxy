@@ -6,6 +6,7 @@ return array(
     'ACCOUNTING_SUBMIT' => 'Submit',
     'ACCOUNTING_RESET' => 'Reset',
     'ACCOUNTING_CLOSE' => 'Close',
+    'ACCOUNTING_NO_RESULTS' => 'No Results Found',
     
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',

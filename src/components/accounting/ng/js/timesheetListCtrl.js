@@ -5,6 +5,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.currentPage = 1;    
     $scope.loading = true;
     $scope.previouslyClickedObject = {};
+    $scope.noSearchResults = false;
     
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
@@ -16,6 +17,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     function getTimesheetList(){
         $scope.loading = true;
+        $scope.noSearchResults = false;
         console.log(row + ' ' + numRows);
         
         timesheetSrv.getTimesheetList(row,numRows)
@@ -117,9 +119,13 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     $scope.advancedSearch = function(searchObject){
         $scope.loading = true;
+        $scope.noSearchResults = false;
         timesheetSrv.advancedSearch(searchObject).then(function(){
             $scope.timesheetList = timesheetSrv.advancedSearchResults;
             $scope.totalItems = timesheetSrv.advancedSearchResultsCount;
+            if($scope.totalItems === '0'){
+                $scope.noSearchResults = true;
+            }
             $scope.loading = false;
         });
     };
@@ -130,14 +136,17 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         getTimesheetList();
     };
     
+    $scope.resetAdvancedSearch = function() {
+        console.log('resetting search');
+        $scope.searchSubmitted = false;
+        $scope.advSearch = {};
+        getTimesheetList();
+    };
+    
     $scope.openTimesheetAdvancedSearch = function() {
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
-//        $scope.sidePanelLoading = true;
-//        timesheetSrv.getAdvancedSearchFilters().then(function() {
-//            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-//        });
+        $scope.searching = true;
     };
     
     //Date Picker

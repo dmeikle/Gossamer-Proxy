@@ -20,7 +20,7 @@ table{
     }
 }
 #advancedSearch{
-    input{
+    input, select{
         margin-bottom:10px;
     }
     .input-group{
@@ -29,6 +29,12 @@ table{
             margin-bottom:0;
         }
     }
+    
+}
+.results-message{
+    text-align: center;
+    padding:10px;
+    background-color: #fcf8e3;
 }
 .widget-side-panel, .widget-content{
     transition: width ease 0.35s;
