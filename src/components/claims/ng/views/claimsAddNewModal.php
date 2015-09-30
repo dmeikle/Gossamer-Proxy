@@ -20,11 +20,13 @@
     <button class="btn-default" ng-click="toggleAdding()" ng-if="addNewClient">
       <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
     </button>
-    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 1 && !addNewClient"
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 2 && !addNewClient"
       value="<?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>">
-    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage === wizardPages.length - 1"
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage === wizardPages.length - 2"
       value="<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>">
-    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 1 && addNewClient"
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage < wizardPages.length - 2 && addNewClient"
+      value="<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>">
+    <input type="submit" class="btn btn-primary" form="wizard-form" ng-if="currentPage === wizardPages.length - 1 && !addNewClient"
       value="<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>">
   </div>
 </div>

@@ -58,7 +58,12 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
 
   $scope.selectAddress = function(item, model, label) {
     $scope.claim.ProjectAddress = item;
-    $scope.claim.query.ProjectAddresses_id = item;
+    $scope.claim.query.ProjectAddresses_id = item.id;
+    if (item.buildingYear.parseInt <= 1980) {
+      $scope.claim.query.asbestosTestRequired = 'true';
+    } else {
+      $scope.claim.query.asbestosTestRequired = 'false';
+    }
   };
 
   $scope.save = function() {

@@ -5,7 +5,9 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
 
   this.save = function(object, formToken, page) {
     apiPath = apiPath + page + '/';
-    return crudSrv.save(object, objectType, formToken, apiPathSingle);
+    var copiedObject = angular.copy(object);
+    copiedObject.date = object.date.toISOString().substring(0, 10);
+    return crudSrv.save(copiedObject, objectType, formToken, apiPathSingle);
   };
 
   this.autocomplete = function(value, type) {

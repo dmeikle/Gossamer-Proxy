@@ -136,7 +136,7 @@
     </div>
   </div>
 </form>
-<form ng-submit="nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+<form ng-submit="save();nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
   <div class="clearfix">
     <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONFIRMATION'); ?></h2>
     <div>
@@ -199,6 +199,14 @@
         </li>
         <li>
           <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_TYPE');?>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            {{claim.ProjectAddress.propertyType}}
+          </div>
+        </li>
+        <li>
+          <div class="col-xs-12 col-md-6">
             <?php echo $this->getString('CLAIMS_ADDRESS');?>
           </div>
           <div class="col-xs-12 col-md-6">
@@ -212,10 +220,10 @@
         </li>
         <li>
           <div class="col-xs-12 col-md-6">
-            <?php echo $this->getString('CLAIMS_TYPE');?>
+            <?php echo $this->getString('CLAIMS_ASBESTOSTEST');?>
           </div>
           <div class="col-xs-12 col-md-6">
-            {{claim.ProjectAddress.propertyType}}
+            {{claim.query.asbestosTestRequired}}
           </div>
         </li>
         <li>
@@ -230,7 +238,7 @@
     </div>
   </div>
   <div class="form-group">
-    <input type="checkbox" name="confirm" id="claim-confirm" ng-model="claim.confirm" class="form-control">
+    <input type="checkbox" name="confirm" id="claim-confirm" ng-model="claim.confirm" class="form-control" required>
     <label for="claim-confirm">
       <?php echo $this->getString('CLAIMS_CONFIRM'); ?>
     </label>
