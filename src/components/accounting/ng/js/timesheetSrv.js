@@ -1,5 +1,5 @@
 // Timesheet service
-module.service('timesheetSrv', function($http, searchSrv) {
+module.service('timesheetSrv', function($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/timesheets/';
     var timesheetItemsPath = '/admin/accounting/timesheetitems/';
     var staffPath = '/admin/staff/';
@@ -192,19 +192,9 @@ module.service('timesheetSrv', function($http, searchSrv) {
     };
     
     //Typeahead autocomplete
-    this.fetchAutocomplete = function(searchObject, path) {
-        var searchPath = '';
-        switch (path) {
-            case 'staff':
-                searchPath = staffPath;
-                break;
-            case 'claims':
-                searchPath = claimsPath;
-        }
-        
+    this.fetchAutocomplete = function(searchObject) {
         console.log('fetching typeahead autocomplete...');
-        return searchSrv.fetchAutocomplete(searchObject, searchPath).then(function() {
-            console.log(searchSrv.autocomplete);
+        return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function() {
             self.autocomplete = searchSrv.autocomplete.Staffs;
             self.autocompleteValues = [];
             if (searchObject.name) {
@@ -229,11 +219,26 @@ module.service('timesheetSrv', function($http, searchSrv) {
         });
     };    
     
-    this.getAdvancedSearchFilters = function() {
-        return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
-            //self.advancedSearch.fields = searchSrv.advancedSearch.fields;
+    this.advancedSearch = function(searchObject) {
+        var config = angular.copy(searchObject);
+        config.workDate = $filter('date')(config.workDate, 'yyyy-MM-dd', '+0000');
+        return $http({
+            url: apiPath + 'search?',
+            method: 'GET',
+            params: config
+        })
+            .then(function(response) {
+            console.log(response);
+            self.advancedSearchResults = response.data.Timesheets;
+            self.advancedSearchResultsCount = response.data.TimesheetsCount[0].rowCount;
         });
     };
+    
+//    this.getAdvancedSearchFilters = function() {
+//        return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
+//            //self.advancedSearch.fields = searchSrv.advancedSearch.fields;
+//        });
+//    };
 //    this.fetchLaborerAutocomplete = function(searchObject) {
 //        return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
 //            self.autocomplete = searchSrv.autocomplete.Staffs;

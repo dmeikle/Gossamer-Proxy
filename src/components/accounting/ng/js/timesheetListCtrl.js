@@ -9,6 +9,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
+    $scope.isOpen = {};
     
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;    
@@ -89,13 +90,14 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
             $scope.sidePanelOpen = false;
             $scope.previouslyClickedObject = {};
         }
+        $scope.isOpen.datepicker = false;
     };
     
     //Typeahead
-    $scope.fetchAutocomplete = function(viewVal, searchPath) {
+    $scope.fetchAutocomplete = function(viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
-        return timesheetSrv.fetchAutocomplete(searchObject, searchPath);
+        return timesheetSrv.fetchAutocomplete(searchObject);
     };
     
     //Search
@@ -113,6 +115,15 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
         }
     };
     
+    $scope.advancedSearch = function(searchObject){
+        $scope.loading = true;
+        timesheetSrv.advancedSearch(searchObject).then(function(){
+            $scope.timesheetList = timesheetSrv.advancedSearchResults;
+            $scope.totalItems = timesheetSrv.advancedSearchResultsCount;
+            $scope.loading = false;
+        });
+    };
+    
     $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = {};
@@ -122,10 +133,16 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.openTimesheetAdvancedSearch = function() {
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
-        $scope.sidePanelLoading = true;
-        timesheetSrv.getAdvancedSearchFilters().then(function() {
-            $scope.sidePanelLoading = false;
+//        $scope.sidePanelLoading = true;
+//        timesheetSrv.getAdvancedSearchFilters().then(function() {
+//            $scope.sidePanelLoading = false;
             $scope.searching = true;
-        });
+//        });
+    };
+    
+    //Date Picker
+    $scope.dateOptions = {'starting-day':1};
+    $scope.openDatepicker = function(event){
+        $scope.isOpen.datepicker = true;
     };
 });

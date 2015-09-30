@@ -14,7 +14,7 @@
         
         <form ng-submit="search(basicSearch.query)" class="input-group">
             <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-                   typeahead="value for value in fetchAutocomplete($viewValue, 'claims')"
+                   typeahead="value for value in fetchAutocomplete($viewValue)"
                    typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                    typeahead-on-select="staffSearch(basicSearch.query)" typeahead-min-length='3'>
             <div class="resultspane" ng-show="noResults">
@@ -32,15 +32,6 @@
             </span>
         </form>
         
-      <select class="form-control" name="basicSearchCol" id="basic-search-col" ng-model="basicSearch.col[0]"
-        ng-init="basicSearch.col[0] = 'name'">
-        <option value="name" ng-selected="true"><?php echo $this->getString('STAFF_NAME');?></option>
-        <option value="ext"><?php echo $this->getString('STAFF_EXT');?></option>
-        <option value="phone"><?php echo $this->getString('STAFF_PHONE');?></option>
-      </select>
-        <button class="primary" ng-click="search(basicSearch.query)">
-        <?php echo $this->getString('ACCOUNTING_SEARCH') ?>
-      </button>
     </div>
     <div class="clearfix"></div>
     <table class="table table-striped table-hover">
@@ -107,7 +98,7 @@
     <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></pagination>
     </div>
     
-    <div class="widget-side-panel">
+    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -115,39 +106,32 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
+        <form ng-if="!sidePanelLoading && searching" ng-submit="advancedSearch(advSearch)">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH');?></h1>
             <div id="advancedSearch">
-                Advanced Search!
+                <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
+<!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
+                
+                <div class="input-group">
+                    <input type="date" name="date" ng-model="advSearch.workDate" ng-model-options="{timezone: '+0000'}"
+                           class="form-control" datepicker-popup is-open="isOpen.datepicker"
+                           datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
+                    <span class="input-group-btn" data-datepickername="date">
+                        <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                
+                <input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <input placeholder="Phase Codes ID" class="form-control" name="phase" ng-model="advSearch.AccountingPhaseCodes_id">
+                
             </div>
             
-            <form ng-submit="advancedSearch(advancedSearch.query)" class="input-group">
-                <input type="text" ng-model="advancedSearch.query.name" ng-model-options="{debounce:500}"
-                       typeahead="value for value in fetchAutocomplete($viewValue)"
-                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
-                       typeahead-on-select="staffSearch(basicSearch.query)" typeahead-min-length='3'>
-                <div class="resultspane" ng-show="noResults">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('STAFF_NORESULTS') ?>
-                </div>
-                <span class="input-group-btn" ng-if="!searchSubmitted">
-                    <button type="submit" class="btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-                <span ng-if="searchSubmitted" class="input-group-btn">
-                    <button type="reset" class="btn-default" ng-click="resetSearch()">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </span>
-            </form>
             
-            <select class="form-control" name="advancedFilters" id="advanced-search-col" ng-model="advSearch"
-                    ng-init="advSearch = 'name'">
-                <option value="name" ng-selected="true"><?php echo $this->getString('ACCOUNTING_NAME');?></option>
-                <option value="date"><?php echo $this->getString('ACCOUNTING_DATE');?></option>
-                <option value="claim"><?php echo $this->getString('ACCOUNTING_CLAIM');?></option>
-                <option value="phase"><?php echo $this->getString('ACCOUNTING_PHASE');?></option>
-            </select>
+            
+            
             
             <div class="cardfooter">
                 <div class="btn-group pull-right">

@@ -5,6 +5,7 @@ return array(
     'ACCOUNTING_ADVANCED_SEARCH' => 'Advanced Search',
     'ACCOUNTING_SUBMIT' => 'Submit',
     'ACCOUNTING_RESET' => 'Reset',
+    'ACCOUNTING_CLOSE' => 'Close',
     
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
