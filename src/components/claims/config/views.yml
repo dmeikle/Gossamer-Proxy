@@ -12,18 +12,29 @@ claims_new_claim_wizard_1:
             
 admin_claims_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/themes/default/templates/sections/left-nav.php"
-            "section2": "src/components/claims/views/admin/subnav.php"
-           # "section3": "src/components/staff/views/admin/staff-list.php"
-            "featureslider-edit1": "src/components/claims/views/admin/edit.php"
-            "featureslider-edit2": "src/components/claims/views/admin/edit2.php"
-            "featureslider-edit3": "src/components/claims/views/admin/edit3.php"
-            "featureslider-edit4": "src/components/claims/views/admin/edit4.php"
-          #  "featureslider-edit5": "src/components/claims/views/admin/edit5.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/claims/views/admin/claims/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - /js/extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
     
     
 admin_claims_list:
