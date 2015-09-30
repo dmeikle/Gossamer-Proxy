@@ -20,7 +20,9 @@ module.service('searchSrv', function($http) {
   };
 
   this.search = function(object, apiPath) {
+      console.log('here');
       return self.searchCall(object, apiPath + 'search').then(function(response) {
+          console.log(response.data);
         self.searchResults = response.data;
         self.searchResultsCount = response.data;
       });

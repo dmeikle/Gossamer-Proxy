@@ -15,24 +15,30 @@ admin_claims_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "content": "src/components/claims/views/admin/claims-list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "content": "src/components/claims/views/admin/claims/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - rootApp
-            - claims
+            - claimsAdmin
+
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - /js/extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
-        #- @components/claims/dist/js/claims.min.js
+
+        #- @components/staff/dist/js/staff.min.js
     css:
         - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+    
     
 admin_claims_list:
     template: admin-list.php

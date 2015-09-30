@@ -1,27 +1,79 @@
-module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEditSrv) {
+module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
   var a = document.createElement('a');
   a.href = $location.absUrl();
   var apiPath;
   if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
-    apiPath = a.pathname;
-  } else {
-    apiPath = a.pathname.slice(0, -1);
-  }
+        apiPath = a.pathname;
+    } else {
+        apiPath = a.pathname.slice(0, -1);
+    }
+    var row = 0;
+    var numRows = 20;
+    $scope.basicSearch = {};
+    $scope.advancedSearch = {};
+    $scope.autocomplete = {};
 
-  $scope.openAddNewWizard = function() {
-    var modalInstance = $modal.open({
-      templateUrl: '/render/claims/claimsAddNewModal',
-      controller: 'claimsModalCtrl',
-      size: 'lg',
-      keyboard: false,
-      backdrop:"static"
+    $scope.tablesSrv = tablesSrv;
+
+    getClaimsList();
+
+    $scope.$watch('tablesSrv.sortResult', function () {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.claimsList = tablesSrv.sortResult.Claims;
+            $scope.loading = false;
+        }
     });
 
-    modalInstance.result.then(function(claim) {
-      claimsEditSrv.save(claim).then(function() {
-        getClaimsList();
-      });
-    });
+
+
+    $scope.openAddNewWizard = function () {
+        var modalInstance = $modal.open({
+            templateUrl: '/render/claims/claimsAddNewModal',
+            controller: 'claimsModalCtrl',
+            size: 'lg',
+            keyboard: false,
+            backdrop: "static"
+        });
+
+        modalInstance.result.then(function (claim) {
+            claimsEditSrv.save(claim).then(function () {
+                getClaimsList();
+            });
+        });
+    };
+
+
+    function getClaimsList() {
+        $scope.loading = true;
+        claimsListSrv.getClaimsList(row, numRows).then(function (response) {
+            $scope.claimsList = claimsListSrv.claimsList;
+            $scope.totalItems = claimsListSrv.claimsCount;
+        }).then(function () {
+            $scope.loading = false;
+        });
+    }
+
+
+    $scope.search = function (searchObject) {
+        console.log('here');
+        $scope.noResults = undefined;
+        var copiedObject = angular.copy(searchObject);
+        if (copiedObject && Object.keys(copiedObject).length > 0) {
+            $scope.searchSubmitted = true;
+            $scope.loading = true;
+            claimsListSrv.search(copiedObject).then(function () {
+                console.log( claimsListSrv.searchResults);
+                $scope.claimsList = claimsListSrv.searchResults;
+                $scope.totalItems = claimsListSrv.searchResultsCount;
+                $scope.loading = false;
+            });
+        }
+    };
+    
+  $scope.resetSearch = function() {
+    $scope.searchSubmitted = false;
+    $scope.basicSearch.query = {};
+    getStaffList();
   };
 });
 
