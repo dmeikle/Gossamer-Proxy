@@ -1,5 +1,5 @@
 <div>
-  <div class="wizard-page clearfix" ng-submit="nextPage()" ng-hide="addNewClient || loading">
+  <div class="wizard-page clearfix" ng-submit="nextPage()" ng-if="!addNewClient && !loading">
     <h2><?php echo $this->getString('CLAIMS_ADDNEW_CREATENEW'); ?></h2>
     <form id="wizard-form" name="wizard-form" class="form-inline col-xs-12 col-md-6">
       <div class="form-group">
@@ -22,7 +22,7 @@
           <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING'); ?>
         </label>
         <input type="text" ng-model="claim.building" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'building'"
-          typeahead="value for value in autocompleteBuilding($viewValue)" typeahead-loading="loadingTypeaheadBuilding"
+          typeahead="value.strata + ' ' + value.buildingName for value in autocompleteBuilding($viewValue)" typeahead-loading="loadingTypeaheadBuilding"
           typeahead-no-results="noResultsBuilding" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'building'">
         <div class="resultspane" ng-show="noResultsBuilding">
           <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
@@ -35,7 +35,7 @@
           <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS'); ?>
         </label>
         <input type="text" ng-model="claim.address" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'address'"
-          typeahead="value for value in autocompleteAddress($viewValue)" typeahead-loading="loadingTypeaheadAddress"
+          typeahead="value.strata + ' ' + value.address1 for value in autocompleteAddress($viewValue)" typeahead-loading="loadingTypeaheadAddress"
           typeahead-no-results="noResultsAddress" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'address'">
         <div class="resultspane" ng-show="noResultsAddress">
           <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
@@ -49,34 +49,39 @@
       </button>
     </div>
   </div>
-  <form class="clearfix form-horizontal" ng-submit="" ng-show="addNewClient" name="wizard-add-new" id="wizard-add-new">
+  <form class="clearfix" ng-submit="saveProjectAddress(project)" ng-if="addNewClient && !loading" name="wizard-form" id="wizard-form">
     <div class="form-group">
-      <div class="col-xs-12 col-md-6">
-        <label for="addNew-strata">
-          <?php echo $this->getString('CLAIMS_ADDNEW_STRATA');?>
-        </label>
-        <input class="form-control" type="text" name="addNew-strata" id="addNew-strata" ng-model="addNew.strata">
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <label for="addNew-building">
-          <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING');?>
-        </label>
-        <input class="form-control" type="text" name="addNew-building" id="addNew-building" ng-model="addNew.building">
-      </div>
+      <label for="project-firstname"><?php echo $this->getString('PROJECTS_BUILDINGNAME'); ?></label>
+      <?php echo $form['buildingName'];?>
     </div>
     <div class="form-group">
-      <div class="col-xs-12 col-md-6">
-        <label>
-          <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS');?>
-        </label>
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-xs-12 col-md-6">
-        <label>
-          <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS');?>
-        </label>
-        <input class="form-control" type="text">
-      </div>
+      <label for="project-lastname"><?php echo $this->getString('PROJECTS_ADDRESS'); ?></label>
+       <?php echo $form['address1'];?><br />
+       <?php echo $form['address2'];?>
+
+    </div>
+    <div class="form-group">
+      <label for="project-personalEmail"><?php echo $this->getString('PROJECTS_CITY'); ?></label>
+      <?php echo $form['city'];?>
+    </div>
+    <div class="form-group">
+      <label for="project-personalMobile"><?php echo $this->getString('PROJECTS_PROVINCE'); ?></label>
+      <?php echo $form['Provinces_id'];?>
+    </div>
+    <div class="form-group">
+      <label for="project-personalTelephone"><?php echo $this->getString('PROJECTS_POSTALCODE'); ?></label>
+      <?php echo $form['postalCode'];?>
+    </div>
+
+    <div class="form-group">
+      <label for="project-address1"><?php echo $this->getString('PROJECTS_STRATANUMBER'); ?></label>
+      <?php echo $form['strataNumber'];?>
+    </div>
+
+
+    <div class="form-group">
+      <label for="project-buildingAge"><?php echo $this->getString('PROJECTS_BUILDINGYEAR'); ?></label>
+      <?php echo $form['buildingYear'];?>
     </div>
   </form>
 </div>

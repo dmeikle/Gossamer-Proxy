@@ -28,6 +28,7 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
 module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEditSrv) {
   $scope.addNewClient = false;
 
+  $scope.project = {};
   $scope.claim = {};
   $scope.claim.query= {};
 
@@ -64,6 +65,16 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
     } else {
       $scope.claim.query.asbestosTestRequired = 'false';
     }
+  };
+
+  $scope.saveProjectAddress = function(project) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    claimsEditSrv.saveProjectAddress(project, formToken).then(function(response){
+      $scope.claim.projectAddress = response.data.ProjectAddress[0];
+      $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
+      $scope.toggleAdding();
+      $scope.nextPage();
+    });
   };
 
   $scope.save = function() {

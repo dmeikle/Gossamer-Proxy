@@ -17,6 +17,7 @@ return array(
     'PROJECTS_CONFIRM' => 'Confirm',
     'PROJECTS_CANCEL' => 'Cancel',
     'PROJECTS_NORESULTS' => 'No results found',
-    'PROJECTS_BUILDINGAGE' => 'Building Age'
-    
+    'PROJECTS_BUILDINGAGE' => 'Building Age',
+    'PROJECTS_BUILDINGYEAR' => 'Building Year'
+
 );

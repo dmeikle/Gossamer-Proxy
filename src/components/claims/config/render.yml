@@ -9,3 +9,15 @@ addNewWizardPages:
     path: 'src/components/claims/ng/views/addNewWizardPages.php'
     langFiles:
         - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\FormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\projects\form\ProjectBuilder'
+            model: 'components\projects\models\ProjectAddressModel'
+            cacheKey: 'ProjectAddressForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
