@@ -29,6 +29,8 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   $scope.addNewClient = false;
 
   $scope.claim = {};
+  $scope.claim.query= {};
+
 
   // datepicker stuffs
   $scope.isOpen = {};
@@ -38,10 +40,30 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
     $scope.isOpen[datepicker] = true;
   };
 
-  $scope.save = function(object, formToken) {
-    return claimsEditSrv.save(object, formToken, $scope.currentPage + 1).then(function() {
+  var autocomplete = function(value, type) {
+    return claimsEditSrv.autocomplete(value, type);
+  };
 
-    });
+  $scope.autocompleteBuilding = function(value) {
+    return autocomplete(value, 'buildingName');
+  };
+
+  $scope.autocompleteStrata = function(value) {
+    return autocomplete(value, 'stratanumber');
+  };
+
+  $scope.autocompleteAddress = function(value) {
+    return autocomplete(value, 'address');
+  };
+
+  $scope.selectAddress = function(item, model, label) {
+    $scope.claim.ProjectAddress = item;
+    $scope.claim.query.ProjectAddresses_id = item;
+  };
+
+  $scope.save = function() {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
   };
 
   $scope.toggleAdding = function() {
