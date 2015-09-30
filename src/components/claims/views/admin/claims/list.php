@@ -8,10 +8,8 @@
       <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
       <form ng-submit="search(basicSearch.query)" class="input-group">
-        <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-          typeahead="value for value in fetchAutocomplete($viewValue)"
-          typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
-          typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
+        <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
+          ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)">
         <div class="resultspane" ng-show="noResults">
           <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIMS_NORESULTS') ?>
         </div>

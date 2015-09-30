@@ -26,11 +26,12 @@ module.service('claimsListSrv', function($http, searchSrv) {
   this.fetchAutocomplete = function(searchObject) {
     return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
       self.autocomplete = searchSrv.autocomplete.Claims;
+      self.autocompleteCount = searchSrv.autocomplete.ClaimsCount[0].rowCount;
       self.autocompleteValues = [];
       if (searchObject.name) {
         for (var claim in self.autocomplete) {
           if (self.autocomplete.hasOwnProperty(claim) && self.autocomplete.length > 0) {
-            self.autocompleteValues.push(self.autocomplete[claim].firstname + ' ' + self.autocomplete[claim].lastname);
+            self.autocompleteValues.push(self.autocomplete[claim].buildingName + ' ' + self.autocomplete[claim].jobNumber);
           }
         }
       }
