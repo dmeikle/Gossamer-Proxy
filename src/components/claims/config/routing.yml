@@ -33,6 +33,19 @@ admin_claims_search:
     #    langFiles: 
     #        - 'src/components/shoppingcart/locales/*/Navigation' 
 
+        
+admin_claimlocations_by_claimid:
+    pattern: admin/claims/locations/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: listLocationsByClaimId
+        view: core\views\JSONView
+        viewKey: admin_claimlocations_by_claimid
+        datasource: datasource1
+    methods: [GET]         
+        
     
         
 admin_claims_home:
@@ -278,19 +291,35 @@ admin_claims_edit4_save:
         datasource: datasource1  
         
         
-#admin_claims_edit4:
-#    pattern: admin/claim/*/4
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
-#    defaults:
-#        component: components\claims\ClaimsComponent
-#        controller: components\claims\controllers\ClaimsController
-#        model: components\claims\models\ClaimModel
-#        method: edit
-#        view: core\views\TemplateView
-#        viewKey: admin_claims_edit4
-#        datasource: datasource1  
-
+admin_claim_edit:
+    pattern: admin/claims/edit/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claim_edit
+        datasource: datasource1
+        
+admin_claim_get:
+    pattern: admin/claim/*
+#    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_claim_get
+        datasource: datasource1        
         
 admin_claims_list:
     pattern: admin/claims/*/*
@@ -307,20 +336,7 @@ admin_claims_list:
     #    langFiles: 
     #        - 'src/components/shoppingcart/locales/*/Navigation'  
     
-admin_claim_view:
-    pattern: admin/claim/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimsController
-        model: components\claims\models\ClaimModel
-        method: get
-        view: core\views\TemplateView
-        viewKey: admin_claim_view
-        datasource: datasource1
+
         
         
 admin_claimlocation_edit_work:
@@ -348,19 +364,7 @@ admin_claimlocation_work_history:
         view: core\views\TemplateView
         viewKey: admin_claimlocation_work_history
         datasource: datasource1   
-        
-admin_claimlocations_by_claimid:
-    pattern: admin/claimlocations/claim/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: listLocationsByClaimId
-        view: core\views\JSONView
-        viewKey: admin_claimlocations_by_claimid
-        datasource: datasource1
-    methods: [GET]         
-        
+
     
 
 admin_upload_location_photo:
