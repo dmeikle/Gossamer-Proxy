@@ -248,7 +248,7 @@ accounting_generalcosts_list:
         controller: components\accounting\controllers\GeneralCostsController
         model: components\accounting\models\GeneralCostModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_generalcosts_list
         datasource: datasource1
 
@@ -278,7 +278,18 @@ accounting_generalcosts_save:
         datasource: datasource1 
     methods: [POST]       
     
-
+accounting_generalcost_items_list:
+    pattern: admin/accounting/generalcostitems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingGeneralCostItemsController
+        model: components\accounting\models\AccountingGeneralCostItemModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_generalcost_items_list
+        datasource: datasource1
+    methods: [GET]
+    
 #------------------------ credit accounts ----------------------------
 accounting_creditaccounts_list:
     pattern: admin/accounting/creditaccounts/*/*

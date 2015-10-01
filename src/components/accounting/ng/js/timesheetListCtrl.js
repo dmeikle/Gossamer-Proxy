@@ -151,7 +151,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     //Date Picker
     $scope.dateOptions = {'starting-day':1};
-    $scope.openDatepicker = function(event){
+    $scope.openDatepicker = function(eventz){
         $scope.isOpen.datepicker = true;
     };
 });

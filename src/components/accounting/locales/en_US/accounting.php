@@ -49,6 +49,12 @@ return array(
     'ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS' => 'SDOT',
     'ACCOUNTING_TIMESHEET_TOTAL_HOURS' => 'Total',
     
+    'ACCOUNTING_DEPARTMENT' => 'Department',
+    'ACCOUNTING_DEBIT_ACCOUNT' => 'Debit Account',
+    'ACCOUNTING_CREDIT_ACCOUNT' => 'Credit Account',
+    'ACCOUNTING_COST' => 'Cost',
+    'ACCOUNTING_CHARGEOUT' => 'Chargeout',
+    
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     

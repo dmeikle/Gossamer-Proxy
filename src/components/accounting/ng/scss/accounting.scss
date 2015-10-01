@@ -19,6 +19,14 @@ table{
         background-color: rgba(3,146,211,0.4)!important;
     }
 }
+.toolbar{
+    &.pull-right{
+        input, select{
+            display:inline;
+            width:auto!important;
+        }
+    }
+}
 #advancedSearch{
     input, select{
         margin-bottom:10px;
@@ -29,7 +37,13 @@ table{
             margin-bottom:0;
         }
     }
-    
+    .date-picker{
+        width:50%;
+//        .input-group-btn:last-child>button{
+//            margin-left: -10px;
+//            
+//        }
+    }
 }
 .results-message{
     text-align: center;

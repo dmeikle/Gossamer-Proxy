@@ -83,12 +83,6 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
     
     //Staff Autocomplete
     this.staffAutocomplete = function(searchObject) {
-//        var value = searchObject;
-//        var column = 'name';        
-//        return $http.get(staffPath + 'search?' + column + '=' + value)
-//            .then(function(response) {
-//            self.autocompleteList = response.data.Staffs;
-//        });
         var config = {};
         config.name = searchObject;     
         return $http({
@@ -98,7 +92,6 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
         })
             .then(function(response) {
             self.autocompleteList = response.data.Staffs;
-            //self.searchResultsCount = response.data.Staffs.length;
         });
     };
     
@@ -233,28 +226,4 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
             self.advancedSearchResultsCount = response.data.TimesheetsCount[0].rowCount;
         });
     };
-    
-//    this.getAdvancedSearchFilters = function() {
-//        return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
-//            //self.advancedSearch.fields = searchSrv.advancedSearch.fields;
-//        });
-//    };
-//    this.fetchLaborerAutocomplete = function(searchObject) {
-//        return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
-//            self.autocomplete = searchSrv.autocomplete.Staffs;
-//            self.autocompleteValues = [];
-//            if (searchObject.name) {
-//                for (var staff in self.autocomplete) {
-//                    if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
-//                        self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
-//                    }
-//                }
-//            }
-//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
-//                return self.autocompleteValues;
-//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
-//                return undefined;
-//            }
-//        });
-//    };
 });

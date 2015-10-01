@@ -1,4 +1,4 @@
-<div class="widget" ng-controller="timesheetListCtrl">
+<div class="widget" ng-controller="generalCostsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">General Costs List</h1>
         <div class="clearfix"></div>
@@ -9,29 +9,19 @@
         </div>
 -->
         <!--    <div class="pull-right">-->
-        <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openTimesheetAdvancedSearch()">
+        <div class="toolbar form-inline pull-right">
+            <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
 
             <form ng-submit="search(basicSearch.query)" class="input-group">
-                <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-                       typeahead="value for value in fetchAutocomplete($viewValue)"
-                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
-                       typeahead-on-select="staffSearch(basicSearch.query)" typeahead-min-length='3'>
-                <div class="resultspane" ng-show="noResults">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('STAFF_NORESULTS') ?>
-                </div>
-                <span class="input-group-btn" ng-if="!searchSubmitted">
-                    <button type="submit" class="btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-                <span ng-if="searchSubmitted" class="input-group-btn">
-                    <button type="reset" class="btn-default" ng-click="resetSearch()">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </span>
+                <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
+                    <option value="name" ng-selected="true"><?php echo $this->getString('ACCOUNTING_NAME'); ?></option>
+                    <option value="cost"><?php echo $this->getString('ACCOUNTING_COST'); ?></option>
+                    <option value="date"><?php echo $this->getString('ACCOUNTING_DATE'); ?></option>                    
+                </select>
+                <input type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control">
+                <button type="submit" class="primary"><?php echo $this->getString('ACCOUNTING_SEARCH') ?></button>                
             </form>
 
         </div>
@@ -68,19 +58,17 @@
                     <td></td>
                     <td></td>                    
                 </tr>
-                <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
-                    <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate | currency}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.regularHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.overtimeHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.doubleOTHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.statRegularHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.statOTHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.statDoubleOTHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
+                <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
+                    <td ng-click="selectRow(timesheet)">{{item.name}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.description}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.jobNumber}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.phase}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.Departments_id}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.date}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.cost}}</td>
+                    <td ng-click="selectRow(timesheet)">{{item.chargeOut}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
@@ -99,7 +87,7 @@
         <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker}">
+    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -107,37 +95,47 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!sidePanelLoading && searching" ng-submit="advancedSearch(advSearch)">
+        <form ng-if="!sidePanelLoading && searching">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH');?></h1>
             <div id="advancedSearch">
                 <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
+                <input placeholder="Description" class="form-control" name="description" ng-model="advSearch.description">
+                <input placeholder="Claim" class="form-control" name="name" ng-model="advSearch.claim">
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
-                <div class="input-group">
-                    <input type="date" name="date" ng-model="advSearch.workDate" ng-model-options="{timezone: '+0000'}"
-                           class="form-control" datepicker-popup is-open="isOpen.datepicker"
+                <label>From Date</label>
+                <div class="input-group date-picker">
+                    <input type="date" name="date1" ng-model="advSearch.fromDate" ng-model-options="{timezone: '+0000'}"
+                           class="form-control" datepicker-popup is-open="isOpen.datepicker.fromDate"
                            datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
-                    <span class="input-group-btn" data-datepickername="date">
-                        <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                    <span class="input-group-btn" data-datepickername="date1">
+                        <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event, 'fromDate')">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </button>
                     </span>
-                    <div class="clearfix"></div>
                 </div>
-
-                <input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
-
-                <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
-                    <option value="" selected>-Phase Code-</option>
-                    <?php foreach($AccountingPhaseCodes as $phase) {
-    echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';} ?>
-                </select>
+                
+                    <label>To Date</label>
+                <div class="input-group date-picker">
+                    <input type="date" name="date2" ng-model="advSearch.toDate" ng-model-options="{timezone: '+0000'}"
+                           class="form-control" datepicker-popup is-open="isOpen.datepicker.toDate"
+                           datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
+                    <span class="input-group-btn" data-datepickername="date2">
+                        <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event, 'toDate')">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+                
+                <input placeholder="Cost" class="form-control" name="cost" ng-model="advSearch.cost">
+                <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeout">
+                <input placeholder="Department" class="form-control" name="department" ng-model="advSearch.department">
 
             </div>
 
             <div class="cardfooter">
                 <div class="btn-group pull-right">
-                    <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('ACCOUNTING_SUBMIT')?>">
+                    <input type="submit" class="btn btn-primary" ng-click="advancedSearch(advSearch)" value="<?php echo $this->getString('ACCOUNTING_SUBMIT')?>">                    
                     <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('ACCOUNTING_RESET')?></button>
                 </div>
             </div>
