@@ -227,6 +227,20 @@ accounting_positems_save:
     
 
 #------------------------ general costs ----------------------------
+accounting_generalcosts_home:
+    pattern: admin/accounting/generalcosts/
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_generalcosts_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+
+
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
     defaults:
