@@ -44,5 +44,8 @@ return array(
   'REMINDERS' => 'Reminders',
   'MORE_INFO' => 'More Information',
   'DETAILS' => 'Details',
+  'COMMENTS' => 'Comments',
+  'HISTORY' => 'History',
+  'WORKLOG' => 'Work Log',
 
 );

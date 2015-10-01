@@ -18,4 +18,11 @@ module.service('crudSrv', function($http) {
       }
     });
   };
+
+  this.getDetails = function(apiPath, id) {
+    return $http({
+      method: 'GET',
+      url: apiPath + id
+    });
+  };
 });

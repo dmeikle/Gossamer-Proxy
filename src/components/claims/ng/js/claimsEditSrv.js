@@ -10,6 +10,12 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     return crudSrv.save(copiedObject, objectType, formToken, requestPath);
   };
 
+  this.getClaimDetails = function(id) {
+    return crudSrv.getDetails(apiPath, id).then(function(response) {
+      var breakpoint;
+    });
+  };
+
   this.autocomplete = function(value, type) {
     var config = {};
     config[type] = value;

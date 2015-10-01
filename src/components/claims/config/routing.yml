@@ -306,6 +306,16 @@ admin_claims_edit4_save:
 #        viewKey: admin_claims_edit4
 #        datasource: datasource1
 
+admin_claims_get:
+    pattern: admin/claims/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_claim_view
+        datasource: datasource1
 
 admin_claims_list:
     pattern: admin/claims/*/*

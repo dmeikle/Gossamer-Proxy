@@ -1,4 +1,5 @@
 <?php pr($form) ?>
+<?php echo $form['id'] ?>
 <div class="widget">
   <div class="widgetheader">
     <h1><?php echo $this->getString('CLAIMS_AFFECTEDUNITS'); ?></h1>
