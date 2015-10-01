@@ -23,6 +23,8 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
 use core\system\Router;
 use components\staff\serialization\StaffSerializer;
 use components\staff\serialization\StaffPositionsSerializer;
+use core\eventlisteners\Event;
+
 
 class StaffController extends AbstractController {
 
@@ -37,8 +39,13 @@ class StaffController extends AbstractController {
     }
 
     public function search() {
+//pr($this->httpRequest);
+//die;
+//$cachedResult = $this->httpRequest->getAttribute
         $result = $this->model->search($this->httpRequest->getQueryParameters());
-
+        
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
+        
         $this->render($result);
     }
 
