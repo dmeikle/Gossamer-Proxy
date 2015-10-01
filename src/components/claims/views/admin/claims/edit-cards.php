@@ -76,6 +76,38 @@
 
 <div class="card">
   <div class="cardheader">
+    <h1><?php echo $this->getString('CLAIMS_LOSSDETAILS');?></h1>
+  </div>
+  <table class="cardtable">
+    <tbody>
+      <tr>
+        <td><strong><?php echo $this->getString('CLAIMS_DATESTARTED');?></strong></td>
+        <td>
+          <?php echo $form['startDate'] ?>
+        </td>
+      </tr>
+      <tr>
+        <td><strong><?php echo $this->getString('CLAIMS_BUILDINGAGE');?></strong></td>
+        <td>{{claim.buildingAge}}</td>
+      </tr>
+      <tr>
+        <td><strong><?php echo $this->getString('CLAIMS_SOURCE') ?></strong></td>
+        <td><?php echo $form['source'] ?></td>
+      </tr>
+      <tr>
+        <td><strong><?php echo $this->getString('CLAIMS_JOBNUMBER') ?></strong></td>
+        <td>{{claim.jobNumber}}</td>
+      </tr>
+      <tr>
+        <td><strong><?php echo $this->getString('CLAIMS_FLOODCATEGORY') ?></strong></td>
+        <td>{{claim.type}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="cardheader">
     <h1><?php echo $this->getString('REMINDERS');?></h1>
   </div>
   <ul>

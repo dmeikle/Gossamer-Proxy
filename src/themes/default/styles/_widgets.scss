@@ -16,6 +16,11 @@
   padding:1em 0;
 }
 
+.widgettabs {
+  @extend .nav;
+  @extend .nav-tabs;
+}
+
 .widgetheader {
   @extend .clearfix;
   border-bottom: 1px solid $gray-lighter;
