@@ -198,7 +198,7 @@ admin_claims_edit:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: edit
+        method: editByJobNumber
         view: core\views\AngularTemplateView
         viewKey: admin_claims_view
         datasource: datasource1

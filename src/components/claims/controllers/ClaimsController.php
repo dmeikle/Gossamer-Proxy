@@ -42,7 +42,22 @@ class ClaimsController extends AbstractController{
 
         $this->render($list);
     }
-     
+
+    public function editByJobNumber($jobNumber) {
+        $result = $this->model->get(array('jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));            
+        $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
+        
+        if(!is_null($companyTypes)) {
+            $serializer = new CompanyTypeSerialization(); 
+            $companyTypes = $serializer->pruneCompanyTypes($companyTypes);
+           
+            $companyTypesOptions = $serializer->formatSelectionBoxOptions($companyTypes, array());
+            $result['companyTypesOptions'] = $companyTypesOptions;
+        }
+        
+        $this->render(array('form' => $this->drawForm($this->model, $result)));
+    }
+    
     public function edit($id) {
         $result = $this->model->edit($id);              
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');

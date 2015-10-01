@@ -57,7 +57,12 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
             'jobNumber' => $claimId
         );
         
-        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $claim = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        if(array_key_exists('Claim', $claim)) {
+            return current($claim['Claim']);
+        }
+        
+        return $claim;
     }
     
     public function save($id) {

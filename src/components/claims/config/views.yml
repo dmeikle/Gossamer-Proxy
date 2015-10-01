@@ -133,9 +133,9 @@ admin_claim_view:
     sections: 
         -           
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
-            "section1": "src/themes/default/templates/sections/admin-header.php" 
+            "header": "src/themes/default/templates/sections/admin-header.php" 
             "section2": "src/components/claims/views/admin/subnav.php"
-            "section3": "src/components/claims/views/admin/parameters.php"
+            "content": "src/components/claims/views/admin/claims/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     
 admin_claimlocation_view:
