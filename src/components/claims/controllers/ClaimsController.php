@@ -74,8 +74,8 @@ class ClaimsController extends AbstractController{
     }
 
     public function get($claimId) {
-        // $claim = $this->model->get($claimId);
-        $claim = $this->httpRequest->getAttribute('Claim');
+        $claim = $this->model->edit($claimId);
+        //$claim = $this->httpRequest->getAttribute('Claim');
 
         $this->render(array('claim' => $claim));
     }
