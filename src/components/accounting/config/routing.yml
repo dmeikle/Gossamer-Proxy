@@ -239,7 +239,8 @@ accounting_generalcosts_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*

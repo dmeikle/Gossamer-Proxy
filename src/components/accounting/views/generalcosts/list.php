@@ -130,7 +130,12 @@
                 <input placeholder="Cost" class="form-control" name="cost" ng-model="advSearch.cost">
                 <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeout">
                 <input placeholder="Department" class="form-control" name="department" ng-model="advSearch.department">
-
+                
+                <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
+                    <option value="" selected>-Department-</option>
+                    <?php foreach($Departments as $department) {
+    echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
+                </select>
             </div>
 
             <div class="cardfooter">
