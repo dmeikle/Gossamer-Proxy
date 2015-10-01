@@ -4,11 +4,9 @@ claims_new_claim_wizard_1:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/claims/views/subnav.php"
-            #"section3": "src/components/claims/views/leftnav.php"
-            "section4": "src/components/claims/views/admin/wizard1.php"
-            "section5": "src/themes/default/templates/sections/footer.php"  
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/claims/views/admin/wizard1.php"
+            "footer": "src/themes/default/templates/sections/footer.php"  
             
 admin_claims_home:
     template: admin-list.php
@@ -55,7 +53,32 @@ admin_claims_list:
     angular:
         bootstrap_modules:
             - rootApp
-            - claims
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+
+admin_claims_edit:
+    template: admin-2cols.php
+    sections:
+        -   
+            header: src/themes/default/templates/sections/admin-header.php
+            content: src/components/claims/views/admin/claims/edit.php
+            cards: src/components/claims/views/admin/claims/edit-cards.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js

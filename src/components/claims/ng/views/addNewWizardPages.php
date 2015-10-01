@@ -85,7 +85,7 @@
     </div>
   </form>
 </div>
-<form ng-submit="nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+<form ng-submit="saveAndNext()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
   <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONTACTDETAILS'); ?></h2>
   <div class="clearfix">
     <div class="col-xs-12 col-md-6">

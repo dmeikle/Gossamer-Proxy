@@ -69,7 +69,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
             });
         }
     };
-    
+
   $scope.resetSearch = function() {
     $scope.searchSubmitted = false;
     $scope.basicSearch.query = {};
@@ -132,6 +132,12 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   $scope.save = function() {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
+  };
+
+  $scope.saveAndNext = function() {
+    $scope.save().then(function() {
+      $scope.nextPage();
+    });
   };
 
   $scope.toggleAdding = function() {

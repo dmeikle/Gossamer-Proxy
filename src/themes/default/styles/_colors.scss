@@ -12,3 +12,7 @@ th {
     }
   }
 }
+
+table.table tbody tr.selected {
+  background-color:rgba(3,146,211,.4);
+}

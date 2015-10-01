@@ -24,7 +24,7 @@
           </button>
         </span>
       </form>
-      <a href="/admin/claims/edit/0" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW');?></a>
+      <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -68,7 +68,7 @@
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                     <li><a ng-click="openStaffScheduleModal(claim)">Schedule</a></li>
-                    <li><a href="/admin/claims/edit/{{claim.id}}">Edit</a></li>
+                    <li><a href="/admin/claims/edit/{{claim.jobNumber}}">Edit</a></li>
                     <li><a href="#">Emergency Contacts</a></li>
                     <li><a href="#">Delete</a></li>
                   </ul>

@@ -8,7 +8,7 @@ admin_claims_newcount:
         view: core\views\JSONView
         viewKey: admin_claims_newcount
         datasource: datasource1
-  
+
 admin_claims_opencount:
     pattern: admin/claims/opencount
     defaults:
@@ -19,7 +19,7 @@ admin_claims_opencount:
         view: core\views\JSONView
         viewKey: admin_claims_opencount
         datasource: datasource1
-        
+
 admin_claims_search:
     pattern: admin/claims/search
     defaults:
@@ -30,11 +30,11 @@ admin_claims_search:
         view: core\views\JSONView
         viewKey: admin_claims_search
         datasource: datasource1
-    #    langFiles: 
-    #        - 'src/components/shoppingcart/locales/*/Navigation' 
+    #    langFiles:
+    #        - 'src/components/shoppingcart/locales/*/Navigation'
 
-    
-        
+
+
 admin_claims_home:
     pattern: admin/claims
     listeners:
@@ -47,8 +47,8 @@ admin_claims_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_home
         datasource: datasource1
-        
-         
+
+
 admin_claimslocation_view_comments:
     pattern: admin/claims/locations/comments/*
     defaults:
@@ -60,8 +60,8 @@ admin_claimslocation_view_comments:
         viewKey: admin_claimslocation_view_comments
         datasource: datasource1
     methods: [GET]
-        
-         
+
+
 admin_claimslocation_save_comment:
     pattern: admin/claims/locations/comments/*
     defaults:
@@ -73,7 +73,7 @@ admin_claimslocation_save_comment:
         viewKey: admin_claimslocation_view_comments
         datasource: datasource1
     methods: [POST]
-    
+
 
 admin_claims_list_comments:
     pattern: admin/claims/comments/*
@@ -86,8 +86,8 @@ admin_claims_list_comments:
         viewKey: admin_claims_list_comments
         datasource: datasource1
     methods: [GET]
-    
-    
+
+
 admin_claims_save_comment:
     pattern: admin/claims/comments/*
     defaults:
@@ -99,7 +99,7 @@ admin_claims_save_comment:
         viewKey: admin_claims_save_comment
         datasource: datasource1
     methods: [POST]
-              
+
 
 admin_claims_get_photo_count:
     pattern: admin/claims/photocount/*
@@ -111,9 +111,9 @@ admin_claims_get_photo_count:
         view: core\views\JSONView
         viewKey: admin_claims_get_photo_count
         datasource: datasource1
-    methods: [GET]            
-            
-            
+    methods: [GET]
+
+
 admin_claims_claim_photos_home:
     pattern: admin/claim/photos/*
     defaults:
@@ -124,9 +124,9 @@ admin_claims_claim_photos_home:
         view: core\views\TemplateView
         viewKey: admin_claims_claim_photos_home
         datasource: datasource1
-    methods: [GET]           
-            
-            
+    methods: [GET]
+
+
 admin_claims_list_claim_photos:
     pattern: admin/claim/photos/list/*
     defaults:
@@ -137,10 +137,10 @@ admin_claims_list_claim_photos:
         view: core\views\JSONView
         viewKey: admin_claims_list_claim_photos
         datasource: datasource1
-    methods: [GET]          
-            
-            
-            
+    methods: [GET]
+
+
+
 admin_claims_upload_claim_photos:
     pattern: admin/claims/photos/upload/*
     defaults:
@@ -151,21 +151,21 @@ admin_claims_upload_claim_photos:
         view: core\views\JSONView
         viewKey: admin_claims_upload_claim_photos
         datasource: datasource1
-    methods: [POST]           
-                        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    methods: [POST]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 claims_new_claim_wizard_1:
     pattern: admin/claims/new/*/*
     listeners:
@@ -178,9 +178,9 @@ claims_new_claim_wizard_1:
         view: core\views\TemplateView
         viewKey: claims_new_claim_wizard_1
         datasource: datasource1
-    #    langFiles: 
-    #        - 'src/components/shoppingcart/locales/*/Navigation' 
-    
+    #    langFiles:
+    #        - 'src/components/shoppingcart/locales/*/Navigation'
+
 claims_new_claim_wizard_search:
     pattern: admin/claims/projectaddresses/search
     defaults:
@@ -190,8 +190,19 @@ claims_new_claim_wizard_search:
         method: search
         view: core\views\JSONView
         viewKey: claims_new_claim_wizard_search
-        datasource: datasource1   
-   
+        datasource: datasource1
+
+admin_claims_edit:
+    pattern: admin/claims/edit/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: edit
+        view: core\views\AngularTemplateView
+        viewKey: admin_claims_view
+        datasource: datasource1
+
 
 admin_claims_view:
     pattern: admin/claims/view/*
@@ -199,7 +210,7 @@ admin_claims_view:
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel'}
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimLocationModel'}
 #        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByClaimIdListener', 'datasource': 'datasource1', 'class': 'components\projects\models\ProjectAddressModel'}
-    
+
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
@@ -208,9 +219,9 @@ admin_claims_view:
         view: core\views\JSONView
         viewKey: admin_claims_view
         datasource: datasource1
-        
 
-   
+
+
 admin_claims_edit1:
     pattern: admin/claim/1/*
     listeners:
@@ -223,8 +234,8 @@ admin_claims_edit1:
         method: edit
         view: core\views\TemplateView
         viewKey: admin_claims_edit1
-        datasource: datasource1       
- 
+        datasource: datasource1
+
 admin_claims_edit1_save:
     pattern: admin/claim/1/*
     methods: [POST]
@@ -235,7 +246,7 @@ admin_claims_edit1_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_claims_edit1_save
-        datasource: datasource1 
+        datasource: datasource1
 
 admin_claims_edit2_save:
     pattern: admin/claim/2/*
@@ -247,8 +258,8 @@ admin_claims_edit2_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_claims_edit2_save
-        datasource: datasource1         
-        
+        datasource: datasource1
+
 admin_claims_edit3_save:
     pattern: admin/claim/3/*
     methods: [POST]
@@ -261,8 +272,8 @@ admin_claims_edit3_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_claims_edit3_save
-        datasource: datasource1  
-        
+        datasource: datasource1
+
 admin_claims_edit4_save:
     pattern: admin/claim/4/*
     methods: [POST]
@@ -275,9 +286,9 @@ admin_claims_edit4_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_claims_edit4_save
-        datasource: datasource1  
-        
-        
+        datasource: datasource1
+
+
 #admin_claims_edit4:
 #    pattern: admin/claim/*/4
    # listeners:
@@ -289,9 +300,9 @@ admin_claims_edit4_save:
 #        method: edit
 #        view: core\views\TemplateView
 #        viewKey: admin_claims_edit4
-#        datasource: datasource1  
+#        datasource: datasource1
 
-        
+
 admin_claims_list:
     pattern: admin/claims/*/*
     listeners:
@@ -304,9 +315,9 @@ admin_claims_list:
         view: core\views\JSONView
         viewKey: admin_claims_list
         datasource: datasource1
-    #    langFiles: 
-    #        - 'src/components/shoppingcart/locales/*/Navigation'  
-    
+    #    langFiles:
+    #        - 'src/components/shoppingcart/locales/*/Navigation'
+
 admin_claim_view:
     pattern: admin/claim/*
     listeners:
@@ -321,8 +332,8 @@ admin_claim_view:
         view: core\views\TemplateView
         viewKey: admin_claim_view
         datasource: datasource1
-        
-        
+
+
 admin_claimlocation_edit_work:
     pattern: admin/claimlocations/work/*/*/*
    # listeners:
@@ -334,8 +345,8 @@ admin_claimlocation_edit_work:
         method: listWork
         view: core\views\TemplateView
         viewKey: admin_claimlocation_edit_work
-        datasource: datasource1   
-        
+        datasource: datasource1
+
 admin_claimlocation_work_history:
     pattern: admin/claimlocations/work/*/*
    # listeners:
@@ -347,8 +358,8 @@ admin_claimlocation_work_history:
         method: locationHistory
         view: core\views\TemplateView
         viewKey: admin_claimlocation_work_history
-        datasource: datasource1   
-        
+        datasource: datasource1
+
 admin_claimlocations_by_claimid:
     pattern: admin/claimlocations/claim/*
     defaults:
@@ -359,13 +370,13 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
-    methods: [GET]         
-        
-    
+    methods: [GET]
+
+
 
 admin_upload_location_photo:
     pattern: admin/claimlocations/photos/upload/*/*
-    listeners:        
+    listeners:
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', 'datasource': 'datasource1'}
     defaults:
         component: components\claims\ClaimsComponent
@@ -375,9 +386,9 @@ admin_upload_location_photo:
         view: core\views\JSONView
         viewKey: admin_upload_location_photo
         datasource: datasource1
-    methods: [GET]        
-        
-        
+    methods: [GET]
+
+
 admin_claims_scheduling_list:
     pattern: admin/claims/scheduling/*/*
     defaults:
@@ -388,8 +399,8 @@ admin_claims_scheduling_list:
         view: core\views\TemplateView
         viewKey: admin_claims_scheduling_list
         datasource: datasource1
-    
-  
+
+
 admin_claimlocation_view:
     pattern: admin/claimlocations/*/*
     defaults:
@@ -399,9 +410,9 @@ admin_claimlocation_view:
         method: viewLocation
         view: core\views\TemplateView
         viewKey: admin_claimlocation_view
-        datasource: datasource1  
-        
-        
+        datasource: datasource1
+
+
     #-----------------------------start client portal section --------------------------------
 claims_list:
     pattern: portal/claims/*/*
@@ -413,7 +424,7 @@ claims_list:
         view: core\views\TemplateView
         viewKey: claims_list
         datasource: datasource1
-        
+
 claims_list_by_projectaddress:
     pattern: portal/claims/*/*/*
     defaults:
@@ -423,11 +434,11 @@ claims_list_by_projectaddress:
         method: listallByProjectAddress
         view: core\views\TemplateView
         viewKey: claims_list_by_projectaddress
-        datasource: datasource1        
-        
+        datasource: datasource1
+
 claims_view:
     pattern: portal/claims/*
-    listeners:        
+    listeners:
         #make sure they are viewing their claim not someone elses
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\VerifyClaimAccessListener', 'datasource': 'datasource1'}
     defaults:
@@ -437,6 +448,4 @@ claims_view:
         method: edit
         view: core\views\TemplateView
         viewKey: claims_view
-        datasource: datasource1        
-        
-        
+        datasource: datasource1

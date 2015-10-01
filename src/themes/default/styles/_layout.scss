@@ -66,6 +66,10 @@ button {
 
 .table {
   margin-bottom:0;
+  table-layout:fixed;
+}
+.cog-col {
+  width:40px;
 }
 
 .table>tbody>tr>td:not(.row-controls) {
@@ -114,4 +118,9 @@ nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
 
 ul {
   list-style:none;
+}
+
+.row-controls button {
+  font-size:.8em;
+  padding:.3em .5em;
 }
