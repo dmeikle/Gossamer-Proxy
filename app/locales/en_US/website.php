@@ -41,5 +41,8 @@ return array(
   'ADMIN_SURVEYS_LIST_ALL_PANES' => 'All Survey Panes',
   'ADMIN_SURVEYS_LIST_ALL_QUESTIONS' => 'All Survey Questions',
   'ADMIN_SURVEYS_LIST_ALL_ANSWERS' => 'All Survey Answers',
+  'REMINDERS' => 'Reminders',
+  'MORE_INFO' => 'More Information',
+  'DETAILS' => 'Details',
 
 );

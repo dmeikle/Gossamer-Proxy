@@ -4,6 +4,8 @@ claimsAddNewModal:
     path: 'src/components/claims/ng/views/claimsAddNewModal.php'
     langFiles:
         - 'src/components/claims/locales/*/claims'
+        - 'app/locales/en_US/website'
+        - 'src/components/projects/locales/*/Project'
 
 addNewWizardPages:
     path: 'src/components/claims/ng/views/addNewWizardPages.php'
