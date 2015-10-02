@@ -3,17 +3,13 @@
         <h1 class="pull-left">General Costs List</h1>
         <div class="clearfix"></div>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
-<!--
-        <div class="pull-left">
-            <button class="primary" ng-click="openTimesheetModal('')"><?php// echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
-        </div>
--->
+        
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline pull-right">
+            <button class="primary new-item" ng-click="openGeneralCostsModal()"><?php echo $this->getString('ACCOUNTING_NEW_GENERAL_COST_ITEM') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
-
             <form ng-submit="search(basicSearch.query)" class="input-group">
                 <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
                     <option value="name" ng-selected="true"><?php echo $this->getString('ACCOUNTING_NAME'); ?></option>
@@ -23,7 +19,6 @@
                 <input type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control">
                 <button type="submit" class="primary"><?php echo $this->getString('ACCOUNTING_SEARCH') ?></button>                
             </form>
-
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -131,10 +126,10 @@
                 <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeout">
                 <input placeholder="Department" class="form-control" name="department" ng-model="advSearch.department">
                 
-                <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
+                <select class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
                     <option value="" selected>-Department-</option>
                     <?php foreach($Departments as $department) {
-    echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
+                    echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
                 </select>
             </div>
 

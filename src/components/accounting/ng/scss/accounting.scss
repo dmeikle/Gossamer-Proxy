@@ -20,6 +20,11 @@ table{
     }
 }
 .toolbar{
+    width:100%;
+    .new-item{
+        float:left;
+        margin-left:0px;
+    }
     &.pull-right{
         input, select{
             display:inline;

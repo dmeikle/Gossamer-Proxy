@@ -1,4 +1,4 @@
-module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, templateSrv, generalCostsSrv) {
+module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, templateSrv, generalCostsSrv, $modal) {
     // Stuff to run on controller load
     //$scope.rowsPerPage = 20;
     $scope.itemsPerPage = 20;
@@ -135,5 +135,27 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
 
     $scope.openDatepicker = function(event, datepicker){
         $scope.isOpen.datepicker[datepicker] = true;
+    };
+    
+    //Modal
+    $scope.openGeneralCostsModal = function() {
+        $scope.modalLoading = true;
+        var template = templateSrv.generalCostsModal;
+        var modal = $modal.open({
+            templateUrl: template,
+            controller: 'generalCostsModalCtrl',
+            size: 'lg',
+//            resolve: {
+//                timesheet: function () {
+//                    return timesheet;
+//                }
+//            }
+        });
+        modal.opened.then(function(){
+            $scope.modalLoading = false;
+        });
+        modal.result.then(function(){
+            getGeneralCostsList();
+        });
     };
 });

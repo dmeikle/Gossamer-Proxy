@@ -54,7 +54,7 @@ return array(
     'ACCOUNTING_CREDIT_ACCOUNT' => 'Credit Account',
     'ACCOUNTING_COST' => 'Cost',
     'ACCOUNTING_CHARGEOUT' => 'Chargeout',
-    
+    'ACCOUNTING_NEW_GENERAL_COST_ITEM' => 'New General Cost Item',
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     
