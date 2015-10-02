@@ -242,6 +242,18 @@ accounting_generalcosts_home:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
+accounting_generalcosts_search:
+    pattern: admin/accounting/generalcosts/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_search
+        datasource: datasource1
+        
+        
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
     defaults:
