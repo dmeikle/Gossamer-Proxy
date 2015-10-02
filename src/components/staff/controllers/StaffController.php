@@ -39,16 +39,21 @@ class StaffController extends AbstractController {
     }
 
     public function search() {
-//pr($this->httpRequest);
-//die;
-//$cachedResult = $this->httpRequest->getAttribute
-        $result = $this->model->search($this->httpRequest->getQueryParameters());
-        
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
+        $result = $this->httpRequest->getAttribute($this->getSearchKey());
+       
+        if(!is_array($result)) {
+            $result = $this->model->search($this->httpRequest->getQueryParameters());
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
+        }        
         
         $this->render($result);
     }
 
+    private function getSearchKey() {
+        $params = $this->httpRequest->getQueryParameters();
+        
+        return 'search/staff_' . $params['name'];
+    }
 
     public function searchByName() {
         $results = $this->model->search(array('firstname' => $this->getName()));
@@ -165,17 +170,6 @@ class StaffController extends AbstractController {
         $options = array();
 
         return $authorizationBuilder->buildCredentialsForm($builder, $values, $options, $results);
-    }
-    public function backboneEdit($id) {
-        $result = $this->model->edit(intval($id));
-
-        $this->render($result);
-    }
-
-    public function backboneSave() {
-        $params = $this->httpRequest->getRestParameters();
-        print_r($params);
-        $this->render(array());
     }
 
 

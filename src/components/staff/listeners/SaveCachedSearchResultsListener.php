@@ -12,6 +12,7 @@
 namespace components\staff\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
+use core\eventlisteners\Event;
 
 /**
  * LoadCachedSearchResultsFilter
@@ -20,8 +21,10 @@ use core\eventlisteners\AbstractCachableListener;
  */
 class SaveCachedSearchResultsListener extends AbstractCachableListener {
      
-    public function on_load_success($params) {
-        
+    public function on_load_success(Event $event) {
+        $params = $event->getParams();
+       
+        $this->saveValuesToCache($this->getKey(), $params);
     }
     
     protected function getKey() {
