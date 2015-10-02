@@ -79,5 +79,12 @@ return array(
   'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.',
   'STAFF_PHOTOUPLOAD' => 'Upload User Photo',
   'STAFF_PHOTOUPLOAD_UPLOADHERE' => 'Drag a photo or click here to upload a user photo',
+  'STAFF_GROUPEDBY_FIRSTNAME' => 'Grouped by first name: ',
+  'STAFF_GROUPEDBY_LASTNAME' => 'Grouped by last name: ',
+  'STAFF_GROUPEDBY_TITLE' => 'Grouped by title: ',
+  'STAFF_GROUPEDBY_EXTENSION' => 'Grouped by extension: ',
+  'STAFF_GROUPEDBY_MOBILE' => 'Grouped by mobile: ',
+  'STAFF_GROUPEDBY_STATUS' => 'Grouped by status: ',
+  'STAFF_GROUPEDBY_LASTLOGIN' => 'Grouped by time last seen: ',
 
 );

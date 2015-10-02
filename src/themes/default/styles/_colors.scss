@@ -13,6 +13,14 @@ th {
   }
 }
 
+
 table.table tbody tr.selected {
   background-color:rgba(3,146,211,.4);
+}
+
+tbody th {
+  background-color:white;
+  color:inherit;
+  font-size:1em;
+
 }
