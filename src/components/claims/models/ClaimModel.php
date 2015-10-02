@@ -108,4 +108,13 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
+    public function getInitialJobsheet($claimId, $claimsLocationId) {
+        
+        $params = array('Claims_id' => $claimId, 'ClaimsLocations_id' => $claimsLocationId);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getinitialjobsheet', $params); 
+        
+        return $data;
+    }
+    
 }

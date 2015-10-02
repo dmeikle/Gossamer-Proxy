@@ -45,7 +45,9 @@ class ClaimsController extends AbstractController{
 
     public function getInitialJobsheet($claimId, $claimsLocationId) {
         
-        $this->render(array());
+        $result = $this->model->getInitialJobsheet($claimId, $claimsLocationId);
+        
+        $this->render($result);
     }
     
     public function editByJobNumber($jobNumber) {
