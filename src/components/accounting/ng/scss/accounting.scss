@@ -21,6 +21,11 @@ table{
 }
 .toolbar{
     width:100%;
+    .modal-spinner{
+        vertical-align:middle;
+        float:left;
+        margin-left:30px;
+    }
     .new-item{
         float:left;
         margin-left:0px;
@@ -189,6 +194,28 @@ table{
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
+        }
+    }
+}
+.modal-content{
+    .typeahead{
+        width:auto;
+    }
+    .input-group{
+        display: inline-block;
+        label{
+            display:block;
+        }
+    }
+    .general-cost-items{
+        .date-col{
+            overflow: visible;
+            .input-group{
+                display: flex;
+            }
+            input{
+                width:200px;
+            }
         }
     }
 }

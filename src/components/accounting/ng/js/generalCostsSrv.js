@@ -1,4 +1,4 @@
-// Timesheet service
+// General Costs service
 module.service('generalCostsSrv', function($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';

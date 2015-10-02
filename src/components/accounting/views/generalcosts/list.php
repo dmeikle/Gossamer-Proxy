@@ -6,7 +6,8 @@
         
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline pull-right">
-            <button class="primary new-item" ng-click="openGeneralCostsModal()"><?php echo $this->getString('ACCOUNTING_NEW_GENERAL_COST_ITEM') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
+            <button class="primary new-item" ng-click="openGeneralCostsModal()"><?php echo $this->getString('ACCOUNTING_NEW_GENERAL_COST_ITEM') ?></button>
+            <span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
