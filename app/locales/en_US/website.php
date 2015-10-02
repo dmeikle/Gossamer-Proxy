@@ -47,5 +47,6 @@ return array(
   'COMMENTS' => 'Comments',
   'HISTORY' => 'History',
   'WORKLOG' => 'Work Log',
+  'NEW' => 'New'
 
 );
