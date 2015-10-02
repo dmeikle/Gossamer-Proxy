@@ -162,13 +162,40 @@ admin_claims_initial_jobsheet:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: getInitialJobsheet
+        method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_initial_jobsheet
         datasource: datasource1
     methods: [GET]
 
 
+
+
+admin_claims_get_initial_jobsheet:
+    pattern: admin/claim/initial-jobsheet/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getInitialJobsheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_get_initial_jobsheet
+        datasource: datasource1
+    methods: [GET]
+
+
+
+admin_claims_save_initial_jobsheet:
+    pattern: admin/claim/initial-jobsheet/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: saveInitialJobsheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_save_initial_jobsheet
+        datasource: datasource1
+    methods: [GET]
 
 
 
