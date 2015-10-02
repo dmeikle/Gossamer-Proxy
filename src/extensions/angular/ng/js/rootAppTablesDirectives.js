@@ -6,17 +6,24 @@ module.directive('columnSortable', function($compile, $location) {
       var a = document.createElement('a');
       a.setAttribute('ng-click', 'sortByColumn($event)');
       a.setAttribute('href', '');
+      a.setAttribute('class', 'table-header-sortable');
+      a.setAttribute('ng-class', "{'underlined':sortedBy === '" + element[0].dataset.column + "'}");
       a.appendChild(document.createElement('span'));
       a.children[0].innerText = element[0].innerText + ' ';
       a.appendChild(document.createElement('span'));
-      a.children[1].setAttribute('class', 'glyphicon glyphicon-sort');
+      a.children[1].setAttribute('class', 'small glyphicon');
+      a.children[1].setAttribute('ng-class',
+        "{'glyphicon-sort-by-attributes':sortedBy === '" + element[0].dataset.column +
+        "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
+        "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
+        "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
       clear.setAttribute('ng-click', 'clearSort()');
       clear.setAttribute('href', '');
-      clear.setAttribute('class', 'pull-right glyphicon');
-      clear.setAttribute('ng-class', "{'glyphicon-remove': sortedBy ==='" + element[0].dataset.column + "'}");
+      clear.setAttribute('class', 'pull-right small glyphicon');
+      clear.setAttribute('ng-class', "{'glyphicon-remove clear-sort': sortedBy ==='" + element[0].dataset.column + "'}");
       element[0].appendChild(a);
       element[0].appendChild(clear);
       $compile(element.contents())(scope);

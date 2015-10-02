@@ -79,12 +79,34 @@ button {
   text-overflow: ellipsis;
 }
 
+.table-header-sortable {
+  position:relative;
+
+  .glyphicon {
+    transition:opacity ease 250ms;
+    opacity:0;
+  }
+  &:hover .glyphicon {
+    opacity:1;
+  }
+}
+
+th[column-sortable] .clear-sort {
+  opacity:0;
+  transition:opacity ease 250ms;
+}
+
+th[column-sortable]:hover .clear-sort {
+  opacity:1;
+}
+
 .pagination {
   margin:0;
 }
 
 .row-controls button {
   font-size:.75em;
+  padding:.3em .5em;
 }
 
 nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
