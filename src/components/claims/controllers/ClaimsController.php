@@ -44,10 +44,15 @@ class ClaimsController extends AbstractController{
     }
 
     public function getInitialJobsheet($claimId, $claimsLocationId) {
-        
-        $this->render(array());
+
+        $result = $this->model->getInitialJobsheet($claimId, $claimsLocationId);
+        $user = $this->getLoggedInUser();
+
+        $result['username'] = $user->getCredentials();
+
+        $this->render($result);
     }
-    
+
     public function editByJobNumber($jobNumber) {
         $result = $this->model->get(array('jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');

@@ -23,3 +23,9 @@ addNewWizardPages:
             cacheKey: 'ProjectAddressForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+
+initialJobsheetWizardPages:
+    path: 'src/components/claims/ng/views/initialJobsheetWizardPages.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'

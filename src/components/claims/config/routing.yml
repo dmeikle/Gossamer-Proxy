@@ -166,6 +166,10 @@ admin_claims_initial_jobsheet:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_initial_jobsheet
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/en_US/website'
     methods: [GET]
 
 
