@@ -18,7 +18,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
     //Add a row    
     $scope.addRow = function(){
         $scope.generalCostItems.push(angular.copy([generalCostItemsTemplate]));
-    }
+    };
     //Insert a row
     
     //Delete a row
@@ -31,7 +31,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
                 $scope.rowSelected = true;
             }
         }
-    }
+    };
     
     //Typeahead
     $scope.fetchStaffAutocomplete = function(viewVal) {
