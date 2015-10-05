@@ -4,7 +4,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">New General Cost Item</h4>
     </div>
-    <div class="modal-body">
+    <div class="modal-body general-costs-modal">
         <div class="input-group">
             
             
@@ -12,9 +12,9 @@
             <label>Claim Number</label>
             <input placeholder="Claim Number" type="text" ng-model="search.query.claim" ng-model-options="{debounce:500}"
                    typeahead="value for value in fetchClaimAutocomplete($viewValue)"
-                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control typeahead"
+                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsClaim" class="form-control typeahead"
                    typeahead-min-length="2">
-            <div class="resultspane" ng-show="noResults">
+            <div class="resultspane claim-number" ng-show="noResultsClaim">
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
             </div>
         </div>
@@ -57,14 +57,11 @@
                     <td>
                         <input placeholder="Staff Name" type="text" ng-model="row.name" ng-model-options="{debounce:500}"
                                typeahead="value for value in fetchStaffAutocomplete($viewValue)"
-                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control typeahead"
-                               typeahead-min-length="3">
-                        <div class="resultspane" ng-show="noResults">
-                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
-                        </div>
+                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsStaff" class="form-control typeahead"
+                               typeahead-min-length="3">                        
                     </td>
                     <td>
-                        <input class="form-control" type="text" ng-model="row.description">
+                        <input placeholder="Description" class="form-control" type="text" ng-model="row.description">
                     </td>
                     <td class="date-col">
                         <div class="input-group">
@@ -80,20 +77,26 @@
                         </div>
                     </td>
                     <td>
-                        <select class="credit-account form-control" name="departments" ng-model="row.department">
+                        <select class="department form-control" name="departments" ng-model="row.department">
+                            <option value="" ng-selected="true">-Department-</option>
                             <?php foreach($Departments as $department) {
                                 echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
                             }?>
                         </select>
                     </td>
                     <td>
-                        <input class="form-control" type="text" ng-model="row.cost">
+                        <input placeholder="Cost" class="form-control cost" type="number" ng-model="row.cost">
                     </td>
                     <td>
-                        <input class="form-control" type="text" ng-model="row.chargeout">
+                        <input placeholder="Chargeout" class="form-control chargeout" type="number" ng-model="row.chargeout">
                     </td>
                     <td>
-                        <input class="form-control" type="text" ng-model="row.debitAccount ">
+                        <select class="debit-account form-control" name="departments" ng-model="row.debitAccount">
+                            <option value="" ng-selected="true">-Debit Account-</option>
+                            <?php foreach($DebitAccounts as $debitAccount) {
+                                echo '<option value="' . $debitAccount['id'] . '">' . $debitAccount['name'] . '</option>';
+                            }?>
+                        </select>
                     </td>
                 </tr>
             </tbody>
@@ -102,16 +105,5 @@
         <button class="btn-info" ng-click="addRow()">New Row</button>
         <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
         <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected">Delete Row(s)</button>
-        
-        <div class="line-items">
-            <h5>Line Items</h5>
-            <input placeholder="Staff Name" type="text" ng-model="search.query.name" ng-model-options="{debounce:500}"
-                   typeahead="value for value in fetchStaffAutocomplete($viewValue)"
-                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control typeahead"
-                   typeahead-min-length="3">
-            <div class="resultspane" ng-show="noResults">
-                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
-            </div>
-        </div>
     </div>
 <!--</form>-->

@@ -214,8 +214,21 @@ table{
                 display: flex;
             }
             input{
-                width:200px;
+                width:140px;
             }
         }
+        .debit-account{
+            width:170px;
+        }
+        .cost, .chargeout{
+            width:100px;
+        }
+    }
+    .general-costs-modal{
+        .resultspane.claim-number{
+            display: block;
+            top: 63px;
+            left: 0px;
+        }        
     }
 }

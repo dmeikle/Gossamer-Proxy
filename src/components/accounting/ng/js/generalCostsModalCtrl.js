@@ -19,9 +19,24 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
     $scope.addRow = function(){
         $scope.generalCostItems.push(angular.copy([generalCostItemsTemplate]));
     };
-    //Insert a row
+        
+    //Insert rows below currently selected items
+    $scope.insertRows = function(){
+        for (var i in $scope.generalCostItems){
+            if($scope.generalCostItems[i].isSelected === true){
+                $scope.generalCostItems.splice(parseInt(i)+1, 0, angular.copy(generalCostItemsTemplate));
+            }
+        }
+    };
     
-    //Delete a row
+    //Remove Rows from timesheet
+    $scope.removeRows = function(){
+        for (var i = $scope.generalCostItems.length-1; i >= 0; i--){
+            if($scope.generalCostItems[i].isSelected === true){
+                $scope.generalCostItems.splice(parseInt(i), 1);
+            }
+        }
+    };
     
     //Check selected
     $scope.checkSelected = function(){
@@ -29,6 +44,17 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         for(var index in $scope.generalCostItems){
             if($scope.generalCostItems[index].isSelected === true){
                 $scope.rowSelected = true;
+            }
+        }
+    };
+
+    //Select All
+    $scope.selectAllToggle = function(value){
+        for(var i in $scope.generalCostItems){
+            if(value === true){
+                $scope.generalCostItems[i].isSelected = true;
+            } else {
+                $scope.generalCostItems[i].isSelected = false;
             }
         }
     };
