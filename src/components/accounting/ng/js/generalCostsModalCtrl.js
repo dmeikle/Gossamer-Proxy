@@ -32,7 +32,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         ClaimPhases_id: '',
         AccountingCreditAccounts_id: '',
         jobNumber: ''
-    }
+    };
     $scope.generalCostItems = angular.copy([generalCostItemsTemplate]);
     
     //Get Claims ID from autocomplete list
@@ -42,7 +42,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
                 $scope.AccountingGeneralCost.Claims_id = generalCostsModalSrv.autocomplete[i].id;
             }
         }
-    }
+    };
     
     //---Table Controls---
     //Add a row    
@@ -116,10 +116,10 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         }
         console.log('Saving Items!');
         
-        $scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
+        //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, formToken);
+        generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, $scope.generalCostItems, formToken);
         
         //console.log($scope.generalCosts);        
     };
