@@ -32,4 +32,21 @@ class GeneralCostModel extends AbstractModel{
         $this->entity = 'GeneralCost';
         $this->tablename = 'accountinggeneralcosts';
     }
+    
+    
+    /**
+     * performs a save to the datasource
+     * 
+     * @param int $id
+     * 
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params[$this->entity]['id'] = intval($id);
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+        
+        return $data;
+    }
 }

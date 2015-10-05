@@ -10,11 +10,15 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
     
     //Get the list of general cost items
     this.getGeneralCostsList = function(row, numRows){
-        return $http.get(generalCostItemsPath + row + '/' + numRows)
+        return $http.get(apiPath + row + '/' + numRows)
             .then(function(response) {
             console.log(response);
-            self.generalCostsList = response.data.AccountingGeneralCostItems;
-            self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
+//            self.generalCostsList = response.data.AccountingGeneralCostItems;
+//            self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
+            
+            self.generalCostsList = response.data.AccountingGeneralCosts;
+            self.generalCostsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
+            
         }, function(response){
             //Handle any errors
             self.error.showError = true;
