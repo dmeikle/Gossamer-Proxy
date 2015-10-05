@@ -11,6 +11,7 @@ admin_claims_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": src/components/claims/views/admin/claims/list.php
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:

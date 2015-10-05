@@ -10,7 +10,11 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
       wizardSrv.getWizardPages(apiPath).then(function() {
         scope.wizardPages = wizardSrv.wizardPages;
-        element[0].appendChild(scope.wizardPages[0]);
+        for (var page in wizardSrv.wizardPages) {
+          if (wizardSrv.wizardPages.hasOwnProperty(page)) {
+            element[0].appendChild(scope.wizardPages[page]);
+          }
+        }
         $compile(element.contents())(scope);
         scope.modalLoading = false;
       });
@@ -21,23 +25,25 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
       $scope.nextPage = function() {
         $scope.currentPage = $scope.currentPage + 1;
-        switchPage();
+        console.log($scope.currentPage);
+        // switchPage();
       };
 
       $scope.prevPage = function() {
         $scope.currentPage = $scope.currentPage - 1;
-        switchPage();
+        console.log($scope.currentPage);
+        // switchPage();
       };
 
-      var switchPage = function() {
-        for (var child in wizard.children) {
-          if (wizard.children.hasOwnProperty(child)) {
-            wizard.removeChild(wizard.children[child]);
-          }
-        }
-        wizard.appendChild($scope.wizardPages[$scope.currentPage]);
-        $compile(wizard.children)($scope);
-      };
+      // var switchPage = function() {
+      //   for (var child in wizard.children) {
+      //     if (wizard.children.hasOwnProperty(child)) {
+      //       wizard.removeChild(wizard.children[child]);
+      //     }
+      //   }
+      //   wizard.appendChild($scope.wizardPages[$scope.currentPage]);
+      //   $compile(wizard.children)($scope);
+      // };
     }
   };
 });
