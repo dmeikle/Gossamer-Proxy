@@ -20,7 +20,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         dateEntered:'',
         Departments_id:'',
         cost:'',
-        chargeout: '',
+        chargeOut: '',
         AccountingDebitAccounts_id:'',
         isApproved: '0',
         isCancelled: '0',

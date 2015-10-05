@@ -88,7 +88,7 @@
                         <input placeholder="Cost" class="form-control cost" type="number" ng-model="row.cost">
                     </td>
                     <td>
-                        <input placeholder="Chargeout" class="form-control chargeout" type="number" ng-model="row.chargeout">
+                        <input placeholder="Chargeout" class="form-control chargeout" type="number" ng-model="row.chargeOut">
                     </td>
                     <td>
                         <select class="debit-account form-control" name="departments" ng-model="row.AccountingDebitAccounts_id">

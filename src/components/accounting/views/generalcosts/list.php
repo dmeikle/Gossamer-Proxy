@@ -55,16 +55,16 @@
                     <td></td>                    
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(timesheet)">{{item.name}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.description}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.jobNumber}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.phase}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.Departments_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.date}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.cost}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.chargeOut}}</td>
+                    <td ng-click="selectRow(item)">{{item.name}}</td>
+                    <td ng-click="selectRow(item)">{{item.description}}</td>
+                    <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-click="selectRow(item)">{{item.department}}</td>
+                    <td ng-click="selectRow(item)">{{item.date}}</td>
+                    <td ng-click="selectRow(item)">{{item.creditAccount}}</td>
+                    <td ng-click="selectRow(item)">{{item.debitAccount}}</td>
+                    <td ng-click="selectRow(item)">{{item.cost | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.chargeout | currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
