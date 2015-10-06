@@ -54,31 +54,10 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         $params = array('id' => $id);
       
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        if(is_array($data) && array_key_exists('Contact', $data)) {
-            $data['Contact'] = current($data['Contact']);
-        } else {
-            $data['Contact'] = array();
-        }
-        
-        $contactTypes = $this->httpRequest->getAttribute('ContactTypes');
-        $unformattedTypes = $this->pruneArrayBeforeFormatting($contactTypes);
-        
-        //$contactTypes = $this->httpRequest->getAttribute('ContactTypes'); -pasted in for when this is a loaded list
-       
-        $data['ContactTypes'] = $this->formatSelectionBoxOptions($unformattedTypes, array()); //TODO: array should be a loaded list
-         
+                
         return $data;
     }
     
-     private function pruneArrayBeforeFormatting(array $result) {
-        $retval = array();
-      
-        foreach($result as $row) {
-            $retval[$row['ContactTypes_id']] = $row['contactType'];
-        }
-        
-        return $retval;
-    }   
     
     public function view() {
        
@@ -101,5 +80,27 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
         $params = array('email' => $email);
       
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+    }
+    
+    
+    public function search(array $params) {
+        $offset = 0;
+        $rows = 20;
+        
+        $params = array_merge($params, array(
+            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
+        ));
+        $defaultLocale = $this->getDefaultLocale();
+        $params['locale'] = $defaultLocale['locale'];
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
+     
+        
+        if (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
+            $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
+        }
+
+        return $data;
     }
 }

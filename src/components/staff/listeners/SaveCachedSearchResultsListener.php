@@ -27,7 +27,7 @@ class SaveCachedSearchResultsListener extends AbstractCachableListener {
         $this->saveValuesToCache($this->getKey(), $params);
     }
     
-    protected function getKey() {
+    protected function getKey($params = null) {
         $params = $this->httpRequest->getQueryParameters();
         
         return 'search/staff_' . $params['name'];

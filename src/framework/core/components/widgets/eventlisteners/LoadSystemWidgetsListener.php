@@ -90,7 +90,7 @@ class LoadSystemWidgetsListener extends AbstractCachableListener{
                 DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'widgets.yml';
     }
     
-    protected function getKey() {
+    protected function getKey($params = null) {
         return 'widgets/' . __YML_KEY;
     }
 }

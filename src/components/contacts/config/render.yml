@@ -1,0 +1,42 @@
+## YAML Template.
+---
+contactsAddNewModal :
+    path: 'src/components/contacts/ng/views/contactsAddNewModal.php'
+    langFiles:
+        - 'src/components/contacts/locales/*/Contacts'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\FormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\contacts\form\ContactBuilder'
+            model: 'components\contacts\models\ContactModel'
+            cacheKey: 'ContactForm'
+            dependencies:
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
+
+contactAdvancedSearchFilters:
+    path: 'src/components/contacts/ng/views/contactAdvancedSearchFilters.php'
+    langFiles:
+        - 'src/components/contacts/locales/*/Contacts'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }
+#        - { 'event': 'filerender_start', 'listener': 'components\accounting\listeners\LoadTollListener', 'datasource': 'datasource1', 'cacheKey': 'TollBridges', static: 'true' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles'  }
+#        -
+#            event: 'filerender_start'
+#            listener: 'core\components\render\eventlisteners\FormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\staff\form\StaffBuilder'
+#            model: 'components\staff\models\StaffModel'
+#            cacheKey: 'StaffForm'
+#            dependencies:
+#                - { dependency: Departments, key: departments, value: id, text: name}
+#                - { dependency: Provinces, key: provinces, value: id, text: province }
+#                - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
+#                - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }

@@ -97,7 +97,7 @@ class CachableSearchListener extends AbstractCachableListener {
      * 
      * @return string
      */
-    protected function getKey() {
+    protected function getKey($params = null) {
 
         $key = parent::getKey();
         $term = $this->getSearchTerm();

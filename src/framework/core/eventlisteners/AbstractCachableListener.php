@@ -43,7 +43,7 @@ class AbstractCachableListener extends AbstractListener {
         if (method_exists($this, $method)) {
            
             //first check cache
-            $key = $this->getKey();
+            $key = $this->getKey($params);
 
             $values = '';
 
@@ -96,7 +96,7 @@ class AbstractCachableListener extends AbstractListener {
      * 
      * @return string
      */
-    protected function getKey() {
+    protected function getKey($params = null) {
         if (array_key_exists('cacheKey', $this->listenerConfig)) {
             return $this->listenerConfig['cacheKey'];
         }

@@ -23,7 +23,7 @@ class LoadCachedSearchResultsListener extends AbstractCachableListener {
         pr($this->httpRequest->getQueryParameters());
         die;
     }
-    protected function getKey() {
+    protected function getKey($params = null) {
         parent::getKey();
     }
 }
