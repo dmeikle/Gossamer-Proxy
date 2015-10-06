@@ -12,10 +12,6 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
     this.getGeneralCostsList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
             .then(function(response) {
-            console.log(response);
-//            self.generalCostsList = response.data.AccountingGeneralCostItems;
-//            self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
-            
             self.generalCostsList = response.data.AccountingGeneralCosts;
             self.generalCostsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
             
@@ -27,15 +23,12 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
     
     this.search = function(searchObject) {
         var config = {};
-        config.name = searchObject;
-        console.log(config);
         return $http({
-            url: apiPath + 'search?',
-            method: 'GET',
-            params: config
-        }).then(function(){            
-            self.searchResults = searchSrv.searchResults.GeneralCosts;
-            self.searchResultsCount = searchSrv.searchResults.GeneralCostsCount[0].rowCount;
+            url: apiPath + 'search?name=' + searchObject,
+            method: 'GET'
+        }).then(function(response){
+            self.searchResults = response.data.AccountingGeneralCosts;
+            self.searchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
         });
     };
     
@@ -49,9 +42,8 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
             params: config
         })
         .then(function(response) {
-            console.log(response);
-            self.advancedSearchResults = response.data.GeneralCosts;
-            self.advancedSearchResultsCount = response.data.GeneralCostsCount[0].rowCount;
+            self.advancedSearchResults = response.data.AccountingGeneralCosts;
+            self.advancedSearchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
         });
     };
 });

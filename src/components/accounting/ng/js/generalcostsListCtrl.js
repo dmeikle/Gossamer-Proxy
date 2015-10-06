@@ -1,6 +1,5 @@
 module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, templateSrv, generalCostsSrv, $modal) {
     // Stuff to run on controller load
-    //$scope.rowsPerPage = 20;
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;    
     $scope.loading = true;
@@ -62,32 +61,25 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
 //    };
 
     $scope.closeSidePanel = function() {
-        if ($scope.searching) {
-            $scope.searching = false;
-        }
-        if ($scope.selectedStaff) {
-            $scope.selectedStaff = undefined;
-            $scope.previouslyClickedObject = undefined;
-        }
-        if (!$scope.selectedStaff && !$scope.searching) {
-            $scope.sidePanelOpen = false;
-            $scope.previouslyClickedObject = {};
-        }
+//        if ($scope.searching) {
+//            $scope.searching = false;
+//        }
+//        if ($scope.selectedStaff) {
+//            $scope.selectedStaff = undefined;
+//            $scope.previouslyClickedObject = undefined;
+//        }
+//        if (!$scope.selectedStaff && !$scope.searching) {
+//            $scope.sidePanelOpen = false;
+//            $scope.previouslyClickedObject = {};
+//        }
+        $scope.sidePanelOpen = false;
         $scope.isOpen.datepicker.fromDate = false;
         $scope.isOpen.datepicker.toDate = false;
     };
-//
-//    //Typeahead
-//    $scope.fetchAutocomplete = function(viewVal) {
-//        var searchObject = {};
-//        searchObject.name = viewVal;
-//        return timesheetSrv.fetchAutocomplete(searchObject);
-//    };
-//
+
     //Search
     $scope.search = function(searchObject) {
         $scope.noResults = undefined;
-        console.log(searchObject);
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
@@ -104,7 +96,7 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
         $scope.loading = true;
         $scope.noSearchResults = false;
         generalCostsSrv.advancedSearch(searchObject).then(function(){
-            $scope.timesheetList = generalCostsSrv.advancedSearchResults;
+            $scope.generalCostsList = generalCostsSrv.advancedSearchResults;
             $scope.totalItems = generalCostsSrv.advancedSearchResultsCount;
             if($scope.totalItems === '0'){
                 $scope.noSearchResults = true;
@@ -112,16 +104,23 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
             $scope.loading = false;
         });
     };
-//
-//    $scope.resetSearch = function() {
-//        $scope.searchSubmitted = false;
-//        $scope.basicSearch.query = {};
-//        getTimesheetList();
-//    };
-//
+
+    $scope.resetSearch = function() {
+        $scope.searchSubmitted = false;
+        $scope.basicSearch.query = '';
+        getGeneralCostsList();
+    };
+    
+    $scope.autoSearch = function(searchString){
+        if(searchString.length >= 3){
+            $scope.search(searchString);
+        }
+    };
+
     $scope.resetAdvancedSearch = function() {
         $scope.searchSubmitted = false;
         $scope.advSearch = {};
+        getGeneralCostsList();
     };
 
     $scope.openAdvancedSearch = function() {
@@ -144,12 +143,7 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
         var modal = $modal.open({
             templateUrl: template,
             controller: 'generalCostsModalCtrl',
-            size: 'lg',
-//            resolve: {
-//                timesheet: function () {
-//                    return timesheet;
-//                }
-//            }
+            size: 'lg'
         });
         modal.opened.then(function(){
             $scope.modalLoading = false;

@@ -55,10 +55,7 @@
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
                     </td>
                     <td>
-                        <input placeholder="Staff Name" type="text" ng-model="row.name" ng-model-options="{debounce:500}"
-                               typeahead="value for value in fetchStaffAutocomplete($viewValue)"
-                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsStaff" class="form-control typeahead"
-                               typeahead-min-length="3">                        
+                        <input placeholder="Cost Name" class="form-control" type="text" ng-model="row.name">                      
                     </td>
                     <td>
                         <input placeholder="Description" class="form-control" type="text" ng-model="row.description">

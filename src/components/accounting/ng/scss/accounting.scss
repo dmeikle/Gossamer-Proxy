@@ -27,8 +27,8 @@ table{
         margin-left:30px;
     }
     .new-item{
-        float:left;
-        margin-left:0px;
+//        float:left;
+//        margin-left:0px;
     }
     &.pull-right{
         input, select{
@@ -208,6 +208,7 @@ table{
         }
     }
     .general-cost-items{
+        margin-bottom: 10px;
         .date-col{
             overflow: visible;
             .input-group{

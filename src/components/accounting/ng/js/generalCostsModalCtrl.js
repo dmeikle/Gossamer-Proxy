@@ -112,6 +112,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
     $scope.saveGeneralCostItems = function(){
         var generalCostItems = angular.copy($scope.generalCostItems);
         for (var i in generalCostItems){
+            console.log('filtering date!');
             generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
         }
         console.log('Saving Items!');
@@ -119,8 +120,9 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, $scope.generalCostItems, formToken);
+        generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, generalCostItems, formToken);
         
-        //console.log($scope.generalCosts);        
+        console.log($scope.AccountingGeneralCost);
+        console.log(generalCostItems);
     };
 });
