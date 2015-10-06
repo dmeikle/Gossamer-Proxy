@@ -21,6 +21,18 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
         });
     };
     
+    //Get the list of general cost items
+    this.getGeneralCostItems = function(row, numRows, id){
+        return $http.get(generalCostItemsPath + row + '/' + numRows + '/?AccountingGeneralCosts_id=' + id)
+            .then(function(response) {
+            self.generalCostItems = response.data.AccountingGeneralCostItems;
+            self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
+        }, function(response){
+            //Handle any errors
+            self.error.showError = true;
+        });
+    };
+    
     this.search = function(searchObject) {
         var config = {};
         return $http({

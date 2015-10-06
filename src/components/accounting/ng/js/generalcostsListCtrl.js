@@ -43,22 +43,22 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
         getGeneralCostsList(row, numRows);
     });
 
-//    //Select Rows for breakdown view
-//    $scope.selectRow = function(clickedObject) {
-//        $scope.searching = false;
-//        if ($scope.previouslyClickedObject !== clickedObject) {
-//            $scope.previouslyClickedObject = clickedObject;
-//            $scope.sidePanelOpen = true;
-//            $scope.sidePanelLoading = true;
-//            timesheetSrv.getTimesheetDetail(clickedObject)
-//                .then(function(){
-//                //                    $scope.sidePanelOpen = true;
-//                $scope.selectedTimesheet = clickedObject;
-//                $scope.timesheetBreakdown = timesheetSrv.timesheetBreakdown;
-//                $scope.sidePanelLoading = false;
-//            });
-//        }
-//    };
+    //Select Rows for breakdown view
+    $scope.selectRow = function(clickedObject) {
+        $scope.searching = false;
+        if ($scope.previouslyClickedObject !== clickedObject) {
+            $scope.previouslyClickedObject = clickedObject;
+            $scope.sidePanelOpen = true;
+            $scope.sidePanelLoading = true;
+            generalCostsSrv.getGeneralCostItems(row, numRows, clickedObject.id)
+                .then(function(){
+                //                    $scope.sidePanelOpen = true;
+                $scope.selectedRow = clickedObject;
+                $scope.rowBreakdown = generalCostsSrv.generalCostItems;
+                $scope.sidePanelLoading = false;
+            });
+        }
+    };
 
     $scope.closeSidePanel = function() {
 //        if ($scope.searching) {

@@ -75,7 +75,7 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
         
         for(var j in generalCostItems){
             for(var p in generalCostItems[j]){
-                if(generalCostItems[j][p] == null){
+                if(generalCostItems[j][p] === null){
                     console.log(p + ' is null!');
                     delete generalCostItems[j][p];
                 }
