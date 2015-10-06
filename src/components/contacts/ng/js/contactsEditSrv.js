@@ -1,5 +1,5 @@
 module.service('contactsEditSrv', function($http) {
-  var apiPath = '/admin/companies/';
+  var apiPath = '/admin/contacts/';
 
   var self = this;
 
@@ -38,15 +38,6 @@ module.service('contactsEditSrv', function($http) {
         }
       }
     }
-//    if (copiedObject.dob) {
-//      copiedObject.dob = object.dob.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.hireDate) {
-//      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.departureDate) {
-//      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
-//    }
 
     var requestPath;
     if (!copiedObject.id) {

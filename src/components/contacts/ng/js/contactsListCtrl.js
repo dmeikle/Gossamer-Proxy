@@ -32,8 +32,9 @@ module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, 
     });
 
     modalInstance.result.then(function(contact) {
-        console.log(contact);
-      contactsEditSrv.save(contact).then(function() {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
+      contactsEditSrv.save(contact, formToken).then(function() {
         getContactList();
       });
     });

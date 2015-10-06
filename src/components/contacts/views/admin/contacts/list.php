@@ -35,6 +35,8 @@
                 <th column-sortable data-column="telephone"><?php echo $this->getString('CONTACTS_EXTENSION'); ?></th>
                 <th column-sortable data-column="mobile"><?php echo $this->getString('CONTACTS_MOBILE'); ?></th>
                 <th column-sortable data-column="status"><?php echo $this->getString('CONTACTS_STATUS'); ?></th>
+                <th column-sortable data-column="numActive"><?php echo $this->getString('CONTACTS_ACTIVE_CLAIMS'); ?></th>
+                <th column-sortable data-column="numComplete"><?php echo $this->getString('CONTACTS_COMPLETED_CLAIMS'); ?></th>
                 <th column-sortable data-column="lastLogin"><?php echo $this->getString('CONTACTS_LAST_LOGIN'); ?></th>
                 <th sort-by-button class="cog-col row-controls">&nbsp;</th>
             </tr>
@@ -59,6 +61,8 @@
               <td ng-click="selectRow(contacts)">{{contacts.telephone}}</td>
               <td ng-click="selectRow(contacts)">{{contacts.mobile}}</td>
               <td ng-click="selectRow(contacts)">{{contacts.status}}</td>
+              <td ng-click="selectRow(contacts)">{{contacts.numActive}}</td>
+              <td ng-click="selectRow(contacts)">{{contacts.numComplete}}</td>
               <td ng-click="selectRow(contacts)">{{contacts.lastLogin}}</td>
               <td class="row-controls">
                 <div class="dropdown">
