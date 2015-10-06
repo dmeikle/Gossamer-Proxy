@@ -1,7 +1,7 @@
 <form id="wizard-form" name="wizard-form"  ng-submit="nextPage()" ng-show="currentPage === 0">
   <div class="col-xs-6 form-group">
     <label for="jobsheet-location"><?php echo $this->getString('CLAIMS_LOCATION') ?></label>
-    <input type="text" id="jobsheet-location" class="form-control" ng-model="jobSheet.query.location" required>
+    <input type="text" id="jobsheet-location" class="form-control" ng-model="jobSheet.query.ClaimLocation" required>
   </div>
   <div class="col-xs-6 form-group">
     <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
@@ -9,14 +9,16 @@
       <input type="checkbox" name="jobsheet-is-source" id="jobsheet-is-source" ng-model="jobSheet.isSource">
       <?php echo $this->getString('CLAIMS_ISSOURCE') ?>
     </label>
-    <input type="text" name="jobsheet-source" id="jobsheet-source" class="form-control" ng-model="jobSheet.query.source" ng-disabled="!jobSheet.isSource"
+    <input type="text" name="jobsheet-source" id="jobsheet-source" class="form-control"
+      ng-model="jobSheet.query.ClaimLocation.source" ng-disabled="!jobSheet.isSource"
       ng-required="jobSheet.isSource">
   </div>
   <div class="col-xs-6 form-group">
     <label for="jobsheet-workAuthorization"><?php echo $this->getString('CLAIMS_WORKAUTHORIZATION') ?></label>
     <div class="input-group">
       <label for="jobsheet-is-workAuthorization">
-        <input type="checkbox" name="jobsheet-is-workAuthorization" id="jobsheet-is-workAuthorization" ng-model="jobSheet.query.workAuthorization">
+        <input type="checkbox" name="jobsheet-is-workAuthorization" id="jobsheet-is-workAuthorization"
+          ng-model="jobSheet.query.ClaimLocation.workAuthorization">
         <?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?>
       </label>
     </div>
@@ -27,14 +29,14 @@
       <input type="checkbox" id="jobsheet-is-lockBox" ng-model="jobSheet.lockBox">
       <?php echo $this->getString('CLAIMS_ISLOCKBOX') ?>
     </label>
-    <input type="text" id="jobsheet-lockBox" class="form-control" ng-model="jobSheet.query.lockBox"
+    <input type="text" id="jobsheet-lockBox" class="form-control" ng-model="jobSheet.query.ClaimLocation.lockBox"
     ng-disabled="!jobSheet.lockBox" ng-required="jobSheet.lockBox">
   </div>
   <div class="col-xs-6 form-group">
     <label for="jobsheet-pictures"><?php echo $this->getString('CLAIMS_PICTURES') ?></label>
     <div>
       <label for="jobsheet-pictures">
-        <input type="checkbox" name="jobsheet-pictures" id="jobsheet-pictures" ng-model="jobSheet.query.pictures">
+        <input type="checkbox" name="jobsheet-pictures" id="jobsheet-pictures" ng-model="jobSheet.query.ClaimLocation.pictures">
         <?php echo $this->getString('CLAIMS_ISPICTURES') ?>
       </label>
     </div>
@@ -45,9 +47,10 @@
       <input type="checkbox" name="jobsheet-is-keys" id="jobsheet-is-keys" ng-model="jobSheet.keys">
       <?php echo $this->getString('CLAIMS_ISKEYS') ?>
     </label>
-    <input type="text" id="jobsheet-keys" class="form-control" ng-model="jobSheet.query.keys"
+    <input type="text" id="jobsheet-keys" class="form-control" ng-model="jobSheet.query.ClaimLocation.keys"
     ng-disabled="!jobSheet.keys" ng-required="jobSheet.keys">
   </div>
+  <div class="clearfix"></div>
   <div class="widgetfooter clearfix">
     <div class="pull-right btn-group">
       <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
@@ -65,7 +68,7 @@
       <?php echo $this->getString('NEW') ?>
     </a>
   </div>
-  <div ng-repeat="ownerTenant in jobSheet.query.ownerTenant">
+  <div ng-repeat="contact in jobSheet.query.contacts">
     <div class="col-xs-10 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
@@ -73,13 +76,13 @@
       <div>
         <div class="radio-inline">
           <label for="owner">
-            <input type="radio" ng-model="ownerTenant" name="owner-tenant" id="owner{{$index}}" value="owner">
+            <input type="radio" ng-model="contact.ownerTenant" name="ownertenant" id="owner{{$index}}" value="owner">
             <?php echo $this->getString('CLAIMS_OWNER') ?>
           </label>
         </div>
         <div class="radio-inline">
           <label for="tenant">
-            <input type="radio" ng-model="ownerTenant" name="owner-tenant" id="tenant{{$index}}" value="tenant">
+            <input type="radio" ng-model="contact.ownerTenant" name="ownertenant" id="tenant{{$index}}" value="tenant">
             <?php echo $this->getString('CLAIMS_TENANT') ?>
           </label>
         </div>
@@ -96,39 +99,40 @@
       <label>
         <?php echo $this->getString('CLAIMS_NAME') ?>
       </label>
-      <input type="text" ng-model="ownerTenant.name" class="form-control" name="name" id="name{{$index}}">
+      <input type="text" ng-model="contact.name" class="form-control" name="name" id="name{{$index}}">
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_HOMEPHONE') ?>
       </label>
-      <input type="tel" ng-model="ownerTenant.homePhone" class="form-control" name="homePhone" id="homePhone{{$index}}">
+      <input type="tel" ng-model="contact.homePhone" class="form-control" name="homePhone" id="homePhone{{$index}}">
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_MOBILEPHONE') ?>
       </label>
-      <input type="tel" ng-model="ownerTenant.mobilePhone" class="form-control" name="mobilePhone" id="mobilePhone{{$index}}">
+      <input type="tel" ng-model="contact.mobilePhone" class="form-control" name="mobilePhone" id="mobilePhone{{$index}}">
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_WORKPHONE') ?>
       </label>
-      <input type="tel" ng-model="ownerTenant.workPhone" class="form-control" name="workPhone" id="workPhone{{$index}}">
+      <input type="tel" ng-model="contact.workPhone" class="form-control" name="workPhone" id="workPhone{{$index}}">
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_BUZZER') ?>
       </label>
-      <input type="tel" ng-model="ownerTenant.buzzer" class="form-control" name="buzzer" id="buzzer{{$index}}">
+      <input type="tel" ng-model="contact.buzzer" class="form-control" name="buzzer" id="buzzer{{$index}}">
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_EMAIL') ?>
       </label>
-      <input type="tel" ng-model="ownerTenant.email" class="form-control" name="email" id="email{{$index}}">
+      <input type="tel" ng-model="contact.email" class="form-control" name="email" id="email{{$index}}">
     </div>
   </div>
+  <div class="clearfix"></div>
   <div class="widgetfooter clearfix">
     <div class="pull-right btn-group">
       <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
@@ -265,11 +269,12 @@
       ng-disabled="!jobSheet.isExisting" ng-required="jobSheet.isExisting" rows="8" cols="40"
       ng-model="jobSheet.query.affectedAreas.existing"></textarea>
   </div>
+  <div class="clearfix"></div>
   <div class="widgetfooter clearfix">
     <div class="pull-right btn-group">
-      <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
+      <a href="" class="btn btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
         <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
-      </button>
+      </a>
       <button type="submit" class="btn btn-primary">
         <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
       </button>
@@ -277,7 +282,7 @@
   </div>
 </form>
 
-<form id="wizard-form" ng-submit="confirm()" ng-show="currentPage === 3">
+<form id="wizard-form" ng-submit="submit(jobSheet.query)" ng-show="currentPage === 3">
   <table class="table">
     <tbody>
       <tr>
@@ -328,6 +333,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="clearfix"></div>
   <div class="widgetfooter clearfix">
     <div class="pull-right btn-group">
       <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">

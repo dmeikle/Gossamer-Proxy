@@ -28,22 +28,22 @@ class ClaimLocationBuilder extends AbstractBuilder{
             $builder->addValidationResults($validationResults['Claim']);
         }
 
-        $builder->add('unitNumber', 'text', array('ng-model' => 'model.unitNumber', 'class' => 'form-control', 'value' => $this->getValue('unitNumber', $values)))
-                ->add('workAuthorizationReceived', 'text', array('ng-model' => 'model.workAuthorizationReceived', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceived', $values)))
-                ->add('picturesTaken', 'text', array('ng-model' => 'model.picturesTaken', 'class' => 'form-control', 'value' => $this->getValue('picturesTaken', $values)))
-                ->add('lockBoxNumber', 'text', array('ng-model' => 'model.lockBoxNumber', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
-                ->add('keysReceivedFrom', 'text', array('ng-model' => 'model.keysReceivedFrom', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
+        $builder->add('unitNumber', 'text', array('ng-model' => 'ClaimLocation.unitNumber', 'class' => 'form-control', 'value' => $this->getValue('unitNumber', $values)))
+                ->add('workAuthorizationReceived', 'text', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceived', $values)))
+                ->add('picturesTaken', 'text', array('ng-model' => 'ClaimLocation.picturesTaken', 'class' => 'form-control', 'value' => $this->getValue('picturesTaken', $values)))
+                ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
+                ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
-        
+
         if(array_key_exists('projectAddressesFloorPlans', $options)) {
-            $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'model.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
-        }  
+            $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'ClaimLocation.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
+        }
         if(array_key_exists('currentClaimPhases', $options)) {
-            $builder->add('CurrentClaimPhases_id', 'text', array('ng-model' => 'model.CurrentClaimPhases_id', 'class' => 'form-control', 'options' => $options['currentClaimPhases']));
-        }  
-        
+            $builder->add('CurrentClaimPhases_id', 'text', array('ng-model' => 'ClaimLocation.CurrentClaimPhases_id', 'class' => 'form-control', 'options' => $options['currentClaimPhases']));
+        }
+
         return $builder->getForm();
     }
 

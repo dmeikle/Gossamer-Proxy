@@ -6,7 +6,7 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
       var apiPath = '/render/' + element[0].dataset.module + '/' + element[0].dataset.filename;
 
-      scope.modalLoading = true;
+      scope.wizardLoading = true;
 
       wizardSrv.getWizardPages(apiPath).then(function() {
         scope.wizardPages = wizardSrv.wizardPages;
@@ -16,7 +16,7 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
           }
         }
         $compile(element.contents())(scope);
-        scope.modalLoading = false;
+        scope.wizardLoading = false;
       });
     },
     controller: function($scope) {

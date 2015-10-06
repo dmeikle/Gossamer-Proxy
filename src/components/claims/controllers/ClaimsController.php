@@ -44,9 +44,9 @@ class ClaimsController extends AbstractController{
     }
 
     public function saveInitialJobsheet($claimId, $claimsLocationId) {
-        
+
         $result = $this->model->saveInitialJobsheet($claimId, $claimsLocationId);
-                
+
         $this->render($result);
     }
 

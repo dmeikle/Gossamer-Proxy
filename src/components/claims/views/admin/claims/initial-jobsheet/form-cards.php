@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" ng-controller="initialJobsheetCtrl">
   <div class="cardheader">
     <h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>
   </div>
@@ -11,11 +11,11 @@
       <tr>
         <td><strong><?php echo $this->getString('CLAIMS_JOBSHEET_ADDRESS') ?></strong></td>
         <td>
-          <div>{{claim.address1}}</div>
-          <div>{{claim.address2}}</div>
-          <div>{{claim.neighborhood}}</div>
-          <div>{{claim.city}}</div>
-          <div>{{claim.postalCode}}</div>
+          <div>{{projectAddress.address1}}</div>
+          <div>{{projectAddress.address2}}</div>
+          <div>{{projectAddress.neighborhood}}</div>
+          <div>{{projectAddress.city}}</div>
+          <div>{{projectAddress.postalCode}}</div>
         </td>
       </tr>
     </tbody>
