@@ -1,4 +1,5 @@
 <div>
+   
   <div class="wizard-page clearfix" ng-show="currentPage === 0 && !addNewClient && !loading">
     <h2><?php echo $this->getString('CLAIMS_ADDNEW_CREATENEW'); ?></h2>
     <form id="wizard-form" name="wizard-form" ng-submit="nextPage()" class="form-inline col-xs-12 col-md-6">

@@ -2,7 +2,7 @@
   <div class="widgetheader">
     <h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>
   </div>
-  <?php pr($form) ?>
+
   <div ng-if="loading || wizardLoading">
     <span class="spinner-loader"></span>
   </div>

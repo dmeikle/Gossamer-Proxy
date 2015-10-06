@@ -1,3 +1,4 @@
+
 <form id="wizard-form" name="wizard-form"  ng-submit="nextPage()" ng-show="currentPage === 0">
   <div class="col-xs-6 form-group">
     <label for="jobsheet-location"><?php echo $this->getString('CLAIMS_LOCATION') ?></label>

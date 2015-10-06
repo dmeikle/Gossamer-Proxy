@@ -15,12 +15,13 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 /**
  * Description of ClaimLocationModel
  *
  * @author Dave Meikle
  */
-class ClaimLocationModel extends AbstractModel {
+class ClaimLocationModel extends AbstractModel implements FormBuilderInterface {
 
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -58,6 +59,10 @@ class ClaimLocationModel extends AbstractModel {
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
 
         return $data;
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
     }
 
 }
