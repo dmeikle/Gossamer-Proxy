@@ -72,7 +72,7 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openTimesheetModal(timesheet)">Edit</a></li>
+                                <li><a ng-click="openGeneralCostsModal(item)">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -129,7 +129,7 @@
                 <input placeholder="Cost" class="form-control" name="cost" ng-model="advSearch.cost">
                 <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeOut">
                 
-                <select class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.Departments_id">
+                <select class="form-control" name="Departments_id" ng-model="advSearch.Departments_id">
                     <option value="" selected>-Department-</option>
                     <?php foreach($Departments as $department) {
                         echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>

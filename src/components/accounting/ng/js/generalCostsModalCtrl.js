@@ -1,10 +1,11 @@
-module.controller('generalCostsModalCtrl', function($modalInstance, $scope, generalCostsModalSrv, $filter) {
+module.controller('generalCostsModalCtrl', function($modalInstance, $scope, generalCostsModalSrv, $filter, generalCost) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = [];
     
+    console.log(generalCost);
     //Modal Controls
     $scope.confirm = function() {
-        $modalInstance.close($scope.timesheet);
+        $modalInstance.close();
     };
 
     $scope.cancel = function() {

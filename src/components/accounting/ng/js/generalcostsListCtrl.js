@@ -137,13 +137,19 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
     };
     
     //Modal
-    $scope.openGeneralCostsModal = function() {
+    $scope.openGeneralCostsModal = function(generalCost) {
+        console.log(generalCost);
         $scope.modalLoading = true;
         var template = templateSrv.generalCostsModal;
         var modal = $modal.open({
             templateUrl: template,
             controller: 'generalCostsModalCtrl',
-            size: 'lg'
+            size: 'lg',
+            resolve: {
+                generalCost: function () {
+                    return generalCost;
+                }
+            }
         });
         modal.opened.then(function(){
             $scope.modalLoading = false;
