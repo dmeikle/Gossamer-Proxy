@@ -90,6 +90,11 @@ table{
         span{
             text-align: left;
         }
+        p{
+            &:last-child{
+                margin-bottom:0;
+            }
+        }
     }
     .breakdown-headings{
         padding:1rem;
