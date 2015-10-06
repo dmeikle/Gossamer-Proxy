@@ -29,13 +29,8 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-<!--                    <th><?php// echo $this->getString('ACCOUNTING_DATE'); ?></th>-->
-                    <th><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
@@ -44,9 +39,6 @@
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>  
                     <td></td>
                     <td>
@@ -54,20 +46,14 @@
                     </td>
                     <td></td>  
                     <td></td>
-                    <td></td>
-                    <td></td>                    
+                    <td></td>                   
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(item)">{{item.name}}</td>
-                    <td ng-click="selectRow(item)">{{item.description}}</td>
                     <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
                     <td ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-click="selectRow(item)">{{item.department}}</td>
-<!--                    <td ng-click="selectRow(item)">{{item.date}}</td>-->
                     <td ng-click="selectRow(item)">{{item.creditAccount}}</td>
-                    <td ng-click="selectRow(item)">{{item.debitAccount}}</td>
-                    <td ng-click="selectRow(item)">{{item.cost | currency}}</td>
-                    <td ng-click="selectRow(item)">{{item.chargeout | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.totalCost | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.totalChargeout | currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
