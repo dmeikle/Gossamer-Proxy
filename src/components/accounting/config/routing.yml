@@ -1055,3 +1055,29 @@ accounting_costcarditemtypes_save:
         datasource: datasource1 
     methods: [POST]    
     
+#------------------------ inventory ----------------------------
+accounting_inventory_home:
+    pattern: admin/accounting/inventory/
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_inventory_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    #listeners:
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+
+accounting_inventory_search:
+    pattern: admin/accounting/inventory/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_inventory_search
+        datasource: datasource1
