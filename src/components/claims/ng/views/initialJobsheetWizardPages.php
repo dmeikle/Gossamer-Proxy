@@ -2,7 +2,7 @@
 <form id="wizard-form" name="wizard-form"  ng-submit="nextPage()" ng-show="currentPage === 0">
   <div class="col-xs-6 form-group">
     <label for="jobsheet-location"><?php echo $this->getString('CLAIMS_LOCATION') ?></label>
-    <input type="text" id="jobsheet-location" class="form-control" ng-model="jobSheet.query.ClaimLocation" required>
+    <?php echo $claimLocationForm['unitNumber'] ?>
   </div>
   <div class="col-xs-6 form-group">
     <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
@@ -18,8 +18,7 @@
     <label for="jobsheet-workAuthorization"><?php echo $this->getString('CLAIMS_WORKAUTHORIZATION') ?></label>
     <div class="input-group">
       <label for="jobsheet-is-workAuthorization">
-        <input type="checkbox" name="jobsheet-is-workAuthorization" id="jobsheet-is-workAuthorization"
-          ng-model="jobSheet.query.ClaimLocation.workAuthorization">
+        <?php echo $claimLocationForm['workAuthorizationReceived'] ?>
         <?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?>
       </label>
     </div>
@@ -27,17 +26,16 @@
   <div class="col-xs-6 form-group">
     <label for="jobsheet-lockBox"><?php echo $this->getString('CLAIMS_LOCKBOX') ?></label>
     <label for="jobsheet-is-lockBox">
-      <input type="checkbox" id="jobsheet-is-lockBox" ng-model="jobSheet.lockBox">
+      <input type="checkbox" id="jobsheet-is-lockBox" ng-model="ClaimLocation.lockBox">
       <?php echo $this->getString('CLAIMS_ISLOCKBOX') ?>
     </label>
-    <input type="text" id="jobsheet-lockBox" class="form-control" ng-model="jobSheet.query.ClaimLocation.lockBox"
-    ng-disabled="!jobSheet.lockBox" ng-required="jobSheet.lockBox">
+    <?php echo $claimLocationForm['lockBoxNumber'] ?>
   </div>
   <div class="col-xs-6 form-group">
     <label for="jobsheet-pictures"><?php echo $this->getString('CLAIMS_PICTURES') ?></label>
     <div>
       <label for="jobsheet-pictures">
-        <input type="checkbox" name="jobsheet-pictures" id="jobsheet-pictures" ng-model="jobSheet.query.ClaimLocation.pictures">
+        <?php echo $claimLocationForm['picturesTaken'] ?>
         <?php echo $this->getString('CLAIMS_ISPICTURES') ?>
       </label>
     </div>
@@ -45,11 +43,10 @@
   <div class="col-xs-6 form-group">
     <label for="jobsheet-keys"><?php echo $this->getString('CLAIMS_KEYS') ?></label>
     <label for="jobsheet-is-keys">
-      <input type="checkbox" name="jobsheet-is-keys" id="jobsheet-is-keys" ng-model="jobSheet.keys">
+      <input type="checkbox" name="jobsheet-is-keys" id="jobsheet-is-keys" ng-model="ClaimLocation.keysReceived">
       <?php echo $this->getString('CLAIMS_ISKEYS') ?>
     </label>
-    <input type="text" id="jobsheet-keys" class="form-control" ng-model="jobSheet.query.ClaimLocation.keys"
-    ng-disabled="!jobSheet.keys" ng-required="jobSheet.keys">
+    <?php echo $claimLocationForm['keysReceivedFrom'] ?>
   </div>
   <div class="clearfix"></div>
   <div class="widgetfooter clearfix">
@@ -74,20 +71,7 @@
       <label>
         <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
       </label>
-      <div>
-        <div class="radio-inline">
-          <label for="owner">
-            <input type="radio" ng-model="contact.ownerTenant" name="ownertenant" id="owner{{$index}}" value="owner">
-            <?php echo $this->getString('CLAIMS_OWNER') ?>
-          </label>
-        </div>
-        <div class="radio-inline">
-          <label for="tenant">
-            <input type="radio" ng-model="contact.ownerTenant" name="ownertenant" id="tenant{{$index}}" value="tenant">
-            <?php echo $this->getString('CLAIMS_TENANT') ?>
-          </label>
-        </div>
-      </div>
+      <?php echo $contactForm['ContactTypes_id'] ?>
     </div>
     <div class="col-xs-2">
       <div class="pull-right">
@@ -96,29 +80,35 @@
         </button>
       </div>
     </div>
-    <div class="col-xs-6 form-group">
+    <div class="col-xs-3 form-group">
       <label>
-        <?php echo $this->getString('CLAIMS_NAME') ?>
+        <?php echo $this->getString('CLAIMS_FIRSTNAME') ?>
       </label>
-      <input type="text" ng-model="contact.name" class="form-control" name="name" id="name{{$index}}">
+      <?php echo $contactForm['firstname'] ?>
+    </div>
+    <div class="col-xs-3 form-group">
+      <label>
+        <?php echo $this->getString('CLAIMS_LASTNAME') ?>
+      </label>
+      <?php echo $contactForm['lastname'] ?>
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_HOMEPHONE') ?>
       </label>
-      <input type="tel" ng-model="contact.homePhone" class="form-control" name="homePhone" id="homePhone{{$index}}">
+      <?php echo $contactForm['home'] ?>
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_MOBILEPHONE') ?>
       </label>
-      <input type="tel" ng-model="contact.mobilePhone" class="form-control" name="mobilePhone" id="mobilePhone{{$index}}">
+      <?php echo $contactForm['mobile'] ?>
     </div>
     <div class="col-xs-6 form-group">
       <label>
         <?php echo $this->getString('CLAIMS_WORKPHONE') ?>
       </label>
-      <input type="tel" ng-model="contact.workPhone" class="form-control" name="workPhone" id="workPhone{{$index}}">
+      <?php echo $contactForm['office'] ?>
     </div>
     <div class="col-xs-6 form-group">
       <label>
@@ -130,7 +120,7 @@
       <label>
         <?php echo $this->getString('CLAIMS_EMAIL') ?>
       </label>
-      <input type="tel" ng-model="contact.email" class="form-control" name="email" id="email{{$index}}">
+      <?php echo $contactForm['email'] ?>
     </div>
   </div>
   <div class="clearfix"></div>

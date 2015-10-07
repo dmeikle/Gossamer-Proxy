@@ -30,10 +30,10 @@ initialJobsheetWizardPages:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
     listeners:
-        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }        
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         # build the form for Project Address
-        - 
+        -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
@@ -42,9 +42,9 @@ initialJobsheetWizardPages:
             cacheKey: 'ProjectAddressForm'
             formName: 'projectAddressForm'
             dependencies:
-                - { dependency: Provinces, key: provinces, value: id, text: province }        
+                - { dependency: Provinces, key: provinces, value: id, text: province }
         # build the form for Claim Location
-        - 
+        -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
@@ -53,9 +53,9 @@ initialJobsheetWizardPages:
             cacheKey: 'ClaimLocationForm'
             formName: 'claimLocationForm'
             dependencies:
-                - { dependency: Provinces, key: provinces, value: id, text: province }             
+                - { dependency: Provinces, key: provinces, value: id, text: province }
         # build the form for Contact
-        - 
+        -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
@@ -64,5 +64,5 @@ initialJobsheetWizardPages:
             cacheKey: 'ContactForm'
             formName: 'contactForm'
             dependencies:
-                - { dependency: Provinces, key: provinces, value: id, text: province }  
-                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }      
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }

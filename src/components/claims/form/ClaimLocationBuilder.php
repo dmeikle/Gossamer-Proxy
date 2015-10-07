@@ -29,10 +29,10 @@ class ClaimLocationBuilder extends AbstractBuilder{
         }
 
         $builder->add('unitNumber', 'text', array('ng-model' => 'ClaimLocation.unitNumber', 'class' => 'form-control', 'value' => $this->getValue('unitNumber', $values)))
-                ->add('workAuthorizationReceived', 'text', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceived', $values)))
-                ->add('picturesTaken', 'text', array('ng-model' => 'ClaimLocation.picturesTaken', 'class' => 'form-control', 'value' => $this->getValue('picturesTaken', $values)))
-                ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
-                ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
+                ->add('workAuthorizationReceived', 'check', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'value' => '1'))
+                ->add('picturesTaken', 'check', array('ng-model' => 'ClaimLocation.picturesTaken', 'value' => '1'))
+                ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber','ng-disabled' => '!ClaimLocation.lockBox','ng-required' => 'ClaimLocation.lockBox', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
+                ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom','ng-disabled' => '!ClaimLocation.keysReceived','ng-required' => 'ClaimLocation.keysReceived', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
