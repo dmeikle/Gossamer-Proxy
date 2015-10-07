@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-
-=======
 admin_claim_edit:
     template: admin-list.php
     sections:
@@ -26,8 +23,7 @@ admin_claim_edit:
     css:
         - @components/claims/dist/css/claims.min.css
      
->>>>>>> CP-128
-            
+
 claims_new_claim_wizard_1:
     template: admin-list.php
     sections:
@@ -35,14 +31,15 @@ claims_new_claim_wizard_1:
 
             "header": "src/themes/default/templates/sections/admin-header.php"
             "content": "src/components/claims/views/admin/wizard1.php"
-            "footer": "src/themes/default/templates/sections/footer.php"  
-        
+            "footer": "src/themes/default/templates/sections/footer.php"
+
+
 admin_claims_home:
     template: admin-list.php
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "content": "src/components/claims/views/admin/claims/list.php"
+            "content": src/components/claims/views/admin/claims/list.php
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -65,8 +62,7 @@ admin_claims_home:
     css:
         - @components/claims/dist/css/claims.min.css
         - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
-    
-    
+
 
 admin_claims_list:
     template: admin-list.php
@@ -100,7 +96,7 @@ admin_claims_list:
 admin_claims_edit:
     template: admin-2cols.php
     sections:
-        -   
+        -
             header: src/themes/default/templates/sections/admin-header.php
             content: src/components/claims/views/admin/claims/edit.php
             cards: src/components/claims/views/admin/claims/edit-cards.php
@@ -121,7 +117,37 @@ admin_claims_edit:
         #- @components/claims/dist/js/claims.min.js
     css:
         - @components/claims/dist/css/claims.min.css
-    
+
+
+admin_claims_initial_jobsheet:
+    template: admin-2cols.php
+    sections:
+        -
+            header: src/themes/default/templates/sections/admin-header.php
+            content: src/components/claims/views/admin/claims/initial-jobsheet/form.php
+            cards: src/components/claims/views/admin/claims/initial-jobsheet/form-cards.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+
 
 admin_claims_edit1:
     template: admin-list.php
@@ -164,7 +190,7 @@ admin_claim_view:
     sections:
         -
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
-            "header": "src/themes/default/templates/sections/admin-header.php" 
+            "header": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "content": "src/components/claims/views/admin/claims/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"

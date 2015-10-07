@@ -51,7 +51,17 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
- 
+    public function saveInitialJobsheet($claimId, $claimsLocationId) {
+        $params = $this->httpRequest->getPost();
+        
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveinitialjobsheet', $params); 
+        
+        return $data;
+    }
+
+
+
+
     public function get($claimId) {
         $params = array(
             'jobNumber' => $claimId
@@ -104,6 +114,15 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         $params = array('jobNumber' => $jobNumber);
       
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'summary', $params); 
+        
+        return $data;
+    }
+    
+    public function getInitialJobsheet($claimId, $claimsLocationId) {
+        
+        $params = array('Claims_id' => $claimId, 'ClaimsLocations_id' => $claimsLocationId);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getinitialjobsheet', $params); 
         
         return $data;
     }

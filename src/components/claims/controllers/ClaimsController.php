@@ -41,6 +41,23 @@ class ClaimsController extends AbstractController{
 
     }
 
+    public function saveInitialJobsheet($claimId, $claimsLocationId) {
+
+        $result = $this->model->saveInitialJobsheet($claimId, $claimsLocationId);
+
+        $this->render($result);
+    }
+
+    public function getInitialJobsheet($claimId, $claimsLocationId) {
+
+        $result = $this->model->getInitialJobsheet($claimId, $claimsLocationId);
+        $user = $this->getLoggedInUser();
+
+        $result['username'] = $user->getCredentials();
+
+        $this->render($result);
+    }
+
     public function editByJobNumber($jobNumber) {
         $result = $this->model->get(array('jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');

@@ -1,41 +1,49 @@
-module.directive('addNewWizard', function($compile, $location, addNewWizardSrv) {
+module.directive('wizard', function($compile, $location, wizardSrv) {
   return {
     restricted:'E',
     scope:false,
     link: function(scope, element, attrs) {
 
-      var apiPath = '/render/' + element[0].dataset.module + '/addNewWizardPages';
+      var apiPath = '/render/' + element[0].dataset.module + '/' + element[0].dataset.filename;
 
-      scope.modalLoading = true;
+      scope.wizardLoading = true;
 
-      addNewWizardSrv.getWizardPages(apiPath).then(function() {
-        scope.wizardPages = addNewWizardSrv.wizardPages;
-        element[0].appendChild(scope.wizardPages[0]);
+      wizardSrv.getWizardPages(apiPath).then(function() {
+        scope.wizardPages = wizardSrv.wizardPages;
+        for (var page in wizardSrv.wizardPages) {
+          if (wizardSrv.wizardPages.hasOwnProperty(page)) {
+            element[0].appendChild(scope.wizardPages[page]);
+          }
+        }
         $compile(element.contents())(scope);
-        scope.modalLoading = false;
+        scope.wizardLoading = false;
       });
     },
     controller: function($scope) {
       $scope.currentPage = 0;
-      var wizard = document.getElementsByTagName('add-new-wizard')[0];
+      var wizard = document.getElementsByTagName('wizard')[0];
 
       $scope.nextPage = function() {
-        $scope.currentPage++;
-        switchPage();
+        $scope.currentPage = $scope.currentPage + 1;
+        console.log($scope.currentPage);
+        // switchPage();
       };
 
       $scope.prevPage = function() {
-        $scope.currentPage--;
-        switchPage();
+        $scope.currentPage = $scope.currentPage - 1;
+        console.log($scope.currentPage);
+        // switchPage();
       };
 
-      var switchPage = function() {
-        while (wizard.firstChild) {
-          wizard.removeChild(wizard.firstChild);
-        }
-        wizard.appendChild($scope.wizardPages[$scope.currentPage]);
-        $compile(wizard.children)($scope);
-      };
+      // var switchPage = function() {
+      //   for (var child in wizard.children) {
+      //     if (wizard.children.hasOwnProperty(child)) {
+      //       wizard.removeChild(wizard.children[child]);
+      //     }
+      //   }
+      //   wizard.appendChild($scope.wizardPages[$scope.currentPage]);
+      //   $compile(wizard.children)($scope);
+      // };
     }
   };
 });

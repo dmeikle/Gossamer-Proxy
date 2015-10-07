@@ -311,7 +311,7 @@ accounting_creditaccounts_list:
         controller: components\accounting\controllers\CreditAccountsController
         model: components\accounting\models\CreditAccountModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_creditaccounts_list
         datasource: datasource1
 

@@ -19,6 +19,19 @@ module.service('crudSrv', function($http) {
     });
   };
 
+  this.saveMultiple = function(object, formToken, apiPath) {
+    var data = object;
+    data.FORM_SECURITY_TOKEN = formToken;
+    return $http({
+      method: 'POST',
+      url: apiPath,
+      data: data,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+  };
+
   this.getDetails = function(apiPath, id) {
     return $http({
       method: 'GET',

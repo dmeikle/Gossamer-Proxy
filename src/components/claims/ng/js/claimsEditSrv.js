@@ -11,9 +11,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
   };
 
   this.getClaimDetails = function(id) {
-    return crudSrv.getDetails(apiPath, id).then(function(response) {
-      var breakpoint;
-    });
+    return crudSrv.getDetails(apiPath, id);
   };
 
   this.autocomplete = function(value, type) {
@@ -26,5 +24,9 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
 
   this.saveProjectAddress = function(object, formToken) {
     return crudSrv.save(object, 'ProjectAddress', formToken, '/admin/projects/');
+  };
+
+  this.getProjectAddress = function(id) {
+    return crudSrv.getDetails('/admin/projects/', id);
   };
 });

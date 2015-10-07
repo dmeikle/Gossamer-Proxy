@@ -46,7 +46,7 @@ class SubcontractorModel extends  AbstractModel
         return $data;
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         
         $params = array(
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'id asc'

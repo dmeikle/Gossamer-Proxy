@@ -1,7 +1,8 @@
 <div>
-  <div class="wizard-page clearfix" ng-submit="nextPage()" ng-if="!addNewClient && !loading">
+   
+  <div class="wizard-page clearfix" ng-show="currentPage === 0 && !addNewClient && !loading">
     <h2><?php echo $this->getString('CLAIMS_ADDNEW_CREATENEW'); ?></h2>
-    <form id="wizard-form" name="wizard-form" class="form-inline col-xs-12 col-md-6">
+    <form id="wizard-form" name="wizard-form" ng-submit="nextPage()" class="form-inline col-xs-12 col-md-6">
       <div class="form-group">
         <label>
           <input type="radio" name="claim-by" id="claim-by-strata" class="form-control" ng-model="claim.by" value="strata" required>
@@ -49,7 +50,8 @@
       </button>
     </div>
   </div>
-  <form class="clearfix" ng-submit="saveProjectAddress(project)" ng-if="addNewClient && !loading" name="wizard-form" id="wizard-form">
+  <form class="clearfix" name="wizard-form" id="wizard-form" ng-submit="nextPage()"
+    ng-show="addNewClient && !loading && currentPage === 0">
     <div class="form-group">
       <label for="project-firstname"><?php echo $this->getString('PROJECTS_BUILDINGNAME'); ?></label>
       <?php echo $form['buildingName'];?>
@@ -85,7 +87,8 @@
     </div>
   </form>
 </div>
-<form ng-submit="saveAndNext()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+<form id="wizard-form" name="wizard-form" class="wizard-page" ng-submit="nextPage()"
+  ng-show="currentPage === 1 && !loading">
   <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONTACTDETAILS'); ?></h2>
   <div class="clearfix">
     <div class="col-xs-12 col-md-6">
@@ -141,7 +144,8 @@
     </div>
   </div>
 </form>
-<form ng-submit="save();nextPage()" id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading">
+<form id="wizard-form" name="wizard-form" class="wizard-page" ng-submit="nextPage()"
+  ng-show="!loading && currentPage === 2">
   <div class="clearfix">
     <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONFIRMATION'); ?></h2>
     <div>
@@ -249,6 +253,7 @@
     </label>
   </div>
 </form>
-<form id="wizard-form" name="wizard-form" class="wizard-page" ng-submit="confirm()">
+<form id="wizard-form" name="wizard-form" class="wizard-page" ng-submit="nextPage()"
+  ng-show="currentPage === 3">
   <h2><?php echo $this->getString('CLAIMS_ADDNEW_DISPATCH'); ?></h2>
 </form>

@@ -1,4 +1,4 @@
-module.service('addNewWizardSrv', function($http) {
+module.service('wizardSrv', function($http) {
 
   var self = this;
 

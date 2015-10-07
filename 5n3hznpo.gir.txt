@@ -1,0 +1,52 @@
+﻿Merge branch 'CP-128' into rc1.0.7
+
+Conflicts:
+	src/components/claims/config/routing.yml
+	src/components/claims/config/views.yml
+	src/components/claims/views/admin/claims/edit.php
+	src/components/claims/views/admin/claims/list.php
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch rc1.0.7
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   src/components/claims/config/routing.yml
+#	modified:   src/components/claims/config/views.yml
+#	modified:   src/components/claims/ng/js/claimsListCtrl.js
+#	modified:   src/components/claims/ng/js/claimsListSrv.js
+#	modified:   src/components/claims/views/admin/claims/edit.php
+#	modified:   src/components/claims/views/admin/claims/list.php
+#	modified:   src/components/projects/ng/js/projectAddressesListCtrl.js
+#	modified:   src/framework/core/components/blogs/config/routing.yml
+#	modified:   src/framework/core/components/blogs/config/views.yml
+#	new file:   src/framework/core/components/blogs/ng/js/blogs.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsDirectives.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsEditCtrl.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsEditSrv.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsListCtrl.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsListSrv.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsPhotoCtrl.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsPhotoSrv.js
+#	new file:   src/framework/core/components/blogs/ng/js/blogsTemplateSrv.js
+#	new file:   src/framework/core/components/blogs/ng/js/bower.json
+#	new file:   src/framework/core/components/blogs/ng/scss/_bootstrap-custom.scss
+#	new file:   src/framework/core/components/blogs/ng/scss/blogs.scss
+#	new file:   src/framework/core/components/blogs/ng/views/editEmergencyContactModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffAddNewModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffAdvancedSearchFilters.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffBenefitsHistoryModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffEditModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffRolesModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffScheduleModal.php
+#	new file:   src/framework/core/components/blogs/ng/views/staffSearch.php
+#	modified:   src/themes/default/templates/admin-list.php
+#
+
