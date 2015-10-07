@@ -2,7 +2,13 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
     $scope.isOpen = {};
     $scope.isOpen.datepicker = [];
     
-    console.log(generalCost);
+    $scope.itemsPerPage = 20;
+    $scope.currentPage = 1;
+    
+    var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+    var numRows = $scope.itemsPerPage;
+    
+    //console.log(generalCost);
     //Modal Controls
     $scope.confirm = function() {
         $modalInstance.close();
@@ -34,7 +40,28 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         AccountingCreditAccounts_id: '',
         jobNumber: ''
     };
-    $scope.generalCostItems = angular.copy([generalCostItemsTemplate]);
+    
+    if(generalCost){
+        $scope.loading = true;
+        generalCostsModalSrv.getGeneralCostItems(row, numRows, generalCost.id)
+        .then(function(){
+            console.log(generalCostsModalSrv.generalCostItems);
+            var costItems = generalCostsModalSrv.generalCostItems;
+            for(var i in costItems){
+                //costItems[i].dateEntered = Date.parse((costItems[i].dateEntered.replace(/-/g,"/")));
+                costItems[i].dateEntered = new Date(costItems[i].dateEntered);
+                costItems[i].cost = parseFloat(costItems[i].cost);
+                costItems[i].chargeOut = parseFloat(costItems[i].chargeOut);
+            }
+            $scope.AccountingGeneralCost = generalCost;
+            $scope.generalCostItems = costItems;
+            console.log($scope.generalCostItems);
+            $scope.loading = false;
+        });
+    } else {
+        $scope.loading = false;
+        $scope.generalCostItems = angular.copy([generalCostItemsTemplate]);
+    }
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function(jobNumber){
@@ -48,7 +75,7 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
     //---Table Controls---
     //Add a row    
     $scope.addRow = function(){
-        $scope.generalCostItems.push(angular.copy([generalCostItemsTemplate]));
+        $scope.generalCostItems.push(angular.copy(generalCostItemsTemplate));
     };
         
     //Insert rows below currently selected items
@@ -124,6 +151,6 @@ module.controller('generalCostsModalCtrl', function($modalInstance, $scope, gene
         generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, generalCostItems, formToken);
         
         console.log($scope.AccountingGeneralCost);
-        console.log(generalCostItems);
+        console.log($scope.generalCostItems);
     };
 });

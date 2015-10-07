@@ -6,9 +6,6 @@
     </div>
     <div class="modal-body general-costs-modal">
         <div class="input-group">
-            
-            
-            
             <label>Claim Number</label>
             <input placeholder="Claim Number" type="text" ng-model="AccountingGeneralCost.jobNumber" ng-model-options="{debounce:100}"
                    typeahead="value for value in fetchClaimAutocomplete($viewValue)"
@@ -21,6 +18,7 @@
         <div class="input-group">
             <label>Phase</label>
             <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="AccountingGeneralCost.ClaimPhases_id">
+                <option value="" selected>-Phase Code-</option>
                 <?php foreach($AccountingPhaseCodes as $phase) {
                     echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
                 } ?>
@@ -30,6 +28,7 @@
         <div class="input-group">
             <label>Credit Account</label>
             <select class="credit-account form-control" name="AccountingCreditAccount_id" ng-model="AccountingGeneralCost.AccountingCreditAccounts_id">
+                <option value="" selected>-Credit Account-</option>
                 <?php foreach($CreditAccounts as $account) {
                     echo '<option value="' . $account['id'] . '">' . $account['name'] . '</option>';
                 }?>
@@ -50,6 +49,18 @@
                 </tr>
             </thead>
             <tbody>
+                <tr ng-if="loading">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>  
+                    <td>
+                        <span class="spinner-loader"></span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>                    
+                </tr>
                 <tr ng-repeat="row in generalCostItems track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
@@ -75,7 +86,7 @@
                     </td>
                     <td>
                         <select class="department form-control" name="departments" ng-model="row.Departments_id">
-                            <option value="" ng-selected="true">-Department-</option>
+                            <option value="" selected>-Department-</option>
                             <?php foreach($Departments as $department) {
                                 echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
                             }?>
@@ -89,7 +100,7 @@
                     </td>
                     <td>
                         <select class="debit-account form-control" name="departments" ng-model="row.AccountingDebitAccounts_id">
-                            <option value="" ng-selected="true">-Debit Account-</option>
+                            <option value="" selected>-Debit Account-</option>
                             <?php foreach($DebitAccounts as $debitAccount) {
                                 echo '<option value="' . $debitAccount['id'] . '">' . $debitAccount['name'] . '</option>';
                             }?>

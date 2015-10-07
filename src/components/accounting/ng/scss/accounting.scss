@@ -85,6 +85,17 @@ table{
         background-color: #f9f9f9;
         display: flex;
     }
+    .card.info-card{
+        display:block;
+        span{
+            text-align: left;
+        }
+        p{
+            &:last-child{
+                margin-bottom:0;
+            }
+        }
+    }
     .breakdown-headings{
         padding:1rem;
         display: flex;

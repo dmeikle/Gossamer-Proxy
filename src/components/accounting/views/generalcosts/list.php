@@ -29,13 +29,8 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-<!--                    <th><?php// echo $this->getString('ACCOUNTING_DATE'); ?></th>-->
-                    <th><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
@@ -44,9 +39,6 @@
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>  
                     <td></td>
                     <td>
@@ -54,20 +46,14 @@
                     </td>
                     <td></td>  
                     <td></td>
-                    <td></td>
-                    <td></td>                    
+                    <td></td>                   
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(item)">{{item.name}}</td>
-                    <td ng-click="selectRow(item)">{{item.description}}</td>
                     <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
                     <td ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-click="selectRow(item)">{{item.department}}</td>
-<!--                    <td ng-click="selectRow(item)">{{item.date}}</td>-->
                     <td ng-click="selectRow(item)">{{item.creditAccount}}</td>
-                    <td ng-click="selectRow(item)">{{item.debitAccount}}</td>
-                    <td ng-click="selectRow(item)">{{item.cost | currency}}</td>
-                    <td ng-click="selectRow(item)">{{item.chargeout | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.totalCost | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.totalChargeout | currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
@@ -147,30 +133,19 @@
         <div ng-if="!sidePanelLoading && !searching">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('ACCOUNTING_NAME')?></h3>
-                    <p>{{selectedTimesheet.firstname}} {{selectedTimesheet.lastname}}</p>
-                </div>
-                <div class="pull-right">
-                    <h3><?php echo $this->getString('ACCOUNTING_DATE')?></h3>
-                    <p>{{selectedTimesheet.workDate}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER')?></h3>
+                    <p>{{selectedRow.jobNumber}}</p>
                 </div>
             </div>
-
-            <div class="breakdown-headings">
-                <span><strong><?php echo $this->getString('ACCOUNTING_JOB_NUMBER')?></strong></span>
-                <span><strong><?php echo $this->getString('ACCOUNTING_HOURLY_RATE')?></strong></span>
-                <span><strong><?php echo $this->getString('ACCOUNTING_HOURS')?></strong></span>
-            </div>
-            <div ng-repeat="claim in timesheetBreakdown">
-                <div class="card">
-                    <span>{{claim.jobNumber}}</span>
-                    <span>{{claim.hourlyRate | currency}}</span>
-                    <span>{{claim.totalHours}}</span>
+            
+            <div ng-repeat="item in rowBreakdown">
+                <div class="card info-card">
+                    <p><strong>Name:</strong> {{item.name}}<span class="pull-right"><strong>Date:</strong> {{item.dateEntered}}</span></p>
+                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.cost | currency}}</span></p>
+                    <p>&nbsp;<span class="pull-right"><strong>Chargeout:</strong> {{item.chargeOut | currency}}</span></p>
+                    <p><strong>Department:</strong> {{item.name}}</p>
+                    <p><strong>Debit Account:</strong> {{item.accountingId}}</p>
                 </div>
-            </div>
-            <div class="breakdown-hours">
-                <span><strong><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOTAL_HOURS')?>:</strong></span>
-                <span>{{selectedTimesheet.totalHours}}</span>
             </div>
         </div>
     </div>
