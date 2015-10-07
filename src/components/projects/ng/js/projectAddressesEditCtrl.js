@@ -19,7 +19,8 @@ module.controller('projectAddressEditCtrl', function($scope, $location, projectA
     object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 
     projectAddressesEditSrv.getProjectAddressDetail(object).then(function() {
-      $scope.projectAddress = projectAddressesEditSrv.projectAddressDetail;
+      $scope.project = projectAddressesEditSrv.projectAddress;
+      console.log($scope.project);
       $scope.loading = false;
     });
   }

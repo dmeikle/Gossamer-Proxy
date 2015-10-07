@@ -33,12 +33,20 @@ class ProjectAddressesController extends AbstractController{
         $this->render($result);
     }
     
-    public function edit($id) {       
+    public function get($id) {       
         $result = $this->model->edit($id);
-      
-        //$result['form'] = $this->drawForm($this->model, $result);
         
         $this->render(array('ProjectAddress' => $result));
+    }
+    
+    public function edit($id) {  
+        //commented out for angular load
+        //$result = $this->model->edit($id);
+        $result = array();
+        
+        $result['form'] = $this->drawForm($this->model, $result);
+        
+        $this->render($result);
     }
     
     private function getYears() {

@@ -38,6 +38,7 @@ admin_projects_edit:
         bootstrap_modules:
             - rootApp
             - projectAddressesAdmin
+            #- claimsAdmin
     head:
         - @components/projects/dist/bower_components/angular/angular.min.js
         - @components/projects/dist/bower_components/jquery/dist/jquery.min.js

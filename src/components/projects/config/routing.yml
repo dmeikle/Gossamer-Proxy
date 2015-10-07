@@ -30,7 +30,7 @@ admin_projects_get:
         component: components\projects\ProjectsComponent
         controller: components\projects\controllers\ProjectAddressesController
         model: components\projects\models\ProjectAddressModel
-        method: edit
+        method: get
         view: core\views\JSONView
         viewKey: admin_projects_get
         datasource: datasource1  
@@ -53,15 +53,17 @@ admin_projects_save:
 admin_projects_edit:
     pattern: admin/projects/edit/*
     listeners:
-    #    - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
     defaults:
         component: components\projects\ProjectsComponent
         controller: components\projects\controllers\ProjectAddressesController
         model: components\projects\models\ProjectAddressModel
         method: edit
         view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_projects_get
+        viewKey: admin_projects_edit
         datasource: datasource1  
+        langFiles:
+            -  'src/components/projects/locales/*/Project' 
         
 
 admin_projects_list:

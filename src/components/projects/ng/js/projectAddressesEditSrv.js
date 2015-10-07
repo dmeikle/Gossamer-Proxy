@@ -16,6 +16,7 @@ module.service('projectAddressesEditSrv', function($http) {
       .then(function(response) {
         if (response.data.ProjectAddress) {          
           self.projectAddress = response.data.ProjectAddress;
+ 
         }
       });
   };
