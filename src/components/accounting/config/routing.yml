@@ -1060,23 +1060,35 @@ accounting_inventory_home:
     pattern: admin/accounting/inventory
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\InventoryController
-        model: components\accounting\models\InventoryModel
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
         method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_inventory_home
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-    #listeners:
-        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
 
+accounting_inventory_list:
+    pattern: admin/accounting/inventory/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_inventory_list
+        datasource: datasource1
+        
 accounting_inventory_search:
     pattern: admin/accounting/inventory/search
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\InventoryController
-        model: components\accounting\models\InventoryModel
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
         method: search
         view: core\views\JSONView
         viewKey: accounting_inventory_search
