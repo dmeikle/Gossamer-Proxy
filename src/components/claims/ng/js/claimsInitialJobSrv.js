@@ -1,6 +1,6 @@
 module.service('claimsInitialJobsheetSrv',function(crudSrv) {
-  var apiPathSave = '/admin/claims/initial-jobsheet/save/';
+  var apiPathSave = '/admin/claim/initial-jobsheet/save/';
   this.save = function(object, objectType, formToken, ids) {
-    crudSrv.save(object, objectType, formToken, apiPathSave + ids);
+    return crudSrv.save(object, objectType, formToken, apiPathSave + ids);
   };
 });

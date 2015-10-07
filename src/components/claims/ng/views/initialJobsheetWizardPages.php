@@ -62,7 +62,7 @@
     </div>
   </div>
 </form>
-<form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 1">
+<form id="wizard-form" name="wizard-form" ng-submit="saveContacts(jobSheet.query.contacts)" ng-show="currentPage === 1">
   <div class="toolbar">
     <a href="" class="btn btn-default" ng-click="addOwnerTenant()">
       <?php echo $this->getString('NEW') ?>
@@ -137,7 +137,7 @@
     </div>
   </div>
 </form>
-<form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 2">
+<form id="wizard-form" name="wizard-form" ng-submit="saveAffectedAreas(jobSheet.query.affectedAreas)" ng-show="currentPage === 2">
   <h3><?php echo $this->getString('CLAIMS_AFFECTEDAREAS') ?></h3>
   <div class="col-xs-12 col-md-4">
     <div>
@@ -275,7 +275,7 @@
   </div>
 </form>
 
-<form id="wizard-form" ng-submit="submit(jobSheet.query)" ng-show="currentPage === 3">
+<form id="wizard-form" ng-submit="finish()" ng-show="currentPage === 3">
   <table class="table">
     <tbody>
       <tr>

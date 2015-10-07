@@ -162,7 +162,7 @@ admin_claims_initial_jobsheet:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: index
+        method: getInitialJobsheet
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_initial_jobsheet
         datasource: datasource1
@@ -196,7 +196,7 @@ admin_claims_save_initial_jobsheet:
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
         method: saveInitialJobsheet
-        view: extensions\angular\views\AngularTemplateView
+        view: core\views\JSONView
         viewKey: admin_claims_save_initial_jobsheet
         datasource: datasource1
     methods: [POST]
