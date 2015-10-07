@@ -135,25 +135,25 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     };
     
     //Modal
-//    $scope.openGeneralCostsModal = function(generalCost) {
-//        console.log(generalCost);
-//        $scope.modalLoading = true;
-//        var template = templateSrv.generalCostsModal;
-//        var modal = $modal.open({
-//            templateUrl: template,
-//            controller: 'generalCostsModalCtrl',
-//            size: 'lg',
+    $scope.openModal = function() {
+        //console.log(generalCost);
+        $scope.modalLoading = true;
+        var template = templateSrv.inventoryModal;
+        var modal = $modal.open({
+            templateUrl: template,
+            controller: 'inventoryModalCtrl',
+            size: 'lg',
 //            resolve: {
 //                generalCost: function () {
 //                    return generalCost;
 //                }
 //            }
-//        });
-//        modal.opened.then(function(){
-//            $scope.modalLoading = false;
-//        });
-//        modal.result.then(function(){
-//            getGeneralCostsList();
-//        });
-//    };
+        });
+        modal.opened.then(function(){
+            $scope.modalLoading = false;
+        });
+        modal.result.then(function(){
+            getGeneralCostsList();
+        });
+    };
 });

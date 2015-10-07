@@ -1082,7 +1082,7 @@ accounting_inventory_list:
         view: core\views\JSONView
         viewKey: accounting_inventory_list
         datasource: datasource1
-        
+
 accounting_inventory_search:
     pattern: admin/accounting/inventory/search
     defaults:
@@ -1093,3 +1093,15 @@ accounting_inventory_search:
         view: core\views\JSONView
         viewKey: accounting_inventory_search
         datasource: datasource1
+
+#accounting_inventory_item:
+#    pattern: admin/accounting/inventory/*
+#    defaults:
+#        component: components\accounting\AccountingComponent
+#        controller: components\accounting\controllers\SuppliesUsedController
+#        model: components\accounting\models\SuppliesUsedModel
+#        method: listall
+#        view: core\views\JSONView
+#        viewKey: accounting_inventory_item
+#        datasource: datasource1
+#    methods: [GET]
