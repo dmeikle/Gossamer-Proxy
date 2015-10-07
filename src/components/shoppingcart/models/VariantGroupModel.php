@@ -82,7 +82,7 @@ class VariantGroupModel extends AbstractModel
         $data = $this->dataSource->query(self::METHOD_POST, $pvim, 'SaveProductVariants', array('variant' => $params['variant'])); 
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
        
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
