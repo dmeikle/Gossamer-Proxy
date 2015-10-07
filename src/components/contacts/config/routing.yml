@@ -180,6 +180,9 @@ contacts_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: contacts_home
         datasource: datasource1 
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/contacts/locales/*/Contact'
         
 admin_contacts_search:
     pattern: admin/contacts/search
