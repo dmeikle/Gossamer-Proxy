@@ -46,7 +46,7 @@ class ScopeRequestModel extends  AbstractModel
         return $data;
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         
         $params = array(
 

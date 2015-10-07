@@ -50,7 +50,7 @@ class IncidentTypeModel extends AbstractModel implements FormBuilderInterface{
     }
     
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         
         $data = parent::listall($offset, $rows);
       
