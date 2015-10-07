@@ -1057,11 +1057,11 @@ accounting_costcarditemtypes_save:
     
 #------------------------ inventory ----------------------------
 accounting_inventory_home:
-    pattern: admin/accounting/inventory/
+    pattern: admin/accounting/inventory
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetsController
-        model: components\accounting\models\TimesheetModel
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
         method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_inventory_home
