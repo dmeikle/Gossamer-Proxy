@@ -245,7 +245,13 @@ class AbstractModel {
      * @return array
      */
     public function listallWithParams($offset = 0, $rows = 20, array $params, $customVerb = null) {
-
+        $queryParams = $this->httpRequest->getQueryParameters();
+        if(array_key_exists('directive::ORDER_BY', $queryParams)) {
+            $params['directive::ORDER_BY'] = $queryParams['directive::ORDER_BY'];
+        }
+        if(array_key_exists('directive::DIRECTION', $queryParams)) {
+            $params['directive::DIRECTION'] = $queryParams['directive::DIRECTION'];
+        }
         $params['directive::OFFSET'] = $offset;
         $params['directive::LIMIT'] = $rows;
         $defaultLocale = $this->getDefaultLocale();

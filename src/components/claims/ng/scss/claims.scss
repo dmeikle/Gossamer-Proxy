@@ -1,0 +1,24 @@
+@import 'bootstrap-custom';
+
+@mixin width-transition {
+  transition: width ease .35s;
+}
+
+.widget-content {
+  @include width-transition;
+}
+
+.widget-side-panel {
+  @include width-transition;
+}
+
+.splitcolumn {
+  @extend .col-xs-6;
+
+  &.left {
+    padding-left:0;
+  }
+  &.right {
+    padding-right:0;
+  }
+}

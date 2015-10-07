@@ -41,8 +41,14 @@
   }
   td {
     padding:.25em;
+    vertical-align: top;
   }
   .cog-col {
     width:30px;
+  }
+  input {
+    font-size:80%;
+    height:80%;
+    padding:3px 6px;
   }
 }

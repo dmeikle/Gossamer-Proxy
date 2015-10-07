@@ -3,25 +3,31 @@ module.service('tablesSrv', function(searchSrv) {
 
   self.sortResult = {};
 
-  this.sortByColumn = function(column, direction, apiPath) {
+  this.sortByColumn = function(columns, direction, apiPath) {
     var config = {};
-    config['directive::ORDER_BY'] = column.toLowerCase();
+    var sortString = columns.toString();
+
+    config['directive::ORDER_BY'] = sortString.toLowerCase();
     config['directive::DIRECTION'] = direction;
     searchSrv.sortByColumn(config, apiPath + '/0/20').then(function() {
       self.sortResult = searchSrv.sortResult;
     });
   };
 
-  this.clearSort = function(apiPath) {
-    searchSrv.searchCall(undefined, apiPath + '/0/20').then(function(response) {
+  this.clearSort = function(grouping, apiPath) {
+    var config = {};
+    if (grouping) {
+      config['directive::ORDER_BY'] = grouping;
+    }
+    searchSrv.searchCall(config, apiPath + '/0/20').then(function(response) {
       self.sortResult = response.data;
     });
   };
 
-  this.groupBy = function(apiPath, columnName) {
+  this.groupBy = function(apiPath, columnName, row, numRows) {
     var config = {};
-    config['directive::GROUP_BY'] = columnName;
-    searchSrv.searchCall(config, apiPath + '/0/20').then(function(response) {
+    config['directive::ORDER_BY'] = columnName;
+    searchSrv.searchCall(config, apiPath + '/' + row + '/' + numRows).then(function(response) {
       self.grouped = true;
       self.groupResult = response.data;
     });

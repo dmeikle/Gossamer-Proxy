@@ -46,7 +46,7 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
     public function search(array $term) {
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $term);
         
-        return $this->formatResults($data['ProjectAddresses']);        
+        return $data;       
     }
     
     public function save($id) {

@@ -6,17 +6,24 @@ module.directive('columnSortable', function($compile, $location) {
       var a = document.createElement('a');
       a.setAttribute('ng-click', 'sortByColumn($event)');
       a.setAttribute('href', '');
+      a.setAttribute('class', 'table-header-sortable');
+      a.setAttribute('ng-class', "{'underlined':sortedBy === '" + element[0].dataset.column + "'}");
       a.appendChild(document.createElement('span'));
       a.children[0].innerText = element[0].innerText + ' ';
       a.appendChild(document.createElement('span'));
-      a.children[1].setAttribute('class', 'glyphicon glyphicon-sort');
+      a.children[1].setAttribute('class', 'small glyphicon');
+      a.children[1].setAttribute('ng-class',
+        "{'glyphicon-sort-by-attributes':sortedBy === '" + element[0].dataset.column +
+        "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
+        "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
+        "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
       element[0].innerHTML = '';
 
       var clear = document.createElement('a');
       clear.setAttribute('ng-click', 'clearSort()');
       clear.setAttribute('href', '');
-      clear.setAttribute('class', 'pull-right glyphicon');
-      clear.setAttribute('ng-class', "{'glyphicon-remove': sortedBy ==='" + element[0].dataset.column + "'}");
+      clear.setAttribute('class', 'pull-right small glyphicon');
+      clear.setAttribute('ng-class', "{'glyphicon-remove clear-sort': sortedBy ==='" + element[0].dataset.column + "'}");
       element[0].appendChild(a);
       element[0].appendChild(clear);
       $compile(element.contents())(scope);
@@ -33,35 +40,45 @@ module.directive('columnSortable', function($compile, $location) {
       } else {
         apiPath = a.pathname.slice(0, -1);
       }
+
       $scope.sortByColumn = function(event) {
         $scope.loading = true;
-        var column = event.target.parentElement.parentElement.dataset.column;
+        column = event.target.parentElement.parentElement.dataset.column;
         $scope.sortedBy = column;
         if (!$scope.sorting[column] || $scope.sorting[column] === 'desc') {
           $scope.sorting[column] = 'asc';
         } else {
           $scope.sorting[column] = 'desc';
         }
-        tablesSrv.sortByColumn(column, $scope.sorting[column], apiPath);
+
+        var columns = [];
+        if ($scope.grouped === true) {
+          columns.push($scope.groupedBy);
+        }
+        columns.push(column);
+
+        tablesSrv.sortByColumn(columns, $scope.sorting[column], apiPath);
       };
 
       $scope.clearSort = function() {
         $scope.loading = true;
+        $scope.sorting[$scope.sortedBy] = undefined;
+        var groupedBy = $scope.groupedBy;
         $scope.sortedBy = undefined;
-        tablesSrv.clearSort(apiPath);
+        tablesSrv.clearSort($scope.groupedBy, apiPath);
       };
     }
   };
 });
 
-module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
+module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
   return {
     restrict: 'A',
     scope: false,
     transclude: true,
     link: function(scope, element, attrs) {
       var buttonDOM = document.createElement('div');
-      buttonDOM.setAttribute('class','dropdown');
+      buttonDOM.setAttribute('class', 'dropdown');
       buttonDOM.innerHTML = '<button class="btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-magnet"></span></button>';
       buttonDOM.innerHTML += '<ul class="dropdown-menu pull-right"></ul>';
 
@@ -77,7 +94,7 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
         if (columns.hasOwnProperty(column)) {
           var li = document.createElement('li');
           var a = document.createElement('a');
-          a.setAttribute('ng-click', 'groupBy(' + columns[column].dataset.column + ')');
+          a.setAttribute('ng-click', 'groupBy("' + columns[column].dataset.column + '")');
           a.innerText = columns[column].innerText;
           li.appendChild(a);
           buttonDOM.getElementsByClassName('dropdown-menu')[0].appendChild(li);
@@ -86,6 +103,8 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
 
       var ul = buttonDOM.getElementsByClassName('dropdown-menu')[0];
 
+      ul.appendChild(document.createElement('li'));
+      ul.children[ul.children.length - 1].setAttribute('class', 'divider');
       ul.appendChild(document.createElement('li'));
       ul.children[ul.children.length - 1].appendChild(document.createElement('a'));
       ul.children[ul.children.length - 1].children[0].setAttribute('ng-click', 'clearGrouping()');
@@ -105,12 +124,17 @@ module.directive('sortByButton', function(rootTemplateSrv, $http, $compile) {
         apiPath = a.pathname.slice(0, -1);
       }
 
+      var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+      var numRows = $scope.itemsPerPage;
+
       $scope.groupBy = function(columnName) {
         $scope.loading = true;
-        tablesSrv.groupBy(apiPath, columnName);
+        $scope.groupedBy = columnName;
+        tablesSrv.groupBy(apiPath, columnName, row, numRows);
       };
 
       $scope.clearGrouping = function() {
+        $scope.groupedBy = undefined;
         tablesSrv.clearGrouping();
       };
     }
