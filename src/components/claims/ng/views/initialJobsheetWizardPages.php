@@ -3,10 +3,6 @@
   <?php echo $claimLocationForm['id'] ?>
   <?php echo $claimLocationForm['Claims_id'] ?>
   <div class="col-xs-6 form-group">
-    <label for="jobsheet-location"><?php echo $this->getString('CLAIMS_LOCATION') ?></label>
-    <?php echo $claimLocationForm['unitNumber'] ?>
-  </div>
-  <div class="col-xs-6 form-group">
     <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
     <label for="jobsheet-is-source">
       <input type="checkbox" name="jobsheet-is-source" id="jobsheet-is-source" ng-model="jobSheet.isSource">
@@ -17,7 +13,6 @@
       ng-required="jobSheet.isSource">
   </div>
   <div class="col-xs-6 form-group">
-    <label for="jobsheet-workAuthorization"><?php echo $this->getString('CLAIMS_WORKAUTHORIZATION') ?></label>
     <div class="input-group">
       <label for="jobsheet-is-workAuthorization">
         <?php echo $claimLocationForm['workAuthorizationReceived'] ?>
@@ -26,7 +21,6 @@
     </div>
   </div>
   <div class="col-xs-6 form-group">
-    <label for="jobsheet-lockBox"><?php echo $this->getString('CLAIMS_LOCKBOX') ?></label>
     <label for="jobsheet-is-lockBox">
       <input type="checkbox" id="jobsheet-is-lockBox" ng-model="ClaimLocation.lockBox">
       <?php echo $this->getString('CLAIMS_ISLOCKBOX') ?>
@@ -34,7 +28,6 @@
     <?php echo $claimLocationForm['lockBoxNumber'] ?>
   </div>
   <div class="col-xs-6 form-group">
-    <label for="jobsheet-pictures"><?php echo $this->getString('CLAIMS_PICTURES') ?></label>
     <div>
       <label for="jobsheet-pictures">
         <?php echo $claimLocationForm['picturesTaken'] ?>
@@ -43,7 +36,6 @@
     </div>
   </div>
   <div class="col-xs-6 form-group">
-    <label for="jobsheet-keys"><?php echo $this->getString('CLAIMS_KEYS') ?></label>
     <label for="jobsheet-is-keys">
       <input type="checkbox" name="jobsheet-is-keys" id="jobsheet-is-keys" ng-model="ClaimLocation.keysReceived">
       <?php echo $this->getString('CLAIMS_ISKEYS') ?>
