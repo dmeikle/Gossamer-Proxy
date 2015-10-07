@@ -41,7 +41,7 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
         return $data;
     }
 
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
 
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'

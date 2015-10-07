@@ -33,7 +33,7 @@ class CustomerVIPTypeModel extends  AbstractModel implements FormBuilderInterfac
        
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         return parent::listall($offset, $rows, 'listCustomers');
     }
     

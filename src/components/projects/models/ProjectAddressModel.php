@@ -59,7 +59,7 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         $result = parent::listall($offset, $rows, 'listAddresses');
         
         return $result;

@@ -3,7 +3,7 @@
 contactsAddNewModal :
     path: 'src/components/contacts/ng/views/contactsAddNewModal.php'
     langFiles:
-        - 'src/components/contacts/locales/*/Contacts'
+        - 'src/components/contacts/locales/*/Contact'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
@@ -22,7 +22,7 @@ contactsAddNewModal :
 contactAdvancedSearchFilters:
     path: 'src/components/contacts/ng/views/contactAdvancedSearchFilters.php'
     langFiles:
-        - 'src/components/contacts/locales/*/Contacts'
+        - 'src/components/contacts/locales/*/Contact'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
 #        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }

@@ -34,8 +34,20 @@ class ContactModel extends  AbstractModel implements FormBuilderInterface
        
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
-        return parent::listall($offset, $rows, 'listContacts');
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+        $queryParams = $this->httpRequest->getQueryParameters();
+        
+        $params = array();
+        
+        foreach($queryParams as $key => $value) {
+            //$params['directive::' . strtoupper($key)] = $value; //commented out to fix advanced search
+            $params[$key] = $value;
+        }
+        
+        $defaultLocale = $this->getDefaultLocale();
+        $params['locale'] = $defaultLocale['locale'];
+        
+        return parent::listall($offset, $rows, 'listContacts', $params);
     }
     
     public function save($id) {

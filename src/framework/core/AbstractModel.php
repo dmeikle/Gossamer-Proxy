@@ -211,9 +211,9 @@ class AbstractModel {
      * @param type $customVerb
      * @return type
      */
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
 
-        return $this->listallWithParams($offset, $rows, array(), $customVerb);
+        return $this->listallWithParams($offset, $rows, $params, $customVerb);
     }
 
     /**

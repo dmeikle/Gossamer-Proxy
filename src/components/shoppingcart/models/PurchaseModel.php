@@ -55,7 +55,7 @@ class PurchaseModel extends AbstractModel{
         return (array($params['value']));
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         $params = array(
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'CartPurchases.id', 'directive::DIRECTION' => 'desc'
         );

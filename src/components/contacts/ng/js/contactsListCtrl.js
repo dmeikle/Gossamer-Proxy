@@ -1,4 +1,4 @@
-module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, contactsEditSrv, contactsTemplateSrv) {
+module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, contactsEditSrv, contactsTemplateSrv, tablesSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -9,6 +9,14 @@ module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, 
   $scope.autocomplete = {};
 
   $scope.previouslyClickedObject = {};
+  // Load up the table service so we can watch it!
+  $scope.tablesSrv = tablesSrv;
+  $scope.$watch('tablesSrv.sortResult', function() {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+      $scope.contactsList = tablesSrv.sortResult.Contacts;
+      $scope.loading = false;
+    }
+  });
 
   var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
   var numRows = $scope.itemsPerPage;
