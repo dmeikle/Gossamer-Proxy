@@ -1,3 +1,4 @@
+
 <div class="widget" ng-controller="timesheetListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Timesheet List</h1>
@@ -49,19 +50,28 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>  
-            <td></td>  
             <td></td>
+<<<<<<< HEAD
             <td>
               <span class="spinner-loader"></span>
             </td>
             <td></td>  
             <td></td>  
+=======
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <span class="spinner-loader"></span>
+            </td>
+            <td></td>
+>>>>>>> origin/CP-97
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
+<<<<<<< HEAD
             <tr ng-if="!loading" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
               <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
@@ -75,6 +85,21 @@
               <td ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
+=======
+          <tr ng-if="!loading" ng-repeat="timesheet in timesheetList" ng-click="selectRow(timesheet)" ng-class="{'selected': timesheet.clicked}">
+              <td>{{timesheet.lastname}}, {{timesheet.firstname}}</td>
+              <td>{{timesheet.numJobs}}</td>
+              <td>{{timesheet.hourlyRate | currency}}</td>
+              <td>{{timesheet.regularHours}}</td>
+              <td>{{timesheet.overtimeHours}}</td>
+              <td>{{timesheet.doubleOTHours}}</td>
+              <td>{{timesheet.statRegularHours}}</td>
+              <td>{{timesheet.statOTHours}}</td>
+              <td>{{timesheet.statDoubleOTHours}}</td>
+              <td>{{timesheet.workDate}}</td>
+              <td>{{timesheet.isExported}}</td>
+              <td>{{timesheet.totalHours}}</td>
+>>>>>>> origin/CP-97
               <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>

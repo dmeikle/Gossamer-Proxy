@@ -78,7 +78,7 @@ accounting_timesheets_breakdown:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-        
+
 
 accounting_timesheets_list:
     pattern: admin/accounting/timesheets/*/*

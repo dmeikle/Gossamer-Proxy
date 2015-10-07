@@ -36,6 +36,8 @@ class TimesheetModel extends AbstractModel{
     public function save($id) {
         $params = $this->httpRequest->getPost();
         unset($params['FORM_SECURITY_TOKEN']);
+        $params['timesheetItems']['enteredByStaff_id'] = $this->getLoggedInStaffId();
+        
         
         return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
     }

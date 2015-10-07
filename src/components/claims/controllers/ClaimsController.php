@@ -37,10 +37,8 @@ class ClaimsController extends AbstractController{
     public function searchByJobNumber() {
         $results = $this->model->searchByJobNumber(array('jobNumber' => $this->getJobNumber()));
 
-        $serializer = new ClaimSerializer();
-        $list = $serializer->formatJobNumberResults($results);
+        $this->render($results);
 
-        $this->render($list);
     }
 
     public function editByJobNumber($jobNumber) {

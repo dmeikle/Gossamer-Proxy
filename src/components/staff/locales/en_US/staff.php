@@ -86,5 +86,22 @@ return array(
   'STAFF_GROUPEDBY_MOBILE' => 'Grouped by mobile: ',
   'STAFF_GROUPEDBY_STATUS' => 'Grouped by status: ',
   'STAFF_GROUPEDBY_LASTLOGIN' => 'Grouped by time last seen: ',
-
+  'STAFF_TIMESHEET_NEW' => 'New Timesheet',
+  'STAFF_TIMESHEET_DATE' => 'Date',
+  'STAFF_TIMESHEET_VEHICLE_NUMBER' => 'Vehicle #',
+  'STAFF_TIMESHEET_JOB_NUMBER' => 'Job No.',
+  'STAFF_TIMESHEET_PHASE' => 'Phase/Code',
+  'STAFF_TIMESHEET_UNIT_NUMBER' => 'Unit No.',
+  'STAFF_TIMESHEET_ADDRESS' => 'Address',
+  'STAFF_TIMESHEET_CITY' => 'City',
+  'STAFF_TIMESHEET_TOLL1' => 'Toll 1',
+  'STAFF_TIMESHEET_TOLL2' => 'Toll 2',
+  'STAFF_TIMESHEET_TIME_FROM' => 'Time From',
+  'STAFF_TIMESHEET_TIME_TO' => 'Time To',
+  'STAFF_TIMESHEET_HOURS_REGULAR' => 'REG',
+  'STAFF_TIMESHEET_HOURS_OVERTIME' => 'OT',
+  'STAFF_TIMESHEET_HOURS_DOUBLE_OVERTIME' => 'DOT',
+  'STAFF_TIMESHEET_HOURS_TOTALS' => 'Total'
+    
+    
 );
