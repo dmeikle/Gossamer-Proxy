@@ -29,7 +29,7 @@ class CompanyContactModel extends  AbstractModel
     }
     
     
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         return parent::listall($offset, $rows, 'listByClaim');
     }
     
