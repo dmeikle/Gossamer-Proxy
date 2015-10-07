@@ -24,7 +24,19 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         }
     });
 
-
+$scope.selectRow = function (clickedObject) {
+        $scope.searching = false;
+        if ($scope.previouslyClickedObject !== clickedObject) {
+            $scope.previouslyClickedObject = clickedObject;
+            $scope.sidePanelLoading = true;
+            claimsListSrv.getClaimLocations(clickedObject)
+                    .then(function () {
+                        $scope.selectedClaim = claimsListSrv.claim;
+                        $scope.sidePanelOpen = true;
+                        $scope.sidePanelLoading = false;
+                    });
+        }
+    };
 
     $scope.openAddNewWizard = function () {
         var modalInstance = $modal.open({

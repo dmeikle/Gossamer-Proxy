@@ -1,3 +1,15 @@
+admin_blogs_home:
+    pattern: admin/blogs
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_blogs_home
+        datasource: datasource1
+        
+
 admin_blogs_edit:
     pattern: admin/blogs/*
     defaults:

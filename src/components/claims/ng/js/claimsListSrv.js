@@ -22,6 +22,13 @@ module.service('claimsListSrv', function($http, searchSrv) {
         self.claimDetail = response.data.Claim;
       });
   };
+  
+  this.getClaimLocations = function(object) {
+      return $http.get(apiPath + 'locations/' + object.id)
+      .then(function(response) {        
+        self.claimLocations = response.data.ClaimLocations;
+      });
+  };
 
   this.fetchAutocomplete = function(searchObject) {
     return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {

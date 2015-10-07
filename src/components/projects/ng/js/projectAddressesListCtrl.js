@@ -127,7 +127,6 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
                     });
         }
     };
-
     $scope.$watch('currentPage + itemsPerPage', function () {
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
