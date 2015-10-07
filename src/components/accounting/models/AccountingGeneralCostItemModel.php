@@ -32,4 +32,22 @@ class AccountingGeneralCostItemModel extends AbstractModel{
         $this->entity = 'AccountingGeneralCostItem';
         $this->tablename = 'accountinggeneralcostitems';
     }
+    
+    public function listall($offset, $rows) {
+        $queryParams = $this->httpRequest->getQueryParameters();
+        
+        $params = array(
+            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
+            'directive::OFFSET' => intval($offset), 'directive::LIMIT' => intval($rows)
+        );
+        
+        foreach($queryParams as $key => $value) {
+            //$params['directive::' . strtoupper($key)] = $value; //commented out to fix advanced search
+            $params[$key] = $value;
+        }
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+        
+        return $data;
+    }
 }

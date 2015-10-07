@@ -1,13 +1,15 @@
-             
+
+
             
-claims_new_claim_wizard_1:   
+claims_new_claim_wizard_1:
     template: admin-list.php
-    sections: 
+    sections:
         -
+
             "header": "src/themes/default/templates/sections/admin-header.php"
             "content": "src/components/claims/views/admin/wizard1.php"
             "footer": "src/themes/default/templates/sections/footer.php"  
-            
+        
 admin_claims_home:
     template: admin-list.php
     sections:
@@ -38,6 +40,7 @@ admin_claims_home:
         - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
     
     
+
 admin_claims_list:
     template: admin-list.php
     sections:
@@ -92,36 +95,37 @@ admin_claims_edit:
     css:
         - @components/claims/dist/css/claims.min.css
     
+
 admin_claims_edit1:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/edit1.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-            
-admin_claims_edit2: 
+
+admin_claims_edit2:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/edit2.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
+
 admin_claims_edit3:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/edit3.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
+
 admin_claims_edit4:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
@@ -130,91 +134,91 @@ admin_claims_edit4:
 
 admin_claim_view:
     template: admin-list.php
-    sections: 
-        -           
+    sections:
+        -
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "header": "src/themes/default/templates/sections/admin-header.php" 
             "section2": "src/components/claims/views/admin/subnav.php"
             "content": "src/components/claims/views/admin/claims/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
-    
+
 admin_claimlocation_view:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/locations-edit.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
+
 admin_claimlocation_edit_work:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/locationswork-list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
-admin_claimlocation_work_history:   
+
+admin_claimlocation_work_history:
     template: admin-list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/claims/views/admin/locationswork-history.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
-            
+            "section4": "src/themes/default/templates/sections/footer.php"
+
 admin_claims_scheduling_list:
     template: admin-list-fullscreen.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/admin-header.php"
             "section2": "src/components/claims/views/admin/subnav.php"
             "section3": "src/components/scheduling/views/grid-compressed.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
-    
+            "section4": "src/themes/default/templates/sections/footer.php"
+
 admin_claimlocations_by_claimid:
-    
-         
-            
-admin_claims_claim_photos_home:      
+
+
+
+admin_claims_claim_photos_home:
     template: admin-fullscreen.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/header.php"
             "section2": "src/components/claims/views/subnav.php"
             "section3": "src/components/claims/views/admin/parameters.php"
             #"section4": "src/components/claims/views/list-by-address.php"
-            "section5": "src/themes/default/templates/sections/footer.php"  
-    
-    
+            "section5": "src/themes/default/templates/sections/footer.php"
+
+
 #-----------------------------start client portal section --------------------------------
-claims_list:   
+claims_list:
     template: list-fullscreen.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/header.php"
             "section2": "src/components/claims/views/subnav.php"
             "section3": "src/components/claims/views/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
-            
-claims_view:      
+            "section4": "src/themes/default/templates/sections/footer.php"
+
+claims_view:
     template: list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/header.php"
             "section2": "src/components/claims/views/subnav.php"
             "section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/view.php"
-            "section5": "src/themes/default/templates/sections/footer.php"  
-                    
-claims_list_by_projectaddress:     
+            "section5": "src/themes/default/templates/sections/footer.php"
+
+claims_list_by_projectaddress:
     template: list.php
-    sections: 
+    sections:
         -
             "section1": "src/themes/default/templates/sections/header.php"
             "section2": "src/components/claims/views/subnav.php"
             #"section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/list-by-address.php"
-            "section5": "src/themes/default/templates/sections/footer.php"              
+            "section5": "src/themes/default/templates/sections/footer.php"

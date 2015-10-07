@@ -41,6 +41,7 @@ class AbstractCachableListener extends AbstractListener {
 
         $this->logger->addDebug('checking cachablelistener for method: ' . $method);
         if (method_exists($this, $method)) {
+           
             //first check cache
             $key = $this->getKey();
 

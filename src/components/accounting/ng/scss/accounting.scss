@@ -21,9 +21,14 @@ table{
 }
 .toolbar{
     width:100%;
-    .new-item{
+    .modal-spinner{
+        vertical-align:middle;
         float:left;
-        margin-left:0px;
+        margin-left:30px;
+    }
+    .new-item{
+//        float:left;
+//        margin-left:0px;
     }
     &.pull-right{
         input, select{
@@ -190,5 +195,41 @@ table{
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
         }
+    }
+}
+.modal-content{
+    .typeahead{
+        width:auto;
+    }
+    .input-group{
+        display: inline-block;
+        label{
+            display:block;
+        }
+    }
+    .general-cost-items{
+        margin-bottom: 10px;
+        .date-col{
+            overflow: visible;
+            .input-group{
+                display: flex;
+            }
+            input{
+                width:140px;
+            }
+        }
+        .debit-account{
+            width:170px;
+        }
+        .cost, .chargeout{
+            width:100px;
+        }
+    }
+    .general-costs-modal{
+        .resultspane.claim-number{
+            display: block;
+            top: 63px;
+            left: 0px;
+        }        
     }
 }

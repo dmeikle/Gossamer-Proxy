@@ -1,24 +1,29 @@
 <div class="widget" ng-controller="generalCostsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">General Costs List</h1>
-        <div class="clearfix"></div>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
         
         <!--    <div class="pull-right">-->
-        <div class="toolbar form-inline pull-right">
-            <button class="primary new-item" ng-click="openGeneralCostsModal()"><?php echo $this->getString('ACCOUNTING_NEW_GENERAL_COST_ITEM') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
+        <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
-            <form ng-submit="search(basicSearch.query)" class="input-group">
-                <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
-                    <option value="name" ng-selected="true"><?php echo $this->getString('ACCOUNTING_NAME'); ?></option>
-                    <option value="cost"><?php echo $this->getString('ACCOUNTING_COST'); ?></option>
-                    <option value="date"><?php echo $this->getString('ACCOUNTING_DATE'); ?></option>                    
-                </select>
-                <input type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control">
-                <button type="submit" class="primary"><?php echo $this->getString('ACCOUNTING_SEARCH') ?></button>                
+            <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
+                <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
+<!--                <button type="submit" class="primary"><?php// echo $this->getString('ACCOUNTING_SEARCH') ?></button>-->
+                <span class="input-group-btn" ng-if="!searchSubmitted">
+                    <button type="submit" class="btn-default">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+                <span ng-if="searchSubmitted" class="input-group-btn">
+                    <button type="reset" class="btn-default" ng-click="resetSearch()">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
             </form>
+            <button class="primary new-item" ng-click="openGeneralCostsModal()"><?php echo $this->getString('ACCOUNTING_NEW_GENERAL_COST_ITEM') ?></button>
+<!--            <span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>-->
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -29,7 +34,7 @@
                     <th><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+<!--                    <th><?php// echo $this->getString('ACCOUNTING_DATE'); ?></th>-->
                     <th><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
@@ -48,34 +53,33 @@
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>  
-                    <td></td>  
                     <td></td>
                     <td></td>
                     <td></td>                    
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(timesheet)">{{item.name}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.description}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.jobNumber}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.phase}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.Departments_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.date}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.AccountingDebitAccounts_id}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.cost}}</td>
-                    <td ng-click="selectRow(timesheet)">{{item.chargeOut}}</td>
+                    <td ng-click="selectRow(item)">{{item.name}}</td>
+                    <td ng-click="selectRow(item)">{{item.description}}</td>
+                    <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-click="selectRow(item)">{{item.department}}</td>
+<!--                    <td ng-click="selectRow(item)">{{item.date}}</td>-->
+                    <td ng-click="selectRow(item)">{{item.creditAccount}}</td>
+                    <td ng-click="selectRow(item)">{{item.debitAccount}}</td>
+                    <td ng-click="selectRow(item)">{{item.cost | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.chargeout | currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openTimesheetModal(timesheet)">Edit</a></li>
+                                <li><a ng-click="openGeneralCostsModal(item)">Edit</a></li>
                             </ul>
                         </div>
                     </td>
                 </tr>            
             </tbody>        
         </table>
-        <div ng-if="noSearchResults" class="results-message warning">
+        <div ng-cloak ng-if="noSearchResults" class="results-message warning">
             <?php echo $this->getString('ACCOUNTING_NO_RESULTS');?>
         </div>
 
@@ -95,7 +99,7 @@
             <div id="advancedSearch">
                 <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
                 <input placeholder="Description" class="form-control" name="description" ng-model="advSearch.description">
-                <input placeholder="Claim" class="form-control" name="name" ng-model="advSearch.claim">
+                <input placeholder="Claim" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
                 <label>From Date</label>
@@ -123,13 +127,12 @@
                 </div>
                 
                 <input placeholder="Cost" class="form-control" name="cost" ng-model="advSearch.cost">
-                <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeout">
-                <input placeholder="Department" class="form-control" name="department" ng-model="advSearch.department">
+                <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeOut">
                 
-                <select class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
+                <select class="form-control" name="Departments_id" ng-model="advSearch.Departments_id">
                     <option value="" selected>-Department-</option>
                     <?php foreach($Departments as $department) {
-                    echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
+                        echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
                 </select>
             </div>
 
