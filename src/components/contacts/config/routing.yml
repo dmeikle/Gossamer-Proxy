@@ -163,7 +163,9 @@ admin_contacts_credentials_save:
         view: core\views\TemplateView
         viewKey: admin_contacts_credentials_save
         datasource: datasource1
-    methods: [POST]      
+    methods: [POST]         
+    
+     
     
     
     
@@ -207,6 +209,23 @@ admin_contacts_save:
         viewKey: admin_contacts_save
         datasource: datasource1
         
+ 
+        
+admin_contacts_list_by_company:
+    pattern: admin/companies/clients/*/*/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: listallByCompanyId
+        view: core\views\JSONView
+        viewKey: admin_contacts_list_by_company
+        datasource: datasource1  
+
+  
+  
+  
+  
   
 admin_scoping_add_contact:
     pattern: admin/scoping/requests/addContact

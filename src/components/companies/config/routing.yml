@@ -1,47 +1,6 @@
-#------------ rest
 
-
-admin_companies_rest_paginator:
-    pattern: admin/companies/pagination/*/*
-    defaults:
-        component: components\companies\CompaniesComponent
-        controller: components\companies\controllers\CompaniesController
-        model: components\companies\models\CompanyModel
-        method: pagination
-        view: core\views\JSONView
-        viewKey: admin_companies_rest_list
-        datasource: datasource1
-        
-        
-admin_companies_rest_list:
-    pattern: admin/companies/rest/*/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
-    defaults:
-        component: components\companies\CompaniesComponent
-        controller: components\companies\controllers\CompaniesController
-        model: components\companies\models\CompanyModel
-        method: backboneListall
-        view: core\views\JSONView
-        viewKey: admin_companies_rest_list
-        datasource: datasource1
-
-
-
-#------------ end rest
-
-
-
-
-
-
-
-
-
-admin_companies_search:
+admin_companies_sarch:
     pattern: admin/companies/search
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
@@ -49,68 +8,101 @@ admin_companies_search:
         method: search
         view: core\views\JSONView
         viewKey: admin_companies_search
-        datasource: datasource1
+        datasource: datasource1 
+    methods: [GET]   
 
-admin_companies_view:
-    pattern: admin/companies/view/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+
+admin_companies_home:
+    pattern: admin/companies
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
         model: components\companies\models\CompanyModel
-        method: edit
-        view: core\views\JSONView
-        viewKey: admin_companies_edit
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_companies_home
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
-   
-admin_companies_list:
-    pattern: admin/companies/*/*
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
-    defaults:
-        component: components\companies\CompaniesComponent
-        controller: components\companies\controllers\CompaniesController
-        model: components\companies\models\CompanyModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: admin_companies_list
-        datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
-   
-admin_companies_edit:
+        langFiles:
+            - 'src/components/companies/locales/*/Company'
+
+admin_companies_get:
     pattern: admin/companies/*
-    methods: [GET]
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_companies_get
+        datasource: datasource1 
+    methods: [GET]   
+    
+
+admin_companies_edit:
+    pattern: admin/companies/edit/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', cacheKey: CompanyTypes}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', cacheKey: Provinces}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', cacheKey: Countrys}
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
         model: components\companies\models\CompanyModel
         method: edit
-        view: core\views\TemplateView
-        viewKey: admin_companies_edit
-        datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
- 
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_companies_list
+        datasource: datasource1 
+    methods: [GET]      
+
 
 admin_companies_save:
     pattern: admin/companies/*
-    methods: [POST]
-   # listeners:
-   #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener', 'methods': [POST] }
     defaults:
         component: components\companies\CompaniesComponent
         controller: components\companies\controllers\CompaniesController
         model: components\companies\models\CompanyModel
         method: save
         view: core\views\JSONView
-        viewKey: admin_companies_edit
-        datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+        viewKey: admin_companies_save
+        datasource: datasource1 
+    methods: [POST]      
+
+    
+admin_company_contacts_list:
+    pattern: admin/companies/contacts/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyContactModel
+        method: listallByCompanyId
+        view: core\views\JSONView
+        viewKey: admin_company_contacts_list
+        datasource: datasource1 
+
         
+        
+admin_company_claims:
+    pattern: admin/companies/claims/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\claims\models\ClaimModel
+        method: listallClaims
+        view: core\views\JSONView
+        viewKey: admin_company_claims
+        datasource: datasource1          
+        
+        
+admin_companies_list:
+    pattern: admin/companies/*/*
+    defaults:
+        component: components\companies\CompaniesComponent
+        controller: components\companies\controllers\CompaniesController
+        model: components\companies\models\CompanyModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_companies_list
+        datasource: datasource1  
+       

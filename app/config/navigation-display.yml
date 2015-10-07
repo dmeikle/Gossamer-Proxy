@@ -254,7 +254,7 @@ directory:
                         - IS_PMA
                 contacts_companies_listall:
                     text_key: 'ADMIN_COMPANIES_LIST_ALL'
-                    pattern: '/admin/companies/0/20'
+                    pattern: '/admin/companies'
                     display_roles:
                         - IS_ADMINISTRATOR
                         - IS_STAFF

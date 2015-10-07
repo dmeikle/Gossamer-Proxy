@@ -133,6 +133,5 @@ class ContactsController extends AbstractController
         
         $this->render($result);
     }
-    
-    
+        
 }
