@@ -8,7 +8,8 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     apiPath = a.pathname.slice(0, -1);
   }
 
-  var ids = apiPath.slice(apiPath.indexOf('jobsheet') + 9);
+  var claimId = apiPath.slice(apiPath.indexOf('jobsheet') + 9, apiPath.lastIndexOf('/') + 1);
+  var claimLocationId = apiPath.slice(apiPath.lastIndexOf('/') + 1);
 
   $scope.loading = true;
   $scope.jobSheet = new AngularQueryObject();
@@ -16,7 +17,7 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
   $scope.jobSheet.query.contacts.push({});
 
   $scope.getClaimDetails = function() {
-    claimsEditSrv.getClaimDetails(ids.slice(ids.lastIndexOf('/') + 1)).then(function(response) {
+    claimsEditSrv.getClaimDetails(claimId).then(function(response) {
       $scope.claim = response.data.claim;
       claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id).then(function(response) {
         $scope.projectAddress = response.data.ProjectAddress;
@@ -35,22 +36,36 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     $scope.jobSheet.query.contacts.splice(index, 1);
   };
 
-  $scope.submit = function(object) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    object.claimLocation = $scope.ClaimLocation;
-    claimsInitialJobsheetSrv.save(object, formToken, ids);
-  };
-
   function save(object, objectType, formToken) {
-    $scope.ClaimLocation_id = document.getElementById('ClaimLocation_id').value;
-    $scope.Claim_id = document.getElementById('ClaimLocation_Claims_id').value;
-    var idString = $scope.ClaimLocation_id + '/' + $scope.Claim_id;
-    claimsInitialJobsheetSrv.save(object, objectType, formToken, idString);
+    return claimsInitialJobsheetSrv.save(object, objectType, formToken, claimId + claimLocationId);
   }
 
   $scope.saveClaimLocation = function(object) {
     var objectType = 'ClaimLocation';
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    save(object, objectType, formToken);
+    save(object, objectType, formToken).then(function() {
+      $scope.nextPage();
+    });
+  };
+
+  $scope.saveContacts = function(object) {
+    var objectType = 'Contacts';
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    save(object, objectType, formToken).then(function() {
+      $scope.nextPage();
+    });
+  };
+
+  $scope.saveAffectedAreas = function(object) {
+    var objectType = 'AffectedAreas';
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    save(object, objectType, formToken).then(function() {
+      $scope.nextPage();
+    });
+  };
+
+  $scope.finish = function() {
+    var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
+    window.location.pathname = uri;
   };
 });

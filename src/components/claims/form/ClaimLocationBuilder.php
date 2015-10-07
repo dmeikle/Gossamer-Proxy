@@ -29,8 +29,8 @@ class ClaimLocationBuilder extends AbstractBuilder{
         }
 
         $builder->add('unitNumber', 'text', array('ng-model' => 'ClaimLocation.unitNumber', 'class' => 'form-control', 'value' => $this->getValue('unitNumber', $values)))
-                ->add('workAuthorizationReceived', 'check', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'value' => '1'))
-                ->add('picturesTaken', 'check', array('ng-model' => 'ClaimLocation.picturesTaken', 'value' => '1'))
+                ->add('workAuthorizationReceived', 'check', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'ng-true-value' => '1'))
+                ->add('picturesTaken', 'check', array('ng-model' => 'ClaimLocation.picturesTaken', 'ng-true-value' => '1'))
                 ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber','ng-disabled' => '!ClaimLocation.lockBox','ng-required' => 'ClaimLocation.lockBox', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
                 ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom','ng-disabled' => '!ClaimLocation.keysReceived','ng-required' => 'ClaimLocation.keysReceived', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))

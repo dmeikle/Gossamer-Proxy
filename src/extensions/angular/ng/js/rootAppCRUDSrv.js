@@ -11,7 +11,8 @@ module.service('crudSrv', function($http) {
     data.FORM_SECURITY_TOKEN = formToken;
     return $http({
       method: 'POST',
-      url: requestPath,
+      // url: requestPath,
+      url:apiPath, 
       data: data,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
