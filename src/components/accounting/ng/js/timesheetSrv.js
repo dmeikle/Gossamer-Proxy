@@ -1,5 +1,5 @@
 // Timesheet service
-module.service('timesheetSrv', function($http) {
+module.service('timesheetSrv', function($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/timesheets/';
     var timesheetItemsPath = '/admin/accounting/timesheetitems/';
     var staffPath = '/admin/staff/';
@@ -82,10 +82,14 @@ module.service('timesheetSrv', function($http) {
     };
     
     //Staff Autocomplete
-    this.autocomplete = function(searchObject) {
-        var value = searchObject;
-        var column = 'name';        
-        return $http.get(staffPath + 'search?' + column + '=' + value)
+    this.staffAutocomplete = function(searchObject) {
+        var config = {};
+        config.name = searchObject;     
+        return $http({
+            url: staffPath + 'search?',
+            method: 'GET',
+            params: config
+        })
             .then(function(response) {
             self.autocompleteList = response.data.Staffs;
         });
@@ -96,8 +100,7 @@ module.service('timesheetSrv', function($http) {
         var config = {};
         if(object){            
             var splitObject = object.split(' ');
-            console.log(splitObject);
-        
+            console.log(splitObject);        
             if (object || splitObject.length === 1) {            
                 config.name = object;
             }
@@ -181,22 +184,46 @@ module.service('timesheetSrv', function($http) {
         });
     };
     
-//    this.fetchLaborerAutocomplete = function(searchObject) {
-//        return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
-//            self.autocomplete = searchSrv.autocomplete.Staffs;
-//            self.autocompleteValues = [];
-//            if (searchObject.name) {
-//                for (var staff in self.autocomplete) {
-//                    if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
-//                        self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
-//                    }
-//                }
-//            }
-//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
-//                return self.autocompleteValues;
-//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
-//                return undefined;
-//            }
-//        });
-//    };
+    //Typeahead autocomplete
+    this.fetchAutocomplete = function(searchObject) {
+        console.log('fetching typeahead autocomplete...');
+        return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function() {
+            self.autocomplete = searchSrv.autocomplete.Staffs;
+            self.autocompleteValues = [];
+            if (searchObject.name) {
+                for (var staff in self.autocomplete) {
+                    if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
+                        self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
+                    }
+                }
+            }
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+
+    this.search = function(searchObject) {    
+        return searchSrv.search(searchObject, apiPath).then(function() {
+            self.searchResults = searchSrv.searchResults.Timesheets;
+            self.searchResultsCount = searchSrv.searchResults.TimesheetsCount[0].rowCount;
+        });
+    };    
+    
+    this.advancedSearch = function(searchObject) {
+        var config = angular.copy(searchObject);
+        config.workDate = $filter('date')(config.workDate, 'yyyy-MM-dd', '+0000');
+        return $http({
+            url: apiPath + 'search?',
+            method: 'GET',
+            params: config
+        })
+            .then(function(response) {
+            console.log(response);
+            self.advancedSearchResults = response.data.Timesheets;
+            self.advancedSearchResultsCount = response.data.TimesheetsCount[0].rowCount;
+        });
+    };
 });

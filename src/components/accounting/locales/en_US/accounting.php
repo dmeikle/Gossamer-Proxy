@@ -3,6 +3,11 @@
 return array(
     'ACCOUNTING_SEARCH' => 'Search',
     'ACCOUNTING_ADVANCED_SEARCH' => 'Advanced Search',
+    'ACCOUNTING_SUBMIT' => 'Submit',
+    'ACCOUNTING_RESET' => 'Reset',
+    'ACCOUNTING_CLOSE' => 'Close',
+    'ACCOUNTING_NO_RESULTS' => 'No Results Found',
+    
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
     'ACCOUNTING_DATE' => 'Date',
@@ -44,6 +49,12 @@ return array(
     'ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS' => 'SDOT',
     'ACCOUNTING_TIMESHEET_TOTAL_HOURS' => 'Total',
     
+    'ACCOUNTING_DEPARTMENT' => 'Department',
+    'ACCOUNTING_DEBIT_ACCOUNT' => 'Debit Account',
+    'ACCOUNTING_CREDIT_ACCOUNT' => 'Credit Account',
+    'ACCOUNTING_COST' => 'Cost',
+    'ACCOUNTING_CHARGEOUT' => 'Chargeout',
+    'ACCOUNTING_NEW_GENERAL_COST_ITEM' => 'New General Cost Item',
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     

@@ -63,6 +63,8 @@ accounting_timesheets_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
 
         
 
@@ -225,6 +227,33 @@ accounting_positems_save:
     
 
 #------------------------ general costs ----------------------------
+accounting_generalcosts_home:
+    pattern: admin/accounting/generalcosts/
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_generalcosts_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+
+accounting_generalcosts_search:
+    pattern: admin/accounting/generalcosts/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_search
+        datasource: datasource1
+        
+        
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
     defaults:
@@ -232,7 +261,7 @@ accounting_generalcosts_list:
         controller: components\accounting\controllers\GeneralCostsController
         model: components\accounting\models\GeneralCostModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_generalcosts_list
         datasource: datasource1
 
@@ -262,7 +291,18 @@ accounting_generalcosts_save:
         datasource: datasource1 
     methods: [POST]       
     
-
+accounting_generalcost_items_list:
+    pattern: admin/accounting/generalcostitems/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingGeneralCostItemsController
+        model: components\accounting\models\AccountingGeneralCostItemModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_generalcost_items_list
+        datasource: datasource1
+    methods: [GET]
+    
 #------------------------ credit accounts ----------------------------
 accounting_creditaccounts_list:
     pattern: admin/accounting/creditaccounts/*/*

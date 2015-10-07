@@ -19,10 +19,49 @@ table{
         background-color: rgba(3,146,211,0.4)!important;
     }
 }
+.toolbar{
+    width:100%;
+    .new-item{
+        float:left;
+        margin-left:0px;
+    }
+    &.pull-right{
+        input, select{
+            display:inline;
+            width:auto!important;
+        }
+    }
+}
+#advancedSearch{
+    input, select{
+        margin-bottom:10px;
+    }
+    .input-group{
+        margin-bottom:10px;
+        input{
+            margin-bottom:0;
+        }
+    }
+    .date-picker{
+        width:50%;
+//        .input-group-btn:last-child>button{
+//            margin-left: -10px;
+//            
+//        }
+    }
+}
+.results-message{
+    text-align: center;
+    padding:10px;
+    background-color: #fcf8e3;
+}
 .widget-side-panel, .widget-content{
     transition: width ease 0.35s;
 }
 .widget-side-panel{
+    &.datepicker-open{
+        overflow: visible;
+    }
     .breakdown-title{
         display: inline-block;
         width: 100%;

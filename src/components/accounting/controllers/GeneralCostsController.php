@@ -21,4 +21,13 @@ use core\AbstractController;
  */
 class GeneralCostsController extends AbstractController{
    
+    public function search() {
+        $params = $this->httpRequest->getQueryParameters();
+        $offset = 0;
+        $limit = 20;
+        
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'search');
+        
+        $this->render($result);
+    }
 }

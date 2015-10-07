@@ -1,0 +1,35 @@
+﻿Merge branch 'CP-123' into rc1.0.7
+
+Conflicts:
+	.gitignore
+	src/components/accounting/views/timesheets/list.php
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch rc1.0.7
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	deleted:    src/components/accounting/Accounting.php
+#	modified:   src/components/accounting/config/render.yml
+#	modified:   src/components/accounting/config/routing.yml
+#	modified:   src/components/accounting/config/views.yml
+#	deleted:    src/components/accounting/controllers/AccountingGeneralCostsController.php
+#	modified:   src/components/accounting/controllers/GeneralCostsController.php
+#	modified:   src/components/accounting/locales/en_US/accounting.php
+#	modified:   src/components/accounting/ng/js/accountingTemplateSrv.js
+#	new file:   src/components/accounting/ng/js/generalcostsListCtrl.js
+#	modified:   src/components/accounting/ng/js/timesheetListCtrl.js
+#	modified:   src/components/accounting/ng/js/timesheetModalCtrl.js
+#	modified:   src/components/accounting/ng/js/timesheetSrv.js
+#	modified:   src/components/accounting/ng/scss/accounting.scss
+#	new file:   src/components/accounting/views/generalcosts/list.php
+#	modified:   src/components/accounting/views/timesheets/list.php
+#
+
