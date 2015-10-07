@@ -28,7 +28,7 @@ class SaveCachedPageListener extends AbstractCachableListener {
         $this->saveValuesToCache($this->getKey(), $params['renderedPage'], true);
     }
  
-    protected function getKey() {
+    protected function getKey($params = null) {
         list($widget, $file) = $this->httpRequest->getParameters();
         $locale = $this->getDefaultLocale();
         $key = DIRECTORY_SEPARATOR . 'render' . DIRECTORY_SEPARATOR . $widget . DIRECTORY_SEPARATOR . $file . '_' . $locale['locale'];

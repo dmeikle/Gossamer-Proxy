@@ -28,7 +28,6 @@ claims_new_claim_wizard_1:
     template: admin-list.php
     sections:
         -
-
             "header": "src/themes/default/templates/sections/admin-header.php"
             "content": "src/components/claims/views/admin/wizard1.php"
             "footer": "src/themes/default/templates/sections/footer.php"

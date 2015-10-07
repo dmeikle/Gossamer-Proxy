@@ -167,32 +167,77 @@ admin_contacts_credentials_save:
     
      
     
+
+
+#---------------------- contacts/clients -----------------
+
     
+contacts_home:
+    pattern: admin/contacts
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: contacts_home
+        datasource: datasource1 
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/contacts/locales/*/Contact'
+        
+admin_contacts_search:
+    pattern: admin/contacts/search
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_contacts_search
+        datasource: datasource1
     
-contacts_list:
+admin_contacts_list:
     pattern: admin/contacts/*/*
     defaults:
         component: components\contacts\ContactsComponent
         controller: components\contacts\controllers\ContactsController
         model: components\contacts\models\ContactModel
         method: listall
-        view: core\views\TemplateView
-        viewKey: contacts_list
+        view: core\views\JSONView
+        viewKey: admin_contacts_list
         datasource: datasource1
    
     
 admin_contacts_edit:
-    pattern: admin/contacts/*
+    pattern: admin/contacts/edit/*
     methods: [GET]
     listeners:
+        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
         - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
     defaults:
         component: components\contacts\ContactsComponent
         controller: components\contacts\controllers\ContactsController
         model: components\contacts\models\ContactModel
         method: edit
-        view: core\views\TemplateView
-        viewKey: admin_contacts_edit
+        view: core\views\JSONView
+        viewKey: admin_contacts_get
+        datasource: datasource1
+   
+    
+admin_contacts_get:
+    pattern: admin/contacts/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_contacts_get
         datasource: datasource1
         
 admin_contacts_save:

@@ -31,7 +31,7 @@ class LoadCachedPageListener extends AbstractCachableListener {
         $this->httpRequest->setAttribute($this->getKey(), file_get_contents($path));
     }
 
-    protected function getKey() {
+    protected function getKey($params = null) {
         list($widget, $file) = $this->httpRequest->getParameters();
         $locale = $this->getDefaultLocale();
         $key = DIRECTORY_SEPARATOR . 'render' . DIRECTORY_SEPARATOR . $widget . DIRECTORY_SEPARATOR . $file . '_' . $locale['locale'];

@@ -37,7 +37,7 @@ class LoadVehicleTollsListener extends AbstractCachableListener {
         $this->saveValuesToCache($this->getKey(), $tolls);
     }
     
-    protected function getKey() {
+    protected function getKey($params = null) {
         $params = $this->httpRequest->getParameters();
         
         return 'VehicleTolls_' . intval($params[0]);

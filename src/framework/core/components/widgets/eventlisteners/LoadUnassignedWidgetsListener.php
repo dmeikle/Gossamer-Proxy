@@ -78,7 +78,7 @@ class LoadUnassignedWidgetsListener extends AbstractCachableListener{
         return '/' . implode('/', $pieces);
     }
     
-    protected function getKey() {
+    protected function getKey($params = null) {
         $params = $this->httpRequest->getParameters();
         $uri = intval($params[0]);
         if(count($params) > 1 ) {

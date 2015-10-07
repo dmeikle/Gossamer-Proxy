@@ -24,7 +24,7 @@ class LoadCachedSearchResultsListener extends AbstractCachableListener {
         
     } 
     
-    protected function getKey() { 
+    protected function getKey($params = null) { 
         $params = $this->httpRequest->getQueryParameters();
         
         return 'search/staff_' . $params['name'];
