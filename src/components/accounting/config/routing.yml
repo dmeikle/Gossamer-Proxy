@@ -228,7 +228,7 @@ accounting_positems_save:
 
 #------------------------ general costs ----------------------------
 accounting_generalcosts_home:
-    pattern: admin/accounting/generalcosts/
+    pattern: admin/accounting/generalcosts
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\GeneralCostsController
