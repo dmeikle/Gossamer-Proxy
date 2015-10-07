@@ -212,7 +212,9 @@ class AbstractModel {
      * @return type
      */
     public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
-
+        if(is_null($params)) {
+            $params = array();
+        }
         return $this->listallWithParams($offset, $rows, $params, $customVerb);
     }
 
