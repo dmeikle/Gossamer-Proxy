@@ -1,3 +1,9 @@
+.pull-left{
+    .modal-spinner{
+        vertical-align:middle;
+        margin-left:30px!important;
+    }
+}
 .pull-right{
     .form-control{
         display:inline!important;
@@ -8,6 +14,47 @@ table{
     margin-top:10px;
     td{
         vertical-align: middle!important;
+    }
+    tr.selected {
+        background-color: rgba(3,146,211,0.4)!important;
+    }
+}
+.widget-side-panel, .widget-content{
+    transition: width ease 0.35s;
+}
+.widget-side-panel{
+    .breakdown-title{
+        display: inline-block;
+        width: 100%;
+        h3{
+            margin-top:0;
+        }
+    }
+    .breakdown-headings, .card{
+        span{
+            width:33%;
+            text-align: center;
+            display: inline-table;
+        }
+    }
+    .card{
+        background-color: #f9f9f9;
+        display: flex;
+    }
+    .breakdown-headings{
+        padding:1rem;
+        display: flex;
+    }
+    .breakdown-hours{
+        padding:1rem;
+        display: flex;
+        span{
+            width:33%;
+            text-align: center;
+            &:nth-child(1){
+                margin-left:33%;
+            }
+        }
     }
 }
 .modal-lg{

@@ -1,12 +1,13 @@
 // Timesheet service
 module.service('timesheetSrv', function($http) {
     var apiPath = '/admin/accounting/timesheets/';
-    var timesheet_items_apiPath = '/admin/accounting/timesheetitems/';
-    var staff_apiPath = '/admin/staff/';
-    var staff_search_apiPath = '/admin/staff/search';
-    var claim_apiPath = '/admin/claims/';
-    var claim_search_apiPath = '/admin/claims/search';
-    var vehicle_toll_apiPath = '/admin/vehicles/tolls/';
+    var timesheetItemsPath = '/admin/accounting/timesheetitems/';
+    var staffPath = '/admin/staff/';
+    var staffSearchPath = '/admin/staff/search';
+    var claimsPath = '/admin/claims/';
+    var claimsSearchPath = '/admin/claims/search';
+    var vehicleTollPath = '/admin/vehicles/tolls/';
+    
     var self = this;
     
     self.error = {};
@@ -21,6 +22,15 @@ module.service('timesheetSrv', function($http) {
         }, function(response){
             //Handle any errors
             self.error.showError = true;
+        });
+    };
+    
+    //Get details for the breakdown view
+    this.getTimesheetDetail = function(object) {
+        console.log('getting breakdown...');
+        return $http.get(apiPath + 'breakdown/' + object.id)
+            .then(function(response) {
+            self.timesheetBreakdown = response.data.TimesheetBreakdowns;
         });
     };
     
@@ -47,7 +57,7 @@ module.service('timesheetSrv', function($http) {
     
     //Get timesheet items for an ID
     this.getTimesheetItems = function(id, row, numRows){
-        return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
+        return $http.get(timesheetItemsPath + id + '/' + row + '/' + numRows)
         .then(function(response){
             self.timesheetItems = response.data.Timesheets;
         });
@@ -75,7 +85,7 @@ module.service('timesheetSrv', function($http) {
     this.autocomplete = function(searchObject) {
         var value = searchObject;
         var column = 'name';        
-        return $http.get(staff_apiPath + 'search?' + column + '=' + value)
+        return $http.get(staffPath + 'search?' + column + '=' + value)
             .then(function(response) {
             self.autocompleteList = response.data.Staffs;
         });
@@ -96,7 +106,7 @@ module.service('timesheetSrv', function($http) {
         }
         
         return $http({
-            url: staff_search_apiPath,
+            url: staffSearchPath,
             method: 'GET',
             params: config
         })
@@ -111,7 +121,7 @@ module.service('timesheetSrv', function($http) {
         var value = searchObject;
         var column = 'Claims_id';
         
-        return $http.get(claim_apiPath + 'search?' + column + '=' + value)
+        return $http.get(claimsPath + 'search?' + column + '=' + value)
             .then(function(response) {
             self.claimsList = response.data;
             self.claimsCount = Object.keys(response.data).length-2;
@@ -128,14 +138,13 @@ module.service('timesheetSrv', function($http) {
             config = undefined;
         }        
         return $http({
-            url: claim_search_apiPath,
+            url: claimsSearchPath,
             method: 'GET',
             params: config
         })
             .then(function(response) {
         });
-    };
-    
+    };    
     
     //Save a Timesheet
     this.saveTimesheet = function(timesheet, timesheetItems, formToken){
@@ -166,7 +175,7 @@ module.service('timesheetSrv', function($http) {
     
     //Get vehicle tolls
     this.getTolls = function(vehicleID){
-        return $http.get(vehicle_toll_apiPath + vehicleID)
+        return $http.get(vehicleTollPath + vehicleID)
             .then(function(response) {
             self.vehicleTolls = response.data.VehicleTolls;
         });

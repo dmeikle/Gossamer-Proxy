@@ -4,6 +4,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;    
     $scope.loading = true;
+    $scope.previouslyClickedObject = {};
     
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;    
@@ -35,6 +36,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     
     //Modals
     $scope.openTimesheetModal = function(timesheet) {
+        $scope.modalLoading = true;
         var template = templateSrv.timesheetModal;
         var modal = $modal.open({
             templateUrl: template,
@@ -45,18 +47,44 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
                     return timesheet;
                 }
             }
-//          resolve: {
-//            staff: function() {
-//              return staff;
-//            }
-//          }
-            
-//        })
+        });
+        modal.opened.then(function(){
+            $scope.modalLoading = false;
         });
         modal.result.then(function(timesheet){
-            //$scope.timesheet
             getTimesheetList();
         });
+    };
+    
+    //Select Rows for breakdown view
+    $scope.selectRow = function(clickedObject) {
+        $scope.searching = false;
+        if ($scope.previouslyClickedObject !== clickedObject) {
+            $scope.previouslyClickedObject = clickedObject;
+            $scope.sidePanelOpen = true;
+            $scope.sidePanelLoading = true;
+            timesheetSrv.getTimesheetDetail(clickedObject)
+                .then(function(){
+//                    $scope.sidePanelOpen = true;
+                    $scope.selectedTimesheet = clickedObject;
+                    $scope.timesheetBreakdown = timesheetSrv.timesheetBreakdown;
+                    $scope.sidePanelLoading = false;
+                });
+        }
+    };
+    
+    $scope.closeSidePanel = function() {
+        if ($scope.searching) {
+            $scope.searching = false;
+        }
+        if ($scope.selectedStaff) {
+            $scope.selectedStaff = undefined;
+            $scope.previouslyClickedObject = undefined;
+        }
+        if (!$scope.selectedStaff && !$scope.searching) {
+            $scope.sidePanelOpen = false;
+            $scope.previouslyClickedObject = {};
+        }
     };
     
 });

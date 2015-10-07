@@ -1,13 +1,18 @@
 <?php
 
 return array(
+    'ACCOUNTING_SEARCH' => 'Search',
+    'ACCOUNTING_ADVANCED_SEARCH' => 'Advanced Search',
     'ACCOUNTING_LABORER' => 'Laborer',
+    'ACCOUNTING_NAME' => 'Name',
     'ACCOUNTING_DATE' => 'Date',
     'ACCOUNTING_VEHICLE_NUMBER' => 'Vehicle #',
+    'ACCOUNTING_JOB_NUMBER' => 'Job No.',
     'ACCOUNTING_CLAIM' => 'Claims',
     'ACCOUNTING_PHASE' => 'Phase',
     'ACCOUNTING_LABOUR_CATEGORY' => 'Category',
     'ACCOUNTING_DESCRIPTION' => 'Description',
+    'ACCOUNTING_HOURS' => 'Hours',
     'ACCOUNTING_HOURLY_RATE' => 'Rate',
     'ACCOUNTING_REG' => 'Reg',
     'ACCOUNTING_OT' => 'OT',
