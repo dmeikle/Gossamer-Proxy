@@ -34,7 +34,7 @@ class ClaimLocationBuilder extends AbstractBuilder{
                 ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber','ng-disabled' => '!ClaimLocation.lockBox','ng-required' => 'ClaimLocation.lockBox', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
                 ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom','ng-disabled' => '!ClaimLocation.keysReceived','ng-required' => 'ClaimLocation.keysReceived', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
-                ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
+                ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
 
         if(array_key_exists('projectAddressesFloorPlans', $options)) {

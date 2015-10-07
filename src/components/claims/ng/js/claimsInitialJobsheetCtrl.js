@@ -40,4 +40,17 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     object.claimLocation = $scope.ClaimLocation;
     claimsInitialJobsheetSrv.save(object, formToken, ids);
   };
+
+  function save(object, objectType, formToken) {
+    $scope.ClaimLocation_id = document.getElementById('ClaimLocation_id').value;
+    $scope.Claim_id = document.getElementById('ClaimLocation_Claims_id').value;
+    var idString = $scope.ClaimLocation_id + '/' + $scope.Claim_id;
+    claimsInitialJobsheetSrv.save(object, objectType, formToken, idString);
+  }
+
+  $scope.saveClaimLocation = function(object) {
+    var objectType = 'ClaimLocation';
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    save(object, objectType, formToken);
+  };
 });
