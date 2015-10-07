@@ -16,7 +16,7 @@
             
             <div class="form-group vehicle">
               <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
-                <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
+                <select class="form-control" name="vehicle-num" ng-model="timesheet.Vehicles_id" ng-change="getVehicleTolls(timesheet.Vehicles_id)">
                     <?php
                     foreach($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
@@ -24,120 +24,146 @@
                 </select>
             </div>
         </div>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_JOB_NUMBER'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_PHASE'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_UNIT_NUMBER'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_ADDRESS'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_CITY'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_TOLL1'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_TOLL2'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_TIME_FROM'); ?></th>
-                    <th><?php echo $this->getString('STAFF_TIMESHEET_TIME_TO'); ?></th>
-                    <th class="hours"><?php echo $this->getString('STAFF_TIMESHEET_HOURS_REGULAR'); ?></th>
-                    <th class="hours"><?php echo $this->getString('STAFF_TIMESHEET_HOURS_OVERTIME'); ?></th>
-                    <th class="hours"><?php echo $this->getString('STAFF_TIMESHEET_HOURS_DOUBLE_OVERTIME'); ?></th>
-                    <th class="hours"><?php echo $this->getString('STAFF_TIMESHEET_HOURS_TOTALS'); ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <span class="spinner-loader"></span>
-                    </td>
-                    <td></td>  
-                    <td></td>  
-                    <td></td>
-                    <td></td>  
-                    <td></td>  
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr ng-if="!loading" ng-repeat="row in timesheetItems track by $index">
-                    <td>
+        
+        <div id="timesheetGrid" class="table" ng-repeat="row in timesheetItems track by $index">
+            <div class="row">
+                <div class="col-md-1 select-col">
+                    <div class="heading">
+                        <!--<input class="select-all" type="checkbox" ng-model="selectAll">-->
+                    </div>
+                    <div class="field select-box">
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="heading"><?php echo $this->getString('STAFF_TIMESHEET_JOB_NUMBER'); ?></div>
+                    <div class="field">
                         <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
                         <datalist id="timesheet-claims-list">
                             <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
+                            <option ng-repeat="value in claimsAutocomplete track by $index" value="{{value.jobNumber}}" data="{{value.id}}"></option>
                         </datalist>
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_PHASE'); ?>
+                    </div>
+                    <div class="field">
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
                             <?php foreach($AccountingPhaseCodes as $phase) {
-                        echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                        } ?>
+                            echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
+                            } ?>
                         </select>
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_UNIT_NUMBER'); ?>
+                    </div>
+                    <div class="field">
                         <input class="form-control unit-number" ng-model="row.unitNumber">
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_ADDRESS'); ?>
+                    </div>
+                    <div class="field">
                         <input class="description form-control" ng-model="row.address">
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_CITY'); ?>
+                    </div>
+                    <div class="field">
                         <input class="description form-control" ng-model="row.city">
-                    </td>
-                    <td>
-                        <select class="toll form-control" ng-model="row.toll1">                            
-                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll1[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_TOLL1'); ?>
+                    </div>
+                    <div class="field">
+                        <select class="toll form-control" ng-model="row.toll1">
+                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll2[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
-                    </td>
-                    <td>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_TOLL2'); ?>
+                    </div>
+                    <div class="field">
                         <select class="toll form-control" ng-model="row.toll2">
                             <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll2[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
-                    </td>
-                    <td>
-                        <input class="form-control" ng-model="row.fromTime">
-                    </td>
-                    <td>
-                        <input class="form-control" ng-model="row.toTime">
-                    </td>
-                    <td>
-                        <input class="hours form-control" type="number" ng-model="row.regularHours" ng-change="updateTotal(row, 'regularHours')" ng-blur="checkEmpty(row, 'regularHours')">
-                    </td>
-                    <td>
-                        <input class="hours form-control" type="number" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'overtimeHours')" ng-blur="checkEmpty(row, 'overtimeHours')">
-                    </td>
-                    <td>
-                        <input class="hours form-control" type="number" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'doubleOTHours')" ng-blur="checkEmpty(row, 'doubleOTHours')">
-                    </td>
-                    <td class="total hours">
-                        <strong>{{row.totalHours}}</strong>
-                    </td>
-                </tr>
-                <tr class="totalRow">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Total:</td>
-                    <td>{{sumTotal.regularHours}}</td>
-                    <td>{{sumTotal.overtimeHours}}</td>
-                    <td>{{sumTotal.doubleOTHours}}</td>
-                    <td><strong>{{sumTotal.totalHours}}</strong></td>
-                </tr>
-            </tbody>
-        </table>
-
+                    </div>
+                </div>
+            </div>
+            <!-- end of row -->
+            
+            <div class="row time-row">
+                <div class="col-md-1 col-md-offset-5 timepicker">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_TIME_FROM'); ?>
+                    </div>
+                    <div class="field">
+                        <timepicker ng-model="row.timeFrom" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </div>
+                </div>
+                <div class="col-md-1 timepicker">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_TIME_TO'); ?>
+                    </div>
+                    <div class="field">
+                        <timepicker ng-model="row.timeTo" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                    </div>
+                </div>
+                <div class="col-md-1 hours">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_HOURS_REGULAR'); ?>
+                    </div>
+                    <div class="field">
+                        <input class="form-control" type="number" ng-model="row.regularHours" ng-change="updateTotal(row, 'regularHours')" ng-blur="checkEmpty(row, 'regularHours')">
+                    </div>
+                </div>
+                <div class="col-md-1 hours">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_HOURS_OVERTIME'); ?>
+                    </div>
+                    <div class="field">
+                        <input class="form-control" type="number" ng-model="row.overtimeHours" ng-change="updateTotal(row, 'overtimeHours')" ng-blur="checkEmpty(row, 'overtimeHours')">
+                    </div>
+                </div>
+                <div class="col-md-1 hours">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_HOURS_DOUBLE_OVERTIME'); ?>
+                    </div>
+                    <div class="field hours">
+                        <input class="form-control" type="number" ng-model="row.doubleOTHours" ng-change="updateTotal(row, 'doubleOTHours')" ng-blur="checkEmpty(row, 'doubleOTHours')">
+                    </div>
+                </div>
+                <div class="col-md-1 hours">
+                    <div class="heading">
+                        <?php echo $this->getString('STAFF_TIMESHEET_HOURS_TOTALS'); ?>
+                    </div>
+                    <div class="field total-hours">
+                        <p>{{row.totalHours}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row total-row">
+                <div class="col-md-1 col-md-offset-10">
+                    <strong>Total:</strong>
+                </div>
+                <div class="col-md-1">
+                    {{timesheet.totalHours}}
+                </div>
+            </div>
+        </div>
+        
         <button class="btn-info" ng-click="addTimesheetRow()">New Row</button>
         <button class="btn-info" ng-click="insertTimesheetRows()" ng-disabled="!timesheetSelected">Insert Row(s)</button>
         <button class="btn-warning" ng-click="removeTimesheetRows()" ng-disabled="!timesheetSelected">Delete Row(s)</button>
@@ -145,7 +171,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-        <button type="button" class="btn btn-primary" ng-click="clearTimesheet()">Save and New</button>
-        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems)">Save and Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems); clearTimesheet()">Save and New</button>
+        <button type="button" class="btn btn-primary" ng-click="saveTimesheet(timesheetItems); confirm();">Save and Close</button>
     </div>
 </form>

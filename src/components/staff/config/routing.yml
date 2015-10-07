@@ -14,6 +14,62 @@ admin_staff_search:
     methods: [GET]
 
 
+#------------------------ timesheets ----------------------------
+admin_staff_timesheets_home:
+    pattern: admin/staff/timesheets
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffTimesheetsController
+        model: components\staff\models\TimesheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_staff_timesheets_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/staff'
+            - 'app/locales/*/website'
+
+admin_staff_timesheets_list:
+    pattern: admin/staff/timesheets/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffTimesheetsController
+        model: components\staff\models\TimesheetModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_staff_timesheets_list
+        datasource: datasource1
+
+
+admin_staff_timesheets_edit:
+    pattern: admin/staff/timesheets/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffTimesheetsController
+        model: components\staff\models\TimesheetModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_staff_timesheets_edit
+        datasource: datasource1 
+    methods: [GET]
+
+
+admin_staff_timesheets_save:
+    pattern: admin/staff/timesheets/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffTimesheetsController
+        model: components\staff\models\TimesheetModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_staff_timesheets_save
+        datasource: datasource1 
+    methods: [POST]
+    
+#--------------------end timesheets ----------------------
+
+
+
 admin_staff_home:
     pattern: admin/staff
     listeners:

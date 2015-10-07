@@ -11,7 +11,7 @@
 namespace components\accounting\listeners;
 
 use core\eventlisteners\AbstractCachableListener;
-use components\accounting\models\AccountingGeneralCostItemModel;
+use components\accounting\models\AccountingGeneralCostTypeModel;
 
 /**
  * SaveTollListener
@@ -22,15 +22,15 @@ class LoadTollListener extends \core\eventlisteners\AbstractCachableListener {
     
     public function on_filerender_start() {
         
-        $model = new AccountingGeneralCostItemModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $model = new AccountingGeneralCostTypeModel($this->httpRequest, $this->httpResponse, $this->logger);
  
         $datasource = $this->getDatasource('components\accounting\models\AccountingGeneralCostTypeModel');
         $params= array('AccountsPayableItemTypes_id' => '1');
         
         $result = $datasource->query('get', $model, 'list', $params);
-        $retval = '';
+        $retval = '';       
         //pr($result);
-        foreach($result['AccountingGeneralCostTypeMod'] as $row) {
+        foreach($result['AccountingGeneralCostTypes'] as $row) {
             $retval .= '<option value="' . $row['cost'] . '">' . $row['abbreviation'] . "<option>\r\n";
         }
         

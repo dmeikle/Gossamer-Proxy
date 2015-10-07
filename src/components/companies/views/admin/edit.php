@@ -1,42 +1,16 @@
 
-<script language="javascript">
 
-$(function() {
-   $('#Company_cancel').click(function(e) {
-      $('#left-feature-slider-edit').toggle(false);
-   });
-   
-   $('#Company_save').click(function(e) {
-       e.stopPropagation();
-       var id = $('#Company_companyId').val();
-      
-       $.ajax({
-            url: '/admin/companies/' + id,
-            type: "post",
-            data: $('#company-form').serialize()
-        });
-       
-      $('#left-feature-slider-edit').toggle(false);
-   });
-   
-});
-
-</script>
-
-
-<form role="form" class="form-standard" method="post" id="company-form">
+<form role="form" class="form-standard" method="post" id="company-form" ng-controller="companyEditCtrl">
     <?php echo $form['companyId'];?>
     <table class="table">
       <tr>
           <td>Name:</td>
-          <td><?php echo $form['name'];?></td>
+          <td ng-init="name = 'dave'"><?php echo $form['name'];?></td>
       </tr>
       <tr>
         <td>Type:</td>
         <td>
-            <select class="form-control" name="company[CompanyTypes_id]">
-                <option>load company types</option>
-            </select>
+            <?php echo $form['CompanyTypes_id'];?>
         </td>
       </tr>
       <tr>
@@ -50,7 +24,11 @@ $(function() {
       </tr>
       <tr>
         <td>Province:</td>
-        <td>&nbsp;</td>
+        <td><?php echo $form['Provinces_id'];?></td>
+      </tr>
+      <tr>
+        <td>Province:</td>
+        <td><?php echo $form['Countries_id'];?></td>
       </tr>
       <tr>
         <td>Postal Code:</td>
@@ -72,6 +50,10 @@ $(function() {
         <td>&nbsp;</td>
         <td>
         	<?php echo $form['cancel'];?>  <?php echo $form['save'];?>
+<button class="primary" ng-click="save(company)" ng-disabled="!company">
+                <?php echo $this->getString('COMPANY_CONFIRM'); ?>
+              </button>
+  <button ng-click="cancel()"><?php echo $this->getString('COMPANY_CANCEL'); ?></button>
         </td>
       </tr>
     </table>

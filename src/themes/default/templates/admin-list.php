@@ -32,9 +32,11 @@
 
 <body cz-shortcut-listen="true">
   <!---header--->
+  <!---subnav--->
   <div class="clearfix"></div>
   <main class="content full-width">
     <!---content--->
+    <!---payload--->
   </main>
   <div class="clearfix"></div>
   <!---footer--->
@@ -42,10 +44,11 @@
 
   <!---javascript--->
 
+
+
   <script language="javascript">
     (function() {
       angular.bootstrap(document, [<?php echo $modules; ?>]);
     })();
   </script>
-
 </html>

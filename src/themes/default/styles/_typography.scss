@@ -1,4 +1,4 @@
-.widget h1 {
+h1, h2, h3 {
   font-weight: 300;
 }
 
@@ -8,4 +8,8 @@ label {
 
 table {
   font-size:.85em;
+}
+
+.underlined {
+  text-decoration:underline;
 }

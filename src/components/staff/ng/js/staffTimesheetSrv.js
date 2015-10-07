@@ -1,12 +1,13 @@
 // Timesheet service
 module.service('staffTimesheetSrv', function($http) {
     var apiPath = '/admin/accounting/timesheets/';
-    var timesheet_items_apiPath = '/admin/accounting/timesheetitems/';
-    var staff_apiPath = '/admin/staff/';
-    var staff_search_apiPath = '/admin/staff/search';
-    var claim_apiPath = '/admin/claims/';
-    var claim_search_apiPath = '/admin/claims/search';
-    var vehicle_toll_apiPath = '/admin/vehicles/tolls/';
+    var timesheetItemsPath = '/admin/accounting/timesheetitems/';
+    var staffPath = '/admin/staff/';
+    var staffSearchPath = '/admin/staff/search';
+    var claimsPath = '/admin/claims/';
+    var claimSearchPath = '/admin/claims/search';
+    var vehicleTollPath = '/admin/vehicles/tolls/';
+    var staffTimesheetPath = '/admin/staff/timesheets/';
     var self = this;
 
     self.error = {};
@@ -47,7 +48,7 @@ module.service('staffTimesheetSrv', function($http) {
 
     //Get timesheet items for an ID
     this.getTimesheetItems = function(id, row, numRows){
-        return $http.get(timesheet_items_apiPath + id + '/' + row + '/' + numRows)
+        return $http.get(timesheetItemsPath + id + '/' + row + '/' + numRows)
             .then(function(response){
             self.timesheetItems = response.data.Timesheets;
         });
@@ -73,8 +74,8 @@ module.service('staffTimesheetSrv', function($http) {
     //Staff Autocomplete
     this.autocomplete = function(searchObject) {
         var value = searchObject;
-        var column = 'name';        
-        return $http.get(staff_apiPath + 'search?' + column + '=' + value)
+        var column = 'name';
+        return $http.get(staffPath + 'search?' + column + '=' + value)
             .then(function(response) {
             self.autocompleteList = response.data.Staffs;
         });
@@ -83,19 +84,19 @@ module.service('staffTimesheetSrv', function($http) {
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
-        if(object){            
+        if(object){
             var splitObject = object.split(' ');
             console.log(splitObject);
 
-            if (object || splitObject.length === 1) {            
+            if (object || splitObject.length === 1) {
                 config.name = object;
             }
-        } else {            
+        } else {
             config = undefined;
         }
 
         return $http({
-            url: staff_search_apiPath,
+            url: staffSearchPath,
             method: 'GET',
             params: config
         })
@@ -109,11 +110,10 @@ module.service('staffTimesheetSrv', function($http) {
     this.claimsAutocomplete = function(searchObject){
         var value = searchObject;
         var column = 'Claims_id';
-
-        return $http.get(claim_apiPath + 'search?' + column + '=' + value)
+        return $http.get(claimsPath + 'search?' + column + '=' + value)
             .then(function(response) {
-            self.claimsList = response.data;
-            self.claimsCount = Object.keys(response.data).length-2;
+            self.claimsList = response.data.Claims;
+            self.claimsCount = response.data.ClaimsCount[0].numRows;
         });
     };
 
@@ -121,13 +121,13 @@ module.service('staffTimesheetSrv', function($http) {
     this.filterClaims = function(row, numRows, object) {
         console.log(object);
         var config = {};
-        if (object.val[0]) {  
+        if (object.val[0]) {
             config.claim = object.val[0];
         } else {
             config = undefined;
-        }        
+        }
         return $http({
-            url: claim_search_apiPath,
+            url: claimSearchPath,
             method: 'GET',
             params: config
         })
@@ -145,7 +145,6 @@ module.service('staffTimesheetSrv', function($http) {
         } else {
             timesheetID = '0';
         }
-
         var data = {};
         data.timesheet = timesheet;
         data.timesheetItems = timesheetItems;
@@ -156,7 +155,7 @@ module.service('staffTimesheetSrv', function($http) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + timesheetID,
+            url: staffTimesheetPath + timesheetID,
             data: data
         }).then(function(response) {
             console.log(response);
@@ -165,7 +164,7 @@ module.service('staffTimesheetSrv', function($http) {
 
     //Get vehicle tolls
     this.getTolls = function(vehicleID){
-        return $http.get(vehicle_toll_apiPath + vehicleID)
+        return $http.get(vehicleTollPath + vehicleID)
             .then(function(response) {
             self.vehicleTolls = response.data.VehicleTolls;
         });

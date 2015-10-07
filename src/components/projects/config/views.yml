@@ -1,68 +1,52 @@
 
 
-projectaddress_autocomplete:
     
-projectaddress_autocompletetest:
+admin_projects_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/projects/views/admin/subnav.php"
-            "section3": "src/components/companies/views/test.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    
-    
-projectaddress_get_form:   
-    template: ajax-html.php
-    sections: 
-        -
-            "section1": "src/components/projects/views/admin/newclaim1.php"
-            
-projectaddress_edit:
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/projects/views/admin/subnav.php"
-            "section3": "src/components/projects/views/admin/address.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    
-    
-projectaddress_list:  
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/projects/views/admin/subnav.php"
-            "section3": "src/components/projects/views/admin/list-addresses.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
-            "featureslider-edit": "src/components/projects/views/admin/edit.php"
-            
-floorplans_edit:  
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/projects/views/admin/subnav.php"
-            "section3": "src/components/projects/views/admin/floorplans/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
-            
-floorplans_list:    
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/projects/views/admin/subnav.php"
-            "section3": "src/components/projects/views/admin/floorplans/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"          
-    
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/projects/views/admin/addresses/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - projectAddressesAdmin
+    head:
+        - @components/projects/dist/bower_components/angular/angular.min.js
+        - @components/projects/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/projects/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/projects/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        #- @extensions/angular/ng/js/phoenixSearchSrv.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/projects/dist/js/projects.concat.js
+    css:
+        - @components/projects/dist/css/projects.min.css
 
-portal_projects_list_by_company:
+
+admin_projects_edit:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section2": "src/components/projects/views/subnav.php"
-            "section3": "src/components/projects/views/list-by-company.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
-    
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/projects/views/admin/addresses/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - projectAddressesAdmin
+            #- claimsAdmin
+    head:
+        - @components/projects/dist/bower_components/angular/angular.min.js
+        - @components/projects/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/projects/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/projects/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        #- @extensions/angular/ng/js/phoenixSearchSrv.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/projects/dist/js/projects.concat.js
+    css:
+        - @components/projects/dist/css/projects.min.css

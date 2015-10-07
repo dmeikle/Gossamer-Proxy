@@ -28,16 +28,23 @@ use core\system\Router;
 class ProjectAddressesController extends AbstractController{
    
     public function search() {
-        $params = $this->httpRequest->getPost();
-        $result = $this->model->search($params);
-        
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+
         $this->render($result);
     }
     
-    public function edit($id) {       
+    public function get($id) {       
         $result = $this->model->edit($id);
-      
-        //$result['form'] = $this->drawForm($this->model, $result);
+        
+        $this->render(array('ProjectAddress' => $result));
+    }
+    
+    public function edit($id) {  
+        //commented out for angular load
+        //$result = $this->model->edit($id);
+        $result = array();
+        
+        $result['form'] = $this->drawForm($this->model, $result);
         
         $this->render($result);
     }
@@ -56,8 +63,7 @@ class ProjectAddressesController extends AbstractController{
     public function save($id) {       
         $result = $this->model->save($id);
         
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('projectaddress_list', array('0', '20'));
+        $this->render($result);
     }
 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {

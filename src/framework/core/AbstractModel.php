@@ -211,9 +211,11 @@ class AbstractModel {
      * @param type $customVerb
      * @return type
      */
-    public function listall($offset = 0, $rows = 20, $customVerb = null) {
-
-        return $this->listallWithParams($offset, $rows, array(), $customVerb);
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+        if(is_null($params)) {
+            $params = array();
+        }
+        return $this->listallWithParams($offset, $rows, $params, $customVerb);
     }
 
     /**
@@ -245,7 +247,13 @@ class AbstractModel {
      * @return array
      */
     public function listallWithParams($offset = 0, $rows = 20, array $params, $customVerb = null) {
-
+        $queryParams = $this->httpRequest->getQueryParameters();
+        if(array_key_exists('directive::ORDER_BY', $queryParams)) {
+            $params['directive::ORDER_BY'] = $queryParams['directive::ORDER_BY'];
+        }
+        if(array_key_exists('directive::DIRECTION', $queryParams)) {
+            $params['directive::DIRECTION'] = $queryParams['directive::DIRECTION'];
+        }
         $params['directive::OFFSET'] = $offset;
         $params['directive::LIMIT'] = $rows;
         $defaultLocale = $this->getDefaultLocale();
@@ -480,7 +488,8 @@ class AbstractModel {
         if(is_object($token) && $token->getClient() instanceof components\security\core\Client) {
             return $token->getClient()->getId();
         }
-        return 0;
+        
+        return null;
     }
 
     /**

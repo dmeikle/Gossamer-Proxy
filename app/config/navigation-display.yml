@@ -230,6 +230,27 @@ directory:
         - IS_ADMINISTRATOR
         - IS_STAFF
     children:
+        staff_list:
+            text_key: 'ADMIN_STAFF'
+            pattern: '#'
+            display_roles:
+                - IS_ADMIN
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+            children:
+                staff_list:
+                    text_key: 'ADMIN_STAFF_LIST'
+                    pattern: '/admin/staff/0/20'
+                    display_roles:
+                        - IS_ADMIN
+                        - IS_ADMINISTRATOR
+                        - IS_STAFF
+                staff_add_new:
+                    text_key: 'ADMIN_STAFF_ADD_NEW'
+                    pattern: '/admin/staff/0'
+                    display_roles:
+                        - IS_ADMINISTRATOR
+                        - IS_HR_MANAGER
         admin_contacts:
             text_key: 'ADMIN_CONTACTS'
             pattern: '/admin/contacts/0/20'
@@ -254,7 +275,7 @@ directory:
                         - IS_PMA
                 contacts_companies_listall:
                     text_key: 'ADMIN_COMPANIES_LIST_ALL'
-                    pattern: '/admin/companies/0/20'
+                    pattern: '/admin/companies'
                     display_roles:
                         - IS_ADMINISTRATOR
                         - IS_STAFF
@@ -338,27 +359,7 @@ directory:
                         - IS_EDITOR
                         - IS_STAFF
 
-staff_list:
-    text_key: 'ADMIN_STAFF'
-    pattern: '#'
-    display_roles:
-        - IS_ADMIN
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-    children:
-        staff_list:
-            text_key: 'ADMIN_STAFF_LIST'
-            pattern: '/admin/staff/0/20'
-            display_roles:
-                - IS_ADMIN
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-        staff_add_new:
-            text_key: 'ADMIN_STAFF_ADD_NEW'
-            pattern: '/admin/staff/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_HR_MANAGER
+
 
 
 admin_scoping:

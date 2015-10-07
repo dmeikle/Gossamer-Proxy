@@ -46,7 +46,7 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
     public function search(array $term) {
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $term);
         
-        return $this->formatResults($data['ProjectAddresses']);        
+        return $data;       
     }
     
     public function save($id) {
@@ -59,30 +59,12 @@ class ProjectAddressModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL) {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         $result = parent::listall($offset, $rows, 'listAddresses');
         
         return $result;
     }
     
-    private function formatResults(array $results) {
-        $retval = array();
-        
-        foreach($results as $row) {
-            $retval[] = array(
-                'id' => $row['id'],
-                'label' => $row['strataNumber'] . ' - ' . $row['buildingName'] . "," . $row['address1'] . ", " . $row['city'],
-                //'value' => json_encode(array('strataNumber' => $row['strataNumber'], 'buildingName' => $row['buildingName'], 'address1' => $row['address1'], 'city' => $row['city']))
-                'value' => $row['strataNumber'],
-                'buildingName' => $row['buildingName'],
-                'address1' => $row['address1'], 
-                'city' => $row['city']
-                );
-        }
-        
-        return $retval;
-    }
-
     public function getFormWrapper() {
         return $this->entity;
     }

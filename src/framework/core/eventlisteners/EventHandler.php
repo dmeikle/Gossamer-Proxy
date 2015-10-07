@@ -138,6 +138,7 @@ class EventHandler {
                 $eventListener->execute($this->state, $this->params);
             } else {
                 $this->logger->addError($listenerClass . ' not found by EventHandler::notifyListeners');
+               // echo "unable call $listenerClass " . $this->state ."\r\n";
             }
         }
     }

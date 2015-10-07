@@ -34,12 +34,11 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         $this->tablename = 'claims';
     }
     
-    public function search(array $term) {
-        $params = array('keywords' => $this->httpRequest->getQueryParameter('Claims_id'));
-       
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params['keywords']); 
+    public function search(array $params) {
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
       
-        return $this->formatResults($data['Claims']);
+        return $data;
     }
     
     public function searchByJobNumber(array $term) {
@@ -52,29 +51,28 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $data;
     }
     
-    private function formatResults(array $results) {
-        $retval = array();
+    public function saveInitialJobsheet($claimId, $claimsLocationId) {
+        $params = $this->httpRequest->getPost();
         
-        foreach($results as $row) {
-            $retval[] = array(
-                'id' => $row['id'],
-                'label' => $row['buildingName'] . "," . $row['address1'] . ", " . $row['address2'].", " .
-                $row['city'],
-                'value' => '<b>' .$row['buildingName'] . "</b><br />" . $row['address1'] . "<br />" . 
-                ((strlen($row['address2']) > 0)? $row['address2'] . '<br />' :'') .
-                $row['city']
-                );
-        }
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveinitialjobsheet', $params); 
         
-        return $retval;
+        return $data;
     }
-    
+
+
+
+
     public function get($claimId) {
         $params = array(
             'jobNumber' => $claimId
         );
         
-        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $claim = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        if(array_key_exists('Claim', $claim)) {
+            return current($claim['Claim']);
+        }
+        
+        return $claim;
     }
     
     public function save($id) {
@@ -116,6 +114,15 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         $params = array('jobNumber' => $jobNumber);
       
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'summary', $params); 
+        
+        return $data;
+    }
+    
+    public function getInitialJobsheet($claimId, $claimsLocationId) {
+        
+        $params = array('Claims_id' => $claimId, 'ClaimsLocations_id' => $claimsLocationId);
+      
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'getinitialjobsheet', $params); 
         
         return $data;
     }

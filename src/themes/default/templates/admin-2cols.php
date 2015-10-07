@@ -11,28 +11,23 @@
 
   <title>|title|</title>
 
+
+
+  <!-- css import for page -->
+  <link rel="stylesheet" href="/css/core.min.css">
+
   <!-- css start -->
   <!---css--->
   <!-- css end -->
 
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <script src="/js/theme/ie10-viewport-bug-workaround.js"></script>
+  <!-- css import for page -->
+  <link rel="stylesheet" href="/css/core.min.css">
 
   <!-- head start -->
   <!---head--->
   <!-- head end -->
 
 
-  <!--[if IE 7]>
-        <link type="text/css" href="assets/css/required/misc/style-ie7.css" rel="stylesheet">
-        <script type="text/javascript" src="assets/fonts/lte-ie7.js"></script>
-        <![endif]-->
-  <!--[if IE 8]>
-        <link type="text/css" href="assets/css/required/misc/style-ie8.css" rel="stylesheet">
-        <![endif]-->
-  <!--[if lte IE 8]>
-        <script type="text/javascript" src="assets/css/required/misc/excanvas.min.js"></script>
-        <![endif]-->
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -44,10 +39,15 @@
   <!---header--->
   <div class="clearfix"></div>
   <main class="content">
-    <!---section3--->
+    <!---content--->
   </main>
   <div class="cards">
-    <!---section4--->
+
+    <!---cards--->
+
+      <!---widgets--->
+    <!---sidecolumn--->
+
   </div>
   <div class="clearfix"></div>
   <!---footer--->

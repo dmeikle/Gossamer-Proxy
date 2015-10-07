@@ -33,7 +33,7 @@ class AccountingGeneralCostItemModel extends AbstractModel{
         $this->tablename = 'accountinggeneralcostitems';
     }
     
-    public function listall($offset = 0, $rows = 20, $customVerb = NULL)  {
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null)  {
         $queryParams = $this->httpRequest->getQueryParameters();
         
         $params = array(

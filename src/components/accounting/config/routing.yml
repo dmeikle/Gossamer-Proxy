@@ -80,7 +80,7 @@ accounting_timesheets_breakdown:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-        
+
 
 accounting_timesheets_list:
     pattern: admin/accounting/timesheets/*/*
@@ -228,7 +228,7 @@ accounting_positems_save:
 
 #------------------------ general costs ----------------------------
 accounting_generalcosts_home:
-    pattern: admin/accounting/generalcosts/
+    pattern: admin/accounting/generalcosts
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\GeneralCostsController
@@ -311,7 +311,7 @@ accounting_creditaccounts_list:
         controller: components\accounting\controllers\CreditAccountsController
         model: components\accounting\models\CreditAccountModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_creditaccounts_list
         datasource: datasource1
 

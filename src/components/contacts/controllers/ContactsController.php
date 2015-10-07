@@ -19,25 +19,30 @@ use Gossamer\CMS\Forms\FormBuilder;
 use components\contacts\form\ContactBuilder;
 use components\contacts\form\ContactDisplayBuilder;
 use core\system\Router;
-
+use core\eventlisteners\Event;
 
 class ContactsController extends AbstractController
 {
+    
+    public function search() {        
+        $result = $this->httpRequest->getAttribute($this->getSearchKey());
+       
+        if(!is_array($result)) {
+            $result = $this->model->search($this->httpRequest->getQueryParameters());
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
+        }        
+        
+        $this->render($result);
+    }
+    
     /**
-     * edit - display an input form based on requested id
+     * get - display an input form based on requested id
      * 
      * @param int id    primary key of item to edit
      */
-    public function edit($id) {
+    public function get($id) {
         $result = $this->model->edit($id);
         
-      
-         if(is_array($result) && array_key_exists('Contact', $result)) {
-            $contact = $result['Contact'];  
-            $result['form'] = $this->drawForm($this->model, $contact);
-        } else {
-             $result['form'] = $this->drawForm($this->model, array());
-        }
         
         $this->render($result);
     }
@@ -133,6 +138,5 @@ class ContactsController extends AbstractController
         
         $this->render($result);
     }
-    
-    
+        
 }

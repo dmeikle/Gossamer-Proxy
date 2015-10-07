@@ -1,3 +1,4 @@
+
 <div class="widget" ng-controller="timesheetListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left">Timesheet List</h1>
@@ -55,11 +56,6 @@
         <tbody>
           <tr ng-if="loading">
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>  
-            <td></td>  
-            <td></td>
             <td>
               <span class="spinner-loader"></span>
             </td>
@@ -68,9 +64,17 @@
             <td></td>
             <td></td>
             <td></td>
+            <td>
+              <span class="spinner-loader"></span>
+            </td>
             <td></td>
-          </tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>            
             <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
+
               <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
               <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate | currency}}</td>
