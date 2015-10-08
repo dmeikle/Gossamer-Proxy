@@ -46,12 +46,6 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
             keyboard: false,
             backdrop: "static"
         });
-
-        modalInstance.result.then(function (claim) {
-            claimsEditSrv.save(claim).then(function () {
-                getClaimsList();
-            });
-        });
     };
 
 
@@ -147,7 +141,8 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   $scope.saveAndNext = function() {
-    $scope.save().then(function() {
+    $scope.save().then(function(response) {
+      $scope.claim.query.id = response.data.Claim[0].id;
       $scope.nextPage();
     });
   };
