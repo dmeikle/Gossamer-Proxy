@@ -28,4 +28,14 @@ class ClaimContactsController extends AbstractController
         
         $this->render($result);
     }
+    
+    public function listAllClaimsByContact($contactId) {
+        $offset = 0;
+        $limit = 50;
+        $params = array('Contacts_id' => intval($contactId));
+        
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'listallclaims');
+        
+        $this->render($result);
+    }
 }

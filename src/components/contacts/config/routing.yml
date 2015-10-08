@@ -85,7 +85,16 @@ claimcontacts_list:
         viewKey: claimcontacts_list
         datasource: datasource1  
         
-                  
+admin_contact_claims_list:
+    pattern: admin/contacts/claims/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ClaimContactsController
+        model: components\contacts\models\ClaimContactModel
+        method: listAllClaimsByContact
+        view: core\views\JSONView
+        viewKey: admin_contact_claims_list
+        datasource: datasource1                    
                   
                   
                   

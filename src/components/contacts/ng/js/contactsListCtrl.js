@@ -1,4 +1,4 @@
-module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, contactsEditSrv, contactsTemplateSrv, tablesSrv) {
+module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, contactsEditSrv, contactsTemplateSrv, tablesSrv, contactsClaimsListSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -102,7 +102,7 @@ module.controller('contactsListCtrl', function($scope, $modal, contactsListSrv, 
     $scope.sidePanelOpen = true;
     if ($scope.previouslyClickedObject !== clickedObject) {
       $scope.previouslyClickedObject = clickedObject;
-      contactsClaimsListSrv.getClaimsList(clickedObject.Companies_id, 0, 100)
+      contactsClaimsListSrv.getClaimsList(clickedObject.id, 0, 100)
         .then(function() {
           $scope.selectedContact = clickedObject;
           $scope.claimsList = contactsClaimsListSrv.claimsList;
