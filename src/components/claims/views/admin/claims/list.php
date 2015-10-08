@@ -111,21 +111,93 @@
     </form>
 
     <div ng-if="!sidePanelLoading && !searching">
-      <h1><a href="/admin/claims/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
-      <h4><?php echo $this->getString('CLAIMS_TELEPHONE')?></h3>
-      <p>{{selectedStaff.telephone}}</p>
-      <h4><?php echo $this->getString('CLAIMS_MOBILE')?></h3>
-      <p>{{selectedStaff.mobile}}</p>
-      <h4><?php echo $this->getString('CLAIMS_EMAIL')?></h3>
-      <p>{{selectedStaff.email}}</p>
-      <h4><?php echo $this->getString('CLAIMS_CITY')?></h3>
-      <p>{{selectedStaff.city}}</p>
-      <h4><?php echo $this->getString('CLAIMS_POSTALCODE')?></h3>
-      <p>{{selectedStaff.postalCode}}</p>
-      <h4><?php echo $this->getString('CLAIMS_TITLE')?></h3>
-      <p>{{selectedStaff.title}}</p>
-      <h4><?php echo $this->getString('CLAIMS_EMPLOYEENUM')?></h3>
-      <p>{{selectedStaff.employeeNumber}}</p>
+      <h1><a href="/admin/claims/edit/{{selectedClaim.id}}">{{selectedClaim.jobNumber}}</a></h1>
+      <h4><?php echo $this->getString('CLAIMS_ADDRESS')?></h4>
+      <div>{{selectedClaim.address1}}</div>
+      <div>{{selectedClaim.address2}}</div>
+      <div>{{selectedClaim.city}}</div>
+      <h4><?php echo $this->getString('CLAIMS_CONTACTS')?></h4>
+      <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
+        <div class="cardheader">
+          <h1>{{contact.firstname}} {{contact.lastname}}</h1>
+        </div>
+        <table class="table table-hover cardtable">
+          <tr ng-if="contact.type">
+            <td>
+              <strong><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?></strong>
+            </td>
+            <td>
+              {{contact.type}}
+            </td>
+          </tr>
+          <tr ng-if="contact.office">
+            <td>
+              <strong><?php echo $this->getString('CLAIMS_CONTACT_OFFICE') ?></strong>
+            </td>
+            <td>
+              {{contact.office}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong><?php echo $this->getString('CLAIMS_CONTACT_EXT') ?></strong>
+            </td>
+            <td>
+              {{contact.ext}}
+            </td>
+          </tr>
+          <tr ng-if="contact.mobile">
+            <td>
+              <strong><?php echo $this->getString('CLAIMS_CONTACT_MOBILE') ?></strong>
+            </td>
+            <td>
+              {{contact.mobile}}
+            </td>
+          </tr>
+        </table>
+        <div class="cardfooter clearfix">
+          <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO')?></a></div>
+        </div>
+      </div>
+      <h4><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
+      <div class="card info-card" ng-repeat="location in selectedClaim.locations">
+        <div class="cardheader">
+          <h1>{{location.unitNumber}}</h1>
+        </div>
+        <table class="table table-hover cardtable">
+          <tbody>
+            <tr>
+              <td>
+                <strong><?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?></strong>
+              </td>
+              <td value="{{location.workAuthorizationReceived}}" bool-to-string>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong><?php echo $this->getString('CLAIMS_ISPICTURES') ?></strong>
+              </td>
+              <td value="{{location.picturesTaken}}" bool-to-string>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong><?php echo $this->getString('CLAIMS_ISKEYS') ?></strong>
+              </td>
+              <td>
+                {{location.keysReceivedFrom}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cardfooter clearfix">
+          <div class="pull-right">
+            <a href="/admin/claimlocations/{{selectedClaim.id}}/{{location.id}}"><?php echo $this->getString("MORE_INFO")?></a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="clearfix"></div>

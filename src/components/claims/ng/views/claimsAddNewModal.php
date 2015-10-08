@@ -20,12 +20,8 @@
     <button class="btn-default" ng-click="toggleAdding()" ng-if="addNewClient">
       <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
     </button>
-    <button type="submit" ng-click="next()" class="btn btn-primary" form="wizard-form"
-      ng-if="currentPage === 0">
-      <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
-    </button>
     <button type="submit" ng-click="saveAndNext()" class="btn btn-primary" form="wizard-form"
-      ng-if="currentPage > 0 && currentPage < wizardPages.length - 2 && !addNewClient">
+      ng-if=" currentPage < wizardPages.length - 2 && !addNewClient">
       <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
     </button>
     <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form"

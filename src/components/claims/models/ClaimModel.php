@@ -75,15 +75,15 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface{
         return $claim;
     }
     
-    public function save($id) {
-        
-        $params = $this->httpRequest->getPost();        
-        //$params['id'] = intval($id);        
-     
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
-        
-        return $data;
-    }
+//    public function save($id) {
+//        
+//        $params = $this->httpRequest->getPost();        
+//        //$params['id'] = intval($id);        
+//     
+//        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
+//        
+//        return $data;
+//    }
 
     public function getFormWrapper() {
         return $this->entity;

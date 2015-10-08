@@ -1,6 +1,8 @@
 module.service('claimsListSrv', function($http, searchSrv) {
 
   var apiPath = '/admin/claims/';
+  var apiPathClaimLocation = '/admin/claimlocations/claim/';
+  var apiPathClaimContacts = '/admin/claim/contacts/';
 
   var self = this;
 
@@ -18,15 +20,22 @@ module.service('claimsListSrv', function($http, searchSrv) {
 
   this.getClaimDetail = function(object) {
     return $http.get(apiPath + object.id)
-      .then(function(response) {        
+      .then(function(response) {
         self.claimDetail = response.data.Claim;
       });
   };
-  
+
+  this.getClaimContacts = function(object) {
+      return $http.get(apiPathClaimContacts + object.id)
+      .then(function(response) {
+        self.claimContacts = response.data.ClaimContacts;
+      });
+  };
+
   this.getClaimLocations = function(object) {
-      return $http.get(apiPath + 'locations/' + object.id)
-      .then(function(response) {        
-        self.claimLocations = response.data.ClaimLocations;
+      return $http.get(apiPathClaimLocation + object.id)
+      .then(function(response) {
+        self.claimLocations = response.data.ClaimsLocations;
       });
   };
 
@@ -50,7 +59,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
     });
   };
 
-  this.search = function(searchObject) {    
+  this.search = function(searchObject) {
     return searchSrv.search(searchObject, apiPath).then(function() {
       self.searchResults = searchSrv.searchResults.Claims;
       self.searchResultsCount = searchSrv.searchResultsCount.ClaimsCount[0].rowCount;

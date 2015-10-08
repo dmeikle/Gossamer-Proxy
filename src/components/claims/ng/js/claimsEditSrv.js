@@ -5,8 +5,15 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
 
   this.save = function(object, formToken, page) {
     var requestPath = singleApiPath + page + '/';
+    if (!object.id) {
+      requestPath = requestPath + '0';
+    } else {
+      requestPath = requestPath + object.id;
+    }
     var copiedObject = angular.copy(object);
-    copiedObject.date = object.date.toISOString().substring(0, 10);
+    if (object.date) {
+      copiedObject.date = object.date.toISOString().substring(0, 10);
+    }
     return crudSrv.save(copiedObject, objectType, formToken, requestPath);
   };
 

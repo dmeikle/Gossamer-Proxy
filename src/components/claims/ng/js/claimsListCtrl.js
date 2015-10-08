@@ -12,6 +12,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
+    $scope.selectedClaim = {};
 
     $scope.tablesSrv = tablesSrv;
 
@@ -24,17 +25,22 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         }
     });
 
-$scope.selectRow = function (clickedObject) {
+    $scope.selectRow = function (clickedObject) {
         $scope.searching = false;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
+            $scope.selectedClaim = clickedObject;
             $scope.sidePanelLoading = true;
+            $scope.sidePanelOpen = true;
             claimsListSrv.getClaimLocations(clickedObject)
                     .then(function () {
-                        $scope.selectedClaim = claimsListSrv.claim;
-                        $scope.sidePanelOpen = true;
-                        $scope.sidePanelLoading = false;
+                        $scope.selectedClaim.locations = claimsListSrv.claimLocations;
                     });
+            claimsListSrv.getClaimContacts(clickedObject)
+                .then(function() {
+                  $scope.selectedClaim.contacts = claimsListSrv.claimContacts;
+                  $scope.sidePanelLoading = false;
+                });
         }
     };
 
@@ -45,12 +51,6 @@ $scope.selectRow = function (clickedObject) {
             size: 'lg',
             keyboard: false,
             backdrop: "static"
-        });
-
-        modalInstance.result.then(function (claim) {
-            claimsEditSrv.save(claim).then(function () {
-                getClaimsList();
-            });
         });
     };
 
@@ -147,7 +147,8 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   $scope.saveAndNext = function() {
-    $scope.save().then(function() {
+    $scope.save().then(function(response) {
+      $scope.claim.query.id = response.data.Claim[0].id;
       $scope.nextPage();
     });
   };
@@ -157,7 +158,7 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   $scope.confirm = function() {
-    $modalInstance.close($scope.claim);
+    $modalInstance.close($scope.claim.query);
   };
 
   $scope.cancel = function() {
