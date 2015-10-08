@@ -35,7 +35,7 @@ admin_claims_search:
 
 
 
-#changed to new URL 
+#changed to new URL
 #admin_claimlocations_by_claimid:
 #    pattern: admin/claims/locations/*
 #    defaults:
@@ -61,6 +61,10 @@ admin_claims_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/*/website'
 
 
 admin_claimslocation_view_comments:
@@ -183,7 +187,7 @@ admin_claims_initial_jobsheet:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             - 'src/components/projects/locales/*/Project'
-            - 'app/locales/en_US/website'
+            - 'app/locales/*/website'
     methods: [GET]
 
 
@@ -388,7 +392,7 @@ admin_claim_contacts:
         view: core\views\JSONView
         viewKey: admin_claim_contacts
         datasource: datasource1
-    
+
 
 admin_claims_list:
     pattern: admin/claims/*/*
@@ -455,7 +459,7 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
-    
+
 
 
 

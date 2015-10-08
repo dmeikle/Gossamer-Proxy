@@ -20,6 +20,21 @@ return array(
   'CLAIMS_KEYS' => 'Keys',
   'CLAIMS_ISKEYS' => 'Received from',
   'CLAIMS_PICTURES' => 'Photos',
-  'CLAIMS_ISPICTURES' => 'Photos Taken'
-
+  'CLAIMS_ISPICTURES' => 'Photos Taken',
+  'CLAIMS_CONTACT_TYPE' => 'Contact Type',
+  'CLAIMS_CONTACT_EXT' => 'Extension',
+  'CLAIMS_CONTACT_NAME' => 'Name',
+  'CLAIMS_CONTACT_PHONE' => 'Phone',
+  'CLAIMS_CONTACT_OFFICE' => 'Office Phone',
+  'CLAIMS_CONTACT_MOBILE' => 'Mobile Phone',
+  'CLAIMS_CONTACTS' => 'Contacts',
+  'CLAIMS_ADDRESS' => 'Address',
+  'CLAIMS_JOBNUMBER' => 'Job Number',
+  'CLAIMS_PHASE' => 'Phase',
+  'CLAIMS_BUILDING_NAME' => 'Building Name',
+  'CLAIMS_LOSS_TYPE' => 'Loss Type',
+  'CLAIMS_LOSS_DATE' => 'Loss Date',
+  'CLAIMS_STATUS' => 'Status',
+  'CLAIMS_PROJECT_MANAGER' => 'Project Manager',
+  'CLAIMS_PARENT_CLAIM' => 'Parent Claim'
 );
