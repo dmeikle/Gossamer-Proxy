@@ -1,4 +1,4 @@
-module.controller('inventoryModalCtrl', function($modalInstance, $scope, generalCostsModalSrv, $filter) {
+module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = [];
     
@@ -19,12 +19,12 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
     };
     
     //Set up the objects
-    $scope.inventory = {
+    $scope.headings = {
         Claims_id: '',
         ClaimPhases_id: ''
     };
     
-    var inventoryItemsTemplate = {
+    var lineItemsTemplate = {
         isSelected:false,
         materialName: '',
         unit:'',
@@ -57,14 +57,14 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
 //        });
 //    } else {
 //        $scope.loading = false;
-//        $scope.generalCostItems = angular.copy([generalCostItemsTemplate]);
+        $scope.lineItems = angular.copy([lineItemsTemplate]);
 //    }
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function(jobNumber){
-        for(var i in generalCostsModalSrv.autocomplete){
-            if(generalCostsModalSrv.autocomplete[i].label === jobNumber){
-                $scope.AccountingGeneralCost.Claims_id = generalCostsModalSrv.autocomplete[i].id;
+        for(var i in inventoryModalSrv.autocomplete){
+            if(inventoryModalSrv.autocomplete[i].jobNumber === jobNumber){
+                $scope.headings.Claims_id = inventoryModalSrv.autocomplete[i].id;
             }
         }
     };
@@ -72,23 +72,23 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
     //---Table Controls---
     //Add a row    
     $scope.addRow = function(){
-        $scope.generalCostItems.push(angular.copy(generalCostItemsTemplate));
+        $scope.lineItems.push(angular.copy(lineItemsTemplate));
     };
         
     //Insert rows below currently selected items
     $scope.insertRows = function(){
-        for (var i in $scope.generalCostItems){
-            if($scope.generalCostItems[i].isSelected === true){
-                $scope.generalCostItems.splice(parseInt(i)+1, 0, angular.copy(generalCostItemsTemplate));
+        for (var i in $scope.lineItems){
+            if($scope.lineItems[i].isSelected === true){
+                $scope.lineItems.splice(parseInt(i)+1, 0, angular.copy(lineItemsTemplate));
             }
         }
     };
     
     //Remove Rows from timesheet
     $scope.removeRows = function(){
-        for (var i = $scope.generalCostItems.length-1; i >= 0; i--){
-            if($scope.generalCostItems[i].isSelected === true){
-                $scope.generalCostItems.splice(parseInt(i), 1);
+        for (var i = $scope.lineItems.length-1; i >= 0; i--){
+            if($scope.lineItems[i].isSelected === true){
+                $scope.lineItems.splice(parseInt(i), 1);
             }
         }
     };
@@ -96,8 +96,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
     //Check selected
     $scope.checkSelected = function(){
         $scope.rowSelected = true;
-        for(var index in $scope.generalCostItems){
-            if($scope.generalCostItems[index].isSelected === true){
+        for(var index in $scope.lineItems){
+            if($scope.lineItems[index].isSelected === true){
                 $scope.rowSelected = true;
             }
         }
@@ -105,11 +105,11 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
 
     //Select All
     $scope.selectAllToggle = function(value){
-        for(var i in $scope.generalCostItems){
+        for(var i in $scope.lineItems){
             if(value === true){
-                $scope.generalCostItems[i].isSelected = true;
+                $scope.lineItems[i].isSelected = true;
             } else {
-                $scope.generalCostItems[i].isSelected = false;
+                $scope.lineItems[i].isSelected = false;
             }
         }
     };
@@ -118,13 +118,13 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
     $scope.fetchStaffAutocomplete = function(viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
-        return generalCostsModalSrv.fetchAutocomplete(searchObject);
+        return inventoryModalSrv.fetchAutocomplete(searchObject);
     };
     
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
-        searchObject.Claims_id = viewVal;
-        return generalCostsModalSrv.fetchClaimsAutocomplete(searchObject);
+        searchObject.jobNumber = viewVal;
+        return inventoryModalSrv.fetchClaimsAutocomplete(searchObject);
     };
     
     //Date Picker
@@ -134,20 +134,18 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, general
     };
     
     //Saving Items    
-    $scope.saveGeneralCostItems = function(){
-        var generalCostItems = angular.copy($scope.generalCostItems);
-        for (var i in generalCostItems){
-            console.log('filtering date!');
-            generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
-        }
+    $scope.save = function(){
+        var lineItems = angular.copy($scope.lineItems);
+//        for (var i in lineItems){
+//            //console.log('filtering date!');
+//            generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
+//        }
         console.log('Saving Items!');
         
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, generalCostItems, formToken);
+        inventoryModalSrv.save($scope.headings, lineItems, formToken);
         
-        console.log($scope.AccountingGeneralCost);
-        console.log($scope.generalCostItems);
     };
 });

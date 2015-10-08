@@ -51,7 +51,7 @@
                     <td></td>
                     <td></td>                    
                 </tr>
-                <tr ng-repeat="row in generalCostItems track by $index">
+                <tr ng-repeat="row in lineItems track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
                     </td>
