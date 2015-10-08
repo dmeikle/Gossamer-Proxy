@@ -32,7 +32,7 @@
                 <th column-sortable data-column="firstname"><?php echo $this->getString('CONTACTS_FIRSTNAME'); ?></th>
                 <th column-sortable data-column="lastname"><?php echo $this->getString('CONTACTS_LASTNAME'); ?></th>
                 <th column-sortable data-column="title"><?php echo $this->getString('CONTACTS_TITLE'); ?></th>
-                <th column-sortable data-column="telephone"><?php echo $this->getString('CONTACTS_EXTENSION'); ?></th>
+                <th column-sortable data-column="telephone"><?php echo $this->getString('CONTACTS_OFFICE'); ?></th>
                 <th column-sortable data-column="mobile"><?php echo $this->getString('CONTACTS_MOBILE'); ?></th>
                 <th column-sortable data-column="status"><?php echo $this->getString('CONTACTS_STATUS'); ?></th>
                 <th column-sortable data-column="numActive"><?php echo $this->getString('CONTACTS_ACTIVE_CLAIMS'); ?></th>
@@ -69,9 +69,8 @@
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a ng-click="openContactScheduleModal(contacts)">Schedule</a></li>
-                    <li><a href="/admin/contacts/edit/{{contacts.id}}">Edit</a></li>
-                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a ng-click="/admin/contacts/claims/(contacts.id)"><?php echo $this->getString('CONTACTS_VIEW_CLAIMS'); ?></a></li>
+                    <li><a href="/admin/contacts/edit/{{contacts.id}}"><?php echo $this->getString('CONTACTS_EDIT'); ?></a></li>
                     <li><a href="#">Delete</a></li>
                   </ul>
                 </div>
