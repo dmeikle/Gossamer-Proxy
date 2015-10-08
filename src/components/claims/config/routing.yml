@@ -35,18 +35,18 @@ admin_claims_search:
 
 
 
-
-admin_claimlocations_by_claimid:
-    pattern: admin/claims/locations/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: listLocationsByClaimId
-        view: core\views\JSONView
-        viewKey: admin_claimlocations_by_claimid
-        datasource: datasource1
-    methods: [GET]
+#changed to new URL 
+#admin_claimlocations_by_claimid:
+#    pattern: admin/claims/locations/*
+#    defaults:
+#        component: components\claims\ClaimsComponent
+#        controller: components\claims\controllers\ClaimLocationsController
+#        model: components\claims\models\ClaimLocationModel
+#        method: listLocationsByClaimId
+#        view: core\views\JSONView
+#        viewKey: admin_claimlocations_by_claimid
+#        datasource: datasource1
+#    methods: [GET]
 
 
 admin_claims_home:
@@ -444,6 +444,7 @@ admin_claimlocation_work_history:
         viewKey: admin_claimlocation_work_history
         datasource: datasource1
 
+
 admin_claimlocations_by_claimid:
     pattern: admin/claimlocations/claim/*
     defaults:
@@ -454,7 +455,7 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
-    methods: [GET]
+    
 
 
 
