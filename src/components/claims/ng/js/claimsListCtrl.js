@@ -24,7 +24,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         }
     });
 
-$scope.selectRow = function (clickedObject) {
+    $scope.selectRow = function (clickedObject) {
         $scope.searching = false;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
@@ -157,7 +157,7 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   $scope.confirm = function() {
-    $modalInstance.close($scope.claim);
+    $modalInstance.close($scope.claim.query);
   };
 
   $scope.cancel = function() {
