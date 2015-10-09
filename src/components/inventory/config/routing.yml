@@ -301,4 +301,43 @@ admin_warehouse_locations_home:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [GET]     
-                     
+
+
+                        
+admin_warehouse_locations_list:
+    pattern: admin/inventory/warehouse/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_list
+        datasource: datasource1  
+    methods: [GET]     
+
+                        
+admin_warehouse_locations_get:
+    pattern: admin/inventory/warehouse/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_get
+        datasource: datasource1  
+    methods: [GET]     
+            
+                        
+admin_warehouse_locations_save:
+    pattern: admin/inventory/warehouse/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_save
+        datasource: datasource1  
+    methods: [POST]                                 
