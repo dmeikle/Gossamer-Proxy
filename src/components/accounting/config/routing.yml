@@ -1054,4 +1054,18 @@ accounting_costcarditemtypes_save:
         viewKey: accounting_costcarditemtypes_save
         datasource: datasource1 
     methods: [POST]    
-    
+
+
+#------------------------ Tabs Test ----------------------------
+accounting_tabs_home:
+    pattern: admin/accounting/tabs
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_tabs_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
