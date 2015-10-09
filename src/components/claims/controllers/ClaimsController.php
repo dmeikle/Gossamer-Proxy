@@ -92,7 +92,7 @@ class ClaimsController extends AbstractController{
         $claim = $this->model->edit($claimId);
         //$claim = $this->httpRequest->getAttribute('Claim');
 
-        $this->render(array('claim' => $claim));
+        $this->render(array('Claim' => $claim));
     }
 
 

@@ -1,8 +1,9 @@
-
-<div class="content full-width" ng-controller="claimEditCtrl" ng-cloak>
+<div class="content full-width" ng-controller="claimsEditCtrl" ng-cloak>
+    <?php echo $form['id'];?>
+    <?php echo $form['ProjectAddresses_id'];?>
   <div class="widget">
     <h1 ng-if="!claim"><?php echo $this->getString('CLAIM_CREATE'); ?></h1>
-    <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIM_EDIT') ?> {{claim.buildingName}} {{claim.strataNumber}}</h1>
+    <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIM_EDIT') ?> {{claim.jobNumber}}</h1>
     <div class="clearfix"></div>
     <div class="cards">
       <div class="card">
@@ -13,75 +14,24 @@
         <div ng-if="loading">
           <span class="spinner-loader"></span>
         </div>
-
         <form ng-if="!loading" ng-submit="save(claim)">
-          <div class="cardleft">
-            <div class="form-group">
+          <div class="card">
+            <div class="form-group" ng-model="claim">
               <label for="claim-buildingName"><?php echo $this->getString('CLAIM_ADDRESS'); ?></label>
+              <label ng-value="claim.buildingName"></label><br />
+              <label>{{claim.address1}}</label><br />
+              <label>{{claim.city}}</label><br />
+              <label>{{claim.postalCode}}</label><br />
+              <label>{{claim.neighborhood}}</label>
               <input class="form-control" type="text" name="buildingName" required
-                id="claim-buildingName" ng-model="claim.buildingName">
-            </div>
-            <div class="form-group">
-              <label for="claim-lastname"><?php echo $this->getString('CLAIM_LASTNAME'); ?></label>
-              <input class="form-control" type="text" name="lastname" required
-                id="claim-lastname" ng-model="claim.lastname">
-            </div>
-            <div class="form-group">
-              <label for="claim-personalEmail"><?php echo $this->getString('CLAIM_PERSONALEMAIL'); ?></label>
-              <input class="form-control" type="email" name="personalEmail"
-                id="claim-personalEmail" ng-model="claim.personalEmail">
-            </div>
-            <div class="form-group">
-              <label for="claim-personalMobile"><?php echo $this->getString('CLAIM_PERSONALMOBILE'); ?></label>
-              <input class="form-control" type="tel" name="personalMobile"
-                id="claim-personalMobile" ng-model="claim.personalMobile">
-            </div>
-            <div class="form-group">
-              <label for="claim-personalTelephone"><?php echo $this->getString('CLAIM_PERSONALTELEPHONE'); ?></label>
-              <input class="form-control" type="tel" name="personalTelephone"
-                id="claim-personalTelephone" ng-model="claim.personalTelephone">
+                id="claim-buildingName" ng-model="claim.buildingName"><br />
+              <input class="form-control" type="text" name="address1" required id="claim-address1" ng-model="claim.address1"><br />
+              <input class="form-control" type="text" name="city" id="claim-city" ng-model="claim.city"><br />
+              <input class="form-control" type="text" name="postalCode" id="claim-postalCode" ng-model="claim.postalCode"><br />
+              <input class="form-control" type="text" name="neighborhood" id="claim-neighborhood" ng-model="claim.neighborhood">
             </div>
           </div>
-          <div class="cardright">
-            <div class="form-group">
-              <label for="claim-address1"><?php echo $this->getString('CLAIM_ADDRESS1'); ?></label>
-              <input class="form-control" type="tel" name="address1" required
-                id="claim-address1" ng-model="claim.address1">
-            </div>
-            <div class="form-group">
-              <label for="claim-address2"><?php echo $this->getString('CLAIM_ADDRESS2'); ?></label>
-              <input class="form-control" type="tel" name="address2"
-                id="claim-address2" ng-model="claim.address2">
-            </div>
-            <div class="form-group">
-              <label for="claim-city"><?php echo $this->getString('CLAIM_CITY'); ?></label>
-              <input class="form-control" type="tel" name="city" required
-                id="claim-city" ng-model="claim.city">
-            </div>
-            <div class="form-group">
-              <label for="claim-postalCode"><?php echo $this->getString('CLAIM_POSTALCODE'); ?></label>
-              <input class="form-control" type="tel" name="postalCode" required
-                id="claim-postalCode" ng-model="claim.postalCode">
-            </div>
-            <div class="form-group">
-              <label for="claim-dob"><?php echo $this->getString('CLAIM_DOB'); ?></label>
-              <div class="input-group">
-                <input type="date" name="dob" id="claim-dob" ng-model="claim.dob" ng-model-options="{timezone: '+0000'}"
-                  class="form-control" datepicker-popup is-open="isOpen.dob"
-                  datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('CLAIM_CLOSE');?>" />
-                <span class="input-group-btn" data-datepickername="dob">
-                  <button type="button" class="btn-default" data-datepickername="dob" ng-click="openDatepicker($event)">
-                    <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="claim-gender"><?php echo $this->getString('CLAIM_GENDER'); ?></label>
-              <input class="form-control" type="text" name="gender"
-                id="claim-gender" ng-model="claim.gender">
-            </div>
-          </div>
+          
           <div class="clearfix"></div>
           <div class="cardfooter">
             <input type="submit" class="btn btn-primary pull-right" ng-disabled="!claim.firstname || !claim.lastname"
