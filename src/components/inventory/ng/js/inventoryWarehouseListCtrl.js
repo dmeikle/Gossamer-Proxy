@@ -1,4 +1,4 @@
-module.controller('warehouseListCtrl', function($scope, $location, warehouseListSrv) {
+module.controller('warehouseListCtrl', function($scope, $location, warehouseListSrv, tablesSrv) {
 
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
@@ -11,11 +11,31 @@ module.controller('warehouseListCtrl', function($scope, $location, warehouseList
   // $scope.advancedSearch = {};
   // $scope.autocomplete = {};
 
+  // Load up the table service so we can watch it!
+  $scope.tablesSrv = tablesSrv;
+  $scope.$watch('tablesSrv.sortResult', function() {
+    if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+      $scope.warehouseList = tablesSrv.sortResult.WarehouseLocations;
+      $scope.loading = false;
+    }
+  });
+  $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.WarehouseLocations'], function() {
+      $scope.grouped = tablesSrv.grouped;
+      if ($scope.grouped === true) {
+        if(tablesSrv.groupResult && tablesSrv.groupResult.WarehouseLocations) $scope.warehouseList = tablesSrv.groupResult.WarehouseLocations;
+        $scope.loading = false;
+      } else if ($scope.grouped === false) {
+        $scope.getWarehouseList();
+      }
+  });
+
   $scope.getWarehouseList = function() {
-    warehouseListSrv.getLocationList(row, numRows)
+    $scope.loading = true;
+    warehouseListSrv.getWarehouseList(row, numRows)
       .then(function(response) {
-        $scope.locationList = response.data.Locations;
-        $scope.totalItems = response.data.LocationsCount;
+        $scope.warehouseList = response.data.WarehouseLocations;
+        $scope.totalItems = response.data.WarehouseLocationsCount;
+        $scope.loading = false;
       });
   };
 
@@ -36,7 +56,7 @@ module.controller('warehouseListCtrl', function($scope, $location, warehouseList
     if ($scope.grouped) {
       tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
     } else {
-      getStaffList(row, numRows);
+      $scope.getWarehouseList(row, numRows);
     }
   });
 });

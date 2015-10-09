@@ -1,5 +1,5 @@
 module.service('warehouseListSrv', function(crudSrv) {
-  var apiPath = '/admin/inventory/warehouse';
+  var apiPath = '/admin/inventory/warehouse/';
 
   this.getWarehouseList = function(row, numRows) {
     return crudSrv.getList(apiPath, row, numRows);
