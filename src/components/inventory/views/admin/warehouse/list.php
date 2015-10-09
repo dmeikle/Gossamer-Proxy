@@ -55,7 +55,7 @@
       </tbody>
       <tbody>
         <tr ng-if="!loading && grouped && warehouse[groupedBy] !== warehouseList[$index-1][groupedBy]" ng-repeat-start="warehouse in warehouseList">
-          <th colspan="7">
+          <th colspan="6">
             <span ng-if="groupedBy === 'id'">
               <?php echo $this->getString('WAREHOUSE_GROUPEDBY_ID'); ?>
             </span>
@@ -84,7 +84,7 @@
           <td ng-hide="groupedBy === 'name'" ng-click="selectRow(warehouse)">{{warehouse.name}}</td>
           <td ng-hide="groupedBy === 'priority'" ng-click="selectRow(warehouse)">{{warehouse.priority}}</td>
           <td ng-hide="groupedBy === 'description'" ng-click="selectRow(warehouse)">{{warehouse.description}}</td>
-          <td ng-hide="groupedBy === 'isActive'" ng-click="selectRow(warehouse)">{{warehouse.isActive}}</td>
+          <td ng-hide="groupedBy === 'isActive'" ng-click="selectRow(warehouse)" value="{{warehouse.isActive}}" bool-to-string></td>
           <td class="row-controls">
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
