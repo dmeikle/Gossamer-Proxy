@@ -192,7 +192,8 @@ admin_accounting:
 admin_accounting_test:
     active: true
     text_key: 'ADMIN_TEST'
-    ng-click: 'addTab(claimsAdminTab)'
+    ng-click: "addTab('text_key', 'templateUrl')"
+    templateUrl: '/render/accounting/timesheetsTab'
     display_roles:
         - IS_ADMINISTRATOR
         - IS_PROJECT_MANAGER
@@ -202,7 +203,8 @@ admin_accounting_test:
 admin_accounting_general_costs_test:
     active: true
     text_key: 'ADMIN_GENERAL_COSTS'
-    ng-click: 'addTab(generalCostsTab)'
+    ng-click: "addTab('text_key', 'templateUrl')"
+    templateUrl: '/render/accounting/timesheetsTab'
     display_roles:
         - IS_ADMINISTRATOR
         - IS_PROJECT_MANAGER

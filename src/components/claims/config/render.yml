@@ -71,3 +71,4 @@ claimsAdminTab:
     path: 'src/components/claims/views/admin/claims/list.php'
     langFiles:
         - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
