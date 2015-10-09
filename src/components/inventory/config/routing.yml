@@ -12,11 +12,11 @@ super_inventory_inventorytypes_list:
         view: core\views\TemplateView
         viewKey: super_inventory_inventorytypes_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
-     
+
 
 super_inventory_inventorytypes_edit:
     pattern: super/inventory/types/*
@@ -28,10 +28,10 @@ super_inventory_inventorytypes_edit:
         view: core\views\TemplateView
         viewKey: super_inventory_inventorytypes_edit
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]     
-     
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 super_inventory_inventorytypes_save:
     pattern: super/inventory/types/*
     defaults:
@@ -42,10 +42,10 @@ super_inventory_inventorytypes_save:
         view: core\views\JSONView
         viewKey: super_inventory_inventorytypes_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST] 
-    
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
 super_inventory_inventorytypes_remove:
     pattern: super/inventory/types/remove/*
     defaults:
@@ -56,11 +56,11 @@ super_inventory_inventorytypes_remove:
         view: core\views\JSONView
         viewKey: super_inventory_inventorytypes_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST]     
-    
-    
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
+
 
 
 #---------------------- package types -------------------------
@@ -75,11 +75,11 @@ super_inventory_packagetypes_list:
         view: core\views\TemplateView
         viewKey: super_inventory_packagetypes_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
-     
+
 
 super_inventory_packagetypes_edit:
     pattern: super/inventory/packagetypes/*
@@ -91,10 +91,10 @@ super_inventory_packagetypes_edit:
         view: core\views\TemplateView
         viewKey: super_inventory_packagetypes_edit
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]     
-     
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 super_inventory_packagetypes_save:
     pattern: super/inventory/packagetypes/*
     defaults:
@@ -105,10 +105,10 @@ super_inventory_packagetypes_save:
         view: core\views\JSONView
         viewKey: super_inventory_packagetypes_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST] 
-    
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
 super_inventory_packagetypes_remove:
     pattern: super/inventory/packagetypes/remove/*
     defaults:
@@ -119,10 +119,10 @@ super_inventory_packagetypes_remove:
         view: core\views\JSONView
         viewKey: super_inventory_packagetypes_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST]     
-        
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
 
 
 #---------------------- categories -------------------------
@@ -137,11 +137,11 @@ super_inventory_categories_list:
         view: core\views\TemplateView
         viewKey: super_inventory_categories_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
-     
+
 
 super_inventory_categories_edit:
     pattern: super/inventory/categories/*
@@ -153,10 +153,10 @@ super_inventory_categories_edit:
         view: core\views\JSONView
         viewKey: super_inventory_categories_edit
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]     
-     
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 super_inventory_categories_save:
     pattern: super/inventory/categories/*
     defaults:
@@ -167,10 +167,10 @@ super_inventory_categories_save:
         view: core\views\JSONView
         viewKey: super_inventory_categories_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST] 
-    
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
 super_inventory_categories_remove:
     pattern: super/inventory/categories/remove/*
     defaults:
@@ -181,11 +181,11 @@ super_inventory_categories_remove:
         view: core\views\JSONView
         viewKey: super_inventory_categories_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST]     
-  
-                
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
+
 
 
 #---------------------- items -------------------------
@@ -203,8 +203,8 @@ admin_inventory_items_list:
         view: core\views\TemplateView
         viewKey: admin_inventory_items_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
 admin_inventory_equipment_list:
@@ -220,9 +220,9 @@ admin_inventory_equipment_list:
         view: core\views\TemplateView
         viewKey: admin_inventory_equipment_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]   
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
 
 admin_inventory_materials_list:
     pattern: admin/inventory/materials/*/*
@@ -237,9 +237,9 @@ admin_inventory_materials_list:
         view: core\views\TemplateView
         viewKey: admin_inventory_materials_list
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]     
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
 
 admin_inventory_items_edit:
     pattern: admin/inventory/items/*
@@ -254,11 +254,11 @@ admin_inventory_items_edit:
         view: core\views\TemplateView
         viewKey: admin_inventory_items_edit
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [GET]     
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
 
-    
+
 admin_inventory_items_save:
     pattern: admin/inventory/items/*
     defaults:
@@ -269,10 +269,10 @@ admin_inventory_items_save:
         view: core\views\TemplateView
         viewKey: admin_inventory_items_save
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST] 
-    
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
 admin_inventory_items_remove:
     pattern: admin/inventory/items/remove/*
     defaults:
@@ -283,7 +283,63 @@ admin_inventory_items_remove:
         view: core\views\JSONView
         viewKey: admin_inventory_items_remove
         datasource: datasource1
-        langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
-    methods: [POST]     
-                        
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
+
+admin_warehouse_locations_home:
+    pattern: admin/inventory/warehouse
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_warehouse_locations_home
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
+
+
+admin_warehouse_locations_list:
+    pattern: admin/inventory/warehouse/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_list
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_warehouse_locations_get:
+    pattern: admin/inventory/warehouse/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_get
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_warehouse_locations_save:
+    pattern: admin/inventory/warehouse/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_save
+        datasource: datasource1
+    methods: [POST]

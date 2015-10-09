@@ -364,14 +364,6 @@ admin_claim_edit:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claim_edit
         datasource: datasource1
-        
-admin_claim_get:
-    pattern: admin/claim/*
-#    listeners:
-#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
-#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
-#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
-
 
 admin_claims_get:
     pattern: admin/claims/*

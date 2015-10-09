@@ -62,3 +62,28 @@ admin_inventory_items_edit:
             "section4": "src/themes/default/templates/sections/footer.php"          
             
             
+#------------------------- warehouse -----------------------        
+
+admin_warehouse_locations_home:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/inventory/views/admin/warehouse/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - inventoryAdmin
+    head:
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/inventory/dist/js/inventory.concat.js
+        #- @components/claims/dist/js/claims.min.js
+    css:
+        - @components/inventory/dist/css/inventory.min.css
