@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\claims\models;
+namespace components\inventory\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;

@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\claims\controllers;
+namespace components\inventory\controllers;
 
 use core\AbstractController;
 
