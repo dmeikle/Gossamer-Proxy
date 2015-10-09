@@ -1,4 +1,4 @@
-module.controller('staffEmergencyContactsCtrl', function($scope, $location, $modal, staffEmergencyContactsSrv, templateSrv) {
+module.controller('staffEmergencyContactsCtrl', function($scope, $location, $modal, staffEmergencyContactsSrv, staffTemplateSrv) {
   $scope.loading = true;
   getStaffEmergencyInfo();
 
@@ -13,7 +13,7 @@ module.controller('staffEmergencyContactsCtrl', function($scope, $location, $mod
   }
 
   $scope.openEditEmergencyContactModal = function(contact) {
-    var template = templateSrv.editEmergencyContactModal;
+    var template = staffTemplateSrv.editEmergencyContactModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'staffEmergencyContactModalCtrl',

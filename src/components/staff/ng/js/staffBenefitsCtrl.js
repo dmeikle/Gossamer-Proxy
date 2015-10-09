@@ -1,4 +1,4 @@
-module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staffBenefitsSrv, templateSrv) {
+module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staffBenefitsSrv, staffTemplateSrv) {
   // stuff to run on controller load
   $scope.staffBenefitsLoading = true;
   getStaffBenefits();
@@ -14,7 +14,7 @@ module.controller('staffBenefitsCtrl', function($scope, $location, $modal, staff
   }
 
   $scope.openStaffBenefitsHistoryModal = function() {
-    var template = templateSrv.staffBenefitsHistoryModal;
+    var template = staffTemplateSrv.staffBenefitsHistoryModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'staffBenefitsHistoryModalCtrl',

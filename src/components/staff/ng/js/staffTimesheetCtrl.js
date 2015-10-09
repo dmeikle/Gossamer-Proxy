@@ -1,9 +1,9 @@
-module.controller('staffTimesheetCtrl', function($scope, $modal, templateSrv) {
+module.controller('staffTimesheetCtrl', function($scope, $modal, staffTemplateSrv) {
 
     //Modals
     $scope.openStaffTimesheetModal = function() {
         $scope.loadingModal = true;
-        var template = templateSrv.staffTimesheetModal;
+        var template = staffTemplateSrv.staffTimesheetModal;
         $modal.open({
             templateUrl: template,
             controller: 'staffTimesheetModalCtrl',

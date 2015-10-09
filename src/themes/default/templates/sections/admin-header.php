@@ -36,7 +36,7 @@
                     if (!$hasChildren) {
                         if(array_key_exists('ng-click', $item)) {
                             $tmp = str_replace('text_key', $this->getString($item['text_key']),  $item['ng-click']);
-                            $ngLink = str_replace('templateUrl', $this->getString($item['templateUrl']),  $tmp);
+                            $ngLink = str_replace('template', $this->getString($item['template']),  $tmp);
                             ?>
                             <li><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
                         <?php 
@@ -61,7 +61,7 @@
                                     }
                                     if(array_key_exists('ng-click', $childItem)) {
                                          $tmp = str_replace('text_key', $this->getString($childItem['text_key']),  $childItem['ng-click']);
-                                        $ngLink = str_replace('templateUrl', $this->getString($childItem['templateUrl']),  $tmp);
+                                        $ngLink = str_replace('template', $this->getString($childItem['template']),  $tmp);
                                         ?>
                                         <li><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) . $caret; ?></a></li>
                                     <?php 
@@ -107,10 +107,10 @@
 </header>
 <div id="tabs" ng-controller="tabsCtrl" ng-cloak>
     <tabset>
-        <tab ng-repeat="tab in tabs track by $index" active="tab.active" disable="tab.disabled">
+        <tab sortable-tab ng-repeat="tab in tabs track by $index" active="tab.active" disable="tab.disabled">
             <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
             <div ng-if="tab.loading" class="tab-loader"><span class="spinner-loader"></span></div>
-            <div ng-include="tab.templateUrl" onload="hideSpinner(tab)"></div>
+            <div ng-include="tab.template" onload="hideSpinner(tab)"></div>
         </tab>
     </tabset>
 </div>

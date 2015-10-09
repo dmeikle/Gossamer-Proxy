@@ -151,6 +151,11 @@ ul {
     //margin-top:10px;
     display:flex;
     margin:10px 20px;
+    a{
+        user-select: none;
+        user-drag: none;
+        
+    }
     .tab-loader{
         float:left;
         margin: 20px;   

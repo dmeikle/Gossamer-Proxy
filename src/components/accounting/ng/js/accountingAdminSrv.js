@@ -50,7 +50,7 @@ module.service('costCardItemTypeSrv', function($http) {
   };
 });
 
-module.service('templateSrv', function() {
+module.service('accountingTemplateSrv', function() {
   this.costCardItemTypeModal = '/render/accounting/CostCardItemTypeModal';
   //this.widgetModal = '/render/accounting/CostCardItemTypeModal';
 });
