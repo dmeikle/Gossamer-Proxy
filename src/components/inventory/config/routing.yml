@@ -286,4 +286,19 @@ admin_inventory_items_remove:
         langFiles: 
             - 'src/framework/core/components/locales/resources/*/Navigation'  
     methods: [POST]     
+       
                         
+admin_warehouse_locations_home:
+    pattern: admin/inventory/warehouse
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_warehouse_locations_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/framework/core/components/locales/resources/*/Navigation'  
+    methods: [GET]     
+                     
