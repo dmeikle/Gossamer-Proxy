@@ -71,7 +71,9 @@ button {
 .cog-col {
   width:40px;
 }
-
+.table>tbody>tr>td{
+    padding:4px;
+}
 .table>tbody>tr>td:not(.row-controls) {
   padding:.5em;
   white-space: nowrap;
@@ -151,21 +153,35 @@ ul {
     //margin-top:10px;
     display:flex;
     margin:10px 20px;
-    a{
-        user-select: none;
-        user-drag: none;
-        
-    }
     .tab-loader{
         float:left;
-        margin: 20px;   
+        margin: 20px;
     }
-    .close-tab{
-        margin-left:.5em;
-        cursor: pointer;
-        color:rgba(0,0,0,.25);
-        &:hover{
-            color:rgba(0,0,0,.5);
+    .nav-tabs{        
+        li.dragging{
+            opacity:.5;
+        }
+        a{
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            border: 1px solid #ddd;
+            border-bottom-color: rgba(0, 0, 0, 0);
+        }
+        .active a{
+            border: 1px solid #ddd;
+            border-bottom-color: rgba(0, 0, 0, 0);
+        }
+        
+        .close-tab{
+            margin-left:.5em;
+            cursor: pointer;
+            color:rgba(0,0,0,.25);
+            &:hover{
+                color:rgba(0,0,0,.5);
+            }
         }
     }
 }

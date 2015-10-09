@@ -81,8 +81,8 @@ module.directive('sortableTab', function($timeout, $document) {
       function move(fromIndex, toIndex) {
         // http://stackoverflow.com/a/7180095/1319998
         tabs.splice(toIndex, 0, tabs.splice(fromIndex, 1)[0]);
-      };
+      }
       
     }
-  }
+  };
 });
