@@ -1,68 +1,91 @@
 
 #-------------------- package types -----------------------
-super_inventory_packagetypes_list:     
+super_inventory_packagetypes_list:
     template: super-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/packagetypes/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-            
+
 #-------------------- categories -----------------------
-super_inventory_categories_list:     
+super_inventory_categories_list:
     template: super-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/categories/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-                        
+
 # ------------------- types -----------------------------
 
-super_inventory_inventorytypes_list:    
+super_inventory_inventorytypes_list:
     template: super-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/types/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-            
+
 #--------------------- items --------------------------
 
 admin_inventory_equipment_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/items/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
 admin_inventory_materials_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/items/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
-admin_inventory_items_list:  
+
+admin_inventory_items_list:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/items/list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-            
-admin_inventory_items_edit:  
+
+admin_inventory_items_edit:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"           
+            "section1": "src/themes/default/templates/sections/admin-header.php"
             "section3": "src/components/inventory/views/admin/items/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"          
-            
-            
-#------------------------- warehouse -----------------------        
+            "section4": "src/themes/default/templates/sections/footer.php"
+
+admin_inventory_list:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/inventory/views/admin/items/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - inventoryAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/inventory/dist/js/inventory.concat.js
+        #- @components/inventory/dist/js/claims.min.js
+    css:
+        - @components/inventory/dist/css/inventory.min.css
+
+#------------------------- warehouse -----------------------
 
 admin_warehouse_locations_home:
     template: admin-list.php
