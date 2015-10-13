@@ -33,8 +33,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         description:'',
         date:'',
         department: '',
-        cost:'0',
-        chargeout: '0'
+        cost:'',
+        chargeout: ''
     };
     
 //    //Check and see if you're editing an item or creating a new one...

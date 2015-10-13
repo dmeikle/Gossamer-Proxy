@@ -25,17 +25,19 @@
             </select>
         </div>
         
-        <table class="table table-striped table-hover general-cost-items">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                     <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_UNIT_OF_MEASURE'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_UNIT_PRICE'); ?></th>
+                    <th><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                    <th class="date-col"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
+                    <th class="cost-col"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                    <th class="cost-col"><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -56,10 +58,19 @@
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
                     </td>
                     <td>
-                        <input placeholder="Cost Name" class="form-control" type="text" ng-model="row.name">                      
+                        <input placeholder="Material Name" class="form-control" type="text" ng-model="row.name">                      
                     </td>
                     <td>
-                        <input placeholder="Description" class="form-control" type="text" ng-model="row.description">
+                        <input placeholder="Unit of Measure" class="form-control" type="text" ng-model="row.unitMeasure">
+                    </td>
+                    <td>
+                        <input placeholder="Unit Price" class="form-control cost" type="number" ng-model="row.unitPrice">
+                    </td>
+                    <td>
+                        <input placeholder="Quantity" class="form-control cost" type="number" ng-model="row.quantity">
+                    </td>
+                    <td>
+                        <input placeholder="Description" class="form-control" type="text" ng-model="row.description">                      
                     </td>
                     <td class="date-col">
                         <div class="input-group">
@@ -88,14 +99,7 @@
                     <td>
                         <input placeholder="Chargeout" class="form-control chargeout" type="number" ng-model="row.chargeOut">
                     </td>
-                    <td>
-                        <select class="debit-account form-control" name="departments" ng-model="row.AccountingDebitAccounts_id">
-                            <option value="" selected>-Debit Account-</option>
-                            <?php foreach($DebitAccounts as $debitAccount) {
-                                echo '<option value="' . $debitAccount['id'] . '">' . $debitAccount['name'] . '</option>';
-                            }?>
-                        </select>
-                    </td>
+                    
                 </tr>
             </tbody>
         </table>

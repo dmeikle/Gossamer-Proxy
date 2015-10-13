@@ -59,6 +59,10 @@ return array(
     
     'ACCOUNTING_ITEMS' => 'Items',
     'ACCOUNTING_NEW_INVENTORY' => 'New Inventory Item',
+    'ACCOUNTING_UNIT_OF_MEASURE' => 'Unit (of measure)',
+    'ACCOUNTING_UNIT_PRICE' => 'Unit Price',
+    'ACCOUNTING_QUANTITY' => 'Quantity',
+    
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     

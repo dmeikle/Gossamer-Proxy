@@ -1,23 +1,23 @@
 .pull-left{
     .modal-spinner{
         vertical-align:middle;
-        margin-left:30px!important;
+        margin-left:30px;
     }
 }
 .pull-right{
     .form-control{
-        display:inline!important;
+        display:inline;
         width:auto;
     }
 }
-table{
-    margin-top:10px;
+.table{
+    margin:10px 0;
     td{
-        vertical-align: middle!important;
+//        vertical-align: middle!important;
     }
-    tr.selected {
-        background-color: rgba(3,146,211,0.4)!important;
-    }
+//    tr.selected {
+//        background-color: rgba(3,146,211,0.4)!important;
+//    }
 }
 .toolbar{
     width:100%;
@@ -33,7 +33,7 @@ table{
     &.pull-right{
         input, select{
             display:inline;
-            width:auto!important;
+            width:auto;
         }
     }
 }
@@ -124,9 +124,6 @@ table{
             width: auto;
         }
     }
-    .laborer, .date, .rate, .total-hours, .form-control{
-//        display:inline;
-    }
     .rate{
         label{
             margin-right:43px;
@@ -136,11 +133,6 @@ table{
         float:right;
         margin-right:10px;
     }
-//    .pull-right{
-//        label{
-//            margin-right:10px;
-//        }
-//    }
     .laborer{
         input{
             margin-left:10px;
@@ -151,9 +143,9 @@ table{
     }
     table{
         td{
-            vertical-align: top!important;
+            vertical-align: top;
             &:nth-child(1){
-                vertical-align: middle!important;
+                vertical-align: middle;
             }
         }
         select{
@@ -183,16 +175,16 @@ table{
             margin:auto;
         }
         .total{
-            vertical-align: middle!important;
+            vertical-align: middle;
             text-align: center;
         }
         .totalRow{
-            background-color:none!important;
+            background-color:none;
             td{
                 text-align: center;
             }
             &:hover{
-                background-color:none!important;
+                background-color:none;
             }
         }
         .toll{
@@ -207,6 +199,31 @@ table{
             -webkit-appearance: none;
         }
     }
+    .select-col{
+        width:45px;
+    }
+    .date-col{
+        width:190px;
+    }
+    .cost-col{
+        width:100px;
+    }
+//    .date-col{
+//        overflow: visible;
+//        .input-group{
+//            display: flex;
+//        }
+//        input{
+//            width:140px;
+//        }
+//    }
+    //margin-bottom: 10px;
+//    .debit-account{
+//        width:170px;
+//    }
+//    .cost, .chargeout{
+//        width:100px;
+//    }
 }
 .modal-content{
     .typeahead{
@@ -216,6 +233,20 @@ table{
         display: inline-block;
         label{
             display:block;
+        }
+    }
+    .table{
+        .date-col{
+            overflow: visible;
+            .input-group{
+                display: flex;
+            }
+            input{
+                width:140px;
+            }
+        }
+        .debit-account{
+            width:170px;
         }
     }
     .general-cost-items{
@@ -232,9 +263,9 @@ table{
         .debit-account{
             width:170px;
         }
-        .cost, .chargeout{
-            width:100px;
-        }
+//        .cost, .chargeout{
+//            width:100px;
+//        }
     }
     .general-costs-modal{
         .resultspane.claim-number{
