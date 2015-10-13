@@ -42,10 +42,10 @@
                 <tr ng-if="loading">
                     <td></td>  
                     <td></td>
-                    <td></td>
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
                     <td></td>  
                     <td></td>
 <!--                    <td></td>                   -->
@@ -125,11 +125,7 @@
                         echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
                 </select>
                 
-                
-                <input placeholder="Staff Name" class="form-control" name="staffName" ng-model="advSearch.staffName">
-                <input placeholder="Cost" class="form-control" name="cost" ng-model="advSearch.cost">
-                <input placeholder="Chargeout" class="form-control" name="chargeout" ng-model="advSearch.chargeOut">
-                
+                <input placeholder="Inventory Item" class="form-control" name="inventoryItemID" ng-model="advSearch.InventoryItem_id">                
                 
             </div>
 

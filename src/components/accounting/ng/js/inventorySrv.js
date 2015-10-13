@@ -7,7 +7,7 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
     self.error = {};
     self.error.showError = false;
     
-    //Get the list of general cost items
+    //Get the list of inventory items
     this.getList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
             .then(function(response) {
@@ -21,12 +21,13 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
         });
     };
     
-    //Get the list of general cost items
-    this.getGeneralCostItems = function(row, numRows, id){
-        return $http.get(generalCostItemsPath + row + '/' + numRows + '/?AccountingGeneralCosts_id=' + id)
+    //Get the breakdown of the selected item
+    this.getBreakdown = function(row, numRows, id){
+        return $http.get(apiPath + row + '/' + numRows + '/?id=' + id)
             .then(function(response) {
-            self.generalCostItems = response.data.SuppliesUseds;
-            self.generalCostsCount = response.data.SuppliesUsedsCount[0].rowCount;
+            console.log(response);
+            //self.breakdownItems = response.data.SuppliesUseds;
+            //self.generalCostsCount = response.data.SuppliesUsedsCount[0].rowCount;
         }, function(response){
             //Handle any errors
             self.error.showError = true;

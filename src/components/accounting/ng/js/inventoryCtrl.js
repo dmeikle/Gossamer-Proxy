@@ -10,10 +10,10 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     $scope.advancedSearch = {};
 //    $scope.advSearch = {};
 //    $scope.autocomplete = {};
-//    $scope.isOpen = {};
-//    $scope.isOpen.datepicker = {};
-//    $scope.isOpen.datepicker.fromDate = false;
-//    $scope.isOpen.datepicker.toDate = false;
+    $scope.isOpen = {};
+    $scope.isOpen.datepicker = {};
+    $scope.isOpen.datepicker.fromDate = false;
+    $scope.isOpen.datepicker.toDate = false;
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;    
@@ -48,11 +48,11 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelOpen = true;
             $scope.sidePanelLoading = true;
-            generalCostsSrv.getGeneralCostItems(row, numRows, clickedObject.id)
+            inventorySrv.getBreakdown(row, numRows, clickedObject.id)
                 .then(function(){
-                //                    $scope.sidePanelOpen = true;
+//                    $scope.sidePanelOpen = true;
                 $scope.selectedRow = clickedObject;
-                $scope.rowBreakdown = generalCostsSrv.generalCostItems;
+                $scope.rowBreakdown = inventorySrv.breakdownItems;
                 $scope.sidePanelLoading = false;
             });
         }
