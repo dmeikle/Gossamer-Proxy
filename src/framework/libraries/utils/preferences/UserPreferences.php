@@ -16,6 +16,15 @@ class UserPreferences
     private $params = array();
 
 
+    public function setViewType($view) {
+        $this->params['DefaultView'] = $view;
+    }
+    
+    public function getViewType() {
+        return $this->params['DefaultView'];
+    }
+    
+    
     public function setDefaultLocale($value) {
         $this->params['DefaultLocale'] = $value;
     }
