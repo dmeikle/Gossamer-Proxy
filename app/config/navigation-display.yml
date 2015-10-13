@@ -535,53 +535,53 @@ admin_accounting_general_costs_test:
 #        - IS_PORTAL_MANAGER
 #
 #
-##--------------------------main website ----------------------
-#
-#website_services:
-#    active: true
-#    text_key: 'WEBSITE_SERVICES'
-#    pattern: '/restoration/services'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
-#
-#website_login:
-#    active: true
-#    text_key: 'WEBSITE_LOGIN'
-#    pattern: '/portal/entrance'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
-#
-#
-#website_blogs_list:
-#    active: true
-#    text_key: 'WEBSITE_BLOGS_LIST'
-#    pattern: '/blogs/0/20'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
-#
-#website_contact:
-#    active: true
-#    text_key: 'WEBSITE_CONTACT'
-#    pattern: '/contact/contactus'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
-#
-#website_faqs:
-#    active: true
-#    text_key: 'WEBSITE_FAQS'
-#    pattern: '/restoration/frequently-asked-restoration-questions'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
-#
-#website_about:
-#    active: true
-#    text_key: 'WEBSITE_ABOUT'
-#    pattern: '/restoration/about-phoenix-restorations'
-#    display_roles:
-#        - IS_ANONYMOUS
-#        - IS_CUSTOMER
+#--------------------------main website ----------------------
+
+website_services:
+    active: true
+    text_key: 'WEBSITE_SERVICES'
+    pattern: '/restoration/services'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER
+
+website_login:
+    active: true
+    text_key: 'WEBSITE_LOGIN'
+    pattern: '/portal/entrance'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER
+
+
+website_blogs_list:
+    active: true
+    text_key: 'WEBSITE_BLOGS_LIST'
+    pattern: '/blogs/0/20'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER
+
+website_contact:
+    active: true
+    text_key: 'WEBSITE_CONTACT'
+    pattern: '/contact/contactus'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER
+
+website_faqs:
+    active: true
+    text_key: 'WEBSITE_FAQS'
+    pattern: '/restoration/frequently-asked-restoration-questions'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER
+
+website_about:
+    active: true
+    text_key: 'WEBSITE_ABOUT'
+    pattern: '/restoration/about-phoenix-restorations'
+    display_roles:
+        - IS_ANONYMOUS
+        - IS_CUSTOMER

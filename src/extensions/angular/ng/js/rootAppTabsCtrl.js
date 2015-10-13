@@ -1,5 +1,14 @@
 module.controller('tabsCtrl', function($scope, tabsSrv) {
     $scope.tabs = tabsSrv.tabs;
+    
+    var defaultTab = {
+        title:'Default',
+        template:'',
+        content:'Welcome to Tabbed View. Pages will now load as tabs.'
+    };
+    if($scope.tabs.length === 0){
+        $scope.tabs.push(defaultTab);
+    }
 //    $scope.tabObj = [{
 //        title:'Timesheets',
 //        template:'/render/accounting/timesheetsTab',
@@ -9,26 +18,6 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
 //        template:'/render/accounting/generalCostsTab',
 //        content:'tabs? what tabs?'
 //    }];
-    
-//    $scope.timesheetsTab = {
-//        title:'Timesheets',
-//        template:'/render/accounting/timesheetsTab'
-//    };
-//    
-//    $scope.generalCostsTab = {
-//        title:'General Costs',
-//        template:'/render/accounting/generalCostsTab'
-//    };
-//    
-//    $scope.staffTimesheetsTab = {
-//        title:'Staff Timesheet',
-//        template:'/render/staff/staffTimesheetsTab'
-//    };
-//    
-//    $scope.claimsAdminTab = {
-//        title:'Claims Admin',
-//        template:'/render/claims/claimsAdminTab'
-//    };
     
     $scope.addTab = function(title, template){
         var tabObj = {

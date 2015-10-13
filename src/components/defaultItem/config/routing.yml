@@ -63,7 +63,21 @@ admin_home:
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
     
- 
+admin_home_tabbed:
+    pattern: admin/home/tabbed
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\TimesheetsController
+        model: components\accounting\models\TimesheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_home_tabbed
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Contact'
+            - 'src/components/accounting/locales/*/accounting'
+    
 portal_home:
     pattern: portal/home
     defaults:

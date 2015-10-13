@@ -17,6 +17,7 @@
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
             <ul class="navbar-left">
                 <?php
+
                 foreach ($NAVIGATION as $key => $item) {
                     //first check for top parent nav items
                     if (array_key_exists('active', $item) && $item['active'] == false) {
@@ -78,9 +79,6 @@
                         </li>
                         <?php }
                         ?>
-
-
-
                     <?php
                 }
                 ?>
@@ -97,6 +95,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Your Tickets</a></li>
+                        <li><a href="#">Tabbed View</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>
@@ -110,7 +109,8 @@
         <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
             <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
             <div ng-if="tab.loading" class="tab-loader"><span class="spinner-loader"></span></div>
-            <div ng-include="tab.template" onload="hideSpinner(tab)"></div>
+            <div ng-include="tab.template" onload="hideSpinner(tab)" class="tab-include"></div>
+            <div>{{tab.content}}</div>
         </tab>
     </tabset>
 </div>
