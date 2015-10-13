@@ -57,9 +57,9 @@ admin_inventory_items_edit:
     template: admin-list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/inventory/views/admin/items/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/inventory/views/admin/items/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - rootApp

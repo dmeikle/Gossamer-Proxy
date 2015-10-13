@@ -1,4 +1,4 @@
-module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryListSrv) {
+module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryListSrv, inventoryEditSrv) {
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -123,6 +123,16 @@ module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryList
   $scope.resetAdvancedSearch = function() {
     $scope.advancedSearch.query = {};
     $scope.getList();
+  };
+
+  $scope.delete = function(object) {
+    var confirmed = window.confirm('Are you sure?');
+    if (confirmed) {
+      var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+      inventoryEditSrv.delete(object, formToken).then(function() {
+        $scope.getList();
+      });
+    }
   };
 
   $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {

@@ -32,7 +32,7 @@
               <?php echo $this->getString('INVENTORY_MATERIALS') ?>
             </a></li>
         </ul>
-      <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('INVENTORY_NEW');?></a>
+      <a href="/admin/inventory/items/0" class="btn btn-primary"><?php echo $this->getString('INVENTORY_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
@@ -75,7 +75,7 @@
               <td ng-click="selectRow(item)">{{item.id}}</td>
               <td ng-click="selectRow(item)">{{item.name}}</td>
               <td ng-click="selectRow(item)">{{item.productCode}}</td>
-              <td ng-click="selectRow(item)">{{item.losstype}}</td>
+              <td ng-click="selectRow(item)">{{item.description}}</td>
               <td ng-click="selectRow(item)">{{item.minOrderQuantity}}</td>
               <td ng-click="selectRow(item)">{{item.maxQuantity}}</td>
               <td ng-click="selectRow(item)">{{item.PackageTypes_id}}</td>
@@ -89,7 +89,8 @@
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="/admin/inventory/items/{{item.id}}">Edit</a></li>
+                    <li><a href="/admin/inventory/items/{{item.id}}"><?php echo $this->getString('EDIT') ?></a></li>
+                    <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
                   </ul>
                 </div>
               </td>

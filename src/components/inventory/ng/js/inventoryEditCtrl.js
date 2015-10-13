@@ -1,15 +1,14 @@
-module.controller('inventoryEditCtrl', function($scope, inventoryEditSrv) {
-  $scope.warehouse = new AngularQueryObject();
-
-  $scope.getWarehouseDetails = function() {
-    warehouseEditSrv.getWarehouseDetails().then(function(response) {
-      $scope.warehouse = response.data.Warehouse;
+module.controller('inventoryEditCtrl', function($scope, $location, inventoryEditSrv) {
+  $scope.getDetails = function() {
+    inventoryEditSrv.getDetails($scope.item).then(function(response) {
+      $scope.item = response.data.InventoryItem;
     });
   };
 
-  $scope.saveWarehouse = function(object) {
-    warehouseEditSrv.save(object).then(function(){
-      $scope.getWarehouseDetails();
+  $scope.saveItem = function() {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    inventoryEditSrv.save($scope.item, formToken).then(function(response){
+      window.location.href = '/admin/inventory';
     });
   };
 });

@@ -9,6 +9,7 @@ return array(
   'INVENTORY_PRODUCTCODE' => 'Code',
   'INVENTORY_DESCRIPTION' => 'Description',
   'INVENTORY_MINORDER' => 'Min Order',
+  'INVENTORY_MINORDER_STRING' => 'When to trigger re-order notifications',
   'INVENTORY_MAXORDER' => 'Max Order',
   'INVENTORY_PACKAGETYPE' => 'Pkg Type',
   'INVENTORY_INVENTORYTYPE' => 'Inv Type',
