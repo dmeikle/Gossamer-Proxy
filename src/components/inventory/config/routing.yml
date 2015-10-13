@@ -251,10 +251,12 @@ admin_inventory_items_edit:
         controller: components\inventory\controllers\InventoryItemsController
         model: components\inventory\models\InventoryItemModel
         method: edit
-        view: core\views\TemplateView
+        view: core\views\AngularTemplateView
         viewKey: admin_inventory_items_edit
         datasource: datasource1
         langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 

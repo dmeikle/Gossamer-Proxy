@@ -1,9 +1,9 @@
 <div class="widget" ng-controller="inventoryListCtrl">
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-    <h1 class="pull-left">Claim List</h1>
+    <h1 class="pull-left"><?php echo $this->getString('INVENTORY_LIST') ?></h1>
     <div class="toolbar form-inline">
-      <button class="btn-link" ng-click="openClaimAdvancedSearch()">
-        <?php echo $this->getString('INVENTORY_ADVANCED_SEARCH') ?>
+      <button class="btn-link" ng-click="openAdvancedSearch()">
+        <?php echo $this->getString('ADVANCED_SEARCH') ?>
       </button>
       <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
@@ -24,24 +24,39 @@
           </button>
         </span>
       </form>
+        <ul class="nav nav-pills">
+            <li ng-class="{active : listType === 'equipment'}"><a href="" ng-click="switchList('equipment')">
+              <?php echo $this->getString('INVENTORY_EQUIPMENT') ?>
+            </a></li>
+            <li ng-class="{active : listType === 'materials'}"><a href="" ng-click="switchList('materials')">
+              <?php echo $this->getString('INVENTORY_MATERIALS') ?>
+            </a></li>
+        </ul>
       <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('INVENTORY_NEW');?></a>
     </div>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th column-sortable data-column="jobNumber"><?php echo $this->getString('INVENTORY_JOBNUMBER'); ?></th>
-                <th column-sortable data-column="phase"><?php echo $this->getString('INVENTORY_PHASE'); ?></th>
-                <th column-sortable data-column="buildingName"><?php echo $this->getString('INVENTORY_BUILDING_NAME'); ?></th>
-                <th column-sortable data-column="lossType"><?php echo $this->getString('INVENTORY_LOSS_TYPE'); ?></th>
-                <th column-sortable data-column="lossDate"><?php echo $this->getString('INVENTORY_LOSS_DATE'); ?></th>
-                <th column-sortable data-column="status"><?php echo $this->getString('INVENTORY_STATUS'); ?></th>
-                <th column-sortable data-column="projectManager"><?php echo $this->getString('INVENTORY_PROJECT_MANAGER'); ?></th>
-                <th column-sortable data-column="parentClaim"><?php echo $this->getString('INVENTORY_PARENT_CLAIM'); ?></th>
-                <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+                <th column-sortable data-column="id" class="cog-col"><?php echo $this->getString('INVENTORY_ID'); ?></th>
+                <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
+                <th column-sortable data-column="productCode"><?php echo $this->getString('INVENTORY_PRODUCTCODE'); ?></th>
+                <th column-sortable data-column="description"><?php echo $this->getString('INVENTORY_DESCRIPTION'); ?></th>
+                <th column-sortable data-column="minOrderQuantity"><?php echo $this->getString('INVENTORY_MINORDER'); ?></th>
+                <th column-sortable data-column="maxQuantity"><?php echo $this->getString('INVENTORY_MAXORDER'); ?></th>
+                <th column-sortable data-column="PackageTypes_id"><?php echo $this->getString('INVENTORY_PACKAGETYPE'); ?></th>
+                <th column-sortable data-column="InventoryTypes_id"><?php echo $this->getString('INVENTORY_INVENTORYTYPE'); ?></th>
+                <th column-sortable data-column="isActive"><?php echo $this->getString('INVENTORY_ISACTIVE'); ?></th>
+                <th column-sortable data-column="InventoryCategories_id"><?php echo $this->getString('INVENTORY_INVENTORYCATEGORY'); ?></th>
+                <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
+                <th column-sortable data-column="WarehouseLocations_id"><?php echo $this->getString('INVENTORY_WAREHOUSELOCATION'); ?></th>
+                <th group-by-button class="cog-col row-controls">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
           <tr ng-if="loading">
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -51,23 +66,30 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="claim in inventoryList"
-            ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status=='inactive'}">
-              <td ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
-              <td ng-click="selectRow(claim)">{{claim.phase}}</td>
-              <td ng-click="selectRow(claim)">{{claim.buildingName}}</td>
-              <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
-              <td ng-click="selectRow(claim)">{{claim.lossDate}}</td>
-              <td ng-click="selectRow(claim)">{{claim.status}}</td>
-              <td ng-click="selectRow(claim)">{{claim.projectManager}}</td>
-              <td ng-click="selectRow(claim)">{{claim.parentJobNumber}}</td>
+          <tr ng-if="!loading" ng-repeat="item in inventoryList"
+            ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity=='inactive'}">
+              <td ng-click="selectRow(item)">{{item.id}}</td>
+              <td ng-click="selectRow(item)">{{item.name}}</td>
+              <td ng-click="selectRow(item)">{{item.productCode}}</td>
+              <td ng-click="selectRow(item)">{{item.losstype}}</td>
+              <td ng-click="selectRow(item)">{{item.minOrderQuantity}}</td>
+              <td ng-click="selectRow(item)">{{item.maxQuantity}}</td>
+              <td ng-click="selectRow(item)">{{item.PackageTypes_id}}</td>
+              <td ng-click="selectRow(item)">{{item.InventoryTypes_id}}</td>
+              <td ng-click="selectRow(item)">{{item.isActive}}</td>
+              <td ng-click="selectRow(item)">{{item.InventoryCategories_id}}</td>
+              <td ng-click="selectRow(item)">{{item.price | currency}}</td>
+              <td ng-click="selectRow(item)">{{item.WarehouseLocations_id}}</td>
               <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="/admin/inventory/edit/{{claim.id}}">Edit</a></li>
+                    <li><a href="/admin/inventory/items/{{item.id}}">Edit</a></li>
                   </ul>
                 </div>
               </td>
@@ -99,9 +121,9 @@
 
     <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
       <h1><?php echo $this->getString('INVENTORY_ADVANCED_SEARCH');?></h1>
-      <claim-advanced-search-filters>
+      <item-advanced-search-filters>
 
-      </claim-advanced-search-filters>
+      </item-advanced-search-filters>
       <div class="cardfooter">
         <div class="btn-group pull-right">
           <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('INVENTORY_SUBMIT')?>">
@@ -111,21 +133,21 @@
     </form>
 
     <div ng-if="!sidePanelLoading && !searching">
-      <h1><a href="/admin/inventory/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
+      <h1><a href="/admin/inventory/items/{{selectedRow.id}}">{{selectedRow.firstname}} {{selectedRow.lastname}}</a></h1>
       <h4><?php echo $this->getString('INVENTORY_TELEPHONE')?></h3>
-      <p>{{selectedStaff.telephone}}</p>
+      <p>{{selectedRow.telephone}}</p>
       <h4><?php echo $this->getString('INVENTORY_MOBILE')?></h3>
-      <p>{{selectedStaff.mobile}}</p>
+      <p>{{selectedRow.mobile}}</p>
       <h4><?php echo $this->getString('INVENTORY_EMAIL')?></h3>
-      <p>{{selectedStaff.email}}</p>
+      <p>{{selectedRow.email}}</p>
       <h4><?php echo $this->getString('INVENTORY_CITY')?></h3>
-      <p>{{selectedStaff.city}}</p>
+      <p>{{selectedRow.city}}</p>
       <h4><?php echo $this->getString('INVENTORY_POSTALCODE')?></h3>
-      <p>{{selectedStaff.postalCode}}</p>
+      <p>{{selectedRow.postalCode}}</p>
       <h4><?php echo $this->getString('INVENTORY_TITLE')?></h3>
-      <p>{{selectedStaff.title}}</p>
+      <p>{{selectedRow.title}}</p>
       <h4><?php echo $this->getString('INVENTORY_EMPLOYEENUM')?></h3>
-      <p>{{selectedStaff.employeeNumber}}</p>
+      <p>{{selectedRow.employeeNumber}}</p>
     </div>
   </div>
   <div class="clearfix"></div>

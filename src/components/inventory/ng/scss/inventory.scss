@@ -1,0 +1,7 @@
+.toolbar > .nav-pills {
+    display: inline-block;
+    vertical-align: bottom;
+    > li > a {
+        padding: 7px 15px;
+    }
+}
