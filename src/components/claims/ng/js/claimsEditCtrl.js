@@ -5,8 +5,8 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
-    getClaimDetails();
     getProjectAddress();
+    getClaimDetails();
     
     // datepicker stuffs
     $scope.dateOptions = {'starting-day': 1};
@@ -31,7 +31,7 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
         var addressId = document.getElementById('Claim_ProjectAddresses_id').value;
         
         claimsEditSrv.getProjectAddress(addressId).then(function () {
-            $scope.claim = claimsEditSrv.projectAddress;
+            $scope.projectAddress = claimsEditSrv.projectAddress;
             $scope.loading = false;
         });
     }
