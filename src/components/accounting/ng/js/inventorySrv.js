@@ -40,8 +40,8 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
             url: apiPath + 'search?name=' + searchObject,
             method: 'GET'
         }).then(function(response){
-            self.searchResults = response.data.AccountingGeneralCosts;
-            self.searchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
+            self.searchResults = response.data.SuppliesUseds;
+            self.searchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
         });
     };
     

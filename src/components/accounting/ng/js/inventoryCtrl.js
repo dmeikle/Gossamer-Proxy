@@ -82,9 +82,9 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            generalCostsSrv.search(copiedObject).then(function() {
-                $scope.generalCostsList = generalCostsSrv.searchResults;
-                $scope.totalItems = generalCostsSrv.searchResultsCount;
+            inventorySrv.search(copiedObject).then(function() {
+                $scope.generalCostsList = inventorySrv.searchResults;
+                $scope.totalItems = inventorySrv.searchResultsCount;
                 $scope.loading = false;
             });
         }
@@ -93,14 +93,15 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     $scope.advancedSearch = function(searchObject){
         $scope.loading = true;
         $scope.noSearchResults = false;
-        generalCostsSrv.advancedSearch(searchObject).then(function(){
-            $scope.generalCostsList = generalCostsSrv.advancedSearchResults;
-            $scope.totalItems = generalCostsSrv.advancedSearchResultsCount;
-            if($scope.totalItems === '0'){
-                $scope.noSearchResults = true;
-            }
-            $scope.loading = false;
-        });
+        console.log(searchObject);
+//        generalCostsSrv.advancedSearch(searchObject).then(function(){
+//            $scope.generalCostsList = generalCostsSrv.advancedSearchResults;
+//            $scope.totalItems = generalCostsSrv.advancedSearchResultsCount;
+//            if($scope.totalItems === '0'){
+//                $scope.noSearchResults = true;
+//            }
+//            $scope.loading = false;
+//        });
     };
 
     $scope.resetSearch = function() {
