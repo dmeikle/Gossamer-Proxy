@@ -33,6 +33,8 @@ class InventoryItemBuilder extends AbstractBuilder{
                 ->add('minOrderQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'item.minOrderQuantity',  'ng-init' => "item.minOrderQuantity ='".$this->getValue('minOrderQuantity', $values)."'"))
                 ->add('maxQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'item.maxQuantity',  'ng-init' => "item.maxQuantity ='".$this->getValue('maxQuantity', $values)."'"))
                 ->add('PackageTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.PackageTypes_id','ng-init' => "item.PackageTypes_id ='".$this->getValue('PackageTypes_id', $values)."'", 'options' => $options['packageTypes']))
+                ->add('number', 'text', array('class' => 'form-control', 'ng-model' => 'item.number',  'ng-init' => "item.number ='".$this->getValue('number', $values)."'"))
+                ->add('maxDays', 'text', array('class' => 'form-control', 'ng-model' => 'item.maxDays',  'ng-init' => "item.maxDays ='".$this->getValue('maxDays', $values)."'"))
                 ->add('InventoryTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryTypes_id','ng-init' => "item.InventoryTypes_id ='".$this->getValue('InventoryTypes_id', $values)."'", 'options' => $options['inventoryTypes']))
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel'))

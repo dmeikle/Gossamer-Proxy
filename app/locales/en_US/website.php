@@ -48,6 +48,7 @@ return array(
   'HISTORY' => 'History',
   'WORKLOG' => 'Work Log',
   'NEW' => 'New',
-  'ADVANCED_SEARCH' => 'Advanced Search'
+  'ADVANCED_SEARCH' => 'Advanced Search',
+  'EDIT' => 'Edit'
 
 );

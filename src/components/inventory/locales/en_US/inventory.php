@@ -17,5 +17,7 @@ return array(
   'INVENTORY_INVENTORYCATEGORY' => 'Category',
   'INVENTORY_WAREHOUSELOCATION' => 'Location',
   'INVENTORY_EQUIPMENT' => 'Equipment',
-  'INVENTORY_MATERIALS' => 'Materials'
+  'INVENTORY_MATERIALS' => 'Materials',
+  'INVENTORY_MAXDAYS' => 'Max Days',
+  'INVENTORY_NUMBER' => 'Serial'
   );
