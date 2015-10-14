@@ -125,7 +125,7 @@
                         echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';} ?>
                 </select>
                 
-                <input placeholder="Inventory Item" class="form-control" name="inventoryItemID" ng-model="advSearch.InventoryItem_id">                
+                <input placeholder="Inventory Item" class="form-control" name="inventoryItemID" ng-model="advSearch.inventoryItem">                
                 
             </div>
 

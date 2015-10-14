@@ -8,7 +8,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
 
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
-//    $scope.advSearch = {};
+    $scope.advSearch = {};
 //    $scope.autocomplete = {};
     $scope.isOpen = {};
     $scope.isOpen.datepicker = {};
@@ -95,7 +95,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         $scope.noSearchResults = false;
         console.log(searchObject);
         inventorySrv.advancedSearch(searchObject).then(function(){
-            $scope.generalCostsList = inventorySrv.advancedSearchResults;
+            $scope.list = inventorySrv.advancedSearchResults;
             $scope.totalItems = inventorySrv.advancedSearchResultsCount;
             if($scope.totalItems === '0'){
                 $scope.noSearchResults = true;
@@ -117,9 +117,11 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     };
 
     $scope.resetAdvancedSearch = function() {
+        console.log($scope.advSearch);
         $scope.searchSubmitted = false;
         $scope.advSearch = {};
-        getGeneralCostsList();
+        console.log($scope.advSearch);
+        getList();
     };
 
     $scope.openAdvancedSearch = function() {
