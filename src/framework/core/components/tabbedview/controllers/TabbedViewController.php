@@ -30,9 +30,10 @@ class TabbedViewController extends AbstractController {
         $this->model->change($params['view']);
         
         if($params['view'] == 'tabbed') {
-            $this->redirect('/admin/home/tabbed');
+            $this->render(array('redirect' => '/admin/home/tabbed'));
+            //$this->redirect('/admin/home/tabbed');
         } else {
-            $this->redirect('/admin/home');
+            $this->render(array('redirect' => '/admin/home'));
         }
     }
 }

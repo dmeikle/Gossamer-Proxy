@@ -48,6 +48,17 @@ class TemplateView extends AbstractView {
         $this->template = file_get_contents($filepath);
     }
 
+    public function getViewType() {
+        $userPreference = $this->httpRequest->getAttribute('UserPreferences');
+        if(is_object($userPreference)) {
+            $viewType = $userPreference->getViewType();
+        } else {
+            $defaultPreference = $this->httpRequest->getAttribute('defaultPreferences');
+            $viewType = $defaultPreference['default_view'];
+        }
+        
+        return $viewType;
+    }
     /**
      * calls all the render methods
      */

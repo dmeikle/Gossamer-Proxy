@@ -22,6 +22,7 @@ accounting_timesheets_home:
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         - @components/accounting/dist/js/accounting.concat.js
+        #- @framework/core/components/tabbedview/ng/js/tabbedview.js
     css:
         - @components/accounting/dist/css/accounting.min.css
 

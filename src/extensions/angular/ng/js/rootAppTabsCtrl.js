@@ -9,15 +9,6 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
     if($scope.tabs.length === 0){
         $scope.tabs.push(defaultTab);
     }
-//    $scope.tabObj = [{
-//        title:'Timesheets',
-//        template:'/render/accounting/timesheetsTab',
-//        content:'this is a new tabbbb'
-//    },{
-//        title:'General Costs',
-//        template:'/render/accounting/generalCostsTab',
-//        content:'tabs? what tabs?'
-//    }];
     
     $scope.addTab = function(title, template){
         var tabObj = {
@@ -37,6 +28,11 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
     
     $scope.hideSpinner = function(tab){
         tab.loading = false;
+    };
+    
+    $scope.setTabbedView = function(value){
+        console.log('setting tabbed view');
+        tabsSrv.setTabbedView(value);
     };
     
 });

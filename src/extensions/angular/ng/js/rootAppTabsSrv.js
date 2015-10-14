@@ -1,4 +1,5 @@
-module.service('tabsSrv', function() {
+module.service('tabsSrv', function($http, $window) {
+    var apiPath = '/admin/tabbedview/set';
     this.tabs = [];
     
     //Adding a tab
@@ -21,4 +22,38 @@ module.service('tabsSrv', function() {
     this.closeTab = function(index){
         this.tabs.splice(index, 1);
     };
+    
+    //setting tab preference
+    this.setTabbedView = function(value){
+        var config = {};
+        config.view = value;
+        return $http({
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath,
+            data: config
+            //params: config
+        })
+        .then(function(response) {
+            console.log(response);
+            $window.location.href = response.data.redirect;
+        });
+    };
+    
+//this.advancedSearch = function(searchObject) {
+//        var config = angular.copy(searchObject);
+//        config.toDate = $filter('date')(config.toDate, 'yyyy-MM-dd', '+0000');
+//        config.fromDate = $filter('date')(config.fromDate, 'yyyy-MM-dd', '+0000');
+//        return $http({
+//            url: apiPath + 'search?',
+//            method: 'GET',
+//            params: config
+//        })
+//        .then(function(response) {
+//            self.advancedSearchResults = response.data.AccountingGeneralCosts;
+//            self.advancedSearchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
+//        });
+//    };
 });

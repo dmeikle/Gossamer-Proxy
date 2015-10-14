@@ -30,6 +30,10 @@ class UserPreferences
     }
     
     public function getDefaultLocale() {
+        if(!array_key_exists('DefaultLocale', $this->params)) {
+            return null;
+        }
+        
         return $this->params['DefaultLocale'];
     }
     
@@ -40,6 +44,7 @@ class UserPreferences
     public function getNotificationTypeId() {
         return $this->params['NotificationTypeId'];
     }
+    
     public function toArray() {
         return $this->params;
     }

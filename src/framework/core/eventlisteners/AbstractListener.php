@@ -149,7 +149,10 @@ class AbstractListener {
         $userPreferences = $manager->getPreferences();
 
         if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
-            return array('locale' => $userPreferences->getDefaultLocale());
+            $locale = $userPreferences->getDefaultLocale();
+            if(strlen($locale) > 0) {
+                return array('locale' => $userPreferences->getDefaultLocale());
+            }
         }
 
         $config = $this->httpRequest->getAttribute('defaultPreferences');

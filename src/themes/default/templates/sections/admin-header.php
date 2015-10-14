@@ -3,6 +3,7 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed primary" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -95,7 +96,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Your Tickets</a></li>
-                        <li><a href="#">Tabbed View</a></li>
+                        
+                        <li><a ng-click="setTabbedView('<?php echo $this->getViewType() == 'tabbed' ? 'html' : 'tabbed';?>')">Toggle View</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>

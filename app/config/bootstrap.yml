@@ -2,6 +2,8 @@
 all:
     listeners:        
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadUserPreferencesListener'}
+        - { 'event': 'entry_point', 'listener': 'extensions\tabbedview\listeners\SetViewTypeListener'}
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1', 'cacheKey': 'locales' }
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
         #TODO: commented out during development testing
