@@ -268,7 +268,7 @@ admin_inventory_items_save:
         controller: components\inventory\controllers\InventoryItemsController
         model: components\inventory\models\InventoryItemModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_inventory_items_save
         datasource: datasource1
         langFiles:
@@ -287,7 +287,7 @@ admin_inventory_items_remove:
         datasource: datasource1
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Navigation'
-    methods: [POST]
+    methods: [DELETE]
 
 
 admin_warehouse_locations_home:
