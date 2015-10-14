@@ -83,7 +83,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             $scope.searchSubmitted = true;
             $scope.loading = true;
             inventorySrv.search(copiedObject).then(function() {
-                $scope.generalCostsList = inventorySrv.searchResults;
+                $scope.list = inventorySrv.searchResults;
                 $scope.totalItems = inventorySrv.searchResultsCount;
                 $scope.loading = false;
             });
@@ -94,14 +94,14 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         $scope.loading = true;
         $scope.noSearchResults = false;
         console.log(searchObject);
-//        generalCostsSrv.advancedSearch(searchObject).then(function(){
-//            $scope.generalCostsList = generalCostsSrv.advancedSearchResults;
-//            $scope.totalItems = generalCostsSrv.advancedSearchResultsCount;
-//            if($scope.totalItems === '0'){
-//                $scope.noSearchResults = true;
-//            }
-//            $scope.loading = false;
-//        });
+        inventorySrv.advancedSearch(searchObject).then(function(){
+            $scope.generalCostsList = inventorySrv.advancedSearchResults;
+            $scope.totalItems = inventorySrv.advancedSearchResultsCount;
+            if($scope.totalItems === '0'){
+                $scope.noSearchResults = true;
+            }
+            $scope.loading = false;
+        });
     };
 
     $scope.resetSearch = function() {
