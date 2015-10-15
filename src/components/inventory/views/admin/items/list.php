@@ -205,6 +205,11 @@
           <h1>{{item.name}} - {{item.number}}</h1>
         </div>
       </div>
+      <div class="pull-right">
+        <button class="primary" ng-click="transferSelected()">
+          <?php echo $this->getString('TRANSFER') ?>
+        </button>
+      </div>
     </div>
   </div>
   <div class="clearfix"></div>

@@ -1,4 +1,4 @@
-module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryListSrv, inventoryEditSrv) {
+module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inventoryListSrv, inventoryEditSrv) {
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -125,6 +125,27 @@ module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryList
     $scope.getList();
   };
 
+  $scope.transferSelected = function() {
+    openTransferModal();
+  };
+
+  var openTransferModal = function() {
+    var modalInstance = $modal.open({
+      templateUrl: '/render/inventory/transferModal',
+      controller: 'transferModalController',
+      size: 'md',
+      resolve: {
+        multiSelectArray:function() {
+          return $scope.multiSelectArray;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(result, formToken) {
+      inventoryEditSrv.save(result, formToken);
+    });
+  };
+
   $scope.delete = function(object) {
     var confirmed = window.confirm('Are you sure?');
     if (confirmed) {
@@ -146,4 +167,9 @@ module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryList
       $scope.getList();
     }
   });
+});
+
+
+module.controller('transferModalController', function($scope, multiSelectArray) {
+
 });

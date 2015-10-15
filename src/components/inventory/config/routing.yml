@@ -9,7 +9,7 @@ super_inventory_equipment_transfer:
         controller: components\inventory\controllers\InventoryEquipmentController
         model: components\inventory\models\InventoryEquipmentModel
         method: index
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: super_inventory_equipment_transfer
         datasource: datasource1
         langFiles:
@@ -21,7 +21,7 @@ super_inventory_equipment_transfer_save:
     pattern: admin/inventory/equipment/transfer
     listeners:
         - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffByCredentialsListener', 'datasource': 'datasource1' }
-       
+
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController
@@ -241,8 +241,8 @@ admin_inventory_items_autocomplete:
         langFiles:
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
-    
-    
+
+
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:

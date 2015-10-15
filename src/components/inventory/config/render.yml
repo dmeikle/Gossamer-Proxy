@@ -1,0 +1,7 @@
+## YAML Template.
+---
+transferModal:
+    path: 'src/components/inventory/views/admin/equipment/transferModal.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+        - 'app/locales/*/website'

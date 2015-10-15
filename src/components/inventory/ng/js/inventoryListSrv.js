@@ -1,4 +1,4 @@
-module.service('inventoryListSrv', function(crudSrv, searchSrv) {
+module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
   var apiPath = '/admin/inventory/';
 
   this.getMaterialsList = function(row, numRows) {
@@ -21,6 +21,20 @@ module.service('inventoryListSrv', function(crudSrv, searchSrv) {
 
   this.getMaterialDetails = function(object) {
     return crudSrv.getDetails(apiPath + 'items/', object.id);
+  };
+
+  this.transfer = function(array, typeString) {
+    var config = {};
+    var inventoryIds = [];
+    for (var i = 0; i < array.length; i++) {
+      inventoryIds[i] = array[i].id;
+    }
+    config.inventoryIds = inventoryIds.toString();
+    return $http({
+      method:'GET',
+      url: apiPath + typeString + '/transfer',
+      params: config
+    });
   };
 
 });
