@@ -103,6 +103,12 @@ class AbstractController {
         }       
     }
     
+    public function autocomplete() {
+        $params = $this->httpRequest->getQueryParameters();
+        
+        $this->render($this->model->autocomplete($params));
+    }
+    
     protected function getSearchArguments() {
         $rawterm = $this->httpRequest->getQueryParameter('term');
         
