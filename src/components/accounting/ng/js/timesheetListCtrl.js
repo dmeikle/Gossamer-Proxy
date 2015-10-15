@@ -45,6 +45,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     $scope.openTimesheetModal = function(timesheet) {
         $scope.modalLoading = true;
         var template = templateSrv.timesheetModal;
+        console.log(template);
         var modal = $modal.open({
             templateUrl: template,
             controller: 'timesheetModalCtrl',

@@ -1,6 +1,6 @@
 module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter) {
     $scope.isOpen = {};
-    $scope.isOpen.datepicker = [];
+    $scope.isOpen.datepicker = false;
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -21,7 +21,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     //Set up the objects
     $scope.headings = {
         Claims_id: '',
-        ClaimPhases_id: ''
+        ClaimPhases_id: '',
+        date:''
     };
     
     var lineItemsTemplate = {
@@ -30,13 +31,17 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         unitMeasure:'',
         unitPrice:'',
         qty:'',
-        description:'',
-        date:'',
+        //description:'',
+        //date:'',
         department: '',
         cost:'',
         chargeOut: ''
     };
     
+    $scope.total = {
+        cost: 0,
+        chargeout: 0
+    };
 //    //Check and see if you're editing an item or creating a new one...
 //    if(generalCost){
 //        $scope.loading = true;
@@ -114,6 +119,19 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
     };
     
+    //Update totals
+    $scope.updateTotal = function(){
+        $scope.total = {
+            cost: 0,
+            chargeout: 0
+        };
+        for(var i in $scope.lineItems){
+            $scope.total.cost += $scope.lineItems[i].cost;
+            $scope.total.chargeout += $scope.lineItems[i].chargeOut;
+        }
+    };
+    
+    
     //Claim Typeahead
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
@@ -132,9 +150,9 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.getMaterialValues = function(row, materialName){
         for(var i in inventoryModalSrv.materialsAutocomplete){
             if(inventoryModalSrv.materialsAutocomplete[i].name === materialName){
-//                row.unitPrice = inventoryModalSrv.materialsAutocomplete[i].unitPrice;
-//                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[i].unitMeasure;
-//                row.description = inventoryModalSrv.materialsAutocomplete[i].description;               
+                row.unitPrice = inventoryModalSrv.materialsAutocomplete[i].unitPrice;
+                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[i].unitMeasure;
+                row.description = inventoryModalSrv.materialsAutocomplete[i].description;               
             }
         }  
     };    
@@ -142,7 +160,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     //Date Picker
     $scope.dateOptions = {'starting-day':1};
     $scope.openDatepicker = function(event, index){
-        $scope.isOpen.datepicker[index] = true;
+        $scope.isOpen.datepicker = true;
     };
     
     
@@ -160,11 +178,11 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     //Saving Items    
     $scope.save = function(){
         var lineItems = angular.copy($scope.lineItems);
+        $scope.headings.date = $filter('date')($scope.headings.date, 'yyyy-MM-dd');
 //        for (var i in lineItems){
 //            //console.log('filtering date!');
 //            generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
 //        }
-        console.log('Saving Items!');
         
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
