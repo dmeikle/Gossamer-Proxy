@@ -21,4 +21,20 @@ class InventoryEquipmentController extends InventoryItemsController {
         
         $this->renderResults($offset, $limit, $results);
     }
+    
+    public function transfer() {
+        $staff = $this->httpRequest->getAttribute('StaffAuthorization');
+     
+        if(!is_null($staff)) {
+            $params = $this->httpRequest->getPost();
+            $params['signingStaff_id'] = $staff['id'];
+            unset($params['Staff']);
+            $result = $this->model->transfer($params);
+        } else {
+            $result = array('success' => 'false', 'message' => 'invalid user credentials');
+            //TODO: this would be a recommended spot for calling event dispatcher to increment failed logins
+        }
+        
+        $this->render($result);
+    }
 }

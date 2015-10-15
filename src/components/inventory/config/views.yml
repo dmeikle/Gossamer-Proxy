@@ -1,4 +1,18 @@
 
+
+#-------------------- inventory transfers ----------------
+
+super_inventory_equipment_transfer:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/inventory/views/admin/equipment/transfer.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+
+
+
+
 #-------------------- package types -----------------------
 super_inventory_packagetypes_list:
     template: super-list.php

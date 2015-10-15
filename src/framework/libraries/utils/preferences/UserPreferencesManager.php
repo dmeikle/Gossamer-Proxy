@@ -33,7 +33,7 @@ class UserPreferencesManager {
     public function getPreferences() {
         $manager = new CookieManager();
         $preferences = $manager->getCookie(self::COOKIE_NAME);
-        
+    
         if(is_null($preferences)) {
           
             return null;
@@ -51,13 +51,22 @@ class UserPreferencesManager {
         unset($manager);
     }
     
+    
     private function parseCookie(array $values) {
         $userPreferences = new UserPreferences();
              
         $this->setDefaultLocale($userPreferences, $values);
         $this->setNotificationTypes($userPreferences, $values);
+        $this->setViewType($userPreferences, $values);
         
         return $userPreferences;
+    }
+    
+    private function setViewType(UserPreferences &$userPreferences, array $values) {
+        if(!array_key_exists('DefaultView', $values)) {
+            return false;
+        }
+        $userPreferences->setViewType($values['DefaultView']);
     }
     
     public function setNotificationTypes(UserPreferences &$userPreferences, array $values) {
@@ -72,7 +81,9 @@ class UserPreferencesManager {
     
     //we are using a cookie - cannot assume it's safe, so let's see what it holds
     private function setDefaultLocale(UserPreferences &$userPreferences, array $values) {
-    
+        if(!array_key_exists('DefaultLocale', $values)) {
+            return FALSE;
+        }
         $preferredLocale = $values['DefaultLocale'];
         $allowableLocales = $this->httpRequest->getAttribute('locales');
       

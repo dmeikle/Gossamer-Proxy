@@ -19,6 +19,25 @@ use core\AbstractController;
  *
  * @author Dave Meikle
  */
-class SuppliesUsedController extends AbstractController{
-   
+class SuppliesUsedController extends AbstractController{   
+    
+    public function listBreakdown($suppliesUsedId) {
+        $offset = 0;
+        $limit = 20;
+        $params = array(
+            'SuppliesUsed_id' => intval($suppliesUsedId)
+        );
+      
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'breakdown');
+        
+        $this->render($result);
+    }
+    
+    
+    public function search() {
+        
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+        
+        $this->render($result);
+    }
 }

@@ -17,11 +17,11 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of PurchaseOrderModel
+ * Description of InventoryModel
  *
  * @author Dave Meikle
  */
-class SuppliesUsedModel extends AbstractModel{
+class InventoryModel extends AbstractModel{
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -29,20 +29,7 @@ class SuppliesUsedModel extends AbstractModel{
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'SuppliesUsed';
-        $this->tablename = 'accountingsuppliesused';
+        $this->entity = 'Inventory';
+        $this->tablename = 'inventory';
     }
-    
-    
-    
-    public function search(array $params) {
-        $locale= $this->getDefaultLocale();
-        $params['isActive'] = '1';
-        $params['locale'] = $locale['locale'];
-        
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
-      
-        return $data;
-    }
-    
 }
