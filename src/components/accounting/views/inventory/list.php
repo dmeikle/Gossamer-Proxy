@@ -148,7 +148,7 @@
             <div ng-repeat="item in rowBreakdown">
                 <div class="card info-card">
                     <p><strong>Name:</strong> {{item.name}}<span class="pull-right"><strong>Date:</strong> {{item.dateEntered}}</span></p>
-                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.cost | currency}}</span></p>
+                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.price | currency}}</span></p>
                     <p>&nbsp;<span class="pull-right"><strong>Chargeout:</strong> {{item.chargeOut | currency}}</span></p>
                     <p><strong>Department:</strong> {{item.name}}</p>
                     <p><strong>Debit Account:</strong> {{item.accountingId}}</p>

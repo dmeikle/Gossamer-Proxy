@@ -23,11 +23,11 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
     
     //Get the breakdown of the selected item
     this.getBreakdown = function(row, numRows, id){
-        return $http.get(apiPath + row + '/' + numRows + '/?id=' + id)
+        return $http.get(apiPath + id)
             .then(function(response) {
             console.log(response);
-            //self.breakdownItems = response.data.SuppliesUseds;
-            //self.generalCostsCount = response.data.SuppliesUsedsCount[0].rowCount;
+            self.breakdownItems = response.data.InventoryItems;
+            self.generalCostsCount = response.data.InventoryItemsCount[0].rowCount;
         }, function(response){
             //Handle any errors
             self.error.showError = true;

@@ -1071,7 +1071,20 @@ accounting_inventory_home:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
-        
+
+accounting_inventory_breakdown:
+    pattern: admin/accounting/inventory/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: listBreakdown
+        view: core\views\JSONView
+        viewKey: accounting_inventory_breakdown
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+
 accounting_inventory_list:
     pattern: admin/accounting/inventory/*/*
     defaults:
