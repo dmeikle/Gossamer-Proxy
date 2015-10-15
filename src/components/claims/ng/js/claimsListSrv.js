@@ -23,10 +23,10 @@ module.service('claimsListSrv', function($http, searchSrv) {
       });
   };
   
-  this.getClaimLocations = function(object) {
-      return $http.get(apiPath + 'locations/' + object.id)
+  this.getClaimsLocationsList = function(claimId) {
+      return $http.get(apiPath + 'locations/' + claimId)
       .then(function(response) {        
-        self.claimLocations = response.data.ClaimLocations;
+        self.claimsLocations = response.data.ClaimsLocations;
       });
   };
 
