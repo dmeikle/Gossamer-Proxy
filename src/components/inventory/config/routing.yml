@@ -207,6 +207,25 @@ admin_inventory_items_list:
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
+admin_inventory_equipment_locations:
+    pattern: admin/inventory/equipment-locations
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryItemModel
+        method: index
+        view: core\views\AngularTemplateView
+        viewKey: admin_inventory_equipment_home
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 admin_inventory_equipment_list:
     pattern: admin/inventory/equipment/*/*
     listeners:
