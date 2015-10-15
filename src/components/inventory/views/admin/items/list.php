@@ -123,7 +123,7 @@
             <td></td>
             <td></td>
           </tr>
-          <tr ng-if="!loading" ng-repeat="item in inventoryList"
+          <tr ng-if="!loading" ng-repeat="item in inventoryList" multi-select="item"
             ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity=='inactive'}">
               <td ng-click="selectRow(item)">{{item.id}}</td>
               <td ng-click="selectRow(item)">{{item.name}}</td>
@@ -137,7 +137,6 @@
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                   <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                    <li><a href="/admin/inventory/items/{{item.id}}"><?php echo $this->getString('EDIT') ?></a></li>
                     <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
                   </ul>
                 </div>
@@ -168,7 +167,7 @@
       <span class="spinner-loader"></span>
     </div>
 
-    <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
+    <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.query)">
       <h1><?php echo $this->getString('INVENTORY_ADVANCED_SEARCH');?></h1>
       <item-advanced-search-filters>
 
@@ -181,7 +180,7 @@
       </div>
     </form>
 
-    <div ng-if="!sidePanelLoading && !searching">
+    <div ng-if="!sidePanelLoading && !searching && !multiSelect">
       <h1><a href="/admin/inventory/items/{{selectedRow.id}}">{{selectedRow.firstname}} {{selectedRow.lastname}}</a></h1>
       <h4><?php echo $this->getString('INVENTORY_TELEPHONE')?></h3>
       <p>{{selectedRow.telephone}}</p>
@@ -197,6 +196,15 @@
       <p>{{selectedRow.title}}</p>
       <h4><?php echo $this->getString('INVENTORY_EMPLOYEENUM')?></h3>
       <p>{{selectedRow.employeeNumber}}</p>
+    </div>
+
+    <div ng-if="!sidePanelLoading && !searching && multiSelect">
+      <h1><?php echo $this->getString('SELECTED') ?></h1>
+      <div class="card" ng-repeat="item in multiSelectArray">
+        <div class="cardheader">
+          <h1>{{item.name}} - {{item.number}}</h1>
+        </div>
+      </div>
     </div>
   </div>
   <div class="clearfix"></div>
