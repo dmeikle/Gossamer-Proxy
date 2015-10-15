@@ -80,6 +80,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         $scope.sidePanelOpen = false;
         $scope.isOpen.datepicker.fromDate = false;
         $scope.isOpen.datepicker.toDate = false;
+        $scope.previouslyClickedObject = '';
     };
 
     //Search

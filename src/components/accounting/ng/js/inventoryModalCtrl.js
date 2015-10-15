@@ -67,6 +67,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function(jobNumber){
+        console.log(inventoryModalSrv.claimsAutocomplete);
         for(var i in inventoryModalSrv.claimsAutocomplete){
             if(inventoryModalSrv.claimsAutocomplete[i].jobNumber === jobNumber){
                 $scope.headings.Claims_id = inventoryModalSrv.claimsAutocomplete[i].id;
@@ -119,19 +120,6 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
     };
     
-    //Update totals
-    $scope.updateTotal = function(){
-        $scope.total = {
-            cost: 0,
-            chargeout: 0
-        };
-        for(var i in $scope.lineItems){
-            $scope.total.cost += $scope.lineItems[i].cost;
-            $scope.total.chargeout += $scope.lineItems[i].chargeOut;
-        }
-    };
-    
-    
     //Claim Typeahead
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
@@ -143,19 +131,37 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.fetchMaterialsAutocomplete = function(viewVal){
         var searchObject = {};
         searchObject.name = viewVal;
-        return inventoryModalSrv.fetchMaterialsAutocomplete(searchObject);
+        return inventoryModalSrv.fetchMaterialNameAutocomplete(searchObject);
     };
     
-    //Get Material Values
-    $scope.getMaterialValues = function(row, materialName){
-        for(var i in inventoryModalSrv.materialsAutocomplete){
-            if(inventoryModalSrv.materialsAutocomplete[i].name === materialName){
-                row.unitPrice = inventoryModalSrv.materialsAutocomplete[i].unitPrice;
-                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[i].unitMeasure;
-                row.description = inventoryModalSrv.materialsAutocomplete[i].description;               
+    //Product Code Typeahead
+    $scope.fetchProductCodeAutocomplete = function(viewVal){
+        var searchObject = {};
+        searchObject.productCode = viewVal;
+        return inventoryModalSrv.fetchProductCodeAutocomplete(searchObject);
+    };
+    
+    //Get Material info from material name
+    $scope.getMaterialNameInfo = function(row, value){
+        for(var j in inventoryModalSrv.materialsAutocomplete){
+            if(inventoryModalSrv.materialsAutocomplete[j].name === value){
+                row.productCode = inventoryModalSrv.materialsAutocomplete[j].productCode;
+                row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].unitPrice;
+                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
             }
-        }  
-    };    
+        }
+    };
+    
+    //Get Material info from product code
+    $scope.getProductCodeInfo = function(row, value){
+        for(var i in inventoryModalSrv.productCodeAutocomplete){
+            if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
+                row.materialName = inventoryModalSrv.productCodeAutocomplete[i].name;
+                row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].unitPrice;
+                row.unitMeasure = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+            }
+        }
+    }
     
     //Date Picker
     $scope.dateOptions = {'starting-day':1};
@@ -172,6 +178,18 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
         if(row.qty && row.unitPrice){
             row.cost = row.qty * row.unitPrice;
+        }
+    };
+    
+    //Update totals
+    $scope.updateTotal = function(){
+        $scope.total = {
+            cost: 0,
+            chargeout: 0
+        };
+        for(var i in $scope.lineItems){
+            $scope.total.cost += $scope.lineItems[i].cost;
+            $scope.total.chargeout += $scope.lineItems[i].chargeOut;
         }
     };
     

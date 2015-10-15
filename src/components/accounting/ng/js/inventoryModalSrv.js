@@ -4,7 +4,9 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     var staffPath = '/admin/staff/';
     var claimsPath = '/admin/claims/';
     var materialsPath = '/admin/inventory/materials';
+    var autocompletePath = '/admin/inventory/items/autocomplete';
     
+    var self = this;
     
     this.fetchAutocomplete = function(searchObject) {
         return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function() {
@@ -31,6 +33,7 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             console.log(searchSrv.autocomplete);
             self.claimsAutocomplete = searchSrv.autocomplete.Claims;
             self.claimsAutocompleteValues = [];
+            console.log(self.claimsAutocomplete);
             for (var item in self.claimsAutocomplete) {
                 if (!isNaN(item/1)) {
                     self.claimsAutocompleteValues.push(self.claimsAutocomplete[item].jobNumber);
@@ -44,27 +47,45 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
         });
     };
     
-    this.fetchMaterialsAutocomplete = function(searchObject) {
-        console.log('Service materials autocomplete...');
-        console.log(searchObject);
+    this.fetchMaterialNameAutocomplete = function(searchObject) {
         var config = {};
-        config.name = searchObject.name;
-        return searchSrv.fetchAutocomplete(config, materialsPath + '/0/20').then(function() {
-            
-            //Once inventory search has been implemented, check the results for null and undefined
-            console.log(searchSrv.autocomplete);
-//            self.autocomplete = searchSrv.autocomplete.Claims;
-//            self.autocompleteValues = [];
-//            for (var item in self.autocomplete) {
-//                if (!isNaN(item/1)) {
-//                    self.autocompleteValues.push(self.autocomplete[item].jobNumber);
-//                }
-//            }
-//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
-//                return self.autocompleteValues;
-//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
-//                return undefined;
-//            }
+        config.name = searchObject.name;        
+        return $http({
+            method: 'GET',
+            url: autocompletePath,
+            params: config
+        }).then(function(response) {
+            self.materialsAutocompleteValues = [];
+            self.materialsAutocomplete = response.data.InventoryItems;
+            for(var i in response.data.InventoryItems){
+                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
+            }
+            if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
+                return self.materialsAutocompleteValues;
+            } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    this.fetchProductCodeAutocomplete = function(searchObject) {
+        var config = {};
+        config.productCode = searchObject.productCode;        
+        return $http({
+            method: 'GET',
+            url: autocompletePath,
+            params: config
+        }).then(function(response) {
+            self.productCodeAutocompleteValues = [];
+            self.productCodeAutocomplete = response.data.InventoryItems;
+            for(var i in response.data.InventoryItems){
+                self.productCodeAutocompleteValues.push(response.data.InventoryItems[i].productCode);
+            }
+            if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
+                return self.productCodeAutocompleteValues;
+            } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
         });
     };
     //Get the list of general cost items

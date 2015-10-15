@@ -45,6 +45,7 @@
             <thead>
                 <tr>
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
+                    <th><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_UNIT_OF_MEASURE'); ?></th>
 <!--                    <th><?php// echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>-->
@@ -72,13 +73,25 @@
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
                     </td>
-                    <td>
+                    <td class="typeahead-col">
 <!--                        <input placeholder="Material Name" class="form-control" type="text" ng-model="row.name">                      -->
                         <div class="input-group">
-                            <input placeholder="Material Name" type="text" ng-model="row.materialName" ng-model-options="{debounce:100}"
+                            <input placeholder="Product Code" type="text" ng-model="row.productCode" ng-model-options="{debounce:250}"
+                                   typeahead="value for value in fetchProductCodeAutocomplete($viewValue)"
+                                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsProductCode" class="form-control typeahead"
+                                   typeahead-min-length="2" ng-blur="getProductCodeInfo(row, row.productCode)">
+                            <div class="resultspane claim-number" ng-show="noResultsProductCode">
+                                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="typeahead-col">
+<!--                        <input placeholder="Material Name" class="form-control" type="text" ng-model="row.name">                      -->
+                        <div class="input-group">
+                            <input placeholder="Material Name" type="text" ng-model="row.materialName" ng-model-options="{debounce:250}"
                                    typeahead="value for value in fetchMaterialsAutocomplete($viewValue)"
                                    typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsMaterials" class="form-control typeahead"
-                                   typeahead-min-length="2" ng-blur="getMaterialInfo(row.materialName)">
+                                   typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.materialName )">
                             <div class="resultspane claim-number" ng-show="noResultsMaterials">
                                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                             </div>
@@ -146,7 +159,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-<!--                    <td></td>-->
+                    <td></td>
                     <td>Total:</td>
                     <td>{{total.cost}}</td>
                     <td>{{total.chargeout}}</td>
@@ -158,7 +171,7 @@
         
         <button class="btn-info" ng-click="addRow()">New Row</button>
         <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
-        <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected">Delete Row(s)</button>
+        <button class="btn-warning" ng-click="removeRows(); updateTotal();" ng-disabled="!rowSelected">Delete Row(s)</button>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
