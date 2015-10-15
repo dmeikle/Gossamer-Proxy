@@ -44,6 +44,9 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     //Select Rows for breakdown view
     $scope.selectRow = function(clickedObject) {
         $scope.searching = false;
+        console.log(clickedObject);
+        console.log($scope.previouslyClickedObject);
+
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelOpen = true;
@@ -55,6 +58,10 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
                 $scope.rowBreakdown = inventorySrv.breakdownItems;
                 $scope.sidePanelLoading = false;
             });
+        } else {
+            $scope.previouslyClickedObject = '';
+            $scope.sidePanelOpen = false;
+            $scope.sidePanelLoading = false;
         }
     };
 
@@ -93,7 +100,6 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     $scope.advancedSearch = function(searchObject){
         $scope.loading = true;
         $scope.noSearchResults = false;
-        console.log(searchObject);
         inventorySrv.advancedSearch(searchObject).then(function(){
             $scope.list = inventorySrv.advancedSearchResults;
             $scope.totalItems = inventorySrv.advancedSearchResultsCount;
@@ -128,6 +134,8 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
         $scope.searching = true;
+        
+        $scope.previouslyClickedObject = '';
     };
     
     //Date Picker
