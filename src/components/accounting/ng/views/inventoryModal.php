@@ -2,7 +2,7 @@
 <!--<form>-->
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Inventory Item</h4>
+        <h4 class="modal-title" id="myModalLabel">New Material From Stock</h4>
     </div>
     <div class="modal-body general-costs-modal">
         
@@ -29,7 +29,7 @@
 
             <div class="input-group date-input">
                 <label>Date</label>
-                <input type="date" name="date{{$index}}" ng-model="headings.date" ng-model-options="{timezone: '+0000'}"
+                <input type="date" name="date{{$index}}" ng-model="headings.dateUsed" ng-model-options="{timezone: '+0000'}"
                        class="form-control" datepicker-popup is-open="isOpen.datepicker"
                        datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
                 <span class="input-group-btn" data-datepickername="date{{$index}}">
@@ -141,7 +141,7 @@
                         <input placeholder="Price" class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);updateTotal();">
                     </td>
                     <td>
-                        <input placeholder="Qty" class="form-control cost" type="number" ng-model="row.qty" ng-change="updateCost(row);updateTotal();">
+                        <input placeholder="Qty" class="form-control cost" type="number" ng-model="row.quantity" ng-change="updateCost(row);updateTotal();">
                     </td>
                     
                     <td>

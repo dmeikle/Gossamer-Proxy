@@ -22,21 +22,23 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.headings = {
         Claims_id: '',
         ClaimPhases_id: '',
-        date:''
+        dateUsed:''
     };
     
     var lineItemsTemplate = {
         isSelected:false,
         productCode:'',
+        InventoryItems_id: '',
         name: '',
         PackageTypes_id:'',
         unitPrice:'',
-        qty:'',
+        quantity:'',
         //description:'',
         //date:'',
         Departments_id: '',
         cost:'',
         chargeOut: ''
+        
     };
     
     $scope.total = {
@@ -155,11 +157,13 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Get Material info from product code
     $scope.getProductCodeInfo = function(row, value){
+        console.log(inventoryModalSrv.productCodeAutocomplete);
         for(var i in inventoryModalSrv.productCodeAutocomplete){
             if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
                 row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
                 row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].unitPrice;
                 row.PackageTypes_id = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+                row.InventoryItems_id = inventoryModalSrv.productCodeAutocomplete[i].id;
             }
         }
     };
@@ -173,12 +177,12 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Update cost based on item quantity and price
     $scope.updateCost = function(row){
-        if(row.qty === null || row.unitPrice === null){
+        if(row.quantity === null || row.unitPrice === null){
             row.cost = '';
             return;
         }
-        if(row.qty && row.unitPrice){
-            row.cost = row.qty * row.unitPrice;
+        if(row.quantity && row.unitPrice){
+            row.cost = row.quantity * row.unitPrice;
         }
     };
     
@@ -198,7 +202,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.save = function(){
         var headings = angular.copy($scope.headings);
         var lineItems = angular.copy($scope.lineItems);
-        headings.date = $filter('date')(headings.date, 'yyyy-MM-dd');
+        headings.dateUsed = $filter('date')(headings.dateUsed, 'yyyy-MM-dd');
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
