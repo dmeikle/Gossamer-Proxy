@@ -1,6 +1,6 @@
 // General Costs service
 module.service('inventorySrv', function($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/inventory/';
+    var apiPath = '/admin/accounting/supplies/';
     
     var self = this;
     
