@@ -1,6 +1,6 @@
 <div class="widget" ng-controller="inventoryCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-        <h1 class="pull-left">Inventory</h1>
+        <h1 class="pull-left">Supplies</h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
         
         <!--    <div class="pull-right">-->

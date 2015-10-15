@@ -1,4 +1,4 @@
-module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter) {
+module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter, $timeout) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = false;
     
@@ -74,6 +74,15 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         for(var i in inventoryModalSrv.claimsAutocomplete){
             if(inventoryModalSrv.claimsAutocomplete[i].jobNumber === jobNumber){
                 $scope.headings.Claims_id = inventoryModalSrv.claimsAutocomplete[i].id;
+                //$scope.claimsLocations = $scope.getClaimsLocations($scope.headings.Claims_id);
+                inventoryModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function(locations){
+                    console.log('heya');
+                    $scope.claimsLocations = locations;
+                });
+                
+//                $timeout(function(){
+//                    console.log($scope.claimsLocations);
+//                },5000);
             }
         }
     };
@@ -127,6 +136,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
         searchObject.jobNumber = viewVal;
+        console.log('fetching...');
         return inventoryModalSrv.fetchClaimsAutocomplete(searchObject);
     };
     
@@ -196,6 +206,11 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
             $scope.total.cost += $scope.lineItems[i].cost;
             $scope.total.chargeout += $scope.lineItems[i].chargeOut;
         }
+    };
+    
+    //Get the claims locations
+    $scope.getClaimsLocations = function(Claims_id){
+        return inventoryModalSrv.getClaimsLocations(Claims_id);
     };
     
     //Saving Items    

@@ -5,6 +5,8 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     var claimsPath = '/admin/claims/';
     var materialsPath = '/admin/inventory/materials';
     var autocompletePath = '/admin/inventory/items/autocomplete';
+    var claimsLocationsPath = '/admin/claims/locations/';
+    
     
     var self = this;
     
@@ -86,6 +88,16 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
+        });
+    };
+    
+    this.getClaimsLocations = function(Claims_id){
+        return $http({
+            method: 'GET',
+            url: claimsLocationsPath + Claims_id
+        }).then(function(response) {
+            console.log(response.data.ClaimsLocations);
+            return response.data.ClaimsLocations;
         });
     };
 

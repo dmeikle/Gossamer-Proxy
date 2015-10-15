@@ -39,6 +39,14 @@
                 </span>
                 <div class="clearfix"></div>
             </div>
+            
+            <div class="input-group">
+                <label>Claim Location</label>
+                <select class="form-control" name="ClaimsLocations_id" ng-model="headings.ClaimsLocations_id">
+                    <option value="" selected>-Claims Locations-</option>
+                    <option ng-repeat="location in claimsLocations" value="ClaimsLocations_id">{{location.unitNumber}}</option>
+                </select>
+            </div>
         </div>
         
         <table class="table table-striped table-hover">
