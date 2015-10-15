@@ -27,13 +27,14 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     var lineItemsTemplate = {
         isSelected:false,
-        materialName: '',
-        unitMeasure:'',
+        productCode:'',
+        name: '',
+        PackageTypes_id:'',
         unitPrice:'',
         qty:'',
         //description:'',
         //date:'',
-        department: '',
+        Departments_id: '',
         cost:'',
         chargeOut: ''
     };
@@ -147,7 +148,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
             if(inventoryModalSrv.materialsAutocomplete[j].name === value){
                 row.productCode = inventoryModalSrv.materialsAutocomplete[j].productCode;
                 row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].unitPrice;
-                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
+                row.PackageTypes_id = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
             }
         }
     };
@@ -156,12 +157,12 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.getProductCodeInfo = function(row, value){
         for(var i in inventoryModalSrv.productCodeAutocomplete){
             if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
-                row.materialName = inventoryModalSrv.productCodeAutocomplete[i].name;
+                row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
                 row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].unitPrice;
-                row.unitMeasure = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+                row.PackageTypes_id = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
             }
         }
-    }
+    };
     
     //Date Picker
     $scope.dateOptions = {'starting-day':1};
@@ -195,17 +196,16 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Saving Items    
     $scope.save = function(){
+        var headings = angular.copy($scope.headings);
         var lineItems = angular.copy($scope.lineItems);
-        $scope.headings.date = $filter('date')($scope.headings.date, 'yyyy-MM-dd');
-//        for (var i in lineItems){
-//            //console.log('filtering date!');
-//            generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
-//        }
-        
+        headings.date = $filter('date')(headings.date, 'yyyy-MM-dd');
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        inventoryModalSrv.save($scope.headings, lineItems, formToken);
+        console.log(headings);
+        console.log(lineItems);
+        
+        inventoryModalSrv.save(headings, lineItems, formToken);
         
     };
 });

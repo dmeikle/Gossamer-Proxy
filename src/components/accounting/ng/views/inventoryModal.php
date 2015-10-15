@@ -29,7 +29,7 @@
 
             <div class="input-group date-input">
                 <label>Date</label>
-                <input type="date" name="date{{$index}}" ng-model="headings.dateEntered" ng-model-options="{timezone: '+0000'}"
+                <input type="date" name="date{{$index}}" ng-model="headings.date" ng-model-options="{timezone: '+0000'}"
                        class="form-control" datepicker-popup is-open="isOpen.datepicker"
                        datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
                 <span class="input-group-btn" data-datepickername="date{{$index}}">
@@ -88,10 +88,10 @@
                     <td class="typeahead-col">
 <!--                        <input placeholder="Material Name" class="form-control" type="text" ng-model="row.name">                      -->
                         <div class="input-group">
-                            <input placeholder="Material Name" type="text" ng-model="row.materialName" ng-model-options="{debounce:250}"
+                            <input placeholder="Material Name" type="text" ng-model="row.name" ng-model-options="{debounce:250}"
                                    typeahead="value for value in fetchMaterialsAutocomplete($viewValue)"
                                    typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsMaterials" class="form-control typeahead"
-                                   typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.materialName )">
+                                   typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.name )">
                             <div class="resultspane claim-number" ng-show="noResultsMaterials">
                                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                             </div>
@@ -99,7 +99,7 @@
                     </td>
                     <td>
 <!--                        <input placeholder="Unit of Measure" class="form-control" type="text" ng-model="row.unitMeasure">-->
-                        <select class="department form-control" name="unitMeasure" ng-model="row.unitMeasure">
+                        <select class="department form-control" name="unitMeasure" ng-model="row.PackageTypes_id">
                             <option value="" selected>-Unit of Measure-</option>
                             <?php foreach($PackageTypes as $type) {
                                 pr($PackageTypes);
@@ -176,7 +176,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
         <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems(); clearModal()">Save and New</button>
-        <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems()">Save and Close</button>
+        <button type="button" class="btn btn-primary" ng-click="save()">Save and Close</button>
     </div>
 <form class="hidden"></form>
 <!--</form>-->

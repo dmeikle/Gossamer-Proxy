@@ -1084,6 +1084,19 @@ accounting_inventory_breakdown:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+    methods: [GET]
+    
+accounting_inventory_save:
+    pattern: admin/accounting/inventory/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\SuppliesUsedController
+        model: components\accounting\models\SuppliesUsedModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_inventory_save
+        datasource: datasource1 
+    methods: [POST] 
 
 accounting_inventory_list:
     pattern: admin/accounting/inventory/*/*
