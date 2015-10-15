@@ -1,6 +1,8 @@
 module.service('claimsListSrv', function($http, searchSrv) {
 
   var apiPath = '/admin/claims/';
+  var apiPathClaimLocation = '/admin/claimlocations/claim/';
+  var apiPathClaimContacts = '/admin/claim/contacts/';
 
   var self = this;
 
@@ -18,18 +20,33 @@ module.service('claimsListSrv', function($http, searchSrv) {
 
   this.getClaimDetail = function(object) {
     return $http.get(apiPath + object.id)
-      .then(function(response) {        
+      .then(function(response) {
         self.claimDetail = response.data.Claim;
       });
   };
+//<<<<<<< HEAD
   
   this.getClaimsLocationsList = function(claimId) {
       return $http.get(apiPath + 'locations/' + claimId)
       .then(function(response) {        
         self.claimsLocations = response.data.ClaimsLocations;
+//=======
+//
+//
+//  this.getClaimLocations = function(object) {
+//      return $http.get(apiPathClaimLocation + object.id)
+//      .then(function(response) {
+//        self.claimLocations = response.data.ClaimsLocations;
+//>>>>>>> origin/CP-134
       });
   };
 
+  this.getClaimContacts = function(object) {
+      return $http.get(apiPathClaimContacts + object.id)
+      .then(function(response) {
+        self.claimContacts = response.data.ClaimContacts;
+      });
+  };
   this.fetchAutocomplete = function(searchObject) {
     return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {
       self.autocomplete = searchSrv.autocomplete.Claims;
@@ -50,7 +67,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
     });
   };
 
-  this.search = function(searchObject) {    
+  this.search = function(searchObject) {
     return searchSrv.search(searchObject, apiPath).then(function() {
       self.searchResults = searchSrv.searchResults.Claims;
       self.searchResultsCount = searchSrv.searchResultsCount.ClaimsCount[0].rowCount;

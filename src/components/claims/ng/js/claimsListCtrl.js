@@ -12,6 +12,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
+    $scope.selectedClaim = {};
 
     $scope.tablesSrv = tablesSrv;
 
@@ -28,13 +29,18 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         $scope.searching = false;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
+            $scope.selectedClaim = clickedObject;
             $scope.sidePanelLoading = true;
+            $scope.sidePanelOpen = true;
             claimsListSrv.getClaimLocations(clickedObject)
                     .then(function () {
-                        $scope.selectedClaim = claimsListSrv.claim;
-                        $scope.sidePanelOpen = true;
-                        $scope.sidePanelLoading = false;
+                        $scope.selectedClaim.locations = claimsListSrv.claimLocations;
                     });
+            claimsListSrv.getClaimContacts(clickedObject)
+                .then(function() {
+                  $scope.selectedClaim.contacts = claimsListSrv.claimContacts;
+                  $scope.sidePanelLoading = false;
+                });
         }
     };
 

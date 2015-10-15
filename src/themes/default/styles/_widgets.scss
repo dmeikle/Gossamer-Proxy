@@ -48,4 +48,6 @@
 .widget-side-panel {
   width:0px;
   overflow-x:hidden;
+  max-height:100%;
+  overflow-y:auto;
 }
