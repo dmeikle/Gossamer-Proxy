@@ -18,11 +18,11 @@ use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of InventoryEquipmentModel
  *
  * @author Dave Meikle
  */
-class EquipmentTransferModel extends AbstractModel implements FormBuilderInterface{
+class InventoryEquipmentModel extends AbstractModel implements FormBuilderInterface{
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -30,13 +30,18 @@ class EquipmentTransferModel extends AbstractModel implements FormBuilderInterfa
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'EquipmentTransfer';
-        $this->tablename = 'equipmenttransfers'; 
+        $this->entity = 'InventoryEquipment';
+        $this->tablename = 'inventoryequipment'; 
     }
 
     public function getFormWrapper() {
         return $this->entity;
     }
     
-
+    public function transfer(array $params) {
+        
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'transfer', $params);
+        
+        return $data;
+    }
 }
