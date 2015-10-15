@@ -190,6 +190,22 @@ super_inventory_categories_remove:
 
 #---------------------- items -------------------------
 
+
+admin_inventory_items_autocomplete:
+    pattern: admin/inventory/items/autocomplete
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_inventory_items_autocomplete
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+    
+    
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:
