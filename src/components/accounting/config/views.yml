@@ -48,13 +48,13 @@ accounting_generalcosts_home:
     css:
         - @components/accounting/dist/css/accounting.min.css
 
-accounting_inventory_home:
+accounting_supplies_home:
     template: admin-list.php
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
-            "content": "src/components/accounting/views/inventory/list.php"
+            "content": "src/components/accounting/views/supplies/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
