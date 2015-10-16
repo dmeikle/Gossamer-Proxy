@@ -2,10 +2,17 @@
 ---
 transferModal:
     path: 'src/components/inventory/views/admin/equipment/transferModal.php'
+
+
+
+inventoryTransferWizardPages:
+    path: 'src/components/inventory/ng/views/inventoryTransferWizardPages.php'
     langFiles:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
     listeners:
+        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+
         # build the form for Claim Location
         -
             event: 'filerender_start'
@@ -22,7 +29,7 @@ transferModal:
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
-            formBuilder: 'components\claims\form\StaffAuthorizationBuilder'
-            model: 'components\claims\models\StaffAuthorizationModel'
+            formBuilder: 'components\staff\form\StaffAuthorizationBuilder'
+            model: 'components\staff\models\StaffAuthorizationModel'
             cacheKey: 'StaffAuthorizationForm'
             formName: 'staffAuthorizationForm'
