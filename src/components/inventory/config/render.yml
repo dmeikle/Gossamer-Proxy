@@ -12,6 +12,7 @@ inventoryTransferWizardPages:
         - 'app/locales/*/website'
     listeners:
         - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
 
         # build the form for Claim Location
         -
@@ -24,6 +25,7 @@ inventoryTransferWizardPages:
             formName: 'claimLocationForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Vehicles, key: vehicles, value: id, text: number }
         # build the form for StaffAuthorization
         -
             event: 'filerender_start'
