@@ -37,7 +37,7 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
         $scope.loading = true;
         var claimId = document.getElementById('Claim_id').value;
         
-        claimsListSrv.getClaimsLocationsList(claimId).then(function (response) {
+        claimsListSrv.getClaimLocations(claimId).then(function (response) {
             $scope.claimsLocations = claimsListSrv.claimsLocations;
         }).then(function () {
             $scope.loading = false;

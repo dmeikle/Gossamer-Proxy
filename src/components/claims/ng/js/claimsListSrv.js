@@ -26,8 +26,8 @@ module.service('claimsListSrv', function($http, searchSrv) {
   };
 //<<<<<<< HEAD
   
-  this.getClaimsLocationsList = function(claimId) {
-      return $http.get(apiPath + 'locations/' + claimId)
+  this.getClaimLocations = function(claimId) {
+      return $http.get(apiPathClaimLocation + claimId)
       .then(function(response) {        
         self.claimsLocations = response.data.ClaimsLocations;
 //=======

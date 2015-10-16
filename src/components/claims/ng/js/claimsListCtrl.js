@@ -32,7 +32,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
             $scope.selectedClaim = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            claimsListSrv.getClaimLocations(clickedObject)
+            claimsListSrv.getClaimLocations(clickedObject.id)
                     .then(function () {
                         $scope.selectedClaim.locations = claimsListSrv.claimLocations;
                     });

@@ -47,45 +47,35 @@
         </div>
         
          <div class="clearfix"></div>
-                
-        <div ng-controller="claimsLocationsListCtrl">
+         <div class="cards">
+        <div class="card" ng-controller="claimsLocationsListCtrl">
 
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
+                        <th colspan="2" column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
                         <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                        <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_BUILDING_NAME'); ?></th>
-                        <th column-sortable data-column="lossType"><?php echo $this->getString('CLAIMS_LOSS_TYPE'); ?></th>
-                        <th column-sortable data-column="lossDate"><?php echo $this->getString('CLAIMS_LOSS_DATE'); ?></th>
                         <th column-sortable data-column="status"><?php echo $this->getString('CLAIMS_STATUS'); ?></th>
-                        <th column-sortable data-column="projectManager"><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?></th>
                         <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
                         <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-if="loading">
-                        <td></td>
-                        <td></td>
+                        <td colspan="2"></td>
                         <td></td>
                         <td>
                             <span class="spinner-loader"></span>
                         </td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
                     <tr ng-if="!loading" ng-repeat="location in claimsLocations"
                         ng-class="{'selected': location === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
-                        <td ng-click="selectRow(location)">{{location.unitNumber}}</td>
+                        <td colspan="2" ng-click="selectRow(location)">{{location.unitNumber}}</td>
                         <td ng-click="selectRow(location)">{{location.currentClaimPhases_id}}</td>
-                        <td ng-click="selectRow(location)">{{location.buildingName}}</td>
-                        <td ng-click="selectRow(location)">{{location.losstype}}</td>
-                        <td ng-click="selectRow(location)">{{location.lossDate}}</td>
                         <td ng-click="selectRow(location)">{{location.status}}</td>
-                        <td ng-click="selectRow(location)">{{location.projectManager}}</td>
-                        <td ng-click="selectRow(location)">{{location.parentJobNumber}}</td>
+                        <td ng-click="selectRow(location)">{{location.jobNumber}}</td>
                         <td class="row-controls">
                             <div class="dropdown">
                                 <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -100,7 +90,7 @@
             </table>
 
         </div>
-
+        </div>
         <div class="clearfix"></div>
         <form class="hide"></form>
     </div>
