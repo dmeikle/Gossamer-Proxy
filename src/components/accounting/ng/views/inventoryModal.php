@@ -7,6 +7,18 @@
     <div class="modal-body general-costs-modal">
         
         <div id="item-headings">
+            
+            <div class="input-group">
+                <label>Staff Name</label>
+                <input placeholder="Staff Name" type="text" ng-model="headings.staffName" ng-model-options="{debounce:100}"
+                       typeahead="value for value in fetchStaffAutocomplete($viewValue)"
+                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsStaff" class="form-control typeahead"
+                       typeahead-min-length="2" ng-blur="getStaffID(headings.staffName)">
+                <div class="resultspane" ng-show="noResultsStaff">
+                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                </div>
+            </div>
+            
             <div class="input-group">
                 <label>Claim Number</label>
                 <input placeholder="Claim Number" type="text" ng-model="headings.jobNumber" ng-model-options="{debounce:100}"
@@ -26,7 +38,26 @@
                     } ?>
                 </select>
             </div>
-
+            
+            <div class="input-group">
+                <label>Department</label>
+                <select class="department form-control" name="unitMeasure" ng-model="headings.Departments_id">
+                    <option value="" selected>-Department-</option>
+                    <?php foreach($Departments as $department) {
+                        echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
+                    }?>
+                </select>
+            </div>            
+            
+            <div class="input-group">
+                <label>Claim Location</label>
+                <select class="form-control" name="ClaimsLocations_id" ng-model="headings.ClaimsLocations_id" ng-options="obj.id as obj.unitNumber for obj in claimsLocations">
+                    <option value="" selected>-Claims Locations-</option>
+<!--                    <option ng-repeat="location in claimsLocations" value="location.id">{{location.unitNumber}}</option>-->
+                    
+                </select>
+            </div>
+            
             <div class="input-group date-input">
                 <label>Date</label>
                 <input type="date" name="date{{$index}}" ng-model="headings.dateUsed" ng-model-options="{timezone: '+0000'}"
@@ -39,14 +70,6 @@
                 </span>
                 <div class="clearfix"></div>
             </div>
-            
-            <div class="input-group">
-                <label>Claim Location</label>
-                <select class="form-control" name="ClaimsLocations_id" ng-model="headings.ClaimsLocations_id">
-                    <option value="" selected>-Claims Locations-</option>
-                    <option ng-repeat="location in claimsLocations" value="ClaimsLocations_id">{{location.unitNumber}}</option>
-                </select>
-            </div>
         </div>
         
         <table class="table table-striped table-hover">
@@ -57,7 +80,7 @@
                     <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_UNIT_OF_MEASURE'); ?></th>
 <!--                    <th><?php// echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>-->
-                    <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
+<!--                    <th><?php// echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>-->
 <!--                    <th class="date-col"><?php// echo $this->getString('ACCOUNTING_DATE'); ?></th>-->
                     <th class="cost-col"><?php echo $this->getString('ACCOUNTING_UNIT_PRICE'); ?></th>
                     <th class="quantity-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
@@ -73,6 +96,7 @@
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>                    
@@ -120,14 +144,16 @@
                         <input placeholder="Description" class="form-control" type="text" ng-model="row.description">                      
                     </td>
 -->                    
+<!--
                     <td>
                         <select class="department form-control" name="departments" ng-model="row.Departments_id">
                             <option value="" selected>-Department-</option>
-                            <?php foreach($Departments as $department) {
-                                echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
+                            <?php// foreach($Departments as $department) {
+                               // echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
                             }?>
                         </select>
                     </td>
+-->
                     
 <!--
                     <td class="date-col">
@@ -163,7 +189,7 @@
                 </tr>
                 <tr class="totalRow">
                     <td></td>
-                    <td></td>
+<!--                    <td></td>-->
                     <td></td>
                     <td></td>
                     <td></td>

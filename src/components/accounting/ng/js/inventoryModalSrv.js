@@ -10,7 +10,18 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     
     var self = this;
     
-    this.fetchAutocomplete = function(searchObject) {
+    this.getItems = function(row, numRows, id){
+        return $http.get(apiPath + row + '/' + numRows + '/?SuppliesUsed_id=' + id)
+            .then(function(response) {
+            self.lineItems = response.data.InventoryItems;
+            //self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
+        }, function(response){
+            //Handle any errors
+            self.error.showError = true;
+        });
+    }
+    
+    this.fetchStaffAutocomplete = function(searchObject) {
         return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function() {
             self.autocomplete = searchSrv.autocomplete.Staffs;
             self.autocompleteValues = [];

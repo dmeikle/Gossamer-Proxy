@@ -45,4 +45,12 @@ class SuppliesUsedModel extends AbstractModel{
         return $data;
     }
     
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params); 
+      
+        return $data;
+    }
+    
 }

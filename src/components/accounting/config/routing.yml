@@ -1120,6 +1120,17 @@ accounting_supplies_search:
         viewKey: accounting_supplies_search
         datasource: datasource1
 
+#accounting_suppliesitems_edit:
+#    pattern: admin/accounting/supplies/*/*
+#    defaults:
+#        component: components\accounting\AccountingComponent
+#        controller: components\accounting\controllers\SuppliesUsedController
+#        model: components\accounting\models\SuppliesUsedModel
+#        method: editBySupplies
+#        view: core\views\JSONView
+#        viewKey: accounting_suppliesitems_edit
+#        datasource: datasource1
+
 #accounting_inventory_item:
 #    pattern: admin/accounting/inventory/*
 #    defaults:

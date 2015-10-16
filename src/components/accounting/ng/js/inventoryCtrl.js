@@ -147,7 +147,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     };
     
     //Modal
-    $scope.openModal = function() {
+    $scope.openModal = function(item) {
         //console.log(generalCost);
         $scope.modalLoading = true;
         var template = templateSrv.inventoryModal;
@@ -155,11 +155,11 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             templateUrl: template,
             controller: 'inventoryModalCtrl',
             size: 'lg',
-//            resolve: {
-//                generalCost: function () {
-//                    return generalCost;
-//                }
-//            }
+            resolve: {
+                suppliesUsed: function () {
+                    return item;
+                }
+            }
         });
         modal.opened.then(function(){
             $scope.modalLoading = false;

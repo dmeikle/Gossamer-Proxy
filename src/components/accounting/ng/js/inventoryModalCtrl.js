@@ -1,4 +1,4 @@
-module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter, $timeout) {
+module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter, $timeout, suppliesUsed) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = false;
     
@@ -20,9 +20,13 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Set up the objects
     $scope.headings = {
+        staffName: '',
+        Staff_id: '',
         Claims_id: '',
         ClaimPhases_id: '',
-        dateUsed:''
+        dateUsed:'',
+        ClaimsLocations_id: '',
+        Departments_id: ''
     };
     
     var lineItemsTemplate = {
@@ -33,25 +37,35 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         PackageTypes_id:'',
         unitPrice:'',
         quantity:'',
-        //description:'',
-        //date:'',
-        Departments_id: '',
         cost:'',
-        chargeOut: ''
-        
+        chargeOut: ''        
     };
     
     $scope.total = {
         cost: 0,
         chargeout: 0
     };
-//    //Check and see if you're editing an item or creating a new one...
-//    if(generalCost){
-//        $scope.loading = true;
-//        generalCostsModalSrv.getGeneralCostItems(row, numRows, generalCost.id)
-//        .then(function(){
-//            console.log(generalCostsModalSrv.generalCostItems);
-//            var costItems = generalCostsModalSrv.generalCostItems;
+    
+    //Get the claims locations
+    $scope.getClaimsLocations = function(Claims_id){
+        //return inventoryModalSrv.getClaimsLocations(Claims_id);
+        inventoryModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function(locations){
+            $scope.claimsLocations = locations;
+        });
+    };
+    
+    //Check and see if you're editing an item or creating a new one...
+    if(suppliesUsed){
+        $scope.loading = true;
+        console.log(suppliesUsed);
+        suppliesUsed.dateUsed = new Date(suppliesUsed.dateUsed);        
+        $scope.headings = suppliesUsed;
+        $scope.headings.staffName = $scope.headings.firstname + ' ' + $scope.headings.lastname;
+        $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
+        inventoryModalSrv.getItems(row, numRows, suppliesUsed.id)
+        .then(function(){
+            console.log('loading supplies used thingy!');
+            $scope.lineItems = inventoryModalSrv.lineItems;
 //            for(var i in costItems){
 //                //costItems[i].dateEntered = Date.parse((costItems[i].dateEntered.replace(/-/g,"/")));
 //                costItems[i].dateEntered = new Date(costItems[i].dateEntered);
@@ -61,28 +75,33 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
 //            $scope.AccountingGeneralCost = generalCost;
 //            $scope.generalCostItems = costItems;
 //            console.log($scope.generalCostItems);
-//            $scope.loading = false;
-//        });
-//    } else {
-//        $scope.loading = false;
+            $scope.loading = false;
+        });
+    } else {
+        $scope.loading = false;
         $scope.lineItems = angular.copy([lineItemsTemplate]);
-//    }
+    }
+    
+    
+    //Get Staff ID from autocomplete list
+    $scope.getStaffID = function(name){
+        if(name !== undefined){       
+            var splitName = name.split(' ');
+            console.log(splitName);
+            for(var i in inventoryModalSrv.autocomplete){
+                if(splitName[0] === inventoryModalSrv.autocomplete[i].firstname && splitName[1] === inventoryModalSrv.autocomplete[i].lastname){
+                    $scope.headings.Staff_id = inventoryModalSrv.autocomplete[i].id;
+                }
+            }
+        }
+    };
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function(jobNumber){
-        console.log(inventoryModalSrv.claimsAutocomplete);
         for(var i in inventoryModalSrv.claimsAutocomplete){
             if(inventoryModalSrv.claimsAutocomplete[i].jobNumber === jobNumber){
                 $scope.headings.Claims_id = inventoryModalSrv.claimsAutocomplete[i].id;
-                //$scope.claimsLocations = $scope.getClaimsLocations($scope.headings.Claims_id);
-                inventoryModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function(locations){
-                    console.log('heya');
-                    $scope.claimsLocations = locations;
-                });
-                
-//                $timeout(function(){
-//                    console.log($scope.claimsLocations);
-//                },5000);
+                $scope.getClaimsLocations($scope.headings.Claims_id);
             }
         }
     };
@@ -132,11 +151,17 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
     };
     
+    //Staff Typeahead
+    $scope.fetchStaffAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return inventoryModalSrv.fetchStaffAutocomplete(searchObject);
+    };
+    
     //Claim Typeahead
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
         searchObject.jobNumber = viewVal;
-        console.log('fetching...');
         return inventoryModalSrv.fetchClaimsAutocomplete(searchObject);
     };
     
@@ -208,10 +233,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
     };
     
-    //Get the claims locations
-    $scope.getClaimsLocations = function(Claims_id){
-        return inventoryModalSrv.getClaimsLocations(Claims_id);
-    };
+    
     
     //Saving Items    
     $scope.save = function(){

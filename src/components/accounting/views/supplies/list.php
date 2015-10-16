@@ -142,16 +142,23 @@
                 <div class="pull-left">
                     <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER')?></h3>
                     <p>{{selectedRow.jobNumber}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_DEPARTMENT')?></h3>
+                    <p>{{selectedRow.department}}</p>
+                </div>
+                <div class="pull-right">
+                    <h3><?php echo $this->getString('ACCOUNTING_DATE')?></h3>
+                    <p>{{selectedRow.dateUsed}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_PHASE')?></h3>
+                    <p>{{selectedRow.title}}</p>
                 </div>
             </div>
             
             <div ng-repeat="item in rowBreakdown">
                 <div class="card info-card">
-                    <p><strong>Name:</strong> {{item.name}}<span class="pull-right"><strong>Date:</strong> {{item.dateEntered}}</span></p>
-                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.price | currency}}</span></p>
-                    <p>&nbsp;<span class="pull-right"><strong>Chargeout:</strong> {{item.chargeOut | currency}}</span></p>
-                    <p><strong>Department:</strong> {{item.name}}</p>
-                    <p><strong>Debit Account:</strong> {{item.accountingId}}</p>
+                    <p><strong>Name:</strong> {{item.name}}</p>
+                    <p><strong>Unit of Measure:</strong> {{item.packageType}}</p>
+                    <p><strong>Cost:</strong> {{item.cost | currency}}</p>
+                    <p><strong>Chargeout:</strong> {{item.chargeOut | currency}}</p>
                 </div>
             </div>
         </div>
