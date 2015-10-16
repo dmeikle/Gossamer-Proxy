@@ -170,6 +170,14 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inven
 });
 
 
-module.controller('transferModalController', function($scope, multiSelectArray) {
+module.controller('transferModalController', function($scope, claimsEditSrv, multiSelectArray) {
+  $scope.equipmentList = multiSelectArray;
 
+  var autocomplete = function(value, type) {
+    return claimsEditSrv.autocomplete(value, type);
+  };
+
+  $scope.autocompleteAddress = function(value) {
+    return autocomplete(value, 'address1');
+  };
 });

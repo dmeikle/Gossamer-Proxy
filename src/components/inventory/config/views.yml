@@ -102,6 +102,7 @@ admin_inventory_list:
         bootstrap_modules:
             - rootApp
             - inventoryAdmin
+            - claimsAdmin
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
@@ -112,6 +113,8 @@ admin_inventory_list:
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
         #- @components/inventory/dist/js/claims.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css
 
