@@ -19,7 +19,7 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             //Handle any errors
             self.error.showError = true;
         });
-    }
+    };
     
     this.fetchStaffAutocomplete = function(searchObject) {
         return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function() {
