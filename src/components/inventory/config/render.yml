@@ -5,3 +5,24 @@ transferModal:
     langFiles:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
+    listeners:
+        # build the form for Claim Location
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'claimLocationForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+        # build the form for StaffAuthorization
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\StaffAuthorizationBuilder'
+            model: 'components\claims\models\StaffAuthorizationModel'
+            cacheKey: 'StaffAuthorizationForm'
+            formName: 'staffAuthorizationForm'
