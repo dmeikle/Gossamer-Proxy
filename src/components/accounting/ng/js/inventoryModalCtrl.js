@@ -30,6 +30,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     };
     
     var lineItemsTemplate = {
+        id:'',
+        SuppliesUsedItems_id: '',
         isSelected:false,
         productCode:'',
         InventoryItems_id: '',
@@ -43,7 +45,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     $scope.total = {
         cost: 0,
-        chargeout: 0
+        chargeOut: 0
     };
     
     //Get the claims locations
@@ -65,16 +67,18 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         inventoryModalSrv.getItems(row, numRows, suppliesUsed.id)
         .then(function(){
             console.log('loading supplies used thingy!');
-            $scope.lineItems = inventoryModalSrv.lineItems;
-//            for(var i in costItems){
-//                //costItems[i].dateEntered = Date.parse((costItems[i].dateEntered.replace(/-/g,"/")));
-//                costItems[i].dateEntered = new Date(costItems[i].dateEntered);
-//                costItems[i].cost = parseFloat(costItems[i].cost);
-//                costItems[i].chargeOut = parseFloat(costItems[i].chargeOut);
-//            }
-//            $scope.AccountingGeneralCost = generalCost;
-//            $scope.generalCostItems = costItems;
+            var lineItems = inventoryModalSrv.lineItems;
+            for(var i in lineItems){
+                lineItems[i].cost = parseFloat(lineItems[i].cost);
+                lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
+                lineItems[i].quantity = parseFloat(lineItems[i].quantity);
+                lineItems[i].id = lineItems[i].SuppliesUsedItems_id;
+            }
+            console.log('LINE ITEMS:');
+            console.log(lineItems);
+            $scope.lineItems = lineItems;
 //            console.log($scope.generalCostItems);
+            $scope.updateTotal();
             $scope.loading = false;
         });
     } else {
@@ -225,11 +229,17 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.updateTotal = function(){
         $scope.total = {
             cost: 0,
-            chargeout: 0
+            chargeOut: 0
         };
         for(var i in $scope.lineItems){
+            if(isNaN($scope.lineItems[i].cost)){
+                $scope.lineItems[i].cost = 0;
+            }
+            if(isNaN($scope.lineItems[i].chargeOut)){
+                $scope.lineItems[i].chargeOut = 0;
+            }
             $scope.total.cost += $scope.lineItems[i].cost;
-            $scope.total.chargeout += $scope.lineItems[i].chargeOut;
+            $scope.total.chargeOut += $scope.lineItems[i].chargeOut;
         }
     };
     
@@ -244,8 +254,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
         console.log(headings);
-        console.log(lineItems);
-        
+        console.log(lineItems);        
         inventoryModalSrv.save(headings, lineItems, formToken);
         
     };

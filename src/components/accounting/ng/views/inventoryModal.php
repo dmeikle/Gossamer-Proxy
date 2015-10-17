@@ -196,7 +196,7 @@
                     <td></td>
                     <td>Total:</td>
                     <td>{{total.cost}}</td>
-                    <td>{{total.chargeout}}</td>
+                    <td>{{total.chargeOut}}</td>
 
 
                 </tr>

@@ -6,14 +6,14 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     var materialsPath = '/admin/inventory/materials';
     var autocompletePath = '/admin/inventory/items/autocomplete';
     var claimsLocationsPath = '/admin/claims/locations/';
-    
+    var suppliesUsedPath = '/admin/accounting/suppliesused/';
     
     var self = this;
     
     this.getItems = function(row, numRows, id){
-        return $http.get(apiPath + row + '/' + numRows + '/?SuppliesUsed_id=' + id)
+        return $http.get(suppliesUsedPath + id)
             .then(function(response) {
-            self.lineItems = response.data.InventoryItems;
+            self.lineItems = response.data.SuppliesUsedInventoryItems;
             //self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
         }, function(response){
             //Handle any errors
@@ -120,6 +120,12 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             itemID = parseInt(headings.id);
         } else {
             itemID = '0';
+        }
+        
+        for(var i in headings){
+            if(headings[i] === null){
+                delete headings[i];
+            }
         }
         
         var data = {};
