@@ -19,5 +19,12 @@ return array(
   'INVENTORY_EQUIPMENT' => 'Equipment',
   'INVENTORY_MATERIALS' => 'Materials',
   'INVENTORY_MAXDAYS' => 'Max Days',
-  'INVENTORY_NUMBER' => 'Serial'
+  'INVENTORY_NUMBER' => 'Serial',
+  'INVENTORY_TRANSFER_ACKNOWLEDGE' => 'Sign to acknowledge receipt of this equipment',
+  'INVENTORY_TRANSFER_TO' => 'Transfer to',
+  'INVENTORY_TRANSFER_LOCATION' => 'Current Location',
+  'INVENTORY_TRANSFER_EQUIPMENT' => 'Equipment',
+  'INVENTORY_TRANSFER_ADDRESS' => 'Address',
+  'INVENTORY_TRANSFER_JOBNUMBER' => 'Job Number',
+  'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle'
   );

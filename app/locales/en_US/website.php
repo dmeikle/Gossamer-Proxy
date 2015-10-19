@@ -49,6 +49,8 @@ return array(
   'WORKLOG' => 'Work Log',
   'NEW' => 'New',
   'ADVANCED_SEARCH' => 'Advanced Search',
-  'EDIT' => 'Edit'
+  'EDIT' => 'Edit',
+  'USERNAME' => 'Username',
+  'PASSWORD' => 'Password'
 
 );

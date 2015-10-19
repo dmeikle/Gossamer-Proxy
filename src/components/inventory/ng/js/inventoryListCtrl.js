@@ -142,7 +142,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inven
     });
 
     modalInstance.result.then(function(result, formToken) {
-      inventoryEditSrv.save(result, formToken);
+      inventoryEditSrv.transfer(result, formToken);
     });
   };
 
@@ -170,14 +170,24 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inven
 });
 
 
-module.controller('transferModalController', function($scope, claimsEditSrv, multiSelectArray) {
+module.controller('transferModalController', function($scope, $modalInstance, transferSrv, multiSelectArray) {
   $scope.equipmentList = multiSelectArray;
 
-  var autocomplete = function(value, type) {
-    return claimsEditSrv.autocomplete(value, type);
+  var autocomplete = function(value, type, apiPath) {
+    return transferSrv.autocomplete(value, type, apiPath);
   };
 
-  $scope.autocompleteAddress = function(value) {
-    return autocomplete(value, 'address1');
+  $scope.autocompleteJobNumber = function(value) {
+    return autocomplete(value, 'jobNumber', '/admin/claims/').then(function() {
+      return transferSrv.autocompleteResult.Claims;
+    });
+  };
+
+  $scope.submit = function() {
+    $modalInstance.close($scope.transfer);
+  };
+
+  $scope.close = function() {
+    $modalInstance.dismiss('cancel');
   };
 });
