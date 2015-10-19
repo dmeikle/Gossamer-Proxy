@@ -55,7 +55,6 @@
                     <tr>
                         <th colspan="2" column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
                         <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                        <th column-sortable data-column="status"><?php echo $this->getString('CLAIMS_STATUS'); ?></th>
                         <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
                         <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                     </tr>
@@ -68,13 +67,11 @@
                             <span class="spinner-loader"></span>
                         </td>
                         <td></td>
-                        <td></td>
                     </tr>
-                    <tr ng-if="!loading" ng-repeat="location in claimsLocations"
+                    <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
                         ng-class="{'selected': location === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
                         <td colspan="2" ng-click="selectRow(location)">{{location.unitNumber}}</td>
-                        <td ng-click="selectRow(location)">{{location.currentClaimPhases_id}}</td>
-                        <td ng-click="selectRow(location)">{{location.status}}</td>
+                        <td ng-click="selectRow(location)">{{location.phase}}</td>
                         <td ng-click="selectRow(location)">{{location.jobNumber}}</td>
                         <td class="row-controls">
                             <div class="dropdown">

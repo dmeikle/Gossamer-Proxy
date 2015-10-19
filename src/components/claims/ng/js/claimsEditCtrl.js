@@ -53,4 +53,5 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;
     };
+    
 });

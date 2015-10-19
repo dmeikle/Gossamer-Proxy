@@ -44,5 +44,14 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
         });
     }
 
+    $scope.getStatusColor = function(item) {
+        if(item.WorkStatus_id == 1) {
+            return 'warning';
+        } else if(item.WorkStatus_id == 2) {
+            return 'success';
+        } else {
+            return 'danger';
+        }
+    };
 
 });
