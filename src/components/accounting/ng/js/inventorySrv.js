@@ -55,8 +55,9 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
             params: config
         })
         .then(function(response) {
-            self.advancedSearchResults = response.data.SuppliesUseds;
-            self.advancedSearchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
+            console.log(response);
+            self.advancedSearchResults = response.data.InventoryItems;
+            self.advancedSearchResultsCount = response.data.InventoryItemsCount[0].rowCount;
         });
     };
 });

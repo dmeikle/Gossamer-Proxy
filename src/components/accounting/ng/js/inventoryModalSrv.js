@@ -41,12 +41,12 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     };
     
     this.fetchClaimsAutocomplete = function(searchObject) {
-        console.log(searchObject);
+        //console.log(searchObject);
         return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function() {
-            console.log(searchSrv.autocomplete);
+            //console.log(searchSrv.autocomplete);
             self.claimsAutocomplete = searchSrv.autocomplete.Claims;
             self.claimsAutocompleteValues = [];
-            console.log(self.claimsAutocomplete);
+            //console.log(self.claimsAutocomplete);
             for (var item in self.claimsAutocomplete) {
                 if (!isNaN(item/1)) {
                     self.claimsAutocompleteValues.push(self.claimsAutocomplete[item].jobNumber);
@@ -107,14 +107,14 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             method: 'GET',
             url: claimsLocationsPath + Claims_id
         }).then(function(response) {
-            console.log(response.data.ClaimsLocations);
+            //console.log(response.data.ClaimsLocations);
             return response.data.ClaimsLocations;
         });
     };
 
     //Save the general cost items
     this.save = function(headings, lineItems, formToken){
-        console.log('saving inventory items...');
+        //console.log('saving inventory items...');
         var itemID = '';
         if(headings.id){
             itemID = parseInt(headings.id);

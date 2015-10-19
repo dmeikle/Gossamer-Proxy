@@ -8,7 +8,6 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
-    //console.log(generalCost);
     //Modal Controls
     $scope.confirm = function() {
         $modalInstance.close();
@@ -59,14 +58,14 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     //Check and see if you're editing an item or creating a new one...
     if(suppliesUsed){
         $scope.loading = true;
-        console.log(suppliesUsed);
+        //console.log(suppliesUsed);
         suppliesUsed.dateUsed = new Date(suppliesUsed.dateUsed);        
         $scope.headings = suppliesUsed;
         $scope.headings.staffName = $scope.headings.firstname + ' ' + $scope.headings.lastname;
         $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
         inventoryModalSrv.getItems(row, numRows, suppliesUsed.id)
         .then(function(){
-            console.log('loading supplies used thingy!');
+            //console.log('loading supplies used thingy!');
             var lineItems = inventoryModalSrv.lineItems;
             for(var i in lineItems){
                 lineItems[i].cost = parseFloat(lineItems[i].cost);
@@ -74,8 +73,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
                 lineItems[i].quantity = parseFloat(lineItems[i].quantity);
                 lineItems[i].id = lineItems[i].SuppliesUsedItems_id;
             }
-            console.log('LINE ITEMS:');
-            console.log(lineItems);
+            //console.log('LINE ITEMS:');
+            //console.log(lineItems);
             $scope.lineItems = lineItems;
 //            console.log($scope.generalCostItems);
             $scope.updateTotal();
@@ -91,7 +90,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.getStaffID = function(name){
         if(name !== undefined){       
             var splitName = name.split(' ');
-            console.log(splitName);
+            //console.log(splitName);
             for(var i in inventoryModalSrv.autocomplete){
                 if(splitName[0] === inventoryModalSrv.autocomplete[i].firstname && splitName[1] === inventoryModalSrv.autocomplete[i].lastname){
                     $scope.headings.Staff_id = inventoryModalSrv.autocomplete[i].id;
@@ -196,7 +195,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     
     //Get Material info from product code
     $scope.getProductCodeInfo = function(row, value){
-        console.log(inventoryModalSrv.productCodeAutocomplete);
+        //console.log(inventoryModalSrv.productCodeAutocomplete);
         for(var i in inventoryModalSrv.productCodeAutocomplete){
             if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
                 row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
@@ -253,8 +252,8 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
-        console.log(headings);
-        console.log(lineItems);        
+        //console.log(headings);
+        //console.log(lineItems);        
         inventoryModalSrv.save(headings, lineItems, formToken);
         
     };
