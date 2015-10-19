@@ -79,7 +79,7 @@ button {
   text-overflow: ellipsis;
 }
 
-.table>thead>tr>th {
+.table>thead>tr>th:not(.cog-col) {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

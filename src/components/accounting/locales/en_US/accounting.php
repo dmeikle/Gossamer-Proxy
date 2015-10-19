@@ -10,6 +10,8 @@ return array(
     
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
+    'ACCOUNTING_FIRST_NAME' => 'First Name',
+    'ACCOUNTING_LAST_NAME' => 'Last Name',
     'ACCOUNTING_DATE' => 'Date',
     'ACCOUNTING_VEHICLE_NUMBER' => 'Vehicle #',
     'ACCOUNTING_JOB_NUMBER' => 'Job No.',

@@ -14,7 +14,6 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
         return $http.get(suppliesUsedPath + id)
             .then(function(response) {
             self.lineItems = response.data.SuppliesUsedInventoryItems;
-            //self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
         }, function(response){
             //Handle any errors
             self.error.showError = true;
@@ -41,12 +40,9 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
     };
     
     this.fetchClaimsAutocomplete = function(searchObject) {
-        //console.log(searchObject);
         return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function() {
-            //console.log(searchSrv.autocomplete);
             self.claimsAutocomplete = searchSrv.autocomplete.Claims;
             self.claimsAutocompleteValues = [];
-            //console.log(self.claimsAutocomplete);
             for (var item in self.claimsAutocomplete) {
                 if (!isNaN(item/1)) {
                     self.claimsAutocompleteValues.push(self.claimsAutocomplete[item].jobNumber);
@@ -107,14 +103,12 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             method: 'GET',
             url: claimsLocationsPath + Claims_id
         }).then(function(response) {
-            //console.log(response.data.ClaimsLocations);
             return response.data.ClaimsLocations;
         });
     };
 
     //Save the general cost items
     this.save = function(headings, lineItems, formToken){
-        //console.log('saving inventory items...');
         var itemID = '';
         if(headings.id){
             itemID = parseInt(headings.id);
@@ -141,7 +135,7 @@ module.service('inventoryModalSrv', function($http, searchSrv, $filter) {
             url: apiPath + itemID,
             data: data
         }).then(function(response) {
-            console.log(response);
+            //console.log(response);
         });
     };
 });

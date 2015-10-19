@@ -29,33 +29,69 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_ITEMS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
-<!--                    <th><?php// echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>-->
-                    <th class="cog-col">&nbsp;</th>
+                    <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('ACCOUNTING_FIRST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('ACCOUNTING_LAST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'numItems'" column-sortable data-column="numItems"><?php echo $this->getString('ACCOUNTING_ITEMS'); ?></th>
+                    <th ng-hide="groupedBy === 'title'" column-sortable data-column="title"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'department'" column-sortable data-column="department"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
+                    <th ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                    <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>  
-                    <td></td>
-                    <td>
+                    <td ng-hide="groupedBy === 'firstname'"></td> 
+                    <td ng-hide="groupedBy === 'lastname'"></td>                    
+                    <td ng-hide="groupedBy === 'jobNumber'"></td>
+                    <td ng-hide="groupedBy === 'numItems'"></td>
+                    <td ng-hide="groupedBy === 'title'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td></td>
-                    <td></td>  
+                    <td ng-hide="groupedBy === 'department'" column-sortable data-column="department"></td>
+                    <td ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"></td>  
                     <td></td>
 <!--                    <td></td>                   -->
                 </tr>
-                <tr ng-if="!loading && !noSearchResults" ng-repeat="item in list" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
-                    <td ng-click="selectRow(item)">{{item.numItems}}</td>
-                    <td ng-click="selectRow(item)">{{item.title}}</td>
-                    <td ng-click="selectRow(item)">{{item.department}}</td>
-                    <td ng-click="selectRow(item)">{{item.totalCost | currency}}</td>
+                
+                <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index-1][groupedBy]" ng-repeat-start="item in list">
+                    <th colspan="7">
+<!--
+                        <span ng-if="groupedBy === 'firstname'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_FIRSTNAME'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'lastname'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_LASTNAME'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'jobNumber'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_TITLE'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'numItems'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_EXTENSION'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'title'">
+                        <?php// echo $this->getString('STAFF_GROUPEDBY_MOBILE'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'department'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_STATUS'); ?>
+                        </span>
+                        <span ng-if="groupedBy === 'totalCost'">
+                            <?php// echo $this->getString('STAFF_GROUPEDBY_LASTLOGIN'); ?>
+                        </span>
+-->
+                        {{item[groupedBy]}}
+                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
+                    </th>
+                </tr>
+                
+                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected': item === previouslyClickedObject}">
+                    <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(item)">{{item.firstname}}</td>
+                    <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(item)">{{item.lastname}}</td>
+                    <td ng-hide="groupedBy === 'jobNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-hide="groupedBy === 'numItems'" ng-click="selectRow(item)">{{item.numItems}}</td>
+                    <td ng-hide="groupedBy === 'title'" ng-click="selectRow(item)">{{item.title}}</td>
+                    <td ng-hide="groupedBy === 'department'" ng-click="selectRow(item)">{{item.department}}</td>
+                    <td ng-hide="groupedBy === 'totalCost'" ng-click="selectRow(item)">{{item.totalCost | currency}}</td>
 <!--                    <td ng-click="selectRow(item)">{{item.totalChargeout | currency}}</td>-->
                     <td class="row-controls">
                         <div class="dropdown">

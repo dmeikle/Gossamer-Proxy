@@ -1,4 +1,4 @@
-module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templateSrv, inventorySrv, $modal) {
+module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templateSrv, inventorySrv, $modal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;    
@@ -9,19 +9,36 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.advSearch = {};
-//    $scope.autocomplete = {};
     $scope.isOpen = {};
     $scope.isOpen.datepicker = {};
     $scope.isOpen.datepicker.fromDate = false;
     $scope.isOpen.datepicker.toDate = false;
-
+    $scope.basicSearch.query = '';
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-    var numRows = $scope.itemsPerPage;    
-
+    var numRows = $scope.itemsPerPage;
+    
+    // Load up the table service so we can watch it!
+    $scope.tablesSrv = tablesSrv;
+    $scope.$watch('tablesSrv.sortResult', function() {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.list = tablesSrv.sortResult.SuppliesUseds;
+            $scope.loading = false;
+        }
+    });
+    
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.SuppliesUseds'], function() {
+        $scope.grouped = tablesSrv.grouped;
+        if ($scope.grouped === true) {
+            if(tablesSrv.groupResult && tablesSrv.groupResult.SuppliesUseds) $scope.list = tablesSrv.groupResult.SuppliesUseds;
+                $scope.loading = false;
+        } else if ($scope.grouped === false) {
+            getList();
+        }
+    });
+    
     function getList(){
         $scope.loading = true;
         $scope.noSearchResults = false;
-
         inventorySrv.getList(row,numRows)
             .then(function(){
             $scope.loading = false;
@@ -29,11 +46,16 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             $scope.totalItems = inventorySrv.listRowCount;
             if(inventorySrv.error.showError === true){
                 $scope.error.showError = true;
-                //$scope.error.message = 'Could not reach the database, please try again.';
             }
         });
     }
-
+    
+    $scope.$watch('basicSearch.query', function() {
+        if ($scope.basicSearch.query.length === 0){
+            getList();
+        }
+    });
+    
     $scope.$watch('currentPage + itemsPerPage', function() {
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -44,16 +66,12 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     //Select Rows for breakdown view
     $scope.selectRow = function(clickedObject) {
         $scope.searching = false;
-        console.log(clickedObject);
-        console.log($scope.previouslyClickedObject);
-
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelOpen = true;
             $scope.sidePanelLoading = true;
             inventorySrv.getBreakdown(row, numRows, clickedObject.id)
                 .then(function(){
-//                    $scope.sidePanelOpen = true;
                 $scope.selectedRow = clickedObject;
                 $scope.rowBreakdown = inventorySrv.breakdownItems;
                 $scope.sidePanelLoading = false;
@@ -66,17 +84,6 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     };
 
     $scope.closeSidePanel = function() {
-//        if ($scope.searching) {
-//            $scope.searching = false;
-//        }
-//        if ($scope.selectedStaff) {
-//            $scope.selectedStaff = undefined;
-//            $scope.previouslyClickedObject = undefined;
-//        }
-//        if (!$scope.selectedStaff && !$scope.searching) {
-//            $scope.sidePanelOpen = false;
-//            $scope.previouslyClickedObject = {};
-//        }
         $scope.sidePanelOpen = false;
         $scope.isOpen.datepicker.fromDate = false;
         $scope.isOpen.datepicker.toDate = false;
@@ -93,6 +100,9 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             inventorySrv.search(copiedObject).then(function() {
                 $scope.list = inventorySrv.searchResults;
                 $scope.totalItems = inventorySrv.searchResultsCount;
+                if($scope.totalItems === 0){
+                    $scope.noSearchResults = true;
+                }
                 $scope.loading = false;
             });
         }
@@ -104,7 +114,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
         inventorySrv.advancedSearch(searchObject).then(function(){
             $scope.list = inventorySrv.advancedSearchResults;
             $scope.totalItems = inventorySrv.advancedSearchResultsCount;
-            if($scope.totalItems === '0'){
+            if($scope.totalItems === 0){
                 $scope.noSearchResults = true;
             }
             $scope.loading = false;
@@ -113,8 +123,9 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
 
     $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
+        $scope.noSearchResults = false;
         $scope.basicSearch.query = '';
-        getGeneralCostsList();
+        getList();
     };
     
     $scope.autoSearch = function(searchString){
@@ -124,18 +135,15 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     };
 
     $scope.resetAdvancedSearch = function() {
-        console.log($scope.advSearch);
         $scope.searchSubmitted = false;
         $scope.advSearch = {};
-        console.log($scope.advSearch);
         getList();
     };
 
     $scope.openAdvancedSearch = function() {
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
-        $scope.searching = true;
-        
+        $scope.searching = true;        
         $scope.previouslyClickedObject = '';
     };
     
@@ -148,7 +156,6 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     
     //Modal
     $scope.openModal = function(item) {
-        //console.log(generalCost);
         $scope.modalLoading = true;
         var template = templateSrv.inventoryModal;
         var modal = $modal.open({
@@ -165,7 +172,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
             $scope.modalLoading = false;
         });
         modal.result.then(function(){
-            getGeneralCostsList();
+            getList();
         });
     };
 });
