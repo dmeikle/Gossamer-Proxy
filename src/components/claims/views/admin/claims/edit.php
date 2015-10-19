@@ -1,6 +1,7 @@
 <div class="content full-width" ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
     <?php echo $form['ProjectAddresses_id']; ?>
+    <?php echo $form['jobNumberHidden']; ?>
     <div class="widget">
         <h1 ng-if="!claim"><?php echo $this->getString('CLAIM_CREATE'); ?></h1>
         <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIM_EDIT') ?> {{claim.jobNumber}}</h1>
@@ -47,8 +48,7 @@
         </div>
         
          <div class="clearfix"></div>
-         <div class="cards">
-        <div class="card" ng-controller="claimsLocationsListCtrl">
+         <div class="card" ng-controller="claimsLocationsListCtrl">
 
             <table class="table table-striped table-hover table-bordered">
                 <thead>
@@ -87,8 +87,24 @@
             </table>
 
         </div>
-        </div>
         <div class="clearfix"></div>
         <form class="hide"></form>
+        <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_PHOTOS') ?></a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_COMMENTS') ?></a></li>
+    <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_HISTORY') ?></a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="photos">...</div>
+    <div role="tabpanel" class="tab-pane" id="comments">...</div>
+    <div role="tabpanel" class="tab-pane" id="history">...</div>
+  </div>
+
+</div>
     </div>
 </div>

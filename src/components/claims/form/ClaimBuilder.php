@@ -29,6 +29,7 @@ class ClaimBuilder extends AbstractBuilder{
         }
 
         $builder->add('jobNumber', 'text', array('class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
+                ->add('jobNumberHidden', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('callInDate', 'text', array('class' => 'form-control', 'value' => $this->getValue('callInDate', $values)))
                 ->add('calledInBy', 'text', array('class' => 'form-control', 'value' => $this->getValue('calledInBy', $values)))
                 ->add('calledInPhone', 'text', array('class' => 'form-control', 'value' => $this->getValue('calledInPhone', $values)))

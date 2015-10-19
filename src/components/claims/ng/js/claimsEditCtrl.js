@@ -5,6 +5,8 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
+    $scope.contacts = [];
+    
     getProjectAddress();
     getClaimDetails();
     
@@ -53,5 +55,6 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;
     };
+    
     
 });

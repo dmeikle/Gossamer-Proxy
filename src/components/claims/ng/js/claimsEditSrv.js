@@ -54,4 +54,10 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
             self.projectAddress = response.data.ProjectAddress;
         });
     };
+    
+    this.getContacts = function(jobNumber) {
+        return crudSrv.getDetails('/admin/contacts/claim/', jobNumber).then(function (response) {
+            self.contacts = response.data.ClaimContacts;
+        });
+    };
 });

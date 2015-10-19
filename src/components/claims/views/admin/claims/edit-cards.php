@@ -1,119 +1,39 @@
-<div class="card">
-  <div class="cardheader">
-    <h1><?php echo $this->getString('CLAIMS_BUILDINGADDRESS'); ?></h1>
-  </div>
-  <table class="cardtable">
-    <tbody>
-      <tr>
-        <td>
-          <strong>
-            <?php echo $this->getString('CLAIMS_BUILDINGNAME');?>
-          </strong>
-        </td>
-        <td>
-          {{claim.buildingName}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>
-            <?php echo $this->getString('CLAIMS_STRATANUM');?>
-          </strong>
-        </td>
-        <td>
-          {{claim.strataNum}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <strong>
-            <?php echo $this->getString('CLAIMS_ADDRESS');?>
-          </strong>
-        </td>
-        <td>
-          <div>
-            {{claim.address1}}
-          </div>
-          <div>
-            {{claim.city}}
-          </div>
-          <div>
-            {{claim.province}}
-          </div>
-          <div>
-            {{claim.postalCode}}
-          </div>
-          <div>
-            {{claim.country}}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="clearfix"></div>
-</div>
-
-<div class="card">
-  <div class="cardheader">
-    <h1><?php echo $this->getString('CLAIMS_PHASE');?></h1>
-  </div>
-  <div class="cardleft">
-
-    <div class="big">
-      {{claim.currentPhase}}
-    </div>
-  </div>
-  <div class="cardright">
-    <p>{{claim.currentPhaseETA}} <?php echo $this->getString('CLAIMS_DAYSREMAIN');?></p>
-  </div>
-  <div class="clearfix"></div>
-  <div class="cardfooter clearfix">
-    <div class="pull-right">
-      <a href="#"><?php echo $this->getString('MORE_INFO');?></a>
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="cardheader">
-    <h1><?php echo $this->getString('CLAIMS_LOSSDETAILS');?></h1>
-  </div>
-  <table class="cardtable">
-    <tbody>
-      <tr>
-        <td><strong><?php echo $this->getString('CLAIMS_DATESTARTED');?></strong></td>
-        <td>
-          <?php echo $form['startDate'] ?>
-        </td>
-      </tr>
-      <tr>
-        <td><strong><?php echo $this->getString('CLAIMS_BUILDINGAGE');?></strong></td>
-        <td>{{claim.buildingAge}}</td>
-      </tr>
-      <tr>
-        <td><strong><?php echo $this->getString('CLAIMS_SOURCE') ?></strong></td>
-        <td><?php echo $form['source'] ?></td>
-      </tr>
-      <tr>
-        <td><strong><?php echo $this->getString('CLAIMS_JOBNUMBER') ?></strong></td>
-        <td>{{claim.jobNumber}}</td>
-      </tr>
-      <tr>
-        <td><strong><?php echo $this->getString('CLAIMS_FLOODCATEGORY') ?></strong></td>
-        <td>{{claim.type}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class="card">
-  <div class="cardheader">
-    <h1><?php echo $this->getString('REMINDERS');?></h1>
-  </div>
-  <ul>
-    <li>Repeat <small><a class="pull-right" href="#"><?php echo $this->getString('DETAILS');?></a></small></li>
-    <li>Over <small><a class="pull-right" href="#"><?php echo $this->getString('DETAILS');?></a></small></li>
-    <li>Reminders <small><a class="pull-right" href="#"><?php echo $this->getString('DETAILS');?></a></small></li>
-    <li>Here <small><a class="pull-right" href="#"><?php echo $this->getString('DETAILS');?></a></small></li>
-  </ul>
+<div class="card" ng-controller="claimsContactsList">
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th colspan="2" column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
+                <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
+                <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
+                <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-if="loading">
+                <td colspan="2"></td>
+                <td></td>
+                <td>
+                    <span class="spinner-loader"></span>
+                </td>
+                <td></td>
+            </tr>
+            <tr ng-if="!loading" ng-repeat="contact in contacts" 
+                ng-class="{'selected': contact === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                <td colspan="2" ng-click="selectRow(contact)">{{contact.firstname}} {{ contact.lastname }}</td>
+                <td ng-click="selectRow(contact)">{{contact.email}}</td>
+                <td ng-click="selectRow(contact)">{{contact.office}}</td>
+                <td ng-click="selectRow(contact)">{{contact.mobile}}</td>
+                <td ng-click="selectRow(contact)">{{contact.type}}</td>
+                <td class="row-controls">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                            <li><a href="/admin/claims/edit/{{location.id}}">Edit</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
