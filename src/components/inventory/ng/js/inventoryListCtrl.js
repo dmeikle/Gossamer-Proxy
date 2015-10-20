@@ -1,4 +1,5 @@
-module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inventoryListSrv, inventoryEditSrv) {
+module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
+  inventoryListSrv, inventoryEditSrv, inventoryTransferSrv) {
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -141,8 +142,8 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inven
       }
     });
 
-    modalInstance.result.then(function(result, formToken) {
-      inventoryEditSrv.transfer(result, formToken);
+    modalInstance.result.then(function(object, multiSelectArray, formToken) {
+      inventoryTransferSrv.transfer(object, multiSelectArray, formToken);
     });
   };
 
@@ -170,21 +171,29 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv, inven
 });
 
 
-module.controller('transferModalController', function($scope, $modalInstance, transferSrv, multiSelectArray) {
+module.controller('transferModalController', function($scope, $modalInstance,
+  inventoryTransferSrv, multiSelectArray) {
+  $scope.loading = true;
   $scope.equipmentList = multiSelectArray;
+  $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
+    .then(function() {
+      $scope.loading = false;
+    });
 
   var autocomplete = function(value, type, apiPath) {
-    return transferSrv.autocomplete(value, type, apiPath);
+    return inventoryTransferSrv.autocomplete(value, type, apiPath);
   };
 
   $scope.autocompleteJobNumber = function(value) {
     return autocomplete(value, 'jobNumber', '/admin/claims/').then(function() {
-      return transferSrv.autocompleteResult.Claims;
+      return inventoryTransferSrv.autocompleteResult.Claims;
     });
   };
 
   $scope.submit = function() {
-    $modalInstance.close($scope.transfer);
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+    $modalInstance.close($scope.transfer, multiSelectArray, formToken);
   };
 
   $scope.close = function() {
