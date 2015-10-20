@@ -41,7 +41,7 @@
         <div class="form-group" ng-controller="claimsListCtrl">
           <div>
             <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
-            <input type="text" ng-model="transfer.transferTo.jobNumber" ng-model-options="{debounce:500}"
+            <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
               typeahead="value.jobNumber as value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
               typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsAddress" class="form-control"
               typeahead-min-length='3'>
@@ -73,20 +73,23 @@
     </div>
   </div>
 </form>
-<form id="wizard-form" name="wizard-form" ng-submit="submit()"ng-show="currentPage === 1">
+<form id="wizard-form" name="wizard-form" ng-submit="submit()" ng-show="currentPage === 1">
   <div class="col-xs-12">
     <p><?php echo $this->getString('INVENTORY_TRANSFER_ACKNOWLEDGE') ?></p>
   </div>
   <div class="form-group">
     <label class="col-xs-4"><?php echo $this->getString('USERNAME') ?></label>
     <div class="col-xs-8">
-      <?php echo $staffAuthorizationForm['username'] ?>
+      <input type="text" name="transfer[username]" ng-model="transfer.Staff.username"
+        class="form-control">
     </div>
   </div>
   <div class="form-group">
     <label class="col-xs-4"><?php echo $this->getString('PASSWORD') ?></label>
     <div class="col-xs-8">
-      <?php echo $staffAuthorizationForm['password'] ?>
+      <!-- <?php echo $staffAuthorizationForm['password'] ?> -->
+      <input type="password" name="transfer[password]" ng-model="transfer.Staff.password"
+        class="form-control">
     </div>
   </div>
   <div class="clearfix"></div>

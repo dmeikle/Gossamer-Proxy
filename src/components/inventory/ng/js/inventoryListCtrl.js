@@ -142,8 +142,8 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
       }
     });
 
-    modalInstance.result.then(function(object, multiSelectArray, formToken) {
-      inventoryTransferSrv.transfer(object, multiSelectArray, formToken);
+    modalInstance.result.then(function(result) {
+      inventoryTransferSrv.transfer(result);
     });
   };
 
@@ -173,6 +173,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
 module.controller('transferModalController', function($scope, $modalInstance,
   inventoryTransferSrv, multiSelectArray) {
+  $scope.transfer = {};
   $scope.loading = true;
   $scope.equipmentList = multiSelectArray;
   $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
@@ -192,8 +193,15 @@ module.controller('transferModalController', function($scope, $modalInstance,
 
   $scope.submit = function() {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-    $modalInstance.close($scope.transfer, multiSelectArray, formToken);
+    var data = $scope.transfer;
+    data.inventoryIds = [];
+    for (var equipment in $scope.equipmentList) {
+      if ($scope.equipmentList.hasOwnProperty(equipment)) {
+        data.inventoryIds.push($scope.equipmentList[equipment].id);
+      }
+    }
+    data.FORM_SECURITY_TOKEN = formToken;
+    $modalInstance.close(data);
   };
 
   $scope.close = function() {

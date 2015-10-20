@@ -33,7 +33,7 @@ class ClaimLocationBuilder extends AbstractBuilder{
                 ->add('picturesTaken', 'check', array('ng-model' => 'ClaimLocation.picturesTaken', 'ng-true-value' => '1'))
                 ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber','ng-disabled' => '!ClaimLocation.lockBox','ng-required' => 'ClaimLocation.lockBox', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
                 ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom','ng-disabled' => '!ClaimLocation.keysReceived','ng-required' => 'ClaimLocation.keysReceived', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
-                ->add('Vehicles_id', 'select', array('ng-model' => 'ClaimLocation.Vehicles_id',"ng-model" => "transfer.transferTo", 'class' => 'form-control', 'options' => $options['vehicles']))
+                ->add('Vehicles_id', 'select', array('ng-model' => 'ClaimLocation.Vehicles_id',"ng-model" => "transfer.Vehicles_id", 'class' => 'form-control', 'options' => $options['vehicles']))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));

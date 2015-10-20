@@ -13,18 +13,15 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
     return $http.get('/admin/claims/locations/' + object.WarehouseLocations_id);
   };
 
-  this.transfer = function(object, transferArray, formToken) {
-    var data = object;
-    data.inventoryIds = {};
-    for (var transfer in transferArray) {
-      if (transferArray.hasOwnProperty(transfer)) {
-        data.inventoryIds.push(transferArray[transfer].id);
-      }
-    }
+  this.transfer = function(object) {
+
     return $http({
       method:'POST',
       url: '/admin/inventory/equipment/transfer',
-      data: data
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: object
     });
   };
 });
