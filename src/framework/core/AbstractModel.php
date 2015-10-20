@@ -295,6 +295,7 @@ class AbstractModel {
      */
     public function edit($id) {
 
+        $locale= $this->getDefaultLocale();
 
         if ($this->isFailedValidationAttempt()) {
 
@@ -302,7 +303,8 @@ class AbstractModel {
         }
 
         $params = array(
-            'id' => intval($id)
+            'id' => intval($id),
+            'locale' => $locale['locale']
         );
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);

@@ -3,13 +3,13 @@
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
     <div class="widget">
-        <h1 ng-if="!claim"><?php echo $this->getString('CLAIM_CREATE'); ?></h1>
-        <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIM_EDIT') ?> {{claim.jobNumber}}</h1>
+        <h1 ng-if="!claim"><?php echo $this->getString('CLAIMS_CREATE'); ?></h1>
+        <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIMS_EDIT') ?> {{claim.jobNumber}}</h1>
         <div class="clearfix"></div>
         <div class="cards">
             <div class="card" ng-model="projectAddress">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIM_ADDRESS_INFO'); ?></h1>
+                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
                 </div>
                 <div class="clearfix"></div>
                 <div ng-if="loading">
@@ -29,7 +29,7 @@
         <div class="cards">
             <div class="card" ng-model="claim">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIM_TYPE_INFO'); ?></h1>
+                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_TYPE_INFO'); ?></h1>
                 </div>
                 <div class="clearfix"></div>
 
@@ -37,12 +37,16 @@
                     <span class="spinner-loader"></span>
                 </div>
                 <div class="form-group">
-                    <label ng-value="claim.workAuthorizationReceiveDate">{{claim.workAuthorizationReceiveDate}}</label><br />
-                    <label>{{claim.ClaimTypes_id}}</label><br />
-                    <label>{{claim.ProjectManager_id}}</label><br />
-                    <label>{{claim.currentClaimPhases_id}}</label><br />
-                    <label>{{claim.currentClaimStatusTypes_id}}</label>
-                    <label>{{claim.unassignedJobNumber}}</label>
+                    <div style="float: right;
+    border: solid 1px #cccccc;
+    padding: 5px;
+    border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
+                    {{claim.phase}}</div>
+                    <label ng-value="claim.workAuthorizationReceiveDate">Authorization Date: {{claim.workAuthorizationReceiveDate}}</label><br />
+                    <label>Type: {{claim.typeOfClaim}}</label><br />
+                    <label>Project Manager: {{claim.projectManager}}</label><br />
+                    <label>Status: {{claim.status}}</label><br />
+                    <label>Emerg #:{{claim.unassignedJobNumber}}</label>
                 </div>
             </div>
         </div>
@@ -93,9 +97,9 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_PHOTOS') ?></a></li>
-    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_COMMENTS') ?></a></li>
-    <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIM_HISTORY') ?></a></li>
+    <li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_PHOTOS') ?></a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_COMMENTS') ?></a></li>
+    <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_HISTORY') ?></a></li>
   </ul>
 
   <!-- Tab panes -->

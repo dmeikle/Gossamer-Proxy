@@ -14,6 +14,6 @@ module.controller('claimsContactsList', function ($scope, claimsEditSrv) {
             $scope.contacts = claimsEditSrv.contacts;
             $scope.loading = false;
         });
-    };
+    }
     
 });

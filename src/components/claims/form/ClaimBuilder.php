@@ -43,7 +43,7 @@ class ClaimBuilder extends AbstractBuilder{
                 ->add('ClaimTypes_other', 'text', array('class' => 'form-control', 'value' => $this->getValue('ClaimTypes_other', $values)))
                 ->add('dateReceived', 'text', array('class' => 'form-control', 'value' => $this->getValue('dateReceived', $values)))
                 ->add('InsuranceCategories_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('InsuranceCategories_id', $values)))
-                ->add('ProjectAddresses_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('ProjectAddresses_id', $values)))
+                ->add('ProjectAddresses_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('ProjectAddresses_id', $values)))
                 ->add('OnCallCallInstances_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('OnCallCallInstances_id', $values)))
                 ->add('parentClaims_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('parentClaims_id', $values)))
                 ->add('leadTechnicalStaff_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('leadTechnicalStaff_id', $values)))
