@@ -3,6 +3,15 @@
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
     <div class="widget">
+        <div class="row-controls" style="float: right">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                        id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                    <li><a href="#" ng-click="openEditModal(claim)"><?php echo $this->getString('CLAIMS_EDIT') ?></a></li>
+                </ul>
+            </div>
+        </div>
         <h1 ng-if="!claim"><?php echo $this->getString('CLAIMS_CREATE'); ?></h1>
         <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIMS_EDIT') ?> {{claim.jobNumber}}</h1>
         <div class="clearfix"></div>
@@ -38,10 +47,10 @@
                 </div>
                 <div class="form-group">
                     <div style="float: right;
-    border: solid 1px #cccccc;
-    padding: 5px;
-    border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
-                    {{claim.phase}}</div>
+                         border: solid 1px #cccccc;
+                         padding: 5px;
+                         border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
+                        {{claim.phase}}</div>
                     <label ng-value="claim.workAuthorizationReceiveDate">Authorization Date: {{claim.workAuthorizationReceiveDate}}</label><br />
                     <label>Type: {{claim.typeOfClaim}}</label><br />
                     <label>Project Manager: {{claim.projectManager}}</label><br />
@@ -50,9 +59,9 @@
                 </div>
             </div>
         </div>
-        
-         <div class="clearfix"></div>
-         <div class="card" ng-controller="claimsLocationsListCtrl">
+
+        <div class="clearfix"></div>
+        <div class="card" ng-controller="claimsLocationsListCtrl">
 
             <table class="table table-striped table-hover table-bordered">
                 <thead>
@@ -95,20 +104,20 @@
         <form class="hide"></form>
         <div>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_PHOTOS') ?></a></li>
-    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_COMMENTS') ?></a></li>
-    <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_HISTORY') ?></a></li>
-  </ul>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_PHOTOS') ?></a></li>
+                <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_COMMENTS') ?></a></li>
+                <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab"><?php echo $this->getString('CLAIMS_HISTORY') ?></a></li>
+            </ul>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="photos">...</div>
-    <div role="tabpanel" class="tab-pane" id="comments">...</div>
-    <div role="tabpanel" class="tab-pane" id="history">...</div>
-  </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="photos">...</div>
+                <div role="tabpanel" class="tab-pane" id="comments">...</div>
+                <div role="tabpanel" class="tab-pane" id="history">...</div>
+            </div>
 
-</div>
+        </div>
     </div>
 </div>
