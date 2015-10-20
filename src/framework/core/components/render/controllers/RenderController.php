@@ -24,7 +24,7 @@ class RenderController extends AbstractController {
         $html = $this->httpRequest->getAttribute($this->getKey());
        
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'filerender_start');
-       
+     
         $this->render(array('html' => $html));
     }
 

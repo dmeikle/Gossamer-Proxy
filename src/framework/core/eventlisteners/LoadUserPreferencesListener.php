@@ -28,8 +28,7 @@ class LoadUserPreferencesListener extends AbstractListener {
     public function on_entry_point($params) {
         $manager = new UserPreferencesManager($this->httpRequest);
         $userPreferences = $manager->getPreferences();
-        
-        if(strlen($userPreferences->getViewType()) > 0) {
+        if(!is_null($userPreferences) && strlen($userPreferences->getViewType()) > 0) {
             $this->httpRequest->setAttribute('UserPreferences', $userPreferences);
         }
     }

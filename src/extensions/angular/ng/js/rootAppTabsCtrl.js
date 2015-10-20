@@ -16,7 +16,7 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
             template: template
         };
         //Check to see if the tab is already open
-        console.log($scope.tabLoading);
+        console.log(tabObj);
         tabsSrv.addTab(tabObj);
         $scope.tabs = tabsSrv.tabs;
     };
