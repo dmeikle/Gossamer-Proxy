@@ -81,10 +81,10 @@ module.directive('boolToString', function() {
     link: function(scope, element, attrs) {
       switch (attrs.value) {
         case '0':
-          element[0].innerText = 'No';
+          element[0].textContent = 'No';
         break;
         default:
-          element[0].innerText = 'Yes';
+          element[0].textContent = 'Yes';
 
       }
     }
