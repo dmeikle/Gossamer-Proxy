@@ -268,7 +268,7 @@ admin_inventory_equipment_list:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController
-        model: components\inventory\models\InventoryItemModel
+        model: components\inventory\models\InventoryEquipmentModel
         method: listAllEquipment
         view: core\views\JSONView
         viewKey: admin_inventory_equipment_list
