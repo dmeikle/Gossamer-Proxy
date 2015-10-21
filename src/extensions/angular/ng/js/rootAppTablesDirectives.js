@@ -9,7 +9,7 @@ module.directive('columnSortable', function($compile, $location) {
       a.setAttribute('class', 'table-header-sortable');
       a.setAttribute('ng-class', "{'underlined':sortedBy === '" + element[0].dataset.column + "'}");
       a.appendChild(document.createElement('span'));
-      a.children[0].innerText = element[0].innerText + ' ';
+      a.children[0].textContent = element[0].textContent + ' ';
       a.appendChild(document.createElement('span'));
       a.children[1].setAttribute('class', 'small glyphicon');
       a.children[1].setAttribute('ng-class',
@@ -17,7 +17,7 @@ module.directive('columnSortable', function($compile, $location) {
         "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
         "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
         "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
-      element[0].innerHTML = '';
+      element[0].textContent = '';
 
       var clear = document.createElement('a');
       clear.setAttribute('ng-click', 'clearSort()');
@@ -95,7 +95,7 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
           var li = document.createElement('li');
           var a = document.createElement('a');
           a.setAttribute('ng-click', 'groupBy("' + columns[column].dataset.column + '")');
-          a.innerText = columns[column].innerText;
+          a.textContent = columns[column].textContent;
           li.appendChild(a);
           buttonDOM.getElementsByClassName('dropdown-menu')[0].appendChild(li);
         }
