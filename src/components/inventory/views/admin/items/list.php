@@ -102,12 +102,12 @@
         <thead>
             <tr>
                 <th column-sortable data-column="id" class="cog-col"><?php echo $this->getString('INVENTORY_ID'); ?></th>
-                <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
                 <th column-sortable data-column="InventoryItems_id"><?php echo $this->getString('INVENTORY_ITEMSID'); ?></th>
                 <th column-sortable data-column="number"><?php echo $this->getString('INVENTORY_NUMBER'); ?></th>
                 <th column-sortable data-column="InventoryEquipmentTypes_id"><?php echo $this->getString('INVENTORY_EQUIPMENTTYPESID'); ?></th>
                 <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
-                <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>
+                <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>                <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
+                <th column-sortable data-column="storageLocation"><?php echo $this->getString('INVENTORY_STORAGELOCATION'); ?></th>
                 <th group-by-button class="cog-col row-controls">&nbsp;</th>
             </tr>
         </thead>
@@ -125,13 +125,13 @@
           </tr>
           <tr ng-if="!loading" ng-repeat="item in inventoryList" multi-select="item"
             ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity=='inactive'}">
-              <td ng-click="selectRow(item)">{{item.id}}</td>
-              <td ng-click="selectRow(item)">{{item.name}}</td>
+              <td ng-click="selectRow(item)">{{item.InventoryEquipment_id}}</td>
               <td ng-click="selectRow(item)">{{item.InventoryItems_id}}</td>
               <td ng-click="selectRow(item)">{{item.number}}</td>
               <td ng-click="selectRow(item)">{{item.InventoryEquipmentTypes_id}}</td>
               <td ng-click="selectRow(item)">{{item.price | currency}}</td>
               <td ng-click="selectRow(item)">{{item.maxDays}}</td>
+              <td ng-click="selectRow(item)">{{item.storageLocation}}</td>
               <td class="row-controls">
                 <div class="dropdown">
                   <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"

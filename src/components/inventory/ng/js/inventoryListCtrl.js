@@ -60,8 +60,8 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     $scope.loading = true;
     inventoryListSrv.getEquipmentList(row, numRows)
       .then(function(response) {
-        $scope.inventoryList = response.data.InventoryItems;
-        $scope.totalItems = response.data.InventoryItemsCount;
+        $scope.inventoryList = response.data.InventoryEquipments;
+        $scope.totalItems = response.data.InventoryEquipmentsCount;
         $scope.loading = false;
       });
   };
@@ -191,8 +191,20 @@ module.controller('transferModalController', function($scope, $modalInstance,
     });
   };
 
+  $scope.autocompleteWarehouseLocation = function(value) {
+    return autocomplete(value, 'WarehouseLocation_id', '/admin/inventory/warehouse').then(function() {
+      return inventoryTransferSrv.autocompleteResult.Claims;
+    });
+  };
+
   $scope.submit = function() {
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    for (var property in $scope.transfer) {
+      if ($scope.transfer.hasOwnProperty(property) &&
+          !$scope.transfer[property]) {
+        delete $scope.transfer[property];
+      }
+    }
     var data = $scope.transfer;
     data.inventoryIds = [];
     for (var equipment in $scope.equipmentList) {
