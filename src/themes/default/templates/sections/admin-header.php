@@ -16,73 +16,7 @@
 
 
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
-            <ul class="navbar-left" ng-hide="true">
-                <?php
-                foreach ($NAVIGATION as $key => $item) {
-                    //first check for top parent nav items
-                    if (array_key_exists('active', $item) && $item['active'] == false) {
-                        //it's not active (do not display) but during development let's see everything
-                        //we can remove this line when we are ready to hide them from the real users
-                        ?>
-                        <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
-                        <?php
-                        continue;
-                    }
-
-                    //before drawing the link, determine if we need a caret or not
-                    $hasChildren = array_key_exists('children', $item);
-                    $caret = $hasChildren ? ' <span class="caret"></span>' : '';
-
-                    //now, let's display the link for the top parent item nav
-                    if (!$hasChildren) {
-                        if (array_key_exists('ng-click', $item) && $this->getViewType() == 'tabbed') {
-                            $tmp = str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']);
-                            $ngLink = str_replace('template', $this->getString($item['template']), $tmp);
-                            ?>
-                            <li class="test2"><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
-                            <?php
-                        } else {
-                            ?>
-                            <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
-                            <?php
-                        }
-                        ?>
-                    <?php } else { ?>
-                        <li class='dropdown'><a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                foreach ($item['children'] as $childKey => $childItem) {
-                                    if (array_key_exists('active', $childItem) && $childItem['active'] == false) {
-                                        //it's not active (do not display) but during development let's see everything
-                                        //we can remove this line when we are ready to hide them from the real users
-                                        ?>
-                                        <li title="disabled on this release"><?php echo $this->getString($childItem['text_key']); ?></li>
-                                        <?php
-                                        continue;
-                                    }
-                                    if (array_key_exists('ng-click', $childItem) && $this->getViewType() == 'tabbed') {
-                                        $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
-                                        $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
-                                        ?>
-                                        <li class="test"><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) . $caret; ?></a></li>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <li><a href="<?php echo $childItem['pattern']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
-                                        <?php
-                                    }
-                                    ?>
-
-                                <?php }
-                                ?>  
-                            </ul><!--- close child ul -->
-                        </li>
-                    <?php }
-                    ?>
-                    <?php
-                }
-                ?>
-            </ul>
+            
 
             <ul class="navbar-right">
                 <li class="dropdown" id="context-button">
@@ -107,14 +41,6 @@
 
 <nav id="side-nav" ng-controller="sideNavCtrl" ng-class="{'closed': sideNavOpen == false}">
      
-    <!--    <ul>
-            <li ng-repeat="item in navItems" class="nav-item">
-                <span ng-click="toggleSubnav($event)">{{item.title}}</span>
-                <ul class="sub-item">                
-                <li ng-repeat="subItem in item.subItems"><span>{{subItem.title}}</span></li>
-                </ul>
-            </li>
-        </ul>-->
     <ul class="nav-list" ng-show="sideNavOpen == true" ng-controller="tabsCtrl">
         <?php
         foreach ($NAVIGATION as $key => $item) {
@@ -122,9 +48,7 @@
             if (array_key_exists('active', $item) && $item['active'] == false) {
                 //it's not active (do not display) but during development let's see everything
                 //we can remove this line when we are ready to hide them from the real users
-                ?>
-                <!--<li title="disabled on this release"><?php// echo $this->getString($item['text_key']); ?></li>-->
-                <?php
+               
                 continue;
             }
 
@@ -183,8 +107,7 @@
                     </ul><!--- close child ul -->
                 </li>
     <?php }
-    ?>
-            <?php
+
         }
         ?>
     </ul>

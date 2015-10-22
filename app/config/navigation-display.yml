@@ -517,44 +517,44 @@ admin_accounting_general:
 #                        - IS_STAFF
 #                        - IS_PROJECT_MANAGER
 #                        - IS_PMA
-#        admin_claims:
-#            text_key: 'ADMIN_CLAIMS'
-#            pattern: '/admin/claims/0/20'
-#            display_roles:
-#                - IS_ADMINISTRATOR
-#                - IS_ADMIN
-#                - IS_STAFF
-#            children:
-#                claims_list_all:
-#                    text_key: 'ADMIN_CLAIMS_LIST_ALL'
-#                    pattern: '/admin/claims/0/20'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#                        - IS_PROJECT_MANAGER
-#                claims_create_new:
-#                    text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-#                    pattern: '/admin/claim/1/0'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_PROJECT_MANAGER
-#                        - IS_PMA
-#                        - IS_PROJECT_MANAGER
-#                claims_scheduling:
-#                    text_key: 'ADMIN_CLAIMS_SCHEDULING'
-#                    pattern: '/admin/claims/scheduling/0/20'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#                        - IS_PROJECT_MANAGER
-#                admin_keys:
-#                    active: false
-#                    text_key: 'ADMIN_KEYS'
-#                    pattern: '/admin/keys/0/20'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#
+admin_claims:
+    text_key: 'ADMIN_CLAIMS'
+    pattern: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ADMIN
+        - IS_STAFF
+    children:
+        claims_list_all:
+            text_key: 'ADMIN_CLAIMS_LIST_ALL'
+            pattern: '/admin/claims'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        claims_create_new:
+            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+            pattern: '/admin/claims/new/1/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+                - IS_PROJECT_MANAGER
+        claims_scheduling:
+            text_key: 'ADMIN_CLAIMS_SCHEDULING'
+            pattern: '/admin/claims/scheduling/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        admin_keys:
+            active: false
+            text_key: 'ADMIN_KEYS'
+            pattern: '/admin/keys/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+
 #        admin_subcontractors:
 #            active: false
 #            text_key: 'ADMIN_SUBCONTRACTORS'
