@@ -11,7 +11,7 @@ admin_open_ticket_count_widget:
         viewKey: admin_open_ticket_count_widget
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
             
             
@@ -60,7 +60,7 @@ admin_tickets_edit:
         viewKey: admin_tickets_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
 
 admin_tickets_list:
     pattern: admin/tickets/*/*
@@ -77,7 +77,7 @@ admin_tickets_list:
         viewKey: admin_tickets_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
       
             
 #------------------------ status --------------------------------            
@@ -93,7 +93,7 @@ super_ticket_statuses_list:
         viewKey: super_ticket_statuses_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'      
+            - 'src/components/defaultItem/locales/*/Navigation'      
             
 super_ticket_statuses_edit:  
     pattern: super/tickets/statuses/*
@@ -107,7 +107,7 @@ super_ticket_statuses_edit:
         viewKey: super_ticket_statuses_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_ticket_statuses_save:
     pattern: super/tickets/statuses/*
@@ -123,7 +123,7 @@ super_ticket_statuses_save:
         viewKey: super_ticket_statuses_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_ticket_statuses_remove:
@@ -154,7 +154,7 @@ super_tickets_types_list:
         viewKey: super_tickets_types_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'      
+            - 'src/components/defaultItem/locales/*/Navigation'      
             
 super_tickets_types_edit:  
     pattern: super/tickets/types/*
@@ -168,7 +168,7 @@ super_tickets_types_edit:
         viewKey: super_tickets_types_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_tickets_types_save:
     pattern: super/tickets/types/*
@@ -184,7 +184,7 @@ super_tickets_types_save:
         viewKey: super_tickets_types_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_tickets_types_remove:
@@ -217,7 +217,7 @@ super_tickets_priorities_edit:
         viewKey: super_tickets_priorities_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_tickets_priorities_save:
     pattern: super/tickets/priorities/*
@@ -233,7 +233,7 @@ super_tickets_priorities_save:
         viewKey: super_tickets_priorities_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_tickets_priorities_remove:
@@ -262,7 +262,7 @@ super_tickets_priorities_list:
         viewKey: super_tickets_priorities_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
             
 #-------------------- resolutions -----------------------------
    
@@ -279,7 +279,7 @@ super_tickets_resolutions_edit:
         viewKey: super_tickets_resolutions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_tickets_resolutions_save:
     pattern: super/tickets/resolutions/*
@@ -295,7 +295,7 @@ super_tickets_resolutions_save:
         viewKey: super_tickets_resolutions_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_tickets_resolutions_remove:
@@ -324,7 +324,7 @@ super_tickets_resolutions_list:
         viewKey: super_tickets_priorities_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'      
+            - 'src/components/defaultItem/locales/*/Navigation'      
             
 #------------------------ actions ------------------------
 
@@ -341,7 +341,7 @@ super_tickets_actions_edit:
         viewKey: super_tickets_actions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_tickets_actions_save:
     pattern: super/tickets/actions/*
@@ -357,7 +357,7 @@ super_tickets_actions_save:
         viewKey: super_tickets_actions_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_tickets_actions_remove:
@@ -386,7 +386,7 @@ super_tickets_actions_list:
         viewKey: super_tickets_priorities_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'      
+            - 'src/components/defaultItem/locales/*/Navigation'      
             
             
 #------------------------ categories ------------------------
@@ -404,7 +404,7 @@ super_tickets_categories_edit:
         viewKey: super_tickets_categories_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 super_tickets_categories_save:
     pattern: super/tickets/categories/*
@@ -420,7 +420,7 @@ super_tickets_categories_save:
         viewKey: super_tickets_categories_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 super_tickets_categories_remove:
@@ -449,6 +449,6 @@ super_tickets_categories_list:
         viewKey: super_tickets_priorities_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'                  
+            - 'src/components/defaultItem/locales/*/Navigation'                  
             
             

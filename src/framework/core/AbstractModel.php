@@ -327,10 +327,16 @@ class AbstractModel {
      */
     public function getDefaultLocale() {
 
+        //check to see if it's in the query string - a menu request perhaps?
+        $queryLocale = $this->httpRequest->getQueryParameter('locale');
+        if(!is_null($queryLocale)) {
+            return array('locale' =>$queryLocale);
+        }
+        
         $manager = new UserPreferencesManager($this->httpRequest);
         $userPreferences = $manager->getPreferences();
 
-        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences && strlen($userPreferences->getDefaultLocale()) > 0) {
             return array('locale' => $userPreferences->getDefaultLocale());
         }
 

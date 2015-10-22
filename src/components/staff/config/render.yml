@@ -101,3 +101,8 @@ staffTimesheetModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes' }
         - { 'event': 'filerender_start', 'listener': 'components\accounting\listeners\LoadTollListener', 'datasource': 'datasource1', 'cacheKey': 'TollBridges', static: 'true' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles'  }
+        
+staffTimesheetsTab:
+    path: 'src/components/staff/views/admin/timesheets.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'

@@ -11,7 +11,7 @@ portal_login:
         viewKey: portal_login
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
     methods: [GET]     
     
@@ -136,7 +136,7 @@ admin_login:
         viewKey: admin_login
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
     

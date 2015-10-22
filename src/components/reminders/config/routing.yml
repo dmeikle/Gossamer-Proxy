@@ -13,7 +13,7 @@ admin_reminders_add:
         viewKey: admin_reminders_add
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
           
 
 admin_reminders_save:
@@ -28,7 +28,7 @@ admin_reminders_save:
         viewKey: admin_reminders_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
   
 admin_reminders_remove:
@@ -43,7 +43,7 @@ admin_reminders_remove:
         viewKey: admin_reminders_remove
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'           
+            - 'src/components/defaultItem/locales/*/Navigation'           
             
             
 admin_reminders_list:
@@ -57,6 +57,6 @@ admin_reminders_list:
         viewKey: admin_reminders_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
    
       

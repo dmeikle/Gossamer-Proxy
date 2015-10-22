@@ -1,4 +1,4 @@
-module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, templateSrv, timesheetSrv) {
+module.controller('timesheetListCtrl', function($scope, $modal, costCardItemTypeSrv, accountingTemplateSrv, timesheetSrv) {
     // Stuff to run on controller load
     //$scope.rowsPerPage = 20;
     $scope.itemsPerPage = 20;
@@ -44,7 +44,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     //Modals
     $scope.openTimesheetModal = function(timesheet) {
         $scope.modalLoading = true;
-        var template = templateSrv.timesheetModal;
+        var template = accountingTemplateSrv.timesheetModal;
         var modal = $modal.open({
             templateUrl: template,
             controller: 'timesheetModalCtrl',

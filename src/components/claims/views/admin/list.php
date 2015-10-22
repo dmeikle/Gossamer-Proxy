@@ -1,10 +1,10 @@
 <!--- javascript start --->
-@components/claims/includes/js/jquery.ptTimeSelect.js
+<!--@components/claims/includes/js/jquery.ptTimeSelect.js-->
 
 <!--- javascript end --->
 
 <!--- css start --->
-@components/claims/includes/css/jquery.ptTimeSelect.css
+<!--@components/claims/includes/css/jquery.ptTimeSelect.css-->
 
 <!--- css end --->
 

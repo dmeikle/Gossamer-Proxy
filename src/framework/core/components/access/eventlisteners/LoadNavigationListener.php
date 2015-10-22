@@ -64,11 +64,11 @@ class LoadNavigationListener extends AbstractListener {
      */
     private function loadNavigationElements(array $config, array $userRoles) {
         $parser = new YamlListParser();
-     
+
         //ok - first prune all the parent elements
         $parentList = $parser->parseList($config, $userRoles, 'display_roles');
         if(!is_array($parentList) || count($parentList) == 0) {
-            return;
+            return array();
         }
         //now lets prune any child elements for subnavigation - recursively
         foreach($parentList as $key => $menuItem) {
@@ -81,8 +81,8 @@ class LoadNavigationListener extends AbstractListener {
                }
            }
         }
-        
-        return $parentList;
+       
+        return is_array($parentList) ? $parentList : array();
     }
 
     /**

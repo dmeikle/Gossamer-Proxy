@@ -1,4 +1,4 @@
-module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, templateSrv, generalCostsSrv, $modal) {
+module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;    
@@ -140,7 +140,7 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
     $scope.openGeneralCostsModal = function(generalCost) {
         console.log(generalCost);
         $scope.modalLoading = true;
-        var template = templateSrv.generalCostsModal;
+        var template = accountingTemplateSrv.generalCostsModal;
         var modal = $modal.open({
             templateUrl: template,
             controller: 'generalCostsModalCtrl',

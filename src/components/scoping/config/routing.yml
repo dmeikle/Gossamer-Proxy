@@ -15,7 +15,7 @@ admin_scoperequest_edit:
         viewKey: admin_scoperequest_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
         
         
@@ -32,7 +32,7 @@ admin_scoperequest_save:
         viewKey: admin_scoperequest_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]
         
 admin_scoperequest_save_contact:
@@ -48,7 +48,7 @@ admin_scoperequest_save_contact:
         viewKey: admin_scoperequest_save_contact
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]
         
 admin_scoperequest_edit_contact:
@@ -64,7 +64,7 @@ admin_scoperequest_edit_contact:
         viewKey: admin_scoperequest_edit_contact
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'      
+            - 'src/components/defaultItem/locales/*/Navigation'      
  
 
 admin_scoperequests_list:
@@ -79,7 +79,7 @@ admin_scoperequests_list:
         viewKey: admin_scoperequests_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
                         
 admin_scoping_takeoffs_list:
     pattern: admin/scoping/takeoffs/*/*
@@ -93,7 +93,7 @@ admin_scoping_takeoffs_list:
         viewKey: admin_scoping_takeoffs_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
 
 admin_scoping_takeoffs_edit:
     pattern: admin/scoping/takeoffs/*
@@ -107,7 +107,7 @@ admin_scoping_takeoffs_edit:
         viewKey: admin_scoping_takeoffs_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
   
        
 admin_scoping_edit:
@@ -121,7 +121,7 @@ admin_scoping_edit:
         viewKey: admin_scoping_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
       
 admin_scoping_view:
@@ -135,7 +135,7 @@ admin_scoping_view:
         viewKey: admin_scoping_view
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            - 'src/components/defaultItem/locales/*/Navigation'             
      
 admin_scoping_location_edit:            
     pattern: admin/scoping/locations/*/*
@@ -150,7 +150,7 @@ admin_scoping_location_edit:
         viewKey: admin_scoping_location_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'        
+            - 'src/components/defaultItem/locales/*/Navigation'        
      
 admin_scoping_location_rooms:            
     pattern: admin/scoping/location/rooms/*/*
@@ -166,7 +166,7 @@ admin_scoping_location_rooms:
         viewKey: admin_scoping_location_rooms
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
 admin_scoping_location_rooms_save:            
     pattern: admin/scoping/location/rooms/*/*
@@ -182,7 +182,7 @@ admin_scoping_location_rooms_save:
         viewKey: admin_scoping_location_rooms_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'     
+            - 'src/components/defaultItem/locales/*/Navigation'     
             
 admin_scoping_location_takeoff:            
     pattern: admin/scoping/takeoff/*
@@ -198,7 +198,7 @@ admin_scoping_location_takeoff:
         viewKey: admin_scoping_location_takeoff
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'                
+            - 'src/components/defaultItem/locales/*/Navigation'                
 
 
       
@@ -216,7 +216,7 @@ admin_scoping_rooms_list:
         viewKey: admin_scoping_rooms_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            - 'src/components/defaultItem/locales/*/Navigation'          
         
           
 admin_scoping_home:
@@ -231,4 +231,4 @@ admin_scoping_home:
         viewKey: admin_scoping_home
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'                   
+            - 'src/components/defaultItem/locales/*/Navigation'                   

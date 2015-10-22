@@ -7,9 +7,13 @@
   @extend .col-md-8;
   &.full-width {
     @extend .col-md-12;
-    min-height: 95vh; //Magic number-ey for now
+    //min-height: 95vh; //Magic number-ey for now
+    display: flex;
+    width: auto;
+    margin: 20px 10px;
+    float: none;
   }
-  min-height: 95vh; //Magic number-ey for now
+  //min-height: 95vh; //Magic number-ey for now
 }
 
 .cards {

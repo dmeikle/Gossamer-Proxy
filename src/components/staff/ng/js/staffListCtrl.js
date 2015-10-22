@@ -1,5 +1,5 @@
 
-module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, templateSrv, tablesSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, staffTemplateSrv, tablesSrv, toastsSrv) {
 
   var a = document.createElement('a');
   a.href = $location.absUrl();
@@ -66,7 +66,7 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
   };
 
   $scope.openAddNewStaffModal = function() {
-    var template = templateSrv.staffAddNewModal;
+    var template = staffTemplateSrv.staffAddNewModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'staffModalCtrl',
@@ -81,7 +81,7 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
   };
 
   $scope.openStaffScheduleModal = function(staff) {
-    var template = templateSrv.staffScheduleModal;
+    var template = staffTemplateSrv.staffScheduleModal;
     $modal.open({
       templateUrl: template,
       controller: 'staffModalCtrl',

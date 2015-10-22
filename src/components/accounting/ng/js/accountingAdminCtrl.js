@@ -1,4 +1,4 @@
-module.controller('costCardItemTypeCtrl', function($scope, $modal,  costCardItemTypeSrv, templateSrv) {
+module.controller('costCardItemTypeCtrl', function($scope, $modal,  costCardItemTypeSrv, accountingTemplateSrv) {
     
   // Stuff to run on controller load
   $scope.rowsPerPage = 20;
@@ -24,7 +24,7 @@ module.controller('costCardItemTypeCtrl', function($scope, $modal,  costCardItem
   };
 
   var openModal = function(object) {
-    var template = templateSrv.costCardItemTypeModal;
+    var template = accountingTemplateSrv.costCardItemTypeModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'costCardItemTypeModalInstanceController',
@@ -87,7 +87,7 @@ module.controller('costCardItemTypeModalInstanceController', function($scope, $m
 
 // Pages controller
 
-module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv, templateSrv) {
+module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv, accountingTemplateSrv) {
   function getPageTemplatesList(row, numRows) {
     pageTemplatesSrv.getPageTemplatesList(row, numRows).then(function(response) {
       $scope.pageTemplatesList = pageTemplatesSrv.pageTemplatesList;
@@ -96,7 +96,7 @@ module.controller('pageTemplatesCtrl', function($scope, $modal, pageTemplatesSrv
   }
 
   var openPageTemplateModal = function(pageTemplate) {
-    var template = templateSrv.pageTemplateModal;
+    var template = accountingTemplateSrv.pageTemplateModal;
     var modalInstance = $modal.open({
       templateUrl: template,
       controller: 'pageTemplateModalInstanceController',

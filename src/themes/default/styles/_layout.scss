@@ -71,7 +71,9 @@ button {
 .cog-col {
   width:40px;
 }
-
+.table>tbody>tr>td{
+    padding:4px;
+}
 .table>tbody>tr>td:not(.row-controls) {
   padding:.5em;
   white-space: nowrap;

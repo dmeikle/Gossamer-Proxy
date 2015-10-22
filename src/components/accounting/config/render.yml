@@ -10,6 +10,15 @@ pageTemplateModal:
     langFiles:
         - 'src/framework/core/components/widgets/locales/*/Widgets'
 
+timesheetsTab:
+    path: 'src/components/accounting/views/timesheets/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+
+generalCostsTab:
+    path: 'src/components/accounting/views/generalcosts/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
 
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
