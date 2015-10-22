@@ -67,14 +67,12 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
 
 
     $scope.search = function (searchObject) {
-        console.log('here');
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
             claimsListSrv.search(copiedObject).then(function () {
-                console.log( claimsListSrv.searchResults);
                 $scope.claimsList = claimsListSrv.searchResults;
                 $scope.totalItems = claimsListSrv.searchResultsCount;
                 $scope.loading = false;
