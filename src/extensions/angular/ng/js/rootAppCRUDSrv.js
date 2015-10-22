@@ -1,7 +1,7 @@
 module.service('crudSrv', function($http) {
   this.save = function(object, objectType, formToken, apiPath) {
     var requestPath;
-    if (!object.id) {
+    if (!object.id || object.id === '') {
       requestPath = apiPath + '0';
     } else {
       requestPath = apiPath + object.id;
@@ -50,7 +50,7 @@ module.service('crudSrv', function($http) {
   this.delete = function(apiPath, object, formToken) {
     var config = {};
     config.FORM_SECURITY_TOKEN = formToken;
-    $http({
+    return $http({
       method: 'DELETE',
       url:apiPath + object.id,
       config: config

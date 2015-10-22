@@ -1,37 +1,49 @@
-<form method="post">
-    <table class="table">
-        <tr>
-            <td>Name:</td>
-            <td><?php echo $form['name'];?></td>
-        </tr>
-        <tr>
-            <td>Product Code:</td>
-            <td><?php echo $form['productCode'];?></td>
-        </tr>
-        <tr>
-            <td>Description:</td>
-            <td><?php echo $form['description'];?></td>
-        </tr>
-        <tr>
-            <td>Min Quantity:</td>
-            <td><?php echo $form['minOrderQuantity'];?>
-            * this is to trigger notifications to re-order</td>
-        </tr>
-        <tr>
-            <td>Max Quantity:</td>
-            <td><?php echo $form['maxQuantity'];?></td>
-        </tr>
-        <tr>
-            <td>Package Type:</td>
-            <td><?php echo $form['PackageTypes_id'];?></td>
-        </tr>
-        <tr>
-            <td>Inventory Type:</td>
-            <td><?php echo $form['InventoryTypes_id'];?></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><?php echo $form['cancel'];?> <?php echo $form['submit'];?></td>
-        </tr>
-    </table>
-</form>
+<div class="widget" ng-controller="inventoryEditCtrl">
+  <div class="widgetheader">
+    <h1><?php echo $this->getString('EDIT_ITEM') ?></h1>
+  </div>
+  <?php echo $form['id'];?>
+  <div class="clearfix">
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_NAME') ?></label>
+      <?php echo $form['name'];?>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_PRODUCTCODE') ?></label>
+      <?php echo $form['productCode'];?>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_DESCRIPTION') ?></label>
+      <?php echo $form['description'];?>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_MINORDER') ?></label>
+      <?php echo $form['minOrderQuantity'];?>
+      <span><small class="help-block"><?php echo $this->getString('INVENTORY_MINORDER_STRING') ?></small></span>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_MAXORDER') ?></label>
+      <?php echo $form['maxQuantity'];?>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_PACKAGETYPE') ?></label>
+      <?php echo $form['PackageTypes_id'];?>
+    </div>
+    <div class="form-group col-xs-12 col-md-4">
+      <label for=""><?php echo $this->getString('INVENTORY_INVENTORYTYPE') ?></label>
+      <?php echo $form['InventoryTypes_id'];?>
+    </div>
+
+    <form></form>
+  </div>
+  <div class="widgetfooter clearfix">
+    <div class="pull-right btn-group">
+      <a href="/admin/inventory" class="btn btn-default">
+        <?php echo $this->getString('CANCEL') ?>
+      </a>
+      <button class="btn-primary" ng-click="saveItem(item)">
+        <?php echo $this->getString('SAVE') ?>
+      </button>
+    </div>
+  </div>
+</div>
