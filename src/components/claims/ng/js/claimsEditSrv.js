@@ -6,12 +6,21 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
     
     var self = this;
 
-    this.save = function (object, formToken, page) {
-        var requestPath = singleApiPath + page + '/';
-        var copiedObject = angular.copy(object);
-        copiedObject.date = object.date.toISOString().substring(0, 10);
-        return crudSrv.save(copiedObject, objectType, formToken, requestPath);
-    };
+
+  this.save = function(object, formToken, page) {
+    var requestPath = singleApiPath + page + '/';
+    if (!object.id) {
+      requestPath = requestPath + '0';
+    } else {
+      requestPath = requestPath + object.id;
+    }
+    var copiedObject = angular.copy(object);
+    if (object.date) {
+      copiedObject.date = object.date.toISOString().substring(0, 10);
+    }
+    return crudSrv.save(copiedObject, objectType, formToken, requestPath);
+  };
+
 
     this.getClaimDetails = function (id) {
      

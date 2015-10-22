@@ -35,7 +35,7 @@ admin_claims_search:
 
 
 
-        
+
 admin_claimlocations_by_claimid:
     pattern: admin/claims/locations/*
     defaults:
@@ -46,9 +46,9 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
-    methods: [GET]         
-        
-    
+    methods: [GET]
+
+
 admin_claims_home:
     pattern: admin/claims
     listeners:
@@ -347,9 +347,9 @@ admin_claims_edit4_save:
         view: core\views\JSONView
         viewKey: admin_claims_edit4_save
 
-        datasource: datasource1  
-        
-        
+        datasource: datasource1
+
+
 admin_claim_edit:
     pattern: admin/claims/edit/*
     listeners:
@@ -365,6 +365,7 @@ admin_claim_edit:
         viewKey: admin_claim_edit
         datasource: datasource1
 
+
 admin_claims_get:
     pattern: admin/claims/*
     defaults:
@@ -374,8 +375,8 @@ admin_claims_get:
         method: get
         view: core\views\JSONView
         viewKey: admin_claim_get
-        datasource: datasource1        
-        
+        datasource: datasource1
+
 
 admin_claims_list:
     pattern: admin/claims/*/*
