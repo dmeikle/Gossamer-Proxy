@@ -33,8 +33,8 @@
 <body cz-shortcut-listen="true">
   <!---header--->
   <!---subnav--->
-  <div class="clearfix"></div>
-  <main class="content full-width">
+  <div class="clearfix <?php if($this->getViewType() == 'html'){ echo 'hide';} ?>""></div>
+  <main class="content full-width <?php if($this->getViewType() == 'tabbed'){ echo 'hide';} ?>">
     <!---content--->
     <!---payload--->
   </main>

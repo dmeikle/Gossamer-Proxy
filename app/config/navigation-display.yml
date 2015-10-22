@@ -179,37 +179,243 @@ admin_call_matrix:
 
 # MAIN NAVIGATION - ADMIN SECTION
 
-admin_accounting:
-    active: false
-    text_key: 'ADMIN_ACCOUNTING'
-    pattern: '/admin/accounting'
+admin_costing:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_COSTING'
+    pattern: '#'
     display_roles:
         - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
         - IS_ACCOUNTING
-        
-admin_accounting_test:
+        - IS_DEVELOPER
+    children:
+        admin_accounting_general_costs:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_timesheets:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_TIMESHEETS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_supplies_used:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            pattern: '/admin/accounting/supplies'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounts_receivable:
     active: true
-    text_key: 'ADMIN_TEST'
+    text_key: 'ADMIN_ACCOUNTING_ACCOUNTS_RECEIVABLE'
     ng-click: "addTab('text_key', 'template')"
     template: '/render/accounting/timesheetsTab'
     display_roles:
         - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
         - IS_ACCOUNTING
-        
-admin_accounting_general_costs_test:
+        - IS_DEVELOPER
+    children:
+        admin_accounting_sales_invoices:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_SALES_INVOICES'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_breakdowns:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_BREAKDOWNS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_cash_receipts:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: '#'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_aging_summary_report:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_AGING_SUMMARY_REPORT'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: '#'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_aging_details_report:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_AGING_DETAILS_REPORT'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: '#'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+
+admin_accounting_accounts_payables:
     active: true
-    text_key: 'ADMIN_GENERAL_COSTS'
+    text_key: 'ADMIN_ACCOUNTING_ACCOUNTS_PAYABLE'
     ng-click: "addTab('text_key', 'template')"
     template: '/render/accounting/generalCostsTab'
     display_roles:
         - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
         - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_purchase_orders:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_PURCHASE_ORDERS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_unassociated_pos:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_UNASSOCIATED_POS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_purchase_invoices:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_PURCHASE_INVOICES'
+            pattern: '/admin/accounting/supplies'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounting_simply_accounting:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_SIMPLY_ACCOUNTING'
+    ng-click: "addTab('text_key', 'template')"
+    template: '/render/accounting/generalCostsTab'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_batches:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_BATCHES'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_approved_to_export:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_APPROVED_TO_EXPORT'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_settings:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_SETTINGS'
+            pattern: '/admin/accounting/supplies'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounting_general:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_GENERAL'
+    ng-click: "addTab('text_key', 'template')"
+    template: '/render/accounting/generalCostsTab'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING    
+        - IS_DEVELOPER
+    children:
+        admin_accounting_view_accounts:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_VIEW_ACCOUNTS'
+            pattern: '/admin/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING    
+                - IS_DEVELOPER
+                
+#admin_accounting_general_costs_test:
+#    active: true
+#    text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+#    ng-click: "addTab('text_key', 'template')"
+#    template: '/render/accounting/generalCostsTab'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_PROJECT_MANAGER
+#        - IS_PM_ASSISTANT
+#        - IS_ACCOUNTING
+        
+#admin_accounting:
+#    active: true
+#    text_key: 'ADMIN_ACCOUNTING'
+#    pattern: '/admin/accounting'
+#    section: usermenu
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_PROJECT_MANAGER
+#        - IS_PM_ASSISTANT
+#        - IS_ACCOUNTING
+#    children:
+#        admin_general_costs:
+#            active: true
+#            text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+#            pattern: '/admin/generalcosts'
+#            ng-click: "addTab('text_key', 'template')"
+#            template: '/render/accounting/generalCostsTab'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_PROJECT_MANAGER
+#                - IS_PM_ASSISTANT
+#                - IS_ACCOUNTING
 #        
 #admin_contents:
 #    active: false

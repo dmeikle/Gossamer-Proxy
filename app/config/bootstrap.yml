@@ -24,7 +24,7 @@ all:
           
     defaults:
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
 
 #this is a placeholder to show that you can still call things in bootstrap as long as the 
 # ymlkey matches one from any of the routing files. Want proof? change index2 to index and

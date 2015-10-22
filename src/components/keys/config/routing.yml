@@ -11,7 +11,7 @@ super_keys_keytypes_list:
         viewKey: super_keys_keytypes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
 
      
@@ -27,7 +27,7 @@ super_keys_keytypes_edit:
         viewKey: super_keys_keytypes_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
      
 super_keys_keytypes_save:
@@ -41,7 +41,7 @@ super_keys_keytypes_save:
         viewKey: super_keys_keytypes_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST] 
     
 super_keys_keytypes_remove:
@@ -55,7 +55,7 @@ super_keys_keytypes_remove:
         viewKey: super_keys_keytypes_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
     
     
@@ -72,7 +72,7 @@ super_keys_retire:
         viewKey: super_keys_retire
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
 
     
@@ -87,7 +87,7 @@ super_keys_list:
         viewKey: super_keys_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
     
@@ -103,5 +103,5 @@ super_keys_edit:
         viewKey: super_keys_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     

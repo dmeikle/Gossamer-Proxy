@@ -393,7 +393,7 @@ admin_login_confirmreset:
         viewKey: admin_login_confirmreset
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]
@@ -413,7 +413,7 @@ admin_login_confirmreset_submit:
         viewKey: admin_login_confirmreset_submit
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
@@ -432,7 +432,7 @@ admin_login_reset_submit:
         viewKey: admin_login_reset_submit
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
@@ -450,7 +450,7 @@ admin_login_reset:
         viewKey: admin_login_reset
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]
@@ -470,7 +470,7 @@ admin_login:
         viewKey: admin_login
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]

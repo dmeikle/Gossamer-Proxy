@@ -10,7 +10,7 @@ admin_contactustypes_list:
         viewKey: admin_contactustypes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
 admin_contactustypes_edit:
     pattern: admin/contact/types/*
@@ -24,7 +24,7 @@ admin_contactustypes_edit:
         viewKey: admin_contactustypes_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
  
 admin_contactustypes_save:
     pattern: admin/contact/types/*
@@ -38,7 +38,7 @@ admin_contactustypes_save:
         viewKey: admin_contactustypes_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
    
 admin_contactus_list:
@@ -54,7 +54,7 @@ admin_contactus_list:
         viewKey: admin_contactus_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
    
 admin_contactus_view:
     pattern: admin/contact/*
@@ -70,7 +70,7 @@ admin_contactus_view:
         viewKey: admin_contactus_view
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
     
 
 admin_contactus_save:
@@ -87,7 +87,7 @@ admin_contactus_save:
         viewKey: admin_contactus_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
 
   
 
@@ -105,7 +105,7 @@ website_contactus_get:
         viewKey: website_contactus_get
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            - 'src/components/defaultItem/locales/*/Navigation'               
             
 website_contactus_complete:
     pattern: contact/complete
@@ -121,7 +121,7 @@ website_contactus_complete:
         viewKey: website_contactus_complete
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
     
 
 website_contactus_book_a_meeting:
@@ -138,7 +138,7 @@ website_contactus_book_a_meeting:
         viewKey: website_contactus_get
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
             
 
 website_contactus_book_a_meeting_save:
@@ -155,7 +155,7 @@ website_contactus_book_a_meeting_save:
         viewKey: website_contactus_book_a_meeting_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
             
 
 website_contactus_save:
@@ -172,7 +172,7 @@ website_contactus_save:
         viewKey: website_contactus_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'           
+            - 'src/components/defaultItem/locales/*/Navigation'           
             
             
             

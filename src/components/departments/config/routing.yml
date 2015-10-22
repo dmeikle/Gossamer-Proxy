@@ -11,7 +11,7 @@ admin_departments_list:
         viewKey: admin_departments_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
 
      
@@ -27,7 +27,7 @@ admin_departments_edit:
         viewKey: admin_departments_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
      
 admin_departments_save:
@@ -41,7 +41,7 @@ admin_departments_save:
         viewKey: admin_departments_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST] 
     
 admin_departments_remove:
@@ -55,6 +55,6 @@ admin_departments_remove:
         viewKey: admin_departments_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
     

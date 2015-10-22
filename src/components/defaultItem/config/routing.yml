@@ -12,7 +12,7 @@ default_index:
         viewKey: default_index
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Home'
     methods: [GET]
     
@@ -28,7 +28,7 @@ default_about:
         viewKey: default_about
         datasource: datasource2
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/About'
     methods: [GET]
      
@@ -43,7 +43,7 @@ default_contact:
         viewKey: default_contact
         datasource: datasource2
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET] 
     
@@ -59,7 +59,7 @@ admin_home:
         viewKey: admin_home
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
     
@@ -74,7 +74,7 @@ admin_home_tabbed:
         viewKey: admin_home_tabbed
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
             - 'src/components/accounting/locales/*/accounting'
     
@@ -89,7 +89,7 @@ portal_home:
         viewKey: admin_home
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]   
     
@@ -104,7 +104,7 @@ super_home:
         viewKey: super_home
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]      
     

@@ -16,7 +16,7 @@
 
 
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
-            <ul class="navbar-left">
+            <ul class="navbar-left" ng-hide="true">
                 <?php
                 foreach ($NAVIGATION as $key => $item) {
                     //first check for top parent nav items
@@ -35,11 +35,11 @@
 
                     //now, let's display the link for the top parent item nav
                     if (!$hasChildren) {
-                        if (array_key_exists('ng-click', $item)) {
+                        if (array_key_exists('ng-click', $item) && $this->getViewType() == 'tabbed') {
                             $tmp = str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']);
                             $ngLink = str_replace('template', $this->getString($item['template']), $tmp);
                             ?>
-                            <li><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
+                            <li class="test2"><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($item['text_key']) . $caret; ?></a></li>
                             <?php
                         } else {
                             ?>
@@ -60,11 +60,11 @@
                                         <?php
                                         continue;
                                     }
-                                    if (array_key_exists('ng-click', $childItem)) {
+                                    if (array_key_exists('ng-click', $childItem) && $this->getViewType() == 'tabbed') {
                                         $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
                                         $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
                                         ?>
-                                        <li><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) . $caret; ?></a></li>
+                                        <li class="test"><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) . $caret; ?></a></li>
                                         <?php
                                     } else {
                                         ?>
@@ -106,7 +106,8 @@
     </nav>
 </header>
 
-<nav id="side-nav" ng-controller="sideNavCtrl">
+<nav id="side-nav" ng-controller="sideNavCtrl" ng-class="{'closed': sideNavOpen == false}">
+     
     <!--    <ul>
             <li ng-repeat="item in navItems" class="nav-item">
                 <span ng-click="toggleSubnav($event)">{{item.title}}</span>
@@ -115,7 +116,7 @@
                 </ul>
             </li>
         </ul>-->
-    <ul ng-controller="tabsCtrl">
+    <ul class="nav-list" ng-show="sideNavOpen == true" ng-controller="tabsCtrl">
         <?php
         foreach ($NAVIGATION as $key => $item) {
             //first check for top parent nav items
@@ -163,7 +164,7 @@
                                 <?php
                                 continue;
                             }
-                            if (array_key_exists('ng-click', $childItem)) {
+                            if (array_key_exists('ng-click', $childItem) && $this->getViewType() == 'tabbed') {
                                 $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
                                 $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
                                 //is a child, has ng-click
@@ -187,10 +188,14 @@
             <?php
         }
         ?>
-    </ul>  
+    </ul>
+    <div class="nav-toggle" ng-click="toggleSidenav()">
+        <span ng-if="!sideNavOpen" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span ng-if="sideNavOpen" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </div>
 </nav>
 
-<div id="tabs" ng-controller="tabsCtrl" ng-cloak>
+<div id="tabs" ng-controller="tabsCtrl" ng-cloak class="<?php if($this->getViewType() == 'html'){ echo 'hide';} ?>">
     <tabset>
         <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
             <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
