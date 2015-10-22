@@ -191,7 +191,7 @@ admin_costing:
         admin_accounting_general_costs:
             active: true
             text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
-            pattern: '/admin/generalcosts'
+            pattern: '/admin/accounting/generalcosts'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/generalCostsTab'
             display_roles:
@@ -201,9 +201,9 @@ admin_costing:
         admin_accounting_timesheets:
             active: true
             text_key: 'ADMIN_ACCOUNTING_TIMESHEETS'
-            pattern: '/admin/generalcosts'
+            pattern: '/admin/accounting/timesheets'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: '/render/accounting/timesheetsTab'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -213,7 +213,7 @@ admin_costing:
             text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
             pattern: '/admin/accounting/supplies'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
