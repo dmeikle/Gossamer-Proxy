@@ -9,7 +9,7 @@ module.directive('columnSortable', function($compile, $location) {
       a.setAttribute('class', 'table-header-sortable');
       a.setAttribute('ng-class', "{'underlined':sortedBy === '" + element[0].dataset.column + "'}");
       a.appendChild(document.createElement('span'));
-      a.children[0].innerText = element[0].innerText + ' ';
+      a.children[0].textContent = element[0].textContent + ' ';
       a.appendChild(document.createElement('span'));
       a.children[1].setAttribute('class', 'small glyphicon');
       a.children[1].setAttribute('ng-class',
@@ -17,7 +17,7 @@ module.directive('columnSortable', function($compile, $location) {
         "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
         "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
         "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
-      element[0].innerHTML = '';
+      element[0].textContent = '';
 
       var clear = document.createElement('a');
       clear.setAttribute('ng-click', 'clearSort()');
@@ -95,7 +95,7 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
           var li = document.createElement('li');
           var a = document.createElement('a');
           a.setAttribute('ng-click', 'groupBy("' + columns[column].dataset.column + '")');
-          a.innerText = columns[column].innerText;
+          a.textContent = columns[column].textContent;
           li.appendChild(a);
           buttonDOM.getElementsByClassName('dropdown-menu')[0].appendChild(li);
         }
@@ -136,6 +136,57 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
       $scope.clearGrouping = function() {
         $scope.groupedBy = undefined;
         tablesSrv.clearGrouping();
+      };
+    }
+  };
+});
+
+module.directive('multiSelect', function($compile) {
+  return {
+    restrict: 'A',
+    scope:false,
+    link: function(scope, element, attrs) {
+      var checkTd = angular.element(document.createElement('td'));
+      checkTd[0].appendChild(document.createElement('input'));
+      checkTd[0].children[0].setAttribute('type', 'checkbox');
+      checkTd[0].children[0].setAttribute('ng-model', attrs.multiSelect + '.multi');
+      checkTd[0].children[0].setAttribute('ng-change', 'toggleMulti(' + attrs.multiSelect + ')');
+
+      element[0].insertBefore(checkTd[0], element[0].firstElementChild);
+
+      $compile(element.contents())(scope);
+      if (scope.$last) {
+        scope.$parent.repeatWith = attrs.multiSelect;
+        scope.$parent.table = element[0].parentElement.parentElement;
+        scope.$emit('lastRepeat');
+      }
+    },
+    controller: function($scope, $rootScope, tablesSrv) {
+      var pageScope = $scope.$parent.$parent.$parent;
+      pageScope.multiSelectArray = [];
+
+      $scope.$on('lastRepeat', function() {
+        var table = $scope.table;
+        // Add column to header
+        var theadTr = table.children[0].children[0];
+        var emptyTh = document.createElement('th');
+        emptyTh.setAttribute('class', 'cog-col');
+        theadTr.insertBefore(emptyTh, theadTr.firstElementChild);
+      });
+
+      $scope.toggleMulti = function(object) {
+        if (pageScope.multiSelectArray.indexOf(object) === -1) {
+          pageScope.multiSelectArray.push(object);
+        } else {
+          pageScope.multiSelectArray.splice(pageScope.multiSelectArray.indexOf(object), 1);
+        }
+        if (pageScope.multiSelectArray.length) {
+          pageScope.multiSelect = true;
+          pageScope.sidePanelOpen = true;
+        } else {
+          pageScope.multiSelect = false;
+          pageScope.sidePanelOpen = false;
+        }
       };
     }
   };
