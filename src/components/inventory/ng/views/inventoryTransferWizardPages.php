@@ -1,4 +1,5 @@
 <form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 0">
+
   <ul class="content-list">
     <li>
       <div class="col-xs-4">
@@ -38,7 +39,7 @@
               typeahead="value.warehouseLocation for value in autocompleteWarehouseLocation($viewValue)"
               typeahead-loading="loadingTypeaheadWarehouseLocation" typeahead-no-results="noResultsWarehouseLocation" class="form-control"
               typeahead-min-length='3'>
-            <div class="resultspane" ng-show="noResultsWarehouseLocation">
+            <div class="resultspane" ng-show="noResultsJobNumber">
               <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
             </div>
             <i ng-show="loadingTypeaheadWarehouseLocation" class="glyphicon glyphicon-refresh"></i>
@@ -47,7 +48,7 @@
             <div>
               <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
               <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
-                typeahead="value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
+                typeahead="value.jobNumber as value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
                 typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsJobNumber" class="form-control"
                 typeahead-min-length='3'>
               <div class="resultspane" ng-show="noResultsJobNumber">
@@ -57,7 +58,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label><?php echo $this->getString('INVENTORY_TRANSFER_LOCATION') ?></label>
+            <label><?php echo $this->getString('INVENTORY_TRANSFER_CLAIM') ?></label>
             getClaimLocation by ID for select box, taken from typeahead
           </div>
           <div class="form-group">
