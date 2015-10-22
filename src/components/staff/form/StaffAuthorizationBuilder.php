@@ -38,7 +38,7 @@ class StaffAuthorizationBuilder extends AbstractBuilder{
     }
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-
+        return $this->buildCredentialsForm($builder, $values, $options, $validationResults);
     }
 
     public function buildPermissionsForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {

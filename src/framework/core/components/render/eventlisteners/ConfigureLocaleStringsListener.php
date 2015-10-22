@@ -29,7 +29,7 @@ class ConfigureLocaleStringsListener extends AbstractListener {
         $config = $this->httpRequest->getAttribute('RENDER_CONFIG');
         
         if(!is_array($config)) {
-            throw \Exception('RENDER_CONFIG not located in HTTPRequest');
+            throw new \Exception('RENDER_CONFIG not located in HTTPRequest');
         }
         
         if(array_key_exists('langFiles', $config)) {

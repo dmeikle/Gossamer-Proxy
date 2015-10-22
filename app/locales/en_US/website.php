@@ -47,6 +47,10 @@ return array(
   'COMMENTS' => 'Comments',
   'HISTORY' => 'History',
   'WORKLOG' => 'Work Log',
-  'NEW' => 'New'
+  'NEW' => 'New',
+  'ADVANCED_SEARCH' => 'Advanced Search',
+  'EDIT' => 'Edit',
+  'USERNAME' => 'Username',
+  'PASSWORD' => 'Password'
 
 );

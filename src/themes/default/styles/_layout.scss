@@ -79,6 +79,12 @@ button {
   text-overflow: ellipsis;
 }
 
+.table>thead>tr>th {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .table-header-sortable {
   position:relative;
 
@@ -114,6 +120,11 @@ nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
   padding-right:7px;
 }
 
+nav .navbar-right .dropdown-menu {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
 .resultspane {
   position:absolute;
   top:2.2em;
@@ -145,4 +156,8 @@ ul {
 .row-controls button {
   font-size:.8em;
   padding:.3em .5em;
+}
+
+.content-list {
+  padding-left:0;
 }

@@ -12,6 +12,7 @@ module.service('generalCostsSrv', function($http, searchSrv, $filter) {
     this.getGeneralCostsList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
             .then(function(response) {
+            console.log(response);
             self.generalCostsList = response.data.AccountingGeneralCosts;
             self.generalCostsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
             

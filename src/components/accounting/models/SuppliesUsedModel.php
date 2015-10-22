@@ -32,4 +32,17 @@ class SuppliesUsedModel extends AbstractModel{
         $this->entity = 'SuppliesUsed';
         $this->tablename = 'accountingsuppliesused';
     }
+    
+    
+    
+    public function search(array $params) {
+        $locale= $this->getDefaultLocale();
+        $params['isActive'] = '1';
+        $params['locale'] = $locale['locale'];
+        
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params); 
+      
+        return $data;
+    }
+    
 }
