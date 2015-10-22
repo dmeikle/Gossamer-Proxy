@@ -1,4 +1,4 @@
-module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templateSrv, inventorySrv, $modal, tablesSrv) {
+module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, accountingTemplateSrv, inventorySrv, $modal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;    
@@ -157,7 +157,7 @@ module.controller('inventoryCtrl', function($scope, costCardItemTypeSrv, templat
     //Modal
     $scope.openModal = function(item) {
         $scope.modalLoading = true;
-        var template = templateSrv.inventoryModal;
+        var template = accountingTemplateSrv.inventoryModal;
         var modal = $modal.open({
             templateUrl: template,
             controller: 'inventoryModalCtrl',
