@@ -18,14 +18,13 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     function getTimesheetList(){
         $scope.loading = true;
         $scope.noSearchResults = false;
-        console.log(row + ' ' + numRows);
         
         timesheetSrv.getTimesheetList(row,numRows)
             .then(function(){
                 $scope.loading = false;
                 $scope.timesheetList = timesheetSrv.timesheetList;
                 $scope.totalItems = timesheetSrv.timesheetCount;
-                console.log($scope.totalItems);
+                
                 if(timesheetSrv.error.showError === true){
                     $scope.error.showError = true;
                     //$scope.error.message = 'Could not reach the database, please try again.';
@@ -139,7 +138,7 @@ module.controller('timesheetListCtrl', function($scope, $modal, costCardItemType
     };
     
     $scope.resetAdvancedSearch = function() {
-        console.log('resetting search');
+       
         $scope.searchSubmitted = false;
         $scope.advSearch = {};
         getTimesheetList();
