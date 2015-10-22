@@ -35,18 +35,18 @@ admin_claims_search:
 
 
 
-
-admin_claimlocations_by_claimid:
-    pattern: admin/claims/locations/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: listLocationsByClaimId
-        view: core\views\JSONView
-        viewKey: admin_claimlocations_by_claimid
-        datasource: datasource1
-    methods: [GET]
+#changed to new URL
+#admin_claimlocations_by_claimid:
+#    pattern: admin/claims/locations/*
+#    defaults:
+#        component: components\claims\ClaimsComponent
+#        controller: components\claims\controllers\ClaimLocationsController
+#        model: components\claims\models\ClaimLocationModel
+#        method: listLocationsByClaimId
+#        view: core\views\JSONView
+#        viewKey: admin_claimlocations_by_claimid
+#        datasource: datasource1
+#    methods: [GET]
 
 
 admin_claims_home:
@@ -61,6 +61,10 @@ admin_claims_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_home
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/*/website'
 
 
 admin_claimslocation_view_comments:
@@ -183,7 +187,7 @@ admin_claims_initial_jobsheet:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             - 'src/components/projects/locales/*/Project'
-            - 'app/locales/en_US/website'
+            - 'app/locales/*/website'
     methods: [GET]
 
 
@@ -378,6 +382,18 @@ admin_claims_get:
         datasource: datasource1
 
 
+admin_claim_contacts:
+    pattern: admin/claim/contacts/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimContactsController
+        model: components\claims\models\ClaimContactModel
+        method: listContacts
+        view: core\views\JSONView
+        viewKey: admin_claim_contacts
+        datasource: datasource1
+
+
 admin_claims_list:
     pattern: admin/claims/*/*
     listeners:
@@ -432,6 +448,7 @@ admin_claimlocation_work_history:
         viewKey: admin_claimlocation_work_history
         datasource: datasource1
 
+
 admin_claimlocations_by_claimid:
     pattern: admin/claimlocations/claim/*
     defaults:
@@ -442,7 +459,7 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
-    methods: [GET]
+
 
 
 
@@ -483,6 +500,8 @@ admin_claimlocation_view:
         view: core\views\TemplateView
         viewKey: admin_claimlocation_view
         datasource: datasource1
+
+
 
 
     #-----------------------------start client portal section --------------------------------
