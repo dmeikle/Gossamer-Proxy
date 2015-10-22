@@ -290,20 +290,11 @@ super_inventory_categories_remove:
         view: core\views\JSONView
         viewKey: super_inventory_categories_save
         datasource: datasource1
-<<<<<<< HEAD
-        langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
-    methods: [POST]
-
-
-=======
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
   
                 
->>>>>>> origin/CP-80
-
 
 #---------------------- items -------------------------
 

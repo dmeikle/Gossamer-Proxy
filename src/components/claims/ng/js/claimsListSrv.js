@@ -42,7 +42,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
       .then(function(response) {        
         self.claimsLocations = response.data.ClaimsLocations;
       });
-  }
+  };
 //=======
 //
 //
