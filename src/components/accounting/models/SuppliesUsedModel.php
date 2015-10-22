@@ -45,4 +45,33 @@ class SuppliesUsedModel extends AbstractModel{
         return $data;
     }
     
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params); 
+      
+        return $data;
+    }
+    
+    
+    /**
+     * retrieves a row from the datasource for editing
+     * 
+     * @param int $id
+     * 
+     * @return array
+     */
+    public function edit($id) {
+
+
+        $params = array(
+            'id' => intval($id)
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+        return $data;
+    }
+
+    
 }

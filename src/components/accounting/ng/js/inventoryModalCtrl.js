@@ -1,6 +1,6 @@
-module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter) {
+module.controller('inventoryModalCtrl', function($modalInstance, $scope, inventoryModalSrv, $filter, $timeout, suppliesUsed) {
     $scope.isOpen = {};
-    $scope.isOpen.datepicker = [];
+    $scope.isOpen.datepicker = false;
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -8,7 +8,6 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
-    //console.log(generalCost);
     //Modal Controls
     $scope.confirm = function() {
         $modalInstance.close();
@@ -19,52 +18,87 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     };
     
     //Set up the objects
-    $scope.headings = {
+    var headingsTemplate = {
+    //$scope.headings = {
+        staffName: '',
+        Staff_id: '',
         Claims_id: '',
-        ClaimPhases_id: ''
+        ClaimPhases_id: '',
+        dateUsed:'',
+        ClaimsLocations_id: '',
+        Departments_id: ''
     };
     
     var lineItemsTemplate = {
+        SuppliesUsedInventoryItems_id: '',
         isSelected:false,
-        materialName: '',
-        unitMeasure:'',
+        productCode:'',
+        InventoryItems_id: '',
+        name: '',
+        PackageTypes_id:'',
         unitPrice:'',
-        qty:'',
-        description:'',
-        date:'',
-        department: '',
+        quantity:'',
         cost:'',
-        chargeOut: ''
+        chargeOut: ''        
     };
     
-//    //Check and see if you're editing an item or creating a new one...
-//    if(generalCost){
-//        $scope.loading = true;
-//        generalCostsModalSrv.getGeneralCostItems(row, numRows, generalCost.id)
-//        .then(function(){
-//            console.log(generalCostsModalSrv.generalCostItems);
-//            var costItems = generalCostsModalSrv.generalCostItems;
-//            for(var i in costItems){
-//                //costItems[i].dateEntered = Date.parse((costItems[i].dateEntered.replace(/-/g,"/")));
-//                costItems[i].dateEntered = new Date(costItems[i].dateEntered);
-//                costItems[i].cost = parseFloat(costItems[i].cost);
-//                costItems[i].chargeOut = parseFloat(costItems[i].chargeOut);
-//            }
-//            $scope.AccountingGeneralCost = generalCost;
-//            $scope.generalCostItems = costItems;
-//            console.log($scope.generalCostItems);
-//            $scope.loading = false;
-//        });
-//    } else {
-//        $scope.loading = false;
+    $scope.total = {
+        cost: 0,
+        chargeOut: 0
+    };
+    
+    //Get the claims locations
+    $scope.getClaimsLocations = function(Claims_id){
+        inventoryModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function(locations){
+            $scope.claimsLocations = locations;
+        });
+    };
+    
+    //Check and see if you're editing an item or creating a new one...
+    if(suppliesUsed){
+        $scope.loading = true;
+        suppliesUsed.dateUsed = new Date(suppliesUsed.dateUsed);        
+        $scope.headings = suppliesUsed;
+        $scope.headings.staffName = $scope.headings.firstname + ' ' + $scope.headings.lastname;
+        $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
+        inventoryModalSrv.getItems(row, numRows, suppliesUsed.id)
+        .then(function(){
+            var lineItems = inventoryModalSrv.lineItems;
+            for(var i in lineItems){
+                lineItems[i].cost = parseFloat(lineItems[i].cost);
+                lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
+                lineItems[i].quantity = parseFloat(lineItems[i].quantity);
+                lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
+            }
+            $scope.lineItems = lineItems;
+            $scope.updateTotal();
+            $scope.loading = false;
+        });
+    } else {
+        $scope.loading = false;
+        $scope.headings = angular.copy(headingsTemplate);
         $scope.lineItems = angular.copy([lineItemsTemplate]);
-//    }
+    }
+    
+    
+    //Get Staff ID from autocomplete list
+    $scope.getStaffID = function(name){
+        if(name !== undefined){       
+            var splitName = name.split(' ');
+            for(var i in inventoryModalSrv.autocomplete){
+                if(splitName[0] === inventoryModalSrv.autocomplete[i].firstname && splitName[1] === inventoryModalSrv.autocomplete[i].lastname){
+                    $scope.headings.Staff_id = inventoryModalSrv.autocomplete[i].id;
+                }
+            }
+        }
+    };
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function(jobNumber){
         for(var i in inventoryModalSrv.claimsAutocomplete){
             if(inventoryModalSrv.claimsAutocomplete[i].jobNumber === jobNumber){
                 $scope.headings.Claims_id = inventoryModalSrv.claimsAutocomplete[i].id;
+                $scope.getClaimsLocations($scope.headings.Claims_id);
             }
         }
     };
@@ -114,6 +148,13 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         }
     };
     
+    //Staff Typeahead
+    $scope.fetchStaffAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return inventoryModalSrv.fetchStaffAutocomplete(searchObject);
+    };
+    
     //Claim Typeahead
     $scope.fetchClaimAutocomplete = function(viewVal) {
         var searchObject = {};
@@ -125,51 +166,87 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
     $scope.fetchMaterialsAutocomplete = function(viewVal){
         var searchObject = {};
         searchObject.name = viewVal;
-        return inventoryModalSrv.fetchMaterialsAutocomplete(searchObject);
+        return inventoryModalSrv.fetchMaterialNameAutocomplete(searchObject);
     };
     
-    //Get Material Values
-    $scope.getMaterialValues = function(row, materialName){
-        for(var i in inventoryModalSrv.materialsAutocomplete){
-            if(inventoryModalSrv.materialsAutocomplete[i].name === materialName){
-//                row.unitPrice = inventoryModalSrv.materialsAutocomplete[i].unitPrice;
-//                row.unitMeasure = inventoryModalSrv.materialsAutocomplete[i].unitMeasure;
-//                row.description = inventoryModalSrv.materialsAutocomplete[i].description;               
+    //Product Code Typeahead
+    $scope.fetchProductCodeAutocomplete = function(viewVal){
+        var searchObject = {};
+        searchObject.productCode = viewVal;
+        return inventoryModalSrv.fetchProductCodeAutocomplete(searchObject);
+    };
+    
+    //Get Material info from material name
+    $scope.getMaterialNameInfo = function(row, value){
+        for(var j in inventoryModalSrv.materialsAutocomplete){
+            if(inventoryModalSrv.materialsAutocomplete[j].name === value){
+                row.productCode = inventoryModalSrv.materialsAutocomplete[j].productCode;
+                row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].purchaseCost;
+                row.PackageTypes_id = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
             }
-        }  
-    };    
+        }
+    };
+    
+    //Get Material info from product code
+    $scope.getProductCodeInfo = function(row, value){
+        for(var i in inventoryModalSrv.productCodeAutocomplete){
+            if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
+                row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
+                row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].purchaseCost;
+                row.PackageTypes_id = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+                row.InventoryItems_id = inventoryModalSrv.productCodeAutocomplete[i].id;
+            }
+        }
+    };
     
     //Date Picker
     $scope.dateOptions = {'starting-day':1};
     $scope.openDatepicker = function(event, index){
-        $scope.isOpen.datepicker[index] = true;
+        $scope.isOpen.datepicker = true;
     };
     
     
     //Update cost based on item quantity and price
     $scope.updateCost = function(row){
-        if(row.qty === null || row.unitPrice === null){
+        if(row.quantity === null || row.unitPrice === null){
             row.cost = '';
             return;
         }
-        if(row.qty && row.unitPrice){
-            row.cost = row.qty * row.unitPrice;
+        if(row.quantity && row.unitPrice){
+            row.cost = row.quantity * row.unitPrice;
         }
     };
     
+    //Update totals
+    $scope.updateTotal = function(){
+        $scope.total = {
+            cost: 0,
+            chargeOut: 0
+        };
+        for(var i in $scope.lineItems){
+            if(isNaN($scope.lineItems[i].cost)){
+                $scope.lineItems[i].cost = 0;
+            }
+            if(isNaN($scope.lineItems[i].chargeOut)){
+                $scope.lineItems[i].chargeOut = 0;
+            }
+            $scope.total.cost += $scope.lineItems[i].cost;
+            $scope.total.chargeOut += $scope.lineItems[i].chargeOut;
+        }
+    };   
+    
     //Saving Items    
     $scope.save = function(){
+        var headings = angular.copy($scope.headings);
         var lineItems = angular.copy($scope.lineItems);
-//        for (var i in lineItems){
-//            //console.log('filtering date!');
-//            generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');            
-//        }
-        console.log('Saving Items!');
-        
-        //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
+        headings.dateUsed = $filter('date')(headings.dateUsed, 'yyyy-MM-dd');
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        inventoryModalSrv.save(headings, lineItems, formToken);
         
-        inventoryModalSrv.save($scope.headings, lineItems, formToken);
-        
+    };
+    
+    $scope.clearModal = function(){
+        $scope.headings = angular.copy(headingsTemplate);
+        $scope.lineItems = angular.copy([lineItemsTemplate]);
     };
 });

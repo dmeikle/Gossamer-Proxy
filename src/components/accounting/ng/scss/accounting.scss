@@ -12,12 +12,6 @@
 }
 .table{
     margin:10px 0;
-    td{
-//        vertical-align: middle!important;
-    }
-//    tr.selected {
-//        background-color: rgba(3,146,211,0.4)!important;
-//    }
 }
 .toolbar{
     width:100%;
@@ -25,10 +19,6 @@
         vertical-align:middle;
         float:left;
         margin-left:30px;
-    }
-    .new-item{
-//        float:left;
-//        margin-left:0px;
     }
     &.pull-right{
         input, select{
@@ -49,16 +39,22 @@
     }
     .date-picker{
         width:50%;
-//        .input-group-btn:last-child>button{
-//            margin-left: -10px;
-//            
-//        }
+    }
+}
+.table>tbody>tr>td.typeahead-col{
+    overflow: visible;
+}
+.modal-content .typeahead-col>.input-group{
+    display: block;
+    input{
+        width: 100%;
     }
 }
 .results-message{
     text-align: center;
     padding:10px;
     background-color: #fcf8e3;
+    margin: -10px 0 10px 0;
 }
 .widget-side-panel, .widget-content{
     transition: width ease 0.35s;
@@ -113,7 +109,7 @@
     }
 }
 .modal-lg{
-    width:1300px;
+    width:1280px;
     .form-group{
         display:block;
         label{
@@ -211,22 +207,12 @@
     .quantity-col{
         width:75px;
     }
-//    .date-col{
-//        overflow: visible;
-//        .input-group{
-//            display: flex;
-//        }
-//        input{
-//            width:140px;
-//        }
-//    }
-    //margin-bottom: 10px;
-//    .debit-account{
-//        width:170px;
-//    }
-//    .cost, .chargeout{
-//        width:100px;
-//    }
+    .date-input{
+        width:220px;
+        input{
+            width:auto;
+        }
+    }
 }
 .modal-content{
     .typeahead{
@@ -266,9 +252,6 @@
         .debit-account{
             width:170px;
         }
-//        .cost, .chargeout{
-//            width:100px;
-//        }
     }
     .general-costs-modal{
         .resultspane.claim-number{

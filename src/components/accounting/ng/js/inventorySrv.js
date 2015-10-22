@@ -1,6 +1,6 @@
 // General Costs service
 module.service('inventorySrv', function($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/inventory/';
+    var apiPath = '/admin/accounting/supplies/';
     
     var self = this;
     
@@ -11,10 +11,8 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
     this.getList = function(row, numRows){
         return $http.get(apiPath + row + '/' + numRows)
             .then(function(response) {
-            console.log(response);
             self.list = response.data.SuppliesUseds;
-            self.listRowCount = response.data.SuppliesUsedsCount[0].rowCount;
-            
+            self.listRowCount = response.data.SuppliesUsedsCount[0].rowCount;            
         }, function(response){
             //Handle any errors
             self.error.showError = true;
@@ -25,7 +23,6 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
     this.getBreakdown = function(row, numRows, id){
         return $http.get(apiPath + id)
             .then(function(response) {
-            console.log(response);
             self.breakdownItems = response.data.InventoryItems;
             self.generalCostsCount = response.data.InventoryItemsCount[0].rowCount;
         }, function(response){
@@ -47,6 +44,11 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
     
     this.advancedSearch = function(searchObject) {
         var config = angular.copy(searchObject);
+        for(var i in config){
+            if(config[i] === null || config[i] === ''){
+                delete config[i];
+            }
+        }
         config.toDate = $filter('date')(config.toDate, 'yyyy-MM-dd', '+0000');
         config.fromDate = $filter('date')(config.fromDate, 'yyyy-MM-dd', '+0000');
         return $http({

@@ -10,6 +10,8 @@ return array(
     
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
+    'ACCOUNTING_FIRST_NAME' => 'First Name',
+    'ACCOUNTING_LAST_NAME' => 'Last Name',
     'ACCOUNTING_DATE' => 'Date',
     'ACCOUNTING_VEHICLE_NUMBER' => 'Vehicle #',
     'ACCOUNTING_JOB_NUMBER' => 'Job No.',
@@ -62,7 +64,7 @@ return array(
     'ACCOUNTING_UNIT_OF_MEASURE' => 'Unit (of measure)',
     'ACCOUNTING_UNIT_PRICE' => 'Unit Price',
     'ACCOUNTING_QUANTITY' => 'Quantity',
-    
+    'ACCOUNTING_PRODUCT_CODE' => 'Product Code',
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     
