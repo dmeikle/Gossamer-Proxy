@@ -1,10 +1,12 @@
-module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) {
+module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
     $scope.loading = true;
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
+    $scope.contacts = [];
+    
     getProjectAddress();
     getClaimDetails();
     
@@ -53,4 +55,26 @@ module.controller('claimsEditCtrl', function ($scope, $location, claimsEditSrv) 
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;
     };
+    
+    $scope.openEditModal = function(claim) {
+        $scope.modalLoading = true;
+        var template = claimsTemplateSrv.claimEditModal;
+        var modal = $modal.open({
+            templateUrl: template,
+            controller: 'claimsModalCtrl',
+            size: 'xl',
+            resolve: {
+                claim: function () {
+                    return claim;
+                }
+            }
+        });
+        modal.opened.then(function(){
+            $scope.modalLoading = false;
+        });
+        modal.result.then(function(){
+           
+        });
+    };
+    
 });

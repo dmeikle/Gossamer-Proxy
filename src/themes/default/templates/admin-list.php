@@ -30,7 +30,7 @@
   <![endif]-->
 </head>
 
-<body cz-shortcut-listen="true">
+<body cz-shortcut-listen="true" ng-cloak>
   <!---header--->
   <!---subnav--->
   <div class="clearfix"></div>

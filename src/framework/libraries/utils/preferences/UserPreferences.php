@@ -16,11 +16,24 @@ class UserPreferences
     private $params = array();
 
 
+    public function setViewType($view) {
+        $this->params['DefaultView'] = $view;
+    }
+    
+    public function getViewType() {
+        return $this->params['DefaultView'];
+    }
+    
+    
     public function setDefaultLocale($value) {
         $this->params['DefaultLocale'] = $value;
     }
     
     public function getDefaultLocale() {
+        if(!array_key_exists('DefaultLocale', $this->params)) {
+            return null;
+        }
+        
         return $this->params['DefaultLocale'];
     }
     
@@ -31,6 +44,7 @@ class UserPreferences
     public function getNotificationTypeId() {
         return $this->params['NotificationTypeId'];
     }
+    
     public function toArray() {
         return $this->params;
     }

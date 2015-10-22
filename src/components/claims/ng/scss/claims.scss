@@ -22,3 +22,9 @@
     padding-right:0;
   }
 }
+
+.modal-xl {
+    width: 1280px !important;
+    @extend .modal-lg;
+    
+}

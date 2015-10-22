@@ -118,43 +118,13 @@
       <div>{{selectedClaim.city}}</div>
       <h4><?php echo $this->getString('CLAIMS_CONTACTS')?></h4>
       <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
-        <div class="cardheader">
-          <h1>{{contact.firstname}} {{contact.lastname}}</h1>
-        </div>
-        <table class="table table-hover cardtable">
-          <tr ng-if="contact.type">
-            <td>
-              <strong><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?></strong>
-            </td>
-            <td>
-              {{contact.type}}
-            </td>
-          </tr>
-          <tr ng-if="contact.office">
-            <td>
-              <strong><?php echo $this->getString('CLAIMS_CONTACT_OFFICE') ?></strong>
-            </td>
-            <td>
-              {{contact.office}}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <strong><?php echo $this->getString('CLAIMS_CONTACT_EXT') ?></strong>
-            </td>
-            <td>
-              {{contact.ext}}
-            </td>
-          </tr>
-          <tr ng-if="contact.mobile">
-            <td>
-              <strong><?php echo $this->getString('CLAIMS_CONTACT_MOBILE') ?></strong>
-            </td>
-            <td>
-              {{contact.mobile}}
-            </td>
-          </tr>
-        </table>
+        <p><strong class="ng-binding">{{contact.type}}</strong> <a href="{{contact.email}}" class="ng-binding">{{contact.firstname}} {{contact.lastname}}</a>
+            <span style="float: right" class="ng-binding"><strong>Company:</strong> phoenix restorations</span></p>        
+        <p class="ng-binding">
+            Office: {{contact.office}} {{contact.ext}}
+            <span style="float: right" class="ng-binding"> Mobile: {{contact.mobile}}</span>
+        </p>
+
         <div class="cardfooter clearfix">
           <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO')?></a></div>
         </div>

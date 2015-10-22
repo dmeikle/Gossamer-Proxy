@@ -261,12 +261,16 @@ class AbstractModel {
         if(!array_key_exists('isActive', $params)) {
             $params['isActive'] = '1';
         }
-       
+      // pr($params);
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
 
         return $data;
     }
 
+    public function autocomplete(array $params) {
+       
+        return $this->listallWithParams(0, 20, $params, 'autocomplete');
+    }
     /**
      * sets a row inactive (soft delete) in the database
      * 
@@ -295,6 +299,7 @@ class AbstractModel {
      */
     public function edit($id) {
 
+        $locale= $this->getDefaultLocale();
 
         if ($this->isFailedValidationAttempt()) {
 
@@ -302,7 +307,8 @@ class AbstractModel {
         }
 
         $params = array(
-            'id' => intval($id)
+            'id' => intval($id),
+            'locale' => $locale['locale']
         );
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);

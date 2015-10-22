@@ -32,7 +32,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
             $scope.selectedClaim = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            claimsListSrv.getClaimLocations(clickedObject)
+            claimsListSrv.getClaimLocations(clickedObject.id)
                     .then(function () {
                         $scope.selectedClaim.locations = claimsListSrv.claimLocations;
                     });
@@ -106,7 +106,7 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   var autocomplete = function(value, type) {
-    return claimsEditSrv.autocomplete(value, type);
+    return claimsEditSrv.autocompleteProjectAddress(value, type);
   };
 
   $scope.autocompleteBuilding = function(value) {

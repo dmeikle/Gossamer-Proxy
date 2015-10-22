@@ -56,6 +56,13 @@ return array(
     'ACCOUNTING_CHARGEOUT' => 'Chargeout',
     'ACCOUNTING_NEW_GENERAL_COST_ITEM' => 'New General Cost Item',
     'ACCOUNTING_NO_RESULTS' => 'No Results',
+    
+    'ACCOUNTING_ITEMS' => 'Items',
+    'ACCOUNTING_NEW_INVENTORY' => 'New Inventory Item',
+    'ACCOUNTING_UNIT_OF_MEASURE' => 'Unit (of measure)',
+    'ACCOUNTING_UNIT_PRICE' => 'Unit Price',
+    'ACCOUNTING_QUANTITY' => 'Quantity',
+    
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
     

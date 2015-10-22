@@ -9,20 +9,19 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\inventory\models;
+namespace components\claims\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of ClaimStatusModel
  *
  * @author Dave Meikle
  */
-class EquipmentTransferModel extends AbstractModel implements FormBuilderInterface{
+class ClaimStatusModel extends AbstractModel{
     
     
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
@@ -30,13 +29,9 @@ class EquipmentTransferModel extends AbstractModel implements FormBuilderInterfa
         
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
         
-        $this->entity = 'EquipmentTransfer';
-        $this->tablename = 'equipmenttransfers'; 
-    }
-
-    public function getFormWrapper() {
-        return $this->entity;
+        $this->entity = 'ClaimStatus';
+        $this->tablename = 'claimstatus';
     }
     
-
+    
 }

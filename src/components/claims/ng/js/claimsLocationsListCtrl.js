@@ -37,12 +37,21 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
         $scope.loading = true;
         var claimId = document.getElementById('Claim_id').value;
         
-        claimsListSrv.getClaimsLocationsList(claimId).then(function (response) {
+        claimsListSrv.getClaimLocations(claimId).then(function (response) {
             $scope.claimsLocations = claimsListSrv.claimsLocations;
         }).then(function () {
             $scope.loading = false;
         });
     }
 
+    $scope.getStatusColor = function(item) {
+        if(item.WorkStatus_id == 1) {
+            return 'warning';
+        } else if(item.WorkStatus_id == 2) {
+            return 'success';
+        } else {
+            return 'danger';
+        }
+    };
 
 });

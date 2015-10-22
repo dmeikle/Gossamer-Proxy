@@ -1,4 +1,5 @@
-module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryListSrv, inventoryEditSrv) {
+module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
+  inventoryListSrv, inventoryEditSrv, inventoryTransferSrv) {
   // Stuff to run on controller load
   $scope.itemsPerPage = 20;
   $scope.currentPage = 1;
@@ -125,6 +126,27 @@ module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryList
     $scope.getList();
   };
 
+  $scope.transferSelected = function() {
+    openTransferModal();
+  };
+
+  var openTransferModal = function() {
+    var modalInstance = $modal.open({
+      templateUrl: '/render/inventory/transferModal',
+      controller: 'transferModalController',
+      size: 'md',
+      resolve: {
+        multiSelectArray:function() {
+          return $scope.multiSelectArray;
+        }
+      }
+    });
+
+    modalInstance.result.then(function(result) {
+      inventoryTransferSrv.transfer(result);
+    });
+  };
+
   $scope.delete = function(object) {
     var confirmed = window.confirm('Are you sure?');
     if (confirmed) {
@@ -146,4 +168,43 @@ module.controller('inventoryListCtrl', function($scope, tablesSrv, inventoryList
       $scope.getList();
     }
   });
+});
+
+
+module.controller('transferModalController', function($scope, $modalInstance,
+  inventoryTransferSrv, multiSelectArray) {
+  $scope.transfer = {};
+  $scope.loading = true;
+  $scope.equipmentList = multiSelectArray;
+  $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
+    .then(function() {
+      $scope.loading = false;
+    });
+
+  var autocomplete = function(value, type, apiPath) {
+    return inventoryTransferSrv.autocomplete(value, type, apiPath);
+  };
+
+  $scope.autocompleteJobNumber = function(value) {
+    return autocomplete(value, 'jobNumber', '/admin/claims/').then(function() {
+      return inventoryTransferSrv.autocompleteResult.Claims;
+    });
+  };
+
+  $scope.submit = function() {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    var data = $scope.transfer;
+    data.inventoryIds = [];
+    for (var equipment in $scope.equipmentList) {
+      if ($scope.equipmentList.hasOwnProperty(equipment)) {
+        data.inventoryIds.push($scope.equipmentList[equipment].id);
+      }
+    }
+    data.FORM_SECURITY_TOKEN = formToken;
+    $modalInstance.close(data);
+  };
+
+  $scope.close = function() {
+    $modalInstance.dismiss('cancel');
+  };
 });

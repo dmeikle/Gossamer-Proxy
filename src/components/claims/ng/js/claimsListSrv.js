@@ -25,13 +25,32 @@ module.service('claimsListSrv', function($http, searchSrv) {
       });
   };
 
+
   
   this.getClaimsLocationsList = function(claimId) {
       return $http.get(apiPath + 'locations/' + claimId)
       .then(function(response) {        
         self.claimsLocations = response.data.ClaimsLocations;
+
       });
   };
+
+//<<<<<<< HEAD
+  
+  this.getClaimLocations = function(claimId) {
+      return $http.get(apiPathClaimLocation + claimId)
+      .then(function(response) {        
+        self.claimsLocations = response.data.ClaimsLocations;
+      });
+  }
+//=======
+//
+//
+//  this.getClaimLocations = function(object) {
+//      return $http.get(apiPathClaimLocation + object.id)
+//      .then(function(response) {
+//        self.claimLocations = response.data.ClaimsLocations;
+//>>>>>>> origin/CP-134
 
   this.getClaimContacts = function(object) {
       return $http.get(apiPathClaimContacts + object.id)
@@ -40,6 +59,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
       });
   };
 
+
   this.getClaimLocations = function(object) {
       return $http.get(apiPathClaimLocation + object.id)
       .then(function(response) {
@@ -47,6 +67,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
 
       });
   };
+
 
   this.fetchAutocomplete = function(searchObject) {
     return searchSrv.fetchAutocomplete(searchObject, apiPath).then(function() {

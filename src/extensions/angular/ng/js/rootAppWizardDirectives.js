@@ -25,13 +25,11 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
       $scope.nextPage = function() {
         $scope.currentPage = $scope.currentPage + 1;
-        console.log($scope.currentPage);
         // switchPage();
       };
 
       $scope.prevPage = function() {
         $scope.currentPage = $scope.currentPage - 1;
-        console.log($scope.currentPage);
         // switchPage();
       };
 

@@ -36,5 +36,12 @@ return array(
   'CLAIMS_LOSS_DATE' => 'Loss Date',
   'CLAIMS_STATUS' => 'Status',
   'CLAIMS_PROJECT_MANAGER' => 'Project Manager',
-  'CLAIMS_PARENT_CLAIM' => 'Parent Claim'
+  'CLAIMS_PARENT_CLAIM' => 'Parent Claim',
+  'CLAIMS_CONTACTS_LIST' => 'Client List',
+    'CLAIMS_EDIT' => 'Edit Claim',
+    'CLAIMS_PHOTOS' => 'Photos',
+    'CLAIMS_COMMENTS' => 'Comments',
+    'CLAIMS_HISTORY' => 'History',
+    'CLAIMS_TYPE_INFO' => 'Claim Summary',
+    'CLAIMS_ADDRESS_INFO' => 'Project Address'
 );
