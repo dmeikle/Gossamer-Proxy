@@ -1,12 +1,12 @@
 module.directive('wizard', function($compile, $location, wizardSrv) {
   return {
     restricted:'E',
-    scope:false,
+    scope:true,
     link: function(scope, element, attrs) {
 
       var apiPath = '/render/' + element[0].dataset.module + '/' + element[0].dataset.filename;
 
-      scope.wizardLoading = true;
+      scope.$parent.$parent.wizardLoading = true;
 
       wizardSrv.getWizardPages(apiPath).then(function() {
         scope.wizardPages = wizardSrv.wizardPages;
@@ -16,7 +16,7 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
           }
         }
         $compile(element.contents())(scope);
-        scope.wizardLoading = false;
+        scope.$parent.$parent.wizardLoading = false;
       });
     },
     controller: function($scope) {
@@ -25,23 +25,11 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
       $scope.nextPage = function() {
         $scope.currentPage = $scope.currentPage + 1;
-        // switchPage();
       };
 
       $scope.prevPage = function() {
         $scope.currentPage = $scope.currentPage - 1;
-        // switchPage();
       };
-
-      // var switchPage = function() {
-      //   for (var child in wizard.children) {
-      //     if (wizard.children.hasOwnProperty(child)) {
-      //       wizard.removeChild(wizard.children[child]);
-      //     }
-      //   }
-      //   wizard.appendChild($scope.wizardPages[$scope.currentPage]);
-      //   $compile(wizard.children)($scope);
-      // };
     }
   };
 });
