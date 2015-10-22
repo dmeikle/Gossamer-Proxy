@@ -101,12 +101,12 @@
     <table ng-if="listType === 'equipment'" class="table table-striped table-hover">
         <thead>
             <tr>
-                <th column-sortable data-column="id" class="cog-col"><?php echo $this->getString('INVENTORY_ID'); ?></th>
+                <th column-sortable data-column="id"><?php echo $this->getString('INVENTORY_EQUIPMENTID'); ?></th>
                 <th column-sortable data-column="InventoryItems_id"><?php echo $this->getString('INVENTORY_ITEMSID'); ?></th>
                 <th column-sortable data-column="number"><?php echo $this->getString('INVENTORY_NUMBER'); ?></th>
                 <th column-sortable data-column="InventoryEquipmentTypes_id"><?php echo $this->getString('INVENTORY_EQUIPMENTTYPESID'); ?></th>
                 <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
-                <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>                <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
+                <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>
                 <th column-sortable data-column="storageLocation"><?php echo $this->getString('INVENTORY_STORAGELOCATION'); ?></th>
                 <th group-by-button class="cog-col row-controls">&nbsp;</th>
             </tr>
@@ -202,7 +202,7 @@
       <h1><?php echo $this->getString('SELECTED') ?></h1>
       <div class="card" ng-repeat="item in multiSelectArray">
         <div class="cardheader">
-          <h1>{{item.name}} - {{item.number}}</h1>
+          <h1>{{item.number}} - {{item.location.currentLocation}}</h1>
         </div>
       </div>
       <div class="pull-right">

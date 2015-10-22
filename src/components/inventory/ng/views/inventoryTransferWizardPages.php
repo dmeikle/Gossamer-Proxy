@@ -47,7 +47,7 @@
             <div>
               <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
               <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
-                typeahead="value.jobNumber as value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
+                typeahead="value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
                 typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsJobNumber" class="form-control"
                 typeahead-min-length='3'>
               <div class="resultspane" ng-show="noResultsJobNumber">
@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label><?php echo $this->getString('INVENTORY_TRANSFER_CLAIM') ?></label>
+            <label><?php echo $this->getString('INVENTORY_TRANSFER_LOCATION') ?></label>
             getClaimLocation by ID for select box, taken from typeahead
           </div>
           <div class="form-group">
@@ -104,7 +104,6 @@
   <div class="form-group">
     <label class="col-xs-4"><?php echo $this->getString('PASSWORD') ?></label>
     <div class="col-xs-8">
-      <!-- <?php echo $staffAuthorizationForm['password'] ?> -->
       <input type="password" name="transfer[password]" ng-model="transfer.Staff.password"
         class="form-control">
     </div>
