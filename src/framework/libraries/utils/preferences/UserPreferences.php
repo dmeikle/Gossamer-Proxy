@@ -15,6 +15,21 @@ class UserPreferences
 {
     private $params = array();
 
+    
+    public function __construct(array $params = null) {
+        if(!is_null($params)) {
+            //we don't know what object this was loaded from (staff, client, user)
+            //so we'll ignore the key names
+            $element = array_shift($params);
+            if(is_array($element)) {
+                $item = current($element);
+                $this->setViewType($item['viewType']);
+                $this->setDefaultLocale($item['defaultLocale']);
+                $this->setHomePage($item['homePage']);
+            }
+            
+        }
+    }
 
     public function setViewType($view) {
         $this->params['DefaultView'] = $view;
@@ -35,6 +50,14 @@ class UserPreferences
         }
         
         return $this->params['DefaultLocale'];
+    }
+    
+    public function setHomePage($value) {
+        $this->params['homePage'] = $value;
+    }
+    
+    public function getHomePage() {
+        return $this->params['homePage'];
     }
     
     public function setNotificationTypeId($value) {

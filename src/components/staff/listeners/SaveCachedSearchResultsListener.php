@@ -15,7 +15,7 @@ use core\eventlisteners\AbstractCachableListener;
 use core\eventlisteners\Event;
 
 /**
- * LoadCachedSearchResultsFilter
+ * SaveCachedSearchResultsListener
  *
  * @author Dave Meikle
  */

@@ -68,10 +68,11 @@ class CookieManager {
         $cookieValue = $cookie[$cookieName];
 
         if ($this->config['secure'] == 'true') {
+           
             $cookieValue = $this->decrypt($cookieValue, $cookieName);
         }
-
-        return json_decode($cookieValue, true);
+        //strip off any garbage text from decoding
+        return json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/','',$cookieValue), true);
     }
 
     /**
