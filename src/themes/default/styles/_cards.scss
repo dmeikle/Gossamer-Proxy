@@ -23,6 +23,11 @@
     @extend .widgetfooter;
   }
 }
+
+.info-card {
+    @extend .card;
+    background: #f9f9f9;
+}
 .cardheader {
   @extend .widgetheader;
 }

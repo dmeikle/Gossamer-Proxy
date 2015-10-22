@@ -43,5 +43,8 @@ return array(
     'CLAIMS_COMMENTS' => 'Comments',
     'CLAIMS_HISTORY' => 'History',
     'CLAIMS_TYPE_INFO' => 'Claim Summary',
-    'CLAIMS_ADDRESS_INFO' => 'Project Address'
+    'CLAIMS_ADDRESS_INFO' => 'Project Address',
+    'CLAIMS_COMPANY' => 'Company',
+    'CLAIMS_LOCATIONS' => 'Locations',
+    'CLAIMS_ADVANCED_SEARCH' => 'Advanced Search'
 );
