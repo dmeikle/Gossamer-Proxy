@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- admin list -->
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
@@ -22,6 +22,7 @@
   <!-- head start -->
   <!---head--->
   <!-- head end -->
+  
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -33,7 +34,7 @@
 <body cz-shortcut-listen="true" ng-cloak>
   <!---header--->
   <!---subnav--->
-  <div class="clearfix <?php if($this->getViewType() == 'html'){ echo 'hide';} ?>""></div>
+  <div class="clearfix <?php if($this->getViewType() == 'html'){ echo 'hide';} ?>"></div>
   <main class="content full-width <?php if($this->getViewType() == 'tabbed'){ echo 'hide';} ?>">
     <!---content--->
     <!---payload--->

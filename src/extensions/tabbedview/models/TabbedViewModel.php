@@ -76,9 +76,9 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
     }
 
     /**
-     * stores the default locale in a cookie
      * 
-     * @param string $locale - en_US, zh_CN ...
+     * 
+     * @param string $view  tabbed|html ...
      */
     private function setDefaultViewCookie($view) {
 

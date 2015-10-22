@@ -35,7 +35,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
       });
   };
 
-//<<<<<<< HEAD
+
   
   this.getClaimLocations = function(claimId) {
       return $http.get(apiPathClaimLocation + claimId)
@@ -43,14 +43,7 @@ module.service('claimsListSrv', function($http, searchSrv) {
         self.claimsLocations = response.data.ClaimsLocations;
       });
   };
-//=======
-//
-//
-//  this.getClaimLocations = function(object) {
-//      return $http.get(apiPathClaimLocation + object.id)
-//      .then(function(response) {
-//        self.claimLocations = response.data.ClaimsLocations;
-//>>>>>>> origin/CP-134
+
 
   this.getClaimContacts = function(object) {
       return $http.get(apiPathClaimContacts + object.id)
@@ -59,14 +52,6 @@ module.service('claimsListSrv', function($http, searchSrv) {
       });
   };
 
-
-  this.getClaimLocations = function(object) {
-      return $http.get(apiPathClaimLocation + object.id)
-      .then(function(response) {
-        self.claimLocations = response.data.ClaimsLocations;
-
-      });
-  };
 
 
   this.fetchAutocomplete = function(searchObject) {

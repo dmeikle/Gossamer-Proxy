@@ -33,7 +33,7 @@ class UserPreferencesManager {
     public function getPreferences() {
         $manager = new CookieManager();
         $preferences = $manager->getCookie(self::COOKIE_NAME);
-    
+       
         if(is_null($preferences)) {
           
             return null;

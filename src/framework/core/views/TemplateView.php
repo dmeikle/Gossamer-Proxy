@@ -54,7 +54,7 @@ class TemplateView extends AbstractView {
             $viewType = $userPreference->getViewType();
         } else {
             $defaultPreference = $this->httpRequest->getAttribute('defaultPreferences');
-            $viewType = $defaultPreference['default_view'];
+            $viewType = $defaultPreference['default_view']['view'];
         }
         
         return $viewType;

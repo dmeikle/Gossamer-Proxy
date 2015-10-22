@@ -95,7 +95,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Your Tickets</a></li>
-
                         <li><a ng-click="setTabbedView('<?php echo $this->getViewType() == 'tabbed' ? 'html' : 'tabbed'; ?>')">Toggle View</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
