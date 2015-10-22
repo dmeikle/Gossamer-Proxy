@@ -68,6 +68,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
                 lineItems[i].cost = parseFloat(lineItems[i].cost);
                 lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
                 lineItems[i].quantity = parseFloat(lineItems[i].quantity);
+                lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
             }
             $scope.lineItems = lineItems;
             $scope.updateTotal();
@@ -180,7 +181,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         for(var j in inventoryModalSrv.materialsAutocomplete){
             if(inventoryModalSrv.materialsAutocomplete[j].name === value){
                 row.productCode = inventoryModalSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].unitPrice;
+                row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].purchaseCost;
                 row.PackageTypes_id = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
             }
         }
@@ -191,7 +192,7 @@ module.controller('inventoryModalCtrl', function($modalInstance, $scope, invento
         for(var i in inventoryModalSrv.productCodeAutocomplete){
             if(inventoryModalSrv.productCodeAutocomplete[i].productCode === value){
                 row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
-                row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].unitPrice;
+                row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].purchaseCost;
                 row.PackageTypes_id = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
                 row.InventoryItems_id = inventoryModalSrv.productCodeAutocomplete[i].id;
             }

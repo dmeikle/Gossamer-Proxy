@@ -125,7 +125,6 @@
                     <select class="department form-control" name="unitMeasure" ng-model="row.PackageTypes_id">
                         <option value="" selected>-Unit of Measure-</option>
                         <?php foreach($PackageTypes as $type) {
-                            pr($PackageTypes);
                             echo '<option value="' . $type['id'] . '">' . $type['name'] . '</option>';
                         }?>
                     </select>
