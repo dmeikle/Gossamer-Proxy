@@ -1,8 +1,10 @@
 <div class="widget" ng-controller="inventoryEditCtrl">
   <div class="widgetheader">
-    <h1><?php echo $this->getString('EDIT_ITEM') ?></h1>
+    <h1 ng-if="item.id"><?php echo $this->getString('EDIT') ?> {{item.name}}</h1>
+    <h1 ng-if="!item.id"><?php echo $this->getString('INVENTORY_NEWITEM') ?></h1>
   </div>
   <?php echo $form['id'];?>
+  <input type="hidden" ng-model="item.InventoryTypes_id" ng-init="item.InventoryTypes_id = 1">
   <div class="clearfix">
     <div class="form-group col-xs-12 col-md-4">
       <label for=""><?php echo $this->getString('INVENTORY_NAME') ?></label>
@@ -29,13 +31,9 @@
       <label for=""><?php echo $this->getString('INVENTORY_PACKAGETYPE') ?></label>
       <?php echo $form['PackageTypes_id'];?>
     </div>
-    <div class="form-group col-xs-12 col-md-4">
-      <label for=""><?php echo $this->getString('INVENTORY_INVENTORYTYPE') ?></label>
-      <?php echo $form['InventoryTypes_id'];?>
-    </div>
-
-    <form></form>
   </div>
+  
+  <form></form>
   <div class="widgetfooter clearfix">
     <div class="pull-right btn-group">
       <a href="/admin/inventory" class="btn btn-default">
