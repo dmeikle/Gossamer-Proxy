@@ -6,20 +6,8 @@
         <strong><?php echo $this->getString('INVENTORY_TRANSFER_LOCATION') ?></strong>
       </div>
       <div class="col-xs-8">
-        <div ng-if="equipmentList[0].WarehouseLocations_id">
-          {{warehouseLocation}}
-        </div>
-
-        <get-vehicle>
-          <?php foreach ($this->data['Vehicles'] as $vehicle): ?>
-            <input type="hidden" class="vehicle" data-id="<?php echo $vehicle['id']?>"
-              data-number="<?php echo $vehicle['number']?>"
-              data-licensePlate="<?php echo $vehicle['licensePlate']?>">
-          <?php endforeach; ?>
-        </get-vehicle>
-        <!-- <div ng-if="equipmentList[0].Vehicles_id"> -->
         <div>
-          {{vehicle.number}} ({{vehicle.licensePlate}})
+          {{equipmentList[0].location.currentLocation}}
         </div>
       </div>
     </li>
