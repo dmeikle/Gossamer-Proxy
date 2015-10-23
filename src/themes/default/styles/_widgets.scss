@@ -32,8 +32,14 @@
   margin-bottom:0;
 }
 
+@mixin width-transition {
+  transition: width ease .35s;
+}
+
 .widget-content {
   @extend .col-xs-12;
+  @include width-transition;
+
 
   &.panel-open {
     @extend .col-md-8;
@@ -46,6 +52,7 @@
 }
 
 .widget-side-panel {
+    @include width-transition;
   width:0px;
   overflow-x:hidden;
   max-height:100%;

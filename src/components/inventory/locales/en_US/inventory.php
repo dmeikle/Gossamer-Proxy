@@ -29,5 +29,6 @@ return array(
     'INVENTORY_TRANSFER_JOBNUMBER' => 'Job Number',
     'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle',
     'INVENTORY_ITEMSID' => 'Item ID',
-    'INVENTORY_EQUIPMENTTYPESID' => 'Equipment Type'
+    'INVENTORY_EQUIPMENTTYPESID' => 'Equipment Type',
+    'INVENTORY_STORAGELOCATION' => 'Storage'
     );

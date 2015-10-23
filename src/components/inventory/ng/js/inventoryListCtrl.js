@@ -90,6 +90,19 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
         }
     };
 
+    $scope.closeSidePanel = function() {
+        if ($scope.searching) {
+            $scope.searching = false;
+        }
+        if ($scope.selectedStaff) {
+            $scope.selectedStaff = undefined;
+            $scope.previouslyClickedObject = undefined;
+        }
+        if (!$scope.selectedStaff && !$scope.searching) {
+            $scope.sidePanelOpen = false;
+        }
+    };
+
     $scope.search = function(searchObject) {
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
@@ -172,7 +185,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
 
 module.controller('transferModalController', function($scope, $modalInstance,
-    inventoryTransferSrv, multiSelectArray) {
+    inventoryTransferSrv, multiSelectArray, wizardSrv) {
     $scope.transfer = {};
     $scope.loading = true;
     $scope.equipmentList = multiSelectArray;
@@ -181,8 +194,8 @@ module.controller('transferModalController', function($scope, $modalInstance,
             $scope.loading = false;
         });
 
-    $scope.$on('wizardLoading', function(wizardLoading, value) {
-        $scope.wizardLoading = value;
+    $scope.$watch('wizardSrv.wizardLoading', function() {
+        $scope.wizardLoading = wizardSrv.wizardLoading;
     });
 
     var autocomplete = function(value, type, apiPath) {
