@@ -54,7 +54,8 @@
                 </tr>
                 <tr ng-if="!loading" ng-repeat="claim in claimsList"
                     ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
-                    <td ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
+                    <td  ng-if="!claim.jobNumber" ng-click="selectRow(claim)">{{claim.unassignedJobNumber}}</td>
+                    <td ng-if="claim.jobNumber" ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
                     <td ng-click="selectRow(claim)">{{claim.phase}}</td>
                     <td ng-click="selectRow(claim)">{{claim.buildingName}}</td>
                     <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
@@ -67,7 +68,8 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/claims/edit/{{claim.jobNumber}}">Edit</a></li>
+                                <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a href="assignPM({{claim.id}})"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -119,7 +121,7 @@
             <h4><?php echo $this->getString('CLAIMS_CONTACTS') ?></h4>
             <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
                 <p><strong class="ng-binding">{{contact.type}}:</strong> <a href="{{contact.email}}" class="ng-binding">{{contact.firstname}} {{contact.lastname}}</a>
-                    <span style="float: right" class="ng-binding"><strong><?php echo $this->getString('CLAIMS_COMPANY') ?>:</strong> {{contact.company}} </span></p>        
+                    <span style="float: right" class="ng-binding"><strong><?php echo $this->getString('CLAIMS_COMPANY') ?>:</strong> {{contact.company}} </span></p>
                 <p class="ng-binding">
                     <?php echo $this->getString('CLAIMS_OFFICE') ?>: {{contact.office}} {{contact.ext}}
                     <span style="float: right" class="ng-binding"> Mobile: {{contact.mobile}}</span>
@@ -131,7 +133,7 @@
             </div>
 
             <h4><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
-            
+
             <table class="table table-striped table-hover">
                 <tr>
                     <th class="col-md-2"><?php echo $this->getString('CLAIMS_UNIT_NUMBER') ?></th>

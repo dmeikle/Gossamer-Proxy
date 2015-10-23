@@ -54,7 +54,16 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         });
     };
 
-
+    $scope.assignPm = function (pmId) {
+        var modalInstance = $modal.open({
+            templateUrl: '/render/claims/assignPMModal',
+            controller: 'claimsPMModalCtrl',
+            size: 'lg',
+            keyboard: false,
+            backdrop: "static"
+        });
+    }
+    
     function getClaimsList() {
         $scope.loading = true;
         claimsListSrv.getClaimsList(row, numRows).then(function (response) {
@@ -84,6 +93,55 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
     $scope.searchSubmitted = false;
     $scope.basicSearch.query = {};
     getStaffList();
+  };
+});
+
+
+module.controller('claimsPMModalCtrl', function($modalInstance, $scope, claimsEditSrv) {
+  $scope.addNewClient = false;
+
+  $scope.project = {};
+  $scope.claim = {};
+  $scope.claim.query= {};
+
+
+  $scope.autocomplete = function(value) {
+    return autocomplete(value, 'projectmanager');
+  };
+
+
+  $scope.selectPM = function(item, model, label) {
+    $scope.claim.ProjectAddress = item;
+    $scope.claim.query.ProjectAddresses_id = item.id;
+    if (item.buildingYear.parseInt <= 1980) {
+      $scope.claim.query.asbestosTestRequired = 'true';
+    } else {
+      $scope.claim.query.asbestosTestRequired = 'false';
+    }
+  };
+
+  $scope.savePM = function(project) {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    claimsEditSrv.saveProjectManager(project, formToken).then(function(response){
+      $scope.claim.ProjectAddress = response.data.ProjectAddress[0];
+      $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
+      $scope.toggleAdding();
+      $scope.nextPage();
+    });
+  };
+
+  $scope.save = function() {
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
+  };
+
+
+  $scope.confirm = function() {
+    $modalInstance.close($scope.claim.query);
+  };
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
   };
 });
 
