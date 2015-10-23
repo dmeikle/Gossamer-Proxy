@@ -213,7 +213,7 @@ admin_costing:
             text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
             pattern: '/admin/accounting/supplies'
             ng-click: "addTab('text_key', 'template')"
-            template: ''
+            template: '/render/accounting/suppliesTab'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING

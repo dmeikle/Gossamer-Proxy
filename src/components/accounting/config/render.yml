@@ -20,6 +20,12 @@ generalCostsTab:
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
 
+suppliesTab:
+    path: 'src/components/accounting/views/supplies/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+
+
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
     langFiles:
