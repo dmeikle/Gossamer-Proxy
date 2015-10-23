@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -42,26 +42,28 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
 
     public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         $queryParams = $this->httpRequest->getQueryParameters();
-        
+
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
         );
-        
-        foreach($queryParams as $key => $value) {
+
+        foreach ($queryParams as $key => $value) {
             //$params['directive::' . strtoupper($key)] = $value; //commented out to fix advanced search
             $params[$key] = $value;
         }
-        
+
         $defaultLocale = $this->getDefaultLocale();
         $params['locale'] = $defaultLocale['locale'];
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listStaff', $params);
-        try{
+        try {
             //$data['Staffs'] = current($data['Staffs']);
             $data['DepartmentsList'] = $this->formatArray($this->httpRequest->getAttribute('Departments'));
-        }catch(\Exception $e) {}
-        
+        } catch (\Exception $e) {
+
+        }
+
         if (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
         }
@@ -70,12 +72,12 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
     }
 
     private function formatArray(array $result = null) {
-      if(is_null($result)) {
-          return;
-      }
+        if (is_null($result)) {
+            return;
+        }
         $retval = array();
         foreach ($result as $row) {
-            if(count($row) < 1) {
+            if (count($row) < 1) {
                 continue;
             }
             $retval[$row['id']] = $row['name'];
@@ -91,30 +93,30 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
 
         return $this->entity;
     }
-    
+
     public function saveParams(array $params) {
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveStaff', $params);
 
         return $data;
     }
-    
+
     public function paginate($offset, $limit) {
         $params = array(
             'directive::OFFSET' => intval($offset),
             'directive::LIMIT' => intval($limit),
             'isActive' => '1'
         );
-        
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'count', $params); 
-        
-        return $data;   
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'count', $params);
+
+        return $data;
     }
-    
+
     public function search(array $params) {
         $offset = 0;
         $rows = 20;
-        
+
         $params = array_merge($params, array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
             'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
@@ -123,12 +125,13 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
         $params['locale'] = $defaultLocale['locale'];
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
-     
-        
+
+
         if (is_array($data) && array_key_exists(ucfirst($this->entity) . 'sCount', $data)) {
             $data['pagination'] = $this->getPagination($data[ucfirst($this->entity) . 'sCount'], $offset, $rows);
         }
 
         return $data;
     }
+
 }

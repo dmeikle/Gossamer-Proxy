@@ -25,28 +25,27 @@ class AngularTemplateView extends TemplateView {
      */
     protected function renderView() {
 
-        if(!array_key_exists('template', $this->config)) {
+        if (!array_key_exists('template', $this->config)) {
             throw new \exceptions\YamlKeyNotFoundException(__YML_KEY . ' template not set in views configuration');
         }
 
         $this->configureAngular();
         parent::renderView();
-
     }
 
     protected function configureAngular() {
 
-        if(!array_key_exists('angular', $this->config) || !array_key_exists('bootstrap_modules', $this->config['angular'])) {
+        if (!array_key_exists('angular', $this->config) || !array_key_exists('bootstrap_modules', $this->config['angular'])) {
 
             return;
         }
 
         $moduleList = $this->data['modules'];
-        if($moduleList == "''") {
-            $moduleList = '';//lose the empty quotes
+        if ($moduleList == "''") {
+            $moduleList = ''; //lose the empty quotes
         }
         $modules = '';
-        foreach($this->config['angular']['bootstrap_modules'] as $module) {
+        foreach ($this->config['angular']['bootstrap_modules'] as $module) {
 
             $modules .= ",'$module'";
         }

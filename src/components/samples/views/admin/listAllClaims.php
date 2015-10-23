@@ -1,12 +1,12 @@
 <script language="javascript">
 
-$(document).ready(function() {
-   
-   $('.view').click(function() {
-      
-       window.location = '/admin/samples/edit/' + $(this).data('id');
-   });
-});
+    $(document).ready(function () {
+
+        $('.view').click(function () {
+
+            window.location = '/admin/samples/edit/' + $(this).data('id');
+        });
+    });
 
 </script>
 note to self: use Claims_id as the data-id for loading, so that<br>

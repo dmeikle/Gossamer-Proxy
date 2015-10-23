@@ -1,7 +1,7 @@
-module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal) {
+module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
-    $scope.currentPage = 1;    
+    $scope.currentPage = 1;
     $scope.loading = true;
     $scope.previouslyClickedObject = {};
     $scope.noSearchResults = false;
@@ -17,26 +17,26 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
 
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-    var numRows = $scope.itemsPerPage;    
+    var numRows = $scope.itemsPerPage;
 
-    function getGeneralCostsList(){
+    function getGeneralCostsList() {
         $scope.loading = true;
         $scope.noSearchResults = false;
 
-        generalCostsSrv.getGeneralCostsList(row,numRows)
-            .then(function(){
-            $scope.loading = false;
-            $scope.generalCostsList = generalCostsSrv.generalCostsList;
-            $scope.totalItems = generalCostsSrv.generalCostsCount;
-            console.log($scope.totalItems);
-            if(generalCostsSrv.error.showError === true){
-                $scope.error.showError = true;
-                //$scope.error.message = 'Could not reach the database, please try again.';
-            }
-        });
+        generalCostsSrv.getGeneralCostsList(row, numRows)
+                .then(function () {
+                    $scope.loading = false;
+                    $scope.generalCostsList = generalCostsSrv.generalCostsList;
+                    $scope.totalItems = generalCostsSrv.generalCostsCount;
+                    console.log($scope.totalItems);
+                    if (generalCostsSrv.error.showError === true) {
+                        $scope.error.showError = true;
+                        //$scope.error.message = 'Could not reach the database, please try again.';
+                    }
+                });
     }
 
-    $scope.$watch('currentPage + itemsPerPage', function() {
+    $scope.$watch('currentPage + itemsPerPage', function () {
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
         numRows = $scope.itemsPerPage;
@@ -44,23 +44,23 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
     });
 
     //Select Rows for breakdown view
-    $scope.selectRow = function(clickedObject) {
+    $scope.selectRow = function (clickedObject) {
         $scope.searching = false;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelOpen = true;
             $scope.sidePanelLoading = true;
             generalCostsSrv.getGeneralCostItems(row, numRows, clickedObject.id)
-                .then(function(){
-                //                    $scope.sidePanelOpen = true;
-                $scope.selectedRow = clickedObject;
-                $scope.rowBreakdown = generalCostsSrv.generalCostItems;
-                $scope.sidePanelLoading = false;
-            });
+                    .then(function () {
+                        //                    $scope.sidePanelOpen = true;
+                        $scope.selectedRow = clickedObject;
+                        $scope.rowBreakdown = generalCostsSrv.generalCostItems;
+                        $scope.sidePanelLoading = false;
+                    });
         }
     };
 
-    $scope.closeSidePanel = function() {
+    $scope.closeSidePanel = function () {
 //        if ($scope.searching) {
 //            $scope.searching = false;
 //        }
@@ -78,13 +78,13 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
     };
 
     //Search
-    $scope.search = function(searchObject) {
+    $scope.search = function (searchObject) {
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            generalCostsSrv.search(copiedObject).then(function() {
+            generalCostsSrv.search(copiedObject).then(function () {
                 $scope.generalCostsList = generalCostsSrv.searchResults;
                 $scope.totalItems = generalCostsSrv.searchResultsCount;
                 $scope.loading = false;
@@ -92,52 +92,52 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
         }
     };
 
-    $scope.advancedSearch = function(searchObject){
+    $scope.advancedSearch = function (searchObject) {
         $scope.loading = true;
         $scope.noSearchResults = false;
-        generalCostsSrv.advancedSearch(searchObject).then(function(){
+        generalCostsSrv.advancedSearch(searchObject).then(function () {
             $scope.generalCostsList = generalCostsSrv.advancedSearchResults;
             $scope.totalItems = generalCostsSrv.advancedSearchResultsCount;
-            if($scope.totalItems === '0'){
+            if ($scope.totalItems === '0') {
                 $scope.noSearchResults = true;
             }
             $scope.loading = false;
         });
     };
 
-    $scope.resetSearch = function() {
+    $scope.resetSearch = function () {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = '';
         getGeneralCostsList();
     };
-    
-    $scope.autoSearch = function(searchString){
-        if(searchString.length >= 3){
+
+    $scope.autoSearch = function (searchString) {
+        if (searchString.length >= 3) {
             $scope.search(searchString);
         }
     };
 
-    $scope.resetAdvancedSearch = function() {
+    $scope.resetAdvancedSearch = function () {
         $scope.searchSubmitted = false;
         $scope.advSearch = {};
         getGeneralCostsList();
     };
 
-    $scope.openAdvancedSearch = function() {
+    $scope.openAdvancedSearch = function () {
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
         $scope.searching = true;
     };
-    
-    //Date Picker
-    $scope.dateOptions = {'starting-day':1};
 
-    $scope.openDatepicker = function(event, datepicker){
+    //Date Picker
+    $scope.dateOptions = {'starting-day': 1};
+
+    $scope.openDatepicker = function (event, datepicker) {
         $scope.isOpen.datepicker[datepicker] = true;
     };
-    
+
     //Modal
-    $scope.openGeneralCostsModal = function(generalCost) {
+    $scope.openGeneralCostsModal = function (generalCost) {
         console.log(generalCost);
         $scope.modalLoading = true;
         var template = accountingTemplateSrv.generalCostsModal;
@@ -151,10 +151,10 @@ module.controller('generalCostsListCtrl', function($scope, costCardItemTypeSrv, 
                 }
             }
         });
-        modal.opened.then(function(){
+        modal.opened.then(function () {
             $scope.modalLoading = false;
         });
-        modal.result.then(function(){
+        modal.result.then(function () {
             getGeneralCostsList();
         });
     };

@@ -25,7 +25,6 @@ use components\staff\serialization\StaffSerializer;
 use components\staff\serialization\StaffPositionsSerializer;
 use core\eventlisteners\Event;
 
-
 class StaffController extends AbstractController {
 
     public function save($id) {
@@ -40,18 +39,18 @@ class StaffController extends AbstractController {
 
     public function search() {
         $result = $this->httpRequest->getAttribute($this->getSearchKey());
-       
-        if(!is_array($result)) {
+
+        if (!is_array($result)) {
             $result = $this->model->search($this->httpRequest->getQueryParameters());
             $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
-        }        
-        
+        }
+
         $this->render($result);
     }
 
     private function getSearchKey() {
         $params = $this->httpRequest->getQueryParameters();
-        
+
         return 'search/staff_' . $params['name'];
     }
 
@@ -77,8 +76,6 @@ class StaffController extends AbstractController {
         $this->render($result);
     }
 
-
-
     public function index() {
         $result = array();
 
@@ -88,6 +85,7 @@ class StaffController extends AbstractController {
     public function createNew() {
         $this->edit(0);
     }
+
     /**
      * edit - display an input form based on requested id
      *
@@ -103,13 +101,12 @@ class StaffController extends AbstractController {
 
 
             $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
-            if(is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
+            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
                 $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
             }
-
         }
 
-        if(intval($id) == 0) {
+        if (intval($id) == 0) {
             $result['aform'] = $this->drawCredentialsForm($staffAuthorization, array());
         }
         $result['id'] = intval($id);
@@ -162,6 +159,7 @@ class StaffController extends AbstractController {
 
         return $staffBuilder->buildForm($builder, $values, $options, $results);
     }
+
     protected function drawCredentialsForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $authorizationBuilder = new StaffAuthorizationBuilder();
@@ -172,22 +170,20 @@ class StaffController extends AbstractController {
         return $authorizationBuilder->buildCredentialsForm($builder, $values, $options, $results);
     }
 
-
     public function uploadPhoto($id) {
         $filenames = array();
         $staffImagePath = __UPLOADED_IMAGES_PATH . 'staff' . DIRECTORY_SEPARATOR;
 
         $this->mkdir($staffImagePath);
 
-        if(move_uploaded_file($_FILES['file']['tmp_name'], $staffImagePath . $_FILES['file']['name'])) {
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $staffImagePath . $_FILES['file']['name'])) {
             $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
 
             $this->model->saveParams($params);
         }
 
-       $this->render(array('success' => 'true'));
+        $this->render(array('success' => 'true'));
     }
-
 
     /**
      * Creates a directory recursively.
@@ -197,8 +193,7 @@ class StaffController extends AbstractController {
      *
      * @throws IOException On any directory creation failure
      */
-    private function mkdir($dirs, $mode = 0777)
-    {
+    private function mkdir($dirs, $mode = 0777) {
         foreach ($this->toIterator($dirs) as $dir) {
             if (is_dir($dir)) {
                 continue;
@@ -222,12 +217,12 @@ class StaffController extends AbstractController {
      *
      * @return \Traversable
      */
-    private function toIterator($files)
-    {
+    private function toIterator($files) {
         if (!$files instanceof \Traversable) {
             $files = new \ArrayObject(is_array($files) ? $files : array($files));
         }
 
         return $files;
     }
+
 }

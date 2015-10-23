@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -60,10 +60,10 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
     }
 
     private function formatArray(array $result) {
-      
+
         $retval = array();
         foreach ($result as $row) {
-            if(count($row) < 1) {
+            if (count($row) < 1) {
                 continue;
             }
             $retval[$row['id']] = $row['name'];
@@ -80,13 +80,12 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
         return $this->entity;
     }
 
-    
-     /**
+    /**
      * queries the datasource and deletes the record
-     * 
+     *
      * @param type $offset
      * @param type $rows
-     * 
+     *
      * @return array
      */
     public function deleteContact($staffId, $contactId) {
@@ -97,5 +96,5 @@ class StaffEmergencyContactModel extends AbstractModel implements FormBuilderInt
 
         return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
     }
-    
+
 }

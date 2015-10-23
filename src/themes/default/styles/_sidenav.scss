@@ -117,16 +117,16 @@ nav ul.sub-item li>a{
 }
 
 .nav-list {
-  opacity: 1;
+    opacity: 1;
 }
 
 .nav-list.ng-hide-add, .nav-list.ng-hide-remove {
-  transition: all ease-out $transition-duration;
-  white-space: nowrap;
+    transition: all ease-out $transition-duration;
+    white-space: nowrap;
 }
 
 .nav-list.ng-hide {
-  opacity: 0;
+    opacity: 0;
 }
 
 main{

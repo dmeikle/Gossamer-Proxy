@@ -5,7 +5,7 @@
 <!--- javascript end --->
 
 <style>
-    .photo {        
+    .photo {
         margin-top: 20px;
     }
     .photo img{
@@ -28,17 +28,17 @@
         <div class="block-content-outer">
             <div id="photo-list"></div>
             <div class="block-content-inner" ng-controller="ClaimPhotosController as cpCtrl" >
-               <?php //foreach($photos as $photo) {?>
-              
+                <?php //foreach($photos as $photo) {?>
+
                 <div class="photo col-md-2" ng-repeat="photo in cpCtrl.items">
-                        
-                        <img src="/images/claims/<?php echo $claim['jobNumber']; ?>/{{photo.photo}}" />
-                        <div class="description">
-                           {{photo.description}}
-                        </div>
-                        
-                    </div>                
-               <?php //} ?>
+
+                    <img src="/images/claims/<?php echo $claim['jobNumber']; ?>/{{photo.photo}}" />
+                    <div class="description">
+                        {{photo.description}}
+                    </div>
+
+                </div>
+                <?php //} ?>
                 <div style="clear: both; overflow: hidden"></div>
             </div>
         </div>
@@ -48,8 +48,8 @@
 
 <script language="javascript">
 
-$(document).ready( function() {
-  // $("#photo-list").append('<img src="/image.php?imagepath=claims/MV15-EMERG101/2.jpg" alt="" />'); 
-})();
-   
+            $(document).ready(function() {
+    // $("#photo-list").append('<img src="/image.php?imagepath=claims/MV15-EMERG101/2.jpg" alt="" />');
+    })();
+
 </script>

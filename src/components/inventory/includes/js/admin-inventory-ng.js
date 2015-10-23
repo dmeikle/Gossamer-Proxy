@@ -8,11 +8,11 @@
  */
 
 
-(function() {
-    
-   
-  angular.module('inventory', [])    
-    .controller('InventoryController', function($scope, $http) {
-        
-    });
+(function () {
+
+
+    angular.module('inventory', [])
+            .controller('InventoryController', function ($scope, $http) {
+
+            });
 })();

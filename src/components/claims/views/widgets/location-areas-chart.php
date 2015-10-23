@@ -6,7 +6,7 @@
         clear: both;
         margin: 5px 10px 0px 0px;
     }
-    
+
     .area {
         float: left;
         margin-right: 5px;

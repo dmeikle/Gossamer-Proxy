@@ -1,7 +1,7 @@
 <?php
 
 return array(
-  'WIDGET_PAGE_NAME' => 'Widget Page Name',
+    'WIDGET_PAGE_NAME' => 'Widget Page Name',
     'WIDGET_PAGE_YAML_KEY' => 'YML Key',
     'WIDGET_PAGE_HTMLKEY' => 'HTML Key',
     'WIDGET_PAGE_DESCRIPTION' => 'Description',
@@ -28,5 +28,4 @@ return array(
     'WIDGET_PRIORITY' => 'Priority',
     'WIDGET_PAGE_ADD' => 'Add Widget',
     'WIDGET_PAGE_ADD_WIDGET' => 'Add New Widgets'
-    
 );

@@ -1,10 +1,10 @@
 <script language="javascript">
 
-$(document).ready(function() {
-   $('.edit').click(function() {
-      window.location = '/admin/events/eventprospects/' + $(this).data('id');
-   });
-});
+    $(document).ready(function () {
+        $('.edit').click(function () {
+            window.location = '/admin/events/eventprospects/' + $(this).data('id');
+        });
+    });
 
 </script>
 <h2>Events Prospects List</h2>
@@ -20,11 +20,12 @@ $(document).ready(function() {
             <th>Action</th>
         </tr>
     </thead>
-    <?php 
-    foreach($EventProspects as $prospect) {
-        if(!is_array($prospect) || count($prospect) < 1) {
+    <?php
+    foreach ($EventProspects as $prospect) {
+        if (!is_array($prospect) || count($prospect) < 1) {
             continue;
-        } ?>    
+        }
+        ?>
         <tr>
             <td>
                 <?php echo $prospect['Events_id']; ?>
@@ -42,8 +43,8 @@ $(document).ready(function() {
                 <?php echo $prospect['merged']; ?>
             </td>
             <td>
-                <button data-id="<?php echo $prospect['id'];?>" class="btn btn-primary edit">Edit</button>
-              
+                <button data-id="<?php echo $prospect['id']; ?>" class="btn btn-primary edit">Edit</button>
+
             </td>
         </tr>
     <?php } ?>

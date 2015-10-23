@@ -1,5 +1,6 @@
 
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 include_once('includes/configuration.php');
@@ -16,9 +17,9 @@ echo "app page<br>";
 $httpRequest = new HTTPRequest();
 $httpResponse = new HTTPResponse();
 
- 
-                   
-            $cmd = new $componentName($controllerName, $viewName, $modelName, $method,$httpRequest->getParameters(), $logger);  
-            $cmd->setContainer($container);
-              
-            return $cmd->handleRequest($httpRequest, $httpResponse);
+
+
+$cmd = new $componentName($controllerName, $viewName, $modelName, $method, $httpRequest->getParameters(), $logger);
+$cmd->setContainer($container);
+
+return $cmd->handleRequest($httpRequest, $httpResponse);

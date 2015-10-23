@@ -8,6 +8,6 @@
  */
 
 
-module.service('claimsTemplateSrv', function() {
+module.service('claimsTemplateSrv', function () {
     this.claimEditModal = '/render/claims/claimEditModal';
 });

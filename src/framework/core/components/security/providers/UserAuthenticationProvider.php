@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -26,15 +26,14 @@ use core\services\ServiceInterface;
 class UserAuthenticationProvider extends DatasourceAware implements AuthenticationProviderInterface, ServiceInterface {
 
     protected $container;
-    
-    
+
     /**
      * load the client info
-     * 
+     *
      * @param type $credential
-     * 
+     *
      * @return Client
-     * 
+     *
      * @throws ClientCredentialsNotFoundException
      */
     public function loadClientByCredentials($credential) {
@@ -52,7 +51,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     /**
-     * 
+     *
      * @param ClientInterface $client
      * @return type
      */
@@ -61,7 +60,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     /**
-     * 
+     *
      * @param type $class
      * @return type
      */
@@ -70,7 +69,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     /**
-     * 
+     *
      * @param ClientInterface $client
      * @return type
      */
@@ -80,7 +79,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     /**
-     * 
+     *
      * @return string
      */
     protected function getClientIp() {
@@ -105,7 +104,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     public function execute() {
-        
+
     }
 
     public function setContainer(\libraries\utils\Container $container) {
@@ -113,7 +112,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
     }
 
     public function setParameters(array $params) {
-        
+
     }
 
 }

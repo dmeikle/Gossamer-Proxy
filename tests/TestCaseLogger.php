@@ -1,4 +1,5 @@
 <?php
+
 namespace tests;
 
 /*
@@ -12,18 +13,16 @@ namespace tests;
  *
  * @author Dave Meikle
  */
-
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+class TestCaseLogger extends \PHPUnit_Framework_TestCase {
 
-class TestCaseLogger  extends \PHPUnit_Framework_TestCase{
-    
     protected $logger = null;
-    
-   public function __construct() {
-        $logger = new Logger('rest_service');
-        $logger->pushHandler(new StreamHandler( __SITE_PATH . "/../logs/monolog.log", Logger::DEBUG));
 
-   }
+    public function __construct() {
+        $logger = new Logger('rest_service');
+        $logger->pushHandler(new StreamHandler(__SITE_PATH . "/../logs/monolog.log", Logger::DEBUG));
+    }
+
 }

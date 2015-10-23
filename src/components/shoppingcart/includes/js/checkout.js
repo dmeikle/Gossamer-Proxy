@@ -1,7 +1,7 @@
-$( document ).ready(function() {
-    
-    $("#confirmBuyerInfo").click(function(){        
-        $("#confirmBuyerForm").submit();        
+$(document).ready(function () {
+
+    $("#confirmBuyerInfo").click(function () {
+        $("#confirmBuyerForm").submit();
     });
-    
+
 });

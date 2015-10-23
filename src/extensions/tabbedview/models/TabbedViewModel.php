@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,16 +19,15 @@ use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-
 /**
  * Model for the TabbedView table
  *
  * @author Dave Meikle
  */
-class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
+class TabbedViewModel extends AbstractModel implements FormBuilderInterface {
 
     /**
-     * 
+     *
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
@@ -50,16 +49,16 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
             'Staff_id' => $this->getLoggedInStaffId(),
             'viewType' => $view
         );
-        
+
         $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
         $this->setDefaultViewCookie($view);
-        
+
         return true;
     }
 
     /**
      * stores the default view in session
-     * 
+     *
      * @param string $view (tabbed/html)
      */
     public function setDefaultView($view) {
@@ -76,8 +75,8 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * @param string $view  tabbed|html ...
      */
     private function setDefaultViewCookie($view) {

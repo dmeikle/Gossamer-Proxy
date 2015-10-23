@@ -4,9 +4,9 @@
 <!--- javascript end --->
 
 <div class="col-md-9 col-lg-10">
-    <div class="mailbox-container mailbox-message-view" data-email-id="1" ng-controller="MessageController" data-ng-init="init('<?php echo $uniqueId;?>')">
+    <div class="mailbox-container mailbox-message-view" data-email-id="1" ng-controller="MessageController" data-ng-init="init('<?php echo $uniqueId; ?>')">
         <div class="message-subject h2">
-           {{message.subject}}
+            {{message.subject}}
             <span class="badge highlight-color-green">New</span>
             <span class="email-extra-icons">
                 <span class="glyphicon glyphicon-picture icon-size-small highlight-color-blue-text" title="Pictures Attached"></span>
@@ -44,23 +44,23 @@
                     From: <span class="sender-name">{{message.fromStaff}}{{message.fromContact}}</span> <span class="sender-email">({{message.fromStaffEmail}}{{message.toStaffEmail}}{{message.fromContactEmail}}{{message.fromContactEmail}})</span>
                 </div>
                 <div class="message-recepient">
-                    To: <span class="recepient-name">Me</span> <span class="send-date">at  {{message.sendDate}}</span> 
+                    To: <span class="recepient-name">Me</span> <span class="send-date">at  {{message.sendDate}}</span>
                 </div>
-                
+
             </div>
         </div>
         <div class="message-body-container">
             <div class="message-body">
-                 {{message.message}}
+                {{message.message}}
             </div>
-            
+
         </div>
         <div ng-show="isReplyFormOpen" id="reply-container" ng-controller="ReplyController">
             <form method="post">
-                <?php echo $form['uniqueId'];?>
-                <?php echo $form['reply'];?>
-                <?php echo $form['sendReply'];?>
-                <?php echo $form['discard'];?>  
+                <?php echo $form['uniqueId']; ?>
+                <?php echo $form['reply']; ?>
+                <?php echo $form['sendReply']; ?>
+                <?php echo $form['discard']; ?>
             </form>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'SECTION1' => 'The influence for the design of this office was the city Shanghai, I had been up to Shanghai a few times and one trip photographed a lot of architectural details that were predominant European but had subtle touches of Chinese elements of design. The feel I was going for was a Shanghai trading company from around the 1920’s-30’s. My starting point was using the Chinese cloud element of design and I incorporated in screens, doors, light fixtures, ceiling corners, and for the custom entrance floor mosaic tile pattern. ',
     'SECTION2' => 'I used the dimensions of a 4 seated cubicle and used two styles of Chinese screen designs for the partitions that have the cloud icon. I designed the post to be capped with simple Tudor detail to finish the ends off. Basically using a new seating unit concept but using older styling.',
     'SECTION3' => 'Main entrance doors were custom made with the screen detail of the cloud icon, this pattern would then be transferred to the floor mosaic pattern.',
@@ -14,4 +14,4 @@ return array (
     'SECTION11' => 'Now in the Womans restroom, I had the antique replica cabinet made and put a marble slab on top plus chose round Chinese antique hardware to coincide with all the specified round fixtures that sourced to suit.',
     'SECTION12' => 'I added other black Chinese antique furniture to Asian inspired chairs in the reception area. ',
     'SECTION13' => 'These two photos are of the gift  showroom, I also built the cabinets at the back and one shelving unit  then let the guys build the rest. I chose a grey ceiling to coincide  with the concrete floors in a sense to frame the white walls for  display.'
-    );
+);

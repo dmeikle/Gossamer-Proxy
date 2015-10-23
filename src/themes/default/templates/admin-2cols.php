@@ -35,10 +35,10 @@
     <body cz-shortcut-listen="true">
         <!---header--->
         <!---leftnav--->
-        
+
         <div class="container-fluid">
             <div class="row">
-                
+
                 <div class="column-container">
                     <main ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}" class="content">
                         <!---content--->

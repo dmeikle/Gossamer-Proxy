@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'NAV_HOME' => '家',
     'NAV_CATEGORIES' => '分类',
     'NAV_PRODUCTS' => '产品',

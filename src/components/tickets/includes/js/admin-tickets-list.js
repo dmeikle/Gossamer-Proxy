@@ -8,23 +8,23 @@
  */
 
 
-$(document).ready(function() {
-   
+$(document).ready(function () {
+
     $.ajaxSetup({
-        beforeSend:function(){
+        beforeSend: function () {
             // show gif here, eg:
             $("#loading").show();
         },
-        complete:function(){
+        complete: function () {
             // hide gif here, eg:
             $("#loading").hide();
         }
     });
-    $('.edit').click(function(e) {
-      // var staffId =  $(this).data('id');
-     //  $('#myForm').trigger("reset");
-       $( "#feature-slider-edit" ).panel( "open"  );
-       
+    $('.edit').click(function (e) {
+        // var staffId =  $(this).data('id');
+        //  $('#myForm').trigger("reset");
+        $("#feature-slider-edit").panel("open");
+
 //       $.get( '/admin/staff/ajaxedit/' + staffId,
 //           function(data) {
 //               
@@ -35,12 +35,12 @@ $(document).ready(function() {
 //        );
 //        $('#staffId').val(staffId);
     });
-    
-    $('.view-ticket').click(function() {
+
+    $('.view-ticket').click(function () {
         $('#left-feature-slider').toggle('true');
     });
-    
-    $('.ticket-cancel').click(function() {
+
+    $('.ticket-cancel').click(function () {
         $('#left-feature-slider').toggle('false');
     });
 });

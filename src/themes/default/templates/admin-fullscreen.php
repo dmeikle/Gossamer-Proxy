@@ -51,7 +51,7 @@
         <!-- head start -->
         <!---head--->
         <!-- head end -->
-        
+
         <!---css--->
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -129,9 +129,9 @@
                                     <div class="col-md-12">
                                         <div class="block">
                                             <div class="block-heading">
-<!--                                                <div class="main-text h2">
-                                                    header here
-                                                </div>-->
+                                                <!--                                                <div class="main-text h2">
+                                                                                                    header here
+                                                                                                </div>-->
                                                 <div class="block-controls">
                                                     <span aria-hidden="true" class="icon icon-cross icon-size-medium block-control-remove"></span>
                                                     <span aria-hidden="true" class="icon icon-arrow-down icon-size-medium block-control-collapse"></span>

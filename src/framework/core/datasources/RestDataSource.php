@@ -2,12 +2,13 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
+
 namespace core\datasources;
 
 use core\datasources\DataSourceInterface;
@@ -19,7 +20,7 @@ use core\datasources\AdapterInterface;
 
 /**
  * Datasource used to connect to the RESTful API server
- * 
+ *
  * @author Dave Meikle
  */
 class RestDataSource implements DataSourceInterface, AdapterInterface {
@@ -78,7 +79,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
 //pr($result);
         if ($result->info->http_code == 200) {
             $decodedResult = $result->decode_response();
-              
+
             if (is_null($decodedResult) || empty($decodedResult)) {
                 return null;
             }
@@ -102,7 +103,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
     }
 
     private function handleError($result) {
-        if(!is_object($result)) {
+        if (!is_object($result)) {
             pr($result);
             die;
         }
@@ -115,9 +116,9 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
 
     /**
      * builds the headers for the request
-     * 
+     *
      * @param type $credentials
-     * 
+     *
      * @return array
      */
     private function buildHeaders($credentials) {
@@ -140,9 +141,9 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
 
     /**
      * gets the credentials to identify ourselves to the API server
-     * 
+     *
      * @param type $ymlKey
-     * 
+     *
      * @return array
      */
     private function getCredentials($ymlKey) {

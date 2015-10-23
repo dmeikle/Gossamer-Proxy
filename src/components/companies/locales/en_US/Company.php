@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'COMPANY_INFO' => 'Company Information',
     'COMPANY_ADD_NEW' => 'Add New Company',
     'COMPANY_NAME' => 'Name',

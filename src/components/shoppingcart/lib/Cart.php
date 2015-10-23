@@ -9,17 +9,11 @@ use components\shoppingcart\entities\VolumeDiscount;
 class Cart extends CartIterator {
 
     private $USDTotal = 0;
-
     private $CDNTotal = 0;
-
     private $cartWeight = 0;
-
     private $shippingOffset = 0;
-
     private $numPackages = 1;
-
     private $totalSurcharges = 0;
-
     private $datasource = null;
 
     public function __construct(RestDataSource $datasource) {
@@ -102,7 +96,6 @@ class Cart extends CartIterator {
         $tmp['quantity'] = $quantity;
 
         $this->checkPricing($tmp);
-
     }
 
     function moveFirst() {
@@ -124,7 +117,6 @@ class Cart extends CartIterator {
         // $tmp->priceCAD=$tmp->priceCAD*(1-(.01*$discount->discount));
         // $tmp->priceUSD=$tmp->priceUSD*(1-(.01*$discount->discount));
         $tmp['price'] = $data['price'] * (1 - (.01 * $data['discount']));
-
     }
 
     function setItemOptions(&$tmp, $variants) {
@@ -154,7 +146,6 @@ class Cart extends CartIterator {
         }
         $variant = null;
         return 0;
-
     }
 
 }

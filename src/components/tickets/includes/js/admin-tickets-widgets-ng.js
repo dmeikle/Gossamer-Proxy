@@ -7,15 +7,15 @@
  *  file that was distributed with this source code.
  */
 
-(function() {
-    
-   
-  angular.module('tickets', [])
-    .controller('ticketsCtrl', function($scope, $http) {
-        $http.get("/admin/tickets/opencount")
-        .success(function(response) {
-            $scope.count = response.numRows;
-        });
-    });
+(function () {
+
+
+    angular.module('tickets', [])
+            .controller('ticketsCtrl', function ($scope, $http) {
+                $http.get("/admin/tickets/opencount")
+                        .success(function (response) {
+                            $scope.count = response.numRows;
+                        });
+            });
 
 })();

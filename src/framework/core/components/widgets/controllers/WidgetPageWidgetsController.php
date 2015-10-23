@@ -8,6 +8,7 @@
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
+
 namespace core\components\widgets\controllers;
 
 use core\AbstractController;
@@ -26,11 +27,11 @@ class WidgetPageWidgetsController extends AbstractController {
 
         $this->render($serializer->formatResults($result));
     }
-    
-   
+
     public function deletePageWidget($ymlKey, $widgetId) {
         $result = $this->model->deletePageWidget($ymlKey, intval($widgetId));
-        
+
         $this->render($result);
     }
+
 }

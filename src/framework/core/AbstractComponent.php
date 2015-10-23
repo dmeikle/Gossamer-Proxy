@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -23,13 +23,13 @@ use core\views\AJAXExceptionView;
 use Validation\Exceptions\ValidationFailedException;
 
 /**
- * 
+ *
  * class AbstractComponent -    this is the base class for the drop in components used to
  *                              preload any listeners for the selected component as well as
  *                              any pre-config.
- * 
+ *
  * @author Dave Meikle
- * 
+ *
  * @Copyright: Quantum Unit Solutions 2014
  */
 abstract class AbstractComponent {
@@ -44,7 +44,7 @@ abstract class AbstractComponent {
     private $agentType;
 
     /**
-     * 
+     *
      * @param string $controllerName
      * @param string $viewName
      * @param string $modelName
@@ -52,7 +52,7 @@ abstract class AbstractComponent {
      * @param array $params
      * @param Logger $logger
      * @param array $agentType
-     * 
+     *
      * @throws ParameterNotPassedException
      */
     public function __construct($controllerName, $viewName, $modelName, $method = null, array $params = null, Logger $logger, array $agentType) {
@@ -80,7 +80,7 @@ abstract class AbstractComponent {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -89,13 +89,13 @@ abstract class AbstractComponent {
 
     /**
      * handleRequest - entry point for the class
-     * 
+     *
      * @param Request   the filtered request object
      * @param Registry  the registry object
-     * 
+     *
      */
     public function handleRequest(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
-    
+
         $handler = array(
             $this->controllerName,
             $this->method
@@ -107,7 +107,7 @@ abstract class AbstractComponent {
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
             $static = $httpRequest->getAttribute($this->modelName . '_static');
             if (!is_null($static) && strlen($static) > 0) {
-              
+
                 echo $static;
                 $this->container->get('EventDispatcher')->dispatch('all', system\KernelEvents::RENDER_BYPASS, new Event());
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, system\KernelEvents::RENDER_BYPASS, new Event());
@@ -126,17 +126,17 @@ abstract class AbstractComponent {
 
             $controller->setContainer($this->container);
             try {
-                //before we attempt to continue, check to see if there is an 
-                //validation exception flag 
-                if(!is_null($httpRequest->getAttribute('ExceptionOccurred'))) {
+                //before we attempt to continue, check to see if there is an
+                //validation exception flag
+                if (!is_null($httpRequest->getAttribute('ExceptionOccurred'))) {
                     throw new ValidationFailedException();
                 }
-                
+
                 return call_user_func_array(array(
                     $controller,
                     $this->method
                         ), !isset($this->params) ? array() : $this->params);
-            }catch(ValidationFailedException $ve) {
+            } catch (ValidationFailedException $ve) {
                 //stop processing and return the failed list to the view.
                 //currently this is only thrown by ajax requests since a POST
                 //request will redirect to the calling page
@@ -147,8 +147,7 @@ abstract class AbstractComponent {
                 $controller->setView($view);
 
                 return $controller->render($httpRequest->getAttribute('AJAX_ERROR_RESULT'));
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 echo "standard error\r\n";
                 echo $e->getMessage();
                 //die($e->getMessage());
@@ -168,7 +167,7 @@ abstract class AbstractComponent {
     }
 
     /**
-     * 
+     *
      * @return datasource
      */
     private function getDatasource() {

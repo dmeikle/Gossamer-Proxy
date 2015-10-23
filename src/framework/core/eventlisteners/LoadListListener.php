@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -22,17 +22,17 @@ class LoadListListener extends AbstractCachableListener {
      * while this loads the list into httprequest, you still need to retrieve it from the request
      * into the data array if needed in the view (I'm refering to 'inside the controller').
      * That means the controller needs to say $list = $this->httpRequest->getAttribute('name-of-key-from-yml');
-     * 
+     *
      * this gets called only if it fails the cached values check, so you won't see
      * any 'get from cache' in this method
      */
     protected function loadList() {
 
         $caching = true;
-        
+
         $class = $this->listenerConfig['class'];
         $params = (array_key_exists('params', $this->listenerConfig) ? $this->listenerConfig['params'] : array());
-        
+
         $defaultLocale = $this->getDefaultLocale();
         if (!array_key_exists('locale', $params)) {
             $params['locale'] = $defaultLocale['locale'];
@@ -91,14 +91,15 @@ class LoadListListener extends AbstractCachableListener {
     }
 
     protected function getVerb() {
-        
-        if(array_key_exists('verb', $this->listenerConfig)) {
+
+        if (array_key_exists('verb', $this->listenerConfig)) {
             return $this->listenerConfig['verb'];
         }
-        if(array_key_exists('customVerb', $this->listenerConfig)) {
+        if (array_key_exists('customVerb', $this->listenerConfig)) {
             return $this->listenerConfig['customVerb'];
         }
-        
+
         return 'list';
     }
+
 }

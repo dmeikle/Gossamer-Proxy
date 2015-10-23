@@ -3,7 +3,7 @@
  */
 /*
    DEMO ONLY: Used for demo purposes only
- */
+*/
 .block.basic-buttons button,
 .block.basic-buttons-rounded button,
 .block.basic-links a.btn,
@@ -23,11 +23,11 @@
 .block.justified-link-variation .btn-group,
 .block.single-button-dropdown .btn-group,
 .block.split-button-dropdown .btn-group {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .block.vertical-variation .btn-group-vertical {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 .block.dropup-block .btn-group {
-  clear: both;
+    clear: both;
 }

@@ -6,10 +6,10 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
     $scope.authorization = {};
     $scope.isOpen = {};
     $scope.contacts = [];
-    
+
     getProjectAddress();
     getClaimDetails();
-    
+
     // datepicker stuffs
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (event) {
@@ -18,20 +18,20 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
     };
 
     function getClaimDetails() {
-       
+
         var claimId = document.getElementById('Claim_id').value;
 
         claimsEditSrv.getClaimDetails(claimId).then(function () {
-            $scope.claim = claimsEditSrv.claimDetails;            
+            $scope.claim = claimsEditSrv.claimDetails;
             $scope.loading = false;
-            
+
         });
     }
 
     function getProjectAddress() {
-       
+
         var addressId = document.getElementById('Claim_ProjectAddresses_id').value;
-        
+
         claimsEditSrv.getProjectAddress(addressId).then(function () {
             $scope.projectAddress = claimsEditSrv.projectAddress;
             $scope.loading = false;
@@ -55,8 +55,8 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;
     };
-    
-    $scope.openEditModal = function(claim) {
+
+    $scope.openEditModal = function (claim) {
         $scope.modalLoading = true;
         var template = claimsTemplateSrv.claimEditModal;
         var modal = $modal.open({
@@ -69,12 +69,12 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
                 }
             }
         });
-        modal.opened.then(function(){
+        modal.opened.then(function () {
             $scope.modalLoading = false;
         });
-        modal.result.then(function(){
-           
+        modal.result.then(function () {
+
         });
     };
-    
+
 });

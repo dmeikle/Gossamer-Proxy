@@ -3,7 +3,7 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
     var apiPath = '/admin/claims/';
     var singleApiPath = '/admin/claim/';
     var projectApiPath = '/admin/projects/';
-    
+
     var self = this;
 
 
@@ -17,7 +17,7 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
 
 
     this.getClaimDetails = function (id) {
-     
+
         return crudSrv.getDetails(apiPath, id).then(function (response) {
             self.claimDetails = response.data.Claim;
         });
@@ -36,13 +36,13 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
         return crudSrv.save(object, 'ProjectAddress', formToken, '/admin/projects/');
     };
 
-    this.getProjectAddress = function (id) {        
+    this.getProjectAddress = function (id) {
         return crudSrv.getDetails(projectApiPath, id).then(function (response) {
             self.projectAddress = response.data.ProjectAddress;
         });
     };
-    
-    this.getContacts = function(jobNumber) {
+
+    this.getContacts = function (jobNumber) {
         return crudSrv.getDetails('/admin/contacts/claim/', jobNumber).then(function (response) {
             self.contacts = response.data.ClaimContacts;
         });

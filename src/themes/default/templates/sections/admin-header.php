@@ -16,7 +16,7 @@
 
 
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
-            
+
 
             <ul class="navbar-right">
                 <li class="dropdown" id="context-button">
@@ -38,8 +38,12 @@
         </div>
     </nav>
 </header>
-<div class="tab-container" ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}">    
-    <div id="tabs" ng-controller="tabsCtrl" ng-cloak class="<?php if($this->getViewType() == 'html'){ echo 'hide';} ?>">
+<div class="tab-container" ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}">
+    <div id="tabs" ng-controller="tabsCtrl" ng-cloak class="<?php
+    if ($this->getViewType() == 'html') {
+        echo 'hide';
+    }
+    ?>">
         <tabset>
             <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
                 <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
