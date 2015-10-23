@@ -23,10 +23,11 @@ return array(
   'CLAIMS_ISPICTURES' => 'Photos Taken',
   'CLAIMS_CONTACT_TYPE' => 'Contact Type',
   'CLAIMS_CONTACT_EXT' => 'Extension',
-  'CLAIMS_CONTACT_NAME' => 'Name',
-  'CLAIMS_CONTACT_PHONE' => 'Phone',
-  'CLAIMS_CONTACT_OFFICE' => 'Office Phone',
-  'CLAIMS_CONTACT_MOBILE' => 'Mobile Phone',
+  'CLAIMS_NAME' => 'Name',
+  'CLAIMS_PHONE' => 'Phone',
+  'CLAIMS_DAYTIME_PHONE' => 'Daytime Phone',
+  'CLAIMS_OFFICE' => 'Office',
+  'CLAIMS_MOBILE' => 'Mobile',
   'CLAIMS_CONTACTS' => 'Contacts',
   'CLAIMS_ADDRESS' => 'Address',
   'CLAIMS_JOBNUMBER' => 'Job Number',
@@ -46,5 +47,8 @@ return array(
     'CLAIMS_ADDRESS_INFO' => 'Project Address',
     'CLAIMS_COMPANY' => 'Company',
     'CLAIMS_LOCATIONS' => 'Locations',
-    'CLAIMS_ADVANCED_SEARCH' => 'Advanced Search'
+    'CLAIMS_ADVANCED_SEARCH' => 'Advanced Search',
+    'CLAIMS_UNIT_NUMBER' => 'Unit',    
+    'CLAIMS_NEW' => 'New Claim',
+    'CLAIMS_VIEW' => 'view'
 );

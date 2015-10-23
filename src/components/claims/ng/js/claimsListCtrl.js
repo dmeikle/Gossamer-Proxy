@@ -34,7 +34,7 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
             $scope.sidePanelOpen = true;
             claimsListSrv.getClaimLocations(clickedObject.id)
                     .then(function () {
-                        $scope.selectedClaim.locations = claimsListSrv.claimLocations;
+                        $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
                     });
             claimsListSrv.getClaimContacts(clickedObject)
                 .then(function() {
