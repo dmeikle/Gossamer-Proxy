@@ -157,6 +157,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
         modalInstance.result.then(function(result) {
             inventoryTransferSrv.transfer(result);
+            $scope.getList();
         });
     };
 
