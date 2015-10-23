@@ -14,6 +14,7 @@ $white: #fff;
     z-index:0;
     transition:width ease-out .25s;
     border-right: 1px solid rgba(0,0,0,0.15);
+    position:fixed;
     a{
         color:#000;
     }
@@ -38,6 +39,10 @@ $white: #fff;
             width:100%;
             display: block;
             cursor:pointer;
+            transition: all .25s ease-out;
+            &:hover{
+                background-color:#eee;
+            }
         }
     }
 }
@@ -54,9 +59,10 @@ $white: #fff;
         }
     }
     &.has-sub-items{
-        >span{
+        border-bottom: 1px solid rgba(0,0,0,.05);
+/*        >span{
            font-weight:700;
-        }        
+        }        */
     }
 }
 .nav-toggle{
@@ -76,6 +82,10 @@ $white: #fff;
     }
     li{
         padding-left:2em;
+        transition: all .25s ease-out;
+        &:hover{
+            background-color:#eee;
+        }
     }
 }
 
@@ -90,4 +100,12 @@ $white: #fff;
 
 .nav-list.ng-hide {
   opacity: 0;
+}
+
+main{
+    margin-left:250px;
+    transition:all .25s ease-out;
+    &.sideNavClosed{
+        margin-left:30px;
+    }
 }

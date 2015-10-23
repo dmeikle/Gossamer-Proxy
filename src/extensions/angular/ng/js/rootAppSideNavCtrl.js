@@ -1,24 +1,8 @@
-module.controller('sideNavCtrl', function($scope, tabsSrv) {
+module.controller('sideNavCtrl', function($scope, tabsSrv, sideNavSrv) {
     $scope.prevClickedItem = '';
     $scope.prevSubItems = '';
-    $scope.sideNavOpen = true;
-    $scope.test = 'this is a test';
-    $scope.navItems = [{
-        title:'Accounting',
-        subItems:[{
-            title:'Timesheets'
-        },{
-            title:'General Cost Items'
-        }]    
-    },{
-        title:'Staff',
-        subItems:[{
-            title:'List'
-        },{
-            title:'Permissions'
-        }]
-    }];
-
+    $scope.sideNavOpen = sideNavSrv.sideNavOpen; 
+    
     $scope.expanded = {};
     
     $scope.toggleSubnav = function(event){ 
@@ -50,34 +34,24 @@ module.controller('sideNavCtrl', function($scope, tabsSrv) {
                 $scope.prevClickedItem = '';
                 navItem.removeClass('active');
             }
-            
-                
         }
-        
-        
-        
-//        if($scope.prevSubItems.length !== 0 && $scope.prevClickedItem[0] !== navItem[0]){
-//            jQuery($scope.prevSubItems).slideUp(150);
-//            subItems.slideDown(150);
-//            console.log('slide up');
-//            $scope.prevSubItems = subItems;
-//        } else {
-//            subItems.slideUp(150);
-//            console.log('slide down');
-//            $scope.prevSubItems = '';
-//        }
-        
-        //navItem.toggleClass('active');
-        //subItems.slideToggle(150);
-//        $scope.prevClickedItem = navItem;
-//        $scope.prevSubItems = subItems;
     };
     
     $scope.toggleSidenav = function(){
-        if($scope.sideNavOpen === true){
-            $scope.sideNavOpen = false;
+        console.log('toggling nav...');
+        console.log(sideNavSrv.sideNavOpen);
+        
+        if(sideNavSrv.sideNavOpen === true){
+            console.log('it be troo');
+            sideNavSrv.sideNavOpen = false;
         } else {
-            $scope.sideNavOpen = true;
-        }        
+            console.log('it be false.');
+            sideNavSrv.sideNavOpen = true;
+        }
+        console.log(sideNavSrv.sideNavOpen);
     };
+    
+    $scope.$watch(function() { return sideNavSrv.sideNavOpen; }, function(newVal) { 
+        $scope.sideNavOpen = newVal;
+    }, true);
 });

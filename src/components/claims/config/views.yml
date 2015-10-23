@@ -97,6 +97,7 @@ admin_claims_edit:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/claims/edit.php
             cards: src/components/claims/views/admin/claims/edit-cards.php
             footer: src/themes/default/templates/sections/footer.php
