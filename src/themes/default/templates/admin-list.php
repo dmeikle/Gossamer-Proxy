@@ -37,7 +37,7 @@
   <!---subnav--->
   <!---leftnav--->
   <div class="clearfix <?php if($this->getViewType() == 'html'){ echo 'hide';} ?>"></div>
-  <main class="content full-width <?php if($this->getViewType() == 'tabbed'){ echo 'hide';} ?>">
+  <main ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}" class="content full-width <?php if($this->getViewType() == 'tabbed'){ echo 'hide';} ?>">
     <!---content--->
     <!---payload--->
   </main>

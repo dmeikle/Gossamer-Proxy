@@ -38,14 +38,15 @@
         </div>
     </nav>
 </header>
-
-<div id="tabs" ng-controller="tabsCtrl" ng-cloak class="<?php if($this->getViewType() == 'html'){ echo 'hide';} ?>">
-    <tabset>
-        <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
-            <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
-            <div ng-if="tab.loading" class="tab-loader"><span class="spinner-loader"></span></div>
-            <div ng-include="tab.template" onload="hideSpinner(tab)" class="tab-include"></div>
-            <div>{{tab.content}} {{tab.template}}</div>
-        </tab>
-    </tabset>
+<div class="tab-container" ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}">    
+    <div id="tabs" ng-controller="tabsCtrl" ng-cloak class="<?php if($this->getViewType() == 'html'){ echo 'hide';} ?>">
+        <tabset>
+            <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
+                <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
+                <div ng-if="tab.loading" class="tab-loader"><span class="spinner-loader"></span></div>
+                <div ng-include="tab.template" onload="hideSpinner(tab)" class="tab-include"></div>
+                <div>{{tab.content}} {{tab.template}}</div>
+            </tab>
+        </tabset>
+    </div>
 </div>

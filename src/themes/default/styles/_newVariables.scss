@@ -17,3 +17,16 @@ $navbar-default-link-active-color:         #fff;
 $navbar-default-link-active-bg:            lighten($navbar-default-bg, 6.5%);
 $navbar-default-link-disabled-color:       #fff;
 $navbar-default-link-disabled-bg:          transparent;
+
+//Footer links
+$footer-link-color:             #757575;
+$footer-link-hover-color:       #9E9E9E;
+
+//Sidenav
+$transparent: rgba(0, 0, 0, 0);
+$white: #fff;
+$transition-duration:       0s;
+$side-nav-width:            235px;
+$side-nav-closed-width:     0px;
+$side-nav-toggle-width:     20px;
+$header-height:             50px;
