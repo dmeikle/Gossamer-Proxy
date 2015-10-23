@@ -180,7 +180,9 @@ class RestClient implements \Iterator, \ArrayAccess {
 
      //   if($client->options['format'])
       //      $client->url .= '.'.$client->options['format'];
-
+        if(is_null($parameters)) {
+            $parameters = array();
+        }
         $parameters = array_merge($client->options['parameters'], $parameters);
      
         if(strtoupper($method) == 'POST'){
