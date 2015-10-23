@@ -104,7 +104,7 @@ module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEdit
   };
 
   var autocomplete = function(value, type) {
-    return claimsEditSrv.autocompleteProjectAddress(value, type);
+    return claimsEditSrv.autocomplete(value, type);
   };
 
   $scope.autocompleteBuilding = function(value) {
