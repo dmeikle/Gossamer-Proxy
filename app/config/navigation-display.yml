@@ -527,6 +527,8 @@ admin_claims:
     children:
         claims_list_all:
             text_key: 'ADMIN_CLAIMS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/claims/claimsAdminTab'
             pattern: '/admin/claims'
             display_roles:
                 - IS_ADMINISTRATOR
