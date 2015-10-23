@@ -226,7 +226,7 @@ module.controller('transferModalController', function($scope, $modalInstance,
         data.inventoryIds = [];
         for (var equipment in $scope.equipmentList) {
             if ($scope.equipmentList.hasOwnProperty(equipment)) {
-                data.inventoryIds.push($scope.equipmentList[equipment].id);
+                data.inventoryIds.push($scope.equipmentList[equipment].InventoryEquipment_id);
             }
         }
         data.FORM_SECURITY_TOKEN = formToken;
