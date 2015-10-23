@@ -382,6 +382,16 @@ admin_accounting_general:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING    
                 - IS_DEVELOPER
+        admin_accounting_inventory:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_INVENTORY'
+            pattern: '/admin/accounting/inventory'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/inventory'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING    
+                - IS_DEVELOPER
                 
 #admin_accounting_general_costs_test:
 #    active: true

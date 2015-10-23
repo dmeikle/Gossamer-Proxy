@@ -1,4 +1,4 @@
-module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, inventorySrv, $modal, tablesSrv) {
+module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, suppliesSrv, $modal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -40,12 +40,12 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
     function getList() {
         $scope.loading = true;
         $scope.noSearchResults = false;
-        inventorySrv.getList(row, numRows)
+        suppliesSrv.getList(row, numRows)
                 .then(function () {
                     $scope.loading = false;
-                    $scope.list = inventorySrv.list;
-                    $scope.totalItems = inventorySrv.listRowCount;
-                    if (inventorySrv.error.showError === true) {
+                    $scope.list = suppliesSrv.list;
+                    $scope.totalItems = suppliesSrv.listRowCount;
+                    if (suppliesSrv.error.showError === true) {
                         $scope.error.showError = true;
                     }
                 });
@@ -71,10 +71,10 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelOpen = true;
             $scope.sidePanelLoading = true;
-            inventorySrv.getBreakdown(row, numRows, clickedObject.id)
+            suppliesSrv.getBreakdown(row, numRows, clickedObject.id)
                     .then(function () {
                         $scope.selectedRow = clickedObject;
-                        $scope.rowBreakdown = inventorySrv.breakdownItems;
+                        $scope.rowBreakdown = suppliesSrv.breakdownItems;
                         $scope.sidePanelLoading = false;
                     });
         } else {
@@ -98,9 +98,9 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            inventorySrv.search(copiedObject).then(function () {
-                $scope.list = inventorySrv.searchResults;
-                $scope.totalItems = inventorySrv.searchResultsCount;
+            suppliesSrv.search(copiedObject).then(function () {
+                $scope.list = suppliesSrv.searchResults;
+                $scope.totalItems = suppliesSrv.searchResultsCount;
                 if ($scope.totalItems === 0) {
                     $scope.noSearchResults = true;
                 }
@@ -112,9 +112,9 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
     $scope.advancedSearch = function (searchObject) {
         $scope.loading = true;
         $scope.noSearchResults = false;
-        inventorySrv.advancedSearch(searchObject).then(function () {
-            $scope.list = inventorySrv.advancedSearchResults;
-            $scope.totalItems = inventorySrv.advancedSearchResultsCount;
+        suppliesSrv.advancedSearch(searchObject).then(function () {
+            $scope.list = suppliesSrv.advancedSearchResults;
+            $scope.totalItems = suppliesSrv.advancedSearchResultsCount;
             if ($scope.totalItems === 0) {
                 $scope.noSearchResults = true;
             }
