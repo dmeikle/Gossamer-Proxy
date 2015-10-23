@@ -232,9 +232,9 @@ admin_accounts_receivable:
         admin_accounting_sales_invoices:
             active: true
             text_key: 'ADMIN_ACCOUNTING_SALES_INVOICES'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -242,9 +242,9 @@ admin_accounts_receivable:
         admin_accounting_breakdowns:
             active: true
             text_key: 'ADMIN_ACCOUNTING_BREAKDOWNS'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -254,7 +254,7 @@ admin_accounts_receivable:
             text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '#'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -264,7 +264,7 @@ admin_accounts_receivable:
             text_key: 'ADMIN_ACCOUNTING_AGING_SUMMARY_REPORT'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '#'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -274,7 +274,7 @@ admin_accounts_receivable:
             text_key: 'ADMIN_ACCOUNTING_AGING_DETAILS_REPORT'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '#'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -293,9 +293,9 @@ admin_accounting_accounts_payables:
         admin_accounting_purchase_orders:
             active: true
             text_key: 'ADMIN_ACCOUNTING_PURCHASE_ORDERS'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -303,9 +303,9 @@ admin_accounting_accounts_payables:
         admin_accounting_unassociated_pos:
             active: true
             text_key: 'ADMIN_ACCOUNTING_UNASSOCIATED_POS'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -313,9 +313,9 @@ admin_accounting_accounts_payables:
         admin_accounting_purchase_invoices:
             active: true
             text_key: 'ADMIN_ACCOUNTING_PURCHASE_INVOICES'
-            pattern: '/admin/accounting/supplies'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -325,7 +325,7 @@ admin_accounting_simply_accounting:
     active: true
     text_key: 'ADMIN_ACCOUNTING_SIMPLY_ACCOUNTING'
     ng-click: "addTab('text_key', 'template')"
-    template: '/render/accounting/generalCostsTab'
+    template: ''
     display_roles:
         - IS_ADMINISTRATOR
         - IS_ACCOUNTING
@@ -334,9 +334,9 @@ admin_accounting_simply_accounting:
         admin_accounting_batches:
             active: true
             text_key: 'ADMIN_ACCOUNTING_BATCHES'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -344,9 +344,9 @@ admin_accounting_simply_accounting:
         admin_accounting_approved_to_export:
             active: true
             text_key: 'ADMIN_ACCOUNTING_APPROVED_TO_EXPORT'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -354,9 +354,9 @@ admin_accounting_simply_accounting:
         admin_accounting_settings:
             active: true
             text_key: 'ADMIN_ACCOUNTING_SETTINGS'
-            pattern: '/admin/accounting/supplies'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -366,7 +366,7 @@ admin_accounting_general:
     active: true
     text_key: 'ADMIN_ACCOUNTING_GENERAL'
     ng-click: "addTab('text_key', 'template')"
-    template: '/render/accounting/generalCostsTab'
+    template: ''
     display_roles:
         - IS_ADMINISTRATOR
         - IS_ACCOUNTING    
@@ -375,9 +375,9 @@ admin_accounting_general:
         admin_accounting_view_accounts:
             active: true
             text_key: 'ADMIN_ACCOUNTING_VIEW_ACCOUNTS'
-            pattern: '/admin/generalcosts'
+            pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: '/render/accounting/generalCostsTab'
+            template: ''
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING    

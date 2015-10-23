@@ -6,6 +6,7 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
         template:'',
         content:'Welcome to Tabbed View. Pages will now load as tabs.'
     };
+    
     if($scope.tabs.length === 0){
         $scope.tabs.push(defaultTab);
     }
@@ -15,8 +16,6 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
             title: title,
             template: template
         };
-        //Check to see if the tab is already open
-        console.log(tabObj);
         tabsSrv.addTab(tabObj);
         $scope.tabs = tabsSrv.tabs;
     };
@@ -31,8 +30,6 @@ module.controller('tabsCtrl', function($scope, tabsSrv) {
     };
     
     $scope.setTabbedView = function(value){
-        console.log('setting tabbed view');
         tabsSrv.setTabbedView(value);
-    };
-    
+    };    
 });

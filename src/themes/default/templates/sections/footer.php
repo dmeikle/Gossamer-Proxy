@@ -1,4 +1,4 @@
-<footer>
+<footer ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}">
   <div class="wrapper">
     <div id="footerNav">
       <ul>
