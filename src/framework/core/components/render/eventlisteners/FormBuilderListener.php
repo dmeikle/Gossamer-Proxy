@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,44 +19,45 @@ use core\components\render\serialization\DependencySerializer;
  *
  * @author Dave Meikle
  */
-class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener{
-    
+class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener {
+
     public function on_filerender_start($params) {
-        
-        if(!array_key_exists('formBuilder', $this->listenerConfig)) {
+
+        if (!array_key_exists('formBuilder', $this->listenerConfig)) {
             throw new Exception('formBuilder key missing from listener config', 508, null);
-        } elseif(!array_key_exists('model', $this->listenerConfig)) {
+        } elseif (!array_key_exists('model', $this->listenerConfig)) {
             throw new Exception('model key missing from listener config', 508, null);
-        } 
-        
+        }
+
         $modelClass = $this->listenerConfig['model'];
         $builderClass = $this->listenerConfig['formBuilder'];
-        
+
         $model = new $modelClass($this->httpRequest, $this->httpResponse, $this->logger);
         $builder = new FormBuilder($this->logger, $model);
-        
-        $formBuilder = new $builderClass();        
+
+        $formBuilder = new $builderClass();
 
         $this->httpResponse->setAttribute('form', $formBuilder->buildForm($builder, array(), $this->getDependencies(), array()));
     }
-    
+
     protected function getDependencies() {
-        if(!array_key_exists('dependencies', $this->listenerConfig)) {
+        if (!array_key_exists('dependencies', $this->listenerConfig)) {
             return array();
         }
-        
+
         $retval = array();
-        
-        foreach($this->listenerConfig['dependencies'] as $dependency) {
+
+        foreach ($this->listenerConfig['dependencies'] as $dependency) {
             $retval[$dependency['key']] = $this->formatDependency($dependency);
         }
-      
+
         return $retval;
     }
-    
+
     protected function formatDependency(array $dependency) {
         $serializer = new DependencySerializer();
-      
+
         return $serializer->formatSelectionBox($dependency['value'], $dependency['text'], $this->httpRequest->getAttribute($dependency['dependency']));
     }
+
 }

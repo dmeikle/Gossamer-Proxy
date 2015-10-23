@@ -4,59 +4,59 @@
 
 "use strict";
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-	/* Call Function: circloidRFMisc() */
-	// Miscellaneous - Always load first
-	circloidRFMisc();
+    /* Call Function: circloidRFMisc() */
+    // Miscellaneous - Always load first
+    circloidRFMisc();
 
-	/* Call Function: circloidRFResponsiveness() */
-	// Load immediately after "circloidRFMisc Function" for proper responsive behaviour
-	circloidRFResponsiveness();
+    /* Call Function: circloidRFResponsiveness() */
+    // Load immediately after "circloidRFMisc Function" for proper responsive behaviour
+    circloidRFResponsiveness();
 
-	/* Call Function: circloidMenuNav() */
-	// Let Menu
-	circloidMenuNav({
-		container: ".mainnav",
-		eventtype: "click"
-	});
-	
-	/* Call Function: circloidMenuNav() */
-	// Horizontal
-	circloidMenuNav({
-		container: ".mainnav-horizontal",
-		eventtype: "click",
-		menuposition: "top"
-	});
+    /* Call Function: circloidMenuNav() */
+    // Let Menu
+    circloidMenuNav({
+        container: ".mainnav",
+        eventtype: "click"
+    });
 
-	/* Call Function: circloidLanguageMenu() */
-	circloidLanguageMenu();
+    /* Call Function: circloidMenuNav() */
+    // Horizontal
+    circloidMenuNav({
+        container: ".mainnav-horizontal",
+        eventtype: "click",
+        menuposition: "top"
+    });
 
-	/* Call Function: circloidSearchBar() */
-	circloidSearchBar();
+    /* Call Function: circloidLanguageMenu() */
+    circloidLanguageMenu();
 
-	/* Call Function: circloidNotificationAlert() */
-	circloidNotificationAlert({
-		eventtype: "click"
-	});
+    /* Call Function: circloidSearchBar() */
+    circloidSearchBar();
 
-	/* Call Function: circloidProfileMenu() */
-	circloidProfileMenu({
-		eventtype: "click"
-	});
+    /* Call Function: circloidNotificationAlert() */
+    circloidNotificationAlert({
+        eventtype: "click"
+    });
 
-	/* Call Function: circloidBlocks() */
-	circloidBlocks({
-		colorcollapsed: "red"
-	});
+    /* Call Function: circloidProfileMenu() */
+    circloidProfileMenu({
+        eventtype: "click"
+    });
 
-	/* Call Function: circloidRevealBugFix() */
-	/* IMPORTANT: Always place this at the bottom of Circloid main functions if you wish to use animated menus */
-	circloidRevealBugFix();
+    /* Call Function: circloidBlocks() */
+    circloidBlocks({
+        colorcollapsed: "red"
+    });
 
-	/* Call Any Required User-Defined Functions & Plugins - Start */
+    /* Call Function: circloidRevealBugFix() */
+    /* IMPORTANT: Always place this at the bottom of Circloid main functions if you wish to use animated menus */
+    circloidRevealBugFix();
 
-	/* Call Any Required User-Defined Functions & Plugins - End */
+    /* Call Any Required User-Defined Functions & Plugins - Start */
+
+    /* Call Any Required User-Defined Functions & Plugins - End */
 
 
 });

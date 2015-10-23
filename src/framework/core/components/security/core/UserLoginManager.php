@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -34,7 +34,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     protected $loggingIn = true;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger) {
@@ -43,7 +43,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -52,9 +52,9 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * authenticates a user based on their context
-     * 
+     *
      * @param \core\components\security\core\SecurityContextInterface $context
-     * 
+     *
      * @throws ClientCredentialsNotFoundException
      */
     public function authenticate(SecurityContextInterface $context) {
@@ -78,24 +78,24 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
             //since we want to know WHY a person was not allowed, run each check individually
             if ($this->statusIsLocked($client)) {
-                $this->logger->addAlert('login_status_locked');               
+                $this->logger->addAlert('login_status_locked');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_locked', new Event('login_status_locked', $eventParams));
-               
+
                 setSession('_security_secured_area', null);
             }
             if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
                 $this->logger->addAlert('login_password_mismatch');
-                echo $client->getPassword() . ' ' . $token->getClient()->getPassword() .'<br>';
+                echo $client->getPassword() . ' ' . $token->getClient()->getPassword() . '<br>';
                 echo __YML_KEY;
                 die('mismatch');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
             }
-            
+
             if (!$this->checkStatus($client)) {
-                $this->logger->addAlert('login_status_not_active');               
+                $this->logger->addAlert('login_status_not_active');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_not_active', new Event('login_status_not_active', $eventParams));
             }
-            if (!$this->checkRolesSet($client)) {               
+            if (!$this->checkRolesSet($client)) {
                 $this->logger->addAlert('login_roles_not_set');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_roles_not_set', new Event('login_roles_not_set', $eventParams));
             }
@@ -114,7 +114,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * checks to ensure a client's roles are known
-     * 
+     *
      * @param \core\components\security\core\Client $client
      * @return boolean
      */
@@ -130,9 +130,9 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * check if a client account is locked
-     * 
+     *
      * @param \core\components\security\core\Client $client
-     * 
+     *
      * @return boolean
      */
     private function statusIsLocked(Client $client) {
@@ -142,10 +142,10 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * check if the passwords match
-     * 
+     *
      * @param type $clientPassword
      * @param type $tokenPassword
-     * 
+     *
      * @return boolean
      */
     private function checkPasswordsMatch($clientPassword, $tokenPassword) {
@@ -157,9 +157,9 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * check a user's status
-     * 
+     *
      * @param \core\components\security\core\Client $client
-     * 
+     *
      * @return boolean
      */
     private function checkStatus(Client $client) {
@@ -170,14 +170,14 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      * placeholder function since we need the ServiceInterface
      */
     public function execute() {
-        
+
     }
 
     /**
      * accessor
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @throws ArgumentNotPassedException
      */
     public function setParameters(array $params) {
@@ -197,13 +197,13 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
         } else {
             $this->userAuthenticationProvider = $params['invite_authentication_provider'];
         }
-    
-       //pr($this->userAuthenticationProvider);
+
+        //pr($this->userAuthenticationProvider);
     }
 
     /**
      * generates a new empty token
-     * 
+     *
      * @return SecurityToken
      */
     public function generateEmptyToken() {
@@ -215,7 +215,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
     }
 
     /**
-     * 
+     *
      * @return \core\components\security\core\Client
      */
     public function getClient() {
@@ -231,7 +231,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * accessor
-     * 
+     *
      * @return array
      */
     protected function getClientCredentials() {
@@ -248,7 +248,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * accessor
-     * 
+     *
      * @return string
      */
     protected function getPassword() {
@@ -262,7 +262,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * accessor
-     * 
+     *
      * @return string|null
      */
     protected function getClientHeaderPassword() {
@@ -277,7 +277,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
     /**
      * accessor
-     * 
+     *
      * @return string
      */
     protected function getClientHeaderCredentials() {

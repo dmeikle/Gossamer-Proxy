@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_TITLE' => 'Title',
     'LABEL_BRIEF_DESCRIPTION' => 'Brief Description',
     'LABEL_DESCRIPTION' => 'Description',
@@ -29,11 +29,9 @@ return array (
     'LABEL_IN_STOCK' => 'In Stock',
     'LABEL_ENABLED' => 'Enabled',
     'LABEL_DISCONTINUED' => 'Discontinued',
-    
     'BUTTON_CREATE_NEW' => 'Create New Product',
     'LABEL_PRODUCT_LIST' => 'Product List',
     'BUTTON_EDIT' => 'Edit',
-    'BUTTON_DELETE' => 'Delete',    
+    'BUTTON_DELETE' => 'Delete',
     'BUTTON_VOLUME_DISCOUNT' => 'Volume Discounts'
-    
 );

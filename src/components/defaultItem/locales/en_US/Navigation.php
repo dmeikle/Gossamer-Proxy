@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return array(
     'NAV_HOME' => 'Home',
     'NAV_ARTIST_PROFILE' => 'Artist Profile',
     'NAV_CART' => 'Collection',
@@ -37,32 +38,26 @@ return array (
     'ADMIN_REMINDERS' => 'Reminders',
     'ADMIN_CMS' => 'Website',
     'ADMIN_PROJECTS' => 'Building Addresses',
-    
     'ADMIN_STAFF_TIMESHEETS' => 'Timesheets',
     'ADMIN_STAFF_DIRECTORY' => 'Staff Directory',
-    
     'ADMIN_ACCOUNTING_COSTING' => 'Costing',
     'ADMIN_ACCOUNTING_TIMESHEETS' => 'Timesheets',
     'ADMIN_ACCOUNTING_GENERAL_COSTS' => 'General Costs',
     'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK' => 'Supplies Used',
-    
     'ADMIN_ACCOUNTING_ACCOUNTS_RECEIVABLE' => 'Accounts Receivable',
     'ADMIN_ACCOUNTING_SALES_INVOICES' => 'Sales Invoices',
     'ADMIN_ACCOUNTING_BREAKDOWNS' => 'Breakdowns',
     'ADMIN_ACCOUNTING_CASH_RECEIPTS' => 'Cash Receipts',
     'ADMIN_ACCOUNTING_AGING_SUMMARY_REPORT' => 'Aging Summary Report',
     'ADMIN_ACCOUNTING_AGING_DETAILS_REPORT' => 'Aging Details Report',
-    
     'ADMIN_ACCOUNTING_ACCOUNTS_PAYABLE' => 'Accounts Payable',
     'ADMIN_ACCOUNTING_PURCHASE_ORDERS' => 'Purchase Orders',
     'ADMIN_ACCOUNTING_UNASSOCIATED_POS' => 'Unassociated PoS',
     'ADMIN_ACCOUNTING_PURCHASE_INVOICES' => 'Purchase Invoices',
-    
     'ADMIN_ACCOUNTING_SIMPLY_ACCOUNTING' => 'Simply Accounting',
     'ADMIN_ACCOUNTING_BATCHES' => 'Batches',
     'ADMIN_ACCOUNTING_APPROVED_TO_EXPORT' => 'Approved to Export',
     'ADMIN_ACCOUNTING_SETTINGS' => 'Settings',
-    
     'ADMIN_ACCOUNTING_GENERAL' => 'Accounting General',
     'ADMIN_ACCOUNTING_VIEW_ACCOUNTS' => 'View Accounts'
 );

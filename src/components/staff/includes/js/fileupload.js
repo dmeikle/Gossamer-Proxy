@@ -8,14 +8,14 @@
  */
 
 
-$(window).load(function(){ // This runs when the window has loaded
-    
-    var img = $("").attr('src', 'YourImagePath/img.jpg').load(function() {
+$(window).load(function () { // This runs when the window has loaded
+
+    var img = $("").attr('src', 'YourImagePath/img.jpg').load(function () {
         $("#a1").append(img);
         // When the image has loaded, stick it in a div
     });
-    
-    var img2 = $("").attr('src', 'YourImagePath/img2.jpg').load(function() {
+
+    var img2 = $("").attr('src', 'YourImagePath/img2.jpg').load(function () {
         $("#a2").append(img2);
     });
 });

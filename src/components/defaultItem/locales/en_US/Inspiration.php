@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return array(
     'PAGE_CONTENT' => '<p>"The desire to cre­ate is one of the deep­est yearn­ings of the human soul. No mat­ter our tal­ents, edu­ca­tion, back­grounds, or abil­i­ties, we each have an inher­ent wish to cre­ate some­thing that did not exist before.<br>
 We develop our­selves and oth­ers when we take unor­ga­nized mat­ter into our hands and mold it into some­thing of beauty."<br>
 <strong>- Dieter F. Uchtdorf</strong>

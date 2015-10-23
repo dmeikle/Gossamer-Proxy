@@ -1,6 +1,6 @@
 <!--- javascript start --->
-    
-    @components/staff/includes/js/admin-staff-list-ng.js
+
+@components/staff/includes/js/admin-staff-list-ng.js
 
 <!--- javascript end --->
 
@@ -32,7 +32,7 @@
                     </tr>
 <!--                    <tr>
                         <td>Gender:</td>
-                        <td><?php //echo $form['gender']; ?></td>
+                        <td><?php //echo $form['gender'];         ?></td>
                     </tr>-->
                     <tr>
                         <td>Telephone:</td>

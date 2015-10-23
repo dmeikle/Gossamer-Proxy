@@ -1,51 +1,51 @@
 // General Costs service
-module.service('inventorySrv', function($http, searchSrv, $filter) {
+module.service('inventorySrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/supplies/';
-    
+
     var self = this;
-    
+
     self.error = {};
     self.error.showError = false;
-    
+
     //Get the list of inventory items
-    this.getList = function(row, numRows){
+    this.getList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
-            .then(function(response) {
-            self.list = response.data.SuppliesUseds;
-            self.listRowCount = response.data.SuppliesUsedsCount[0].rowCount;            
-        }, function(response){
-            //Handle any errors
-            self.error.showError = true;
-        });
+                .then(function (response) {
+                    self.list = response.data.SuppliesUseds;
+                    self.listRowCount = response.data.SuppliesUsedsCount[0].rowCount;
+                }, function (response) {
+                    //Handle any errors
+                    self.error.showError = true;
+                });
     };
-    
+
     //Get the breakdown of the selected item
-    this.getBreakdown = function(row, numRows, id){
+    this.getBreakdown = function (row, numRows, id) {
         return $http.get(apiPath + id)
-            .then(function(response) {
-            self.breakdownItems = response.data.InventoryItems;
-            self.generalCostsCount = response.data.InventoryItemsCount[0].rowCount;
-        }, function(response){
-            //Handle any errors
-            self.error.showError = true;
-        });
+                .then(function (response) {
+                    self.breakdownItems = response.data.InventoryItems;
+                    self.generalCostsCount = response.data.InventoryItemsCount[0].rowCount;
+                }, function (response) {
+                    //Handle any errors
+                    self.error.showError = true;
+                });
     };
-    
-    this.search = function(searchObject) {
+
+    this.search = function (searchObject) {
         var config = {};
         return $http({
             url: apiPath + 'search?name=' + searchObject,
             method: 'GET'
-        }).then(function(response){
+        }).then(function (response) {
             self.searchResults = response.data.SuppliesUseds;
             self.searchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
         });
     };
-    
-    this.advancedSearch = function(searchObject) {
+
+    this.advancedSearch = function (searchObject) {
         var config = angular.copy(searchObject);
-        for(var i in config){
-            if(config[i] === null || config[i] === ''){
+        for (var i in config) {
+            if (config[i] === null || config[i] === '') {
                 delete config[i];
             }
         }
@@ -56,9 +56,9 @@ module.service('inventorySrv', function($http, searchSrv, $filter) {
             method: 'GET',
             params: config
         })
-        .then(function(response) {
-            self.advancedSearchResults = response.data.SuppliesUseds;
-            self.advancedSearchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
-        });
+                .then(function (response) {
+                    self.advancedSearchResults = response.data.SuppliesUseds;
+                    self.advancedSearchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
+                });
     };
 });

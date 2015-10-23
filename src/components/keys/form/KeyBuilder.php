@@ -2,12 +2,13 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
+
 namespace components\keys\form;
 
 use Gossamer\CMS\Forms\AbstractBuilder;
@@ -18,15 +19,14 @@ use Gossamer\CMS\Forms\FormBuilder;
  *
  * @author Dave Meikle
  */
-class KeyBuilder extends AbstractBuilder{
-    
-    
+class KeyBuilder extends AbstractBuilder {
+
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
 
-        if(is_array($validationResults) && array_key_exists('Key', $validationResults)) {
+        if (is_array($validationResults) && array_key_exists('Key', $validationResults)) {
             $builder->addValidationResults($validationResults['Key']);
         }
-        
+
         $builder->add('Claims_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
                 ->add('ClaimsLocations_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
                 ->add('receivedFrom', 'text', array('class' => 'form-control', 'value' => $this->getValue('receivedFrom', $values)))
@@ -37,7 +37,7 @@ class KeyBuilder extends AbstractBuilder{
                 ->add('isMissing', 'text', array('class' => 'form-control', 'value' => $this->getValue('isMissing', $values)))
                 ->add('photo', 'text', array('class' => 'form-control', 'value' => $this->getValue('photo', $values)))
                 ->add('returnDate', 'text', array('class' => 'form-control', 'value' => $this->getValue('returnDate', $values)));
-                
+
         return $builder->getForm();
     }
 

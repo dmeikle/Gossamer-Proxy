@@ -1,8 +1,8 @@
-module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal,  claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal, claimsListSrv, tablesSrv, searchSrv) {
 
     var row = 0;
     var numRows = 20;
-   
+
 
     $scope.tablesSrv = tablesSrv;
 
@@ -36,7 +36,7 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
     function getClaimsLocationsList() {
         $scope.loading = true;
         var claimId = document.getElementById('Claim_id').value;
-        
+
         claimsListSrv.getClaimLocations(claimId).then(function (response) {
             $scope.claimsLocations = claimsListSrv.claimsLocations;
         }).then(function () {
@@ -44,10 +44,10 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
         });
     }
 
-    $scope.getStatusColor = function(item) {
-        if(item.WorkStatus_id == 1) {
+    $scope.getStatusColor = function (item) {
+        if (item.WorkStatus_id == 1) {
             return 'warning';
-        } else if(item.WorkStatus_id == 2) {
+        } else if (item.WorkStatus_id == 2) {
             return 'success';
         } else {
             return 'danger';

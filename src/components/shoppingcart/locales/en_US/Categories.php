@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_PARENT' => 'Parent',
     'LABEL_CATEGORY' => 'Category',
     'LABEL_PICTURE' => 'Picture',

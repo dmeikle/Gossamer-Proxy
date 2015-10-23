@@ -32,9 +32,11 @@
             <label>Phase</label>
             <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="headings.ClaimPhases_id">
                 <option value="" selected>-Phase Code-</option>
-                <?php foreach($AccountingPhaseCodes as $phase) {
+                <?php
+                foreach ($AccountingPhaseCodes as $phase) {
                     echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                } ?>
+                }
+                ?>
             </select>
         </div>
 
@@ -42,16 +44,18 @@
             <label>Department</label>
             <select class="department form-control" name="unitMeasure" ng-model="headings.Departments_id">
                 <option value="" selected>-Department-</option>
-                <?php foreach($Departments as $department) {
+                <?php
+                foreach ($Departments as $department) {
                     echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
-                }?>
+                }
+                ?>
             </select>
-        </div>            
+        </div>
 
         <div class="input-group">
             <label>Claim Location</label>
             <select class="form-control" name="ClaimsLocations_id" ng-model="headings.ClaimsLocations_id" ng-options="obj.id as obj.unitNumber for obj in claimsLocations">
-                <option value="" selected>-Claims Locations-</option>                    
+                <option value="" selected>-Claims Locations-</option>
             </select>
         </div>
 
@@ -59,7 +63,7 @@
             <label>Date</label>
             <input type="date" name="date{{$index}}" ng-model="headings.dateUsed" ng-model-options="{timezone: '+0000'}"
                    class="form-control" datepicker-popup is-open="isOpen.datepicker"
-                   datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE');?>" />
+                   datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
             <span class="input-group-btn" data-datepickername="date{{$index}}">
                 <button type="button" class="btn-default" data-datepickername="date{{$index}}" ng-click="openDatepicker($event, $index)">
                     <i class="glyphicon glyphicon-calendar"></i>
@@ -93,11 +97,11 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>                    
+                <td></td>
             </tr>
             <tr ng-repeat="row in lineItems track by $index">
                 <td>
-                    <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"> 
+                    <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                 </td>
                 <td class="typeahead-col">
                     <div class="input-group">
@@ -115,7 +119,7 @@
                         <input placeholder="Material Name" type="text" ng-model="row.name" ng-model-options="{debounce:250}"
                                typeahead="value for value in fetchMaterialsAutocomplete($viewValue)"
                                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsMaterials" class="form-control typeahead"
-                               typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.name )">
+                               typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.name)">
                         <div class="resultspane claim-number" ng-show="noResultsMaterials">
                             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                         </div>
@@ -124,17 +128,21 @@
                 <td>
                     <select class="department form-control" name="unitMeasure" ng-model="row.PackageTypes_id">
                         <option value="" selected>-Unit of Measure-</option>
-                        <?php foreach($PackageTypes as $type) {
+                        <?php
+                        foreach ($PackageTypes as $type) {
                             echo '<option value="' . $type['id'] . '">' . $type['name'] . '</option>';
-                        }?>
+                        }
+                        ?>
                     </select>
-                </td>                    
+                </td>
 
                 <td>
-                    <input placeholder="Price" class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);updateTotal();">
+                    <input placeholder="Price" class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);
+                                updateTotal();">
                 </td>
                 <td>
-                    <input placeholder="Qty" class="form-control cost" type="number" ng-model="row.quantity" ng-change="updateCost(row);updateTotal();">
+                    <input placeholder="Qty" class="form-control cost" type="number" ng-model="row.quantity" ng-change="updateCost(row);
+                                updateTotal();">
                 </td>
 
                 <td>
@@ -159,11 +167,14 @@
 
     <button class="btn-info" ng-click="addRow()">New Row</button>
     <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
-    <button class="btn-warning" ng-click="removeRows(); updateTotal();" ng-disabled="!rowSelected">Delete Row(s)</button>
+    <button class="btn-warning" ng-click="removeRows();
+        updateTotal();" ng-disabled="!rowSelected">Delete Row(s)</button>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
-    <button type="button" class="btn btn-primary" ng-click="save(); clearModal()">Save and New</button>
-    <button type="button" class="btn btn-primary" ng-click="save(); confirm();">Save and Close</button>
+    <button type="button" class="btn btn-primary" ng-click="save();
+        clearModal()">Save and New</button>
+    <button type="button" class="btn btn-primary" ng-click="save();
+        confirm();">Save and Close</button>
 </div>
 <form class="hidden"></form>

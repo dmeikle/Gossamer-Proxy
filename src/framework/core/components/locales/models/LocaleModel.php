@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,16 +19,15 @@ use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-
 /**
  * Model for the Locales table
  *
  * @author Dave Meikle
  */
-class LocaleModel extends AbstractModel implements FormBuilderInterface{
+class LocaleModel extends AbstractModel implements FormBuilderInterface {
 
     /**
-     * 
+     *
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
@@ -46,14 +45,14 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
      * changes the locale and stores it in an encrypted cookie
      */
     public function change($locale = null) {
-        
+
         //$this->setDefaultLocale($params['locale']);
         $this->setDefaultLocaleCookie($locale);
     }
 
     /**
      * stores the default locale in session
-     * 
+     *
      * @param string $locale - en_US, zh_CN ...
      */
     public function setDefaultLocale($locale) {
@@ -72,7 +71,7 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * stores the default locale in a cookie
-     * 
+     *
      * @param string $locale - en_US, zh_CN ...
      */
     private function setDefaultLocaleCookie($locale) {
@@ -91,7 +90,7 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * list all locales
-     * 
+     *
      * @param type $offset
      * @param type $rows
      * @param type $customVerb
@@ -114,7 +113,7 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * loads a locale for editing
-     * 
+     *
      * @param int $id
      */
     public function edit($id) {
@@ -131,7 +130,7 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * saves a locale to the db
-     * 
+     *
      * @param int $id
      */
     public function save($id) {
@@ -140,7 +139,7 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface{
         $params['Locale']['id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['Locale']);
-        
+
         return $data;
     }
 

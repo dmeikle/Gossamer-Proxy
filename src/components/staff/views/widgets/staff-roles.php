@@ -1,6 +1,6 @@
 <!--- javascript start --->
-    
-    @components/staff/includes/js/admin-staff-list-ng.js
+
+@components/staff/includes/js/admin-staff-list-ng.js
 
 <!--- javascript end --->
 
@@ -22,26 +22,26 @@
                         <td>
                             <p class="selectable">
                                 <?php foreach ($StaffRoles as $role) { ?>
-                                 <div class="checkbox">
+                                <div class="checkbox">
                                     <label class="">
-                                            <div class="icheckbox_square-blue <?php echo (in_array($role['role'], $roles))?"checked":"";?>" style="position: relative;">
-                                                <input id="StaffAuthorization_<?php echo $role['role'];?>" <?php echo (in_array($role['role'], $roles))?"checked":"";?> type="checkbox" name="userAuthorizations[<?php echo $role['role'];?>]" value="1"  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
-                                                <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
-                                            </div>
-                                            <?php echo $role['title'];?>
+                                        <div class="icheckbox_square-blue <?php echo (in_array($role['role'], $roles)) ? "checked" : ""; ?>" style="position: relative;">
+                                            <input id="StaffAuthorization_<?php echo $role['role']; ?>" <?php echo (in_array($role['role'], $roles)) ? "checked" : ""; ?> type="checkbox" name="userAuthorizations[<?php echo $role['role']; ?>]" value="1"  style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+                                            <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins>
+                                        </div>
+                                        <?php echo $role['title']; ?>
                                     </label>
-                                </div>    
-                                
-                                
-                                <?php } ?>
+                                </div>
+
+
+                            <?php } ?>
                             </p>
                         </td>
                     </tr>
                     <tr>
-                      
+
                         <td>
                             <button class="btn btn-primary" id="cancel-permissions" type="button">Cancel</button>
-                            <button class="btn btn-primary" id="save-permissions" type="button">Save</button> 
+                            <button class="btn btn-primary" id="save-permissions" type="button">Save</button>
                         </td>
                     </tr>
                 </table>

@@ -34,7 +34,7 @@ class Serializer {
 
         $retval = array();
         foreach ($list as $node) {
-            if(!array_key_exists('id', $list)) {
+            if (!array_key_exists('id', $list)) {
                 continue;
             }
             if ($idKey) {
@@ -62,7 +62,7 @@ class Serializer {
         if (strlen($textKey) > 0) {
             $options = $this->extractSubNode($options, $textKey);
         }
-        if(is_null($selectedOptions)) {
+        if (is_null($selectedOptions)) {
             $selectedOptions = array();
         }
         $retval = '';

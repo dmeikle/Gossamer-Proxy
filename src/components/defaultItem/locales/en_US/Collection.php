@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'section1'   => 'Fú 福: Luck and Good fortune The character symbol “Fu” is popularly used in many decorative applications in art and architecture especially at entrances to bring constant good fortune. The fu character sometimes is displayed turned upside down because the meaning ‘to turn upside down’ =dao, is also a pun on the word arrived=dao and thus signifies (Good luck has arrived; Hǎo yùn dào le).',
+    'section1' => 'Fú 福: Luck and Good fortune The character symbol “Fu” is popularly used in many decorative applications in art and architecture especially at entrances to bring constant good fortune. The fu character sometimes is displayed turned upside down because the meaning ‘to turn upside down’ =dao, is also a pun on the word arrived=dao and thus signifies (Good luck has arrived; Hǎo yùn dào le).',
     'section2' => 'Shòu 寿: Longevity
 This is one of many varieties of characters symbolizing and represent the wishes for long life. ',
     'section3' => 'Shòu 寿 : Longevity This is one of many varieties of characters symbolizing that represent the wishes for long life. The beauty is its minimalism and meaning.',
@@ -35,6 +35,5 @@ Peony in Chinese is pronounced mǔdān 牡丹 and is a symbol of prosperity and 
     'section29' => 'Plum Blossom: Méihuā 梅花 = Motif for Longevity:Shòu 寿
 The plum blossom has extensively been held in high admiration for its beauty; also its one of the few flowers that blossoms in the cold of winter thus represents longevity. The plum blossom is often used as a delicate accent motif in textile patterns. ',
     'section30' => 'Plum Blossom and Bamboo: Motif for Double Happiness: Shuāng xǐ 喜喜 Plum blossom (Méihuā 梅花) on its own represents longevity but paired with bamboo (Zhúzi竹子) create a wish for double happiness. The five petals of the plum blossom are auspicious since the number five is sacred in China and the bamboo represents strength. The combination is often given as a wedding gift. '
-    
 );
 

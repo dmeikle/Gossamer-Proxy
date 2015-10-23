@@ -34,19 +34,23 @@
 
     <body cz-shortcut-listen="true">
         <!---header--->
+        <!---leftnav--->
 
         <div class="container-fluid">
             <div class="row">
-                <main class="content">
-                    <!---content--->
-                </main>
-                <div class="cards">
 
-                    <!---cards--->
+                <div class="column-container">
+                    <main ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}" class="content">
+                        <!---content--->
+                    </main>
+                    <div class="cards">
 
-                    <!---widgets--->
-                    <!---sidecolumn--->
+                        <!---cards--->
 
+                        <!---widgets--->
+                        <!---sidecolumn--->
+
+                    </div>
                 </div>
             </div>
         </div>

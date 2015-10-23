@@ -1,30 +1,30 @@
 @import 'bootstrap-custom';
 
 @mixin width-transition {
-  transition: width ease .35s;
+    transition: width ease .35s;
 }
 
 .widget-content {
-  @include width-transition;
+    @include width-transition;
 }
 
 .widget-side-panel {
-  @include width-transition;
+    @include width-transition;
 }
 
 .splitcolumn {
-  @extend .col-xs-6;
+    @extend .col-xs-6;
 
-  &.left {
-    padding-left:0;
-  }
-  &.right {
-    padding-right:0;
-  }
+    &.left {
+        padding-left:0;
+    }
+    &.right {
+        padding-right:0;
+    }
 }
 
 .modal-xl {
     width: 1280px !important;
     @extend .modal-lg;
-    
+
 }

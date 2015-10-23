@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,16 +19,15 @@ use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
-
 /**
  * Model for the TabbedView table
  *
  * @author Dave Meikle
  */
-class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
+class TabbedViewModel extends AbstractModel implements FormBuilderInterface {
 
     /**
-     * 
+     *
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
@@ -50,16 +49,16 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
             'Staff_id' => $this->getLoggedInStaffId(),
             'viewType' => $view
         );
-        
+
         $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
         $this->setDefaultViewCookie($view);
-        
+
         return true;
     }
 
     /**
      * stores the default view in session
-     * 
+     *
      * @param string $view (tabbed/html)
      */
     public function setDefaultView($view) {
@@ -77,7 +76,7 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * stores the default locale in a cookie
-     * 
+     *
      * @param string $locale - en_US, zh_CN ...
      */
     private function setDefaultViewCookie($view) {
@@ -96,7 +95,7 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * list all locales
-     * 
+     *
      * @param type $offset
      * @param type $rows
      * @param type $customVerb
@@ -119,7 +118,7 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * loads a locale for editing
-     * 
+     *
      * @param int $id
      */
     public function edit($id) {
@@ -136,7 +135,7 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
 
     /**
      * saves a locale to the db
-     * 
+     *
      * @param int $id
      */
     public function save($id) {
@@ -145,7 +144,7 @@ class TabbedViewModel extends AbstractModel implements FormBuilderInterface{
         $params['Locale']['id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['Locale']);
-        
+
         return $data;
     }
 

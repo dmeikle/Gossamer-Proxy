@@ -15,7 +15,7 @@
 </div>
 
 <!--- javascript start --->
-    
-    @components/tickets/includes/js/admin-tickets-widgets-ng.js
+
+@components/tickets/includes/js/admin-tickets-widgets-ng.js
 
 <!--- javascript end --->

@@ -8,41 +8,40 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->getString('LABEL_VOLUME_DISCOUNTS');?>
+        <?php echo $this->getString('LABEL_VOLUME_DISCOUNTS'); ?>
     </div>
-  
+
     <form method="post">
         <table class="table" width="100%">
             <tr>
-                <td width="250"><?php echo $this->getString('LABEL_QUANTITY');?></td>
-                <td><?php echo $this->getString('LABEL_DISCOUNT_PRICE');?></td>
+                <td width="250"><?php echo $this->getString('LABEL_QUANTITY'); ?></td>
+                <td><?php echo $this->getString('LABEL_DISCOUNT_PRICE'); ?></td>
                 <td>
-                    <input type="button" id="addRow" value="<?php echo $this->getString('BUTTON_ADD_ROW');?>" />
-                </td>                
+                    <input type="button" id="addRow" value="<?php echo $this->getString('BUTTON_ADD_ROW'); ?>" />
+                </td>
             </tr>
             <tr>
                 <td colspan="3">
                     <table id="fields" width="100%">
-                        <?php 
-                
-                        foreach($VolumeDiscounts as $key => $discount) {
-                            if(!is_array($discount) || count($discount) == 0) {
+                        <?php
+                        foreach ($VolumeDiscounts as $key => $discount) {
+                            if (!is_array($discount) || count($discount) == 0) {
                                 continue;
                             }
-?>
-                        <tr>
-                            <td width="240"><input type="text" name="volumeDiscount[<?php echo $key; ?>][quantity]" value="<?php echo $discount['quantity'];?>" /></td>
-                            <td colspan="2">$<input type="text" name="volumeDiscount[<?php echo $key; ?>][price]"  value="<?php echo $discount['price'];?>" /></td>
-                        </tr>
+                            ?>
+                            <tr>
+                                <td width="240"><input type="text" name="volumeDiscount[<?php echo $key; ?>][quantity]" value="<?php echo $discount['quantity']; ?>" /></td>
+                                <td colspan="2">$<input type="text" name="volumeDiscount[<?php echo $key; ?>][price]"  value="<?php echo $discount['price']; ?>" /></td>
+                            </tr>
                         <?php } ?>
                     </table>
                 </td>
-                
+
             </tr>
             <tr>
                 <td colspan="3">
-                    <input type="button" class="cancel" value="<?php echo $this->getString('BUTTON_CANCEL');?>" />
-                    <input type="submit" class="save" value="<?php echo $this->getString('BUTTON_SAVE');?>" />
+                    <input type="button" class="cancel" value="<?php echo $this->getString('BUTTON_CANCEL'); ?>" />
+                    <input type="submit" class="save" value="<?php echo $this->getString('BUTTON_SAVE'); ?>" />
                 </td>
             </tr>
         </table>

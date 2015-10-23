@@ -1,6 +1,6 @@
 <!--- javascript start --->
-    
-    @components/staff/includes/js/admin-staff-list-ng.js
+
+@components/staff/includes/js/admin-staff-list-ng.js
 
 <!--- javascript end --->
 
@@ -9,7 +9,7 @@
     <div class="profile-info">
         <h3>General Info</h3>
         <div style="float:right">
-            <img style="margin-top: -30px" class="img-responsive" width="190" height="190" src="/images/staff/<?php echo $imageName;?>" alt="">
+            <img style="margin-top: -30px" class="img-responsive" width="190" height="190" src="/images/staff/<?php echo $imageName; ?>" alt="">
             <span id="staffPhoto"></span>
         </div>
         <div class="profile-info-block">
@@ -34,4 +34,3 @@
     </div>
 </div>
 
-    

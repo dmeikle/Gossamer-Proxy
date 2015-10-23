@@ -1,17 +1,17 @@
 
 <script language="javascript">
 
-$(function() {
-      
-    $('.selectable-rows tr').click(function(e) {
-      
-        e.preventDefault();
-        
-        window.location = '/admin/scoping/takeoffs/' + $(this).data('id');
-                
+    $(function () {
+
+        $('.selectable-rows tr').click(function (e) {
+
+            e.preventDefault();
+
+            window.location = '/admin/scoping/takeoffs/' + $(this).data('id');
+
+        });
+
     });
- 
-  });
 
 </script>
 
@@ -63,5 +63,5 @@ $(function() {
         <td>Justin</td>
         <td>$500.67</td>
     </tr>
-    
+
 </table>

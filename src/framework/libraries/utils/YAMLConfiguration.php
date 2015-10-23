@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -18,7 +18,7 @@ use libraries\utils\URIComparator;
 
 /**
  * loads the configuration of any yml files
- * 
+ *
  * @author Dave Meikle
  */
 class YAMLConfiguration {
@@ -28,7 +28,7 @@ class YAMLConfiguration {
     private $datasources = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger) {
@@ -36,7 +36,7 @@ class YAMLConfiguration {
     }
 
     /**
-     * 
+     *
      * @param string $routingPath
      */
     private function loadConfig($routingPath) {
@@ -51,9 +51,9 @@ class YAMLConfiguration {
     }
 
     /**
-     * 
+     *
      * @param string $uri
-     * 
+     *
      * @return array
      */
     public function getNodeParameters($uri) {
@@ -65,14 +65,14 @@ class YAMLConfiguration {
 
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
-        
+
         $ymlKey = $this->findConfigKeyByURIPattern($this->config, $uri);
-   
+
         $namespace = $explodedPath[0] . '\\' . $explodedPath[1];
-        
-        try{
-            $nodeParams = $this->getYMLNodeParameters($ymlKey);            
-        }catch(\Exception $e) {
+
+        try {
+            $nodeParams = $this->getYMLNodeParameters($ymlKey);
+        } catch (\Exception $e) {
             error_log("error getting node parameters $ymlKey");
             error_log($e->getMessage());
             http_response_code(404);
@@ -86,9 +86,9 @@ class YAMLConfiguration {
     }
 
     /**
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @return string
      */
     private function getComponentFolderName(array $params) {
@@ -101,9 +101,9 @@ class YAMLConfiguration {
     }
 
     /**
-     * 
+     *
      * @param string $ymlKey
-     * 
+     *
      * @return datasource
      */
     public function getDatasource($ymlKey = null) {
@@ -119,9 +119,9 @@ class YAMLConfiguration {
      * Step 1
      *
      * getInitialRouting     determines which of the routing files to refer to for config instructions
-     * 
+     *
      * @param string    requestURI - the uri we are looking up
-     * 
+     *
      * @return string   the filepath to use
      */
     public function getInitialRouting($requestURI) {
@@ -158,11 +158,11 @@ class YAMLConfiguration {
     //$config, 'pattern', '/users/list'
     /**
      * Step 2
-     * 
+     *
      * findConfigKeyByURIPattern    loads the configuration, determines the ymlKey based
      *                              on the pattern node in YML against the matching URI.
      *                              returns the ymlkey as well as all uri pieces
-     * 
+     *
      * @param array     configlist
      * @param string    the node we are searching for
      * @param string    the complete uri we are searching against
@@ -171,7 +171,7 @@ class YAMLConfiguration {
         $comparator = new URIComparator(new \Gossamer\Caching\CacheManager());
 
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
-       
+
         unset($comparator);
 
         return $uriConfig;
@@ -179,14 +179,14 @@ class YAMLConfiguration {
 
     /**
      * TODO: this needs revisiting
-     * 
+     *
      * @param string $ymlKey
-     * 
+     *
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-     
-        if($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
+
+        if ($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
             throw new \exceptions\YamlKeyNotFoundException('Yml Key not found in config routing file.');
         }
         return $nodeParams = $this->config[$ymlKey];

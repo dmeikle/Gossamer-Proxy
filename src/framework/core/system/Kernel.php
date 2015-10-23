@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -21,7 +21,7 @@ use libraries\utils\MobileDetect;
 /**
  * the core of the Framework. Called to execute the program once the bootstrap
  * processes have completed.
- * 
+ *
  * @author Dave Meikle
  */
 class Kernel {
@@ -36,7 +36,7 @@ class Kernel {
 
     /**
      * main entry point for this class
-     * 
+     *
      * @return string|JSON - the completed html or json array
      */
     public function run() {
@@ -74,7 +74,7 @@ class Kernel {
 
     /**
      * determines if we are dealing with a computer or mobile device
-     * 
+     *
      * @return array
      */
     private function getLayoutType() {
@@ -89,13 +89,13 @@ class Kernel {
     /**
      * creates any session params in the event we are reloading the page so
      * the params are available for access after the redirect.
-     * 
+     *
      * @param HTTPRequest $request
      */
     private function configSessionParamsToRequest(HTTPRequest &$request) {
         $request->setAttribute('ERROR_RESULT', getSession('ERROR_RESULT'));
         $request->setAttribute('POSTED_PARAMS', getSession('POSTED_PARAMS'));
-       
+
         setSession('ERROR_RESULT', null);
         setSession('POSTED_PARAMS', null);
     }

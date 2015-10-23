@@ -17,11 +17,10 @@ use core\system\Router;
 class SuppliesUsedController extends AbstractController {
 
     public function search() {
-        
+
         $result = $this->model->search($this->httpRequest->getQueryParameters());
-        
+
         $this->render($result);
     }
-
 
 }

@@ -58,11 +58,11 @@
 
         <div class="clearfix"></div>
     </div>
-<div class="clearfix"></div>
-<div class="modal-footer">
-    <button class="primary" ng-click="confirm(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
+    <div class="clearfix"></div>
+    <div class="modal-footer">
+        <button class="primary" ng-click="confirm(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
 
-    <button ng-click="cancel()"><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
-</div>
+        <button ng-click="cancel()"><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
+    </div>
 
 </form>

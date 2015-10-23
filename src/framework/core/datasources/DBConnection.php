@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -16,10 +16,10 @@ use Monolog\Logger;
 use core\datasources\AdapterInterface;
 
 /**
- * Connects to a database. 
+ * Connects to a database.
  * //TODO: this class will be deprecated in favor of the Pesedget library
  * which has been implemented already into the db-repo
- * 
+ *
  * @author Dave Meikle
  */
 class DBConnection implements AdapterInterface {
@@ -28,11 +28,9 @@ class DBConnection implements AdapterInterface {
     // preferably in an environment variable if this were a dedicated server.
 
     protected $host = 'localhost';
-
     protected $user = 'phoenixdave';
     protected $pass = '0s1r15';
     protected $db = 'phoenix_local';
-
     private $lastQuery = '';
     protected $logger = null;
     protected $stack;

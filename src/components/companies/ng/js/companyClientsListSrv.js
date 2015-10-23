@@ -1,22 +1,22 @@
-module.service('companyClientsListSrv', function($http, searchSrv) {
+module.service('companyClientsListSrv', function ($http, searchSrv) {
 
-  var apiPath = '/admin/companies/contacts/';
+    var apiPath = '/admin/companies/contacts/';
 
-  var self = this;
+    var self = this;
 
-  self.advancedSearch = {};
+    self.advancedSearch = {};
 
-  this.getCompanyClientsList = function(companyId, row, numRows) {
-    return $http.get(apiPath + companyId )
-      .then(function(response) {
-        self.companyClientsList = response.data.Contacts;
-        self.companyClientsCount = response.data.Contacts[0].rowCount;
-      });
-  };
+    this.getCompanyClientsList = function (companyId, row, numRows) {
+        return $http.get(apiPath + companyId)
+                .then(function (response) {
+                    self.companyClientsList = response.data.Contacts;
+                    self.companyClientsCount = response.data.Contacts[0].rowCount;
+                });
+    };
 
-  this.getCompanyDetail = function(object) {
-    return $http.get(apiPath + object.Companies_id)
-      .then(function(response) {
+    this.getCompanyDetail = function (object) {
+        return $http.get(apiPath + object.Companies_id)
+                .then(function (response) {
 //        if (response.data.Company.dob) {
 //          response.data.Company.dob = new Date(response.data.Company.dob);
 //        }
@@ -26,20 +26,20 @@ module.service('companyClientsListSrv', function($http, searchSrv) {
 //        if (response.data.Company.departureDate) {
 //          response.data.Company.departureDate = new Date(response.data.Company.departureDate);
 //        }
-        self.companyDetail = response.data.Company;
-      });
-  };
+                    self.companyDetail = response.data.Company;
+                });
+    };
 
-  this.search = function(searchObject) {
-    return searchSrv.search(searchObject, apiPath).then(function() {
-      self.searchResults = searchSrv.searchResults;
-      self.searchResultsCount = searchSrv.searchResultsCount;
-    });
-  };
+    this.search = function (searchObject) {
+        return searchSrv.search(searchObject, apiPath).then(function () {
+            self.searchResults = searchSrv.searchResults;
+            self.searchResultsCount = searchSrv.searchResultsCount;
+        });
+    };
 
-  this.getAdvancedSearchFilters = function() {
-    return searchSrv.getAdvancedSearchFilters('/render/companies/companyAdvancedSearchFilters').then(function() {
-      self.advancedSearch.fields = searchSrv.advancedSearch.fields;
-    });
-  };
+    this.getAdvancedSearchFilters = function () {
+        return searchSrv.getAdvancedSearchFilters('/render/companies/companyAdvancedSearchFilters').then(function () {
+            self.advancedSearch.fields = searchSrv.advancedSearch.fields;
+        });
+    };
 });

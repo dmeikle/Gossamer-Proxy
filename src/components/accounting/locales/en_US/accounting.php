@@ -7,7 +7,6 @@ return array(
     'ACCOUNTING_RESET' => 'Reset',
     'ACCOUNTING_CLOSE' => 'Close',
     'ACCOUNTING_NO_RESULTS' => 'No Results Found',
-    
     'ACCOUNTING_LABORER' => 'Laborer',
     'ACCOUNTING_NAME' => 'Name',
     'ACCOUNTING_FIRST_NAME' => 'First Name',
@@ -34,7 +33,6 @@ return array(
     'ACCOUNTING_NEW_TIMESHEET_ROW' => 'New Row',
     'ACCOUNTING_NEW_TIMESHEET_INSERT' => 'Insert Row(s)',
     'ACCOUNTING_NEW_TIMESHEET_DELETE' => 'Delete Row(s)',
-    
     'ACCOUNTING_TIMESHEET_RATE' => 'Rate',
     'ACCOUNTING_TIMESHEET_ITEM_RATE' => 'Rate ($)',
     'ACCOUNTING_TIMESHEET_CLAIM' => 'Claim',
@@ -50,7 +48,6 @@ return array(
     'ACCOUNTING_TIMESHEET_STAT_OVERTIME_HOURS' => 'SOT',
     'ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS' => 'SDOT',
     'ACCOUNTING_TIMESHEET_TOTAL_HOURS' => 'Total',
-    
     'ACCOUNTING_DEPARTMENT' => 'Department',
     'ACCOUNTING_DEBIT_ACCOUNT' => 'Debit Account',
     'ACCOUNTING_CREDIT_ACCOUNT' => 'Credit Account',
@@ -58,7 +55,6 @@ return array(
     'ACCOUNTING_CHARGEOUT' => 'Chargeout',
     'ACCOUNTING_NEW_GENERAL_COST_ITEM' => 'New General Cost Item',
     'ACCOUNTING_NO_RESULTS' => 'No Results',
-    
     'ACCOUNTING_ITEMS' => 'Items',
     'ACCOUNTING_NEW_INVENTORY' => 'New Inventory Item',
     'ACCOUNTING_UNIT_OF_MEASURE' => 'Unit (of measure)',
@@ -67,8 +63,6 @@ return array(
     'ACCOUNTING_PRODUCT_CODE' => 'Product Code',
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
-    
     'ACCOUNTING_TIMESHEET_DB_ERROR' => 'Could not connect to the database, please try again.'
-
 );
 
