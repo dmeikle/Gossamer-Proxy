@@ -2,10 +2,10 @@
   <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
     <h1 class="pull-left"><?php echo $this->getString('INVENTORY_LIST') ?></h1>
     <div class="toolbar form-inline">
-      <button class="btn-link" ng-click="openAdvancedSearch()">
-        <?php echo $this->getString('ADVANCED_SEARCH') ?>
-      </button>
-      <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
+        <button class="btn-link" ng-click="openAdvancedSearch()">
+            <?php echo $this->getString('ADVANCED_SEARCH') ?>
+        </button>
+        <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
       <form ng-submit="search(basicSearch.query)" class="input-group">
         <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
