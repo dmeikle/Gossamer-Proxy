@@ -183,35 +183,35 @@
         <div ng-if="!sidePanelLoading && !searching && !multiSelect">
             <h1><a href="/admin/inventory/items/{{selectedRow.id}}">{{selectedRow.firstname}} {{selectedRow.lastname}}</a></h1>
             <h4><?php echo $this->getString('INVENTORY_TELEPHONE') ?></h3>
-                <p>{{selectedRow.telephone}}</p>
-                <h4><?php echo $this->getString('INVENTORY_MOBILE') ?></h3>
-                    <p>{{selectedRow.mobile}}</p>
-                    <h4><?php echo $this->getString('INVENTORY_EMAIL') ?></h3>
-                        <p>{{selectedRow.email}}</p>
-                        <h4><?php echo $this->getString('INVENTORY_CITY') ?></h3>
-                            <p>{{selectedRow.city}}</p>
-                            <h4><?php echo $this->getString('INVENTORY_POSTALCODE') ?></h3>
-                                <p>{{selectedRow.postalCode}}</p>
-                                <h4><?php echo $this->getString('INVENTORY_TITLE') ?></h3>
-                                    <p>{{selectedRow.title}}</p>
-                                    <h4><?php echo $this->getString('INVENTORY_EMPLOYEENUM') ?></h3>
-                                        <p>{{selectedRow.employeeNumber}}</p>
-                                        </div>
+            <p>{{selectedRow.telephone}}</p>
+            <h4><?php echo $this->getString('INVENTORY_MOBILE') ?></h3>
+            <p>{{selectedRow.mobile}}</p>
+            <h4><?php echo $this->getString('INVENTORY_EMAIL') ?></h3>
+            <p>{{selectedRow.email}}</p>
+            <h4><?php echo $this->getString('INVENTORY_CITY') ?></h3>
+            <p>{{selectedRow.city}}</p>
+            <h4><?php echo $this->getString('INVENTORY_POSTALCODE') ?></h3>
+            <p>{{selectedRow.postalCode}}</p>
+            <h4><?php echo $this->getString('INVENTORY_TITLE') ?></h3>
+            <p>{{selectedRow.title}}</p>
+            <h4><?php echo $this->getString('INVENTORY_EMPLOYEENUM') ?></h3>
+            <p>{{selectedRow.employeeNumber}}</p>
+        </div>
 
-                                        <div ng-if="!sidePanelLoading && !searching && multiSelect">
-                                            <h1><?php echo $this->getString('SELECTED') ?></h1>
-                                            <div class="card" ng-repeat="item in multiSelectArray">
-                                                <div class="cardheader">
-                                                    <h1>{{item.name}} - {{item.number}}</h1>
-                                                </div>
-                                            </div>
-                                            <div class="pull-right">
-                                                <button class="primary" ng-click="transferSelected()">
-                                                    <?php echo $this->getString('TRANSFER') ?>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <form class="hidden"></form>
-                                        </div>
+        <div ng-if="!sidePanelLoading && !searching && multiSelect">
+            <h1><?php echo $this->getString('SELECTED') ?></h1>
+            <div class="card" ng-repeat="item in multiSelectArray">
+                <div class="cardheader">
+                    <h1>{{item.name}} - {{item.number}}</h1>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button class="primary" ng-click="transferSelected()">
+                    <?php echo $this->getString('TRANSFER') ?>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="hidden"></form>
+</div>
