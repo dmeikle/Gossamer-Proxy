@@ -1164,7 +1164,17 @@ accounting_inventory_breakdown:
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
     methods: [GET]
-    
+
+accounting_inventory_search:
+    pattern: admin/accounting/inventory/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_inventory_search
+        datasource: datasource1
 #------------------------ Tabs Test ----------------------------
 accounting_tabs_home:
     pattern: admin/accounting/tabs

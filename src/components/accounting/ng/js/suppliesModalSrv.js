@@ -107,7 +107,7 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
         });
     };
 
-    //Save the general cost items
+    //Save the supplies used items
     this.save = function (headings, lineItems, formToken) {
         var itemID = '';
         if (headings.id) {
