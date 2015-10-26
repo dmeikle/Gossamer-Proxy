@@ -55,15 +55,15 @@ admin_inventory_equipment_locations:
             - rootApp
             - inventoryAdmin
     head:
-        - @components/claims/dist/bower_components/angular/angular.min.js
-        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
-        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
-        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/inventory/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css
 
@@ -96,15 +96,15 @@ admin_inventory_items_edit:
             - rootApp
             - inventoryAdmin
     head:
-        - @components/claims/dist/bower_components/angular/angular.min.js
-        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
-        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
-        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/inventory/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css
 
@@ -119,17 +119,17 @@ admin_inventory_list:
         bootstrap_modules:
             - rootApp
             - inventoryAdmin
-            - claimsAdmin
+            - inventoryAdmin
     head:
-        - @components/claims/dist/bower_components/angular/angular.min.js
-        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
-        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
-        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/inventory/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
         - @components/claims/dist/js/claims.concat.js
         #- @components/claims/dist/js/claims.min.js
     css:
@@ -157,6 +157,6 @@ admin_warehouse_locations_home:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/claims/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css
