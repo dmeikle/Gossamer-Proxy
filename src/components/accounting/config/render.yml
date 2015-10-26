@@ -56,46 +56,23 @@ suppliesModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
 
-#        -
-#            event: 'filerender_start'
-#            listener: 'core\components\render\eventlisteners\FormBuilderListener'
-#            datasource: 'datasource1'
-#            formBuilder: 'components\staff\form\StaffBuilder'
-#            model: 'components\staff\models\StaffModel'
-#            cacheKey: 'StaffForm'
-#            dependencies:
-#                - { dependency: Departments, key: departments, value: id, text: name}
-#                - { dependency: Provinces, key: provinces, value: id, text: province }
-#                - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
-#                - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }
-
-inventoryFormBuilder:
-    path: 'src/components/accounting/ng/views/inventoryFormBuilder.php'
+inventoryModal:
+    path: 'src/components/accounting/ng/views/inventoryItemModal.php'
     langFiles:
-        - 'src/components/inventory/locales/*/accounting'
-        - 'app/locales/*/website'
+        - 'src/components/accounting/locales/*/accounting'
     listeners:
-        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-
-        # build the form for Claim Location
+#        - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#        - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#        - { 'cacheKey': 'ClaimTypes', 'class': 'components\claims\models\ClaimTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'PackageTypes', 'class': 'components\inventory\models\PackageTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+       
         -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
-            formBuilder: 'components\claims\form\InventoryItemBuilder'
-            model: 'components\claims\models\InventoryItemModel'
+            formBuilder: 'components\accounting\form\InventoryItemBuilder'
+            model: 'components\accounting\models\InventoryModel'
             cacheKey: 'AccountingInventoryItemForm'
-            formName: 'inventoryForm'
+            formName: 'form'
             dependencies:
-                - { dependency: Provinces, key: provinces, value: id, text: province }
-                - { dependency: Vehicles, key: vehicles, value: id, text: number }
-        # build the form for StaffAuthorization
-#        -
-#            event: 'filerender_start'
-#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-#            datasource: 'datasource1'
-#            formBuilder: 'components\staff\form\InventoryItemBuilder'
-#            model: 'components\staff\models\InventoryItemModel'
-#            cacheKey: 'AccountingInventoryItemForm'
-#            formName: 'inventoryForm'
+                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }

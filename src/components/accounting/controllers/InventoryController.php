@@ -20,15 +20,4 @@ use core\AbstractController;
  */
 class InventoryController extends AbstractController {
     
-//    public function listBreakdown($inventoryItemsId) {
-//        $offset = 0;
-//        $limit = 20;
-//        $params = array(
-//            'InventoryItems_id' => intval($inventoryItemsId)
-//        );
-//
-//        $result = $this->model->listAllWithParams($offset, $limit, $params, 'breakdown');
-//
-//        $this->render($result);
-//    }
 }

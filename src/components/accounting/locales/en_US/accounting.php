@@ -73,9 +73,9 @@ return array(
     'ACCOUNTING_PACKAGE_TYPE' => 'Package Type',
     'ACCOUNTING_INVENTORY_TYPE' => 'Inventory Type',
     'ACCOUNTING_ACTIVE' => 'Active',
-    'ACCOUNTING_PRICE' => 'Price',
+    'ACCOUNTING_PRICE' => 'Price ($)',
     'ACCOUNTING_CATEGORY' => 'Category',
-    'ACCOUNTING_MARKUP' => 'Markup',
+    'ACCOUNTING_MARKUP' => 'Markup (%)',
     'ACCOUNTING_TAX_TYPE' => 'Tax Type',
     
 );
