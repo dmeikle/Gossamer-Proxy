@@ -11,7 +11,10 @@
 
 namespace components\inventory\controllers;
 
+
 class InventoryEquipmentController extends InventoryItemsController {
+
+
 
     public function listAllEquipment($offset = 0, $limit = 20) {
         $results = $this->model->listallWithParams($offset, $limit, array('InventoryTypes_id' => 2));
@@ -24,7 +27,7 @@ class InventoryEquipmentController extends InventoryItemsController {
 
         if (!is_null($staff)) {
             $params = $this->httpRequest->getPost();
-            $params['signingStaff_id'] = $staff['id'];
+            $params['signingStaff_id'] = $staff['Staff_id'];
             unset($params['Staff']);
             $result = $this->model->transfer($params);
         } else {
@@ -34,5 +37,4 @@ class InventoryEquipmentController extends InventoryItemsController {
 
         $this->render($result);
     }
-
 }
