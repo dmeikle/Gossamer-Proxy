@@ -63,6 +63,20 @@ return array(
     'ACCOUNTING_PRODUCT_CODE' => 'Product Code',
     'STAFF_LOADING' => 'Loading',
     'STAFF_NAME' => 'Name',
-    'ACCOUNTING_TIMESHEET_DB_ERROR' => 'Could not connect to the database, please try again.'
+    'ACCOUNTING_TIMESHEET_DB_ERROR' => 'Could not connect to the database, please try again.',
+    'ACCOUNTING_INVENTORY' => 'Warehouse Inventory',
+    'ACCOUNTING_ID' => 'ID',
+    'ACCOUNTING_NAME' => 'Name',
+    'ACCOUNTING_CODE' => 'Code',
+    'ACCOUNTING_MIN_ORDER' => 'Min Order',
+    'ACCOUNTING_MAX_ORDER' => 'Max Order',
+    'ACCOUNTING_PACKAGE_TYPE' => 'Package Type',
+    'ACCOUNTING_INVENTORY_TYPE' => 'Inventory Type',
+    'ACCOUNTING_ACTIVE' => 'Active',
+    'ACCOUNTING_PRICE' => 'Price',
+    'ACCOUNTING_CATEGORY' => 'Category',
+    'ACCOUNTING_MARKUP' => 'Markup',
+    'ACCOUNTING_TAX_TYPE' => 'Tax Type',
+    
 );
 

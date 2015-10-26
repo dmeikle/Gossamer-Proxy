@@ -29,7 +29,7 @@ class InventoryModel extends AbstractModel {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'Inventory';
-        $this->tablename = 'inventory';
+        $this->tablename = 'inventoryitems';
     }
 
 }
