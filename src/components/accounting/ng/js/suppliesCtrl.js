@@ -158,10 +158,10 @@ module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, account
     //Modal
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
-        var template = accountingTemplateSrv.inventoryModal;
+        var template = accountingTemplateSrv.suppliesModal;
         var modal = $modal.open({
             templateUrl: template,
-            controller: 'inventoryModalCtrl',
+            controller: 'suppliesModalCtrl',
             size: 'lg',
             resolve: {
                 suppliesUsed: function () {

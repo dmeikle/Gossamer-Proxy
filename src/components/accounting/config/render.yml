@@ -46,8 +46,8 @@ generalCostsModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
-inventoryModal:
-    path: 'src/components/accounting/ng/views/inventoryModal.php'
+suppliesModal:
+    path: 'src/components/accounting/ng/views/suppliesModal.php'
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
     listeners:

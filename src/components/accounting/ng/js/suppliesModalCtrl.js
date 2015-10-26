@@ -1,4 +1,4 @@
-module.controller('inventoryModalCtrl', function ($modalInstance, $scope, inventoryModalSrv, $filter, $timeout, suppliesUsed) {
+module.controller('suppliesModalCtrl', function ($modalInstance, $scope, suppliesModalSrv, $filter, $timeout, suppliesUsed) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = false;
 
@@ -49,7 +49,7 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
 
     //Get the claims locations
     $scope.getClaimsLocations = function (Claims_id) {
-        inventoryModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function (locations) {
+        suppliesModalSrv.getClaimsLocations($scope.headings.Claims_id).then(function (locations) {
             $scope.claimsLocations = locations;
         });
     };
@@ -61,9 +61,9 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
         $scope.headings = suppliesUsed;
         $scope.headings.staffName = $scope.headings.firstname + ' ' + $scope.headings.lastname;
         $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
-        inventoryModalSrv.getItems(row, numRows, suppliesUsed.id)
+        suppliesModalSrv.getItems(row, numRows, suppliesUsed.id)
                 .then(function () {
-                    var lineItems = inventoryModalSrv.lineItems;
+                    var lineItems = suppliesModalSrv.lineItems;
                     for (var i in lineItems) {
                         lineItems[i].cost = parseFloat(lineItems[i].cost);
                         lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
@@ -85,9 +85,9 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
     $scope.getStaffID = function (name) {
         if (name !== undefined) {
             var splitName = name.split(' ');
-            for (var i in inventoryModalSrv.autocomplete) {
-                if (splitName[0] === inventoryModalSrv.autocomplete[i].firstname && splitName[1] === inventoryModalSrv.autocomplete[i].lastname) {
-                    $scope.headings.Staff_id = inventoryModalSrv.autocomplete[i].id;
+            for (var i in suppliesModalSrv.autocomplete) {
+                if (splitName[0] === suppliesModalSrv.autocomplete[i].firstname && splitName[1] === suppliesModalSrv.autocomplete[i].lastname) {
+                    $scope.headings.Staff_id = suppliesModalSrv.autocomplete[i].id;
                 }
             }
         }
@@ -95,9 +95,9 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
 
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function (jobNumber) {
-        for (var i in inventoryModalSrv.claimsAutocomplete) {
-            if (inventoryModalSrv.claimsAutocomplete[i].jobNumber === jobNumber) {
-                $scope.headings.Claims_id = inventoryModalSrv.claimsAutocomplete[i].id;
+        for (var i in suppliesModalSrv.claimsAutocomplete) {
+            if (suppliesModalSrv.claimsAutocomplete[i].jobNumber === jobNumber) {
+                $scope.headings.Claims_id = suppliesModalSrv.claimsAutocomplete[i].id;
                 $scope.getClaimsLocations($scope.headings.Claims_id);
             }
         }
@@ -152,49 +152,49 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
     $scope.fetchStaffAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
-        return inventoryModalSrv.fetchStaffAutocomplete(searchObject);
+        return suppliesModalSrv.fetchStaffAutocomplete(searchObject);
     };
 
     //Claim Typeahead
     $scope.fetchClaimAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.jobNumber = viewVal;
-        return inventoryModalSrv.fetchClaimsAutocomplete(searchObject);
+        return suppliesModalSrv.fetchClaimsAutocomplete(searchObject);
     };
 
     //Materials Typeahead
     $scope.fetchMaterialsAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
-        return inventoryModalSrv.fetchMaterialNameAutocomplete(searchObject);
+        return suppliesModalSrv.fetchMaterialNameAutocomplete(searchObject);
     };
 
     //Product Code Typeahead
     $scope.fetchProductCodeAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.productCode = viewVal;
-        return inventoryModalSrv.fetchProductCodeAutocomplete(searchObject);
+        return suppliesModalSrv.fetchProductCodeAutocomplete(searchObject);
     };
 
     //Get Material info from material name
     $scope.getMaterialNameInfo = function (row, value) {
-        for (var j in inventoryModalSrv.materialsAutocomplete) {
-            if (inventoryModalSrv.materialsAutocomplete[j].name === value) {
-                row.productCode = inventoryModalSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = inventoryModalSrv.materialsAutocomplete[j].purchaseCost;
-                row.PackageTypes_id = inventoryModalSrv.materialsAutocomplete[j].PackageTypes_id;
+        for (var j in suppliesModalSrv.materialsAutocomplete) {
+            if (suppliesModalSrv.materialsAutocomplete[j].name === value) {
+                row.productCode = suppliesModalSrv.materialsAutocomplete[j].productCode;
+                row.unitPrice = suppliesModalSrv.materialsAutocomplete[j].purchaseCost;
+                row.PackageTypes_id = suppliesModalSrv.materialsAutocomplete[j].PackageTypes_id;
             }
         }
     };
 
     //Get Material info from product code
     $scope.getProductCodeInfo = function (row, value) {
-        for (var i in inventoryModalSrv.productCodeAutocomplete) {
-            if (inventoryModalSrv.productCodeAutocomplete[i].productCode === value) {
-                row.name = inventoryModalSrv.productCodeAutocomplete[i].name;
-                row.unitPrice = inventoryModalSrv.productCodeAutocomplete[i].purchaseCost;
-                row.PackageTypes_id = inventoryModalSrv.productCodeAutocomplete[i].PackageTypes_id;
-                row.InventoryItems_id = inventoryModalSrv.productCodeAutocomplete[i].id;
+        for (var i in suppliesModalSrv.productCodeAutocomplete) {
+            if (suppliesModalSrv.productCodeAutocomplete[i].productCode === value) {
+                row.name = suppliesModalSrv.productCodeAutocomplete[i].name;
+                row.unitPrice = suppliesModalSrv.productCodeAutocomplete[i].purchaseCost;
+                row.PackageTypes_id = suppliesModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+                row.InventoryItems_id = suppliesModalSrv.productCodeAutocomplete[i].id;
             }
         }
     };
@@ -241,7 +241,7 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
         var lineItems = angular.copy($scope.lineItems);
         headings.dateUsed = $filter('date')(headings.dateUsed, 'yyyy-MM-dd');
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        inventoryModalSrv.save(headings, lineItems, formToken);
+        suppliesModalSrv.save(headings, lineItems, formToken);
 
     };
 
