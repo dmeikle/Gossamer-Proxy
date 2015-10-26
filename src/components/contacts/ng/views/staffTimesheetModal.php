@@ -13,14 +13,15 @@
             </div>
         </div>
         <div class="pull-right">
-            
+
             <div class="form-group vehicle">
-              <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
+                <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
                 <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
                     <?php
-                    foreach($Vehicles as $vehicle) {
+                    foreach ($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
-                    } ?>
+                    }
+                    ?>
                 </select>
             </div>
         </div>
@@ -54,11 +55,11 @@
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
-                    <td></td>  
-                    <td></td>  
                     <td></td>
-                    <td></td>  
-                    <td></td>  
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -76,9 +77,11 @@
                     </td>
                     <td>
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
-                            <?php foreach($AccountingPhaseCodes as $phase) {
-                        echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                        } ?>
+                            <?php
+                            foreach ($AccountingPhaseCodes as $phase) {
+                                echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
+                            }
+                            ?>
                         </select>
                     </td>
                     <td>
@@ -91,7 +94,7 @@
                         <input class="description form-control" ng-model="row.city">
                     </td>
                     <td>
-                        <select class="toll form-control" ng-model="row.toll1">                            
+                        <select class="toll form-control" ng-model="row.toll1">
                             <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll1[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
                     </td>

@@ -12,4 +12,4 @@ admin_ticker_request_token:
         viewKey: admin_ticker_request_token
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  

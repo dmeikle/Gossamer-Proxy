@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -29,10 +29,10 @@ class AbstractCachableListener extends AbstractListener {
     protected $key = null;
 
     /**
-     * 
+     *
      * @param string $state
      * @param type $params
-     * 
+     *
      * @return void
      */
     public function execute($state, &$params) {
@@ -41,7 +41,7 @@ class AbstractCachableListener extends AbstractListener {
 
         $this->logger->addDebug('checking cachablelistener for method: ' . $method);
         if (method_exists($this, $method)) {
-           
+
             //first check cache
             $key = $this->getKey($params);
 
@@ -59,41 +59,41 @@ class AbstractCachableListener extends AbstractListener {
                 return;
             }
             //pass it along the request in case there's more processing to do
-           // $this->httpRequest->setAttribute(self::getKey(), $values);
+            // $this->httpRequest->setAttribute(self::getKey(), $values);
             //changed to '$key' because it was losing values in some instances with '/' in the key
             $this->httpRequest->setAttribute($this->getResponseKey(), $values);
-            
-            if(!array_key_exists('addToResponse', $this->listenerConfig) || $this->listenerConfig['addToResponse'] == 'true') {
+
+            if (!array_key_exists('addToResponse', $this->listenerConfig) || $this->listenerConfig['addToResponse'] == 'true') {
                 //add it to the response in case it's an abstract parent calling
                 //this from configuration files and is simply needed in the view
-               // $this->httpResponse->setAttribute(self::getKey(), $values);
+                // $this->httpResponse->setAttribute(self::getKey(), $values);
                 //changed to '$key' because it was losing values in some instances with '/' in the key
                 $this->httpResponse->setAttribute($this->getResponseKey(), $values);
             }
         }
     }
-    
+
     protected function getResponseKey() {
-        
-        if(array_key_exists('responseKey', $this->listenerConfig)) {
-            return  $this->listenerConfig['responseKey'] ;
+
+        if (array_key_exists('responseKey', $this->listenerConfig)) {
+            return $this->listenerConfig['responseKey'];
         }
-        
+
         return $this->getKey();
     }
-    
+
     protected function getIsStaticCache() {
-       
-        if(array_key_exists('static', $this->listenerConfig)) {
-            return  $this->listenerConfig['static'] == 'true';
+
+        if (array_key_exists('static', $this->listenerConfig)) {
+            return $this->listenerConfig['static'] == 'true';
         }
-        
+
         return false;
     }
 
     /**
      * can be overridden for custom keys
-     * 
+     *
      * @return string
      */
     protected function getKey($params = null) {
@@ -106,11 +106,11 @@ class AbstractCachableListener extends AbstractListener {
 
     /**
      * save the values into cache
-     * 
+     *
      * @param type $key
      * @param type $values
      * @param type $static
-     * 
+     *
      * @return boolean
      */
     protected function deleteCache($key) {
@@ -121,11 +121,11 @@ class AbstractCachableListener extends AbstractListener {
 
     /**
      * save the values into cache
-     * 
+     *
      * @param type $key
      * @param type $values
      * @param type $static
-     * 
+     *
      * @return boolean
      */
     protected function saveValuesToCache($key, $values, $static = false) {
@@ -136,7 +136,7 @@ class AbstractCachableListener extends AbstractListener {
 
     /**
      * retrieve values stored in cache
-     * 
+     *
      * @param type $key
      * @param type $static
      * @return array|string

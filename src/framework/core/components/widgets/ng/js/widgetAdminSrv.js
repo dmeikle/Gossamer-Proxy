@@ -1,159 +1,159 @@
-module.service('widgetsSrv', function($http) {
+module.service('widgetsSrv', function ($http) {
 
-  var apiPath = '/super/widgets';
+    var apiPath = '/super/widgets';
 
-  var self = this;
+    var self = this;
 
-  this.saveWidget = function(widgetObject, formToken) {
-    var requestPath;
-    if (!widgetObject.id) {
-      requestPath = apiPath + '/0';
-    } else {
-      requestPath = apiPath + '/' + widgetObject.id;
-    }
-    var data = {};
-    data.Widget = widgetObject;
-    data.FORM_SECURITY_TOKEN = formToken;
-    return $http({
-      method: 'POST',
-      url: requestPath,
-      data: data,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-  };
+    this.saveWidget = function (widgetObject, formToken) {
+        var requestPath;
+        if (!widgetObject.id) {
+            requestPath = apiPath + '/0';
+        } else {
+            requestPath = apiPath + '/' + widgetObject.id;
+        }
+        var data = {};
+        data.Widget = widgetObject;
+        data.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'POST',
+            url: requestPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
 
-  this.toggleEditingWidget = function(widgetObject) {
-    if (widgetObject.editing) {
-      widgetObject.editing = false;
-    } else {
-      widgetObject.editing = true;
-    }
-  };
+    this.toggleEditingWidget = function (widgetObject) {
+        if (widgetObject.editing) {
+            widgetObject.editing = false;
+        } else {
+            widgetObject.editing = true;
+        }
+    };
 
-  this.getWidgetList = function(row, numRows) {
-    return $http.get(apiPath + '/' + row + '/' + numRows)
-      .then(function(response) {
-        self.widgetList = response.data.Widgets;
-        self.widgetCount = response.data.WidgetsCount[0].rowCount;
-        return {
-          pagination: response.data.pagination
-        };
-      });
-  };
+    this.getWidgetList = function (row, numRows) {
+        return $http.get(apiPath + '/' + row + '/' + numRows)
+                .then(function (response) {
+                    self.widgetList = response.data.Widgets;
+                    self.widgetCount = response.data.WidgetsCount[0].rowCount;
+                    return {
+                        pagination: response.data.pagination
+                    };
+                });
+    };
 
-  this.deleteWidget = function(widget) {
-    var requestPath = apiPath + '/remove/' + widget.id;
-    return $http.delete(requestPath);
-  };
+    this.deleteWidget = function (widget) {
+        var requestPath = apiPath + '/remove/' + widget.id;
+        return $http.delete(requestPath);
+    };
 });
 
-module.service('templateSrv', function() {
-  this.pageTemplateModal = '/render/widgets/pageTemplateModal';
-  this.widgetModal = '/render/widgets/widgetModal';
+module.service('templateSrv', function () {
+    this.pageTemplateModal = '/render/widgets/pageTemplateModal';
+    this.widgetModal = '/render/widgets/widgetModal';
 });
 
 
 // Pages service
 
-module.service('pageTemplatesSrv', function($http) {
+module.service('pageTemplatesSrv', function ($http) {
 
-  var apiPath = '/super/widgets/pages';
+    var apiPath = '/super/widgets/pages';
 
-  var self = this;
+    var self = this;
 
-  this.savePageTemplate = function(object, formToken) {
-    var requestPath;
-    if (!object.id) {
-      requestPath = apiPath + '/0';
-    } else {
-      requestPath = apiPath + '/' + object.id;
-    }
-    var data = {};
-    object.isSystemPage = 1;
-    data.WidgetPage = object;
-    data.FORM_SECURITY_TOKEN = formToken;
-    return $http({
-      method: 'POST',
-      url: requestPath,
-      data: data,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).then(function(response) {
-      return response;
-    });
-  };
-
-  this.getPageTemplatesList = function(row, numRows) {
-    return $http.get(apiPath + '/' + row + '/' + numRows)
-      .then(function(response) {
-        self.pageTemplatesList = response.data.WidgetPages;
-        self.pageTemplatesCount = response.data.WidgetPagesCount[0];
-      });
-  };
-
-  this.getWidgetsOnPageTemplate = function(pageTemplate) {
-    return $http.get(apiPath + '/widgets/' + pageTemplate.id)
-      .then(function(response){
-        var widgets = [];
-        for (var section in response.data) {
-          if (response.data.hasOwnProperty(section)) {
-            if (section !== "widgets/super_widgetpages_widgets_list" &&
-                section !== "modules") {
-              for (var widget in response.data[section]) {
-                if (response.data[section].hasOwnProperty(widget)) {
-                  response.data[section][widget].sectionName = section;
-                  widgets.push(response.data[section][widget]);
-                }
-              }
-            }
-          }
+    this.savePageTemplate = function (object, formToken) {
+        var requestPath;
+        if (!object.id) {
+            requestPath = apiPath + '/0';
+        } else {
+            requestPath = apiPath + '/' + object.id;
         }
-        self.widgetsOnPage = widgets;
-      });
-  };
-
-  this.getUnusedWidgets = function(pageTemplate) {
-    if (!pageTemplate) {
-      return $http.get('/super/widgets/unassigned/all/0')
-        .then(function(response){
-          self.unusedWidgetList = response.data.Widgets;
+        var data = {};
+        object.isSystemPage = 1;
+        data.WidgetPage = object;
+        data.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'POST',
+            url: requestPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function (response) {
+            return response;
         });
-    }
-    return $http.get('/super/widgets/unassigned/all/' + pageTemplate.id )
-      .then(function(response) {
-        self.unusedWidgetList = response.data.Widgets;
-      });
-  };
+    };
 
-  this.addWidgetToPage = function(pageTemplate, object, sectionName, ymlKey, formToken) {
-    var requestPath = apiPath + '/widgets/' + pageTemplate.id;
-    var data = {};
-    data.WidgetPageWidget = {};
-    data.WidgetPageWidget.Widgets_id = object.Widgets_id;
-    data.WidgetPageWidget.ymlKey = ymlKey;
-    data.WidgetPageWidget.sectionName = sectionName;
-    data.FORM_SECURITY_TOKEN = formToken;
-    return $http({
-      method: 'POST',
-      url: requestPath,
-      data: data,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    });
-  };
+    this.getPageTemplatesList = function (row, numRows) {
+        return $http.get(apiPath + '/' + row + '/' + numRows)
+                .then(function (response) {
+                    self.pageTemplatesList = response.data.WidgetPages;
+                    self.pageTemplatesCount = response.data.WidgetPagesCount[0];
+                });
+    };
 
-  this.removeWidgetFromPage = function(pageTemplate, widget) {
-    var requestPath = apiPath + '/widgets/remove/' + pageTemplate.ymlKey + '/' + widget.id;
-    return $http.delete(requestPath);
-  };
+    this.getWidgetsOnPageTemplate = function (pageTemplate) {
+        return $http.get(apiPath + '/widgets/' + pageTemplate.id)
+                .then(function (response) {
+                    var widgets = [];
+                    for (var section in response.data) {
+                        if (response.data.hasOwnProperty(section)) {
+                            if (section !== "widgets/super_widgetpages_widgets_list" &&
+                                    section !== "modules") {
+                                for (var widget in response.data[section]) {
+                                    if (response.data[section].hasOwnProperty(widget)) {
+                                        response.data[section][widget].sectionName = section;
+                                        widgets.push(response.data[section][widget]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    self.widgetsOnPage = widgets;
+                });
+    };
 
-  this.deletePageTemplate = function(pageTemplate) {
-    var requestPath = apiPath + '/remove/' + pageTemplate.id;
-    return $http.delete(requestPath);
-  };
+    this.getUnusedWidgets = function (pageTemplate) {
+        if (!pageTemplate) {
+            return $http.get('/super/widgets/unassigned/all/0')
+                    .then(function (response) {
+                        self.unusedWidgetList = response.data.Widgets;
+                    });
+        }
+        return $http.get('/super/widgets/unassigned/all/' + pageTemplate.id)
+                .then(function (response) {
+                    self.unusedWidgetList = response.data.Widgets;
+                });
+    };
+
+    this.addWidgetToPage = function (pageTemplate, object, sectionName, ymlKey, formToken) {
+        var requestPath = apiPath + '/widgets/' + pageTemplate.id;
+        var data = {};
+        data.WidgetPageWidget = {};
+        data.WidgetPageWidget.Widgets_id = object.Widgets_id;
+        data.WidgetPageWidget.ymlKey = ymlKey;
+        data.WidgetPageWidget.sectionName = sectionName;
+        data.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'POST',
+            url: requestPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+
+    this.removeWidgetFromPage = function (pageTemplate, widget) {
+        var requestPath = apiPath + '/widgets/remove/' + pageTemplate.ymlKey + '/' + widget.id;
+        return $http.delete(requestPath);
+    };
+
+    this.deletePageTemplate = function (pageTemplate) {
+        var requestPath = apiPath + '/remove/' + pageTemplate.id;
+        return $http.delete(requestPath);
+    };
 
 });

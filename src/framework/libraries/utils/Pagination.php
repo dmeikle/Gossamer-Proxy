@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -15,7 +15,7 @@ use Monolog\Logger;
 
 /**
  * creates the pagination links to be used at the bottom of a list
- * 
+ *
  * @author Dave Meikle
  */
 class Pagination {
@@ -26,7 +26,7 @@ class Pagination {
     private $limit;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger) {
@@ -34,14 +34,14 @@ class Pagination {
     }
 
     /**
-     * 
+     *
      * @param int $rowCount
      * @param int $offset
      * @param int $limit
      * @return string
      */
     public function getPagination($rowCount, $offset, $limit) {
-      
+
         $this->rowCount = $rowCount;
         $this->offset = $offset;
         $this->limit = $limit;
@@ -65,7 +65,7 @@ class Pagination {
     }
 
     /**
-     * 
+     *
      * @return int
      */
     private function getNumPages() {

@@ -1,4 +1,5 @@
-module.service('templateSrv', function() {
+module.service('accountingTemplateSrv', function () {
     this.timesheetModal = '/render/accounting/timesheetModal';
     this.generalCostsModal = '/render/accounting/generalCostsModal';
+    this.inventoryModal = '/render/accounting/inventoryModal';
 });

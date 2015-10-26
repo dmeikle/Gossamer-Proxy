@@ -15,7 +15,7 @@ admin_scheduling_compressed:
         viewKey: admin_scheduling_compressed
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
     
 admin_scheduling_graph:
@@ -30,7 +30,7 @@ admin_scheduling_graph:
         viewKey: admin_scheduling_graph
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]  
     
 admin_scheduling_calendar:
@@ -47,7 +47,7 @@ admin_scheduling_calendar:
         viewKey: admin_scheduling_calendar
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             - 'src/components/scheduling/locales/*/Calendar'
     methods: [GET]    
         

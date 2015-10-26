@@ -10,6 +10,15 @@ pageTemplateModal:
     langFiles:
         - 'src/framework/core/components/widgets/locales/*/Widgets'
 
+timesheetsTab:
+    path: 'src/components/accounting/views/timesheets/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+
+generalCostsTab:
+    path: 'src/components/accounting/views/generalcosts/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
 
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
@@ -30,8 +39,17 @@ generalCostsModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\CreditAccountModel', 'cacheKey': 'CreditAccounts' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
-        #- { 'event': 'filerender_start', 'listener': 'components\accounting\listeners\LoadTollListener', 'datasource': 'datasource1', 'cacheKey': 'TollBridges', static: 'true' }
-        #- { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles'  }
+
+inventoryModal:
+    path: 'src/components/accounting/ng/views/inventoryModal.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+
 #        -
 #            event: 'filerender_start'
 #            listener: 'core\components\render\eventlisteners\FormBuilderListener'

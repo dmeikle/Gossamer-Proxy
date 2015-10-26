@@ -38,6 +38,7 @@ admin_claims_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
             "content": src/components/claims/views/admin/claims/list.php
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
@@ -97,6 +98,7 @@ admin_claims_edit:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/claims/edit.php
             cards: src/components/claims/views/admin/claims/edit-cards.php
             footer: src/themes/default/templates/sections/footer.php
@@ -104,6 +106,7 @@ admin_claims_edit:
         bootstrap_modules:
             - rootApp
             - claimsAdmin
+          #  - xeditable
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
@@ -114,8 +117,10 @@ admin_claims_edit:
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
         #- @components/claims/dist/js/claims.min.js
+       # - @extensions/xeditable/dist/js/xeditable-extension.concat.js
     css:
         - @components/claims/dist/css/claims.min.css
+       # - @extensions/xeditable/ng/css/xeditable.css
 
 
 admin_claims_initial_jobsheet:

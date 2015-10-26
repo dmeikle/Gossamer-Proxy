@@ -13,6 +13,6 @@ namespace components\shoppingcart\exceptions;
  *
  * @author user
  */
-class BasketItemNotFoundException extends \Exception{
+class BasketItemNotFoundException extends \Exception {
     //put your code here
 }

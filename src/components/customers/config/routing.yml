@@ -215,7 +215,7 @@ portal_login:
         viewKey: portal_login
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/customers/locales/*/login'
     methods: [GET]     
     

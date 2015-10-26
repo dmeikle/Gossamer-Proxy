@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -21,33 +21,33 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class AccountingGeneralCostItemModel extends AbstractModel{
-    
-    
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
+class AccountingGeneralCostItemModel extends AbstractModel {
+
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
-        
+
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
-        
+
         $this->entity = 'AccountingGeneralCostItem';
         $this->tablename = 'accountinggeneralcostitems';
     }
-    
-    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null)  {
+
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
         $queryParams = $this->httpRequest->getQueryParameters();
-        
+
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
             'directive::OFFSET' => intval($offset), 'directive::LIMIT' => intval($rows)
         );
-        
-        foreach($queryParams as $key => $value) {
+
+        foreach ($queryParams as $key => $value) {
             //$params['directive::' . strtoupper($key)] = $value; //commented out to fix advanced search
             $params[$key] = $value;
         }
-        
+
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        
+
         return $data;
     }
+
 }

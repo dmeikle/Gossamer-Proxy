@@ -16,8 +16,8 @@
 
 <div id="locales">
     <?php //$locale = $this->getDefaultLocale(); ?>
-    <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];?>.gif">
-    <a class="select-locale" data-id="en_US">EN</a> 
+    <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];        ?>.gif">
+    <a class="select-locale" data-id="en_US">EN</a>
     <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
     <a class="select-locale" data-id="hi_IN">Hindi</a>
 </div>
@@ -25,7 +25,7 @@
 <div id="header">
 
     <div id="account">
-        <a href="/portal/contacts/settings"><span class="glyphicon glyphicon-cog" title="Account Settings"></span></a> 
+        <a href="/portal/contacts/settings"><span class="glyphicon glyphicon-cog" title="Account Settings"></span></a>
         <span class="glyphicon glyphicon-envelope" title="view all messages"></span>
         <span class="glyphicon glyphicon-comment" title="view all notifications"></span>
         <span class="glyphicon glyphicon-bell" title="view all alerts"></span>
@@ -54,15 +54,15 @@
 
         if (array_key_exists('active', $item) && $item['active'] == false) {
             ?>
-                       <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
+                                                                                       <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
             <?php
             continue;
         }
         ?>
-               <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']); ?></a></li>
-               
+                                               <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']); ?></a></li>
+
     <?php }
-?>
+    ?>
    </ul>-->
     <!---section2--->
 </div>
@@ -72,5 +72,5 @@
         display: inline;
         margin-left: 20px;
     }
-    
+
 </style>

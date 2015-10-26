@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -24,21 +24,21 @@ use exceptions\KeyNotSetException;
 class LoadStaticCacheListener extends AbstractCachableListener {
 
     use \libraries\utils\traits\LoadConfigFile;
-    
+
     /**
      * entry point
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @return void
      */
     public function on_request_start($params) {
 
         $caching = $this->getCachingFromConfig();
-        if(!$caching) {
+        if (!$caching) {
             return;
         }
-        
+
         $requestParams = $this->httpRequest->getParameters();
         $params['permalink'] = end($requestParams);
 
@@ -53,15 +53,15 @@ class LoadStaticCacheListener extends AbstractCachableListener {
         }
 
         $locale = $this->getDefaultLocale();
-echo 'cms' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . $locale['locale'] . DIRECTORY_SEPARATOR . $key;
+        echo 'cms' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . $locale['locale'] . DIRECTORY_SEPARATOR . $key;
         $item = $this->getValuesFromCache('cms' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . $locale['locale'] . DIRECTORY_SEPARATOR . $key, true);
-pr($item);
+        pr($item);
         if ($item !== false) {
             echo 'static';
             $class = $this->listenerConfig['class'];
 
             $this->httpRequest->setAttribute($class . '_static', $item);
-        }else{
+        } else {
             echo 'reload';
         }
     }
@@ -74,14 +74,15 @@ pr($item);
 
         //load from trait
         $config = $this->loadConfig();
-        
-        if(!array_key_exists('cms', $config)) {
+
+        if (!array_key_exists('cms', $config)) {
             throw new KeyNotSetException('cms key not found in config');
         }
-        if(!array_key_exists('caching', $config['cms'])) {
+        if (!array_key_exists('caching', $config['cms'])) {
             throw new KeyNotSetException('cms:caching key not found in config');
         }
-      
+
         return $config['cms']['caching'] == 'true';
     }
+
 }

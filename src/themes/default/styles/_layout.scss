@@ -1,123 +1,125 @@
 // TODO Potential media query problem with iPad Minis.. Look into adjusting breakpoint?
 .wrapper {
-  @extend .container-fluid;
-  @media (max-width: $screen-md-min) {
-    width:100%;
-  }
-  padding:0 .25rem;
+    @extend .container-fluid;
+    @media (max-width: $screen-md-min) {
+        width:100%;
+    }
+    padding:0 .25rem;
 }
 
 .message-wrapper {
-  @extend .container;
-  min-height: 95vh; //Magic number-ey for now
+    @extend .container;
+    min-height: 95vh; //Magic number-ey for now
 
 }
 
 .notification-area {
-  margin:0 auto;
-  width:40%;
+    margin:0 auto;
+    width:40%;
 
-  position:fixed;
-  left:30%;
-  top:0;
-  z-index:10;
+    position:fixed;
+    left:30%;
+    top:0;
+    z-index:10;
 }
 
 .alert {
-  padding:.5em 1em;
-  margin:.5em;
+    padding:.5em 1em;
+    margin:.5em;
 }
 
 .userimage {
-  border-radius:50%;
-  margin-right:.5em;
+    border-radius:50%;
+    margin-right:.5em;
 }
 .navbar-brand {
-  padding:0;
-  img {
-    width: 90px;
-  }
+    padding:0;
+    img {
+        width: 90px;
+    }
 }
 
 button {
-  @extend .btn;
-  &.primary {
-    @extend .btn-primary;
-  }
+    @extend .btn;
+    &.primary {
+        @extend .btn-primary;
+    }
 }
 
 .input-group {
-  button {
-    border-radius:0 4px 4px 0;
-    border-left:0;
+    button {
+        border-radius:0 4px 4px 0;
+        border-left:0;
 
-    margin-left:-1px;
-  }
+        margin-left:-1px;
+    }
 }
 
 .toolbar {
-  padding: .5em 0;
-  text-align:right;
+    padding: .5em 0;
+    text-align:right;
 
-  > button {
-    margin-left:1em;
-  }
+    > button {
+        margin-left:1em;
+    }
 }
 
 .table {
-  margin-bottom:0;
-  table-layout:fixed;
+    margin-bottom:0;
+    table-layout:fixed;
 }
 .cog-col {
-  width:40px;
+    width:40px;
 }
-
+.table>tbody>tr>td{
+    padding:4px;
+}
 .table>tbody>tr>td:not(.row-controls) {
-  padding:.5em;
-  white-space: nowrap;
-  overflow:hidden;
-  text-overflow: ellipsis;
+    padding:.5em;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
 }
 
-.table>thead>tr>th {
+.table>thead>tr>th:not(.cog-col) {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
 
 .table-header-sortable {
-  position:relative;
+    position:relative;
 
-  .glyphicon {
-    transition:opacity ease 250ms;
-    opacity:0;
-  }
-  &:hover .glyphicon {
-    opacity:1;
-  }
+    .glyphicon {
+        transition:opacity ease 250ms;
+        opacity:0;
+    }
+    &:hover .glyphicon {
+        opacity:1;
+    }
 }
 
 th[column-sortable] .clear-sort {
-  opacity:0;
-  transition:opacity ease 250ms;
+    opacity:0;
+    transition:opacity ease 250ms;
 }
 
 th[column-sortable]:hover .clear-sort {
-  opacity:1;
+    opacity:1;
 }
 
 .pagination {
-  margin:0;
+    margin:0;
 }
 
 .row-controls button {
-  font-size:.75em;
-  padding:.3em .5em;
+    font-size:.75em;
+    padding:.3em .5em;
 }
 
 nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
-  padding-left:7px;
-  padding-right:7px;
+                                  padding-left:7px;
+                                  padding-right:7px;
 }
 
 nav .navbar-right .dropdown-menu {
@@ -126,34 +128,43 @@ nav .navbar-right .dropdown-menu {
 }
 
 .resultspane {
-  position:absolute;
-  top:2.2em;
-  text-align:left;
+    position:absolute;
+    top:2.2em;
+    text-align:left;
 
 
-  // stolen from .dropdown-menu
-  min-width: 160px;
-  width:100%;
-  padding: 5px 0;
-  margin: 2px 0 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-  background-clip: padding-box;
+    // stolen from .dropdown-menu
+    min-width: 160px;
+    width:100%;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    background-clip: padding-box;
 }
 
 .modal-body .resultspane {
-  top:inherit;
+    top:inherit;
 }
 
 ul {
-  list-style:none;
+    list-style:none;
 }
 
 .row-controls button {
-  font-size:.8em;
-  padding:.3em .5em;
+    font-size:.8em;
+    padding:.3em .5em;
+}
+
+.content-list {
+    padding-left:0;
+}
+
+.column-container{
+    display:flex;
+    margin:5px 10px 0 0;
 }

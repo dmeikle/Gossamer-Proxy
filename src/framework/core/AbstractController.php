@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -35,7 +35,7 @@ use libraries\utils\preferences\UserPreferencesManager;
 class AbstractController {
 
     use \libraries\utils\traits\GetLoggedInUser;
-    
+
     /**
      * Property: view
      * The view to be implemented within the MVC framework
@@ -59,7 +59,7 @@ class AbstractController {
      * The response object to contain loaded parameters for the view
      */
     protected $httpResponse;
-    
+
     /**
      * Property: request
      * The request object to contain filtered parameters from the $_REQUEST
@@ -77,10 +77,10 @@ class AbstractController {
 
     /**
      * default constructor
-     * 
+     *
      * @param Request filtered request values
      * @param Registry values to be built upon throughout the response
-     * 
+     *
      */
     public function __construct(AbstractModel $model, AbstractView $view, Logger $logger, HTTPRequest &$request, HTTPResponse &$response, Logger $logger) {
 
@@ -93,28 +93,34 @@ class AbstractController {
         $this->httpRequest = $request;
         $this->httpResponse = $response;
     }
-    
+
     public function __call($name, $arguments) {
         $field = '';
-       
-        if(substr($name, 0, 7) == 'searchBy') {
+
+        if (substr($name, 0, 7) == 'searchBy') {
             $field = substr($name, 8);
             $this->model->search(array($field => $this->getSearchArguments()));
-        }       
+        }
     }
-    
+
+    public function autocomplete() {
+        $params = $this->httpRequest->getQueryParameters();
+
+        $this->render($this->model->autocomplete($params));
+    }
+
     protected function getSearchArguments() {
         $rawterm = $this->httpRequest->getQueryParameter('term');
-        
+
         return preg_replace('/[^A-z0-9\-]/', '', substr($rawterm, 0, 10));
     }
 
     /**
      * creates a default entity and populates it
-     * 
+     *
      * @param string $key
      * @param array $values
-     * 
+     *
      * @return array
      */
     protected function getEntity($key, array $values = array()) {
@@ -126,7 +132,7 @@ class AbstractController {
 
     /**
      * determines whether we are reloading the page after a failed validation
-     * 
+     *
      * @return boolean
      */
     protected function isFailedValidationAttempt() {
@@ -135,7 +141,7 @@ class AbstractController {
 
     /**
      * injection method intended for overriding the default view in case of Exception
-     * 
+     *
      * @param AbstractView $view
      */
     public function setView(AbstractView $view) {
@@ -144,7 +150,7 @@ class AbstractController {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -154,7 +160,7 @@ class AbstractController {
     //changed from protected to public so render can be overridden during Exception
     /**
      * calls the render method within the passed in view
-     * 
+     *
      * @param array $data
      */
     public function render(array $data = null) {
@@ -163,8 +169,8 @@ class AbstractController {
     }
 
     /**
-     * index method - landing page or list view 
-     * 
+     * index method - landing page or list view
+     *
      */
     public function index() {
         $result = $this->model->index(array());
@@ -174,7 +180,7 @@ class AbstractController {
 
     /**
      * listall - retrieves rows based on offset, limit
-     * 
+     *
      * @param int offset    database page to start at
      * @param int limit     max rows to return
      */
@@ -183,7 +189,7 @@ class AbstractController {
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
-            
+
             //CP-33 changed to json output for new Angular based page draws
             $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
@@ -191,22 +197,22 @@ class AbstractController {
 
         $this->render($result);
     }
-    
+
     /**
      * listall - retrieves rows based on offset, limit
-     * 
+     *
      * @param int offset    database page to start at
      * @param int limit     max rows to return
      */
     public function listallWithForm($offset = 0, $limit = 20) {
         $result = $this->model->listall($offset, $limit);
         $paginationResult = '';
-      
+
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
             $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
-            
+
             $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
         } else {
             $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
@@ -215,7 +221,7 @@ class AbstractController {
 
     /**
      * listallReverseWithForm - retrieves rows based on offset, limit
-     * 
+     *
      * @param int offset    database page to start at
      * @param int limit     max rows to return
      */
@@ -226,18 +232,18 @@ class AbstractController {
             $pagination = new Pagination($this->logger);
             $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
-            
+
             $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
         } else {
             $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
         }
 
-       // $this->render($result);
+        // $this->render($result);
     }
 
     /**
      * listallReverse - retrieves rows based on offset, limit
-     * 
+     *
      * @param int offset    database page to start at
      * @param int limit     max rows to return
      */
@@ -246,8 +252,8 @@ class AbstractController {
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
-             
-           //CP-33 changed to json output for new Angular based page draws
+
+            //CP-33 changed to json output for new Angular based page draws
             $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
             unset($pagination);
         }
@@ -256,7 +262,7 @@ class AbstractController {
     }
 
     /**
-     * 
+     *
      * @return string
      */
     protected function getUriWithoutOffsetLimit() {
@@ -269,7 +275,7 @@ class AbstractController {
 
     /**
      * edit - display an input form based on requested id
-     * 
+     *
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
@@ -280,7 +286,7 @@ class AbstractController {
 
     /**
      * save - saves/updates row
-     * 
+     *
      * @param int id    primary key of item to save
      */
     public function save($id) {
@@ -296,7 +302,7 @@ class AbstractController {
 
     /**
      * saves values and performs a redirect upon completion
-     * 
+     *
      * @param int $id
      * @param string $ymlKey
      * @param array $params
@@ -314,7 +320,7 @@ class AbstractController {
 
     /**
      * delete - removes a row from the database
-     * 
+     *
      * @param int id    primary key of item to delete
      */
     public function delete($id) {
@@ -322,20 +328,20 @@ class AbstractController {
 
         $this->render($result);
     }
-    
+
     /**
      * view - dependent on listeners to provide all data
-     * 
+     *
      * @param int id    primary key of item to retrieve
-     
-    public function view($id = null) {
-        
 
-        $this->render(array());
-    }*/
+      public function view($id = null) {
+
+
+      $this->render(array());
+      } */
 
     /**
-     * 
+     *
      * @param string $uri
      */
     protected function redirect($uri) {
@@ -350,7 +356,7 @@ class AbstractController {
     /**
      * method for building forms within the view to be called if needed by
      * child classes
-     * 
+     *
      * @param FormBuilderInterface $model
      * @param array $values
      * @throws Exception
@@ -360,9 +366,9 @@ class AbstractController {
     }
 
     /**
-     * 
+     *
      * @param AbstractModel $model
-     * 
+     *
      * @return datasource
      */
     protected function getDatasource(AbstractModel $model) {
@@ -378,13 +384,13 @@ class AbstractController {
 
     public function setInactive($id) {
         $this->model->setInactive($id);
-        
+
         $this->render();
     }
 
     protected function setInactiveAndRedirect($id, $ymlKey, array $params = array()) {
         $this->model->setInactive($id);
-        
+
         $eventParams = array('entity' => $this->model->getEntity(true));
         $event = new Event('set_inactive_success', $eventParams);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'set_inactive_success', $event);
@@ -392,15 +398,15 @@ class AbstractController {
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect($ymlKey, $params);
     }
-    
+
     public function paginationJson($offset, $limit) {
         $result = $this->model->paginate($offset, $limit);
-     
+
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
             $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
             unset($pagination);
-        } 
+        }
 //        //TODO: this is simply here for debugging and should be removed
 //      $count = array();
 //      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
@@ -410,23 +416,23 @@ class AbstractController {
 //      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
         $this->render($count);
     }
-    
-    
+
     /**
-     * 
+     *
      * @return Locale
      */
     protected function getDefaultLocale() {
+
         //check to see if it's in the query string - a menu request perhaps?
         $queryLocale = $this->httpRequest->getQueryParameter('locale');
-        if(!is_null($queryLocale)) {
-            return array('locale' =>$queryLocale);
+        if (!is_null($queryLocale)) {
+            return array('locale' => $queryLocale);
         }
-        
+
         $manager = new UserPreferencesManager($this->httpRequest);
         $userPreferences = $manager->getPreferences();
 
-        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
+        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences && strlen($userPreferences->getDefaultLocale()) > 0) {
             return array('locale' => $userPreferences->getDefaultLocale());
         }
 

@@ -393,7 +393,7 @@ admin_login_confirmreset:
         viewKey: admin_login_confirmreset
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]
@@ -413,7 +413,7 @@ admin_login_confirmreset_submit:
         viewKey: admin_login_confirmreset_submit
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
@@ -432,7 +432,7 @@ admin_login_reset_submit:
         viewKey: admin_login_reset_submit
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
@@ -450,7 +450,7 @@ admin_login_reset:
         viewKey: admin_login_reset
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]
@@ -470,7 +470,7 @@ admin_login:
         viewKey: admin_login
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
     methods: [GET]
@@ -485,6 +485,7 @@ admin_login_submit:
         - { 'event': 'login_roles_not_set', 'listener': 'components\staff\listeners\RolesNotSetListener' }
         - { 'event': 'login_password_mismatch', 'listener': 'components\staff\listeners\RolesNotSetListener' }
         - { 'event': 'login_success', 'listener': 'components\staff\listeners\TimestampLoginSuccessListener', 'datasource': 'datasource1'}
+        - { 'event': 'login_success', 'listener': 'components\users\listeners\LoadUserPreferencesListener', 'datasource': 'datasource1', class: 'components\staff\models\StaffPreferenceModel'}
        # - { 'event': 'login_status_not_active', 'listener': 'components\staff\listeners\StatusNotActiveListener', 'datasource': 'datasource1'}
         - { 'event': 'login_success', 'listener': 'components\staff\listeners\ResetLoginAttemptsListener', 'datasource': 'datasource1'}
         - { 'event': 'login_success', 'listener': 'components\staff\listeners\RedirectToHomePageListener', 'datasource': 'datasource1'}

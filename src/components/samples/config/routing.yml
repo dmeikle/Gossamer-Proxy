@@ -12,7 +12,7 @@ admin_samples_edit:
         viewKey: admin_samples_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
  
  
@@ -28,7 +28,7 @@ admin_samples_list:
         viewKey: admin_samples_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
 
        

@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -9,7 +10,7 @@ include_once('../vendor/autoload.php');
 include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
-//echo(__YML_KEY."\r\n");
+///echo(__YML_KEY."\r\n");
 
 use core\system\Kernel;
 use core\system\KernelEvents;

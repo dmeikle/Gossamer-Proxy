@@ -11,10 +11,12 @@
             <th>Action</th>
         </tr>
     </thead>
-    <?php foreach($EventContacts as $contact) {
-        if(!is_array($contact) || count($contact) < 1) {
+    <?php
+    foreach ($EventContacts as $contact) {
+        if (!is_array($contact) || count($contact) < 1) {
             continue;
-        } ?>    
+        }
+        ?>
         <tr>
             <td>
                 <?php echo $contact['name']; ?>
@@ -29,9 +31,9 @@
                 <?php echo $contact['company']; ?>
             </td>
             <td>
-                <button data-id="<?php echo $contact['id']; ?>" class="btn btn-primary edit">Edit</button> 
-                <button data-id="<?php echo $contact['id']; ?>" class="btn btn-primary remove">Delete</button> 
-                
+                <button data-id="<?php echo $contact['id']; ?>" class="btn btn-primary edit">Edit</button>
+                <button data-id="<?php echo $contact['id']; ?>" class="btn btn-primary remove">Delete</button>
+
             </td>
         </tr>
     <?php } ?>

@@ -1,7 +1,7 @@
-module.controller('toastsCtrl', function($scope, toastsSrv) {
+module.controller('toastsCtrl', function ($scope, toastsSrv) {
 
-  $scope.alerts = toastsSrv.alerts;
+    $scope.alerts = toastsSrv.alerts;
 
-  $scope.dismissAlert = toastsSrv.dismissAlert;
+    $scope.dismissAlert = toastsSrv.dismissAlert;
 
 });

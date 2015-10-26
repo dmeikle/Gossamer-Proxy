@@ -179,340 +179,570 @@ admin_call_matrix:
 
 # MAIN NAVIGATION - ADMIN SECTION
 
-admin_accounting:
-    active: false
-    text_key: 'ADMIN_ACCOUNTING'
-    pattern: '/admin/accounting'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
-        - IS_ACCOUNTING
-
-admin_contents:
-    active: false
-    text_key: 'ADMIN_CONTENTS'
-    pattern: '/admin/contents/jobs/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
-customer_service:
-    text_key: 'CUSTOMER_SERVICE'
-    display_roles:
-        - IS_STAFF
-    children:
-        admin_incidents:
-            active: true
-            text_key: 'ADMIN_INCIDENTS'
-            pattern: '/admin/incidents/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-            children:
-                incidents_list_all:
-                    active: true
-                    text_key: 'ADMIN_INCIDENTS_LIST_ALL'
-                    pattern: '/admin/incidents/0/20'
-                    display_roles:
-                        - IS_STAFF
-        admin_deficiencies:
-            active: false
-            text_key: 'ADMIN_DEFICIENCIES'
-            pattern: '/admin/deficiencies/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-
-directory:
-    text_key: 'DIRECTORY'
-    display_roles:
-        - IS_ADMIN
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-    children:
-        staff_list:
-            text_key: 'ADMIN_STAFF'
-            pattern: '#'
-            display_roles:
-                - IS_ADMIN
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-            children:
-                staff_list:
-                    text_key: 'ADMIN_STAFF_LIST'
-                    pattern: '/admin/staff/0/20'
-                    display_roles:
-                        - IS_ADMIN
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                staff_add_new:
-                    text_key: 'ADMIN_STAFF_ADD_NEW'
-                    pattern: '/admin/staff/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_HR_MANAGER
-        admin_contacts:
-            text_key: 'ADMIN_CONTACTS'
-            pattern: '/admin/contacts/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-            children:
-                contacts_list_all:
-                    text_key: 'ADMIN_CONTACTS_LIST_ALL'
-                    pattern: '/admin/contacts/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                contacts_add_new:
-                    text_key: 'ADMIN_CONTACTS_ADD_NEW'
-                    pattern: '/admin/contacts/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                        - IS_PMA
-                contacts_companies_listall:
-                    text_key: 'ADMIN_COMPANIES_LIST_ALL'
-                    pattern: '/admin/companies'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                        - IS_PMA
-                contacts_add_new_company:
-                    text_key: 'ADMIN_COMPANIES_ADD_NEW'
-                    pattern: '/admin/companies/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                        - IS_PMA
-        admin_claims:
-            text_key: 'ADMIN_CLAIMS'
-            pattern: '/admin/claims/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_ADMIN
-                - IS_STAFF
-            children:
-                claims_list_all:
-                    text_key: 'ADMIN_CLAIMS_LIST_ALL'
-                    pattern: '/admin/claims/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                claims_create_new:
-                    text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-                    pattern: '/admin/claim/1/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_PROJECT_MANAGER
-                        - IS_PMA
-                        - IS_PROJECT_MANAGER
-                claims_scheduling:
-                    text_key: 'ADMIN_CLAIMS_SCHEDULING'
-                    pattern: '/admin/claims/scheduling/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-                        - IS_PROJECT_MANAGER
-                admin_keys:
-                    active: false
-                    text_key: 'ADMIN_KEYS'
-                    pattern: '/admin/keys/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_STAFF
-
-        admin_subcontractors:
-            active: false
-            text_key: 'ADMIN_SUBCONTRACTORS'
-            pattern: '/admin/subcontractors/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-        admin_projects:
-            active: true
-            text_key: 'ADMIN_PROJECTS'
-            pattern: '/admin/projects/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-            children:
-                projects:
-                    active: true
-                    text_key: 'ADMIN_PROJECTS_LIST_ALL'
-                    pattern: '/admin/projects/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_EDITOR
-                        - IS_STAFF
-                projects:
-                    active: true
-                    text_key: 'ADMIN_PROJECTS_CREATE_NEW'
-                    pattern: '/admin/projects/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_EDITOR
-                        - IS_STAFF
-
-
-
-
-admin_scoping:
-    text_key: 'ADMIN_SCOPING'
-    pattern: '/admin/scoping/requests/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_SCOPER
-        - IS_PROJECT_MANAGER
-    children:
-        scoping_list_all:
-            text_key: 'ADMIN_SCOPING_LIST_ALL'
-            pattern: '/admin/scoping/requests/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_SCOPER
-                - IS_PROJECT_MANAGER
-        scoping_takeoffs_list_all:
-            text_key: 'ADMIN_SCOPING_TAKEOFFS_LIST_ALL'
-            pattern: '/admin/scoping/takeoffs/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_SCOPER
-                - IS_PROJECT_MANAGER
-
-samples_list:
-    text_key: 'ADMIN_SAMPLES'
-    pattern: '/admin/samples/0/20'
-    display_roles:
-        - IS_ADMIN
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
-admin_inventory:
-    active: false
-    text_key: 'ADMIN_INVENTORY'
+admin_costing:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_COSTING'
     pattern: '#'
     display_roles:
         - IS_ADMINISTRATOR
+        - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_general_costs:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+            pattern: '/admin/accounting/generalcosts'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/generalCostsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_timesheets:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_TIMESHEETS'
+            pattern: '/admin/accounting/timesheets'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/timesheetsTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_supplies_used:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            pattern: '/admin/accounting/supplies'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounts_receivable:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_ACCOUNTS_RECEIVABLE'
+    ng-click: "addTab('text_key', 'template')"
+    template: '/render/accounting/timesheetsTab'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_sales_invoices:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_SALES_INVOICES'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_breakdowns:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_BREAKDOWNS'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_cash_receipts:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_aging_summary_report:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_AGING_SUMMARY_REPORT'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_aging_details_report:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_AGING_DETAILS_REPORT'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+
+admin_accounting_accounts_payables:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_ACCOUNTS_PAYABLE'
+    ng-click: "addTab('text_key', 'template')"
+    template: '/render/accounting/generalCostsTab'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_purchase_orders:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_PURCHASE_ORDERS'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_unassociated_pos:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_UNASSOCIATED_POS'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_purchase_invoices:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_PURCHASE_INVOICES'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounting_simply_accounting:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_SIMPLY_ACCOUNTING'
+    ng-click: "addTab('text_key', 'template')"
+    template: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING
+        - IS_DEVELOPER
+    children:
+        admin_accounting_batches:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_BATCHES'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_approved_to_export:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_APPROVED_TO_EXPORT'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+        admin_accounting_settings:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_SETTINGS'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING
+                - IS_DEVELOPER
+                
+admin_accounting_general:
+    active: true
+    text_key: 'ADMIN_ACCOUNTING_GENERAL'
+    ng-click: "addTab('text_key', 'template')"
+    template: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ACCOUNTING    
+        - IS_DEVELOPER
+    children:
+        admin_accounting_view_accounts:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_VIEW_ACCOUNTS'
+            pattern: '#'
+            ng-click: "addTab('text_key', 'template')"
+            template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING    
+                - IS_DEVELOPER
+                
+#admin_accounting_general_costs_test:
+#    active: true
+#    text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+#    ng-click: "addTab('text_key', 'template')"
+#    template: '/render/accounting/generalCostsTab'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_PROJECT_MANAGER
+#        - IS_PM_ASSISTANT
+#        - IS_ACCOUNTING
+        
+#admin_accounting:
+#    active: true
+#    text_key: 'ADMIN_ACCOUNTING'
+#    pattern: '/admin/accounting'
+#    section: usermenu
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_PROJECT_MANAGER
+#        - IS_PM_ASSISTANT
+#        - IS_ACCOUNTING
+#    children:
+#        admin_general_costs:
+#            active: true
+#            text_key: 'ADMIN_ACCOUNTING_GENERAL_COSTS'
+#            pattern: '/admin/generalcosts'
+#            ng-click: "addTab('text_key', 'template')"
+#            template: '/render/accounting/generalCostsTab'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_PROJECT_MANAGER
+#                - IS_PM_ASSISTANT
+#                - IS_ACCOUNTING
+#        
+#admin_contents:
+#    active: false
+#    text_key: 'ADMIN_CONTENTS'
+#    pattern: '/admin/contents/jobs/0/20'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#
+#customer_service:
+#    text_key: 'CUSTOMER_SERVICE'
+#    display_roles:
+#        - IS_STAFF
+#    children:
+#        admin_incidents:
+#            active: true
+#            text_key: 'ADMIN_INCIDENTS'
+#            pattern: '/admin/incidents/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#            children:
+#                incidents_list_all:
+#                    active: true
+#                    text_key: 'ADMIN_INCIDENTS_LIST_ALL'
+#                    pattern: '/admin/incidents/0/20'
+#                    display_roles:
+#                        - IS_STAFF
+#        admin_deficiencies:
+#            active: false
+#            text_key: 'ADMIN_DEFICIENCIES'
+#            pattern: '/admin/deficiencies/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#
+#directory:
+#    text_key: 'DIRECTORY'
+#    display_roles:
+#        - IS_ADMIN
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#    children:
+#        staff_list:
+#            text_key: 'ADMIN_STAFF'
+#            pattern: '#'
+#            display_roles:
+#                - IS_ADMIN
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
+#            children:
+#                staff_list:
+#                    text_key: 'ADMIN_STAFF_LIST'
+#                    pattern: '/admin/staff/0/20'
+#                    display_roles:
+#                        - IS_ADMIN
+#                        - IS_ADMINISTRATOR
+#                        - IS_STAFF
+#                staff_add_new:
+#                    text_key: 'ADMIN_STAFF_ADD_NEW'
+#                    pattern: '/admin/staff/0'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_HR_MANAGER
+#        admin_contacts:
+#            text_key: 'ADMIN_CONTACTS'
+#            pattern: '/admin/contacts/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
+#            children:
+#                contacts_list_all:
+#                    text_key: 'ADMIN_CONTACTS_LIST_ALL'
+#                    pattern: '/admin/contacts/0/20'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_STAFF
+#                        - IS_PROJECT_MANAGER
+#                contacts_add_new:
+#                    text_key: 'ADMIN_CONTACTS_ADD_NEW'
+#                    pattern: '/admin/contacts/0'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_STAFF
+#                        - IS_PROJECT_MANAGER
+#                        - IS_PMA
+#                contacts_companies_listall:
+#                    text_key: 'ADMIN_COMPANIES_LIST_ALL'
+#                    pattern: '/admin/companies'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_STAFF
+#                        - IS_PROJECT_MANAGER
+#                        - IS_PMA
+#                contacts_add_new_company:
+#                    text_key: 'ADMIN_COMPANIES_ADD_NEW'
+#                    pattern: '/admin/companies/0'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_STAFF
+#                        - IS_PROJECT_MANAGER
+#                        - IS_PMA
+admin_claims:
+    text_key: 'ADMIN_CLAIMS'
+    pattern: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ADMIN
         - IS_STAFF
     children:
-        admin_inventory_materials:
-            text_key: 'ADMIN_INVENTORY_MATERIALS'
-            pattern: '/admin/inventory/materials/0/20'
+        claims_list_all:
+            text_key: 'ADMIN_CLAIMS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/claims/claimsAdminTab'
+            pattern: '/admin/claims'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        claims_create_new:
+            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+            pattern: '/admin/claims/new/1/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+                - IS_PROJECT_MANAGER
+        claims_scheduling:
+            text_key: 'ADMIN_CLAIMS_SCHEDULING'
+            pattern: '/admin/claims/scheduling/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        admin_keys:
+            active: false
+            text_key: 'ADMIN_KEYS'
+            pattern: '/admin/keys/0/20'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
 
-        admin_inventory_equipment:
-            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
-            pattern: '/admin/inventory/equipment/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-
-
-admin_satisfaction:
-    active: false
-    text_key: 'ADMIN_SATISFACTION'
-    pattern: '/admin/satisfaction'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
-
-admin_environmental:
-    active: true
-    text_key: 'ADMIN_ENVIRONMENTAL'
-    pattern: '/admin/environmental/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-
-admin_surveys:
-    active: true
-    text_key: 'ADMIN_SURVEYS'
-    pattern: '/admin/surveys/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    children:
-        surveys_list_all:
-            active: true
-            text_key: 'ADMIN_SURVEYS_LIST_ALL'
-            pattern: '/admin/surveys/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        surveys_list_pages:
-            active: true
-            text_key: 'ADMIN_SURVEYS_LIST_ALL_PAGES'
-            pattern: '/admin/surveys/pages/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        surveys_list_panes:
-            active: true
-            text_key: 'ADMIN_SURVEYS_LIST_ALL_PANES'
-            pattern: '/admin/surveys/panes/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        surveys_list_questions:
-            active: true
-            text_key: 'ADMIN_SURVEYS_LIST_ALL_QUESTIONS'
-            pattern: '/admin/surveys/questions/list/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        surveys_list_answers:
-            active: true
-            text_key: 'ADMIN_SURVEYS_LIST_ALL_ANSWERS'
-            pattern: '/admin/surveys/answers/list/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-
-admin_cart:
-    active: false
-    text_key: 'ADMIN_CART'
-    pattern: '/admin/cart/sales/0/20'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
-
-#-------------------CLIENT PORTAL SECTION--------------------
-
-
-portal_contacts_list:
-    active: true
-    text_key: 'PORTAL_CONTACTS_LIST'
-    pattern: '/portal/contacts/list/0/20'
-    display_roles:
-        - IS_PORTAL_MANAGER
-
-
-portal_projects_list:
-    active: true
-    text_key: 'PORTAL_PROJECTS_LIST'
-    pattern: '/portal/projects/company'
-    display_roles:
-        - IS_PORTAL_MANAGER
-
-
-portal_events_list:
-    active: true
-    text_key: 'PORTAL_EVENTS_LIST'
-    pattern: '/portal/events/0/20'
-    display_roles:
-        - IS_PORTAL_MANAGER
-
-
+#        admin_subcontractors:
+#            active: false
+#            text_key: 'ADMIN_SUBCONTRACTORS'
+#            pattern: '/admin/subcontractors/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#        admin_projects:
+#            active: true
+#            text_key: 'ADMIN_PROJECTS'
+#            pattern: '/admin/projects/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#                - IS_STAFF
+#            children:
+#                projects:
+#                    active: true
+#                    text_key: 'ADMIN_PROJECTS_LIST_ALL'
+#                    pattern: '/admin/projects/0/20'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_EDITOR
+#                        - IS_STAFF
+#                projects:
+#                    active: true
+#                    text_key: 'ADMIN_PROJECTS_CREATE_NEW'
+#                    pattern: '/admin/projects/0'
+#                    display_roles:
+#                        - IS_ADMINISTRATOR
+#                        - IS_EDITOR
+#                        - IS_STAFF
+#
+#
+#
+#
+#admin_scoping:
+#    text_key: 'ADMIN_SCOPING'
+#    pattern: '/admin/scoping/requests/0/20'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_SCOPER
+#        - IS_PROJECT_MANAGER
+#    children:
+#        scoping_list_all:
+#            text_key: 'ADMIN_SCOPING_LIST_ALL'
+#            pattern: '/admin/scoping/requests/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_SCOPER
+#                - IS_PROJECT_MANAGER
+#        scoping_takeoffs_list_all:
+#            text_key: 'ADMIN_SCOPING_TAKEOFFS_LIST_ALL'
+#            pattern: '/admin/scoping/takeoffs/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_SCOPER
+#                - IS_PROJECT_MANAGER
+#
+#samples_list:
+#    text_key: 'ADMIN_SAMPLES'
+#    pattern: '/admin/samples/0/20'
+#    display_roles:
+#        - IS_ADMIN
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#
+#admin_inventory:
+#    active: false
+#    text_key: 'ADMIN_INVENTORY'
+#    pattern: '#'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#    children:
+#        admin_inventory_materials:
+#            text_key: 'ADMIN_INVENTORY_MATERIALS'
+#            pattern: '/admin/inventory/materials/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
+#
+#        admin_inventory_equipment:
+#            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
+#            pattern: '/admin/inventory/equipment/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
+#
+#
+#admin_satisfaction:
+#    active: false
+#    text_key: 'ADMIN_SATISFACTION'
+#    pattern: '/admin/satisfaction'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_PROJECT_MANAGER
+#        - IS_PM_ASSISTANT
+#
+#admin_environmental:
+#    active: true
+#    text_key: 'ADMIN_ENVIRONMENTAL'
+#    pattern: '/admin/environmental/0/20'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#
+#admin_surveys:
+#    active: true
+#    text_key: 'ADMIN_SURVEYS'
+#    pattern: '/admin/surveys/0/20'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_EDITOR
+#    children:
+#        surveys_list_all:
+#            active: true
+#            text_key: 'ADMIN_SURVEYS_LIST_ALL'
+#            pattern: '/admin/surveys/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#        surveys_list_pages:
+#            active: true
+#            text_key: 'ADMIN_SURVEYS_LIST_ALL_PAGES'
+#            pattern: '/admin/surveys/pages/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#        surveys_list_panes:
+#            active: true
+#            text_key: 'ADMIN_SURVEYS_LIST_ALL_PANES'
+#            pattern: '/admin/surveys/panes/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#        surveys_list_questions:
+#            active: true
+#            text_key: 'ADMIN_SURVEYS_LIST_ALL_QUESTIONS'
+#            pattern: '/admin/surveys/questions/list/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#        surveys_list_answers:
+#            active: true
+#            text_key: 'ADMIN_SURVEYS_LIST_ALL_ANSWERS'
+#            pattern: '/admin/surveys/answers/list/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_EDITOR
+#
+#admin_cart:
+#    active: false
+#    text_key: 'ADMIN_CART'
+#    pattern: '/admin/cart/sales/0/20'
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_EDITOR
+#        - IS_STAFF
+#
+##-------------------CLIENT PORTAL SECTION--------------------
+#
+#
+#portal_contacts_list:
+#    active: true
+#    text_key: 'PORTAL_CONTACTS_LIST'
+#    pattern: '/portal/contacts/list/0/20'
+#    display_roles:
+#        - IS_PORTAL_MANAGER
+#
+#
+#portal_projects_list:
+#    active: true
+#    text_key: 'PORTAL_PROJECTS_LIST'
+#    pattern: '/portal/projects/company'
+#    display_roles:
+#        - IS_PORTAL_MANAGER
+#
+#
+#portal_events_list:
+#    active: true
+#    text_key: 'PORTAL_EVENTS_LIST'
+#    pattern: '/portal/events/0/20'
+#    display_roles:
+#        - IS_PORTAL_MANAGER
+#
+#
 #--------------------------main website ----------------------
 
 website_services:

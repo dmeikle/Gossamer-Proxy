@@ -7,11 +7,11 @@
  *  file that was distributed with this source code.
  */
 
-(function() {
+(function () {
     var app = angular.module('staff', []);
 
-    app.controller('StaffController', function() {
-       this.items = staff;
+    app.controller('StaffController', function () {
+        this.items = staff;
     });
 
     var staff = [

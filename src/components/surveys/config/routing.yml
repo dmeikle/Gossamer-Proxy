@@ -11,7 +11,7 @@ admin_surveys_pages_questions_saveorder:
         viewKey: admin_surveys_pages_questions_saveorder
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
 
 admin_surveys_view_responses:
     pattern: admin/surveys/view/*/*
@@ -25,7 +25,7 @@ admin_surveys_view_responses:
         viewKey: admin_surveys_view_responses
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'    
+            - 'src/components/defaultItem/locales/*/Navigation'    
  
 admin_surveys_panes_search:
     pattern: admin/surveys/panes/search
@@ -38,7 +38,7 @@ admin_surveys_panes_search:
         viewKey: admin_surveys_panes_search
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
 admin_surveys_panes_questions_list:
     pattern: admin/surveys/panes/questions/*/*/*
@@ -54,7 +54,7 @@ admin_surveys_panes_questions_list:
         viewKey: admin_surveys_panes_questions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
             
 admin_surveys_panes_questions_save:
     pattern: admin/surveys/panes/questions/*/*
@@ -67,7 +67,7 @@ admin_surveys_panes_questions_save:
         viewKey: admin_surveys_panes_questions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
            
             
 admin_surveys_pages_remove:
@@ -81,7 +81,7 @@ admin_surveys_pages_remove:
         viewKey: admin_surveys_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
       
 admin_surveys_pages_search:
     pattern: admin/surveys/pages/search
@@ -94,7 +94,7 @@ admin_surveys_pages_search:
         viewKey: admin_surveys_pages_search
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'           
+            - 'src/components/defaultItem/locales/*/Navigation'           
     
 admin_surveys_pages_list:
     pattern: admin/surveys/pages/*/*
@@ -108,7 +108,7 @@ admin_surveys_pages_list:
         viewKey: admin_surveys_pages_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
 admin_surveys_pages_edit:
     pattern: admin/surveys/pages/*
@@ -122,7 +122,7 @@ admin_surveys_pages_edit:
         viewKey: admin_surveys_pages_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
 admin_surveys_pages_save:
     pattern: admin/surveys/pages/*
@@ -136,7 +136,7 @@ admin_surveys_pages_save:
         viewKey: admin_surveys_pages_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
 
 admin_surveys_pages_panes_saveorder:
     pattern: admin/surveys/pages/panes/saveorder/*
@@ -152,7 +152,7 @@ admin_surveys_pages_panes_saveorder:
         viewKey: admin_surveys_pages_panes_saveorder
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
 
 admin_surveys_pages_panes_saveorder:
     pattern: admin/surveys/survey/pages/saveorder/*
@@ -168,7 +168,7 @@ admin_surveys_pages_panes_saveorder:
         viewKey: admin_surveys_pages_panes_saveorder
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             
             
 admin_surveys_pages_panes_list:
@@ -185,7 +185,7 @@ admin_surveys_pages_panes_list:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            - 'src/components/defaultItem/locales/*/Navigation'          
             
             
 admin_surveys_responses:
@@ -199,7 +199,7 @@ admin_surveys_responses:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
 
 admin_surveys_panes_remove:
     pattern: admin/surveys/panes/remove/*
@@ -212,7 +212,7 @@ admin_surveys_panes_remove:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
 
 
             
@@ -227,7 +227,7 @@ admin_surveys_panes_list:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
 admin_surveys_panes_edit:
     pattern: admin/surveys/panes/*
@@ -241,7 +241,7 @@ admin_surveys_panes_edit:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
 admin_surveys_panes_save:
     pattern: admin/surveys/panes/*
@@ -255,7 +255,7 @@ admin_surveys_panes_save:
         viewKey: admin_surveys_panes_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
           
    
@@ -270,7 +270,7 @@ admin_surveys_panes_questions_list:
         viewKey: admin_surveys_panes_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            - 'src/components/defaultItem/locales/*/Navigation'          
             
             
 admin_surveys_respond_by_permalink:
@@ -285,7 +285,7 @@ admin_surveys_respond_by_permalink:
         viewKey: admin_surveys_respond_by_permalink
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
 admin_surveys_save_by_permalink:
     pattern: admin/surveys/respond/*/*
@@ -299,7 +299,7 @@ admin_surveys_save_by_permalink:
         viewKey: admin_surveys_respond_by_permalink
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
             
 admin_surveys_panes_not_found:
     pattern: admin/surveys/notfound
@@ -313,7 +313,7 @@ admin_surveys_panes_not_found:
         viewKey: admin_surveys_panes_not_found
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
             
 admin_surveys_completed:
     pattern: admin/surveys/completed
@@ -327,7 +327,7 @@ admin_surveys_completed:
         viewKey: admin_surveys_completed
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     
 admin_surveys_scopeforms_list:
     pattern: admin/surveys/scopeforms/*/*
@@ -340,7 +340,7 @@ admin_surveys_scopeforms_list:
         viewKey: admin_surveys_scopeforms_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
             
 admin_surveys_scopeforms_edit:
     pattern: admin/surveys/scopeforms/*
@@ -353,7 +353,7 @@ admin_surveys_scopeforms_edit:
         viewKey: admin_surveys_scopeforms_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            - 'src/components/defaultItem/locales/*/Navigation'          
             
             
    
@@ -368,7 +368,7 @@ admin_surveys_sheetquestions_list:
         viewKey: admin_surveys_sheetquestions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
    
 admin_surveys_sheetquestions_edit:
     pattern: admin/surveys/sheetquestions/*
@@ -381,7 +381,7 @@ admin_surveys_sheetquestions_edit:
         viewKey: admin_surveys_sheetquestions_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            - 'src/components/defaultItem/locales/*/Navigation'             
             
           
             
@@ -398,7 +398,7 @@ admin_surveys_sheetanswers_list:
         viewKey: admin_surveys_sheetanswers_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'               
+            - 'src/components/defaultItem/locales/*/Navigation'               
             
   
 admin_surveys_sheetanswers_search:
@@ -412,7 +412,7 @@ admin_surveys_sheetanswers_search:
         viewKey: admin_surveys_sheetanswers_search
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
     
     
 admin_surveys_sheetanswers_edit:
@@ -426,7 +426,7 @@ admin_surveys_sheetanswers_edit:
         viewKey: admin_surveys_sheetanswers_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'          
+            - 'src/components/defaultItem/locales/*/Navigation'          
             
 
 ########################################### surveys area
@@ -445,7 +445,7 @@ admin_surveys_builder:
         viewKey: admin_surveys_builder
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'   
+            - 'src/components/defaultItem/locales/*/Navigation'   
            
 admin_surveys_answers_search:
     pattern: admin/surveys/answers/search
@@ -487,7 +487,7 @@ admin_surveys_answers_edit:
         viewKey: admin_surveys_answers_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'                         
+            - 'src/components/defaultItem/locales/*/Navigation'                         
             
   
 admin_surveys_answers_save:
@@ -502,7 +502,7 @@ admin_surveys_answers_save:
         viewKey: admin_surveys_answers_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
         
 admin_surveys_answers_remove:
     pattern: admin/surveys/answers/remove/*
@@ -515,7 +515,7 @@ admin_surveys_answers_remove:
         viewKey: admin_surveys_answers_remove
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
   
 admin_surveys_questions_remove:
     pattern: admin/surveys/questions/remove/*
@@ -529,7 +529,7 @@ admin_surveys_questions_remove:
         viewKey: admin_surveys_questions_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            - 'src/components/defaultItem/locales/*/Navigation'             
 
 admin_surveys_questions_generateid:                      
     pattern: admin/surveys/questions/generateid/*
@@ -543,7 +543,7 @@ admin_surveys_questions_generateid:
         viewKey: admin_surveys_questions_generateid
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     
     
 admin_surveys_questions_edit:
@@ -561,7 +561,7 @@ admin_surveys_questions_edit:
         viewKey: admin_surveys_questions_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            - 'src/components/defaultItem/locales/*/Navigation'             
    
 admin_surveys_questions_save:
     pattern: admin/surveys/questions/*/*
@@ -577,7 +577,7 @@ admin_surveys_questions_save:
         viewKey: admin_surveys_questions_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'              
+            - 'src/components/defaultItem/locales/*/Navigation'              
 
 admin_surveys_questions_answers_save:
     pattern: admin/surveys/questions/answers/saveorder/*
@@ -593,7 +593,7 @@ admin_surveys_questions_answers_save:
         viewKey: admin_surveys_questions_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
     
      
 #admin_surveys_survey_pages_list:   
@@ -609,7 +609,7 @@ admin_surveys_questions_answers_save:
 #        viewKey: admin_surveys_questions_list
 #        datasource: datasource1
 #        langFiles: 
-#            - 'src/framework/core/components/locales/resources/*/Navigation' 
+#            - 'src/components/defaultItem/locales/*/Navigation' 
     
 
 #this has to be AFTER the edit features so it doesn't override the URI options
@@ -626,7 +626,7 @@ admin_surveys_questions_list:
         viewKey: admin_surveys_questions_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
             
 admin_surveys_answers_list:
@@ -640,7 +640,7 @@ admin_surveys_answers_list:
         viewKey: admin_surveys_answers_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
           
 admin_surveys_questions_select:
@@ -654,7 +654,7 @@ admin_surveys_questions_select:
         viewKey: admin_surveys_questions_select
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
  
             
 admin_surveys_surveypage_list:
@@ -670,7 +670,7 @@ admin_surveys_surveypage_list:
         viewKey: admin_surveys_surveypage_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'            
+            - 'src/components/defaultItem/locales/*/Navigation'            
             
             
             
@@ -687,7 +687,7 @@ admin_surveys_list:
         viewKey: admin_surveys_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             
 
             
@@ -707,7 +707,7 @@ admin_surveys_edit:
         viewKey: admin_surveys_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'              
+            - 'src/components/defaultItem/locales/*/Navigation'              
             
 
 admin_surveys_save:
@@ -724,6 +724,6 @@ admin_surveys_save:
         viewKey: admin_surveys_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'             
+            - 'src/components/defaultItem/locales/*/Navigation'             
  
     

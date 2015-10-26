@@ -17,13 +17,13 @@ use core\system\Router;
  *
  * @author Dave Meikle
  */
-class StatusLockedListener extends AbstractListener{
-    
+class StatusLockedListener extends AbstractListener {
+
     const MAX_LOGIN_FAILURES = 6;
-    
+
     public function on_login_status_locked(Event $event) {
         $router = new Router($this->logger, $this->httpRequest);
         $router->redirect('contacts_login_locked');
-       
     }
+
 }

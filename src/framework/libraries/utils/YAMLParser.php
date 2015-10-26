@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -16,7 +16,7 @@ use Monolog\Logger;
 
 /**
  * parses the yml file
- * 
+ *
  * @author Dave Meikle
  */
 class YAMLParser {
@@ -25,7 +25,7 @@ class YAMLParser {
     protected $logger = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger = null) {
@@ -34,10 +34,10 @@ class YAMLParser {
 
     /**
      * finds a node based on a uri pattern
-     * 
+     *
      * @param string $uri
      * @param string $searchFor
-     * 
+     *
      * @return array
      */
     public function findNodeByURI($uri, $searchFor) {
@@ -57,25 +57,25 @@ class YAMLParser {
 
     /**
      * loads the config file
-     * 
+     *
      * @return array
      */
     public function loadConfig() {
-        if(!file_exists($this->ymlFilePath)) {
-            
+        if (!file_exists($this->ymlFilePath)) {
+
             return false;
         }
         $contents = file_get_contents($this->ymlFilePath);
-        if(!$contents) {
+        if (!$contents) {
             return false;
         }
         return Yaml::parse($contents);
     }
 
     /**
-     * 
+     *
      * @param string $uri
-     * 
+     *
      * @return string
      */
     private function getSectionKey($uri) {
@@ -88,7 +88,7 @@ class YAMLParser {
 
     /**
      * accessor
-     * 
+     *
      * @param string $ymlFilePath
      */
     public function setFilePath($ymlFilePath) {

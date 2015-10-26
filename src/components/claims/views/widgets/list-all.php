@@ -69,7 +69,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          
+
                                             <tr role="row" class="odd" ng-repeat="claim in claimsList">
                                                 <td class="sorting_1"><a href="/admin/claim/{{claim.jobNumber}}">{{claim.jobNumber}}</a></td>
                                                 <td>{{claim.strataNumber}}</td>
@@ -81,15 +81,15 @@
                                                 <td>{{claim.ClaimStatusTypes_id}}</td>
                                                 <td></td>
                                             </tr>
-                                            
-                                            </tbody>
+
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="dataTables_info" id="datatable-1_info" role="status" aria-live="polite">Showing 1 to 10 of 20 entries</div>
-                                        
+
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="dataTables_paginate paging_simple_numbers" id="datatable-1_paginate">
