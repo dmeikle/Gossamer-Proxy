@@ -1,3 +1,4 @@
+
 var module = angular.module('inventoryAdmin', ['ui.bootstrap']);
 
 module.config(function($httpProvider) {

@@ -1,6 +1,6 @@
 <!--- javascript start --->
-    
-    @components/staff/includes/js/admin-staff-list-ng.js
+
+@components/staff/includes/js/admin-staff-list-ng.js
 
 <!--- javascript end --->
 

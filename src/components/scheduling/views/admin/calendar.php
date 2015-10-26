@@ -25,9 +25,9 @@
     .padding {
         background-color: ghostwhite;
     }
-    
+
     .schedule-cell {
-     width: 14%;
+        width: 14%;
         float: left;
         border-left: solid 1px rgb(228, 225, 225);
         border-top: solid 1px rgb(228, 225, 225);
@@ -41,83 +41,93 @@
         background-color: moccasin;
     }
     #calendar {
-       
+
     }
 </style>
 <script language="javascript">
-$(function() {
-    $( "#addStaff" ).click(function(e) {
-        window.location.replace(window.location + "/add");
+    $(function () {
+        $("#addStaff").click(function (e) {
+            window.location.replace(window.location + "/add");
+        });
     });
-  });
 </script>
 <br />
 <form role="form">
-<div id="calendar">
-    <div id="calendar-header">
-        <div class="cell">Sunday</div>
-        <div class="cell">Monday</div>
-        <div class="cell">Tuesday</div>
-        <div class="cell">Wednesday</div>
-        <div class="cell">Thursday</div>
-        <div class="cell">Friday</div>
-        <div class="cell">Saturday</div>
-    </div>
-    <div id="calendar-days">
-        <?php
-        $displayed = false;
-        foreach($calendar['frontPadding'] as $day) {?>
-            <div class="cell padding">
-                 <div class="day">
-               <?php echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month'] - 1]) .'-' : '') . $day;
-               $displayed = true?>
+    <div id="calendar">
+        <div id="calendar-header">
+            <div class="cell">Sunday</div>
+            <div class="cell">Monday</div>
+            <div class="cell">Tuesday</div>
+            <div class="cell">Wednesday</div>
+            <div class="cell">Thursday</div>
+            <div class="cell">Friday</div>
+            <div class="cell">Saturday</div>
+        </div>
+        <div id="calendar-days">
+            <?php
+            $displayed = false;
+            foreach ($calendar['frontPadding'] as $day) {
+                ?>
+                <div class="cell padding">
+                    <div class="day">
+                        <?php
+                        echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month'] - 1]) . '-' : '') . $day;
+                        $displayed = true
+                        ?>
 
-                 </div>
-            </div>
-        <?php } 
-        $displayed = false;
-        foreach($calendar['currentMonth'] as $day) {?>
+                    </div>
+                </div>
+                <?php
+            }
+            $displayed = false;
+            foreach ($calendar['currentMonth'] as $day) {
+                ?>
 
-            <div class="cell">
-                <div class="day">
-                <?php echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month']]) .'-' : '') . $day;
-               $displayed = true?>
+                <div class="cell">
+                    <div class="day">
+                        <?php
+                        echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month']]) . '-' : '') . $day;
+                        $displayed = true
+                        ?>
+                    </div>
                 </div>
-            </div>
-        <?php } 
-        $displayed = false;
-        foreach($calendar['rearPadding'] as $day) {?>
-            <div class="cell padding">
-                <div class="day">
-                <?php echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month'] + 1]) .'-' : '') . $day;
-               $displayed = true?>
+                <?php
+            }
+            $displayed = false;
+            foreach ($calendar['rearPadding'] as $day) {
+                ?>
+                <div class="cell padding">
+                    <div class="day">
+                        <?php
+                        echo ((!$displayed) ? $this->getString($calendar['months'][$calendar['month'] + 1]) . '-' : '') . $day;
+                        $displayed = true
+                        ?>
+                    </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
+        </div>
     </div>
-</div>
     <div id="calendar-schedule">
         <?php
 //        pr($schedule);
 //        die;
         $lastDayStaff = array();
-        foreach($schedule as $date => $row) {
+        foreach ($schedule as $date => $row) {
             ?>
             <div class="schedule-cell">
-                <?php
-                foreach($row as $typeId => $staff) {?>
-                    <div class="type-<?php echo $typeId;?>">
-                   <?php
-                   foreach($staff as $id => $name) {
-                       echo $name . ' ';
-                   }
-                   ?>
+                <?php foreach ($row as $typeId => $staff) { ?>
+                    <div class="type-<?php echo $typeId; ?>">
+                        <?php
+                        foreach ($staff as $id => $name) {
+                            echo $name . ' ';
+                        }
+                        ?>
                     </div>
-                <?php
+                    <?php
                 }
                 ?>
             </div>
-        <?php }?>
+        <?php } ?>
     </div>
-    
+
 </form>

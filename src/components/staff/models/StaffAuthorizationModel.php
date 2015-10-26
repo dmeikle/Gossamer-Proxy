@@ -11,7 +11,6 @@
 
 namespace components\staff\models;
 
-
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
@@ -25,9 +24,9 @@ use components\users\lib\Password;
  *
  * @author Dave Meikle
  */
-class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterface{
+class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterface {
 
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
@@ -54,21 +53,17 @@ class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterf
         return $params['StaffAuthorization'];
     }
 
-
-
     public function savePermissions($id) {
 
         $params = $this->httpRequest->getPost();
-        if(intval($id) > 0) {
+        if (intval($id) > 0) {
             $params['staff']['id'] = intval($id);
         }
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveAuthorizations', $params);
 
         return $params['StaffAuthorization'];
-
     }
-
 
     public function edit($id) {
 
@@ -78,7 +73,7 @@ class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterf
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         $staffAuthorization = array();
-        if(!is_null($data) && array_key_exists('StaffAuthorization', $data)) {
+        if (!is_null($data) && array_key_exists('StaffAuthorization', $data)) {
             $staffAuthorization = current($data['StaffAuthorization']);
         }
 //        $departments = $this->httpRequest->getAttribute('Departments');

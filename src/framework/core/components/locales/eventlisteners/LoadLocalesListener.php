@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -15,28 +15,28 @@ use core\eventlisteners\AbstractCachableListener;
 use core\components\locales\models\LocaleModel;
 
 /**
- * loads the locales list from the database so we know what we're working 
- * with as far as language choices go. To avoid redundant requests to the 
+ * loads the locales list from the database so we know what we're working
+ * with as far as language choices go. To avoid redundant requests to the
  * server, it caches this info locally
- * 
+ *
  * @author Dave Meikle
  */
 class LoadLocalesListener extends AbstractCachableListener {
 
     /**
      * entry point
-     * 
+     *
      * @param string $filename
      */
     public function on_entry_point($filename) {
-       
+
         $retval = array();
         $model = new LocaleModel($this->httpRequest, $this->httpResponse, $this->logger);
 
         $params = array();
         $caching = true;
         $datasource = $this->getDatasource(get_class($model));
-        
+
         try {
             //query the database for the list of locales
             $result = $datasource->query('get', $model, 'list', $params);
@@ -52,7 +52,7 @@ class LoadLocalesListener extends AbstractCachableListener {
                 $this->httpRequest->setAttribute('locales', $retval);
             }
         } catch (\Exception $e) {
-            
+
         }
         unset($model);
 

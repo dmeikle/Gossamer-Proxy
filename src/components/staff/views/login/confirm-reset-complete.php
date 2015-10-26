@@ -1,4 +1,4 @@
 
 
 
-<?php echo $this->getString($result);?>
+<?php echo $this->getString($result); ?>

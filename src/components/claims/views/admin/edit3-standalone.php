@@ -5,7 +5,7 @@
             <td>Contact info:</td>
             <td><textarea class="form-control" rows="3"></textarea></td>
         </tr>
-            <tr>
+        <tr>
             <td>Notes:</td>
             <td><textarea class="form-control" rows="7"></textarea></td>
         </tr>

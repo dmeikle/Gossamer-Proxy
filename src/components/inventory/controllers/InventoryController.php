@@ -26,7 +26,7 @@ class InventoryController extends AbstractController {
      */
     public function edit($id) {
 
-        $result =  $this->model->edit($id);       
+        $result = $this->model->edit($id);
 
         $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
@@ -40,7 +40,6 @@ class InventoryController extends AbstractController {
 
         return $departmentBuilder->buildForm($builder, $values, $options, $results);
     }
-
 
     public function getFormWrapper() {
         return $this->entity;

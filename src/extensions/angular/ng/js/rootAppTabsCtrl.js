@@ -1,38 +1,35 @@
-module.controller('tabsCtrl', function($scope, tabsSrv) {
+module.controller('tabsCtrl', function ($scope, tabsSrv) {
     $scope.tabs = tabsSrv.tabs;
-    
+
     var defaultTab = {
-        title:'Default',
-        template:'',
-        content:'Welcome to Tabbed View. Pages will now load as tabs.'
+        title: 'Default',
+        template: '',
+        content: 'Welcome to Tabbed View. Pages will now load as tabs.'
     };
-    if($scope.tabs.length === 0){
+
+    if ($scope.tabs.length === 0) {
         $scope.tabs.push(defaultTab);
     }
-    
-    $scope.addTab = function(title, template){
+
+    $scope.addTab = function (title, template) {
         var tabObj = {
             title: title,
             template: template
         };
-        //Check to see if the tab is already open
-        console.log(tabObj);
         tabsSrv.addTab(tabObj);
         $scope.tabs = tabsSrv.tabs;
     };
-    
-    $scope.closeTab = function(index){
+
+    $scope.closeTab = function (index) {
         tabsSrv.closeTab(index);
         $scope.tabs = tabsSrv.tabs;
     };
-    
-    $scope.hideSpinner = function(tab){
+
+    $scope.hideSpinner = function (tab) {
         tab.loading = false;
     };
-    
-    $scope.setTabbedView = function(value){
-        console.log('setting tabbed view');
+
+    $scope.setTabbedView = function (value) {
         tabsSrv.setTabbedView(value);
     };
-    
 });

@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return array(
     'LABEL_LANGUAGES_LIST' => 'Languages List',
     'LABEL_ADD_EDIT_LANGUAGE' => 'Add/Edit Language',
     'LABEL_LANGUAGE' => 'Language',

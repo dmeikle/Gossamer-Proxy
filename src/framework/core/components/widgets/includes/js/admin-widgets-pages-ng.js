@@ -7,51 +7,51 @@
  *  file that was distributed with this source code.
  */
 
-(function() {
-  
+(function () {
+
     var page = 0;
     var rows = 50;
     angular.module('widgetpages', [])
-        .controller('WidgetPagesController', function($scope, $http) {
-            var widgets = this;
-            widgets.items = [];
-            $scope.editingData = [];
-            
-            $http.get("/super/widgets/" + page + "/" + rows).success(function(response) {
-                widgets.items = response.Widgets;
+            .controller('WidgetPagesController', function ($scope, $http) {
+                var widgets = this;
+                widgets.items = [];
+                $scope.editingData = [];
+
+                $http.get("/super/widgets/" + page + "/" + rows).success(function (response) {
+                    widgets.items = response.Widgets;
+                });
+
+                $scope.loadPage = function (selectedPage) {
+                    page = selectedPage;
+                    $http.get("/super/widgets/" + page + "/" + rows).success(function (response) {
+                        widgets.items = response.Widgets;
+                    });
+                }
+
+                $scope.modify = function (widget) {
+                    $scope.editingData[widget.id] = true;
+                };
+
+                $scope.update = function (widget) {
+                    var data = {};
+                    data.Widget = widget;
+                    data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+                    $.post('/super/widgets/' + widget.id, data);
+                    $scope.editingData[widget.id] = false;
+
+                };
+
+                $scope.save = function (widget) {
+                    var data = {};
+                    data.Widget = widget;
+                    data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+                    $.post('/super/widgets/0', data);
+
+                };
             });
 
-            $scope.loadPage = function(selectedPage) {
-                page = selectedPage;
-                $http.get("/super/widgets/" + page + "/" + rows).success(function(response) {
-                widgets.items = response.Widgets;
-            });
-            }
-            
-            $scope.modify = function(widget){
-                $scope.editingData[widget.id] = true;
-            };
-            
-            $scope.update = function(widget){
-                var data ={};
-                data.Widget = widget;
-                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-                $.post('/super/widgets/' + widget.id, data);
-                $scope.editingData[widget.id] = false;
-
-            };
-            
-            $scope.save = function(widget){
-                var data ={};
-                data.Widget = widget;
-                data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-                $.post('/super/widgets/0', data);                   
-
-            };
-        });
 
 
-        
 })();

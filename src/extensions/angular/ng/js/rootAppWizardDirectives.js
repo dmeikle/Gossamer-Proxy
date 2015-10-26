@@ -7,7 +7,7 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
             var apiPath = '/render/' + element[0].dataset.module + '/' + element[0].dataset.filename;
 
-            wizardSrv.getWizardPages(apiPath).then(function() {
+            wizardSrv.getWizardPages(apiPath).then(function () {
                 scope.wizardPages = wizardSrv.wizardPages;
                 for (var page in wizardSrv.wizardPages) {
                     if (wizardSrv.wizardPages.hasOwnProperty(page)) {
@@ -18,15 +18,15 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
                 $compile(element.contents())(scope);
             });
         },
-        controller: function($scope) {
+        controller: function ($scope) {
             $scope.currentPage = 0;
             var wizard = document.getElementsByTagName('wizard')[0];
 
-            $scope.nextPage = function() {
+            $scope.nextPage = function () {
                 $scope.currentPage = $scope.currentPage + 1;
             };
 
-            $scope.prevPage = function() {
+            $scope.prevPage = function () {
                 $scope.currentPage = $scope.currentPage - 1;
             };
         }

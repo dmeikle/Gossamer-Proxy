@@ -20,11 +20,11 @@ use Gossamer\CMS\Forms\FormBuilder;
  *
  * @author Dave Meikle
  */
-class ClaimLocationBuilder extends AbstractBuilder{
+class ClaimLocationBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
 
-        if(is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
+        if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
 
@@ -38,10 +38,10 @@ class ClaimLocationBuilder extends AbstractBuilder{
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
 
-        if(array_key_exists('projectAddressesFloorPlans', $options)) {
+        if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'ClaimLocation.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
         }
-        if(array_key_exists('currentClaimPhases', $options)) {
+        if (array_key_exists('currentClaimPhases', $options)) {
             $builder->add('CurrentClaimPhases_id', 'text', array('ng-model' => 'ClaimLocation.CurrentClaimPhases_id', 'class' => 'form-control', 'options' => $options['currentClaimPhases']));
         }
 

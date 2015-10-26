@@ -20,7 +20,7 @@
             <div class="block-content-inner">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="/admin/staff/photo/upload/<?php echo $Staff_id;?>" class="dropzone dz-clickable" id="customized-dropzone">
+                        <form action="/admin/staff/photo/upload/<?php echo $Staff_id; ?>" class="dropzone dz-clickable" id="customized-dropzone">
                             <div class="dz-message">
                                 <span class="icon icon-download-selection icon-size-large"></span>
                                 <span class="main-text">Drop Your File Here</span>

@@ -1,144 +1,77 @@
-<div id="mainnav">
-    <ul class="mainnav" style="position: relative;"> <!-- NOTE TO READER: Accepts the following class(es) "animate" class -->
-        <li class="menu-item-top selected">
-            <a href="/admin/dashboard" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-grid-big"></span>
-                </span>
-                <span class="main-menu-text">Dashboard</span>
-            </a>
-        </li>
-        <li class="menu-item-top">
-            <a href="/admin/claims" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-dollar"></span>
-                </span>
-                <span class="main-menu-text">Claims</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/claims">List All Claims</a></li>
-                <li><a href="/admin/claims/0/20">item 2</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="/admin/accounting" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-dollar"></span>
-                </span>
-                <span class="main-menu-text">Accounting</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/dashboard">item 1</a></li>
-                <li><a href="/admin/claims/0/20">item 2</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-star"></span>
-                </span>
-                <span class="badge pull-right-corner" style="opacity: 1;">3</span>
-                <span class="main-menu-text">Staff</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/staff">List Staff</a></li>
-                <li><a href="/admin/staff/0">Add New</a></li>
-                <li><a href="/admin/staff/search">Find Staff Member</a></li>
-                <li><a href="/admin/staff/schedule">View Schedule</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-documents"></span>
-                </span>
-                <span class="main-menu-text">Documents</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/documents/0/20">List Documents</a></li>
-                <li><a href="/admin/documents/0">Add New</a></li>
-                <li><a href="/admin/documents/search">Find Document</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-building"></span>
-                </span>
-                <span class="badge pull-right-corner hidden-collapsed highlight-color-green" style="opacity: 1;">7</span>
-                <span class="main-menu-text">Clients</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/clients/0/20">List Clients</a></li>
-                <li><a href="/admin/clients/0">Add New Client</a></li>
-                <li><a href="/admin/clients/search">Find Client</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-settings"></span>
-                </span>
-                <span class="main-menu-text">Companies</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/companies/0/20">List Companies</a></li>               
-                <li><a href="/admin/companies/0">Add Company</a></li>
-                <li><a href="/admin/companies/search">Find Company</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-grids"></span>
-                </span>
-                <span class="main-menu-text">Addresses</span>
-            </a>
-            <ul style="position: absolute;">
+<nav id="side-nav" ng-controller="sideNavCtrl" ng-class="{'closed': sideNavOpen == false}">
 
-                <li><a href="/admin/projects/0/20">List Addresses</a></li>
-                <li><a href="/admin/projects/0">Add Address</a></li>
-                <li><a href="/admin/projects/0">Find Address</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-block-menu"></span>
-                </span>
-                <span class="main-menu-text">Tickets</span>
-            </a>
-            <ul style="position: absolute;">                
-                <li><a href="/admin/tickets/0/20">List Tickets</a></li>
-                <li><a href="/admin/tickets/0">Add Ticket</a></li>
-            </ul>
-        </li>
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-user"></span>
-                </span>
-                <span class="main-menu-text">Customers</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/customers/0/20">List Customers</a></li>
-                <li><a href="/admin/customers/0/">Add Customer</a></li>
-                <li><a href="/admin/customers/search">Find Customer</a></li>
-            </ul>
-        </li>
-        
-        <li class="menu-item-top">
-            <a href="#" class="top">
-                <span class="main-menu-icon">
-                    <span aria-hidden="true" class="icon icon-user"></span>
-                </span>
-                <span class="main-menu-text">Schedule</span>
-            </a>
-            <ul style="position: absolute;">
-                <li><a href="/admin/calendar/0/20">View On-Call</a></li>
-                <li><a href="/admin/calendar/0/">Schedule On-Call</a></li>
-                <li><a href="/admin/calendar/search">My Schedule</a></li>
-            </ul>
-        </li>
+    <ul class="nav-list" ng-show="sideNavOpen == true" ng-controller="tabsCtrl">
+        <?php
+        foreach ($NAVIGATION as $key => $item) {
+            //first check for top parent nav items
+            if (array_key_exists('active', $item) && $item['active'] == false) {
+                //it's not active (do not display) but during development let's see everything
+                //we can remove this line when we are ready to hide them from the real users
+
+                continue;
+            }
+
+            //before drawing the link, determine if we need a caret or not
+            $hasChildren = array_key_exists('children', $item);
+            $caret = $hasChildren ? ' <span class="caret"></span>' : '';
+
+            //now, let's display the link for the top parent item nav
+            if (!$hasChildren) {
+                if (array_key_exists('ng-click', $item)) {
+                    $tmp = str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']);
+                    $ngLink = str_replace('template', $this->getString($item['template']), $tmp);
+
+                    //no children, has ng-click
+                    ?>
+                    <li class="nav-item">
+                        <a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($item['text_key']) ?></a></li>
+                    <?php
+                } else {
+                    //no children, no ng-click
+                    ?>
+                    <li class="nav-item"><span><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']) ?></a></span></li>
+                    <?php
+                }
+                ?>
+            <?php } else { ?>
+                <li class="nav-item has-sub-items"><span ng-click="toggleSubnav($event)"><?php echo $this->getString($item['text_key']) ?></span>
+                    <ul class="sub-item">
+                        <?php
+                        foreach ($item['children'] as $childKey => $childItem) {
+                            if (array_key_exists('active', $childItem) && $childItem['active'] == false) {
+                                //it's not active (do not display) but during development let's see everything
+                                //we can remove this line when we are ready to hide them from the real users
+                                ?>
+                                <li title="disabled on this release"><?php echo $this->getString($childItem['text_key']); ?></li>
+                                <?php
+                                continue;
+                            }
+                            if (array_key_exists('ng-click', $childItem) && $this->getViewType() == 'tabbed') {
+                                $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
+                                $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
+                                //is a child, has ng-click
+                                ?>
+                                <li><span><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) ?></a></span></li>
+                                <?php
+                            } else {
+                                //is a child, no ng-click
+                                ?>
+                                <li><a href="<?php echo $childItem['pattern']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
+                                <?php
+                            }
+                            ?>
+
+                        <?php }
+                        ?>
+                    </ul><!--- close child ul -->
+                </li>
+                <?php
+            }
+        }
+        ?>
     </ul>
-</div>
+    <div class="nav-toggle" ng-click="toggleSidenav()">
+        <span ng-if="!sideNavOpen" class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span ng-if="sideNavOpen" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </div>
+</nav>

@@ -25,7 +25,7 @@ class InventoryEquipmentController extends InventoryItemsController {
     public function transfer() {
         $staff = $this->httpRequest->getAttribute('StaffAuthorization');
 
-        if(!is_null($staff)) {
+        if (!is_null($staff)) {
             $params = $this->httpRequest->getPost();
             $params['signingStaff_id'] = $staff['Staff_id'];
             unset($params['Staff']);

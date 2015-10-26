@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -38,37 +38,38 @@ class StaffTempPasswordModel extends AbstractModel implements FormBuilderInterfa
     }
 
     public function confirmReset(array $params) {
-        
-        return $this->dataSource->query(self::METHOD_GET, $this, 'ResetTempPassword', $params);        
-    }
-   
-    public function getFormWrapper() {
-        return $this->entity;  
+
+        return $this->dataSource->query(self::METHOD_GET, $this, 'ResetTempPassword', $params);
     }
 
-    private function randomPassword( $length = 8 ) {
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+
+    private function randomPassword($length = 8) {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
-        $password = substr( str_shuffle( $chars ), 0, $length );
-        
+        $password = substr(str_shuffle($chars), 0, $length);
+
         return $password;
     }
-    
+
     public function confirmResetSubmit(array $staff) {
-  
+
         $params = array(
             'password' => $this->encryptPassword($staff['StaffTempPassword']['password']),
             'uri' => $staff['uri']
-        );       
-        
-        return $this->dataSource->query(self::METHOD_GET, $this, 'SaveResetTempPassword', $params);  
+        );
+
+        return $this->dataSource->query(self::METHOD_GET, $this, 'SaveResetTempPassword', $params);
     }
-    
+
     private function encryptPassword($password) {
         $newPwd = '';
         do {
-            $newPwd = crypt($password);            
-        }while(strpos($newPwd, '/'));
-        
+            $newPwd = crypt($password);
+        } while (strpos($newPwd, '/'));
+
         return $newPwd;
     }
+
 }

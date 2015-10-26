@@ -1,7 +1,7 @@
-module.controller('staffTimesheetCtrl', function($scope, $modal, staffTemplateSrv) {
+module.controller('staffTimesheetCtrl', function ($scope, $modal, staffTemplateSrv) {
 
     //Modals
-    $scope.openStaffTimesheetModal = function() {
+    $scope.openStaffTimesheetModal = function () {
         $scope.loadingModal = true;
         var template = staffTemplateSrv.staffTimesheetModal;
         $modal.open({
@@ -14,7 +14,7 @@ module.controller('staffTimesheetCtrl', function($scope, $modal, staffTemplateSr
 //                    return timesheet;
 //                }
 //            }
-        }).opened.then(function(){
+        }).opened.then(function () {
             $scope.loadingModal = false;
         });
     };

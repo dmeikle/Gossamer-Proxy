@@ -103,7 +103,7 @@
 
                     <div class="clearfix"></div>
                     <div class="cardfooter">
-                        <input type="submit" class="btn btn-primary pull-right" 
+                        <input type="submit" class="btn btn-primary pull-right"
                                value="<?php echo $this->getString('PROJECTS_SAVE'); ?>" ng-click="save(project)">
                         <div class="clearfix"></div>
                     </div>
@@ -119,7 +119,7 @@
                 <div ng-if="loading">
                     <span class="spinner-loader"></span>
                 </div>
-                <div ng-if="!loading">                    
+                <div ng-if="!loading">
                     <div class="cardleft">
                         <table class="cardtable">
                             <tbody>
@@ -209,7 +209,7 @@
                 </table>
             </div>
 
-            
+
 
         </div>
         <div class="clearfix"></div>

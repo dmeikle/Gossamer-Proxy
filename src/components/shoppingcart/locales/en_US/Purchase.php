@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_TITLE' => 'Customer Purchase',
     'LABEL_PURCHASE_NUMBER' => 'Purchase Number',
     'LABEL_DATE' => 'Purchase Date',
@@ -33,5 +33,4 @@ return array (
     'BUTTON_DELETE' => 'Delete',
     'LABEL_PURCHASER_INFORMATION' => 'Purchaser Information',
     'LABEL_SUBTOTAL' => 'Subtotal'
-    
 );

@@ -1,6 +1,6 @@
 <br />
-<table class="table table-striped">	
-      <tr class="success">
+<table class="table table-striped">
+    <tr class="success">
         <td>Sunday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -23,8 +23,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -47,8 +47,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -71,8 +71,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -95,8 +95,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -119,8 +119,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -143,8 +143,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Monday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -167,8 +167,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -191,8 +191,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -215,8 +215,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -239,8 +239,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -263,8 +263,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -287,8 +287,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Tuesday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -311,8 +311,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -335,8 +335,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -359,8 +359,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -383,8 +383,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -407,8 +407,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -431,8 +431,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Wednesday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -455,8 +455,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -479,8 +479,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -503,8 +503,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -527,8 +527,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -551,8 +551,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -575,8 +575,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Thursday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -599,8 +599,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -623,8 +623,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -647,8 +647,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -671,8 +671,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -695,8 +695,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -719,8 +719,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Friday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -743,8 +743,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -767,8 +767,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -791,8 +791,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -815,8 +815,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -839,8 +839,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -863,8 +863,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr class="success">
+    </tr>
+    <tr class="success">
         <td>Saturday</td>
         <td>7:30am</td>
         <td>8:00am</td>
@@ -887,8 +887,8 @@
         <td>4:30pm</td>
         <td>5:00pm</td>
         <td>5:30pm</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Mike G</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -911,8 +911,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Julio I</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -935,8 +935,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Rhonda B</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -959,8 +959,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Dave F</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -983,8 +983,8 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>Oprah W</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -1007,5 +1007,5 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-      </tr>
-      </table>
+    </tr>
+</table>

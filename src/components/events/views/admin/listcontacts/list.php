@@ -18,25 +18,25 @@
     <th>
         On List**
     </th>
-    </thead>
-<?php foreach($ListContacts as $contact) {?>
-<tr>
-    <td>
-        <?php echo $contact['lastname'];?>, <?php echo $contact['firstname'];?>
-    </td>
-    <td>
-        <?php echo $contact['email'];?>
-    </td>
-    <td>
-        <?php echo $contact['mobile'];?>
-    </td>
-    <td>
-        <?php echo $contact['office'];?>
-    </td>
-    <td>
-        <?php echo $contact['isMember'];?>
-    </td>
-</tr>
+</thead>
+<?php foreach ($ListContacts as $contact) { ?>
+    <tr>
+        <td>
+            <?php echo $contact['lastname']; ?>, <?php echo $contact['firstname']; ?>
+        </td>
+        <td>
+            <?php echo $contact['email']; ?>
+        </td>
+        <td>
+            <?php echo $contact['mobile']; ?>
+        </td>
+        <td>
+            <?php echo $contact['office']; ?>
+        </td>
+        <td>
+            <?php echo $contact['isMember']; ?>
+        </td>
+    </tr>
 
 <?php } ?>
 </table>

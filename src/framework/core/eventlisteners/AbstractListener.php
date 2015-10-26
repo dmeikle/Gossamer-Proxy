@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -22,7 +22,7 @@ use libraries\utils\preferences\UserPreferencesManager;
 /**
  * base class for all Event Listeners - abstracts a lot of the framework
  * stuff away from the developers
- * 
+ *
  * @author Dave Meikle
  */
 class AbstractListener {
@@ -38,7 +38,7 @@ class AbstractListener {
     protected $eventDispatcher = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
@@ -48,11 +48,10 @@ class AbstractListener {
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         // echo get_called_class().'<br>';
-        
     }
 
     /**
-     * accessor 
+     * accessor
      * @param string $datasourceKey
      */
     public function setDatasourceKey($datasourceKey) {
@@ -61,7 +60,7 @@ class AbstractListener {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container &$container) {
@@ -71,7 +70,7 @@ class AbstractListener {
 
     /**
      * accessor
-     * 
+     *
      * @param \core\eventlisteners\EventDispatcher $eventDispatcher
      */
     public function setEventDispatcher(EventDispatcher &$eventDispatcher) {
@@ -80,7 +79,7 @@ class AbstractListener {
 
     /**
      * accessor
-     * 
+     *
      * @param DatasourceFactory $factory
      * @param array $datasources
      */
@@ -91,9 +90,9 @@ class AbstractListener {
 
     /**
      * accessor
-     * 
+     *
      * @param type $modelName
-     * 
+     *
      * @return datasource
      */
     protected function getDatasource($modelName) {
@@ -103,7 +102,7 @@ class AbstractListener {
             $datasource = $this->datasourceFactory->getDatasource($this->datasourceKey, $this->logger);
             $datasource->setDatasourceKey($this->datasourceKey);
         } else {
-            if(!array_key_exists($modelName, $this->datasources)) {
+            if (!array_key_exists($modelName, $this->datasources)) {
                 throw new \Exception('datasource key missing from listeners configuration');
             }
             $datasource = $this->datasourceFactory->getDatasource($this->datasources[$modelName], $this->logger);
@@ -115,11 +114,11 @@ class AbstractListener {
 
     /**
      * entry point. determines which on_ method to call based on configuration
-     * and state.  
-     * 
+     * and state.
+     *
      * @param type $state - the occurrence - eg: request_start
      *                  method will call the on_request_start in the child class
-     * 
+     *
      * @param type $params - any values needed
      */
     public function execute($state, &$params) {
@@ -128,29 +127,29 @@ class AbstractListener {
 
         $this->logger->addDebug('checking listener for method: ' . $method);
 
-        if (method_exists($this, $method)) {       
+        if (method_exists($this, $method)) {
             $this->logger->addDebug('class: ' . get_class($this) . ' found');
             call_user_func_array(array($this, $method), array($params));
         }
     }
 
     /**
-     * 
+     *
      * @return Locale
      */
     protected function getDefaultLocale() {
         //check to see if it's in the query string - a menu request perhaps?
         $queryLocale = $this->httpRequest->getQueryParameter('locale');
-        if(!is_null($queryLocale)) {
-            return array('locale' =>$queryLocale);
+        if (!is_null($queryLocale)) {
+            return array('locale' => $queryLocale);
         }
-        
+
         $manager = new UserPreferencesManager($this->httpRequest);
         $userPreferences = $manager->getPreferences();
 
         if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences) {
             $locale = $userPreferences->getDefaultLocale();
-            if(strlen($locale) > 0) {
+            if (strlen($locale) > 0) {
                 return array('locale' => $userPreferences->getDefaultLocale());
             }
         }
@@ -160,10 +159,9 @@ class AbstractListener {
         return $config['default_locale'];
     }
 
-    
     /**
      * accessor
-     * 
+     *
      * @param array $listenerConfig
      */
     public function setConfig(array $listenerConfig) {
@@ -172,7 +170,7 @@ class AbstractListener {
 
     /**
      * accessor
-     * 
+     *
      * @return SecurityToken
      */
     protected function getSecurityToken() {
@@ -183,7 +181,7 @@ class AbstractListener {
     }
 
     /**
-     * 
+     *
      * @return int - the id of the logged in user
      */
     protected function getLoggedInStaffId() {
@@ -193,11 +191,11 @@ class AbstractListener {
         return $token->getClient()->getId();
     }
 
-    
-   protected function getString($key) {
-       $langFiles = $this->httpRequest->getAttribute('langFiles');
-       
-       
-       return $langFiles->getString($key);
-   }
+    protected function getString($key) {
+        $langFiles = $this->httpRequest->getAttribute('langFiles');
+
+
+        return $langFiles->getString($key);
+    }
+
 }

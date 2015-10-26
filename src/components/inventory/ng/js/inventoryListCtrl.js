@@ -184,7 +184,6 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     });
 });
 
-
 module.controller('transferModalController', function($scope, $modalInstance,
     inventoryTransferSrv, multiSelectArray, wizardSrv) {
     $scope.transfer = {};

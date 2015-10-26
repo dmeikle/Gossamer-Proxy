@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -22,18 +22,17 @@ use exceptions\KeyNotSetException;
  */
 class LoadByPermalinkCachableListener extends AbstractCachableListener {
 
-    
     use \libraries\utils\traits\LoadConfigFile;
-    
+
     /**
      * entry point
-     * 
+     *
      * @param array $params
      */
     public function on_request_start($params) {
 
         $caching = $this->getCachingFromConfig();
-        if(!$caching) {
+        if (!$caching) {
             return;
         }
 
@@ -84,14 +83,15 @@ class LoadByPermalinkCachableListener extends AbstractCachableListener {
 
         //load from trait
         $config = $this->loadConfig();
-        
-        if(!array_key_exists('cms', $config)) {
+
+        if (!array_key_exists('cms', $config)) {
             throw new KeyNotSetException('cms key not found in config');
         }
-        if(!array_key_exists('caching', $config['cms'])) {
+        if (!array_key_exists('caching', $config['cms'])) {
             throw new KeyNotSetException('cms:caching key not found in config');
         }
-      
+
         return $config['cms']['caching'] == 'true';
     }
+
 }

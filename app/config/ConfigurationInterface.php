@@ -2,7 +2,6 @@
 
 namespace config;
 
-interface ConfigurationInterface
-{
-    
+interface ConfigurationInterface {
+
 }

@@ -9,12 +9,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <!-- Fav and touch icons 
+        <!-- Fav and touch icons
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/assets/images/required/ico/apple-touch-icon-57-precomposed.png">
--->
+        -->
         <title>|title|</title>
 
         <!-- Required CSS Files -->
@@ -612,7 +612,7 @@
                                                                             <span class="glyphicon-calendar glyphicon"></span>
                                                                         </span>
                                                                     </div>
-                                                                    to 
+                                                                    to
                                                                     <div class="input-group input-group-sm date-picker-end">
                                                                         <input type="text" class="form-control" autocomplete="off" size="10" placeholder="DD/MM/YYYY" data-date-format="DD/MM/YYYY">
                                                                         <span class="input-group-addon input-group-icon">
@@ -679,7 +679,7 @@
                                                                     <div class="checkbox">
                                                                         <label>
                                                                             <div class="icheckbox_square-blue checkbox-actual" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge">Critical</span> 
+                                                                            <span class="badge">Critical</span>
                                                                             Sed velit augue, tincidunt vitae posuere nec
                                                                         </label>
                                                                     </div>
@@ -696,7 +696,7 @@
                                                                     <div class="checkbox">
                                                                         <label class="strike-out">
                                                                             <div class="icheckbox_square-blue checkbox-actual checked" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge highlight-color-yellow">High Priority</span> 
+                                                                            <span class="badge highlight-color-yellow">High Priority</span>
                                                                             Aliquam vel tristique ipsum
                                                                         </label>
                                                                     </div>
@@ -705,8 +705,8 @@
                                                                     <div class="checkbox">
                                                                         <label>
                                                                             <div class="icheckbox_square-blue checkbox-actual" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge highlight-color-blue">Optional</span> 
-                                                                            Aenean vehicula, ligula sit amet varius maximus 
+                                                                            <span class="badge highlight-color-blue">Optional</span>
+                                                                            Aenean vehicula, ligula sit amet varius maximus
                                                                         </label>
                                                                     </div>
                                                                 </li>
@@ -730,7 +730,7 @@
                                                                     <div class="checkbox">
                                                                         <label class="strike-out">
                                                                             <div class="icheckbox_square-blue checkbox-actual checked" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge highlight-color-purple">Low Priority</span> 
+                                                                            <span class="badge highlight-color-purple">Low Priority</span>
                                                                             Sed velit augue, tincidunt vitae posuere
                                                                         </label>
                                                                     </div>
@@ -739,7 +739,7 @@
                                                                     <div class="checkbox">
                                                                         <label>
                                                                             <div class="icheckbox_square-blue checkbox-actual" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge highlight-color-purple">Low Priority</span> 
+                                                                            <span class="badge highlight-color-purple">Low Priority</span>
                                                                             Fusce in felis nec exdf
                                                                         </label>
                                                                     </div>
@@ -748,7 +748,7 @@
                                                                     <div class="checkbox">
                                                                         <label>
                                                                             <div class="icheckbox_square-blue checkbox-actual" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            <span class="badge highlight-color-purple">Low Priority</span> 
+                                                                            <span class="badge highlight-color-purple">Low Priority</span>
                                                                             Aliquam vel tristique ipsum
                                                                         </label>
                                                                     </div>
@@ -757,7 +757,7 @@
                                                                     <div class="checkbox">
                                                                         <label>
                                                                             <div class="icheckbox_square-blue checkbox-actual" style="position: relative;"><input type="checkbox" class="task-list-item-checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
-                                                                            Aenean vehicula, ligula sit amet varius maximus 
+                                                                            Aenean vehicula, ligula sit amet varius maximus
                                                                         </label>
                                                                     </div>
                                                                 </li>
@@ -1011,19 +1011,19 @@
                                                         <div class="c-widget-content-body">
                                                             <p>
                                                                 <strong>RE: SEO Inquiry</strong><br>
-                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                             </p>
                                                             <p>
-                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                Cross-media information without cross-media value.Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                             </p>
                                                         </div>
                                                         <div class="c-widget-content-sub">
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-pencil"></span> 
+                                                                <span class="glyphicon glyphicon-pencil"></span>
                                                                 Write Reply
                                                             </a>
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-trash"></span> 
+                                                                <span class="glyphicon glyphicon-trash"></span>
                                                                 Delete
                                                             </a>
                                                         </div>
@@ -1043,11 +1043,11 @@
                                                             09 December <small>10:43</small>
                                                         </div>
                                                         <div class="c-widget-content-body">
-                                                            Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                            Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                         </div>
                                                         <div class="c-widget-content-sub">
                                                             <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                <span class="glyphicon glyphicon-retweet"></span> 
+                                                                <span class="glyphicon glyphicon-retweet"></span>
                                                                 ReTweet This
                                                             </a>
                                                         </div>
@@ -1076,7 +1076,7 @@
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>
@@ -1092,7 +1092,7 @@
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>
@@ -1104,11 +1104,11 @@
                                                                         06 December <small>22:19</small>
                                                                     </div>
                                                                     <div class="c-widget-content-body">
-                                                                        Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas. 
+                                                                        Dramatically maintain clicks-and-mortar solutions without functional solutions. Quickly maximize timely deliverables for real-time schemas.
                                                                     </div>
                                                                     <div class="c-widget-content-sub">
                                                                         <a href="http://livedemo.base5builder.com/circloid_html/type_1/templates/blue/?click_source=demo_page_img#">
-                                                                            <span class="glyphicon glyphicon-thumbs-up"></span> 
+                                                                            <span class="glyphicon glyphicon-thumbs-up"></span>
                                                                             Like This
                                                                         </a>
                                                                     </div>

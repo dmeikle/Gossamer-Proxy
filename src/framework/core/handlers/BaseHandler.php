@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -15,7 +15,7 @@ use Monolog\Logger;
 
 /**
  * Base handler to abstract framework 'stuff' away from the developer
- * 
+ *
  * @author Dave Meikle
  */
 abstract class BaseHandler {
@@ -24,7 +24,7 @@ abstract class BaseHandler {
     protected $defaultLocale = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger) {
@@ -33,7 +33,7 @@ abstract class BaseHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param array $locale
      */
     public function setDefaultLocale(array $locale) {
@@ -42,14 +42,14 @@ abstract class BaseHandler {
 
     /**
      * checks the creation date of a cache file to see if it is expired
-     * 
+     *
      * @param type $filepath
      * @param type $rootFolder
-     * 
+     *
      * @return boolean
      */
     protected function checkFileIsStale($filepath, $rootFolder) {
-      
+
         if (!file_exists($this->getDestinationFilepath($filepath, $rootFolder))) {
             return true;
         }
@@ -62,9 +62,9 @@ abstract class BaseHandler {
     }
 
     /**
-     * 
+     *
      * @param string $filepath
-     * 
+     *
      * @return string
      */
     protected function getOriginFilePath($filepath) {
@@ -74,24 +74,24 @@ abstract class BaseHandler {
 
     /**
      * returns the location of where to write the cache to
-     * 
+     *
      * @param string $filepath
      * @param string $rootFolder
-     * 
+     *
      * @return string
      */
     protected function getDestinationFilepath($filepath, $rootFolder) {
         $filepath = str_replace('/includes/' . $rootFolder, '', $filepath);
 
-        return __SITE_PATH . '/web/' . $rootFolder  . $filepath;
+        return __SITE_PATH . '/web/' . $rootFolder . $filepath;
     }
 
     /**
      * copies a file from 1 location to another
-     * 
+     *
      * @param string $filepath
      * @param string $rootFolder
-     * 
+     *
      * @return string
      */
     protected function copyFile($filepath, $rootFolder) {
@@ -104,26 +104,26 @@ abstract class BaseHandler {
         $old_umask = umask(0);
         $parsedFromPath = __SITE_PATH . '/src';
         $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
-     
+
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
-   
+
         @mkdir($parsedToPath, 0777, true);
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0777);
         @umask($old_umask);
-        
+
         @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
 
         @chmod($parsedToPath, 0755);
 
         return '/web/' . $rootFolder . implode('/', $chunks) . $filename;
     }
-    
+
     /**
      * copies a file from 1 location to another
-     * 
+     *
      * @param string $filepath
      * @param string $rootFolder
-     * 
+     *
      * @return string
      */
     protected function copyCoreFile($filepath, $rootFolder) {
@@ -136,14 +136,14 @@ abstract class BaseHandler {
         $old_umask = umask(0);
         $parsedFromPath = __SITE_PATH . '/src';
         $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
-       
-       
+
+
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);
-       
+
         @mkdir($parsedToPath, 0777, true);
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 0755);
         umask($old_umask);
-        
+
         @copy($parsedFromPath . $filepath, $parsedToPath . '/' . $filename);
         @chmod($parsedToPath, 0755);
 
@@ -153,10 +153,10 @@ abstract class BaseHandler {
 
     /**
      * finds all occurrences of a tag inside of content
-     * 
+     *
      * @param string $content
      * @param string $tagName
-     * 
+     *
      * @return string
      */
     protected function getOccurrences($content, $tagName) {

@@ -4,129 +4,129 @@
 
 "use strict";
 
-$(document).ready(function(){
-	/**
-	 * DEMO CODE
-	 * These lines of code below are merely demo purposes. Build upon them and create your own
-	 * Check documentation for usage
-	 */
-	
-	var i = -1;
-	var toastCount = 0;
-	var $toastlast;
+$(document).ready(function () {
+    /**
+     * DEMO CODE
+     * These lines of code below are merely demo purposes. Build upon them and create your own
+     * Check documentation for usage
+     */
 
-	var getMessage = function () {
-		var msgs = ['My name is Inigo Montoya. You killed my father. Prepare to die!',
-		'<div><input class="input-small" value="textbox"/>&nbsp;<a href="http://johnpapa.net" target="_blank">This is a hyperlink</a></div><div><button type="button" id="okBtn" class="btn btn-primary">Close me</button><button type="button" id="surpriseBtn" class="btn" style="margin: 0 8px 0 8px">Surprise me</button></div>',
-		'Are you the six fingered man?',
-		'Inconceivable!',
-		'I do not think that means what you think it means.',
-		'Have fun storming the castle!'
-		];
-		i++;
-		if (i === msgs.length) {
-			i = 0;
-		}
+    var i = -1;
+    var toastCount = 0;
+    var $toastlast;
 
-		return msgs[i];
-	};
-	$('#showtoast').click(function () {
-		var shortCutFunction = $("#toastTypeGroup input:radio:checked").val();
-		var msg = $('#message').val();
-		var title = $('#title').val() || '';
-		var $showDuration = $('#showDuration');
-		var $hideDuration = $('#hideDuration');
-		var $timeOut = $('#timeOut');
-		var $extendedTimeOut = $('#extendedTimeOut');
-		var $showEasing = $('#showEasing');
-		var $hideEasing = $('#hideEasing');
-		var $showMethod = $('#showMethod');
-		var $hideMethod = $('#hideMethod');
-		var toastIndex = toastCount++;
+    var getMessage = function () {
+        var msgs = ['My name is Inigo Montoya. You killed my father. Prepare to die!',
+            '<div><input class="input-small" value="textbox"/>&nbsp;<a href="http://johnpapa.net" target="_blank">This is a hyperlink</a></div><div><button type="button" id="okBtn" class="btn btn-primary">Close me</button><button type="button" id="surpriseBtn" class="btn" style="margin: 0 8px 0 8px">Surprise me</button></div>',
+            'Are you the six fingered man?',
+            'Inconceivable!',
+            'I do not think that means what you think it means.',
+            'Have fun storming the castle!'
+        ];
+        i++;
+        if (i === msgs.length) {
+            i = 0;
+        }
 
-		toastr.options = {
-			closeButton: $('#closeButton').prop('checked'),
-			debug: $('#debugInfo').prop('checked'),
-			progressBar: $('#progressBar').prop('checked'),
-			positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
-			onclick: null
-		};
+        return msgs[i];
+    };
+    $('#showtoast').click(function () {
+        var shortCutFunction = $("#toastTypeGroup input:radio:checked").val();
+        var msg = $('#message').val();
+        var title = $('#title').val() || '';
+        var $showDuration = $('#showDuration');
+        var $hideDuration = $('#hideDuration');
+        var $timeOut = $('#timeOut');
+        var $extendedTimeOut = $('#extendedTimeOut');
+        var $showEasing = $('#showEasing');
+        var $hideEasing = $('#hideEasing');
+        var $showMethod = $('#showMethod');
+        var $hideMethod = $('#hideMethod');
+        var toastIndex = toastCount++;
 
-		if ($('#addBehaviorOnToastClick').prop('checked')) {
-			toastr.options.onclick = function () {
-				alert('You can perform some custom action after a toast goes away');
-			};
-		}
+        toastr.options = {
+            closeButton: $('#closeButton').prop('checked'),
+            debug: $('#debugInfo').prop('checked'),
+            progressBar: $('#progressBar').prop('checked'),
+            positionClass: $('#positionGroup input:radio:checked').val() || 'toast-top-right',
+            onclick: null
+        };
 
-		if ($showDuration.val().length) {
-			toastr.options.showDuration = $showDuration.val();
-		}
+        if ($('#addBehaviorOnToastClick').prop('checked')) {
+            toastr.options.onclick = function () {
+                alert('You can perform some custom action after a toast goes away');
+            };
+        }
 
-		if ($hideDuration.val().length) {
-			toastr.options.hideDuration = $hideDuration.val();
-		}
+        if ($showDuration.val().length) {
+            toastr.options.showDuration = $showDuration.val();
+        }
 
-		if ($timeOut.val().length) {
-			toastr.options.timeOut = $timeOut.val();
-		}
+        if ($hideDuration.val().length) {
+            toastr.options.hideDuration = $hideDuration.val();
+        }
 
-		if ($extendedTimeOut.val().length) {
-			toastr.options.extendedTimeOut = $extendedTimeOut.val();
-		}
+        if ($timeOut.val().length) {
+            toastr.options.timeOut = $timeOut.val();
+        }
 
-		if ($showEasing.val().length) {
-			toastr.options.showEasing = $showEasing.val();
-		}
+        if ($extendedTimeOut.val().length) {
+            toastr.options.extendedTimeOut = $extendedTimeOut.val();
+        }
 
-		if ($hideEasing.val().length) {
-			toastr.options.hideEasing = $hideEasing.val();
-		}
+        if ($showEasing.val().length) {
+            toastr.options.showEasing = $showEasing.val();
+        }
 
-		if ($showMethod.val().length) {
-			toastr.options.showMethod = $showMethod.val();
-		}
+        if ($hideEasing.val().length) {
+            toastr.options.hideEasing = $hideEasing.val();
+        }
 
-		if ($hideMethod.val().length) {
-			toastr.options.hideMethod = $hideMethod.val();
-		}
+        if ($showMethod.val().length) {
+            toastr.options.showMethod = $showMethod.val();
+        }
 
-		if (!msg) {
-			msg = getMessage();
-		}
+        if ($hideMethod.val().length) {
+            toastr.options.hideMethod = $hideMethod.val();
+        }
 
-		$("#toastrOptions").text("Command: toastr["
-			+ shortCutFunction
-			+ "](\""
-				+ msg
-				+ (title ? "\", \"" + title : '')
-				+ "\")\n\ntoastr.options = "
-		+ JSON.stringify(toastr.options, null, 2)
-		);
+        if (!msg) {
+            msg = getMessage();
+        }
 
-		var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
-		$toastlast = $toast;
-		if ($toast.find('#okBtn').length) {
-			$toast.delegate('#okBtn', 'click', function () {
-				alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
-				$toast.remove();
-			});
-		}
-		if ($toast.find('#surpriseBtn').length) {
-			$toast.delegate('#surpriseBtn', 'click', function () {
-				alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
-			});
-		}
-	});
+        $("#toastrOptions").text("Command: toastr["
+                + shortCutFunction
+                + "](\""
+                + msg
+                + (title ? "\", \"" + title : '')
+                + "\")\n\ntoastr.options = "
+                + JSON.stringify(toastr.options, null, 2)
+                );
 
-	function getLastToast(){
-		return $toastlast;
-	}
+        var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
+        $toastlast = $toast;
+        if ($toast.find('#okBtn').length) {
+            $toast.delegate('#okBtn', 'click', function () {
+                alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
+                $toast.remove();
+            });
+        }
+        if ($toast.find('#surpriseBtn').length) {
+            $toast.delegate('#surpriseBtn', 'click', function () {
+                alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
+            });
+        }
+    });
 
-	$('#clearlasttoast').click(function () {
-		toastr.clear(getLastToast());
-	});
-	
-	$('#cleartoasts').click(function () {
-		toastr.clear();
-	});
+    function getLastToast() {
+        return $toastlast;
+    }
+
+    $('#clearlasttoast').click(function () {
+        toastr.clear(getLastToast());
+    });
+
+    $('#cleartoasts').click(function () {
+        toastr.clear();
+    });
 });

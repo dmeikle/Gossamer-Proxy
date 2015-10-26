@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return array(
     'NAV_HOME' => 'Home',
     'NAV_ARTIST_PROFILE' => 'Artist Profile',
     'NAV_CART' => 'Collection',
