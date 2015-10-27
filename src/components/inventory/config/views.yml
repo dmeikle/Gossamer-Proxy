@@ -48,6 +48,7 @@ admin_inventory_variantoptions:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/variant-options.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
