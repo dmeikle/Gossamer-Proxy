@@ -11,10 +11,7 @@
 
 namespace components\inventory\controllers;
 
-
 class InventoryEquipmentController extends InventoryItemsController {
-
-
 
     public function listAllEquipment($offset = 0, $limit = 20) {
         $results = $this->model->listallWithParams($offset, $limit, array('InventoryTypes_id' => 2));
@@ -37,4 +34,17 @@ class InventoryEquipmentController extends InventoryItemsController {
 
         $this->render($result);
     }
+
+    public function listHistory($offset = 0, $limit = 20) {
+        $params = array();
+        $queryParams = $this->httpRequest->getQueryParameters();
+
+        if (array_key_exists('InventoryEquipment_id', $queryParams)) {
+            $params['InventoryEquipment_id'] = $queryParams['InventoryEquipment_id'];
+        }
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'transferhistory');
+
+        $this->render($result);
+    }
+
 }

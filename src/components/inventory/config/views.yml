@@ -43,13 +43,30 @@ super_inventory_inventorytypes_list:
 
 #--------------------- items --------------------------
 
-admin_inventory_equipment_list:
+admin_inventory_equipment_locations:
     template: admin-list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/inventory/views/admin/items/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/inventory/views/admin/equipment-locations/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - inventoryAdmin
+    head:
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/inventory/dist/js/inventory.concat.js
+        #- @components/inventory/dist/js/inventory.min.js
+    css:
+        - @components/inventory/dist/css/inventory.min.css
+
 
 admin_inventory_materials_list:
     template: admin-list.php
@@ -79,15 +96,15 @@ admin_inventory_items_edit:
             - rootApp
             - inventoryAdmin
     head:
-        - @components/claims/dist/bower_components/angular/angular.min.js
-        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
-        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
-        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/inventory/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css
 
@@ -96,23 +113,23 @@ admin_inventory_list:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - rootApp
             - inventoryAdmin
-            - claimsAdmin
     head:
-        - @components/claims/dist/bower_components/angular/angular.min.js
-        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
-        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
-        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/inventory/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
         - @components/claims/dist/js/claims.concat.js
         #- @components/claims/dist/js/claims.min.js
     css:
@@ -140,6 +157,6 @@ admin_warehouse_locations_home:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/inventory/dist/js/inventory.concat.js
-        #- @components/claims/dist/js/claims.min.js
+        #- @components/inventory/dist/js/inventory.min.js
     css:
         - @components/inventory/dist/css/inventory.min.css

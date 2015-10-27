@@ -81,9 +81,10 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
                         });
                     break;
                 default:
-                    inventoryListSrv.getEquipmentDetails(clickedObject)
-                        .then(function() {
+                    inventoryListSrv.getEquipmentTransferHistory(clickedObject)
+                        .then(function(response) {
                             $scope.selectedRow = inventoryListSrv.item;
+                            $scope.transferHistory = response.data.InventoryEquipmentHistorys;
                             $scope.sidePanelLoading = false;
                         });
             }

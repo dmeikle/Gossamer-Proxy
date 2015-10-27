@@ -1,0 +1,3 @@
+module.service('equipmentListSrv', function() {
+
+});
