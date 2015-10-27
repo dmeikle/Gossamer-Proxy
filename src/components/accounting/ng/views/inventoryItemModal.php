@@ -23,14 +23,10 @@
                 <?php echo $form['PackageTypes_id']; ?>
             </div>
             <div class="form-group col-md-6">
-                <label for="price"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></label>
-                <?php echo $form['price']; ?>
-            </div>
-            <div class="form-group col-md-6">
                 <label for="markup"><?php echo $this->getString('ACCOUNTING_MARKUP'); ?></label>
                 <?php echo $form['markup']; ?>
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label for="taxType"><?php echo $this->getString('ACCOUNTING_TAX_TYPE'); ?></label>
                 <?php echo $form['taxType']; ?>
             </div>
@@ -39,7 +35,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="modal-footer">
-    <button class="primary" ng-click="save(inventoryItem)"><?php echo $this->getString('ACCOUNTING_CONFIRM'); ?></button>
     <button ng-click="cancel()"><?php echo $this->getString('ACCOUNTING_CANCEL'); ?></button>
+    <button class="primary" ng-click="save(inventoryItem);clear()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+    <button class="primary" ng-click="save(inventoryItem);confirm()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
 </div>
-

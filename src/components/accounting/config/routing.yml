@@ -1146,11 +1146,22 @@ accounting_inventory_list:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\InventoryController
         model: components\accounting\models\InventoryModel
-        method: listall
+        method: listallReverse
         view: core\views\JSONView
         viewKey: accounting_inventory_list
         datasource: datasource1
 
+accounting_inventory_search:
+    pattern: admin/accounting/inventory/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_inventory_search
+        datasource: datasource1
+        
 accounting_inventory_breakdown:
     pattern: admin/accounting/inventory/*
     defaults:
@@ -1165,16 +1176,18 @@ accounting_inventory_breakdown:
             - 'src/components/accounting/locales/*/accounting'
     methods: [GET]
 
-accounting_inventory_search:
-    pattern: admin/accounting/inventory/search
+accounting_inventory_save:
+    pattern: admin/accounting/inventory/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\InventoryController
         model: components\accounting\models\InventoryModel
-        method: search
+        method: save
         view: core\views\JSONView
-        viewKey: accounting_inventory_search
-        datasource: datasource1
+        viewKey: accounting_inventory_save
+        datasource: datasource1 
+    methods: [POST]
+    
 #------------------------ Tabs Test ----------------------------
 accounting_tabs_home:
     pattern: admin/accounting/tabs

@@ -5,9 +5,9 @@
 
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openAdvancedSearch()">
-                <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
-            </button>
+<!--            <button class="btn-link" ng-click="openAdvancedSearch()">
+                <?php// echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
+            </button>-->
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
 <!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')         ?></button>-->
@@ -31,56 +31,32 @@
                 <tr>
                     <th ng-hide="groupedBy === 'id'" column-sortable data-column="id"><?php echo $this->getString('ACCOUNTING_ID'); ?></th>
                     <th ng-hide="groupedBy === 'name'" column-sortable data-column="name"><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
-                    <th ng-hide="groupedBy === 'code'" column-sortable data-column="code"><?php echo $this->getString('ACCOUNTING_CODE'); ?></th>
+                    <th ng-hide="groupedBy === 'productCode'" column-sortable data-column="productCode"><?php echo $this->getString('ACCOUNTING_CODE'); ?></th>
                     <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
                     <th ng-hide="groupedBy === 'packageType'" column-sortable data-column="packageType"><?php echo $this->getString('ACCOUNTING_PACKAGE_TYPE'); ?></th>
-                    <th ng-hide="groupedBy === 'price'" column-sortable data-column="price"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
+                    <th ng-hide="groupedBy === 'purchaseCost'" column-sortable data-column="purchaseCost"><?php echo $this->getString('ACCOUNTING_PURCHASE_COST'); ?></th>
                     <th ng-hide="groupedBy === 'markup'" column-sortable data-column="markup"><?php echo $this->getString('ACCOUNTING_MARKUP'); ?></th>
-                    <th ng-hide="groupedBy === 'taxtype'" column-sortable data-column="taxtype"><?php echo $this->getString('ACCOUNTING_TAX_TYPE'); ?></th>
+                    <th ng-hide="groupedBy === 'taxType'" column-sortable data-column="taxType"><?php echo $this->getString('ACCOUNTING_TAX_TYPE'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td ng-hide="groupedBy === 'firstname'"></td>
-                    <td ng-hide="groupedBy === 'lastname'"></td>
+                    <td ng-hide="groupedBy === 'id'"></td>
+                    <td ng-hide="groupedBy === 'name'"></td>
                     <td ng-hide="groupedBy === 'jobNumber'"></td>
-                    <td ng-hide="groupedBy === 'title'">
+                    <td ng-hide="groupedBy === 'productCode'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'numItems'"></td>
-                    <td ng-hide="groupedBy === 'numItems'"></td>
-                    <td ng-hide="groupedBy === 'department'" column-sortable data-column="department"></td>
-                    <td ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"></td>
+                    <td ng-hide="groupedBy === 'packageType'"></td>
+                    <td ng-hide="groupedBy === 'purchaseCost'"></td>
+                    <td ng-hide="groupedBy === 'markup'" column-sortable data-column="department"></td>
+                    <td ng-hide="groupedBy === 'taxType'" column-sortable data-column="totalCost"></td>
                     <td></td>
-<!--                    <td></td>                   -->
                 </tr>
 
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
                     <th colspan="7">
-                        <!--
-                                                <span ng-if="groupedBy === 'firstname'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_FIRSTNAME'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'lastname'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_LASTNAME'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'jobNumber'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_TITLE'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'numItems'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_EXTENSION'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'title'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_MOBILE'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'department'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_STATUS'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'totalCost'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_LASTLOGIN'); ?>
-                                                </span>
-                        -->
                         {{item[groupedBy]}}
                         <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
                     </th>

@@ -19,5 +19,17 @@ use core\AbstractController;
  * @author Dave Meikle
  */
 class InventoryController extends AbstractController {
+    public function search() {
+
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
+
+        $this->render($result);
+    }
     
+    public function listall($offset = 0, $limit = 20) {
+        $offset = intval($offset);
+        $limit = intval($limit);
+        
+        $this->render($this->model->listallWithParams($offset, $limit, array(), 'list'));
+    }
 }

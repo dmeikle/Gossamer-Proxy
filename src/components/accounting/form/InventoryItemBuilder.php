@@ -15,7 +15,7 @@ use Gossamer\CMS\Forms\AbstractBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 
 /**
- * DepartmentBuilder
+ * InventoryItem
  *
  * @author Dave Meikle
  */
@@ -27,17 +27,17 @@ class InventoryItemBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['InventoryItem']);
         }
 
-        $builder->add('name', 'text', array('class' => 'form-control', 'ng-model' => 'item.name', 'ng-init' => "item.name ='" . $this->getValue('name', $values) . "'"))
-                ->add('productCode', 'text', array('class' => 'form-control', 'ng-model' => 'item.productCode', 'ng-init' => "item.productCode ='" . $this->getValue('productCode', $values) . "'"))
-                ->add('description', 'text', array('class' => 'form-control', 'ng-model' => 'item.description', 'ng-init' => "item.description ='" . $this->getValue('description', $values) . "'"))
-                ->add('PackageTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.PackageTypes_id', 'ng-init' => "item.PackageTypes_id ='" . $this->getValue('PackageTypes_id', $values) . "'", 'options' => $options['packageTypes']))
-                ->add('price', 'text', array('class' => 'form-control', 'ng-model' => 'item.purchaseCost', 'ng-init' => "item.purchaseCost ='" . $this->getValue('purchaseCost', $values) . "'"))
-                ->add('markup', 'text', array('class' => 'form-control', 'ng-model' => 'item.markup', 'ng-init' => "item.markup ='" . $this->getValue('markup', $values) . "'"))
-                ->add('taxType', 'text', array('class' => 'form-control', 'ng-model' => 'item.taxType', 'ng-init' => "item.taxType ='" . $this->getValue('taxType', $values) . "'"))
+        $builder->add('name', 'text', array('class' => 'form-control', 'ng-model' => 'item.name'))
+                ->add('productCode', 'text', array('class' => 'form-control', 'ng-model' => 'item.productCode'))
+                ->add('description', 'text', array('class' => 'form-control', 'ng-model' => 'item.description'))
+                ->add('PackageTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.PackageTypes_id', 'options' => $options['packageTypes']))
+                ->add('price', 'text', array('class' => 'form-control', 'ng-model' => 'item.price'))
+                ->add('markup', 'text', array('class' => 'form-control', 'ng-model' => 'item.markup'))
+                ->add('taxType', 'select', array('class' => 'form-control', 'ng-model' => 'item.AccountingTaxTypes_id', 'options' => $options['taxTypes']))
                 
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel', 'ng-click' => 'cancel()'))
-                ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'"));
+                ->add('id', 'hidden', array('ng-model' => 'item.id'));
 
         return $builder->getForm();
     }

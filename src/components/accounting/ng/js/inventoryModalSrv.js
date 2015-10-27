@@ -5,23 +5,22 @@ module.service('inventoryModalSrv', function ($http, searchSrv, $filter) {
     var self = this;
 
     //Save the inventory item
-    this.save = function (headings, lineItems, formToken) {
+    this.save = function (item, formToken) {
         var itemID = '';
-        if (headings.id) {
-            itemID = parseInt(headings.id);
+        if (item.id) {
+            itemID = parseInt(item.id);
         } else {
             itemID = '0';
         }
 
-        for (var i in headings) {
-            if (headings[i] === null) {
-                delete headings[i];
+        for (var i in item) {
+            if (item[i] === null) {
+                delete item[i];
             }
         }
 
         var data = {};
-        data.SuppliesUsed = headings;
-        data.InventoryItems = lineItems;
+        data.InventoryItem = item;
         data.FORM_SECURITY_TOKEN = formToken;
 
         return $http({
