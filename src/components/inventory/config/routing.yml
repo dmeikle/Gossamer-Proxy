@@ -479,3 +479,61 @@ admin_inventory_variantoptions_save:
     methods: [POST]
     
     
+
+
+#-------------------------- variant groups -----------------------
+
+admin_inventory_variantgroups:
+    pattern: admin/inventory/variantgroups
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+    methods: [GET]
+
+
+admin_inventory_variantgroups_list:
+    pattern: admin/inventory/variantgroups/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+    methods: [GET]
+
+admin_inventory_variantgroups_get:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_inventory_variantgroups_save:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups_save
+        datasource: datasource1
+    methods: [POST]
+    
+        
