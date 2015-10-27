@@ -536,4 +536,17 @@ admin_inventory_variantgroups_save:
         datasource: datasource1
     methods: [POST]
     
+
+
+admin_inventory_items_variantgroups_save:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: saveVariantOptions
+        view: core\views\JSONView
+        viewKey: admin_inventory_items_variantgroups_save
+        datasource: datasource1
+    methods: [POST]
         
