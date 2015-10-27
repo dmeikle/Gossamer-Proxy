@@ -7,6 +7,8 @@ return array(
     'ACCOUNTING_RESET' => 'Reset',
     'ACCOUNTING_CLOSE' => 'Close',
     'ACCOUNTING_SAVE' => 'Save',
+    'ACCOUNTING_EDIT' => 'Edit',
+    'ACCOUNTING_NEW' => 'New',
     'ACCOUNTING_SAVE_AND_NEW' => 'Save and New',
     'ACCOUNTING_SAVE_AND_CLOSE' => 'Save and Close',
     'ACCOUNTING_CANCEL' => 'Cancel',

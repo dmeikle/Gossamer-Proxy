@@ -17,6 +17,9 @@ module.controller('inventoryModalCtrl', function ($modalInstance, $scope, invent
 
     if (inventoryItem) {       
         $scope.item = inventoryItem;
+        $scope.newItem = false;
+    } else {
+        $scope.newItem = true;
     }
     
     //Clear the item

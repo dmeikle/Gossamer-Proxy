@@ -1,7 +1,10 @@
 <!-- Inventory Item Modal -->
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">New Inventory Item</h4>
+    <h4 class="modal-title" id="myModalLabel">
+        <span ng-if="newItem"><?php echo $this->getString('ACCOUNTING_NEW'); ?></span>
+        <span ng-if="!newItem"><?php echo $this->getString('ACCOUNTING_EDIT'); ?></span>
+        Inventory Item</h4>
 </div>
 <div class="modal-body">
     <div class="cards col-md-12">
