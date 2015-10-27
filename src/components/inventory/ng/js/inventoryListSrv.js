@@ -16,11 +16,11 @@ module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
     };
 
     this.getEquipmentDetails = function(object) {
-        return crudSrv.getDetails(apiPath + 'items/', object.id);
+        return crudSrv.getDetails(apiPath + 'equipment/', object.InventoryEquipment_id);
     };
 
     this.getMaterialDetails = function(object) {
-        return crudSrv.getDetails(apiPath + 'items/', object.id);
+        return crudSrv.getDetails(apiPath + 'item/', object.id);
     };
 
 });
