@@ -7,11 +7,11 @@
  *  file that was distributed with this source code.
  */
 
-(function() {
-    
-   
-  angular.module('keys', [])    
-    .controller('KeysController', function($scope, $http) {
-        
-    });
+(function () {
+
+
+    angular.module('keys', [])
+            .controller('KeysController', function ($scope, $http) {
+
+            });
 })();

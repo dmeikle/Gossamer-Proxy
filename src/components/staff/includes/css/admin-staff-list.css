@@ -12,29 +12,29 @@
 */
 
 .staff-member.pane {
-	font-size:12px;
-	
-	float: left;
-	margin: 10px;
-	border: solid 1px gray;
-        border-radius:5px;
-	padding: 5px;	
-	
+    font-size:12px;
+
+    float: left;
+    margin: 10px;
+    border: solid 1px gray;
+    border-radius:5px;
+    padding: 5px;	
+
 }
 .staff-member.pane img {
-	float: left;
-	margin: 0px 5px 5px 0px;
+    float: left;
+    margin: 0px 5px 5px 0px;
 }
 .staff-member.pane .name {
-	margin-top:15px;
-	font-weight:600;
+    margin-top:15px;
+    font-weight:600;
 }
 .staff-member.pane .email {
-	margin-top: 02px;
-	clear:both;
+    margin-top: 02px;
+    clear:both;
 }
 .staff-member.pane .logged-in {
-	float: right;
+    float: right;
 }
 /*
 #staff-edit-slider {

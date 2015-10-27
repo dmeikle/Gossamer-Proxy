@@ -1,8 +1,8 @@
-module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
-  var a = document.createElement('a');
-  a.href = $location.absUrl();
-  var apiPath;
-  if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
+module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsListSrv, tablesSrv, searchSrv) {
+    var a = document.createElement('a');
+    a.href = $location.absUrl();
+    var apiPath;
+    if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
         apiPath = a.pathname;
     } else {
         apiPath = a.pathname.slice(0, -1);
@@ -37,10 +37,10 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
                         $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
                     });
             claimsListSrv.getClaimContacts(clickedObject)
-                .then(function() {
-                  $scope.selectedClaim.contacts = claimsListSrv.claimContacts;
-                  $scope.sidePanelLoading = false;
-                });
+                    .then(function () {
+                        $scope.selectedClaim.contacts = claimsListSrv.claimContacts;
+                        $scope.sidePanelLoading = false;
+                    });
         }
     };
 
@@ -54,16 +54,22 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         });
     };
 
-    $scope.assignPm = function (pmId) {
+    $scope.assignPM = function (claim) {
+
         var modalInstance = $modal.open({
             templateUrl: '/render/claims/assignPMModal',
             controller: 'claimsPMModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static"
+            backdrop: "static",
+            resolve: {
+                claim: function () {
+                    return claim;
+                }
+            }
         });
-    }
-    
+    };
+
     function getClaimsList() {
         $scope.loading = true;
         claimsListSrv.getClaimsList(row, numRows).then(function (response) {
@@ -89,135 +95,123 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         }
     };
 
-  $scope.resetSearch = function() {
-    $scope.searchSubmitted = false;
-    $scope.basicSearch.query = {};
-    getStaffList();
-  };
+    $scope.resetSearch = function () {
+        $scope.searchSubmitted = false;
+        $scope.basicSearch.query = {};
+        getStaffList();
+    };
 });
 
 
-module.controller('claimsPMModalCtrl', function($modalInstance, $scope, claimsEditSrv) {
-  $scope.addNewClient = false;
+module.controller('claimsPMModalCtrl', function ($modalInstance, $scope, claimsListSrv, claim) {
+    $scope.staffList = [];
 
-  $scope.project = {};
-  $scope.claim = {};
-  $scope.claim.query= {};
+    $scope.claim = claim;
 
 
-  $scope.autocomplete = function(value) {
-    return autocomplete(value, 'projectmanager');
-  };
+    $scope.autocomplete = function (value) {
+        return autocomplete(value, 'projectmanager');
+    };
 
 
-  $scope.selectPM = function(item, model, label) {
-    $scope.claim.ProjectAddress = item;
-    $scope.claim.query.ProjectAddresses_id = item.id;
-    if (item.buildingYear.parseInt <= 1980) {
-      $scope.claim.query.asbestosTestRequired = 'true';
-    } else {
-      $scope.claim.query.asbestosTestRequired = 'false';
-    }
-  };
-
-  $scope.savePM = function(project) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    claimsEditSrv.saveProjectManager(project, formToken).then(function(response){
-      $scope.claim.ProjectAddress = response.data.ProjectAddress[0];
-      $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
-      $scope.toggleAdding();
-      $scope.nextPage();
-    });
-  };
-
-  $scope.save = function() {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
-  };
+    $scope.selectPM = function (Staff_id) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
+        claim.projectManager_id = Staff_id;
+        delete claim.currentClaimPhases_id;
+        delete claim.workAuthorizationReceiveDate;
+        delete claim.ClaimTypes_id;
+        
+        claimsListSrv.saveProjectManager(claim, formToken).then(function (response) {
+            $scope.claim.jobNumber = response.jobNumber;
+            $scope.confirm();
+        });
+    };
 
 
-  $scope.confirm = function() {
-    $modalInstance.close($scope.claim.query);
-  };
+    $scope.confirm = function () {
+        $modalInstance.close($scope.claim.query);
+    };
 
-  $scope.cancel = function() {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
 
-module.controller('claimsModalCtrl', function($modalInstance, $scope, claimsEditSrv) {
-  $scope.addNewClient = false;
-
-  $scope.project = {};
-  $scope.claim = {};
-  $scope.claim.query= {};
+module.controller('claimsModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
+    $scope.addNewClient = false;
 
 
-  // datepicker stuffs
-  $scope.isOpen = {};
-  $scope.dateOptions = {'starting-day':1};
-  $scope.openDatepicker = function(event) {
-    var datepicker = event.target.parentElement.dataset.datepickername;
-    $scope.isOpen[datepicker] = true;
-  };
+    $scope.project = {};
+    $scope.claim = {};
+    $scope.claim.query = {};
 
-  var autocomplete = function(value, type) {
-    return claimsEditSrv.autocompleteProjectAddress(value, type);
-  };
 
-  $scope.autocompleteBuilding = function(value) {
-    return autocomplete(value, 'buildingName');
-  };
+    // datepicker stuffs
+    $scope.isOpen = {};
+    $scope.dateOptions = {'starting-day': 1};
+    $scope.openDatepicker = function (event) {
+        var datepicker = event.target.parentElement.dataset.datepickername;
+        $scope.isOpen[datepicker] = true;
+    };
 
-  $scope.autocompleteStrata = function(value) {
-    return autocomplete(value, 'stratanumber');
-  };
+    var autocomplete = function (value, type) {
+        return claimsEditSrv.autocompleteProjectAddress(value, type);
+    };
 
-  $scope.autocompleteAddress = function(value) {
-    return autocomplete(value, 'address');
-  };
+    $scope.autocompleteBuilding = function (value) {
+        return autocomplete(value, 'buildingName');
+    };
 
-  $scope.selectAddress = function(item, model, label) {
-    $scope.claim.ProjectAddress = item;
-    $scope.claim.query.ProjectAddresses_id = item.id;
-    if (item.buildingYear.parseInt <= 1980) {
-      $scope.claim.query.asbestosTestRequired = 'true';
-    } else {
-      $scope.claim.query.asbestosTestRequired = 'false';
-    }
-  };
+    $scope.autocompleteStrata = function (value) {
+        return autocomplete(value, 'stratanumber');
+    };
 
-  $scope.saveProjectAddress = function(project) {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    claimsEditSrv.saveProjectAddress(project, formToken).then(function(response){
-      $scope.claim.ProjectAddress = response.data.ProjectAddress[0];
-      $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
-      $scope.toggleAdding();
-      $scope.nextPage();
-    });
-  };
+    $scope.autocompleteAddress = function (value) {
+        return autocomplete(value, 'address');
+    };
 
-  $scope.save = function() {
-    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-    return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
-  };
+    $scope.selectAddress = function (item, model, label) {
+        $scope.claim.ProjectAddress = item;
+        $scope.claim.query.ProjectAddresses_id = item.id;
+        if (item.buildingYear.parseInt <= 1980) {
+            $scope.claim.query.asbestosTestRequired = 'true';
+        } else {
+            $scope.claim.query.asbestosTestRequired = 'false';
+        }
+    };
 
-  $scope.saveAndNext = function() {
-    $scope.save().then(function(response) {
-      $scope.claim.query.id = response.data.Claim[0].id;
-      $scope.nextPage();
-    });
-  };
+    $scope.saveProjectAddress = function (project) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        claimsEditSrv.saveProjectAddress(project, formToken).then(function (response) {
+            $scope.claim.ProjectAddress = response.data.ProjectAddress[0];
+            $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
+            $scope.toggleAdding();
+            $scope.nextPage();
+        });
+    };
 
-  $scope.toggleAdding = function() {
-    $scope.addNewClient = !$scope.addNewClient;
-  };
+    $scope.save = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
+    };
 
-  $scope.confirm = function() {
-    $modalInstance.close($scope.claim.query);
-  };
+    $scope.saveAndNext = function () {
+        $scope.save().then(function (response) {
+            $scope.claim.query.id = response.data.Claim[0].id;
+            $scope.nextPage();
+        });
+    };
 
-  $scope.cancel = function() {
-    $modalInstance.dismiss('cancel');
-  };
+    $scope.toggleAdding = function () {
+        $scope.addNewClient = !$scope.addNewClient;
+    };
+
+    $scope.confirm = function () {
+        $modalInstance.close($scope.claim.query);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });

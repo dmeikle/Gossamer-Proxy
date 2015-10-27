@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,7 +19,7 @@ use libraries\utils\Container;
 
 /**
  * handles all events that are raised
- * 
+ *
  * @author Dave Meikle
  */
 class EventHandler {
@@ -37,7 +37,7 @@ class EventHandler {
     private $eventDispatcher = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
@@ -50,7 +50,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param type $datasourceKey
      */
     public function setDatasourceKey($datasourceKey) {
@@ -59,7 +59,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param DatasourceFactory $factory
      * @param array $datasources
      */
@@ -70,7 +70,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container &$container) {
@@ -79,7 +79,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param HTTPRequest $httpRequest
      */
     public function setHttpRequest(HTTPRequest $httpRequest) {
@@ -88,7 +88,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param \core\eventlisteners\EventDispatcher $eventDispatcher
      */
     public function setEventDispatcher(EventDispatcher &$eventDispatcher) {
@@ -97,7 +97,7 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param HTTPResponse $httpResponse
      */
     public function setHttpResponse(HTTPResponse $httpResponse) {
@@ -106,12 +106,12 @@ class EventHandler {
 
     /**
      * accessor
-     * 
+     *
      * @param type $listener
      */
     public function addListener($listener) {
         $this->listeners[] = $listener;
-        if(array_key_exists('listener', $listener)) {
+        if (array_key_exists('listener', $listener)) {
             $this->logger->addDebug($listener['listener'] . ' added to listeners');
         }
     }
@@ -120,32 +120,32 @@ class EventHandler {
      * traverses list of listeners and executes their calls
      */
     public function notifyListeners() {
-  
+
         $this->logger->addDebug('*** notifying listeners ***');
         foreach ($this->listeners as $listener) {
-           
+
             $listenerClass = $listener['listener'];
             $handler = array($listenerClass, 'on_' . $this->state);
-            if($this->state == $listener['event'] && is_callable($handler)) {
+            if ($this->state == $listener['event'] && is_callable($handler)) {
                 unset($listener['listener']);
-               
+
                 $eventListener = new $listenerClass($this->logger, $this->httpRequest, $this->httpResponse);
                 $eventListener->setDatasources($this->datasourceFactory, $this->datasources);
                 $eventListener->setDatasourceKey($this->datasourceKey);
                 $eventListener->setEventDispatcher($this->eventDispatcher);
                 $eventListener->setConfig($listener);
-              // echo "execute " . get_class($eventListener) . "\r\n";
+                // echo "execute " . get_class($eventListener) . "\r\n";
                 $eventListener->execute($this->state, $this->params);
             } else {
                 $this->logger->addError($listenerClass . ' not found by EventHandler::notifyListeners');
-               // echo "unable call $listenerClass " . $this->state ."\r\n";
+                // echo "unable call $listenerClass " . $this->state ."\r\n";
             }
         }
     }
 
     /**
      * accessor
-     * 
+     *
      * @param string $state
      * @param string $params
      */

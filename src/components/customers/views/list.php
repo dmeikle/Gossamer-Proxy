@@ -6,9 +6,10 @@
 </style>
 
 <h3>Customer List</h3>
-<?php foreach($CustomerFriends as $friend) {
+<?php
+foreach ($CustomerFriends as $friend) {
     echo '<div class="friend">available info for styling:';
-    
+
     pr($friend);
     echo '</div>';
 }

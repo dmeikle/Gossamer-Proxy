@@ -2,12 +2,13 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
+
 namespace core\components\widgets\models;
 
 use core\AbstractModel;
@@ -20,10 +21,10 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class WidgetPageWidgetModel extends AbstractModel{
-    
+class WidgetPageWidgetModel extends AbstractModel {
+
     /**
-     * 
+     *
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
@@ -36,22 +37,21 @@ class WidgetPageWidgetModel extends AbstractModel{
         $this->entity = 'WidgetPageWidget';
         $this->tablename = 'widgetpagewidgets';
     }
-    
+
     public function listallByPage($pageId) {
         $params = array('pageId' => $pageId);
-        
+
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-        
+
         return $data;
     }
-    
-    
+
     /**
      * queries the datasource and deletes the record
-     * 
+     *
      * @param type $offset
      * @param type $rows
-     * 
+     *
      * @return array
      */
     public function deletePageWidget($ymlKey, $widgetId) {
@@ -63,4 +63,5 @@ class WidgetPageWidgetModel extends AbstractModel{
 
         return $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
     }
+
 }

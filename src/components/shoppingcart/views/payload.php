@@ -1,18 +1,17 @@
 <?php
-foreach($Categorys as $category) {
+foreach ($Categorys as $category) {
     ?>
-   <div class="category">
-       <?php 
-       if(strlen($category['thumbnail']) > 0) {?>
-           <img src="/images/cart/thumbnails/<?php echo $category['thumbnail'];?>">
-     <?php
-      }
-       ?>
-  
-   <a href="/cart/<?php echo $category['category'];?>/">
-        <?php echo $category['category'];?>
-   </a>
-   </div>
-<?php
+    <div class="category">
+        <?php if (strlen($category['thumbnail']) > 0) { ?>
+            <img src="/images/cart/thumbnails/<?php echo $category['thumbnail']; ?>">
+            <?php
+        }
+        ?>
+
+        <a href="/cart/<?php echo $category['category']; ?>/">
+            <?php echo $category['category']; ?>
+        </a>
+    </div>
+    <?php
 }
 ?>

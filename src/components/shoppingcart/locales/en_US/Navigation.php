@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'NAV_HOME' => 'Home',
     'NAV_CATEGORIES' => 'Categories',
     'NAV_PRODUCTS' => 'Products',
@@ -9,5 +9,4 @@ return array (
     'NAV_LOCALES' => 'Languages',
     'NAV_STATES' => 'State Taxes',
     'NAV_ADMIN_CART' => 'Cart'
-    
 );

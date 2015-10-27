@@ -1,6 +1,5 @@
 <?php
 
-
 namespace components\shoppingcart\models;
 
 use core\AbstractModel;
@@ -14,14 +13,14 @@ use Monolog\Logger;
  * @author Dave Meikle
  */
 class ClientModel extends AbstractModel {
-    
-    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger)  {
+
+    public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
-        
+
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
-        
+
         $this->entity = 'CartClient';
         $this->tablename = 'cartclients';
-        
     }
+
 }

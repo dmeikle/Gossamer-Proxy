@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_PARENT' => 'Mère',
     'LABEL_CATEGORY' => 'Catégorie',
     'LABEL_PICTURE' => 'Image',
@@ -11,6 +11,6 @@ return array (
     'LABEL_CATEGORIES_LIST' => 'Liste des Catégories',
     'BUTTON_EDIT' => 'Modifier',
     'BUTTON_DELETE' => 'Effacer',
-    'BUTTON_NEW' => 'Nouveau' ,
-    'LABEL_ACTION' => 'Action'   
+    'BUTTON_NEW' => 'Nouveau',
+    'LABEL_ACTION' => 'Action'
 );

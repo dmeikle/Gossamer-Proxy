@@ -19,14 +19,12 @@ use components\claims\form\ClaimBuilder;
 use components\claims\serialization\ClaimSerializer;
 use core\navigation\Pagination;
 
-
-
 /**
  * Description of PropertiesController
  *
  * @author Dave Meikle
  */
-class ClaimsController extends AbstractController{
+class ClaimsController extends AbstractController {
 
     public function search() {
         $result = $this->model->search($this->httpRequest->getQueryParameters());
@@ -38,7 +36,6 @@ class ClaimsController extends AbstractController{
         $results = $this->model->searchByJobNumber(array('jobNumber' => $this->getJobNumber()));
 
         $this->render($results);
-
     }
 
     public function saveInitialJobsheet($claimId, $claimsLocationId) {
@@ -62,7 +59,7 @@ class ClaimsController extends AbstractController{
         $result = $this->model->get(array('jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
 
-        if(!is_null($companyTypes)) {
+        if (!is_null($companyTypes)) {
             $serializer = new CompanyTypeSerialization();
             $companyTypes = $serializer->pruneCompanyTypes($companyTypes);
 
@@ -77,7 +74,7 @@ class ClaimsController extends AbstractController{
         $result = $this->model->edit($id);
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
 
-        if(!is_null($companyTypes)) {
+        if (!is_null($companyTypes)) {
             $serializer = new CompanyTypeSerialization();
             $companyTypes = $serializer->pruneCompanyTypes($companyTypes);
 
@@ -95,14 +92,13 @@ class ClaimsController extends AbstractController{
         $this->render(array('Claim' => $claim));
     }
 
-
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $model);
         $claimBuilder = new ClaimBuilder();
         $results = $this->httpRequest->getAttribute('ERROR_RESULT');
 
         $options = array();
-       // pr($this->httpRequest->getAttribute('ClaimTypes'));
+        // pr($this->httpRequest->getAttribute('ClaimTypes'));
         return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
 
@@ -111,8 +107,6 @@ class ClaimsController extends AbstractController{
 
         $this->render($result);
     }
-
-
 
     private function getJobNumber() {
         $rawJobNumber = $this->httpRequest->getQueryParameter('Claims_id'); //changed from 'term'
@@ -125,7 +119,6 @@ class ClaimsController extends AbstractController{
 
         $this->render($result);
     }
-
 
     /**
      * listallReverseWithForm - retrieves rows based on offset, limit
@@ -146,7 +139,7 @@ class ClaimsController extends AbstractController{
             $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
         }
 
-       // $this->render($result);
+        // $this->render($result);
     }
 
     public function getNewCount($numDays) {
@@ -164,6 +157,12 @@ class ClaimsController extends AbstractController{
         $result = $this->model->getCount($params);
 
         $this->render($result);
-
     }
+
+    public function savePM($claimId) {
+        $result = $this->model->savePM($claimId);
+
+        $this->render($result);
+    }
+
 }

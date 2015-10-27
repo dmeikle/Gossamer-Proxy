@@ -1,53 +1,53 @@
 .widget {
-  background-color:white;
-  padding:1rem;
-  border-radius: .25rem;
-  box-shadow:0 .25rem .25rem rgba(0,0,0,.25);
-  margin-bottom: 1rem;
+    background-color:white;
+    padding:1rem;
+    border-radius: .25rem;
+    box-shadow:0 .25rem .25rem rgba(0,0,0,.25);
+    margin-bottom: 1rem;
 
-  h1 {
-    margin-top:0;
-  }
+    h1 {
+        margin-top:0;
+    }
 }
 .mailcontent {
-  overflow-y: scroll;
-  height: 150px;
-  width: 100%;
-  padding:1em 0;
+    overflow-y: scroll;
+    height: 150px;
+    width: 100%;
+    padding:1em 0;
 }
 
 .widgettabs {
-  @extend .nav;
-  @extend .nav-tabs;
+    @extend .nav;
+    @extend .nav-tabs;
 }
 
 .widgetheader {
-  @extend .clearfix;
-  border-bottom: 1px solid $gray-lighter;
+    @extend .clearfix;
+    border-bottom: 1px solid $gray-lighter;
 }
 
 .widgetfooter {
-  padding: .75rem 0.25rem .25rem;
-  border-top: 1px solid $gray-lighter;
-  margin-bottom:0;
+    padding: .75rem 0.25rem .25rem;
+    border-top: 1px solid $gray-lighter;
+    margin-bottom:0;
 }
 
 .widget-content {
-  @extend .col-xs-12;
+    @extend .col-xs-12;
 
-  &.panel-open {
-    @extend .col-md-8;
-    & ~ .widget-side-panel {
-      @extend .col-xs-12;
-      @extend .col-md-4;
-      border-left:solid 1px $gray-lighter;
+    &.panel-open {
+        @extend .col-md-8;
+        & ~ .widget-side-panel {
+            @extend .col-xs-12;
+            @extend .col-md-4;
+            border-left:solid 1px $gray-lighter;
+        }
     }
-  }
 }
 
 .widget-side-panel {
-  width:0px;
-  overflow-x:hidden;
-  max-height:100%;
-  overflow-y:auto;
+    width:0px;
+    overflow-x:hidden;
+    max-height:100%;
+    overflow-y:auto;
 }

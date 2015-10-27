@@ -2,31 +2,31 @@
 
 .button-container,
 .table-container {
-  @extend .row;
+    @extend .row;
 }
 
 #widgetAdminList {
-  thead th {
-    @extend .col-xs-2;
-  }
-  tbody tr td {
-    @extend .col-xs-2;
-  }
+    thead th {
+        @extend .col-xs-2;
+    }
+    tbody tr td {
+        @extend .col-xs-2;
+    }
 }
 
 button {
-  @extend .btn;
-  &.primary {
-    @extend .btn-primary;
-  }
+    @extend .btn;
+    &.primary {
+        @extend .btn-primary;
+    }
 }
 
 .offset-four {
-  @extend .col-xs-12;
-  @extend .col-md-4;
-  @extend .col-md-offset-4;
+    @extend .col-xs-12;
+    @extend .col-md-4;
+    @extend .col-md-offset-4;
 }
 
 .hidden {
-  display:none;
+    display:none;
 }

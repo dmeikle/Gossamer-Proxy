@@ -10,10 +10,10 @@
 
 angular.module('MainApp')
         .config(
-        ['$routeProvider', function($routeProvider) {
-                $routeProvider.when('/admin/staff', {
-                    templateUrl: '/components/staff/views/index.html',
-                    action: 'StaffApp.StaffCtrl'
-                });
-        }]);
+                ['$routeProvider', function ($routeProvider) {
+                        $routeProvider.when('/admin/staff', {
+                            templateUrl: '/components/staff/views/index.html',
+                            action: 'StaffApp.StaffCtrl'
+                        });
+                    }]);
     

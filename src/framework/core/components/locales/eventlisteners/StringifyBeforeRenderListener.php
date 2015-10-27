@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -25,7 +25,7 @@ class StringifyBeforeRenderListener extends AbstractListener {
 
     /**
      * entry point
-     * 
+     *
      * @param Event $event
      */
     public function on_response_start(Event &$event) {
@@ -45,9 +45,9 @@ class StringifyBeforeRenderListener extends AbstractListener {
 
     /**
      * renders the item into the content
-     * 
+     *
      * @param array|string
-     * 
+     *
      * @return type
      */
     private function renderItem($item) {
@@ -60,7 +60,7 @@ class StringifyBeforeRenderListener extends AbstractListener {
 
             return $result;
         }
-        if(!is_object($item)) {
+        if (!is_object($item)) {
             preg_match('/\|(.+?)\|/', $item, $content);
 
             if (is_array($content) && count($content) > 0) {

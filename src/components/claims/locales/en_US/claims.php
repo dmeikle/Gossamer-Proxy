@@ -51,5 +51,5 @@ return array(
     'CLAIMS_UNIT_NUMBER' => 'Unit',
     'CLAIMS_NEW' => 'New Claim',
     'CLAIMS_VIEW' => 'view',
-    'CLAIMS_ASSIGN_PM' => "Assign Project Manager",
+    'CLAIMS_ASSIGN_PM' => "Assign Project Manager"
 );

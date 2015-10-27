@@ -1,16 +1,16 @@
 <script language="javascript">
 
-$(document).ready(function() {
-   $('.view').click(function() {
-       window.location = '/admin/surveys/sheetanswers/' + $(this).data('id');
-   });
-   
-   $('.remove').click(function() {
-       window.location = '/admin/surveys/sheetanswers/' + $(this).data('id');
-   });
-   
-   
-});
+    $(document).ready(function () {
+        $('.view').click(function () {
+            window.location = '/admin/surveys/sheetanswers/' + $(this).data('id');
+        });
+
+        $('.remove').click(function () {
+            window.location = '/admin/surveys/sheetanswers/' + $(this).data('id');
+        });
+
+
+    });
 
 </script>
 
@@ -41,7 +41,7 @@ $(document).ready(function() {
         </td>
         <td>23</td>
         <td>
-            <button class="btn btn-primary view" data-id="1">View</button> 
+            <button class="btn btn-primary view" data-id="1">View</button>
             <button class="btn btn-primary remove" data-id="1">Retire</button>
         </td>
     </tr>
@@ -54,7 +54,7 @@ $(document).ready(function() {
         </td>
         <td>12</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -67,7 +67,7 @@ $(document).ready(function() {
         </td>
         <td>16</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -80,7 +80,7 @@ $(document).ready(function() {
         </td>
         <td>16</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -93,7 +93,7 @@ $(document).ready(function() {
         </td>
         <td>16</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -106,7 +106,7 @@ $(document).ready(function() {
         </td>
         <td>16</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -119,7 +119,7 @@ $(document).ready(function() {
         </td>
         <td>15</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -132,7 +132,7 @@ $(document).ready(function() {
         </td>
         <td>6</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>
@@ -145,7 +145,7 @@ $(document).ready(function() {
         </td>
         <td>5</td>
         <td>
-            <button class="btn btn-primary view" data-id="2">View</button> 
+            <button class="btn btn-primary view" data-id="2">View</button>
             <button class="btn btn-primary remove" data-id="2">Retire</button>
         </td>
     </tr>

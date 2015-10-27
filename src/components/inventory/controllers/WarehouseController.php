@@ -13,13 +13,11 @@ namespace components\inventory\controllers;
 
 use core\AbstractController;
 
-
-
 /**
  * Description of WarehouseController
  *
  * @author Dave Meikle
  */
-class WarehouseController extends AbstractController{
+class WarehouseController extends AbstractController {
 
 }

@@ -2,16 +2,14 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
 
 namespace core\http;
-
-
 
 /**
  * Used for encrypting and decrypting cookies we want to access
@@ -23,14 +21,14 @@ class CookieManager {
     private $config = null;
 
     use \libraries\utils\traits\LoadConfigFile;
-    
+
     public function __construct() {
         $this->getCookieCredentials();
     }
 
     /**
      * accessor
-     * 
+     *
      * @param string $cookieName
      * @param array $values
      */
@@ -43,14 +41,14 @@ class CookieManager {
             $cookieValue = $this->encrypt($cookieValue, $cookieName);
         }
 
-        setcookie($name, $cookieValue, time() + 86400, "/"); //86400 = 1 day        
+        setcookie($name, $cookieValue, time() + 86400, "/"); //86400 = 1 day
     }
 
     /**
      * accessor
-     * 
+     *
      * @param string $cookieName
-     * 
+     *
      * @return string
      */
     public function getCookie($cookieName) {
@@ -68,19 +66,19 @@ class CookieManager {
         $cookieValue = $cookie[$cookieName];
 
         if ($this->config['secure'] == 'true') {
-           
+
             $cookieValue = $this->decrypt($cookieValue, $cookieName);
         }
         //strip off any garbage text from decoding
-        return json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/','',$cookieValue), true);
+        return json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $cookieValue), true);
     }
 
     /**
      * encrypt the cookie
-     * 
+     *
      * @param string $data
      * @param string $key
-     * 
+     *
      * @return string
      */
     private function encrypt($data, $key) {
@@ -95,10 +93,10 @@ class CookieManager {
 
     /**
      * decrypt the cookie
-     * 
+     *
      * @param string $data
      * @param string $key
-     * 
+     *
      * @return string
      */
     private function decrypt($data, $key) {
@@ -119,7 +117,7 @@ class CookieManager {
 
         //load from trait
         $config = $this->loadConfig();
-        
+
         $this->config = $config['cookies'];
     }
 

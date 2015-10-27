@@ -13,69 +13,69 @@
 
 
 .chat_wrapper {
-	width: 100%;
-        border-radius:5px;
-        overflow-y: scroll;
-        height: 390px;
-        padding: 0px 10px 10px 15px;
+    width: 100%;
+    border-radius:5px;
+    overflow-y: scroll;
+    height: 390px;
+    padding: 0px 10px 10px 15px;
 }
 .chat_wrapper #message_box {
-	width: 96%;
-	margin: 5px;
+    width: 96%;
+    margin: 5px;
 }
 .chat_wrapper #message_box .row {
-	height: 50px;
-	width: 100%;
-	margin-top: 5px;
-	margin-bottom: 5px;
+    height: 50px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .chat_wrapper #message_box .row .icon {
-	float: left;
-	width: 20px;
-	margin-right: 10px;
+    float: left;
+    width: 20px;
+    margin-right: 10px;
 }
 .chat_wrapper #message_box .row .subject {
-	float: left;
-	width: 50%;
+    float: left;
+    width: 50%;
 }
 .chat_wrapper #message_box .row .icon .message {
-	clear: both;
-	width: 100%;
+    clear: both;
+    width: 100%;
 }
 .chat_wrapper #message_box .row .date {
-	float: right;
-	width: 60px;
+    float: right;
+    width: 60px;
 }
 .chat_wrapper #message_box .row .leftcol {
-	width: 30px;
-	float: left;
+    width: 30px;
+    float: left;
 }
 .chat_wrapper #message_box .row .middlecol {
-	width: 415px;
-	float: left;
-	margin-left: 8px;
+    width: 415px;
+    float: left;
+    margin-left: 8px;
 }
 .chat_wrapper #message_box .row .middlecol .subject {
-	width: 100%;
+    width: 100%;
 }
 .chat_wrapper #message_box .row .middlecol .message {
-	width: 100%;
+    width: 100%;
 }
 .chat_wrapper #message_box .row .rightcol {
-	float: right;
-	width: 65px;
+    float: right;
+    width: 65px;
 }
 .chat_wrapper #message_box .row .rightcol {
-	font-size: 10px;
-	font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-family: Verdana, Geneva, sans-serif;
 }
 .chat_wrapper #message_box .row .middlecol .subject {
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 11px;
-	font-weight: 600;
-	color: #666;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
 }
 .chat_wrapper #message_box .row .middlecol .message {
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 11px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 11px;
 }

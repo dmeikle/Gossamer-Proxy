@@ -4,11 +4,9 @@ namespace components\shoppingcart\controllers;
 
 use core\AbstractController;
 
-class VolumeDiscountsController extends AbstractController
-{
-    
+class VolumeDiscountsController extends AbstractController {
 
-     /**
+    /**
      * save - saves/updates row
      *
      * @param int id    primary key of item to save
@@ -17,4 +15,5 @@ class VolumeDiscountsController extends AbstractController
         $this->model->save($id);
         $this->redirect('/admin/cart/products/0/20');
     }
+
 }

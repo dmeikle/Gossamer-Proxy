@@ -1,27 +1,27 @@
 .card {
-  @extend .widget;
-  ul {
-    list-style:none;
-    padding-left:0;
-  }
-  h1 {
-    font-size:2rem;
-    margin:1rem 0;
-  }
-  .big {
-    font-size:5rem;
-    sup {
-      font-size:3rem;
+    @extend .widget;
+    ul {
+        list-style:none;
+        padding-left:0;
     }
-  }
-  .cardleft, .cardright {
-    @extend .col-xs-6;
+    h1 {
+        font-size:2rem;
+        margin:1rem 0;
+    }
+    .big {
+        font-size:5rem;
+        sup {
+            font-size:3rem;
+        }
+    }
+    .cardleft, .cardright {
+        @extend .col-xs-6;
 
-    padding:.5rem;
-  }
-  .carddetails, .cardfooter {
-    @extend .widgetfooter;
-  }
+        padding:.5rem;
+    }
+    .carddetails, .cardfooter {
+        @extend .widgetfooter;
+    }
 }
 
 .info-card {
@@ -29,31 +29,31 @@
     background: #f9f9f9;
 }
 .cardheader {
-  @extend .widgetheader;
+    @extend .widgetheader;
 }
 
 .card img {
-  max-height:128px;
-  max-width:128px;
+    max-height:128px;
+    max-width:128px;
 }
 
 .cardtable {
-  width:100%;
-  font-size:.8em;
+    width:100%;
+    font-size:.8em;
 
-  thead {
-    border-bottom: 1px solid $gray-lighter;
-  }
-  td {
-    padding:.25em;
-    vertical-align: top;
-  }
-  .cog-col {
-    width:30px;
-  }
-  input {
-    font-size:80%;
-    height:80%;
-    padding:3px 6px;
-  }
+    thead {
+        border-bottom: 1px solid $gray-lighter;
+    }
+    td {
+        padding:.25em;
+        vertical-align: top;
+    }
+    .cog-col {
+        width:30px;
+    }
+    input {
+        font-size:80%;
+        height:80%;
+        padding:3px 6px;
+    }
 }

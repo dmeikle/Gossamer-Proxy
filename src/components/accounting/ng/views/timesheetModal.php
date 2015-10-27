@@ -5,7 +5,7 @@
         <h4 class="modal-title" id="myModalLabel">Add/Edit Timesheet</h4>
     </div>
     <div class="modal-body">
-        
+
         <div class="pull-left">
             <div class="form-group laborer">
                 <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
@@ -16,34 +16,34 @@
                 </datalist>
                 <label ng-if="findExisting">Checking for existing timesheet...</label>
             </div>
-            
-<!--
-            <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
-            <form ng-submit="search(basicSearch.query)" class="input-group">
-                <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-                  typeahead="value for value in fetchLaborerAutocomplete($viewValue)"
-                  typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
-                  typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
-                <div class="resultspane" ng-show="noResults">
-                  <i class="glyphicon glyphicon-remove"></i> <?php// echo $this->getString('STAFF_NORESULTS') ?>
-                </div>
-                <span class="input-group-btn" ng-if="!searchSubmitted">
-                  <button type="submit" class="btn-default">
-                    <span class="glyphicon glyphicon-search"></span>
-                  </button>
-                </span>
-                <span ng-if="searchSubmitted" class="input-group-btn">
-                  <button type="reset" class="btn-default" ng-click="resetSearch()">
-                    <span class="glyphicon glyphicon-remove"></span>
-                  </button>
-                </span>
-            </form>
--->
-            
+            <!--
+                        <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
+
+                        <form ng-submit="search(basicSearch.query)" class="input-group">
+                            <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
+                              typeahead="value for value in fetchLaborerAutocomplete($viewValue)"
+                              typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
+                              typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
+                            <div class="resultspane" ng-show="noResults">
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')         ?>
+                            </div>
+                            <span class="input-group-btn" ng-if="!searchSubmitted">
+                              <button type="submit" class="btn-default">
+                                <span class="glyphicon glyphicon-search"></span>
+                              </button>
+                            </span>
+                            <span ng-if="searchSubmitted" class="input-group-btn">
+                              <button type="reset" class="btn-default" ng-click="resetSearch()">
+                                <span class="glyphicon glyphicon-remove"></span>
+                              </button>
+                            </span>
+                        </form>
+            -->
+
             <div class="form-group rate">
                 <label for="timesheet-rate"><?php echo $this->getString('ACCOUNTING_TIMESHEET_RATE'); ?></label>
-                {{hourlyRate | currency}}
+                {{hourlyRate| currency}}
             </div>
         </div>
         <div class="pull-right">
@@ -55,20 +55,21 @@
                 <label for="vehicle-num"><?php echo $this->getString('ACCOUNTING_VEHICLE_NUMBER'); ?></label>
                 <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
                     <?php
-                    //pr($Vehicles);    
+                    //pr($Vehicles);
 
-                    foreach($Vehicles as $vehicle) {
+                    foreach ($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
-                    } ?>
+                    }
+                    ?>
                 </select>
             </div>
         </div>
 
-    <!--
-        <div class="total-hours">
-            Total Hours
-        </div>
-    -->
+        <!--
+            <div class="total-hours">
+                Total Hours
+            </div>
+        -->
 
         <table class="table table-striped table-hover">
             <thead>
@@ -100,15 +101,15 @@
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
-                    <td></td>  
-                    <td></td>  
                     <td></td>
-                    <td></td>  
-                    <td></td>  
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                
+
                 <tr ng-if="!loading" ng-repeat="row in timesheetItems track by $index">
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
@@ -122,9 +123,11 @@
                     </td>
                     <td>
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
-                            <?php foreach($AccountingPhaseCodes as $phase) {
+                            <?php
+                            foreach ($AccountingPhaseCodes as $phase) {
                                 echo '<option data-claimphase_id="' . $phase['ClaimPhases_id'] . '" data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                               } ?>
+                            }
+                            ?>
                         </select>
                     </td>
                     <td>
@@ -134,15 +137,15 @@
                         <input class="description form-control" ng-model="row.description">
                     </td>
                     <td>
-                        <select class="toll form-control" ng-model="row.toll1">                            
+                        <select class="toll form-control" ng-model="row.toll1">
                             <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll1[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
-                        
-<!--
-                        <select class="toll form-control" ng-model="row.toll1">                            
-                            <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}">{{toll.abbreviation}}</option>
-                        </select>
--->
+
+                        <!--
+                                                <select class="toll form-control" ng-model="row.toll1">
+                                                    <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}">{{toll.abbreviation}}</option>
+                                                </select>
+                        -->
                     </td>
                     <td>
                         <select class="toll form-control" ng-model="row.toll2">
@@ -168,7 +171,7 @@
                         <input class="hours form-control" type="number" ng-model="row.statDoubleOTHours" ng-change="updateTotal(row, 'statDoubleOTHours')" ng-blur="checkEmpty(row, 'statDoubleOTHours')">
                     </td>
                     <td class="total">
-                       <strong>{{row.totalHours}}</strong>
+                        <strong>{{row.totalHours}}</strong>
                     </td>
                 </tr>
                 <tr class="totalRow">
