@@ -454,3 +454,60 @@ admin_inventory_list:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+
+#-------------------------- variant options -----------------------
+
+admin_inventory_variantoptions:
+    pattern: admin/inventory/variantoptions
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+    methods: [GET]
+
+
+admin_inventory_variantoptions_list:
+    pattern: admin/inventory/variantoptions/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+    methods: [GET]
+
+admin_inventory_variantoptions_get:
+    pattern: admin/inventory/variantoptions/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_inventory_variantoptions_save:
+    pattern: admin/inventory/variantoptions/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions_save
+        datasource: datasource1
+    methods: [POST]
+    
+    
