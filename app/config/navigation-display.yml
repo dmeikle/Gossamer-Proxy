@@ -284,7 +284,7 @@ admin_accounting_accounts_payables:
     active: true
     text_key: 'ADMIN_ACCOUNTING_ACCOUNTS_PAYABLE'
     ng-click: "addTab('text_key', 'template')"
-    template: '/render/accounting/generalCostsTab'
+    template: ''
     display_roles:
         - IS_ADMINISTRATOR
         - IS_ACCOUNTING
@@ -293,7 +293,7 @@ admin_accounting_accounts_payables:
         admin_accounting_purchase_orders:
             active: true
             text_key: 'ADMIN_ACCOUNTING_PURCHASE_ORDERS'
-            pattern: '#'
+            pattern: '/admin/accounting/pos'
             ng-click: "addTab('text_key', 'template')"
             template: ''
             display_roles:

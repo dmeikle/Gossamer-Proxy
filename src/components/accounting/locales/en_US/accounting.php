@@ -84,6 +84,7 @@ return array(
     'ACCOUNTING_CATEGORY' => 'Category',
     'ACCOUNTING_MARKUP' => 'Markup (%)',
     'ACCOUNTING_TAX_TYPE' => 'Tax Type',
-    
+    'ACCOUNTING_POS' => 'Purchase Orders',
+    'ACCOUNTING_NEW_POS' => 'New Purchase Order',
 );
 

@@ -149,6 +149,19 @@ accounting_timesheetitems_edit:
         
 
 #------------------------ purchase orders ----------------------------
+accounting_pos_home:
+    pattern: admin/accounting/pos
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_pos_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+            
 accounting_pos_list:
     pattern: admin/accounting/pos/*/*
     defaults:
@@ -156,7 +169,7 @@ accounting_pos_list:
         controller: components\accounting\controllers\PurchaseOrdersController
         model: components\accounting\models\PurchaseOrderModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
 
