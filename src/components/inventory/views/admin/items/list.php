@@ -181,21 +181,42 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching && !multiSelect">
-            <h1><a href="/admin/inventory/items/{{selectedRow.id}}">{{selectedRow.firstname}} {{selectedRow.lastname}}</a></h1>
-            <h4><?php echo $this->getString('INVENTORY_TELEPHONE') ?></h3>
-            <p>{{selectedRow.telephone}}</p>
-            <h4><?php echo $this->getString('INVENTORY_MOBILE') ?></h3>
-            <p>{{selectedRow.mobile}}</p>
-            <h4><?php echo $this->getString('INVENTORY_EMAIL') ?></h3>
-            <p>{{selectedRow.email}}</p>
-            <h4><?php echo $this->getString('INVENTORY_CITY') ?></h3>
-            <p>{{selectedRow.city}}</p>
-            <h4><?php echo $this->getString('INVENTORY_POSTALCODE') ?></h3>
-            <p>{{selectedRow.postalCode}}</p>
-            <h4><?php echo $this->getString('INVENTORY_TITLE') ?></h3>
-            <p>{{selectedRow.title}}</p>
-            <h4><?php echo $this->getString('INVENTORY_EMPLOYEENUM') ?></h3>
-            <p>{{selectedRow.employeeNumber}}</p>
+            <h1>
+                <a href="/admin/inventory/equipment/{{previouslyClickedObject.InventoryEquipment_id}}">
+                    {{previouslyClickedObject.number}}
+                </a>
+            </h1>
+            <h4><?php echo $this->getString('INVENTORY_LOCATION_CURRENTLOCATION') ?></h4>
+            <p>{{transferHistory[0].currentLocation}}</p>
+
+            <div class="card" ng-repeat="history in transferHistory track by $index">
+                <div class="cardheader">
+                    <h1>{{history.transferDate}}</h1>
+                </div>
+                <table class="table cardtable">
+                    <tbody>
+                        <tr>
+                            <td><strong><?php echo $this->getString('INVENTORY_TRANSFER_TO') ?></strong></td>
+                            <td>
+                                <div ng-if="history.unassignedJobNumber &&
+                                        !history.jobNumber">
+                                    {{history.unassignedJobNumber}}
+                                </div>
+                                <div ng-if="history.jobNumber">
+                                    {{history.jobNumber}}
+                                </div>
+                                <div>
+                                    {{history.currentLocation}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><?php echo $this->getString('INVENTORY_TRANSFER_BY') ?></strong></td>
+                            <td>{{history.firstname}} {{history.lastname}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div ng-if="!sidePanelLoading && !searching && multiSelect">

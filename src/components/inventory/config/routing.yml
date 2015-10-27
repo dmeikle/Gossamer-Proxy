@@ -36,7 +36,7 @@ admin_inventory_equipment_transfer_save:
 
 
 admin_inventory_equipment_transfer_history:
-    pattern: admin/inventory/equipment/transferhistory
+    pattern: admin/inventory/equipment/transferhistory/*/*
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController

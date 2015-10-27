@@ -113,12 +113,12 @@ admin_inventory_list:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
             - rootApp
-            - inventoryAdmin
             - inventoryAdmin
     head:
         - @components/inventory/dist/bower_components/angular/angular.min.js

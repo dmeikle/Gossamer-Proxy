@@ -15,8 +15,12 @@ module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
         });
     };
 
-    this.getEquipmentDetails = function(object) {
-        return crudSrv.getDetails(apiPath + 'equipment/', object.InventoryEquipment_id);
+    this.getEquipmentTransferHistory = function(object) {
+        var config = {};
+        config.InventoryEquipment_id = object.InventoryEquipment_id;
+        config['directive::ORDER_BY'] = 'transferDate';
+        config['directive::DIRECTION'] = 'desc';
+        return searchSrv.searchCall(config, apiPath + 'equipment/transferhistory/0/4');
     };
 
     this.getMaterialDetails = function(object) {

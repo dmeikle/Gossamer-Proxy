@@ -22,7 +22,7 @@ return array(
     'INVENTORY_MAXDAYS' => 'Max Days',
     'INVENTORY_NUMBER' => 'Serial',
     'INVENTORY_TRANSFER_ACKNOWLEDGE' => 'Sign to acknowledge receipt of this equipment',
-    'INVENTORY_TRANSFER_TO' => 'Transfer to',
+    'INVENTORY_TRANSFER_TO' => 'Transfer To',
     'INVENTORY_TRANSFER_LOCATION' => 'Current Location',
     'INVENTORY_TRANSFER_EQUIPMENT' => 'Equipment',
     'INVENTORY_TRANSFER_ADDRESS' => 'Address',
@@ -30,5 +30,8 @@ return array(
     'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle',
     'INVENTORY_ITEMSID' => 'Item ID',
     'INVENTORY_EQUIPMENTTYPESID' => 'Equipment Type',
-    'INVENTORY_STORAGELOCATION' => 'Storage'
+    'INVENTORY_STORAGELOCATION' => 'Storage',
+    'INVENTORY_TRANSFER_FROM' => 'Transfer From',
+    'INVENTORY_TRANSFER_BY' => 'Transferred By',
+    'INVENTORY_LOCATION_CURRENTLOCATION' => 'Current Location'
     );
