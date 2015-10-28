@@ -15,8 +15,9 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+USE Gossamer\CMS\Forms\FormBuilderInterface;
 
-class VendorModel extends AbstractModel {
+class VendorModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -25,6 +26,10 @@ class VendorModel extends AbstractModel {
 
         $this->entity = 'Vendor';
         $this->tablename = 'vendors';
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
     }
 
 }

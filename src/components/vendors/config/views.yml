@@ -3,33 +3,73 @@ admin_vendors_home:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/components/subcontractors/views/subnav.php"
-            "content": "src/components/subcontractors/views/list.php"
+            "leftnav": "src/themes/default/templates/sections/subnav.php"
+            "content": "src/components/vendors/views/admin/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - vendorsAdmin
+    head:
+        - @components/vendors/dist/bower_components/angular/angular.min.js
+        - @components/vendors/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/vendors/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/vendors/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/vendors/dist/js/vendors.concat.js
+        #- @components/vendors/dist/js/vendors.min.js
+    css:
+        - @components/vendors/dist/css/vendors.min.css
+        
+        
             
-admin_subcontractors_edit:
+admin_vendors_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/subcontractors/views/subnav.php"
-            "section3": "src/components/subcontractors/views/add.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/subnav.php"
+            "content": "src/components/vendors/views/admin/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - vendorsAdmin
+    head:
+        - @components/vendors/dist/bower_components/angular/angular.min.js
+        - @components/vendors/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/vendors/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/vendors/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/vendors/dist/js/vendors.concat.js
+        #- @components/vendors/dist/js/vendors.min.js
+    css:
+        - @components/vendors/dist/css/vendors.min.css
+        
+        
+        
+        
     
-admin_subcontractors_list_contacts:
+admin_vendors_list_contacts:
     template: admin-list-fullscreen.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/subcontractors/views/subnav.php"
-            "section3": "src/components/subcontractors/views/contacts/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/subnav.php"
+            "content": "src/components/vendors/views/admin/contacts/list.php"
+            "footer": "src/themes/default/templates/admin/sections/footer.php"
     
-admin_subcontractors_edit_contact:   
+admin_vendors_edit_contact:   
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/subcontractors/views/subnav.php"
-            "section3": "src/components/subcontractors/views/contacts/add.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/subnav.php"
+            "content": "src/components/vendors/views/contacts/add.php"
+            "footer": "src/themes/default/templates/sections/footer.php" 

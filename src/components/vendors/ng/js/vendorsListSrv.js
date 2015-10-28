@@ -1,13 +1,10 @@
 module.service('vendorsListSrv', function ($http, crudSrv, searchSrv) {
     var apiPath = '/admin/vendors/';
 
-    this.getMaterialsList = function (row, numRows) {
-        return crudSrv.getList(apiPath + 'materials/', row, numRows);
+    this.getVendorsList = function (row, numRows) {
+        return crudSrv.getList(apiPath, row, numRows);
     };
 
-    this.getEquipmentList = function (row, numRows) {
-        return crudSrv.getList(apiPath + 'equipment/', row, numRows);
-    };
 
     this.getAdvancedSearchFilters = function () {
         return searchSrv.getAdvancedSearchFilters('/render/vendors/vendorAdvancedSearchFilters').then(function () {
@@ -15,11 +12,7 @@ module.service('vendorsListSrv', function ($http, crudSrv, searchSrv) {
         });
     };
 
-    this.getEquipmentDetails = function (object) {
-        return crudSrv.getDetails(apiPath + 'items/', object.id);
-    };
-
-    this.getMaterialDetails = function (object) {
+    this.getVendorDetails = function (object) {
         return crudSrv.getDetails(apiPath + 'items/', object.id);
     };
 
