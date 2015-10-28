@@ -162,24 +162,38 @@ accounting_pos_home:
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
             
-accounting_pos_new:
-    pattern: admin/accounting/pos/new
+accounting_pos_edit:
+    pattern: admin/accounting/pos/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\PurchaseOrdersController
         model: components\accounting\models\PurchaseOrderModel
-        method: index
+        method: edit
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_pos_new
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
     listeners:
-        #- { 'event': 'save_success', 'listener': 'components\accounting\listeners\SaveTollListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
-        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
-
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderType' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\accounting\form\PurchaseOrderBuilder'
+            model: 'components\accounting\models\PurchaseOrderModel'
+            cacheKey: 'PurchaseOrderForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: AccountingPhaseCodes, key: phase, value: id, text: phaseCode }
+                - { dependency: Vendors, key: vendors, value: id, text: company }
+                - { dependency: Departments, key: departments, value: id, text: name }
+                - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }
+                - { dependency: PurchaseOrderType, key: PurchaseOrderType, value: id, text: type }
     methods: [GET]
     
 accounting_pos_list:
@@ -192,18 +206,18 @@ accounting_pos_list:
         view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
-    
-accounting_pos_edit:
-    pattern: admin/accounting/pos/*
-    defaults:
-        component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrdersController
-        model: components\accounting\models\PurchaseOrderModel
-        method: edit
-        view: core\views\JSONView
-        viewKey: accounting_pos_edit
-        datasource: datasource1 
-    methods: [GET]
+#    
+#accounting_pos_edit:
+#    pattern: admin/accounting/pos/*
+#    defaults:
+#        component: components\accounting\AccountingComponent
+#        controller: components\accounting\controllers\PurchaseOrdersController
+#        model: components\accounting\models\PurchaseOrderModel
+#        method: edit
+#        view: core\views\JSONView
+#        viewKey: accounting_pos_edit
+#        datasource: datasource1 
+#    methods: [GET]
 
 
 accounting_pos_save:

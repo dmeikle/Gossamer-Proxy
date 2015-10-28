@@ -12,6 +12,9 @@
 namespace components\accounting\controllers;
 
 use core\AbstractController;
+use Gossamer\CMS\Forms\FormBuilderInterface;
+use Gossamer\CMS\Forms\FormBuilder;
+use components\accounting\form\PurchaseOrderBuilder;
 
 /**
  * Description of PropertiesController
@@ -20,4 +23,24 @@ use core\AbstractController;
  */
 class PurchaseOrdersController extends AbstractController {
 
+    
+    /**
+     * edit - display an input form based on requested id
+     *
+     * @param int id    primary key of item to edit
+     */
+    public function edit($id) {
+        //$result = $this->model->edit($id);
+
+//        $this->render(array('form' => $this->drawForm($this->model)));
+        $this->render(array());
+    }
+    
+    
+    protected function drawForm(FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $this->model);
+        $poBuilder = new PurchaseOrderBuilder();
+        
+        return $poBuilder->buildForm($builder);
+    }
 }

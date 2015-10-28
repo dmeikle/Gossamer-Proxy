@@ -21,10 +21,10 @@
                 <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                 <?php echo $form['description']; ?>
             </div>
-            <div class="form-group col-md-6">
+<!--            <div class="form-group col-md-6">
                 <label for="PackageTypes_id"><?php echo $this->getString('ACCOUNTING_PACKAGE_TYPE'); ?></label>
-                <?php echo $form['PackageTypes_id']; ?>
-            </div>
+                <?php //echo $form['PackageTypes_id']; ?>
+            </div>-->
             <div class="form-group col-md-6">
                 <label for="markup"><?php echo $this->getString('ACCOUNTING_MARKUP'); ?></label>
                 <?php echo $form['markup']; ?>

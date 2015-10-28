@@ -74,3 +74,26 @@ inventoryModal:
             dependencies:
                 - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
                 - { dependency: AccountingTaxTypes, key: taxTypes, value: id, text: type }
+                
+#purchaseOrder_edit:
+#    path: 'src/components/accounting/views/pos/edit.php'
+#    langFiles:
+#        - 'src/components/accounting/locales/*/accounting'
+#    listeners:
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+#        -
+#            event: 'filerender_start'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\accounting\form\PurchaseOrderBuilder'
+#            model: 'components\accounting\models\PurchaseOrderModel'
+#            cacheKey: 'PurchaseOrderForm'
+#            formName: 'form'
+#            dependencies:
+#                - { dependency: AccountingPhaseCodes, key: phase, value: id, text: phaseCode }
+#                - { dependency: Vendors, key: vendors, value: id, text: company }
+#                - { dependency: Departments, key: departments, value: id, text: name }
+#                - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }

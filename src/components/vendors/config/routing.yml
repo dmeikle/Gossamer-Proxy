@@ -1,0 +1,69 @@
+
+                
+
+#-------------------------- vendors ------------
+
+admin_vendors_home:
+    pattern: admin/vendors/*
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: listall
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_vendors_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/vendors/locales/*/Navigation'  
+    methods: [GET]  
+    
+
+admin_vendors_edit:
+    pattern: admin/vendors/*
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_vendors_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/vendors/locales/*/Navigation'  
+    methods: [GET]
+        
+        
+admin_vendors_save:
+    pattern: admin/vendors/*
+    listeners:
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_vendors_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/vendors/locales/*/Navigation'  
+    methods: [POST]
+        
+
+admin_vendors_list:
+    pattern: admin/vendors/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_vendors_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/vendors/locales/*/Navigation'
+                
+      
+        
+      

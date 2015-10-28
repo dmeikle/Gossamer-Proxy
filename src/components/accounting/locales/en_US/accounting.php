@@ -86,5 +86,10 @@ return array(
     'ACCOUNTING_TAX_TYPE' => 'Tax Type',
     'ACCOUNTING_POS' => 'Purchase Orders',
     'ACCOUNTING_NEW_POS' => 'New Purchase Order',
+    'ACCOUNTING_VENDOR' => 'Vendor',
+    'ACCOUNTING_PAYMENT_METHOD' => 'Payment Method',
+    'ACCOUNTING_TAX' => 'Tax',
+    'ACCOUNTING_DELIVERY_FEE' => 'Delivery Fee',
+    'ACCOUNTING_STATUS' => 'Status',
 );
 

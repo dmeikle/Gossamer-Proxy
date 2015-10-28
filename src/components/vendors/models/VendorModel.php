@@ -9,32 +9,22 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\accounting\models;
+namespace components\vendors\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-use Gossamer\CMS\Forms\FormBuilderInterface;
 
-/**
- * Description of PurchaseOrderModel
- *
- * @author Dave Meikle
- */
-class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
+class VendorModel extends AbstractModel {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'PurchaseOrder';
-        $this->tablename = 'purchaseorders';
-    }
-
-    public function getFormWrapper() {
-        return $this->entity;
+        $this->entity = 'Vendor';
+        $this->tablename = 'vendors';
     }
 
 }

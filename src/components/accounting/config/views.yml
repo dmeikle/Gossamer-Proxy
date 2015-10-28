@@ -118,13 +118,13 @@ accounting_pos_home:
     css:
         - @components/accounting/dist/css/accounting.min.css
         
-accounting_pos_new:
+accounting_pos_edit:
     template: admin-list.php
     sections:
         - 
             "header": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
-            "content": "src/components/accounting/views/pos/new.php"
+            "content": "src/components/accounting/views/pos/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
