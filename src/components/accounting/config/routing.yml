@@ -149,6 +149,19 @@ accounting_timesheetitems_edit:
         
 
 #------------------------ purchase orders ----------------------------
+accounting_pos_home:
+    pattern: admin/accounting/pos
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_pos_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+            
 accounting_pos_list:
     pattern: admin/accounting/pos/*/*
     defaults:
@@ -1056,7 +1069,7 @@ accounting_costcarditemtypes_save:
     methods: [POST]    
 
     
-#------------------------ inventory ----------------------------
+#------------------------ Supplies ----------------------------
 accounting_supplies_home:
     pattern: admin/accounting/supplies
     defaults:
@@ -1092,7 +1105,7 @@ accounting_supplies_breakdown:
         model: components\accounting\models\SuppliesUsedModel
         method: listBreakdown
         view: core\views\JSONView
-        viewKey: accounting_inventory_breakdown
+        viewKey: accounting_supplies_breakdown
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
@@ -1122,27 +1135,69 @@ accounting_supplies_list:
         datasource: datasource1
 
 
-#accounting_suppliesitems_edit:
-#    pattern: admin/accounting/supplies/*/*
-#    defaults:
-#        component: components\accounting\AccountingComponent
-#        controller: components\accounting\controllers\SuppliesUsedController
-#        model: components\accounting\models\SuppliesUsedModel
-#        method: editBySupplies
-#        view: core\views\JSONView
-#        viewKey: accounting_suppliesitems_edit
-#        datasource: datasource1
 
-#accounting_inventory_item:
-#    pattern: admin/accounting/inventory/*
-#    defaults:
-#        component: components\accounting\AccountingComponent
-#        controller: components\accounting\controllers\SuppliesUsedController
-#        model: components\accounting\models\SuppliesUsedModel
-#        method: listall
-#        view: core\views\JSONView
-#        viewKey: accounting_inventory_item
-#        datasource: datasource1
-#    methods: [GET]
+#------------------------ Inventory ----------------------------
+accounting_inventory_home:
+    pattern: admin/accounting/inventory
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_inventory_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+
+accounting_inventory_list:
+    pattern: admin/accounting/inventory/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: listallReverse
+        view: core\views\JSONView
+        viewKey: accounting_inventory_list
+        datasource: datasource1
 
 
+accounting_inventory_search:
+    pattern: admin/accounting/inventory/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_inventory_search
+        datasource: datasource1
+        
+accounting_inventory_breakdown:
+    pattern: admin/accounting/inventory/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: listBreakdown
+        view: core\views\JSONView
+        viewKey: accounting_inventory_breakdown
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    methods: [GET]
+
+accounting_inventory_save:
+    pattern: admin/accounting/inventory/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\InventoryController
+        model: components\accounting\models\InventoryModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_inventory_save
+        datasource: datasource1 
+    methods: [POST]

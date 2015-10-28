@@ -59,5 +59,7 @@ return array(
     'ADMIN_ACCOUNTING_APPROVED_TO_EXPORT' => 'Approved to Export',
     'ADMIN_ACCOUNTING_SETTINGS' => 'Settings',
     'ADMIN_ACCOUNTING_GENERAL' => 'Accounting General',
-    'ADMIN_ACCOUNTING_VIEW_ACCOUNTS' => 'View Accounts'
+    'ADMIN_ACCOUNTING_VIEW_ACCOUNTS' => 'View Accounts',
+    'ADMIN_ACCOUNTING_INVENTORY' => 'Inventory Items',
+    
 );

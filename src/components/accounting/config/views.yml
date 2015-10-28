@@ -71,6 +71,52 @@ accounting_supplies_home:
         - @components/accounting/dist/js/accounting.concat.js
     css:
         - @components/accounting/dist/css/accounting.min.css
+
+accounting_inventory_home:
+    template: admin-list.php
+    sections:
+        - 
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/accounting/views/inventory/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - accountingAdmin
+    head:
+        - @components/accounting/dist/bower_components/angular/angular.min.js
+        - @components/accounting/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/accounting/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/accounting/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/accounting/dist/js/accounting.concat.js
+    css:
+        - @components/accounting/dist/css/accounting.min.css
+        
+accounting_pos_home:
+    template: admin-list.php
+    sections:
+        - 
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/accounting/views/pos/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - accountingAdmin
+    head:
+        - @components/accounting/dist/bower_components/angular/angular.min.js
+        - @components/accounting/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/accounting/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/accounting/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/accounting/dist/js/accounting.concat.js
+    css:
+        - @components/accounting/dist/css/accounting.min.css
         
 accounting_pos_list:
     template: admin-list.php
@@ -112,7 +158,6 @@ accounting_tabs_home:
         - @components/accounting/dist/bower_components/jquery/dist/jquery.min.js
         - @components/accounting/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/accounting/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
-        #- @extensions/angular/ng/js/phoenixSearchSrv.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         - @components/accounting/dist/js/accounting.concat.js

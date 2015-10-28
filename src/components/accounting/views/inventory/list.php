@@ -1,13 +1,13 @@
-<div class="widget" ng-controller="suppliesCtrl">
+<div class="widget" ng-controller="inventoryCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-        <h1 class="pull-left">Supplies</h1>
+        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_INVENTORY') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
 
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openAdvancedSearch()">
-                <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
-            </button>
+<!--            <button class="btn-link" ng-click="openAdvancedSearch()">
+                <?php// echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
+            </button>-->
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
 <!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')         ?></button>-->
@@ -29,70 +29,48 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('ACCOUNTING_FIRST_NAME'); ?></th>
-                    <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('ACCOUNTING_LAST_NAME'); ?></th>
-                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'numItems'" column-sortable data-column="numItems"><?php echo $this->getString('ACCOUNTING_ITEMS'); ?></th>
-                    <th ng-hide="groupedBy === 'title'" column-sortable data-column="title"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th ng-hide="groupedBy === 'department'" column-sortable data-column="department"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                    <th ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                    <th ng-hide="groupedBy === 'id'" column-sortable data-column="id"><?php echo $this->getString('ACCOUNTING_ID'); ?></th>
+                    <th ng-hide="groupedBy === 'name'" column-sortable data-column="name"><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'productCode'" column-sortable data-column="productCode"><?php echo $this->getString('ACCOUNTING_CODE'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
+                    <th ng-hide="groupedBy === 'packageType'" column-sortable data-column="packageType"><?php echo $this->getString('ACCOUNTING_PACKAGE_TYPE'); ?></th>
+                    <th ng-hide="groupedBy === 'purchaseCost'" column-sortable data-column="purchaseCost"><?php echo $this->getString('ACCOUNTING_PURCHASE_COST'); ?></th>
+                    <th ng-hide="groupedBy === 'markup'" column-sortable data-column="markup"><?php echo $this->getString('ACCOUNTING_MARKUP'); ?></th>
+                    <th ng-hide="groupedBy === 'taxType'" column-sortable data-column="taxType"><?php echo $this->getString('ACCOUNTING_TAX_TYPE'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td ng-hide="groupedBy === 'firstname'"></td>
-                    <td ng-hide="groupedBy === 'lastname'"></td>
+                    <td ng-hide="groupedBy === 'id'"></td>
+                    <td ng-hide="groupedBy === 'name'"></td>
                     <td ng-hide="groupedBy === 'jobNumber'"></td>
-                    <td ng-hide="groupedBy === 'numItems'"></td>
-                    <td ng-hide="groupedBy === 'title'">
+                    <td ng-hide="groupedBy === 'productCode'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'department'" column-sortable data-column="department"></td>
-                    <td ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"></td>
+                    <td ng-hide="groupedBy === 'packageType'"></td>
+                    <td ng-hide="groupedBy === 'purchaseCost'"></td>
+                    <td ng-hide="groupedBy === 'markup'" column-sortable data-column="department"></td>
+                    <td ng-hide="groupedBy === 'taxType'" column-sortable data-column="totalCost"></td>
                     <td></td>
-<!--                    <td></td>                   -->
                 </tr>
 
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
                     <th colspan="7">
-                        <!--
-                                                <span ng-if="groupedBy === 'firstname'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_FIRSTNAME'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'lastname'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_LASTNAME'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'jobNumber'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_TITLE'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'numItems'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_EXTENSION'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'title'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_MOBILE'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'department'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_STATUS'); ?>
-                                                </span>
-                                                <span ng-if="groupedBy === 'totalCost'">
-                        <?php // echo $this->getString('STAFF_GROUPEDBY_LASTLOGIN'); ?>
-                                                </span>
-                        -->
                         {{item[groupedBy]}}
                         <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
                     </th>
                 </tr>
 
                 <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(item)">{{item.firstname}}</td>
-                    <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(item)">{{item.lastname}}</td>
-                    <td ng-hide="groupedBy === 'jobNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
-                    <td ng-hide="groupedBy === 'numItems'" ng-click="selectRow(item)">{{item.numItems}}</td>
-                    <td ng-hide="groupedBy === 'title'" ng-click="selectRow(item)">{{item.title}}</td>
-                    <td ng-hide="groupedBy === 'department'" ng-click="selectRow(item)">{{item.department}}</td>
-                    <td ng-hide="groupedBy === 'totalCost'" ng-click="selectRow(item)">{{item.totalCost| currency}}</td>
-<!--                    <td ng-click="selectRow(item)">{{item.totalChargeout | currency}}</td>-->
+                    <td ng-hide="groupedBy === 'id'" ng-click="selectRow(item)">{{item.id}}</td>
+                    <td ng-hide="groupedBy === 'name'" ng-click="selectRow(item)">{{item.name}}</td>
+                    <td ng-hide="groupedBy === 'productCode'" ng-click="selectRow(item)">{{item.productCode}}</td>
+                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.description}}</td>
+                    <td ng-hide="groupedBy === 'packageType'" ng-click="selectRow(item)">{{item.packageType}}</td>
+                    <td ng-hide="groupedBy === 'purchaseCost'" ng-click="selectRow(item)">{{item.purchaseCost | currency}}</td>
+                    <td ng-hide="groupedBy === 'markup'" ng-click="selectRow(item)">{{item.markup}}</td>
+                    <td ng-hide="groupedBy === 'taxType'" ng-click="selectRow(item)">{{item.taxType}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>

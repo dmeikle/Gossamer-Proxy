@@ -20,6 +20,12 @@ generalCostsTab:
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
 
+suppliesTab:
+    path: 'src/components/accounting/views/supplies/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+
+
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
     langFiles:
@@ -40,8 +46,8 @@ generalCostsModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
-inventoryModal:
-    path: 'src/components/accounting/ng/views/inventoryModal.php'
+suppliesModal:
+    path: 'src/components/accounting/ng/views/suppliesModal.php'
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
     listeners:
@@ -50,15 +56,21 @@ inventoryModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
 
-#        -
-#            event: 'filerender_start'
-#            listener: 'core\components\render\eventlisteners\FormBuilderListener'
-#            datasource: 'datasource1'
-#            formBuilder: 'components\staff\form\StaffBuilder'
-#            model: 'components\staff\models\StaffModel'
-#            cacheKey: 'StaffForm'
-#            dependencies:
-#                - { dependency: Departments, key: departments, value: id, text: name}
-#                - { dependency: Provinces, key: provinces, value: id, text: province }
-#                - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
-#                - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }
+inventoryModal:
+    path: 'src/components/accounting/ng/views/inventoryItemModal.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'cacheKey': 'AccountingTaxTypes', 'class': 'components\accounting\models\AccountingTaxTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'PackageTypes', 'class': 'components\inventory\models\PackageTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\accounting\form\InventoryItemBuilder'
+            model: 'components\accounting\models\InventoryModel'
+            cacheKey: 'AccountingInventoryItemForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
+                - { dependency: AccountingTaxTypes, key: taxTypes, value: id, text: type }
