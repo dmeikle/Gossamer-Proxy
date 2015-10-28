@@ -156,7 +156,7 @@ accounting_pos_list:
         controller: components\accounting\controllers\PurchaseOrdersController
         model: components\accounting\models\PurchaseOrderModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
 
@@ -187,15 +187,15 @@ accounting_pos_save:
     methods: [POST]  
     
 
-#------------------------ purchase orders items received----------------------------
+#------------------------ purchase orders items ----------------------------
 accounting_positems_list:
     pattern: admin/accounting/positems/*/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_positems_list
         datasource: datasource1
 
@@ -204,8 +204,8 @@ accounting_positems_edit:
     pattern: admin/accounting/positems/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: edit
         view: core\views\JSONView
         viewKey: accounting_positems_edit
@@ -217,8 +217,8 @@ accounting_positems_save:
     pattern: admin/accounting/positems/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: save
         view: core\views\JSONView
         viewKey: accounting_positems_save
@@ -1145,19 +1145,4 @@ accounting_supplies_list:
 #        datasource: datasource1
 #    methods: [GET]
 
-
-
-#------------------------ Tabs Test ----------------------------
-accounting_tabs_home:
-    pattern: admin/accounting/tabs
-    defaults:
-        component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetsController
-        model: components\accounting\models\TimesheetModel
-        method: index
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: accounting_tabs_home
-        datasource: datasource1
-        langFiles:
-            - 'src/components/accounting/locales/*/accounting'
 

@@ -17,19 +17,25 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of PurchaseOrderModel
+ * Description of PurchaseOrderItemModel
  *
  * @author Dave Meikle
  */
-class PurchaseOrderItemReceivedModel extends AbstractModel {
+class PurchaseOrderItemModel extends AbstractModel {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'PurchaseOrderItemReceived';
-        $this->tablename = 'purchaseordersitemsreceived';
+        $this->entity = 'PurchaseOrderItem';
+        $this->tablename = 'purchaseordersitems';
+    }
+
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+        $queryParams = $this->httpRequest->getQueryParameters();
+
+        return parent::listall($offset, $rows, $customVerb, $queryParams);
     }
 
 }
