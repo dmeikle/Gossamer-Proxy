@@ -162,6 +162,26 @@ accounting_pos_home:
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
             
+accounting_pos_new:
+    pattern: admin/accounting/pos/new
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_pos_new
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        #- { 'event': 'save_success', 'listener': 'components\accounting\listeners\SaveTollListener', 'datasource': 'datasource1' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+
+    methods: [GET]
+    
 accounting_pos_list:
     pattern: admin/accounting/pos/*/*
     defaults:
@@ -172,8 +192,7 @@ accounting_pos_list:
         view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
-
-
+    
 accounting_pos_edit:
     pattern: admin/accounting/pos/*
     defaults:
@@ -1163,7 +1182,6 @@ accounting_inventory_list:
         view: core\views\JSONView
         viewKey: accounting_inventory_list
         datasource: datasource1
-
 
 accounting_inventory_search:
     pattern: admin/accounting/inventory/*/*
