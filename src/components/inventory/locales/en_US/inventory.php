@@ -33,5 +33,6 @@ return array(
     'INVENTORY_STORAGELOCATION' => 'Storage',
     'INVENTORY_TRANSFER_FROM' => 'Transfer From',
     'INVENTORY_TRANSFER_BY' => 'Transferred By',
-    'INVENTORY_LOCATION_CURRENTLOCATION' => 'Current Location'
+    'INVENTORY_LOCATION_CURRENTLOCATION' => 'Current Location',
+    'INVENTORY_VARIANT_VARIANTOPTIONS' => 'Variant Options'
     );

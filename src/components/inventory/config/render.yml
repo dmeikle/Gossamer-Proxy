@@ -35,3 +35,7 @@ inventoryTransferWizardPages:
             model: 'components\staff\models\StaffAuthorizationModel'
             cacheKey: 'StaffAuthorizationForm'
             formName: 'staffAuthorizationForm'
+
+
+variantModal:
+    path: 'src/components/inventory/ng/views/inventoryVariantModal.php'
