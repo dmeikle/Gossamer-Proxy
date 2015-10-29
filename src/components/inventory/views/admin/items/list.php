@@ -145,8 +145,8 @@
             </tbody>
         </table>
 
-        <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-                    class="pagination" boundary-links="true" rotate="false">
+        <pagination class="pull-left pagination" total-items="totalItems" ng-model="currentPage"
+            items-per-page="itemsPerPage" boundary-links="true" rotate="false">
         </pagination>
 
         <div class="pull-right">

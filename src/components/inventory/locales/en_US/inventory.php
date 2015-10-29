@@ -33,5 +33,13 @@ return array(
     'INVENTORY_STORAGELOCATION' => 'Storage',
     'INVENTORY_TRANSFER_FROM' => 'Transfer From',
     'INVENTORY_TRANSFER_BY' => 'Transferred By',
-    'INVENTORY_LOCATION_CURRENTLOCATION' => 'Current Location'
+    'INVENTORY_LOCATION_CURRENTLOCATION' => 'Current Location',
+    'INVENTORY_VARIANT_VARIANTOPTIONS' => 'Variant Options',
+    'INVENTORY_VARIANT_OPTIONLOCALE' => 'Enter value for',
+    'INVENTORY_VARIANT_LOCALE' => 'Locale',
+    'INVENTORY_VARIANT_OPTION' => 'Option',
+    'INVENTORY_VARIANT_CODE' => 'Code',
+    'INVENTORY_VARIANT_SURCHARGE' => 'Surcharge',
+    'INVENTORY_VARIANT_EDITVARIANT' => 'Edit Variant',
+    'INVENTORY_VARIANT_ADDVARIANT' => 'Add Variant'
     );

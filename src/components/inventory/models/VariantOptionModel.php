@@ -30,11 +30,36 @@ class VariantOptionModel extends AbstractModel implements FormBuilderInterface {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'VariantOption';
-        $this->tablename = 'variantoptions';
+        $this->tablename = 'inventoryvariantoptions';
     }
 
     public function getFormWrapper() {
         return $this->entity;
+    }
+
+    /**
+     * retrieves a row from the datasource for editing
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function edit($id) {
+
+        $locale = $this->getDefaultLocale();
+
+        if ($this->isFailedValidationAttempt()) {
+
+            return $this->httpRequest->getAttribute('POSTED_PARAMS');
+        }
+
+        $params = array(
+            'id' => intval($id)
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+        return $data;
     }
 
 }
