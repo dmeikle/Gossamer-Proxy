@@ -24,13 +24,25 @@ class InventoryEquipmentController extends InventoryItemsController {
 
         if (!is_null($staff)) {
             $params = $this->httpRequest->getPost();
-            $params['signingStaff_id'] = $staff['id'];
+            $params['signingStaff_id'] = $staff['Staff_id'];
             unset($params['Staff']);
             $result = $this->model->transfer($params);
         } else {
             $result = array('success' => 'false', 'message' => 'invalid user credentials');
             //TODO: this would be a recommended spot for calling event dispatcher to increment failed logins
         }
+
+        $this->render($result);
+    }
+
+    public function listHistory($offset = 0, $limit = 20) {
+        $params = array();
+        $queryParams = $this->httpRequest->getQueryParameters();
+
+        if (array_key_exists('InventoryEquipment_id', $queryParams)) {
+            $params['InventoryEquipment_id'] = $queryParams['InventoryEquipment_id'];
+        }
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'transferhistory');
 
         $this->render($result);
     }

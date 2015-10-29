@@ -1,26 +1,30 @@
-module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
+module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
     var apiPath = '/admin/inventory/';
 
-    this.getMaterialsList = function (row, numRows) {
+    this.getMaterialsList = function(row, numRows) {
         return crudSrv.getList(apiPath + 'materials/', row, numRows);
     };
 
-    this.getEquipmentList = function (row, numRows) {
+    this.getEquipmentList = function(row, numRows) {
         return crudSrv.getList(apiPath + 'equipment/', row, numRows);
     };
 
-    this.getAdvancedSearchFilters = function () {
-        return searchSrv.getAdvancedSearchFilters('/render/inventory/inventoryAdvancedSearchFilters').then(function () {
+    this.getAdvancedSearchFilters = function() {
+        return searchSrv.getAdvancedSearchFilters('/render/inventory/inventoryAdvancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };
 
-    this.getEquipmentDetails = function (object) {
-        return crudSrv.getDetails(apiPath + 'items/', object.id);
+    this.getEquipmentTransferHistory = function(object) {
+        var config = {};
+        config.InventoryEquipment_id = object.InventoryEquipment_id;
+        config['directive::ORDER_BY'] = 'transferDate';
+        config['directive::DIRECTION'] = 'desc';
+        return searchSrv.searchCall(config, apiPath + 'equipment/transferhistory/0/4');
     };
 
-    this.getMaterialDetails = function (object) {
-        return crudSrv.getDetails(apiPath + 'items/', object.id);
+    this.getMaterialDetails = function(object) {
+        return crudSrv.getDetails(apiPath + 'item/', object.id);
     };
 
 });

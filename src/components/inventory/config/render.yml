@@ -35,3 +35,22 @@ inventoryTransferWizardPages:
             model: 'components\staff\models\StaffAuthorizationModel'
             cacheKey: 'StaffAuthorizationForm'
             formName: 'staffAuthorizationForm'
+
+
+variantModal:
+    path: 'src/components/inventory/ng/views/inventoryVariantModal.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+        - 'app/locales/*/website'
+    listeners:
+        # build the form for Claim Location
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\VariantOptionBuilder'
+            model: 'components\inventory\models\VariantOptionModel'
+            cacheKey: 'VariantOptionForm'
+            formName: 'variantOptionForm'
+            dependencies:
+                - { dependency: locales, key: locales, value: id, text: locale, formatting: raw }
