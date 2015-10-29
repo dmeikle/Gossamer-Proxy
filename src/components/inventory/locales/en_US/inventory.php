@@ -39,5 +39,7 @@ return array(
     'INVENTORY_VARIANT_LOCALE' => 'Locale',
     'INVENTORY_VARIANT_OPTION' => 'Option',
     'INVENTORY_VARIANT_CODE' => 'Code',
-    'INVENTORY_VARIANT_SURCHARGE' => 'Surcharge'
+    'INVENTORY_VARIANT_SURCHARGE' => 'Surcharge',
+    'INVENTORY_VARIANT_EDITVARIANT' => 'Edit Variant',
+    'INVENTORY_VARIANT_ADDVARIANT' => 'Add Variant'
     );

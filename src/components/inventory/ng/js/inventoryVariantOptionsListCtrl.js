@@ -1,4 +1,4 @@
-module.controller('variantOptionsListCtrl', function($scope, $modal, variantOptionsListSrv, tablesSrv) {
+module.controller('variantOptionsListCtrl', function($scope, $modal, variantOptionsListSrv, variantOptionsEditSrv, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -81,7 +81,7 @@ module.controller('variantOptionsListCtrl', function($scope, $modal, variantOpti
         var confirmed = window.confirm('Are you sure?');
         if (confirmed) {
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            variantOptionsListSrv.delete(object, formToken).then(function() {
+            variantOptionsListSrv.delete(apiPath, object, formToken).then(function() {
                 $scope.getList();
             });
         }
@@ -91,7 +91,7 @@ module.controller('variantOptionsListCtrl', function($scope, $modal, variantOpti
         var modalInstance = $modal.open({
             templateUrl: '/render/inventory/variantModal',
             controller: 'variantModalCtrl',
-            size: 'md',
+            size: 'sm',
             resolve: {
                 variant: function() {
                     return variant;
@@ -99,21 +99,38 @@ module.controller('variantOptionsListCtrl', function($scope, $modal, variantOpti
             }
         });
 
-        modalInstance.result.then(function() {
-
+        modalInstance.result.then(function(result) {
+            variantOptionsEditSrv.save(apiPath, result);
+            $scope.getList();
         });
     };
 });
 
-module.controller('variantModalCtrl', function($modalInstance, $scope, variant) {
-    $scope.variant = variant ? variant : new AngularQueryObject();
+module.controller('variantModalCtrl', function($modalInstance, $scope, variant, variantOptionsEditSrv) {
+    $scope.selectedVariant = variant;
     $scope.selectedLocale = 'en_US';
+    var apiPath = "/admin/inventory/variantoptions/";
+
+    $scope.getDetails = function() {
+        $scope.loading = true;
+        if (variant && variant.id) {
+            variantOptionsEditSrv.getDetails(apiPath, variant).then(function(response) {
+                $scope.variant = response.data.VariantOption[0];
+                $scope.loading = false;
+            });
+        } else {
+            $scope.variant = {};
+            $scope.loading = false;
+        }
+    }();
 
     $scope.selectLocale = function(localeString) {
         $scope.selectedLocale = localeString;
     };
 
     $scope.submit = function() {
+        var data = $scope.variant;
+        data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
         $modalInstance.close(data);
     };
 

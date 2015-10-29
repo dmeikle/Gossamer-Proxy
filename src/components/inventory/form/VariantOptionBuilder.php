@@ -28,7 +28,10 @@ class VariantOptionBuilder extends AbstractBuilder {
         }
 
         $builder->add('department', 'text', array('class' => 'form-control', 'value' => $this->getValue('department'), $values))
-              ->add('variantOption', 'text', array('class' => 'form-control', 'ng-model' => 'variant.query.%NAME%.%LOCALE%', 'value' => $this->buildLocaleValuesArray('variantOption', $values, $options['locales'])), $options['locales']);
+              ->add('variantOption', 'text', array('class' => 'form-control', 'ng-model' => 'variant.locale.%LOCALE%.option', 'value' => $this->buildLocaleValuesArray('variantOption', $values, $options['locales'])), $options['locales'])
+              ->add('variantCode', 'text', array('class' => 'form-control', 'ng-model' => 'variant.code'))
+              ->add('variantSurcharge', 'text', array('class' => 'form-control', 'ng-model' => 'variant.surcharge'));
+
         return $builder->getForm();
     }
 
