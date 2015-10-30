@@ -1,5 +1,4 @@
-
-module.controller('staffListCtrl', function ($scope, $modal, $location, staffListSrv, staffEditSrv, staffTemplateSrv, tablesSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, staffTemplateSrv, tablesSrv, toastsSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -21,15 +20,17 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
 
     $scope.previouslyClickedObject = {};
 
+    $scope.staffListSrv = staffListSrv;
+
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
-    $scope.$watch('tablesSrv.sortResult', function () {
+    $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
             $scope.staffList = tablesSrv.sortResult.Staffs;
             $scope.loading = false;
         }
     });
-    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.Staffs'], function () {
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.Staffs'], function() {
         $scope.grouped = tablesSrv.grouped;
         if ($scope.grouped === true) {
             if (tablesSrv.groupResult && tablesSrv.groupResult.Staffs)
@@ -43,7 +44,7 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
-    $scope.setItemsPerPage = function (number) {
+    $scope.setItemsPerPage = function(number) {
         $scope.itemsPerPage = number;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
         numRows = $scope.itemsPerPage;
@@ -51,22 +52,22 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
 
     function getStaffList() {
         $scope.loading = true;
-        staffListSrv.getStaffList(row, numRows).then(function (response) {
+        staffListSrv.getStaffList(row, numRows).then(function(response) {
             $scope.staffList = staffListSrv.staffList;
             $scope.totalItems = staffListSrv.staffCount;
-        }).then(function () {
+        }).then(function() {
             $scope.loading = false;
         });
     }
 
-    $scope.fetchAutocomplete = function (viewVal) {
+    $scope.fetchAutocomplete = function(viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
 
         return staffListSrv.fetchAutocomplete(searchObject);
     };
 
-    $scope.openAddNewStaffModal = function () {
+    $scope.openAddNewStaffModal = function() {
         var template = staffTemplateSrv.staffAddNewModal;
         var modalInstance = $modal.open({
             templateUrl: template,
@@ -74,49 +75,45 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
             size: 'xl'
         });
 
-        modalInstance.result.then(function (staff) {
-            staffEditSrv.save(staff).then(function () {
+        modalInstance.result.then(function(staff) {
+            staffEditSrv.save(staff).then(function() {
                 getStaffList();
             });
         });
     };
 
-    $scope.openStaffScheduleModal = function (staff) {
+    $scope.openStaffScheduleModal = function(staff) {
         var template = staffTemplateSrv.staffScheduleModal;
         $modal.open({
             templateUrl: template,
             controller: 'staffModalCtrl',
             size: 'lg',
             resolve: {
-                staff: function () {
+                staff: function() {
                     return staff;
                 }
             }
         });
     };
 
-    $scope.openStaffAdvancedSearch = function () {
+    $scope.openStaffAdvancedSearch = function() {
         $scope.sidePanelOpen = true;
         $scope.selectedStaff = undefined;
-        $scope.sidePanelLoading = true;
-        staffListSrv.getAdvancedSearchFilters().then(function () {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
+        $scope.searching = true;
     };
 
-    $scope.resetAdvancedSearch = function () {
+    $scope.resetAdvancedSearch = function() {
         $scope.advancedSearch.query = {};
         getStaffList();
     };
 
-    $scope.search = function (searchObject) {
+    $scope.search = function(searchObject) {
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            staffListSrv.search(copiedObject).then(function () {
+            staffListSrv.search(copiedObject).then(function() {
                 $scope.staffList = staffListSrv.searchResults;
                 $scope.totalItems = staffListSrv.searchResultsCount;
                 $scope.loading = false;
@@ -124,13 +121,13 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
         }
     };
 
-    $scope.resetSearch = function () {
+    $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = {};
         getStaffList();
     };
 
-    $scope.closeSidePanel = function () {
+    $scope.closeSidePanel = function() {
         if ($scope.searching) {
             $scope.searching = false;
         }
@@ -143,21 +140,21 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
         }
     };
 
-    $scope.selectRow = function (clickedObject) {
+    $scope.selectRow = function(clickedObject) {
         $scope.searching = false;
         $scope.sidePanelOpen = true;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelLoading = true;
             staffListSrv.getStaffDetail(clickedObject)
-                    .then(function () {
-                        $scope.selectedStaff = staffListSrv.staffDetail;
-                        $scope.sidePanelLoading = false;
-                    });
+                .then(function() {
+                    $scope.selectedStaff = staffListSrv.staffDetail;
+                    $scope.sidePanelLoading = false;
+                });
         }
     };
 
-    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function () {
+    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
         numRows = $scope.itemsPerPage;
@@ -170,14 +167,14 @@ module.controller('staffListCtrl', function ($scope, $modal, $location, staffLis
     });
 });
 
-module.controller('staffModalCtrl', function ($modalInstance, $scope) {
+module.controller('staffModalCtrl', function($modalInstance, $scope) {
     $scope.staff = {};
 
-    $scope.confirm = function () {
+    $scope.confirm = function() {
         $modalInstance.close($scope.staff);
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $modalInstance.dismiss('cancel');
     };
 });

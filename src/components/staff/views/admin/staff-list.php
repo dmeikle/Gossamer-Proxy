@@ -125,15 +125,17 @@
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
+
+        <div ng-if="searching">
+            <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH'); ?></h1>
+        </div>
         <div ng-if="sidePanelLoading">
             <span class="spinner-loader"></span>
         </div>
-
         <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
-            <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH'); ?></h1>
-            <staff-advanced-search-filters>
+            <advanced-search-filters data-service="staffListSrv">
 
-            </staff-advanced-search-filters>
+            </advanced-search-filters>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
                     <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('STAFF_SUBMIT') ?>">
