@@ -43,7 +43,7 @@ variantModal:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
     listeners:
-        # build the form for Claim Location
+        # build the form for Variant Options
         -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -61,7 +61,7 @@ variantGroupModal:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
     listeners:
-        # build the form for Claim Location
+        # build the form for Variant Groups
         -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'

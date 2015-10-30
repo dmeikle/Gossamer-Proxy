@@ -87,14 +87,14 @@ module.controller('variantGroupsListCtrl', function($scope, $modal, variantGroup
         }
     };
 
-    $scope.openVariantModal = function(variant) {
+    $scope.openVariantModal = function(variantGroup) {
         var modalInstance = $modal.open({
             templateUrl: '/render/inventory/variantGroupModal',
             controller: 'variantGroupModalCtrl',
             size: 'sm',
             resolve: {
-                variant: function() {
-                    return variant;
+                variantGroup: function() {
+                    return variantGroup;
                 }
             }
         });
@@ -106,30 +106,35 @@ module.controller('variantGroupsListCtrl', function($scope, $modal, variantGroup
     };
 });
 
-module.controller('variantGroupModalCtrl', function($modalInstance, $scope, variant, variantGroupEditSrv) {
-    $scope.selectedVariant = variant;
-    $scope.selectedLocale = 'en_US';
-    var apiPath = "/admin/inventory/variantoptions/";
+module.controller('variantGroupModalCtrl', function($modalInstance, $scope, variantGroup, variantGroupEditSrv) {
+    $scope.selectedGroup = variantGroup;
+    var apiPath = "/admin/inventory/variantgroups/";
 
     $scope.getDetails = function() {
         $scope.loading = true;
-        if (variant && variant.id) {
-            variantGroupEditSrv.getDetails(apiPath, variant).then(function(response) {
-                $scope.variant = response.data.VariantOption[0];
+        if (variantGroup && variantGroup.id) {
+            variantGroupEditSrv.getDetails(apiPath, variantGroup).then(function(response) {
+                $scope.variantGroup = response.data.VariantGroup[0];
                 $scope.loading = false;
             });
         } else {
-            $scope.variant = {};
+            $scope.variantGroup = {};
             $scope.loading = false;
         }
     }();
+
+    $scope.$watch('defaultLocale', function() {
+        if ($scope.defaultLocale) {
+            $scope.selectLocale($scope.defaultLocale);
+        }
+    });
 
     $scope.selectLocale = function(localeString) {
         $scope.selectedLocale = localeString;
     };
 
     $scope.submit = function() {
-        var data = $scope.variant;
+        var data = $scope.variantGroup;
         data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
         $modalInstance.close(data);
     };

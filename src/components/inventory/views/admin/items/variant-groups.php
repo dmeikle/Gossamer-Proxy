@@ -34,18 +34,22 @@
                 <th column-sortable data-column="name">
                     <?php echo $this->getString('INVENTORY_VARIANT_NAME') ?>
                 </th>
+                <th column-sortable data-column="code">
+                    <?php echo $this->getString('INVENTORY_VARIANT_CODE') ?>
+                </th>
                 <th class="cog-col"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-if="loading">
                 <td></td>
-                <td><span class="spinner-loader"></span></td>
+                <td colspan="2"><span class="spinner-loader"></span></td>
                 <td></td>
             </tr>
             <tr ng-if="!loading" ng-repeat="item in groupList">
                 <td ng-click="selectRow(item)">{{item.locale}}</td>
                 <td ng-click="selectRow(item)">{{item.name}}</td>
+                <td ng-click="selectRow(item)">{{item.groupCode}}</td>
                 <td class="row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"

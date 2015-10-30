@@ -19,7 +19,7 @@ use Gossamer\CMS\Forms\FormBuilder;
  *
  * @author Dave Meikle
  */
-class VariantOptionBuilder extends AbstractBuilder {
+class VariantGroupBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
 
@@ -27,10 +27,9 @@ class VariantOptionBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Department']);
         }
 
-        $builder->add('department', 'text', array('class' => 'form-control', 'value' => $this->getValue('department'), $values))
-              ->add('variantOption', 'text', array('class' => 'form-control', 'ng-model' => 'variant.locale.%LOCALE%.option', 'value' => $this->buildLocaleValuesArray('variantOption', $values, $options['locales'])), $options['locales'])
-              ->add('variantCode', 'text', array('class' => 'form-control', 'ng-model' => 'variant.optionCode'))
-              ->add('variantSurcharge', 'text', array('class' => 'form-control', 'ng-model' => 'variant.surcharge'));
+        $builder->add('groupName', 'text', array('class' => 'form-control', 'ng-model' => 'variantGroup.locale.%LOCALE%.name', 'value' => $this->buildLocaleValuesArray('variantGroup', $values, $options['locales'])), $options['locales'])
+            //   ->add('locale', 'hidden', array('ng-init' => "selectedLocale = "))
+              ->add('groupCode', 'text', array('class' => 'form-control', 'ng-model' => 'variantGroup.groupCode'));
 
         return $builder->getForm();
     }

@@ -5,8 +5,8 @@ module.service('variantGroupEditSrv', function(crudSrv, searchSrv) {
 
     this.getDetails = function(apiPath, object) {
         return crudSrv.getDetails(apiPath, object.id).then(function(response) {
-            response.locale = response.locales;
-            delete response.locales;
+            response.data.VariantGroup[0].locale = response.data.VariantGroup[0].locales;
+            delete response.data.VariantGroup[0].locales;
             return response;
         });
     };
