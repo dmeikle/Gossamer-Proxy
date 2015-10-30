@@ -29,11 +29,11 @@ module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
 
     this.fetchClaimsAutocomplete = function (searchObject) {
         return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
-            self.autocomplete = searchSrv.autocomplete;
+            self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
             for (var item in self.autocomplete) {
                 if (!isNaN(item / 1)) {
-                    self.autocompleteValues.push(self.autocomplete[item].label);
+                    self.autocompleteValues.push(self.autocomplete[item].jobNumber);
                 }
             }
             if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {

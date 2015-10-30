@@ -17,8 +17,6 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     $scope.tablesSrv = tablesSrv;
     
     $scope.$watch('tablesSrv.sortResult', function () {
-        console.log('table sorted!');
-        console.log(tablesSrv.sortResult);
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
             $scope.list = tablesSrv.sortResult.InventoryItems;
             $scope.loading = false;
@@ -27,7 +25,6 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
 
     $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.InventoryItems'], function () {
         $scope.grouped = tablesSrv.grouped;
-        console.log($scope.grouped);
         if ($scope.grouped === true) {
             if (tablesSrv.groupResult && tablesSrv.groupResult.InventoryItems)
                 $scope.list = tablesSrv.groupResult.InventoryItems;

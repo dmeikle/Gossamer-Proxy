@@ -89,7 +89,12 @@ return array(
     'ACCOUNTING_VENDOR' => 'Vendor',
     'ACCOUNTING_PAYMENT_METHOD' => 'Payment Method',
     'ACCOUNTING_TAX' => 'Tax',
+    'ACCOUNTING_TAX_AMOUNT' => 'Tax ($)',
+    'ACCOUNTING_TAX_PERCENT' => 'Tax (%)',
     'ACCOUNTING_DELIVERY_FEE' => 'Delivery Fee',
     'ACCOUNTING_STATUS' => 'Status',
+    'ACCOUNTING_PRODUCT_NAME' => 'Product Name',
+    'ACCOUNTING_SUBTOTAL' => 'Subtotal',
+    'ACCOUNTING_AMOUNT' => 'Amount'
 );
 
