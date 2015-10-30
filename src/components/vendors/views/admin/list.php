@@ -1,5 +1,7 @@
 <div class="widget" ng-controller="vendorsListCtrl">
-    <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
+    <div class="widget-content" ng-class="{
+            'panel-open'
+            :sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('VENDORS_LIST') ?></h1>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
@@ -24,7 +26,7 @@
                     </button>
                 </span>
             </form>
-            <a href="/admin/vendors/items/0" class="btn btn-primary"><?php echo $this->getString('VENDORS_NEW'); ?></a>
+            <a href="" ng-click="edit()" class="btn btn-primary"><?php echo $this->getString('VENDORS_NEW'); ?></a>
         </div>
         <table  class="table table-striped table-hover">
             <thead>
@@ -39,7 +41,7 @@
                     <th column-sortable data-column="Provinces_id"><?php echo $this->getString('VENDORS_PROVINCE'); ?></th>
                     <th column-sortable data-column="postalCode"><?php echo $this->getString('VENDORS_POSTALCODE'); ?></th>
                     <th column-sortable data-column="accountId"><?php echo $this->getString('VENDORS_ACCOUNT_ID'); ?></th>
-                    <th column-sortable data-column="salesRep"><?php echo $this->getString('VENDORS_SALESREP'); ?></th>
+                    <th column-sortable data-column="salesRep"><?php echo $this->getString('VENDORS_SALES_REP'); ?></th>
                     <th column-sortable data-column="deliveryFee"><?php echo $this->getString('VENDORS_DELIVERY_FEE'); ?></th>
                     <th group-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
@@ -63,7 +65,9 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in vendorsList"
-                    ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
+                    ng-class="{
+                            'selected'
+                            : item === previouslyClickedObject, 'inactive bg - warning text - warning': item.maxQuantity == 'inactive'}">
                     <td ng-click="selectRow(item)">{{item.company}}</td>
                     <td ng-click="selectRow(item)">{{item.url}}</td>
                     <td ng-click="selectRow(item)">{{item.email}}</td>
@@ -81,7 +85,7 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/vendors/{{item.id}}"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a href="" ng-click="edit(item)"><?php echo $this->getString('EDIT') ?></a></li>
                                 <li><a href="/admin/vendors/items/{{ item.id}}"><?php echo $this->getString('VENDORS_SET_PRICES') ?></a></li>
                                 <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
@@ -99,9 +103,15 @@
         <div class="pull-right">
             <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
             <ul class="btn-group pull-right">
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
+                <button type="button" class="btn-link" ng-class="{
+                        'active'
+                        :itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
+                <button type="button" class="btn-link" ng-class="{
+                        'active'
+                        :itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
+                <button type="button" class="btn-link" ng-class="{
+                        'active'
+                        :itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
             </ul>
         </div>
     </div>
@@ -114,11 +124,11 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.query)">
-            <h1><?php echo $this->getString('VENDORS_ADVANCED_SEARCH'); ?></h1>
-            <item-advanced-search-filters>
+        <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.vendor)">
+            <h1><?php echo $this->getString('ADVANCED_SEARCH'); ?></h1>
+            <advanced-search-filters data-service="vendorsListSrv">
 
-            </item-advanced-search-filters>
+            </advanced-search-filters>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
                     <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('VENDORS_SUBMIT') ?>">
@@ -128,37 +138,34 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching && !multiSelect">
-            <h1><a href="/admin/vendors/items/{{selectedRow.id}}">{{selectedRow.firstname}} {{selectedRow.lastname}}</a></h1>
-            <h4><?php echo $this->getString('VENDORS_TELEPHONE') ?></h3>
-                <p>{{selectedRow.telephone}}</p>
-                <h4><?php echo $this->getString('VENDORS_MOBILE') ?></h3>
-                    <p>{{selectedRow.mobile}}</p>
-                    <h4><?php echo $this->getString('VENDORS_EMAIL') ?></h3>
-                        <p>{{selectedRow.email}}</p>
-                        <h4><?php echo $this->getString('VENDORS_CITY') ?></h3>
-                            <p>{{selectedRow.city}}</p>
-                            <h4><?php echo $this->getString('VENDORS_POSTALCODE') ?></h3>
-                                <p>{{selectedRow.postalCode}}</p>
-                                <h4><?php echo $this->getString('VENDORS_TITLE') ?></h3>
-                                    <p>{{selectedRow.title}}</p>
-                                    <h4><?php echo $this->getString('VENDORS_EMPLOYEENUM') ?></h3>
-                                        <p>{{selectedRow.employeeNumber}}</p>
-                                        </div>
+            <div class="breakdown-title">
+                <div class="pull-left">
+                    <h3><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></h3>
+                    <p>{{selectedRow.company}}</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
 
-                                        <div ng-if="!sidePanelLoading && !searching && multiSelect">
-                                            <h1><?php echo $this->getString('SELECTED') ?></h1>
-                                            <div class="card" ng-repeat="item in multiSelectArray">
-                                                <div class="cardheader">
-                                                    <h1>{{item.name}} - {{item.number}}</h1>
-                                                </div>
-                                            </div>
-                                            <div class="pull-right">
-                                                <button class="primary" ng-click="transferSelected()">
-                                                    <?php echo $this->getString('TRANSFER') ?>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <form class="hidden"></form>
-                                        </div>
+            <table class="table table-striped">
+                <thead>
+                <th>PO</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th width="40"></th>
+                </thead>
+                <tr ng-repeat="item in purchaseOrdersList" ng-class="getClass(item)">
+                    <td>{{item.poNumber}}</td>
+                    <td>{{item.creationDate}}</td>
+                    <td>{{item.total| currency}}</td>
+                    <td>{{item.status}}</td>
+                    <td><a href="/admin/accounting/pos/{{item.id}}">view</a></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+    <form class="hidden"></form>
+</div>

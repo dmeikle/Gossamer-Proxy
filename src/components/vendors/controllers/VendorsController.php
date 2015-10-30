@@ -25,9 +25,9 @@ class VendorsController extends AbstractController {
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
-        //$result = $this->model->edit($id);
+        $result = $this->model->edit($id);
 
-        $this->render(array('form' => $this->drawForm($this->model, array())));
+        $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -44,6 +44,14 @@ class VendorsController extends AbstractController {
         $options['provinces'] = $serializer->getOptions($this->httpRequest->getAttribute('Provinces'));
 
         return $builder->buildForm($formBuilder, $values, $options, $results);
+    }
+
+    public function listallPOS($vendorId, $offset, $limit) {
+        $params = array('Vendors_id' => intval($vendorId));
+
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
+
+        $this->render($result);
     }
 
 }

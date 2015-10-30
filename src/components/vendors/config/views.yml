@@ -3,7 +3,7 @@ admin_vendors_home:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "leftnav": "src/themes/default/templates/sections/subnav.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/vendors/views/admin/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:

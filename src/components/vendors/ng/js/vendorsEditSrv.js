@@ -3,28 +3,28 @@ module.service('vendorsEditSrv', function ($http) {
 
     var self = this;
 
-    this.getCompanyList = function (row, numRows) {
+    this.getVendorList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
                 .then(function (response) {
-                    self.companyList = response.data.Companys;
-                    self.companyCount = response.data.CompanysCount[0].rowCount;
+                    self.companyList = response.data.Vendors;
+                    self.companyCount = response.data.VendorsCount[0].rowCount;
                 });
     };
 
-    this.getCompanyDetail = function (object) {
+    this.getVendorDetail = function (object) {
         console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-//        if (response.data.Company.dob) {
-//          response.data.Company.dob = new Date(response.data.Company.dob);
+//        if (response.data.Vendor.dob) {
+//          response.data.Vendor.dob = new Date(response.data.Vendor.dob);
 //        }
-//        if (response.data.Company.hireDate) {
-//          response.data.Company.hireDate = new Date(response.data.Company.hireDate);
+//        if (response.data.Vendor.hireDate) {
+//          response.data.Vendor.hireDate = new Date(response.data.Vendor.hireDate);
 //        }
-//        if (response.data.Company.departureDate) {
-//          response.data.Company.departureDate = new Date(response.data.Company.departureDate);
+//        if (response.data.Vendor.departureDate) {
+//          response.data.Vendor.departureDate = new Date(response.data.Vendor.departureDate);
 //        }
-                    self.companyDetail = response.data.Company;
+                    self.companyDetail = response.data.Vendor;
                 });
     };
 
@@ -38,16 +38,7 @@ module.service('vendorsEditSrv', function ($http) {
                 }
             }
         }
-//    if (copiedObject.dob) {
-//      copiedObject.dob = object.dob.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.hireDate) {
-//      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.departureDate) {
-//      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
-//    }
-
+console.log(copiedObject);
         var requestPath;
         if (!copiedObject.id) {
             requestPath = apiPath + '0';
@@ -55,7 +46,7 @@ module.service('vendorsEditSrv', function ($http) {
             requestPath = apiPath + copiedObject.id;
         }
         var data = {};
-        data.Company = copiedObject;
+        data.Vendor = copiedObject;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({
             method: 'POST',

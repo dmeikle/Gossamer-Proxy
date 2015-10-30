@@ -20,9 +20,17 @@ return array(
     'VENDORS_PROVINCE' => 'Province',
     'VENDORS_POSTALCODE' => 'Postal',
     'VENDORS_ACCOUNT_ID' => 'Account #',
-    'VENDORS_SALESREP' => 'Sales Rep',
+    'VENDORS_SALES_REP' => 'Sales Rep',
     'VENDORS_DELIVERY_FEE' => 'Delivery Fee',
     'VENDORS_SET_PRICES' => 'Set Item Prices',
     'EDIT' => 'Edit',
-    'DELETE' => 'Delete'
+    'DELETE' => 'Delete',
+    'VENDORS_NORESULTS' => 'No results found',
+    'ADVANCED_SEARCH' => 'Advanced Search',
+    'VENDORS_LIST' => 'Vendors List',
+    'VENDORS_NEW' => 'Add New Vendor',
+    'VENDORS_NEWITEM' => 'Add New Vendor',
+    'WIDGET_CONFIRM' => 'Save',
+    'WIDGET_CANCEL' => 'Cancel',
+    'VENDORS_PURCHASE_ORDERS' => 'Purchase Orders'
 );

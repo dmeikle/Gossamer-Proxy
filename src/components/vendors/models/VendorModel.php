@@ -32,4 +32,10 @@ class VendorModel extends AbstractModel implements FormBuilderInterface {
         return $this->entity;
     }
 
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL, array $params = NULL) {
+        $queryParams = $this->httpRequest->getQueryParameters();
+
+        return parent::listall($offset, $rows, 'list', $queryParams);
+    }
+
 }

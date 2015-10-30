@@ -1,0 +1,41 @@
+## YAML Template.
+---
+editVendorModal:
+    path: 'src/components/vendors/ng/views/editVendorModal.php'
+    langFiles:
+        - 'src/components/vendors/locales/*/Vendors'
+    listeners:
+        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        
+        # build the form for Vendor
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\vendors\form\VendorBuilder'
+            model: 'components\vendors\models\VendorModel'
+            cacheKey: 'VendorForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+
+
+
+vendorAdvancedSearchFilters:
+    path: 'src/components/vendors/ng/views/vendorAdvancedSearchModal.php'
+    langFiles:
+        - 'src/components/vendors/locales/*/Vendors'
+    listeners:
+        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        
+        # build the form for Vendor
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\vendors\form\VendorSearchBuilder'
+            model: 'components\vendors\models\VendorModel'
+            cacheKey: 'VendorForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }

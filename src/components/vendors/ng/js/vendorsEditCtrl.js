@@ -24,6 +24,7 @@ module.controller('vendorsEditCtrl', function ($scope, $location, vendorsEditSrv
         });
     }
 
+    
     $scope.save = function (object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
        

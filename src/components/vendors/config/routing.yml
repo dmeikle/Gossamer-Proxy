@@ -18,6 +18,19 @@ admin_vendors_home:
     methods: [GET]  
     
 
+admin_vendors_search:
+    pattern: admin/vendors/search
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_vendors_list
+        datasource: datasource1
+                
+                
 admin_vendors_edit:
     pattern: admin/vendors/*
     listeners:
@@ -44,7 +57,7 @@ admin_vendors_save:
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_vendors_save
         datasource: datasource1
         langFiles: 
@@ -65,5 +78,18 @@ admin_vendors_list:
         datasource: datasource1
                 
       
+
+admin_vendors_list_POS:
+    pattern: admin/vendors/purchaseorders/*/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\accounting\models\PurchaseOrderModel
+        method: listallPOS
+        view: core\views\JSONView
+        viewKey: admin_vendors_list
+        datasource: datasource1
+                      
         
       

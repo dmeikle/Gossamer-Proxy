@@ -44,28 +44,32 @@
                 <td><?php echo $form['Provinces_id']; ?></td>
             </tr>
             <tr>
+                <td><?php echo $this->getString('VENDORS_POSTALCODE') ?></td>
+                <td><?php echo $form['postalCode']; ?></td>
+            </tr>
+            <tr>
                 <td><?php echo $this->getString('VENDORS_ACCOUNT_ID') ?></td>
                 <td><?php echo $form['accountId']; ?></td>
             </tr>
             <tr>
-                <td><?php echo $this->getString('VENDORS_POSTALCODE') ?></td>
-                <td><?php echo $form['postalCode']; ?></td>
+                <td><?php echo $this->getString('VENDORS_SALES_REP') ?></td>
+                <td><?php echo $form['salesRep']; ?></td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('VENDORS_DELIVERY_FEE') ?></td>
                 <td><?php echo $form['deliveryFee']; ?></td>
             </tr>
         </table>
+        <div class="widgetfooter clearfix">
+            <div class="pull-right btn-group">
+                <a href="/admin/vendors" class="btn btn-default">
+                    <?php echo $this->getString('CANCEL') ?>
+                </a>
+                <button class="btn-primary" ng-click="save(vendor)">
+                    <?php echo $this->getString('SAVE') ?>
+                </button>
+            </div>
+        </div>
 
     </form>
-    <div class="widgetfooter clearfix">
-        <div class="pull-right btn-group">
-            <a href="/admin/vendors" class="btn btn-default">
-                <?php echo $this->getString('CANCEL') ?>
-            </a>
-            <button class="btn-primary" ng-click="save(vendor)">
-                <?php echo $this->getString('SAVE') ?>
-            </button>
-        </div>
-    </div>
 </div>
