@@ -43,7 +43,7 @@ variantModal:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
     listeners:
-        # build the form for Claim Location
+        # build the form for Variant Options
         -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -52,5 +52,23 @@ variantModal:
             model: 'components\inventory\models\VariantOptionModel'
             cacheKey: 'VariantOptionForm'
             formName: 'variantOptionForm'
+            dependencies:
+                - { dependency: locales, key: locales, value: id, text: locale, formatting: raw }
+
+variantGroupModal:
+    path: 'src/components/inventory/ng/views/inventoryVariantGroupModal.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+        - 'app/locales/*/website'
+    listeners:
+        # build the form for Variant Groups
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\VariantGroupBuilder'
+            model: 'components\inventory\models\VariantGroupModel'
+            cacheKey: 'VariantGroupForm'
+            formName: 'variantGroupForm'
             dependencies:
                 - { dependency: locales, key: locales, value: id, text: locale, formatting: raw }
