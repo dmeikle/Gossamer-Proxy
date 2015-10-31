@@ -337,8 +337,12 @@ label{
     }
 }
 .form-totals{
+    padding-right:0px;
     .form-group{
         display:flex;
+    }
+    p, input{
+        text-align:center;
     }
 }
 .select-col{
@@ -349,4 +353,38 @@ label{
 }
 label.heading-label{
     margin:7px 0;
+}
+.purchase-order-notes{
+    padding-left:0;
+    padding-right:0;
+    .note{
+        border-bottom:1px solid rgba(0,0,0,.15);
+        &:nth-last-child(3){
+            border-bottom: none;
+        }
+    }
+    p{
+        display:inline-block;
+        margin:10px 0;
+    }
+    .dropdown-toggle{
+        padding:2px 6px;
+        margin-top: 6px;
+    }
+}
+
+.new-purchase-order-note{
+    min-height:100px;
+    margin-bottom:1em;
+}
+
+.edit-note{
+    width:90%;
+    display:inline-block;
+    margin:10px 0;
+}
+
+.save-note{
+    margin-top:10px;
+    float:right;
 }

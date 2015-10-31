@@ -50,6 +50,10 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 ->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'item.taxAmount', 'ng-change'=>'updateTotal()'))
                 ->add('productPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.price', 'ng-change'=>'updateAmount(row)'))
                 ->add('productQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change'=>'updateAmount(row)'))
+                
+                //PO Notes
+                ->add('newPurchaseOrderNote', 'textarea', array('class' => 'form-control new-purchase-order-note', 'ng-model' => 'item.newPurchaseOrderNote'))
+                
                 //Totals
                 ->add('status', 'text', array('class' => 'form-control', 'ng-model' => 'item.status', 'value' => '123'))
                 ->add('deliveryFee', 'text', array('class' => 'form-control col-md-6', 'ng-model' => 'item.deliveryFee', 'ng-change'=>'updateTotal()'))

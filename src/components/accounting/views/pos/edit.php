@@ -66,9 +66,9 @@
     <div class="widget" >
         <div class="widget-content">
             <div class="form-items">
-                <button class="btn-info" ng-click="addRow()">New Row</button>
-                <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
-                <button class="btn-warning" ng-click="removeRows(); updateSubtotal()" ng-disabled="!rowSelected">Delete Row(s)</button>
+                <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW'); ?></button>
+                <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
+                <button class="btn-warning" ng-click="removeRows(); updateSubtotal()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS'); ?></button>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -109,40 +109,62 @@
                     </tbody>
                 </table>
             </div>
-        
-            <div class="pull-right col-md-3 form-totals">
-                <div class="form-group">
-                    <label for="subtotal" class="col-md-6"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></label>
-                    <p class="col-md-6">{{item.subtotal | currency}}</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="deliveryFee" class="col-md-6"><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE'); ?></label>
-                    <?php echo $form['deliveryFee']; ?>
-                </div>
-                
-                <div class="form-group">
-                    <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TAX'); ?></label>
-                    <?php echo $form['tax']; ?>
-                </div>
-                
-                <div class="form-group">
-                    <label for="total" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></label>
-                    <p>{{item.total | currency}}</p>
-                </div>
-
-<!--                <div class="form-group col-md-4">
-                    <label for="tax"><?php //echo $this->getString('ACCOUNTING_TAX'); ?></label>
-                    <?php //echo $form['tax']; ?>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label for="total"><?php //echo $this->getString('ACCOUNTING_TOTAL'); ?></label>
-                    <?php //echo $form['total']; ?>
-                </div>-->
-            </div>
-            <button class="btn-info" ng-click="save()">Save</button>
         </div>
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
+    </div>
+    
+    <div class="col-md-10 purchase-order-notes">        
+        <div class="widget">
+            <div class="widget-content">
+                <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_NOTES'); ?></h3>
+                
+                <div class="note" ng-repeat="note in purchaseOrderNotes track by $index" ng-switch="note.edit">
+                    <p ng-switch-when="false" ng-bind-html="note.text"></p>
+                    <div ng-switch-when="false" class="dropdown pull-right">
+                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                            <li><a ng-click="editNote(note)"><?php echo $this->getString('ACCOUNTING_EDIT'); ?></a></li>
+                            <li><a ng-click="deleteNote($index)"><?php echo $this->getString('ACCOUNTING_DELETE'); ?></a></li>
+                        </ul>
+                    </div>
+                    <textarea ng-switch-when="true" ng-model="note.text" class="form-control edit-note"></textarea>
+                    <button ng-switch-when="true"  class="btn-info save-note" ng-click="saveNote(note, $index)"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
+                </div>
+                
+                <div><?php echo $form['newPurchaseOrderNote']; ?></div>
+                
+                <button class="btn-info" ng-click="newNote(item.newPurchaseOrderNote)"><?php echo $this->getString('ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE'); ?></button>
+                
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    
+    <div class="col-md-2 form-totals">     
+    
+        <div class="widget pull-right ">
+            <div class="widget-content">
+                    <div class="form-group">
+                        <label for="subtotal" class="col-md-6"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></label>
+                        <p class="col-md-6">{{item.subtotal | currency}}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryFee" class="col-md-6"><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE'); ?></label>
+                        <?php echo $form['deliveryFee']; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TAX'); ?></label>
+                        <?php echo $form['tax']; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></label>
+                        <p class="col-md-6">{{item.total | currency}}</p>
+                    </div>
+                </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>

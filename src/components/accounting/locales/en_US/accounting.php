@@ -8,6 +8,7 @@ return array(
     'ACCOUNTING_CLOSE' => 'Close',
     'ACCOUNTING_SAVE' => 'Save',
     'ACCOUNTING_EDIT' => 'Edit',
+    'ACCOUNTING_DELETE' => 'Delete',
     'ACCOUNTING_NEW' => 'New',
     'ACCOUNTING_SAVE_AND_NEW' => 'Save and New',
     'ACCOUNTING_SAVE_AND_CLOSE' => 'Save and Close',
@@ -37,6 +38,9 @@ return array(
     'ACCOUNTING_TOTAL' => 'Total',
     'ACCOUNTING_NEW_TIMESHEET' => 'New Timesheet',
     'ACCOUNTING_NEW_TIMESHEET_ROW' => 'New Row',
+    'ACCOUNTING_NEW_ROW' => 'New Row',
+    'ACCOUNTING_INSERT_ROWS' => 'Insert Row(s)',
+    'ACCOUNTING_DELETE_ROWS' => 'Delete Row(s)',
     'ACCOUNTING_NEW_TIMESHEET_INSERT' => 'Insert Row(s)',
     'ACCOUNTING_NEW_TIMESHEET_DELETE' => 'Delete Row(s)',
     'ACCOUNTING_TIMESHEET_RATE' => 'Rate',
@@ -95,6 +99,10 @@ return array(
     'ACCOUNTING_STATUS' => 'Status',
     'ACCOUNTING_PRODUCT_NAME' => 'Product Name',
     'ACCOUNTING_SUBTOTAL' => 'Subtotal',
-    'ACCOUNTING_AMOUNT' => 'Amount'
+    'ACCOUNTING_AMOUNT' => 'Amount',
+    'ACCOUNTING_PURCHASE_ORDER_NOTES' => 'Purchase Order Notes',
+    'ACCOUNTING_NEW_PURCHASE_ORDER_NOTE' => 'New Note',
+    'ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE' => 'Save Note',
+    
 );
 
