@@ -1,7 +1,7 @@
 
 <div ng-controller="inventoryEquipmentEditCtrl">
     <div class="col-xs-12 col-md-6">
-        <?php echo $form['InventoryEquipment_id'] ?>
+        <?php echo $form['id'] ?>
         <div class="widget">
             <div class="widgetheader">
                 <h1>

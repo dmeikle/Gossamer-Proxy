@@ -22,7 +22,7 @@ use Gossamer\CMS\Forms\FormBuilder;
 class InventoryItemBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-
+pr($values);
         if (is_array($validationResults) && array_key_exists('InventoryItem', $validationResults)) {
             $builder->addValidationResults($validationResults['InventoryItem']);
         }
@@ -38,7 +38,6 @@ class InventoryItemBuilder extends AbstractBuilder {
                 ->add('InventoryTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryTypes_id', 'ng-init' => "item.InventoryTypes_id ='" . $this->getValue('InventoryTypes_id', $values) . "'", 'options' => $options['inventoryTypes']))
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel'))
-                ->add('InventoryEquipment_id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('InventoryEquipment_id', $values) . "'"))
                 ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'"));
 
         return $builder->getForm();

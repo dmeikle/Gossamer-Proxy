@@ -336,8 +336,8 @@ admin_inventory_equipment_edit:
        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
-        controller: components\inventory\controllers\InventoryItemsController
-        model: components\inventory\models\InventoryItemModel
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
         method: edit
         view: core\views\AngularTemplateView
         viewKey: admin_inventory_equipment_edit
