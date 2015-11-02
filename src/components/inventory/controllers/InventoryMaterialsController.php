@@ -13,8 +13,13 @@ namespace components\inventory\controllers;
 
 class InventoryMaterialsController extends InventoryItemsController {
 
-    public function listAllEquipment($offset = 0, $limit = 20) {
-        $results = $this->model->listallWithParams($offset, $limit, array('InventoryTypes_id' => 1));
+    public function listAllMaterials($offset = 0, $limit = 20) {
+        $queryParams = $this->httpRequest->getQueryParameters();
+        $params = array('InventoryTypes_id' => 1);
+        if (array_key_exists('Vendors_id', $queryParams)) {
+            $params['Vendors_id'] = intval($queryParams['Vendors_id']);
+        }
+        $results = $this->model->listallWithParams($offset, $limit, $params);
 
         $this->renderResults($offset, $limit, $results);
     }

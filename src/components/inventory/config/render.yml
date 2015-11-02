@@ -35,3 +35,28 @@ inventoryTransferWizardPages:
             model: 'components\staff\models\StaffAuthorizationModel'
             cacheKey: 'StaffAuthorizationForm'
             formName: 'staffAuthorizationForm'
+
+
+
+
+inventoryAdvancedSearchFilters:
+    path: 'src/components/inventory/ng/views/advancedSearchFilter.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+    listeners:
+        - { 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+
+        # build the form
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\InventoryBuilder'
+            model: 'components\inventory\models\InventoryModel'
+            cacheKey: 'InventoryForm'
+            formName: 'inventoryForm'
+            dependencies:
+                - { dependency: Vendors, key: vendors, value: id, text: company }
+#                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+       

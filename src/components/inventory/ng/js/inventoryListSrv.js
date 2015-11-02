@@ -1,4 +1,8 @@
 module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
+    
+    var self = this;
+    self.advancedSearch = {};
+    
     var apiPath = '/admin/inventory/';
 
     this.getMaterialsList = function (row, numRows) {

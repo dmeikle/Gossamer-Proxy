@@ -292,7 +292,7 @@ admin_inventory_materials_list:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryMaterialsController
         model: components\inventory\models\InventoryItemModel
-        method: listAllEquipment
+        method: listAllMaterials
         view: core\views\JSONView
         viewKey: admin_inventory_materials_list
         datasource: datasource1

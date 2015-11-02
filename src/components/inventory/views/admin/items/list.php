@@ -45,7 +45,6 @@
                     <th column-sortable data-column="maxQuantity"><?php echo $this->getString('INVENTORY_MAXORDER'); ?></th>
                     <th column-sortable data-column="PackageTypes_id"><?php echo $this->getString('INVENTORY_PACKAGETYPE'); ?></th>
                     <th column-sortable data-column="InventoryTypes_id"><?php echo $this->getString('INVENTORY_INVENTORYTYPE'); ?></th>
-                    <th column-sortable data-column="isActive"><?php echo $this->getString('INVENTORY_ISACTIVE'); ?></th>
                     <th column-sortable data-column="InventoryCategories_id"><?php echo $this->getString('INVENTORY_INVENTORYCATEGORY'); ?></th>
                     <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
                     <th column-sortable data-column="WarehouseLocations_id"><?php echo $this->getString('INVENTORY_WAREHOUSELOCATION'); ?></th>
@@ -78,12 +77,11 @@
                     <td ng-click="selectRow(item)">{{item.description}}</td>
                     <td ng-click="selectRow(item)">{{item.minOrderQuantity}}</td>
                     <td ng-click="selectRow(item)">{{item.maxQuantity}}</td>
-                    <td ng-click="selectRow(item)">{{item.PackageTypes_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.InventoryTypes_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.isActive}}</td>
+                    <td ng-click="selectRow(item)">{{item.packageType}}</td>
+                    <td ng-click="selectRow(item)">{{item.inventoryType}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryCategories_id}}</td>
                     <td ng-click="selectRow(item)">{{item.price| currency}}</td>
-                    <td ng-click="selectRow(item)">{{item.WarehouseLocations_id}}</td>
+                    <td ng-click="selectRow(item)">{{item.warehouseLocation}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -169,9 +167,9 @@
 
         <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.query)">
             <h1><?php echo $this->getString('INVENTORY_ADVANCED_SEARCH'); ?></h1>
-            <item-advanced-search-filters>
+            <advanced-search-filters>
 
-            </item-advanced-search-filters>
+            </advanced-search-filters>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
                     <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('INVENTORY_SUBMIT') ?>">
