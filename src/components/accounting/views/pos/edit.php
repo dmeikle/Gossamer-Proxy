@@ -1,8 +1,8 @@
 <div ng-controller="posEditCtrl">
     <div class="widget" >
         <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-            <h1><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></h1>
-
+            <h1 ng-if="!editing"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></h1>
+            <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_POS') ?></h1>
             <div class="col-md-4 form-headings">
 
                 <div class="form-group">
@@ -113,34 +113,16 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="col-md-10 purchase-order-notes">        
+    <div class="col-md-10 purchase-order-notes" ng-if="editing">        
         <div class="widget">
             <div class="widget-content">
-                <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_NOTES'); ?></h3>
-                
-                <div class="note" ng-repeat="note in purchaseOrderNotes track by $index" ng-switch="note.edit">
-                    <p ng-switch-when="false" ng-bind-html="note.text"></p>
-                    <div ng-switch-when="false" class="dropdown pull-right">
-                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                            <li><a ng-click="editNote(note)"><?php echo $this->getString('ACCOUNTING_EDIT'); ?></a></li>
-                            <li><a ng-click="deleteNote($index)"><?php echo $this->getString('ACCOUNTING_DELETE'); ?></a></li>
-                        </ul>
-                    </div>
-                    <textarea ng-switch-when="true" ng-model="note.text" class="form-control edit-note"></textarea>
-                    <button ng-switch-when="true"  class="btn-info save-note" ng-click="saveNote(note, $index)"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
-                </div>
-                
-                <div><?php echo $form['newPurchaseOrderNote']; ?></div>
-                
-                <button class="btn-info" ng-click="newNote(item.newPurchaseOrderNote)"><?php echo $this->getString('ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE'); ?></button>
-                
+                <comments  api-path="/admin/accounting/pos/"></comments>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
     
-    <div class="col-md-2 form-totals">     
+    <div class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing}">     
     
         <div class="widget pull-right ">
             <div class="widget-content">
@@ -166,5 +148,6 @@
                 </div>
             <div class="clearfix"></div>
         </div>
+        <button class="btn-info" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
     </div>
 </div>

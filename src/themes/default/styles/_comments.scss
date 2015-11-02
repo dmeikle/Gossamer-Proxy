@@ -1,0 +1,38 @@
+comments{
+    .comment{
+        border-bottom:1px solid rgba(0,0,0,.15);
+        &:nth-last-child(3){
+            border-bottom: none;
+        }
+    }
+    p{
+        display:inline-block;
+        margin:10px 0;
+        white-space: pre;
+    }
+    .dropdown-toggle{
+        padding:2px 6px;
+        margin-top: 6px;
+    }
+    textarea{
+        overflow:hidden;
+    }
+}
+
+.new-comment{
+    min-height:50px;
+    margin-bottom:1em;
+    max-width:100%;
+}
+
+.edit-comment{
+    width:90%;
+    display:inline-block;
+    margin:10px 0;
+    min-height:50px;
+}
+
+.save-comment{
+    margin-top:10px;
+    float:right;
+}

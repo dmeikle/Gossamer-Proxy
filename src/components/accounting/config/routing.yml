@@ -163,7 +163,7 @@ accounting_pos_home:
             - 'src/components/accounting/locales/*/accounting'
             
 accounting_pos_edit:
-    pattern: admin/accounting/pos/*
+    pattern: admin/accounting/pos/edit/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\PurchaseOrdersController
@@ -206,18 +206,18 @@ accounting_pos_list:
         view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
-#    
-#accounting_pos_edit:
-#    pattern: admin/accounting/pos/*
-#    defaults:
-#        component: components\accounting\AccountingComponent
-#        controller: components\accounting\controllers\PurchaseOrdersController
-#        model: components\accounting\models\PurchaseOrderModel
-#        method: edit
-#        view: core\views\JSONView
-#        viewKey: accounting_pos_edit
-#        datasource: datasource1 
-#    methods: [GET]
+    
+accounting_pos_get:
+    pattern: admin/accounting/pos/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: get
+        view: core\views\JSONView
+        viewKey: accounting_pos_get
+        datasource: datasource1 
+    methods: [GET]
 
 
 accounting_pos_save:

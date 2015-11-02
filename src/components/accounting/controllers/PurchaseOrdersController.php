@@ -36,6 +36,10 @@ class PurchaseOrdersController extends AbstractController {
         $this->render(array());
     }
     
+    public function get($id) {
+        $purchaseOrder = $this->model->edit($id);
+        $this->render(array('PurchaseOrder' => $purchaseOrder));
+    }
     
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $this->model);

@@ -1,6 +1,8 @@
 
 locale:
     component: "src/framework/core/components/locales/config/routing.yml"
+angular:
+    component: "src/extensions/angular/config/routing.yml"
 
 locales:
     component: "src/framework/core/components/locales/config/routing.yml"

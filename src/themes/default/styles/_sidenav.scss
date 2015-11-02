@@ -38,7 +38,7 @@
             width:100%;
             display: block;
             cursor:pointer;
-            transition: all .25s ease-out;
+            //transition: all .25s ease-out;
             &:hover{
                 background-color:#eee;
             }
@@ -98,7 +98,7 @@
     }
     li{
         padding-left:0;
-        transition: all .25s ease-out;
+        //transition: all .25s ease-out;
         &:hover{
             background-color:#eee;
         }
@@ -121,7 +121,7 @@ nav ul.sub-item li>a{
 }
 
 .nav-list.ng-hide-add, .nav-list.ng-hide-remove {
-    transition: all ease-out $transition-duration;
+    //transition: all ease-out $transition-duration;
     white-space: nowrap;
 }
 
@@ -131,14 +131,14 @@ nav ul.sub-item li>a{
 
 main{
     margin-left:$side-nav-width + $side-nav-toggle-width;
-    transition:all $transition-duration ease-out;
+    //transition:width $transition-duration ease-out;
     &.sideNavClosed{
         margin-left:$side-nav-toggle-width;
     }
 }
 footer{
     margin-left:$side-nav-width + $side-nav-toggle-width;
-    transition: all $transition-duration ease-out;
+    //transition: width $transition-duration ease-out;
     &.sideNavClosed{
         margin-left:$side-nav-toggle-width;
     }

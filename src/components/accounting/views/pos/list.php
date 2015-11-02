@@ -22,7 +22,7 @@
                     </button>
                 </span>
             </form>
-            <button class="primary new-item" ng-click="openModal()"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button>
+            <a href="pos/edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
 <!--            <span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>-->
         </div>
         <div class="clearfix"></div>
