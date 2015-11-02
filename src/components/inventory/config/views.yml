@@ -162,6 +162,32 @@ admin_inventory_items_edit:
     css:
         - @components/inventory/dist/css/inventory.min.css
 
+admin_inventory_equipment_edit:
+    template: admin-2cols.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/inventory/views/admin/items/equipment-edit.php"
+            "cards": "src/components/inventory/views/admin/items/equipment-edit-cards.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - inventoryAdmin
+    head:
+        - @components/inventory/dist/bower_components/angular/angular.min.js
+        - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/inventory/dist/js/inventory.concat.js
+        #- @components/inventory/dist/js/inventory.min.js
+    css:
+        - @components/inventory/dist/css/inventory.min.css
+
 admin_inventory_list:
     template: admin-list.php
     sections:

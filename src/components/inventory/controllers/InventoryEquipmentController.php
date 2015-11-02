@@ -47,4 +47,10 @@ class InventoryEquipmentController extends InventoryItemsController {
         $this->render($result);
     }
 
+    public function get($id) {
+        $result = $this->model->edit(intval($id));
+
+        $this->render($result);
+    }
+
 }

@@ -44,4 +44,12 @@ class InventoryEquipmentModel extends AbstractModel implements FormBuilderInterf
         return $data;
     }
 
+    public function edit($id) {
+        $params = array('InventoryEquipment_id' => intval($id));
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+        return $data;
+    }
+
 }

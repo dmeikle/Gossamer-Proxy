@@ -21,6 +21,7 @@ return array(
     'INVENTORY_MATERIALS' => 'Materials',
     'INVENTORY_MAXDAYS' => 'Max Days',
     'INVENTORY_NUMBER' => 'Serial',
+    'INVENTORY_TRANSFER_HISTORY' => 'Transfer History',
     'INVENTORY_TRANSFER_ACKNOWLEDGE' => 'Sign to acknowledge receipt of this equipment',
     'INVENTORY_TRANSFER_TO' => 'Transfer To',
     'INVENTORY_TRANSFER_LOCATION' => 'Current Location',
@@ -42,5 +43,6 @@ return array(
     'INVENTORY_VARIANT_SURCHARGE' => 'Surcharge',
     'INVENTORY_VARIANT_EDITVARIANT' => 'Edit Variant',
     'INVENTORY_VARIANT_ADDVARIANT' => 'Add Variant',
-    'INVENTORY_VARIANT_NAME' => 'Enter group name in'
+    'INVENTORY_VARIANT_NAME' => 'Enter group name in',
+    'INVENTORY_EQUIPMENT_MAINTENANCEHISTORY' => 'Maintenance History'
     );
