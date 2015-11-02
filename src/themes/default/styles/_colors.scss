@@ -1,26 +1,33 @@
 body {
-  background-color:#f5f5f5;
+    background-color:#f5f5f5;
 }
 
 th {
-  background-color: $navbar-default-bg;
-  color: $navbar-default-color;
-  > a {
-    color:#f3f3f3;
-    &:hover, &:active, &:focus {
-      color:#fff;
+    background-color: $navbar-default-bg;
+    color: $navbar-default-color;
+    > a {
+        color:#f3f3f3;
+        &:hover, &:active, &:focus {
+            color:#fff;
+        }
     }
-  }
 }
 
 
 table.table tbody tr.selected {
-  background-color:rgba(3,146,211,.4);
+    background-color:rgba(3,146,211,.4);
 }
 
 tbody th {
-  background-color:white;
-  color:inherit;
-  font-size:1em;
+    background-color:white;
+    color:inherit;
+    font-size:1em;
 
+}
+
+.tabbed-container {
+    border: 1px solid #ddd;
+    border-top-width: 0px;
+    border-radius: 0 0 4px 4px;
+    @extend .col-xs-12;
 }

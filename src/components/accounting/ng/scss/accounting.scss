@@ -1,23 +1,17 @@
 .pull-left{
     .modal-spinner{
         vertical-align:middle;
-        margin-left:30px!important;
+        margin-left:30px;
     }
 }
 .pull-right{
     .form-control{
-        display:inline!important;
+        display:inline;
         width:auto;
     }
 }
-table{
-    margin-top:10px;
-    td{
-        vertical-align: middle!important;
-    }
-    tr.selected {
-        background-color: rgba(3,146,211,0.4)!important;
-    }
+.table{
+    margin:10px 0;
 }
 .toolbar{
     width:100%;
@@ -26,14 +20,10 @@ table{
         float:left;
         margin-left:30px;
     }
-    .new-item{
-//        float:left;
-//        margin-left:0px;
-    }
     &.pull-right{
         input, select{
             display:inline;
-            width:auto!important;
+            width:auto;
         }
     }
 }
@@ -49,16 +39,22 @@ table{
     }
     .date-picker{
         width:50%;
-//        .input-group-btn:last-child>button{
-//            margin-left: -10px;
-//            
-//        }
+    }
+}
+.table>tbody>tr>td.typeahead-col{
+    overflow: visible;
+}
+.modal-content .typeahead-col>.input-group{
+    display: block;
+    input{
+        width: 100%;
     }
 }
 .results-message{
     text-align: center;
     padding:10px;
     background-color: #fcf8e3;
+    margin: -10px 0 10px 0;
 }
 .widget-side-panel, .widget-content{
     transition: width ease 0.35s;
@@ -113,7 +109,7 @@ table{
     }
 }
 .modal-lg{
-    width:1300px;
+    width:1280px;
     .form-group{
         display:block;
         label{
@@ -124,9 +120,6 @@ table{
             width: auto;
         }
     }
-    .laborer, .date, .rate, .total-hours, .form-control{
-//        display:inline;
-    }
     .rate{
         label{
             margin-right:43px;
@@ -136,11 +129,6 @@ table{
         float:right;
         margin-right:10px;
     }
-//    .pull-right{
-//        label{
-//            margin-right:10px;
-//        }
-//    }
     .laborer{
         input{
             margin-left:10px;
@@ -151,9 +139,9 @@ table{
     }
     table{
         td{
-            vertical-align: top!important;
+            vertical-align: top;
             &:nth-child(1){
-                vertical-align: middle!important;
+                vertical-align: middle;
             }
         }
         select{
@@ -183,16 +171,16 @@ table{
             margin:auto;
         }
         .total{
-            vertical-align: middle!important;
+            vertical-align: middle;
             text-align: center;
         }
         .totalRow{
-            background-color:none!important;
+            background-color:none;
             td{
                 text-align: center;
             }
             &:hover{
-                background-color:none!important;
+                background-color:none;
             }
         }
         .toll{
@@ -207,6 +195,24 @@ table{
             -webkit-appearance: none;
         }
     }
+    .select-col{
+        width:45px;
+    }
+    .date-col{
+        width:190px;
+    }
+    .cost-col{
+        width:100px;
+    }
+    .quantity-col{
+        width:75px;
+    }
+    .date-input{
+        width:220px;
+        input{
+            width:auto;
+        }
+    }
 }
 .modal-content{
     .typeahead{
@@ -216,6 +222,20 @@ table{
         display: inline-block;
         label{
             display:block;
+        }
+    }
+    .table{
+        .date-col{
+            overflow: visible;
+            .input-group{
+                display: flex;
+            }
+            input{
+                width:140px;
+            }
+        }
+        .debit-account{
+            width:170px;
         }
     }
     .general-cost-items{
@@ -231,9 +251,6 @@ table{
         }
         .debit-account{
             width:170px;
-        }
-        .cost, .chargeout{
-            width:100px;
         }
     }
     .general-costs-modal{

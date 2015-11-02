@@ -1,3 +1,3 @@
-module.service('companyClientsTemplateSrv', function() {
-  this.editEmergencyContactModal = '/render/companies/editEmergencyContactModal';
+module.service('companyClientsTemplateSrv', function () {
+    this.editEmergencyContactModal = '/render/companies/editEmergencyContactModal';
 });

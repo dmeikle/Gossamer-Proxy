@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'VALIDATION_INVALID_EMAIL' => 'Invalid Email',
     'VALIDATION_PASSWORD_REQUIRED' => 'Password is required',
     'VALIDATION_PASSWORD_MISMATCH' => 'Passwords do not match',

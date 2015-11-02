@@ -1,4 +1,54 @@
 
+#------------------- inventory transfers -----------------------
+
+
+admin_inventory_equipment_transfer:
+    pattern: admin/inventory/equipment/transfer
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_inventory_equipment_transfer
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
+
+admin_inventory_equipment_transfer_save:
+    pattern: admin/inventory/equipment/transfer
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffByCredentialsListener', 'datasource': 'datasource1' }
+
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: transfer
+        view: core\views\JSONView
+        viewKey: admin_inventory_equipment_transfer_save
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [POST]
+
+
+admin_inventory_equipment_transfer_history:
+    pattern: admin/inventory/equipment/transferhistory/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: listHistory
+        view: core\views\JSONView
+        viewKey: admin_inventory_equipment_transfer
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 
 #---------------------- inventory types -------------------------
 
@@ -12,8 +62,10 @@ super_inventory_inventorytypes_list:
         view: core\views\TemplateView
         viewKey: super_inventory_inventorytypes_list
         datasource: datasource1
+
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
+
     methods: [GET]
 
 
@@ -28,9 +80,11 @@ super_inventory_inventorytypes_edit:
         view: core\views\TemplateView
         viewKey: super_inventory_inventorytypes_edit
         datasource: datasource1
+
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+
 
 super_inventory_inventorytypes_save:
     pattern: super/inventory/types/*
@@ -43,7 +97,7 @@ super_inventory_inventorytypes_save:
         viewKey: super_inventory_inventorytypes_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
 
 super_inventory_inventorytypes_remove:
@@ -57,7 +111,7 @@ super_inventory_inventorytypes_remove:
         viewKey: super_inventory_inventorytypes_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
 
 
@@ -76,7 +130,7 @@ super_inventory_packagetypes_list:
         viewKey: super_inventory_packagetypes_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
 
@@ -92,7 +146,7 @@ super_inventory_packagetypes_edit:
         viewKey: super_inventory_packagetypes_edit
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
 super_inventory_packagetypes_save:
@@ -106,8 +160,9 @@ super_inventory_packagetypes_save:
         viewKey: super_inventory_packagetypes_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
+
 
 super_inventory_packagetypes_remove:
     pattern: super/inventory/packagetypes/remove/*
@@ -120,7 +175,7 @@ super_inventory_packagetypes_remove:
         viewKey: super_inventory_packagetypes_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
 
 
@@ -138,7 +193,7 @@ super_inventory_categories_list:
         viewKey: super_inventory_categories_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
 
@@ -153,9 +208,11 @@ super_inventory_categories_edit:
         view: core\views\JSONView
         viewKey: super_inventory_categories_edit
         datasource: datasource1
+
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+
 
 super_inventory_categories_save:
     pattern: super/inventory/categories/*
@@ -168,7 +225,7 @@ super_inventory_categories_save:
         viewKey: super_inventory_categories_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
 
 super_inventory_categories_remove:
@@ -182,13 +239,28 @@ super_inventory_categories_remove:
         viewKey: super_inventory_categories_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
 
 
 
-
 #---------------------- items -------------------------
+
+
+admin_inventory_items_autocomplete:
+    pattern: admin/inventory/items/autocomplete
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\InventoryItemModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_inventory_items_autocomplete
+        datasource: datasource1
+        langFiles:
+            - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+
 
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
@@ -204,8 +276,41 @@ admin_inventory_items_list:
         viewKey: admin_inventory_items_list
         datasource: datasource1
         langFiles:
+            - 'src/components/defaultItem/locales/*/Navigation'
+    methods: [GET]
+
+admin_inventory_equipment_locations:
+    pattern: admin/inventory/equipment-locations
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryItemModel
+        method: index
+        view: core\views\AngularTemplateView
+        viewKey: admin_inventory_equipment_home
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+
+admin_inventory_equipment_get:
+    pattern: admin/inventory/equipment/get/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_inventory_equipment_get
+        datasource: datasource1
 
 admin_inventory_equipment_list:
     pattern: admin/inventory/equipment/*/*
@@ -215,13 +320,45 @@ admin_inventory_equipment_list:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController
-        model: components\inventory\models\InventoryItemModel
+        model: components\inventory\models\InventoryEquipmentModel
         method: listAllEquipment
         view: core\views\JSONView
         viewKey: admin_inventory_equipment_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
+    methods: [GET]
+
+admin_inventory_equipment_edit:
+    pattern: admin/inventory/equipment/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+#            # build the form 
+#        -
+#            event: 'request_start'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\inventory\form\InventoryEquipmentBuilder'
+#            model: 'components\inventory\models\InventoryEquipmentModel'
+#            cacheKey: 'InventoryEquipmentForm'
+#            formName: 'inventoryEquipmentForm'
+##            dependencies:
+##                - { dependency: Provinces, key: provinces, value: id, text: province }
+##                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+    
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: edit
+        view: core\views\AngularTemplateView
+        viewKey: admin_inventory_equipment_edit
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
 admin_inventory_materials_list:
@@ -238,7 +375,7 @@ admin_inventory_materials_list:
         viewKey: admin_inventory_materials_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
 admin_inventory_items_edit:
@@ -257,8 +394,9 @@ admin_inventory_items_edit:
         langFiles:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+
 
 
 admin_inventory_items_save:
@@ -272,8 +410,9 @@ admin_inventory_items_save:
         viewKey: admin_inventory_items_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
+            - 'src/components/defaultItem/locales/*/Navigation'
     methods: [POST]
+
 
 admin_inventory_items_remove:
     pattern: admin/inventory/items/remove/*
@@ -286,8 +425,8 @@ admin_inventory_items_remove:
         viewKey: admin_inventory_items_remove
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Navigation'
-    methods: [DELETE]
+            - 'src/components/defaultItem/locales/*/Navigation'
+    methods: [POST]
 
 
 admin_warehouse_locations_home:
@@ -362,3 +501,130 @@ admin_inventory_list:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+
+#-------------------------- variant options -----------------------
+
+admin_inventory_variantoptions:
+    pattern: admin/inventory/variantoptions
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+    methods: [GET]
+
+
+admin_inventory_variantoptions_list:
+    pattern: admin/inventory/variantoptions/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+    methods: [GET]
+
+admin_inventory_variantoptions_get:
+    pattern: admin/inventory/variantoptions/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_inventory_variantoptions_save:
+    pattern: admin/inventory/variantoptions/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantOptionsController
+        model: components\inventory\models\VariantOptionModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantoptions_save
+        datasource: datasource1
+    methods: [POST]
+
+
+
+
+#-------------------------- variant groups -----------------------
+
+admin_inventory_variantgroups:
+    pattern: admin/inventory/variantgroups
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
+    methods: [GET]
+
+
+admin_inventory_variantgroups_list:
+    pattern: admin/inventory/variantgroups/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+    methods: [GET]
+
+admin_inventory_variantgroups_get:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_inventory_variantgroups_save:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_inventory_variantgroups_save
+        datasource: datasource1
+    methods: [POST]
+
+
+
+admin_inventory_items_variantgroups_save:
+    pattern: admin/inventory/variantgroups/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VariantGroupsController
+        model: components\inventory\models\VariantGroupModel
+        method: saveVariantOptions
+        view: core\views\JSONView
+        viewKey: admin_inventory_items_variantgroups_save
+        datasource: datasource1
+    methods: [POST]

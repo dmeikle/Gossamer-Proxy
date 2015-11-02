@@ -66,3 +66,32 @@ initialJobsheetWizardPages:
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+
+
+claimEditModal:
+    path: 'src/components/claims/ng/views/claimEditModal.php'
+    listeners:
+        - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimTypes', 'class': 'components\claims\models\ClaimTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+       # - { 'cacheKey': 'ClaimTypes', 'class': 'components\claims\models\ClaimType', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+       
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimBuilder'
+            model: 'components\claims\models\ClaimModel'
+            cacheKey: 'ClaimForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
+                - { dependency: ClaimStatusTypes, key: claimTypes, value: ClaimStatusTypes_id, text: status }
+
+claimsAdminTab:
+    path: 'src/components/claims/views/admin/claims/list.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+

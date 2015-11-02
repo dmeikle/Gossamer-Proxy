@@ -11,11 +11,11 @@
 
 <script language="javascript">
 
-$(document).ready(function() {
-    $(".email-star").on("click", function(){
+    $(document).ready(function () {
+        $(".email-star").on("click", function () {
             $(this).find(".email-star-status").toggleClass("checked");
+        });
     });
-});
 
 
 </script>
@@ -62,7 +62,7 @@ $(document).ready(function() {
         </div>
         <table class="table table-hover" ng-controller="MessagingController">
             <tbody>
-                
+
                 <tr ng-class="rowClass(message)" data-email-id="2" ng-click="viewMessage(message.uniqueId)" ng-repeat="message in messages">
                     <td class="email-checkbox">
                         <div class="icheckbox_square-blue checkbox-actual" style="position: relative;">
@@ -87,7 +87,7 @@ $(document).ready(function() {
                         {{message.subject}}
                     </td>
                     <td class="email-datetime">
-                        {{message.sendDate | date : 'fullDate'}}
+                        {{message.sendDate| date : 'fullDate'}}
                     </td>
                 </tr>
                 <tr class="empty-list">

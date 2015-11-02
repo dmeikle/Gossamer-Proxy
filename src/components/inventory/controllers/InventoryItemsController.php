@@ -35,11 +35,10 @@ class InventoryItemsController extends AbstractController {
         $this->render(array('form' => $this->drawForm($this->model, $result)));
     }
 
-
     public function save($id) {
-      $result = $this->model->save($id);
+        $result = $this->model->save($id);
 
-      $this->render($result);
+        $this->render($result);
     }
 
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
@@ -54,11 +53,10 @@ class InventoryItemsController extends AbstractController {
 
         $rawInventoryTypes = $this->httpRequest->getAttribute('InventoryTypes');
         $serializer = new InventoryTypeSerializer();
-        $options['inventoryTypes'] = $serializer->formatTypesList($rawInventoryTypes,$values);
+        $options['inventoryTypes'] = $serializer->formatTypesList($rawInventoryTypes, $values);
 
         return $inventoryItemBuilder->buildForm($builder, $values, $options, $results);
     }
-
 
     public function getFormWrapper() {
         return $this->entity;
@@ -89,7 +87,7 @@ class InventoryItemsController extends AbstractController {
         $rawPackageTypes = $this->httpRequest->getAttribute('PackageTypes');
         $packageTypes = $serializer->extractRawChildNodeData($rawPackageTypes, 'name', 'id');
 
-        $rawInventoryTypes = $this->httpRequest->getAttribute('InventoryTypes') ;
+        $rawInventoryTypes = $this->httpRequest->getAttribute('InventoryTypes');
         $inventoryTypes = $serializer->extractRawChildNodeData($rawInventoryTypes, 'name', 'id');
 
         $result['inventoryTypes'] = $inventoryTypes;
@@ -97,4 +95,11 @@ class InventoryItemsController extends AbstractController {
 
         $this->render($result);
     }
+
+    public function saveVariantOptions($id) {
+        $result = $this->model->saveVariantOptions($id);
+
+        $this->render($result);
+    }
+
 }

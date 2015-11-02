@@ -1,12 +1,12 @@
 
 <div style="text-align:right">Date: 2014-10-10</div>
 
-<table class="table">     	  
+<table class="table">
     <thead>
         <tr>
-     	    <th width="100">Area:</th>
-     	    <th>Work Performed:</th>
-   	</tr>
+            <th width="100">Area:</th>
+            <th>Work Performed:</th>
+        </tr>
     </thead>
     <tr>
         <td>Entry</td>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <td>Kitchen</td>
-        <td>        
+        <td>
             Remove Baseboard<br/>
             Remove Crown Moulding<br/>
             Remove Drywall<br/>
@@ -53,16 +53,16 @@
             </select>
             Notes:
             <textarea class="form-control"></textarea>
-            
-            
+
+
         </td>
     </tr>
     <tr>
         <td> </td>
         <td>
-            <button class="btn btn-primary">Add Another</button> 
-            <button class="btn btn-primary">Add and Go Back</button> 
-            <button class="btn btn-primary">Cancel</button> 
+            <button class="btn btn-primary">Add Another</button>
+            <button class="btn btn-primary">Add and Go Back</button>
+            <button class="btn btn-primary">Cancel</button>
         </td>
     </tr>
 </table>

@@ -19,18 +19,6 @@
   }
 }
 
-@mixin width-transition {
-  transition: width ease .35s;
-}
-
-.widget-content {
-  @include width-transition;
-}
-
-.widget-side-panel {
-  @include width-transition;
-}
-
 .splitcolumn {
   @extend .col-xs-6;
   @extend .col-md-6;
@@ -133,7 +121,7 @@ table.table tbody tr.selected {
     .totalRow{
         td{
             text-align:center;
-        }        
+        }
     }
     table{
         th{
@@ -189,7 +177,7 @@ table.table tbody tr.selected {
                 padding: 25px 0px!important;
                 p{
                     font-weight:bold;
-                     margin: 7px 0;
+                    margin: 7px 0;
                     display: inline-block;
                 }
             }

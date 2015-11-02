@@ -64,7 +64,7 @@ admin_companies_view:
         viewKey: admin_companies_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
    
 admin_companies_list:
     pattern: admin/companies/*/*
@@ -79,7 +79,7 @@ admin_companies_list:
         viewKey: admin_companies_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
    
 admin_companies_edit:
     pattern: admin/companies/*
@@ -95,7 +95,7 @@ admin_companies_edit:
         viewKey: admin_companies_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
  
 
 admin_companies_save:
@@ -112,5 +112,5 @@ admin_companies_save:
         viewKey: admin_companies_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation' 
+            - 'src/components/defaultItem/locales/*/Navigation' 
         

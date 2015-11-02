@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_SALES_LIST' => 'Sales List',
     'BUTTON_VIEW' => 'View',
     'BUTTON_DELETE' => 'Delete',

@@ -13,18 +13,19 @@
             </div>
         </div>
         <div class="pull-right">
-            
+
             <div class="form-group vehicle">
-              <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
+                <label for="vehicle-num"><?php echo $this->getString('STAFF_TIMESHEET_VEHICLE_NUMBER'); ?></label>
                 <select class="form-control" name="vehicle-num" ng-model="timesheet.Vehicles_id" ng-change="getVehicleTolls(timesheet.Vehicles_id)">
                     <?php
-                    foreach($Vehicles as $vehicle) {
+                    foreach ($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
-                    } ?>
+                    }
+                    ?>
                 </select>
             </div>
         </div>
-        
+
         <div id="timesheetGrid" class="table" ng-repeat="row in timesheetItems track by $index">
             <div class="row">
                 <div class="col-md-1 select-col">
@@ -51,9 +52,11 @@
                     </div>
                     <div class="field">
                         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="row.AccountingPhaseCodes_id" ng-focus="getRateVarianceOptions($event)" ng-change="getRateVariance(row, row.AccountingPhaseCodes_id)">
-                            <?php foreach($AccountingPhaseCodes as $phase) {
-                            echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
-                            } ?>
+                            <?php
+                            foreach ($AccountingPhaseCodes as $phase) {
+                                echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -103,7 +106,7 @@
                 </div>
             </div>
             <!-- end of row -->
-            
+
             <div class="row time-row">
                 <div class="col-md-1 col-md-offset-5 timepicker">
                     <div class="heading">
@@ -163,7 +166,7 @@
                 </div>
             </div>
         </div>
-        
+
         <button class="btn-info" ng-click="addTimesheetRow()">New Row</button>
         <button class="btn-info" ng-click="insertTimesheetRows()" ng-disabled="!timesheetSelected">Insert Row(s)</button>
         <button class="btn-warning" ng-click="removeTimesheetRows()" ng-disabled="!timesheetSelected">Delete Row(s)</button>

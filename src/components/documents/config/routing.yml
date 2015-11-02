@@ -11,7 +11,7 @@ super_documents_list:
         viewKey: super_documents_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
 
      
@@ -27,7 +27,7 @@ super_documents_edit:
         viewKey: super_documents_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
      
 super_documents_save:
@@ -41,7 +41,7 @@ super_documents_save:
         viewKey: super_documents_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST] 
     
 super_documents_remove:
@@ -55,6 +55,6 @@ super_documents_remove:
         viewKey: super_documents_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
     

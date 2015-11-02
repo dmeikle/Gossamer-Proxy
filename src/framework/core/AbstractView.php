@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -24,13 +24,13 @@ use libraries\utils\preferences\UserPreferencesManager;
 
 /**
  * abstract view
- * 
+ *
  * @author Dave Meikle
  */
 class AbstractView {
 
     use \libraries\utils\traits\GetLoggedInUser;
-    
+
     protected $renderComplete = false;
     protected $templatePath = null;
     protected $logger = null;
@@ -46,7 +46,7 @@ class AbstractView {
     protected $httpResponse = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      * @param string $ymlKey
      * @param array $agentType
@@ -67,7 +67,7 @@ class AbstractView {
 
     /**
      * injection method for overriding YML key when Exception occurs
-     * 
+     *
      * @param string $ymlKey
      */
     public function setYmlKey($ymlKey) {
@@ -78,10 +78,10 @@ class AbstractView {
 
     /**
      * used for getting a string value from a locale file based on its key
-     * 
+     *
      * @param string $key
      * @return string
-     * 
+     *
      * @throws LangFileNotSpecifiedException
      */
     public function getString($key) {
@@ -94,7 +94,7 @@ class AbstractView {
 
     /**
      * accessor
-     * 
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -103,11 +103,11 @@ class AbstractView {
 
     /**
      * accessor
-     * 
+     *
      * @param array $data
      */
     public function setData($data) {
-        //add the locales we preloaded here. 
+        //add the locales we preloaded here.
         ////TODO: we can begin to deprecate any other locale list calls
         $data['SystemLocalesList'] = $this->localesList;
         $navigation = $this->httpRequest->getAttribute('NAVIGATION');
@@ -115,15 +115,15 @@ class AbstractView {
         if (!is_null($navigation)) {
             $data['NAVIGATION'] = $navigation;
         }
-        $modules = array('modules' => "'" . implode("','", $this->httpRequest->getModules() ) . "'");
-        
+        $modules = array('modules' => "'" . implode("','", $this->httpRequest->getModules()) . "'");
+
         $this->data = array_merge($data, $this->httpResponse->getAttributes(), $modules);
-        // $this->data = $data;       
+        // $this->data = $data;
     }
 
     /**
      * accessor
-     * 
+     *
      * @return array
      */
     public function getData() {
@@ -132,13 +132,13 @@ class AbstractView {
 
     /**
      * renders the results into a view
-     * 
+     *
      * @param array $data
      */
     public function render($data = array()) {
 
         //get any preloaded items that are in the Response object
-        $data = array_merge(is_null($data)? array() : $data, $this->httpResponse->getAttributes());
+        $data = array_merge(is_null($data) ? array() : $data, $this->httpResponse->getAttributes());
 
         //do any pre-render here - eg: format validation fail strings
         $params = new Event(KernelEvents::RESPONSE_START, $data);
@@ -158,8 +158,6 @@ class AbstractView {
 
 
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END);
-        
-
     }
 
     /**
@@ -196,26 +194,25 @@ class AbstractView {
 
 
             //extract($this->data->content);
-           (eval("?>" . $this->template));
-           $result = ob_get_clean();
-          
-           //write it to the page - do not delete! this is not debug
+            (eval("?>" . $this->template));
+            $result = ob_get_clean();
+
+            //write it to the page - do not delete! this is not debug
             print($result);
-            
+
             $this->template = '';
             $this->renderComplete = true;
-            
+
             $params = array('renderedPage' => $result);
-           
+
             $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
             $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
-
         }
     }
 
     /**
      * returns the currently logged in user's locale
-     * 
+     *
      * @return array
      */
     public function getDefaultLocale() {
@@ -236,11 +233,11 @@ class AbstractView {
      * makes a secondary URL call to the same server - can be called from the
      * view to increase throughput of browser calls and minimize single page
      * load events.
-     * 
+     *
      * @param string $ymlkey
      * @param array $params
      * @param boolean $ssl
-     * 
+     *
      * @return string
      */
     public function getContent($ymlkey, $params = array(), $ssl = false) {
@@ -252,33 +249,34 @@ class AbstractView {
         if ($ssl) {
             $fullUrl = "https://$url";
         }
-       // $fullUrl .= '/' . implode('/', $params);
-       
+        // $fullUrl .= '/' . implode('/', $params);
+
         $user = $this->getLoggedInUser();
         $userId = 0;
-        if(is_object($user)) {
+        if (is_object($user)) {
             $userId = $user->getId();
         }
-        $locale = $this->getDefaultLocale();        
+        $locale = $this->getDefaultLocale();
         $params = http_build_query($params);
-        
+
         return file_get_contents($fullUrl . '?userid=' . $userId . '&locale=' . $locale['locale'] . ((strlen($params) > 0) ? '&' . $params : ''));
     }
 
     /**
      * checks the access rights of the logged in user before deciding to
      * make the call for the menu content
-     * 
+     *
      * @param string $ymlkey
-     * 
+     *
      * @return string
      */
     public function getMenu($ymlkey, array $params = array()) {
         $manager = new navigation\MenuManager();
-        
-        if($manager->checkAccessRights($ymlkey, $this->getLoggedInUser())){
-           
+
+        if ($manager->checkAccessRights($ymlkey, $this->getLoggedInUser())) {
+
             return $this->getContent($ymlkey, $params);
         }
     }
+
 }

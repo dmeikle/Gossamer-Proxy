@@ -4,22 +4,21 @@ namespace components\shoppingcart\controllers;
 
 use core\AbstractController;
 
-class ProductsController extends AbstractController
-{
-    
-    public function listAllByCategoryId($categoryId = 0, $offset=0, $limit = 20) {
+class ProductsController extends AbstractController {
+
+    public function listAllByCategoryId($categoryId = 0, $offset = 0, $limit = 20) {
 
         $result = $this->model->listAllByCategoryId($categoryId, $offset, $limit);
-        if(!array_key_exists('CartProducts', $result)) {
+        if (!array_key_exists('CartProducts', $result)) {
             $result['CartProducts'] = array();
         }
         $this->render($result);
     }
 
     public function get($category, $id, $name) {
-      
+
         $result = $this->model->get($id);
-        
+
         $this->render($result);
     }
 

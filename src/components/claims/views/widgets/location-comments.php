@@ -34,41 +34,41 @@
                             </div>
                             <div class="comment-content">
                                 <div style="padding: 10px 10px 10px 20px">{{comment.comments}}</div>
-                            </div>                         
-                            
-                        </div>  
-                        
+                            </div>
+
+                        </div>
+
                         <form class="comment-input-block" ng-show="showme">
-                                <div class="comment-image">
-                                    <a href="#">
-                                        <img class="list-thumbnail" src="assets/images/required/profile/profile-pic-4.jpg" width="40" height="40" alt="profile-pic-4">
-                                    </a>
+                            <div class="comment-image">
+                                <a href="#">
+                                    <img class="list-thumbnail" src="assets/images/required/profile/profile-pic-4.jpg" width="40" height="40" alt="profile-pic-4">
+                                </a>
+                            </div>
+                            <div class="comment-input-area">
+                                <div class="form-group" style="padding: 10px 20px">
+                                    <textarea id="comments" ng-model="comment.comments" rows="3" class="form-control input-sm user-comment" placeholder="What's on your mind?"></textarea>
                                 </div>
-                                <div class="comment-input-area">
-                                    <div class="form-group" style="padding: 10px 20px">
-                                        <textarea id="comments" ng-model="comment.comments" rows="3" class="form-control input-sm user-comment" placeholder="What's on your mind?"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary btn-xs post-comment" type="submit" ng-click="saveComment(comment)">Post Message</button><br>
-                                </div>
+                                <button class="btn btn-primary btn-xs post-comment" type="submit" ng-click="saveComment(comment)">Post Message</button><br>
+                            </div>
                             <a name="location_comment"></a>
-                                
-                            </form> 
-                            <a class="btn btn-default btn-sm" ng-click="showme=true" href="#location_comment">Comment
-                                <span class="glyphicon glyphicon-comment"></span>
-                            </a>
-                            <a class="btn btn-default btn-sm" ng-click="showme=false" ng-show="showme">Cancel</a>   
-                            
-                       
+
+                        </form>
+                        <a class="btn btn-default btn-sm" ng-click="showme = true" href="#location_comment">Comment
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </a>
+                        <a class="btn btn-default btn-sm" ng-click="showme = false" ng-show="showme">Cancel</a>
+
+
                     </div>
                 </div>
                 <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: block;">
                     <div class="mCSB_draggerContainer">
                         <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 60px; max-height: 300px;" oncontextmenu="return false;">
-                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>                                
+                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
                         </div>
-                        <div class="mCSB_draggerRail"></div>                            
-                    </div>                        
-                </div>                    
+                        <div class="mCSB_draggerRail"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

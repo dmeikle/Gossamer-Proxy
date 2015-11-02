@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return array(
     'PAGE_CONTENT' => '<p>"创造的欲望是人类灵魂最深处的渴望之一。不管我们的人才，教育，背景，或能力，我们每个人都有一个内在的愿望，以创建以前不存在的东西。 当我们把无组织的事物攥在手中，并将它塑造成美丽的东西的时候，我们开发了自己和他人。"<br>
 <strong>- Dieter F. Uchtdorf</strong>
 </p>

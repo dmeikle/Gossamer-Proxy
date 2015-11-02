@@ -10,10 +10,10 @@
             <span class="icon icon-list-circle"></span>
         </div>
         <div class="c-wdiget-content-block">
-             <h3>Uploaded Photos</h3>   
+            <h3>Uploaded Photos</h3>
             <div class="c-widget-content-heading" >
                 <photos-count></photos-count>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

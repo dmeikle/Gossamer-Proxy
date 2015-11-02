@@ -1,12 +1,12 @@
 
-<table class="table table-striped">     	  
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Date</th>
-     	    <th>Phase</th>
-     	    <th>Rooms</th>
+            <th>Phase</th>
+            <th>Rooms</th>
             <th>Status</th>
-   	</tr>
+        </tr>
     </thead>
     <tr>
         <td>
@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <table class="table">     	  
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th width="100">Area:</th>
@@ -29,7 +29,7 @@
                             <tr>
                                 <td>Entry</td>
                                 <td>
-                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+                                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                                     The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
                                     making it look like readable English. </td>
                             </tr>

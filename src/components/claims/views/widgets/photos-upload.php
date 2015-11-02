@@ -20,7 +20,7 @@
             <div class="block-content-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="/admin/claims/photos/upload/<?php echo $claim['jobNumber'];?>" class="dropzone dz-clickable" id="customized-dropzone-2">
+                        <form action="/admin/claims/photos/upload/<?php echo $claim['jobNumber']; ?>" class="dropzone dz-clickable" id="customized-dropzone-2">
                             <div class="dz-message">
                                 <span class="main-text">Drop Your File Here (or click)</span>
                             </div>

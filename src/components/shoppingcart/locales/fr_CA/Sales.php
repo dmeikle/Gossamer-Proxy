@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
     'LABEL_SALES_LIST' => 'La Liste des Ventes',
     'BUTTON_VIEW' => 'Examiner',
     'BUTTON_DELETE' => 'Effacer',

@@ -20,6 +20,9 @@ basicmenu:
 customers:
     component: "src/components/customers/config/routing.yml"
     
+tabbedview:
+    component: "src/framework/core/components/tabbedview/config/routing.yml"
+    
 documents:
     component: "src/components/documents/config/routing.yml"
     

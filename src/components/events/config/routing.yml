@@ -15,7 +15,7 @@ admin_eventattendees_list:
         viewKey: admin_eventattendees_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
 
      
@@ -34,7 +34,7 @@ admin_eventlocations_edit:
         viewKey: admin_eventlocations_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
 admin_eventlocations_save:
@@ -48,7 +48,7 @@ admin_eventlocations_save:
         viewKey: admin_eventlocations_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 admin_eventlocations_list:
@@ -62,7 +62,7 @@ admin_eventlocations_list:
         viewKey: admin_eventlocations_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
     
     
@@ -80,7 +80,7 @@ super_event_types_edit:
         viewKey: admin_event_types_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
 super_event_types_save:
@@ -97,7 +97,7 @@ super_event_types_save:
         viewKey: super_event_types_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 
@@ -112,7 +112,7 @@ super_eventtypes_remove:
         viewKey: super_eventtypes_remove
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]     
     
         
@@ -127,7 +127,7 @@ super_event_types_list:
         viewKey: super_event_types_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
     
     
@@ -150,7 +150,7 @@ admin_event_contacts_edit:
         viewKey: admin_event_contacts_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
 admin_event_contacts_save:
@@ -164,7 +164,7 @@ admin_event_contacts_save:
         viewKey: admin_event_contacts_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 admin_event_contacts_list:
@@ -178,7 +178,7 @@ admin_event_contacts_list:
         viewKey: admin_event_contacts_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
         
         
@@ -199,7 +199,7 @@ admin_event_prospects_edit:
         viewKey: admin_event_prospects_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
 admin_event_prospects_save:
@@ -213,7 +213,7 @@ admin_event_prospects_save:
         viewKey: admin_event_prospects_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]  
     
 admin_event_prospects_list:
@@ -229,7 +229,7 @@ admin_event_prospects_list:
         viewKey: admin_event_prospects_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET] 
     
 admin_event_prospects_list_by_event:
@@ -245,7 +245,7 @@ admin_event_prospects_list_by_event:
         viewKey: admin_event_prospects_list_by_event
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]
                 
    
@@ -261,7 +261,7 @@ admin_eventlists_list:
         viewKey: admin_eventlists_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]                 
  
 admin_eventlists_edit: 
@@ -275,7 +275,7 @@ admin_eventlists_edit:
         viewKey: admin_eventlists_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET] 
     
      
@@ -290,7 +290,7 @@ admin_eventlists_save:
         viewKey: admin_eventlists_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]  
     
     
@@ -307,7 +307,7 @@ admin_eventlist_contacts_list:
         viewKey: admin_eventlist_contacts_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET] 
     
     
@@ -327,7 +327,7 @@ admin_events_invitelists_list:
         viewKey: admin_eventlist_contacts_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
     
                 
@@ -345,7 +345,7 @@ admin_events_notificationsettings_edit:
         viewKey: admin_events_notificationsettings_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]              
                 
   
@@ -360,7 +360,7 @@ admin_events_notificationsettings_save:
         viewKey: admin_events_notificationsettings_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]                 
                 
                 
@@ -388,7 +388,7 @@ admin_events_edit:
         viewKey: admin_events_edit
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]          
     
 admin_events_save: 
@@ -402,7 +402,7 @@ admin_events_save:
         viewKey: admin_events_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]   
     
 admin_events_list: 
@@ -416,7 +416,7 @@ admin_events_list:
         viewKey: admin_events_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]      
     
     
@@ -441,7 +441,7 @@ portal_events_list:
         viewKey: portal_events_list
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET]     
  
 #this node has to be in front of portal_events_view
@@ -456,7 +456,7 @@ portal_events_not_found:
         viewKey: portal_events_not_found
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [GET] 
 
  
@@ -472,7 +472,7 @@ portal_events_rsvp_complete:
         viewKey: portal_events_rsvp_complete
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     
 
 portal_events_ceilingnav:
@@ -502,7 +502,7 @@ portal_events_view:
         viewKey: portal_events_view
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
             - 'src/components/events/locales/*/Events'  
     methods: [GET]  
     
@@ -517,6 +517,6 @@ portal_events_rsvp_save:
         viewKey: portal_events_rsvp_save
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST]        
     

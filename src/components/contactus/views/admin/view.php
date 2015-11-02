@@ -1,7 +1,7 @@
 <table class="table">
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_NAME');?>
+            <?php echo $this->getString('CONTACTUS_NAME'); ?>
         </td>
         <td>
             <?php echo $form['name']; ?>
@@ -9,7 +9,7 @@
     </tr>
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_EMAIL');?>
+            <?php echo $this->getString('CONTACTUS_EMAIL'); ?>
         </td>
         <td>
             <?php echo $form['email']; ?>
@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_TELEPHONE');?>
+            <?php echo $this->getString('CONTACTUS_TELEPHONE'); ?>
         </td>
         <td>
             <?php echo $form['telephone']; ?>
@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_COMPANY');?>
+            <?php echo $this->getString('CONTACTUS_COMPANY'); ?>
         </td>
         <td>
             <?php echo $form['company']; ?>
@@ -33,7 +33,7 @@
     </tr>
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_SUBJECT');?>
+            <?php echo $this->getString('CONTACTUS_SUBJECT'); ?>
         </td>
         <td>
             <?php echo $form['subject']; ?>
@@ -41,7 +41,7 @@
     </tr>
     <tr>
         <td>
-            <?php echo $this->getString('CONTACTUS_COMMENTS');?>
+            <?php echo $this->getString('CONTACTUS_COMMENTS'); ?>
         </td>
         <td>
             <?php echo $form['comments']; ?>
@@ -49,10 +49,10 @@
     </tr>
     <tr>
         <td>
-           
+
         </td>
         <td>
-            <?php //echo $form['submit']; ?> 
+            <?php //echo $form['submit']; ?>
         </td>
     </tr>
 </table>

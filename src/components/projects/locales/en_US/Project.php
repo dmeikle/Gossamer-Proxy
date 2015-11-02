@@ -33,5 +33,4 @@ return array(
     'PROJECTS_GOOGLEMAPLINK' => "Google Map Link",
     'PROJECTS_CLAIMS_HISTORY' => "Claims History",
     'PROJECTS_CONTACT_INFO' => "Contact Information"
-
 );

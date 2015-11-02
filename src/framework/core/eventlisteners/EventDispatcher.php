@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -19,7 +19,7 @@ use Monolog\Logger;
 
 /**
  * loads and dispatches all listeners when events are raised
- * 
+ *
  * @author Dave Meikle
  */
 class EventDispatcher {
@@ -32,7 +32,7 @@ class EventDispatcher {
     private $datasources = null;
 
     /**
-     * 
+     *
      * @param type $config
      * @param Logger $logger
      * @param HTTPRequest $httpRequest
@@ -55,7 +55,7 @@ class EventDispatcher {
 
     /**
      * accessor
-     * 
+     *
      * @param DatasourceFactory $factory
      * @param array $datasources
      */
@@ -66,7 +66,7 @@ class EventDispatcher {
 
     /**
      * accessor
-     * 
+     *
      * @param HTTPRequest $httpRequest
      */
     public function setHttpRequest(HTTPRequest &$httpRequest) {
@@ -75,7 +75,7 @@ class EventDispatcher {
 
     /**
      * accessor
-     * 
+     *
      * @param HTTPResponse $response
      */
     public function setHttpResponse(HTTPResponse &$response) {
@@ -84,7 +84,7 @@ class EventDispatcher {
 
     /**
      * accessor
-     * 
+     *
      * @param Logger $logger
      */
     public function setLogger($logger) {
@@ -93,7 +93,7 @@ class EventDispatcher {
 
     /**
      * configures event listeners
-     * 
+     *
      * @param array $listeners
      */
     public function configListeners(array $listeners) {
@@ -118,9 +118,9 @@ class EventDispatcher {
     }
 
     /**
-     * creates event handlers that are wrappers to event listeners that 
+     * creates event handlers that are wrappers to event listeners that
      * do the actual work.
-     * 
+     *
      * @param type $uri
      * @param array $listeners
      */
@@ -142,7 +142,7 @@ class EventDispatcher {
                 //manual override - useful for loading info from other models
                 $handler->setDatasourceKey($listener['datasource']);
             }
-            if(array_key_exists('listener', $listener)) {
+            if (array_key_exists('listener', $listener)) {
                 $this->logger->addDebug('listener added for ' . $listener['listener']);
             }
             $this->listen($uri, $handler);
@@ -151,14 +151,14 @@ class EventDispatcher {
 
     /**
      * adds an event handler to the listeners list
-     * 
+     *
      * @param type $uri
      * @param EventHandler $handler
      */
     public function listen($uri, EventHandler $handler) {
         //CP-2 added this while working on calling listeners during core/components/render call
         //no need to add handlers that will never match our request
-        if($uri != 'all' && $uri != __YML_KEY) {
+        if ($uri != 'all' && $uri != __YML_KEY) {
             return;
         }
         $this->logger->addDebug('adding eventhandler for ' . $uri . ' to listeners list');
@@ -169,11 +169,11 @@ class EventDispatcher {
     /**
      * goes through its listeners list and executes any listeners that are
      * listening for this URI and this STATE
-     * 
+     *
      * @param string $uri
      * @param string $state
      * @param \core\eventlisteners\Event $params
-     * 
+     *
      * @return void
      */
     public function dispatch($uri, $state, Event &$params = null) {
@@ -189,16 +189,16 @@ class EventDispatcher {
         $this->logger->addDebug("listeners found - iterating");
 
         foreach ($this->listeners[$uri] as $listener) {
-             //echo('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri."\r\n");
+            //echo('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri."\r\n");
             $this->logger->addDebug('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
             $listener->setState($state, $params);
-           //  echo $state . ' listener class for uri: ' . $uri."\r\n";
+            //  echo $state . ' listener class for uri: ' . $uri."\r\n";
         }
     }
 
     /**
      * accessor for getting a list of all loaded listener URIs
-     * 
+     *
      * @return array
      */
     public function getListenerURIs() {
