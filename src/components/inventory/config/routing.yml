@@ -365,6 +365,18 @@ admin_warehouse_locations_home:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+    
+admin_inventory_search:
+    pattern: admin/inventory/search
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryController
+        model: components\inventory\models\InventoryItemModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_inventory_search
+        datasource: datasource1
+    methods: [GET]
 
 
 

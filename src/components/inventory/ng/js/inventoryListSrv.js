@@ -26,5 +26,9 @@ module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
     this.getMaterialDetails = function (object) {
         return crudSrv.getDetails(apiPath + 'items/', object.id);
     };
+    
+    this.search = function(object) {
+        return searchSrv.search(apiPath, object);
+    };
 
 });

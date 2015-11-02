@@ -167,7 +167,7 @@
 
         <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.query)">
             <h1><?php echo $this->getString('INVENTORY_ADVANCED_SEARCH'); ?></h1>
-            <advanced-search-filters>
+            <advanced-search-filters data-service="inventoryListSrv">
 
             </advanced-search-filters>
             <div class="cardfooter">

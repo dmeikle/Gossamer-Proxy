@@ -26,5 +26,10 @@ return array(
     'INVENTORY_TRANSFER_EQUIPMENT' => 'Equipment',
     'INVENTORY_TRANSFER_ADDRESS' => 'Address',
     'INVENTORY_TRANSFER_JOBNUMBER' => 'Job Number',
-    'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle'
+    'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle',
+    'INVENTORY_ADVANCED_SEARCH' => 'Advanced Search',
+    'INVENTORY_SUBMIT' => 'Submit',
+    'INVENTORY_RESET' => 'Reset',
+    'INVENTORY_LIST' => 'Inventory List',
+    'INVENTORY_VENDOR' => 'Vendor'
 );

@@ -12,7 +12,8 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
     $scope.autocomplete = {};
     $scope.previouslyClickedObject = {};
     $scope.listType = 'materials';
-
+    $scope.inventoryListSrv = inventoryListSrv;
+    
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
     $scope.$watch('tablesSrv.sortResult', function () {
@@ -115,11 +116,7 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
     $scope.openAdvancedSearch = function () {
         $scope.sidePanelOpen = true;
         $scope.selectedStaff = undefined;
-        $scope.sidePanelLoading = true;
-        inventoryListSrv.getAdvancedSearchFilters().then(function () {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
+        $scope.searching = true;
     };
 
     $scope.resetAdvancedSearch = function () {
