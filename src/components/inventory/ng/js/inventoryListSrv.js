@@ -27,8 +27,11 @@ module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
         return crudSrv.getDetails(apiPath + 'items/', object.id);
     };
     
-    this.search = function(object) {
-        return searchSrv.search(apiPath, object);
+    this.search = function(object, page, numRows) {
+        return searchSrv.search(apiPath, object, page, numRows).then(function() {
+            self.searchResults = searchSrv.searchResults.InventoryItems;
+            self.searchResultsCount = searchSrv.searchResultsCount.InventoryItemsCount[0].rowCount;
+        });
     };
 
 });

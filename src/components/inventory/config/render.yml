@@ -45,8 +45,7 @@ inventoryAdvancedSearchFilters:
         - 'src/components/inventory/locales/*/inventory'
     listeners:
         - { 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-#        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-
+        
         # build the form
         -
             event: 'filerender_start'
@@ -59,4 +58,28 @@ inventoryAdvancedSearchFilters:
             dependencies:
                 - { dependency: Vendors, key: vendors, value: id, text: company }
 #                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+       
+
+       
+
+vendorItemModal:
+    path: 'src/components/inventory/ng/views/vendorItemModal.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+    listeners:
+        - { 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\VendorItemModel', params: {'type': 'query' }, 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
+
+        # build the form
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\VendorItemBuilder'
+            model: 'components\inventory\models\VendorItemModel'
+            cacheKey: 'VendorItemForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
+                - { dependency: 'components\inventory\models\VendorItemModel', model: VendorItem }
        

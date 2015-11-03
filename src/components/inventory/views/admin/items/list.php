@@ -37,7 +37,6 @@
         <table ng-if="listType === 'materials'" class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th column-sortable data-column="id" class="cog-col"><?php echo $this->getString('INVENTORY_ID'); ?></th>
                     <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
                     <th column-sortable data-column="productCode"><?php echo $this->getString('INVENTORY_PRODUCTCODE'); ?></th>
                     <th column-sortable data-column="description"><?php echo $this->getString('INVENTORY_DESCRIPTION'); ?></th>
@@ -47,14 +46,13 @@
                     <th column-sortable data-column="InventoryTypes_id"><?php echo $this->getString('INVENTORY_INVENTORYTYPE'); ?></th>
                     <th column-sortable data-column="InventoryCategories_id"><?php echo $this->getString('INVENTORY_INVENTORYCATEGORY'); ?></th>
                     <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
+                    <th ng-show="vendorSearch" column-sortable data-column="vendorPrice"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
                     <th column-sortable data-column="WarehouseLocations_id"><?php echo $this->getString('INVENTORY_WAREHOUSELOCATION'); ?></th>
                     <th group-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -66,12 +64,12 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td  ng-show="vendorSearch"></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in inventoryList"
                     ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
-                    <td ng-click="selectRow(item)">{{item.id}}</td>
                     <td ng-click="selectRow(item)">{{item.name}}</td>
                     <td ng-click="selectRow(item)">{{item.productCode}}</td>
                     <td ng-click="selectRow(item)">{{item.description}}</td>
@@ -81,6 +79,7 @@
                     <td ng-click="selectRow(item)">{{item.inventoryType}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryCategories_id}}</td>
                     <td ng-click="selectRow(item)">{{item.price| currency}}</td>
+                    <td ng-show="vendorSearch" ng-click="selectRow(item)">{{item.vendorPrice| currency}}</td>
                     <td ng-click="selectRow(item)">{{item.warehouseLocation}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
@@ -88,6 +87,7 @@
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="/admin/inventory/items/{{item.id}}"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a href="" ng-show="vendorSearch" ng-click="editVendorItem(item)"><?php echo $this->getString('INVENTORY_EDIT_VENDOR_ITEM') ?></a></li>
                                 <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
@@ -99,12 +99,12 @@
         <table ng-if="listType === 'equipment'" class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th column-sortable data-column="id" class="cog-col"><?php echo $this->getString('INVENTORY_ID'); ?></th>
                     <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
                     <th column-sortable data-column="InventoryItems_id"><?php echo $this->getString('INVENTORY_ITEMSID'); ?></th>
                     <th column-sortable data-column="number"><?php echo $this->getString('INVENTORY_NUMBER'); ?></th>
                     <th column-sortable data-column="InventoryEquipmentTypes_id"><?php echo $this->getString('INVENTORY_EQUIPMENTTYPESID'); ?></th>
                     <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
+                    <th column-sortable data-column="vendorPrice"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
                     <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>
                     <th group-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
@@ -123,12 +123,12 @@
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in inventoryList" multi-select="item"
                     ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
-                    <td ng-click="selectRow(item)">{{item.id}}</td>
                     <td ng-click="selectRow(item)">{{item.name}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryItems_id}}</td>
                     <td ng-click="selectRow(item)">{{item.number}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryEquipmentTypes_id}}</td>
                     <td ng-click="selectRow(item)">{{item.price| currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.vendorPrice| currency}}</td>
                     <td ng-click="selectRow(item)">{{item.maxDays}}</td>
                     <td class="row-controls">
                         <div class="dropdown">

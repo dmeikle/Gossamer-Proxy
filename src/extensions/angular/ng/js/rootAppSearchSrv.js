@@ -19,8 +19,15 @@ module.service('searchSrv', function ($http) {
         });
     };
 
-    this.search = function (apiPath, object) {
-        return self.searchCall(apiPath + 'search', object).then(function (response) {
+    this.search = function (apiPath, object, page, numRows) {
+        
+        if(page !== undefined && numRows !== undefined) {
+            apiPath += 'search/' + page + '/' + numRows;
+        } else {
+            apiPath += 'search';
+        }
+        
+        return self.searchCall(apiPath, object).then(function (response) {
             self.searchResults = response.data;
             self.searchResultsCount = response.data;
         });

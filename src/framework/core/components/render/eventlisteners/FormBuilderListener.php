@@ -37,7 +37,7 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
 
         $formBuilder = new $builderClass();
 
-        $this->httpResponse->setAttribute('form', $formBuilder->buildForm($builder, array(), $this->getDependencies(), array()));
+        $this->httpResponse->setAttribute('form', $formBuilder->buildForm($builder, $this->getValues(), $this->getDependencies(), array()));
     }
 
     protected function getDependencies() {
@@ -48,10 +48,24 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
         $retval = array();
 
         foreach ($this->listenerConfig['dependencies'] as $dependency) {
-            $retval[$dependency['key']] = $this->formatDependency($dependency);
+            if (!array_key_exists('model', $dependency) && array_key_exists('key', $dependency)) {
+                $retval[$dependency['key']] = $this->formatDependency($dependency);
+            }
         }
 
         return $retval;
+    }
+
+    protected function getValues() {
+        foreach ($this->listenerConfig['dependencies'] as $dependency) {
+
+            if (array_key_exists('model', $dependency)) {
+
+                return $this->httpRequest->getAttribute($dependency['dependency']);
+            }
+        }
+
+        return array();
     }
 
     protected function formatDependency(array $dependency) {

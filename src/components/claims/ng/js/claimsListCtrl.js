@@ -55,6 +55,10 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
     };
 
 
+    $scope.closeSidePanel = function() {
+        $scope.sidePanelOpen = false;                
+    };
+
     function getClaimsList() {
         $scope.loading = true;
         claimsListSrv.getClaimsList(row, numRows).then(function (response) {

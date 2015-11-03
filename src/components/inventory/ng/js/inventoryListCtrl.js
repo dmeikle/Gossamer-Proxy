@@ -13,6 +13,8 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
     $scope.previouslyClickedObject = {};
     $scope.listType = 'materials';
     $scope.inventoryListSrv = inventoryListSrv;
+    //used for displaying vendor prices in list
+    $scope.vendorSearch = false;
     
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
@@ -47,7 +49,28 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
                 getEquipmentList();
         }
     };
+    
+    $scope.closeSidePanel = function() {
+        $scope.sidePanelOpen = false;                
+    };
 
+
+    $scope.editVendorItem = function (item) {
+        var modalInstance = $modal.open({
+            templateUrl: '/render/inventory/vendorItemModal?id=' + item.VendorItems_id,
+            controller: 'inventoryVendorItemModalCtrl',
+            size: 'lg',
+            keyboard: false,
+            backdrop: "static",
+            resolve: {
+                item: function () {
+                    return item;
+                }
+            }
+                    
+        });
+    };
+    
     var getMaterialsList = function () {
         $scope.loading = true;
         inventoryListSrv.getMaterialsList(row, numRows)
@@ -93,14 +116,16 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
     };
 
     $scope.search = function (searchObject) {
+        $scope.vendorSearch = (searchObject.Vendors_id !== undefined);
+       
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            inventoryListSrv.search(copiedObject).then(function () {
-                console.log(inventoryListSrv.searchResults);
-                $scope.claimsList = inventoryListSrv.searchResults;
+            inventoryListSrv.search(copiedObject, $scope.currentPage - 1, $scope.itemsPerPage).then(function () {
+               
+                $scope.inventoryList = inventoryListSrv.searchResults;                
                 $scope.totalItems = inventoryListSrv.searchResultsCount;
                 $scope.loading = false;
             });
@@ -200,6 +225,25 @@ module.controller('transferModalController', function ($scope, $modalInstance,
         }
         data.FORM_SECURITY_TOKEN = formToken;
         $modalInstance.close(data);
+    };
+
+    $scope.close = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
+
+module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
+    
+
+    $scope.save = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
+    };
+
+
+    $scope.confirm = function () {
+        $modalInstance.close($scope.claim.query);
     };
 
     $scope.close = function () {
