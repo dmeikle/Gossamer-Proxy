@@ -59,6 +59,16 @@
                     <?php echo $this->getString('INVENTORY_EQUIPMENT_MAINTENANCEHISTORY') ?>
                 </h1>
             </div>
+            <table class="table">
+                <tr>
+                    <td>
+                    
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
