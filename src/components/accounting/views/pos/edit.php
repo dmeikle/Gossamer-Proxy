@@ -80,7 +80,6 @@
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_PERCENT'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_AMOUNT'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_AMOUNT'); ?></th>
                         </tr>
                     </thead>
@@ -96,7 +95,6 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
@@ -105,8 +103,7 @@
                             <td><?php echo $form['productDescription']; ?></td>
                             <td><?php echo $form['quantity']; ?></td>
                             <td><?php echo $form['unitPrice']; ?></td>
-                            <td><?php echo $form['taxPercent']; ?></td>
-                            <td><?php echo $form['taxAmount']; ?></td>
+                            <td><?php echo $form['taxType']; ?></td>
                             <td>{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
@@ -148,8 +145,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TAX'); ?></label>
-                        <?php echo $form['tax']; ?>
+                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_PST'); ?></label>
+                        <p class="col-md-6">{{item.pst | currency}}</p>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_GST'); ?></label>
+                        <p class="col-md-6">{{item.gst | currency}}</p>
                     </div>
 
                     <div class="form-group">

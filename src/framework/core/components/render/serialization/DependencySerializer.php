@@ -24,7 +24,14 @@ class DependencySerializer extends Serializer {
 
         $retval = '';
         foreach ($options as $option) {
-            $retval .= '<option value="' . $option[$id] . '">' . $option[$value] . '</option>';
+            $retval .= '<option value="' . $option[$id] . '"';
+            unset($option['id']);
+            foreach($option as $key => $val) {
+                
+                $retval .= " data-$key='$val'";
+            }
+            
+            $retval .= '>' . $option[$value] . '</option>';
         }
 
         return $retval;

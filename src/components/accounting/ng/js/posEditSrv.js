@@ -82,19 +82,22 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             url: apiPath + id,
             //config: config
         }).then(function (response) {
-            console.log(response);
-            self.purchaseOrder = response.data.PurchaseOrder;
+            //console.log(response);
+            self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
+            console.log(self.purchaseOrder);
+            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
             self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
             self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
             self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
             
-            for(var i in self.purchaseOrder.PurchaseOrderItem){
-                self.purchaseOrder.PurchaseOrderItem[i].quantity = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].quantity);
-                self.purchaseOrder.PurchaseOrderItem[i].tax = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].tax);
-                self.purchaseOrder.PurchaseOrderItem[i].unitPrice = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].unitPrice);
-                self.purchaseOrder.PurchaseOrderItem[i].amount = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].amount);
+            for(var i in self.purchaseOrderItems){
+                self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
+                self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
+                self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
+                self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
             }
+            
         });
     };
     

@@ -28,10 +28,10 @@ class PurchaseOrderBuilder extends AbstractBuilder {
         }
 
         $builder->add('Vendors_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Vendors_id', 'options' => $options['vendors']))
-                ->add('Departments_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
+                ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentsMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentsMethods_id', 'options' => $options['AccountingPaymentMethods']))
                 //->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
-                ->add('basicSearch', 'text', array('ng-model' => 'item.Claims_id', 'typeahead'=>'value for value in fetchClaimAutocomplete($viewValue)',
+                ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'typeahead'=>'value for value in fetchClaimAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsClaim', 'class'=>'form-control typeahead col-md-7',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getClaimsID(item.jobNumber)'))
                 ->add('AccountingPhaseCodes', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPhaseCodes_id', 'options' => $options['phase']))
@@ -42,12 +42,13 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'typeahead'=>'value for value in fetchProductCodeAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductCode', 'class'=>'form-control typeahead',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductCodeInfo(row, row.productCode);updateAmount(row)'))
-                ->add('productName', 'text', array('ng-model' => 'row.productName', 'typeahead'=>'value for value in fetchProductNameAutocomplete($viewValue)',
+                ->add('productName', 'text', array('ng-model' => 'row.name', 'typeahead'=>'value for value in fetchProductNameAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductName', 'class'=>'form-control typeahead',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductNameInfo(row, row.productName);updateAmount(row)'))
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))
-                ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change'=>'updateTotal()'))
-                ->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'row.tax', 'ng-change'=>'updateTotal()'))
+                ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change'=>'updateAmount(row)'))
+                ->add('taxType', 'select', array('id' => 'taxType{{$index}}', 'class' => 'form-control', 'ng-change' => 'updateTax(row, $index, row.AccountingTaxTypes_id);updateAmount(row)', 'ng-model' => 'row.AccountingTaxTypes_id', 'options' => $options['taxTypes']))
+                //->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'row.tax', 'ng-change'=>'updateAmount(row)'))
                 ->add('unitPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.unitPrice', 'ng-change'=>'updateAmount(row)'))
                 ->add('quantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change'=>'updateAmount(row)'))
                 
