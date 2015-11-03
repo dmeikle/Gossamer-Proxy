@@ -37,4 +37,13 @@ class InventoryItemModel extends AbstractModel implements FormBuilderInterface {
         return $this->entity;
     }
 
+    public function search($offset, $limit, array $params) {
+        $params['directive::OFFSET'] = intval($offset);
+        $params['directive::LIMIT'] = intval($limit);
+
+        $data = $this->dataSource->query(self::VERB_GET, $this, 'search', $params);
+
+        return $data;
+    }
+
 }

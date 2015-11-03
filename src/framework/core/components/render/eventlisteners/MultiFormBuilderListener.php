@@ -36,7 +36,7 @@ class MultiFormBuilderListener extends FormBuilderListener {
 
         $formBuilder = new $builderClass();
 
-        $this->httpResponse->setAttribute($formName, $formBuilder->buildForm($builder, array(), $this->getDependencies(), array()));
+        $this->httpResponse->setAttribute($formName, $formBuilder->buildForm($builder, $this->getValues(), $this->getDependencies(), array()));
     }
 
 }

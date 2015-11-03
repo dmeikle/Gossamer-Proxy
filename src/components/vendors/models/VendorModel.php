@@ -9,41 +9,33 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\inventory\models;
+namespace components\vendors\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-use Gossamer\CMS\Forms\FormBuilderInterface;
+USE Gossamer\CMS\Forms\FormBuilderInterface;
 
-/**
- * Description of DepartmentModel
- *
- * @author Dave Meikle
- */
-class InventoryModel extends AbstractModel implements FormBuilderInterface {
+class VendorModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Inventory';
-        $this->tablename = 'inventory';
+        $this->entity = 'Vendor';
+        $this->tablename = 'vendors';
     }
 
     public function getFormWrapper() {
         return $this->entity;
     }
 
-    public function search($offset, $limit, array $params) {
-        $params['directive::OFFSET'] = intval($offset);
-        $params['directive::LIMIT'] = intval($limit);
+    public function listall($offset = 0, $rows = 20, $customVerb = NULL, array $params = NULL) {
+        $queryParams = $this->httpRequest->getQueryParameters();
 
-        $data = $this->dataSource->query(self::VERB_GET, $this, 'search', $params);
-
-        return $data;
+        return parent::listall($offset, $rows, 'list', $queryParams);
     }
 
 }

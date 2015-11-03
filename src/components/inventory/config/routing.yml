@@ -292,7 +292,7 @@ admin_inventory_materials_list:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryMaterialsController
         model: components\inventory\models\InventoryItemModel
-        method: listAllEquipment
+        method: listAllMaterials
         view: core\views\JSONView
         viewKey: admin_inventory_materials_list
         datasource: datasource1
@@ -364,6 +364,18 @@ admin_warehouse_locations_home:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
+    methods: [GET]
+    
+admin_inventory_search:
+    pattern: admin/inventory/search/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryController
+        model: components\inventory\models\InventoryItemModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_inventory_search
+        datasource: datasource1
     methods: [GET]
 
 

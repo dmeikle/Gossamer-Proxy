@@ -18,32 +18,23 @@ use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of VendorItemModel
  *
  * @author Dave Meikle
  */
-class InventoryModel extends AbstractModel implements FormBuilderInterface {
+class VendorItemModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Inventory';
-        $this->tablename = 'inventory';
+        $this->entity = 'VendorItem';
+        $this->tablename = 'vendoritems';
     }
 
     public function getFormWrapper() {
         return $this->entity;
-    }
-
-    public function search($offset, $limit, array $params) {
-        $params['directive::OFFSET'] = intval($offset);
-        $params['directive::LIMIT'] = intval($limit);
-
-        $data = $this->dataSource->query(self::VERB_GET, $this, 'search', $params);
-
-        return $data;
     }
 
 }

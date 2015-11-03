@@ -26,5 +26,15 @@ return array(
     'INVENTORY_TRANSFER_EQUIPMENT' => 'Equipment',
     'INVENTORY_TRANSFER_ADDRESS' => 'Address',
     'INVENTORY_TRANSFER_JOBNUMBER' => 'Job Number',
-    'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle'
+    'INVENTORY_TRANSFER_VEHICLE' => 'Vehicle',
+    'INVENTORY_ADVANCED_SEARCH' => 'Advanced Search',
+    'INVENTORY_SUBMIT' => 'Submit',
+    'INVENTORY_CONFIRM' => 'Submit',
+    'INVENTORY_CANCEL' => 'Cancel',
+    'INVENTORY_RESET' => 'Reset',
+    'INVENTORY_LIST' => 'Inventory List',
+    'INVENTORY_VENDOR' => 'Vendor',
+    'INVENTORY_LEAD_TIME' => 'Lead Time',
+    'INVENTORY_MIN_ORDER_QUANTITY' => 'Minimum Order Quantity',
+    'INVENTORY_EDIT_VENDOR_ITEM' => 'Edit Vendor Item'
 );

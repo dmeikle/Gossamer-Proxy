@@ -362,7 +362,7 @@ class AbstractController {
      * @throws Exception
      */
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
-        throw \Exception('drawFrom now overwritten by child class');
+        throw new \Exception('drawFrom not overwritten by child class');
     }
 
     /**
