@@ -84,37 +84,31 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         }).then(function (response) {
             console.log(response);
             self.purchaseOrder = response.data.PurchaseOrder;
-            console.log(self.purchaseOrder.deliveryFee);
-
-            //self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
+            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
+            
+            for(var i in self.purchaseOrder.PurchaseOrderItem){
+                self.purchaseOrder.PurchaseOrderItem[i].quantity = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].quantity);
+                self.purchaseOrder.PurchaseOrderItem[i].tax = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].tax);
+                self.purchaseOrder.PurchaseOrderItem[i].unitPrice = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].unitPrice);
+                self.purchaseOrder.PurchaseOrderItem[i].amount = parseFloat(self.purchaseOrder.PurchaseOrderItem[i].amount);
+            }
         });
     };
     
-    //Get the purchase order
-//    this.getPurchaseOrdersItems = function (id) {
+//    this.getInventoryItemDetails = function(id){
 //        return $http({
 //            method: 'GET',
 //            headers: {
 //                'Content-Type': 'application/x-www-form-urlencoded'
 //            },
-//            url: apiPath + id,
+//            url: inventoryItemsAutocompletePath + '?id=' + id,
 //        }).then(function (response) {
-//            self.purchaseOrder = response.data.PurchaseOrder;
+//            self.inventoryItemDetails = response.data.InventoryItems;
 //        });
 //    };
-    
-    this.getInventoryItemDetails = function(id){
-        return $http({
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: inventoryItemsAutocompletePath + '?id=' + id,
-        }).then(function (response) {
-            self.inventoryItemDetails = response.data.InventoryItems;
-        });
-    };
     
     //Save the inventory item
     this.save = function (item, formToken) {

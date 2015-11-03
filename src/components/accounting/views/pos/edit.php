@@ -55,7 +55,7 @@
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
-
+                
                 <div class="form-group description">
                     <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                     <?php echo $form['description']; ?>
@@ -77,10 +77,10 @@
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
+                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
+                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_PERCENT'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_AMOUNT'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_AMOUNT'); ?></th>
                         </tr>
                     </thead>
@@ -95,16 +95,18 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
                             <td><?php echo $form['productCode']; ?></td>
                             <td><?php echo $form['productName']; ?></td>
                             <td><?php echo $form['productDescription']; ?></td>
+                            <td><?php echo $form['quantity']; ?></td>
+                            <td><?php echo $form['unitPrice']; ?></td>
                             <td><?php echo $form['taxPercent']; ?></td>
                             <td><?php echo $form['taxAmount']; ?></td>
-                            <td><?php echo $form['unitPrice']; ?></td>
-                            <td><?php echo $form['quantity']; ?></td>
                             <td>{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
@@ -114,7 +116,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div ng-if="!loading" class="col-md-10 purchase-order-notes" ng-if="editing">        
+    <div ng-if="!loading && editing" class="col-md-10 purchase-order-notes">        
         <div class="widget">
             <div class="widget-content">
                 <comments  api-path="/admin/accounting/pos/"></comments>
@@ -123,7 +125,15 @@
         </div>
     </div>
     
-    <div class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing || loading}">     
+    <div ng-if="loading" class="col-md-2 form-totals col-md-offset-10">
+        <div class="widget">
+            <div class="widget-content">
+                <span class="spinner-loader"></span>                
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div ng-if="!loading" class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing || loading}">     
     
         <div class="widget pull-right ">
             <div class="widget-content">
@@ -149,6 +159,7 @@
                 </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn-info" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
+        <button class="btn-info pull-right" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
     </div>
 </div>
+<form></form>

@@ -152,11 +152,12 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     
     //Update totals
     $scope.updateAmount = function(row){
-        //console.log(parseInt(row.quantity));
-        if(!isNaN(parseFloat(row.price)) && !isNaN(parseFloat(row.quantity))){
-            row.amount = parseFloat(row.price) * parseFloat(row.quantity);
+        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity))){
+            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
+            console.log('row');
         } else {
             row.amount = '';
+            console.log('rdsadadow');
         }
         $scope.updateSubtotal();
     };
@@ -189,36 +190,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
         $scope.isOpen.datepicker = true;
     };
     
-//    //Save note
-//    $scope.newNote = function(text){
-//        var note = {};
-//        //note.text = $sce.trustAsHtml(text.replace(/\r?\n/g, '<br />'));
-//        note.text = text;
-//        note.edit = false;
-//        $scope.purchaseOrderNotes.push(note);
-//        $scope.item.newPurchaseOrderNote = '';
-//    };
-//    
-//    //Edit Note
-//    $scope.editNote = function(note){
-//        note.edit = true;
-//    };
-//    
-//    //Delete Note
-//    $scope.deleteNote = function(index){
-//        //delete $scope.purchaseOrderNotes[index];
-//        $scope.purchaseOrderNotes.splice(index, 1);
-//        console.log($scope.purchaseOrderNotes);
-//    };
-//    
-//    //Save Note
-//    $scope.saveNote = function(note, index){
-//        console.log('saveing note...');
-//        note.text = $sce.trustAsHtml(note.text.replace(/\r?\n/g, '<br />'));
-//        //$scope.purchaseOrderNotes[index] = note;
-//        note.edit = false;
-//    };
-    
     //Clear the item
     $scope.clear = function(){
         $scope.item = {};
@@ -226,10 +197,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     
     //Saving Items    
     $scope.save = function () {
-        console.log($scope.lineItems);
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $scope.item.purchaseOrderItem = $scope.lineItems;
         console.log($scope.item);
-
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//        posEditSrv.save($scope.item, formToken);
+        //posEditSrv.save($scope.item, formToken);
     };
 });

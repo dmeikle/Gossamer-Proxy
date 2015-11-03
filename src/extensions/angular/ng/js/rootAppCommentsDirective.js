@@ -12,7 +12,7 @@ module.directive('comments', function (rootTemplateSrv) {
         controller: function ($scope) {
             $scope.comments = [];
             var lastHeight = '';
-            console.log($scope);
+            
             //Edit Comment
             $scope.editComment = function(comment){
                 comment.edit = true;
