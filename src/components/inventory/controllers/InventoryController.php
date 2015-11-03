@@ -45,11 +45,11 @@ class InventoryController extends AbstractController {
         return $this->entity;
     }
 
-    public function search() {
+    public function search($offset = 0, $limit = 20) {
         $params = $this->httpRequest->getQueryParameters();
 
-        $offset = 0;
-        $limit = 0;
+        $offset = intval($offset);
+        $limit = intval($limit);
 
         $this->render($this->model->search($offset, $limit, $params));
     }

@@ -367,7 +367,7 @@ admin_warehouse_locations_home:
     methods: [GET]
     
 admin_inventory_search:
-    pattern: admin/inventory/search
+    pattern: admin/inventory/search/*/*
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryController
