@@ -11,6 +11,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.item.subtotal = 0;
     $scope.item.total = 0;
     $scope.purchaseOrderNotes = [];
+    $scope.loading = true;
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
@@ -21,9 +22,15 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
         $scope.editing = true;
         posEditSrv.getPurchaseOrder(id).then(function () {
             $scope.item = posEditSrv.purchaseOrder;
+            $scope.lineItems = posEditSrv.purchaseOrder.PurchaseOrderItem;
+            $scope.loading = false;
+//            for(var i in $scope.lineItems){
+//                posEditSrv.getInventoryItemDetails($scope.lineItems[i].InventoryItems_id)
+//            }
         });
     } else {
         $scope.editing = false;
+        $scope.loading = false;
     }
     
     

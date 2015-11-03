@@ -2,7 +2,8 @@
 module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
-    var autocompletePath = '/admin/inventory/items/autocomplete';
+    var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
+    //var inventoryItemsPath = ''
     var self = this;
     
     //Claims Autocomplete
@@ -30,7 +31,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         config.productCode = searchObject.productCode;
         return $http({
             method: 'GET',
-            url: autocompletePath,
+            url: inventoryItemsAutocompletePath,
             params: config
         }).then(function (response) {
             self.productCodeAutocompleteValues = [];
@@ -53,7 +54,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         config.name = searchObject.name;
         return $http({
             method: 'GET',
-            url: autocompletePath,
+            url: inventoryItemsAutocompletePath,
             params: config
         }).then(function (response) {
             self.materialsAutocompleteValues = [];
@@ -91,23 +92,27 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     };
     
     //Get the purchase order
-    this.getPurchaseOrdersItems = function (id) {
-        //var config = {};
-
+//    this.getPurchaseOrdersItems = function (id) {
+//        return $http({
+//            method: 'GET',
+//            headers: {
+//                'Content-Type': 'application/x-www-form-urlencoded'
+//            },
+//            url: apiPath + id,
+//        }).then(function (response) {
+//            self.purchaseOrder = response.data.PurchaseOrder;
+//        });
+//    };
+    
+    this.getInventoryItemDetails = function(id){
         return $http({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + id,
-            //config: config
+            url: inventoryItemsAutocompletePath + '?id=' + id,
         }).then(function (response) {
-            console.log(response);
-            self.purchaseOrder = response.data.PurchaseOrder;
-            console.log(self.purchaseOrder.deliveryFee);
-
-            //self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
-            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.inventoryItemDetails = response.data.InventoryItems;
         });
     };
     

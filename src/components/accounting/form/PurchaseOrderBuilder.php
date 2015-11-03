@@ -47,9 +47,9 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductNameInfo(row, row.productName);updateAmount(row)'))
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))
                 ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change'=>'updateTotal()'))
-                ->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'item.taxAmount', 'ng-change'=>'updateTotal()'))
-                ->add('productPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.price', 'ng-change'=>'updateAmount(row)'))
-                ->add('productQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change'=>'updateAmount(row)'))
+                ->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'row.tax', 'ng-change'=>'updateTotal()'))
+                ->add('unitPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.unitPrice', 'ng-change'=>'updateAmount(row)'))
+                ->add('quantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change'=>'updateAmount(row)'))
                 
                 //PO Notes
                 ->add('newPurchaseOrderNote', 'textarea', array('class' => 'form-control new-purchase-order-note', 'ng-model' => 'item.newPurchaseOrderNote'))

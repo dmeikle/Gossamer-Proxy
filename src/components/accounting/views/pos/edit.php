@@ -3,8 +3,9 @@
         <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
             <h1 ng-if="!editing"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></h1>
             <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_POS') ?></h1>
-            <div class="col-md-4 form-headings">
-
+            <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
+            <div ng-if="!loading" class="col-md-4 form-headings">
+                
                 <div class="form-group">
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['Vendors_id']; ?>
@@ -32,7 +33,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 form-headings">
+            <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="form-group">
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
@@ -53,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 form-headings">
+            <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="form-group description">
                     <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
@@ -102,8 +103,8 @@
                             <td><?php echo $form['productDescription']; ?></td>
                             <td><?php echo $form['taxPercent']; ?></td>
                             <td><?php echo $form['taxAmount']; ?></td>
-                            <td><?php echo $form['productPrice']; ?></td>
-                            <td><?php echo $form['productQuantity']; ?></td>
+                            <td><?php echo $form['unitPrice']; ?></td>
+                            <td><?php echo $form['quantity']; ?></td>
                             <td>{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
@@ -113,7 +114,7 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="col-md-10 purchase-order-notes" ng-if="editing">        
+    <div ng-if="!loading" class="col-md-10 purchase-order-notes" ng-if="editing">        
         <div class="widget">
             <div class="widget-content">
                 <comments  api-path="/admin/accounting/pos/"></comments>
@@ -122,7 +123,7 @@
         </div>
     </div>
     
-    <div class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing}">     
+    <div class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing || loading}">     
     
         <div class="widget pull-right ">
             <div class="widget-content">
