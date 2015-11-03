@@ -2,13 +2,14 @@ module.controller('inventoryEquipmentEditCtrl', function($scope, $location, inve
     $scope.item = new AngularQueryObject();
 
     $scope.$watch('item', function() {
-        if ($scope.item && $scope.item.id && !$scope.item.InventoryItem) {
+        if ($scope.item && $scope.item.id && !$scope.haveDetails) {
             $scope.getDetails();
         }
     });
     $scope.getDetails = function() {
         inventoryEquipmentEditSrv.getDetails($scope.item).then(function(response) {
             $scope.item = response.data.InventoryEquipment[0];
+            $scope.haveDetails = true;
         });
     };
 

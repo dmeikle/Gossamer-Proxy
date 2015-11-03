@@ -18,6 +18,7 @@ use core\navigation\Pagination;
 use core\serialization\Serializer;
 use components\inventory\form\InventoryEquipmentBuilder;
 use components\inventory\serialization\PackageTypeSerializer;
+use components\inventory\serialization\InventoryEquipmentTypeSerializer;
 use components\inventory\serialization\InventoryTypeSerializer;
 
 class InventoryEquipmentController extends AbstractController {
@@ -81,6 +82,10 @@ class InventoryEquipmentController extends AbstractController {
         $rawPackageTypes = $this->httpRequest->getAttribute('PackageTypes');
         $serializer = new PackageTypeSerializer();
         $options['packageTypes'] = $serializer->formatTypesList($rawPackageTypes, $values);
+
+        $inventoryEquipmentTypes = $this->httpRequest->getAttribute('InventoryEquipmentTypes');
+        $serializer = new InventoryEquipmentTypeSerializer();
+        $options['inventoryEquipmentTypes'] = $serializer->formatTypesList($inventoryEquipmentTypes, $values);
 
         $rawInventoryTypes = $this->httpRequest->getAttribute('InventoryTypes');
         $serializer = new InventoryTypeSerializer();

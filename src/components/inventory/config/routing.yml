@@ -333,8 +333,9 @@ admin_inventory_equipment_edit:
     pattern: admin/inventory/equipment/*
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentTypeModel', 'cacheKey': 'InventoryEquipmentTypes' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
-#            # build the form 
+#            # build the form
 #        -
 #            event: 'request_start'
 #            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -346,7 +347,7 @@ admin_inventory_equipment_edit:
 ##            dependencies:
 ##                - { dependency: Provinces, key: provinces, value: id, text: province }
 ##                - { dependency: Vehicles, key: vehicles, value: id, text: number }
-    
+
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController

@@ -44,5 +44,8 @@ return array(
     'INVENTORY_VARIANT_EDITVARIANT' => 'Edit Variant',
     'INVENTORY_VARIANT_ADDVARIANT' => 'Add Variant',
     'INVENTORY_VARIANT_NAME' => 'Enter group name in',
-    'INVENTORY_EQUIPMENT_MAINTENANCEHISTORY' => 'Maintenance History'
+    'INVENTORY_EQUIPMENT_MAINTENANCEHISTORY' => 'Maintenance History',
+    'INVENTORY_EQUIPMENT_MAXDAYS' => 'Max Days',
+    'INVENTORY_EQUIPMENT_PRICE' => 'Price',
+    'INVENTORY_EQUIPMENT_TYPE' => 'Type'
     );

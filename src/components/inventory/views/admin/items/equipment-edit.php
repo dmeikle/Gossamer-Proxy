@@ -5,9 +5,41 @@
         <div class="widget">
             <div class="widgetheader">
                 <h1>
-                    {{equipment.number}} <?php echo $this->getString('DETAILS') ?>
+                    {{item.number}} <?php echo $this->getString('DETAILS') ?>
                 </h1>
             </div>
+            <table class="table cardtable">
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_MAXDAYS') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        <?php echo $form['maxDays'] ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_PRICE') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        <?php echo $form['price'] ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_TYPE') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        <?php echo $form['InventoryEquipmentTypes_id'] ?>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="col-xs-12 col-md-6">

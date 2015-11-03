@@ -22,13 +22,15 @@ use Gossamer\CMS\Forms\FormBuilder;
 class InventoryEquipmentBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-        pr($values);
         if (is_array($validationResults) && array_key_exists('InventoryEquipment', $validationResults)) {
             $builder->addValidationResults($validationResults['InventoryEquipment']);
         }
+
+        
         $builder->add('id', 'hidden', array('class' => 'form-control', 'ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'"))
                 ->add('InventoryItems_id', 'text', array('class' => 'form-control', 'ng-model' => 'item.InventoryItems_id', 'ng-init' => "item.InventoryItems_id ='" . $this->getValue('InventoryItems_id', $values) . "'"))
                 ->add('price', 'text', array('class' => 'form-control', 'ng-model' => 'item.price', 'ng-init' => "item.price ='" . $this->getValue('price', $values) . "'"))
+                ->add('InventoryEquipmentTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryEquipmentTypes_id', 'ng-init' => "item.InventoryEquipmentTypes_id ='" . $this->getValue('InventoryEquipmentTypes_id', $values) . "'", 'options' => $options['inventoryEquipmentTypes']))
                 ->add('maxDays', 'text', array('class' => 'form-control', 'ng-model' => 'item.maxDays', 'ng-init' => "item.maxDays ='" . $this->getValue('maxDays', $values) . "'"));
 
         if (array_key_exists('packageTypes', $options)) {
@@ -41,7 +43,6 @@ class InventoryEquipmentBuilder extends AbstractBuilder {
                 ->add('minOrderQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'item.InventoryItem.minOrderQuantity', 'ng-init' => "item.InventoryItem.minOrderQuantity ='" . $this->getValue('minOrderQuantity', $values['InventoryItem']) . "'"))
                 ->add('maxQuantity', 'text', array('class' => 'form-control', 'ng-model' => 'item.InventoryItem.maxQuantity', 'ng-init' => "item.InventoryItem.maxQuantity ='" . $this->getValue('maxQuantity', $values['InventoryItem']) . "'"))
                 ->add('number', 'text', array('class' => 'form-control', 'ng-model' => 'item.InventoryItem.number', 'ng-init' => "item.InventoryItem.number ='" . $this->getValue('number', $values['InventoryItem']) . "'"))
-                ->add('maxDays', 'text', array('class' => 'form-control', 'ng-model' => 'item.InventoryItem.maxDays', 'ng-init' => "item.InventoryItem.maxDays ='" . $this->getValue('maxDays', $values['InventoryItem']) . "'"))
                 ->add('InventoryTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryItem.InventoryTypes_id', 'ng-init' => "item.InventoryItem.InventoryTypes_id ='" . $this->getValue('InventoryTypes_id', $values) . "'", 'options' => $options['inventoryTypes']))
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel'))
