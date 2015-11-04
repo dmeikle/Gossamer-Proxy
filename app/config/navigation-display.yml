@@ -213,7 +213,7 @@ admin_costing:
             text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
             pattern: '/admin/accounting/supplies'
             ng-click: "addTab('text_key', 'template')"
-            template: ''
+            template: '/render/accounting/suppliesTab'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -378,6 +378,16 @@ admin_accounting_general:
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_ACCOUNTING    
+                - IS_DEVELOPER
+        admin_accounting_inventory:
+            active: true
+            text_key: 'ADMIN_ACCOUNTING_INVENTORY'
+            pattern: '/admin/accounting/inventory'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/accounting/inventory'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING    

@@ -15,21 +15,37 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of InventoryModel
  *
  * @author Dave Meikle
  */
-class InventoryModel extends AbstractModel {
-
+class InventoryModel extends AbstractModel implements FormBuilderInterface{
+    
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Inventory';
-        $this->tablename = 'inventory';
+        $this->entity = 'InventoryItem';
+        $this->tablename = 'inventoryitems';
     }
+
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+    
+    public function search(array $params) {
+        $locale = $this->getDefaultLocale();
+        $params['isActive'] = '1';
+        $params['locale'] = $locale['locale'];
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
+
+        return $data;
+    }
+    
 
 }
