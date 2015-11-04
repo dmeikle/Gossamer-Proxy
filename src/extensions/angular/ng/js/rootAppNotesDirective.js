@@ -36,7 +36,7 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
             $scope.saveNote = function(note, index){
                 note.edit = false;
                 notesSrv.notes = $scope.notes;
-                notesSrv.save(note, $scope.parentItemId, );
+                //notesSrv.save(note, $scope.parentItemId);
             };         
             
         }
