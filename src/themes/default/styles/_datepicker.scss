@@ -1,0 +1,53 @@
+$blue: #03A9F4;
+$dark-blue: #059ADE;
+
+.date-picker>ul{
+    padding:0;
+    li:last-child(){
+        padding:0;
+    }
+}
+.date-picker>ul, .dropdown-menu[datepicker-popup-wrap]{
+    padding:0;
+    button{
+        border-radius: 0;
+        border: none;        
+        &:active:focus{
+            outline: none;
+        }
+    }
+    th>button{
+        width: 38px;
+        background-color:$blue;
+        color:#fff;
+        transition:all .2s ease-out;
+        &:hover{
+            background-color:$dark-blue;
+            color:#fff;
+        }
+        &:focus{
+            background-color:$dark-blue;
+            color:#fff;
+        }
+        &:active:hover{
+            background-color:$dark-blue;
+            color:#fff;
+        }
+    }
+    .btn-info.active{
+        background-color: #1096D2;
+        .text-info{
+            color:#fff;
+        }
+    }
+    .btn-default[disabled]{
+        background-color:$blue;
+        opacity:1;
+    }
+    .text-info{
+        color:$blue;
+    }
+    .text-muted{
+        color:#ddd;
+    }
+}
