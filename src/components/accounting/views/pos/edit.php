@@ -144,14 +144,9 @@
                         <?php echo $form['deliveryFee']; ?>
                     </div>
 
-                    <div class="form-group">
-                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_PST'); ?></label>
-                        <p class="col-md-6">{{item.pst | currency}}</p>
-                    </div>
-                
-                    <div class="form-group">
-                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_GST'); ?></label>
-                        <p class="col-md-6">{{item.gst | currency}}</p>
+                    <div class="form-group" ng-repeat="tax in item.taxTypes">
+                        <label for="tax" class="col-md-6">{{tax.type}}</label>
+                        <p class="col-md-6">{{tax.total | currency}}</p>
                     </div>
 
                     <div class="form-group">

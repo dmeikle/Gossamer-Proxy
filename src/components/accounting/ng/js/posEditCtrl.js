@@ -35,6 +35,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
 //            for(var i in $scope.lineItems){
 //                posEditSrv.getInventoryItemDetails($scope.lineItems[i].InventoryItems_id)
 //            }
+            console.log($scope.lineItems);
         });
     } else {
         $scope.editing = false;
@@ -163,11 +164,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
             
             //Add the tax
-            if(!isNaN(parseFloat(row.taxPercent))){
-                var taxMultiplier = parseFloat(row.taxPercent) * 0.01;
-                row.tax = parseFloat(((row.unitPrice) * taxMultiplier).toFixed(2));
-                row.amount += row.tax;  
-            }
+//            if(!isNaN(parseFloat(row.taxPercent))){
+//                var taxMultiplier = parseFloat(row.taxPercent) * 0.01;
+//                row.tax = parseFloat(((row.unitPrice) * taxMultiplier).toFixed(2));
+//                row.amount += row.tax;  
+//            }
             
         } else {
             row.amount = '';
@@ -212,7 +213,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
         var options = $(taxSelect).find('option');
         for(var i = 0; i < options.length; i++){
             if(options[i].value === id){
-                row.taxPercent = options[i].attributes['data-amount'].nodeValue;
+                row.taxAmount = parseFloat(options[i].attributes['data-amount'].nodeValue);
                 row.taxType = options[i].attributes['data-type'].nodeValue;
             }
         }
@@ -220,28 +221,28 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     };
     
     $scope.updateTaxList = function(){
+        $scope.item.taxTypes = [];
         for(var i in $scope.lineItems){
             console.log($scope.lineItems[i]);
             var taxObj = {
-                type: $scope.lineItems[i].taxType
+                id: $scope.lineItems[i].AccountingTaxTypes_id,
+                type: $scope.lineItems[i].taxType,
+                //taxAmount: $scope.lineItems[i].taxAmount
+                total: 0
             };
-            if(!objectWithPropExists($scope.lineItems, 'type', taxObj.type)){
+            if(!objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null){
                 $scope.item.taxTypes.push(taxObj);
-            } else {
-                console.log('type already exists!!!');
-            }           
+            }
+            for(var j in $scope.item.taxTypes){
+                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
+                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                }
+            }
         }
-        //console.log('TAX RIST');
-        console.log($scope.item.taxTypes);
-
-        
     };
     
     function objectWithPropExists(array1,propName,propVal) {
-        console.log('looking for niudowanidaodjwai jdia');
         for(var i=0,k=array1.length;i<k;i++){
-            console.log(array1[i][propName]);
-            console.log(propVal);
             if(array1[i][propName]===propVal) return true;
         }
         return false;
