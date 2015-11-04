@@ -1,17 +1,13 @@
-module.directive('comments', function (rootTemplateSrv) {
+module.directive('comments', function (rootTemplateSrv, commentsSrv) {
     return {
         restrict: 'E',
         scope: {
             apiPath: '@'
         },
         transclude: true,
-//        link: function (scope, element, attrs) {
-//           
-//        },
         templateUrl: rootTemplateSrv.commentsTemplate,
         controller: function ($scope) {
-            $scope.comments = [];
-            var lastHeight = '';
+            $scope.comments = commentsSrv.comments;
             
             //Edit Comment
             $scope.editComment = function(comment){
@@ -21,6 +17,7 @@ module.directive('comments', function (rootTemplateSrv) {
             //Delete Comment
             $scope.deleteComment = function(index){
                 $scope.comments.splice(index, 1);
+                commentsSrv.comments = $scope.comments;
             };
 
             //Save New Comment
@@ -28,20 +25,15 @@ module.directive('comments', function (rootTemplateSrv) {
                 var comment = {};
                 comment.text = newComment;
                 comment.edit = false;
-                $scope.comments.push(comment);
+                commentsSrv.comments.push(comment);
+                $scope.comments = commentsSrv.comments;
             };
             
             //Save Comment
             $scope.saveComment = function(comment, index){
                 comment.edit = false;
-            };
-            
-//            $('.comment-input').each(function () {
-//                this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
-//            }).on('input', function () {
-//                this.style.height = 'auto';
-//                this.style.height = (this.scrollHeight) + 'px';
-//            });                
+                commentsSrv.comments = $scope.comments;
+            };         
             
         }
     };

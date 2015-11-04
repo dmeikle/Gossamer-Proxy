@@ -3,7 +3,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
-    //var inventoryItemsPath = ''
     var self = this;
     
     //Claims Autocomplete
@@ -11,7 +10,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
             self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
-            console.log(searchSrv.autocomplete);
             for (var item in self.autocomplete) {
                 if (!isNaN(item / 1)) {
                     self.autocompleteValues.push(self.autocomplete[item].jobNumber);
@@ -72,19 +70,15 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Get the purchase order
     this.getPurchaseOrder = function (id) {
-        //var config = {};
-
         return $http({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + id,
-            //config: config
+            url: apiPath + id
         }).then(function (response) {
-            //console.log(response);
             self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
-            console.log(self.purchaseOrder);
+            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
             self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
             self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
@@ -100,18 +94,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             
         });
     };
-    
-//    this.getInventoryItemDetails = function(id){
-//        return $http({
-//            method: 'GET',
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded'
-//            },
-//            url: inventoryItemsAutocompletePath + '?id=' + id,
-//        }).then(function (response) {
-//            self.inventoryItemDetails = response.data.InventoryItems;
-//        });
-//    };
     
     //Save the inventory item
     this.save = function (item, formToken) {

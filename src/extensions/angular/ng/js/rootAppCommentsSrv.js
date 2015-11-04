@@ -1,7 +1,26 @@
 module.service('commentsSrv', function ($http) {   
+    var self = this;
     
-    //Save comment
+    self.comments = [];
     
+    this.addComment = function(comment){
+        self.comments.push(comment);
+    };
+    
+    this.convertNotes = function(notes){
+        self.comments = [];
+        for(var i in notes){
+            var comment = {
+                text: notes[i].notes,
+                edit: false
+            };
+            self.comments.push(comment);
+        }
+        console.log(self.comments);
+        return self.comments;
+    };
+    
+    //Save comment    
     this.save = function(apiPath, comment, id, formToken){
         var data = {};
         data.comment = comment;

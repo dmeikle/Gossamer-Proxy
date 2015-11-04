@@ -1,4 +1,4 @@
-module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
+module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, commentsSrv) {
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -27,6 +27,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             $scope.loading = false;
             $scope.item.taxTypes = [];
+            commentsSrv.comments = commentsSrv.convertNotes(posEditSrv.purchaseOrderNotes);
         });
     } else {
         $scope.editing = false;
@@ -238,8 +239,18 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     //Saving Items    
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        $scope.item.purchaseOrderItem = $scope.lineItems;
-        console.log($scope.item);
+        var purchaseOrder = angular.copy($scope.item);
+        var purchaseOrderNotes = [];
+        
+        for(var i in commentsSrv.comments){
+            var note = {
+                notes: commentsSrv.comments[i].text
+            };
+            purchaseOrderNotes.push(note);
+        }
+        //$scope.item.purchaseOrderItem = $scope.lineItems;
+        purchaseOrder.dateEntered = $filter('date')(purchaseOrder.dateEntered, 'yyyy-MM-dd', '+0000');
+        console.log(purchaseOrderNotes);
         //posEditSrv.save($scope.item, formToken);
     };
 });
