@@ -12,6 +12,26 @@
                 <tr>
                     <td>
                         <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_NAME') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        {{item.InventoryItem.name}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_DESCRIPTION') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        {{item.InventoryItem.description}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
                             <?php echo $this->getString('INVENTORY_EQUIPMENT_MAXDAYS') ?>
                         </strong>
                     </td>
@@ -49,6 +69,38 @@
                     <?php echo $this->getString('STATUS') ?>
                 </h1>
             </div>
+            <table class="table cardtable">
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_LOCATION') ?>
+                        </strong>
+                    </td>
+                    <td>
+                        {{transferHistory[0].currentLocation}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_MAINTENANCESTATUS') ?>
+                        </strong>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>
+                            <?php echo $this->getString('INVENTORY_EQUIPMENT_MAINTENANCEDAYS') ?>
+                        </strong>
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="clearfix"></div>
@@ -59,13 +111,14 @@
                     <?php echo $this->getString('INVENTORY_EQUIPMENT_MAINTENANCEHISTORY') ?>
                 </h1>
             </div>
+            <?php echo $this->getString('COMING_SOON') ?>
             <table class="table">
                 <tr>
                     <td>
-                    
+
                     </td>
                     <td>
-                        
+
                     </td>
                 </tr>
             </table>

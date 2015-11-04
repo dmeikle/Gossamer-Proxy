@@ -11,7 +11,7 @@ module.service('inventoryEquipmentEditSrv', function(crudSrv) {
         if (!object.id || object.id === '') {
             requestPath = apiPath + '0';
         } else {
-            requestPath = apiPath + object.id;
+            requestPath = apiPath + object.InventoryEquipment_id;
         }
 
         for (var property in object) {

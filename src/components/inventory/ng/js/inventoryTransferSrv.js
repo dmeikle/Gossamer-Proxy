@@ -1,6 +1,6 @@
 module.service('inventoryTransferSrv', function($http, crudSrv, searchSrv) {
     var self = this;
-    var apiPath = '/admin/inventory/equipment/'
+    var apiPath = '/admin/inventory/equipment/';
 
     this.autocomplete = function(value, type, apiPath) {
         var config = {};
@@ -28,9 +28,9 @@ module.service('inventoryTransferSrv', function($http, crudSrv, searchSrv) {
 
     this.getEquipmentTransferHistory = function(object) {
         var config = {};
-        config.id = object.id;
+        config.InventoryEquipment_id = object.id;
         config['directive::ORDER_BY'] = 'transferDate';
         config['directive::DIRECTION'] = 'desc';
-        return searchSrv.searchCall(config, apiPath + 'transferhistory/0/4');
+        return searchSrv.searchCall(config, apiPath + 'transferhistory/0/10');
     };
 });
