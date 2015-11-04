@@ -10,7 +10,7 @@ module.service('vendorsListSrv', function ($http, crudSrv, searchSrv) {
     
     
     this.search = function (searchObject) {
-        return searchSrv.search(searchObject, apiPath).then(function () {
+        return searchSrv.search(apiPath, searchObject).then(function () {
             self.searchResults = searchSrv.searchResults.Vendors;
             self.searchResultsCount = searchSrv.searchResultsCount.VendorsCount[0].rowCount;
         });
