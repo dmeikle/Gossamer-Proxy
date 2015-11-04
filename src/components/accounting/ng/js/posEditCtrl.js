@@ -1,4 +1,4 @@
-module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, commentsSrv) {
+module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, notesSrv) {
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -27,11 +27,14 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             $scope.loading = false;
             $scope.item.taxTypes = [];
-            commentsSrv.comments = commentsSrv.convertToComments(posEditSrv.purchaseOrderNotes);
+            console.log(posEditSrv.purchaseOrderNotes);
+            notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+            //commentsSrv.comments = commentsSrv.convertToComments(posEditSrv.purchaseOrderNotes);
         });
     } else {
         $scope.editing = false;
         $scope.loading = false;
+        $scope.item.id = 0;
     }    
     
     function LineItems(){

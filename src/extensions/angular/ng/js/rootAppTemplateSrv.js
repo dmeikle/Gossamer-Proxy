@@ -1,5 +1,5 @@
 module.service('rootTemplateSrv', function () {
     this.sortByButton = '/render/angular/sortByButton';
-    this.commentsTemplate = '/render/angular/commentsTemplate';
+    this.notesTemplate = '/render/angular/notesTemplate';
     //this.commentsTemplate = '/render/extensions/commentsTemplate';
 });

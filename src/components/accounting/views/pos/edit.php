@@ -7,6 +7,11 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
                 
                 <div class="form-group">
+                    <label for="purchaseOrderType" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></label>
+                    <?php echo $form['PurchaseOrderTypes_id']; ?>
+                </div>
+                
+                <div class="form-group">
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['Vendors_id']; ?>
                 </div>
@@ -116,7 +121,7 @@
     <div ng-if="!loading && editing" class="col-md-10 purchase-order-notes">        
         <div class="widget">
             <div class="widget-content">
-                <comments  api-path="/admin/accounting/pos/"></comments>
+                <notes api-path="/admin/accounting/pos/" parent-item-id="{{item.id}}" parent-item-name="PurchaseOrders_id"></notes>
             </div>
             <div class="clearfix"></div>
         </div>
