@@ -1,4 +1,4 @@
-var module = angular.module('rootApp', []);
+var module = angular.module('rootApp', ['ui.bootstrap']);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function (data) {
