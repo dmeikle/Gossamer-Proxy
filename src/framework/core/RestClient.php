@@ -16,6 +16,7 @@ namespace core;
  * https://github.com/tcdent/php-restclient
  * (c) 2013 Travis Dent <tcdent@gmail.com>
  */
+
 use libraries\utils\UnicodeHandler;
 use \libraries\utils\YAMLParser;
 use Monolog\Logger;
@@ -28,11 +29,13 @@ class RestClient implements \Iterator, \ArrayAccess {
 
     public $options;
     public $handle; // cURL resource handle.
+
     // Populated after execution:
     public $response; // Response body.
     public $headers; // Parsed reponse header object.
     public $info; // Response info object.
     public $error; // Response error string.
+
     // Populated as-needed.
     public $decoded_response; // Decoded response body.
     private $iterator_positon;
@@ -77,7 +80,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     }
 
     // Iterable methods:
-    public function rewind() {
+    public function rewind(){
         $this->decode_response();
         return reset($this->decoded_response);
     }
@@ -132,7 +135,7 @@ class RestClient implements \Iterator, \ArrayAccess {
         return $this->execute($url, 'POST', $parameters, $headers);
     }
 
-    public function put($url, $parameters = array(), $headers = array()) {
+    public function put($url, $parameters=array(), $headers=array()){
         $parameters['_method'] = "PUT";
         return $this->execute($url, 'POST', $parameters, $headers);
     }
@@ -160,8 +163,9 @@ class RestClient implements \Iterator, \ArrayAccess {
             CURLOPT_USERAGENT => $client->options['user_agent']
         );
 
-        if ($client->options['username'] && $client->options['password'])
+        if ($client->options['username'] && $client->options['password']) {
             $curlopt[CURLOPT_USERPWD] = sprintf("%s:%s", $client->options['username'], $client->options['password']);
+        }
 
         if (count($client->options['headers']) || count($headers)) {
             $curlopt[CURLOPT_HTTPHEADER] = array();
@@ -174,7 +178,9 @@ class RestClient implements \Iterator, \ArrayAccess {
 
         //   if($client->options['format'])
         //      $client->url .= '.'.$client->options['format'];
-
+        if (is_null($parameters)) {
+            $parameters = array();
+        }
         $parameters = array_merge($client->options['parameters'], $parameters);
 
         if (strtoupper($method) == 'POST') {
@@ -428,5 +434,4 @@ class RestClient implements \Iterator, \ArrayAccess {
         }
         return($ascii);
     }
-
 }

@@ -46,4 +46,11 @@ class InventoryItemModel extends AbstractModel implements FormBuilderInterface {
         return $data;
     }
 
+    public function saveVariantOptions($id) {
+        $params = $this->httpRequest->getPost();
+        $params['InventoryItems_id'] = intval($id);
+
+        return $this->dataSource->query(self::METHOD_POST, $this, 'savevariantgroupoptions', $params);
+    }
+
 }

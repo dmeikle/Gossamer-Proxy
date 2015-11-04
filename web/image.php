@@ -6,11 +6,12 @@ $imagePath = sanitizeFilename($_GET['imagepath']);
 serveImage($filepath . $imagePath);
 
 function serveImage($filepath) {
-
+  
     if (file_exists($filepath)) {
 
         $path_parts = pathinfo($filepath);
-        switch (strtolower($path_parts['extension'])) {
+        switch(strtolower($path_parts['extension']))
+        {
             case "gif":
                 header("Content-type: image/gif");
                 break;
@@ -32,7 +33,7 @@ function serveImage($filepath) {
         readfile($filepath);
     } else {
 
-        header("HTTP/1.0 404 Not Found");
+        header( "HTTP/1.0 404 Not Found");
         header("Content-type: image/jpeg");
         header('Content-Length: ' . filesize("404_files.jpg"));
         header("Accept-Ranges: bytes");
@@ -41,22 +42,26 @@ function serveImage($filepath) {
     }
 }
 
-function sanitizeFilename($string = '', $is_filename = FALSE) {
 
-    $pieces = explode('/', $string);
-    $chunk = array_pop($pieces);
-    $str = strip_tags($chunk);
-    $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
-    $str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
-    $str = strtolower($str);
-    $str = html_entity_decode($str, ENT_QUOTES, "utf-8");
-    $str = htmlentities($str, ENT_QUOTES, "utf-8");
-    $str = preg_replace("/(&)([a-z])([a-z]+;)/i", '$2', $str);
-    $str = str_replace(' ', '-', $str);
-    $str = rawurlencode($str);
-    $str = str_replace('%', '-', $str);
+function sanitizeFilename($string = '', $is_filename = FALSE)
+    {
+      
+       $pieces = explode('/', $string);
+       $chunk = array_pop($pieces);
+        $str = strip_tags($chunk); 
+        $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
+        $str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
+        $str = strtolower($str);
+        $str = html_entity_decode( $str, ENT_QUOTES, "utf-8" );
+        $str = htmlentities($str, ENT_QUOTES, "utf-8");
+        $str = preg_replace("/(&)([a-z])([a-z]+;)/i", '$2', $str);
+        $str = str_replace(' ', '-', $str);
+        $str = rawurlencode($str);
+        $str = str_replace('%', '-', $str);
 
-    return implode(DIRECTORY_SEPARATOR, $pieces) . DIRECTORY_SEPARATOR . $str;
-}
-
+        return implode(DIRECTORY_SEPARATOR, $pieces)  . DIRECTORY_SEPARATOR . $str;
+       
+   }
+        
+        
 ?>

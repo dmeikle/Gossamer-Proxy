@@ -11,7 +11,7 @@
 
 namespace components\inventory\models;
 
-use core\AbstractModel;
+use core\AbstractI18nModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
@@ -22,7 +22,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
  *
  * @author Dave Meikle
  */
-class VariantOptionModel extends AbstractModel implements FormBuilderInterface {
+class VariantOptionModel extends AbstractI18nModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -35,31 +35,6 @@ class VariantOptionModel extends AbstractModel implements FormBuilderInterface {
 
     public function getFormWrapper() {
         return $this->entity;
-    }
-
-    /**
-     * retrieves a row from the datasource for editing
-     *
-     * @param int $id
-     *
-     * @return array
-     */
-    public function edit($id) {
-
-        $locale = $this->getDefaultLocale();
-
-        if ($this->isFailedValidationAttempt()) {
-
-            return $this->httpRequest->getAttribute('POSTED_PARAMS');
-        }
-
-        $params = array(
-            'id' => intval($id)
-        );
-
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-
-        return $data;
     }
 
 }
