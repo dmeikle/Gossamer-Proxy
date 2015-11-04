@@ -29,7 +29,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
 
 
     this.saveProjectManager = function (object, formToken) {
-        return crudSrv.save(object, 'ProjectManager', formToken, '/admin/claims/projectmanagers/' + object.id).then(function(response) {
+        return crudSrv.save('/admin/claims/projectmanagers/' + object.id, object, 'ProjectManager', formToken).then(function(response) {
             return response.data.Claim[0];
         });
     };
