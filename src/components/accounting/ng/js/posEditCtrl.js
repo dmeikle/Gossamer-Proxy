@@ -31,6 +31,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             $scope.loading = false;
             $scope.item.pst = 0;
             $scope.item.gst = 0;
+            $scope.item.taxTypes = [];
 //            for(var i in $scope.lineItems){
 //                posEditSrv.getInventoryItemDetails($scope.lineItems[i].InventoryItems_id)
 //            }
@@ -62,7 +63,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.addRow = function(){
         $scope.lineItems.push(new LineItems());        
     };
-    //console.log($scope.lineItems);
+    
     $scope.insertRows = function () {
         for(var i = $scope.lineItems.length-1; i >= 0; i--){
             if ($scope.lineItems[i].isSelected === true) {
@@ -126,7 +127,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.getProductCodeInfo = function (row, value) {
         for (var i in posEditSrv.productCodeAutocomplete) {
             if (posEditSrv.productCodeAutocomplete[i].productCode === value) {
-                console.log(posEditSrv.productCodeAutocomplete[i]);
                 row.productName = posEditSrv.productCodeAutocomplete[i].name;
                 row.unitPrice = parseFloat(posEditSrv.productCodeAutocomplete[i].price);
                 row.InventoryItems_id = posEditSrv.productCodeAutocomplete[i].id;
@@ -159,13 +159,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     
     //Update totals
     $scope.updateAmount = function(row){
-        
         if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity))){
             row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
-            console.log(row.taxPercent);
+            
             //Add the tax
             if(!isNaN(parseFloat(row.taxPercent))){
-                console.log('wah awhahiwhia');
                 var taxMultiplier = parseFloat(row.taxPercent) * 0.01;
                 row.tax = parseFloat(((row.unitPrice) * taxMultiplier).toFixed(2));
                 row.amount += row.tax;  
@@ -185,6 +183,14 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             } else {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
+//            for(var j in $scope.item.taxTypes){
+//                console.log('dsadadada');
+//                $scope.item.taxTypes.push();
+//                for(var key in $scope.item.taxTypes[i]){
+//                    console.log($scope.lineItems[i].taxType);
+//                }
+//            }
+//            console.log($scope.item.taxTypes);
         }
         $scope.updateTotal();
     };
@@ -197,6 +203,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
         if(parseFloat($scope.item.tax) > 0){
             $scope.item.total += parseFloat($scope.item.tax);
         }
+        
     };
     
     //Update tax
@@ -206,10 +213,39 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
         for(var i = 0; i < options.length; i++){
             if(options[i].value === id){
                 row.taxPercent = options[i].attributes['data-amount'].nodeValue;
-                row.taxPercent = options[i].attributes['data-amount'].nodeValue;
+                row.taxType = options[i].attributes['data-type'].nodeValue;
             }
         }
+        $scope.updateTaxList();
     };
+    
+    $scope.updateTaxList = function(){
+        for(var i in $scope.lineItems){
+            console.log($scope.lineItems[i]);
+            var taxObj = {
+                type: $scope.lineItems[i].taxType
+            };
+            if(!objectWithPropExists($scope.lineItems, 'type', taxObj.type)){
+                $scope.item.taxTypes.push(taxObj);
+            } else {
+                console.log('type already exists!!!');
+            }           
+        }
+        //console.log('TAX RIST');
+        console.log($scope.item.taxTypes);
+
+        
+    };
+    
+    function objectWithPropExists(array1,propName,propVal) {
+        console.log('looking for niudowanidaodjwai jdia');
+        for(var i=0,k=array1.length;i<k;i++){
+            console.log(array1[i][propName]);
+            console.log(propVal);
+            if(array1[i][propName]===propVal) return true;
+        }
+        return false;
+    }   
     
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};
