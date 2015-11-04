@@ -7,6 +7,8 @@ module.service('warehouseEditSrv', function(crudSrv) {
     };
 
     this.saveWarehouse = function(object, formToken) {
-        return crudSrv.save(object, objectType, formToken, apiPath);
+
+        return crudSrv.save(apiPath, object, objectType, formToken);
+
     };
 });

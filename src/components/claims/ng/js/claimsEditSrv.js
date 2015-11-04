@@ -9,6 +9,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
 
 
     this.save = function(object, formToken, page) {
+
         var requestPath;
         if (object.id) {
             requestPath = singleApiPath + page + '/' + object.id;
@@ -19,7 +20,8 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
         if (object.date) {
             copiedObject.date = object.date.toISOString().substring(0, 10);
         }
-        return crudSrv.save(copiedObject, objectType, formToken, requestPath);
+        return crudSrv.save(requestPath, copiedObject, objectType, formToken);
+
     };
 
 
@@ -34,13 +36,17 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.autocomplete = function(value, type) {
         var config = {};
         config[type] = value;
-        return searchSrv.fetchAutocomplete(config, apiPath + 'projectaddresses/').then(function() {
+
+        return searchSrv.fetchAutocomplete(apiPath + 'projectaddresses/', config).then(function() {
+
             return searchSrv.autocomplete.ProjectAddresss;
         });
     };
 
     this.saveProjectAddress = function(object, formToken) {
-        return crudSrv.save(object, 'ProjectAddress', formToken, '/admin/projects/');
+
+        return crudSrv.save('/admin/projects/', object, 'ProjectAddress', formToken);
+
     };
 
     this.getProjectAddress = function(id) {
@@ -61,5 +67,6 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
             self.staffList = response.data.Staffs;
         });
     };
+
 
 });

@@ -1,5 +1,7 @@
 module.service('crudSrv', function($http) {
-    this.save = function(object, objectType, formToken, apiPath) {
+
+    this.save = function(apiPath, object, objectType, formToken) {
+
         var requestPath;
         if (!object.id || object.id === '') {
             requestPath = apiPath + '0';
@@ -20,7 +22,9 @@ module.service('crudSrv', function($http) {
         });
     };
 
-    this.saveMultiple = function(object, formToken, apiPath) {
+
+    this.saveMultiple = function(apiPath, object, formToken) {
+
         var data = object;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({

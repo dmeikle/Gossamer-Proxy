@@ -20,7 +20,7 @@ module.service('inventoryEditSrv', function(crudSrv) {
             }
         }
 
-        return crudSrv.save(object, objectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, objectType, formToken);
     };
 
     this.delete = function(object, formToken) {
