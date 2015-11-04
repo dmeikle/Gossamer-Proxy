@@ -159,4 +159,10 @@ class ClaimsController extends AbstractController {
         $this->render($result);
     }
 
+    public function savePM($claimId) {
+        $result = $this->model->savePM($claimId);
+
+        $this->render($result);
+    }
+
 }

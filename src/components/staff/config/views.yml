@@ -5,6 +5,7 @@ admin_staff_edit_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "content": "src/components/staff/views/admin/staff-edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -35,6 +36,7 @@ admin_staff_home:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
             "context-button": "src/components/staff/views/admin/context-button.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/staff/views/admin/staff-list.php"
             "section2": "src/components/staff/views/admin/subnav.php"
             "footer": "src/themes/default/templates/sections/footer.php"

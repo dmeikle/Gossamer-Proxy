@@ -1,4 +1,4 @@
-module.service('claimsListSrv', function ($http, searchSrv) {
+module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
 
     var apiPath = '/admin/claims/';
     var apiPathClaimLocation = '/admin/claimlocations/claim/';
@@ -26,12 +26,16 @@ module.service('claimsListSrv', function ($http, searchSrv) {
     };
 
 
+    this.saveProjectManager = function (object, formToken) {
+        return crudSrv.save(object, 'ProjectManager', formToken, '/admin/claims/projectmanagers/' + object.id).then(function(response) {
+            return response.data.Claim[0];
+        });
+    };
 
     this.getClaimsLocationsList = function (claimId) {
         return $http.get(apiPath + 'locations/' + claimId)
                 .then(function (response) {
                     self.claimsLocations = response.data.ClaimsLocations;
-
                 });
     };
 

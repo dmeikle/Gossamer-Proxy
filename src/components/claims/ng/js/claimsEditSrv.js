@@ -47,4 +47,10 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
             self.contacts = response.data.ClaimContacts;
         });
     };
+    
+    this.loadPMList = function(claimId) {
+        return crudSrv.getDetails('/admin/staff/pmlist/', claimId).then(function (response) {
+            self.staffList = response.data.Staffs;
+        });
+    };
 });

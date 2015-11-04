@@ -33,6 +33,14 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
         $this->tablename = 'claims';
     }
 
+    public function savePM($claimId) {
+        $params = $this->httpRequest->getPost();
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveprojectmanager', $params['ProjectManager']);
+
+        return $data;
+    }
+
     public function search(array $params) {
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);

@@ -1,4 +1,4 @@
-module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsListSrv, tablesSrv, searchSrv) {
     var a = document.createElement('a');
     a.href = $location.absUrl();
     var apiPath;
@@ -54,6 +54,21 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
         });
     };
 
+    $scope.assignPM = function (claim) {
+
+        var modalInstance = $modal.open({
+            templateUrl: '/render/claims/assignPMModal',
+            controller: 'claimsPMModalCtrl',
+            size: 'lg',
+            keyboard: false,
+            backdrop: "static",
+            resolve: {
+                claim: function () {
+                    return claim;
+                }
+            }
+        });
+    };
 
     $scope.closeSidePanel = function() {
         $scope.sidePanelOpen = false;                
@@ -91,8 +106,45 @@ module.controller('claimsListCtrl', function ($scope, $location, $modal, claimsE
     };
 });
 
+
+module.controller('claimsPMModalCtrl', function ($modalInstance, $scope, claimsListSrv, claim) {
+    $scope.staffList = [];
+
+    $scope.claim = claim;
+
+
+    $scope.autocomplete = function (value) {
+        return autocomplete(value, 'projectmanager');
+    };
+
+
+    $scope.selectPM = function (Staff_id) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
+        claim.projectManager_id = Staff_id;
+        delete claim.currentClaimPhases_id;
+        delete claim.workAuthorizationReceiveDate;
+        delete claim.ClaimTypes_id;
+        
+        claimsListSrv.saveProjectManager(claim, formToken).then(function (response) {
+            $scope.claim.jobNumber = response.jobNumber;
+            $scope.confirm();
+        });
+    };
+
+
+    $scope.confirm = function () {
+        $modalInstance.close($scope.claim.query);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
 module.controller('claimsModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
     $scope.addNewClient = false;
+
 
     $scope.project = {};
     $scope.claim = {};
