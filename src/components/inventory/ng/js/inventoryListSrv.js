@@ -1,4 +1,6 @@
+
 module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
+
     var apiPath = '/admin/inventory/';
 
     this.getMaterialsList = function(row, numRows) {
@@ -15,6 +17,7 @@ module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
         });
     };
 
+
     this.getEquipmentTransferHistory = function(object) {
         var config = {};
         config.InventoryEquipment_id = object.InventoryEquipment_id;
@@ -25,6 +28,7 @@ module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
 
     this.getMaterialDetails = function(object) {
         return crudSrv.getDetails(apiPath + 'item/', object.id);
+
     };
 
 });

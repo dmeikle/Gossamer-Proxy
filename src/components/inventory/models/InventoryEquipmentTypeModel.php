@@ -22,34 +22,19 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
  *
  * @author Dave Meikle
  */
-class InventoryEquipmentModel extends AbstractModel implements FormBuilderInterface {
+class InventoryEquipmentTypeModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'InventoryEquipment';
-        $this->tablename = 'inventoryequipment';
+        $this->entity = 'InventoryEquipmentType';
+        $this->tablename = 'inventoryequipmenttypes';
     }
 
     public function getFormWrapper() {
         return $this->entity;
-    }
-
-    public function transfer(array $params) {
-
-        $data = $this->dataSource->query(self::METHOD_POST, $this, 'transfer', $params);
-
-        return $data;
-    }
-
-    public function edit($id) {
-        $params = array('InventoryEquipment_id' => intval($id));
-
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-
-        return $data;
     }
 
 }

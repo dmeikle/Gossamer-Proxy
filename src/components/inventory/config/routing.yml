@@ -298,6 +298,20 @@ admin_inventory_equipment_locations:
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
 
+admin_inventory_equipment_get:
+    pattern: admin/inventory/equipment/get/*
+    listeners:
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_inventory_equipment_get
+        datasource: datasource1
+
 admin_inventory_equipment_list:
     pattern: admin/inventory/equipment/*/*
     listeners:
@@ -312,6 +326,39 @@ admin_inventory_equipment_list:
         viewKey: admin_inventory_equipment_list
         datasource: datasource1
         langFiles:
+            - 'src/components/defaultItem/locales/*/Navigation'
+    methods: [GET]
+
+admin_inventory_equipment_edit:
+    pattern: admin/inventory/equipment/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentTypeModel', 'cacheKey': 'InventoryEquipmentTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+#            # build the form
+#        -
+#            event: 'request_start'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\inventory\form\InventoryEquipmentBuilder'
+#            model: 'components\inventory\models\InventoryEquipmentModel'
+#            cacheKey: 'InventoryEquipmentForm'
+#            formName: 'inventoryEquipmentForm'
+##            dependencies:
+##                - { dependency: Provinces, key: provinces, value: id, text: province }
+##                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryEquipmentController
+        model: components\inventory\models\InventoryEquipmentModel
+        method: edit
+        view: core\views\AngularTemplateView
+        viewKey: admin_inventory_equipment_edit
+        datasource: datasource1
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
 
@@ -350,6 +397,7 @@ admin_inventory_items_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+
 
 
 admin_inventory_items_save:
@@ -509,8 +557,8 @@ admin_inventory_variantoptions_save:
         viewKey: admin_inventory_variantoptions_save
         datasource: datasource1
     methods: [POST]
-    
-    
+
+
 
 
 #-------------------------- variant groups -----------------------
@@ -567,7 +615,7 @@ admin_inventory_variantgroups_save:
         viewKey: admin_inventory_variantgroups_save
         datasource: datasource1
     methods: [POST]
-    
+
 
 
 admin_inventory_items_variantgroups_save:
@@ -581,4 +629,3 @@ admin_inventory_items_variantgroups_save:
         viewKey: admin_inventory_items_variantgroups_save
         datasource: datasource1
     methods: [POST]
-        

@@ -54,5 +54,6 @@ return array(
     'PASSWORD' => 'Password',
     'CANCEL' => 'Cancel',
     'CONFIRM' => 'Okay',
-    'SAVE' => 'Save'
+    'SAVE' => 'Save',
+    'STATUS' => 'Status'
 );

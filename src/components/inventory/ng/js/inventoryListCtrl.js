@@ -1,5 +1,7 @@
+
 module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     inventoryListSrv, inventoryEditSrv, inventoryTransferSrv) {
+
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -60,8 +62,10 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
         $scope.loading = true;
         inventoryListSrv.getEquipmentList(row, numRows)
             .then(function(response) {
+
                 $scope.inventoryList = response.data.InventoryEquipments;
                 $scope.totalItems = response.data.InventoryEquipmentsCount;
+
                 $scope.loading = false;
             });
     };
@@ -81,15 +85,18 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
                         });
                     break;
                 default:
+
                     inventoryListSrv.getEquipmentTransferHistory(clickedObject)
                         .then(function(response) {
                             $scope.selectedRow = inventoryListSrv.item;
                             $scope.transferHistory = response.data.InventoryEquipmentHistorys;
+
                             $scope.sidePanelLoading = false;
                         });
             }
         }
     };
+
 
     $scope.closeSidePanel = function() {
         if ($scope.searching) {
@@ -103,6 +110,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
             $scope.sidePanelOpen = false;
         }
     };
+
 
     $scope.search = function(searchObject) {
         $scope.noResults = undefined;
@@ -122,6 +130,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = {};
+
         $scope.getList();
     };
 
@@ -162,6 +171,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
         });
     };
 
+
     $scope.delete = function(object) {
         var confirmed = window.confirm('Are you sure?');
         if (confirmed) {
@@ -183,6 +193,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
             $scope.getList();
         }
     });
+
 });
 
 module.controller('transferModalController', function($scope, $modalInstance,
@@ -237,4 +248,5 @@ module.controller('transferModalController', function($scope, $modalInstance,
     $scope.close = function() {
         $modalInstance.dismiss('cancel');
     };
+
 });

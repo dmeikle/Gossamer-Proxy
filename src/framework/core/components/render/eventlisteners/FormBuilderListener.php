@@ -57,11 +57,15 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
     protected function formatDependency(array $dependency) {
         $serializer = new DependencySerializer();
 
-        if(array_key_exists('formatting', $dependency) && $dependency['formatting'] == 'raw') {
+        if (array_key_exists('formatting', $dependency) && $dependency['formatting'] == 'raw') {
             return $this->httpRequest->getAttribute($dependency['dependency']);
         }
 
         return $serializer->formatSelectionBox($dependency['value'], $dependency['text'], $this->httpRequest->getAttribute($dependency['dependency']));
+    }
+
+    public function on_request_start($params) {
+        $this->on_filerender_start($params);
     }
 
 }
