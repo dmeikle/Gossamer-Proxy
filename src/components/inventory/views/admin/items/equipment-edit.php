@@ -5,6 +5,9 @@
         <div class="widget">
             <div class="widgetheader">
                 <h1>
+                    <span ng-if="loading">
+                        <span class="spinner-loader"></span>
+                    </span>
                     {{item.number}} <?php echo $this->getString('DETAILS') ?>
                 </h1>
             </div>
@@ -16,6 +19,9 @@
                         </strong>
                     </td>
                     <td>
+                        <div ng-if="loading">
+                            <span class="spinner-loader"></span>
+                        </div>
                         {{item.InventoryItem.name}}
                     </td>
                 </tr>
@@ -26,6 +32,9 @@
                         </strong>
                     </td>
                     <td>
+                        <div ng-if="loading">
+                            <span class="spinner-loader"></span>
+                        </div>
                         {{item.InventoryItem.description}}
                     </td>
                 </tr>
@@ -77,6 +86,9 @@
                         </strong>
                     </td>
                     <td>
+                        <div ng-if="loading">
+                            <span class="spinner-loader"></span>
+                        </div>
                         {{transferHistory[0].currentLocation}}
                     </td>
                 </tr>

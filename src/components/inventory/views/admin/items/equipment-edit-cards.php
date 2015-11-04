@@ -2,7 +2,10 @@
     <div class="cardheader">
         <h1><?php echo $this->getString('INVENTORY_TRANSFER_HISTORY') ?></h1>
     </div>
-    <table class="table cardtable">
+    <div ng-if="loading">
+        <div class="spinner-loader"></div>
+    </div>
+    <table ng-if="!loading" class="table cardtable">
         <tr ng-repeat="item in transferHistory">
             <td>
                 {{item.transferDate}}

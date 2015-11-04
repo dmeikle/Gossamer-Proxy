@@ -1,6 +1,7 @@
 module.controller('inventoryEquipmentEditCtrl', function($scope, $location,
     inventoryEquipmentEditSrv, inventoryTransferSrv) {
     $scope.item = new AngularQueryObject();
+    $scope.loading = true;
 
     $scope.$watch('item', function() {
         if ($scope.item && $scope.item.id && !$scope.haveDetails) {
@@ -12,6 +13,7 @@ module.controller('inventoryEquipmentEditCtrl', function($scope, $location,
         inventoryEquipmentEditSrv.getDetails($scope.item).then(function(response) {
             $scope.item = response.data.InventoryEquipment[0];
             $scope.haveDetails = true;
+            $scope.loading = false;
         });
     };
 
@@ -19,6 +21,7 @@ module.controller('inventoryEquipmentEditCtrl', function($scope, $location,
     $scope.$watch('inventoryTransferSrv.transferHistory', function() {
         if ($scope.inventoryTransferSrv.transferHistory) {
             $scope.transferHistory = $scope.inventoryTransferSrv.transferHistory;
+            $scope.loading = false;
         }
     });
     $scope.getTransferList = function() {
