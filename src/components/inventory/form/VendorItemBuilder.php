@@ -28,11 +28,11 @@ class VendorItemBuilder extends AbstractBuilder {
         }
 
         $builder->add('id', 'hidden', array('value' => $this->getValue('id', $values)))
-                ->add('Vendors_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Vendors_id', $values)))
-                ->add('leadTime', 'text', array('class' => 'form-control', 'value' => $this->getValue('leadTime', $values)))
-                ->add('InventoryItems_id', 'hidden', array('value' => $this->getValue('InventoryItems_id', $values)))
-                ->add('price', 'text', array('class' => 'form-control', 'value' => $this->getValue('price', $values)))
-                ->add('minOrderQuantity', 'text', array('class' => 'form-control', 'value' => $this->getValue('minOrderQuantity', $values)))
+                ->add('Vendors_id', 'text', array('ng-model' => 'item.Vendors_id', 'ng-init' => "item.Vendors_id ='" . $this->getValue('Vendors_id', $values) . "'", 'class' => 'form-control', 'value' => $this->getValue('Vendors_id', $values)))
+                ->add('leadTime', 'text', array('ng-model' => 'item.leadTime', 'ng-init' => "item.leadTime ='" . $this->getValue('leadTime', $values) . "'", 'class' => 'form-control'))
+                ->add('InventoryItems_id', 'text', array('ng-model' => 'item.InventoryItems_id', 'ng-init' => "item.InventoryItems_id ='" . $this->getValue('InventoryItems_id', $values) . "'"))
+                ->add('price', 'text', array('ng-model' => 'item.price', 'ng-init' => "item.price ='" . $this->getValue('price', $values) . "'", 'class' => 'form-control'))
+                ->add('minOrderQuantity', 'text', array('ng-model' => 'item.minOrderQuantity', 'ng-init' => "item.minOrderQuantity ='" . $this->getValue('minOrderQuantity', $values) . "'", 'class' => 'form-control'))
         ;
 
         if (array_key_exists('packageTypes', $options)) {

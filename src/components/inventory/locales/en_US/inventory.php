@@ -36,5 +36,6 @@ return array(
     'INVENTORY_VENDOR' => 'Vendor',
     'INVENTORY_LEAD_TIME' => 'Lead Time',
     'INVENTORY_MIN_ORDER_QUANTITY' => 'Minimum Order Quantity',
-    'INVENTORY_EDIT_VENDOR_ITEM' => 'Edit Vendor Item'
+    'INVENTORY_EDIT_VENDOR_ITEM' => 'Edit Vendor Item',
+    'INVENTORY_NEW_VENDOR_ITEM' => 'New Vendor Item'
 );
