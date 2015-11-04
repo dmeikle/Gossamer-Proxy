@@ -14,9 +14,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.purchaseOrderNotes = [];
     $scope.loading = true;
     
-    $scope.item.pst = 0;
-    $scope.item.gst = 0;
-    
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
@@ -29,19 +26,12 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             $scope.item = posEditSrv.purchaseOrder;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             $scope.loading = false;
-            $scope.item.pst = 0;
-            $scope.item.gst = 0;
             $scope.item.taxTypes = [];
-//            for(var i in $scope.lineItems){
-//                posEditSrv.getInventoryItemDetails($scope.lineItems[i].InventoryItems_id)
-//            }
-            console.log($scope.lineItems);
         });
     } else {
         $scope.editing = false;
         $scope.loading = false;
-    }
-    
+    }    
     
     function LineItems(){
         return {
@@ -133,8 +123,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
                 row.InventoryItems_id = posEditSrv.productCodeAutocomplete[i].id;
             }
         }
-    };
-    
+    };    
     
     //Check selected
     $scope.checkSelected = function () {
@@ -161,15 +150,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     //Update totals
     $scope.updateAmount = function(row){
         if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity))){
-            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
-            
-            //Add the tax
-//            if(!isNaN(parseFloat(row.taxPercent))){
-//                var taxMultiplier = parseFloat(row.taxPercent) * 0.01;
-//                row.tax = parseFloat(((row.unitPrice) * taxMultiplier).toFixed(2));
-//                row.amount += row.tax;  
-//            }
-            
+            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);            
         } else {
             row.amount = '';
         }
@@ -184,59 +165,54 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             } else {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
-//            for(var j in $scope.item.taxTypes){
-//                console.log('dsadadada');
-//                $scope.item.taxTypes.push();
-//                for(var key in $scope.item.taxTypes[i]){
-//                    console.log($scope.lineItems[i].taxType);
-//                }
-//            }
-//            console.log($scope.item.taxTypes);
         }
         $scope.updateTotal();
     };
     
     $scope.updateTotal = function(){
-        $scope.item.total = $scope.item.subtotal;
+        $scope.item.total = $scope.item.subtotal;        
+        $scope.taxTotal = 0;
+        
+        //Add the delivery fee
         if(parseFloat($scope.item.deliveryFee) > 0){
             $scope.item.total += parseFloat($scope.item.deliveryFee);
         }
-        if(parseFloat($scope.item.tax) > 0){
-            $scope.item.total += parseFloat($scope.item.tax);
-        }
         
+        //Add the tax to the total
+        $scope.updateTax();        
+        for(var i in $scope.item.taxTypes){
+            $scope.taxTotal += $scope.item.taxTypes[i].total;
+        }        
+        $scope.item.total += $scope.taxTotal;
     };
     
     //Update tax
-    $scope.updateTax = function(row, index, id){
+    $scope.updateTax = function(){
+        $scope.item.taxTypes = [];
+        for(var i in $scope.lineItems){
+            var taxObj = {
+                id: $scope.lineItems[i].AccountingTaxTypes_id,
+                type: $scope.lineItems[i].taxType,
+                total: 0
+            };
+            if(!objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
+                $scope.item.taxTypes.push(taxObj);
+            }        
+            for(var j in $scope.item.taxTypes){
+                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
+                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                }
+            }
+        }
+    };
+    
+    $scope.updateTaxList = function(row, index, id){
         var taxSelect = document.getElementById('taxType' + index);
         var options = $(taxSelect).find('option');
         for(var i = 0; i < options.length; i++){
             if(options[i].value === id){
                 row.taxAmount = parseFloat(options[i].attributes['data-amount'].nodeValue);
                 row.taxType = options[i].attributes['data-type'].nodeValue;
-            }
-        }
-        $scope.updateTaxList();
-    };
-    
-    $scope.updateTaxList = function(){
-        $scope.item.taxTypes = [];
-        for(var i in $scope.lineItems){
-            console.log($scope.lineItems[i]);
-            var taxObj = {
-                id: $scope.lineItems[i].AccountingTaxTypes_id,
-                type: $scope.lineItems[i].taxType,
-                //taxAmount: $scope.lineItems[i].taxAmount
-                total: 0
-            };
-            if(!objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null){
-                $scope.item.taxTypes.push(taxObj);
-            }
-            for(var j in $scope.item.taxTypes){
-                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
-                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
-                }
             }
         }
     };

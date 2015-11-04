@@ -47,7 +47,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductNameInfo(row, row.productName);updateAmount(row)'))
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))
                 ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change'=>'updateAmount(row)'))
-                ->add('taxType', 'select', array('id' => 'taxType{{$index}}', 'class' => 'form-control', 'ng-change' => 'updateTax(row, $index, row.AccountingTaxTypes_id);updateAmount(row)', 'ng-model' => 'row.AccountingTaxTypes_id', 'options' => $options['taxTypes']))
+                ->add('taxType', 'select', array('id' => 'taxType{{$index}}', 'class' => 'form-control', 'ng-change' => 'updateTaxList(row, $index, row.AccountingTaxTypes_id);updateAmount(row)', 'ng-init' => 'updateTax(row, $index, row.AccountingTaxTypes_id);', 'ng-model' => 'row.AccountingTaxTypes_id', 'options' => $options['taxTypes']))
                 //->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'row.tax', 'ng-change'=>'updateAmount(row)'))
                 ->add('unitPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.unitPrice', 'ng-change'=>'updateAmount(row)'))
                 ->add('quantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change'=>'updateAmount(row)'))
