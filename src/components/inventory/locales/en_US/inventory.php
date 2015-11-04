@@ -62,5 +62,6 @@ return array(
     'INVENTORY_EQUIPMENT_DESCRIPTION' => 'Description',
     'INVENTORY_EQUIPMENT_LOCATION' => 'Location',
     'INVENTORY_EQUIPMENT_MAINTENANCESTATUS' => 'Maintenance Status',
-    'INVENTORY_EQUIPMENT_MAINTENANCEDAYS' => 'Days until Maintenance'
+    'INVENTORY_EQUIPMENT_MAINTENANCEDAYS' => 'Days until Maintenance',
+    'INVENTORY_NEW_VENDOR_ITEM' => 'New Vendor Item'
 );

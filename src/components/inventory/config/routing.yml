@@ -642,3 +642,19 @@ admin_inventory_items_variantgroups_save:
         datasource: datasource1
     methods: [POST]
     
+
+
+admin_inventory_vendoritems_save:
+    pattern: admin/inventory/vendoritems/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VendorItemsController
+        model: components\inventory\models\VendorItemModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_inventory_vendoritems_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/defaultItem/locales/*/Navigation'  
+    methods: [POST] 
+

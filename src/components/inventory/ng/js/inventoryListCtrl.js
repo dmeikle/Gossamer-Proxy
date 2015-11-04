@@ -18,6 +18,9 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     //used for displaying vendor prices in list
     $scope.vendorSearch = false;
     
+    //used for redrawing page after editing an item from advanced search results
+    $scope.currentSearchParams = {};
+    
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
     $scope.$watch('tablesSrv.sortResult', function() {
@@ -58,7 +61,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
     $scope.editVendorItem = function (item) {
         var modalInstance = $modal.open({
-            templateUrl: '/render/inventory/vendorItemModal?id=' + item.VendorItems_id,
+            templateUrl: '/render/inventory/vendorItemModal?id=' + ((item.VendorItems_id === null) ? 0 : item.VendorItems_id),
             controller: 'inventoryVendorItemModalCtrl',
             size: 'lg',
             keyboard: false,
@@ -66,10 +69,16 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
             resolve: {
                 item: function () {
                     return item;
+                },
+                vendor: function() {
+                    return $scope.currentSearchParams;
                 }
             }
                     
         });
+       
+        $scope.search($scope.currentSearchParams);
+        
     };
     
     var getMaterialsList = function () {
@@ -140,6 +149,8 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
     $scope.search = function(searchObject) {
         $scope.vendorSearch = (searchObject.Vendors_id !== undefined);
+        $scope.currentSearchParams = searchObject;
+
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
         if (copiedObject && Object.keys(copiedObject).length > 0) {
@@ -284,17 +295,22 @@ module.controller('transferModalController', function($scope, $modalInstance,
 });
 
 
-module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
+module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, inventoryEditSrv, item, vendor) {
     
-
+    $scope.item = {};
+    $scope.item.InventoryItems_id = item.InventoryItems_id;
+    $scope.item.Vendors_id = vendor.Vendors_id;
+    
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
     };
 
 
-    $scope.confirm = function () {
-        $modalInstance.close($scope.claim.query);
+    $scope.submit = function (item) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        inventoryEditSrv.saveVendorItem(item, formToken);
+        $modalInstance.close();
     };
 
     $scope.close = function () {
