@@ -7,7 +7,7 @@ module.service('commentsSrv', function ($http) {
         self.comments.push(comment);
     };
     
-    this.convertNotes = function(notes){
+    this.convertToComments = function(notes){
         self.comments = [];
         for(var i in notes){
             var comment = {
@@ -16,8 +16,19 @@ module.service('commentsSrv', function ($http) {
             };
             self.comments.push(comment);
         }
-        console.log(self.comments);
         return self.comments;
+    };
+    
+    this.convertToNotes = function(comments, id){
+        self.notes = [];
+        for(var i in comments){
+            var note = {
+                PurchaseOrders_id: id,
+                notes: comments[i].text
+            };
+            self.notes.push(note);
+        };
+        return self.notes;
     };
     
     //Save comment    
