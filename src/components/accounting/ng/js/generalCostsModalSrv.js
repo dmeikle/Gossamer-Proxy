@@ -1,5 +1,5 @@
 // General Costs Modal service
-module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
+module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
     var generalCostsPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';
     var staffPath = '/admin/staff/';
@@ -7,9 +7,9 @@ module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
     //Typeahead autocomplete
     var self = this;
 
-    this.fetchAutocomplete = function (searchObject) {
+    this.fetchAutocomplete = function(searchObject) {
         console.log('fetching typeahead autocomplete...');
-        return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function () {
+        return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function() {
             self.autocomplete = searchSrv.autocomplete.Staffs;
             self.autocompleteValues = [];
             if (searchObject.name) {
@@ -27,8 +27,8 @@ module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
         });
     };
 
-    this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
+    this.fetchClaimsAutocomplete = function(searchObject) {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function() {
             self.autocomplete = searchSrv.autocomplete;
             self.autocompleteValues = [];
             for (var item in self.autocomplete) {
@@ -45,19 +45,19 @@ module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
     };
 
     //Get the list of general cost items
-    this.getGeneralCostItems = function (row, numRows, id) {
+    this.getGeneralCostItems = function(row, numRows, id) {
         return $http.get(generalCostItemsPath + row + '/' + numRows + '/?AccountingGeneralCosts_id=' + id)
-                .then(function (response) {
-                    self.generalCostItems = response.data.AccountingGeneralCostItems;
-                    self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
-                }, function (response) {
-                    //Handle any errors
-                    self.error.showError = true;
-                });
+            .then(function(response) {
+                self.generalCostItems = response.data.AccountingGeneralCostItems;
+                self.generalCostsCount = response.data.AccountingGeneralCostItemsCount[0].rowCount;
+            }, function(response) {
+                //Handle any errors
+                self.error.showError = true;
+            });
     };
 
     //Save the general cost items
-    this.saveGeneralCosts = function (generalCosts, generalCostItems, formToken) {
+    this.saveGeneralCosts = function(generalCosts, generalCostItems, formToken) {
         console.log('saving general cost items...');
         var generalCostID = '';
         if (generalCosts.id) {
@@ -96,7 +96,7 @@ module.service('generalCostsModalSrv', function ($http, $filter, searchSrv) {
             },
             url: generalCostsPath + generalCostID,
             data: data
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
         });
     };

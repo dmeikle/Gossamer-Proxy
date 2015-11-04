@@ -1,8 +1,8 @@
-module.directive('columnSortable', function ($compile, $location) {
+module.directive('columnSortable', function($compile, $location) {
     return {
         restricted: 'A',
         scope: false,
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var a = document.createElement('a');
             a.setAttribute('ng-click', 'sortByColumn($event)');
             a.setAttribute('href', '');
@@ -13,10 +13,10 @@ module.directive('columnSortable', function ($compile, $location) {
             a.appendChild(document.createElement('span'));
             a.children[1].setAttribute('class', 'small glyphicon');
             a.children[1].setAttribute('ng-class',
-                    "{'glyphicon-sort-by-attributes':sortedBy === '" + element[0].dataset.column +
-                    "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
-                    "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
-                    "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
+                "{'glyphicon-sort-by-attributes':sortedBy === '" + element[0].dataset.column +
+                "' && sorting['" + element[0].dataset.column + "'] === 'asc', " +
+                "'glyphicon-sort-by-attributes-alt':sortedBy === '" + element[0].dataset.column +
+                "' && sorting['" + element[0].dataset.column + "'] === 'desc'}");
             element[0].textContent = '';
 
             var clear = document.createElement('a');
@@ -28,7 +28,7 @@ module.directive('columnSortable', function ($compile, $location) {
             element[0].appendChild(clear);
             $compile(element.contents())(scope);
         },
-        controller: function ($scope, tablesSrv) {
+        controller: function($scope, tablesSrv) {
             $scope.sorting = {};
             $scope.sortedBy = {};
 
@@ -41,7 +41,7 @@ module.directive('columnSortable', function ($compile, $location) {
                 apiPath = a.pathname.slice(0, -1);
             }
 
-            $scope.sortByColumn = function (event) {
+            $scope.sortByColumn = function(event) {
                 $scope.loading = true;
                 column = event.target.parentElement.parentElement.dataset.column;
                 $scope.sortedBy = column;
@@ -57,26 +57,26 @@ module.directive('columnSortable', function ($compile, $location) {
                 }
                 columns.push(column);
 
-                tablesSrv.sortByColumn(columns, $scope.sorting[column], apiPath);
+                tablesSrv.sortByColumn(apiPath, columns, $scope.sorting[column]);
             };
 
-            $scope.clearSort = function () {
+            $scope.clearSort = function() {
                 $scope.loading = true;
                 $scope.sorting[$scope.sortedBy] = undefined;
                 var groupedBy = $scope.groupedBy;
                 $scope.sortedBy = undefined;
-                tablesSrv.clearSort($scope.groupedBy, apiPath);
+                tablesSrv.clearSort(apiPath, $scope.groupedBy);
             };
         }
     };
 });
 
-module.directive('groupByButton', function (rootTemplateSrv, $http, $compile) {
+module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
     return {
         restrict: 'A',
         scope: false,
         transclude: true,
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var buttonDOM = document.createElement('div');
             buttonDOM.setAttribute('class', 'dropdown');
             buttonDOM.innerHTML = '<button class="btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-magnet"></span></button>';
@@ -85,7 +85,7 @@ module.directive('groupByButton', function (rootTemplateSrv, $http, $compile) {
             var columns = [];
             for (var th in element[0].parentElement.children) {
                 if (element[0].parentElement.children.hasOwnProperty(th) &&
-                        element[0].parentElement.children[th].className.indexOf('cog-col') === -1) {
+                    element[0].parentElement.children[th].className.indexOf('cog-col') === -1) {
                     columns.push(element[0].parentElement.children[th]);
                 }
             }
@@ -114,7 +114,7 @@ module.directive('groupByButton', function (rootTemplateSrv, $http, $compile) {
             element[0].appendChild(buttonDOM);
             $compile(element.contents())(scope);
         },
-        controller: function ($scope, $location, tablesSrv) {
+        controller: function($scope, $location, tablesSrv) {
             var a = document.createElement('a');
             a.href = $location.absUrl();
             var apiPath;
@@ -127,13 +127,13 @@ module.directive('groupByButton', function (rootTemplateSrv, $http, $compile) {
             var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
             var numRows = $scope.itemsPerPage;
 
-            $scope.groupBy = function (columnName) {
+            $scope.groupBy = function(columnName) {
                 $scope.loading = true;
                 $scope.groupedBy = columnName;
                 tablesSrv.groupBy(apiPath, columnName, row, numRows);
             };
 
-            $scope.clearGrouping = function () {
+            $scope.clearGrouping = function() {
                 $scope.groupedBy = undefined;
                 tablesSrv.clearGrouping();
             };
@@ -141,11 +141,11 @@ module.directive('groupByButton', function (rootTemplateSrv, $http, $compile) {
     };
 });
 
-module.directive('multiSelect', function ($compile) {
+module.directive('multiSelect', function($compile) {
     return {
         restrict: 'A',
         scope: false,
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var checkTd = angular.element(document.createElement('td'));
             checkTd[0].appendChild(document.createElement('input'));
             checkTd[0].children[0].setAttribute('type', 'checkbox');
@@ -161,11 +161,11 @@ module.directive('multiSelect', function ($compile) {
                 scope.$emit('lastRepeat');
             }
         },
-        controller: function ($scope, $rootScope, tablesSrv) {
+        controller: function($scope, $rootScope, tablesSrv) {
             var pageScope = $scope.$parent.$parent.$parent;
             pageScope.multiSelectArray = [];
 
-            $scope.$on('lastRepeat', function () {
+            $scope.$on('lastRepeat', function() {
                 var table = $scope.table;
                 // Add column to header
                 var theadTr = table.children[0].children[0];
@@ -174,7 +174,7 @@ module.directive('multiSelect', function ($compile) {
                 theadTr.insertBefore(emptyTh, theadTr.firstElementChild);
             });
 
-            $scope.toggleMulti = function (object) {
+            $scope.toggleMulti = function(object) {
                 if (pageScope.multiSelectArray.indexOf(object) === -1) {
                     pageScope.multiSelectArray.push(object);
                 } else {
