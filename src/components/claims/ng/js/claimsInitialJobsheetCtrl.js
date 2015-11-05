@@ -15,9 +15,11 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     $scope.jobSheet = new AngularQueryObject();
     $scope.jobSheet.query.contacts = [];
     $scope.jobSheet.query.contacts.push({});
+    $scope.claimsEditSrv = claimsEditSrv;
 
     $scope.getClaimDetails = function() {
-        if (!$scope.claim) {
+        if (!$scope.claimsEditSrv.claimDetails && !$scope.gettingDetails) {
+            $scope.gettingDetails = true;
             claimsEditSrv.getClaimDetails(claimId).then(function(response) {
                 $scope.claim = response.data.Claim;
                 claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id).then(function(response) {
@@ -67,6 +69,9 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     };
 
     $scope.finish = function() {
+        $scope.saveClaimLocation($scope.ClaimLocation);
+        $scope.saveContacts($scope.jobSheet.query.contacts);
+        $scope.saveAffectedAreas($scope.jobSheet.query.affectedAreas);
         var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
         window.location.pathname = uri;
     };
