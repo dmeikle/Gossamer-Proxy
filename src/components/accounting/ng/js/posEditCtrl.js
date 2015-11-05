@@ -25,10 +25,17 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         posEditSrv.getPurchaseOrder(id).then(function () {
             $scope.item = posEditSrv.purchaseOrder;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
+            if($scope.lineItems[0].length === 0){
+                $scope.lineItems = [];
+                $scope.lineItems.push(new LineItems());
+            }
+            
             $scope.loading = false;
             $scope.item.taxTypes = [];
             console.log(posEditSrv.purchaseOrderNotes);
-            notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+            if(posEditSrv.purchaseOrderNotes[0].length !== 0){
+                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);                
+            }
             //commentsSrv.comments = commentsSrv.convertToComments(posEditSrv.purchaseOrderNotes);
         });
     } else {
@@ -42,12 +49,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             isSelected: false,
             productCode: '',
             InventoryItems_id: '',
-            name: '',
-            PackageTypes_id: '',
-            price: '',
+            productName: '',
+            unitPrice: '',
             quantity: '',
-            cost: '',
-            chargeOut: '',
             amount: ''
         }; 
     }
@@ -243,11 +247,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var purchaseOrder = angular.copy($scope.item);
-        var purchaseOrderNotes = commentsSrv.convertToNotes(commentsSrv.comments, purchaseOrder.id);
+        var purchaseOrderItems = angular.copy($scope.lineItems);
+        console.log($scope.lineItems);
+        //var purchaseOrderNotes = commentsSrv.convertToNotes(commentsSrv.comments, purchaseOrder.id);
         
         purchaseOrder.dateEntered = $filter('date')(purchaseOrder.dateEntered, 'yyyy-MM-dd', '+0000');
-        console.log(purchaseOrder);
-        console.log(purchaseOrderNotes);
-        //posEditSrv.save($scope.item, formToken);
+        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken);
     };
 });

@@ -14,24 +14,31 @@ module.service('notesSrv', function ($http) {
         return notes;
     };
     
+    this.getList = function(){
+        
+    };
+    
     //Save comment    
-    this.save = function(note, formToken, apiPath){
+    this.save = function(apiPath, note, parentItemName, parentItemId, formToken){
         var saveNote = angular.copy(note);
-//        var data = {};
-//        data.notes = notes;
-//        data.id = id;
-//        data.FORM_SECURITY_TOKEN = formToken;
         delete saveNote.edit;
-        console.log(saveNote);
-//        return $http({
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded'
-//            },
-//            url: apiPath + id,
-//            data: data
-//        }).then(function (response) {
-//            //console.log(response);
-//        });
+        saveNote[parentItemName] = parentItemId;
+        var data = {};
+        data.notes = saveNote;
+        //data.id = id;
+        data.FORM_SECURITY_TOKEN = formToken;
+//        console.log(apiPath);
+//        console.log(data);
+
+        return $http({
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath + saveNote.id,
+            data: data
+        }).then(function (response) {
+            //console.log(response);
+        });
     };
 });

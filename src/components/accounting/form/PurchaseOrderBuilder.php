@@ -30,7 +30,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
         $builder->add('Vendors_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Vendors_id', 'options' => $options['vendors']))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentsMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentsMethods_id', 'options' => $options['AccountingPaymentMethods']))
-                ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
+                ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
                 ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'typeahead'=>'value for value in fetchClaimAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsClaim', 'class'=>'form-control typeahead col-md-7',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getClaimsID(item.jobNumber)'))
@@ -42,7 +42,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'typeahead'=>'value for value in fetchProductCodeAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductCode', 'class'=>'form-control typeahead',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductCodeInfo(row, row.productCode);updateAmount(row)'))
-                ->add('productName', 'text', array('ng-model' => 'row.name', 'typeahead'=>'value for value in fetchProductNameAutocomplete($viewValue)',
+                ->add('productName', 'text', array('ng-model' => 'row.productName', 'typeahead'=>'value for value in fetchProductNameAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductName', 'class'=>'form-control typeahead',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getProductNameInfo(row, row.productName);updateAmount(row)'))
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))

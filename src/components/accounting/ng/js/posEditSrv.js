@@ -84,19 +84,22 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
             self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
             self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
-            
-            for(var i in self.purchaseOrderItems){
-                self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
-                self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
-                self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
-                self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
+            console.log(response);
+            console.log(response.data.PurchaseOrder.PurchaseOrderNotes);
+            if(self.purchaseOrderItems[0].length !== 0){
+                for(var i in self.purchaseOrderItems){
+                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
+                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
+                    self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
+                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
+                }                
             }
             
         });
     };
     
-    //Save the inventory item
-    this.save = function (item, formToken) {
+    //Save the purchase order
+    this.save = function (item, lineItems, formToken) {
         var itemID = '';
         if (item.id) {
             itemID = parseInt(item.id);
@@ -109,11 +112,12 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
                 delete item[i];
             }
         }
-
         var data = {};
-        data.InventoryItem = item;
+        data.PurchaseOrder = item;
+        data.PurchaseOrderItems = lineItems;
         data.FORM_SECURITY_TOKEN = formToken;
-
+        console.log(data);
+        
         return $http({
             method: 'POST',
             headers: {

@@ -10,6 +10,8 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
         templateUrl: rootTemplateSrv.notesTemplate,
         controller: function ($scope) {
             $scope.notes = notesSrv.notes;
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            console.log($scope.parentItemId);
             
             //Edit Note
             $scope.editNote = function(note){
@@ -30,13 +32,15 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
                 note.id = 0;
                 notesSrv.notes.push(note);
                 $scope.notes = notesSrv.notes;
+                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, formToken);
+                $scope.newNote = '';
             };
             
             //Save Note
             $scope.saveNote = function(note, index){
                 note.edit = false;
                 notesSrv.notes = $scope.notes;
-                //notesSrv.save(note, $scope.parentItemId);
+                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, formToken);
             };         
             
         }
