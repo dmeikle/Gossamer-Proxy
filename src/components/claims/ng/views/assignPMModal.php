@@ -15,7 +15,7 @@
             <tr>
                 <td><?php echo $staff['lastname']; ?>, <?php echo $staff['firstname']; ?></td>
                 <td> </td>
-                <td><a ng-click="selectPM(<?php echo $staff['Staff_id']; ?>)">select</a></td>
+                <td><a href="" ng-click="selectPM(<?php echo $staff['Staff_id']; ?>)">select</a></td>
             </tr>
         <?php } ?>
     </table>
