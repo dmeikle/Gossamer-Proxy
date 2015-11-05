@@ -86,7 +86,9 @@ class ClaimsController extends AbstractController {
     }
 
     public function get($claimId) {
-        $claim = $this->model->edit($claimId);
+        //$claim = $this->model->edit($claimId);
+        //load based on jobNumber
+        $claim = $this->model->get($claimId);
         //$claim = $this->httpRequest->getAttribute('Claim');
 
         $this->render(array('Claim' => $claim));
