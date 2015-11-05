@@ -5,8 +5,8 @@ module.service('variantOptionsEditSrv', function(crudSrv, searchSrv) {
 
     this.getDetails = function(apiPath, object) {
         return crudSrv.getDetails(apiPath, object.id).then(function(response) {
-            response.locale = response.locales;
-            delete response.locales;
+            response.data.VariantOption[0].locale = response.data.VariantOption[0].locales;
+            delete response.data.VariantOption[0].locales;
             return response;
         });
     };
@@ -28,6 +28,6 @@ module.service('variantOptionsEditSrv', function(crudSrv, searchSrv) {
             }
         }
 
-        return crudSrv.save(object, objectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, objectType, formToken);
     };
 });
