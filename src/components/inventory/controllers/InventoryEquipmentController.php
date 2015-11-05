@@ -26,7 +26,7 @@ class InventoryEquipmentController extends AbstractController {
     public function listAllEquipment($offset = 0, $limit = 20) {
         $results = $this->model->listallWithParams($offset, $limit, array('InventoryTypes_id' => 2));
 
-        $this->renderResults($offset, $limit, $results);
+        $this->render($results);
     }
 
     public function transfer() {
