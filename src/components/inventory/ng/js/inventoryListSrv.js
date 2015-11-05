@@ -1,6 +1,5 @@
+module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
 
-module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
-    
     var self = this;
     self.advancedSearch = {};
 
@@ -26,14 +25,14 @@ module.service('inventoryListSrv', function ($http, crudSrv, searchSrv) {
         config.InventoryEquipment_id = object.InventoryEquipment_id;
         config['directive::ORDER_BY'] = 'transferDate';
         config['directive::DIRECTION'] = 'desc';
-        return searchSrv.searchCall(config, apiPath + 'equipment/transferhistory/0/4');
+        return searchSrv.searchCall(apiPath + 'equipment/transferhistory/0/4', config);
     };
 
     this.getMaterialDetails = function(object) {
         return crudSrv.getDetails(apiPath + 'item/', object.id);
 
     };
-    
+
     this.search = function(object, page, numRows) {
         return searchSrv.search(apiPath, object, page, numRows).then(function() {
             self.searchResults = searchSrv.searchResults.InventoryItems;
