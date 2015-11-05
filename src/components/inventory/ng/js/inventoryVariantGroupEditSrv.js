@@ -28,6 +28,6 @@ module.service('variantGroupEditSrv', function(crudSrv, searchSrv) {
             }
         }
 
-        return crudSrv.save(object, objectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, objectType, formToken);
     };
 });

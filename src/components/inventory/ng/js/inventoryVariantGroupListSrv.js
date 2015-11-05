@@ -20,6 +20,6 @@ module.service('variantGroupListSrv', function(crudSrv, searchSrv) {
         var postObject = {};
         postObject.id = object.id;
         postObject.isActive = 0;
-        return crudSrv.save(postObject, objectType, formToken, apiPath + object.id);
+        return crudSrv.save(apiPath + object.id, postObject, objectType, formToken);
     };
 });
