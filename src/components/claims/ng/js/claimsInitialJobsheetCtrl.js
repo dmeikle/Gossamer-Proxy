@@ -1,4 +1,4 @@
-module.controller('initialJobsheetCtrl', function ($scope, $location, claimsInitialJobsheetSrv, claimsEditSrv) {
+module.controller('initialJobsheetCtrl', function($scope, $location, claimsInitialJobsheetSrv, claimsEditSrv) {
     var a = document.createElement('a');
     a.href = $location.absUrl();
     var apiPath;
@@ -16,22 +16,24 @@ module.controller('initialJobsheetCtrl', function ($scope, $location, claimsInit
     $scope.jobSheet.query.contacts = [];
     $scope.jobSheet.query.contacts.push({});
 
-    $scope.getClaimDetails = function () {
-        claimsEditSrv.getClaimDetails(claimId).then(function (response) {
-            $scope.claim = response.data.claim;
-            claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id).then(function (response) {
-                $scope.projectAddress = response.data.ProjectAddress;
-                $scope.loading = false;
+    $scope.getClaimDetails = function() {
+        if (!$scope.claim) {
+            claimsEditSrv.getClaimDetails(claimId).then(function(response) {
+                $scope.claim = response.data.Claim;
+                claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id).then(function(response) {
+                    $scope.projectAddress = response.data.ProjectAddress;
+                    $scope.loading = false;
+                });
             });
-        });
+        }
     };
     $scope.getClaimDetails();
 
-    $scope.addOwnerTenant = function () {
+    $scope.addOwnerTenant = function() {
         $scope.jobSheet.query.contacts.push({});
     };
 
-    $scope.removeOwnerTenant = function (e, index) {
+    $scope.removeOwnerTenant = function(e, index) {
         e.preventDefault();
         $scope.jobSheet.query.contacts.splice(index, 1);
     };
@@ -40,31 +42,31 @@ module.controller('initialJobsheetCtrl', function ($scope, $location, claimsInit
         return claimsInitialJobsheetSrv.save(object, objectType, formToken, claimId + claimLocationId);
     }
 
-    $scope.saveClaimLocation = function (object) {
+    $scope.saveClaimLocation = function(object) {
         var objectType = 'ClaimLocation';
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function () {
+        save(object, objectType, formToken).then(function() {
             $scope.nextPage();
         });
     };
 
-    $scope.saveContacts = function (object) {
+    $scope.saveContacts = function(object) {
         var objectType = 'Contacts';
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function () {
+        save(object, objectType, formToken).then(function() {
             $scope.nextPage();
         });
     };
 
-    $scope.saveAffectedAreas = function (object) {
+    $scope.saveAffectedAreas = function(object) {
         var objectType = 'AffectedAreas';
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function () {
+        save(object, objectType, formToken).then(function() {
             $scope.nextPage();
         });
     };
 
-    $scope.finish = function () {
+    $scope.finish = function() {
         var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
         window.location.pathname = uri;
     };
