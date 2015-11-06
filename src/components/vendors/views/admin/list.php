@@ -1,7 +1,5 @@
 <div class="widget" ng-controller="vendorsListCtrl">
-    <div class="widget-content" ng-class="{
-            'panel-open'
-            :sidePanelOpen}">
+    <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('VENDORS_LIST') ?></h1>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
@@ -32,14 +30,7 @@
             <thead>
                 <tr>
                     <th column-sortable data-column="company"><?php echo $this->getString('VENDORS_COMPANY'); ?></th>
-                    <th column-sortable data-column="url"><?php echo $this->getString('VENDORS_URL'); ?></th>
-                    <th column-sortable data-column="email"><?php echo $this->getString('VENDORS_EMAIL'); ?></th>
                     <th column-sortable data-column="telephone"><?php echo $this->getString('VENDORS_TELEPHONE'); ?></th>
-                    <th column-sortable data-column="tollFree"><?php echo $this->getString('VENDORS_TOLLFREE'); ?></th>
-                    <th column-sortable data-column="address1"><?php echo $this->getString('VENDORS_ADDRESS1'); ?></th>
-                    <th column-sortable data-column="city"><?php echo $this->getString('VENDORS_CITY'); ?></th>
-                    <th column-sortable data-column="Provinces_id"><?php echo $this->getString('VENDORS_PROVINCE'); ?></th>
-                    <th column-sortable data-column="postalCode"><?php echo $this->getString('VENDORS_POSTALCODE'); ?></th>
                     <th column-sortable data-column="accountId"><?php echo $this->getString('VENDORS_ACCOUNT_ID'); ?></th>
                     <th column-sortable data-column="salesRep"><?php echo $this->getString('VENDORS_SALES_REP'); ?></th>
                     <th column-sortable data-column="deliveryFee"><?php echo $this->getString('VENDORS_DELIVERY_FEE'); ?></th>
@@ -50,33 +41,16 @@
                 <tr ng-if="loading">
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
+                    <td colspan="2">
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in vendorsList"
-                    ng-class="{
-                            'selected'
-                            : item === previouslyClickedObject, 'inactive bg - warning text - warning': item.maxQuantity == 'inactive'}">
-                    <td ng-click="selectRow(item)">{{item.company}}</td>
-                    <td ng-click="selectRow(item)">{{item.url}}</td>
-                    <td ng-click="selectRow(item)">{{item.email}}</td>
+                    ng-class="{'selected':item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
+                    <td ng-click="selectRow(item)"><a href="{{item.url}}">{{item.company}}</a></td>
                     <td ng-click="selectRow(item)">{{item.telephone}}</td>
-                    <td ng-click="selectRow(item)">{{item.tollFree}}</td>
-                    <td ng-click="selectRow(item)">{{item.address1}}</td>
-                    <td ng-click="selectRow(item)">{{item.city}}</td>
-                    <td ng-click="selectRow(item)">{{item.Provinces_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.postalCode}}</td>
                     <td ng-click="selectRow(item)">{{item.accountId}}</td>
                     <td ng-click="selectRow(item)">{{item.salesRep}}</td>
                     <td ng-click="selectRow(item)">{{item.deliveryFee}}</td>
@@ -86,6 +60,7 @@
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="edit(item)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a href="" ng-click="viewPurchaseOrders(item)"><?php echo $this->getString('PURCHASE_ORDERS') ?></a></li>
                                 <li><a href="/admin/vendors/items/{{ item.id}}"><?php echo $this->getString('VENDORS_SET_PRICES') ?></a></li>
                                 <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
@@ -140,8 +115,14 @@
         <div ng-if="!sidePanelLoading && !searching && !multiSelect">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></h3>
-                    <p>{{selectedRow.company}}</p>
+                    <h3>{{selectedRow.company}}</h3>
+                    <p><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></p>
+                    <p>{{selectedRow.email}}</p>
+                    <p>{{selectedRow.tollFree}}</p>
+                    <p>{{selectedRow.address1}}</p>
+                    <p>{{selectedRow.city}}</p>
+                    <p>{{selectedRow.Provinces_id}}</p>
+                    <p>{{selectedRow.postalCode}}</p>
                 </div>
             </div>
             <div class="clearfix"></div>
