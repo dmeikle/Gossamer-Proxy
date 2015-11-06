@@ -1,5 +1,17 @@
 
-                
+  
+admin_vendors_autocomplete:
+    pattern: admin/vendors/autocomplete
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_vendors_autocomplete
+        datasource: datasource1        
+    methods: [GET]  
+                  
 
 #-------------------------- vendors ------------
 

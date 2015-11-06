@@ -15,4 +15,10 @@ use core\AbstractController;
 
 class VendorsController extends AbstractController {
 
+    public function autocomplete() {
+        $params = $this->httpRequest->getQueryParameters();
+
+        $this->render($this->model->listallWithParams(0, 20, $params, 'autocomplete'));
+    }
+
 }
