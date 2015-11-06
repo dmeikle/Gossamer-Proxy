@@ -18,13 +18,13 @@
 
                 <div class="form-group">
                     <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></label>
-                    <?php echo $form['AccountingPaymentsMethods_id']; ?>
+                    <?php echo $form['AccountingPaymentMethods_id']; ?>
                 </div>
 
                 <div class="input-group">
-                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
+                    <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
                     <div class="col-md-7 no-padding">                    
-                        <input type="date" name="date" ng-model="item.dateEntered" ng-model-options="{timezone: '+0000'}"
+                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
                                class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="date">
@@ -50,7 +50,7 @@
 
                 <div class="form-group">
                     <label for="phaseCode" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
-                    <?php echo $form['AccountingPhaseCodes']; ?>
+                    <?php echo $form['ClaimPhases_id']; ?>
                 </div>
 
                 <div class="form-group">

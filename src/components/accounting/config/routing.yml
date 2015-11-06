@@ -175,7 +175,7 @@ accounting_pos_edit:
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
@@ -190,7 +190,7 @@ accounting_pos_edit:
             cacheKey: 'PurchaseOrderForm'
             formName: 'form'
             dependencies:
-                - { dependency: AccountingPhaseCodes, key: phase, value: id, text: phaseCode }
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: Vendors, key: vendors, value: id, text: company }
                 - { dependency: Departments, key: departments, value: id, text: name }
                 - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }

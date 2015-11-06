@@ -7,11 +7,17 @@ module.service('notesSrv', function ($http) {
         self.notes.push(note);
     };
 
-    this.getNotes = function(notes){
-        for(var i in notes){
-            notes[i].edit = false;
-        }
-        return notes;
+    this.getNotes = function(parentItemId){        
+        return $http({
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath + parentItemId,
+            data: data
+        }).then(function (response) {
+            console.log(response);
+        });
     };
     
     this.getList = function(){

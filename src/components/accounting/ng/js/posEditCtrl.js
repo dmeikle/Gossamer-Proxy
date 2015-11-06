@@ -23,6 +23,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     if(id > 0){
         $scope.editing = true;
         posEditSrv.getPurchaseOrder(id).then(function () {
+            posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
+            //posEditSrv.purchaseOrder.creationDate = $filter('date')(posEditSrv.purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
+            //$scope.item.date = creationDate;
             $scope.item = posEditSrv.purchaseOrder;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             if($scope.lineItems[0].length === 0){
@@ -32,7 +35,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             
             $scope.loading = false;
             $scope.item.taxTypes = [];
-            console.log(posEditSrv.purchaseOrderNotes);
             if(posEditSrv.purchaseOrderNotes[0].length !== 0){
                 notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);                
             }
@@ -49,10 +51,12 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             isSelected: false,
             productCode: '',
             InventoryItems_id: '',
-            productName: '',
-            unitPrice: '',
+            name: '',
+            price: '',
             quantity: '',
-            amount: ''
+            amount: '',
+            VendorItems_id: '',
+            PurchaseOrders_id: $scope.item.id
         }; 
     }
     
@@ -91,6 +95,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.fetchProductCodeAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.productCode = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
         return posEditSrv.fetchProductCodeAutocomplete(searchObject);
     };
     
@@ -109,28 +114,19 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             }
         }
     };
-    
-    //Get Material info from material name
-    $scope.getProductNameInfo = function (row, value) {
-        for (var j in posEditSrv.materialsAutocomplete) {
-            if (posEditSrv.materialsAutocomplete[j].name === value) {
-                row.productCode = posEditSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = parseFloat(posEditSrv.materialsAutocomplete[j].purchaseCost);
-                row.PackageTypes_id = posEditSrv.materialsAutocomplete[j].PackageTypes_id;
-                row.InventoryItems_id = posEditSrv.materialsAutocomplete[j].id;
-            }
-        }
-    };
 
-    //Get Material info from product code
-    $scope.getProductCodeInfo = function (row, value) {
-        for (var i in posEditSrv.productCodeAutocomplete) {
-            if (posEditSrv.productCodeAutocomplete[i].productCode === value) {
-                row.productName = posEditSrv.productCodeAutocomplete[i].name;
-                row.unitPrice = parseFloat(posEditSrv.productCodeAutocomplete[i].price);
-                row.InventoryItems_id = posEditSrv.productCodeAutocomplete[i].id;
-            }
-        }
+    //Get Vendor items info
+    $scope.getProductInfo = function (row, value, index) {
+        value.unitPrice = parseFloat(value.unitPrice);
+        row.productCode = value.productCode;
+        row.name = value.name;
+        row.description = value.description;
+        row.unitPrice = value.unitPrice;
+        row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
+        row.VendorItems_id = value.VendorItems_id;
+        row.InventoryItems_id = value.InventoryItems_id;
+        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);   
+        $scope.updateTax();
     };    
     
     //Check selected
@@ -157,10 +153,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     
     //Update totals
     $scope.updateAmount = function(row){
-        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity))){
-            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);            
+        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity)) ){
+            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
+            
         } else {
-            row.amount = '';
+            row.amount = 0;
         }
         $scope.updateSubtotal();
     };
@@ -174,6 +171,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
         }
+        
         $scope.updateTotal();
     };
     
@@ -198,12 +196,14 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.updateTax = function(){
         $scope.item.taxTypes = [];
         for(var i in $scope.lineItems){
+            $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
             var taxObj = {
                 id: $scope.lineItems[i].AccountingTaxTypes_id,
                 type: $scope.lineItems[i].taxType,
                 total: 0
             };
-            if(!objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
+            
+            if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
                 $scope.item.taxTypes.push(taxObj);
             }        
             for(var j in $scope.item.taxTypes){
@@ -251,7 +251,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         console.log($scope.lineItems);
         //var purchaseOrderNotes = commentsSrv.convertToNotes(commentsSrv.comments, purchaseOrder.id);
         
-        purchaseOrder.dateEntered = $filter('date')(purchaseOrder.dateEntered, 'yyyy-MM-dd', '+0000');
+        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
         posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken);
     };
 });

@@ -72,7 +72,7 @@ class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
      */
     public function save($id) {
         $params = $this->httpRequest->getPost();
-        $params['Staff_id'] = $this->getLoggedInStaffId();
+        $params['PurchaseOrder']['createStaff_id'] = $this->getLoggedInStaffId();
         $params[$this->entity]['id'] = intval($id);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
