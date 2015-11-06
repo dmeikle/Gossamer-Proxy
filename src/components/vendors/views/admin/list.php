@@ -48,21 +48,34 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in vendorsList"
-                    ng-class="{'selected':item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
+                    ng-class="{'selected':item === previouslyClickedObject,
+                        'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
                     <td ng-click="selectRow(item)"><a href="{{item.url}}">{{item.company}}</a></td>
                     <td ng-click="selectRow(item)">{{item.telephone}}</td>
                     <td ng-click="selectRow(item)">{{item.accountId}}</td>
                     <td ng-click="selectRow(item)">{{item.salesRep}}</td>
-                    <td ng-click="selectRow(item)">{{item.deliveryFee}}</td>
+                    <td ng-click="selectRow(item)">{{item.deliveryFee | currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="edit(item)"><?php echo $this->getString('EDIT') ?></a></li>
-                                <li><a href="" ng-click="viewPurchaseOrders(item)"><?php echo $this->getString('PURCHASE_ORDERS') ?></a></li>
-                                <li><a href="/admin/vendors/items/{{ item.id}}"><?php echo $this->getString('VENDORS_SET_PRICES') ?></a></li>
-                                <li><a href="" ng-click="delete(item)"><?php echo $this->getString('DELETE') ?></a></li>
+                                <li>
+                                    <a href="" ng-click="viewPurchaseOrders(item)">
+                                        <?php echo $this->getString('PURCHASE_ORDERS') ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/vendors/items/{{ item.id}}">
+                                        <?php echo $this->getString('VENDORS_SET_PRICES') ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" ng-click="delete(item)">
+                                        <?php echo $this->getString('DELETE') ?>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </td>
@@ -71,22 +84,19 @@
         </table>
 
 
-        <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
+        <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
                     class="pagination" boundary-links="true" rotate="false">
-        </pagination>
+        </uib-pagination>
 
         <div class="pull-right">
             <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
             <ul class="btn-group pull-right">
-                <button type="button" class="btn-link" ng-class="{
-                        'active'
-                        :itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
-                <button type="button" class="btn-link" ng-class="{
-                        'active'
-                        :itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
-                <button type="button" class="btn-link" ng-class="{
-                        'active'
-                        :itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
+                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 10}"
+                    ng-click="setItemsPerPage(10)">10</button>
+                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 20}"
+                    ng-click="setItemsPerPage(20)">20</button>
+                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 50}"
+                    ng-click="setItemsPerPage(50)">50</button>
             </ul>
         </div>
     </div>
@@ -106,8 +116,11 @@
             </advanced-search-filters>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
-                    <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('VENDORS_SUBMIT') ?>">
-                    <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('VENDORS_RESET') ?></button>
+                    <input type="submit" class="btn btn-primary"
+                        value="<?php echo $this->getString('VENDORS_SUBMIT') ?>">
+                    <button class="btn-default" ng-click="resetAdvancedSearch()">
+                        <?php echo $this->getString('VENDORS_RESET') ?>
+                    </button>
                 </div>
             </div>
         </form>
@@ -126,26 +139,7 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-
-            <table class="table table-striped">
-                <thead>
-                <th>PO</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th width="40"></th>
-                </thead>
-                <tr ng-repeat="item in purchaseOrdersList" ng-class="getClass(item)">
-                    <td>{{item.poNumber}}</td>
-                    <td>{{item.creationDate}}</td>
-                    <td>{{item.total| currency}}</td>
-                    <td>{{item.status}}</td>
-                    <td><a href="/admin/accounting/pos/{{item.id}}">view</a></td>
-                </tr>
-            </table>
         </div>
-
-
     </div>
     <div class="clearfix"></div>
     <form class="hidden"></form>

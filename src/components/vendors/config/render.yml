@@ -6,7 +6,7 @@ editVendorModal:
         - 'src/components/vendors/locales/*/Vendors'
     listeners:
         - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-        
+
         # build the form for Vendor
         -
             event: 'filerender_start'
@@ -27,7 +27,7 @@ vendorAdvancedSearchFilters:
         - 'src/components/vendors/locales/*/Vendors'
     listeners:
         - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-        
+
         # build the form for Vendor
         -
             event: 'filerender_start'
@@ -39,3 +39,9 @@ vendorAdvancedSearchFilters:
             formName: 'form'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+
+purchaseOrdersModal:
+    path: 'src/components/vendors/ng/views/purchaseOrdersModal.php'
+    langFiles:
+        - 'src/components/vendors/locales/*/Vendors'
+        - 'app/locales/*/website.php'
