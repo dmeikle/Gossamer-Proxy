@@ -188,7 +188,7 @@
                 <div class="clearfix"></div>
                 <div class="cardfooter clearfix">
                     <div class="pull-right">
-                        <button class="btn-link" ng-click="openVendorLocationModal()">
+                        <button class="btn-link" ng-click="openVendorLocationModal(item)">
                             <?php echo $this->getString('MORE_INFO') ?>
                         </button>
                     </div>

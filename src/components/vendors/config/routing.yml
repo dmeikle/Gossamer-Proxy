@@ -81,7 +81,7 @@ admin_vendors_list:
 
 
 admin_vendors_list_POS:
-    pattern: admin/vendors/purchaseorders/*/*/*
+    pattern: admin/vendors/purchaseorders/*/*
 
     defaults:
         component: components\vendors\VendorsComponent

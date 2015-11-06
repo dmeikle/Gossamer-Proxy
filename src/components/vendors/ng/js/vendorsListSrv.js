@@ -26,7 +26,14 @@ module.service('vendorsListSrv', function($http, crudSrv, searchSrv) {
         return crudSrv.getDetails(apiPath + 'items/', object.id);
     };
 
-    this.getVendorPurchaseOrders = function(vendor, row, numRows) {
+    this.getVendorPurchaseOrders = function(vendor, row, numRows, vendorLocation) {
+        if (vendorLocation) {
+            var requestPath = apiPath + 'purchaseorders/';
+            config = {};
+            config.VendorLocations_id = vendorLocation.VendorLocations_id;
+            config.Vendors_id = vendor.id;
+            return crudSrv.getList(requestPath, row, numRows, config);
+        }
         return crudSrv.getList(apiPath + 'purchaseorders/' + vendor.id + '/', row, numRows);
     };
 

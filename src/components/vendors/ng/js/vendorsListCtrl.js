@@ -173,11 +173,19 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
 
     $scope.openVendorLocationModal = function(object) {
         var modalInstance = $uibModal.open({
-            templateUrl: '/render/vendors/vendorLocationModal',
-            controller: 'vendorLocationsModalController',
+            templateUrl: '/render/vendors/purchaseOrdersModal',
+            controller: 'vendorLocationModalController',
             size: 'lg',
             resolve: {
-
+                vendor: function() {
+                    return $scope.selectedRow;
+                },
+                vendorLocation: function() {
+                    return object;
+                },
+                purchaseOrders: function() {
+                    return vendorsListSrv.getVendorPurchaseOrders($scope.selectedRow, poRow, poNumRows, object);
+                }
             }
         });
     };
@@ -213,6 +221,23 @@ module.controller('purchaseOrdersModalController', function($scope, $uibModalIns
     $scope.itemsPerPage = purchaseOrders.data.PurchaseOrdersCount;
 
     $scope.vendor = vendor;
+    $scope.vendorLocation = vendorLocation;
+
+    $scope.close = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+module.controller('vendorLocationModalController', function($scope, $uibModalInstance, vendor, vendorLocation, purchaseOrders) {
+    $scope.itemsPerPage = 10;
+    $scope.currentPage = 1;
+    var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+    var numRows = $scope.itemsPerPage;
+
+    $scope.purchaseOrdersList = purchaseOrders.data.PurchaseOrders;
+    $scope.itemsPerPage = purchaseOrders.data.PurchaseOrdersCount;
+
+    $scope.vendor = vendorLocation;
 
     $scope.close = function() {
         $uibModalInstance.dismiss('cancel');
