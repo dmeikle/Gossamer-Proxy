@@ -248,9 +248,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var purchaseOrder = angular.copy($scope.item);
         var purchaseOrderItems = angular.copy($scope.lineItems);
-        console.log($scope.lineItems);
-        //var purchaseOrderNotes = commentsSrv.convertToNotes(commentsSrv.comments, purchaseOrder.id);
-        
         purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
         posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken);
     };

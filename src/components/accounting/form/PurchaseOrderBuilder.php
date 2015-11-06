@@ -35,7 +35,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsClaim', 'class'=>'form-control typeahead col-md-7',
                'typeahead-min-length'=>'2', 'ng-blur'=>'getClaimsID(item.jobNumber)'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))
-                ->add('description', 'textarea', array('class' => 'form-control', 'ng-model' => 'item.description'))
+                ->add('description', 'textarea', array('class' => 'form-control col-md-7', 'ng-model' => 'item.description'))
                 
                 //Line Items
                 //->add('isSelected', 'checkbox', array('class' => 'form-control', 'ng-model' => 'row.isSelected', 'value' => '123'))

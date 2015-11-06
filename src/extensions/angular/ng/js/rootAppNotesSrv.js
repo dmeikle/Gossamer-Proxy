@@ -7,17 +7,11 @@ module.service('notesSrv', function ($http) {
         self.notes.push(note);
     };
 
-    this.getNotes = function(parentItemId){        
-        return $http({
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: apiPath + parentItemId,
-            data: data
-        }).then(function (response) {
-            console.log(response);
-        });
+    this.getNotes = function(notes){
+        for(var i in notes){
+            notes[i].edit = false;
+        }
+        return notes;
     };
     
     this.getList = function(){
@@ -30,11 +24,11 @@ module.service('notesSrv', function ($http) {
         delete saveNote.edit;
         saveNote[parentItemName] = parentItemId;
         var data = {};
-        data.notes = saveNote;
+        data.PurchaseOrderNote = saveNote;
         //data.id = id;
         data.FORM_SECURITY_TOKEN = formToken;
-//        console.log(apiPath);
-//        console.log(data);
+        console.log(apiPath);
+        console.log(data);
 
         return $http({
             method: 'POST',

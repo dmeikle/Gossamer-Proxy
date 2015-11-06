@@ -14,10 +14,10 @@ namespace components\accounting\controllers;
 use core\AbstractController;
 
 /**
- * Description of PurchaseOrdersNotesController
+ * Description of PurchaseOrderNotesController
  *
  * @author Dave Meikle
  */
-class PurchaseOrdersNotesController extends AbstractController {
+class PurchaseOrderNotesController extends AbstractController {
 
 }

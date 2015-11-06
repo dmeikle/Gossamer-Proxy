@@ -16,26 +16,9 @@
                     <?php echo $form['Vendors_id']; ?>
                 </div>
 
-                <div class="form-group">
-                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></label>
-                    <?php echo $form['AccountingPaymentMethods_id']; ?>
-                </div>
+                
 
-                <div class="input-group">
-                    <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
-                    <div class="col-md-7 no-padding">                    
-                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
-                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
-                        <span class="input-group-btn" data-datepickername="date">
-                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
+                
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
@@ -60,9 +43,29 @@
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
+                <div class="input-group form-group">
+                    <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
+                    <div class="col-md-7 no-padding">                    
+                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
+                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
+                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
+                        <span class="input-group-btn" data-datepickername="date">
+                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></label>
+                    <?php echo $form['AccountingPaymentMethods_id']; ?>
+                </div>
                 
                 <div class="form-group description">
-                    <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
+                    <label for="description" class="col-md-5"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                     <?php echo $form['description']; ?>
                 </div>
             </div>

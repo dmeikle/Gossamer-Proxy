@@ -3,7 +3,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
-    //var vendorItemsAutocompletePath = '/admin/inventory/vendoritems/autocomplete';
     
     var self = this;
     
@@ -27,23 +26,15 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Product Code Autocomplete
     this.fetchProductCodeAutocomplete = function (searchObject) {
-        //var config = {};
-        //config.productCode = searchObject.productCode;
-        //config.Vendors_id = searchObject.
         return $http({
             method: 'GET',
             url: inventoryItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
-            //console.log(response);
             self.productCodeAutocompleteValues = [];
             self.productCodeAutocomplete = response.data.InventoryItems;
             self.productCodeAutocompleteValues = response.data.InventoryItems;
-//            for (var i in response.data.InventoryItems) {                
-//                self.productCodeAutocompleteValues.push(response.data.InventoryItems[i]);
-//            }
             if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
-                console.log(self.productCodeAutocompleteValues);
                 return self.productCodeAutocompleteValues;
             } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
                 return undefined;
@@ -89,8 +80,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
             self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
             self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
-            console.log(response);
-            console.log(response.data.PurchaseOrder.PurchaseOrderNotes);
             if(self.purchaseOrderItems[0].length !== 0){
                 for(var i in self.purchaseOrderItems){
                     self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
