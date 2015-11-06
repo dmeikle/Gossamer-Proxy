@@ -44,18 +44,19 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Product Name Autocomplete
     this.fetchProductNameAutocomplete = function (searchObject) {
-        var config = {};
-        config.name = searchObject.name;
+        //var config = {};
+        //config.name = searchObject.name;
         return $http({
             method: 'GET',
             url: inventoryItemsAutocompletePath,
-            params: config
+            params: searchObject
         }).then(function (response) {
             self.materialsAutocompleteValues = [];
             self.materialsAutocomplete = response.data.InventoryItems;
-            for (var i in response.data.InventoryItems) {
-                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
-            }
+            self.materialsAutocompleteValues = response.data.InventoryItems;
+//            for (var i in response.data.InventoryItems) {
+//                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
+//            }
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
             } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
@@ -86,7 +87,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
                     self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
                     self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
                     self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
-                }                
+                }
             }
             
         });

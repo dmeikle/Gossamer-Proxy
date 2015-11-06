@@ -4,14 +4,15 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
         scope: {
             apiPath: '@',
             parentItemId: '@',
-            parentItemName: '@'
+            parentItemName: '@',
+            itemName: '@'
         },
         transclude: false,
         templateUrl: rootTemplateSrv.notesTemplate,
         controller: function ($scope) {
             $scope.notes = notesSrv.notes;
+            $scope.loading = {};
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            console.log($scope.parentItemId);
             
             //Edit Note
             $scope.editNote = function(note){
@@ -20,27 +21,41 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
 
             //Delete Note
             $scope.deleteNote = function(index){
-                $scope.notes.splice(index, 1);
-                notesSrv.notes = $scope.notes;
+                $scope.loading[index] = true;
+                notesSrv.remove($scope.apiPath, $scope.notes[index].id).then(function(){
+                    $scope.notes.splice(index, 1);
+                    notesSrv.notes = $scope.notes;
+                    $scope.loading[index] = false;
+                });
             };
 
             //Save New Note
             $scope.saveNewNote = function(newNote){
                 var note = {};
                 note.notes = newNote;
-                note.edit = false;
                 note.id = 0;
-                notesSrv.notes.push(note);
-                $scope.notes = notesSrv.notes;
-                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, formToken);
+                $scope.loading.newNote = true;
+                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, $scope.itemName, formToken).then(function(note){
+                    note.edit = false;
+                    notesSrv.notes.push(note);
+                    $scope.notes = notesSrv.notes;
+                    $scope.loading = false;
+                });
+                
                 $scope.newNote = '';
             };
             
             //Save Note
             $scope.saveNote = function(note, index){
                 note.edit = false;
-                notesSrv.notes = $scope.notes;
-                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, formToken);
+                //notesSrv.notes = $scope.notes;
+                $scope.loading[index] = true;
+                notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, $scope.itemName, formToken).then(function(note){
+                    note.edit = false;
+                    notesSrv.notes[index] = note;
+                    $scope.notes = notesSrv.notes;                    
+                    $scope.loading[index] = false;
+                });
             };         
             
         }

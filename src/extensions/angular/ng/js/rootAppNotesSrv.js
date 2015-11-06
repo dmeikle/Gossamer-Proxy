@@ -14,22 +14,14 @@ module.service('notesSrv', function ($http) {
         return notes;
     };
     
-    this.getList = function(){
-        
-    };
-    
     //Save comment    
-    this.save = function(apiPath, note, parentItemName, parentItemId, formToken){
+    this.save = function(apiPath, note, parentItemName, parentItemId, itemName, formToken){
         var saveNote = angular.copy(note);
         delete saveNote.edit;
         saveNote[parentItemName] = parentItemId;
         var data = {};
-        data.PurchaseOrderNote = saveNote;
-        //data.id = id;
+        data[itemName] = saveNote;
         data.FORM_SECURITY_TOKEN = formToken;
-        console.log(apiPath);
-        console.log(data);
-
         return $http({
             method: 'POST',
             headers: {
@@ -39,6 +31,22 @@ module.service('notesSrv', function ($http) {
             data: data
         }).then(function (response) {
             //console.log(response);
+            return response.data[itemName][0];
+        });
+    };
+    
+    this.remove = function(apiPath, id, formToken){
+        var data = {};
+        data.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath + 'remove/' + id,
+            data: data
+        }).then(function (response) {
+            
         });
     };
 });

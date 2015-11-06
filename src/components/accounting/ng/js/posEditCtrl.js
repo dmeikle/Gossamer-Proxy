@@ -24,8 +24,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.editing = true;
         posEditSrv.getPurchaseOrder(id).then(function () {
             posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
-            //posEditSrv.purchaseOrder.creationDate = $filter('date')(posEditSrv.purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
-            //$scope.item.date = creationDate;
             $scope.item = posEditSrv.purchaseOrder;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             if($scope.lineItems[0].length === 0){
@@ -36,9 +34,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.loading = false;
             $scope.item.taxTypes = [];
             if(posEditSrv.purchaseOrderNotes[0].length !== 0){
-                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);                
+                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
             }
-            //commentsSrv.comments = commentsSrv.convertToComments(posEditSrv.purchaseOrderNotes);
         });
     } else {
         $scope.editing = false;
@@ -103,6 +100,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.fetchProductNameAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
         return posEditSrv.fetchProductNameAutocomplete(searchObject);
     };
     

@@ -41,10 +41,12 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 //->add('isSelected', 'checkbox', array('class' => 'form-control', 'ng-model' => 'row.isSelected', 'value' => '123'))
                 ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'typeahead'=>'value as value.productCode for value in fetchProductCodeAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductCode', 'class'=>'form-control typeahead',
-               'typeahead-min-length'=>'2', 'typeahead-on-select'=> 'getProductInfo(row, row.productCode, $index);'))                
-                ->add('productName', 'text', array('ng-model' => 'row.name', 'typeahead'=>'value for value in fetchProductNameAutocomplete($viewValue)',
+               'typeahead-min-length'=>'2', 'typeahead-on-select'=> 'getProductInfo(row, row.productCode, $index);'))     
+                
+                ->add('productName', 'text', array('ng-model' => 'row.name', 'typeahead'=>'value as value.name for value in fetchProductNameAutocomplete($viewValue)',
                'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsProductName', 'class'=>'form-control typeahead',
-               'typeahead-min-length'=>'2', 'typeahead-on-select'=> 'getProductInfo(row, row.productCode, $index);'))
+               'typeahead-min-length'=>'2', 'typeahead-on-select'=> 'getProductInfo(row, row.name, $index);'))
+                
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))
                 ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change'=>'updateAmount(row)'))
                 ->add('taxType', 'select', array('id' => 'taxType{{$index}}', 'class' => 'form-control', 'ng-change' => 'updateTaxList(row, $index, row.AccountingTaxTypes_id);updateAmount(row)', 'ng-init' => 'updateTax(row, $index, row.AccountingTaxTypes_id);', 'ng-model' => 'row.AccountingTaxTypes_id', 'options' => $options['taxTypes']))

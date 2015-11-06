@@ -124,7 +124,7 @@
     <div ng-if="!loading && editing" class="col-md-10 purchase-order-notes">        
         <div class="widget">
             <div class="widget-content">
-                <notes api-path="/admin/accounting/purchaseordernotes/" parent-item-id="{{item.id}}" parent-item-name="PurchaseOrders_id"></notes>
+                <notes api-path="/admin/accounting/purchaseordernotes/" parent-item-id="{{item.id}}" parent-item-name="PurchaseOrders_id" item-name="PurchaseOrderNote"></notes>
             </div>
             <div class="clearfix"></div>
         </div>

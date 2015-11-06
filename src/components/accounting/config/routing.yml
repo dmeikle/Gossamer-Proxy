@@ -508,6 +508,18 @@ accounting_workorderrequests_save:
     
 
 #------------------------ purchase order notes ----------------------------
+accounting_purchaseordernotes_remove:
+    pattern: admin/accounting/purchaseordernotes/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordernotes_remove
+        datasource: datasource1 
+    methods: [POST] 
+    
 accounting_purchaseordernotes_list:
     pattern: admin/accounting/purchaseordernotes/*/*
     defaults:
@@ -543,7 +555,7 @@ accounting_purchaseordernotes_save:
         view: core\views\JSONView
         viewKey: accounting_purchaseordernotes_save
         datasource: datasource1 
-    methods: [POST]                      
+    methods: [POST]   
     
 
 #------------------------ Breakdown Report ----------------------------

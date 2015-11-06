@@ -17,6 +17,17 @@ notes{
     textarea{
         overflow:hidden;
     }
+    .spinner-loader{
+        position: relative;
+        left: 10px;
+        vertical-align: middle;
+        &.new-note-spinner{
+        }
+        &.edit-note-spinner{
+            margin: 20px 0;
+            left: 20px;
+        }
+    }
 }
 
 .new-note{
