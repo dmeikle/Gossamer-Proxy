@@ -1,7 +1,5 @@
 <div class="widget" ng-controller="vendorsListCtrl">
-    <div class="widget-content" ng-class="{
-            'panel-open'
-            :sidePanelOpen}">
+    <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('VENDORS_LIST') ?></h1>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
@@ -140,8 +138,8 @@
         <div ng-if="!sidePanelLoading && !searching && !multiSelect">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></h3>
-                    <p>{{selectedRow.company}}</p>
+                    <h3>{{selectedRow.company}}</h3>
+                    <p><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></p>
                 </div>
             </div>
             <div class="clearfix"></div>
