@@ -92,4 +92,38 @@ admin_vendors_list_POS:
         datasource: datasource1
                       
         
-      
+admin_vendors_locations_list:
+    pattern: admin/vendors/locations/*/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: listallLocations
+        view: core\views\JSONView
+        viewKey: admin_vendors_list_locations
+        datasource: datasource1      
+        
+admin_vendors_locations_save:
+    pattern: admin/vendors/locations/*/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_vendors_locations_save
+        datasource: datasource1  
+        
+admin_vendors_locations_get:
+    pattern: admin/vendors/locations/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_vendors_locations_get
+        datasource: datasource1      
