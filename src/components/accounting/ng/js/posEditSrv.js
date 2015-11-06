@@ -65,6 +65,18 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         });
     };
     
+    //Vendor Autocomplete
+    this.fetchVendorsAutocomplete = function(searchObject) {
+        return $http({
+            method: 'GET',
+            url: vendorsAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.vendorsAutocompleteValues = [];
+            self. vendorsAutocompleteValues = response.data.InventoryItems;
+        })
+    };
+    
     //Get the purchase order
     this.getPurchaseOrder = function (id) {
         return $http({
