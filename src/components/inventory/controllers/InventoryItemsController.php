@@ -32,7 +32,9 @@ class InventoryItemsController extends AbstractController {
 
         $result = $this->model->edit($id);
 
-        $this->render(array('form' => $this->drawForm($this->model, $result)));
+        $this->httpRequest->setAttribute('inventoryItem', $result);
+
+        $this->render(array());
     }
 
     public function save($id) {

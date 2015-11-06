@@ -24,6 +24,12 @@ class DependencySerializer extends Serializer {
 
         $retval = '';
         foreach ($options as $option) {
+            if (!array_key_exists($id, $option)) {
+                throw new \Exception("key $id not found in result - check dependency configuration");
+            } elseif (!array_key_exists($value, $option)) {
+                throw new \Exception("value $value not found in result - check dependency configuration");
+            }
+
             $retval .= '<option value="' . $option[$id] . '">' . $option[$value] . '</option>';
         }
 

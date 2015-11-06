@@ -1,12 +1,7 @@
-module.controller('inventoryEditCtrl', function($scope, $location, inventoryEditSrv) {
+module.controller('inventoryEditItemCtrl', function($scope, $location, inventoryEditSrv) {
     $scope.item = new AngularQueryObject();
 
 
-    $scope.$watch('item', function() {
-        if ($scope.item && $scope.item.id) {
-            $scope.getDetails();
-        }
-    });
     $scope.getDetails = function() {
         inventoryEditSrv.getDetails($scope.item).then(function(response) {
             $scope.item = response.data.InventoryItem;
@@ -16,7 +11,7 @@ module.controller('inventoryEditCtrl', function($scope, $location, inventoryEdit
     $scope.saveItem = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         inventoryEditSrv.save($scope.item, formToken).then(function(response) {
-            window.location.href = '/admin/inventory';
+            //do not fire a redirect to reload page
         });
     };
 });
