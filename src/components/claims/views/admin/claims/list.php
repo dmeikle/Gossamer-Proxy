@@ -113,7 +113,7 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedClaim.id}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
             <h4><?php echo $this->getString('CLAIMS_ADDRESS') ?></h4>
             <div>{{selectedClaim.address1}}</div>
             <div>{{selectedClaim.address2}}</div>

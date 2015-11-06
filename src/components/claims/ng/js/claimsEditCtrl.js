@@ -1,4 +1,4 @@
-module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, claimsTemplateSrv) {
+module.controller('claimsEditCtrl', function ($scope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
     $scope.loading = true;
@@ -59,7 +59,7 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
     $scope.openEditModal = function (claim) {
         $scope.modalLoading = true;
         var template = claimsTemplateSrv.claimEditModal;
-        var modal = $modal.open({
+        var modal = $uibModal.open({
             templateUrl: template,
             controller: 'claimsModalCtrl',
             size: 'xl',

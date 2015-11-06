@@ -1,5 +1,5 @@
 
-module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -47,7 +47,7 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
     };
 
     $scope.openAddNewWizard = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/claimsAddNewModal',
             controller: 'claimsModalCtrl',
             size: 'lg',
@@ -61,7 +61,7 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
 
     $scope.assignPM = function (claim) {
 
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/assignPMModal',
             controller: 'claimsPMModalCtrl',
             size: 'lg',
@@ -111,7 +111,7 @@ module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEd
     };
 });
 
-module.controller('claimsPMModalCtrl', function ($modalInstance, $scope, claimsListSrv, claim) {
+module.controller('claimsPMModalCtrl', function ($uibModalInstance, $scope, claimsListSrv, claim) {
     $scope.staffList = [];
 
     $scope.claim = claim;
@@ -138,15 +138,15 @@ module.controller('claimsPMModalCtrl', function ($modalInstance, $scope, claimsL
 
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.claim.query);
+        $uibModalInstance.close($scope.claim.query);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });
 
-module.controller('claimsModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
+module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claimsEditSrv) {
 
     $scope.addNewClient = false;
 
@@ -219,10 +219,10 @@ module.controller('claimsModalCtrl', function ($modalInstance, $scope, claimsEdi
     };
 
     $scope.confirm = function() {
-        $modalInstance.close($scope.claim.query);
+        $uibModalInstance.close($scope.claim.query);
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

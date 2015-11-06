@@ -1,4 +1,4 @@
-module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsLocationsListCtrl', function ($scope, $location, $uibModal, claimsListSrv, tablesSrv, searchSrv) {
 
     var row = 0;
     var numRows = 20;
@@ -17,7 +17,7 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
 
 
     $scope.openAddNewWizard = function () {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/claimsAddNewModal',
             controller: 'claimsModalCtrl',
             size: 'lg',
