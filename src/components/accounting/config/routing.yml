@@ -175,11 +175,12 @@ accounting_pos_edit:
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingTaxTypeModel',  'cacheKey': 'AccountingTaxTypes' }
         -
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -189,11 +190,12 @@ accounting_pos_edit:
             cacheKey: 'PurchaseOrderForm'
             formName: 'form'
             dependencies:
-                - { dependency: AccountingPhaseCodes, key: phase, value: id, text: phaseCode }
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: Vendors, key: vendors, value: id, text: company }
                 - { dependency: Departments, key: departments, value: id, text: name }
                 - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }
                 - { dependency: PurchaseOrderTypes, key: PurchaseOrderType, value: id, text: orderType }
+                - { dependency: AccountingTaxTypes, key: taxTypes, value: id, text: type }
     methods: [GET]
     
 accounting_pos_list:
@@ -506,6 +508,18 @@ accounting_workorderrequests_save:
     
 
 #------------------------ purchase order notes ----------------------------
+accounting_purchaseordernotes_remove:
+    pattern: admin/accounting/purchaseordernotes/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordernotes_remove
+        datasource: datasource1 
+    methods: [POST] 
+    
 accounting_purchaseordernotes_list:
     pattern: admin/accounting/purchaseordernotes/*/*
     defaults:
@@ -541,7 +555,7 @@ accounting_purchaseordernotes_save:
         view: core\views\JSONView
         viewKey: accounting_purchaseordernotes_save
         datasource: datasource1 
-    methods: [POST]                      
+    methods: [POST]   
     
 
 #------------------------ Breakdown Report ----------------------------

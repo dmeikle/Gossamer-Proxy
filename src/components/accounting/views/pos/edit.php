@@ -3,36 +3,25 @@
         <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
             <h1 ng-if="!editing"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></h1>
             <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_POS') ?></h1>
-            <div class="col-md-4 form-headings">
-
+            <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
+            <div ng-if="!loading" class="col-md-4 form-headings">
+                
+                <div class="form-group">
+                    <label for="purchaseOrderType" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></label>
+                    <?php echo $form['PurchaseOrderTypes_id']; ?>
+                </div>
+                
                 <div class="form-group">
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['Vendors_id']; ?>
                 </div>
 
-                <div class="form-group">
-                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></label>
-                    <?php echo $form['AccountingPaymentsMethods_id']; ?>
-                </div>
+                
 
-                <div class="input-group">
-                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
-                    <div class="col-md-7 no-padding">                    
-                        <input type="date" name="date" ng-model="item.dateEntered" ng-model-options="{timezone: '+0000'}"
-                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
-                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
-                        <span class="input-group-btn" data-datepickername="date">
-                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
+                
             </div>
 
-            <div class="col-md-4 form-headings">
+            <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="form-group">
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
@@ -44,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="phaseCode" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
-                    <?php echo $form['AccountingPhaseCodes']; ?>
+                    <?php echo $form['ClaimPhases_id']; ?>
                 </div>
 
                 <div class="form-group">
@@ -53,10 +42,30 @@
                 </div>
             </div>
 
-            <div class="col-md-4 form-headings">
+            <div ng-if="!loading" class="col-md-4 form-headings">
+                <div class="input-group form-group">
+                    <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
+                    <div class="col-md-7 no-padding">                    
+                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
+                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
+                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
+                        <span class="input-group-btn" data-datepickername="date">
+                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
 
+                    <div class="clearfix"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paymentMethods" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></label>
+                    <?php echo $form['AccountingPaymentMethods_id']; ?>
+                </div>
+                
                 <div class="form-group description">
-                    <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
+                    <label for="description" class="col-md-5"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                     <?php echo $form['description']; ?>
                 </div>
             </div>
@@ -76,10 +85,9 @@
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_PERCENT'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_AMOUNT'); ?></th>
-                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
+                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_PRICE'); ?></th>
+                            <th class="number-col"><?php echo $this->getString('ACCOUNTING_TAX_PERCENT'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_AMOUNT'); ?></th>
                         </tr>
                     </thead>
@@ -94,16 +102,16 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
                             <td><?php echo $form['productCode']; ?></td>
                             <td><?php echo $form['productName']; ?></td>
                             <td><?php echo $form['productDescription']; ?></td>
-                            <td><?php echo $form['taxPercent']; ?></td>
-                            <td><?php echo $form['taxAmount']; ?></td>
-                            <td><?php echo $form['productPrice']; ?></td>
-                            <td><?php echo $form['productQuantity']; ?></td>
+                            <td><?php echo $form['quantity']; ?></td>
+                            <td><?php echo $form['unitPrice']; ?></td>
+                            <td><?php echo $form['taxType']; ?></td>
                             <td>{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
@@ -113,16 +121,24 @@
         <div class="clearfix"></div>
     </div>
     
-    <div class="col-md-10 purchase-order-notes" ng-if="editing">        
+    <div ng-if="!loading && editing" class="col-md-10 purchase-order-notes">        
         <div class="widget">
             <div class="widget-content">
-                <comments  api-path="/admin/accounting/pos/"></comments>
+                <notes api-path="/admin/accounting/purchaseordernotes/" parent-item-id="{{item.id}}" parent-item-name="PurchaseOrders_id" item-name="PurchaseOrderNote"></notes>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
     
-    <div class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing}">     
+    <div ng-if="loading" class="col-md-2 form-totals col-md-offset-10">
+        <div class="widget">
+            <div class="widget-content">
+                <span class="spinner-loader"></span>                
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div ng-if="!loading" class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing || loading}">     
     
         <div class="widget pull-right ">
             <div class="widget-content">
@@ -136,9 +152,9 @@
                         <?php echo $form['deliveryFee']; ?>
                     </div>
 
-                    <div class="form-group">
-                        <label for="tax" class="col-md-6"><?php echo $this->getString('ACCOUNTING_TAX'); ?></label>
-                        <?php echo $form['tax']; ?>
+                    <div class="form-group" ng-repeat="tax in item.taxTypes">
+                        <label for="tax" class="col-md-6">{{tax.type}}</label>
+                        <p class="col-md-6">{{tax.total | currency}}</p>
                     </div>
 
                     <div class="form-group">
@@ -148,6 +164,7 @@
                 </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn-info" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
+        <button class="btn-info pull-right" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
     </div>
 </div>
+<form></form>

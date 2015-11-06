@@ -5,7 +5,7 @@ sortByButton:
     langFiles:
         - 'src/components/staff/locales/*/staff'
 
-commentsTemplate:
-    path: 'src/extensions/angular/ng/views/comments.php'    
+notesTemplate:
+    path: 'src/extensions/angular/ng/views/notes.php'    
     langFiles:
         - 'src/components/accounting/locales/*/accounting'

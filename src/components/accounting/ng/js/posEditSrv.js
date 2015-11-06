@@ -2,7 +2,8 @@
 module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
-    var autocompletePath = '/admin/inventory/items/autocomplete';
+    var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
+    
     var self = this;
     
     //Claims Autocomplete
@@ -10,7 +11,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
             self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
-            console.log(searchSrv.autocomplete);
             for (var item in self.autocomplete) {
                 if (!isNaN(item / 1)) {
                     self.autocompleteValues.push(self.autocomplete[item].jobNumber);
@@ -26,19 +26,14 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Product Code Autocomplete
     this.fetchProductCodeAutocomplete = function (searchObject) {
-        var config = {};
-        config.productCode = searchObject.productCode;
         return $http({
             method: 'GET',
-            url: autocompletePath,
-            params: config
+            url: inventoryItemsAutocompletePath,
+            params: searchObject
         }).then(function (response) {
             self.productCodeAutocompleteValues = [];
             self.productCodeAutocomplete = response.data.InventoryItems;
-            for (var i in response.data.InventoryItems) {
-                
-                self.productCodeAutocompleteValues.push(response.data.InventoryItems[i].productCode);
-            }
+            self.productCodeAutocompleteValues = response.data.InventoryItems;
             if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
                 return self.productCodeAutocompleteValues;
             } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
@@ -49,18 +44,19 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Product Name Autocomplete
     this.fetchProductNameAutocomplete = function (searchObject) {
-        var config = {};
-        config.name = searchObject.name;
+        //var config = {};
+        //config.name = searchObject.name;
         return $http({
             method: 'GET',
-            url: autocompletePath,
-            params: config
+            url: inventoryItemsAutocompletePath,
+            params: searchObject
         }).then(function (response) {
             self.materialsAutocompleteValues = [];
             self.materialsAutocomplete = response.data.InventoryItems;
-            for (var i in response.data.InventoryItems) {
-                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
-            }
+            self.materialsAutocompleteValues = response.data.InventoryItems;
+//            for (var i in response.data.InventoryItems) {
+//                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
+//            }
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
             } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
@@ -69,50 +65,48 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         });
     };
     
+    //Vendor Autocomplete
+    this.fetchVendorsAutocomplete = function(searchObject) {
+        return $http({
+            method: 'GET',
+            url: vendorsAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.vendorsAutocompleteValues = [];
+            self. vendorsAutocompleteValues = response.data.InventoryItems;
+        })
+    };
+    
     //Get the purchase order
     this.getPurchaseOrder = function (id) {
-        //var config = {};
-
         return $http({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + id,
-            //config: config
+            url: apiPath + id
         }).then(function (response) {
-            console.log(response);
-            self.purchaseOrder = response.data.PurchaseOrder;
-            console.log(self.purchaseOrder.deliveryFee);
-
-            //self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
+            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
+            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
+            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
             self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
+            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
+            if(self.purchaseOrderItems[0].length !== 0){
+                for(var i in self.purchaseOrderItems){
+                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
+                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
+                    self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
+                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
+                }
+            }
+            
         });
     };
     
-    //Get the purchase order
-    this.getPurchaseOrdersItems = function (id) {
-        //var config = {};
-
-        return $http({
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: apiPath + id,
-            //config: config
-        }).then(function (response) {
-            console.log(response);
-            self.purchaseOrder = response.data.PurchaseOrder;
-            console.log(self.purchaseOrder.deliveryFee);
-
-            //self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
-            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
-        });
-    };
-    
-    //Save the inventory item
-    this.save = function (item, formToken) {
+    //Save the purchase order
+    this.save = function (item, lineItems, formToken) {
         var itemID = '';
         if (item.id) {
             itemID = parseInt(item.id);
@@ -125,11 +119,12 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
                 delete item[i];
             }
         }
-
         var data = {};
-        data.InventoryItem = item;
+        data.PurchaseOrder = item;
+        data.PurchaseOrderItems = lineItems;
         data.FORM_SECURITY_TOKEN = formToken;
-
+        console.log(data);
+        
         return $http({
             method: 'POST',
             headers: {

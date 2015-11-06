@@ -1,4 +1,4 @@
-module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
+module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, notesSrv) {
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -10,7 +10,10 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.item = {};
     $scope.item.subtotal = 0;
     $scope.item.total = 0;
+    $scope.item.taxTypes = [];
     $scope.purchaseOrderNotes = [];
+    $scope.loading = true;
+    
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
@@ -20,12 +23,25 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     if(id > 0){
         $scope.editing = true;
         posEditSrv.getPurchaseOrder(id).then(function () {
+            posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
             $scope.item = posEditSrv.purchaseOrder;
+            $scope.lineItems = posEditSrv.purchaseOrderItems;
+            if($scope.lineItems[0].length === 0){
+                $scope.lineItems = [];
+                $scope.lineItems.push(new LineItems());
+            }
+            
+            $scope.loading = false;
+            $scope.item.taxTypes = [];
+            if(posEditSrv.purchaseOrderNotes[0].length !== 0){
+                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+            }
         });
     } else {
         $scope.editing = false;
-    }
-    
+        $scope.loading = false;
+        $scope.item.id = 0;
+    }    
     
     function LineItems(){
         return {
@@ -33,12 +49,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
             productCode: '',
             InventoryItems_id: '',
             name: '',
-            PackageTypes_id: '',
             price: '',
             quantity: '',
-            cost: '',
-            chargeOut: '',
-            amount: ''
+            amount: '',
+            VendorItems_id: '',
+            PurchaseOrders_id: $scope.item.id
         }; 
     }
     
@@ -48,7 +63,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.addRow = function(){
         $scope.lineItems.push(new LineItems());        
     };
-    //console.log($scope.lineItems);
+    
     $scope.insertRows = function () {
         for(var i = $scope.lineItems.length-1; i >= 0; i--){
             if ($scope.lineItems[i].isSelected === true) {
@@ -77,6 +92,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.fetchProductCodeAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.productCode = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
         return posEditSrv.fetchProductCodeAutocomplete(searchObject);
     };
     
@@ -84,42 +100,38 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     $scope.fetchProductNameAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.name = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
         return posEditSrv.fetchProductNameAutocomplete(searchObject);
+    };
+    
+    $scope.fetchVendorAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return posEditSrv.fetchVendorAutocomplete(searchObject);
     };
     
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function (jobNumber) {
         for (var i in posEditSrv.autocomplete) {
             if (posEditSrv.autocomplete[i].jobNumber === jobNumber) {
-                $scope.AccountingGeneralCost.Claims_id = posEditSrv.autocomplete[i].id;
-            }
-        }
-    };
-    
-    //Get Material info from material name
-    $scope.getProductNameInfo = function (row, value) {
-        for (var j in posEditSrv.materialsAutocomplete) {
-            if (posEditSrv.materialsAutocomplete[j].name === value) {
-                row.productCode = posEditSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = posEditSrv.materialsAutocomplete[j].purchaseCost;
-                row.PackageTypes_id = posEditSrv.materialsAutocomplete[j].PackageTypes_id;
-                row.InventoryItems_id = posEditSrv.materialsAutocomplete[j].id;
+                $scope.item.Claims_id = posEditSrv.autocomplete[i].id;
             }
         }
     };
 
-    //Get Material info from product code
-    $scope.getProductCodeInfo = function (row, value) {
-        for (var i in posEditSrv.productCodeAutocomplete) {
-            if (posEditSrv.productCodeAutocomplete[i].productCode === value) {
-                console.log(posEditSrv.productCodeAutocomplete[i]);
-                row.productName = posEditSrv.productCodeAutocomplete[i].name;
-                row.price = posEditSrv.productCodeAutocomplete[i].price;
-                row.InventoryItems_id = posEditSrv.productCodeAutocomplete[i].id;
-            }
-        }
-    };
-    
+    //Get Vendor items info
+    $scope.getProductInfo = function (row, value, index) {
+        value.unitPrice = parseFloat(value.unitPrice);
+        row.productCode = value.productCode;
+        row.name = value.name;
+        row.description = value.description;
+        row.unitPrice = value.unitPrice;
+        row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
+        row.VendorItems_id = value.VendorItems_id;
+        row.InventoryItems_id = value.InventoryItems_id;
+        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);   
+        $scope.updateTax();
+    };    
     
     //Check selected
     $scope.checkSelected = function () {
@@ -145,16 +157,16 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     
     //Update totals
     $scope.updateAmount = function(row){
-        //console.log(parseInt(row.quantity));
-        if(!isNaN(parseFloat(row.price)) && !isNaN(parseFloat(row.quantity))){
-            row.amount = parseFloat(row.price) * parseFloat(row.quantity);
+        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity)) ){
+            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
+            
         } else {
-            row.amount = '';
+            row.amount = 0;
         }
         $scope.updateSubtotal();
     };
     
-    $scope.updateSubtotal = function(row){
+    $scope.updateSubtotal = function(){
         $scope.item.subtotal = 0;
         for(var i in $scope.lineItems){
             if($scope.lineItems[i].amount === ''){
@@ -163,54 +175,72 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
         }
+        
         $scope.updateTotal();
     };
     
     $scope.updateTotal = function(){
-        $scope.item.total = $scope.item.subtotal;
+        $scope.item.total = $scope.item.subtotal;        
+        $scope.taxTotal = 0;
+        
+        //Add the delivery fee
         if(parseFloat($scope.item.deliveryFee) > 0){
             $scope.item.total += parseFloat($scope.item.deliveryFee);
         }
-        if(parseFloat($scope.item.tax) > 0){
-            $scope.item.total += parseFloat($scope.item.tax);
+        
+        //Add the tax to the total
+        $scope.updateTax();        
+        for(var i in $scope.item.taxTypes){
+            $scope.taxTotal += $scope.item.taxTypes[i].total;
+        }        
+        $scope.item.total += $scope.taxTotal;
+    };
+    
+    //Update tax
+    $scope.updateTax = function(){
+        $scope.item.taxTypes = [];
+        for(var i in $scope.lineItems){
+            $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+            var taxObj = {
+                id: $scope.lineItems[i].AccountingTaxTypes_id,
+                type: $scope.lineItems[i].taxType,
+                total: 0
+            };
+            
+            if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
+                $scope.item.taxTypes.push(taxObj);
+            }        
+            for(var j in $scope.item.taxTypes){
+                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
+                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                }
+            }
         }
     };
+    
+    $scope.updateTaxList = function(row, index, id){
+        var taxSelect = document.getElementById('taxType' + index);
+        var options = $(taxSelect).find('option');
+        for(var i = 0; i < options.length; i++){
+            if(options[i].value === id){
+                row.taxAmount = parseFloat(options[i].attributes['data-amount'].nodeValue);
+                row.taxType = options[i].attributes['data-type'].nodeValue;
+            }
+        }
+    };
+    
+    function objectWithPropExists(array1,propName,propVal) {
+        for(var i=0,k=array1.length;i<k;i++){
+            if(array1[i][propName]===propVal) return true;
+        }
+        return false;
+    }   
     
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (event) {
         $scope.isOpen.datepicker = true;
     };
-    
-//    //Save note
-//    $scope.newNote = function(text){
-//        var note = {};
-//        //note.text = $sce.trustAsHtml(text.replace(/\r?\n/g, '<br />'));
-//        note.text = text;
-//        note.edit = false;
-//        $scope.purchaseOrderNotes.push(note);
-//        $scope.item.newPurchaseOrderNote = '';
-//    };
-//    
-//    //Edit Note
-//    $scope.editNote = function(note){
-//        note.edit = true;
-//    };
-//    
-//    //Delete Note
-//    $scope.deleteNote = function(index){
-//        //delete $scope.purchaseOrderNotes[index];
-//        $scope.purchaseOrderNotes.splice(index, 1);
-//        console.log($scope.purchaseOrderNotes);
-//    };
-//    
-//    //Save Note
-//    $scope.saveNote = function(note, index){
-//        console.log('saveing note...');
-//        note.text = $sce.trustAsHtml(note.text.replace(/\r?\n/g, '<br />'));
-//        //$scope.purchaseOrderNotes[index] = note;
-//        note.edit = false;
-//    };
     
     //Clear the item
     $scope.clear = function(){
@@ -219,10 +249,10 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location) {
     
     //Saving Items    
     $scope.save = function () {
-        console.log($scope.lineItems);
-        console.log($scope.item);
-
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//        posEditSrv.save($scope.item, formToken);
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var purchaseOrder = angular.copy($scope.item);
+        var purchaseOrderItems = angular.copy($scope.lineItems);
+        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
+        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken);
     };
 });
