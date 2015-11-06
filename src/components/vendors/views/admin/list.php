@@ -129,16 +129,71 @@
             <div class="breakdown-title">
                 <div class="pull-left">
                     <h3>{{selectedRow.company}}</h3>
-                    <p><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></p>
-                    <p>{{selectedRow.email}}</p>
-                    <p>{{selectedRow.tollFree}}</p>
-                    <p>{{selectedRow.address1}}</p>
+                    <p>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <a href="mailto:{{selectedRow.email}}">{{selectedRow.email}}</a>
+                    </p>
+                    <p>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        <a href="tel:{{selectedRow.tollFree}}">{{selectedRow.tollFree}}</a>
+                    </p>
+                    <!-- <p>{{selectedRow.address1}}</p>
                     <p>{{selectedRow.city}}</p>
                     <p>{{selectedRow.Provinces_id}}</p>
-                    <p>{{selectedRow.postalCode}}</p>
+                    <p>{{selectedRow.postalCode}}</p> -->
                 </div>
             </div>
             <div class="clearfix"></div>
+            <div class="card" ng-repeat="item in vendorLocations">
+                <div class="cardheader">
+                    <h1>{{selectedRow.company}} - {{item.city}}</h1>
+                    <h2><?php echo $this->getString('VENDORS_ACCOUNT_ID') ?> {{item.accountId}}</h2>
+                </div>
+                <div>
+
+                </div>
+                <table class="table cardtable">
+                    <tr>
+                        <td>
+                            <strong>
+                                <?php echo $this->getString('VENDORS_ADDRESS1') ?>
+                            </strong>
+                        </td>
+                        <td>
+                            <div>
+                                {{item.address1}}
+                            </div>
+                            <div>
+                                {{item.address2}}
+                            </div>
+                            <div>
+                                {{item.city}}
+                            </div>
+                            <div>
+                                {{item.Provinces_id}}
+                            </div>
+                            <div>
+                                {{item.postalCode}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong><?php echo $this->getString('VENDORS_TELEPHONE') ?></strong></td>
+                        <td>{{item.telephone}}</td>
+                    </tr><tr>
+                        <td><strong><?php echo $this->getString('VENDORS_TOLLFREE') ?></strong></td>
+                        <td>{{item.tollFree}}</td>
+                    </tr>
+                </table>
+                <div class="clearfix"></div>
+                <div class="cardfooter clearfix">
+                    <div class="pull-right">
+                        <button class="btn-link" ng-click="openVendorLocationModal()">
+                            <?php echo $this->getString('MORE_INFO') ?>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>

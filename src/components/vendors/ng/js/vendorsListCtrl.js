@@ -82,10 +82,9 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelLoading = true;
-            vendorsListSrv.getVendorPurchaseOrders(clickedObject, poRow, poNumRows)
-                .then(function(result) {
-                    $scope.purchaseOrdersList = result.data.PurchaseOrders;
-                    $scope.purchaseOrdersCount = result.data.PurchaseOrdersCount[0].rowCount;
+            vendorsListSrv.getVendorLocations(clickedObject, poRow, poNumRows)
+                .then(function(response) {
+                    $scope.vendorLocations = response.data.VendorLocations;
                     $scope.sidePanelLoading = false;
                 });
         }
@@ -172,6 +171,16 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
         });
     };
 
+    $scope.openVendorLocationModal = function(object) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/render/vendors/vendorLocationModal',
+            controller: 'vendorLocationsModalController',
+            size: 'lg',
+            resolve: {
+
+            }
+        });
+    };
 });
 
 

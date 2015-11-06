@@ -32,5 +32,6 @@ return array(
     'VENDORS_NEWITEM' => 'Add New Vendor',
     'WIDGET_CONFIRM' => 'Save',
     'WIDGET_CANCEL' => 'Cancel',
-    'VENDORS_PURCHASE_ORDERS' => 'Purchase Orders'
+    'VENDORS_PURCHASE_ORDERS' => 'Purchase Orders',
+    'VENDORS_TOLLFREE' => 'Toll Free'
 );
