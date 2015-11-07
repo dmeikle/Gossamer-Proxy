@@ -104,10 +104,15 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         return posEditSrv.fetchProductNameAutocomplete(searchObject);
     };
     
-    $scope.fetchVendorAutocomplete = function(viewVal) {
+    $scope.fetchVendorsAutocomplete = function(viewVal) {
         var searchObject = {};
-        searchObject.name = viewVal;
-        return posEditSrv.fetchVendorAutocomplete(searchObject);
+        searchObject.company = viewVal;
+        return posEditSrv.fetchVendorsAutocomplete(searchObject);
+    };
+    
+    $scope.getVendorLocations = function(value){
+        console.log('vendor locations');
+        console.log(value);
     };
     
     //Get Claims ID from autocomplete list

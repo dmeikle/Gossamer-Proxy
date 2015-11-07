@@ -3,7 +3,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
-    
+    var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var self = this;
     
     //Claims Autocomplete
@@ -73,8 +73,21 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             params: searchObject
         }).then(function(response) {
             self.vendorsAutocompleteValues = [];
-            self. vendorsAutocompleteValues = response.data.InventoryItems;
-        })
+            self.vendorKeys = Object.keys(response.data.Vendors[0]);
+            
+            
+            for(var i in self.vendorKeys){
+                var obj = {};
+                obj.company = self.vendorKeys[i];
+                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
+                self.vendorsAutocompleteValues.push(obj);
+            }
+            if (self.vendorsAutocompleteValues.length > 0) {
+                return self.vendorsAutocompleteValues;
+            } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
     };
     
     //Get the purchase order

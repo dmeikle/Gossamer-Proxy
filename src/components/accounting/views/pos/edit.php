@@ -13,7 +13,7 @@
                 
                 <div class="form-group">
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
-                    <?php echo $form['Vendors_id']; ?>
+                    <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
 
                 

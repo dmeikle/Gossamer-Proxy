@@ -28,6 +28,10 @@ class PurchaseOrderBuilder extends AbstractBuilder {
         }
 
         $builder->add('Vendors_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Vendors_id', 'options' => $options['vendors']))
+                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'typeahead'=>'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
+               'typeahead-loading'=>'loadingTypeahead', 'typeahead-no-results'=>'noResultsVendors', 'class'=>'form-control typeahead',
+               'typeahead-min-length'=>'2', 'typeahead-on-select'=> 'getVendorLocations(item.company);'))
+                
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentMethods_id', 'options' => $options['AccountingPaymentMethods']))
                 ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
