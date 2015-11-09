@@ -46,8 +46,13 @@ class VendorsController extends AbstractController {
         return $builder->buildForm($formBuilder, $values, $options, $results);
     }
 
-    public function listallPOS($vendorId, $offset, $limit) {
-        $params = array('Vendors_id' => intval($vendorId));
+    public function listallPOS($offset, $limit) {
+        $rawParams = $this->httpRequest->getQueryParameters();
+
+        $params = array('Vendors_id' => intval($rawParams['Vendors_id']));
+        if(array_key_exists('VendorLocations_id', $rawParams)) {
+            $params['VendorLocations_id'] = intval($rawParams['VendorLocations_id']);
+        }
 
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 

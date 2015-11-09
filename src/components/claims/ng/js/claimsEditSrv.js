@@ -29,6 +29,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
 
         return crudSrv.getDetails(apiPath, id).then(function(response) {
             self.claimDetails = response.data.Claim;
+            return response;
         });
 
     };
@@ -52,6 +53,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.getProjectAddress = function(id) {
         return crudSrv.getDetails(projectApiPath, id).then(function(response) {
             self.projectAddress = response.data.ProjectAddress;
+            return response;
         });
     };
 
@@ -61,9 +63,9 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
         });
     };
 
-    
+
     this.loadPMList = function(claimId) {
-        return crudSrv.getDetails('/admin/staff/pmlist/', claimId).then(function (response) {
+        return crudSrv.getDetails('/admin/staff/pmlist/', claimId).then(function(response) {
             self.staffList = response.data.Staffs;
         });
     };

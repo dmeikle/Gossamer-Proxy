@@ -44,7 +44,14 @@ module.service('crudSrv', function($http) {
         });
     };
 
-    this.getList = function(apiPath, row, numRows) {
+    this.getList = function(apiPath, row, numRows, config) {
+        if (config) {
+            return $http({
+                method: 'GET',
+                url: apiPath + row + '/' + numRows,
+                params: config
+            });
+        }
         return $http({
             method: 'GET',
             url: apiPath + row + '/' + numRows

@@ -39,7 +39,7 @@
                     <th column-sortable data-column="strataNumber"><?php echo $this->getString('PROJECTS_STRATANUMBER'); ?></th>
                     <th column-sortable data-column="activeClaimsCount"><?php echo $this->getString('PROJECTS_CLAIMSCOUNT'); ?></th>
                     <th column-sortable><?php echo $this->getString('PROJECTS_HISTORYCOUNT'); ?></th>
-                    <th sort-by-button class="cog-col row-controls">&nbsp; data-column="claimsHistoryCount"</th>
+                    <th sort-by-button class="cog-col row-controls" data-column="claimsHistoryCount">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>

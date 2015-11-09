@@ -55,5 +55,8 @@ return array(
     'CANCEL' => 'Cancel',
     'CONFIRM' => 'Okay',
     'SAVE' => 'Save',
-    'STATUS' => 'Status'
+    'STATUS' => 'Status',
+    'DATE' => 'Date',
+    'CLOSE' => 'Close',
+    'ITEMS_PER_PAGE' => 'Items Per Page'
 );
