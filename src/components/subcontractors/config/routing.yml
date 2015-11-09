@@ -1,6 +1,21 @@
 
 
 
+
+admin_subcontractors_home:
+    pattern: admin/subcontractors
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_subcontractors_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Subcontractors'       
+    methods: [GET]
     
 
 admin_subcontractors_edit:
@@ -78,7 +93,7 @@ admin_subcontractors_edit_contact:
         viewKey: admin_subcontractors_edit_contact
         datasource: datasource1
         langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'      
+            - 'src/components/subcontractors/locales/*/Subcontractors'      
  
 
 admin_subcontractors_list:
@@ -89,11 +104,9 @@ admin_subcontractors_list:
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_subcontractors_list
         datasource: datasource1
-        langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'
                 
    
 admin_subcontractors_edit:

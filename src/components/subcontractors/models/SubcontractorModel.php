@@ -45,23 +45,6 @@ class SubcontractorModel extends AbstractModel {
         return $data;
     }
 
-    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
-
-        $params = array(
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'directive::ORDER_BY' => 'id asc'
-        );
-
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-
-        $data['SubcontractorTypes'] = $this->pruneArrayBeforeFormatting($data['SubcontractorTypes']);
-
-        if (is_array($data) && array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
-            $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
-        }
-
-        return $data;
-    }
-
     public function saveContact($id) {
         $params = $this->httpRequest->getPost();
 
