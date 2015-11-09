@@ -48,7 +48,7 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in vendorsList"
-                    ng-class="{'selected':item === previouslyClickedObject,
+                    ng-class="{'selected':item === selectedRow,
                         'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
                     <td ng-click="selectRow(item)"><a href="{{item.url}}">{{item.company}}</a></td>
                     <td ng-click="selectRow(item)">{{item.telephone}}</td>
@@ -109,7 +109,7 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!sidePanelLoading && searching && !multiSelect" ng-submit="search(advancedSearch.vendor)">
+        <form ng-if="!sidePanelLoading && searching && !multiSelect && sidePanelOpen" ng-submit="search(advancedSearch.vendor)">
             <h1><?php echo $this->getString('ADVANCED_SEARCH'); ?></h1>
             <advanced-search-filters data-service="vendorsListSrv">
 
@@ -125,7 +125,7 @@
             </div>
         </form>
 
-        <div ng-if="!sidePanelLoading && !searching && !multiSelect">
+        <div ng-if="!sidePanelLoading && !searching && !multiSelect && sidePanelOpen">
             <div class="breakdown-title">
                 <div class="pull-left">
                     <h3>{{selectedRow.company}}</h3>
@@ -144,6 +144,14 @@
                 </div>
             </div>
             <div class="clearfix"></div>
+
+            <div class="pull-right">
+                <button class="primary" ng-click="openAddVendorLocationModal()">
+                    <?php echo $this->getString('VENDORS_ADDLOCATION') ?>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+
             <div class="card" ng-repeat="item in vendorLocations">
                 <div class="cardheader">
                     <h1>{{selectedRow.company}} - {{item.city}}</h1>

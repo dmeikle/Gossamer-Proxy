@@ -1,5 +1,8 @@
 <div class="modal-header">
-    <h1><?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?></h1>
+    <h1>
+        <span ng-if="vendor">{{vendor.company}} - {{vendorLocation.city}} </span>
+        <?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?>
+    </h1>
 </div>
 <div class="modal-body">
     <table class="table table-striped">

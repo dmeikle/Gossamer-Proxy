@@ -1,4 +1,5 @@
-module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vendorsListSrv) {
+module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vendorsListSrv,
+    vendorLocationEditSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -59,6 +60,7 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
 
     $scope.closeSidePanel = function() {
         $scope.sidePanelOpen = false;
+        $scope.selectedRow = undefined;
     };
 
     $scope.getList = function() {
@@ -82,7 +84,7 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.sidePanelLoading = true;
-            vendorsListSrv.getVendorLocations(clickedObject, poRow, poNumRows)
+            vendorsListSrv.getVendorLocations(clickedObject, 0, 5)
                 .then(function(response) {
                     $scope.vendorLocations = response.data.VendorLocations;
                     $scope.sidePanelLoading = false;
@@ -189,57 +191,28 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
             }
         });
     };
-});
 
+    $scope.openAddVendorLocationModal = function(object) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/render/vendors/addVendorLocationModal',
+            controller: 'addVendorLocationModalCtrl',
+            size: 'lg',
+            resolve: {
+                vendor: function() {
+                    return object;
+                }
+            }
+        });
 
-module.controller('vendorModalController', function($scope, $uibModalInstance, vendor, vendorsEditSrv) {
-
-    $scope.loading = true;
-    $scope.vendor = vendor;
-
-
-    $scope.confirm = function(item) {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-        vendorsEditSrv.save(item, formToken);
-
-        $uibModalInstance.close(item);
-    };
-
-    $scope.cancel = function() {
-        $uibModalInstance.dismiss('cancel');
-    };
-});
-
-module.controller('purchaseOrdersModalController', function($scope, $uibModalInstance, vendor, purchaseOrders) {
-    $scope.itemsPerPage = 10;
-    $scope.currentPage = 1;
-    var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-    var numRows = $scope.itemsPerPage;
-
-    $scope.purchaseOrdersList = purchaseOrders.data.PurchaseOrders;
-    $scope.itemsPerPage = purchaseOrders.data.PurchaseOrdersCount;
-
-    $scope.vendor = vendor;
-    $scope.vendorLocation = vendorLocation;
-
-    $scope.close = function() {
-        $uibModalInstance.dismiss('cancel');
-    };
-});
-
-module.controller('vendorLocationModalController', function($scope, $uibModalInstance, vendor, vendorLocation, purchaseOrders) {
-    $scope.itemsPerPage = 10;
-    $scope.currentPage = 1;
-    var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-    var numRows = $scope.itemsPerPage;
-
-    $scope.purchaseOrdersList = purchaseOrders.data.PurchaseOrders;
-    $scope.itemsPerPage = purchaseOrders.data.PurchaseOrdersCount;
-
-    $scope.vendor = vendorLocation;
-
-    $scope.close = function() {
-        $uibModalInstance.dismiss('cancel');
+        modalInstance.result.then(function(result) {
+            $scope.sidePanelLoading = true;
+            vendorLocationEditSrv.save(result).then(function() {
+                vendorsListSrv.getVendorLocations($scope.previouslyClickedObject, 0, 5)
+                    .then(function(response) {
+                        $scope.vendorLocations = response.data.VendorLocations;
+                        $scope.sidePanelLoading = false;
+                    });
+            });
+        });
     };
 });

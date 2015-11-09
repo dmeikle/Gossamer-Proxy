@@ -106,7 +106,7 @@ admin_vendors_locations_list:
         datasource: datasource1
 
 admin_vendors_locations_save:
-    pattern: admin/vendors/locations/*/*/*
+    pattern: admin/vendors/locations/*
 
     defaults:
         component: components\vendors\VendorsComponent
