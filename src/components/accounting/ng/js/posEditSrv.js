@@ -100,6 +100,8 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             url: apiPath + id
         }).then(function (response) {
             self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
+            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
+            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
             self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
             self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
             self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
@@ -130,6 +132,14 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         for (var i in item) {
             if (item[i] === null) {
                 delete item[i];
+            }
+        }
+        
+        for (i in lineItems) {
+            for (var j in lineItems[i]){                
+                if (lineItems[i][j] === null) {
+                    delete lineItems[i][j];
+                }
             }
         }
         var data = {};

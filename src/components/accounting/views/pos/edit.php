@@ -16,7 +16,10 @@
                     <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
 
-                
+                <div class="form-group" ng-if="vendorLocations">
+                    <label for="vendorLocations" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_LOCATION'); ?></label>
+                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations" ng-model="item.VendorLocations_id"></select>
+                </div>
 
                 
             </div>
@@ -47,10 +50,10 @@
                     <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
                     <div class="col-md-7 no-padding">                    
                         <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
-                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
+                               class="form-control datepicker disabled" datepicker-popup is-open="isOpen.datepicker"
+                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" disabled/>
                         <span class="input-group-btn" data-datepickername="date">
-                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)" disabled> 
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -81,7 +84,7 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
+                            <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
@@ -105,14 +108,14 @@
                             <td></td>
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
-                            <td><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                            <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
                             <td><?php echo $form['productCode']; ?></td>
                             <td><?php echo $form['productName']; ?></td>
                             <td><?php echo $form['productDescription']; ?></td>
                             <td><?php echo $form['quantity']; ?></td>
                             <td><?php echo $form['unitPrice']; ?></td>
                             <td><?php echo $form['taxType']; ?></td>
-                            <td>{{row.amount | currency}}</td>
+                            <td class="total">{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -164,7 +167,8 @@
                 </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn-info pull-right" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
+        <button class="btn-info save-purchase-order" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
+        <button class="btn-info save-purchase-order" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
     </div>
 </div>
 <form></form>

@@ -1,4 +1,4 @@
-module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, notesSrv) {
+module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filter, notesSrv, $window) {
     
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -16,7 +16,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
-
+    
+    var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
     var id = path.substring(path.lastIndexOf("/")+1);
     
@@ -25,6 +26,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         posEditSrv.getPurchaseOrder(id).then(function () {
             posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
             $scope.item = posEditSrv.purchaseOrder;
+            $scope.item.company = posEditSrv.Vendor;
+            $scope.vendorLocations = posEditSrv.VendorLocations;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             if($scope.lineItems[0].length === 0){
                 $scope.lineItems = [];
@@ -35,12 +38,15 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.item.taxTypes = [];
             if(posEditSrv.purchaseOrderNotes[0].length !== 0){
                 notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+                //notesSrv.notes = posEditSrv.purchaseOrderNotes;
             }
         });
     } else {
         $scope.editing = false;
         $scope.loading = false;
         $scope.item.id = 0;
+        var date = new Date();
+        $scope.item.creationDate = date;
     }    
     
     function LineItems(){
@@ -110,9 +116,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         return posEditSrv.fetchVendorsAutocomplete(searchObject);
     };
     
-    $scope.getVendorLocations = function(value){
-        console.log('vendor locations');
-        console.log(value);
+    $scope.getVendorLocations = function(vendor){
+        $scope.vendorLocations = vendor.locations;
     };
     
     //Get Claims ID from autocomplete list
@@ -135,7 +140,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.VendorItems_id = value.VendorItems_id;
         row.InventoryItems_id = value.InventoryItems_id;
         $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);   
-        $scope.updateTax();
+        //$scope.updateTax();
+        $scope.updateAmount(row);
     };    
     
     //Check selected
@@ -258,6 +264,30 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         var purchaseOrder = angular.copy($scope.item);
         var purchaseOrderItems = angular.copy($scope.lineItems);
         purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
-        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken);
+        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken).then(function(){
+            //$window.location.href = apiPath + '0';
+        });
+    };
+    
+    //Saving Items    
+    $scope.saveAndNew = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var purchaseOrder = angular.copy($scope.item);
+        var purchaseOrderItems = angular.copy($scope.lineItems);
+        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
+        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken).then(function(){
+            $window.location.href = apiPath + '0';
+        });
+    };
+    
+    //Saving Items    
+    $scope.saveAndClose = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var purchaseOrder = angular.copy($scope.item);
+        var purchaseOrderItems = angular.copy($scope.lineItems);
+        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
+        posEditSrv.save(purchaseOrder, purchaseOrderItems, formToken).then(function(){
+            $window.location.href = apiPath;
+        });
     };
 });

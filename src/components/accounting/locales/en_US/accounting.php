@@ -104,6 +104,7 @@ return array(
     'ACCOUNTING_PURCHASE_ORDER_NOTES' => 'Purchase Order Notes',
     'ACCOUNTING_NEW_PURCHASE_ORDER_NOTE' => 'New Note',
     'ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE' => 'Save Note',
-    'ACCOUNTING_PURCHASE_ORDER_TYPE' => 'Order Type'
+    'ACCOUNTING_PURCHASE_ORDER_TYPE' => 'Order Type',
+    'ACCOUNTING_LOCATION' => 'Location'
 );
 

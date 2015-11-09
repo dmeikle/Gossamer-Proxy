@@ -12,6 +12,11 @@
 }
 .table{
     margin:10px 0;
+    .checkbox{
+        vertical-align: middle;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 .toolbar{
     width:100%;
@@ -214,6 +219,10 @@
         }
     }
 }
+.table>tbody>tr>td.total{
+    vertical-align: middle;
+    text-align: center;
+}
 .modal-content{
     .typeahead{
         width:auto;
@@ -347,6 +356,7 @@ label{
 }
 .select-col{
     width:45px;
+    vertical-align: middle;
 }
 .number-col{
     width:110px;
@@ -376,6 +386,12 @@ label.heading-label{
 .new-purchase-order-note{
     min-height:100px;
     margin-bottom:1em;
+}
+
+.save-purchase-order{
+    margin-bottom:10px;
+    float:right;
+    clear:both;
 }
 
 .edit-note{
