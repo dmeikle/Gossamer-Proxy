@@ -77,6 +77,7 @@ admin_vendors_list:
         view: core\views\JSONView
         viewKey: admin_vendors_list
         datasource: datasource1
+    methods: [GET]
 
 
 
@@ -116,6 +117,7 @@ admin_vendors_locations_save:
         view: core\views\JSONView
         viewKey: admin_vendors_locations_save
         datasource: datasource1
+    methods: [POST]
 
 admin_vendors_locations_get:
     pattern: admin/vendors/locations/*

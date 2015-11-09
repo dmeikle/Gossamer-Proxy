@@ -1,8 +1,22 @@
 <div class="modal-header">
-    <h1>
+    <h1 class="pull-left">
         <span ng-if="vendor">{{vendor.company}} - {{vendorLocation.city}} </span>
         <?php echo $this->getString('VENDORS_PURCHASE_ORDERS') ?>
     </h1>
+    <div ng-if="vendor" class="pull-right">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                <li>
+                    <a href="" ng-click="deleteLocation()">
+                        <?php echo $this->getString('VENDORS_LOCATION_DELETE') ?>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
 </div>
 <div class="modal-body">
     <table class="table table-striped">

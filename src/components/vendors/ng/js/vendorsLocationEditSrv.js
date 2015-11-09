@@ -17,4 +17,8 @@ module.service('vendorLocationEditSrv', function(crudSrv) {
         }
         return crudSrv.save(requestPath, object, objectType, formToken);
     };
+
+    this.delete = function(object, formToken) {
+        return crudSrv.save(apiPath + object.id, object, objectType, formToken);
+    };
 });

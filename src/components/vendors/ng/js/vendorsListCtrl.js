@@ -92,6 +92,15 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
         }
     };
 
+    $scope.$on('vendorLocationSaved', function() {
+        $scope.sidePanelLoading = true;
+        vendorsListSrv.getVendorLocations($scope.previouslyClickedObject, 0, 5)
+            .then(function(response) {
+                $scope.vendorLocations = response.data.VendorLocations;
+                $scope.sidePanelLoading = false;
+            });
+    });
+
     $scope.search = function(searchObject) {
         $scope.noResults = undefined;
 

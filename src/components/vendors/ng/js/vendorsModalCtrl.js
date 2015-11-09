@@ -34,7 +34,8 @@ module.controller('purchaseOrdersModalController', function($scope, $uibModalIns
     };
 });
 
-module.controller('vendorLocationModalController', function($scope, $uibModalInstance, vendor, vendorLocation, purchaseOrders) {
+module.controller('vendorLocationModalController', function($scope, $rootScope, $uibModalInstance,
+    vendor, vendorLocation, purchaseOrders, vendorLocationEditSrv) {
     $scope.itemsPerPage = 10;
     $scope.currentPage = 1;
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -45,6 +46,15 @@ module.controller('vendorLocationModalController', function($scope, $uibModalIns
 
     $scope.vendor = vendor;
     $scope.vendorLocation = vendorLocation;
+
+    $scope.deleteLocation = function() {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $scope.vendorLocation.isActive = '0';
+        vendorLocationEditSrv.delete($scope.vendorLocation, formToken).then(function() {
+            $rootScope.$broadcast('vendorLocationSaved');
+            $scope.close();
+        });
+    };
 
     $scope.close = function() {
         $uibModalInstance.dismiss('cancel');
