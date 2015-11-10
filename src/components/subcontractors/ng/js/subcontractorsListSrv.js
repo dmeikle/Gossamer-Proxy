@@ -15,7 +15,7 @@ module.service('subcontractorsListSrv', function($http, searchSrv) {
     };
 
     this.getSubcontractorDetail = function(object) {
-        return $http.get(apiPath + object.Companies_id)
+        return $http.get(apiPath + object.Subcontractors_id)
             .then(function(response) {
                 self.subcontractorsDetail = response.data;
             });

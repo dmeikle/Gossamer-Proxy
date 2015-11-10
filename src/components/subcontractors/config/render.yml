@@ -1,0 +1,36 @@
+
+subcontractorsAddNewModal:
+    path: 'src/components/subcontractors/ng/views/addNewModal.php'
+    langFiles:
+        - 'src/components/subcontractors/locales/*/Subcontractors'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', 'cacheKey': 'Countrys' }
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
+        -
+             event: 'filerender_start'
+             listener: 'core\components\render\eventlisteners\FormBuilderListener'
+             datasource: 'datasource1'
+             formBuilder: 'components\subcontractors\form\SubcontractorBuilder'
+             model: 'components\subcontractors\models\SubcontractorModel'
+             cacheKey: 'SubcontractorForm'
+             formName: 'form'
+             dependencies:
+                 - { dependency: Provinces, key: provinces, value: id, text: province}
+
+
+subcontractorsSearchFilters:
+    path: 'src/components/subcontractors/ng/views/companyAdvancedSearchFilters.php'
+    langFiles:
+        - 'src/components/subcontractors/locales/*/Company'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
+        -
+             event: 'filerender_start'
+             listener: 'core\components\render\eventlisteners\FormBuilderListener'
+             datasource: 'datasource1'
+             formBuilder: 'components\companies\form\CompanyBuilder'
+             model: 'components\companies\models\CompanyModel'
+             cacheKey: 'CompanySearchForm'
+             dependencies:
+                 - { dependency: CompanyTypes, key: companyTypes, value: id, text: type}

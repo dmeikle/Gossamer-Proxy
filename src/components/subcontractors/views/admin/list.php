@@ -73,25 +73,25 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr ng-if="!loading" ng-repeat="subcontractors in subcontractorsList track by $index"
-                    ng-class="{'selected': subcontractors === previouslyClickedObject, 'inactive bg-warning text-warning': subcontractors.status == 'inactive'}">
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.companyName}}</a></td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.email}}</a></td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.type}}</a></td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.address1}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.city}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.postalCode}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.telephone}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.fax}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.url}}</td>
-                    <td ng-click="selectRow(subcontractors)">{{subcontractors.rating}}</td>
+                <tr ng-if="!loading" ng-repeat="subcontractor in subcontractorsList track by $index"
+                    ng-class="{'selected': subcontractor === previouslyClickedObject, 'inactive bg-warning text-warning': subcontractor.status == 'inactive'}">
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.companyName}}</a></td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.email}}</a></td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.type}}</a></td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.address1}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.city}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.postalCode}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.telephone}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.fax}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.url}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.rating}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="openAddNewSubcontractorModal(subcontractor)">Quick Edit</a></li>
-                                <li><a href="/admin/subcontractors/edit/{{subcontractors.Subcontractors_id}}">View</a></li>
+                                <li><a href="/admin/subcontractors/edit/{{subcontractor.Subcontractors_id}}">View</a></li>
                                 <li><a href="#">Delete</a></li>
                             </ul>
                         </div>
@@ -99,7 +99,6 @@
                 </tr>
             </tbody>
         </table>
-
         <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
                     class="pagination" boundary-links="true" rotate="false">
         </pagination>

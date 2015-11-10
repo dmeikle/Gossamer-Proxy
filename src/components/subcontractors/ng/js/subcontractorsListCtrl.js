@@ -30,7 +30,12 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
         var modalInstance = $uibModal.open({
             templateUrl: template,
             controller: 'subcontractorsModalCtrl',
-            size: 'xl'
+            size: 'xl',
+            resolve: {
+                subcontractor: function () {
+                    return item;
+                }
+            }
         });
 
         modalInstance.result.then(function (subcontractors) {
@@ -94,7 +99,7 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
         $scope.sidePanelOpen = true;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
-            subcontractorsClaimsListSrv.getClaimsList(clickedObject.Companies_id, 0, 100)
+            subcontractorsClaimsListSrv.getClaimsList(clickedObject.Subcontractors_id, 0, 100)
                     .then(function () {
                         $scope.selectedSubcontractor = clickedObject;
                         $scope.claimsList = subcontractorsClaimsListSrv.claimsList;
@@ -112,11 +117,13 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
     });
 });
 
-module.controller('subcontractorsModalCtrl', function ($uibModalInstance, $scope) {
-    $scope.subcontractors = {};
+module.controller('subcontractorsModalCtrl', function ($uibModalInstance, $scope, subcontractor) {
+    $scope.subcontractor = subcontractor;
+
+console.log(subcontractor);
 
     $scope.confirm = function () {
-        $uibModalInstance.close($scope.subcontractors);
+        $uibModalInstance.close($scope.subcontractor);
     };
 
     $scope.cancel = function () {

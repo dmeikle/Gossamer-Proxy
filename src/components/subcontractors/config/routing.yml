@@ -43,11 +43,9 @@ admin_subcontractors_save:
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_subcontractors_save
         datasource: datasource1
-        langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'  
     methods: [POST]
         
 admin_subcontractors_list_contacts:

@@ -22,5 +22,15 @@ return array(
     'SUBCONTRACTORS_TELEPHONE' => 'Telephone',
     'SUBCONTRACTORS_FAX' => 'Fax',
     'SUBCONTRACTORS_URL' => 'URL',
-    'SUBCONTRACTORS_RATING' => 'Rating'
+    'SUBCONTRACTORS_RATING' => 'Rating',
+    'SUBCONTRACTORS_COMPANY' => 'Company',
+    'SUBCONTRACTORS_TOLL_FREE' => 'Toll Free',
+    'SUBCONTRACTORS_PROVINCE' => 'Province',
+    'SUBCONTRACTORS_POSTAL_CODE' => 'Postal Code',
+    'SUBCONTRACTORS_ACCOUNT' => 'Account ID',
+    'SUBCONTRACTORS_SALES_REP' => 'Sales Rep',
+    'SUBCONTRACTORS_DELIVERY_FEE' => 'Delivery Fee',
+    'SUBCONTRACTORS_ADD_NEW' => 'Add New',
+    'SUBCONTRACTORS_CONFIRM' => 'Save',
+    'SUBCONTRACTORS_CANCEL' => 'Cancel'
 );

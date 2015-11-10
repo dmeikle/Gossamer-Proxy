@@ -3,28 +3,19 @@ module.service('subcontractorsEditSrv', function ($http) {
 
     var self = this;
 
-    this.getCompanyList = function (row, numRows) {
+    this.getSubcontractorList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
                 .then(function (response) {
-                    self.subcontractorsList = response.data.Companys;
-                    self.subcontractorsCount = response.data.CompanysCount[0].rowCount;
+                    self.subcontractorsList = response.data.Subcontractors;
+                    self.subcontractorsCount = response.data.SubcontractorsCount[0].rowCount;
                 });
     };
 
-    this.getCompanyDetail = function (object) {
+    this.getSubcontractorDetail = function (object) {
         console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-//        if (response.data.Company.dob) {
-//          response.data.Company.dob = new Date(response.data.Company.dob);
-//        }
-//        if (response.data.Company.hireDate) {
-//          response.data.Company.hireDate = new Date(response.data.Company.hireDate);
-//        }
-//        if (response.data.Company.departureDate) {
-//          response.data.Company.departureDate = new Date(response.data.Company.departureDate);
-//        }
-                    self.subcontractorsDetail = response.data.Company;
+                    self.subcontractorsDetail = response.data.Subcontractor;
                 });
     };
 
@@ -38,16 +29,6 @@ module.service('subcontractorsEditSrv', function ($http) {
                 }
             }
         }
-//    if (copiedObject.dob) {
-//      copiedObject.dob = object.dob.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.hireDate) {
-//      copiedObject.hireDate = object.hireDate.toISOString().substring(0, 10);
-//    }
-//    if (copiedObject.departureDate) {
-//      copiedObject.departureDate = object.departureDate.toISOString().substring(0, 10);
-//    }
-
         var requestPath;
         if (!copiedObject.id) {
             requestPath = apiPath + '0';
@@ -55,7 +36,7 @@ module.service('subcontractorsEditSrv', function ($http) {
             requestPath = apiPath + copiedObject.id;
         }
         var data = {};
-        data.Company = copiedObject;
+        data.Subcontractor = copiedObject;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({
             method: 'POST',
