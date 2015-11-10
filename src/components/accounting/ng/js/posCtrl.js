@@ -1,4 +1,4 @@
-module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, posSrv, $modal, tablesSrv) {
+module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, posSrv, tablesSrv, $timeout) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -12,22 +12,22 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     $scope.basicSearch.query = '';
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
-
+    
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
     
     $scope.$watch('tablesSrv.sortResult', function () {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
-            $scope.list = tablesSrv.sortResult.InventoryItems;
+            $scope.list = tablesSrv.sortResult.PurchaseOrders;
             $scope.loading = false;
         }
     });
 
-    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.InventoryItems'], function () {
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.PurchaseOrders'], function () {
         $scope.grouped = tablesSrv.grouped;
         if ($scope.grouped === true) {
-            if (tablesSrv.groupResult && tablesSrv.groupResult.InventoryItems)
-                $scope.list = tablesSrv.groupResult.InventoryItems;
+            if (tablesSrv.groupResult && tablesSrv.groupResult.PurchaseOrders)
+                $scope.list = tablesSrv.groupResult.PurchaseOrders;
             $scope.loading = false;
         } else if ($scope.grouped === false) {
             getList();
@@ -48,8 +48,8 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
                 });
     }
 
-    $scope.$watch('basicSearch.query', function () {
-        if ($scope.basicSearch.query.length === 0) {
+    $scope.$watch('basicSearch.query', function (newVal, oldVal) {
+        if ($scope.basicSearch.query.length === 0 && newVal !== oldVal) {
             getList();
         }
     });

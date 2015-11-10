@@ -18,7 +18,8 @@
 
                 <div class="form-group" ng-if="vendorLocations">
                     <label for="vendorLocations" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_LOCATION'); ?></label>
-                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations" ng-model="item.VendorLocations_id"></select>
+                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
+                            ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
                 </div>
 
                 
@@ -167,8 +168,9 @@
                 </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn-info save-purchase-order" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
-        <button class="btn-info save-purchase-order" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+        <button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
+        <button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+        <a href="../"><button class="btn-default save-purchase-order"><?php echo $this->getString('ACCOUNTING_CANCEL'); ?></button></a>
     </div>
 </div>
 <form></form>

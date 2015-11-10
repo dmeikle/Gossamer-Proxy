@@ -28,6 +28,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.item = posEditSrv.purchaseOrder;
             $scope.item.company = posEditSrv.Vendor;
             $scope.vendorLocations = posEditSrv.VendorLocations;
+            $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
             $scope.lineItems = posEditSrv.purchaseOrderItems;
             if($scope.lineItems[0].length === 0){
                 $scope.lineItems = [];
@@ -118,6 +119,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     
     $scope.getVendorLocations = function(vendor){
         $scope.vendorLocations = vendor.locations;
+    };
+    
+    $scope.getVendorInfo = function(vendorLocation){
+        $scope.item.Vendors_id = vendorLocation.Vendors_id;
+        $scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
     };
     
     //Get Claims ID from autocomplete list

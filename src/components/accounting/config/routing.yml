@@ -161,6 +161,8 @@ accounting_pos_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
             
 accounting_pos_edit:
     pattern: admin/accounting/pos/edit/*
