@@ -11,6 +11,8 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     }
     var row = 0;
     var numRows = 20;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 20;
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
@@ -19,12 +21,23 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
 
     $scope.tablesSrv = tablesSrv;
 
-    getClaimsList();
-
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
             $scope.claimsList = tablesSrv.sortResult.Claims;
             $scope.loading = false;
+        }
+    });
+
+    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
+        if ($scope.currentPage && $scope.itemsPerPage) {
+            row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+            numRows = $scope.itemsPerPage;
+
+            if ($scope.grouped) {
+                tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
+            } else {
+                getClaimsList();
+            }
         }
     });
 
@@ -83,9 +96,8 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     function getClaimsList() {
         $scope.loading = true;
         claimsListSrv.getClaimsList(row, numRows).then(function(response) {
-            $scope.claimsList = claimsListSrv.claimsList;
-            $scope.totalItems = claimsListSrv.claimsCount;
-        }).then(function() {
+            $scope.claimsList = response.data.Claims;
+            $scope.totalItems = response.data.ClaimsCount[0].rowCount;
             $scope.loading = false;
         });
     }

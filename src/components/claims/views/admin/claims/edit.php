@@ -1,4 +1,4 @@
-<div class="content full-width" ng-controller="claimsEditCtrl" ng-cloak>
+<div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
@@ -82,8 +82,8 @@
                         <td></td>
                     </tr>
                     <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
-                        ng-class="{
-                                    'selected': location === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                        ng-class="{'selected': location === previouslyClickedObject,
+                            'inactive bg-warning text-warning': claim.status == 'inactive'}">
                         <td colspan="2" ng-click="selectRow(location)">{{location.unitNumber}}</td>
                         <td ng-click="selectRow(location)">{{location.phase}}</td>
                         <td ng-click="selectRow(location)">{{location.jobNumber}}</td>
