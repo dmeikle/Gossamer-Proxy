@@ -12,7 +12,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                                                                 ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                                                                    ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -60,7 +60,7 @@
                     </th>
                 </tr>
 
-                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === previouslyClickedObject}">
+                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
                     <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.poNumber}}</td>
                     <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.orderType}}</td>
                     <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.company}}</td>
@@ -85,9 +85,7 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></uib-pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{
-            'datepicker-open'
-            : isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
+    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -95,7 +93,7 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!sidePanelLoading && searching">
+        <form ng-if="!sidePanelLoading && searching && sidePanelOpen">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
 
@@ -169,7 +167,7 @@
             </div>
         </form>
 
-        <div ng-if="!sidePanelLoading && !searching">
+        <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
                 <div class="pull-left">
                     <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE') ?></h3>

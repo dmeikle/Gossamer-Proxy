@@ -74,6 +74,7 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
         $scope.selectedRow = row;
         $scope.sidePanelLoading = true;
         $scope.searching = false;
+        
         posSrv.getBreakdown(row.PurchaseOrders_id).then(function(){
             $scope.breakdown = posSrv.breakdown;
             $scope.breakdownLineItems = posSrv.breakdownLineItems;
@@ -84,6 +85,7 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
 
     $scope.closeSidePanel = function () {
         $scope.sidePanelOpen = false;
+        $scope.selectedRow = {};
     };
     
     //Search
@@ -134,6 +136,7 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
         $scope.sidePanelOpen = true;
         $scope.selectedTimesheet = undefined;
         $scope.searching = true;
+        $scope.selectedRow = {};
     };
     
     //Date Picker
