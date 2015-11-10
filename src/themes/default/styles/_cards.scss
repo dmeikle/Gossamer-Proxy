@@ -6,7 +6,10 @@
     }
     h1 {
         font-size:2rem;
-        margin:1rem 0;
+    }
+    h2 {
+        font-size:1.5rem;
+        margin:.5rem 0 1rem 0;
     }
     .big {
         font-size:5rem;
@@ -21,6 +24,9 @@
     }
     .carddetails, .cardfooter {
         @extend .widgetfooter;
+    }
+    .cardfooter button {
+        font-size:80%;
     }
 }
 
