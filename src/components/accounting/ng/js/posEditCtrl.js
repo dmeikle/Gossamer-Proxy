@@ -216,8 +216,10 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     //Update tax
     $scope.updateTax = function(){
         $scope.item.taxTypes = [];
+        $scope.item.tax = 0;
         for(var i in $scope.lineItems){
             $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+            $scope.item.tax += $scope.lineItems[i].tax;
             var taxObj = {
                 id: $scope.lineItems[i].AccountingTaxTypes_id,
                 type: $scope.lineItems[i].taxType,
@@ -231,6 +233,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
                 if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
                     $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
                 }
+                
             }
         }
     };

@@ -102,6 +102,7 @@ return array(
     'ACCOUNTING_SUBTOTAL' => 'Subtotal',
     'ACCOUNTING_AMOUNT' => 'Amount',
     'ACCOUNTING_PURCHASE_ORDER_NOTES' => 'Purchase Order Notes',
+    'ACCOUNTING_PURCHASE_ORDER_ITEMS' => 'Purchase Order Items',
     'ACCOUNTING_NEW_PURCHASE_ORDER_NOTE' => 'New Note',
     'ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE' => 'Save Note',
     'ACCOUNTING_PURCHASE_ORDER_NUMBER' => 'PO Number',

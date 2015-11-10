@@ -11,6 +11,11 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     $scope.advancedSearch = {};
     $scope.advSearch = {};
     $scope.basicSearch.query = '';
+    $scope.isOpen = {};
+    $scope.isOpen.datepicker = {};
+    $scope.isOpen.datepicker.fromDate = false;
+    $scope.isOpen.datepicker.toDate = false;
+    
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
@@ -52,6 +57,8 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     $scope.$watch('basicSearch.query', function (newVal, oldVal) {
         if ($scope.basicSearch.query.length === 0 && newVal !== oldVal) {
             getList();
+        } else if($scope.basicSearch.query.length >= 3){
+            $scope.search($scope.basicSearch.query);
         }
     });
 
@@ -61,61 +68,77 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
         numRows = $scope.itemsPerPage;
         getList(row, numRows);
     });
-//
-////    $scope.closeSidePanel = function () {
-////        $scope.sidePanelOpen = false;
-////    };
-//
-//    //Search
-//    $scope.search = function (searchObject) {
-//        $scope.noResults = undefined;
-//        var copiedObject = angular.copy(searchObject);
-//        if (copiedObject && Object.keys(copiedObject).length > 0) {
-//            $scope.searchSubmitted = true;
-//            $scope.loading = true;
-//            inventorySrv.search(copiedObject).then(function () {
-//                $scope.list = inventorySrv.searchResults;
-//                $scope.totalItems = inventorySrv.searchResultsCount;
-//                if ($scope.totalItems === 0) {
-//                    $scope.noSearchResults = true;
-//                }
-//                $scope.loading = false;
-//            });
-//        }
-//    };
-//
-//    $scope.resetSearch = function () {
-//        $scope.searchSubmitted = false;
-//        $scope.noSearchResults = false;
-//        $scope.basicSearch.query = '';
-//        getList();
-//    };
-//
-//    $scope.autoSearch = function (searchString) {
-//        if (searchString.length >= 3) {
-//            $scope.search(searchString);
-//        }
-//    };
-//
-//    //Modal
-//    $scope.openModal = function (item) {
-//        $scope.modalLoading = true;
-//        var template = accountingTemplateSrv.inventoryModal;
-//        var modal = $modal.open({
-//            templateUrl: template,
-//            controller: 'inventoryModalCtrl',
-//            size: 'md',
-//            resolve: {
-//                inventoryItem: function () {
-//                    return item;
-//                }
-//            }
-//        });
-//        modal.opened.then(function () {
-//            $scope.modalLoading = false;
-//        });
-//        modal.result.then(function () {
-//            getList();
-//        });
-//    };
+    
+    $scope.selectRow = function(row){
+        $scope.sidePanelOpen = true;
+        $scope.selectedRow = row;
+        $scope.sidePanelLoading = true;
+        $scope.searching = false;
+        posSrv.getBreakdown(row.PurchaseOrders_id).then(function(){
+            $scope.breakdown = posSrv.breakdown;
+            $scope.breakdownLineItems = posSrv.breakdownLineItems;
+            $scope.sidePanelLoading = false;
+            console.log($scope.breakdown);
+        });
+    };
+
+    $scope.closeSidePanel = function () {
+        $scope.sidePanelOpen = false;
+    };
+    
+    //Search
+    $scope.search = function (searchObject) {
+        $scope.noResults = undefined;
+        var copiedObject = angular.copy(searchObject);
+        if (copiedObject && Object.keys(copiedObject).length > 0) {
+            $scope.searchSubmitted = true;
+            $scope.loading = true;
+            posSrv.search(copiedObject).then(function () {
+                $scope.list = posSrv.searchResults;
+                $scope.totalItems = posSrv.searchResultsCount;
+                if ($scope.totalItems === 0) {
+                    $scope.noSearchResults = true;
+                }
+                $scope.loading = false;
+            });
+        }
+    };
+    
+    $scope.advancedSearch = function (searchObject) {
+        $scope.loading = true;
+        $scope.noSearchResults = false;
+        posSrv.advancedSearch(searchObject).then(function () {
+            $scope.list = posSrv.advancedSearchResults;
+            $scope.totalItems = posSrv.advancedSearchResultsCount;
+            if ($scope.totalItems === '0') {
+                $scope.noSearchResults = true;
+            }
+            $scope.loading = false;
+        });
+    };
+    
+    $scope.resetSearch = function () {
+        $scope.searchSubmitted = false;
+        $scope.noSearchResults = false;
+        $scope.basicSearch.query = '';
+        getList();
+    };
+    
+    $scope.resetAdvancedSearch = function () {
+        $scope.searchSubmitted = false;
+        $scope.advSearch = {};
+        getList();
+    };
+    
+    $scope.openAdvancedSearch = function () {
+        $scope.sidePanelOpen = true;
+        $scope.selectedTimesheet = undefined;
+        $scope.searching = true;
+    };
+    
+    //Date Picker
+    $scope.dateOptions = {'starting-day': 1};
+    $scope.openDatepicker = function (event, datepicker) {
+        $scope.isOpen.datepicker[datepicker] = true;
+    };
 });
