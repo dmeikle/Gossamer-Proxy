@@ -1,5 +1,5 @@
 
-  
+
 admin_vendors_autocomplete:
     pattern: admin/vendors/autocomplete
     defaults:
@@ -13,35 +13,56 @@ admin_vendors_autocomplete:
     methods: [GET]  
                   
 
+
 #-------------------------- vendors ------------
 
 admin_vendors_home:
-    pattern: admin/vendors/*
+
+    pattern: admin/vendors
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\vendors\models\VendorModel
+
+        method: index
+
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_vendors_home
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/vendors/locales/*/Vendors'  
+    methods: [GET]  
+    
+
+admin_vendors_search:
+    pattern: admin/vendors/search
+
     defaults:
         component: components\vendors\VendorsComponent
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
         method: listall
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_vendors_home
+        view: core\views\JSONView
+        viewKey: admin_vendors_list
         datasource: datasource1
-        langFiles: 
-            - 'src/components/vendors/locales/*/Navigation'  
-    methods: [GET]  
-    
-
+                
+                
 admin_vendors_edit:
     pattern: admin/vendors/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces'}
+
     defaults:
         component: components\vendors\VendorsComponent
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_vendors_edit
         datasource: datasource1
         langFiles: 
-            - 'src/components/vendors/locales/*/Navigation'  
+            - 'src/components/vendors/locales/*/Vendors'  
     methods: [GET]
         
         
@@ -54,7 +75,7 @@ admin_vendors_save:
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_vendors_save
         datasource: datasource1
         langFiles: 
@@ -70,12 +91,23 @@ admin_vendors_list:
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_vendors_list
         datasource: datasource1
-        langFiles: 
-            - 'src/components/vendors/locales/*/Navigation'
                 
       
+
+admin_vendors_list_POS:
+    pattern: admin/vendors/purchaseorders/*/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorsController
+        model: components\accounting\models\PurchaseOrderModel
+        method: listallPOS
+        view: core\views\JSONView
+        viewKey: admin_vendors_list
+        datasource: datasource1
+                      
         
       

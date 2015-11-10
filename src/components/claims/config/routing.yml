@@ -35,6 +35,19 @@ admin_claims_search:
 
 
 
+admin_claims_set_projectManager:
+    pattern: admin/claims/projectmanagers/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: savePM
+        view: core\views\JSONView
+        viewKey: admin_claims_search
+        datasource: datasource1
+    methods: [POST]
+    
+    
 #changed to new URL
 #admin_claimlocations_by_claimid:
 #    pattern: admin/claims/locations/*

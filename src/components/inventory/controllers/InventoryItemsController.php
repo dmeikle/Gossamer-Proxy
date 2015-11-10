@@ -96,4 +96,10 @@ class InventoryItemsController extends AbstractController {
         $this->render($result);
     }
 
+    public function saveVariantOptions($id) {
+        $result = $this->model->saveVariantOptions($id);
+
+        $this->render($result);
+    }
+
 }

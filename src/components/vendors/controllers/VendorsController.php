@@ -21,4 +21,12 @@ class VendorsController extends AbstractController {
         $this->render($this->model->listallWithParams(0, 20, $params, 'autocomplete'));
     }
 
+    public function listallPOS($vendorId, $offset, $limit) {
+        $params = array('Vendors_id' => intval($vendorId));
+
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
+
+        $this->render($result);
+    }
+
 }

@@ -14,6 +14,18 @@ admin_staff_search:
     methods: [GET]
 
 
+admin_staff_projectmanagers_list:
+    pattern: admin/staff/projectmanagers
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\ProjectManagerModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_staff_projectmanagers_list
+        datasource: datasource1
+    methods: [GET]
+    
 #------------------------ timesheets ----------------------------
 admin_staff_timesheets_home:
     pattern: admin/staff/timesheets

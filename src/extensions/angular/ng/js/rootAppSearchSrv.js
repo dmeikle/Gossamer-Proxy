@@ -1,10 +1,12 @@
-module.service('searchSrv', function ($http) {
+module.service('searchSrv', function($http) {
 
     var self = this;
 
     this.advancedSearch = {};
 
-    this.searchCall = function (object, apiPath) {
+
+    this.searchCall = function (apiPath, object ) {
+
         config = {};
         for (var param in object) {
             if (object.hasOwnProperty(param)) {
@@ -19,15 +21,24 @@ module.service('searchSrv', function ($http) {
         });
     };
 
-    this.search = function (object, apiPath) {
-        return self.searchCall(object, apiPath + 'search').then(function (response) {
+
+    this.search = function (apiPath, object, page, numRows) {
+        
+        if(page !== undefined && numRows !== undefined) {
+            apiPath += 'search/' + page + '/' + numRows;
+        } else {
+            apiPath += 'search';
+        }
+        
+        return self.searchCall(apiPath, object).then(function (response) {
+
             self.searchResults = response.data;
             self.searchResultsCount = response.data;
         });
     };
 
-    this.getAdvancedSearchFilters = function (apiPath) {
-        return $http.get(apiPath).then(function (response) {
+    this.getAdvancedSearchFilters = function(apiPath) {
+        return $http.get(apiPath).then(function(response) {
             var elementList = document.implementation.createHTMLDocument('filters');
             elementList.body.innerHTML = response.data;
             self.advancedSearch.fields = [];
@@ -37,18 +48,21 @@ module.service('searchSrv', function ($http) {
         });
     };
 
-    this.sortByColumn = function (config, apiPath) {
+
+    this.sortByColumn = function (apiPath, config) {
+
         return $http({
             url: apiPath,
             method: 'GET',
             params: config
-        }).then(function (response) {
+        }).then(function(response) {
             self.sortResult = response.data;
         });
     };
 
-    this.fetchAutocomplete = function (config, apiPath) {
-        return self.searchCall(config, apiPath + 'search').then(function (response) {
+    this.fetchAutocomplete = function (apiPath, config) {
+        return self.searchCall(apiPath + 'search', config).then(function (response) {
+
             self.autocomplete = response.data;
         });
     };

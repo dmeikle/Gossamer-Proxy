@@ -11,6 +11,7 @@
     });
 
 </script>
+<?php pr($this->data); ?>
 <form method="post">
     <table class="table">
 

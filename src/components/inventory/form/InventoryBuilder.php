@@ -15,7 +15,7 @@ use Gossamer\CMS\Forms\AbstractBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 
 /**
- * DepartmentBuilder
+ * InventoryBuilder
  *
  * @author Dave Meikle
  */

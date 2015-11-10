@@ -1,4 +1,4 @@
-module.service('claimsEditSrv', function (crudSrv, searchSrv) {
+module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     var objectType = 'Claim';
     var apiPath = '/admin/claims/';
     var singleApiPath = '/admin/claim/';
@@ -8,43 +8,67 @@ module.service('claimsEditSrv', function (crudSrv, searchSrv) {
 
 
 
-    this.save = function (object, formToken, page) {
-        var requestPath = singleApiPath + page + '/';
+    this.save = function(object, formToken, page) {
+
+        var requestPath;
+        if (object.id) {
+            requestPath = singleApiPath + page + '/' + object.id;
+        } else {
+            requestPath = singleApiPath + page + '/0';
+        }
         var copiedObject = angular.copy(object);
-        copiedObject.date = object.date.toISOString().substring(0, 10);
-        return crudSrv.save(copiedObject, objectType, formToken, requestPath);
+        if (object.date) {
+            copiedObject.date = object.date.toISOString().substring(0, 10);
+        }
+        return crudSrv.save(requestPath, copiedObject, objectType, formToken);
+
     };
 
 
-    this.getClaimDetails = function (id) {
+    this.getClaimDetails = function(id) {
 
-        return crudSrv.getDetails(apiPath, id).then(function (response) {
+        return crudSrv.getDetails(apiPath, id).then(function(response) {
             self.claimDetails = response.data.Claim;
+            return response;
         });
 
     };
 
-    this.autocomplete = function (value, type) {
+    this.autocomplete = function(value, type) {
         var config = {};
         config[type] = value;
-        return searchSrv.fetchAutocomplete(config, apiPath + 'projectaddresses/').then(function () {
+
+        return searchSrv.fetchAutocomplete(apiPath + 'projectaddresses/', config).then(function() {
+
             return searchSrv.autocomplete.ProjectAddresss;
         });
     };
 
-    this.saveProjectAddress = function (object, formToken) {
-        return crudSrv.save(object, 'ProjectAddress', formToken, '/admin/projects/');
+    this.saveProjectAddress = function(object, formToken) {
+
+        return crudSrv.save('/admin/projects/', object, 'ProjectAddress', formToken);
+
     };
 
-    this.getProjectAddress = function (id) {
-        return crudSrv.getDetails(projectApiPath, id).then(function (response) {
+    this.getProjectAddress = function(id) {
+        return crudSrv.getDetails(projectApiPath, id).then(function(response) {
             self.projectAddress = response.data.ProjectAddress;
+            return response;
         });
     };
 
-    this.getContacts = function (jobNumber) {
-        return crudSrv.getDetails('/admin/contacts/claim/', jobNumber).then(function (response) {
+    this.getContacts = function(jobNumber) {
+        return crudSrv.getDetails('/admin/contacts/claim/', jobNumber).then(function(response) {
             self.contacts = response.data.ClaimContacts;
         });
     };
+
+
+    this.loadPMList = function(claimId) {
+        return crudSrv.getDetails('/admin/staff/pmlist/', claimId).then(function(response) {
+            self.staffList = response.data.Staffs;
+        });
+    };
+
+
 });

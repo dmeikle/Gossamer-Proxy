@@ -37,4 +37,15 @@ class ProvinceSerializer extends Serializer {
         return $retval;
     }
 
+    public function getOptions(array $list = null) {
+        $provinces = $this->pruneList($list);
+
+        $retval = '';
+        foreach ($provinces as $id => $province) {
+            $retval .= '<option value="' . $id . '">' . $province . '</option>';
+        }
+
+        return $retval;
+    }
+
 }

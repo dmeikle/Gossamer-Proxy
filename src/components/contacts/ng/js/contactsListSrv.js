@@ -1,4 +1,4 @@
-module.service('contactsListSrv', function ($http, searchSrv) {
+module.service('contactsListSrv', function($http, searchSrv) {
 
     var apiPath = '/admin/contacts/';
 
@@ -6,30 +6,30 @@ module.service('contactsListSrv', function ($http, searchSrv) {
 
     self.advancedSearch = {};
 
-    this.getContactList = function (row, numRows) {
+    this.getContactList = function(row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
-                .then(function (response) {
-                    self.contactsList = response.data.Contacts;
-                    self.contactsCount = response.data.ContactsCount[0].rowCount;
-                });
+            .then(function(response) {
+                self.contactsList = response.data.Contacts;
+                self.contactsCount = response.data.ContactsCount[0].rowCount;
+            });
     };
 
-    this.getContactDetail = function (object) {
+    this.getContactDetail = function(object) {
         return $http.get(apiPath + object.Companies_id)
-                .then(function (response) {
-                    self.contactsDetail = response.data;
-                });
+            .then(function(response) {
+                self.contactsDetail = response.data;
+            });
     };
 
-    this.search = function (searchObject) {
-        return searchSrv.search(searchObject, apiPath).then(function () {
+    this.search = function(searchObject) {
+        return searchSrv.search(apiPath, searchObject).then(function() {
             self.searchResults = searchSrv.searchResults.Contacts;
             self.searchResultsCount = searchSrv.searchResults.ContactsCount[0].rowCount;
         });
     };
 
-    this.getAdvancedSearchFilters = function () {
-        return searchSrv.getAdvancedSearchFilters('/render/contacts/contactAdvancedSearchFilters').then(function () {
+    this.getAdvancedSearchFilters = function() {
+        return searchSrv.getAdvancedSearchFilters('/render/contacts/contactAdvancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };

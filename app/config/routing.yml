@@ -145,6 +145,8 @@ accounting:
 vehicles:
     component: "src/components/vehicles/config/routing.yml"
 
+vendors:
+    component: "src/components/vendors/config/routing.yml"
     
 #this is the default fallback to use if not found    
 default:

@@ -33,19 +33,19 @@ module.controller('warehouseListCtrl', function ($scope, $location, warehouseLis
     $scope.getWarehouseList = function () {
         $scope.loading = true;
         warehouseListSrv.getWarehouseList(row, numRows)
-                .then(function (response) {
-                    $scope.warehouseList = response.data.WarehouseLocations;
-                    $scope.totalItems = response.data.WarehouseLocationsCount;
-                    $scope.loading = false;
-                });
+            .then(function (response) {
+                $scope.warehouseList = response.data.WarehouseLocations;
+                $scope.totalItems = response.data.WarehouseLocationsCount;
+                $scope.loading = false;
+            });
     };
 
     $scope.deleteLocation = function (location) {
         if (window.confirm("Really delete Warehouse?")) {
             warehouseListSrv.deleteLocation(location, formToken)
-                    .then(function () {
-                        $scope.getWarehouseList();
-                    });
+                .then(function () {
+                    $scope.getWarehouseList();
+                });
         }
     };
 

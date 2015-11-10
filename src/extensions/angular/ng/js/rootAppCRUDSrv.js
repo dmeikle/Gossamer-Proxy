@@ -1,5 +1,7 @@
-module.service('crudSrv', function ($http) {
-    this.save = function (object, objectType, formToken, apiPath) {
+module.service('crudSrv', function($http) {
+
+    this.save = function(apiPath, object, objectType, formToken) {
+
         var requestPath;
         if (!object.id || object.id === '') {
             requestPath = apiPath + '0';
@@ -20,7 +22,9 @@ module.service('crudSrv', function ($http) {
         });
     };
 
-    this.saveMultiple = function (object, formToken, apiPath) {
+
+    this.saveMultiple = function(apiPath, object, formToken) {
+
         var data = object;
         data.FORM_SECURITY_TOKEN = formToken;
         return $http({
@@ -33,21 +37,21 @@ module.service('crudSrv', function ($http) {
         });
     };
 
-    this.getDetails = function (apiPath, id) {
+    this.getDetails = function(apiPath, id) {
         return $http({
             method: 'GET',
             url: apiPath + id
         });
     };
 
-    this.getList = function (apiPath, row, numRows) {
+    this.getList = function(apiPath, row, numRows) {
         return $http({
             method: 'GET',
             url: apiPath + row + '/' + numRows
         });
     };
 
-    this.delete = function (apiPath, object, formToken) {
+    this.delete = function(apiPath, object, formToken) {
         var config = {};
         config.FORM_SECURITY_TOKEN = formToken;
         return $http({

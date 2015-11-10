@@ -69,7 +69,7 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="/admin/contacts / claims / (contacts.id)"><?php echo $this->getString('CONTACTS_VIEW_CLAIMS'); ?></a></li>
+                                <li><a href="/admin/contacts/claims/{{contacts.id}}"><?php echo $this->getString('CONTACTS_VIEW_CLAIMS'); ?></a></li>
                                 <li><a href="/admin/contacts/edit/{{contacts.id}}"><?php echo $this->getString('CONTACTS_EDIT'); ?></a></li>
                                 <li><a href="#">Delete</a></li>
                             </ul>

@@ -1,3 +1,4 @@
+
 module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, posSrv, tablesSrv, $timeout) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;

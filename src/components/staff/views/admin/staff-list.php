@@ -5,16 +5,10 @@
             <button class="btn-link" ng-click="openStaffAdvancedSearch()">
                 <?php echo $this->getString('STAFF_ADVANCED_SEARCH') ?>
             </button>
-            <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
 
             <form ng-submit="search(basicSearch.query)" class="input-group">
                 <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-                       typeahead="value for value in fetchAutocomplete($viewValue)"
-                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
-                       typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
-                <div class="resultspane" ng-show="noResults">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('STAFF_NORESULTS') ?>
-                </div>
+                    ng-change="search(basicSearch.query)" class="form-control">
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -125,15 +119,17 @@
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
+
+        <div ng-if="searching">
+            <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH'); ?></h1>
+        </div>
         <div ng-if="sidePanelLoading">
             <span class="spinner-loader"></span>
         </div>
-
         <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
-            <h1><?php echo $this->getString('STAFF_ADVANCED_SEARCH'); ?></h1>
-            <staff-advanced-search-filters>
+            <advanced-search-filters data-service="staffListSrv">
 
-            </staff-advanced-search-filters>
+            </advanced-search-filters>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
                     <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('STAFF_SUBMIT') ?>">

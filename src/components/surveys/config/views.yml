@@ -107,10 +107,10 @@ admin_surveys_answers_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/surveys/views/subnav.php"
-            "section3": "src/components/surveys/views/answers/edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php" 
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/components/surveys/views/subnav.php"
+            "content": "src/components/surveys/views/answers/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php" 
 
 admin_surveys_questions_select:
     template: admin-list.php

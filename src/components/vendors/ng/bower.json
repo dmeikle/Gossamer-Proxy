@@ -18,7 +18,11 @@
         "tests"
     ],
     "dependencies": {
+<<<<<<< HEAD
         "angular-bootstrap": "~0.14.0",
+=======
+        "angular-bootstrap": "~0.14.3",
+>>>>>>> origin
         "bootstrap-sass": "~3.3.5"
     }
 }

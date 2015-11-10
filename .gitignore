@@ -44,6 +44,6 @@ web/images/theme
 
 web/js/angular
 web/js/theme
+web/js/components
 web/js/extensions
 !web/js/extensions/.htaccess
-

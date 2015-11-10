@@ -86,7 +86,9 @@ class ClaimsController extends AbstractController {
     }
 
     public function get($claimId) {
-        $claim = $this->model->edit($claimId);
+        //$claim = $this->model->edit($claimId);
+        //load based on jobNumber
+        $claim = $this->model->get($claimId);
         //$claim = $this->httpRequest->getAttribute('Claim');
 
         $this->render(array('Claim' => $claim));
@@ -155,6 +157,12 @@ class ClaimsController extends AbstractController {
         $params = array('projectManager_id' => $this->getLoggedInUser()->getId(), 'isActive' => '1', 'key' => 'claims_total_active_by_status', 'statusType' => '5,8');
 
         $result = $this->model->getCount($params);
+
+        $this->render($result);
+    }
+
+    public function savePM($claimId) {
+        $result = $this->model->savePM($claimId);
 
         $this->render($result);
     }

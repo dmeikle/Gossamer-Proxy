@@ -11,18 +11,18 @@
 
 namespace components\inventory\models;
 
-use core\AbstractModel;
+use core\AbstractI18nModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of VariantGroupModel
  *
  * @author Dave Meikle
  */
-class VariantGroupModel extends AbstractModel implements FormBuilderInterface {
+class VariantGroupModel extends AbstractI18nModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -30,7 +30,7 @@ class VariantGroupModel extends AbstractModel implements FormBuilderInterface {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'VariantGroup';
-        $this->tablename = 'variantgroups';
+        $this->tablename = 'inventoryvariantgroups';
     }
 
     public function getFormWrapper() {

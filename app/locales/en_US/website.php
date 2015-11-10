@@ -51,5 +51,9 @@ return array(
     'ADVANCED_SEARCH' => 'Advanced Search',
     'EDIT' => 'Edit',
     'USERNAME' => 'Username',
-    'PASSWORD' => 'Password'
+    'PASSWORD' => 'Password',
+    'CANCEL' => 'Cancel',
+    'CONFIRM' => 'Okay',
+    'SAVE' => 'Save',
+    'STATUS' => 'Status'
 );
