@@ -5,11 +5,11 @@ module.service('subcontractorsClaimsListSrv', function ($http, searchSrv) {
     var self = this;
 
 
-    this.getClaimsList = function (subcontractorsId) {
-        return $http.get(apiPath + subcontractorsId)
+    this.getClaimsList = function (subcontractorsId, start, numRows) {
+        return $http.get(apiPath + subcontractorsId + '/' + start + '/' + numRows)
                 .then(function (response) {
                     self.claimsList = response.data.Claims;
-                    //self.claimsCount = response.data[0].Claims.rowCount;
+                    self.claimsCount = response.data.ClaimsCount[0].rowCount;
                 });
     };
 

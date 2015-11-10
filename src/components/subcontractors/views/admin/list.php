@@ -77,7 +77,7 @@
                     ng-class="{'selected': subcontractor === previouslyClickedObject, 'inactive bg-warning text-warning': subcontractor.status == 'inactive'}">
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.companyName}}</a></td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.email}}</a></td>
-                    <td ng-click="selectRow(subcontractor)">{{subcontractor.type}}</a></td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.contractorType}}</a></td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.address1}}</td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.city}}</td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.postalCode}}</td>
@@ -126,19 +126,26 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/subcontractors/edit/{{selectedSubcontractor.id}}">{{selectedSubcontractor.firstname}} {{selectedSubcontractor.lastname}}</a></h1>
-            <h4><?php echo $this->getString('SUBCONTRACTORS_NAME') ?></h3>
-                <p><a href="/admin/subcontractors/edit/{{selectedSubcontractor.Subcontractors_id}}">{{selectedSubcontractor.name}}</a></p>
-                <div ng-repeat="claim in claimsList" class="sidePanelRow">
-                    <div class="name">{{ claim.jobNumber}}</div>
-                    <div class="dateReceived"><?php echo $this->getString('CLAIMS_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
-                    <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
-                    <div class="deductable"><?php echo $this->getString('CLAIMS_DEDUCTABLE') ?> {{ claim.deductable}}</div>
-                    <div class="reason"><?php echo $this->getString('CLAIMS_REASON') ?> <br />{{ claim.reason}}</div>
-                    <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
-                    <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
-                    <div class="claimStatus">{{ claim.status}}</div>
-                </div>
+            <h1><a href="/admin/subcontractors/edit/{{selectedSubcontractor.Subcontractors_id}}">{{selectedSubcontractor.companyName}} </a></h1>
+            <h4><?php echo $this->getString('SUBCONTRACTORS_NAME') ?></h4>
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-md-2"><?php echo $this->getString('SUBCONTRACTORS_JOBNUMBER') ?></th>
+                        <th class="col-md-3"><?php echo $this->getString('SUBCONTRACTORS_UNIT_NUMBER') ?></th>
+                        <th class="col-md-2"><?php echo $this->getString('SUBCONTRACTORS_START_DATE') ?></th>
+                        <th class="col-md-2"><?php echo $this->getString('SUBCONTRACTORS_COMPLETION_DATE') ?></th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="claim in claimsList">
+                    <td>{{ claim.jobNumber}} </td>
+                    <td>{{ claim.unitNumber}} </td>
+                    <td>{{ claim.startDate}} </td>
+                    <td>{{ claim.actualCompletionDate}} </td>
+                    <td><a href="/admin/claims/edit/{{ claim.jobNumber}}">view</a></td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="clearfix"></div>

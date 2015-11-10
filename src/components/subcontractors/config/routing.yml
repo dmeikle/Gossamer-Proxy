@@ -1,5 +1,17 @@
 
-
+admin_subcontractors_claims_list:
+    pattern: admin/subcontractors/claims/*/*/*
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\ClaimLocationSubcontractorController
+        model: components\subcontractors\models\ClaimLocationSubcontractorModel
+        method: listallClaims
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_claims_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'  
+    methods: [GET]
 
 
 admin_subcontractors_home:
@@ -14,6 +26,7 @@ admin_subcontractors_home:
         viewKey: admin_subcontractors_home
         datasource: datasource1
         langFiles: 
+            - 'app/locales/*/website' 
             - 'src/components/subcontractors/locales/*/Subcontractors'       
     methods: [GET]
     

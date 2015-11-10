@@ -20,11 +20,15 @@ use core\serialization\Serializer;
  */
 class DependencySerializer extends Serializer {
 
-    public function formatSelectionBox($id, $value, array $options) {
+    public function formatSelectionBox($id, $value, array $options, $selectedId = null) {
 
         $retval = '';
         foreach ($options as $option) {
-            $retval .= '<option value="' . $option[$id] . '">' . $option[$value] . '</option>';
+            $retval .= '<option value="' . $option[$id];
+            if (!is_null($selectedId) && $selectedId == $option[$id]) {
+                $retval .= ' selected';
+            }
+            $retval .= '">' . $option[$value] . '</option>';
         }
 
         return $retval;

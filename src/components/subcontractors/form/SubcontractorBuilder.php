@@ -34,11 +34,13 @@ class SubcontractorBuilder extends AbstractBuilder {
                 ->add('address1', 'text', array('ng-model' => 'subcontractor.address1', 'class' => 'form-control', 'value' => $this->getValue('address1', $values)))
                 ->add('address2', 'text', array('ng-model' => 'subcontractor.address2', 'class' => 'form-control', 'value' => $this->getValue('address2', $values)))
                 ->add('email', 'text', array('ng-model' => 'subcontractor.email', 'class' => 'form-control', 'value' => $this->getValue('email', $values)))
-                ->add('city', 'text', array('ng-model' => 'subcontractor.city', 'class' => 'form-control', 'value' => $this->getValue('city', $values)));
+                ->add('city', 'text', array('ng-model' => 'subcontractor.city', 'class' => 'form-control', 'value' => $this->getValue('city', $values)))
+                ->add('rating', 'select', array('ng-model' => 'subcontractor.rating', 'class' => 'form-control', 'options' => $this->getRatings()))
+                ->add('notes', 'textarea', array('ng-model' => 'subcontractor.notes', 'class' => 'form-control', 'value' => $this->getValue('notes', $values)));
 
 
         if (array_key_exists('subcontractorTypes', $options)) {
-            $builder->add('CompanyTypes_id', 'select', array('ng-model' => 'subcontractor.CompanyTypes_id', 'class' => 'form-control', 'options' => $options['subcontractorTypes']));
+            $builder->add('SubcontractorTypes_id', 'select', array('ng-model' => 'subcontractor.SubcontractorTypes_id', 'class' => 'form-control', 'options' => $options['subcontractorTypes']));
         }
         if (array_key_exists('provinces', $options)) {
             $builder->add('Provinces_id', 'select', array('ng-model' => 'subcontractor.Provinces_id', 'class' => 'form-control', 'options' => $options['provinces']));
@@ -58,6 +60,14 @@ class SubcontractorBuilder extends AbstractBuilder {
                 ->add('save', 'button', array('class' => '', 'value' => 'Save'));
 
         return $builder->getForm();
+    }
+
+    private function getRatings() {
+        return "<option value = \"1\">1</option>\r\n" .
+                "<option value = \"2\">2</option>\r\n" .
+                "<option value = \"3\">3</option>\r\n" .
+                "<option value = \"4\">4</option>\r\n" .
+                "<option value = \"5\">5</option>\r\n";
     }
 
 }

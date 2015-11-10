@@ -32,5 +32,10 @@ return array(
     'SUBCONTRACTORS_DELIVERY_FEE' => 'Delivery Fee',
     'SUBCONTRACTORS_ADD_NEW' => 'Add New',
     'SUBCONTRACTORS_CONFIRM' => 'Save',
-    'SUBCONTRACTORS_CANCEL' => 'Cancel'
+    'SUBCONTRACTORS_CANCEL' => 'Cancel',
+    'SUBCONTRACTORS_NOTES' => 'Notes',
+    'SUBCONTRACTORS_JOBNUMBER' => 'Job Number',
+    'SUBCONTRACTORS_UNIT_NUMBER' => 'Unit Number',
+    'SUBCONTRACTORS_START_DATE' => 'Start',
+    'SUBCONTRACTORS_COMPLETION_DATE' => 'End'
 );

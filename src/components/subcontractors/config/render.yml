@@ -4,8 +4,8 @@ subcontractorsAddNewModal:
     langFiles:
         - 'src/components/subcontractors/locales/*/Subcontractors'
     listeners:
-        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\CountryModel', 'cacheKey': 'Countrys' }
+        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\subcontractors\models\SubcontractorTypeModel', 'cacheKey': 'SubcontractorTypes', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
 #        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
         -
              event: 'filerender_start'
@@ -17,6 +17,7 @@ subcontractorsAddNewModal:
              formName: 'form'
              dependencies:
                  - { dependency: Provinces, key: provinces, value: id, text: province}
+                 - { dependency: SubcontractorTypes, key: subcontractorTypes, value: id, text: contractorType}
 
 
 subcontractorsSearchFilters:

@@ -7,7 +7,8 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
-
+    $scope.claimsList = [];
+    
     $scope.previouslyClickedObject = {};
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -38,8 +39,9 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
             }
         });
 
-        modalInstance.result.then(function (subcontractors) {
-            subcontractorsEditSrv.save(subcontractors).then(function () {
+        modalInstance.result.then(function (subcontractor) {
+            subcontractor.id = subcontractor.Subcontractors_id;
+            subcontractorsEditSrv.save(subcontractor).then(function () {
                 getSubcontractorList();
             });
         });
