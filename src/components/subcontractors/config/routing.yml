@@ -31,6 +31,20 @@ admin_subcontractors_home:
     methods: [GET]
     
 
+admin_subcontractors_search:
+    pattern: admin/subcontractors/search
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_search
+        datasource: datasource1 
+    methods: [GET]
+    
+
 admin_subcontractors_edit:
     pattern: admin/subcontractors/*
 
@@ -39,7 +53,7 @@ admin_subcontractors_edit:
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_subcontractors_edit
         datasource: datasource1
         langFiles: 

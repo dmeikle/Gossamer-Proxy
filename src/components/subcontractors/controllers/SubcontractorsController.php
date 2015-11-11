@@ -15,4 +15,12 @@ use core\AbstractController;
 
 class SubcontractorsController extends AbstractController {
 
+    public function search() {
+        $params = $this->httpRequest->getQueryParameters();
+        $offset = 0;
+        $limit = 20;
+
+        $this->render($this->model->listallWithParams($offset, $limit, $params, 'list'));
+    }
+
 }
