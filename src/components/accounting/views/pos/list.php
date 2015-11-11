@@ -7,7 +7,7 @@
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
-                <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">                                                         ?></button>-->
+                <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
