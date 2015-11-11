@@ -1,18 +1,13 @@
 <div class="widget" ng-controller="posCtrl">
-    <div class="widget-content" ng-class="{
-            'panel-open'
-            :sidePanelOpen}">
+    <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_POS') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
-
-        <!--    <div class="pull-right">-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
-                <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                                                                    ?></button>-->
+                <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">                                                         ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -25,7 +20,6 @@
                 </span>
             </form>
             <a href="edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
-<!--            <span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>-->
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -198,7 +192,7 @@
                     <td>{{item.quantity}}</td>
                     <td>{{item.unitPrice| currency}}</td>
                     <td>{{item.taxType}} </td>
-                    <td>{{item.amount| currency}}</td>
+                    <td>{{item.amount| currency}}test</td>
                 </tr>
             </table>
             <div class="col-md-5 col-md-offset-7">

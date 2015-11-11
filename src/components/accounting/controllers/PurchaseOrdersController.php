@@ -23,7 +23,6 @@ use components\accounting\form\PurchaseOrderBuilder;
  */
 class PurchaseOrdersController extends AbstractController {
 
-    
     /**
      * edit - display an input form based on requested id
      *
@@ -31,21 +30,20 @@ class PurchaseOrdersController extends AbstractController {
      */
     public function edit($id) {
         //$result = $this->model->edit($id);
-
 //        $this->render(array('form' => $this->drawForm($this->model)));
         $this->render(array());
     }
-    
+
     public function get($id) {
         $purchaseOrder = $this->model->edit($id);
         $this->render(array('PurchaseOrder' => $purchaseOrder));
     }
-    
+
     protected function drawForm(FormBuilderInterface $model, array $values = null) {
         $builder = new FormBuilder($this->logger, $this->model);
         $poBuilder = new PurchaseOrderBuilder();
-        
+
         return $poBuilder->buildForm($builder);
     }
-    
+
 }
