@@ -472,6 +472,20 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
+    methods: [GET]
+
+admin_claimlocations_save_by_claimid:
+    pattern: admin/claimlocations/claim/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claimlocations_save_by_claimid
+        datasource: datasource1
+    methods: [POST]
+
 
 
 
@@ -513,6 +527,7 @@ admin_claimlocation_view:
         view: core\views\TemplateView
         viewKey: admin_claimlocation_view
         datasource: datasource1
+    methods: [GET]
 
 
 

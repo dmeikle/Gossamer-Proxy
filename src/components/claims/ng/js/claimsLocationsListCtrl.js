@@ -1,50 +1,67 @@
-module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsLocationsListCtrl', function($scope, $location, $modal, claimsListSrv,
+    claimsLocationsListSrv, claimsLocationsEditSrv, tablesSrv) {
 
     var row = 0;
     var numRows = 20;
 
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 20;
 
     $scope.tablesSrv = tablesSrv;
 
-    getClaimsLocationsList();
-
-    $scope.$watch('tablesSrv.sortResult', function () {
+    $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
             $scope.claimsList = tablesSrv.sortResult.Claims;
             $scope.loading = false;
         }
     });
 
+    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
+        $scope.loading = true;
+        row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+        numRows = $scope.itemsPerPage;
 
-    $scope.openAddNewWizard = function () {
+        if ($scope.grouped) {
+            tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
+        } else {
+            $scope.getList();
+        }
+    });
+
+
+    $scope.openClaimLocationModal = function(object) {
         var modalInstance = $modal.open({
-            templateUrl: '/render/claims/claimsAddNewModal',
-            controller: 'claimsModalCtrl',
-            size: 'lg',
-            keyboard: false,
-            backdrop: "static"
+            templateUrl: '/render/claims/claimLocationModal',
+            controller: 'claimLocationModalCtrl',
+            size: 'md',
+            resolve: {
+                claimLocation: function() {
+                    return object;
+                }
+            }
         });
 
-        modalInstance.result.then(function (claim) {
-            claimsEditSrv.save(claim).then(function () {
-                getClaimsList();
+        modalInstance.result.then(function(object) {
+            object.Claims_id = document.getElementById('Claim_id').value;
+
+            claimsLocationsEditSrv.save(object).then(function() {
+                $scope.getList();
             });
         });
     };
 
 
-    function getClaimsLocationsList() {
+    $scope.getList = function() {
         $scope.loading = true;
         var claimId = document.getElementById('Claim_id').value;
 
-        claimsListSrv.getClaimLocations(claimId).then(function (response) {
-            $scope.claimsLocations = claimsListSrv.claimsLocations;
-        }).then(function () {
+        claimsLocationsListSrv.getList(claimId).then(function(response) {
+            $scope.claimsLocations = response.data.ClaimsLocations;
             $scope.loading = false;
         });
-    }
+    };
 
-    $scope.getStatusColor = function (item) {
+    $scope.getStatusColor = function(item) {
         if (item.WorkStatus_id == 1) {
             return 'warning';
         } else if (item.WorkStatus_id == 2) {
@@ -52,6 +69,14 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $modal
         } else {
             return 'danger';
         }
+    };
+
+    $scope.delete = function(object) {
+        object.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+        object.isActive = '0';
+        claimsLocationsEditSrv.save(object).then(function() {
+            $scope.getList();
+        });
     };
 
 });
