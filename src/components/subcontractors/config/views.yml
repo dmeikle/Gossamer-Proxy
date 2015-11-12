@@ -50,7 +50,7 @@ admin_subcontractors_edit:
         - @components/subcontractors/dist/js/subcontractors.concat.js
     css:
         - @components/subcontractors/includes/css/subcontractors.css
-        
+         
         
         
     

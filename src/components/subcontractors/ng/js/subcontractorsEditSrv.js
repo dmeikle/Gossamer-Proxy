@@ -1,7 +1,7 @@
 module.service('subcontractorsEditSrv', function ($http) {
     var apiPath = '/admin/subcontractors/';
-
     var self = this;
+    var subcontractorDetail = {};
 
     this.getSubcontractorList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
@@ -15,7 +15,7 @@ module.service('subcontractorsEditSrv', function ($http) {
         console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-                    self.subcontractorsDetail = response.data.Subcontractor;
+                    self.subcontractorDetail = response.data.Subcontractor;
                 });
     };
 

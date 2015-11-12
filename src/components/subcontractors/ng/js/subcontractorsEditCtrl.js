@@ -5,7 +5,9 @@ module.controller('subcontractorsEditCtrl', function ($scope, $location, subcont
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
-    //getCompanyDetail();
+    $scope.subcontractor = {};
+    
+    getSubcontractorDetail();
 
     // datepicker stuffs
     $scope.dateOptions = {'starting-day': 1};
@@ -14,12 +16,13 @@ module.controller('subcontractorsEditCtrl', function ($scope, $location, subcont
         $scope.isOpen[datepicker] = true;
     };
 
-    function getCompanyDetail() {
+    function getSubcontractorDetail() {
         var object = {};
         object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-
-        subcontractorsEditSrv.getCompanyDetail(object).then(function () {
-            $scope.subcontractors = subcontractorsEditSrv.subcontractorsDetail;
+        //object.id = document.getElementById('Subcontractor_id').value;
+        
+        subcontractorsEditSrv.getSubcontractorDetail(object).then(function () {
+            $scope.subcontractor = subcontractorsEditSrv.subcontractorDetail;
             $scope.loading = false;
         });
     }
@@ -28,12 +31,12 @@ module.controller('subcontractorsEditCtrl', function ($scope, $location, subcont
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         object.id = object.subcontractorsId;
         subcontractorsEditSrv.save(object, formToken).then(function () {
-            getCompanyDetail();
+            getSubcontractorDetail();
         });
     };
 
     $scope.discardChanges = function () {
-        getCompanyDetail();
+        getSubcontractorDetail();
     };
 
 

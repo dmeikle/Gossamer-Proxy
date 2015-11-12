@@ -1,4 +1,4 @@
-module.controller('subcontractorsClaimsListCtrl', function ($scope, $modal, subcontractorsClaimsListSrv, subcontractorsTemplateSrv) {
+module.controller('subcontractorsClaimsListCtrl', function ($scope, $uibModal, $location, subcontractorsClaimsListSrv, subcontractorsTemplateSrv) {
 
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
@@ -10,6 +10,8 @@ module.controller('subcontractorsClaimsListCtrl', function ($scope, $modal, subc
 
     $scope.previouslyClickedObject = {};
 
+    getClaimsList();
+
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
@@ -17,7 +19,8 @@ module.controller('subcontractorsClaimsListCtrl', function ($scope, $modal, subc
 
     function getClaimsList() {
         $scope.loading = true;
-        subcontractorsClaimsListSrv.getClaimsList(row, numRows).then(function (response) {
+        var subcontractorsId = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
+        subcontractorsClaimsListSrv.getClaimsList(subcontractorsId, row, numRows).then(function (response) {
             $scope.claimsList = subcontractorsClaimsListSrv.claimsList;
             $scope.totalItems = subcontractorsClaimsListSrv.claimsCount;
         }).then(function () {
@@ -61,18 +64,18 @@ module.controller('subcontractorsClaimsListCtrl', function ($scope, $modal, subc
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
         numRows = $scope.itemsPerPage;
 
-        getCompanyList(row, numRows);
+        getClaimsList(row, numRows);
     });
 });
 
-module.controller('subcontractorsModalCtrl', function ($modalInstance, $scope) {
+module.controller('subcontractorsModalCtrl', function ($uibModalInstance, $scope) {
     $scope.subcontractors = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.subcontractors);
+        $uibModalInstance.close($scope.subcontractors);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

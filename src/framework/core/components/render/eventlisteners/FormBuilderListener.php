@@ -85,4 +85,8 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
         $this->on_filerender_start($params);
     }
 
+    public function on_request_end($params) {
+        $this->on_filerender_start($params);
+    }
+
 }

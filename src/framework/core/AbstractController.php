@@ -292,6 +292,17 @@ class AbstractController {
     }
 
     /**
+     * edit - display an input form based on requested id
+     *
+     * @param int id    primary key of item to edit
+     */
+    public function get($id) {
+        $result = $this->model->get($id);
+
+        $this->render($result);
+    }
+
+    /**
      * save - saves/updates row
      *
      * @param int id    primary key of item to save

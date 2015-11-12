@@ -122,8 +122,6 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
 module.controller('subcontractorsModalCtrl', function ($uibModalInstance, $scope, subcontractor) {
     $scope.subcontractor = subcontractor;
 
-console.log(subcontractor);
-
     $scope.confirm = function () {
         $uibModalInstance.close($scope.subcontractor);
     };

@@ -300,6 +300,31 @@ class AbstractModel {
      *
      * @return array
      */
+    public function get($id) {
+
+        $locale = $this->getDefaultLocale();
+
+
+        $params = array(
+            'id' => intval($id),
+            'locale' => $locale['locale']
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $retval = array();
+        if (is_array($data) && array_key_exists($this->entity, $data)) {
+            $retval[$this->entity] = current($data[$this->entity]);
+        }
+        return $retval;
+    }
+
+    /**
+     * retrieves a row from the datasource for editing
+     *
+     * @param int $id
+     *
+     * @return array
+     */
     public function edit($id) {
 
         $locale = $this->getDefaultLocale();

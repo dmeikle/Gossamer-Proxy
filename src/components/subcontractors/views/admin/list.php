@@ -1,19 +1,4 @@
-<!-- placed here until properly styled -->
-<style>
-    .sidePanelRow .name {
-        font-weight: 600;
-        float: left;
-    }
-    .sidePanelRow .dateReceived {
-        float: right;
-    }
 
-    .sidePanelRow .claimType {
-        clear: both;
-    }
-
-
-</style>
 
 
 <div class="widget" ng-controller="subcontractorsListCtrl">
