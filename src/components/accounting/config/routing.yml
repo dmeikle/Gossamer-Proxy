@@ -1,3 +1,69 @@
+
+
+#--------------------- cash receipts -------------------------
+admin_accounting_cashreceipts:
+    pattern: admin/accounting/cashreceipts
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_accounting_cashreceipts
+        datasource: datasource1
+    methods: [GET]
+    
+admin_accounting_cashreceipts_search:
+    pattern: admin/accounting/cashreceipts/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: search
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_accounting_cashreceipts_search
+        datasource: datasource1
+    methods: [GET]
+    
+admin_accounting_cashreceipts_list:
+    pattern: admin/accounting/cashreceipts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_list
+        datasource: datasource1
+    methods: [GET]
+    
+    
+admin_accounting_cashreceipts_edit:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_edit
+        datasource: datasource1
+    methods: [GET]
+    
+admin_accounting_cashreceipts_save:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_save
+        datasource: datasource1
+    methods: [POST]
+
+#--------------------------- timesheets ------------------------------
+
 admin_accounting_search:
     pattern: admin/accounting/timesheets/search
     defaults:
