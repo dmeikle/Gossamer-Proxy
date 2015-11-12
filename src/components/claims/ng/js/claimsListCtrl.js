@@ -1,5 +1,6 @@
 
-module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEditSrv, claimsListSrv, tablesSrv) {
+module.controller('claimsListCtrl', function($scope, $location, $modal, claimsEditSrv, claimsListSrv, 
+    claimsLocationsListSrv, tablesSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();

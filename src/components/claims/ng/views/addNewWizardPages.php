@@ -187,6 +187,45 @@
         <button class="primary" ng-click="toggleAddingLocation()">
             <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
         </button>
+
+        <table class="table table-striped table-hover" ng-controller="claimsLocationsListCtrl">
+            <thead>
+                <tr>
+                    <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
+                    <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
+                    <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
+                    <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="loading">
+                    <td></td>
+                    <td colspan="2">
+                        <span class="spinner-loader"></span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
+                    ng-class="{'selected': location === previouslyClickedObject,
+                        'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                    <td>{{location.unitNumber}}</td>
+                    <td>{{location.phase}}</td>
+                    <td>{{location.jobNumber}}</td>
+                    <td class="row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
+                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </form>
     <form id="wizard-form" class="wizard-page" ng-show="!loading && addingLocation">
         <div class="form-group col-xs-12 col-md-6">
