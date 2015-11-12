@@ -32,13 +32,13 @@ admin_subcontractors_home:
     
 
 admin_subcontractors_search:
-    pattern: admin/subcontractors/search
+    pattern: admin/subcontractors/search/*/*
 
     defaults:
         component: components\subcontractors\SubcontractorsComponent
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
-        method: search
+        method: advancedSearch
         view: core\views\JSONView
         viewKey: admin_subcontractors_search
         datasource: datasource1 

@@ -38,5 +38,6 @@ return array(
     'SUBCONTRACTORS_UNIT_NUMBER' => 'Unit Number',
     'SUBCONTRACTORS_START_DATE' => 'Start',
     'SUBCONTRACTORS_COMPLETION_DATE' => 'End',
-    'SUBCONTRACTORS_JOBNUMBER' => 'Job Number'
+    'SUBCONTRACTORS_JOBNUMBER' => 'Job Number',
+    'SUBCONTRACTORS_INFO' => 'Subcontractor Info'
 );

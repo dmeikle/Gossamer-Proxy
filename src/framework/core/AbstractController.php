@@ -109,6 +109,13 @@ class AbstractController {
         $this->render($this->model->autocomplete($params));
     }
 
+    public function advancedSearch($offset = 0, $limit = 20) {
+        $params = $this->httpRequest->getQueryParameters();
+        //$data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
+
+        $this->render($this->model->listallWithParams($offset, $limit, $params, 'search'));
+    }
+
     protected function getSearchArguments() {
         $rawterm = $this->httpRequest->getQueryParameter('term');
 

@@ -21,8 +21,8 @@ module.service('subcontractorsListSrv', function($http, searchSrv) {
             });
     };
 
-    this.search = function(searchObject) {
-        return searchSrv.search(apiPath, searchObject).then(function() {
+    this.search = function(searchObject, offset, limit) {
+        return searchSrv.search(apiPath, searchObject, offset, limit).then(function() {
             self.searchResults = searchSrv.searchResults.Subcontractors;
             self.searchResultsCount = searchSrv.searchResults.SubcontractorsCount[0].rowCount;
         });

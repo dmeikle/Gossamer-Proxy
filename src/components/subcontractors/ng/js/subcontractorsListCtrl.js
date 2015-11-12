@@ -67,7 +67,7 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
         if (searchObject && Object.keys(searchObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            subcontractorsListSrv.search(searchObject).then(function () {
+            subcontractorsListSrv.search(searchObject, $scope.currentPage -1, $scope.itemsPerPage).then(function () {
                 $scope.subcontractorsList = subcontractorsListSrv.searchResults;
                 $scope.totalItems = subcontractorsListSrv.searchResultsCount;
                 $scope.loading = false;
