@@ -20,18 +20,16 @@ subcontractorsAddNewModal:
                  - { dependency: SubcontractorTypes, key: subcontractorTypes, value: id, text: contractorType}
 
 
-subcontractorsSearchFilters:
-    path: 'src/components/subcontractors/ng/views/companyAdvancedSearchFilters.php'
+subcontractorsAdvancedSearchFilters:
+    path: 'src/components/subcontractors/ng/views/subcontractorsAdvancedSearchFilters.php'
     langFiles:
-        - 'src/components/subcontractors/locales/*/Company'
+        - 'src/components/subcontractors/locales/*/Subcontractors'
     listeners:
-        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyTypeModel', 'cacheKey': 'CompanyTypes' }
         -
              event: 'filerender_start'
              listener: 'core\components\render\eventlisteners\FormBuilderListener'
              datasource: 'datasource1'
-             formBuilder: 'components\companies\form\CompanyBuilder'
-             model: 'components\companies\models\CompanyModel'
-             cacheKey: 'CompanySearchForm'
+             formBuilder: 'components\subcontractors\form\SubcontractorSearchBuilder'
+             model: 'components\subcontractors\models\SubcontractorModel'
+             cacheKey: 'SubcontractorSearchForm'
              dependencies:
-                 - { dependency: CompanyTypes, key: companyTypes, value: id, text: type}

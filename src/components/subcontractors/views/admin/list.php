@@ -75,9 +75,9 @@
                 </tr>
                 <tr ng-if="!loading" ng-repeat="subcontractor in subcontractorsList track by $index"
                     ng-class="{'selected': subcontractor === previouslyClickedObject, 'inactive bg-warning text-warning': subcontractor.status == 'inactive'}">
-                    <td ng-click="selectRow(subcontractor)">{{subcontractor.companyName}}</a></td>
-                    <td ng-click="selectRow(subcontractor)">{{subcontractor.email}}</a></td>
-                    <td ng-click="selectRow(subcontractor)">{{subcontractor.contractorType}}</a></td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.companyName}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.email}}</td>
+                    <td ng-click="selectRow(subcontractor)">{{subcontractor.contractorType}}</td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.address1}}</td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.city}}</td>
                     <td ng-click="selectRow(subcontractor)">{{subcontractor.postalCode}}</td>
