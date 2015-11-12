@@ -79,7 +79,6 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
             $scope.breakdown = posSrv.breakdown;
             $scope.breakdownLineItems = posSrv.breakdownLineItems;
             $scope.sidePanelLoading = false;
-            console.log($scope.breakdown);
         });
     };
 

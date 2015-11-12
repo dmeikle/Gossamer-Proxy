@@ -39,7 +39,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.item.taxTypes = [];
             if(posEditSrv.purchaseOrderNotes[0].length !== 0){
                 notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
-                //notesSrv.notes = posEditSrv.purchaseOrderNotes;
             }
         });
     } else {
@@ -145,8 +144,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
         row.VendorItems_id = value.VendorItems_id;
         row.InventoryItems_id = value.InventoryItems_id;
-        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);   
-        //$scope.updateTax();
+        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
         $scope.updateAmount(row);
     };    
     
@@ -278,7 +276,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         });
     };
     
-    //Saving Items    
+    //Save and make a new Purchase Order
     $scope.saveAndNew = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var purchaseOrder = angular.copy($scope.item);
@@ -289,7 +287,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         });
     };
     
-    //Saving Items    
+    //Save and return to pos list
     $scope.saveAndClose = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var purchaseOrder = angular.copy($scope.item);
