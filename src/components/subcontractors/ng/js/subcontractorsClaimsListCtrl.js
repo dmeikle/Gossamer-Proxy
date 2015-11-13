@@ -10,7 +10,7 @@ module.controller('subcontractorsClaimsListCtrl', function ($scope, $uibModal, $
 
     $scope.previouslyClickedObject = {};
 
-    getClaimsList();
+   // getClaimsList();
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;

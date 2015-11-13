@@ -12,7 +12,6 @@ module.service('subcontractorsEditSrv', function ($http) {
     };
 
     this.getSubcontractorDetail = function (object) {
-        console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
                     self.subcontractorDetail = response.data.Subcontractor;

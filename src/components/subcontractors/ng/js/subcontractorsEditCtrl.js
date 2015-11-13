@@ -29,7 +29,9 @@ module.controller('subcontractorsEditCtrl', function ($scope, $location, subcont
 
     $scope.save = function (object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        object.id = object.subcontractorsId;
+        if(object.id === undefined) {
+            object.id = object.subcontractorsId;
+        }
         subcontractorsEditSrv.save(object, formToken).then(function () {
             getSubcontractorDetail();
         });

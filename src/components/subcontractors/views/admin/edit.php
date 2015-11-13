@@ -65,7 +65,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <button class="primary" ng-click="save(company)" ng-disabled="!company">
+                        <button class="primary" ng-click="save(subcontractor)" ng-disabled="!subcontractor">
                             <?php echo $this->getString('SUBCONTRACTORS_CONFIRM'); ?>
                         </button>
                         <button ng-click="cancel()"><?php echo $this->getString('SUBCONTRACTORS_CANCEL'); ?></button>
