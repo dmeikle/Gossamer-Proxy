@@ -37,4 +37,18 @@ class AccountingCashReceiptModel extends AbstractModel implements FormBuilderInt
         return $this->entity;
     }
 
+    /**
+     *
+     * @param type $offset
+     * @param type $rows
+     * @param type $customVerb
+     * @return type
+     */
+    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+        //if (is_null($params)) {
+        $params = $this->httpRequest->getQueryParameters();
+        //}
+        return $this->listallWithParams($offset, $rows, $params, $customVerb);
+    }
+
 }

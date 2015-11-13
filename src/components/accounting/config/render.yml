@@ -83,6 +83,7 @@ cashReceiptsModal:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\CreditAccountModel', 'cacheKey': 'CreditAccounts' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
         -
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -95,6 +96,7 @@ cashReceiptsModal:
                 - { dependency: DebitAccounts, key: debitAccounts, value: id, text: name }
                 - { dependency: CreditAccounts, key: creditAccounts, value: id, text: name }
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: AccountingPaymentMethods, key: paymentMethods, value: id, text: type }
                 
 #purchaseOrder_edit:
 #    path: 'src/components/accounting/views/pos/edit.php'
