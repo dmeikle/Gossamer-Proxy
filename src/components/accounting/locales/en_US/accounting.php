@@ -101,12 +101,24 @@ return array(
     'ACCOUNTING_PRODUCT_NAME' => 'Product Name',
     'ACCOUNTING_SUBTOTAL' => 'Subtotal',
     'ACCOUNTING_AMOUNT' => 'Amount',
+    'ACCOUNTING_OUTSTANDING_AMOUNT' => 'Outstanding Amount',
     'ACCOUNTING_PURCHASE_ORDER_NOTES' => 'Purchase Order Notes',
     'ACCOUNTING_PURCHASE_ORDER_ITEMS' => 'Purchase Order Items',
     'ACCOUNTING_NEW_PURCHASE_ORDER_NOTE' => 'New Note',
     'ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE' => 'Save Note',
     'ACCOUNTING_PURCHASE_ORDER_NUMBER' => 'PO Number',
     'ACCOUNTING_PURCHASE_ORDER_TYPE' => 'Order Type',
-    'ACCOUNTING_LOCATION' => 'Location'
+    'ACCOUNTING_LOCATION' => 'Location',
+    'ACCOUNTING_CASH_RECEIPTS' => 'Cash Receipts',
+    'ACCOUNTING_CASH_RECEIPT' => 'Cash Receipt',
+    'ACCOUNTING_NEW_CASH_RECEIPT' => 'New Cash Receipt',
+    'ACCOUNTING_CHEQUE_NUMBER' => 'Cheque No.',
+    'ACCOUNTING_DEBIT_ACCOUNTS' => 'Debit Accounts',
+    'ACCOUNTING_DEBIT_ACCOUNTS' => 'Debit Accounts',
+    'ACCOUNTING_CREDIT_ACCOUNTS' => 'Credit Accounts',
+    'ACCOUNTING_PAYER' => 'Payer (Company)',
+    'ACCOUNTING_CHEQUE_REFERNCE_NUMBER' => 'Cheque Reference #',
+    'ACCOUNTING_INVOICE' => 'Invoice',
+    'ACCOUNTING_RECEIPT_TYPE' => 'Receipt Type'
 );
 

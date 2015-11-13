@@ -11,6 +11,8 @@ admin_accounting_cashreceipts:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_accounting_cashreceipts
         datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
     methods: [GET]
     
 admin_accounting_cashreceipts_search:

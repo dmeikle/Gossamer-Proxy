@@ -227,6 +227,9 @@
     .typeahead{
         width:auto;
     }
+    .typeahead.col-md-12{
+        width:100%;
+    }
     .input-group{
         display: inline-block;
         label{
