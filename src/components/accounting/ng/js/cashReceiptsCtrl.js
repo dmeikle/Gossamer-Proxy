@@ -86,6 +86,30 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
         $scope.selectedRow = {};
     };
     
+    //Companies Typeahead
+    $scope.fetchCompanyAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return cashReceiptsSrv.fetchCompanyAutocomplete(searchObject);
+    };
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return cashReceiptsSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    //Get company id for advanced search
+    $scope.getCompanyID = function(company){
+        $scope.advSearch.Companies_id = company.id;
+    };
+    
+    //Get company id for advanced search
+    $scope.getClaimsID = function(claim){
+        $scope.advSearch.Claims_id = claim.id;
+    };
+    
     //Search
     $scope.search = function (searchObject) {
         $scope.noResults = undefined;
@@ -140,7 +164,8 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (event, datepicker) {
-        $scope.isOpen.datepicker = true;
+        $scope.isOpen.datepicker[datepicker] = true;
+        
     };
     
     //Modal

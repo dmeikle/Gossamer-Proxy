@@ -119,6 +119,8 @@ return array(
     'ACCOUNTING_PAYER' => 'Payer (Company)',
     'ACCOUNTING_CHEQUE_REFERNCE_NUMBER' => 'Cheque Reference #',
     'ACCOUNTING_INVOICE' => 'Invoice',
-    'ACCOUNTING_RECEIPT_TYPE' => 'Receipt Type'
+    'ACCOUNTING_RECEIPT_TYPE' => 'Receipt Type',
+    'ACCOUNTING_FROM_DATE' => 'From Date',
+    'ACCOUNTING_TO_DATE' => 'To Date'
 );
 

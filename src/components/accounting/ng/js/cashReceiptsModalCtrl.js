@@ -30,7 +30,7 @@ module.controller('cashReceiptsModalCtrl', function ($modalInstance, $scope, cas
         return cashReceiptsModalSrv.fetchCompanyAutocomplete(searchObject);
     };
     
-    //Companies Typeahead
+    //Claims Typeahead
     $scope.fetchClaimsAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.jobNumber = viewVal;

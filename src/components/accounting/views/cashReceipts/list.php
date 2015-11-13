@@ -1,5 +1,7 @@
 <div class="widget" ng-controller="cashReceiptsCtrl">
-    <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
+    <div class="widget-content" ng-class="{
+            'panel-open'
+            :sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_CASH_RECEIPTS') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
         <div class="toolbar form-inline">
@@ -50,7 +52,9 @@
                     </th>
                 </tr>
 
-                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
+                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{
+                        'selected'
+                        : item === selectedRow}">
                     <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.chequeNumber}}</td>
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.description}}</td>
                     <td ng-hide="groupedBy === 'dateReceived'" ng-click="selectRow(item)">{{item.dateReceived}}</td>
@@ -73,7 +77,9 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></uib-pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
+    <div class="widget-side-panel" ng-class="{
+            'datepicker-open'
+            : isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -85,7 +91,7 @@
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
 
-                <label>From Date</label>
+                <label><?php echo $this->getString('ACCOUNTING_FROM_DATE'); ?></label>
                 <div class="input-group date-picker">
                     <input type="date" name="date1" ng-model="advSearch.fromDate" ng-model-options="{timezone: '+0000'}"
                            class="form-control" datepicker-popup is-open="isOpen.datepicker.fromDate"
@@ -97,7 +103,7 @@
                     </span>
                 </div>
 
-                <label>To Date</label>
+                <label><?php echo $this->getString('ACCOUNTING_TO_DATE'); ?></label>
                 <div class="input-group date-picker">
                     <input type="date" name="date2" ng-model="advSearch.toDate" ng-model-options="{timezone: '+0000'}"
                            class="form-control" datepicker-popup is-open="isOpen.datepicker.toDate"
@@ -109,23 +115,27 @@
                     </span>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
-                    <option value="" selected>-Vendor-</option>
-                    <?php
-                    foreach ($Vendors as $vendor) {
-                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
-                    }
-                    ?>
-                </select>
+                <div class="input-group">
+                    <label><?php echo $this->getString('ACCOUNTING_PAYER'); ?></label>
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_PAYER'); ?>" type="text" ng-model="company" typeahead-wait-ms="500"
+                           typeahead="value as value.name for value in fetchCompanyAutocomplete($viewValue)"
+                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
+                           typeahead-min-length="3" typeahead-on-select="getCompanyID(company)">
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.PurchaseOrderTypes_id">
-                    <option value="" selected>-Purchase Order Types-</option>
-                    <?php
-                    foreach ($PurchaseOrderTypes as $orderTypes) {
-                        echo '<option value="' . $orderTypes['id'] . '">' . $orderTypes['orderType'] . '</option>';
-                    }
-                    ?>
-                </select>
+                <div class="input-group">
+                    <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="claim" typeahead-wait-ms="500"
+                           typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
+                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="getClaimsID(claim)">
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
                 <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
                     <option value="" selected>-Payment Methods-</option>
@@ -141,6 +151,24 @@
                     <?php
                     foreach ($ClaimPhases as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['title'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="form-control" name="DebitAccounts" ng-model="advSearch.AccountingDebitAccounts_id">
+                    <option value="" selected>-Debit Account-</option>
+                    <?php
+                    foreach ($DebitAccounts as $debitAccount) {
+                        echo '<option value="' . $debitAccount['id'] . '">' . $debitAccount['name'] . '</option>';
+                    }
+                    ?>
+                </select>
+
+                <select class="form-control" name="CreditAccounts" ng-model="advSearch.AccountingCreditAccounts_id">
+                    <option value="" selected>-Credit Account-</option>
+                    <?php
+                    foreach ($CreditAccounts as $creditAccount) {
+                        echo '<option value="' . $creditAccount['id'] . '">' . $creditAccount['name'] . '</option>';
                     }
                     ?>
                 </select>
@@ -208,3 +236,5 @@
 
     <div class="clearfix"></div>
 </div>
+<?php
+// pr($this->data); ?>
