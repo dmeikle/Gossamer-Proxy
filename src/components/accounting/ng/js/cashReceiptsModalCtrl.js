@@ -10,6 +10,7 @@ module.controller('cashReceiptsModalCtrl', function ($modalInstance, $scope, cas
     
     if(invoice){
         $scope.newItem = false;
+        $scope.item = invoice;
     } else {
         $scope.newItem = true;
         $scope.item.id = 0;
@@ -68,7 +69,7 @@ module.controller('cashReceiptsModalCtrl', function ($modalInstance, $scope, cas
     //Saving Items    
     $scope.save = function () {
         var item = angular.copy($scope.item);
-        item.dateReceived = $filter('date')(item.dateReceived, 'yyyy-MM-dd');
+        item.dateReceived = $filter('date')(item.dateReceived, 'yyyy-MM-dd', '+0000');
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         cashReceiptsModalSrv.save(item, formToken);
     };

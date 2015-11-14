@@ -28,7 +28,12 @@
             <thead>
                 <tr>
                     <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_CHEQUE_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PAYER'); ?></th>
                     <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></th>
                     <th ng-hide="groupedBy === 'dateReceived'" column-sortable data-column="dateReceived"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
                     <th ng-hide="groupedBy === 'amount'" column-sortable data-column="amount"><?php echo $this->getString('ACCOUNTING_AMOUNT'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
@@ -38,9 +43,13 @@
                 <tr ng-if="loading">
                     <td ng-hide="groupedBy === 'chequeNumber'"></td>
                     <td ng-hide="groupedBy === 'description'"></td>
+                    <td ng-hide="groupedBy === 'description'"></td>
+                    <td ng-hide="groupedBy === 'description'"></td>
                     <td ng-hide="groupedBy === 'dateReceived'">
                         <span class="spinner-loader"></span>
                     </td>
+                    <td ng-hide="groupedBy === 'description'"></td>
+                    <td ng-hide="groupedBy === 'description'"></td>
                     <td ng-hide="groupedBy === 'company'"></td>
                     <td></td>
                 </tr>
@@ -56,14 +65,19 @@
                         'selected'
                         : item === selectedRow}">
                     <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.chequeNumber}}</td>
+                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.company}}</td>
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.description}}</td>
+                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.creditAccount}}</td>
+                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.debitAccount}}</td>
+                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.paymentMethod}}</td>
                     <td ng-hide="groupedBy === 'dateReceived'" ng-click="selectRow(item)">{{item.dateReceived}}</td>
                     <td ng-hide="groupedBy === 'amount'" ng-click="selectRow(item)">{{item.amount| currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="edit/{{item.PurchaseOrders_id}}">Edit</a></li>
+                                <li><a ng-click="openModal(row)">Edit</a></li>
                             </ul>
                         </div>
                     </td>
