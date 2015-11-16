@@ -200,49 +200,24 @@
         <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE') ?></h3>
-                    <p>{{selectedRow.orderType}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_VENDOR') ?></h3>
+                    <h3><?php echo $this->getString('ACCOUNTING_CHEQUE_NUMBER') ?></h3>
+                    <p>{{breakdown.chequeNumber}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_PAYER') ?></h3>
                     <p>{{selectedRow.company}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT') ?></h3>
+                    <p>{{selectedRow.debitAccount}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD') ?></h3>
+                    <p>{{selectedRow.paymentMethod}}</p>
                 </div>
                 <div class="pull-right">
                     <h3><?php echo $this->getString('ACCOUNTING_DATE') ?></h3>
-                    <p>{{selectedRow.creationDate}}</p>
+                    <p>{{selectedRow.dateReceived}}</p>
                     <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></h3>
                     <p>{{breakdown.jobNumber}}</p>
-                </div>
-            </div>
-
-            <h4><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_ITEMS') ?></h4>
-
-            <table class="table table-striped table-hover">
-                <tr>
-                    <th class="col-md-3"><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE') ?></th>
-                    <th class="col-md-3"><?php echo $this->getString('ACCOUNTING_QUANTITY') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_PRICE') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_TAX_TYPE') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_AMOUNT') ?></th>
-                </tr>
-                <tr ng-repeat="item in breakdownLineItems">
-                    <td>{{item.productCode}}</td>
-                    <td>{{item.quantity}}</td>
-                    <td>{{item.unitPrice| currency}}</td>
-                    <td>{{item.taxType}} </td>
-                    <td>{{item.amount| currency}}test</td>
-                </tr>
-            </table>
-            <div class="col-md-5 col-md-offset-7">
-                <div class="pull-left">
-                    <p><strong><?php echo $this->getString('ACCOUNTING_SUBTOTAL') ?></strong></p>
-                    <p><strong><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE') ?></strong></p>
-                    <p><strong><?php echo $this->getString('ACCOUNTING_TAX') ?></strong></p>
-                    <p><strong><?php echo $this->getString('ACCOUNTING_TOTAL') ?></strong></p>
-                </div>
-                <div class="pull-right">
-                    <p>{{breakdown.subtotal| currency}}</p>
-                    <p>{{breakdown.deliveryFee| currency}}</p>
-                    <p>{{breakdown.tax| currency}}</p>
-                    <p>{{breakdown.total| currency}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT') ?></h3>
+                    <p>{{selectedRow.creditAccount}}</p>
+                    <h3><?php echo $this->getString('ACCOUNTING_AMOUNT') ?></h3>
+                    <p>{{selectedRow.amount| currency}}</p>
                 </div>
             </div>
         </div>

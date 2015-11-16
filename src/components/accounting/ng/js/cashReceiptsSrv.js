@@ -75,8 +75,9 @@ module.service('cashReceiptsSrv', function ($http, searchSrv, $filter) {
             },
             url: apiPath + id
         }).then(function (response) {
-            self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
-            self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
+            //self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
+            self.breakdown = response;
+            //self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
         });
     };
 });

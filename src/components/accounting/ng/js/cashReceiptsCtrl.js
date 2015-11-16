@@ -1,4 +1,4 @@
-module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, cashReceiptsSrv, tablesSrv, $modal) {
+module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, cashReceiptsSrv, tablesSrv, $uibModal) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -73,12 +73,13 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
         $scope.selectedRow = row;
         $scope.sidePanelLoading = true;
         $scope.searching = false;
-        
-        cashReceiptsSrv.getBreakdown(row.PurchaseOrders_id).then(function(){
-            $scope.breakdown = cashReceiptsSrv.breakdown;
-            $scope.breakdownLineItems = cashReceiptsSrv.breakdownLineItems;
-            $scope.sidePanelLoading = false;
-        });
+        $scope.breakdown = row;
+        $scope.sidePanelLoading = false;
+//        cashReceiptsSrv.getBreakdown(row.id).then(function(){
+//            $scope.breakdown = cashReceiptsSrv.breakdown;
+//            $scope.breakdownLineItems = cashReceiptsSrv.breakdownLineItems;
+//            $scope.sidePanelLoading = false;
+//        });
     };
 
     $scope.closeSidePanel = function () {
