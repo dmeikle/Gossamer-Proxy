@@ -29,13 +29,13 @@ class CashReceiptBuilder extends AbstractBuilder {
 
         $builder->add('DebitAccounts_id', 'select', array('class' => 'form-control col-md-12', 'ng-model' => 'item.AccountingDebitAccounts_id', 'options' => $options['debitAccounts']))
                 ->add('CreditAccounts_id', 'select', array('class' => 'form-control col-md-12', 'ng-model' => 'item.AccountingCreditAccounts_id', 'options' => $options['creditAccounts']))
-                ->add('companiesAutocomplete', 'text', array('ng-model' => 'company', 'typeahead' => 'value as value.name for value in fetchCompanyAutocomplete($viewValue)',
+                ->add('companiesAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => 'value as value.name for value in fetchCompanyAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsCompany', 'class' => 'form-control typeahead col-md-12',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getCompanyID(company)', 'typeahead-wait-ms' => '500'))
-                ->add('invoicesAutocomplete', 'text', array('ng-model' => 'item.invoice', 'typeahead' => 'value as value.name for value in fetchInvoiceAutocomplete($viewValue)',
+                ->add('invoicesAutocomplete', 'text', array('ng-model' => 'item.invoice', 'uib-typeahead' => 'value as value.name for value in fetchInvoiceAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-12',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getCompanyID(item.company)', 'typeahead-wait-ms' => '500'))
-                ->add('jobNumber', 'text', array('ng-model' => 'claim', 'typeahead' => 'value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)',
+                ->add('jobNumber', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-12',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(claim)', 'typeahead-wait-ms' => '500'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-12', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))

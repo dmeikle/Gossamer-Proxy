@@ -28,12 +28,12 @@
             <thead>
                 <tr>
                     <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_CHEQUE_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PAYER'); ?></th>
+                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('ACCOUNTING_PAYER'); ?></th>
                     <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></th>
+                    <th ng-hide="groupedBy === 'creditAccount'" column-sortable data-column="creditAccount"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'debitAccount'" column-sortable data-column="debitAccount"><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'paymentMethod'" column-sortable data-column="paymentMethod"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></th>
                     <th ng-hide="groupedBy === 'dateReceived'" column-sortable data-column="dateReceived"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
                     <th ng-hide="groupedBy === 'amount'" column-sortable data-column="amount"><?php echo $this->getString('ACCOUNTING_AMOUNT'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
@@ -42,15 +42,16 @@
             <tbody>
                 <tr ng-if="loading">
                     <td ng-hide="groupedBy === 'chequeNumber'"></td>
+                    <td ng-hide="groupedBy === 'jobNumber'"></td>
+                    <td ng-hide="groupedBy === 'company'"></td>
                     <td ng-hide="groupedBy === 'description'"></td>
-                    <td ng-hide="groupedBy === 'description'"></td>
-                    <td ng-hide="groupedBy === 'description'"></td>
-                    <td ng-hide="groupedBy === 'dateReceived'">
+                    <td ng-hide="groupedBy === 'creditAccount'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'description'"></td>
-                    <td ng-hide="groupedBy === 'description'"></td>
-                    <td ng-hide="groupedBy === 'company'"></td>
+                    <td ng-hide="groupedBy === 'debitAccount'"></td>
+                    <td ng-hide="groupedBy === 'paymentMethod'"></td>
+                    <td ng-hide="groupedBy === 'dateReceived'"></td>
+                    <td ng-hide="groupedBy === 'amount'"></td>
                     <td></td>
                 </tr>
 
@@ -65,19 +66,19 @@
                         'selected'
                         : item === selectedRow}">
                     <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.chequeNumber}}</td>
-                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
-                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.company}}</td>
+                    <td ng-hide="groupedBy === 'jobNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.company}}</td>
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.description}}</td>
-                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.creditAccount}}</td>
-                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.debitAccount}}</td>
-                    <td ng-hide="groupedBy === 'chequeNumber'" ng-click="selectRow(item)">{{item.paymentMethod}}</td>
+                    <td ng-hide="groupedBy === 'creditAccount'" ng-click="selectRow(item)">{{item.creditAccount}}</td>
+                    <td ng-hide="groupedBy === 'debitAccount'" ng-click="selectRow(item)">{{item.debitAccount}}</td>
+                    <td ng-hide="groupedBy === 'paymentMethod'" ng-click="selectRow(item)">{{item.paymentMethod}}</td>
                     <td ng-hide="groupedBy === 'dateReceived'" ng-click="selectRow(item)">{{item.dateReceived}}</td>
                     <td ng-hide="groupedBy === 'amount'" ng-click="selectRow(item)">{{item.amount| currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openModal(row)">Edit</a></li>
+                                <li><a ng-click="openModal(item)">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -108,7 +109,7 @@
                 <label><?php echo $this->getString('ACCOUNTING_FROM_DATE'); ?></label>
                 <div class="input-group date-picker">
                     <input type="date" name="date1" ng-model="advSearch.fromDate" ng-model-options="{timezone: '+0000'}"
-                           class="form-control" datepicker-popup is-open="isOpen.datepicker.fromDate"
+                           class="form-control" uib-datepicker-popup is-open="isOpen.datepicker.fromDate"
                            datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
                     <span class="input-group-btn" data-datepickername="date1">
                         <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event, 'fromDate')">
@@ -120,7 +121,7 @@
                 <label><?php echo $this->getString('ACCOUNTING_TO_DATE'); ?></label>
                 <div class="input-group date-picker">
                     <input type="date" name="date2" ng-model="advSearch.toDate" ng-model-options="{timezone: '+0000'}"
-                           class="form-control" datepicker-popup is-open="isOpen.datepicker.toDate"
+                           class="form-control" uib-datepicker-popup is-open="isOpen.datepicker.toDate"
                            datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
                     <span class="input-group-btn" data-datepickername="date2">
                         <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event, 'toDate')">
@@ -132,7 +133,7 @@
                 <div class="input-group">
                     <label><?php echo $this->getString('ACCOUNTING_PAYER'); ?></label>
                     <input placeholder="<?php echo $this->getString('ACCOUNTING_PAYER'); ?>" type="text" ng-model="company" typeahead-wait-ms="500"
-                           typeahead="value as value.name for value in fetchCompanyAutocomplete($viewValue)"
+                           uib-typeahead="value as value.name for value in fetchCompanyAutocomplete($viewValue)"
                            typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
                            typeahead-min-length="3" typeahead-on-select="getCompanyID(company)">
                     <div class="resultspane" ng-show="noResultsCompany">
@@ -143,7 +144,7 @@
                 <div class="input-group">
                     <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
                     <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="claim" typeahead-wait-ms="500"
-                           typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
+                           uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
                            typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
                            typeahead-min-length="2" typeahead-on-select="getClaimsID(claim)">
                     <div class="resultspane" ng-show="noResultsCompany">

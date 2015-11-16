@@ -23,7 +23,7 @@
                 <div class="input-group">
                     <label><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
                     <input type="date" name="date" ng-model="item.dateReceived" ng-model-options="{timezone: '+0000'}"
-                           class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
+                           class="form-control datepicker" uib-datepicker-popup is-open="isOpen.datepicker"
                            datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
                     <span class="input-group-btn" data-datepickername="date">
                         <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event, $index)">

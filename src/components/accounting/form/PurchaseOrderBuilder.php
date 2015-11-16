@@ -28,13 +28,13 @@ class PurchaseOrderBuilder extends AbstractBuilder {
         }
 
         $builder->add('Vendors_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Vendors_id', 'options' => $options['vendors']))
-                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
+                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorLocations(item.company);'))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentMethods_id', 'options' => $options['AccountingPaymentMethods']))
                 ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
-                ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'typeahead' => 'value for value in fetchClaimAutocomplete($viewValue)',
+                ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value for value in fetchClaimAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'ng-blur' => 'getClaimsID(item.jobNumber)'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))
@@ -42,10 +42,10 @@ class PurchaseOrderBuilder extends AbstractBuilder {
 
                 //Line Items
                 //->add('isSelected', 'checkbox', array('class' => 'form-control', 'ng-model' => 'row.isSelected', 'value' => '123'))
-                ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'typeahead' => 'value as value.productCode for value in fetchProductCodeAutocomplete($viewValue)',
+                ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'uib-typeahead' => 'value as value.productCode for value in fetchProductCodeAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsProductCode', 'class' => 'form-control typeahead',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getProductInfo(row, row.productCode, $index);'))
-                ->add('productName', 'text', array('ng-model' => 'row.name', 'typeahead' => 'value as value.name for value in fetchProductNameAutocomplete($viewValue)',
+                ->add('productName', 'text', array('ng-model' => 'row.name', 'uib-typeahead' => 'value as value.name for value in fetchProductNameAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsProductName', 'class' => 'form-control typeahead',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getProductInfo(row, row.name, $index);'))
                 ->add('productDescription', 'text', array('class' => 'form-control', 'ng-model' => 'row.description'))

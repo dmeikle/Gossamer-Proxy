@@ -23,7 +23,7 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     
     $scope.$watch('tablesSrv.sortResult', function () {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
-            $scope.list = tablesSrv.sortResult.PurchaseOrders;
+            $scope.list = tablesSrv.sortResult.AccountingCashReceipts;
             $scope.loading = false;
         }
     });
@@ -31,8 +31,8 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.AccountingCashReceipts'], function () {
         $scope.grouped = tablesSrv.grouped;
         if ($scope.grouped === true) {
-            if (tablesSrv.groupResult && tablesSrv.groupResult.PurchaseOrders)
-                $scope.list = tablesSrv.groupResult.PurchaseOrders;
+            if (tablesSrv.groupResult && tablesSrv.groupResult.AccountingCashReceipts)
+                $scope.list = tablesSrv.groupResult.AccountingCashReceipts;
             $scope.loading = false;
         } else if ($scope.grouped === false) {
             getList();
@@ -173,7 +173,7 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
         var template = accountingTemplateSrv.cashReceiptsModal;
-        var modal = $modal.open({
+        var modal = $uibModal.open({
             templateUrl: template,
             controller: 'cashReceiptsModalCtrl',
             size: 'md',

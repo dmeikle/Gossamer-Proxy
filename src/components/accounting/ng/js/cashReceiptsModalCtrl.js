@@ -10,7 +10,9 @@ module.controller('cashReceiptsModalCtrl', function ($modalInstance, $scope, cas
     
     if(invoice){
         $scope.newItem = false;
-        $scope.item = invoice;
+        var copiedObject = angular.copy(invoice);
+        copiedObject.dateReceived = new Date(copiedObject.dateReceived);
+        $scope.item = copiedObject;
     } else {
         $scope.newItem = true;
         $scope.item.id = 0;
