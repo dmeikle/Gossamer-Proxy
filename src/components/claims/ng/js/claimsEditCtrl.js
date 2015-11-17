@@ -1,11 +1,21 @@
-module.controller('claimsEditCtrl', function($scope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
+module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
     $scope.loading = true;
+    $scope.authorizationLoading = true;
+    $scope.authorization = {};
+    $scope.isOpen = {};
     $scope.contacts = [];
 
     getProjectAddress();
     getClaimDetails();
+
+    // datepicker stuffs
+    $scope.dateOptions = {'starting-day': 1};
+    $scope.openDatepicker = function (event) {
+        var datepicker = event.target.parentElement.dataset.datepickername;
+        $scope.isOpen[datepicker] = true;
+    };
 
     function getClaimDetails() {
 

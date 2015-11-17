@@ -472,6 +472,20 @@ admin_claimlocations_by_claimid:
         view: core\views\JSONView
         viewKey: admin_claimlocations_by_claimid
         datasource: datasource1
+    methods: [GET]
+
+admin_claimlocations_save_by_claimid:
+    pattern: admin/claimlocations/claim/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claimlocations_save_by_claimid
+        datasource: datasource1
+    methods: [POST]
+
 
 
 
@@ -513,6 +527,30 @@ admin_claimlocation_view:
         view: core\views\TemplateView
         viewKey: admin_claimlocation_view
         datasource: datasource1
+    methods: [GET]
+
+admin_claimlocation_setinactive:
+    pattern: admin/claimlocations/remove/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_claimlocation_setinactive
+        datasource: datasource1
+    methods: [POST]
+
+admin_claimlocations_list_by_projectaddress:
+    pattern: admin/claimlocations/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: listallByProjectAddress
+        view: core\views\JSONView
+        viewKey: admin_claims_list_by_projectaddress
+        datasource: datasource1
 
 
 
@@ -529,16 +567,6 @@ claims_list:
         viewKey: claims_list
         datasource: datasource1
 
-claims_list_by_projectaddress:
-    pattern: portal/claims/*/*/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimsController
-        model: components\claims\models\ClaimModel
-        method: listallByProjectAddress
-        view: core\views\TemplateView
-        viewKey: claims_list_by_projectaddress
-        datasource: datasource1
 
 claims_view:
     pattern: portal/claims/*

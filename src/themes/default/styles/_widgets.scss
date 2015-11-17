@@ -62,3 +62,7 @@
   max-height:100%;
   overflow-y:auto;
 }
+
+.wizard-pages {
+  @extend .clearfix;
+}

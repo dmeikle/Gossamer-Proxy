@@ -104,12 +104,6 @@ class ClaimsController extends AbstractController {
         return $claimBuilder->buildForm($builder, $values, $options, $results);
     }
 
-    public function listallByProjectAddress($addressId, $offset, $limit) {
-        $result = $this->model->listallByProjectAddress($addressId, $offset, $limit);
-
-        $this->render($result);
-    }
-
     private function getJobNumber() {
         $rawJobNumber = $this->httpRequest->getQueryParameter('Claims_id'); //changed from 'term'
 

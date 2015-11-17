@@ -1,4 +1,5 @@
-module.service('claimsListSrv', function($http, searchSrv, crudSrv) {
+
+module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
 
 
     var apiPath = '/admin/claims/';
