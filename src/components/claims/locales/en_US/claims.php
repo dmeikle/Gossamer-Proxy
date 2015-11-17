@@ -62,5 +62,10 @@ return array(
     'CLAIMS_DEPARTMENT' => 'Department',
     'CLAIMS_BREAKDOWN' => 'Breakdown',
     'CLAIMS_APPROVED' => 'Approved',
-    'CLAIMS_DETAILS' => 'Details'
+    'CLAIMS_DETAILS' => 'Details',
+    'CLAIMS_TIMESHEETS' => 'Timesheets',
+    'CLAIMS_LABORER' => 'Laborer',
+    'CLAIMS_MATERIAL' => 'Material',
+    'CLAIMS_EQUIPMENT' => 'Equipment',
+    'CLAIMS_MISC_GENERAL' => 'Misc - General'
 );
