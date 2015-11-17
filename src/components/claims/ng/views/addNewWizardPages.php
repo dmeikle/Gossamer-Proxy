@@ -1,53 +1,81 @@
 <div ng-show="currentPage === 0"> <!-- PAGE 0 -->
-
     <div class="wizard-page clearfix" ng-show="!addNewClient && !loading">
         <h2><?php echo $this->getString('CLAIMS_ADDNEW_CREATENEW'); ?></h2>
-        <form id="wizard-form" name="wizard-form" class="form-inline col-xs-12 col-md-6">
-            <div class="form-group">
-                <label>
-                    <input type="radio" name="claim-by" id="claim-by-strata" class="form-control" ng-model="claim.by" value="strata" required>
-                    <?php echo $this->getString('CLAIMS_ADDNEW_STRATA'); ?>
-                </label>
-                <input type="text" ng-model="claim.strata" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'strata'"
-                       uib-typeahead="value.strata + ' #' + value.strataNumber for value in autocompleteStrata($viewValue)" typeahead-loading="loadingTypeaheadStrata"
-                       typeahead-no-results="noResultsStrata" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'strata'"
-                       typeahead-on-select="selectAddress($item, $model, $label)">
-                <div class="resultspane" ng-show="noResultsStrata">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
-                </div>
-                <i ng-show="loadingTypeaheadStrata" class="glyphicon glyphicon-refresh"></i>
-            </div>
-            <div class="form-group">
-                <label>
-                    <input type="radio" name="claim-by" id="claim-by-building" class="form-control" ng-model="claim.by" value="building">
-                    <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING'); ?>
-                </label>
-                <input type="text" ng-model="claim.building" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'building'"
-                       uib-typeahead="value.strata + ' ' + value.buildingName for value in autocompleteBuilding($viewValue)" typeahead-loading="loadingTypeaheadBuilding"
-                       typeahead-no-results="noResultsBuilding" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'building'">
-                <div class="resultspane" ng-show="noResultsBuilding">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
-                </div>
-                <i ng-show="loadingTypeaheadBuilding" class="glyphicon glyphicon-refresh"></i>
-            </div>
-            <div class="form-group">
-                <label>
-                    <input type="radio" name="claim-by" id="claim-by-address" class="form-control" ng-model="claim.by" value="address">
-                    <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS'); ?>
-                </label>
-                <input type="text" ng-model="claim.address" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'address'"
-                       uib-typeahead="value.strata + ' ' + value.address1 for value in autocompleteAddress($viewValue)" typeahead-loading="loadingTypeaheadAddress"
-                       typeahead-no-results="noResultsAddress" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'address'">
-                <div class="resultspane" ng-show="noResultsAddress">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
-                </div>
-                <i ng-show="loadingTypeaheadAddress" class="glyphicon glyphicon-refresh"></i>
-            </div>
-        </form>
-        <div class="col-xs-12 col-md-6">
+        <form id="wizard-form" name="wizard-form" class="col-xs-12 col-md-6">
+
             <button class="btn-default" ng-click="toggleAdding()">
                 <?php echo $this->getString('CLAIMS_ADDNEW_ORNEW'); ?>
             </button>
+            <div class="clearfix"></div>
+            <div class="form-group form-inline">
+                <label>
+                    <input type="radio" name="claim-by" id="claim-by-strata" ng-model="claim.by" value="strata" required>
+                    <?php echo $this->getString('CLAIMS_ADDNEW_STRATA'); ?>
+                </label>
+                <div>
+                    <input type="text" ng-model="claim.strata" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'strata'"
+                           uib-typeahead="value.strata + ' #' + value.strataNumber for value in autocompleteStrata($viewValue)" typeahead-loading="loadingTypeaheadStrata"
+                           typeahead-no-results="noResultsStrata" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'strata'"
+                           typeahead-on-select="selectAddress($item, $model, $label)">
+                    <div class="resultspane" ng-show="noResultsStrata">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+                    </div>
+                    <i ng-show="loadingTypeaheadStrata" class="glyphicon glyphicon-refresh"></i>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label>
+                    <input type="radio" name="claim-by" id="claim-by-building" ng-model="claim.by" value="building">
+                    <?php echo $this->getString('CLAIMS_ADDNEW_BUILDING'); ?>
+                </label>
+                <div>
+                    <input type="text" ng-model="claim.building" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'building'"
+                           uib-typeahead="value.strata + ' ' + value.buildingName for value in autocompleteBuilding($viewValue)" typeahead-loading="loadingTypeaheadBuilding"
+                           typeahead-no-results="noResultsBuilding" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'building'">
+                    <div class="resultspane" ng-show="noResultsBuilding">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+                    </div>
+                    <i ng-show="loadingTypeaheadBuilding" class="glyphicon glyphicon-refresh"></i>
+                </div>
+            </div>
+            <div class="form-group form-inline">
+                <label>
+                    <input type="radio" name="claim-by" id="claim-by-address" ng-model="claim.by" value="address">
+                    <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS'); ?>
+                </label>
+                <div>
+                    <input type="text" ng-model="claim.address" ng-model-options="{debounce:500}" ng-disabled="claim.by !== 'address'"
+                           uib-typeahead="value.strata + ' ' + value.address1 for value in autocompleteAddress($viewValue)" typeahead-loading="loadingTypeaheadAddress"
+                           typeahead-no-results="noResultsAddress" class="form-control" typeahead-min-length='3' ng-required="claim.by === 'address'">
+                    <div class="resultspane" ng-show="noResultsAddress">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+                    </div>
+                    <i ng-show="loadingTypeaheadAddress" class="glyphicon glyphicon-refresh"></i>
+                </div>
+            </div>
+        </form>
+        <div class="col-xs-12 col-md-6">
+            <?php echo $this->getString('CLAIMS_LOCATIONS_ADDORSELECT') ?>
+            <form ng-submit="addToUnitList()">
+                <div class="input-group">
+                    <?php echo $claimLocationForm['claimLocationsAutocomplete'] ?>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn-default">
+                            <?php echo $this->getString('CLAIMS_ADDUNIT') ?>
+                        </button>
+                    </span>
+                </div>
+            </form>
+            <h4><?php echo $this->getString('CLAIMS_UNITS') ?></h4>
+            <ul>
+                <li ng-if="unitList.length > 0" ng-repeat="unit in unitList track by unit.id" class="clearfix">
+                    {{unit.unitNumber}}
+                    <button ng-click="removeFromUnitList(unit)" class="pull-right btn-link glyphicon glyphicon-remove"></button>
+                </li>
+                <li ng-if="unitList.length == 0">
+                    <?php echo $this->getString('CLAIMS_NOUNITS') ?>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="modal-footer">
@@ -183,75 +211,9 @@
 </form>
 <div ng-show="currentPage === 2"> <!-- PAGE 2 -->
     <form id="wizard-form" class="wizard-page" ng-show="!loading && !addingLocation">
-        <?php echo $this->getString('CLAIMS_LOCATIONS_ADDORSELECT') ?>
-        <button class="primary" ng-click="toggleAddingLocation()">
-            <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
-        </button>
+        
 
-        <table class="table table-striped table-hover" ng-controller="claimsLocationsListCtrl">
-            <thead>
-                <tr>
-                    <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
-                    <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                    <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
-                    <th sort-by-button class="cog-col row-controls">&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-if="loading">
-                    <td></td>
-                    <td colspan="2">
-                        <span class="spinner-loader"></span>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
-                    ng-class="{'selected': location === previouslyClickedObject,
-                        'inactive bg-warning text-warning': claim.status == 'inactive'}">
-                    <td>{{location.unitNumber}}</td>
-                    <td>{{location.phase}}</td>
-                    <td>{{location.jobNumber}}</td>
-                    <td class="row-controls">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
-                                type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="true">
-                            </button>
-                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
-                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
-    <form id="wizard-form" class="wizard-page" ng-show="!loading && addingLocation">
-        <div class="form-group col-xs-12 col-md-6">
-            <label for="ClaimLocation_unitNumber">
-                <?php echo $this->getString('CLAIMS_LOCATIONS_UNITNUMBER') ?>
-            </label>
-            <?php echo $claimLocationForm['unitNumber'] ?>
-        </div>
-        <div class="form-group col-xs-12 col-md-6">
-            <label for="ClaimLocation_buzzer">
-                <?php echo $this->getString('CLAIMS_LOCATIONS_BUZZER') ?>
-            </label>
-            <?php echo $claimLocationForm['buzzer'] ?>
-        </div>
-        <div class="form-group col-xs-12 col-md-6">
-            <label for="ClaimLocation_phase">
-                <?php echo $this->getString('CLAIMS_LOCATIONS_PHASE') ?>
-            </label>
-            <?php echo $claimLocationForm['ClaimPhases_id'] ?>
-        </div>
-        <div class="form-group col-xs-12 col-md-6">
-            <label for="ClaimLocation_status">
-                <?php echo $this->getString('CLAIMS_LOCATIONS_STATUS') ?>
-            </label>
-            <?php echo $claimLocationForm['ClaimStatus_id'] ?>
-        </div>
+        
     </form>
     <div class="pull-left">
         <button class="btn-default" ng-click="cancel()">
@@ -259,18 +221,10 @@
         </button>
     </div>
     <div class="pull-right btn-group">
-        <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0" ng-if="!addingLocation">
+        <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
             <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
         </button>
-        <button class="btn-default" ng-click="toggleAddingLocation()" ng-if="addingLocation">
-            <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
-        </button>
-        <button type="submit" ng-click="saveNewClaimLocation(item)" class="btn btn-primary" form="wizard-form"
-                ng-if="addingLocation">
-                    <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
-        </button>
-        <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form"
-                ng-if="!addingLocation">
+        <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form">
                     <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
         </button>
     </div>

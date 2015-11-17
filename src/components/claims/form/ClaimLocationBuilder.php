@@ -36,6 +36,7 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('mobile', 'text', array('ng-model' => 'item.mobile', 'class' => 'form-control'))
                 ->add('ClaimPhases_id', 'select', array('ng-model' => 'item.ClaimPhases_id', 'class' => 'form-control', 'options' => $options['claimPhases']))
                 ->add('ClaimStatus_id', 'select', array('ng-model' => 'item.ClaimStatus_id', 'class' => 'form-control', 'options' => $options['claimStatus']))
+                ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values)), 'ng-model' => 'item.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'item.Claims_id'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));

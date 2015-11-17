@@ -74,7 +74,7 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $modal,
     $scope.delete = function(object) {
         object.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
         object.isActive = '0';
-        claimsLocationsEditSrv.save(object).then(function() {
+        claimsLocationsEditSrv.delete(object).then(function() {
             $scope.getList();
         });
     };

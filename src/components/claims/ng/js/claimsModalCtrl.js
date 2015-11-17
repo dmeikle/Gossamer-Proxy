@@ -1,11 +1,11 @@
 
-module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claimsEditSrv, 
+module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, claimsEditSrv, 
     claimsLocationsEditSrv) {
 
     $scope.addNewClient = false;
     $scope.addingLocation = false;
 
-
+    $scope.unitList = [];
     $scope.project = {};
     $scope.claim = {};
     $scope.claim.query = {};
@@ -58,9 +58,7 @@ module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claims
     };
 
     $scope.saveNewClaimLocation = function(object) {
-        claimsLocationsEditSrv.save(object).then(function() {
-            $scope.toggleAddingLocation();
-        });
+        return claimsLocationsEditSrv.save(object);
     };
 
     $scope.save = function() {
@@ -73,6 +71,60 @@ module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claims
             $scope.claim.query.id = response.data.Claim[0].Claim_id;
             $scope.nextPage();
         });
+    };
+
+    $scope.getClaimLocations = function() {
+        return claimsEditSrv.getClaimLocations($scope.claim.ProjectAddress)
+            .then(function(response) {
+                $scope.claimLocations = response.data.ClaimLocations;
+                return response;
+            });
+    };
+
+    $scope.addToUnitList = function() {
+        if ($scope.unit) {
+            var object = {};
+            object.unitNumber = $scope.unit;
+            $scope.checkUnitExists(object).then(function(response) {
+                if (response === false) {
+                    $scope.saveNewClaimLocation(object).then(function(response) {
+                        $scope.unitList.push(response.data.ClaimsLocation[0]);
+                    });
+                } else {
+                    $scope.unitList.push(response);
+                }
+            });
+        }
+    };
+
+    $scope.checkUnitExists = function(unit) {
+        var unitCheck = function(unit) {
+            for (var i = $scope.claimLocations.length - 1; i >= 0; i--) {
+                if ($scope.claimLocations[i].unitNumber === unit.unitNumber) {
+                    return $scope.claimLocations[i];
+                }
+            }
+            return false;
+        };
+
+
+        if (!$scope.claimLocations) {
+            return $scope.getClaimLocations().then(function() {
+                return unitCheck(unit);
+            });
+        } else {
+            return $q(function(resolve) {
+                resolve(unitCheck(unit));
+            });
+        }
+    };
+
+    $scope.removeFromUnitList = function(unit) {
+        for (var i = $scope.unitList.length - 1; i >= 0; i--) {
+            if (unit === $scope.unitList[i]) { 
+                $scope.unitList.splice(i, 1);
+            }
+        }
     };
 
     $scope.toggleAdding = function() {

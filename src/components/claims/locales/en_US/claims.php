@@ -1,16 +1,21 @@
 <?php
 
 return array(
+    'CLAIMS_ADDNEW_ADDRESS' => 'Address',
+    'CLAIMS_ADDNEW_BUILDING' => 'Building',
     'CLAIMS_ADDNEW_CONFIRM' => 'Confirm',
     'CLAIMS_ADDNEW_CONFIRMATION' => 'Confirmation Page',
     'CLAIMS_ADDNEW_CONTACTDETAILS' => 'Contact Details',
     'CLAIMS_ADDNEW_CREATENEW' => 'Create new claim from...',
     'CLAIMS_ADDNEW_DISPATCH' => 'Dispatch',
     'CLAIMS_ADDNEW_NEXT' => 'Next',
+    'CLAIMS_ADDNEW_ORNEW' => 'Add New Project',
     'CLAIMS_ADDNEW_PREV' => 'Back',
+    'CLAIMS_ADDNEW_STRATA' => 'Strata',
     'CLAIMS_ADDNEW_WIZARD' => 'Add New Claim Wizard',
     'CLAIMS_ADDRESS' => 'Address',
     'CLAIMS_ADDRESS_INFO' => 'Project Address',
+    'CLAIMS_ADDUNIT' => 'Add Unit',
     'CLAIMS_ADVANCED_SEARCH' => 'Advanced Search',
     'CLAIMS_ASSIGN_PM' => "Assign Project Manager",
     'CLAIMS_BUILDING_NAME' => 'Building Name',
@@ -49,6 +54,7 @@ return array(
     'CLAIMS_MOBILE' => 'Mobile',
     'CLAIMS_NAME' => 'Name',
     'CLAIMS_NEW' => 'New Claim',
+    'CLAIMS_NOUNITS' => 'No Units On Claim',
     'CLAIMS_OFFICE' => 'Office',
     'CLAIMS_PARENT_CLAIM' => 'Parent Claim',
     'CLAIMS_PHASE' => 'Phase',
@@ -60,6 +66,7 @@ return array(
     'CLAIMS_STATUS' => 'Status',
     'CLAIMS_TYPE_INFO' => 'Claim Summary',
     'CLAIMS_UNIT_NUMBER' => 'Unit',
+    'CLAIMS_UNITS' => 'Affected Units',
     'CLAIMS_VIEW' => 'view',
     'CLAIMS_WORKAUTHORIZATION' => 'Work Authorization',
 );
