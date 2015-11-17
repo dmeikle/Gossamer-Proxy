@@ -279,3 +279,26 @@ claims_list_by_projectaddress:
             #"section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/list-by-address.php"
             "section5": "src/themes/default/templates/sections/footer.php"
+            
+claims_cost_cards_view:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/claims/views/admin/costCards/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/claims/dist/js/claims.concat.js
+    css:
+        - @components/claims/dist/css/claims.min.css

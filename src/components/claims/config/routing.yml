@@ -1,3 +1,31 @@
+#------------------------ cost cards ----------------------------
+claims_cost_cards_get:
+    pattern: admin/claims/costcards/get/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: claims_cost_cards_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+
+claims_cost_cards_view:
+    pattern: admin/claims/costcards/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: claims_cost_cards_view
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            
+            
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:
@@ -553,3 +581,4 @@ claims_view:
         view: core\views\TemplateView
         viewKey: claims_view
         datasource: datasource1
+       

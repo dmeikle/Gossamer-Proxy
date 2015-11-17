@@ -51,5 +51,16 @@ return array(
     'CLAIMS_UNIT_NUMBER' => 'Unit',
     'CLAIMS_NEW' => 'New Claim',
     'CLAIMS_VIEW' => 'view',
-    'CLAIMS_ASSIGN_PM' => "Assign Project Manager"
+    'CLAIMS_ASSIGN_PM' => "Assign Project Manager",
+    'CLAIMS_COST_CARD' => 'Cost Card',
+    'CLAIMS_VIEW_COST_CARD' => 'View Cost Card',
+    'CLAIMS_DESCRIPTION' => 'Description',
+    'CLAIMS_DATE' => 'Date',
+    'CLAIMS_COST' => 'Cost',
+    'CLAIMS_CHARGE_OUT' => 'Charge Out',
+    'CLAIMS_CATEGORY' => 'Category',
+    'CLAIMS_DEPARTMENT' => 'Department',
+    'CLAIMS_BREAKDOWN' => 'Breakdown',
+    'CLAIMS_APPROVED' => 'Approved',
+    'CLAIMS_DETAILS' => 'Details'
 );
