@@ -19,6 +19,7 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         $scope.editing = true;
         costCardSrv.getCostCard(id).then(function () {
             $scope.costCardTimesheets = costCardSrv.costCardTimesheets;
+            $scope.costCardEquipment = costCardSrv.costCardEquipment;
 //            costCardSrv.purchaseOrder.creationDate = new Date(costCardSrv.purchaseOrder.creationDate);
 //            $scope.item = costCardSrv.purchaseOrder;
 //            $scope.item.company = costCardSrv.Vendor;

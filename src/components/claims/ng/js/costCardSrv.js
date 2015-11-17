@@ -14,6 +14,7 @@ module.service('costCardSrv', function ($http, searchSrv, $filter) {
             url: apiPath + id
         }).then(function (response) {
             self.costCardTimesheets = response.data.timesheets;
+            self.costCardMaterials = response.data.inventoryUsed;
         });
     };
     
