@@ -67,5 +67,6 @@ return array(
     'CLAIMS_LABORER' => 'Laborer',
     'CLAIMS_MATERIAL' => 'Material',
     'CLAIMS_EQUIPMENT' => 'Equipment',
-    'CLAIMS_MISC_GENERAL' => 'Misc - General'
+    'CLAIMS_MISC_GENERAL' => 'Misc - General',
+    'CLAIMS_APPROVE' => 'Approve'
 );

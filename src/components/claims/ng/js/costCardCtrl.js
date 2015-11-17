@@ -7,7 +7,7 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     $scope.lineItems = [];
     $scope.item = {};
     $scope.loading = true;
-    
+    $scope.selectAll = false;
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
@@ -19,7 +19,8 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         $scope.editing = true;
         costCardSrv.getCostCard(id).then(function () {
             $scope.costCardTimesheets = costCardSrv.costCardTimesheets;
-            $scope.costCardEquipment = costCardSrv.costCardEquipment;
+            $scope.costCardMaterials = costCardSrv.costCardMaterials;
+            $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials);
 //            costCardSrv.purchaseOrder.creationDate = new Date(costCardSrv.purchaseOrder.creationDate);
 //            $scope.item = costCardSrv.purchaseOrder;
 //            $scope.item.company = costCardSrv.Vendor;
@@ -145,8 +146,10 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     $scope.checkSelected = function () {
         $scope.rowSelected = false;
         for (var index in $scope.lineItems) {
-            if ($scope.lineItems[index].isSelected === true) {
+            if ($scope.lineItems[index] !== null && $scope.lineItems[index].isSelected === true) {
                 $scope.rowSelected = true;
+            } else {
+                $scope.selectAll = false;
             }
         }
     };
@@ -154,13 +157,21 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     //Select All
     $scope.selectAllToggle = function (value) {
         for (var i in $scope.lineItems) {
-            if (value === true) {
+            if ($scope.lineItems[i] !== null && value === true) {
                 $scope.lineItems[i].isSelected = true;
             } else {
                 $scope.lineItems[i].isSelected = false;
             }
         }
         $scope.checkSelected();
+    };
+    
+    $scope.approveItems = function () {
+        for (var i in $scope.lineItems) {
+            if($scope.lineItems[i].isSelected === true){
+                console.log('DIS EYE TEM IS APOOVED YAOLLl');
+            }
+        }
     };
     
 //    //Update totals
