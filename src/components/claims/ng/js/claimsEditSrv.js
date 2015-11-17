@@ -3,6 +3,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     var apiPath = '/admin/claims/';
     var singleApiPath = '/admin/claim/';
     var projectApiPath = '/admin/projects/';
+    var claimLocationsApiPath = '/admin/claimlocations/';
 
     var self = this;
 
@@ -68,5 +69,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
         });
     };
 
-
+    this.getClaimLocations = function(projectAddress) {
+        return searchSrv.searchCall(claimLocationsApiPath + projectAddress.id + '/0/10');
+    };
 });
