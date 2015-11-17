@@ -20,7 +20,9 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         costCardSrv.getCostCard(id).then(function () {
             $scope.costCardTimesheets = costCardSrv.costCardTimesheets;
             $scope.costCardMaterials = costCardSrv.costCardMaterials;
-            $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials);
+            $scope.costCardEquipment = costCardSrv.costCardEquipment;
+            //$scope.costCardMiscItems = costCardSrv.costCardMiscItems;
+            $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
 //            costCardSrv.purchaseOrder.creationDate = new Date(costCardSrv.purchaseOrder.creationDate);
 //            $scope.item = costCardSrv.purchaseOrder;
 //            $scope.item.company = costCardSrv.Vendor;
