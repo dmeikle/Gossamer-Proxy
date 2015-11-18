@@ -3,7 +3,7 @@
         <div class="widget-content">
             <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                             ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                           ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"><?php echo $this->getString('CLAIMS_APPROVE'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
@@ -31,7 +31,14 @@
                             <th><?php echo $this->getString('CLAIMS_CATEGORY'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_EXPORTED'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_REGULAR_HOURS'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_OVERTIME_HOURS'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_DOUBLE_OVERTIME_HOURS'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_STAT_REGULAR_HOURS'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_STAT_OVERTIME_HOURS'); ?></th>
+                            <th ng-if="showHours"><?php echo $this->getString('CLAIMS_STAT_DOUBLE_OVERTIME_HOURS'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_TOTAL_HOURS'); ?></th>
+
                             <th><?php echo $this->getString('CLAIMS_HOURLY_RATE'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
@@ -61,15 +68,30 @@
                             <td>{{row.category}}</td>
                             <td>{{row.department}}</td>
                             <td>{{row.isExported}}</td>
+                            <td ng-if="showHours">{{row.regularHours}}</td>
+                            <td ng-if="showHours">{{row.overtimeHours}}</td>
+                            <td ng-if="showHours">{{row.doubleOTHours}}</td>
+                            <td ng-if="showHours">{{row.statRegularHours}}</td>
+                            <td ng-if="showHours">{{row.statOTHours}}</td>
+                            <td ng-if="showHours">{{row.statDoubleOTHours}}</td>
                             <td>{{row.totalHours}}</td>
                             <td>{{row.hourlyRate| currency}}</td>
                             <td>BREAK IT DOWN NOW</td>
                             <td>{{row.isDeptApproved}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="6"></th>
-                            <th colspan="1">Total:</th>
-                            <th colspan="1">{{timesheetsTotalHours}}</th>
+                            <th colspan="7"></th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsRegHours}}</th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsOTHours}}</th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsDOTHours}}</th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsSRegHours}}</th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsSOTHours}}</th>
+                            <th ng-if="showHours" colspan="1">{{timesheetsSDOTHours}}</th>
+                            <th colspan="1">{{timesheetsTotalHours}}
+                                <span ng-if="!showHours" ng-click="toggleHours()" class="glyphicon glyphicon-plus expand-btn"></span>
+                                <span ng-if="showHours" ng-click="toggleHours()" class="glyphicon glyphicon-minus expand-btn"></span>
+                            </th>
+                            <th colspan="1">{{timesheetsTotalCost| currency}}</th>
 <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                         </tr>
                     </tbody>
@@ -219,9 +241,9 @@
                     </tbody>
                 </table>
             </div>
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                           ?></button>-->
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                          ?></button>-->
-            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                          ?></button></a>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                         ?></button>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                        ?></button>-->
+            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                        ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

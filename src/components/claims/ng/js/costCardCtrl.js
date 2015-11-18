@@ -8,11 +8,18 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     $scope.item = {};
     $scope.loading = true;
     $scope.selectAll = false;
+    $scope.showHours = false;
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
-    $scope.timesheetsTotalHours = 0;
     $scope.timesheetsTotalCost = 0;
+    $scope.timesheetsTotalHours = 0;
+    $scope.timesheetsRegHours = 0;
+    $scope.timesheetsOTHours = 0;
+    $scope.timesheetsDOTHours = 0;
+    $scope.timesheetsSRegHours = 0;
+    $scope.timesheetsSOTHours = 0;
+    $scope.timesheetsSDOTHours = 0;
     
     //var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
@@ -26,44 +33,42 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
             $scope.costCardEquipment = costCardSrv.costCardEquipment;
             $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
             $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
-            
-            for(var i in  $scope.costCardTimesheets){
-                $scope.timesheetsTotalHours += parseFloat($scope.costCardTimesheets[i].totalHours);
-            }
-//            costCardSrv.purchaseOrder.creationDate = new Date(costCardSrv.purchaseOrder.creationDate);
-//            $scope.item = costCardSrv.purchaseOrder;
-//            $scope.item.company = costCardSrv.Vendor;
-//            $scope.vendorLocations = costCardSrv.VendorLocations;
-//            $scope.item.vendorLocation = costCardSrv.purchaseOrder.VendorLocations_id;
-//            $scope.lineItems = costCardSrv.purchaseOrderItems;
-//            if($scope.lineItems[0].length === 0){
-//                $scope.lineItems = [];
-//                $scope.lineItems.push(new LineItems());
-//            }            
+            $scope.getTotalCost($scope.costCardTimesheets);
+            $scope.getTotalHours($scope.costCardTimesheets);
             $scope.loading = false;
-//            $scope.item.taxTypes = [];
         });
     } else {
         $scope.editing = false;
         $scope.loading = false;
         $scope.item.id = 0;
-        var date = new Date();
-        $scope.item.creationDate = date;
-    }    
+    }
     
-//    function LineItems(){
-//        return {
-//            isSelected: false,
-//            productCode: '',
-//            InventoryItems_id: '',
-//            name: '',
-//            price: '',
-//            quantity: '',
-//            amount: '',
-//            VendorItems_id: '',
-//            PurchaseOrders_id: $scope.item.id
-//        }; 
-//    }
+    $scope.getTotalHours = function(timesheets) {
+        for(var i in timesheets) {
+            $scope.timesheetsRegHours += parseFloat(timesheets[i].regularHours);
+            $scope.timesheetsOTHours += parseFloat(timesheets[i].overtimeHours);
+            $scope.timesheetsDOTHours += parseFloat(timesheets[i].doubleOTHours);
+            $scope.timesheetsSRegHours += parseFloat(timesheets[i].statRegularHours);
+            $scope.timesheetsSOTHours += parseFloat(timesheets[i].statOTHours);
+            $scope.timesheetsSDOTHours += parseFloat(timesheets[i].statDoubleOTHours);
+            $scope.timesheetsTotalHours += parseFloat(timesheets[i].totalHours);
+        }
+    };
+    
+    $scope.getTotalCost = function(timesheets) {
+        $scope.timesheetsTotalCost = 0;
+        for(var i in timesheets) {
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * parseFloat(timesheets[i].hourlyRate));
+        }
+    };
+    
+    $scope.toggleHours = function(){
+        if($scope.showHours === false){            
+            $scope.showHours = true;
+        } else {
+            $scope.showHours = false;
+        }
+    };
 //    
 //    $scope.lineItems.push(new LineItems());
 //    

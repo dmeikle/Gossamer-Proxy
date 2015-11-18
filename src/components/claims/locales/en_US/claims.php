@@ -80,5 +80,11 @@ return array(
     'CLAIMS_EXPORTED' => 'Exported',
     'CLAIMS_TOTAL_HOURS' => 'Total Hours',
     'CLAIMS_PRODUCT_CODE' => 'Product Code',
-    'CLAIMS_CONVERT_TO_BREAKDOWN' => 'Convert to Breakdown'
+    'CLAIMS_CONVERT_TO_BREAKDOWN' => 'Convert to Breakdown',
+    'CLAIMS_REGULAR_HOURS' => 'Reg',
+    'CLAIMS_OVERTIME_HOURS' => 'OT',
+    'CLAIMS_DOUBLE_OVERTIME_HOURS' => 'DOT',
+    'CLAIMS_STAT_REGULAR_HOURS' => 'Stat Reg',
+    'CLAIMS_STAT_OVERTIME_HOURS' => 'Stat OT',
+    'CLAIMS_STAT_DOUBLE_OVERTIME_HOURS' => 'Stat DOT',
 );
