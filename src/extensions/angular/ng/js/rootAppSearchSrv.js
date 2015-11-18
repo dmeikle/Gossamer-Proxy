@@ -5,7 +5,7 @@ module.service('searchSrv', function($http) {
     this.advancedSearch = {};
 
 
-    this.searchCall = function (apiPath, object ) {
+    this.searchCall = function(apiPath, object) {
 
         config = {};
         for (var param in object) {
@@ -22,18 +22,20 @@ module.service('searchSrv', function($http) {
     };
 
 
-    this.search = function (apiPath, object, page, numRows) {
-        
-        if(page !== undefined && numRows !== undefined) {
+    this.search = function(apiPath, object, page, numRows) {
+
+        if (page !== undefined && numRows !== undefined) {
             apiPath += 'search/' + page + '/' + numRows;
         } else {
             apiPath += 'search';
         }
-        
-        return self.searchCall(apiPath, object).then(function (response) {
+
+        return self.searchCall(apiPath, object).then(function(response) {
 
             self.searchResults = response.data;
             self.searchResultsCount = response.data;
+
+            return response;
         });
     };
 
@@ -49,7 +51,7 @@ module.service('searchSrv', function($http) {
     };
 
 
-    this.sortByColumn = function (apiPath, config) {
+    this.sortByColumn = function(apiPath, config) {
 
         return $http({
             url: apiPath,
@@ -60,8 +62,8 @@ module.service('searchSrv', function($http) {
         });
     };
 
-    this.fetchAutocomplete = function (apiPath, config) {
-        return self.searchCall(apiPath + 'search', config).then(function (response) {
+    this.fetchAutocomplete = function(apiPath, config) {
+        return self.searchCall(apiPath + 'search', config).then(function(response) {
 
             self.autocomplete = response.data;
         });

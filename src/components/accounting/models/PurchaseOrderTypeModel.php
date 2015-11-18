@@ -29,7 +29,7 @@ class PurchaseOrderTypeModel extends AbstractModel {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'PurchaseOrderType';
-        $this->tablename = 'accountingpurchaseordertypes';
+        $this->tablename = 'purchaseordertypes';
     }
 
 }

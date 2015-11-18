@@ -8,7 +8,7 @@ admin_companies_home:
             "header": "src/themes/default/templates/sections/admin-header.php"
             "context-button": "src/components/companies/views/admin/context-button.php"
             "content": "src/components/companies/views/admin/list.php"
-            "section2": "src/components/companies/views/admin/subnav.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:

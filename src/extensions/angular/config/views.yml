@@ -1,0 +1,4 @@
+## YAML Template.
+---
+commentsTemplate:
+    template: src/extentions/angular/views/comments.php

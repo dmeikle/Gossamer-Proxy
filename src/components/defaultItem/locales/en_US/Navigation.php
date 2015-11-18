@@ -60,5 +60,6 @@ return array(
     'ADMIN_ACCOUNTING_SETTINGS' => 'Settings',
     'ADMIN_ACCOUNTING_GENERAL' => 'Accounting General',
     'ADMIN_ACCOUNTING_VIEW_ACCOUNTS' => 'View Accounts',
-    'ADMIN_ACCOUNTING_INVENTORY' => 'Inventory'
+    'ADMIN_ACCOUNTING_INVENTORY' => 'Inventory Items',
+    
 );

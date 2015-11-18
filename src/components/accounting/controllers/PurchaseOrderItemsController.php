@@ -14,10 +14,18 @@ namespace components\accounting\controllers;
 use core\AbstractController;
 
 /**
- * Description of PropertiesController
+ * Description of PurchaseOrderItemsController
  *
  * @author Dave Meikle
  */
-class PurchaseOrderItemsReceivedController extends AbstractController {
-
+class PurchaseOrderItemsController extends AbstractController {
+//    public function search() {
+//        $params = $this->httpRequest->getQueryParameters();
+//        $offset = 0;
+//        $limit = 20;
+//
+//        $result = $this->model->listallWithParams($offset, $limit, $params, 'search');
+//
+//        $this->render($result);
+//    }
 }

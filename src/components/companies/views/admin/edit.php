@@ -5,7 +5,7 @@
     <table class="table">
         <tr>
             <td>Name:</td>
-            <td ng-init="name = 'dave'"><?php echo $form['name']; ?></td>
+            <td><?php echo $form['name']; ?></td>
         </tr>
         <tr>
             <td>Type:</td>
@@ -26,10 +26,12 @@
             <td>Province:</td>
             <td><?php echo $form['Provinces_id']; ?></td>
         </tr>
+        <!--
         <tr>
-            <td>Province:</td>
+            <td>Country:</td>
             <td><?php echo $form['Countries_id']; ?></td>
         </tr>
+        -->
         <tr>
             <td>Postal Code:</td>
             <td><?php echo $form['postalCode']; ?></td>
@@ -49,7 +51,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-                <?php echo $form['cancel']; ?>  <?php echo $form['save']; ?>
+
                 <button class="primary" ng-click="save(company)" ng-disabled="!company">
                     <?php echo $this->getString('COMPANY_CONFIRM'); ?>
                 </button>

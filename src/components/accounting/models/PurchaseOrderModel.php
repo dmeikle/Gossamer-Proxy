@@ -15,13 +15,14 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of PurchaseOrderModel
  *
  * @author Dave Meikle
  */
-class PurchaseOrderModel extends AbstractModel {
+class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -32,4 +33,50 @@ class PurchaseOrderModel extends AbstractModel {
         $this->tablename = 'purchaseorders';
     }
 
+    public function getFormWrapper() {
+        return $this->entity;
+    }
+    
+    /**
+     * retrieves a row from the datasource for editing
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function edit($id) {
+
+        $locale = $this->getDefaultLocale();
+
+        if ($this->isFailedValidationAttempt()) {
+
+            return $this->httpRequest->getAttribute('POSTED_PARAMS');
+        }
+
+        $params = array(
+            'id' => intval($id),
+            'locale' => $locale['locale']
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        
+        return $data;
+    }
+    
+    /**
+     * performs a save to the datasource
+     *
+     * @param int $id
+     *
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params['PurchaseOrder']['createStaff_id'] = $this->getLoggedInStaffId();
+        $params[$this->entity]['id'] = intval($id);
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+
+        return $data;
+    }
 }

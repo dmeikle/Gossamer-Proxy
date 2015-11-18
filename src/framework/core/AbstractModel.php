@@ -200,7 +200,8 @@ class AbstractModel {
     public function save($id) {
         $params = $this->httpRequest->getPost();
         $params[$this->entity]['id'] = intval($id);
-
+//        pr($params);
+//        die();
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
         return $data;
@@ -291,6 +292,31 @@ class AbstractModel {
         $data = $this->dataSource->query(self::METHOD_PUT, $this, self::VERB_SAVE, $params);
 
         return $data;
+    }
+
+    /**
+     * retrieves a row from the datasource for editing
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function get($id) {
+
+        $locale = $this->getDefaultLocale();
+
+
+        $params = array(
+            'id' => intval($id),
+            'locale' => $locale['locale']
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+        $retval = array();
+        if (is_array($data) && array_key_exists($this->entity, $data)) {
+            $retval[$this->entity] = current($data[$this->entity]);
+        }
+        return $retval;
     }
 
     /**

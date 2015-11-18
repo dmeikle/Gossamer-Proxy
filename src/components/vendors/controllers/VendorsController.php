@@ -12,42 +12,22 @@
 namespace components\vendors\controllers;
 
 use core\AbstractController;
-use Gossamer\CMS\Forms\FormBuilderInterface;
-use Gossamer\CMS\Forms\FormBuilder;
-use components\vendors\form\VendorBuilder;
-use components\geography\serialization\ProvinceSerializer;
 
 class VendorsController extends AbstractController {
 
-    /**
-     * edit - display an input form based on requested id
-     *
-     * @param int id    primary key of item to edit
-     */
-    public function edit($id) {
-        $result = $this->model->edit($id);
+    public function autocomplete() {
+        $params = $this->httpRequest->getQueryParameters();
 
-        $this->render(array('form' => $this->drawForm($this->model, $result)));
+        $this->render($this->model->listallWithParams(0, 20, $params, 'autocomplete'));
     }
 
-    protected function drawForm(FormBuilderInterface $model, array $values = null) {
+    public function listallPOS($offset, $limit) {
+        $rawParams = $this->httpRequest->getQueryParameters();
 
-        $formBuilder = new FormBuilder($this->logger, $model);
-        $builder = new VendorBuilder();
-
-        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
-
-        $options['locales'] = $this->httpRequest->getAttribute('locales');
-
-        $serializer = new ProvinceSerializer();
-
-        $options['provinces'] = $serializer->getOptions($this->httpRequest->getAttribute('Provinces'));
-
-        return $builder->buildForm($formBuilder, $values, $options, $results);
-    }
-
-    public function listallPOS($vendorId, $offset, $limit) {
-        $params = array('Vendors_id' => intval($vendorId));
+        $params = array('Vendors_id' => intval($rawParams['Vendors_id']));
+        if(array_key_exists('VendorLocations_id', $rawParams)) {
+            $params['VendorLocations_id'] = intval($rawParams['VendorLocations_id']);
+        }
 
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 

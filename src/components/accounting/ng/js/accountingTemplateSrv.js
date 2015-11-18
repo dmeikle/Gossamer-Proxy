@@ -3,4 +3,5 @@ module.service('accountingTemplateSrv', function () {
     this.generalCostsModal = '/render/accounting/generalCostsModal';
     this.suppliesModal = '/render/accounting/suppliesModal';
     this.inventoryModal = '/render/accounting/inventoryModal';
+    this.cashReceiptsModal = '/render/accounting/cashReceiptsModal';
 });
