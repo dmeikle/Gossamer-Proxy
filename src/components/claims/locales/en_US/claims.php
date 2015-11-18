@@ -28,6 +28,7 @@ return array(
     'CLAIMS_CONTACT_TYPE' => 'Contact Type',
     'CLAIMS_CONTACTS' => 'Contacts',
     'CLAIMS_CONTACTS_LIST' => 'Client List',
+    'CLAIMS_DAYSREMAINING' => 'Days',
     'CLAIMS_DAYTIME_PHONE' => 'Daytime Phone',
     'CLAIMS_EDIT' => 'Edit Claim',
     'CLAIMS_HISTORY' => 'History',

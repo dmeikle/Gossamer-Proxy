@@ -55,7 +55,7 @@
                          border: solid 1px #cccccc;
                          padding: 5px;
                          border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
-                        {{claim.phase}}</div>
+                        {{claim.phase.title}}</div>
                     <label ng-value="claim.workAuthorizationReceiveDate">Authorization Date: {{claim.workAuthorizationReceiveDate}}</label><br />
                     <label>Type: {{claim.typeOfClaim}}</label><br />
                     <label>Project Manager: {{claim.projectManager}}</label><br />
@@ -73,9 +73,15 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
-                            <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                            <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
+                            <th column-sortable data-column="jobNumber">
+                                <?php echo $this->getString('CLAIMS_JOBNUMBER'); ?>
+                            </th>
+                            <th column-sortable data-column="phase">
+                                <?php echo $this->getString('CLAIMS_PHASE'); ?>
+                            </th>
+                            <th column-sortable data-column="parentClaim">
+                                <?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?>
+                            </th>
                             <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                         </tr>
                     </thead>

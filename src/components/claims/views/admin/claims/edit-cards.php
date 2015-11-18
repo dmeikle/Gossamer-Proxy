@@ -1,4 +1,43 @@
 <div ng-controller="claimsContactsList">
+    <div class="card">
+        <div class="cardheader">
+            <h1><?php echo $this->getString('CLAIMS_PHASEVSECD') ?></h1>
+        </div>
+        <div class="cardleft">
+            <h1>{{claim.phase.title}}</h1>
+            <span class="big" ng-class="{'text-danger':timeRemaining.past}">
+                <span ng-if="timeRemaining.past">- </span>{{timeRemaining.days}} d, {{timeRemaining.hours}} h
+            </span>
+        </div>
+        <div class="cardright">
+            <table class="table cardtable">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>
+                                <?php echo $this->getString('CLAIMS_STARTDATE') ?>
+                            </strong>
+                        </td>
+                        <td>
+                            {{startDate | date: mediumDate : +0000}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>
+                                <?php echo $this->getString('CLAIMS_ENDDATE') ?>
+                            </strong>
+                        </td>
+                        <td>
+                            {{claim.phase.scheduledEndDate}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
     <h3><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
     <div class="card" ng-repeat="contact in contacts">
         <div class="cardheader">

@@ -1,4 +1,4 @@
-module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, claimsTemplateSrv) {
+module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
     $scope.loading = true;
@@ -22,6 +22,7 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
         var claimId = document.getElementById('Claim_id').value;
 
         claimsEditSrv.getClaimDetails(claimId).then(function() {
+            $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
             $scope.loading = false;
 
@@ -33,6 +34,7 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
         var addressId = document.getElementById('Claim_ProjectAddresses_id').value;
 
         claimsEditSrv.getProjectAddress(addressId).then(function() {
+            $rootScope.$broadcast('projectAddressLoaded');
             $scope.projectAddress = claimsEditSrv.projectAddress;
             $scope.loading = false;
         });
