@@ -24,7 +24,7 @@ return array(
     'VENDORS_DELIVERY_FEE' => 'Delivery Fee',
     'VENDORS_SET_PRICES' => 'Set Item Prices',
     'EDIT' => 'Edit',
-    'DELETE' => 'Delete',
+    "DELETE" => 'Delete',
     'VENDORS_NORESULTS' => 'No results found',
     'ADVANCED_SEARCH' => 'Advanced Search',
     'VENDORS_LIST' => 'Vendors List',
@@ -32,5 +32,16 @@ return array(
     'VENDORS_NEWITEM' => 'Add New Vendor',
     'WIDGET_CONFIRM' => 'Save',
     'WIDGET_CANCEL' => 'Cancel',
-    'VENDORS_PURCHASE_ORDERS' => 'Purchase Orders'
+    'VENDORS_PURCHASE_ORDERS' => 'Purchase Orders',
+    'VENDORS_TOLLFREE' => 'Toll Free',
+    'VENDORS_ADDLOCATION' => 'Add Location',
+    'VENDORS_LOCATION_ADDRESS' => 'Address',
+    'VENDORS_LOCATION_CITY' => 'City',
+    'VENDORS_LOCATION_PROVINCE' => 'Province',
+    'VENDORS_LOCATION_POSTALCODE' => 'Postal Code',
+    'VENDORS_LOCATION_ACCOUNT' => 'Account Number',
+    'VENDORS_LOCATION_SALESREP' => 'Sales Rep',
+    'VENDORS_LOCATION_PHONE' => 'Phone',
+    'VENDORS_LOCATION_EMAIL' => 'Email',
+    'VENDORS_VENDOR' => 'Vendor'
 );

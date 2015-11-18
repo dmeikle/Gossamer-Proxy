@@ -1,5 +1,4 @@
 
-
 admin_vendors_autocomplete:
     pattern: admin/vendors/autocomplete
     defaults:
@@ -11,8 +10,6 @@ admin_vendors_autocomplete:
         viewKey: admin_vendors_autocomplete
         datasource: datasource1        
     methods: [GET]  
-                  
-
 
 #-------------------------- vendors ------------
 
@@ -30,10 +27,11 @@ admin_vendors_home:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_vendors_home
         datasource: datasource1
-        langFiles: 
-            - 'src/components/vendors/locales/*/Vendors'  
-    methods: [GET]  
-    
+        langFiles:
+            - 'src/components/vendors/locales/*/Vendors'
+            - 'app/locales/*/website'
+    methods: [GET]
+
 
 admin_vendors_search:
     pattern: admin/vendors/search
@@ -46,8 +44,8 @@ admin_vendors_search:
         view: core\views\JSONView
         viewKey: admin_vendors_list
         datasource: datasource1
-                
-                
+
+
 admin_vendors_edit:
     pattern: admin/vendors/*
     listeners:
@@ -61,11 +59,11 @@ admin_vendors_edit:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_vendors_edit
         datasource: datasource1
-        langFiles: 
-            - 'src/components/vendors/locales/*/Vendors'  
+        langFiles:
+            - 'src/components/vendors/locales/*/Vendors'
     methods: [GET]
-        
-        
+
+
 admin_vendors_save:
     pattern: admin/vendors/*
     listeners:
@@ -78,10 +76,10 @@ admin_vendors_save:
         view: core\views\JSONView
         viewKey: admin_vendors_save
         datasource: datasource1
-        langFiles: 
-            - 'src/components/vendors/locales/*/Navigation'  
+        langFiles:
+            - 'src/components/vendors/locales/*/Navigation'
     methods: [POST]
-        
+
 
 admin_vendors_list:
     pattern: admin/vendors/*/*
@@ -94,11 +92,12 @@ admin_vendors_list:
         view: core\views\JSONView
         viewKey: admin_vendors_list
         datasource: datasource1
-                
-      
+    methods: [GET]
+
+
 
 admin_vendors_list_POS:
-    pattern: admin/vendors/purchaseorders/*/*/*
+    pattern: admin/vendors/purchaseorders/*/*
 
     defaults:
         component: components\vendors\VendorsComponent
@@ -108,6 +107,41 @@ admin_vendors_list_POS:
         view: core\views\JSONView
         viewKey: admin_vendors_list
         datasource: datasource1
-                      
-        
-      
+
+
+admin_vendors_locations_list:
+    pattern: admin/vendors/locations/*/*/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: listallLocations
+        view: core\views\JSONView
+        viewKey: admin_vendors_list_locations
+        datasource: datasource1
+
+admin_vendors_locations_save:
+    pattern: admin/vendors/locations/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_vendors_locations_save
+        datasource: datasource1
+    methods: [POST]
+
+admin_vendors_locations_get:
+    pattern: admin/vendors/locations/*
+
+    defaults:
+        component: components\vendors\VendorsComponent
+        controller: components\vendors\controllers\VendorLocationsController
+        model: components\vendors\models\VendorLocationModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_vendors_locations_get
+        datasource: datasource1
