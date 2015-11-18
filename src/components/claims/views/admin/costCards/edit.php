@@ -3,7 +3,7 @@
         <div class="widget-content">
             <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                                ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                                       ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"><?php echo $this->getString('CLAIMS_APPROVE'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
@@ -14,9 +14,21 @@
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_APPROVE'); ?></a></li>
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_DISAPPROVE'); ?></a></li>
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_APPROVE_ALL'); ?></a></li>
+                        <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_GENERATE_BREAKDOWN_REPORT'); ?></a></li>
                     </ul>
                 </div>
-
+                <!--                <uib-tabset>
+                                    <uib-tab heading="Static title">Static content</uib-tab>
+                                    <uib-tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+                                        {{tab.content}}
+                                    </uib-tab>
+                                    <uib-tab select="alertMe()">
+                                        <uib-tab-heading>
+                                            <i class="glyphicon glyphicon-bell"></i> Alert!
+                                        </uib-tab-heading>
+                                        I've got an HTML heading, and a select callback. Pretty cool!
+                                    </uib-tab>
+                                </uib-tabset>-->
             </div>
             <!-- Laborers / Timesheets -->
             <div class="form-items">
@@ -63,7 +75,7 @@
                         <tr ng-if="!loading" ng-repeat="row in costCardTimesheets track by $index">
                             <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
                             <td>{{row.lastname}}, {{row.firstname}}</td>
-                            <td>{{row.date}}</td>
+                            <td>{{row.workDate}}</td>
                             <td>{{row.phase}}</td>
                             <td>{{row.category}}</td>
                             <td>{{row.department}}</td>
@@ -80,8 +92,8 @@
                             <td>{{row.isDeptApproved}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="6"></th>
-                            <th colspan="1">Totals:</th>
+                            <th colspan="1"></th>
+                            <th colspan="6"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsRegHours}}</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsOTHours}}</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsDOTHours}}</th>
@@ -92,7 +104,7 @@
                                 <span ng-if="!showHours" ng-click="toggleHours()" class="glyphicon glyphicon-plus expand-btn"></span>
                                 <span ng-if="showHours" ng-click="toggleHours()" class="glyphicon glyphicon-minus expand-btn"></span>
                             </th>
-                            <th colspan="1">{{timesheetsTotalCost| currency}}</th>
+                            <th colspan="3">{{timesheetsTotalCost| currency}}</th>
 <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                         </tr>
                     </tbody>
@@ -147,9 +159,9 @@
                             <td>{{row.status}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="7"></th>
-                            <th colspan="1">Totals:</th>
-                            <th colspan="1">{{equipmentTotalCost| currency}}</th>
+                            <th colspan="1"></th>
+                            <th colspan="7"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                            <th colspan="3">{{equipmentTotalCost| currency}}</th>
 <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                         </tr>
                     </tbody>
@@ -204,9 +216,9 @@
                             <td>{{row.type}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="6"></th>
-                            <th colspan="1">Totals:</th>
-                            <th colspan="1">{{materialsTotalCost| currency}}</th>
+                            <th colspan="1"></th>
+                            <th colspan="6"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                            <th colspan="4">{{materialsTotalCost| currency}}</th>
 <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                         </tr>
                     </tbody>
@@ -252,17 +264,17 @@
                             <td>{{row.type}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="3"></th>
-                            <th colspan="1">Totals:</th>
-                            <th colspan="1">{{miscTotalCost| currency}}</th>
+                            <th colspan="1"></th>
+                            <th colspan="3"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                            <th colspan="4">{{miscTotalCost| currency}}</th>
 <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                              ?></button>-->
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                             ?></button>-->
-            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                             ?></button></a>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                                     ?></button>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                                    ?></button>-->
+            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                                    ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>
