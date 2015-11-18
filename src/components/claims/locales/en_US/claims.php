@@ -69,7 +69,8 @@ return array(
     'CLAIMS_EQUIPMENT' => 'Equipment',
     'CLAIMS_MISC_GENERAL' => 'Misc - General',
     'CLAIMS_APPROVE' => 'Approve',
-    'CLAIMS_UNAPPROVE' => 'Unapprove',
+    'CLAIMS_APPROVE_ALL' => 'Approve All',
+    'CLAIMS_DISAPPROVE' => 'Disapprove',
     'CLAIMS_ACTIONS' => 'Actions',
     'CLAIMS_MAX_DAYS' => 'Max Days',
     'CLAIMS_NUM_DAYS' => '# Days',
@@ -78,5 +79,6 @@ return array(
     'CLAIMS_HOURLY_RATE' => 'Hourly Rate',
     'CLAIMS_EXPORTED' => 'Exported',
     'CLAIMS_TOTAL_HOURS' => 'Total Hours',
-    'CLAIMS_PRODUCT_CODE' => 'Product Code'
+    'CLAIMS_PRODUCT_CODE' => 'Product Code',
+    'CLAIMS_CONVERT_TO_BREAKDOWN' => 'Convert to Breakdown'
 );

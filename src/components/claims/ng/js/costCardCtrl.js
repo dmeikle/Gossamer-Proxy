@@ -11,6 +11,9 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
+    $scope.timesheetsTotalHours = 0;
+    $scope.timesheetsTotalCost = 0;
+    
     //var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
     var id = path.substring(path.lastIndexOf("/")+1);
@@ -21,8 +24,12 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
             $scope.costCardTimesheets = costCardSrv.costCardTimesheets;
             $scope.costCardMaterials = costCardSrv.costCardMaterials;
             $scope.costCardEquipment = costCardSrv.costCardEquipment;
-            //$scope.costCardMiscItems = costCardSrv.costCardMiscItems;
+            $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
             $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
+            
+            for(var i in  $scope.costCardTimesheets){
+                $scope.timesheetsTotalHours += parseFloat($scope.costCardTimesheets[i].totalHours);
+            }
 //            costCardSrv.purchaseOrder.creationDate = new Date(costCardSrv.purchaseOrder.creationDate);
 //            $scope.item = costCardSrv.purchaseOrder;
 //            $scope.item.company = costCardSrv.Vendor;
