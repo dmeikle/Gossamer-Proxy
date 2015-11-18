@@ -57,8 +57,17 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     
     $scope.getTotalCost = function(timesheets) {
         $scope.timesheetsTotalCost = 0;
+        
+        //Currently, we are hard-coding the values for BC STAT holidays.
+        //This will change in the future so we can allow for more locaitons if their STAT rates vary.
         for(var i in timesheets) {
             $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * parseFloat(timesheets[i].hourlyRate));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * (parseFloat(timesheets[i].hourlyRate)*1.5));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * (parseFloat(timesheets[i].hourlyRate)*2));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statRegularHours) * (parseFloat(timesheets[i].hourlyRate)*1.5));
+            //Stat OT and DOT? Should be only DOT after 12 hours on a STAT
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statOTHours) * (parseFloat(timesheets[i].hourlyRate)*2));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statDoubleOTHours) * (parseFloat(timesheets[i].hourlyRate)*2));
         }
     };
     
