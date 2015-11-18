@@ -41,7 +41,7 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
     }
 
     protected function getDependencies() {
-        if (!array_key_exists('dependencies', $this->listenerConfig)) {
+        if (!array_key_exists('dependencies', $this->listenerConfig) || count($this->listenerConfig['dependencies']) == 0) {
             return array();
         }
 
@@ -58,6 +58,9 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
     }
 
     protected function getValues() {
+        if (!array_key_exists('dependencies', $this->listenerConfig) || count($this->listenerConfig['dependencies']) == 0) {
+            return array();
+        }
         foreach ($this->listenerConfig['dependencies'] as $dependency) {
 
             if (array_key_exists('model', $dependency)) {
@@ -80,6 +83,10 @@ class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener 
     }
 
     public function on_request_start($params) {
+        $this->on_filerender_start($params);
+    }
+
+    public function on_request_end($params) {
         $this->on_filerender_start($params);
     }
 

@@ -511,22 +511,32 @@ admin_accounting_general:
 #                        - IS_STAFF
 #                        - IS_PROJECT_MANAGER
 #                        - IS_PMA
-#                contacts_companies_listall:
-#                    text_key: 'ADMIN_COMPANIES_LIST_ALL'
-#                    pattern: '/admin/companies'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#                        - IS_PROJECT_MANAGER
-#                        - IS_PMA
-#                contacts_add_new_company:
-#                    text_key: 'ADMIN_COMPANIES_ADD_NEW'
-#                    pattern: '/admin/companies/0'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#                        - IS_PROJECT_MANAGER
-#                        - IS_PMA
+admin_companies:
+    text_key: 'ADMIN_COMPANIES'
+    pattern: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ADMIN
+        - IS_STAFF
+    children:
+        contacts_companies_listall:
+            text_key: 'ADMIN_COMPANIES_LIST_ALL'
+            pattern: '/admin/companies'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/companies/companiesAdminTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+        contacts_add_new_company:
+            text_key: 'ADMIN_COMPANIES_ADD_NEW'
+            pattern: '/admin/companies/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+                - IS_PMA
 admin_claims:
     text_key: 'ADMIN_CLAIMS'
     pattern: ''
@@ -567,12 +577,31 @@ admin_claims:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
 
-#        admin_subcontractors:
-#            active: false
-#            text_key: 'ADMIN_SUBCONTRACTORS'
-#            pattern: '/admin/subcontractors/0/20'
-#            display_roles:
-#                - IS_ADMINISTRATOR
+admin_subcontractors:
+    active: true
+    text_key: 'ADMIN_SUBCONTRACTORS'
+    pattern: '#'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+    children:
+        admin_subcontractors_list:
+            active: true
+            text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
+            pattern: '/admin/subcontractors'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        projects:
+            active: true
+            text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
+            pattern: '/admin/subcontractors/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+                
 #        admin_projects:
 #            active: true
 #            text_key: 'ADMIN_PROJECTS'

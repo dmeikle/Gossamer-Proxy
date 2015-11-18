@@ -1,0 +1,67 @@
+@import 'bootstrap-custom';
+
+.table {
+    table-layout:fixed;
+}
+.cog-col {
+    width:40px;
+}
+
+.inactive {
+    td:first-of-type:after {
+        font-family:'Glyphicons Halflings';
+        content:'\e023';
+
+        color:orange;
+
+        position:relative;
+        left:1em;
+    }
+}
+
+@mixin width-transition {
+    transition: width ease .35s;
+}
+
+.widget-content {
+    @include width-transition;
+}
+
+.widget-side-panel {
+    @include width-transition;
+}
+
+.splitcolumn {
+    @extend .col-xs-6;
+    @extend .col-md-6;
+
+    &.left {
+        padding-left:0;
+    }
+    &.right {
+        padding-right:0;
+    }
+}
+
+table.table tbody tr.selected {
+    background-color:rgba(3,146,211,.4);
+}
+
+.row-controls button {
+    font-size:.8em;
+    padding:.3em .5em;
+}
+
+.input-group input[datepicker-popup] {
+    width: 16rem;
+}
+.modal-body {
+    .input-group input[datepicker-popup] {
+        width: 7rem;
+    }
+}
+
+.staff-picture {
+    width:100px;
+    max-height:100px;
+}

@@ -98,7 +98,7 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
 
     //Check selected
     $scope.checkSelected = function () {
-        $scope.rowSelected = true;
+        $scope.rowSelected = false;
         for (var index in $scope.generalCostItems) {
             if ($scope.generalCostItems[index].isSelected === true) {
                 $scope.rowSelected = true;
