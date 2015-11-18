@@ -41,6 +41,7 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
     }
 
     public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+
         $queryParams = $this->httpRequest->getQueryParameters();
 
         $params = array(

@@ -20,17 +20,28 @@ use core\serialization\Serializer;
  */
 class DependencySerializer extends Serializer {
 
-    public function formatSelectionBox($id, $value, array $options) {
+    public function formatSelectionBox($id, $value, array $options, $selectedId = null) {
 
         $retval = '';
         foreach ($options as $option) {
+
             if (!array_key_exists($id, $option)) {
                 throw new \Exception("key $id not found in result - check dependency configuration");
             } elseif (!array_key_exists($value, $option)) {
                 throw new \Exception("value $value not found in result - check dependency configuration");
             }
 
-            $retval .= '<option value="' . $option[$id] . '">' . $option[$value] . '</option>';
+
+            $retval .= '<option value="' . $option[$id] . '"';
+            if (!is_null($selectedId) && $selectedId == $option[$id]) {
+                $retval .= ' selected';
+            }
+            unset($option['id']);
+            foreach ($option as $key => $val) {
+
+                $retval .= " data-$key='$val'";
+            }
+            $retval .= '">' . $option[$value] . '</option>';
         }
 
         return $retval;

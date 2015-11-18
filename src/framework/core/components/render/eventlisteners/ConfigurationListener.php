@@ -49,6 +49,7 @@ class ConfigurationListener extends AbstractCachableListener {
         $config = $parser->loadConfig();
 
 //set up any listeners that the file requires
+      
         $this->loadListeners($config, $file);
 
         return $config[$file];

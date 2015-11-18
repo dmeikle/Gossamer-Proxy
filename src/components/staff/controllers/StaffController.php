@@ -24,6 +24,7 @@ use core\system\Router;
 use components\staff\serialization\StaffSerializer;
 use components\staff\serialization\StaffPositionsSerializer;
 use core\eventlisteners\Event;
+use libraries\utils\Pagination;
 
 class StaffController extends AbstractController {
 
@@ -223,6 +224,18 @@ class StaffController extends AbstractController {
         }
 
         return $files;
+    }
+
+    /**
+     * listall - retrieves rows based on offset, limit
+     *
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listall($offset = 0, $limit = 20) {
+        $result = $this->model->listall($offset, $limit);
+
+        $this->render($result);
     }
 
 }

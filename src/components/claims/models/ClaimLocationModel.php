@@ -61,6 +61,25 @@ class ClaimLocationModel extends AbstractModel implements FormBuilderInterface {
         return $data;
     }
 
+    /**
+     * listallByProjectAddress - assumes you have already filtered to ensure
+     *                          requester has permission to view this address
+     *
+     * @param type $addressId
+     * @param type $offset
+     * @param type $limit
+     *
+     * @return array
+     */
+    public function listallByProjectAddress($addressId, $offset, $limit) {
+        $params = $this->httpRequest->getQueryParameters();
+        $params['ProjectAddresses_id'] = $addressId;
+        $params['directive::OFFSET'] = $offset;
+        $params['directive::LIMIT'] = $limit;
+
+        return $this->dataSource->query(self::METHOD_GET, $this, 'listbyaddress', $params);
+    }
+
     public function getFormWrapper() {
         return $this->entity;
     }

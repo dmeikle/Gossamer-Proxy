@@ -109,6 +109,13 @@ class AbstractController {
         $this->render($this->model->autocomplete($params));
     }
 
+    public function advancedSearch($offset = 0, $limit = 20) {
+        $params = $this->httpRequest->getQueryParameters();
+        //$data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
+
+        $this->render($this->model->listallWithParams($offset, $limit, $params, 'search'));
+    }
+
     protected function getSearchArguments() {
         $rawterm = $this->httpRequest->getQueryParameter('term');
 
@@ -185,7 +192,8 @@ class AbstractController {
      * @param int limit     max rows to return
      */
     public function listall($offset = 0, $limit = 20) {
-        $result = $this->model->listall($offset, $limit);
+        $params = $this->httpRequest->getQueryParameters();
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
             $pagination = new Pagination($this->logger);
@@ -280,6 +288,17 @@ class AbstractController {
      */
     public function edit($id) {
         $result = $this->model->edit($id);
+
+        $this->render($result);
+    }
+
+    /**
+     * edit - display an input form based on requested id
+     *
+     * @param int id    primary key of item to edit
+     */
+    public function get($id) {
+        $result = $this->model->get($id);
 
         $this->render($result);
     }

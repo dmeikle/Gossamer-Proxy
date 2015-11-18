@@ -77,9 +77,9 @@
             </tbody>
         </table>
 
-        <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-                    class="pagination" boundary-links="true" rotate="false">
-        </pagination>
+        <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
+            class="pagination" boundary-links="true" rotate="false">
+        </uib-pagination>
 
         <div class="pull-right">
             <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>

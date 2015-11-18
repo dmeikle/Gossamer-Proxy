@@ -1,3 +1,76 @@
+
+
+#--------------------- cash receipts -------------------------
+admin_accounting_cashreceipts:
+    pattern: admin/accounting/cashreceipts
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_accounting_cashreceipts
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    methods: [GET]
+    listeners: 
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\DebitAccountModel', 'cacheKey': 'DebitAccounts' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\CreditAccountModel', 'cacheKey': 'CreditAccounts' }
+    
+admin_accounting_cashreceipts_search:
+    pattern: admin/accounting/cashreceipts/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_search
+        datasource: datasource1
+    methods: [GET]
+    
+admin_accounting_cashreceipts_list:
+    pattern: admin/accounting/cashreceipts/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_list
+        datasource: datasource1
+    methods: [GET]
+    
+    
+admin_accounting_cashreceipts_edit:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_edit
+        datasource: datasource1
+    methods: [GET]
+    
+admin_accounting_cashreceipts_save:
+    pattern: admin/accounting/cashreceipts/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingCashReceiptsController
+        model: components\accounting\models\AccountingCashReceiptModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_accounting_cashreceipts_save
+        datasource: datasource1
+    methods: [POST]
+
+#--------------------------- timesheets ------------------------------
+
 admin_accounting_search:
     pattern: admin/accounting/timesheets/search
     defaults:
@@ -149,6 +222,60 @@ accounting_timesheetitems_edit:
         
 
 #------------------------ purchase orders ----------------------------
+accounting_pos_home:
+    pattern: admin/accounting/pos
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_pos_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+
+accounting_pos_edit:
+    pattern: admin/accounting/pos/edit/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: edit
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_pos_new
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingTaxTypeModel',  'cacheKey': 'AccountingTaxTypes' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\accounting\form\PurchaseOrderBuilder'
+            model: 'components\accounting\models\PurchaseOrderModel'
+            cacheKey: 'PurchaseOrderForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: Vendors, key: vendors, value: id, text: company }
+                - { dependency: Departments, key: departments, value: id, text: name }
+                - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }
+                - { dependency: PurchaseOrderTypes, key: PurchaseOrderType, value: id, text: orderType }
+                - { dependency: AccountingTaxTypes, key: taxTypes, value: id, text: type }
+    methods: [GET]
+    
 accounting_pos_list:
     pattern: admin/accounting/pos/*/*
     defaults:
@@ -156,20 +283,19 @@ accounting_pos_list:
         controller: components\accounting\controllers\PurchaseOrdersController
         model: components\accounting\models\PurchaseOrderModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_pos_list
         datasource: datasource1
-
-
-accounting_pos_edit:
+    
+accounting_pos_get:
     pattern: admin/accounting/pos/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\PurchaseOrdersController
         model: components\accounting\models\PurchaseOrderModel
-        method: edit
+        method: get
         view: core\views\JSONView
-        viewKey: accounting_pos_edit
+        viewKey: accounting_pos_get
         datasource: datasource1 
     methods: [GET]
 
@@ -186,16 +312,26 @@ accounting_pos_save:
         datasource: datasource1 
     methods: [POST]  
     
-
-#------------------------ purchase orders items received----------------------------
+accounting_pos_search:
+    pattern: admin/accounting/pos/search/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: accounting_pos_search
+        datasource: datasource1
+        
+#------------------------ purchase orders items ----------------------------
 accounting_positems_list:
     pattern: admin/accounting/positems/*/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: accounting_positems_list
         datasource: datasource1
 
@@ -204,8 +340,8 @@ accounting_positems_edit:
     pattern: admin/accounting/positems/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: edit
         view: core\views\JSONView
         viewKey: accounting_positems_edit
@@ -217,8 +353,8 @@ accounting_positems_save:
     pattern: admin/accounting/positems/*
     defaults:
         component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\PurchaseOrderItemsReceivedController
-        model: components\accounting\models\PurchaseOrderItemReceivedModel
+        controller: components\accounting\controllers\PurchaseOrderItemsController
+        model: components\accounting\models\PurchaseOrderItemModel
         method: save
         view: core\views\JSONView
         viewKey: accounting_positems_save
@@ -460,6 +596,18 @@ accounting_workorderrequests_save:
     
 
 #------------------------ purchase order notes ----------------------------
+accounting_purchaseordernotes_remove:
+    pattern: admin/accounting/purchaseordernotes/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrderNotesController
+        model: components\accounting\models\PurchaseOrderNoteModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_purchaseordernotes_remove
+        datasource: datasource1 
+    methods: [POST] 
+    
 accounting_purchaseordernotes_list:
     pattern: admin/accounting/purchaseordernotes/*/*
     defaults:
@@ -495,7 +643,7 @@ accounting_purchaseordernotes_save:
         view: core\views\JSONView
         viewKey: accounting_purchaseordernotes_save
         datasource: datasource1 
-    methods: [POST]                      
+    methods: [POST]   
     
 
 #------------------------ Breakdown Report ----------------------------
@@ -1187,18 +1335,3 @@ accounting_inventory_save:
         viewKey: accounting_inventory_save
         datasource: datasource1 
     methods: [POST]
-    
-#------------------------ Tabs Test ----------------------------
-accounting_tabs_home:
-    pattern: admin/accounting/tabs
-    defaults:
-        component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\TimesheetsController
-        model: components\accounting\models\TimesheetModel
-        method: index
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: accounting_tabs_home
-        datasource: datasource1
-        langFiles:
-            - 'src/components/accounting/locales/*/accounting'
-

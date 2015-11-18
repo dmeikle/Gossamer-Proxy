@@ -21,7 +21,7 @@ use Monolog\Logger;
  *
  * @author Dave Meikle
  */
-class PurchaseOrderNoteModel extends AbstractModel {
+class PurchaseOrderNoteModel extends AbstractModel implements \Gossamer\CMS\Forms\FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -30,6 +30,10 @@ class PurchaseOrderNoteModel extends AbstractModel {
 
         $this->entity = 'PurchaseOrderNote';
         $this->tablename = 'accountingpurchaseordernotes';
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
     }
 
 }
