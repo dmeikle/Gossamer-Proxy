@@ -55,10 +55,7 @@
                     <label for="subcontractors-email"><?php echo $this->getString('SUBCONTRACTORS_EMAIL'); ?></label>
                     <?php echo $form['email']; ?>
                 </div>
-                <div class="form-group">
-                    <label for="subcontractors-postalCode"><?php echo $this->getString('SUBCONTRACTORS_POSTAL_CODE'); ?></label>
-                    <?php echo $form['postalCode']; ?>
-                </div>
+
                 <div class="form-group">
                     <label for="subcontractors-rating"><?php echo $this->getString('SUBCONTRACTORS_RATING'); ?></label>
                     <?php echo $form['rating']; ?>
