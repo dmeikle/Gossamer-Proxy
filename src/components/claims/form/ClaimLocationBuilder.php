@@ -28,21 +28,24 @@ class ClaimLocationBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Claim']);
         }
 
-        $builder->add('unitNumber', 'text', array('ng-model' => 'ClaimLocation.unitNumber', 'class' => 'form-control', 'value' => $this->getValue('unitNumber', $values)))
-                ->add('workAuthorizationReceived', 'check', array('ng-model' => 'ClaimLocation.workAuthorizationReceived', 'ng-true-value' => '1'))
-                ->add('picturesTaken', 'check', array('ng-model' => 'ClaimLocation.picturesTaken', 'ng-true-value' => '1'))
-                ->add('lockBoxNumber', 'text', array('ng-model' => 'ClaimLocation.lockBoxNumber','ng-disabled' => '!ClaimLocation.lockBox','ng-required' => 'ClaimLocation.lockBox', 'class' => 'form-control', 'value' => $this->getValue('lockBoxNumber', $values)))
-                ->add('keysReceivedFrom', 'text', array('ng-model' => 'ClaimLocation.keysReceivedFrom','ng-disabled' => '!ClaimLocation.keysReceived','ng-required' => 'ClaimLocation.keysReceived', 'class' => 'form-control', 'value' => $this->getValue('keysReceivedFrom', $values)))
-                ->add('Vehicles_id', 'select', array("ng-model" => "transfer.Vehicles_id", 'class' => 'form-control', 'options' => $options['vehicles']))
-                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
-                ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values)))
-                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
+        $builder->add('unitNumber', 'text', array('ng-model' => 'item.unitNumber', 'class' => 'form-control'))
+                ->add('firstname', 'text', array('ng-model' => 'item.firstname', 'class' => 'form-control'))
+                ->add('lastname', 'text', array('ng-model' => 'item.lastname', 'class' => 'form-control'))
+                ->add('buzzer', 'text', array('ng-model' => 'item.buzzer', 'class' => 'form-control', 'ng-init' => "item.buzzer = '" . $this->getValue('buzzer', $values) . "'"))
+                ->add('daytimePhone', 'text', array('ng-model' => 'item.daytimePhone', 'class' => 'form-control'))
+                ->add('mobile', 'text', array('ng-model' => 'item.mobile', 'class' => 'form-control'))
+                ->add('ClaimPhases_id', 'select', array('ng-model' => 'item.ClaimPhases_id', 'class' => 'form-control', 'options' => $options['claimPhases']))
+                ->add('ClaimStatus_id', 'select', array('ng-model' => 'item.ClaimStatus_id', 'class' => 'form-control', 'options' => $options['claimStatus']))
+                ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
+                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values)), 'ng-model' => 'item.id'))
+                ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'item.Claims_id'))
+                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
-            $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'ClaimLocation.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
+            $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'item.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
         }
         if (array_key_exists('currentClaimPhases', $options)) {
-            $builder->add('CurrentClaimPhases_id', 'text', array('ng-model' => 'ClaimLocation.CurrentClaimPhases_id', 'class' => 'form-control', 'options' => $options['currentClaimPhases']));
+            $builder->add('CurrentClaimPhases_id', 'text', array('ng-model' => 'item.CurrentClaimPhases_id', 'class' => 'form-control', 'options' => $options['currentClaimPhases']));
         }
 
         return $builder->getForm();

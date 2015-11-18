@@ -76,5 +76,4 @@ module.controller('claimsEditCtrl', function ($scope, $modal, claimsEditSrv, cla
 
         });
     };
-
 });

@@ -62,4 +62,10 @@ class ClaimLocationsController extends AbstractController {
         $this->render($result);
     }
 
+    public function listallByProjectAddress($addressId, $offset, $limit) {
+        $result = $this->model->listallByProjectAddress($addressId, $offset, $limit);
+
+        $this->render($result);
+    }
+
 }
