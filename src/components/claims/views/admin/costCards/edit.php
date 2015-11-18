@@ -3,7 +3,7 @@
         <div class="widget-content">
             <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                           ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                                ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"><?php echo $this->getString('CLAIMS_APPROVE'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
@@ -80,7 +80,8 @@
                             <td>{{row.isDeptApproved}}</td>
                         </tr>
                         <tr ng-if="!loading">
-                            <th colspan="7"></th>
+                            <th colspan="6"></th>
+                            <th colspan="1">Totals:</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsRegHours}}</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsOTHours}}</th>
                             <th ng-if="showHours" colspan="1">{{timesheetsDOTHours}}</th>
@@ -145,6 +146,12 @@
                             <td>BREAK IT DOWN NOW</td>
                             <td>{{row.status}}</td>
                         </tr>
+                        <tr ng-if="!loading">
+                            <th colspan="7"></th>
+                            <th colspan="1">Totals:</th>
+                            <th colspan="1">{{equipmentTotalCost| currency}}</th>
+<!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -196,6 +203,12 @@
                             <td>BREAK IT DOWN NOW</td>
                             <td>{{row.type}}</td>
                         </tr>
+                        <tr ng-if="!loading">
+                            <th colspan="6"></th>
+                            <th colspan="1">Totals:</th>
+                            <th colspan="1">{{materialsTotalCost| currency}}</th>
+<!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -238,12 +251,18 @@
                             <td>{{row.breakdownReport}}</td>
                             <td>{{row.type}}</td>
                         </tr>
+                        <tr ng-if="!loading">
+                            <th colspan="3"></th>
+                            <th colspan="1">Totals:</th>
+                            <th colspan="1">{{miscTotalCost| currency}}</th>
+<!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                         ?></button>-->
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                        ?></button>-->
-            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                        ?></button></a>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                              ?></button>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                             ?></button>-->
+            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                             ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

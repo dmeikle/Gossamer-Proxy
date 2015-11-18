@@ -12,14 +12,17 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     
-    $scope.timesheetsTotalCost = 0;
-    $scope.timesheetsTotalHours = 0;
     $scope.timesheetsRegHours = 0;
     $scope.timesheetsOTHours = 0;
     $scope.timesheetsDOTHours = 0;
     $scope.timesheetsSRegHours = 0;
     $scope.timesheetsSOTHours = 0;
-    $scope.timesheetsSDOTHours = 0;
+    $scope.timesheetsSDOTHours = 0;    
+    $scope.timesheetsTotalHours = 0;
+    $scope.timesheetsTotalCost = 0;
+    $scope.materialsTotalCost = 0;
+    $scope.equipmentTotalCost = 0;
+    $scope.miscTotalCost = 0;
     
     //var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
@@ -33,8 +36,11 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
             $scope.costCardEquipment = costCardSrv.costCardEquipment;
             $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
             $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
-            $scope.getTotalCost($scope.costCardTimesheets);
-            $scope.getTotalHours($scope.costCardTimesheets);
+            $scope.getTimesheetTotalCost($scope.costCardTimesheets);
+            $scope.getTimesheetTotalHours($scope.costCardTimesheets);
+            $scope.getMaterialsTotalCost($scope.costCardMaterials);
+            $scope.getEquipmentTotalCost($scope.costCardEquipment);
+            $scope.getMiscTotalCost($scope.costCardMiscItems);
             $scope.loading = false;
         });
     } else {
@@ -43,7 +49,7 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         $scope.item.id = 0;
     }
     
-    $scope.getTotalHours = function(timesheets) {
+    $scope.getTimesheetTotalHours = function(timesheets) {
         for(var i in timesheets) {
             $scope.timesheetsRegHours += parseFloat(timesheets[i].regularHours);
             $scope.timesheetsOTHours += parseFloat(timesheets[i].overtimeHours);
@@ -55,19 +61,39 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         }
     };
     
-    $scope.getTotalCost = function(timesheets) {
-        $scope.timesheetsTotalCost = 0;
-        
+    $scope.getTimesheetTotalCost = function(timesheets) {
+        $scope.timesheetsTotalCost = 0;        
         //Currently, we are hard-coding the values for BC STAT holidays.
         //This will change in the future so we can allow for more locaitons if their STAT rates vary.
         for(var i in timesheets) {
             $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * parseFloat(timesheets[i].hourlyRate));
-            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * (parseFloat(timesheets[i].hourlyRate)*1.5));
-            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].regularHours) * (parseFloat(timesheets[i].hourlyRate)*2));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].overtimeHours) * (parseFloat(timesheets[i].hourlyRate)*1.5));
+            $scope.timesheetsTotalCost += (parseFloat(timesheets[i].doubleOTHours) * (parseFloat(timesheets[i].hourlyRate)*2));
             $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statRegularHours) * (parseFloat(timesheets[i].hourlyRate)*1.5));
-            //Stat OT and DOT? Should be only DOT after 12 hours on a STAT
+            //Stat OT and DOT? Should be only DOT after 12 hours on a STAT in BC
             $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statOTHours) * (parseFloat(timesheets[i].hourlyRate)*2));
             $scope.timesheetsTotalCost += (parseFloat(timesheets[i].statDoubleOTHours) * (parseFloat(timesheets[i].hourlyRate)*2));
+        }
+    };
+    
+    $scope.getMaterialsTotalCost = function(materials) {
+        $scope.materialsTotalCost = 0;
+        for(var i in materials) {
+            $scope.materialsTotalCost += parseFloat(materials[i].cost);
+        }
+    };
+    
+    $scope.getEquipmentTotalCost = function(equipment) {
+        $scope.equipmentTotalCost = 0;
+        for(var i in equipment) {
+            $scope.equipmentTotalCost += (parseFloat(equipment[i].price))*(parseFloat(equipment[i].numDays));
+        }
+    };
+    
+    $scope.getMiscTotalCost = function(miscItems) {
+        $scope.miscTotalCost = 0;
+        for(var i in miscItems) {
+            $scope.miscTotalCost += parseFloat(miscItems[i].cost);
         }
     };
     
