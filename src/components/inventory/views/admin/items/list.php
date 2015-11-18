@@ -100,11 +100,10 @@
             <thead>
                 <tr>
                     <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
-                    <th column-sortable data-column="InventoryItems_id"><?php echo $this->getString('INVENTORY_ITEMSID'); ?></th>
                     <th column-sortable data-column="number"><?php echo $this->getString('INVENTORY_NUMBER'); ?></th>
                     <th column-sortable data-column="InventoryEquipmentTypes_id"><?php echo $this->getString('INVENTORY_EQUIPMENTTYPESID'); ?></th>
-                    <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
-                    <th column-sortable data-column="vendorPrice"><?php echo $this->getString('INVENTORY_PRICE'); ?></th>
+                    <th column-sortable data-column="price"><?php echo $this->getString('INVENTORY_LOCATION_CURRENTLOCATION'); ?></th>
+                    <th column-sortable data-column="storageLocation"><?php echo $this->getString('INVENTORY_STORAGELOCATION'); ?></th>
                     <th column-sortable data-column="maxDays"><?php echo $this->getString('INVENTORY_MAXDAYS'); ?></th>
                     <th group-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
@@ -114,7 +113,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td colspan="2">
+                    <td>
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>
@@ -123,12 +122,11 @@
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in inventoryList" multi-select="item"
                     ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
-                    <td ng-click="selectRow(item)">{{item.name}}</td>
-                    <td ng-click="selectRow(item)">{{item.InventoryItems_id}}</td>
+                    <td ng-click="selectRow(item)">{{item.productCode}}</td>
                     <td ng-click="selectRow(item)">{{item.number}}</td>
-                    <td ng-click="selectRow(item)">{{item.InventoryEquipmentTypes_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.price| currency}}</td>
-                    <td ng-click="selectRow(item)">{{item.vendorPrice| currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.type}}</td>
+                    <td ng-click="selectRow(item)">{{item.location.currentLocation}}</td>
+                    <td ng-click="selectRow(item)">{{item.storageLocation}}</td>
                     <td ng-click="selectRow(item)">{{item.maxDays}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
@@ -144,7 +142,7 @@
         </table>
 
         <pagination class="pull-left pagination" total-items="totalItems" ng-model="currentPage"
-            items-per-page="itemsPerPage" boundary-links="true" rotate="false">
+                    items-per-page="itemsPerPage" boundary-links="true" rotate="false">
         </pagination>
 
         <div class="pull-right">
@@ -186,35 +184,27 @@
             </h1>
             <h4><?php echo $this->getString('INVENTORY_LOCATION_CURRENTLOCATION') ?></h4>
             <p>{{transferHistory[0].currentLocation}}</p>
-
-            <div class="card" ng-repeat="history in transferHistory track by $index">
-                <div class="cardheader">
-                    <h1>{{history.transferDate}}</h1>
-                </div>
-                <table class="table cardtable">
-                    <tbody>
-                        <tr>
-                            <td><strong><?php echo $this->getString('INVENTORY_TRANSFER_TO') ?></strong></td>
-                            <td>
-                                <div ng-if="history.unassignedJobNumber &&
-                                        !history.jobNumber">
-                                    {{history.unassignedJobNumber}}
-                                </div>
-                                <div ng-if="history.jobNumber">
-                                    {{history.jobNumber}}
-                                </div>
-                                <div>
-                                    {{history.currentLocation}}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('INVENTORY_TRANSFER_BY') ?></strong></td>
-                            <td>{{history.firstname}} {{history.lastname}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="table table-striped">
+                <thead>
+                <th><?php echo $this->getString('INVENTORY_DATE') ?></th>
+                <th><?php echo $this->getString('INVENTORY_TIME') ?></th>
+                <th><?php echo $this->getString('INVENTORY_TRANSFER_TO') ?></th>
+                <th><?php echo $this->getString('INVENTORY_EQUIPMENT_LOCATION') ?></th>
+                <th><?php echo $this->getString('INVENTORY_TRANSFER_BY') ?></th>
+                </thead>
+                <tr ng-repeat="history in transferHistory">
+                    <td>{{history.transferDate| limitTo:10}}</td>
+                    <td>{{history.transferDate| limitTo:10:10}}</td>
+                    <td><span ng-if="history.unassignedJobNumber && !history.jobNumber">
+                            {{history.unassignedJobNumber}}
+                        </span>
+                        <span ng-if="history.jobNumber">
+                            {{history.jobNumber}}
+                        </span></td>
+                    <td>{{history.currentLocation}}</td>
+                    <td>{{history.staffName}}</td>
+                </tr>
+            </table>
         </div>
 
         <div ng-if="!sidePanelLoading && !searching && multiSelect">

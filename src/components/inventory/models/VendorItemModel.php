@@ -37,4 +37,13 @@ class VendorItemModel extends AbstractModel implements FormBuilderInterface {
         return $this->entity;
     }
 
+    public function savePricesByVendorList($itemId) {
+        $params = $this->httpRequest->getPost();
+        $params['itemId'] = intval($itemId);
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, 'savePricesByVendorList', $params);
+
+        return $data;
+    }
+
 }

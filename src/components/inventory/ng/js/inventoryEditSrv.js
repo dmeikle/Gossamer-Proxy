@@ -1,7 +1,9 @@
-module.service('inventoryEditSrv', function(crudSrv) {
+module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
     var apiPath = '/admin/inventory/items/';
     var objectType = 'InventoryItem';
 
+    var vendorsPath = '/admin/vendors/';
+    var vendorsItemListPath = '/admin/inventory/vendorprices/';
     var vendorApiPath = '/admin/inventory/vendoritems/';
     var vendorObjectType = 'VendorItem';
     
@@ -26,6 +28,19 @@ module.service('inventoryEditSrv', function(crudSrv) {
 
         return crudSrv.save(requestPath, object, objectType, formToken);
     };
+    
+    
+    this.saveLineItems = function(object, formToken, itemId) {
+        var requestPath = vendorsItemListPath + itemId;        
+        var lineItemType = 'VendorItem';
+        for (var property in object) {
+            if (object.hasOwnProperty(property) && !object[property]) {
+                delete object[property];
+            }
+        }
+
+        return crudSrv.save(requestPath, object, lineItemType, formToken);
+    };
 
 
     this.saveVendorItem = function (object, formToken) {
@@ -49,4 +64,16 @@ module.service('inventoryEditSrv', function(crudSrv) {
 
         return crudSrv.delete(apiPath + 'remove/', object, formToken);
     };
+    
+    this.fetchVendorsAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(vendorsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Vendors;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
 });

@@ -104,4 +104,10 @@ class InventoryItemsController extends AbstractController {
         $this->render($result);
     }
 
+    public function savePricesByVendorList($itemId) {
+        $result = $this->model->savePricesByVendorList($itemId);
+
+        $this->render($result);
+    }
+
 }

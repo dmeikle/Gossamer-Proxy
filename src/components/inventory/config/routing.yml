@@ -412,7 +412,7 @@ admin_inventory_items_edit:
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
             formBuilder: 'components\inventory\form\InventoryItemBuilder'
-            model: 'components\inventory\models\InventoryEquipmentModel'
+            model: 'components\inventory\models\InventoryItemModel'
             cacheKey: 'InventoryItemForm'
             formName: 'form'
             dependencies:
@@ -421,6 +421,18 @@ admin_inventory_items_edit:
                 - { dependency: InventoryCategorys, key: inventoryCategorys, value: id, text: category }
                 - { dependency: AccountingTaxTypes, key: accountingTaxTypes, value: id, text: type }
                 - { dependency: WarehouseLocations, key: warehouses, value: id, text: name }
+                - { dependency: inventoryItem, model: inventoryItem }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\InventoryItemVendorPriceBuilder'
+            model: 'components\inventory\models\InventoryItemModel'
+            cacheKey: 'InventoryVendorItemForm'
+            formName: 'vendorForm'
+            dependencies:
+                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
+                - { dependency: InventoryTypes, key: inventoryTypes, value: id, text: name }
                 - { dependency: inventoryItem, model: inventoryItem }
 
 
@@ -668,7 +680,7 @@ admin_inventory_items_variantgroups_save:
     methods: [POST]
     
 
-
+#--- this is for saving prices to a list of items based on a particular vendor -------
 admin_inventory_vendoritems_save:
     pattern: admin/inventory/vendoritems/*
     defaults:
@@ -683,3 +695,16 @@ admin_inventory_vendoritems_save:
             - 'src/components/defaultItem/locales/*/Navigation'  
     methods: [POST] 
 
+
+#--- this is for saving prices to a particular item based on a list of vendors -----------
+admin_inventory_vendorprices_save:
+    pattern: admin/inventory/vendorprices/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\VendorItemModel
+        method: savePricesByVendorList
+        view: core\views\JSONView
+        viewKey: admin_inventory_vendorprices_save
+        datasource: datasource1
+    methods: [POST] 

@@ -29,7 +29,7 @@ module.service('inventoryListSrv', function($http, crudSrv, searchSrv) {
     };
 
     this.getMaterialDetails = function(object) {
-        return crudSrv.getDetails(apiPath + 'item/', object.id);
+        return crudSrv.getDetails(apiPath + 'items/', object.id);
 
     };
 

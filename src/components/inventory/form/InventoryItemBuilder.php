@@ -42,7 +42,7 @@ class InventoryItemBuilder extends AbstractBuilder {
                 ->add('markup', 'text', array('class' => 'form-control', 'ng-model' => 'item.markup', 'ng-init' => "item.markup ='" . $this->getValue('markup', $values) . "'"))
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel'))
-                ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'"));
+                ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'", 'value' => $this->getValue('id', $values)));
 
         return $builder->getForm();
     }
