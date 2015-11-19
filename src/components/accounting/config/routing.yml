@@ -885,7 +885,7 @@ accounting_vendor_invoices_home:
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
-        model: components\accounting\models\AccountingVendorInvoicesModel
+        model: components\accounting\models\AccountingVendorInvoiceModel
         method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_vendor_invoices_home
@@ -898,18 +898,19 @@ accounting_vendor_invoices_list:
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
-        model: components\accounting\models\AccountingVendorInvoicesModel
+        model: components\accounting\models\AccountingVendorInvoiceModel
         method: listall
         view: core\views\JSONView
         viewKey: accounting_vendor_invoices_list
         datasource: datasource1
-
+    methods: [GET]
+    
 accounting_vendor_invoices_edit:
     pattern: admin/accounting/invoices/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
-        model: components\accounting\models\AccountingVendorInvoicesModel
+        model: components\accounting\models\AccountingVendorInvoiceModel
         method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: accounting_vendor_invoices_edit
@@ -946,13 +947,27 @@ accounting_vendor_invoices_save:
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
-        model: components\accounting\models\AccountingVendorInvoicesModel
+        model: components\accounting\models\AccountingVendorInvoiceModel
         method: save
         view: core\views\JSONView
         viewKey: accounting_vendor_invoices_save
         datasource: datasource1 
     methods: [POST]                                                                
     
+    
+accounting_invoice_upload:
+    pattern: admin/accounting/invoices/upload/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: uploadItem
+        view: core\views\JSONView
+        viewKey: accounting_invoice_upload
+        datasource: datasource1 
+    methods: [POST]
+
+
 #------------------------ Accounting Invoice Extra ----------------------------
 accounting_invoiceextras_list:
     pattern: admin/accounting/invoiceextras/*/*
