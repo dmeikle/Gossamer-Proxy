@@ -18,6 +18,10 @@ table.table tbody tr.selected {
     background-color:rgba(3,146,211,.4);
 }
 
+.cardtable>tbody>tr:first-of-type>td {
+    border-top:0;
+}
+
 tbody th {
     background-color:white;
     color:inherit;

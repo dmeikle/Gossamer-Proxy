@@ -1,4 +1,4 @@
-module.controller('companyClaimsListCtrl', function ($scope, $modal, companyClaimsListSrv, companyTemplateSrv) {
+module.controller('companyClaimsListCtrl', function ($scope, $uibModal, companyClaimsListSrv, companyTemplateSrv) {
 
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
@@ -65,14 +65,14 @@ module.controller('companyClaimsListCtrl', function ($scope, $modal, companyClai
     });
 });
 
-module.controller('companyModalCtrl', function ($modalInstance, $scope) {
+module.controller('companyModalCtrl', function ($uibModalInstance, $scope) {
     $scope.company = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.company);
+        $uibModalInstance.close($scope.company);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

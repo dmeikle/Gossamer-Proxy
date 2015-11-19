@@ -72,17 +72,18 @@ class ClaimsController extends AbstractController {
 
     public function edit($id) {
         $result = $this->model->edit($id);
-        $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
+        // $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
 
-        if (!is_null($companyTypes)) {
-            $serializer = new CompanyTypeSerialization();
-            $companyTypes = $serializer->pruneCompanyTypes($companyTypes);
+        // if (!is_null($companyTypes)) {
+        //     $serializer = new CompanyTypeSerialization();
+        //     $companyTypes = $serializer->pruneCompanyTypes($companyTypes);
 
-            $companyTypesOptions = $serializer->formatSelectionBoxOptions($companyTypes, array());
-            $result['companyTypesOptions'] = $companyTypesOptions;
-        }
+        //     $companyTypesOptions = $serializer->formatSelectionBoxOptions($companyTypes, array());
+        //     $result['companyTypesOptions'] = $companyTypesOptions;
+        // }
 
-        $this->render(array('form' => $this->drawForm($this->model, $result)));
+        // $this->render(array('form' => $this->drawForm($this->model, $result)));
+        $this->render(array('Claim' => $result));
     }
 
     public function get($claimId) {

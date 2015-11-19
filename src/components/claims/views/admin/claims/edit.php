@@ -3,20 +3,25 @@
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
     <div>
-        <h1 ng-if="!claim"><?php echo $this->getString('CLAIMS_CREATE'); ?></h1>
-        <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIMS_EDIT') ?> {{claim.jobNumber}}</h1>
-        <div class="clearfix"></div>
+        <div class="col-xs-12">
+            <h1 class="pull-left">
+                <?php echo $this->getString('CLAIMS_EDIT') ?> 
+                <span ng-if="!claim" class="spinner-loader"></span>
+                <span ng-if="claim">{{claim.jobNumber}}</span>
+            </h1>
+            <div class="clearfix"></div>
+        </div>
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="projectAddress">
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
                 </div>
                 <div class="clearfix"></div>
-                <div ng-if="loading">
+                <div ng-if="paLoading">
                     <span class="spinner-loader"></span>
                 </div>
 
-                <div class="form-group">
+                <div ng-if="!paLoading" class="form-group">
                     <label ng-value="claim.buildingName">{{projectAddress.buildingName}}</label><br />
                     <label>{{projectAddress.address1}}</label><br />
                     <label>{{projectAddress.city}}</label><br />
@@ -47,15 +52,15 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div ng-if="loading">
+                <div ng-if="claimLoading">
                     <span class="spinner-loader"></span>
                 </div>
-                <div class="form-group">
+                <div ng-if="!claimLoading" class="form-group">
                     <div style="float: right;
                          border: solid 1px #cccccc;
                          padding: 5px;
                          border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
-                        {{claim.phase}}</div>
+                        {{claim.phase.title}}</div>
                     <label ng-value="claim.workAuthorizationReceiveDate">Authorization Date: {{claim.workAuthorizationReceiveDate}}</label><br />
                     <label>Type: {{claim.typeOfClaim}}</label><br />
                     <label>Project Manager: {{claim.projectManager}}</label><br />
@@ -78,9 +83,15 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
-                            <th column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                            <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
+                            <th column-sortable data-column="jobNumber">
+                                <?php echo $this->getString('CLAIMS_JOBNUMBER'); ?>
+                            </th>
+                            <th column-sortable data-column="phase">
+                                <?php echo $this->getString('CLAIMS_PHASE'); ?>
+                            </th>
+                            <th column-sortable data-column="parentClaim">
+                                <?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?>
+                            </th>
                             <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                         </tr>
                     </thead>
@@ -105,8 +116,7 @@
                                         aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
-                                        <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                                        <li><a href="/admin/claims/edit/{{location.id}}">Edit</a></li>
                                     </ul>
                                 </div>
                             </td>
