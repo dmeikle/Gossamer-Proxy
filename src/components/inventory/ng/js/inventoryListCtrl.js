@@ -60,12 +60,12 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
 
     $scope.editVendorItem = function (item) {
-        var modalInstance = $modal.open({
-            templateUrl: '/render/inventory/vendorItemModal?id=' + ((item.VendorItems_id === null) ? 0 : item.VendorItems_id),
+        $modal.open({
+            templateUrl: '/render/inventory/vendorItemModal?id=' + item.VendorItems_id,
             controller: 'inventoryVendorItemModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static",
+            backdrop: 'static',
             resolve: {
                 item: function () {
                     return item;
@@ -295,7 +295,7 @@ module.controller('transferModalController', function($scope, $modalInstance,
 });
 
 
-module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, inventoryEditSrv, item, vendor) {
+module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
     
     $scope.item = {};
     $scope.item.InventoryItems_id = item.InventoryItems_id;
