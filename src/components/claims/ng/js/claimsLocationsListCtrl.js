@@ -1,9 +1,6 @@
-module.controller('claimsLocationsListCtrl', function ($scope, $location, $uibModal, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsLocationsListCtrl', function ($scope, $location, $uibModal, claimsListSrv, tablesSrv) {
 
-    var row = 0;
-    var numRows = 20;
-
-
+    $scope.loading = true;
     $scope.tablesSrv = tablesSrv;
 
     getClaimsLocationsList();
@@ -22,7 +19,7 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $uibMo
             controller: 'claimsModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static"
+            backdrop: 'static'
         });
 
         modalInstance.result.then(function (claim) {
@@ -37,9 +34,8 @@ module.controller('claimsLocationsListCtrl', function ($scope, $location, $uibMo
         $scope.loading = true;
         var claimId = document.getElementById('Claim_id').value;
 
-        claimsListSrv.getClaimLocations(claimId).then(function (response) {
+        claimsListSrv.getClaimLocations(claimId).then(function () {
             $scope.claimsLocations = claimsListSrv.claimsLocations;
-        }).then(function () {
             $scope.loading = false;
         });
     }

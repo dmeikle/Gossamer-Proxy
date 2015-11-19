@@ -1,7 +1,8 @@
 module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
-    $scope.loading = true;
+    $scope.paLoading = true;
+    $scope.claimLoading = true;
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
@@ -24,7 +25,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         claimsEditSrv.getClaimDetails(claimId).then(function() {
             $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
-            $scope.loading = false;
+            $scope.claimLoading = false;
 
         });
     }
@@ -36,7 +37,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         claimsEditSrv.getProjectAddress(addressId).then(function() {
             $rootScope.$broadcast('projectAddressLoaded');
             $scope.projectAddress = claimsEditSrv.projectAddress;
-            $scope.loading = false;
+            $scope.paLoading = false;
         });
     }
 
@@ -57,7 +58,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         var template = claimsTemplateSrv.claimEditModal;
         var modal = $uibModal.open({
             templateUrl: template,
-            controller: 'claimsModalCtrl',
+            controller: 'claimsEditModalCtrl',
             size: 'xl',
             resolve: {
                 claim: function() {
@@ -69,7 +70,9 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             $scope.modalLoading = false;
         });
         modal.result.then(function() {
-
+            claimsEditSrv.save(claim).then(function () {
+                getClaimDetails();
+            });
         });
     };
 

@@ -2,6 +2,7 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
 
     // Run on load
     $scope.loading = true;
+    $scope.claimLoading = true;
     $scope.contacts = [];
     $scope.timeRemaining = {};
 
@@ -13,8 +14,7 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
         $scope.claim = claimsEditSrv.claimDetails;
         var phase = $scope.claim.phase;
         var now = new Date();
-        var startDate = new Date(phase.startDate);
-        $scope.startDate = startDate.getUTCDate();
+        $scope.startDate = new Date(phase.startDate);
         $scope.endDate = new Date(phase.scheduledEndDate);
 
         $scope.timeRemaining.past = $scope.endDate > now ? false : true;
@@ -29,6 +29,8 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
 
         // calculate (and subtract) whole hours
         $scope.timeRemaining.hours = Math.floor(delta / 3600) % 24;
+
+        $scope.claimLoading = false;
     });
 
     listContactsByClaim();

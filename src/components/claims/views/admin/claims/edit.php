@@ -3,20 +3,25 @@
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
     <div>
-        <h1 ng-if="!claim"><?php echo $this->getString('CLAIMS_CREATE'); ?></h1>
-        <h1 class="pull-left" ng-if="claim"><?php echo $this->getString('CLAIMS_EDIT') ?> {{claim.jobNumber}}</h1>
-        <div class="clearfix"></div>
+        <div class="col-xs-12">
+            <h1 class="pull-left">
+                <?php echo $this->getString('CLAIMS_EDIT') ?> 
+                <span ng-if="!claim" class="spinner-loader"></span>
+                <span ng-if="claim">{{claim.jobNumber}}</span>
+            </h1>
+            <div class="clearfix"></div>
+        </div>
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="projectAddress">
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
                 </div>
                 <div class="clearfix"></div>
-                <div ng-if="loading">
+                <div ng-if="paLoading">
                     <span class="spinner-loader"></span>
                 </div>
 
-                <div class="form-group">
+                <div ng-if="!paLoading" class="form-group">
                     <label ng-value="claim.buildingName">{{projectAddress.buildingName}}</label><br />
                     <label>{{projectAddress.address1}}</label><br />
                     <label>{{projectAddress.city}}</label><br />
@@ -47,10 +52,10 @@
                 </div>
                 <div class="clearfix"></div>
 
-                <div ng-if="loading">
+                <div ng-if="claimLoading">
                     <span class="spinner-loader"></span>
                 </div>
-                <div class="form-group">
+                <div ng-if="!claimLoading" class="form-group">
                     <div style="float: right;
                          border: solid 1px #cccccc;
                          padding: 5px;
@@ -68,7 +73,12 @@
         <div class="col-xs-12">
             <div class="widget" ng-controller="claimsLocationsListCtrl">
                 <div class="widgetheader">
-                    <h2><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h2>
+                    <h2 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h2>
+                    <div class="pull-right">
+                        <button class="primary" ng-click="openClaimLocationModal()">
+                            <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
+                        </button>
+                    </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
