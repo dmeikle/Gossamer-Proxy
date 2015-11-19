@@ -1,5 +1,5 @@
-module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsEditSrv,
-    claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv,
+    claimsListSrv, tablesSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -20,6 +20,7 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     $scope.loading = true;
 
     $scope.tablesSrv = tablesSrv;
+    $controller('claimsLocationsListCtrl', {$scope: $scope});
 
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {

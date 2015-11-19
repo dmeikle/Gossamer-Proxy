@@ -21,7 +21,7 @@ use libraries\utils\YAMLParser;
  * the routing file to reduce routing to basic config only. This avoids
  * the excessive file lengths that occur when using multiform loader and
  * dependencies in the routing file
- * 
+ *
  * @author Dave Meikle
  */
 class LoadBehaviorsListener extends AbstractListener {
@@ -53,7 +53,7 @@ class LoadBehaviorsListener extends AbstractListener {
         $parser->setFilePath($path);
         $config = $parser->loadConfig();
 
-        if (array_key_exists(__YML_KEY, $config) && array_key_exists('listeners', $config[__YML_KEY])) {
+        if ($config !== false && array_key_exists(__YML_KEY, $config) && array_key_exists('listeners', $config[__YML_KEY])) {
             return $config[__YML_KEY]['listeners'];
         }
 
