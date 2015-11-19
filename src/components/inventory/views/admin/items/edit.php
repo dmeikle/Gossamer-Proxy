@@ -128,8 +128,17 @@
                     </div>
 
                 </div>
-                <button class="btn-primary save-purchase-order" ng-click="saveLineItems()"><?php echo $this->getString('INVENTORY_SAVE'); ?></button>
-                <a href="../"><button class="btn-default save-purchase-order"><?php echo $this->getString('INVENTORY_CANCEL'); ?></button></a>
+                <div class="widgetfooter clearfix">
+                    <div class="pull-right btn-group">
+                        <a href="/admin/inventory" class="btn btn-default">
+                            <?php echo $this->getString('CANCEL') ?>
+                        </a>
+                        <button class="btn-primary" ng-click="saveLineItems()">
+                            <?php echo $this->getString('SAVE') ?>
+                        </button>
+                    </div>
+                </div>
+
             </div>
             <div class="clearfix"></div>
         </div>
