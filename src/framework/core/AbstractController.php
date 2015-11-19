@@ -426,13 +426,7 @@ class AbstractController {
             $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
             unset($pagination);
         }
-//        //TODO: this is simply here for debugging and should be removed
-//      $count = array();
-//      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"2","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"4","limit"=>"2","current"=>"current");
-//      $count[] = array("offset"=>"6","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
+
         $this->render($count);
     }
 
@@ -471,8 +465,9 @@ class AbstractController {
 
         $this->mkdir($imagePath);
 
+        //changed fileName to filename to match column name
         if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
-            $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
+            $params = array('id' => intval($id), 'filename' => $_FILES['file']['name']);
 
             $this->model->saveParamsOnComplete($params);
         }
