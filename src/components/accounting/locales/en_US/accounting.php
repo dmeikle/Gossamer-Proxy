@@ -121,6 +121,12 @@ return array(
     'ACCOUNTING_INVOICE' => 'Invoice',
     'ACCOUNTING_RECEIPT_TYPE' => 'Receipt Type',
     'ACCOUNTING_FROM_DATE' => 'From Date',
-    'ACCOUNTING_TO_DATE' => 'To Date'
+    'ACCOUNTING_TO_DATE' => 'To Date',
+    'ACCOUNTING_VENDOR_INVOICES' => 'Vendor Invoices',
+    'ACCOUNTING_NEW_VENDOR_INVOICE' => 'New Vendor Invoice',
+    'ACCOUNTING_EDIT_VENDOR_INVOICE' => 'Edit Vendor Invoice',
+    'ACCOUNTING_NEW_INVOICE' => 'New Invoice',
+    'ACCOUNTING_INVOICE_NUMBER' => 'Invoice #',
+    'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
 );
 
