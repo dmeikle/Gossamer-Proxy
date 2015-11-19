@@ -472,7 +472,7 @@ class AbstractController {
         $this->mkdir($imagePath);
 
         if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
-            $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
+            $params = array('id' => intval($id), 'fileName' => $_FILES['file']['name']);
 
             $this->model->saveParamsOnComplete($params);
         }

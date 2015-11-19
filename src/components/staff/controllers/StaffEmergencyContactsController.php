@@ -71,7 +71,7 @@ class StaffEmergencyContactsController extends AbstractController {
         $this->render($this->drawForm($this->model, $value));
     }
 
-    public function get($staffId, $contactId) {
+    public function getContact($staffId, $contactId) {
         $offset = 0;
         $limit = 20;
         $params = array('Staff_id' => intval($staffId),
