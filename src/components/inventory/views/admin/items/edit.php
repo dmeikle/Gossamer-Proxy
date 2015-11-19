@@ -95,7 +95,10 @@
                             <tr><td colspan="5" style="background-color: #059ADE"></td></tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><?php echo $this->getString('INVENTORY_VENDOR'); ?></td>
+                                <td>
+                                    <?php echo $this->getString('INVENTORY_VENDOR'); ?>
+                                    <?php echo $vendorForm['id']; ?>
+                                </td>
                                 <td><?php echo $this->getString('INVENTORY_PRODUCTCODE'); ?></td>
                                 <td><?php echo $this->getString('INVENTORY_PRICE'); ?></td>
                                 <td><?php echo $this->getString('INVENTORY_PREFERRED'); ?></td>
