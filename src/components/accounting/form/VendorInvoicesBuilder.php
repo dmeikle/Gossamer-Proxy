@@ -19,12 +19,12 @@ use Gossamer\CMS\Forms\FormBuilder;
  *
  * @author Dave Meikle
  */
-class PurchaseOrderBuilder extends AbstractBuilder {
+class VendorInvoicesBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
 
-        if (is_array($validationResults) && array_key_exists('PurchaseOrder', $validationResults)) {
-            $builder->addValidationResults($validationResults['PurchaseOrder']);
+        if (is_array($validationResults) && array_key_exists('VendorInvoice', $validationResults)) {
+            $builder->addValidationResults($validationResults['VendorInvoice']);
         }
 
         $builder->add('invoiceNumber', 'text', array('class' => 'form-control', 'ng-model' => 'item.invoiceNumber'))

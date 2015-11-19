@@ -16,13 +16,14 @@ use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 use core\UploadableInterface;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of AccountingVendorInvoiceModel
  *
  * @author Dave Meikle
  */
-class AccountingVendorInvoiceModel extends AbstractModel implements UploadableInterface {
+class AccountingVendorInvoiceModel extends AbstractModel implements UploadableInterface, FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -38,6 +39,10 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
     }
 
     public function saveParamsOnComplete(array $params) {
+
+    }
+
+    public function getFormWrapper() {
 
     }
 

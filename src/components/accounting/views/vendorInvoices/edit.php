@@ -8,13 +8,13 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="form-group">
-                    <label for="invoiceNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_INVOICE_NUMEBER'); ?></label>
+                    <label for="invoiceNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_INVOICE_NUMBER'); ?></label>
                     <?php echo $form['invoiceNumber']; ?>
                 </div>
 
                 <div class="form-group">
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
-                    <?php echo $form['basicSearch']; ?>
+                    <?php echo $form['jobNumber']; ?>
                     <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
                         <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                     </div>
@@ -54,11 +54,11 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="input-group form-group">
-                    <label for="creationDate" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_DATE');   ?></label>
+                    <label for="creationDate" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_DATE');       ?></label>
                     <div class="col-md-7 no-padding">
                         <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
                                class="form-control datepicker disabled" datepicker-popup is-open="isOpen.datepicker"
-                               datepicker-options="dateOptions" close-text="<?php // echo $this->getString('ACCOUNTING_CLOSE');   ?>" disabled/>
+                               datepicker-options="dateOptions" close-text="<?php // echo $this->getString('ACCOUNTING_CLOSE');       ?>" disabled/>
                         <span class="input-group-btn" data-datepickername="date">
                             <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)" disabled>
                                 <i class="glyphicon glyphicon-calendar"></i>
@@ -156,11 +156,6 @@
                 <div class="form-group">
                     <label for="subtotal" class="col-md-6"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></label>
                     <p class="col-md-6">{{item.subtotal| currency}}</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="deliveryFee" class="col-md-6"><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE'); ?></label>
-                    <?php echo $form['deliveryFee']; ?>
                 </div>
 
                 <div class="form-group" ng-repeat="tax in item.taxTypes">

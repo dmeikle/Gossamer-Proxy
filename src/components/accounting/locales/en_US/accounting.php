@@ -128,5 +128,6 @@ return array(
     'ACCOUNTING_NEW_INVOICE' => 'New Invoice',
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice #',
     'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
+    'ACCOUNTING_INVOICE_NUMBER' => 'Invoice Number'
 );
 

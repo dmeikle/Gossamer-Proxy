@@ -928,9 +928,9 @@ accounting_vendor_invoices_edit:
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
-            formBuilder: 'components\accounting\form\PurchaseOrderBuilder'
-            model: 'components\accounting\models\PurchaseOrderModel'
-            cacheKey: 'PurchaseOrderForm'
+            formBuilder: 'components\accounting\form\VendorInvoicesBuilder'
+            model: 'components\accounting\models\AccountingVendorInvoiceModel'
+            cacheKey: 'VendorInvoicesBuilder'
             formName: 'form'
             dependencies:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
