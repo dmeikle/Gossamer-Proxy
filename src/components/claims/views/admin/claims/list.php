@@ -135,8 +135,15 @@
                     <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
                 </div>
             </div>
-
-            <h4><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
+            
+            <div>
+                <h4 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
+                <div class="pull-right">
+                    <button class="primary btn-sm" ng-click="openClaimLocationModal()">
+                        <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
+                    </button>
+                </div>
+            </div>
 
             <table class="table table-striped table-hover">
                 <tr>
@@ -151,7 +158,18 @@
                     <td>{{location.firstname}} {{location.lastname}}</td>
                     <td> {{location.daytimePhone}} </td>
                     <td>{{location.mobile}}</td>
-                    <td><a href="/admin/claimlocations/{{selectedClaim.id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW') ?></a></td>
+                    <td class="row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
+                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             </table>
 
