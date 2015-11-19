@@ -460,4 +460,24 @@ class AbstractController {
         return $config['default_locale'];
     }
 
+    public function uploadItem($id) {
+
+        if (!$this->model instanceof UploadableInterface) {
+            throw new \exceptions\InterfaceNotImplementedException('Model must implement UploadableInterface');
+        }
+
+        $filenames = array();
+        $imagePath = $this->model->getUploadPath();
+
+        $this->mkdir($imagePath);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
+            $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
+
+            $this->model->saveParamsOnComplete($params);
+        }
+
+        $this->render(array('success' => 'true'));
+    }
+
 }
