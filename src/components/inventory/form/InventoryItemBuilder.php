@@ -15,7 +15,7 @@ use Gossamer\CMS\Forms\AbstractBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 
 /**
- * DepartmentBuilder
+ * InventoryItemBuilder
  *
  * @author Dave Meikle
  */
@@ -36,9 +36,13 @@ class InventoryItemBuilder extends AbstractBuilder {
                 ->add('number', 'text', array('class' => 'form-control', 'ng-model' => 'item.number', 'ng-init' => "item.number ='" . $this->getValue('number', $values) . "'"))
                 ->add('maxDays', 'text', array('class' => 'form-control', 'ng-model' => 'item.maxDays', 'ng-init' => "item.maxDays ='" . $this->getValue('maxDays', $values) . "'"))
                 ->add('InventoryTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryTypes_id', 'ng-init' => "item.InventoryTypes_id ='" . $this->getValue('InventoryTypes_id', $values) . "'", 'options' => $options['inventoryTypes']))
+                ->add('InventoryCategories_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.InventoryCategories_id', 'ng-init' => "item.InventoryCategories_id ='" . $this->getValue('InventoryCategories_id', $values) . "'", 'options' => $options['inventoryCategorys']))
+                ->add('AccountingTaxTypes_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.AccountingTaxTypes_id', 'ng-init' => "item.AccountingTaxTypes_id ='" . $this->getValue('AccountingTaxTypes_id', $values) . "'", 'options' => $options['accountingTaxTypes']))
+                ->add('WarehouseLocations_id', 'select', array('class' => 'form-control', 'ng-model' => 'item.WarehouseLocations_id', 'ng-init' => "item.WarehouseLocations_id ='" . $this->getValue('WarehouseLocations_id', $values) . "'", 'options' => $options['warehouses']))
+                ->add('markup', 'text', array('class' => 'form-control', 'ng-model' => 'item.markup', 'ng-init' => "item.markup ='" . $this->getValue('markup', $values) . "'"))
                 ->add('submit', 'submit', array('class' => 'btn', 'value' => 'Save'))
                 ->add('cancel', 'cancel', array('class' => 'btn', 'value' => 'Cancel'))
-                ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'"));
+                ->add('id', 'hidden', array('ng-model' => 'item.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'", 'value' => $this->getValue('id', $values)));
 
         return $builder->getForm();
     }

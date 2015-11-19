@@ -1,23 +1,91 @@
 
+admin_subcontractors_claims_list:
+    pattern: admin/subcontractors/claims/*/*/*
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\ClaimLocationSubcontractorController
+        model: components\subcontractors\models\ClaimLocationSubcontractorModel
+        method: listallClaims
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_claims_list
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/subcontractors/locales/*/Navigation'  
+    methods: [GET]
 
 
+admin_subcontractors_home:
+    pattern: admin/subcontractors
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_subcontractors_home
+        datasource: datasource1
+        langFiles: 
+            - 'app/locales/*/website' 
+            - 'src/components/subcontractors/locales/*/Subcontractors'       
+    methods: [GET]
     
 
-admin_subcontractors_edit:
+admin_subcontractors_search:
+    pattern: admin/subcontractors/search/*/*
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_search
+        datasource: datasource1 
+    methods: [GET]
+    
+admin_subcontractors_get:
     pattern: admin/subcontractors/*
 
     defaults:
         component: components\subcontractors\SubcontractorsComponent
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
-        method: edit
-        view: core\views\TemplateView
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_edit
+        datasource: datasource1
+    methods: [GET]
+    
+admin_subcontractors_edit:
+    pattern: admin/subcontractors/edit/*
+
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_subcontractors_edit
         datasource: datasource1
         langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'  
+            - 'src/components/subcontractors/locales/*/Subcontractors'  
     methods: [GET]
-        
+    listeners:
+        - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\subcontractors\models\SubcontractorTypeModel', 'cacheKey': 'SubcontractorTypes', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        -
+             event: 'request_end'
+             listener: 'core\components\render\eventlisteners\FormBuilderListener'
+             datasource: 'datasource1'
+             formBuilder: 'components\subcontractors\form\SubcontractorBuilder'
+             model: 'components\subcontractors\models\SubcontractorModel'
+             cacheKey: 'SubcontractorForm'
+             formName: 'form'
+             dependencies:
+                 - { dependency: Provinces, key: provinces, value: id, text: province}
+                 - { dependency: SubcontractorTypes, key: subcontractorTypes, value: id, text: contractorType}
+    
         
 admin_subcontractors_save:
     pattern: admin/subcontractors/*
@@ -28,11 +96,9 @@ admin_subcontractors_save:
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_subcontractors_save
         datasource: datasource1
-        langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'  
     methods: [POST]
         
 admin_subcontractors_list_contacts:
@@ -78,7 +144,7 @@ admin_subcontractors_edit_contact:
         viewKey: admin_subcontractors_edit_contact
         datasource: datasource1
         langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'      
+            - 'src/components/subcontractors/locales/*/Subcontractors'      
  
 
 admin_subcontractors_list:
@@ -89,11 +155,9 @@ admin_subcontractors_list:
         controller: components\subcontractors\controllers\SubcontractorsController
         model: components\subcontractors\models\SubcontractorModel
         method: listall
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_subcontractors_list
         datasource: datasource1
-        langFiles: 
-            - 'src/components/subcontractors/locales/*/Navigation'
                 
    
 admin_subcontractors_edit:

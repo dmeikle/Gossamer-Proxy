@@ -7,7 +7,7 @@ $dark-blue: #059ADE;
         padding:0;
     }
 }
-.date-picker>ul, .dropdown-menu[datepicker-popup-wrap]{
+.date-picker>ul, .dropdown-menu[datepicker-popup-wrap], .dropdown-menu[uib-datepicker-popup-wrap]{
     padding:0;
     button{
         border-radius: 0;

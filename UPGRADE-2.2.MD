@@ -16,4 +16,8 @@ mv /etc/php5/conf.d/mcrypt.ini /etc/php5/mods-available/
 sudo php5enmod mcrypt
 sudo service apache2 restart
 
+
+#install node:
+http://www.hostingadvice.com/how-to/install-nodejs-ubuntu-14-04/
+
 </pre>

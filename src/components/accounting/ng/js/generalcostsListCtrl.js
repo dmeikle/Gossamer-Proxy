@@ -61,17 +61,6 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
     };
 
     $scope.closeSidePanel = function () {
-//        if ($scope.searching) {
-//            $scope.searching = false;
-//        }
-//        if ($scope.selectedStaff) {
-//            $scope.selectedStaff = undefined;
-//            $scope.previouslyClickedObject = undefined;
-//        }
-//        if (!$scope.selectedStaff && !$scope.searching) {
-//            $scope.sidePanelOpen = false;
-//            $scope.previouslyClickedObject = {};
-//        }
         $scope.sidePanelOpen = false;
         $scope.isOpen.datepicker.fromDate = false;
         $scope.isOpen.datepicker.toDate = false;
