@@ -81,7 +81,20 @@ module.controller('inventoryEditItemCtrl', function($scope, $location, inventory
         for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
             if ($scope.lineItems[i].isSelected === true) {
                 $scope.lineItems.splice(parseInt(i), 1);
+                
             }
+        }
+        $scope.rowSelected = false;
+        
+    };
+    
+    
+    //check the selected rows
+    $scope.checkSelected = function (value) {
+        if (value === false) {
+            $scope.selectAll = false;
+        } else {
+            $scope.rowSelected = true;
         }
     };
 });
