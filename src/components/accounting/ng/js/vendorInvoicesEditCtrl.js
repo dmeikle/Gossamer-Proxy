@@ -26,7 +26,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         if(id > 0){
             $scope.editing = true;
             vendorInvoicesEditSrv.getPurchaseOrder(id).then(function () {
-                vendorInvoicesEditSrv.purchaseOrder.creationDate = new Date(vendorInvoicesEditSrv.purchaseOrder.creationDate);
+                vendorInvoicesEditSrv.purchaseOrder.entryDate = new Date(vendorInvoicesEditSrv.purchaseOrder.entryDate);
                 $scope.item = vendorInvoicesEditSrv.purchaseOrder;
                 $scope.item.company = vendorInvoicesEditSrv.Vendor;
                 $scope.vendorLocations = vendorInvoicesEditSrv.VendorLocations;
@@ -46,9 +46,9 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         } else {
             $scope.editing = false;
             $scope.loading = false;
-            $scope.item.id = 0;
+//            $scope.item.id = 0;
             var date = new Date();
-            $scope.item.creationDate = date;
+            $scope.item.entryDate = date;
         } 
     }    
     
@@ -105,12 +105,12 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 //        }
 //    };
 //    
-//    //Claims Autocomplete
-//    $scope.fetchClaimAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.jobNumber = viewVal;
-//        return vendorInvoicesEditSrv.fetchClaimsAutocomplete(searchObject);
-//    };
+    //Claims Autocomplete
+    $scope.fetchClaimAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return vendorInvoicesEditSrv.fetchClaimsAutocomplete(searchObject);
+    };
 //    
 //    //Product Code Typeahead
 //    $scope.fetchProductCodeAutocomplete = function (viewVal) {
@@ -143,14 +143,14 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 //        $scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
 //    };
 //    
-//    //Get Claims ID from autocomplete list
-//    $scope.getClaimsID = function (jobNumber) {
-//        for (var i in vendorInvoicesEditSrv.autocomplete) {
-//            if (vendorInvoicesEditSrv.autocomplete[i].jobNumber === jobNumber) {
-//                $scope.item.Claims_id = vendorInvoicesEditSrv.autocomplete[i].id;
-//            }
-//        }
-//    };
+    //Get Claims ID from autocomplete list
+    $scope.getClaimsID = function (jobNumber) {
+        for (var i in vendorInvoicesEditSrv.autocomplete) {
+            if (vendorInvoicesEditSrv.autocomplete[i].jobNumber === jobNumber) {
+                $scope.item.Claims_id = vendorInvoicesEditSrv.autocomplete[i].id;
+            }
+        }
+    };
 //
 //    //Get Vendor items info
 //    $scope.getProductInfo = function (row, value, index) {
@@ -272,27 +272,27 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 //        return false;
 //    }   
 //    
-//    //Date Picker
-//    $scope.dateOptions = {'starting-day': 1};
-//    $scope.openDatepicker = function (event) {
-//        $scope.isOpen.datepicker = true;
-//    };
+    //Date Picker
+    $scope.dateOptions = {'starting-day': 1};
+    $scope.openDatepicker = function (event) {
+        $scope.isOpen.datepicker = true;
+    };
 //    
 //    //Clear the item
 //    $scope.clear = function(){
 //        $scope.item = {};
 //    };
 //    
-//    //Saving Items    
-//    $scope.save = function () {
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//        var purchaseOrder = angular.copy($scope.item);
-//        var purchaseOrderItems = angular.copy($scope.lineItems);
-//        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
-//        vendorInvoicesEditSrv.save(purchaseOrder, purchaseOrderItems, formToken).then(function(){
-//            //$window.location.href = apiPath + '0';
-//        });
-//    };
+    //Saving Items    
+    $scope.save = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var VendorInvoice = angular.copy($scope.item);
+        var VendorInvoiceItems = angular.copy($scope.lineItems);
+        VendorInvoice.entryDate = $filter('date')(VendorInvoice.entryDate, 'yyyy-MM-dd', '+0000');
+        vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItems, formToken).then(function(){
+            //$window.location.href = apiPath + '0';
+        });
+    };
 //    
 //    //Save and make a new Purchase Order
 //    $scope.saveAndNew = function () {

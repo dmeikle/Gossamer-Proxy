@@ -30,7 +30,7 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'AccountingVendorInvoice';
+        $this->entity = 'VendorInvoice';
         $this->tablename = 'accountingvendorinvoices';
     }
 
@@ -39,7 +39,7 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::METHOD_POST, $params);
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
     }
 
     public function getFormWrapper() {

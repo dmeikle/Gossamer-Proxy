@@ -26,8 +26,8 @@ class VendorInvoicesBuilder extends AbstractBuilder {
         if (is_array($validationResults) && array_key_exists('VendorInvoice', $validationResults)) {
             $builder->addValidationResults($validationResults['VendorInvoice']);
         }
-
-        $builder->add('invoiceNumber', 'text', array('class' => 'form-control', 'ng-model' => 'item.invoiceNumber'))
+        //
+        $builder->add('invoiceNumber', 'text', array('class' => 'form-control col-md-7', 'ng-model' => 'item.invoiceNumber'))
                 ->add('jobNumber', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value for value in fetchClaimAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'ng-blur' => 'getClaimsID(item.jobNumber)'))
@@ -39,7 +39,7 @@ class VendorInvoicesBuilder extends AbstractBuilder {
                 ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.subcontractor for value in fetchSubcontractorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsSubcontractors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.subcontractor);'))
-                ->add('purchsaeOrdersAutocomplete', 'text', array('ng-model' => 'item.purchaseOrder', 'uib-typeahead' => 'value as value.subcontractor for value in fetchPurchaseOrdersAutocomplete($viewValue)',
+                ->add('purchaseOrdersAutocomplete', 'text', array('ng-model' => 'item.purchaseOrder', 'uib-typeahead' => 'value as value.subcontractor for value in fetchPurchaseOrdersAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsPurchaseOrders', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.purchaseOrder);'))
                 ->add('description', 'textarea', array('class' => 'form-control col-md-7', 'ng-model' => 'item.description'))

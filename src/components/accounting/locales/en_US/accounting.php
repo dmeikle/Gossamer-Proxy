@@ -89,6 +89,7 @@ return array(
     'ACCOUNTING_MARKUP' => 'Markup (%)',
     'ACCOUNTING_TAX_TYPE' => 'Tax Type',
     'ACCOUNTING_POS' => 'Purchase Orders',
+    'ACCOUNTING_PURCHASE_ORDER' => 'Purchase Order',
     'ACCOUNTING_NEW_POS' => 'New Purchase Order',
     'ACCOUNTING_EDIT_POS' => 'Edit Purchase Order',
     'ACCOUNTING_VENDOR' => 'Vendor',
@@ -128,6 +129,7 @@ return array(
     'ACCOUNTING_NEW_INVOICE' => 'New Invoice',
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice #',
     'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
-    'ACCOUNTING_INVOICE_NUMBER' => 'Invoice Number'
+    'ACCOUNTING_INVOICE_NUMBER' => 'Invoice Number',
+    'ACCOUNTING_UPLOAD_INVOICE' => 'Upload Invoice (PDF)'
 );
 

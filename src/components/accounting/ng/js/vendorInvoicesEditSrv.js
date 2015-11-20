@@ -1,14 +1,16 @@
 // Inventory Modal Service
 module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/pos/';
+    var apiPath = '/admin/accounting/invoices/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
+    //var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var self = this;
     
     //Claims Autocomplete
     this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
+        console.log(searchObject);
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
             self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
             for (var item in self.autocomplete) {
@@ -143,10 +145,9 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             }
         }
         var data = {};
-        data.PurchaseOrder = item;
-        data.PurchaseOrderItems = lineItems;
+        data.VendorInvoice = item;
+        data.VendorInvoiceItems = lineItems;
         data.FORM_SECURITY_TOKEN = formToken;
-        console.log(data);
         
         return $http({
             method: 'POST',

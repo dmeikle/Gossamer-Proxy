@@ -460,14 +460,17 @@ class AbstractController {
             throw new \exceptions\InterfaceNotImplementedException('Model must implement UploadableInterface');
         }
 
+        $id = intval($id);
         $filenames = array();
         $imagePath = $this->model->getUploadPath();
 
         $this->mkdir($imagePath);
-
+        $path_parts = pathinfo($_FILES["file"]["name"]);
+        $extension = $path_parts['extension'];
         //changed fileName to filename to match column name
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
-            $params = array('id' => intval($id), 'filename' => $_FILES['file']['name']);
+        //if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '.' . $extension)) {
+            $params = array('id' => intval($id), 'filename' => $id);
 
             $this->model->saveParamsOnComplete($params);
         }

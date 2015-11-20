@@ -8,6 +8,11 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
 
                 <div class="form-group">
+                    <label for="purchaseOrdersAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER'); ?></label>
+                    <?php echo $form['purchaseOrdersAutocomplete']; ?>
+                </div>
+
+                <div class="form-group">
                     <label for="invoiceNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_INVOICE_NUMBER'); ?></label>
                     <?php echo $form['invoiceNumber']; ?>
                 </div>
@@ -15,52 +20,33 @@
                 <div class="form-group">
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
                     <?php echo $form['jobNumber']; ?>
-                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
-                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
-                    </div>
+                    <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
+                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')      ?>
+                                        </div>-->
                 </div>
 
                 <div class="form-group">
-                    <label for="phaseCode" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
+                    <label for="ClaimPhases_id" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
                     <?php echo $form['ClaimPhases_id']; ?>
                 </div>
 
                 <div class="form-group">
-                    <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
-                    <?php echo $form['vendorsAutocomplete']; ?>
-                </div>
-
-                <div class="form-group" ng-if="vendorLocations">
-                    <label for="vendorLocations" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_LOCATION'); ?></label>
-                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
-                            ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
-                </div>
-
-
-            </div>
-
-            <div ng-if="!loading" class="col-md-4 form-headings">
-
-
-
-
-
-                <div class="form-group">
-                    <label for="departments" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></label>
+                    <label for="Departments_id" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></label>
                     <?php echo $form['Departments_id']; ?>
                 </div>
+
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
-
                 <div class="input-group form-group">
-                    <label for="creationDate" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_DATE');       ?></label>
+                    <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
                     <div class="col-md-7 no-padding">
-                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control datepicker disabled" datepicker-popup is-open="isOpen.datepicker"
-                               datepicker-options="dateOptions" close-text="<?php // echo $this->getString('ACCOUNTING_CLOSE');       ?>" disabled/>
+
+                        <input type="date" name="date" ng-model="item.entryDate" ng-model-options="{timezone: '+0000'}"
+                               class="form-control datepicker" datepicker-popup is-open="isOpen.datepicker"
+                               datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>"/>
                         <span class="input-group-btn" data-datepickername="date">
-                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)" disabled>
+                            <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -69,14 +55,28 @@
                     <div class="clearfix"></div>
                 </div>
 
-                <div dropzone="dropzoneConfig" class="dropzone">
-                    <p class="text-center">
-                        <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
-                    </p>
+                <div class="form-group">
+                    <label for="vendorsAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
+                    <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
+
+                <div class="form-group">
+                    <label for="subcontractorsAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></label>
+                    <?php echo $form['subcontractorsAutocomplete']; ?>
+                </div>
+
                 <div class="form-group description">
                     <label for="description" class="col-md-5"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                     <?php echo $form['description']; ?>
+                </div>
+            </div>
+
+            <div ng-if="!loading" class="col-md-4 form-headings">
+
+                <div dropzone="dropzoneConfig" class="dropzone">
+                    <p class="text-center">
+                        <?php echo $this->getString('ACCOUNTING_UPLOAD_INVOICE'); ?>
+                    </p>
                 </div>
             </div>
         </div>
@@ -170,9 +170,8 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
-        <button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
-        <a href="../"><button class="btn-default save-purchase-order"><?php echo $this->getString('ACCOUNTING_CANCEL'); ?></button></a>
+        <button class="btn-primary save-purchase-order" ng-click="save()"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
+
     </div>
 </div>
 <form></form>
