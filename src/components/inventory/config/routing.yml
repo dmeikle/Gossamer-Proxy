@@ -265,8 +265,8 @@ admin_inventory_items_autocomplete:
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryItemsController
@@ -495,7 +495,6 @@ admin_warehouse_locations_save:
 
 admin_inventory_list:
     pattern: admin/inventory
-    listeners:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryController

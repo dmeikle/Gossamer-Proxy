@@ -68,7 +68,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr ng-if="!loading" ng-repeat="item in inventoryList"
+                <tr ng-if="!loading" ng-repeat="item in inventoryList" ng-switch="editing[item.id]"
                     ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
                     <td ng-click="selectRow(item)">{{item.name}}</td>
                     <td ng-click="selectRow(item)">{{item.productCode}}</td>
@@ -78,11 +78,26 @@
                     <td ng-click="selectRow(item)">{{item.packageType}}</td>
                     <td ng-click="selectRow(item)">{{item.inventoryType}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryCategories_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.price| currency}}</td>
-                    <td ng-show="vendorSearch" ng-click="selectRow(item)">{{item.vendorPrice| currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.price | currency}}</td>
+                    <td ng-switch-when="true" ng-show="vendorSearch">
+                        <span>
+                            <?php echo $vendorItemListForm['vendorPrice'] ?>
+                        </span>
+                    </td>
+                    <td ng-switch-default ng-show="vendorSearch" ng-click="selectRow(item)">
+                        {{item.vendorPrice | currency}}
+                    </td>
                     <td ng-click="selectRow(item)">{{item.warehouseLocation}}</td>
                     <td class="row-controls">
-                        <div class="dropdown">
+                        <div ng-switch-when="true" class="btn-group-vertical">
+                            <button class="btn-primary" ng-click="saveVendorItem(item)">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </button>
+                            <button class="btn-default" ng-click="discardVendorItem(item)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+                        <div class="dropdown" ng-switch-default>
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
