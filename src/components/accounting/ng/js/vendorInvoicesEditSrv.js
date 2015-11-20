@@ -1,15 +1,44 @@
 // Inventory Modal Service
 module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/invoices/';
+    var apiPath = '/admin/accounting/invoices/details/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
-    //var vendorsAutocompletePath = '/admin/vendors/autocomplete';
+    var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
     var self = this;
+    
+    //Get the vendor invoice
+    this.getVendorInvoice = function (id) {
+        return $http({
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath + id
+        }).then(function (response) {
+            self.vendorInvoice = response.data;
+//            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
+//            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
+//            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
+//            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
+//            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
+//            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+//            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
+//            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
+//            if(self.purchaseOrderItems[0].length !== 0){
+//                for(var i in self.purchaseOrderItems){
+//                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
+//                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
+//                    self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
+//                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
+//                }
+//            }
+            
+        });
+    };
     
     //Claims Autocomplete
     this.fetchClaimsAutocomplete = function (searchObject) {
-        console.log(searchObject);
         return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
             self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
@@ -76,8 +105,6 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         }).then(function(response) {
             self.vendorsAutocompleteValues = [];
             self.vendorKeys = Object.keys(response.data.Vendors[0]);
-            
-            
             for(var i in self.vendorKeys){
                 var obj = {};
                 obj.company = self.vendorKeys[i];
@@ -92,33 +119,27 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         });
     };
     
-    //Get the purchase order
-    this.getPurchaseOrder = function (id) {
+    //Vendor Autocomplete
+    this.fetchSubcontractorsAutocomplete = function(searchObject) {
         return $http({
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: apiPath + id
-        }).then(function (response) {
-            self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
-            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
-            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
-            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
-            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
-            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
-            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
-            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
-            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
-            if(self.purchaseOrderItems[0].length !== 0){
-                for(var i in self.purchaseOrderItems){
-                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
-                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
-                    self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
-                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
-                }
-            }
+            url: subcontractorAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.vendorsAutocompleteValues = [];
+            self.vendorKeys = Object.keys(response.data.Subcontractors[0]);            
             
+//            for(var i in self.vendorKeys){
+//                var obj = {};
+//                obj.company = self.vendorKeys[i];
+//                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
+//                self.vendorsAutocompleteValues.push(obj);
+//            }
+            if (self.vendorsAutocompleteValues.length > 0) {
+                return self.vendorsAutocompleteValues;
+            } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
         });
     };
     

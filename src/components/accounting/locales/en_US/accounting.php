@@ -130,6 +130,7 @@ return array(
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice #',
     'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice Number',
-    'ACCOUNTING_UPLOAD_INVOICE' => 'Upload Invoice (PDF)'
+    'ACCOUNTING_UPLOAD_INVOICE' => 'Upload Invoice (PDF)',
+    'ACCOUNTING_ATTACHED_INVOICE' => 'Attached Invoice'
 );
 

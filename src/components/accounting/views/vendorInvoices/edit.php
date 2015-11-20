@@ -2,8 +2,8 @@
 <div ng-controller="vendorInvoicesEditCtrl">
     <div class="widget" >
         <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-            <h1 ng-if="!editing"><?php echo $this->getString('ACCOUNTING_NEW_INVOICE') ?></h1>
-            <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_INVOICE') ?></h1>
+            <h1 ng-if="!editing"><?php echo $this->getString('ACCOUNTING_NEW_VENDOR_INVOICE') ?></h1>
+            <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_VENDOR_INVOICE') ?></h1>
             <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
             <div ng-if="!loading" class="col-md-4 form-headings">
 
@@ -21,7 +21,7 @@
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
                     <?php echo $form['jobNumber']; ?>
                     <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
-                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')      ?>
+                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')          ?>
                                         </div>-->
                 </div>
 
@@ -78,7 +78,11 @@
                         <?php echo $this->getString('ACCOUNTING_UPLOAD_INVOICE'); ?>
                     </p>
                 </div>
+                <p>
+                    <?php echo $this->getString('ACCOUNTING_ATTACHED_INVOICE'); ?>: {{item.filename}}
+                </p>
             </div>
+
         </div>
         <div class="clearfix"></div>
     </div>

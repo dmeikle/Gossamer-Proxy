@@ -892,7 +892,19 @@ accounting_vendor_invoices_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
-            
+
+accounting_vendor_invoices_details:
+    pattern: admin/accounting/invoices/details/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_details
+        datasource: datasource1
+    methods: [GET]
+
 accounting_vendor_invoices_list:
     pattern: admin/accounting/invoices/*/*
     defaults:

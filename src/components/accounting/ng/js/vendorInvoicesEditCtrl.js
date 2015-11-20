@@ -18,30 +18,30 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     var numRows = $scope.itemsPerPage;
     
     var apiPath = '/admin/accounting/invoices/';
-    getItems();
     var path = $location.absUrl();    
     var id = path.substring(path.lastIndexOf("/")+1);
+    getItems();
    
     function getItems(){
         if(id > 0){
             $scope.editing = true;
-            vendorInvoicesEditSrv.getPurchaseOrder(id).then(function () {
-                vendorInvoicesEditSrv.purchaseOrder.entryDate = new Date(vendorInvoicesEditSrv.purchaseOrder.entryDate);
-                $scope.item = vendorInvoicesEditSrv.purchaseOrder;
-                $scope.item.company = vendorInvoicesEditSrv.Vendor;
-                $scope.vendorLocations = vendorInvoicesEditSrv.VendorLocations;
-                $scope.item.vendorLocation = vendorInvoicesEditSrv.purchaseOrder.VendorLocations_id;
-                $scope.lineItems = vendorInvoicesEditSrv.purchaseOrderItems;
-                if($scope.lineItems[0].length === 0){
-                    $scope.lineItems = [];
-                    $scope.lineItems.push(new LineItems());
-                }
+            vendorInvoicesEditSrv.getVendorInvoice(id).then(function () {
+                vendorInvoicesEditSrv.vendorInvoice.entryDate = new Date(vendorInvoicesEditSrv.vendorInvoice.entryDate);
+                $scope.item = vendorInvoicesEditSrv.vendorInvoice;
+//                $scope.item.company = vendorInvoicesEditSrv.Vendor;
+//                $scope.vendorLocations = vendorInvoicesEditSrv.VendorLocations;
+//                $scope.item.vendorLocation = vendorInvoicesEditSrv.purchaseOrder.VendorLocations_id;
+//                $scope.lineItems = vendorInvoicesEditSrv.purchaseOrderItems;
+//                if($scope.lineItems[0].length === 0){
+//                    $scope.lineItems = [];
+//                    $scope.lineItems.push(new LineItems());
+//                }
 
                 $scope.loading = false;
-                $scope.item.taxTypes = [];
-                if(vendorInvoicesEditSrv.purchaseOrderNotes[0].length !== 0){
-                    notesSrv.notes = notesSrv.getNotes(vendorInvoicesEditSrv.purchaseOrderNotes);
-                }
+//                $scope.item.taxTypes = [];
+//                if(vendorInvoicesEditSrv.purchaseOrderNotes[0].length !== 0){
+//                    notesSrv.notes = notesSrv.getNotes(vendorInvoicesEditSrv.purchaseOrderNotes);
+//                }
             });
         } else {
             $scope.editing = false;
@@ -81,59 +81,65 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         }
     };
     
-//    $scope.lineItems.push(new LineItems());
-//    
-//    //Table Controls
-//    $scope.addRow = function(){
-//        $scope.lineItems.push(new LineItems());        
-//    };
-//    
-//    $scope.insertRows = function () {
-//        for(var i = $scope.lineItems.length-1; i >= 0; i--){
-//            if ($scope.lineItems[i].isSelected === true) {
-//                $scope.lineItems.splice(parseInt(i) + 1, 0, new LineItems());
-//            }
-//        }
-//    };
-//
-//    //Remove Rows from timesheet
-//    $scope.removeRows = function () {
-//        for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
-//            if ($scope.lineItems[i].isSelected === true) {
-//                $scope.lineItems.splice(parseInt(i), 1);
-//            }
-//        }
-//    };
-//    
+    $scope.lineItems.push(new LineItems());
+    
+    //Table Controls
+    $scope.addRow = function(){
+        $scope.lineItems.push(new LineItems());        
+    };
+    
+    $scope.insertRows = function () {
+        for(var i = $scope.lineItems.length-1; i >= 0; i--){
+            if ($scope.lineItems[i].isSelected === true) {
+                $scope.lineItems.splice(parseInt(i) + 1, 0, new LineItems());
+            }
+        }
+    };
+
+    //Remove Rows from timesheet
+    $scope.removeRows = function () {
+        for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
+            if ($scope.lineItems[i].isSelected === true) {
+                $scope.lineItems.splice(parseInt(i), 1);
+            }
+        }
+    };
+    
     //Claims Autocomplete
     $scope.fetchClaimAutocomplete = function (viewVal) {
         var searchObject = {};
         searchObject.jobNumber = viewVal;
         return vendorInvoicesEditSrv.fetchClaimsAutocomplete(searchObject);
     };
-//    
-//    //Product Code Typeahead
-//    $scope.fetchProductCodeAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.productCode = viewVal;
-//        searchObject.Vendors_id = $scope.item.Vendors_id;
-//        return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
-//    };
-//    
-//    //Product Name Typeahead
-//    $scope.fetchProductNameAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.name = viewVal;
-//        searchObject.Vendors_id = $scope.item.Vendors_id;
-//        return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
-//    };
-//    
-//    $scope.fetchVendorsAutocomplete = function(viewVal) {
-//        var searchObject = {};
-//        searchObject.company = viewVal;
-//        return vendorInvoicesEditSrv.fetchVendorsAutocomplete(searchObject);
-//    };
-//    
+    
+    //Product Code Typeahead
+    $scope.fetchProductCodeAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.productCode = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
+        return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
+    };
+    
+    //Product Name Typeahead
+    $scope.fetchProductNameAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        searchObject.Vendors_id = $scope.item.Vendors_id;
+        return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
+    };
+    
+    $scope.fetchVendorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.company = viewVal;
+        return vendorInvoicesEditSrv.fetchVendorsAutocomplete(searchObject);
+    };
+    
+    $scope.fetchSubcontractorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.subcontractor = viewVal;
+        return vendorInvoicesEditSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
 //    $scope.getVendorLocations = function(vendor){
 //        $scope.vendorLocations = vendor.locations;
 //    };
@@ -165,28 +171,28 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 //        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
 //        $scope.updateAmount(row);
 //    };    
-//    
-//    //Check selected
-//    $scope.checkSelected = function () {
-//        $scope.rowSelected = false;
-//        for (var index in $scope.lineItems) {
-//            if ($scope.lineItems[index].isSelected === true) {
-//                $scope.rowSelected = true;
-//            }
-//        }
-//    };
-//
-//    //Select All
-//    $scope.selectAllToggle = function (value) {
-//        for (var i in $scope.lineItems) {
-//            if (value === true) {
-//                $scope.lineItems[i].isSelected = true;
-//            } else {
-//                $scope.lineItems[i].isSelected = false;
-//            }
-//        }
-//        $scope.checkSelected();
-//    };
+    
+    //Check selected
+    $scope.checkSelected = function () {
+        $scope.rowSelected = false;
+        for (var index in $scope.lineItems) {
+            if ($scope.lineItems[index].isSelected === true) {
+                $scope.rowSelected = true;
+            }
+        }
+    };
+
+    //Select All
+    $scope.selectAllToggle = function (value) {
+        for (var i in $scope.lineItems) {
+            if (value === true) {
+                $scope.lineItems[i].isSelected = true;
+            } else {
+                $scope.lineItems[i].isSelected = false;
+            }
+        }
+        $scope.checkSelected();
+    };
 //    
 //    //Update totals
 //    $scope.updateAmount = function(row){
