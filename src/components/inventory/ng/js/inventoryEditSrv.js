@@ -61,7 +61,7 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
             }
         }
 
-        return crudSrv.save(object, vendorObjectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, vendorObjectType, formToken);
     };
 
     this.delete = function (object, formToken) {

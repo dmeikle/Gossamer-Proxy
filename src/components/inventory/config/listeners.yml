@@ -59,3 +59,23 @@ admin_inventory_equipment_edit:
                 - { dependency: InventoryCategorys, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: AccountingTaxTypes, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: Warehouses, key: warehouses, value: id, text: number }                
+
+
+
+admin_inventory_list:
+    listeners:
+        - { 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\VendorItemModel', params: {'type': 'query' }, 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
+
+        # build the form
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\VendorItemListBuilder'
+            model: 'components\inventory\models\VendorItemModel'
+            cacheKey: 'VendorItemListForm'
+            formName: 'vendorItemListForm'
+            dependencies:
+                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
+                - { dependency: 'components\inventory\models\VendorItemModel', model: VendorItem }

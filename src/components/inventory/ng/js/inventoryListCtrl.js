@@ -1,5 +1,5 @@
 
-module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
+module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
     inventoryListSrv, inventoryEditSrv, inventoryTransferSrv) {
 
     // Stuff to run on controller load
@@ -13,6 +13,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
     $scope.previouslyClickedObject = {};
+    $scope.editing = {};
     $scope.listType = 'materials';
     $scope.inventoryListSrv = inventoryListSrv;
     //used for displaying vendor prices in list
@@ -60,25 +61,27 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
 
     $scope.editVendorItem = function (item) {
-        $modal.open({
-            templateUrl: '/render/inventory/vendorItemModal?id=' + item.VendorItems_id,
-            controller: 'inventoryVendorItemModalCtrl',
-            size: 'lg',
-            keyboard: false,
-            backdrop: 'static',
-            resolve: {
-                item: function () {
-                    return item;
-                },
-                vendor: function() {
-                    return $scope.currentSearchParams;
-                }
-            }
-                    
-        });
-       
-        $scope.search($scope.currentSearchParams);
-        
+        if ($scope.editing && $scope.editing[item.id]) {
+            delete $scope.editing[item.id];
+        } else {
+            $scope.oldItem = angular.copy($scope.editing[item.id]);
+            $scope.editing[item.id] = true;
+        }
+    };
+
+    $scope.saveVendorItem = function(item) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var copiedItem = angular.copy(item);
+        copiedItem.Vendors_id = $scope.advancedSearch.query.Vendors_id;
+        copiedItem.id = copiedItem.VendorItems_id;
+        copiedItem.price = copiedItem.vendorPrice;
+        $scope.editVendorItem(item);
+        inventoryEditSrv.saveVendorItem(copiedItem, formToken);
+    };
+
+    $scope.discardVendorItem = function(item) {
+        item = $scope.oldItem;
+        $scope.editVendorItem(item);
     };
     
     var getMaterialsList = function () {
@@ -170,6 +173,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = {};
+        $scope.vendorSearch = false;
 
         $scope.getList();
     };
@@ -179,16 +183,11 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
         $scope.selectedStaff = undefined;
 
         $scope.searching = true;
-        $scope.sidePanelLoading = true;
-        
-        inventoryListSrv.getAdvancedSearchFilters().then(function() {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
     };
 
     $scope.resetAdvancedSearch = function() {
         $scope.advancedSearch.query = {};
+        $scope.vendorSearch = false;
         $scope.getList();
     };
 
@@ -197,7 +196,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
     };
 
     var openTransferModal = function() {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/inventory/transferModal',
             controller: 'transferModalController',
             size: 'md',
@@ -239,7 +238,7 @@ module.controller('inventoryListCtrl', function($scope, $modal, tablesSrv,
 
 });
 
-module.controller('transferModalController', function($scope, $modalInstance,
+module.controller('transferModalController', function($scope, $uibModalInstance,
     inventoryTransferSrv, multiSelectArray, wizardSrv) {
     $scope.transfer = {};
     $scope.loading = true;
@@ -285,17 +284,17 @@ module.controller('transferModalController', function($scope, $modalInstance,
             }
         }
         data.FORM_SECURITY_TOKEN = formToken;
-        $modalInstance.close(data);
+        $uibModalInstance.close(data);
     };
 
     $scope.close = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
 });
 
 
-module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $scope, claimsEditSrv) {
+module.controller('inventoryVendorItemModalCtrl', function ($uibModalInstance, $scope, inventoryeditSrv) {
     
     $scope.item = {};
     $scope.item.InventoryItems_id = item.InventoryItems_id;
@@ -303,18 +302,18 @@ module.controller('inventoryVendorItemModalCtrl', function ($modalInstance, $sco
     
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
+        return inventoryeditSrv.saveVendorItem($scope.claim.query, formToken, $scope.currentPage + 1);
     };
 
 
     $scope.submit = function (item) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         inventoryEditSrv.saveVendorItem(item, formToken);
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.close = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });
 
