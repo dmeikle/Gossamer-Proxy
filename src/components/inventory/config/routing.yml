@@ -382,6 +382,17 @@ admin_inventory_items_edit:
 
 
 
+amdin_vendoritems_list_by_item:
+    pattern: admin/inventory/vendoritems/*/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VendorItemsController
+        model: components\inventory\models\VendorItemModel
+        method: listbyItem
+        view: core\views\JSONView
+        viewKey: amdin_vendoritems_list_by_item
+        datasource: datasource1
+    methods: [GET]
 
 admin_inventory_items_save:
     pattern: admin/inventory/items/*
@@ -654,3 +665,4 @@ admin_inventory_vendorprices_save:
         viewKey: admin_inventory_vendorprices_save
         datasource: datasource1
     methods: [POST] 
+     

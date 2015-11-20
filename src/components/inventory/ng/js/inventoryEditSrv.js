@@ -12,6 +12,10 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         return crudSrv.getDetails(apiPath, object.id);
     };
 
+    this.loadVendorPrices = function(id, row, numRows) {
+        return crudSrv.getList(vendorApiPath + id + '/', row, numRows);
+    };
+
     this.save = function(object, formToken) {
         var requestPath;
         if (!object.id || object.id === '') {
@@ -63,6 +67,11 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
     this.delete = function (object, formToken) {
 
         return crudSrv.delete(apiPath + 'remove/', object, formToken);
+    };
+
+    this.deleteVendorPrice = function (object, formToken) {
+
+        return crudSrv.delete(vendorApiPath + 'remove/', object, formToken);
     };
     
     this.fetchVendorsAutocomplete = function (searchObject) {

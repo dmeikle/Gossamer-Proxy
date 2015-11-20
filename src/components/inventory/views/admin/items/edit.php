@@ -95,7 +95,10 @@
                             <tr><td colspan="5" style="background-color: #059ADE"></td></tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><?php echo $this->getString('INVENTORY_VENDOR'); ?></td>
+                                <td>
+                                    <?php echo $this->getString('INVENTORY_VENDOR'); ?>
+                                    <?php echo $vendorForm['id']; ?>
+                                </td>
                                 <td><?php echo $this->getString('INVENTORY_PRODUCTCODE'); ?></td>
                                 <td><?php echo $this->getString('INVENTORY_PRICE'); ?></td>
                                 <td><?php echo $this->getString('INVENTORY_PREFERRED'); ?></td>
@@ -125,8 +128,17 @@
                     </div>
 
                 </div>
-                <button class="btn-primary save-purchase-order" ng-click="saveLineItems()"><?php echo $this->getString('INVENTORY_SAVE'); ?></button>
-                <a href="../"><button class="btn-default save-purchase-order"><?php echo $this->getString('INVENTORY_CANCEL'); ?></button></a>
+                <div class="widgetfooter clearfix">
+                    <div class="pull-right btn-group">
+                        <a href="/admin/inventory" class="btn btn-default">
+                            <?php echo $this->getString('CANCEL') ?>
+                        </a>
+                        <button class="btn-primary" ng-click="saveLineItems()">
+                            <?php echo $this->getString('SAVE') ?>
+                        </button>
+                    </div>
+                </div>
+
             </div>
             <div class="clearfix"></div>
         </div>

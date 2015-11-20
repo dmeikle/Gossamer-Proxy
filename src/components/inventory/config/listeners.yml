@@ -1,6 +1,7 @@
 admin_inventory_items_edit:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       # - { 'class': 'components\inventory\models\VendorItemModel', 'event': 'request_start', 'listener': 'components\inventory\listeners\ListVendorItemPricesListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryCategoryModel', 'cacheKey': 'InventoryCategorys' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
