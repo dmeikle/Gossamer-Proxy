@@ -6,7 +6,6 @@
             <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_VENDOR_INVOICE') ?></h1>
             <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
             <div ng-if="!loading" class="col-md-4 form-headings">
-
                 <div class="form-group">
                     <label for="purchaseOrdersAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER'); ?></label>
                     <?php echo $form['purchaseOrdersAutocomplete']; ?>
@@ -21,7 +20,7 @@
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
                     <?php echo $form['jobNumber']; ?>
                     <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
-                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')          ?>
+                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')                      ?>
                                         </div>-->
                 </div>
 
@@ -136,15 +135,6 @@
         <div class="clearfix"></div>
     </div>
 
-    <div ng-if="!loading && editing" class="col-md-10 purchase-order-notes">
-        <div class="widget">
-            <div class="widget-content">
-                <notes api-path="/admin/accounting/purchaseordernotes/" parent-item-id="{{item.id}}" parent-item-name="PurchaseOrders_id" item-name="PurchaseOrderNote"></notes>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
     <div ng-if="loading" class="col-md-2 form-totals col-md-offset-10">
         <div class="widget">
             <div class="widget-content">
@@ -153,9 +143,9 @@
             <div class="clearfix"></div>
         </div>
     </div>
-    <div ng-if="!loading" class="col-md-2 form-totals" ng-class="{'col-md-offset-10':!editing || loading}">
+    <div ng-if="!loading" class="col-md-2 form-totals col-md-offset-10">
 
-        <div class="widget pull-right ">
+        <div class="widget">
             <div class="widget-content">
                 <div class="form-group">
                     <label for="subtotal" class="col-md-6"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></label>

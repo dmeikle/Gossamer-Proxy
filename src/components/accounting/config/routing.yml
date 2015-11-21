@@ -955,7 +955,7 @@ accounting_vendor_invoices_edit:
 
 
 accounting_vendor_invoices_save:
-    pattern: admin/accounting/invoices/*
+    pattern: admin/accounting/invoices/details/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController

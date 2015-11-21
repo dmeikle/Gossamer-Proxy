@@ -3,8 +3,10 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/invoices/details/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
+    var vendorItemsAutocompletePath = '/admin/vendors/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
+    var detailsPath = '&action=details';
     var self = this;
     
     //Get the vendor invoice
@@ -40,13 +42,7 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
     //Claims Autocomplete
     this.fetchClaimsAutocomplete = function (searchObject) {
         return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
-            self.autocomplete = searchSrv.autocomplete.Claims;
-            self.autocompleteValues = [];
-            for (var item in self.autocomplete) {
-                if (!isNaN(item / 1)) {
-                    self.autocompleteValues.push(self.autocomplete[item].jobNumber);
-                }
-            }
+            self.autocompleteValues = searchSrv.autocomplete.Claims;
             if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
                 return self.autocompleteValues;
             } else if (self.autocompleteValues[0] === 'undefined undefined') {
@@ -59,7 +55,7 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
     this.fetchProductCodeAutocomplete = function (searchObject) {
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
             self.productCodeAutocompleteValues = [];
@@ -79,15 +75,12 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         //config.name = searchObject.name;
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
             self.materialsAutocompleteValues = [];
             self.materialsAutocomplete = response.data.InventoryItems;
             self.materialsAutocompleteValues = response.data.InventoryItems;
-//            for (var i in response.data.InventoryItems) {
-//                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
-//            }
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
             } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
@@ -98,19 +91,21 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
     
     //Vendor Autocomplete
     this.fetchVendorsAutocomplete = function(searchObject) {
+        var config = searchObject;
+        //config.action = 'detailed';
         return $http({
             method: 'GET',
             url: vendorsAutocompletePath,
-            params: searchObject
+            params: config
         }).then(function(response) {
-            self.vendorsAutocompleteValues = [];
-            self.vendorKeys = Object.keys(response.data.Vendors[0]);
-            for(var i in self.vendorKeys){
-                var obj = {};
-                obj.company = self.vendorKeys[i];
-                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
-                self.vendorsAutocompleteValues.push(obj);
-            }
+            self.vendorsAutocompleteValues = response.data.Vendors;
+            //self.vendorKeys = Object.keys(response.data.Vendors[0]);
+//            for(var i in self.vendorKeys){
+//                var obj = {};
+//                obj.company = self.vendorKeys[i];
+//                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
+//                self.vendorsAutocompleteValues.push(obj);
+//            }
             if (self.vendorsAutocompleteValues.length > 0) {
                 return self.vendorsAutocompleteValues;
             } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
@@ -126,18 +121,10 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             url: subcontractorAutocompletePath,
             params: searchObject
         }).then(function(response) {
-            self.vendorsAutocompleteValues = [];
-            self.vendorKeys = Object.keys(response.data.Subcontractors[0]);            
-            
-//            for(var i in self.vendorKeys){
-//                var obj = {};
-//                obj.company = self.vendorKeys[i];
-//                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
-//                self.vendorsAutocompleteValues.push(obj);
-//            }
-            if (self.vendorsAutocompleteValues.length > 0) {
-                return self.vendorsAutocompleteValues;
-            } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+            self.subcontractorsAutocompleteValues = response.data.Subcontractors;
+            if (self.subcontractorsAutocompleteValues.length > 0) {
+                return self.subcontractorsAutocompleteValues;
+            } else if (self.subcontractorsAutocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
         });

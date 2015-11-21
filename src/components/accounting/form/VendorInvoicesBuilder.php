@@ -28,15 +28,15 @@ class VendorInvoicesBuilder extends AbstractBuilder {
         }
         //
         $builder->add('invoiceNumber', 'text', array('class' => 'form-control col-md-7', 'ng-model' => 'item.invoiceNumber'))
-                ->add('jobNumber', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value for value in fetchClaimAutocomplete($viewValue)',
+                ->add('jobNumber', 'text', array('ng-model' => 'item.claim', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-7',
-                    'typeahead-min-length' => '2', 'ng-blur' => 'getClaimsID(item.jobNumber)', 'autocomplete' => 'off'))
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(item.claim)', 'autocomplete' => 'off'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
-                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
+                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => "value as value.company + ' ' + value.city for value in fetchVendorsAutocomplete(\$viewValue)",
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
-                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorLocations(item.company);'))
-                ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.subcontractor for value in fetchSubcontractorsAutocomplete($viewValue)',
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorsID(item.company);'))
+                ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsSubcontractors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.subcontractor);'))
                 ->add('purchaseOrdersAutocomplete', 'text', array('ng-model' => 'item.purchaseOrder', 'uib-typeahead' => 'value as value.subcontractor for value in fetchPurchaseOrdersAutocomplete($viewValue)',

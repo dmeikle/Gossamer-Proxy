@@ -3,6 +3,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
+    var vendorItemsAutocompletePath = '/admin/vendors/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var self = this;
     
@@ -28,7 +29,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     this.fetchProductCodeAutocomplete = function (searchObject) {
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
             self.productCodeAutocompleteValues = [];
@@ -48,7 +49,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         //config.name = searchObject.name;
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
             self.materialsAutocompleteValues = [];
