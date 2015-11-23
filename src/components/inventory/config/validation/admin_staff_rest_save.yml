@@ -1,0 +1,89 @@
+
+
+failkey: admin_staff_edit
+fields:
+
+    - firstname:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: String
+            failkey: VALIDATION_INVALID_FIRSTNAME
+            params:
+                - maxlength: 50 
+
+    - lastname:
+        - 
+            class: Required     
+            failkey: VALIDATION_REQUIRED_FIELD
+        -
+            class: String
+            failkey: VALIDATION_INVALID_LASTNAME
+            params:
+                - maxlength: 50 
+#
+#    - personalEmail:
+#        - 
+#            class: Required     
+#            failkey: VALIDATION_REQUIRED_FIELD
+#        -
+#            class: Email
+#            failkey: VALIDATION_INVALID_EMAIL
+#            params:
+#                - maxlength: 50 
+#
+#    - telephone:
+#        - 
+#            class: Required     
+#            failkey: VALIDATION_REQUIRED_FIELD
+#        -
+#            class: Telephone
+#            failkey: VALIDATION_INVALID_TELEPHONE
+#            params:
+#                - maxlength: 50 
+#
+#    - address1:
+#        - 
+#            class: Required     
+#            failkey: VALIDATION_REQUIRED_FIELD
+#        -
+#            class: Address
+#            failkey: VALIDATION_INVALID_ADDRESS
+#            params:
+#                - maxlength: 50 
+#
+#    - address2:
+#        -
+#            class: Address
+#            failkey: VALIDATION_INVALID_ADDRESS
+#            params:
+#                - maxlength: 50 
+#
+#    - city:
+#        - 
+#            class: Required     
+#            failkey: VALIDATION_REQUIRED_FIELD
+#        -
+#            class: String
+#            failkey: VALIDATION_INVALID_CITY
+#            params:
+#                - maxlength: 50 
+#
+#    - Provinces_id:
+#        - 
+#            class: Required     
+#            failkey: VALIDATION_REQUIRED_FIELD
+#        -
+#            class: Integer
+#            failkey: VALIDATION_INVALID_PROVINCE
+#            params:
+#                - maxlength: 50 
+#
+#    - postalCode:
+#        -
+#            class: Address
+#            failkey: VALIDATION_INVALID_POSTAL_CODE
+#            params:
+#                - maxlength: 50 
+#       
