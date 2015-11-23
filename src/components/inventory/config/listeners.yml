@@ -63,3 +63,11 @@ admin_inventory_equipment_edit:
 admin_inventory_items_save:  
     listeners:
         - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }       
+        
+admin_inventory_vendorprices_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }     
+
+admin_inventory_vendoritems_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }             
