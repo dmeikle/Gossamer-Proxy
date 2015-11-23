@@ -131,6 +131,9 @@ return array(
     'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice Number',
     'ACCOUNTING_UPLOAD_INVOICE' => 'Upload Invoice (PDF)',
-    'ACCOUNTING_ATTACHED_INVOICE' => 'Attached Invoice'
+    'ACCOUNTING_ATTACHED_INVOICE' => 'Attached Invoice',
+    'ACCOUNTING_STAFF_NAME' => 'Staff Name',
+    'ACCOUNTING_UNASSOCIATE_ITEMS' => 'Unassociate Items',
+    'ACCOUNTING_UNASSOCIATED_WARNING' => 'This invoice will be unassociated, inventory will not be tracked.',
 );
 

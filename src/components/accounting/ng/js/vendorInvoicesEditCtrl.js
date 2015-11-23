@@ -112,18 +112,22 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     //Product Code Typeahead
     $scope.fetchProductCodeAutocomplete = function (viewVal) {
-        var searchObject = {};
-        searchObject.productCode = viewVal;
-        searchObject.Vendors_id = $scope.item.Vendors_id;
-        return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
+        if($scope.unassociated === false){ 
+            var searchObject = {};
+            searchObject.productCode = viewVal;
+            searchObject.Vendors_id = $scope.item.Vendors_id;
+            return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
+        }
     };
     
     //Product Name Typeahead
     $scope.fetchProductNameAutocomplete = function (viewVal) {
-        var searchObject = {};
-        searchObject.name = viewVal;
-        searchObject.Vendors_id = $scope.item.Vendors_id;
-        return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
+        if($scope.unassociated === false){            
+            var searchObject = {};
+            searchObject.name = viewVal;
+            searchObject.Vendors_id = $scope.item.Vendors_id;
+            return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
+        }
     };
     
     $scope.fetchVendorsAutocomplete = function(viewVal) {
@@ -136,6 +140,13 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         var searchObject = {};
         searchObject.company = viewVal;
         return vendorInvoicesEditSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
+    //Staff Typeahead
+    $scope.fetchStaffAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return vendorInvoicesEditSrv.fetchStaffAutocomplete(searchObject);
     };
     
 //    $scope.getVendorLocations = function(vendor){
@@ -161,6 +172,10 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         $scope.item.Subcontractors_id = subcontractor.id;
     };
 
+    $scope.getStaffID = function(row, staff){
+        row.Staff_id = staff.Staff_id;
+    };
+    
     //Get Vendor items info
     $scope.getProductInfo = function (row, value, index) {
         value.unitPrice = parseFloat(value.unitPrice);
@@ -216,8 +231,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
             } else {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
-        }
-        
+        }        
         $scope.updateTotal();
     };
     
@@ -296,9 +310,9 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var VendorInvoice = angular.copy($scope.item);
-        var VendorInvoiceItems = angular.copy($scope.lineItems);
+        var VendorInvoiceItem = angular.copy($scope.lineItems);
         VendorInvoice.entryDate = $filter('date')(VendorInvoice.entryDate, 'yyyy-MM-dd', '+0000');
-        vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItems, formToken).then(function(){
+        vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItem, formToken).then(function(){
             //$window.location.href = apiPath + '0';
         });
     };

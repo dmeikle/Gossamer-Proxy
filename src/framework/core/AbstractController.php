@@ -486,7 +486,7 @@ class AbstractController {
      *
      * @throws IOException On any directory creation failure
      */
-    public function mkdir($dirs, $mode = 0777) {
+    protected function mkdir($dirs, $mode = 0777) {
         foreach ($this->toIterator($dirs) as $dir) {
             if (is_dir($dir)) {
                 continue;
