@@ -103,4 +103,25 @@ class Serializer {
         return $output;
     }
 
+    /**
+     *
+     *
+     *
+     * @param array $result
+     * @param \core\serialization\AbstractModel $model
+     *
+     * @return array
+     *
+     */
+    public function formatEntityIds(array &$result, \Gossamer\CMS\Forms\FormBuilderInterface $model) {
+        $retval = array();
+
+        foreach ($result as $row) {
+            $row['id'] = $row[$model->getFormWrapper() . 's_id'];
+            $retval[] = $row;
+        }
+
+        $result = $retval;
+    }
+
 }
