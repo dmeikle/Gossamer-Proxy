@@ -2,18 +2,34 @@ module.service('toastsSrv', function () {
 
     var self = this;
 
-    this.alerts = {};
+    this.alerts = [];
 
-    this.newAlert = function (alert) { //Expects {domNodeId: <value>, message: <value>, type: <error, info, warning, success>}
-        if (!self.alerts[alert.domNodeId]) {
-            self.alerts[alert.domNodeId] = [];
-        }
-        if (alert.hasOwnProperty('domNodeId') && alert.hasOwnProperty('message') && alert.hasOwnProperty('type')) {
-            self.alerts[alert.domNodeId].push(alert);
+    this.newAlert = function (response) { 
+    //Expects 
+    // { formItemType : { 
+    //         fieldName : 'Error string',
+    //         fieldName_value : 'value from input field'
+    //    }
+    // }
+
+        var formItems = response.data;
+        for (var item in formItems) {
+            for (var property in formItems[item]) {
+                if (formItems[item].hasOwnProperty(property) && 
+                typeof formItems[item] === 'object' &&
+                property.substr(property.length - 6) !== '_value' && 
+                property !== 'FAIL_KEY') {
+                    self.alerts.push({
+                        'field': property, 
+                        'message': formItems[item][property],
+                        'type': response.result
+                    });
+                }
+            }
         }
     };
 
-    this.dismissAlert = function (alert) {
-        self.alerts[alert.domNodeId].splice(self.alerts[alert.domNodeId].indexOf(alert), 1);
+    this.dismissAlert = function (index) {
+        self.alerts.splice(index, 1);
     };
 });

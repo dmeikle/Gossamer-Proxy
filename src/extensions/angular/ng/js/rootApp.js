@@ -7,4 +7,15 @@ module.config(function ($httpProvider) {
         }
         return $.param(data);
     };
+
+    $httpProvider.interceptors.push(function(toastsSrv) {
+    	return {
+    		'response': function(response) {
+    			if (response && response.data.result === 'error') {
+    				toastsSrv.newAlert(response.data);
+    			}
+    			return response;
+    		}
+    	};
+    });
 });

@@ -1,7 +1,7 @@
 
 #failkey: admin_login_reset
 #admin_staff_edit
-                
+
 fields:
     - description:
         - 
@@ -12,7 +12,7 @@ fields:
             failkey: VALIDATION_INVALID_DESCRIPTION
             params:
                 - maxlength: 200 
-                
+
     - name:
         - 
             class: Required     
@@ -22,7 +22,7 @@ fields:
             failkey: VALIDATION_INVALID_NAME
             params:
                 - maxlength: 200 
-                
+
     - productCode:
         - 
             class: Required     
@@ -32,7 +32,7 @@ fields:
             failkey: VALIDATION_INVALID_PRODUCT_CODE
             params:
                 - maxlength: 200 
-                
+
     - price:
         - 
             class: Required     
@@ -40,6 +40,3 @@ fields:
         -
             class: Currency
             failkey: VALIDATION_INVALID_PRICE
-        
-
-                
