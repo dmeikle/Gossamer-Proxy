@@ -33,10 +33,30 @@ class ValidateNestedAjaxFormListener extends ValidateFormListener {
         $result = $this->validator->validateRequest($this->httpRequest->getPost(), true);
 
         if (is_array($result) && count($result) > 0) {
+
+            $this->formatStrings($result);
+
             $this->httpRequest->setAttribute('AJAX_ERROR_RESULT', $result);
 
             throw new ValidationFailedException();
         }
+    }
+
+    protected function formatStrings(array &$result) {
+        $retval = array();
+
+
+        foreach ($result as $key => $details) {
+            foreach ($details as $fieldName => $value) {
+                if (strpos($fieldName, '_value') === false) {
+                    $retval[$key][$fieldName] = $this->httpRequest->getAttribute('langFiles')->getString($value);
+                } else {
+                    $retval[$key][$fieldName] = $value;
+                }
+            }
+        }
+
+        $result = $retval;
     }
 
 }

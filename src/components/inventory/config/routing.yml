@@ -404,8 +404,8 @@ admin_inventory_items_save:
         view: core\views\JSONView
         viewKey: admin_inventory_items_save
         datasource: datasource1
-        langFiles:
-            - 'src/components/defaultItem/locales/*/Navigation'
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST]
 
 
@@ -648,7 +648,7 @@ admin_inventory_vendoritems_save:
         viewKey: admin_inventory_vendoritems_save
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
+            - 'src/components/inventory/locales/*/Validation'  
     methods: [POST] 
 
 
@@ -663,5 +663,7 @@ admin_inventory_vendorprices_save:
         view: core\views\JSONView
         viewKey: admin_inventory_vendorprices_save
         datasource: datasource1
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST] 
      

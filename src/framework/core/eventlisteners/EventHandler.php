@@ -136,9 +136,14 @@ class EventHandler {
                 $eventListener->setConfig($listener);
                 // echo "execute " . get_class($eventListener) . "\r\n";
                 $eventListener->execute($this->state, $this->params);
+            } elseif ($this->state == $listener['event']) {
+                //     echo ($listenerClass . ' handler not callable ' . 'on_' . $this->state . "\r\n");
+            } elseif (file_exists($listenerClass)) {
+                //    echo "$listenerClass found but not callable on this event\r\n";
             } else {
+                //   pr(is_callable($handler));
                 $this->logger->addError($listenerClass . ' not found by EventHandler::notifyListeners');
-                // echo "unable call $listenerClass " . $this->state ."\r\n";
+                //   echo "unable call $listenerClass " . $this->state . "\r\n";
             }
         }
     }
