@@ -20,7 +20,7 @@
                     <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
                     <?php echo $form['jobNumber']; ?>
                     <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
-                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')                                ?>
+                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')                                   ?>
                                         </div>-->
                 </div>
 
@@ -97,12 +97,12 @@
                 <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
                 <button class="btn-warning" ng-click="removeRows();
                             updateSubtotal()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS'); ?></button>
-                <p><?php echo $this->getString('ACCOUNTING_UNASSOCIATE_ITEMS'); ?><input class="checkbox" type="checkbox" ng-model="unassociated"></p>
+                <!--<p><?php // echo $this->getString('ACCOUNTING_UNASSOCIATE_ITEMS');   ?><input class="checkbox" type="checkbox" ng-model="unassociated"></p>-->
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
-                            <th><?php echo $this->getString('ACCOUNTING_STAFF_NAME'); ?></th>
+                            <!--<th><?php // echo $this->getString('ACCOUNTING_STAFF_NAME');   ?></th>-->
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
@@ -117,7 +117,6 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td>
                                 <span class="spinner-loader"></span>
                             </td>
@@ -128,7 +127,7 @@
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
-                            <td><?php echo $form['staffName']; ?></td>
+                            <!--<td><?php // echo $form['staffName'];  ?></td>-->
                             <td><?php echo $form['productCode']; ?></td>
                             <td><?php echo $form['productName']; ?></td>
                             <td><?php echo $form['productDescription']; ?></td>
@@ -137,9 +136,9 @@
                             <td><?php echo $form['taxType']; ?></td>
                             <td class="total">{{row.amount| currency}}</td>
                         </tr>
-                        <tr ng-if="unassociated">
-                            <td colspan="9" class="alert-warning"><?php echo $this->getString('ACCOUNTING_UNASSOCIATED_WARNING'); ?></td>
-                        </tr>
+<!--                        <tr ng-if="unassociated">
+                            <td colspan="9" class="alert-warning"><?php // echo $this->getString('ACCOUNTING_UNASSOCIATED_WARNING');   ?></td>
+                        </tr>-->
                     </tbody>
                 </table>
             </div>

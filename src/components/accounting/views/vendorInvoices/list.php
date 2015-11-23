@@ -1,6 +1,6 @@
 <div class="widget" ng-controller="vendorInvoicesCtrl">
     <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
-        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_VENDOR_INVOICES') ?></h1>
+        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_PAYABLES_INVOICES') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_DB_ERROR') ?></div>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
@@ -69,10 +69,10 @@
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.subcontractor}}</td>
                     <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.company}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.paymentMethod}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.date}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.entryDate}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.description}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.subtotal}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.subtotal| currency}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>

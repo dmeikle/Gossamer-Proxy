@@ -66,7 +66,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     $scope.dropzoneConfig = {
         'options': {// passed into the Dropzone constructor
-            'url': '/admin/accounting/invoices/upload/' + id,
+            'url': '/admin/accounting/payablesinvoices/upload/' + id,
             'uploadMultiple': false,
             'dictDefaultMessage': ''
         },
@@ -112,22 +112,18 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     //Product Code Typeahead
     $scope.fetchProductCodeAutocomplete = function (viewVal) {
-        if($scope.unassociated === false){ 
             var searchObject = {};
             searchObject.productCode = viewVal;
             searchObject.Vendors_id = $scope.item.Vendors_id;
             return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
-        }
     };
     
     //Product Name Typeahead
     $scope.fetchProductNameAutocomplete = function (viewVal) {
-        if($scope.unassociated === false){            
             var searchObject = {};
             searchObject.name = viewVal;
             searchObject.Vendors_id = $scope.item.Vendors_id;
             return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
-        }
     };
     
     $scope.fetchVendorsAutocomplete = function(viewVal) {
@@ -148,15 +144,6 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         searchObject.name = viewVal;
         return vendorInvoicesEditSrv.fetchStaffAutocomplete(searchObject);
     };
-    
-//    $scope.getVendorLocations = function(vendor){
-//        $scope.vendorLocations = vendor.locations;
-//    };
-//    
-//    $scope.getVendorInfo = function(vendorLocation){
-//        $scope.item.Vendors_id = vendorLocation.Vendors_id;
-//        //$scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
-//    };
     
     $scope.getVendorsID = function(vendor){
         $scope.item.Vendors_id = vendor.Vendors_id;
@@ -245,10 +232,10 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         }
         
         //Add the tax to the total
-        $scope.updateTax();        
+        $scope.updateTax();
         for(var i in $scope.item.taxTypes){
             $scope.taxTotal += $scope.item.taxTypes[i].total;
-        }        
+        }
         $scope.item.total += $scope.taxTotal;
     };
     
@@ -301,7 +288,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         $scope.isOpen.datepicker = true;
     };
 //    
-//    //Clear the item
+//    //Clear t he item
 //    $scope.clear = function(){
 //        $scope.item = {};
 //    };

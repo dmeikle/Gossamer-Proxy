@@ -1,6 +1,6 @@
 // Inventory Modal Service
 module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/invoices/details/';
+    var apiPath = '/admin/accounting/payablesinvoices/details/';
     var claimsPath = '/admin/claims/';
     var staffAutocompletePath = '/admin/staff/autocomplete';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
@@ -162,7 +162,7 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         }
         var data = {};
         data.VendorInvoice = item;
-        data.VendorInvoiceItem = lineItems;
+        data.VendorInvoiceItems = lineItems;
         data.FORM_SECURITY_TOKEN = formToken;
         
         return $http({

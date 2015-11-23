@@ -1,6 +1,6 @@
 // Inventory service
 module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/invoices/';
+    var apiPath = '/admin/accounting/payablesinvoices/';
 
     var self = this;
     self.error = {};
@@ -10,8 +10,8 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
     this.getList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
                 .then(function (response) {
-                    self.list = response.data.PurchaseOrders;
-                    self.listRowCount = response.data.PurchaseOrdersCount[0].rowCount;
+                    self.list = response.data.VendorInvoices;
+                    self.listRowCount = response.data.VendorInvoicesCount[0].rowCount;
                 }, function (response) {
                     //Handle any errors
                     self.error.showError = true;

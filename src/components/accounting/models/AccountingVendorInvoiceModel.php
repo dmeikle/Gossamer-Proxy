@@ -43,7 +43,24 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
     }
 
     public function getFormWrapper() {
+        return $this->entity;
+    }
 
+    /**
+     * performs a save to the datasource
+     *
+     * @param int $id
+     *
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params[$this->entity]['id'] = intval($id);
+//        pr($params);
+//        die();
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+//        pr($data);
+        return $data;
     }
 
 }

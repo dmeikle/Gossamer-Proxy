@@ -135,5 +135,6 @@ return array(
     'ACCOUNTING_STAFF_NAME' => 'Staff Name',
     'ACCOUNTING_UNASSOCIATE_ITEMS' => 'Unassociate Items',
     'ACCOUNTING_UNASSOCIATED_WARNING' => 'This invoice will be unassociated, inventory will not be tracked.',
+    'ACCOUNTING_PAYABLES_INVOICES' => 'Accounting Payables Invoices'
 );
 
