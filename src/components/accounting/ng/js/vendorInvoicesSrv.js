@@ -3,6 +3,7 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/payablesinvoices/';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
+    var breakdownPath = '/admin/accounting/payablesinvoices/details/';
     
     var self = this;
     self.error = {};
@@ -51,10 +52,10 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + id
+            url: breakdownPath + id
         }).then(function (response) {
-            self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
-            self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
+            self.breakdown = response.data.VendorInvoice[0];
+            self.breakdownLineItems = response.data.VendorInvoiceItems;
         });
     };
     

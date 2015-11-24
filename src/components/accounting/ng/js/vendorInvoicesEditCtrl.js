@@ -169,7 +169,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         row.productCode = value.productCode;
         row.name = value.name;
         row.description = value.description;
-        row.unitPrice = value.unitPrice;
+        row.price = value.unitPrice;
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
         row.VendorItems_id = value.VendorItems_id;
         row.InventoryItems_id = value.InventoryItems_id;
@@ -201,8 +201,8 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     //Update totals
     $scope.updateAmount = function(row){
-        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity)) ){
-            row.amount = parseFloat(row.unitPrice) * parseFloat(row.quantity);
+        if(!isNaN(parseFloat(row.price)) && !isNaN(parseFloat(row.quantity)) ){
+            row.amount = parseFloat(row.price) * parseFloat(row.quantity);
             
         } else {
             row.amount = 0;

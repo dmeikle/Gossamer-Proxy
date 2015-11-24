@@ -24,7 +24,7 @@ module.controller('vendorInvoicesCtrl', function ($scope, costCardItemTypeSrv, a
     
     $scope.$watch('tablesSrv.sortResult', function () {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
-            $scope.list = tablesSrv.sortResult.PurchaseOrders;
+            $scope.list = tablesSrv.sortResult.VendorInvoices;
             $scope.loading = false;
         }
     });
@@ -32,8 +32,8 @@ module.controller('vendorInvoicesCtrl', function ($scope, costCardItemTypeSrv, a
     $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.PurchaseOrders'], function () {
         $scope.grouped = tablesSrv.grouped;
         if ($scope.grouped === true) {
-            if (tablesSrv.groupResult && tablesSrv.groupResult.PurchaseOrders)
-                $scope.list = tablesSrv.groupResult.PurchaseOrders;
+            if (tablesSrv.groupResult && tablesSrv.groupResult.VendorInvoices)
+                $scope.list = tablesSrv.groupResult.VendorInvoices;
             $scope.loading = false;
         } else if ($scope.grouped === false) {
             getList();
@@ -73,9 +73,8 @@ module.controller('vendorInvoicesCtrl', function ($scope, costCardItemTypeSrv, a
         $scope.sidePanelOpen = true;
         $scope.selectedRow = row;
         $scope.sidePanelLoading = true;
-        $scope.searching = false;
-        
-        vendorInvoicesSrv.getBreakdown(row.PurchaseOrders_id).then(function(){
+        $scope.searching = false;        
+        vendorInvoicesSrv.getBreakdown(row.id).then(function(){
             $scope.breakdown = vendorInvoicesSrv.breakdown;
             $scope.breakdownLineItems = vendorInvoicesSrv.breakdownLineItems;
             $scope.sidePanelLoading = false;

@@ -25,18 +25,18 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
 //            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
 //            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
 //            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
-//            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
+            self.vendorInvoice.subtotal = parseFloat(self.vendorInvoice.subtotal);
 //            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
-//            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
-//            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
-//            if(self.purchaseOrderItems[0].length !== 0){
-//                for(var i in self.purchaseOrderItems){
-//                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
-//                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
-//                    self.purchaseOrderItems[i].unitPrice = parseFloat(self.purchaseOrderItems[i].unitPrice);
-//                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
-//                }
-//            }
+            self.vendorInvoice.total = parseFloat(self.vendorInvoice.total);
+            self.vendorInvoice.tax = parseFloat(self.vendorInvoice.tax);
+            if(self.vendorInvoiceItems.length !== 0){
+                for(var i in self.vendorInvoiceItems){
+                    self.vendorInvoiceItems[i].quantity = parseFloat(self.vendorInvoiceItems[i].quantity);
+                    self.vendorInvoiceItems[i].tax = parseFloat(self.vendorInvoiceItems[i].tax);
+                    self.vendorInvoiceItems[i].unitPrice = parseFloat(self.vendorInvoiceItems[i].unitPrice);
+                    self.vendorInvoiceItems[i].amount = parseFloat(self.vendorInvoiceItems[i].amount);
+                }
+            }
             
         });
     };

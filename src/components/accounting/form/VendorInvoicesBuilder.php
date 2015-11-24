@@ -33,9 +33,9 @@ class VendorInvoicesBuilder extends AbstractBuilder {
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(item.jobNumber)', 'autocomplete' => 'off', 'typeahead-wait-ms' => '500'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
-                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => "value as value.company + ' ' + value.city for value in fetchVendorsAutocomplete(\$viewValue)",
+                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.vendor', 'uib-typeahead' => "value as value.company + ' ' + value.city for value in fetchVendorsAutocomplete(\$viewValue)",
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
-                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorsID(item.company);', 'typeahead-wait-ms' => '500'))
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorsID(item.vendor);', 'typeahead-wait-ms' => '500'))
                 ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsSubcontractors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.subcontractor);', 'typeahead-wait-ms' => '500'))
@@ -43,6 +43,7 @@ class VendorInvoicesBuilder extends AbstractBuilder {
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsPurchaseOrders', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.purchaseOrder);', 'typeahead-wait-ms' => '500'))
                 ->add('description', 'textarea', array('class' => 'form-control col-md-7', 'ng-model' => 'item.description'))
+                ->add('deliveryFee', 'text', array('class' => 'form-control col-md-6', 'ng-model' => 'item.deliveryFee', 'ng-change' => 'updateTotal()'))
                 ->add('tax', 'text', array('class' => 'form-control col-md-6', 'ng-model' => 'item.tax', 'ng-change' => 'updateTotal()'))
                 ->add('total', 'text', array('class' => 'form-control', 'ng-model' => 'item.total'))
                 ->add('AccountingPaymentMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentMethods_id', 'options' => $options['AccountingPaymentMethods']))
@@ -62,7 +63,7 @@ class VendorInvoicesBuilder extends AbstractBuilder {
                 ->add('taxPercent', 'text', array('class' => 'form-control', 'ng-model' => 'row.taxPercent', 'ng-change' => 'updateAmount(row)'))
                 ->add('taxType', 'select', array('id' => 'taxType{{$index}}', 'class' => 'form-control', 'ng-change' => 'updateTaxList(row, $index, row.AccountingTaxTypes_id);updateAmount(row)', 'ng-init' => 'updateTax(row, $index, row.AccountingTaxTypes_id);', 'ng-model' => 'row.AccountingTaxTypes_id', 'options' => $options['taxTypes']))
                 //->add('taxAmount', 'text', array('class' => 'form-control', 'ng-model' => 'row.tax', 'ng-change'=>'updateAmount(row)'))
-                ->add('unitPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.unitPrice', 'ng-change' => 'updateAmount(row)'))
+                ->add('unitPrice', 'text', array('class' => 'form-control', 'ng-model' => 'row.price', 'ng-change' => 'updateAmount(row)'))
                 ->add('quantity', 'text', array('class' => 'form-control', 'ng-model' => 'row.quantity', 'ng-change' => 'updateAmount(row)'));
         return $builder->getForm();
     }
