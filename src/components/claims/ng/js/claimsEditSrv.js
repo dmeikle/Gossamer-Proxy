@@ -12,8 +12,10 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.save = function(object, formToken, page) {
 
         var requestPath;
-        if (object.id) {
+        if (object.id && page) {
             requestPath = singleApiPath + page + '/' + object.id;
+        } else if (!page) {
+            requestPath = singleApiPath + object.id;
         } else {
             requestPath = singleApiPath + page + '/0';
         }

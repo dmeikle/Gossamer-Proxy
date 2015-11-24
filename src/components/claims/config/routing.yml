@@ -296,6 +296,7 @@ admin_claims_view:
         view: core\views\JSONView
         viewKey: admin_claims_view
         datasource: datasource1
+    methods: [GET]
 
 
 
@@ -366,6 +367,18 @@ admin_claims_edit4_save:
 
         datasource: datasource1
 
+admin_claims_save:
+    pattern: admin/claim/*
+    methods: [POST]
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_save
+        datasource: datasource1
+
 
 admin_claim_edit:
     pattern: admin/claims/edit/*
@@ -389,7 +402,7 @@ admin_claims_get:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: get
+        method: edit
         view: core\views\JSONView
         viewKey: admin_claim_get
         datasource: datasource1

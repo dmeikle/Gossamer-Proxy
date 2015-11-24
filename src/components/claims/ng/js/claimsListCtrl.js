@@ -1,6 +1,6 @@
 
+module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsListSrv, tablesSrv, searchSrv) {
 
-module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsEditSrv, claimsListSrv, claimsLocationsListSrv, tablesSrv, searchSrv) {
 
 
     var a = document.createElement('a');
@@ -11,26 +11,35 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     } else {
         apiPath = a.pathname.slice(0, -1);
     }
+    var row = 0;
+    var numRows = 20;
     $scope.currentPage = 1;
     $scope.itemsPerPage = 20;
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
     $scope.selectedClaim = {};
+    $scope.loading = true;
 
     $scope.tablesSrv = tablesSrv;
-
-    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function () {
-        $scope.loading = true;
-        row = (($scope.currentPage - 1) * $scope.itemsPerPage);
-        numRows = $scope.itemsPerPage;
-        getClaimsList();
-    });
 
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
             $scope.claimsList = tablesSrv.sortResult.Claims;
             $scope.loading = false;
+        }
+    });
+
+    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
+        if ($scope.currentPage && $scope.itemsPerPage) {
+            row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+            numRows = $scope.itemsPerPage;
+
+            if ($scope.grouped) {
+                tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
+            } else {
+                getClaimsList();
+            }
         }
     });
 
@@ -58,7 +67,7 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
             templateUrl: '/render/claims/claimsAddNewModal',
             controller: 'claimsModalCtrl',
             size: 'lg',
-            backdrop: 'static'
+            backdrop: "static"
         });
 
         modalInstance.result.then(function() {
@@ -66,16 +75,16 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
         });
     };
 
-    $scope.assignPM = function (claim) {
+    $scope.assignPM = function(claim) {
 
         var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/assignPMModal',
             controller: 'claimsPMModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: 'static',
+            backdrop: "static",
             resolve: {
-                claim: function () {
+                claim: function() {
                     return claim;
                 }
             }
@@ -83,7 +92,7 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     };
 
     $scope.closeSidePanel = function() {
-        $scope.sidePanelOpen = false;                
+        $scope.sidePanelOpen = false;
     };
 
     function getClaimsList() {
@@ -117,43 +126,43 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     };
 });
 
-module.controller('claimsPMModalCtrl', function ($uibModalInstance, $scope, claimsListSrv, claim) {
+module.controller('claimsPMModalCtrl', function($uibModalInstance, $scope, claimsListSrv, claim) {
     $scope.staffList = [];
 
     $scope.claim = claim;
 
 
-    $scope.autocomplete = function (value) {
+    $scope.autocomplete = function(value) {
         return autocomplete(value, 'projectmanager');
     };
 
 
-    $scope.selectPM = function (Staff_id) {
+    $scope.selectPM = function(Staff_id) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        
+
         claim.projectManager_id = Staff_id;
         delete claim.currentClaimPhases_id;
         delete claim.workAuthorizationReceiveDate;
         delete claim.ClaimTypes_id;
-        
-        claimsListSrv.saveProjectManager(claim, formToken).then(function (response) {
+
+        claimsListSrv.saveProjectManager(claim, formToken).then(function(response) {
             $scope.claim.jobNumber = response.jobNumber;
             $scope.confirm();
         });
     };
 
 
-    $scope.confirm = function () {
+    $scope.confirm = function() {
         $uibModalInstance.close($scope.claim.query);
     };
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 
 });
 
-module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claimsEditSrv) {
+module.controller('claimsModalCtrl', function($uibModalInstance, $scope, claimsEditSrv) {
 
     $scope.addNewClient = false;
 

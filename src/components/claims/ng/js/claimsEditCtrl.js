@@ -1,7 +1,8 @@
-module.controller('claimsEditCtrl', function ($scope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
+module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, claimsEditSrv, claimsTemplateSrv) {
 
     // Run on load
-    $scope.loading = true;
+    $scope.paLoading = true;
+    $scope.claimLoading = true;
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
@@ -21,9 +22,10 @@ module.controller('claimsEditCtrl', function ($scope, $uibModal, claimsEditSrv, 
 
         var claimId = document.getElementById('Claim_id').value;
 
-        claimsEditSrv.getClaimDetails(claimId).then(function () {
+        claimsEditSrv.getClaimDetails(claimId).then(function() {
+            $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
-            $scope.loading = false;
+            $scope.claimLoading = false;
 
         });
     }
@@ -32,48 +34,46 @@ module.controller('claimsEditCtrl', function ($scope, $uibModal, claimsEditSrv, 
 
         var addressId = document.getElementById('Claim_ProjectAddresses_id').value;
 
-        claimsEditSrv.getProjectAddress(addressId).then(function () {
+        claimsEditSrv.getProjectAddress(addressId).then(function() {
+            $rootScope.$broadcast('projectAddressLoaded');
             $scope.projectAddress = claimsEditSrv.projectAddress;
-            $scope.loading = false;
+            $scope.paLoading = false;
         });
     }
 
-    $scope.save = function (object) {
+    $scope.save = function(object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         object.id = object.claimsId;
-        claimsEditSrv.save(object, formToken).then(function () {
+        claimsEditSrv.save(object, formToken).then(function() {
             getClaimDetails();
         });
     };
 
-    $scope.discardChanges = function () {
+    $scope.discardChanges = function() {
         getClaimDetails();
     };
 
-
-
-    $scope.clearErrors = function () {
-        $scope.credentialStatus = undefined;
-    };
-
-    $scope.openEditModal = function (claim) {
+    $scope.openEditModal = function(claim) {
         $scope.modalLoading = true;
         var template = claimsTemplateSrv.claimEditModal;
         var modal = $uibModal.open({
             templateUrl: template,
-            controller: 'claimsModalCtrl',
+            controller: 'claimsEditModalCtrl',
             size: 'xl',
             resolve: {
-                claim: function () {
+                claim: function() {
                     return claim;
                 }
             }
         });
-        modal.opened.then(function () {
+        modal.opened.then(function() {
             $scope.modalLoading = false;
         });
-        modal.result.then(function () {
-
+        modal.result.then(function() {
+            claimsEditSrv.save(claim).then(function () {
+                getClaimDetails();
+            });
         });
     };
+
 });
