@@ -32,7 +32,9 @@ class InventoryItemsController extends AbstractController {
 
         $result = $this->model->edit($id);
 
-        $this->render(array('form' => $this->drawForm($this->model, $result)));
+        $this->httpRequest->setAttribute('inventoryItem', $result);
+
+        $this->render(array());
     }
 
     public function save($id) {
@@ -98,6 +100,12 @@ class InventoryItemsController extends AbstractController {
 
     public function saveVariantOptions($id) {
         $result = $this->model->saveVariantOptions($id);
+
+        $this->render($result);
+    }
+
+    public function savePricesByVendorList($itemId) {
+        $result = $this->model->savePricesByVendorList($itemId);
 
         $this->render($result);
     }

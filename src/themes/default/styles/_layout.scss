@@ -19,7 +19,7 @@
 
     position:fixed;
     left:30%;
-    top:0;
+    top:5vh;
     z-index:10;
 }
 
@@ -73,6 +73,7 @@ button {
 }
 .table>tbody>tr>td{
     padding:4px;
+    vertical-align: middle;
 }
 .table>tbody>tr>td:not(.row-controls) {
     padding:.5em;
@@ -167,4 +168,15 @@ ul {
 .column-container{
     display:flex;
     margin:5px 10px 0 0;
+}
+
+.select-col{
+    width:20px;
+    vertical-align: middle !important;
+}
+
+.divider{
+    border-top:1px solid #ddd;
+    margin: 1rem 0;
+
 }

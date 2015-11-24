@@ -9,15 +9,13 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\accounting\controllers;
-
-use core\AbstractController;
+namespace core\components\behaviors;
 
 /**
- * Description of PropertiesController
+ * BehaviorsComponent
  *
  * @author Dave Meikle
  */
-class PurchaseOrderItemsReceivedController extends AbstractController {
+class BehaviorsComponent {
 
 }

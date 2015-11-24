@@ -68,11 +68,18 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
 
     public function get($claimId) {
         $locale = $this->getDefaultLocale();
+
         $params = array(
             'jobNumber' => $claimId,
             'locale' => $locale['locale']
         );
-
+        if (intval($claimId) == $claimId) {
+            //they're asking by id instead of jobNumber
+            $params = array(
+                'id' => $claimId,
+                'locale' => $locale['locale']
+            );
+        }
         $claim = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         if (array_key_exists('Claim', $claim)) {
             return current($claim['Claim']);
@@ -93,26 +100,6 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
 
     public function getFormWrapper() {
         return $this->entity;
-    }
-
-    /**
-     * listallByProjectAddress - assumes you have already filtered to ensure
-     *                          requester has permission to view this address
-     *
-     * @param type $addressId
-     * @param type $offset
-     * @param type $limit
-     *
-     * @return array
-     */
-    public function listallByProjectAddress($addressId, $offset, $limit) {
-        $params = array(
-            'ProjectAddresses_id' => $addressId,
-            'directive::OFFSET' => $offset,
-            'directive::LIMIT' => $limit
-        );
-
-        return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
     }
 
     public function view($jobNumber) {

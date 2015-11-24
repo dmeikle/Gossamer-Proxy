@@ -7,4 +7,27 @@ module.config(function ($httpProvider) {
         }
         return $.param(data);
     };
+
+    $httpProvider.interceptors.push(function(toastsSrv) {
+	// toastsSrv Expects 
+    // { formItemType : { 
+    //         fieldName : 'Error string',
+    //         fieldName_value : 'value from input field'
+    //    }
+    // }
+    	return {
+    		'response': function(response) {
+    			if (response && 
+				response.config.method === 'POST' && 
+				response.data.result === 'error') {
+    				toastsSrv.newAlert(response.data);
+    			} else if (response && 
+				response.config.method === 'POST' && 
+				response.data.result !== 'error') {
+    				toastsSrv.newAlert({'data': { 'Success' : {'Success' : 'Saved'} }, 'result': 'success'});
+    			}
+    			return response;
+    		}
+    	};
+    });
 });

@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -15,7 +15,7 @@ use core\components\locales\exceptions\LangFileNotFoundException;
 
 /**
  * loads the locales string files
- * 
+ *
  * @author Dave Meikle
  */
 class LocaleLoader {
@@ -24,9 +24,9 @@ class LocaleLoader {
 
     /**
      * loads the file
-     * 
+     *
      * @param string $filepath
-     * 
+     *
      * @throws LangFileNotFoundException
      */
     public function loadFile($filepath) {
@@ -40,10 +40,10 @@ class LocaleLoader {
 
     /**
      * returns the string from the loaded list based on requested key
-     * 
+     *
      * @param string $key
      * @param string $default - the string to use if requested key not found
-     * 
+     *
      * @return string
      */
     public function getString($key, $default = null) {

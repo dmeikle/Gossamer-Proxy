@@ -1,5 +1,7 @@
 
-module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+
+module.controller('claimsListCtrl', function($scope, $location, $uibModal, claimsEditSrv, claimsListSrv, claimsLocationsListSrv, tablesSrv, searchSrv) {
+
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -9,8 +11,8 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     } else {
         apiPath = a.pathname.slice(0, -1);
     }
-    var row = 0;
-    var numRows = 20;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 20;
     $scope.basicSearch = {};
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
@@ -18,7 +20,12 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
 
     $scope.tablesSrv = tablesSrv;
 
-    getClaimsList();
+    $scope.$watchGroup(['currentPage', 'itemsPerPage'], function () {
+        $scope.loading = true;
+        row = (($scope.currentPage - 1) * $scope.itemsPerPage);
+        numRows = $scope.itemsPerPage;
+        getClaimsList();
+    });
 
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
@@ -51,7 +58,7 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
             templateUrl: '/render/claims/claimsAddNewModal',
             controller: 'claimsModalCtrl',
             size: 'lg',
-            backdrop: "static"
+            backdrop: 'static'
         });
 
         modalInstance.result.then(function() {
@@ -66,7 +73,7 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
             controller: 'claimsPMModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static",
+            backdrop: 'static',
             resolve: {
                 claim: function () {
                     return claim;
@@ -82,9 +89,8 @@ module.controller('claimsListCtrl', function($scope, $location, $uibModal, claim
     function getClaimsList() {
         $scope.loading = true;
         claimsListSrv.getClaimsList(row, numRows).then(function(response) {
-            $scope.claimsList = claimsListSrv.claimsList;
-            $scope.totalItems = claimsListSrv.claimsCount;
-        }).then(function() {
+            $scope.claimsList = response.data.Claims;
+            $scope.totalItems = response.data.ClaimsCount[0].rowCount;
             $scope.loading = false;
         });
     }
@@ -144,6 +150,7 @@ module.controller('claimsPMModalCtrl', function ($uibModalInstance, $scope, clai
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
 });
 
 module.controller('claimsModalCtrl', function ($uibModalInstance, $scope, claimsEditSrv) {

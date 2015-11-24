@@ -6,8 +6,8 @@
 </div>
 <div class="modal-body general-costs-modal">
     <div class="input-group">
-        <label>Claim Number</label>
-        <input placeholder="Claim Number" type="text" ng-model="AccountingGeneralCost.jobNumber" ng-model-options="{debounce:100}"
+        <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
+        <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="AccountingGeneralCost.jobNumber" ng-model-options="{debounce:100}"
                typeahead="value for value in fetchClaimAutocomplete($viewValue)"
                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsClaim" class="form-control typeahead"
                typeahead-min-length="2" ng-blur="getClaimsID(AccountingGeneralCost.jobNumber)">

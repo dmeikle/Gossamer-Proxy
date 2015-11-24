@@ -66,7 +66,7 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function (jobNumber) {
         for (var i in generalCostsModalSrv.autocomplete) {
-            if (generalCostsModalSrv.autocomplete[i].label === jobNumber) {
+            if (generalCostsModalSrv.autocomplete[i].jobNumber === jobNumber) {
                 $scope.AccountingGeneralCost.Claims_id = generalCostsModalSrv.autocomplete[i].id;
             }
         }
@@ -98,7 +98,7 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
 
     //Check selected
     $scope.checkSelected = function () {
-        $scope.rowSelected = true;
+        $scope.rowSelected = false;
         for (var index in $scope.generalCostItems) {
             if ($scope.generalCostItems[index].isSelected === true) {
                 $scope.rowSelected = true;
@@ -126,7 +126,7 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
 
     $scope.fetchClaimAutocomplete = function (viewVal) {
         var searchObject = {};
-        searchObject.Claims_id = viewVal;
+        searchObject.jobNumber = viewVal;
         return generalCostsModalSrv.fetchClaimsAutocomplete(searchObject);
     };
 

@@ -54,7 +54,7 @@ class LoadListListener extends AbstractCachableListener {
                 $key = key($result);
                 $caching = false; //it wasn't set so don't try to cache the value
             }
-
+            
             $list = $result[$key];
         }
 

@@ -1,6 +1,7 @@
 module.controller('inventoryEditCtrl', function($scope, $location, inventoryEditSrv) {
     $scope.item = new AngularQueryObject();
 
+
     $scope.$watch('item', function() {
         if ($scope.item && $scope.item.id) {
             $scope.getDetails();

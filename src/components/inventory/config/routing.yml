@@ -265,8 +265,8 @@ admin_inventory_items_autocomplete:
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryItemsController
@@ -331,23 +331,6 @@ admin_inventory_equipment_list:
 
 admin_inventory_equipment_edit:
     pattern: admin/inventory/equipment/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentTypeModel', 'cacheKey': 'InventoryEquipmentTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
-#            # build the form
-#        -
-#            event: 'request_start'
-#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-#            datasource: 'datasource1'
-#            formBuilder: 'components\inventory\form\InventoryEquipmentBuilder'
-#            model: 'components\inventory\models\InventoryEquipmentModel'
-#            cacheKey: 'InventoryEquipmentForm'
-#            formName: 'inventoryEquipmentForm'
-##            dependencies:
-##                - { dependency: Provinces, key: provinces, value: id, text: province }
-##                - { dependency: Vehicles, key: vehicles, value: id, text: number }
-
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController
@@ -361,6 +344,8 @@ admin_inventory_equipment_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+    
+    
 
 admin_inventory_materials_list:
     pattern: admin/inventory/materials/*/*
@@ -381,9 +366,6 @@ admin_inventory_materials_list:
 
 admin_inventory_items_edit:
     pattern: admin/inventory/items/*
-    listeners:
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryItemsController
@@ -400,6 +382,18 @@ admin_inventory_items_edit:
 
 
 
+amdin_vendoritems_list_by_item:
+    pattern: admin/inventory/vendoritems/*/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VendorItemsController
+        model: components\inventory\models\VendorItemModel
+        method: listbyItem
+        view: core\views\JSONView
+        viewKey: amdin_vendoritems_list_by_item
+        datasource: datasource1
+    methods: [GET]
+
 admin_inventory_items_save:
     pattern: admin/inventory/items/*
     defaults:
@@ -410,8 +404,8 @@ admin_inventory_items_save:
         view: core\views\JSONView
         viewKey: admin_inventory_items_save
         datasource: datasource1
-        langFiles:
-            - 'src/components/defaultItem/locales/*/Navigation'
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST]
 
 
@@ -501,7 +495,6 @@ admin_warehouse_locations_save:
 
 admin_inventory_list:
     pattern: admin/inventory
-    listeners:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryController
@@ -643,7 +636,7 @@ admin_inventory_items_variantgroups_save:
     methods: [POST]
     
 
-
+#--- this is for saving prices to a list of items based on a particular vendor -------
 admin_inventory_vendoritems_save:
     pattern: admin/inventory/vendoritems/*
     defaults:
@@ -655,6 +648,22 @@ admin_inventory_vendoritems_save:
         viewKey: admin_inventory_vendoritems_save
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
+            - 'src/components/inventory/locales/*/Validation'  
     methods: [POST] 
 
+
+#--- this is for saving prices to a particular item based on a list of vendors -----------
+admin_inventory_vendorprices_save:
+    pattern: admin/inventory/vendorprices/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\InventoryItemsController
+        model: components\inventory\models\VendorItemModel
+        method: savePricesByVendorList
+        view: core\views\JSONView
+        viewKey: admin_inventory_vendorprices_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
+    methods: [POST] 
+     

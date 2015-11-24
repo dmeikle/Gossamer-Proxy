@@ -131,7 +131,6 @@ abstract class AbstractComponent {
                 if (!is_null($httpRequest->getAttribute('ExceptionOccurred'))) {
                     throw new ValidationFailedException();
                 }
-
                 return call_user_func_array(array(
                     $controller,
                     $this->method

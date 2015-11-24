@@ -76,5 +76,4 @@ module.controller('claimsEditCtrl', function ($scope, $uibModal, claimsEditSrv, 
 
         });
     };
-
 });
