@@ -138,6 +138,29 @@ module.controller('vendorInvoicesCtrl', function ($scope, costCardItemTypeSrv, a
         $scope.selectedRow = {};
     };
     
+    $scope.fetchVendorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.company = viewVal;
+        return vendorInvoicesSrv.fetchVendorsAutocomplete(searchObject);
+    };
+    
+    $scope.fetchSubcontractorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.company = viewVal;
+        return vendorInvoicesSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
+    //Get Vendors ID from autocomplete list
+    $scope.getVendorsID = function(vendor){
+        $scope.advSearch.Vendors_id = vendor.Vendors_id;
+    };
+    
+    //Get Subcontractors ID from autocomplete list
+    $scope.getSubcontractorsID = function (subcontractor) {
+        $scope.advSearch.Subcontractors_id = subcontractor.id;
+    };
+
+    
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (event, datepicker) {

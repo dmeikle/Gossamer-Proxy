@@ -67,8 +67,8 @@
                     <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.department}}</td>
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.subcontractor}}</td>
-                    <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.company}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.paymentMethod}}</td>
+                    <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.vendor}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.paymentType}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.entryDate}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.description}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.subtotal| currency}}</td>
@@ -77,7 +77,7 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="edit/{{item.PurchaseOrders_id}}">Edit</a></li>
+                                <li><a ng-href="{{item.id}}">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -127,26 +127,41 @@
                     </span>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
-                    <option value="" selected>-Vendor-</option>
-                    <?php
-                    foreach ($Vendors as $vendor) {
-                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
-                    }
-                    ?>
-                </select>
+                <!--Vendors Typeahead-->
+                <div class="input-group">
+                    <label><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
+                    <input type="text" ng-model="vendor" typeahead-wait-ms="500" typeahead-min-length="2" typeahead-on-select="getVendorsID(vendor)"
+                           uib-typeahead="value as value.company for value in fetchVendorsAutocomplete($viewValue)" typeahead-loading="loadingVendors"
+                           typeahead-no-results="noResultsVendor" class="form-control typeahead">
+                    <i ng-show="loadingVendors" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsVendor">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.PurchaseOrderTypes_id">
-                    <option value="" selected>-Purchase Order Types-</option>
+                <!--Subcontrators Typeahead-->
+                <div class="input-group">
+                    <label><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></label>
+                    <input type="text" ng-model="subcontractor" typeahead-wait-ms="500" typeahead-min-length="2" typeahead-on-select="getSubcontractorsID(claim)"
+                           uib-typeahead="value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)" typeahead-loading="loadingSubcontractors"
+                           typeahead-no-results="noResultsVendor" class="form-control typeahead">
+                    <i ng-show="loadingSubcontractors" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsVendor">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
+
+                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?>-</option>
                     <?php
-                    foreach ($PurchaseOrderTypes as $orderTypes) {
-                        echo '<option value="' . $orderTypes['id'] . '">' . $orderTypes['orderType'] . '</option>';
+                    foreach ($Departments as $department) {
+                        echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
                     }
                     ?>
                 </select>
 
                 <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
-                    <option value="" selected>-Payment Methods-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?>-</option>
                     <?php
                     foreach ($AccountingPaymentMethods as $paymentMethod) {
                         echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
@@ -155,7 +170,7 @@
                 </select>
 
                 <select class="form-control" name="ClaimPhases" ng-model="advSearch.ClaimPhases_id">
-                    <option value="" selected>-Claim Phases-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CLAIM_PHASE'); ?>-</option>
                     <?php
                     foreach ($ClaimPhases as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['title'] . '</option>';

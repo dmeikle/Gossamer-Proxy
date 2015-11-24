@@ -124,8 +124,8 @@ return array(
     'ACCOUNTING_FROM_DATE' => 'From Date',
     'ACCOUNTING_TO_DATE' => 'To Date',
     'ACCOUNTING_VENDOR_INVOICES' => 'Vendor Invoices',
-    'ACCOUNTING_NEW_VENDOR_INVOICE' => 'New Vendor Invoice',
-    'ACCOUNTING_EDIT_VENDOR_INVOICE' => 'Edit Vendor Invoice',
+    'ACCOUNTING_NEW_VENDOR_INVOICE' => 'New Payables Invoice',
+    'ACCOUNTING_EDIT_VENDOR_INVOICE' => 'Edit Payables Invoice',
     'ACCOUNTING_NEW_INVOICE' => 'New Invoice',
     'ACCOUNTING_INVOICE_NUMBER' => 'Invoice #',
     'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
@@ -135,6 +135,7 @@ return array(
     'ACCOUNTING_STAFF_NAME' => 'Staff Name',
     'ACCOUNTING_UNASSOCIATE_ITEMS' => 'Unassociate Items',
     'ACCOUNTING_UNASSOCIATED_WARNING' => 'This invoice will be unassociated, inventory will not be tracked.',
-    'ACCOUNTING_PAYABLES_INVOICES' => 'Accounting Payables Invoices'
+    'ACCOUNTING_PAYABLES_INVOICES' => 'Payables Invoices',
+    'ACCOUNTING_CLAIM_PHASE' => 'Claim Phase'
 );
 

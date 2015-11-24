@@ -19,7 +19,8 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             },
             url: apiPath + id
         }).then(function (response) {
-            self.vendorInvoice = response.data;
+            self.vendorInvoice = response.data.VendorInvoice[0];
+            self.vendorInvoiceItems = response.data.VendorInvoiceItems;
 //            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
 //            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
 //            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
@@ -106,7 +107,7 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         });
     };
     
-    //Vendor Autocomplete
+    //Subcontractors Autocomplete
     this.fetchSubcontractorsAutocomplete = function(searchObject) {
         return $http({
             method: 'GET',

@@ -28,9 +28,9 @@ class VendorInvoicesBuilder extends AbstractBuilder {
         }
         //
         $builder->add('invoiceNumber', 'text', array('class' => 'form-control col-md-7', 'ng-model' => 'item.invoiceNumber'))
-                ->add('jobNumber', 'text', array('ng-model' => 'item.claim', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)',
+                ->add('jobNumber', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-7',
-                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(item.claim)', 'autocomplete' => 'off', 'typeahead-wait-ms' => '500'))
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(item.jobNumber)', 'autocomplete' => 'off', 'typeahead-wait-ms' => '500'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => "value as value.company + ' ' + value.city for value in fetchVendorsAutocomplete(\$viewValue)",

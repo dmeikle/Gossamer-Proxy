@@ -30,7 +30,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 //                $scope.item.company = vendorInvoicesEditSrv.Vendor;
 //                $scope.vendorLocations = vendorInvoicesEditSrv.VendorLocations;
 //                $scope.item.vendorLocation = vendorInvoicesEditSrv.purchaseOrder.VendorLocations_id;
-//                $scope.lineItems = vendorInvoicesEditSrv.purchaseOrderItems;
+                $scope.lineItems = vendorInvoicesEditSrv.vendorInvoiceItems;
 //                if($scope.lineItems[0].length === 0){
 //                    $scope.lineItems = [];
 //                    $scope.lineItems.push(new LineItems());
@@ -120,10 +120,10 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     //Product Name Typeahead
     $scope.fetchProductNameAutocomplete = function (viewVal) {
-            var searchObject = {};
-            searchObject.name = viewVal;
-            searchObject.Vendors_id = $scope.item.Vendors_id;
-            return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
+//            var searchObject = {};
+//            searchObject.name = viewVal;
+//            searchObject.Vendors_id = $scope.item.Vendors_id;
+//            return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
     };
     
     $scope.fetchVendorsAutocomplete = function(viewVal) {

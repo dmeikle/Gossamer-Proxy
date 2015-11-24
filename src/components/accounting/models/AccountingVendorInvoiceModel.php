@@ -63,4 +63,34 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
         return $data;
     }
 
+    /**
+     * retrieves a row from the datasource for editing
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function edit($id) {
+
+        $locale = $this->getDefaultLocale();
+
+        if ($this->isFailedValidationAttempt()) {
+
+            return $this->httpRequest->getAttribute('POSTED_PARAMS');
+        }
+
+        $params = array(
+            'id' => intval($id),
+            'locale' => $locale['locale']
+        );
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+//        if (is_array($data) && array_key_exists($this->entity, $data)) {
+//            $data = current($data[$this->entity]);
+//        }
+
+        return $data;
+    }
+
 }

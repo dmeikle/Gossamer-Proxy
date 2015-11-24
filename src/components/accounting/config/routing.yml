@@ -892,6 +892,23 @@ accounting_vendor_invoices_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+
+accounting_vendor_invoices_search:
+    pattern: admin/accounting/payablesinvoices/search
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_search
+        datasource: datasource1
+    methods: [GET]
 
 accounting_vendor_invoices_details:
     pattern: admin/accounting/payablesinvoices/details/*

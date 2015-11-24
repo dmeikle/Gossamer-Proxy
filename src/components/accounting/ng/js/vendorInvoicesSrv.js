@@ -1,7 +1,9 @@
 // Inventory service
 module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/payablesinvoices/';
-
+    var vendorsAutocompletePath = '/admin/vendors/autocomplete';
+    var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
+    
     var self = this;
     self.error = {};
     self.error.showError = false;
@@ -53,6 +55,40 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
         }).then(function (response) {
             self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
             self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
+        });
+    };
+    
+    //Vendor Autocomplete
+    this.fetchVendorsAutocomplete = function(searchObject) {
+        var config = searchObject;
+        //config.action = 'detailed';
+        return $http({
+            method: 'GET',
+            url: vendorsAutocompletePath,
+            params: config
+        }).then(function(response) {
+            self.vendorsAutocompleteValues = response.data.Vendors;
+            if (self.vendorsAutocompleteValues.length > 0 && self.vendorsAutocompleteValues[0].length !== 0) {
+                return self.vendorsAutocompleteValues;
+            } else {
+                return undefined;
+            }
+        });
+    };
+    
+    //Subcontractors Autocomplete
+    this.fetchSubcontractorsAutocomplete = function(searchObject) {
+        return $http({
+            method: 'GET',
+            url: subcontractorAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.subcontractorsAutocompleteValues = response.data.Subcontractors;
+            if (self.subcontractorsAutocompleteValues.length > 0) {
+                return self.subcontractorsAutocompleteValues;
+            } else if (self.subcontractorsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
         });
     };
 });
