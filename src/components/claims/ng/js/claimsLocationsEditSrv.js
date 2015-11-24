@@ -4,7 +4,9 @@ module.service('claimsLocationsEditSrv', function(crudSrv) {
 
 	this.save = function(object) {
 		for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
@@ -21,7 +23,9 @@ module.service('claimsLocationsEditSrv', function(crudSrv) {
 
 	this.delete = function(object) {
 		for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }

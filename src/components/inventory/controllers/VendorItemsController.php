@@ -12,7 +12,21 @@
 namespace components\inventory\controllers;
 
 use core\AbstractController;
+use core\serialization\Serializer;
 
 class VendorItemsController extends AbstractController {
+
+    public function listbyItem($itemId) {
+        $offset = 0;
+        $limit = 50;
+
+        $params = array('InventoryItems_id' => intval($itemId));
+
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'list');
+        $serializer = new Serializer();
+        $serializer->formatEntityIds($result['VendorItems'], $this->model);
+
+        $this->render($result);
+    }
 
 }

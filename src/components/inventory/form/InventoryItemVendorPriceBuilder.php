@@ -27,7 +27,7 @@ class InventoryItemVendorPriceBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['VendorItem']);
         }
 
-        $builder->add('id', 'hidden', array('value' => $this->getValue('id', $values)))
+        $builder->add('id', 'hidden', array('ng-model' => 'row.id', 'ng-init' => "item.id ='" . $this->getValue('id', $values) . "'", 'value' => $this->getValue('id', $values)))
                 ->add('vendorsAutocomplete', 'text', array('ng-model' => 'row.company', 'typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-wait-ms' => '500', 'typeahead-on-select' => 'setVendorId(row)'))
@@ -37,7 +37,7 @@ class InventoryItemVendorPriceBuilder extends AbstractBuilder {
                 ->add('price', 'text', array('ng-model' => 'row.price', 'ng-init' => "item.price ='" . $this->getValue('price', $values) . "'", 'class' => 'form-control'))
                 ->add('productCode', 'text', array('ng-model' => 'row.productCode', 'ng-init' => "item.productCode ='" . $this->getValue('productCode', $values) . "'", 'class' => 'form-control'))
                 ->add('numPerBox', 'text', array('ng-model' => 'row.numPerBox', 'ng-init' => "item.numPerBox ='" . $this->getValue('numPerBox', $values) . "'", 'class' => 'form-control'))
-                ->add('isPreferredVendor', 'radio', array('ng-model' => 'row.isPreferredVendor', 'ng-init' => "item.isPreferredVendor ='" . $this->getValue('isPreferredVendor', $values) . "'", 'class' => 'form-control', 'value' => '1'))
+                ->add('isPreferredVendor', 'radio', array('ng-model' => 'row.isPreferredVendor', 'ng-init' => "item.isPreferredVendor ='" . $this->getValue('isPreferredVendor', $values) . "'", 'value' => '1'))
                 ->add('minOrderQuantity', 'text', array('ng-model' => 'row.minOrderQuantity', 'ng-init' => "item.minOrderQuantity ='" . $this->getValue('minOrderQuantity', $values) . "'", 'class' => 'form-control'))
         ;
 
