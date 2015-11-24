@@ -154,11 +154,15 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             }
         }
         
-        for (i in lineItems) {
-            for (var j in lineItems[i]){                
-                if (lineItems[i][j] === null) {
-                    delete lineItems[i][j];
+        for (i = lineItems.length-1; i >= 0; i--) {
+            if(lineItems[i].name !== null || lineItems[i].name !== ''){                
+                for (var j in lineItems[i]){                
+                    if (lineItems[i][j] === null) {
+                        delete lineItems[i][j];
+                    }
                 }
+            } else {
+                delete lineItems[i];
             }
         }
         var data = {};
