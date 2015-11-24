@@ -1,5 +1,5 @@
 
-module.controller('claimsLocationsListCtrl', function ($scope, $uibModal, tablesSrv, claimsListSrv, claimsLocationsListSrv) {
+module.controller('claimsLocationsListCtrl', function ($scope, $uibModal, tablesSrv, claimsListSrv, claimsLocationsEditSrv, claimsEditSrv) {
 
 
     var row = 0;
@@ -42,14 +42,27 @@ module.controller('claimsLocationsListCtrl', function ($scope, $uibModal, tables
                 claimLocation: function() {
                     return object;
                 }
-            },
-            backdrop: 'static'
+            }
         });
 
-        modalInstance.result.then(function (claim) {
-            claimsEditSrv.save(claim).then(function () {
-                getClaimsList();
-            });
+         modalInstance.result.then(function(object) {
+            if (document.getElementById('Claim_id')) {
+                object.Claims_id = document.getElementById('Claim_id').value;
+                
+                claimsLocationsEditSrv.save(object).then(function() {
+                    $scope.getList();
+                });
+            } else {
+                object.Claims_id = $scope.selectedClaim.Claims_id;
+                
+                claimsLocationsEditSrv.save(object).then(function() {
+                    claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
+                        .then(function() {
+                            $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
+                        });
+                });
+            }
+            
         });
     };
 
@@ -72,6 +85,29 @@ module.controller('claimsLocationsListCtrl', function ($scope, $uibModal, tables
         } else {
             return 'danger';
         }
+    };
+
+    $scope.delete = function(object) {
+        object.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
+        object.isActive = '0';
+        claimsLocationsEditSrv.delete(object).then(function() {
+            if (document.getElementById('Claim_id')) {
+                object.Claims_id = document.getElementById('Claim_id').value;
+
+                claimsLocationsEditSrv.save(object).then(function() {
+                    $scope.getList();
+                });
+            } else {
+                object.Claims_id = $scope.selectedClaim.Claims_id;
+
+                claimsLocationsEditSrv.save(object).then(function() {
+                    claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
+                        .then(function() {
+                            $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
+                        });
+                });
+            }
+        });
     };
 
 });
