@@ -72,7 +72,12 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
             'jobNumber' => $claimId,
             'locale' => $locale['locale']
         );
-
+        if (intval($claimId) == $claimId) {
+            $params = array(
+                'id' => $claimId,
+                'locale' => $locale['locale']
+            );
+        }
         $claim = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
         if (array_key_exists('Claim', $claim)) {
             return current($claim['Claim']);

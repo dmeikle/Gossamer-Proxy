@@ -47,4 +47,8 @@ class RenderHTMLView extends AbstractView {
         }
     }
 
+    public function getValue($key) {
+        return $this->httpRequest->getAttribute($key);
+    }
+
 }

@@ -6,7 +6,9 @@ module.directive('wizard', function($compile, $location, wizardSrv) {
 
 
             var apiPath = '/render/' + element[0].dataset.module + '/' + element[0].dataset.filename;
-
+            if(element[0].dataset.params) {
+                apiPath += '?' + element[0].dataset.params;
+            }
             scope.wizardLoading = true;
             if (!scope.$parent.wizardPages) {
                 wizardSrv.getWizardPages(apiPath).then(function() {

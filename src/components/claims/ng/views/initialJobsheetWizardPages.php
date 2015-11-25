@@ -272,62 +272,28 @@
 <form id="wizard-form" ng-submit="finish()" ng-show="currentPage === 3">
     <table class="table">
         <tbody>
-            <tr>
-                <td>
-                    <strong><?php echo $this->getString('CLAIMS_JOBSHEET_BLOWERS') ?></strong>
-                </td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong><?php echo $this->getString('CLAIMS_JOBSHEET_DEHUMS') ?></strong>
-                </td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong><?php echo $this->getString('CLAIMS_JOBSHEET_AIRSCRUB') ?></strong>
-                </td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong><?php echo $this->getString('CLAIMS_JOBSHEET_INJECTIDRY') ?></strong>
-                </td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <strong><?php echo $this->getString('CLAIMS_JOBSHEET_EXTEN') ?></strong>
-                </td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
-            <tr>
-                <td><strong><?php echo $this->getString('CLAIMS_JOBSHEET_ELEC') ?></strong></td>
-                <td>
-                    Bind equipment here
-                </td>
-            </tr>
+            <?php $equipment = $this->getValue('InventoryEquipment');
+            foreach ($equipment as $eq) {
+                ?>
+                <tr>
+                    <td>
+                        <strong><?php echo $eq['inventoryType']; ?></strong>
+                    </td>
+                    <td>
+    <?php echo $eq['numItems']; ?>
+                    </td>
+                </tr>
+<?php } ?>
         </tbody>
     </table>
     <div class="clearfix"></div>
     <div class="widgetfooter clearfix">
         <div class="pull-right btn-group">
             <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
-                <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
+<?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
             </button>
             <button type="submit" class="btn btn-primary">
-                <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
+<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
             </button>
         </div>
     </div>
