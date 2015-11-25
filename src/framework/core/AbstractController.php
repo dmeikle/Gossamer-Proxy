@@ -470,7 +470,7 @@ class AbstractController {
         //changed fileName to filename to match column name
         //if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
         if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '.' . $extension)) {
-            $params = array('id' => intval($id), 'filename' => $id);
+            $params = array('id' => intval($id), 'filename' => $id . '.' . $extension);
 
             $this->model->saveParamsOnComplete($params);
         }
@@ -503,6 +503,19 @@ class AbstractController {
                 }
             }
         }
+    }
+
+    /**
+     * @param mixed $files
+     *
+     * @return \Traversable
+     */
+    private function toIterator($files) {
+        if (!$files instanceof \Traversable) {
+            $files = new \ArrayObject(is_array($files) ? $files : array($files));
+        }
+
+        return $files;
     }
 
 }

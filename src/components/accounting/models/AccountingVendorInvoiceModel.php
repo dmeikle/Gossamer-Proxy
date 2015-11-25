@@ -39,7 +39,7 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('VendorInvoice' => $params));
     }
 
     public function getFormWrapper() {
