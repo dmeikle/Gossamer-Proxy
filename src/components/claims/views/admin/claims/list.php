@@ -45,7 +45,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>
+                    <td colspan="2">
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>
@@ -53,7 +53,8 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="claim in claimsList"
-                    ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                    ng-class="{'selected': claim === previouslyClickedObject,
+                        'inactive bg-warning text-warning': claim.status == 'inactive'}">
                     <td  ng-if="!claim.jobNumber" ng-click="selectRow(claim)">{{claim.unassignedJobNumber}}</td>
                     <td ng-if="claim.jobNumber" ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
                     <td ng-click="selectRow(claim)">{{claim.phase}}</td>
@@ -61,12 +62,15 @@
                     <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
                     <td ng-click="selectRow(claim)">{{claim.lossDate}}</td>
                     <td ng-click="selectRow(claim)">{{claim.status}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.lastname}}, {{claim.firstname}}</td>
+                    <td ng-click="selectRow(claim)">
+                        <span ng-if="claim.firstname">{{claim.lastname}}, {{claim.firstname}}</span>
+                    </td>
                     <td ng-click="selectRow(claim)">{{claim.parentJobNumber}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
@@ -77,8 +81,8 @@
             </tbody>
         </table>
 
-        <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-            class="pagination" boundary-links="true" rotate="false">
+        <uib-pagination class="pull-left pagination" total-items="totalItems" ng-model="currentPage"
+            items-per-page="itemsPerPage" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">
@@ -113,7 +117,7 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedClaim.id}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
             <h4><?php echo $this->getString('CLAIMS_ADDRESS') ?></h4>
             <div>{{selectedClaim.address1}}</div>
             <div>{{selectedClaim.address2}}</div>
@@ -131,8 +135,15 @@
                     <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
                 </div>
             </div>
-
-            <h4><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
+            
+            <div>
+                <h4 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
+                <div class="pull-right">
+                    <button class="primary btn-sm" ng-click="openClaimLocationModal()">
+                        <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
+                    </button>
+                </div>
+            </div>
 
             <table class="table table-striped table-hover">
                 <tr>
@@ -147,7 +158,18 @@
                     <td>{{location.firstname}} {{location.lastname}}</td>
                     <td> {{location.daytimePhone}} </td>
                     <td>{{location.mobile}}</td>
-                    <td><a href="/admin/claimlocations/{{selectedClaim.id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW') ?></a></td>
+                    <td class="row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
+                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             </table>
 
