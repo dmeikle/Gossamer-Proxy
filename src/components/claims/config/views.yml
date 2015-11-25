@@ -128,8 +128,9 @@ admin_claims_initial_jobsheet:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
-            content: src/components/claims/views/admin/claims/initial-jobsheet/form.php
-            cards: src/components/claims/views/admin/claims/initial-jobsheet/form-cards.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            content: src/components/claims/views/admin/initial-jobsheet/form.php
+            cards: src/components/claims/views/admin/initial-jobsheet/form-cards.php
             footer: src/themes/default/templates/sections/footer.php
     angular:
         bootstrap_modules:
