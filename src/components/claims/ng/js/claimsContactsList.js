@@ -37,12 +37,19 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
 
 
     function listContactsByClaim() {
-        var jobNumber = document.getElementById('Claim_jobNumberHidden').value;
+        var jobNumber;
+        if (document.getElementById('Claim_jobNumberHidden') && 
+        document.getElementById('Claim_jobNumberHidden').value) {
+            jobNumber = document.getElementById('Claim_jobNumberHidden').value;
+        } else if (document.getElementById('Claim_unassignedJobNumberHidden') &&
+        document.getElementById('Claim_unassignedJobNumberHidden').value) {
+            jobNumber = document.getElementById('Claim_unassignedJobNumberHidden').value;
+        }
 
         claimsEditSrv.getContacts(jobNumber).then(function () {
-            $scope.contacts = claimsEditSrv.contacts;
-            $scope.loading = false;
-        });
+                $scope.contacts = claimsEditSrv.contacts;
+                $scope.loading = false;
+            }); 
     }
 
 });
