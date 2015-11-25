@@ -27,8 +27,8 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
             url: apiPath + '0/20?name=' + searchObject,
             method: 'GET'
         }).then(function (response) {
-            self.searchResults = response.data.PurchaseOrders;
-            self.searchResultsCount = response.data.PurchaseOrdersCount[0].rowCount;
+            self.searchResults = response.data.VendorInvoices;
+            self.searchResultsCount = response.data.VendorInvoicesCount[0].rowCount;
         });
     };
     
@@ -41,8 +41,8 @@ module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
             method: 'GET',
             params: config
         }).then(function (response) {
-            self.advancedSearchResults = response.data.PurchaseOrders;
-            self.advancedSearchResultsCount = response.data.PurchaseOrdersCount[0].rowCount;
+            self.advancedSearchResults = response.data.VendorInvoices;
+            self.advancedSearchResultsCount = response.data.VendorInvoicesCount[0].rowCount;
         });
     };
     

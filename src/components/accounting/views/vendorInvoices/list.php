@@ -25,34 +25,32 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('ACCOUNTING_INVOICE_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></th>
-                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></th>
+                    <th ng-hide="groupedBy === 'invoiceNumber'" column-sortable data-column="invoiceNumber"><?php echo $this->getString('ACCOUNTING_INVOICE_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'phase'" column-sortable data-column="phase"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'department'" column-sortable data-column="department"><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
+                    <th ng-hide="groupedBy === 'subcontractor'" column-sortable data-column="subcontractor"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></th>
+                    <th ng-hide="groupedBy === 'vendor'" column-sortable data-column="vendor"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></th>
+                    <th ng-hide="groupedBy === 'paymentType'" column-sortable data-column="paymentType"><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?></th>
+                    <th ng-hide="groupedBy === 'entryDate'" column-sortable data-column="entryDate"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
+                    <th ng-hide="groupedBy === 'subtotal'" column-sortable data-column="subtotal"><?php echo $this->getString('ACCOUNTING_SUBTOTAL'); ?></th>
                     <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td ng-hide="groupedBy === 'poNumber'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'company'"></td>
-                    <td ng-hide="groupedBy === 'description'">
-                        <span class="spinner-loader"></span>
-                    </td>
-                    <td ng-hide="groupedBy === 'creationDate'" column-sortable data-column="department"></td>
-                    <td ng-hide="groupedBy === 'total'" column-sortable data-column="totalCost"></td>
+                    <td ng-hide="groupedBy === 'invoiceNumber'"></td>
+                    <td ng-hide="groupedBy === 'phase'"></td>
+                    <td ng-hide="groupedBy === 'department'"></td>
+                    <td ng-hide="groupedBy === 'subcontractor'"></td>
+                    <td ng-hide="groupedBy === 'vendor'"></td>
+                    <td ng-hide="groupedBy === 'paymentType'"><span class="spinner-loader"></span></td>
+                    <td ng-hide="groupedBy === 'entryDate'"></td>
+                    <td ng-hide="groupedBy === 'description'"></td>
+                    <td ng-hide="groupedBy === 'subtotal'"></td>
+                    <td ng-hide="groupedBy === 'total'"></td>
                     <td></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
                 </tr>
 
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
@@ -63,21 +61,21 @@
                 </tr>
 
                 <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
-                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.invoiceNumber}}</td>
-                    <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.department}}</td>
-                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.subcontractor}}</td>
-                    <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.vendor}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.paymentType}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.entryDate}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.description}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.subtotal| currency}}</td>
+                    <td ng-hide="groupedBy === 'invoiceNumber'" ng-click="selectRow(item)">{{item.invoiceNumber}}</td>
+                    <td ng-hide="groupedBy === 'phase'" ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-hide="groupedBy === 'department'" ng-click="selectRow(item)">{{item.department}}</td>
+                    <td ng-hide="groupedBy === 'subcontractor'" ng-click="selectRow(item)">{{item.subcontractor}}</td>
+                    <td ng-hide="groupedBy === 'vendor'" ng-click="selectRow(item)">{{item.vendor}}</td>
+                    <td ng-hide="groupedBy === 'paymentType'" ng-click="selectRow(item)">{{item.paymentType}}</td>
+                    <td ng-hide="groupedBy === 'entryDate'" ng-click="selectRow(item)">{{item.entryDate}}</td>
+                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.description}}</td>
+                    <td ng-hide="groupedBy === 'subtotal'" ng-click="selectRow(item)">{{item.subtotal| currency}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="{{item.id}}">Edit</a></li>
+                                <li><a ng-href="payablesinvoices/{{item.id}}">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -225,13 +223,13 @@
             <div class="col-md-5 col-md-offset-7">
                 <div class="pull-left">
                     <p><strong><?php echo $this->getString('ACCOUNTING_SUBTOTAL') ?></strong></p>
-                    <!--<p><strong><?php // echo $this->getString('ACCOUNTING_DELIVERY_FEE')  ?></strong></p>-->
+                    <p ng-if="breakdown.deliveryFee"><strong><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TAX') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TOTAL') ?></strong></p>
                 </div>
                 <div class="pull-right">
                     <p>{{breakdown.subtotal| currency}}</p>
-                    <!--<p>{{breakdown.deliveryFee| currency}}</p>-->
+                    <p ng-if="breakdown.deliveryFee">{{breakdown.deliveryFee| currency}}</p>
                     <p>{{breakdown.tax| currency}}</p>
                     <p>{{breakdown.total| currency}}</p>
                 </div>

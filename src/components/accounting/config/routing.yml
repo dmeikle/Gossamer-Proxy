@@ -898,17 +898,6 @@ accounting_vendor_invoices_home:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
 
-accounting_vendor_invoices_search:
-    pattern: admin/accounting/payablesinvoices/search
-    defaults:
-        component: components\accounting\AccountingComponent
-        controller: components\accounting\controllers\AccountingVendorInvoicesController
-        model: components\accounting\models\AccountingVendorInvoiceModel
-        method: search
-        view: core\views\JSONView
-        viewKey: accounting_vendor_invoices_search
-        datasource: datasource1
-    methods: [GET]
 
 accounting_vendor_invoices_details:
     pattern: admin/accounting/payablesinvoices/details/*
@@ -996,7 +985,17 @@ accounting_invoice_upload:
         datasource: datasource1 
     methods: [POST]
 
-
+accounting_vendor_invoices_search:
+    pattern: admin/accounting/payablesinvoices/search/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_search
+        datasource: datasource1
+    methods: [GET]
 #------------------------ Accounting Invoice Extra ----------------------------
 accounting_invoiceextras_list:
     pattern: admin/accounting/invoiceextras/*/*

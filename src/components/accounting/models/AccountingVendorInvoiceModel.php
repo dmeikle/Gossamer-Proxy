@@ -93,4 +93,14 @@ class AccountingVendorInvoiceModel extends AbstractModel implements UploadableIn
         return $data;
     }
 
+    public function search(array $params) {
+        $locale = $this->getDefaultLocale();
+        $params['isActive'] = '1';
+        $params['locale'] = $locale['locale'];
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
+
+        return $data;
+    }
+
 }
