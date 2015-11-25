@@ -1,3 +1,4 @@
+
 <header ng-controller="tabsCtrl">
     <nav>
         <div class="navbar-header">
@@ -19,10 +20,20 @@
 
 
             <ul class="navbar-right">
+                <li class="dropdown" id="reminders">
+
+                </li>
+                <li class="dropdown" id="messages">
+                    <span class="glyphicon glyphicon-envelope-over"></span>
+                </li>
+                <li class="dropdown" id="notifications">
+
+                </li>
                 <li class="dropdown" id="context-button">
                     <!---context-button--->
                 </li>
                 <li class="dropdown">
+
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="userimage" src="http://placehold.it/25x25" alt=""> User Name <span class="caret"></span>
                     </a>

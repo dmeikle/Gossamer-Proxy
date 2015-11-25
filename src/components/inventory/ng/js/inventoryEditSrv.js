@@ -25,7 +25,9 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         }
 
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
@@ -38,7 +40,9 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         var requestPath = vendorsItemListPath + itemId;        
         var lineItemType = 'VendorItem';
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
@@ -56,12 +60,14 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         }
 
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
 
-        return crudSrv.save(object, vendorObjectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, vendorObjectType, formToken);
     };
 
     this.delete = function (object, formToken) {

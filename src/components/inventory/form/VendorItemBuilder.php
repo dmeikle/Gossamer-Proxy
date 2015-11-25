@@ -26,6 +26,8 @@ class VendorItemBuilder extends AbstractBuilder {
         if (is_array($validationResults) && array_key_exists('VendorItem', $validationResults)) {
             $builder->addValidationResults($validationResults['VendorItem']);
         }
+
+        pr($values);
 //changed model.item to model.item to prevent collisions with inventory for on edit inventory page
         $builder->add('id', 'hidden', array('value' => $this->getValue('id', $values)))
                 ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
@@ -35,6 +37,7 @@ class VendorItemBuilder extends AbstractBuilder {
                 ->add('leadTime', 'text', array('ng-model' => 'item.leadTime', 'ng-init' => "item.leadTime ='" . $this->getValue('leadTime', $values) . "'", 'class' => 'form-control'))
                 ->add('InventoryItems_id', 'text', array('ng-model' => 'item.InventoryItems_id', 'ng-init' => "item.InventoryItems_id ='" . $this->getValue('InventoryItems_id', $values) . "'"))
                 ->add('price', 'text', array('ng-model' => 'item.price', 'ng-init' => "item.price ='" . $this->getValue('price', $values) . "'", 'class' => 'form-control'))
+                ->add('vendorPrice', 'text', array('ng-model' => 'item.vendorPrice', 'ng-init' => "item.vendorPrice ='" . $this->getValue('vendorPrice', $values) . "'", 'class' => 'form-control'))
                 ->add('productCode', 'text', array('ng-model' => 'item.productCode', 'ng-init' => "item.productCode ='" . $this->getValue('productCode', $values) . "'", 'class' => 'form-control'))
                 ->add('minOrderQuantity', 'text', array('ng-model' => 'item.minOrderQuantity', 'ng-init' => "item.minOrderQuantity ='" . $this->getValue('minOrderQuantity', $values) . "'", 'class' => 'form-control'))
         ;

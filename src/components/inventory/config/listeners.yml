@@ -59,3 +59,15 @@ admin_inventory_equipment_edit:
                 - { dependency: InventoryCategorys, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: AccountingTaxTypes, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: Warehouses, key: warehouses, value: id, text: number }                
+                
+admin_inventory_items_save:  
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }       
+        
+admin_inventory_vendorprices_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }     
+
+admin_inventory_vendoritems_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }             
