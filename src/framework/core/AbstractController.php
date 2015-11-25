@@ -469,8 +469,8 @@ class AbstractController {
         $extension = $path_parts['extension'];
         //changed fileName to filename to match column name
         //if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '.' . $extension)) {
-            $params = array('id' => intval($id), 'filename' => $id . '.' . $extension);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '_' . $_FILES["file"]["name"])) {
+            $params = array('id' => intval($id), 'filename' => $id . '_' . $_FILES["file"]["name"]);
 
             $this->model->saveParamsOnComplete($params);
         }

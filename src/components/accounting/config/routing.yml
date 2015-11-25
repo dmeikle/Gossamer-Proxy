@@ -891,6 +891,17 @@ accounting_cashreceipts_save:
     methods: [POST]                                                   
     
 #------------------------ Accounting Invoices ----------------------------
+accounting_vendor_invoices_download:
+    pattern: admin/accounting/payablesinvoices/download/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: download
+        view: components\fileuploads\views\FileDownloadView
+        viewKey: accounting_vendor_invoices_home
+        datasource: datasource1
+        
 accounting_vendor_invoices_home:
     pattern: admin/accounting/payablesinvoices
     defaults:

@@ -27,4 +27,17 @@ class AccountingVendorInvoicesController extends AbstractController {
         $this->render($result);
     }
 
+    public function download($id) {
+        $invoice = $this->model->edit(intval($id));
+        if (!array_key_exists('VendorInvoice', $invoice)) {
+            throw new \Exception('Invoice not found');
+        }
+        $params = array(
+            'module' => 'invoices',
+            'filename' => $invoice['VendorInvoice'][0]['filename']
+        );
+
+        $this->render($params);
+    }
+
 }
