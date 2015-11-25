@@ -62,7 +62,12 @@
             <?php echo $this->getString('NEW') ?>
         </a>
     </div>
+
     <div ng-repeat="contact in jobSheet.query.contacts">
+
+        <div class="col-xs-12 form-group">
+            <hr />
+        </div>
         <div class="col-xs-10 form-group">
             <label>
                 <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
@@ -272,7 +277,8 @@
 <form id="wizard-form" ng-submit="finish()" ng-show="currentPage === 3">
     <table class="table">
         <tbody>
-            <?php $equipment = $this->getValue('InventoryEquipment');
+            <?php
+            $equipment = $this->getValue('InventoryEquipment');
             foreach ($equipment as $eq) {
                 ?>
                 <tr>
@@ -280,20 +286,20 @@
                         <strong><?php echo $eq['inventoryType']; ?></strong>
                     </td>
                     <td>
-    <?php echo $eq['numItems']; ?>
+                        <?php echo $eq['numItems']; ?>
                     </td>
                 </tr>
-<?php } ?>
+            <?php } ?>
         </tbody>
     </table>
     <div class="clearfix"></div>
     <div class="widgetfooter clearfix">
         <div class="pull-right btn-group">
             <button class="btn-default" ng-click="prevPage()" ng-disabled="currentPage === 0">
-<?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
+                <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
             </button>
             <button type="submit" class="btn btn-primary">
-<?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
+                <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
             </button>
         </div>
     </div>
