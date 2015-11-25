@@ -7,6 +7,13 @@
             <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
             <div ng-if="!loading" class="col-md-4 form-headings">
                 <div class="form-group">
+                    <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
+                    <?php echo $form['jobNumber']; ?>
+                    <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
+                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')                                               ?>
+                                        </div>-->
+                </div>
+                <div class="form-group">
                     <label for="purchaseOrdersAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER'); ?></label>
                     <?php echo $form['purchaseOrdersAutocomplete']; ?>
                 </div>
@@ -16,13 +23,6 @@
                     <?php echo $form['invoiceNumber']; ?>
                 </div>
 
-                <div class="form-group">
-                    <label for="jobNumber" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
-                    <?php echo $form['jobNumber']; ?>
-                    <!--                    <div class="resultspane claim-number form-builder col-md-5" ng-show="noResultsClaim">
-                                            <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('ACCOUNTING_NO_RESULTS')                                              ?>
-                                        </div>-->
-                </div>
 
                 <div class="form-group">
                     <label for="ClaimPhases_id" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
@@ -98,13 +98,13 @@
                 <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
                 <button class="btn-warning" ng-click="removeRows();
                             updateSubtotal()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS'); ?></button>
-                <!--<p><?php // echo $this->getString('ACCOUNTING_UNASSOCIATE_ITEMS');              ?><input class="checkbox" type="checkbox" ng-model="unassociated"></p>-->
+                <!--<p><?php // echo $this->getString('ACCOUNTING_UNASSOCIATE_ITEMS');               ?><input class="checkbox" type="checkbox" ng-model="unassociated"></p>-->
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
-                            <!--<th><?php // echo $this->getString('ACCOUNTING_STAFF_NAME');              ?></th>-->
-                            <!--<th><?php // echo $this->getString('ACCOUNTING_PRODUCT_CODE');            ?></th>-->
+                            <!--<th><?php // echo $this->getString('ACCOUNTING_STAFF_NAME');               ?></th>-->
+                            <!--<th><?php // echo $this->getString('ACCOUNTING_PRODUCT_CODE');             ?></th>-->
                             <th><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME'); ?></th>
                             <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
                             <th class="number-col"><?php echo $this->getString('ACCOUNTING_QUANTITY'); ?></th>
@@ -128,8 +128,8 @@
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
-                            <!--<td><?php // echo $form['staffName'];             ?></td>-->
-                            <!--<td><?php // echo $form['productCode'];            ?></td>-->
+                            <!--<td><?php // echo $form['staffName'];              ?></td>-->
+                            <!--<td><?php // echo $form['productCode'];             ?></td>-->
                             <td><?php echo $form['productName']; ?></td>
                             <td><?php echo $form['productDescription']; ?></td>
                             <td><?php echo $form['quantity']; ?></td>
@@ -138,7 +138,7 @@
                             <td class="total">{{row.amount| currency}}</td>
                         </tr>
 <!--                        <tr ng-if="unassociated">
-                            <td colspan="9" class="alert-warning"><?php // echo $this->getString('ACCOUNTING_UNASSOCIATED_WARNING');              ?></td>
+                            <td colspan="9" class="alert-warning"><?php // echo $this->getString('ACCOUNTING_UNASSOCIATED_WARNING');               ?></td>
                         </tr>-->
                     </tbody>
                 </table>

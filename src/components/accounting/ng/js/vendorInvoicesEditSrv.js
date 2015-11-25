@@ -7,6 +7,8 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
     var vendorItemsAutocompletePath = '/admin/vendors/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
+    var purchaseOrdersAutocompletePath = '/admin/accounting/pos/autocomplete';
+    var purchaseOrdersPath = '/admin/accounting/pos/';
     var detailsPath = '&action=details';
     var self = this;
     
@@ -21,12 +23,8 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
         }).then(function (response) {
             self.vendorInvoice = response.data.VendorInvoice[0];
             self.vendorInvoiceItems = response.data.VendorInvoiceItems;
-//            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
-//            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
-//            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
-//            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
             self.vendorInvoice.subtotal = parseFloat(self.vendorInvoice.subtotal);
-//            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.vendorInvoice.deliveryFee = parseFloat(self.vendorInvoice.deliveryFee);
             self.vendorInvoice.total = parseFloat(self.vendorInvoice.total);
             self.vendorInvoice.tax = parseFloat(self.vendorInvoice.tax);
             if(self.vendorInvoiceItems.length !== 0){
@@ -136,6 +134,52 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             } else if (self.autocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
+        });
+    };
+    
+    //Staff Autocomplete
+    this.fetchPurchaseOrdersAutocomplete = function (searchObject) {
+        return $http({
+            method: 'GET',
+            url: purchaseOrdersAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.autocompleteValues = response.data.PurchaseOrders;
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    //Get the purchase order
+    this.getPurchaseOrder = function (id) {
+        return $http({
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: purchaseOrdersPath + id
+        }).then(function (response) {
+            self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
+            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
+            self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
+            self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
+            self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
+            self.purchaseOrder.subtotal = parseFloat(self.purchaseOrder.subtotal);
+            self.purchaseOrder.deliveryFee = parseFloat(self.purchaseOrder.deliveryFee);
+            self.purchaseOrder.total = parseFloat(self.purchaseOrder.total);
+            self.purchaseOrder.tax = parseFloat(self.purchaseOrder.tax);
+            if(self.purchaseOrderItems[0].length !== 0){
+                for(var i in self.purchaseOrderItems){
+                    self.purchaseOrderItems[i].quantity = parseFloat(self.purchaseOrderItems[i].quantity);
+                    self.purchaseOrderItems[i].tax = parseFloat(self.purchaseOrderItems[i].tax);
+                    self.purchaseOrderItems[i].price = parseFloat(self.purchaseOrderItems[i].unitPrice);
+                    self.purchaseOrderItems[i].amount = parseFloat(self.purchaseOrderItems[i].amount);
+                }
+            }
+            
         });
     };
     

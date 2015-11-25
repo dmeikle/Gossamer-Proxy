@@ -222,6 +222,17 @@ accounting_timesheetitems_edit:
         
 
 #------------------------ purchase orders ----------------------------
+accounting_pos_autocomplete:
+    pattern: admin/accounting/pos/autocomplete
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: accounting_pos_autocomplete
+        datasource: datasource1
+
 accounting_pos_home:
     pattern: admin/accounting/pos
     defaults:

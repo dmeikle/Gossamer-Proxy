@@ -39,9 +39,9 @@ class VendorInvoicesBuilder extends AbstractBuilder {
                 ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsSubcontractors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.subcontractor);', 'typeahead-wait-ms' => '500'))
-                ->add('purchaseOrdersAutocomplete', 'text', array('ng-model' => 'item.purchaseOrder', 'uib-typeahead' => 'value as value.subcontractor for value in fetchPurchaseOrdersAutocomplete($viewValue)',
+                ->add('purchaseOrdersAutocomplete', 'text', array('ng-model' => 'item.purchaseOrder', 'uib-typeahead' => 'value as value.poNumber for value in fetchPurchaseOrdersAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsPurchaseOrders', 'class' => 'form-control typeahead col-md-7',
-                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.purchaseOrder);', 'typeahead-wait-ms' => '500'))
+                    'typeahead-min-length' => '1', 'typeahead-on-select' => 'getPurchaseOrder(item.purchaseOrder);', 'typeahead-wait-ms' => '500'))
                 ->add('description', 'textarea', array('class' => 'form-control col-md-7', 'ng-model' => 'item.description'))
                 ->add('deliveryFee', 'text', array('class' => 'form-control col-md-6', 'ng-model' => 'item.deliveryFee', 'ng-change' => 'updateTotal()'))
                 ->add('tax', 'text', array('class' => 'form-control col-md-6', 'ng-model' => 'item.tax', 'ng-change' => 'updateTotal()'))

@@ -111,12 +111,12 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     };
     
     //Product Code Typeahead
-    $scope.fetchProductCodeAutocomplete = function (viewVal) {
-            var searchObject = {};
-            searchObject.productCode = viewVal;
-            searchObject.Vendors_id = $scope.item.Vendors_id;
-            return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
-    };
+//    $scope.fetchProductCodeAutocomplete = function (viewVal) {
+//            var searchObject = {};
+//            searchObject.productCode = viewVal;
+//            searchObject.Vendors_id = $scope.item.Vendors_id;
+//            return vendorInvoicesEditSrv.fetchProductCodeAutocomplete(searchObject);
+//    };
     
     //Product Name Typeahead
     $scope.fetchProductNameAutocomplete = function (viewVal) {
@@ -136,6 +136,13 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         var searchObject = {};
         searchObject.company = viewVal;
         return vendorInvoicesEditSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
+    $scope.fetchPurchaseOrdersAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.purchaseOrderNumber = viewVal;
+        searchObject.Claims_id = $scope.item.Claims_id;
+        return vendorInvoicesEditSrv.fetchPurchaseOrdersAutocomplete(searchObject);
     };
     
     //Staff Typeahead
@@ -161,6 +168,18 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
 
     $scope.getStaffID = function(row, staff){
         row.Staff_id = staff.Staff_id;
+    };
+    
+    $scope.getPurchaseOrder = function(purchaseOrder){
+        vendorInvoicesEditSrv.getPurchaseOrder(purchaseOrder.poNumber).then(function(){
+            //console.log(vendorInvoicesEditSrv.purchaseOrder);
+            $scope.item = vendorInvoicesEditSrv.purchaseOrder;
+            $scope.item.vendor = vendorInvoicesEditSrv.Vendor;
+            $scope.item.purchaseOrder = purchaseOrder;
+            $scope.lineItems = vendorInvoicesEditSrv.purchaseOrderItems;
+            //$scope.item.entryDate = $filter('date')(vendorInvoicesEditSrv.creationDate, 'yyyy-MM-dd', '+0000');
+            $scope.item.entryDate = new Date(vendorInvoicesEditSrv.purchaseOrder.creationDate);
+        });
     };
     
     //Get Vendor items info
