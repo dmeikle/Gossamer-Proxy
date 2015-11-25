@@ -21,7 +21,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     $scope.loading = true;
 
     $scope.tablesSrv = tablesSrv;
-    $controller('claimsLocationsListCtrl', {$scope: $scope});
+    $controller('claimsLocationsListCtrl', {$scope: $scope}); 
 
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
