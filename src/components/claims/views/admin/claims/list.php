@@ -69,10 +69,11 @@
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a href="/admin/claims/edit/{{claim.unassignedJobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                             </ul>
                         </div>
@@ -82,7 +83,7 @@
         </table>
 
         <uib-pagination class="pull-left pagination" total-items="totalItems" ng-model="currentPage"
-            items-per-page="itemsPerPage" boundary-links="true" rotate="false">
+                        items-per-page="itemsPerPage" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">
@@ -117,7 +118,8 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1 ng-if="selectedClaim.jobNumber"><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1 ng-if="!selectedClaim.jobNumber"><a href="/admin/claims/edit/{{selectedClaim.unassignedJobNumber}}">{{selectedClaim.unassignedJobNumber}}</a></h1>
             <h4><?php echo $this->getString('CLAIMS_ADDRESS') ?></h4>
             <div>{{selectedClaim.address1}}</div>
             <div>{{selectedClaim.address2}}</div>
@@ -135,7 +137,7 @@
                     <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
                 </div>
             </div>
-            
+
             <div>
                 <h4 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
                 <div class="pull-right">
@@ -161,8 +163,8 @@
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
-                                type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="true">
+                                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
