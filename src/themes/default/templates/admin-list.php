@@ -36,6 +36,7 @@
 
         <!---subnav--->
         <!---leftnav--->
+        <!---notifications--->
         <div class="clearfix <?php
         if ($this->getViewType() == 'html') {
             echo 'hide';

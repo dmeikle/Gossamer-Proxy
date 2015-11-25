@@ -1,5 +1,6 @@
-module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv,
-    claimsListSrv, tablesSrv) {
+
+module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -158,6 +159,7 @@ module.controller('claimsPMModalCtrl', function($uibModalInstance, $scope, claim
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+
 });
 
 module.controller('claimsModalCtrl', function($uibModalInstance, $scope, claimsEditSrv) {

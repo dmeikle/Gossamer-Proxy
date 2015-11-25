@@ -12,6 +12,10 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         return crudSrv.getDetails(apiPath, object.id);
     };
 
+    this.loadVendorPrices = function(id, row, numRows) {
+        return crudSrv.getList(vendorApiPath + id + '/', row, numRows);
+    };
+
     this.save = function(object, formToken) {
         var requestPath;
         if (!object.id || object.id === '') {
@@ -21,7 +25,9 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         }
 
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
@@ -34,7 +40,9 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         var requestPath = vendorsItemListPath + itemId;        
         var lineItemType = 'VendorItem';
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
@@ -52,17 +60,24 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
         }
 
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }
 
-        return crudSrv.save(object, vendorObjectType, formToken, requestPath);
+        return crudSrv.save(requestPath, object, vendorObjectType, formToken);
     };
 
     this.delete = function (object, formToken) {
 
         return crudSrv.delete(apiPath + 'remove/', object, formToken);
+    };
+
+    this.deleteVendorPrice = function (object, formToken) {
+
+        return crudSrv.delete(vendorApiPath + 'remove/', object, formToken);
     };
     
     this.fetchVendorsAutocomplete = function (searchObject) {

@@ -265,8 +265,8 @@ admin_inventory_items_autocomplete:
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryItemsController
@@ -382,6 +382,17 @@ admin_inventory_items_edit:
 
 
 
+amdin_vendoritems_list_by_item:
+    pattern: admin/inventory/vendoritems/*/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VendorItemsController
+        model: components\inventory\models\VendorItemModel
+        method: listbyItem
+        view: core\views\JSONView
+        viewKey: amdin_vendoritems_list_by_item
+        datasource: datasource1
+    methods: [GET]
 
 admin_inventory_items_save:
     pattern: admin/inventory/items/*
@@ -393,8 +404,8 @@ admin_inventory_items_save:
         view: core\views\JSONView
         viewKey: admin_inventory_items_save
         datasource: datasource1
-        langFiles:
-            - 'src/components/defaultItem/locales/*/Navigation'
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST]
 
 
@@ -484,7 +495,6 @@ admin_warehouse_locations_save:
 
 admin_inventory_list:
     pattern: admin/inventory
-    listeners:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryController
@@ -638,7 +648,7 @@ admin_inventory_vendoritems_save:
         viewKey: admin_inventory_vendoritems_save
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
+            - 'src/components/inventory/locales/*/Validation'  
     methods: [POST] 
 
 
@@ -653,4 +663,7 @@ admin_inventory_vendorprices_save:
         view: core\views\JSONView
         viewKey: admin_inventory_vendorprices_save
         datasource: datasource1
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST] 
+     

@@ -5,7 +5,7 @@
     <div>
         <div class="col-xs-12">
             <h1 class="pull-left">
-                <?php echo $this->getString('CLAIMS_EDIT') ?> 
+                <?php echo $this->getString('CLAIMS_EDIT') ?>
                 <span ng-if="!claim" class="spinner-loader"></span>
                 <span ng-if="claim">{{claim.jobNumber}}</span>
             </h1>
@@ -38,7 +38,7 @@
                     <div class="row-controls pull-right">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
@@ -112,11 +112,11 @@
                             <td class="row-controls">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
-                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="true">
+                                            type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/admin/claims/edit/{{location.id}}">Edit</a></li>
+                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}">Edit</a></li>
                                     </ul>
                                 </div>
                             </td>

@@ -21,10 +21,7 @@ super_user_home:
             text_key: 'ADMIN_WORKPERFORMED'
             pattern: '/admin/workperformed/0/20'
             display_roles:
-              - IS_ADMINISTRATOR
-              - IS_PROJECT_MANAGER
-              - IS_PM_ASSISTANT
-              - IS_ACCOUNTING
+              - IS_SUPER_USER
 
 admin_contactus:
     text_key: 'ADMIN_CONTACTUS'
@@ -34,145 +31,190 @@ admin_contactus:
         - IS_ADMIN
         - IS_ADMINISTRATOR
         - IS_STAFF
+        
 
-admin_notifications:
-    active: true
-    text_key: 'ADMIN_NOTIFICATIONS'
-    pattern: '/admin/notifications/0/20'
-    section: usermenu
+admin_claims:
+    text_key: 'ADMIN_CLAIMS'
+    pattern: ''
     display_roles:
         - IS_ADMINISTRATOR
+        - IS_ADMIN
         - IS_STAFF
+    children:
+        claims_list_all:
+            text_key: 'ADMIN_CLAIMS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/claims/claimsAdminTab'
+            pattern: '/admin/claims'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        claims_create_new:
+            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+            pattern: '/admin/claims/new/1/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+                - IS_PROJECT_MANAGER
+        claims_scheduling:
+            text_key: 'ADMIN_CLAIMS_SCHEDULING'
+            pattern: '/admin/claims/scheduling/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        admin_keys:
+            active: false
+            text_key: 'ADMIN_KEYS'
+            pattern: '/admin/keys/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                
 
-admin_messages:
+
+admin_inventory:
     active: true
-    text_key: 'ADMIN_MESSAGES'
-    pattern: '/admin/messaging/0/20'
-    section: usermenu
+    text_key: 'ADMIN_INVENTORY'
+
+    pattern: '#'
     display_roles:
         - IS_ADMINISTRATOR
         - IS_STAFF
     children:
-        messages_listall:
-            text_key: 'ADMIN_MESSAGES_LIST_ALL'
-            pattern: '/admin/messages/0/20'
+
+        admin_inventory_list:
+            text_key: 'ADMIN_INVENTORY_LIST'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/inventory/inventoryListTab'
+            pattern: '/admin/inventory'
             display_roles:
+                - IS_ADMINISTRATOR
                 - IS_STAFF
 
-admin_reminders:
-    active: true
-    text_key: 'ADMIN_REMINDERS'
-    pattern: '/admin/reminders/0/20'
-    section: usermenu
-    display_roles:
-        - IS_STAFF
-
-
-admin_cms:
-    active: true
-    text_key: 'ADMIN_CMS'
-    pattern: '/admin/cms/pages/0/20'
-    section: usermenu
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    children:
-        admin_cms_list_all:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_PAGES'
-            pattern: '/admin/cms/pages/0/20'
+        admin_inventory_equipment:
+            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
+            pattern: '/admin/inventory/equipment/0/20'
             display_roles:
                 - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_add_new:
-            active: true
-            text_key: 'ADMIN_CMS_ADD_NEW_PAGE'
-            pattern: '/admin/cms/pages/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_list_all_sections:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_SECTIONS'
-            pattern: '/admin/cms/sections/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_list_all_blogs:
-            active: true
-            text_key: 'ADMIN_CMS_LIST_ALL_BLOGS'
-            pattern: '/admin/cms/blogs/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-        admin_cms_add_new_blog:
-            active: true
-            text_key: 'ADMIN_CMS_ADD_NEW_BLOGS'
-            pattern: '/admin/cms/blogs/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-
-admin_events:
-    active: true
-    text_key: 'ADMIN_EVENTS'
-    pattern: '/admin/events/0/20'
-    section: usermenu
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
-    children:
-        events_list_all:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL'
-            pattern: '/admin/events/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
                 - IS_STAFF
-        events_list_all_locations:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_LOCATIONS'
-            pattern: '/admin/events/locations/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_contacts:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_CONTACTS'
-            pattern: '/admin/events/eventcontacts/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_prospects:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_PROSPECTS'
-            pattern: '/admin/events/eventprospects/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-        events_list_all_prospects:
-            active: true
-            text_key: 'ADMIN_EVENTS_LIST_ALL_INVITE_LISTS'
-            pattern: '/admin/events/lists/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-
-admin_call_matrix:
+                
+                
+admin_subcontractors:
     active: false
-    text_key: 'ADMIN_CALL_MATRIX'
-    pattern: '/admin/callmatrix/0/14'
-    section: 'usermenu'
+    text_key: 'ADMIN_SUBCONTRACTORS'
+    pattern: '/admin/subcontractors/0/20'
     display_roles:
         - IS_ADMINISTRATOR
-        - IS_PROJECT_MANAGER
-        - IS_PM_ASSISTANT
+    children:        
+        admin_subcontractors_list:
+            active: true
+            text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
+            pattern: '/admin/subcontractors'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        admin_subcontractors_create:
+            active: true
+            text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
+            pattern: '/admin/subcontractors/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+    
+admin_projects:
+    active: true
+    text_key: 'ADMIN_PROJECTS'
+    pattern: '/admin/projects/0/20'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+        - IS_STAFF
+    children:
+        projects:
+            active: true
+            text_key: 'ADMIN_PROJECTS_LIST_ALL'
+            pattern: '/admin/projects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        projects:
+            active: true
+            text_key: 'ADMIN_PROJECTS_CREATE_NEW'
+            pattern: '/admin/projects/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF       
+                
+                
+                
+admin_companies:
+    text_key: 'ADMIN_COMPANIES'
+    pattern: ''
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_ADMIN
+        - IS_STAFF
+    children:
+        contacts_companies_listall:
+            text_key: 'ADMIN_COMPANIES_LIST_ALL'
+            pattern: '/admin/companies'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/companies/companiesAdminTab'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+        contacts_add_new_company:
+            text_key: 'ADMIN_COMPANIES_ADD_NEW'
+            pattern: '/admin/companies/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+                - IS_PMA         
+#
+#this section is for upper nav
+#
+#admin_notifications:
+#    active: true
+#    text_key: 'ADMIN_NOTIFICATIONS'
+#    pattern: '/admin/notifications/0/20'
+#    section: usermenu
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#
+#admin_messages:
+#    active: true
+#    text_key: 'ADMIN_MESSAGES'
+#    pattern: '/admin/messaging/0/20'
+#    section: usermenu
+#    display_roles:
+#        - IS_ADMINISTRATOR
+#        - IS_STAFF
+#    children:
+#        messages_listall:
+#            text_key: 'ADMIN_MESSAGES_LIST_ALL'
+#            pattern: '/admin/messages/0/20'
+#            display_roles:
+#                - IS_STAFF
+#
+#admin_reminders:
+#    active: true
+#    text_key: 'ADMIN_REMINDERS'
+#    pattern: '/admin/reminders/0/20'
+#    section: usermenu
+#    display_roles:
+#        - IS_STAFF
+
 
 
 
@@ -511,104 +553,8 @@ admin_accounting_general:
 #                        - IS_STAFF
 #                        - IS_PROJECT_MANAGER
 #                        - IS_PMA
-admin_companies:
-    text_key: 'ADMIN_COMPANIES'
-    pattern: ''
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_ADMIN
-        - IS_STAFF
-    children:
-        contacts_companies_listall:
-            text_key: 'ADMIN_COMPANIES_LIST_ALL'
-            pattern: '/admin/companies'
-            ng-click: "addTab('text_key', 'template')"
-            template: '/render/companies/companiesAdminTab'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-        contacts_add_new_company:
-            text_key: 'ADMIN_COMPANIES_ADD_NEW'
-            pattern: '/admin/companies/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-admin_claims:
-    text_key: 'ADMIN_CLAIMS'
-    pattern: ''
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_ADMIN
-        - IS_STAFF
-    children:
-        claims_list_all:
-            text_key: 'ADMIN_CLAIMS_LIST_ALL'
-            ng-click: "addTab('text_key', 'template')"
-            template: '/render/claims/claimsAdminTab'
-            pattern: '/admin/claims'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-        claims_create_new:
-            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-            pattern: '/admin/claims/new/1/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-                - IS_PROJECT_MANAGER
-        claims_scheduling:
-            text_key: 'ADMIN_CLAIMS_SCHEDULING'
-            pattern: '/admin/claims/scheduling/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-                - IS_PROJECT_MANAGER
-        admin_keys:
-            active: false
-            text_key: 'ADMIN_KEYS'
-            pattern: '/admin/keys/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
 
 
-        admin_subcontractors:
-            active: false
-            text_key: 'ADMIN_SUBCONTRACTORS'
-            pattern: '/admin/subcontractors/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-        admin_projects:
-            active: true
-            text_key: 'ADMIN_PROJECTS'
-            pattern: '/admin/projects/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_EDITOR
-                - IS_STAFF
-            children:
-                projects:
-                    active: true
-                    text_key: 'ADMIN_PROJECTS_LIST_ALL'
-                    pattern: '/admin/projects/0/20'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_EDITOR
-                        - IS_STAFF
-                projects:
-                    active: true
-                    text_key: 'ADMIN_PROJECTS_CREATE_NEW'
-                    pattern: '/admin/projects/0'
-                    display_roles:
-                        - IS_ADMINISTRATOR
-                        - IS_EDITOR
-                        - IS_STAFF
 
 
 
@@ -644,50 +590,8 @@ samples_list:
         - IS_ADMINISTRATOR
         - IS_STAFF
 
-admin_inventory:
-    active: true
-    text_key: 'ADMIN_INVENTORY'
-
-    pattern: '#'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_STAFF
-    children:
-
-        admin_inventory_list:
-            text_key: 'ADMIN_INVENTORY_LIST'
-            ng-click: "addTab('text_key', 'template')"
-            template: '/render/inventory/inventoryListTab'
-            pattern: '/admin/inventory'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
-
-        admin_inventory_equipment:
-            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
-            pattern: '/admin/inventory/equipment/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
 
 
-
-admin_subcontractors_list:
-    active: true
-    text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
-    pattern: '/admin/subcontractors'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
-projects:
-    active: true
-    text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
-    pattern: '/admin/subcontractors/0'
-    display_roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-        - IS_STAFF
                 
 #        admin_projects:
 #            active: true
@@ -843,6 +747,116 @@ projects:
 #        - IS_EDITOR
 #        - IS_STAFF
 #
+
+
+
+
+admin_cms:
+    active: true
+    text_key: 'ADMIN_CMS'
+    pattern: '/admin/cms/pages/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+    children:
+        admin_cms_list_all:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_PAGES'
+            pattern: '/admin/cms/pages/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_add_new:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_PAGE'
+            pattern: '/admin/cms/pages/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_list_all_sections:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_SECTIONS'
+            pattern: '/admin/cms/sections/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_list_all_blogs:
+            active: true
+            text_key: 'ADMIN_CMS_LIST_ALL_BLOGS'
+            pattern: '/admin/cms/blogs/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+        admin_cms_add_new_blog:
+            active: true
+            text_key: 'ADMIN_CMS_ADD_NEW_BLOGS'
+            pattern: '/admin/cms/blogs/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+
+admin_events:
+    active: true
+    text_key: 'ADMIN_EVENTS'
+    pattern: '/admin/events/0/20'
+    section: usermenu
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_EDITOR
+        - IS_STAFF
+    children:
+        events_list_all:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL'
+            pattern: '/admin/events/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_locations:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_LOCATIONS'
+            pattern: '/admin/events/locations/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_contacts:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_CONTACTS'
+            pattern: '/admin/events/eventcontacts/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_prospects:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_PROSPECTS'
+            pattern: '/admin/events/eventprospects/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+        events_list_all_prospects:
+            active: true
+            text_key: 'ADMIN_EVENTS_LIST_ALL_INVITE_LISTS'
+            pattern: '/admin/events/lists/0/20'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_EDITOR
+                - IS_STAFF
+
+admin_call_matrix:
+    active: false
+    text_key: 'ADMIN_CALL_MATRIX'
+    pattern: '/admin/callmatrix/0/14'
+    section: 'usermenu'
+    display_roles:
+        - IS_ADMINISTRATOR
+        - IS_PROJECT_MANAGER
+        - IS_PM_ASSISTANT
+
 ##-------------------CLIENT PORTAL SECTION--------------------
 #
 #
