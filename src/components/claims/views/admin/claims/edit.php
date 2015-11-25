@@ -34,7 +34,7 @@
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="claim">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_TYPE_INFO'); ?></h1>
+                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
                     <div class="row-controls pull-right">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -61,11 +61,11 @@
                          padding: 5px;
                          border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
                         {{claim.phase.title}}</div>
-                    <label ng-value="claim.workAuthorizationReceiveDate">Authorization Date: {{claim.workAuthorizationReceiveDate}}</label><br />
-                    <label>Type: {{claim.typeOfClaim}}</label><br />
-                    <label>Project Manager: {{claim.projectManager}}</label><br />
-                    <label>Status: {{claim.status}}</label><br />
-                    <label>Emerg #:{{claim.unassignedJobNumber}}</label>
+                    <label ng-value="claim.workAuthorizationReceiveDate"><?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>: {{claim.workAuthorizationReceiveDate}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.typeOfClaim}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>: {{claim.projectManager}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_STATUS'); ?>: {{claim.status}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_UNASSIGNED_JOB_NUMBER'); ?>: {{claim.unassignedJobNumber}}</label>
                 </div>
             </div>
         </div>
@@ -116,7 +116,8 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}">Edit</a></li>
+                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT') ?></a></li>
+                                        <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
                                     </ul>
                                 </div>
                             </td>
