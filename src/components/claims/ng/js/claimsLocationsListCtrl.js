@@ -44,7 +44,7 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
     };
 
     $scope.openClaimLocationModal = function(object) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/claimLocationModal',
             controller: 'claimLocationModalCtrl',
             size: 'md',
