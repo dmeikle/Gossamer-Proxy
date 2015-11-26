@@ -50,6 +50,7 @@
     & ~ .widget-side-panel {
       @extend .col-xs-12;
       @extend .col-md-4;
+      @include width-transition;
       border-left:solid 1px $gray-lighter;
     }
   }

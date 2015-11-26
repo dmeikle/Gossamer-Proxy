@@ -1,6 +1,7 @@
 admin_inventory_items_edit:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+       # - { 'class': 'components\inventory\models\VendorItemModel', 'event': 'request_start', 'listener': 'components\inventory\listeners\ListVendorItemPricesListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryCategoryModel', 'cacheKey': 'InventoryCategorys' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
@@ -58,3 +59,15 @@ admin_inventory_equipment_edit:
                 - { dependency: InventoryCategorys, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: AccountingTaxTypes, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: Warehouses, key: warehouses, value: id, text: number }                
+                
+admin_inventory_items_save:  
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }       
+        
+admin_inventory_vendorprices_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }     
+
+admin_inventory_vendoritems_save:       
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }             

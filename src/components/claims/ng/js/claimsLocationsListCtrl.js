@@ -1,5 +1,6 @@
-module.controller('claimsLocationsListCtrl', function($scope, $location, $modal, claimsListSrv,
-    claimsLocationsListSrv, claimsLocationsEditSrv, tablesSrv) {
+
+module.controller('claimsLocationsListCtrl', function($scope, $location, $uibModal, claimsListSrv, claimsLocationsListSrv, claimsLocationsEditSrv, tablesSrv, claimsEditSrv) {
+
 
     var row = 0;
     var numRows = 20;
@@ -20,17 +21,30 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $modal,
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
         numRows = $scope.itemsPerPage;
-
         if ($scope.grouped) {
             tablesSrv.groupBy(apiPath, $scope.groupedBy, row, numRows);
         } else {
             $scope.getList();
         }
     });
-
+    
+    $scope.openAddNewWizard = function () {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/render/claims/claimsAddNewModal',
+            controller: 'claimsModalCtrl',
+            size: 'lg',
+            keyboard: false,
+            backdrop: "static"
+        });
+         modalInstance.result.then(function(object) {
+            if (document.getElementById('Claims_id')) {
+                object.Claims_id = document.getElementById('Claim_id').value;
+            }
+        });
+    };
 
     $scope.openClaimLocationModal = function(object) {
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/claimLocationModal',
             controller: 'claimLocationModalCtrl',
             size: 'md',
@@ -41,8 +55,8 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $modal,
             }
         });
 
-        modalInstance.result.then(function(object) {
-            if (document.getElementById('Claims_id')) {
+         modalInstance.result.then(function(object) {
+            if (document.getElementById('Claim_id')) {
                 object.Claims_id = document.getElementById('Claim_id').value;
 
                 claimsLocationsEditSrv.save(object).then(function() {
@@ -89,7 +103,9 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $modal,
         object.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
         object.isActive = '0';
         claimsLocationsEditSrv.delete(object).then(function() {
-            if (document.getElementById('Claims_id')) {
+
+            if (document.getElementById('Claim_id')) {
+
                 object.Claims_id = document.getElementById('Claim_id').value;
 
                 claimsLocationsEditSrv.save(object).then(function() {

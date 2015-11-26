@@ -48,6 +48,7 @@ admin_inventory_variantoptions:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/variant-options.php"
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -75,6 +76,7 @@ admin_inventory_variantgroups:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/variant-groups.php"
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -102,6 +104,7 @@ admin_inventory_equipment_locations:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/inventory/views/admin/equipment-locations/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
@@ -143,6 +146,7 @@ admin_inventory_items_edit:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -168,6 +172,7 @@ admin_inventory_equipment_edit:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/equipment-edit.php"
             "cards": "src/components/inventory/views/admin/items/equipment-edit-cards.php"
@@ -194,6 +199,7 @@ admin_inventory_list:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/inventory/views/admin/items/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -223,6 +229,7 @@ admin_warehouse_locations_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/inventory/views/admin/warehouse/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:

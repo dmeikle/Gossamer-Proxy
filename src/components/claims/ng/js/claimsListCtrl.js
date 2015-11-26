@@ -1,5 +1,6 @@
-module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv,
-    claimsListSrv, tablesSrv) {
+
+module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -20,7 +21,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     $scope.loading = true;
 
     $scope.tablesSrv = tablesSrv;
-    $controller('claimsLocationsListCtrl', {$scope: $scope});
+    $controller('claimsLocationsListCtrl', {$scope: $scope}); 
 
     $scope.$watch('tablesSrv.sortResult', function() {
         if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
@@ -169,4 +170,5 @@ module.controller('claimsPMModalCtrl', function($uibModalInstance, $scope, claim
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+
 });

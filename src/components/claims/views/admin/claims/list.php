@@ -80,6 +80,10 @@
                                         <?php echo $this->getString('CLAIMS_EDIT'); ?>
                                     </a>
                                 </li>
+                                <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_COSTCARDS'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/breakdowns/{{claim.id}}"><?php echo $this->getString('CLAIMS_BREAKDOWNS'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/invoices/{{claim.id}}"><?php echo $this->getString('CLAIMS_INVOICES'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a href="/admin/claims/edit/{{claim.unassignedJobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                                 <li><a href="" ng-click="remove(claim)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
                             </ul>
@@ -125,7 +129,8 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1 ng-if="selectedClaim.jobNumber"><a href="/admin/claims/edit/{{selectedClaim.jobNumber}}">{{selectedClaim.jobNumber}}</a></h1>
+            <h1 ng-if="!selectedClaim.jobNumber"><a href="/admin/claims/edit/{{selectedClaim.unassignedJobNumber}}">{{selectedClaim.unassignedJobNumber}}</a></h1>
             <h4><?php echo $this->getString('CLAIMS_ADDRESS') ?></h4>
             <div>{{selectedClaim.address1}}</div>
             <div>{{selectedClaim.address2}}</div>
@@ -143,7 +148,7 @@
                     <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
                 </div>
             </div>
-            
+
             <div>
                 <h4 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
                 <div class="pull-right">

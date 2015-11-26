@@ -3,12 +3,25 @@ module.controller('inventoryEditItemCtrl', function($scope, $location, inventory
     $scope.lineItems = [];
     $scope.vendorItem = {};
     
+    loadVendorPrices();
+    
     $scope.getDetails = function() {
         inventoryEditSrv.getDetails($scope.item).then(function(response) {
             $scope.item = response.data.InventoryItem;
         });
     };
 
+
+    function loadVendorPrices () {
+        var id = document.getElementById('InventoryItem_id').value;
+        $scope.loading = true;
+        inventoryEditSrv.loadVendorPrices(id, 0, 20)
+            .then(function(response) {
+                $scope.lineItems = response.data.VendorItems;
+                $scope.loading = false;
+            });
+    }
+    
     $scope.saveItem = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         inventoryEditSrv.save($scope.item, formToken).then(function(response) {
@@ -18,23 +31,12 @@ module.controller('inventoryEditItemCtrl', function($scope, $location, inventory
 
     $scope.saveLineItems = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-       // formatLineItems();
+     
         inventoryEditSrv.saveLineItems($scope.lineItems, formToken, $scope.item.id).then(function(response) {
             //do not fire a redirect to reload page
         });
     }; 
     
-    function formatLineItems() {
-        var items = $scope.lineItems;        
-        
-        for(var i in items) {
-            if(!items[i].hasOwnProperty('isPreferredVendor ')) {
-                items[i].isPreferredVendor = '0';
-            }           
-        } 
-        
-        $scope.lineItems = items;
-    }
     
     $scope.setVendorId = function(row)  {
         row.Vendors_id = row.company.id;
@@ -79,7 +81,20 @@ module.controller('inventoryEditItemCtrl', function($scope, $location, inventory
         for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
             if ($scope.lineItems[i].isSelected === true) {
                 $scope.lineItems.splice(parseInt(i), 1);
+                
             }
+        }
+        $scope.rowSelected = false;
+        
+    };
+    
+    
+    //check the selected rows
+    $scope.checkSelected = function (value) {
+        if (value === false) {
+            $scope.selectAll = false;
+        } else {
+            $scope.rowSelected = true;
         }
     };
 });

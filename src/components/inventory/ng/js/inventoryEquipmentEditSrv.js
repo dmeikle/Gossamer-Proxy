@@ -15,7 +15,9 @@ module.service('inventoryEquipmentEditSrv', function(crudSrv) {
         }
 
         for (var property in object) {
-            if (object.hasOwnProperty(property) && !object[property]) {
+            if (object.hasOwnProperty(property) && 
+                property.substr(property.length - 3) == '_id' && 
+                !object[property]) {
                 delete object[property];
             }
         }

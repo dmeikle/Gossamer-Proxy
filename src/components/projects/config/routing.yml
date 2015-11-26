@@ -20,6 +20,7 @@ admin_projects_home:
         viewKey: admin_projects_home
         datasource: datasource1
         langFiles:
+            -  'app/locales/*/website' 
             -  'src/components/projects/locales/*/Project' 
 
 admin_projects_get:

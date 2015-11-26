@@ -1,7 +1,7 @@
 <div ng-controller="claimsContactsList">
     <div class="card">
         <div class="cardheader">
-            <h1><?php echo $this->getString('CLAIMS_PHASEVSECD') ?></h1>
+            <h1><?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?></h1>
         </div>
         <div ng-if="claimLoading">
             <div class="spinner-loader"></div>
@@ -23,17 +23,17 @@
                                 </strong>
                             </td>
                             <td>
-                                {{startDate | date: mediumDate : '+0000'}}
+                                {{startDate| date: mediumDate : '+0000'}}
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <strong>
-                                    <?php echo $this->getString('CLAIMS_ENDDATE') ?>
+                                    <?php echo $this->getString('CLAIMS_ESTIMATE') ?>
                                 </strong>
                             </td>
                             <td>
-                                {{endDate | date : mediumDate : '+0000'}}
+                                {{endDate| date : mediumDate : '+0000'}}
                             </td>
                         </tr>
                     </tbody>

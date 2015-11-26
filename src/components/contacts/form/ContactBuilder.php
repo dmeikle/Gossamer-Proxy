@@ -27,10 +27,7 @@ class ContactBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Contact']);
         }
 
-        $builder->add('Companies_id', 'select', array('ng-model' => 'contact.Companies_id', 'class' => 'form-control'))
-                ->add('ContactTypes_id', 'select', array('ng-model' => 'contact.ContactTypes_id', 'class' => 'form-control', 'options' => $options['contactTypes']))
-                ->add('ContactVIPTypes_id', 'select', array('ng-model' => 'contact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']))
-                ->add('firstname', 'text', array('ng-model' => 'contact.firstname', 'class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
+        $builder->add('firstname', 'text', array('ng-model' => 'contact.firstname', 'class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
                 ->add('lastname', 'text', array('ng-model' => 'contact.lastname', 'class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
                 ->add('email', 'email', array('ng-model' => 'contact.email', 'class' => 'form-control', 'value' => $this->getValue('email', $values)))
                 ->add('mobile', 'text', array('ng-model' => 'contact.mobile', 'class' => 'form-control', 'value' => $this->getValue('mobile', $values)))
@@ -41,7 +38,17 @@ class ContactBuilder extends AbstractBuilder {
                 ->add('ContactInvites_id', 'text', array('ng-model' => 'contact.ContactInvites_id', 'class' => 'form-control', 'value' => $this->getValue('ContactInvites_id', $values)))
                 ->add('notes', 'textarea', array('ng-model' => 'contact.notes', 'class' => 'form-control', 'value' => $this->getValue('notes', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'))
+                ->add('Companies_id', 'select', array('ng-model' => 'contact.Companies_id', 'class' => 'form-control'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary cancel'));
+
+
+        if (array_key_exists('contactTypes', $options)) {
+            $builder->add('ContactTypes_id', 'select', array('ng-model' => 'contact.ContactTypes_id', 'class' => 'form-control', 'options' => $options['contactTypes']));
+        }
+
+        if (array_key_exists('contactVIPTypes', $options)) {
+            $builder->add('ContactVIPTypes_id', 'select', array('ng-model' => 'contact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
+        }
 
 
         return $builder->getForm();

@@ -6,5 +6,5 @@
     <div ng-if="loading || wizardLoading">
         <span class="spinner-loader"></span>
     </div>
-    <wizard ng-show="!loading && !wizardLoading" class="clearfix" data-module="claims" data-filename="initialJobsheetWizardPages"></wizard>
+    <wizard ng-show="!loading && !wizardLoading" class="clearfix" data-module="claims" data-filename="initialJobsheetWizardPages" data-params="Claims_id=16&ClaimsLocations_id=30"></wizard>
 </div>
