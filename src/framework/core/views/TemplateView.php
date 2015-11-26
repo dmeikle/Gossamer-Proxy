@@ -24,6 +24,8 @@ use core\handlers\HTMLTagHandler;
  */
 class TemplateView extends AbstractView {
 
+    use \libraries\utils\traits\GetLoggedInUser;
+
     protected $sections = null;
     private $isMobile = false;
     private $jsIncludeFiles = array();
@@ -346,6 +348,12 @@ class TemplateView extends AbstractView {
             return implode('', $retval);
         }
         return $retval;
+    }
+
+    public function getUsername() {
+        $user = $this->getLoggedInUser();
+
+        return $user->getCredentials();
     }
 
     protected function renderImages() {

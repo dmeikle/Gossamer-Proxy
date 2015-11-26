@@ -265,8 +265,8 @@ admin_inventory_items_autocomplete:
 admin_inventory_items_list:
     pattern: admin/inventory/items/*/*
     listeners:
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-       - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryItemsController
@@ -331,26 +331,6 @@ admin_inventory_equipment_list:
 
 admin_inventory_equipment_edit:
     pattern: admin/inventory/equipment/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentTypeModel', 'cacheKey': 'InventoryEquipmentTypes' }
-         
-            # build the form
-        -
-            event: 'request_start'
-            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-            datasource: 'datasource1'
-            formBuilder: 'components\inventory\form\InventoryEquipmentBuilder'
-            model: 'components\inventory\models\InventoryEquipmentModel'
-            cacheKey: 'InventoryEquipmentForm'
-            formName: 'inventoryEquipmentForm'
-            dependencies:
-                - { dependency: PackageTypes, key: packageTypes, value: id, text: province }
-                - { dependency: InventoryEquipmentTypes, key: inventoryEquipmentTypes, value: id, text: number }
-                - { dependency: InventoryTypes, key: inventoryEquipmentTypes, value: id, text: number }
-                - { dependency: InventoryCategorys, key: inventoryEquipmentTypes, value: id, text: number }
-                - { dependency: AccountingTaxTypes, key: inventoryEquipmentTypes, value: id, text: number }
-                - { dependency: Warehouses, key: warehouses, value: id, text: number }
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryEquipmentController
@@ -399,43 +379,20 @@ admin_inventory_items_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryCategoryModel', 'cacheKey': 'InventoryCategorys' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryTypeModel', 'cacheKey': 'InventoryTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingTaxTypeModel', 'cacheKey': 'AccountingTaxTypes' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\WarehouseModel', 'cacheKey': 'WarehouseLocations' }
-        # build the form after controller loads item - use request end event
-        -
-            event: 'request_end'
-            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-            datasource: 'datasource1'
-            formBuilder: 'components\inventory\form\InventoryItemBuilder'
-            model: 'components\inventory\models\InventoryItemModel'
-            cacheKey: 'InventoryItemForm'
-            formName: 'form'
-            dependencies:
-                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
-                - { dependency: InventoryTypes, key: inventoryTypes, value: id, text: name }
-                - { dependency: InventoryCategorys, key: inventoryCategorys, value: id, text: category }
-                - { dependency: AccountingTaxTypes, key: accountingTaxTypes, value: id, text: type }
-                - { dependency: WarehouseLocations, key: warehouses, value: id, text: name }
-                - { dependency: inventoryItem, model: inventoryItem }
-        -
-            event: 'request_end'
-            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-            datasource: 'datasource1'
-            formBuilder: 'components\inventory\form\InventoryItemVendorPriceBuilder'
-            model: 'components\inventory\models\InventoryItemModel'
-            cacheKey: 'InventoryVendorItemForm'
-            formName: 'vendorForm'
-            dependencies:
-                - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
-                - { dependency: InventoryTypes, key: inventoryTypes, value: id, text: name }
-                - { dependency: inventoryItem, model: inventoryItem }
 
 
+
+amdin_vendoritems_list_by_item:
+    pattern: admin/inventory/vendoritems/*/*/*
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\VendorItemsController
+        model: components\inventory\models\VendorItemModel
+        method: listbyItem
+        view: core\views\JSONView
+        viewKey: amdin_vendoritems_list_by_item
+        datasource: datasource1
+    methods: [GET]
 
 admin_inventory_items_save:
     pattern: admin/inventory/items/*
@@ -447,8 +404,8 @@ admin_inventory_items_save:
         view: core\views\JSONView
         viewKey: admin_inventory_items_save
         datasource: datasource1
-        langFiles:
-            - 'src/components/defaultItem/locales/*/Navigation'
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST]
 
 
@@ -538,7 +495,6 @@ admin_warehouse_locations_save:
 
 admin_inventory_list:
     pattern: admin/inventory
-    listeners:
     defaults:
         component: components\inventory\InventoryComponent
         controller: components\inventory\controllers\InventoryController
@@ -692,7 +648,7 @@ admin_inventory_vendoritems_save:
         viewKey: admin_inventory_vendoritems_save
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
+            - 'src/components/inventory/locales/*/Validation'  
     methods: [POST] 
 
 
@@ -707,4 +663,7 @@ admin_inventory_vendorprices_save:
         view: core\views\JSONView
         viewKey: admin_inventory_vendorprices_save
         datasource: datasource1
+        langFiles: 
+            - 'src/components/inventory/locales/*/Validation' 
     methods: [POST] 
+     

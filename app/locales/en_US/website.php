@@ -25,6 +25,7 @@ return array(
     'ADMIN_EVENTS_LIST_ALL_PROSPECTS' => 'Event Prospects',
     'ADMIN_CONTACTS_LIST_ALL' => 'List All Contacts',
     'ADMIN_CONTACTS_ADD_NEW' => 'Add New Contacts',
+    'ADMIN_COMPANIES' => 'Companies',
     'ADMIN_COMPANIES_ADD_NEW' => 'Add New Company',
     'ADMIN_COMPANIES_LIST_ALL' => 'List All Companies',
     'ADMIN_CLAIMS_LIST_ALL' => 'List All Claims',

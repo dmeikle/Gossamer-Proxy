@@ -118,6 +118,27 @@ class EventDispatcher {
     }
 
     /**
+     * configures event listeners for a local node
+     * CP-175
+     * @param array $listeners
+     */
+    public function configNodeListeners($uri, array $listeners) {
+
+        if (array_key_exists('listeners', $listeners) && count($listeners['listeners']) > 0) {
+            try {
+                $this->logger->addDebug('EventDispatcher::configListeners adding eventhandler for ' . $uri);
+                $this->addEventHandler($uri, $listeners['listeners']);
+            } catch (\Exception $e) {
+                //assume the developer has an empty element such as:
+                //listeners:
+                //with no sub elements, which is allowable
+                $this->logger->addError('EventDispatcher::configListeners threw exception adding eventhandler for ' . $uri);
+                $this->logger->addError($e->getMessage());
+            }
+        }
+    }
+
+    /**
      * creates event handlers that are wrappers to event listeners that
      * do the actual work.
      *
