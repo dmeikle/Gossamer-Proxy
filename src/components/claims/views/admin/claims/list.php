@@ -70,9 +70,10 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
-                            </ul>
+                            </ul> <!--href="/admin/claims/edit/{{claim.jobNumber}}"     href="/admin/claims/edit/{{claim.unassignedJobNumber}}"-->
                         </div>
                     </td>
                 </tr>

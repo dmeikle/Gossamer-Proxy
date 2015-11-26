@@ -270,7 +270,11 @@ claims_new_claim_wizard_search:
         datasource: datasource1
 
 admin_claims_edit:
-    pattern: admin/claims/edit/*
+    pattern: admin/claims/edit/*    
+    ng:
+        text_key: 'ADMIN_CLAIMS_EDIT'
+        ng-click: 'addTab("text_key", "template")'
+        template: '/render/claims/claimsEditTab' 
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController

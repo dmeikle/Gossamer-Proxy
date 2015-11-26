@@ -118,6 +118,13 @@ claimsAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+claimsEditTab:
+    path: 'src/components/claims/views/admin/claims/edit.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    
+
 claimLocationModal:
     path: 'src/components/claims/ng/views/claimsLocationModal.php'
     langFiles:

@@ -12,6 +12,7 @@
 namespace core\views;
 
 use core\AbstractView;
+use core\eventlisteners\Event;
 
 /**
  * Used as the view for all Ajax requests that need the response header
@@ -40,6 +41,9 @@ class RenderHTMLView extends AbstractView {
 
             try {
                 $config = $this->getData();
+                $event = new Event('filerender_end', $config);
+                $this->container->get('EventDispatcher')->dispatch('all', 'filerender_end', $event);
+                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'filerender_end', $event);
                 $this->template = $config['html'];
             } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());
