@@ -141,4 +141,5 @@ return array(
     'CLAIMS_STAT_REGULAR_HOURS' => 'Stat Reg',
     'CLAIMS_STAT_OVERTIME_HOURS' => 'Stat OT',
     'CLAIMS_STAT_DOUBLE_OVERTIME_HOURS' => 'Stat DOT',
+    'CLAIMS_LABORER_TIMESHEETS' => 'Laborer Timesheets'
 );
