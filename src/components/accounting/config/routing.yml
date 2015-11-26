@@ -892,7 +892,7 @@ accounting_cashreceipts_save:
     
 #------------------------ Accounting Invoices ----------------------------
 accounting_vendor_invoices_download:
-    pattern: admin/accounting/payablesinvoices/download/*
+    pattern: admin/accounting/payables/invoices/download/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -903,7 +903,7 @@ accounting_vendor_invoices_download:
         datasource: datasource1
         
 accounting_vendor_invoices_home:
-    pattern: admin/accounting/payablesinvoices
+    pattern: admin/accounting/payables/invoices
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -922,7 +922,7 @@ accounting_vendor_invoices_home:
 
 
 accounting_vendor_invoices_details:
-    pattern: admin/accounting/payablesinvoices/details/*
+    pattern: admin/accounting/payables/invoices/details/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -934,7 +934,7 @@ accounting_vendor_invoices_details:
     methods: [GET]
 
 accounting_vendor_invoices_list:
-    pattern: admin/accounting/payablesinvoices/*/*
+    pattern: admin/accounting/payables/invoices/*/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -946,7 +946,7 @@ accounting_vendor_invoices_list:
     methods: [GET]
     
 accounting_vendor_invoices_edit:
-    pattern: admin/accounting/payablesinvoices/*
+    pattern: admin/accounting/payables/invoices/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -983,7 +983,7 @@ accounting_vendor_invoices_edit:
 
 
 accounting_vendor_invoices_save:
-    pattern: admin/accounting/payablesinvoices/details/*
+    pattern: admin/accounting/payables/invoices/details/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -996,7 +996,7 @@ accounting_vendor_invoices_save:
     
     
 accounting_invoice_upload:
-    pattern: admin/accounting/payablesinvoices/upload/*
+    pattern: admin/accounting/payables/invoices/upload/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController
@@ -1008,7 +1008,7 @@ accounting_invoice_upload:
     methods: [POST]
 
 accounting_vendor_invoices_search:
-    pattern: admin/accounting/payablesinvoices/search/*/*
+    pattern: admin/accounting/payables/invoices/search/*/*
     defaults:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\AccountingVendorInvoicesController

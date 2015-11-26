@@ -136,6 +136,7 @@ return array(
     'ACCOUNTING_UNASSOCIATE_ITEMS' => 'Unassociate Items',
     'ACCOUNTING_UNASSOCIATED_WARNING' => 'This invoice will be unassociated, inventory will not be tracked.',
     'ACCOUNTING_PAYABLES_INVOICES' => 'Payables Invoices',
-    'ACCOUNTING_CLAIM_PHASE' => 'Claim Phase'
+    'ACCOUNTING_CLAIM_PHASE' => 'Claim Phase',
+    'ACCOUNTING_DOWNLOAD_ATTACHED_PDF' => 'Download Attached PDF'
 );
 
