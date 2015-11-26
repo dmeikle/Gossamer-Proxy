@@ -58,6 +58,7 @@ class ClaimBuilder extends AbstractBuilder {
                 ->add('estimate', 'text', array('ng-model' => 'claim.estimate', 'class' => 'form-control', 'value' => $this->getValue('estimate', $values)))
                 ->add('contentsNeeded', 'text', array('ng-model' => 'claim.contentsNeeded', 'class' => 'form-control', 'value' => $this->getValue('contentsNeeded', $values)))
                 ->add('unassignedJobNumber', 'text', array('ng-model' => 'claim.unassignedJobNumber', 'class' => 'form-control', 'value' => $this->getValue('unassignedJobNumber', $values)))
+                ->add('unassignedJobNumberHidden', 'hidden', array('value' => $this->getValue('unassignedJobNumber', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
 

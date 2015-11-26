@@ -6,7 +6,7 @@
         <div ng-if="claimLoading">
             <div class="spinner-loader"></div>
         </div>
-        <div ng-if="!claimLoading">
+        <div ng-if="!claimLoading && claim.phase.title">
             <div class="cardleft">
                 <h1>{{claim.phase.title}}</h1>
                 <span class="big" ng-class="{'text-danger':timeRemaining.past}">
@@ -40,6 +40,11 @@
                 </table>
             </div>
         </div>
+        <div ng-if="!claimLoading && !claim.phase.title">
+            <p class="text-center text-muted">
+                <?php echo $this->getString('CLAIMS_NOPHASE') ?>
+            </p>
+        </div>
         <div class="clearfix"></div>
     </div>
 
@@ -47,7 +52,7 @@
     <div ng-if="loading">
         <div class="spinner-loader"></div>
     </div>
-    <div ng-if="!loading" class="card" ng-repeat="contact in contacts">
+    <div ng-if="!loading && contacts[0].type" class="card" ng-repeat="contact in contacts">
         <div class="cardheader">
             <h1 ng-if="contact.type" class="pull-left">
                 {{contact.type}}
@@ -79,5 +84,10 @@
             </tbody>
         </table>
 
+    </div>
+    <div ng-if="!loading && !contacts[0].type">
+        <p class="text-center text-muted">
+            <?php echo $this->getString('CLAIMS_NOCONTACTS') ?>
+        </p>
     </div>
 </div>

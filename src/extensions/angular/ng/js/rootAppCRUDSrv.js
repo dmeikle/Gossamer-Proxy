@@ -67,4 +67,14 @@ module.service('crudSrv', function($http) {
             config: config
         });
     };
+
+    this.setInactive = function(requestPath, formToken) {
+        var config = {};
+        config.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'POST',
+            url: requestPath,
+            params: config
+        });
+    };
 });

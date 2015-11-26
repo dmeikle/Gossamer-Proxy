@@ -67,11 +67,15 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
             templateUrl: '/render/claims/claimsAddNewModal',
             controller: 'claimsModalCtrl',
             size: 'lg',
-            backdrop: "static"
+            backdrop: 'static'
         });
 
-        modalInstance.result.then(function() {
-            getClaimsList();
+        modalInstance.result.then(function(object) {
+            var formToken = object.FORM_SECURITY_TOKEN;
+            delete object.FORM_SECURITY_TOKEN;
+            claimsEditSrv.save(object, formToken).then(function() {
+                getClaimsList();
+            });
         });
     };
 
@@ -82,7 +86,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
             controller: 'claimsPMModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static",
+            backdrop: 'static',
             resolve: {
                 claim: function() {
                     return claim;
@@ -124,6 +128,13 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
         $scope.basicSearch.query = {};
         getStaffList();
     };
+
+    $scope.remove = function(object) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        claimsEditSrv.setInactive(object, formToken).then(function() {
+            getClaimsList();
+        });
+    };
 });
 
 module.controller('claimsPMModalCtrl', function($uibModalInstance, $scope, claimsListSrv, claim) {
@@ -160,85 +171,4 @@ module.controller('claimsPMModalCtrl', function($uibModalInstance, $scope, claim
         $uibModalInstance.dismiss('cancel');
     };
 
-});
-
-module.controller('claimsModalCtrl', function($uibModalInstance, $scope, claimsEditSrv) {
-
-    $scope.addNewClient = false;
-
-
-    $scope.project = {};
-    $scope.claim = {};
-    $scope.claim.query = {};
-
-
-    // datepicker stuffs
-    $scope.isOpen = {};
-    $scope.dateOptions = {
-        'starting-day': 1
-    };
-    $scope.openDatepicker = function(event) {
-        var datepicker = event.target.parentElement.dataset.datepickername;
-        $scope.isOpen[datepicker] = true;
-    };
-
-    var autocomplete = function(value, type) {
-        return claimsEditSrv.autocomplete(value, type);
-    };
-
-    $scope.autocompleteBuilding = function(value) {
-        return autocomplete(value, 'buildingName');
-    };
-
-    $scope.autocompleteStrata = function(value) {
-        return autocomplete(value, 'stratanumber');
-    };
-
-    $scope.autocompleteAddress = function(value) {
-        return autocomplete(value, 'address1');
-    };
-
-    $scope.selectAddress = function(item, model, label) {
-        $scope.claim.ProjectAddress = item;
-        $scope.claim.query.ProjectAddresses_id = item.id;
-        if (item.buildingYear.parseInt <= 1980) {
-            $scope.claim.query.asbestosTestRequired = 'true';
-        } else {
-            $scope.claim.query.asbestosTestRequired = 'false';
-        }
-    };
-
-    $scope.saveProjectAddress = function(project) {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        claimsEditSrv.saveProjectAddress(project, formToken).then(function(response) {
-            $scope.claim.ProjectAddress = response.data.ProjectAddress[0];
-            $scope.claim.query.ProjectAddresses_id = response.data.ProjectAddress[0].id;
-            $scope.toggleAdding();
-            $scope.nextPage();
-        });
-    };
-
-    $scope.save = function() {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
-    };
-
-    $scope.saveAndNext = function() {
-        $scope.save().then(function(response) {
-            $scope.claim.query.id = response.data.Claim[0].Claim_id;
-            $scope.nextPage();
-        });
-    };
-
-    $scope.toggleAdding = function() {
-        $scope.addNewClient = !$scope.addNewClient;
-    };
-
-    $scope.confirm = function() {
-        $uibModalInstance.close($scope.claim.query);
-    };
-
-    $scope.cancel = function() {
-        $uibModalInstance.dismiss('cancel');
-    };
 });
