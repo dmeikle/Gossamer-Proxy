@@ -64,13 +64,12 @@ class AngularRouter extends YamlRouter {
 
         $rawUriList = explode('/', $ymlURI['pattern']);
         if (is_null($params)) {
-            return $ymlURI['pattern'];
+            return '/' . $ymlURI['pattern'];
             //let's assume the programmer is wanting to re-use the hold params.
             // redirecting to the previous page perhaps?
             // return implode('/', array_slice($uriList, -(count($rawUriList))));
         }
         //we have params - let's rebuild the uri with the passed params
-
         $rawList = '';
         foreach ($rawUriList as $chunk) {
             if ($chunk == '*') {
@@ -85,7 +84,7 @@ class AngularRouter extends YamlRouter {
             $ngLink = $this->getNgParams($ymlURI['ng']);
         }
 
-        return 'href="' . substr($rawList, 1) . '" ' . $ngLink;
+        return 'href="/' . substr($rawList, 1) . '" ' . $ngLink;
     }
 
     private function getNgParams(array $item) {
@@ -113,12 +112,4 @@ class AngularRouter extends YamlRouter {
         return $this->langFileLoader->getString($key);
     }
 
-//if (array_key_exists('ng-click', $item)) {
-//                    $tmp = str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']);
-//                    $ngLink = str_replace('template', $this->getString($item['template']), $tmp);
-//
-//                    //no children, has ng-click
-//
-//                    <li class="nav-item">
-//                        <a ng-click="//<?php echo $ngLink; "> echo $this->getString($item['text_key']) </a></li>
 }

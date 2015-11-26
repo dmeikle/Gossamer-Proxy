@@ -1,3 +1,5 @@
+
+
 <div class="widget" ng-controller="claimsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">Claim List</h1>
@@ -78,7 +80,7 @@
         </table>
 
         <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-            class="pagination" boundary-links="true" rotate="false">
+                        class="pagination" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">

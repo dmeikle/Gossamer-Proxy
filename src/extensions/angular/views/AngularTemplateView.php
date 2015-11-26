@@ -12,6 +12,7 @@
 namespace extensions\angular\views;
 
 use core\views\TemplateView;
+use extensions\angular\handlers\URITagHandler;
 
 /**
  * the view for all HTML requests that are drawn from a group of templates.
@@ -52,6 +53,16 @@ class AngularTemplateView extends TemplateView {
 
 
         $this->data['modules'] = $moduleList . (strlen($moduleList) == 0) ? ltrim($modules, ',') : $modules;
+    }
+
+    /**
+     * render the URI tags
+     */
+    protected function renderURITags() {
+        $uriHandler = new URITagHandler($this->logger);
+        $uriHandler->setHttpRequest($this->httpRequest);
+        $uriHandler->setTemplate($this->template);
+        $this->template = $uriHandler->handlerequest();
     }
 
 }

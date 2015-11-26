@@ -34,6 +34,7 @@ abstract class BaseHandler {
     }
 
     public function setHttpRequest(HTTPRequest $request) {
+
         $this->httpRequest = $request;
     }
 

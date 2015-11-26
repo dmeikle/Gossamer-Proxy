@@ -52,6 +52,7 @@ class Router {
 
         if (!is_null($this->logger->addDebug('redirecting to ' . $redirectUrl)))
             ;
+
         /* Redirect browser */
         header("Location: /$redirectUrl");
         /* Make sure that code below does not get executed when we redirect. */
