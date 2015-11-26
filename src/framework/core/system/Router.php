@@ -23,8 +23,8 @@ use core\http\HTTPRequest;
  */
 class Router {
 
-    private $logger = null;
-    private $httpRequest = null;
+    protected $logger = null;
+    protected $httpRequest = null;
 
     public function __construct(Logger &$logger = null, HTTPRequest &$httpRequest) {
         $this->logger = $logger;
@@ -58,7 +58,7 @@ class Router {
         exit;
     }
 
-    private function getURLByYamlKey($ymlkey) {
+    protected function getURLByYamlKey($ymlkey) {
         $loader = new YAMLKeyParser($this->logger);
 
         $node = $loader->getNodeByKey($ymlkey, 'routing');
@@ -68,8 +68,9 @@ class Router {
         }
     }
 
-    private function parseRequestUriParameters($uri, $ymlURI, array $params = null) {
+    protected function parseRequestUriParameters($uri, $ymlURI, array $params = null) {
         $uriList = explode('/', $uri);
+
         $rawUriList = explode('/', $ymlURI);
         if (is_null($params)) {
             return $ymlURI;
