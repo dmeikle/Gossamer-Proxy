@@ -31,7 +31,7 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
                 $scope.item.purchaseOrder = $scope.item.PurchaseOrders_id;
                 if($scope.item.filename){
                     $scope.fileExists = true;
-                }
+                } 
                 $scope.loading = false;
             });
         } else {
@@ -101,14 +101,6 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         var searchObject = {};
         searchObject.jobNumber = viewVal;
         return vendorInvoicesEditSrv.fetchClaimsAutocomplete(searchObject);
-    };
-    
-    //Product Name Typeahead
-    $scope.fetchProductNameAutocomplete = function (viewVal) {
-//            var searchObject = {};
-//            searchObject.name = viewVal;
-//            searchObject.Vendors_id = $scope.item.Vendors_id;
-//            return vendorInvoicesEditSrv.fetchProductNameAutocomplete(searchObject);
     };
     
     $scope.fetchVendorsAutocomplete = function(viewVal) {
@@ -291,17 +283,6 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     $scope.openDatepicker = function (event) {
         $scope.isOpen.datepicker = true;
     };
-    
-//    //Saving Items    
-//    $scope.save = function () {
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//        var VendorInvoice = angular.copy($scope.item);
-//        var VendorInvoiceItem = angular.copy($scope.lineItems);
-//        VendorInvoice.entryDate = $filter('date')(VendorInvoice.entryDate, 'yyyy-MM-dd', '+0000');
-//        vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItem, formToken).then(function(){
-//            //$window.location.href = apiPath + '0';
-//        });
-//    };
     
     //Save and make a new payables invoice
     $scope.saveAndNew = function () {

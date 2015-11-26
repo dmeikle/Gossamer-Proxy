@@ -58,8 +58,6 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
-//            self.productCodeAutocompleteValues = [];
-//            self.productCodeAutocomplete = response.data.VendorItems;
             self.productCodeAutocompleteValues = response.data.VendorItems;
             if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
                 return self.productCodeAutocompleteValues;
@@ -76,8 +74,6 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
             url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
-//            self.materialsAutocompleteValues = [];
-//            self.materialsAutocomplete = response.data.VendorItems;
             self.materialsAutocompleteValues = response.data.VendorItems;
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
