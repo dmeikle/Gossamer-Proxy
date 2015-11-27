@@ -117,8 +117,9 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT') ?></a></li>
+                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_LOCATIONS_EDIT') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="/admin/claim/initial-jobsheet/get/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
                                     </ul>
                                 </div>
                             </td>

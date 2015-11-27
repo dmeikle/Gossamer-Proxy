@@ -124,13 +124,44 @@ admin_claims_edit:
 
 
 admin_claims_initial_jobsheet:
-    template: admin-2cols.php
+    template: admin-list.php
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/initial-jobsheet/form.php
             cards: src/components/claims/views/admin/initial-jobsheet/form-cards.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+
+
+admin_claims_view_initial_jobsheet:
+    template: admin-2cols.php
+    sections:
+        -
+            header: src/themes/default/templates/sections/admin-header.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            content: src/components/claims/views/admin/initial-jobsheet/view.php
+            cards: src/components/claims/views/admin/initial-jobsheet/view-cards.php
             footer: src/themes/default/templates/sections/footer.php
     angular:
         bootstrap_modules:
