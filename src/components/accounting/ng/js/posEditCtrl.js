@@ -20,45 +20,49 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
     var id = path.substring(path.lastIndexOf("/")+1);
+    getExistingItem();
     
-    if(id > 0){
-        $scope.editing = true;
-        posEditSrv.getPurchaseOrder(id).then(function () {
-            posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
-            $scope.item = posEditSrv.purchaseOrder;
-            $scope.item.company = posEditSrv.Vendor;
-            $scope.vendorLocations = posEditSrv.VendorLocations;
-            $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
-            $scope.lineItems = posEditSrv.purchaseOrderItems;
-            if($scope.lineItems[0].length === 0){
-                $scope.lineItems = [];
-                $scope.lineItems.push(new LineItems());
-            }
-            
+    function getExistingItem(){
+        if(id > 0){
+            $scope.editing = true;
+            posEditSrv.getPurchaseOrder(id).then(function () {
+                posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
+                $scope.item = posEditSrv.purchaseOrder;
+                $scope.item.company = posEditSrv.Vendor;
+                $scope.vendorLocations = posEditSrv.VendorLocations;
+                $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
+                $scope.lineItems = posEditSrv.purchaseOrderItems;
+                $scope.item.subcontractor = $scope.item.companyName;
+                if($scope.lineItems[0].length === 0){
+                    $scope.lineItems = [];
+                    $scope.lineItems.push(new LineItems());
+                }
+
+                $scope.loading = false;
+                $scope.item.taxTypes = [];
+                if(posEditSrv.purchaseOrderNotes[0].length !== 0){
+                    notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+                }
+            });
+        } else {
+            $scope.editing = false;
             $scope.loading = false;
-            $scope.item.taxTypes = [];
-            if(posEditSrv.purchaseOrderNotes[0].length !== 0){
-                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
-            }
-        });
-    } else {
-        $scope.editing = false;
-        $scope.loading = false;
-        $scope.item.id = 0;
-        var date = new Date();
-        $scope.item.creationDate = date;
-    }    
+            $scope.item.id = 0;
+            var date = new Date();
+            $scope.item.creationDate = date;
+        }    
+    }
     
     function LineItems(){
         return {
             isSelected: false,
             productCode: '',
-            InventoryItems_id: '',
+//            InventoryItems_id: '',
             name: '',
             price: '',
             quantity: '',
             amount: '',
-            VendorItems_id: '',
+//            VendorItems_id: '',
             PurchaseOrders_id: $scope.item.id
         }; 
     }
@@ -125,10 +129,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.item.VendorLocations_id = vendor.VendorLocations_id;
     };
     
-    $scope.getSubcontractorsID = function(subcontractor){
-        $scope.item.SubContractors_id = subcontractor.id;
-    };
-    
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function (jobNumber) {
         for (var i in posEditSrv.autocomplete) {
@@ -146,7 +146,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     
     //Get Subcontractors ID from autocomplete list
     $scope.getSubcontractorsID = function (subcontractor) {
-        $scope.item.Subcontractors_id = subcontractor.id;
+        $scope.item.SubContractors_id = subcontractor.id;
     };
 
     //Get Vendor items info
@@ -157,8 +157,8 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.description = value.description;
         row.unitPrice = value.unitPrice;
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
-        row.VendorItems_id = value.VendorItems_id;
-        row.InventoryItems_id = value.InventoryItems_id;
+        row.VendorItems_id = value.id;
+//        row.InventoryItems_id = value.InventoryItems_id;
         $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
         $scope.updateAmount(row);
     };    
