@@ -4,6 +4,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
+    var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
     var self = this;
     
     //Claims Autocomplete
@@ -85,6 +86,22 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             if (self.vendorsAutocompleteValues.length > 0) {
                 return self.vendorsAutocompleteValues;
             } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    //Subcontractors Autocomplete
+    this.fetchSubcontractorsAutocomplete = function(searchObject) {
+        return $http({
+            method: 'GET',
+            url: subcontractorAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.subcontractorsAutocompleteValues = response.data.Subcontractors;
+            if (self.subcontractorsAutocompleteValues.length > 0) {
+                return self.subcontractorsAutocompleteValues;
+            } else if (self.subcontractorsAutocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
         });

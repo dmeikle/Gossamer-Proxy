@@ -133,6 +133,17 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             }
         }
     };
+    
+    $scope.fetchSubcontractorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.company = viewVal;
+        return posEditSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
+    //Get Subcontractors ID from autocomplete list
+    $scope.getSubcontractorsID = function (subcontractor) {
+        $scope.item.Subcontractors_id = subcontractor.id;
+    };
 
     //Get Vendor items info
     $scope.getProductInfo = function (row, value, index) {

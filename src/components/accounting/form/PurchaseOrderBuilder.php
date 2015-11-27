@@ -31,6 +31,9 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => 'value as value.company for value in fetchVendorsAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorLocations(item.company);'))
+                ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)',
+                    'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsSubcontractors', 'class' => 'form-control typeahead col-md-7',
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getSubcontractorsID(item.subcontractor);', 'typeahead-wait-ms' => '500'))
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentMethods_id', 'options' => $options['AccountingPaymentMethods']))
                 ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
