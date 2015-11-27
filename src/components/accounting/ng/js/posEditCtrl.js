@@ -120,9 +120,13 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.vendorLocations = vendor.locations;
     };
     
-    $scope.getVendorInfo = function(vendorLocation){
-        $scope.item.Vendors_id = vendorLocation.Vendors_id;
-        $scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
+    $scope.getVendorInfo = function(vendor){
+        $scope.item.Vendors_id = vendor.Vendors_id;
+        $scope.item.VendorLocations_id = vendor.VendorLocations_id;
+    };
+    
+    $scope.getSubcontractorsID = function(subcontractor){
+        $scope.item.SubContractors_id = subcontractor.id;
     };
     
     //Get Claims ID from autocomplete list

@@ -9,7 +9,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Claims Autocomplete
     this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
             self.autocomplete = searchSrv.autocomplete.Claims;
             self.autocompleteValues = [];
             for (var item in self.autocomplete) {
@@ -66,23 +66,40 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         });
     };
     
+//    //Vendor Autocomplete
+//    this.fetchVendorsAutocomplete = function(searchObject) {
+//        return $http({
+//            method: 'GET',
+//            url: vendorsAutocompletePath,
+//            params: searchObject
+//        }).then(function(response) {
+//            self.vendorsAutocompleteValues = [];
+//            self.vendorKeys = Object.keys(response.data.Vendors[0]);
+//            
+//            
+//            for(var i in self.vendorKeys){
+//                var obj = {};
+//                obj.company = self.vendorKeys[i];
+//                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
+//                self.vendorsAutocompleteValues.push(obj);
+//            }
+//            if (self.vendorsAutocompleteValues.length > 0) {
+//                return self.vendorsAutocompleteValues;
+//            } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+//                return undefined;
+//            }
+//        });
+//    };
+    
     //Vendor Autocomplete
     this.fetchVendorsAutocomplete = function(searchObject) {
+        var config = searchObject;
         return $http({
             method: 'GET',
             url: vendorsAutocompletePath,
-            params: searchObject
+            params: config
         }).then(function(response) {
-            self.vendorsAutocompleteValues = [];
-            self.vendorKeys = Object.keys(response.data.Vendors[0]);
-            
-            
-            for(var i in self.vendorKeys){
-                var obj = {};
-                obj.company = self.vendorKeys[i];
-                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
-                self.vendorsAutocompleteValues.push(obj);
-            }
+            self.vendorsAutocompleteValues = response.data.Vendors;
             if (self.vendorsAutocompleteValues.length > 0) {
                 return self.vendorsAutocompleteValues;
             } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
