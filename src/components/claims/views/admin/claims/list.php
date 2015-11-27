@@ -70,7 +70,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
-                                <li><a href="/admin/claims/costcard/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARD'); ?></a></li>
+                                <li><a href="/admin/claims/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARD'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -79,7 +79,7 @@
         </table>
 
         <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-            class="pagination" boundary-links="true" rotate="false">
+                        class="pagination" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">
