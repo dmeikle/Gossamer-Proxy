@@ -157,7 +157,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.description = value.description;
         row.unitPrice = value.unitPrice;
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
-        row.VendorItems_id = value.id;
+        row.VendorItems_id = value.VendorItems_id;
 //        row.InventoryItems_id = value.InventoryItems_id;
         $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
         $scope.updateAmount(row);
@@ -246,7 +246,6 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
                 if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
                     $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
                 }
-                
             }
         }
     };

@@ -25,24 +25,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             }
         });
     };
-    
-//    //Product Code Autocomplete
-//    this.fetchProductCodeAutocomplete = function (searchObject) {
-//        return $http({
-//            method: 'GET',
-//            url: inventoryItemsAutocompletePath,
-//            params: searchObject
-//        }).then(function (response) {
-//            self.productCodeAutocompleteValues = [];
-//            self.productCodeAutocomplete = response.data.InventoryItems;
-//            self.productCodeAutocompleteValues = response.data.InventoryItems;
-//            if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
-//                return self.productCodeAutocompleteValues;
-//            } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
-//                return undefined;
-//            }
-//        });
-//    };
 
     //Product Code Autocomplete
     this.fetchProductCodeAutocomplete = function (searchObject) {
@@ -74,9 +56,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             self.materialsAutocompleteValues = [];
             self.materialsAutocomplete = response.data.InventoryItems;
             self.materialsAutocompleteValues = response.data.InventoryItems;
-//            for (var i in response.data.InventoryItems) {
-//                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
-//            }
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
             } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
@@ -84,31 +63,6 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             }
         });
     };
-    
-//    //Vendor Autocomplete
-//    this.fetchVendorsAutocomplete = function(searchObject) {
-//        return $http({
-//            method: 'GET',
-//            url: vendorsAutocompletePath,
-//            params: searchObject
-//        }).then(function(response) {
-//            self.vendorsAutocompleteValues = [];
-//            self.vendorKeys = Object.keys(response.data.Vendors[0]);
-//            
-//            
-//            for(var i in self.vendorKeys){
-//                var obj = {};
-//                obj.company = self.vendorKeys[i];
-//                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
-//                self.vendorsAutocompleteValues.push(obj);
-//            }
-//            if (self.vendorsAutocompleteValues.length > 0) {
-//                return self.vendorsAutocompleteValues;
-//            } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
-//                return undefined;
-//            }
-//        });
-//    };
     
     //Vendor Autocomplete
     this.fetchVendorsAutocomplete = function(searchObject) {
@@ -192,7 +146,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         
         for (i in lineItems) {
             for (var j in lineItems[i]){                
-                if (lineItems[i][j] === null || lineItems[i][j] === 'undefined' || lineItems[i][j].length === 0) {
+                if (lineItems[i][j] === null || lineItems[i][j] === undefined || lineItems[i][j].length === 0) {
                     delete lineItems[i][j];
                 }
             }

@@ -78,11 +78,13 @@
                     <?php echo $form['description']; ?>
                 </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="widget" >
-        <div class="widget-content">
+            <div class="clearfix"></div>
+            <div class="col-md-12 divider"></div>
+            <!--        </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="widget" >
+                    <div class="widget-content">-->
             <div class="form-items">
                 <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW'); ?></button>
                 <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
