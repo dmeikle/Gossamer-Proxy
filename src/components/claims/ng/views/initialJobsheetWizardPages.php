@@ -22,8 +22,10 @@
     </div>
     <div class="col-xs-6 form-group">
         <div class="input-group">
-            <label for="ClaimLocation_workAuthorization">
-                <?php echo $claimLocationForm['workAuthorizationReceived'] ?>
+            <label for="ClaimLocation_workAuthorizationReceived">
+                <input type="checkbox" name="ClaimLocation[workAuthorizationReceived]" 
+                ng-model="item.workAuthorizationReceived" required ng-true-value="1"
+                id="ClaimLocation_workAuthorizationReceived">
                 <?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?>
             </label>
         </div>
@@ -31,7 +33,9 @@
     <div class="col-xs-6 form-group">
         <div>
             <label for="ClaimLocation_picturesTaken">
-                <?php echo $claimLocationForm['picturesTaken'] ?>
+                <input type="checkbox" name="ClaimLocation[picturesTaken]" 
+                ng-model="item.picturesTaken" id="ClaimLocation_picturesTaken"
+                ng-true-value="1">
                 <?php echo $this->getString('CLAIMS_ISPICTURES') ?>
             </label>
         </div>
@@ -234,7 +238,7 @@
         <div>
             <label for="jobSheet-is-other">
                 <input type="checkbox" name="jobSheet-is-other" id="jobSheet-is-other"
-                       ng-model="jobSheet.isOther">
+                       ng-model="jobSheet.query.affectedAreas.isOther">
                        <?php echo $this->getString('CLAIMS_JOBSHEET_OTHER') ?>
             </label>
             <input type="text" class="form-control" ng-disabled="!jobSheet.isOther"

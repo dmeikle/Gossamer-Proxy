@@ -41,7 +41,7 @@ class DependencySerializer extends Serializer {
 
                 $retval .= " data-$key='$val'";
             }
-            $retval .= '">' . $option[$value] . '</option>';
+            $retval .= '>' . $option[$value] . '</option>';
         }
 
         return $retval;

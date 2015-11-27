@@ -1,4 +1,5 @@
-module.controller('initialJobsheetCtrl', function($scope, $location, claimsInitialJobsheetSrv, claimsEditSrv) {
+module.controller('initialJobsheetCtrl', function($scope, $rootScope, $location, claimsInitialJobsheetSrv, 
+    claimsEditSrv) {
     var a = document.createElement('a');
     a.href = $location.absUrl();
     var apiPath;
@@ -12,24 +13,36 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
     var claimLocationId = apiPath.slice(apiPath.lastIndexOf('/') + 1);
 
     $scope.loading = true;
+    $scope.paLoading = true;
     $scope.jobSheet = new AngularQueryObject();
     $scope.jobSheet.query.contacts = [];
     $scope.jobSheet.query.contacts.push({});
     $scope.claimsEditSrv = claimsEditSrv;
 
-    $scope.getClaimDetails = function() {
-        if (!$scope.claimsEditSrv.claimDetails && !$scope.gettingDetails) {
-            $scope.gettingDetails = true;
+    getClaimDetails();
+
+    $rootScope.$on('setLoading', function(event, boolean) {
+        $scope.loading = boolean;
+    });
+
+    $rootScope.$on('setPaLoading', function(event, boolean) {
+        $scope.paLoading = boolean;
+    });
+
+    function getClaimDetails() {
+        if (!$scope.claimsEditSrv.claimDetails && !$rootScope.gettingDetails) {
+            $rootScope.gettingDetails = true;
             claimsEditSrv.getClaimDetails(claimId).then(function(response) {
                 $scope.claim = response.data.Claim;
-                claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id).then(function(response) {
-                    $scope.projectAddress = response.data.ProjectAddress;
-                    $scope.loading = false;
-                });
+                $rootScope.$broadcast('setLoading', false);
+                claimsEditSrv.getProjectAddress($scope.claim.ProjectAddresses_id)
+                    .then(function(response) {
+                        $scope.projectAddress = response.data.ProjectAddress;
+                        $rootScope.$broadcast('setPaLoading', false);
+                    });
             });
         }
-    };
-    $scope.getClaimDetails();
+    }
 
     $scope.addOwnerTenant = function() {
         $scope.jobSheet.query.contacts.push({});
@@ -40,39 +53,26 @@ module.controller('initialJobsheetCtrl', function($scope, $location, claimsIniti
         $scope.jobSheet.query.contacts.splice(index, 1);
     };
 
-    function save(object, objectType, formToken) {
-        return claimsInitialJobsheetSrv.save(object, objectType, formToken, claimId + claimLocationId);
+    function save(claimLocation, contacts, affectedAreas) {
+        var object = {};
+        object.ClaimLocation = claimLocation;
+        object.Contacts = contacts;
+        object.AffectedAreas = {};
+        object.AffectedAreas.AreaTypes_id = [];
+        for (var area in affectedAreas) {
+            if (claimsInitialJobsheetSrv.roomList.indexOf(area) > 0) {
+                object.AffectedAreas.AreaTypes_id.push(claimsInitialJobsheetSrv.roomList.indexOf(area));
+            }
+        }
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        return claimsInitialJobsheetSrv.save(object, formToken, claimId + claimLocationId);
     }
 
-    $scope.saveClaimLocation = function(object) {
-        var objectType = 'ClaimLocation';
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function() {
-            $scope.nextPage();
-        });
-    };
-
-    $scope.saveContacts = function(object) {
-        var objectType = 'Contacts';
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function() {
-            $scope.nextPage();
-        });
-    };
-
-    $scope.saveAffectedAreas = function(object) {
-        var objectType = 'AffectedAreas';
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        save(object, objectType, formToken).then(function() {
-            $scope.nextPage();
-        });
-    };
-
     $scope.finish = function() {
-        $scope.saveClaimLocation($scope.ClaimLocation);
-        $scope.saveContacts($scope.jobSheet.query.contacts);
-        $scope.saveAffectedAreas($scope.jobSheet.query.affectedAreas);
-        var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
-        window.location.pathname = uri;
+        save($scope.item, $scope.jobSheet.query.contacts, $scope.jobSheet.query.affectedAreas)
+            .then(function() {
+                var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
+                window.location.pathname = uri;
+            });
     };
 });
