@@ -9,8 +9,8 @@ module.controller('initialJobsheetCtrl', function($scope, $rootScope, $location,
         apiPath = a.pathname.slice(0, -1);
     }
 
-    var claimId = apiPath.slice(apiPath.indexOf('jobsheet') + 9, apiPath.lastIndexOf('/') + 1);
-    var claimLocationId = apiPath.slice(apiPath.lastIndexOf('/') + 1);
+    var claimId = document.getElementById('ClaimLocation_Claims_id').value;
+    var claimLocationId = document.getElementById('ClaimLocation_ClaimsLocations_id').value;
 
     $scope.loading = true;
     $scope.paLoading = true;
@@ -65,14 +65,14 @@ module.controller('initialJobsheetCtrl', function($scope, $rootScope, $location,
             }
         }
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        return claimsInitialJobsheetSrv.save(object, formToken, claimId + claimLocationId);
+        return claimsInitialJobsheetSrv.save(object, formToken, claimId + '/' + claimLocationId);
     }
 
     $scope.finish = function() {
         save($scope.item, $scope.jobSheet.query.contacts, $scope.jobSheet.query.affectedAreas)
             .then(function() {
-                var uri = '/admin/claim/initial-jobsheet/get/' + claimId + claimLocationId;
-                window.location.pathname = uri;
+                // var uri = '/admin/claim/initial-jobsheet/view/' + claimId + '/' + claimLocationId;
+                // window.location.pathname = uri;
             });
     };
 });

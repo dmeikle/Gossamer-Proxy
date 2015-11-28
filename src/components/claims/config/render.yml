@@ -49,7 +49,8 @@ initialJobsheetWizardPages:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'filerender_start', 'listener': 'components\inventory\listeners\ListEquipmentInitialJobsheetListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentModel', 'cacheKey': 'InventoryEquipment' }
-        
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
+
         # build the form for Project Address
         -
             event: 'filerender_start'
@@ -72,6 +73,8 @@ initialJobsheetWizardPages:
             formName: 'claimLocationForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Params, model: ClaimLocation }
+
         # build the form for Contact
         -
             event: 'filerender_start'

@@ -124,7 +124,7 @@ admin_claims_edit:
 
 
 admin_claims_initial_jobsheet:
-    template: admin-list.php
+    template: admin-2cols.php
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
@@ -155,7 +155,7 @@ admin_claims_initial_jobsheet:
 
 
 admin_claims_view_initial_jobsheet:
-    template: admin-2cols.php
+    template: admin-list.php
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php

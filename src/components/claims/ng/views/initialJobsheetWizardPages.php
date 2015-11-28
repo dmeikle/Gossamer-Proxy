@@ -1,7 +1,5 @@
 
 <form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 0">
-    <?php echo $claimLocationForm['id'] ?>
-    <?php echo $claimLocationForm['Claims_id'] ?>
     <div class="col-xs-6 form-group">
         <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
         <label for="jobsheet-is-source">

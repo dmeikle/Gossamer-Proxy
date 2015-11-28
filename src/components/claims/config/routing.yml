@@ -223,6 +223,22 @@ admin_claims_view_initial_jobsheet:
     methods: [GET]
 
 
+admin_claims_get_initial_jobsheet:
+    pattern: admin/claim/initial-jobsheet/get/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getInitialJobsheet
+        view: core\views\JSONView
+        viewKey: admin_claims_get_initial_jobsheet
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/*/website'
+    methods: [GET]
+
 
 admin_claims_save_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/save/*/*

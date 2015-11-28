@@ -1,3 +1,21 @@
+admin_claims_initial_jobsheet:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
+        # build the form for Claim Location
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'claimLocationForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Params, model: ClaimLocation }
+
+
 admin_claims_view_initial_jobsheet:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
@@ -27,6 +45,7 @@ admin_claims_view_initial_jobsheet:
             formName: 'claimLocationForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Params, model: ClaimLocation }
         # build the form for Contact
         -
             event: 'request_start'

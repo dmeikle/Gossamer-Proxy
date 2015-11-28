@@ -1,7 +1,7 @@
 
-<?php pr($this->data);?>
+
 <div class="widget" ng-controller="initialJobsheetCtrl">
-    <?php echo $claimLocationForm['id'] ?>
+    <?php echo $claimLocationForm['ClaimsLocations_id'] ?>
     <?php echo $claimLocationForm['Claims_id'] ?>
 	<div class="widgetheader">
 		<h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>

@@ -22,11 +22,11 @@ use Gossamer\CMS\Forms\FormBuilder;
 class ClaimLocationBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-
+        
         if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
-
+        
         $builder->add('unitNumber', 'text', array('ng-model' => 'item.unitNumber', 'class' => 'form-control'))
                 ->add('firstname', 'text', array('ng-model' => 'item.firstname', 'class' => 'form-control'))
                 ->add('lastname', 'text', array('ng-model' => 'item.lastname', 'class' => 'form-control'))
@@ -38,7 +38,7 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('daytimePhone', 'text', array('ng-model' => 'item.daytimePhone', 'class' => 'form-control'))
                 ->add('mobile', 'text', array('ng-model' => 'item.mobile', 'class' => 'form-control'))
                 ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
-                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values)), 'ng-model' => 'item.id'))
+                ->add('ClaimsLocations_id', 'hidden', array('value' => intval($this->getValue('ClaimsLocations_id', $values)), 'ng-model' => 'item.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'item.Claims_id'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));
 
