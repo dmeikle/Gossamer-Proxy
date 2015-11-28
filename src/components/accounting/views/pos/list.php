@@ -184,14 +184,14 @@
 
             <table class="table table-striped table-hover">
                 <tr>
-                    <th class="col-md-3"><?php echo $this->getString('ACCOUNTING_PRODUCT_CODE') ?></th>
+                    <th class="col-md-3"><?php echo $this->getString('ACCOUNTING_PRODUCT_NAME') ?></th>
                     <th class="col-md-3"><?php echo $this->getString('ACCOUNTING_QUANTITY') ?></th>
                     <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_PRICE') ?></th>
                     <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_TAX_TYPE') ?></th>
                     <th class="col-md-2"><?php echo $this->getString('ACCOUNTING_AMOUNT') ?></th>
                 </tr>
                 <tr ng-repeat="item in breakdownLineItems">
-                    <td>{{item.productCode}}</td>
+                    <td>{{item.name}}</td>
                     <td>{{item.quantity}}</td>
                     <td>{{item.unitPrice| currency}}</td>
                     <td>{{item.taxType}} </td>
