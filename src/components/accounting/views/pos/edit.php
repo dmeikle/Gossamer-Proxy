@@ -12,14 +12,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="subcontractorsAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></label>
+                    <?php echo $form['subcontractorsAutocomplete']; ?>
+                </div>
+
+                <div class="form-group">
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
 
-                <div class="form-group">
-                    <label for="subcontractorsAutocomplete" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></label>
-                    <?php echo $form['subcontractorsAutocomplete']; ?>
-                </div>
 
                 <div class="form-group" ng-if="vendorLocations">
                     <label for="vendorLocations" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_LOCATION'); ?></label>
@@ -116,7 +117,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
+                        <tr ng-if="!loading && row.isActive !== 0" ng-repeat="row in lineItems track by $index">
                             <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
                             <td><?php echo $form['productCode']; ?></td>
                             <td><?php echo $form['productName']; ?></td>

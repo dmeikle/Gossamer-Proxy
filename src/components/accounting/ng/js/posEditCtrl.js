@@ -86,7 +86,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.removeRows = function () {
         for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
             if ($scope.lineItems[i].isSelected === true) {
-                $scope.lineItems.splice(parseInt(i), 1);
+                var deletedRow = {};
+                deletedRow.id = $scope.lineItems[i].id;
+                deletedRow.isActive = 0;
+                //$scope.lineItems.splice(parseInt(i), 1);
+                $scope.lineItems[i] = deletedRow;
             }
         }
     };
@@ -158,10 +162,10 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.unitPrice = value.unitPrice;
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
         row.VendorItems_id = value.VendorItems_id;
-//        row.InventoryItems_id = value.InventoryItems_id;
+        row.InventoryItems_id = value.InventoryItems_id;
         $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
         $scope.updateAmount(row);
-    };    
+    };
     
     //Check selected
     $scope.checkSelected = function () {

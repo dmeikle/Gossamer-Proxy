@@ -28,6 +28,7 @@
                     <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_NUMBER'); ?></th>
                     <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></th>
                     <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></th>
+                    <th ng-hide="groupedBy === 'subcontractor'" column-sortable data-column="subcontractor"><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></th>
                     <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
                     <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
                     <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
@@ -39,6 +40,7 @@
                     <td ng-hide="groupedBy === 'poNumber'"></td>
                     <td ng-hide="groupedBy === 'orderType'"></td>
                     <td ng-hide="groupedBy === 'company'"></td>
+                    <td ng-hide="groupedBy === 'subcontractor'"></td>
                     <td ng-hide="groupedBy === 'description'">
                         <span class="spinner-loader"></span>
                     </td>
@@ -58,6 +60,7 @@
                     <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.poNumber}}</td>
                     <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.orderType}}</td>
                     <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.company}}</td>
+                    <td ng-hide="groupedBy === 'subcontractor'" ng-click="selectRow(item)">{{item.subcontractor}}</td>
                     <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.creationDate}}</td>
                     <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>

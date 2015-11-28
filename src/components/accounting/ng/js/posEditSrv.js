@@ -146,7 +146,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         
         for (i in lineItems) {
             for (var j in lineItems[i]){                
-                if (lineItems[i][j] === null || lineItems[i][j] === undefined || lineItems[i][j].length === 0) {
+                if (lineItems[i][j] === null || lineItems[i][j] === undefined || isNaN(lineItems[i][j]) || lineItems[i][j].length === 0) {
                     delete lineItems[i][j];
                 }
             }
