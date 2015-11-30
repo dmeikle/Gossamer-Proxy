@@ -3,6 +3,8 @@
 <div class="widget" ng-controller="initialJobsheetCtrl">
     <?php echo $claimLocationForm['ClaimsLocations_id'] ?>
     <?php echo $claimLocationForm['Claims_id'] ?>
+
+    <div id="editPage"></div>
 	<div class="widgetheader">
 		<h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>
 	</div>
@@ -30,7 +32,7 @@
         <div class="input-group">
             <label for="ClaimLocation_workAuthorizationReceived">
                 <input type="checkbox" name="ClaimLocation[workAuthorizationReceived]" 
-                ng-model="item.workAuthorizationReceived" required ng-true-value="1"
+                ng-model="item.workAuthorizationReceived" required ng-true-value="'1'"
                 id="ClaimLocation_workAuthorizationReceived">
                 <?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?>
             </label>
@@ -41,7 +43,7 @@
             <label for="ClaimLocation_picturesTaken">
                 <input type="checkbox" name="ClaimLocation[picturesTaken]" 
                 ng-model="item.picturesTaken" id="ClaimLocation_picturesTaken"
-                ng-true-value="1">
+                ng-true-value="'1'">
                 <?php echo $this->getString('CLAIMS_ISPICTURES') ?>
             </label>
         </div>
@@ -272,12 +274,13 @@
     <div class="clearfix"></div>
     <div class="widgetfooter">
     	<div class="btn-group pull-right">
-    		<button class="btn-default">
-				<?php echo $this->getString('DISCARD') ?>
+    		<button class="btn-default" ng-click="reset()">
+				<?php echo $this->getString('REST') ?>
     		</button>
-    		<button class="primary">
+    		<button class="primary" ng-click="finish()">
 				<?php echo $this->getString('SAVE') ?>
     		</button>
     	</div>
+    	<div class="clearfix"></div>
     </div>
 </div>

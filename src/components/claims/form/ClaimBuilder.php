@@ -26,7 +26,7 @@ class ClaimBuilder extends AbstractBuilder {
         if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
-        pr($this->values);
+        
         $builder->add('jobNumber', 'text', array('ng-model' => 'claim.jobNumber', 'class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('jobNumberHidden', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('callInDate', 'text', array('ng-model' => 'claim.callInDate', 'class' => 'form-control', 'value' => $this->getValue('callInDate', $values)))

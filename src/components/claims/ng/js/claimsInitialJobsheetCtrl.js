@@ -12,9 +12,13 @@ module.controller('initialJobsheetCtrl', function($scope, $rootScope, $location,
     var claimId = document.getElementById('ClaimLocation_Claims_id').value;
     var claimLocationId = document.getElementById('ClaimLocation_ClaimsLocations_id').value;
 
+    if (document.getElementById('editPage')) {
+        $scope.editPage = true;
+    }
     $scope.loading = true;
     $scope.paLoading = true;
     $scope.jobSheet = new AngularQueryObject();
+    $scope.jobSheet.query.affectedAreas = {};
     $scope.jobSheet.query.contacts = [];
     $scope.jobSheet.query.contacts.push({});
     $scope.claimsEditSrv = claimsEditSrv;
@@ -40,6 +44,17 @@ module.controller('initialJobsheetCtrl', function($scope, $rootScope, $location,
                         $scope.projectAddress = response.data.ProjectAddress;
                         $rootScope.$broadcast('setPaLoading', false);
                     });
+                if ($scope.editPage) {
+                    claimsInitialJobsheetSrv.getJobsheetDetails(claimId, claimLocationId)
+                        .then(function(response) {
+                            var areaList = claimsInitialJobsheetSrv.roomList;
+                            $scope.item = response.data.ClaimLocation[0];
+                            $scope.jobSheet.query.contacts = response.data.Contacts;
+                            for (var area in response.data.AffectedAreas) {
+                                $scope.jobSheet.query.affectedAreas[areaList[response.data.AffectedAreas[area].AreaTypes_id]] = true;
+                            }
+                        });
+                }
             });
         }
     }
