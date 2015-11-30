@@ -20,13 +20,11 @@
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
-
-
-                <div class="form-group" ng-if="vendorLocations">
-                    <label for="vendorLocations" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_LOCATION'); ?></label>
-                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
-                            ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
-                </div>
+                <!--                <div class="form-group" ng-if="vendorLocations[0] !== null && vendorLocations.length !== 0">
+                                    <label for="vendorLocations" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_LOCATION');  ?></label>
+                                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
+                                            ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
+                                </div>-->
 
 
             </div>

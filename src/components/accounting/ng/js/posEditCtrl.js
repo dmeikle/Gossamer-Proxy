@@ -28,7 +28,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             posEditSrv.getPurchaseOrder(id).then(function () {
                 posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
                 $scope.item = posEditSrv.purchaseOrder;
-                $scope.item.company = posEditSrv.Vendor;
+                if(posEditSrv.Vendor !== undefined){                    
+                    $scope.item.company = posEditSrv.Vendor + ' '+ $scope.item.city + ' ' + $scope.item.address1;
+                }
                 $scope.vendorLocations = posEditSrv.VendorLocations;
                 $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
                 $scope.lineItems = posEditSrv.purchaseOrderItems;
@@ -50,6 +52,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
             $scope.item.id = 0;
             var date = new Date();
             $scope.item.creationDate = date;
+            $scope.vendorLocations = [];
         }    
     }
     
@@ -203,8 +206,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.updateSubtotal = function(){
         $scope.item.subtotal = 0;
         for(var i in $scope.lineItems){
-            if($scope.lineItems[i].amount === ''){
+            if($scope.lineItems[i].amount === null || $scope.lineItems[i].amount === '' || $scope.lineItems[i].isActive === 0){
                 $scope.item.subtotal += 0;
+                console.log('IS SZEROO');
             } else {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
@@ -235,20 +239,22 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.item.taxTypes = [];
         $scope.item.tax = 0;
         for(var i in $scope.lineItems){
-            $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
-            $scope.item.tax += $scope.lineItems[i].tax;
-            var taxObj = {
-                id: $scope.lineItems[i].AccountingTaxTypes_id,
-                type: $scope.lineItems[i].taxType,
-                total: 0
-            };
-            
-            if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
-                $scope.item.taxTypes.push(taxObj);
-            }        
-            for(var j in $scope.item.taxTypes){
-                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
-                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+            if($scope.lineItems[i].isActive !== 0){
+                $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                $scope.item.tax += $scope.lineItems[i].tax;
+                var taxObj = {
+                    id: $scope.lineItems[i].AccountingTaxTypes_id,
+                    type: $scope.lineItems[i].taxType,
+                    total: 0
+                };
+
+                if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
+                    $scope.item.taxTypes.push(taxObj);
+                }        
+                for(var j in $scope.item.taxTypes){
+                    if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
+                        $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                    }
                 }
             }
         }

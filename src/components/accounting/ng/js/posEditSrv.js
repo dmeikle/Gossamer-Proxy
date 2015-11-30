@@ -145,18 +145,13 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         }
         
         for (i in lineItems) {
-//            console.log('testttttestst');
-//            console.log(lineItems[i]['name'] === null);
-//                console.log(lineItems[i]['name'] === undefined);
-//                console.log(isNaN(lineItems[i]['name']));
-//                console.log(lineItems[i]['name'].length === 0);
-            for (var j in lineItems[i]){      
-                
+            for (var j in lineItems[i]){
                 if (lineItems[i][j] === null || lineItems[i][j] === 'undefined' || lineItems[i][j].length === 0) {
                     delete lineItems[i][j];
                 }
             }
         }
+        
         var data = {};
         data.PurchaseOrder = item;
         data.PurchaseOrderItems = lineItems;

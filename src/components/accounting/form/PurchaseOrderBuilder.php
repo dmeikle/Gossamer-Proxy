@@ -28,7 +28,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
         }
 
         $builder->add('Vendors_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.Vendors_id', 'options' => $options['vendors']))
-                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => "value as value.company + ' ' + value.city for value in fetchVendorsAutocomplete(\$viewValue)",
+                ->add('vendorsAutocomplete', 'text', array('ng-model' => 'item.company', 'uib-typeahead' => "value as value.company + ' ' + value.city + ' ' + value.address1 for value in fetchVendorsAutocomplete(\$viewValue)",
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsVendors', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'typeahead-on-select' => 'getVendorInfo(item.company);', 'typeahead-wait-ms' => '500'))
                 ->add('subcontractorsAutocomplete', 'text', array('ng-model' => 'item.subcontractor', 'uib-typeahead' => 'value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)',
