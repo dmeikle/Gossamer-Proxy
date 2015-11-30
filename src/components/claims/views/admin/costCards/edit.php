@@ -3,7 +3,7 @@
         <div class="widget-content">
             <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                   ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                             ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"><?php echo $this->getString('CLAIMS_APPROVE_SELECTED'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
@@ -113,7 +113,7 @@
                                     <h4><?php echo $this->getString('CLAIMS_PURCHASE_ORDERS') ?></h4>
                                     <div class="card-content" ng-if="costCardPurchaseOrders[0].length !== 0">
                                         <p><strong><?php echo $this->getString('CLAIMS_PURCHASE_ORDER_COUNT') ?>: </strong>{{costCardPurchaseOrders.length}}</p>
-                                        <p><strong><?php echo $this->getString('CLAIMS_TOTAL_COST') ?>: </strong>{{purchaseOrderTotalCost| currency}}</p>
+                                        <p><strong><?php echo $this->getString('CLAIMS_TOTAL_COST') ?>: </strong>{{purchaseOrdersTotal| currency}}</p>
                                     </div>
                                     <div class="card-content" ng-if="costCardPurchaseOrders[0].length === 0">
                                         <p>
@@ -234,7 +234,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
+                                    <th class="select-col" ng-click="selectAllEquipmentToggle(selectAllEquipment)"><input class="select-all checkbox" type="checkbox" ng-model="selectAllEquipment"></th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
@@ -300,7 +300,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
+                                    <th class="select-col" ng-click="selectAllMaterialsToggle(selectAllMaterials)"><input class="select-all checkbox" type="checkbox" ng-model="selectAllMaterials"></th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
@@ -366,7 +366,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
+                                    <th class="select-col" ng-click="selectAllMiscItemsToggle(selectAllMisc)"><input class="select-all checkbox" type="checkbox" ng-model="selectAllMisc"></th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
@@ -422,7 +422,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="selectAll"></th>
+                                    <th class="select-col" ng-click="selectAllPurchaseOrdersToggle(selectAllPurchaseOrders)"><input class="select-all checkbox" type="checkbox" ng-model="selectAllPurchaseOrders"></th>
                                     <th><?php echo $this->getString('CLAIMS_PURCHASE_ORDER_NUMBER'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
@@ -439,10 +439,10 @@
                             </thead>
                             <tbody>
                                 <tr ng-if="!loading && costCardPurchaseOrders[0].length === 0">
-                                    <td colspan="8" class="alert-info">
+                                    <td colspan="13" class="alert-info">
                                         <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_START'); ?>
-                                        <?php echo $this->getString('CLAIMS_MISC_GENERAL'); ?>
-                                        <?php echo $this->getString('CLAIMS_NO_PURCHASE_ORDERS'); ?>
+                                        <?php echo $this->getString('CLAIMS_PURCHASE_ORDER'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
                                         <?php echo $this->getString('CLAIMS_COST_CARD'); ?>
                                     </td>
                                 </tr>
@@ -460,7 +460,7 @@
                                 </tr>
                                 <tr ng-if="!loading && costCardPurchaseOrders[0].length !== 0" ng-repeat="row in costCardPurchaseOrders track by $index">
                                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
-                                    <td>{{row.poNumber}}</td>
+                                    <td>{{row.items_id}}</td>
                                     <td>{{row.creationDate}}</td>
                                     <td>{{row.ClaimPhases_id}}</td>
                                     <td>{{row.PurchaseOrderTypes_id}}</td>
@@ -486,9 +486,9 @@
                     </div>
                 </uib-tab>
             </uib-tabset>
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                    ?></button>-->
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                    ?></button>-->
-<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                    ?></button></a>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                              ?></button>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                              ?></button>-->
+<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                              ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

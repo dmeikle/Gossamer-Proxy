@@ -204,6 +204,50 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         $scope.checkSelected();
     };
     
+    $scope.selectAllMaterialsToggle = function (value) {
+        for (var i in $scope.costCardMaterials) {
+            if ($scope.costCardMaterials[i] !== null && value === true) {
+                $scope.costCardMaterials[i].isSelected = true;
+            } else {
+                $scope.costCardMaterials[i].isSelected = false;
+            }
+        }
+        $scope.checkSelected();
+    };
+    
+    $scope.selectAllEquipmentToggle = function (value) {
+        for (var i in $scope.costCardEquipment) {
+            if ($scope.costCardEquipment[i] !== null && value === true) {
+                $scope.costCardEquipment[i].isSelected = true;
+            } else {
+                $scope.costCardEquipment[i].isSelected = false;
+            }
+        }
+        $scope.checkSelected();
+    };
+    
+    $scope.selectAllMiscItemsToggle = function (value) {
+        for (var i in $scope.costCardMiscItems) {
+            if ($scope.costCardMiscItems[i] !== null && value === true) {
+                $scope.costCardMiscItems[i].isSelected = true;
+            } else {
+                $scope.costCardMiscItems[i].isSelected = false;
+            }
+        }
+        $scope.checkSelected();
+    };
+    
+    $scope.selectAllPurchaseOrdersToggle = function (value) {
+        for (var i in $scope.costCardPurchaseOrders) {
+            if ($scope.costCardPurchaseOrders[i] !== null && value === true) {
+                $scope.costCardPurchaseOrders[i].isSelected = true;
+            } else {
+                $scope.costCardPurchaseOrders[i].isSelected = false;
+            }
+        }
+        $scope.checkSelected();
+    };
+    
     //Select All
     $scope.selectAllToggle = function (value) {
         for (var i in $scope.lineItems) {

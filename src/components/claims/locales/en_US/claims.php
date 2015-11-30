@@ -162,7 +162,8 @@ return array(
     'CLAIMS_PURCHASE_ORDER_COUNT' => 'Purchase Order Count',
     'CLAIMS_MISC_COUNT' => 'Misc Count',
     'CLAIMS_PURCHASE_ORDERS' => 'Purchase Orders',
-    'CLAIMS_PURCHASE_ORDER_NUMBER' => 'Purchase Order No.',
+    'CLAIMS_PURCHASE_ORDER' => 'Purchase Order',
+    'CLAIMS_PURCHASE_ORDER_NUMBER' => 'PO Number',
     'CLAIMS_NO_ITEMS_MESSAGE_START' => 'There are no ',
     'CLAIMS_NO_ITEMS_MESSAGE_END' => ' items associated with this ',
 );
