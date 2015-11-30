@@ -17,6 +17,7 @@ module.service('costCardSrv', function ($http, searchSrv, $filter) {
             self.costCardMaterials = response.data.inventoryUsed;
             self.costCardEquipment = response.data.eqUsed;
             self.costCardMiscItems = response.data.miscUsed;
+            self.costCardPurchaseOrders = response.data.purchaseOrders;
         });
     };
     

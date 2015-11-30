@@ -37,14 +37,18 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
                 $scope.costCardMaterials = costCardSrv.costCardMaterials;
                 $scope.costCardEquipment = costCardSrv.costCardEquipment;
                 $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
+                $scope.costCardPurchaseOrders = costCardSrv.costCardPurchaseOrders;
                 $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
                 $scope.getTimesheetTotalCost($scope.costCardTimesheets);
                 $scope.getTimesheetTotalHours($scope.costCardTimesheets);
                 $scope.getMaterialsTotalCost($scope.costCardMaterials);
                 $scope.getEquipmentTotalCost($scope.costCardEquipment);
+                $scope.getPurchaseOrdersCost($scope.costCardPurchaseOrders);
                 $scope.getMiscTotalCost($scope.costCardMiscItems);
+                $scope.getCostCardCosts();
                 $scope.loading = false;
-                console.log($scope.costCardEquipment[0].length);
+                
+                //console.log($scope.costCardEquipment[0].length);
             });
         } else {
             $scope.editing = false;
@@ -106,6 +110,57 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         }
     };
     
+    $scope.getPurchaseOrdersCost = function(purchaseOrders) {
+        $scope.purchaseOrdersSubtotal = 0;
+        $scope.purchaseOrdersTax = 0;
+        $scope.purchaseOrdersTotal = 0;
+        for(var i in purchaseOrders) {
+    
+            if(purchaseOrders[i].subtotal !== null){
+                $scope.purchaseOrdersSubtotal += parseFloat(purchaseOrders[i].subtotal);
+            }
+            
+            if(purchaseOrders[i].tax !== null){
+                $scope.purchaseOrdersTax += parseFloat(purchaseOrders[i].tax);
+            }
+            
+            if(purchaseOrders[i].total !== null){
+                $scope.purchaseOrdersTotal += parseFloat(purchaseOrders[i].total);
+            }
+            
+        }
+    };
+    
+    $scope.getCostCardCosts = function() {
+        $scope.costCardTotalCost = 0;
+        
+        if(!isNaN($scope.timesheetsTotalCost)){
+            $scope.costCardTotalCost += $scope.timesheetsTotalCost;
+        }
+        
+        if(!isNaN($scope.materialsTotalCost)){
+            $scope.costCardTotalCost += $scope.materialsTotalCost;
+        }
+        
+        if(!isNaN($scope.equipmentTotalCost)){
+            $scope.costCardTotalCost += $scope.equipmentTotalCost;
+        }
+        
+        if(!isNaN($scope.miscTotalCost)){
+        $scope.costCardTotalCost += $scope.miscTotalCost;
+        }
+        
+        if(!isNaN($scope.purchaseOrdersTotal)){
+            $scope.costCardTotalCost += $scope.purchaseOrdersTotal;
+        }
+        
+        
+//        $scope.costCardTimesheets = costCardSrv.costCardTimesheets;
+//        $scope.costCardMaterials = costCardSrv.costCardMaterials;
+//        $scope.costCardEquipment = costCardSrv.costCardEquipment;
+//        $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
+    };
+    
     $scope.toggleHours = function() {
         if($scope.showHours === false){            
             $scope.showHours = true;
@@ -113,92 +168,6 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
             $scope.showHours = false;
         }
     };
-//    
-//    $scope.lineItems.push(new LineItems());
-//    
-//    //Table Controls
-//    $scope.addRow = function(){
-//        $scope.lineItems.push(new LineItems());        
-//    };
-//    
-//    $scope.insertRows = function () {
-//        for(var i = $scope.lineItems.length-1; i >= 0; i--){
-//            if ($scope.lineItems[i].isSelected === true) {
-//                $scope.lineItems.splice(parseInt(i) + 1, 0, new LineItems());
-//            }
-//        }
-//    };
-//
-//    //Remove Rows from timesheet
-//    $scope.removeRows = function () {
-//        for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
-//            if ($scope.lineItems[i].isSelected === true) {
-//                $scope.lineItems.splice(parseInt(i), 1);
-//            }
-//        }
-//    };
-    
-//    //Claims Autocomplete
-//    $scope.fetchClaimAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.jobNumber = viewVal;
-//        return costCardSrv.fetchClaimsAutocomplete(searchObject);
-//    };
-//    
-//    //Product Code Typeahead
-//    $scope.fetchProductCodeAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.productCode = viewVal;
-//        searchObject.Vendors_id = $scope.item.Vendors_id;
-//        return costCardSrv.fetchProductCodeAutocomplete(searchObject);
-//    };
-//    
-//    //Product Name Typeahead
-//    $scope.fetchProductNameAutocomplete = function (viewVal) {
-//        var searchObject = {};
-//        searchObject.name = viewVal;
-//        searchObject.Vendors_id = $scope.item.Vendors_id;
-//        return costCardSrv.fetchProductNameAutocomplete(searchObject);
-//    };
-//    
-//    $scope.fetchVendorsAutocomplete = function(viewVal) {
-//        var searchObject = {};
-//        searchObject.company = viewVal;
-//        return costCardSrv.fetchVendorsAutocomplete(searchObject);
-//    };
-//    
-//    $scope.getVendorLocations = function(vendor){
-//        $scope.vendorLocations = vendor.locations;
-//    };
-//    
-//    $scope.getVendorInfo = function(vendorLocation){
-//        $scope.item.Vendors_id = vendorLocation.Vendors_id;
-//        $scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
-//    };
-//    
-//    //Get Claims ID from autocomplete list
-//    $scope.getClaimsID = function (jobNumber) {
-//        for (var i in costCardSrv.autocomplete) {
-//            if (costCardSrv.autocomplete[i].jobNumber === jobNumber) {
-//                $scope.item.Claims_id = costCardSrv.autocomplete[i].id;
-//            }
-//        }
-//    };
-//
-//    //Get Vendor items info
-//    $scope.getProductInfo = function (row, value, index) {
-//        value.unitPrice = parseFloat(value.unitPrice);
-//        row.productCode = value.productCode;
-//        row.name = value.name;
-//        row.description = value.description;
-//        row.unitPrice = value.unitPrice;
-//        row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
-//        row.VendorItems_id = value.VendorItems_id;
-//        row.InventoryItems_id = value.InventoryItems_id;
-//        $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);   
-//        //$scope.updateTax();
-//        $scope.updateAmount(row);
-//    };    
     
     //Check selected
     $scope.checkSelected = function () {
@@ -212,17 +181,17 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
         }
     };
 
-    //Select All
-    $scope.selectAllToggle = function (value) {
-        for (var i in $scope.lineItems) {
-            if ($scope.lineItems[i] !== null && value === true) {
-                $scope.lineItems[i].isSelected = true;
-            } else {
-                $scope.lineItems[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
+//    //Select All
+//    $scope.selectAllToggle = function (value) {
+//        for (var i in $scope.lineItems) {
+//            if ($scope.lineItems[i] !== null && value === true) {
+//                $scope.lineItems[i].isSelected = true;
+//            } else {
+//                $scope.lineItems[i].isSelected = false;
+//            }
+//        }
+//        $scope.checkSelected();
+//    };
     
     $scope.selectAllTimesheetsToggle = function (value) {
         for (var i in $scope.costCardTimesheets) {
