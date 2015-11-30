@@ -195,7 +195,7 @@
                     <td>{{item.quantity}}</td>
                     <td>{{item.unitPrice| currency}}</td>
                     <td>{{item.taxType}} </td>
-                    <td>{{item.amount| currency}}test</td>
+                    <td>{{item.amount| currency}}</td>
                 </tr>
             </table>
             <div class="col-md-5 col-md-offset-7">
