@@ -162,3 +162,37 @@ claimLocationModal:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: ClaimStatusTypes, key: claimStatus, value: id, text: status }
 
+
+
+secondarySheet:
+    path: 'src/components/claims/ng/views/secondarySheet.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimTypes', 'class': 'components\claims\models\ClaimTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\projects\form\ProjectBuilder'
+            model: 'components\projects\models\ProjectAddressModel'
+            cacheKey: 'ProjectAddressForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ProjectAddressModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'claimLocationForm'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
+                - { dependency: ClaimStatusTypes, key: claimStatus, value: ClaimStatusTypes_id, text: status }
