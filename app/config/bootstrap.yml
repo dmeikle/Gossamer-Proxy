@@ -11,7 +11,7 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadCachedRenderedPageListener'}   
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
-        - { 'event': 'filerender_end', 'listener': 'extensions\angular\listeners\DrawURILinksListener'}
+        - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
         - { 'event': 'render_complete', 'listener': 'core\eventlisteners\SaveRenderedPageToCacheListener'}
         
         

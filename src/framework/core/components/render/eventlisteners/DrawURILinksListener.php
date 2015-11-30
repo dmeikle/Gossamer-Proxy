@@ -22,12 +22,14 @@ use core\components\render\handlers\URITagHandler;
  */
 class DrawURILinksListener extends AbstractListener {
 
-    public function on_filerender_end(Event &$params) {
+    public function on_filerender_end(Event &$event) {
+        $params = $event->getParams();
         $uriHandler = new URITagHandler($this->logger);
         $uriHandler->setHttpRequest($this->httpRequest);
         $uriHandler->setTemplate($params['html']);
-        $config['html'] = $uriHandler->handleRequest();
-        $params->setParams($config);
+        $params['html'] = $uriHandler->handleRequest();
+
+        $event->setParams($params);
     }
 
 }

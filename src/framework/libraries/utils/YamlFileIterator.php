@@ -52,7 +52,6 @@ class YamlFileIterator {
         foreach ($yaml as $nodeKey => $node) {
             if (array_key_exists('ng', $node)) {
                 $retval = array_merge($retval, array($nodeKey => $node['ng']));
-                pr($retval);
             }
             // $newNode = array_intersect_key($node, $keys);
             $newNode = $this->intersectArray($node, $keys);

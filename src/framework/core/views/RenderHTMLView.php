@@ -44,6 +44,8 @@ class RenderHTMLView extends AbstractView {
                 $event = new Event('filerender_end', $config);
                 $this->container->get('EventDispatcher')->dispatch('all', 'filerender_end', $event);
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'filerender_end', $event);
+                $config = $event->getParams();
+
                 $this->template = $config['html'];
             } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());

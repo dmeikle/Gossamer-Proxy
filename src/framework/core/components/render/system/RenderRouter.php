@@ -83,17 +83,22 @@ class RenderRouter extends YamlRouter {
         if (array_key_exists('ng', $ymlURI)) {
             $ngLink = $this->getNgParams($ymlURI['ng']);
         }
+        if (is_null($ngLink)) {
+            return 'href="/' . substr($rawList, 1) . '"';
+        }
 
-        return 'href="/' . substr($rawList, 1) . '" ' . $ngLink;
+        return 'href="" ' . $ngLink;
     }
 
     private function getNgParams(array $item) {
         if (array_key_exists('ng-click', $item)) {
-            $tmp = str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']);
+            $tmp = 'ng-click=\'' . str_replace('text_key', $this->getString($item['text_key']), $item['ng-click']) . '\'';
             $ngLink = str_replace('template', $this->getString($item['template']), $tmp);
+
+            return $ngLink;
         }
 
-        return $ngLink;
+        return null;
     }
 
     /**
