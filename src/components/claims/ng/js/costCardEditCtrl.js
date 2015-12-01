@@ -161,12 +161,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         if(!isNaN($scope.purchaseOrdersTotal)){
             $scope.costCardTotalCost += $scope.purchaseOrdersTotal;
         }
-        
-        
-//        $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
-//        $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
-//        $scope.costCardEquipment = costCardEditSrv.costCardEquipment;
-//        $scope.costCardMiscItems = costCardEditSrv.costCardMiscItems;
     };
     
     $scope.toggleHours = function() {
@@ -188,18 +182,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             }
         }
     };
-
-//    //Select All
-//    $scope.selectAllToggle = function (value) {
-//        for (var i in $scope.lineItems) {
-//            if ($scope.lineItems[i] !== null && value === true) {
-//                $scope.lineItems[i].isSelected = true;
-//            } else {
-//                $scope.lineItems[i].isSelected = false;
-//            }
-//        }
-//        $scope.checkSelected();
-//    };
     
     $scope.selectAllTimesheetsToggle = function (value) {
         for (var i in $scope.costCardTimesheets) {
@@ -267,45 +249,57 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         }
         $scope.checkSelected();
     };
-        
-//    $scope.approveAll = function() {
-//        for(var i in $scope.lineItems){
-//            $scope.lineItems[i].status = 1;
-//        }
-//        $scope.save();
-//    };
-//    
-//    $scope.approveItems = function () {
-//        for (var i in $scope.lineItems) {
-//            if($scope.lineItems[i].isSelected === true){
-//                console.log('DIS EYE TEM IS APOOVED YAOLLl');
-//            }
-//        }
-//    };
     
-//    //Saving Items    
-//    $scope.save = function () {
-//        var costCardItems = {};
-//        costCardItems.eqUsed = $scope.costCardEquipment;
-//        costCardItems.inventoryUsed = $scope.costCardMaterials;
-//        costCardItems.miscUsed = $scope.costCardMiscItems;
-////        costCardItems.purchaseOrders = $scope.costCardPurchaseOrders;
-//        costCardItems.timesheets = $scope.costCardTimesheets;
-//        
-//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-////        purchaseOrder.creationDate = $filter('date')(purchaseOrder.creationDate, 'yyyy-MM-dd', '+0000');
-////        costCardEditSrv.save(purchaseOrder, purchaseOrderItems, formToken).then(function(){
-////            //$window.location.href = apiPath + '0';
-////        });
-//    };
-    
+    //Approve All Items
     $scope.approveAll = function () {
-//        var items = angular.copy($scope.lineItems);
-        
         for(var i in $scope.costCard){
             if($scope.costCard[i][0].length !== 0){
                 for(var j in $scope.costCard[i]){                   
                     $scope.costCard[i][j].AccountingItemsStatusTypes_id = 2;
+                }                
+            }
+        }
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardEditSrv.save(id, $scope.costCard, formToken);
+    };
+    
+    //Approve Selected Items
+    $scope.approveSelected = function () {
+        console.log('dkwoapdkopdwa');
+        for(var i in $scope.costCard){
+            if($scope.costCard[i][0].length !== 0){
+                for(var j in $scope.costCard[i]){
+                    if($scope.costCard[i][j].isSelected === true){                        
+                        $scope.costCard[i][j].AccountingItemsStatusTypes_id = 2;
+                    }
+                }                
+            }
+        }
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardEditSrv.save(id, $scope.costCard, formToken);
+    };
+    
+    //Disapprove All Items
+    $scope.disapproveAll = function () {
+        for(var i in $scope.costCard){
+            if($scope.costCard[i][0].length !== 0){
+                for(var j in $scope.costCard[i]){                   
+                    $scope.costCard[i][j].AccountingItemsStatusTypes_id = 3;
+                }                
+            }
+        }
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardEditSrv.save(id, $scope.costCard, formToken);
+    };
+    
+    //Disapprove Selected Items
+    $scope.disapproveSelected = function () {
+        for(var i in $scope.costCard){
+            if($scope.costCard[i][0].length !== 0){
+                for(var j in $scope.costCard[i]){
+                    if($scope.costCard[i][j].isSelected === true){                        
+                        $scope.costCard[i][j].AccountingItemsStatusTypes_id = 3;
+                    }
                 }                
             }
         }

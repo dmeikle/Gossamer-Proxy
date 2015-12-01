@@ -3,17 +3,17 @@
         <div class="widget-content">
             <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');  ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');      ?></button>-->
                 <div class="btn-group" uib-dropdown>
-                    <button id="split-button" type="button" class="btn btn-primary"><?php echo $this->getString('CLAIMS_APPROVE_SELECTED'); ?></button>
+                    <button id="split-button" type="button" class="btn btn-primary"  ng-click="approveSelected()"><?php echo $this->getString('CLAIMS_APPROVE_SELECTED'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
                         <span class="caret"></span>
-                        <span class="sr-only"><?php echo $this->getString('CLAIMS_APPROVE_SELECTED'); ?></span>
+                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');  ?></span>-->
                     </button>
                     <ul class="uib-dropdown-menu pull-right row-controls" role="menu" aria-labelledby="split-button">
                         <li role="menuitem"><a ng-click="approveAll()"><?php echo $this->getString('CLAIMS_APPROVE_ALL'); ?></a></li>
-                        <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></a></li>
-                        <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_DISAPPROVE_ALL'); ?></a></li>
+                        <li role="menuitem"><a ng-click="disapproveSelected()"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></a></li>
+                        <li role="menuitem"><a ng-click="disapproveAll()"><?php echo $this->getString('CLAIMS_DISAPPROVE_ALL'); ?></a></li>
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_GENERATE_BREAKDOWN_REPORT'); ?></a></li>
                     </ul>
                 </div>
@@ -486,9 +486,9 @@
                     </div>
                 </uib-tab>
             </uib-tabset>
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                    ?></button>-->
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                    ?></button>-->
-<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                    ?></button></a>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                        ?></button>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                        ?></button>-->
+<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                        ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>
