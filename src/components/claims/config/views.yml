@@ -280,7 +280,7 @@ claims_list_by_projectaddress:
             "section4": "src/components/claims/views/list-by-address.php"
             "section5": "src/themes/default/templates/sections/footer.php"
             
-claims_cost_cards_view:
+claims_cost_cards_edit:
     template: admin-list.php
     sections:
         -
