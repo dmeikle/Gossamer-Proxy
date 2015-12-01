@@ -5,26 +5,32 @@
     <table class="table">
         <tr>
             <td>Name:</td>
-            <td><?php echo $form['name']; ?></td>
+            <td><div class="form-group"><?php echo $form['name']; ?></div></td>
         </tr>
         <tr>
             <td>Type:</td>
             <td>
-                <?php echo $form['CompanyTypes_id']; ?>
+                <div class="form-group"><?php echo $form['CompanyTypes_id']; ?></div>
             </td>
         </tr>
         <tr>
             <td>Address:</td>
-            <td><?php echo $form['address1']; ?>
-                <?php echo $form['address2']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['address1']; ?></div>
+                <div class="form-group"><?php echo $form['address2']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>City:</td>
-            <td><?php echo $form['city']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['city']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>Province:</td>
-            <td><?php echo $form['Provinces_id']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['Provinces_id']; ?></div>
+            </td>
         </tr>
         <!--
         <tr>
@@ -34,19 +40,27 @@
         -->
         <tr>
             <td>Postal Code:</td>
-            <td><?php echo $form['postalCode']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['postalCode']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>Telephone:</td>
-            <td><?php echo $form['telephone']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['telephone']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>Fax:</td>
-            <td><?php echo $form['fax']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['fax']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>URL:</td>
-            <td><?php echo $form['url']; ?></td>
+            <td>
+                <div class="form-group"><?php echo $form['url']; ?></div>
+            </td>
         </tr>
         <tr>
             <td>&nbsp;</td>

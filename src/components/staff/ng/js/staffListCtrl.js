@@ -75,10 +75,8 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
             size: 'xl'
         });
 
-        modalInstance.result.then(function(staff) {
-            staffEditSrv.save(staff).then(function() {
-                getStaffList();
-            });
+        modalInstance.result.then(function() {
+            getStaffList();
         });
     };
 
@@ -171,7 +169,12 @@ module.controller('staffModalCtrl', function($modalInstance, $scope) {
     $scope.staff = {};
 
     $scope.confirm = function() {
-        $modalInstance.close($scope.staff);
+
+        staffEditSrv.save($scope.staff).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function() {

@@ -110,12 +110,12 @@
                         </tr>
                         <tr ng-if="!loading" ng-repeat="row in lineItems track by $index">
                             <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
-                            <td><?php echo $form['productCode']; ?></td>
-                            <td><?php echo $form['productName']; ?></td>
-                            <td><?php echo $form['productDescription']; ?></td>
-                            <td><?php echo $form['quantity']; ?></td>
-                            <td><?php echo $form['unitPrice']; ?></td>
-                            <td><?php echo $form['taxType']; ?></td>
+                            <td><div class="form-group"><?php echo $form['productCode']; ?></div></td>
+                            <td><div class="form-group"><?php echo $form['productName']; ?></div></td>
+                            <td><div class="form-group"><?php echo $form['productDescription']; ?></div></td>
+                            <td><div class="form-group"><?php echo $form['quantity']; ?></div></td>
+                            <td><div class="form-group"><?php echo $form['unitPrice']; ?></div></td>
+                            <td><div class="form-group"><?php echo $form['taxType']; ?></div></td>
                             <td class="total">{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
