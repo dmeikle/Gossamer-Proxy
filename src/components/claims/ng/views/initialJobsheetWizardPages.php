@@ -66,65 +66,67 @@
     </div>
 
     <div ng-repeat="contact in jobSheet.query.contacts">
-
-        <div class="col-xs-12 form-group">
-            <hr />
-        </div>
-        <div class="col-xs-10 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
-            </label>
-            <?php echo $contactForm['ContactTypes_id'] ?>
-        </div>
-        <div class="col-xs-2">
-            <div class="pull-right">
-                <button ng-click="removeOwnerTenant($event, $index)" class="btn-link">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
+        <div ng-show="contact.isActive !== '0'">
+            <div class="col-xs-12 form-group">
+                <hr />
+            </div>
+            <div class="col-xs-10 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
+                </label>
+                <?php echo $contactForm['ContactTypes_id'] ?>
+            </div>
+            <div class="col-xs-2">
+                <div class="pull-right">
+                    <button ng-click="removeOwnerTenant($event, $index)" class="btn-link">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_FIRSTNAME') ?>
+                </label>
+                <?php echo $contactForm['firstname'] ?>
+            </div>
+            <div class="col-xs-3 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_LASTNAME') ?>
+                </label>
+                <?php echo $contactForm['lastname'] ?>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_HOMEPHONE') ?>
+                </label>
+                <?php echo $contactForm['home'] ?>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_MOBILEPHONE') ?>
+                </label>
+                <?php echo $contactForm['mobile'] ?>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_WORKPHONE') ?>
+                </label>
+                <?php echo $contactForm['office'] ?>
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_BUZZER') ?>
+                </label>
+                <input type="tel" ng-model="contact.buzzer" class="form-control" name="buzzer" id="buzzer{{$index}}">
+            </div>
+            <div class="col-xs-6 form-group">
+                <label>
+                    <?php echo $this->getString('CLAIMS_EMAIL') ?>
+                </label>
+                <?php echo $contactForm['email'] ?>
             </div>
         </div>
-        <div class="col-xs-3 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_FIRSTNAME') ?>
-            </label>
-            <?php echo $contactForm['firstname'] ?>
-        </div>
-        <div class="col-xs-3 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_LASTNAME') ?>
-            </label>
-            <?php echo $contactForm['lastname'] ?>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_HOMEPHONE') ?>
-            </label>
-            <?php echo $contactForm['home'] ?>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_MOBILEPHONE') ?>
-            </label>
-            <?php echo $contactForm['mobile'] ?>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_WORKPHONE') ?>
-            </label>
-            <?php echo $contactForm['office'] ?>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_BUZZER') ?>
-            </label>
-            <input type="tel" ng-model="contact.buzzer" class="form-control" name="buzzer" id="buzzer{{$index}}">
-        </div>
-        <div class="col-xs-6 form-group">
-            <label>
-                <?php echo $this->getString('CLAIMS_EMAIL') ?>
-            </label>
-            <?php echo $contactForm['email'] ?>
-        </div>
+        <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
     <div class="widgetfooter clearfix">
