@@ -1,3 +1,58 @@
+#------------------------ cost cards ----------------------------
+claims_cost_cards_list:
+    pattern: admin/claims/costcards/
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardItemModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: claims_cost_cards_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+    methods: [GET]
+    
+claims_cost_cards_get:
+    pattern: admin/claims/costcards/get/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardItemModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: claims_cost_cards_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+    methods: [GET]
+    
+claims_cost_cards_edit:
+    pattern: admin/claims/costcards/edit/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: claims_cost_cards_edit
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+    methods: [GET]
+    
+claims_cost_cards_save:
+    pattern: admin/claims/costcards/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardItemsController
+        model: components\accounting\models\CostCardItemModel
+        method: save
+        view: core\views\JSONView
+        viewKey: claims_cost_cards_save
+        datasource: datasource1
+    methods: [POST]
+    
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:
@@ -605,3 +660,4 @@ claims_view:
         view: core\views\TemplateView
         viewKey: claims_view
         datasource: datasource1
+       
