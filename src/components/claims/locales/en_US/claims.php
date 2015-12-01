@@ -128,7 +128,7 @@ return array(
     'CLAIMS_WORKAUTHORIZATION' => 'Work Authorization',
     'CLAIMS_WORKPHONE' => 'Work Phone',
     'CLAIMS_COST_CARD' => 'Cost Card',
-    'CLAIMS_VIEW_COST_CARD' => 'View Cost Card',
+    'CLAIMS_VIEW_COST_CARDS' => 'View Cost Cards',
     'CLAIMS_DESCRIPTION' => 'Description',
     'CLAIMS_DATE' => 'Date',
     'CLAIMS_COST' => 'Cost',
