@@ -25,7 +25,18 @@ claims_cost_cards_view:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             
-            
+claims_cost_cards_save:
+    pattern: admin/claims/costcards/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: save
+        view: core\views\JSONView
+        viewKey: claims_cost_cards_save
+        datasource: datasource1
+    methods: [POST]
+    
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:

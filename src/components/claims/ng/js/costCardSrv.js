@@ -1,6 +1,7 @@
 // Cost Card Modal Service
 module.service('costCardSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/claims/costcards/get/';
+    var savePath = '/admin/claims/costcards/';
     var self = this;
     
     
@@ -22,40 +23,41 @@ module.service('costCardSrv', function ($http, searchSrv, $filter) {
     };
     
     //Save the purchase order
-    this.save = function (item, lineItems, formToken) {
-        var itemID = '';
-        if (item.id) {
-            itemID = parseInt(item.id);
-        } else {
-            itemID = '0';
-        }
-
-        for (var i in item) {
-            if (item[i] === null) {
-                delete item[i];
-            }
-        }
+    this.save = function (id, lineItems, formToken) {
+//        var itemID = '';
+//        if (item.id) {
+//            itemID = parseInt(item.id);
+//        } else {
+//            itemID = '0';
+//        }
+//
+//        for (var i in item) {
+//            if (item[i] === null) {
+//                delete item[i];
+//            }
+//        }
         
-        for (i in lineItems) {
+        for (var i in lineItems) {
             for (var j in lineItems[i]){                
                 if (lineItems[i][j] === null) {
                     delete lineItems[i][j];
                 }
             }
         }
-        var data = {};
-        data.PurchaseOrder = item;
-        data.PurchaseOrderItems = lineItems;
-        data.FORM_SECURITY_TOKEN = formToken;
-        console.log(data);
+        
+//        var data = {};
+//        data.timesheets = lineItems[0];
+//        data.PurchaseOrderItems = lineItems;
+//        data.FORM_SECURITY_TOKEN = formToken;
+//        console.log(data);
         
         return $http({
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + itemID,
-            data: data
+            url: apiPath + id,
+            data: lineItems
         }).then(function (response) {
             //console.log(response);
         });

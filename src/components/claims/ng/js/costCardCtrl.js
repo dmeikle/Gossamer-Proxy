@@ -5,6 +5,7 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
     
     $scope.loading = false;
     $scope.lineItems = [];
+    $scope.costCard = [];
     $scope.item = {};
     $scope.loading = true;
     $scope.selectAll = false;
@@ -38,7 +39,14 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
                 $scope.costCardEquipment = costCardSrv.costCardEquipment;
                 $scope.costCardMiscItems = costCardSrv.costCardMiscItems;
                 $scope.costCardPurchaseOrders = costCardSrv.costCardPurchaseOrders;
-                $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment);
+                $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment, $scope.costCardMiscItems, $scope.costCardPurchaseOrders);
+                
+                $scope.costCard.timesheets = ($scope.costCardTimesheets);
+                $scope.costCard.inventoryUsed = $scope.costCardMaterials;
+                $scope.costCard.eqUsed = $scope.costCardEquipment;
+                $scope.costCard.miscUsed = $scope.costCardMiscItems;
+                $scope.costCard.purchaseOrders = $scope.costCardPurchaseOrders;
+                
                 $scope.getTimesheetTotalCost($scope.costCardTimesheets);
                 $scope.getTimesheetTotalHours($scope.costCardTimesheets);
                 $scope.getMaterialsTotalCost($scope.costCardMaterials);
@@ -291,6 +299,28 @@ module.controller('costCardCtrl', function ($scope, costCardSrv, $location, $fil
 //        });
     };
     
+    $scope.approveAll = function () {
+        var items = angular.copy($scope.lineItems);
+//        for(var i in items){
+//            if(items[i].length === 0){
+//                delete  items[i];
+//            } else {                
+//                items[i].isApproved = 1;
+//            }
+//        }
+        
+        for(var i in $scope.costCard){
+            console.log($scope.costCard[i]);
+            if($scope.costCard[i][0].length !== 0){
+                for(var j in $scope.costCard[i]){                   
+                    $scope.costCard[i][j].isApproved = 1;
+                }                
+            }
+        }
+//        console.log($scope.costCard);
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardSrv.save(id, $scope.costCard, formToken);
+    };
 //    //Update totals
 //    $scope.updateAmount = function(row){
 //        if(!isNaN(parseFloat(row.unitPrice)) && !isNaN(parseFloat(row.quantity)) ){
