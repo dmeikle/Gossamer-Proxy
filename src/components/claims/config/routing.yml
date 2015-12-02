@@ -1,3 +1,45 @@
+
+
+#claimId, locationId
+admin_claims_secondarysheets_home:
+    pattern: admin/claims/secondary-sheets/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_secondarysheet_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+        
+ #claimId, locationId
+admin_claims_secondarysheets_list:
+    pattern: admin/claims/secondary-sheets/list/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: listAllByLocation
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_list
+        datasource: datasource1
+        
+ #claimId, locationId
+admin_claims_secondarysheets_get:
+    pattern: admin/claims/secondary-sheets/get/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: loadByLocation
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_get
+        datasource: datasource1
+               
+        
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:
@@ -280,7 +322,7 @@ admin_claims_edit:
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
         method: editByJobNumber
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_view
         datasource: datasource1
         langFiles:

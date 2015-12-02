@@ -196,3 +196,11 @@ secondarySheet:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
                 - { dependency: ClaimStatusTypes, key: claimStatus, value: ClaimStatusTypes_id, text: status }
+                
+
+secondarySheetAdminTab:
+    path: 'src/components/claims/views/admin/secondarysheets/list.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+                

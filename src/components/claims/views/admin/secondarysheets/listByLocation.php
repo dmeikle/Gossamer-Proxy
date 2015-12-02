@@ -1,8 +1,14 @@
 
+<?php $params = $this->httpRequest->getParameters(); ?>
 
-<div class="widget" ng-controller="claimsListCtrl">
+<input type="hidden" id="Claims_id" value="<?php echo intval($params[0]); ?>" />
+<input type="hidden" id="ClaimsLocations_id" value="<?php echo intval($params[1]); ?>" />
+
+
+
+<div class="widget" ng-controller="secondarySheetsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-        <h1 class="pull-left">Claim List</h1>
+        <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SECONDARY_SHEETS') ?></h1>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openClaimAdvancedSearch()">
                 <?php echo $this->getString('CLAIMS_ADVANCED_SEARCH') ?>
@@ -31,50 +37,32 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></th>
-                    <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_BUILDING_NAME'); ?></th>
-                    <th column-sortable data-column="typeOfClaim"><?php echo $this->getString('CLAIMS_LOSS_TYPE'); ?></th>
-                    <th column-sortable data-column="dateReceived"><?php echo $this->getString('CLAIMS_LOSS_DATE'); ?></th>
-                    <th column-sortable data-column="status"><?php echo $this->getString('CLAIMS_STATUS'); ?></th>
-                    <th column-sortable data-column="lastname"><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?></th>
-                    <th column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></th>
+                    <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_WORK_DATE'); ?></th>
+                    <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_UNIT_NUMBER'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_STAFF'); ?></th>
                     <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
+                    <td colspan="2">
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
-                <tr ng-if="!loading" ng-repeat="claim in claimsList"
+                <tr ng-if="!loading" ng-repeat="item in sheetsList"
                     ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
-                    <td  ng-if="!claim.jobNumber" ng-click="selectRow(claim)">{{claim.unassignedJobNumber}}</td>
-                    <td ng-if="claim.jobNumber" ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.phase}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.buildingName}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.lossDate}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.status}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.lastname}}, {{claim.firstname}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.parentJobNumber}}</td>
+                    <td ng-click="selectRow(item)">{{item.workDate}}</td>
+                    <td ng-click="selectRow(item)">{{item.unitNumber}}</td>
+                    <td ng-click="selectRow(item)">{{item.firstname}} {{item.lastname}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
-                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
-                                <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
-
-                            </ul> <!--href="/admin/claims/edit/{{claim.jobNumber}}"     href="/admin/claims/edit/{{claim.unassignedJobNumber}}"-->
+                                <li><a gcms="{uri='admin_claims_secondarysheets_get' params='{{item.Claims_id}}/{{item.ClaimsLocations_id}}/{{item.id}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                            </ul>
                         </div>
                     </td>
                 </tr>

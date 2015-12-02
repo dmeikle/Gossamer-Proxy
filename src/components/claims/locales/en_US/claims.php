@@ -104,4 +104,7 @@ return array(
     'CLAIMS_KEYS' => 'Keys',
     'CLAIMS_LOCKBOX' => 'Lockbox',
     'CLAIMS_WORKAUTHORIZATION' => 'Work Authorization',
+    'CLAIMS_SECONDARY_SHEETS' => 'Secondary Sheets',
+    'CLAIMS_WORK_DATE' => 'Work Date',
+    'CLAIMS_STAFF' => 'Staff'
 );

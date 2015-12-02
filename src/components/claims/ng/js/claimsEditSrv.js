@@ -72,6 +72,6 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     };
 
     this.getClaimLocations = function(projectAddress) {
-        return searchSrv.searchCall(claimLocationsApiPath + projectAddress.id + '/0/10');
+        return searchSrv.searchCall(claimLocationsApiPath + projectAddress.id + '/0/50');
     };
 });
