@@ -1,17 +1,17 @@
 // Cost Card Modal Service
 module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) {
-    var apiPath = '/admin/claims/costcards/get/17/';
+    var apiPath = '/admin/claims/costcards/get/';
     var savePath = '/admin/claims/costcards/';
     var self = this;
     
     //Get the purchase order
-    this.getCostCard = function (id) {
+    this.getCostCard = function (CostCard_id, Claims_id) {
         return $http({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: apiPath + id
+            url: apiPath + Claims_id + '/' + CostCard_id 
 //        crudSrv.getList()
         }).then(function (response) {
             self.costCardTimesheets = response.data.timesheets;
@@ -35,16 +35,6 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
             }
         }
         crudSrv.save(savePath + id, lineItems, 'CostCardItem', formToken);
-//        return $http({
-//            method: 'POST',
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded'
-//            },
-//            url: savePath + id,
-//            data: lineItems
-//        }).then(function (response) {
-//            //console.log(response);
-//        });
     };
     
 });

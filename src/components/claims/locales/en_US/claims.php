@@ -191,4 +191,5 @@ return array(
     'CLAIMS_PURCHASE_ORDER_NUMBER' => 'PO Number',
     'CLAIMS_NO_ITEMS_MESSAGE_START' => 'There are no ',
     'CLAIMS_NO_ITEMS_MESSAGE_END' => ' items associated with this ',
+    'CLAIMS_PHASES' => 'Phases'
 );

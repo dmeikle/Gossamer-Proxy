@@ -33,7 +33,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     function getExistingItem (){
         if(id > 0){
             $scope.editing = true;
-            costCardEditSrv.getCostCard(id).then(function () {
+            costCardEditSrv.getCostCard(id, '17').then(function () {
                 $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
                 $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
                 $scope.costCardEquipment = costCardEditSrv.costCardEquipment;

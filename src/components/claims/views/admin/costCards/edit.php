@@ -1,24 +1,47 @@
 <div ng-controller="costCardEditCtrl">
     <div class="widget" >
         <div class="widget-content">
-            <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARD') ?></h1>
+
+            <h1 class="pull-left">
+                <span ng-if="!editing"><?php echo $this->getString('NEW') ?></span>
+                <span ng-if="editing"><?php echo $this->getString('EDIT') ?></span>
+                <?php echo $this->getString('CLAIMS_COST_CARD') ?>
+            </h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');      ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                       ?></button>-->
                 <div class="btn-group" uib-dropdown>
-                    <button id="split-button" type="button" class="btn btn-primary"  ng-click="approveSelected()"><?php echo $this->getString('CLAIMS_APPROVE_SELECTED'); ?></button>
+                    <button id="split-button" type="button" class="btn btn-primary"  ng-click="approveSelected()"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
                         <span class="caret"></span>
-                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');  ?></span>-->
+                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');                   ?></span>-->
                     </button>
                     <ul class="uib-dropdown-menu pull-right row-controls" role="menu" aria-labelledby="split-button">
-                        <li role="menuitem"><a ng-click="approveAll()"><?php echo $this->getString('CLAIMS_APPROVE_ALL'); ?></a></li>
-                        <li role="menuitem"><a ng-click="disapproveSelected()"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></a></li>
-                        <li role="menuitem"><a ng-click="disapproveAll()"><?php echo $this->getString('CLAIMS_DISAPPROVE_ALL'); ?></a></li>
+                        <!--<li role="menuitem"><a ng-click="approveAll()"><?php // echo $this->getString('CLAIMS_APPROVE_ALL');               ?></a></li>-->
+                        <!--<li role="menuitem"><a ng-click="disapproveSelected()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_SELECTED');               ?></a></li>-->
+                        <!--<li role="menuitem"><a ng-click="disapproveAll()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_ALL');               ?></a></li>-->
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_GENERATE_BREAKDOWN_REPORT'); ?></a></li>
                     </ul>
                 </div>
             </div>
             <div class="clearfix"></div>
+
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label for="ClaimPhases_id" class="heading-label"><?php echo $this->getString('CLAIMS_PHASE'); ?></label>
+                    <?php echo $form['ClaimPhases_id']; ?>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="notes" class="heading-label"><?php echo $this->getString('CLAIMS_NOTES'); ?></label>
+                    <?php echo $form['notes']; ?>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <hr>
             <!--Tabs-->
             <uib-tabset>
                 <!-- Summary Tab -->
@@ -209,8 +232,8 @@
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardTimesheets[0].length !== 0">
-                                    <th colspan="1"></th>
-                                    <th colspan="6"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                                    <th colspan="6"></th>
+                                    <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th ng-if="showHours" colspan="1">{{timesheetsRegHours}}</th>
                                     <th ng-if="showHours" colspan="1">{{timesheetsOTHours}}</th>
                                     <th ng-if="showHours" colspan="1">{{timesheetsDOTHours}}</th>
@@ -285,8 +308,8 @@
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardEquipment[0].length !== 0">
-                                    <th colspan="1"></th>
-                                    <th colspan="7"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                                    <th colspan="7"></th>
+                                    <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="3">{{equipmentTotalCost| currency}}</th>
                                 </tr>
                             </tbody>
@@ -351,8 +374,8 @@
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardMaterials[0].length !== 0">
-                                    <th colspan="1"></th>
-                                    <th colspan="6"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                                    <th colspan="6"></th>
+                                    <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="4">{{materialsTotalCost| currency}}</th>
                                 </tr>
                             </tbody>
@@ -408,8 +431,8 @@
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardMiscItems[0].length !== 0">
-                                    <th colspan="1"></th>
-                                    <th colspan="3"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                                    <th colspan="3"></th>
+                                    <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="4">{{miscTotalCost| currency}}</th>
                                 </tr>
                             </tbody>
@@ -474,8 +497,8 @@
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardPurchaseOrders[0].length !== 0">
-                                    <th colspan="1"></th>
-                                    <th colspan="7"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
+                                    <th colspan="7"></th>
+                                    <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="1">{{purchaseOrdersSubtotal| currency}}</th>
                                     <th colspan="1">{{purchaseOrdersTax| currency}}</th>
                                     <th colspan="3">{{purchaseOrdersTotal| currency}}</th>
@@ -486,9 +509,9 @@
                     </div>
                 </uib-tab>
             </uib-tabset>
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                        ?></button>-->
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                        ?></button>-->
-<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                        ?></button></a>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                         ?></button>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                         ?></button>-->
+<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                         ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>
