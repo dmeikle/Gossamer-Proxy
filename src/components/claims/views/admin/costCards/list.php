@@ -1,7 +1,7 @@
-<div class="widget" ng-controller="costCardCtrl">
+<div class="widget" ng-controller="costCardListCtrl">
     <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
-        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_POS') ?></h1>
-        <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
+        <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARDS') ?></h1>
+        <!--<div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php // echo $this->getString('CLAIMS_DB_ERROR')  ?></div>-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
@@ -25,25 +25,25 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></th>
-                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></th>
-                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
+                    <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('CLAIMS_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
+<!--                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php // echo $this->getString('ACCOUNTING_PHASE');   ?></th>
+                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php // echo $this->getString('ACCOUNTING_DATE');   ?></th>
+                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php // echo $this->getString('ACCOUNTING_TOTAL');   ?></th>-->
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
                     <td ng-hide="groupedBy === 'poNumber'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'company'"></td>
                     <td ng-hide="groupedBy === 'description'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'creationDate'" column-sortable data-column="department"></td>
-                    <td ng-hide="groupedBy === 'total'" column-sortable data-column="totalCost"></td>
+                    <td ng-hide="groupedBy === 'orderType'"></td>
+                    <!--<td ng-hide="groupedBy === 'company'"></td>-->
+<!--                    <td ng-hide="groupedBy === 'creationDate'" column-sortable data-column="department"></td>
+                    <td ng-hide="groupedBy === 'total'" column-sortable data-column="totalCost"></td>-->
                     <td></td>
                 </tr>
 
@@ -55,17 +55,17 @@
                 </tr>
 
                 <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
-                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.poNumber}}</td>
-                    <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.orderType}}</td>
-                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.company}}</td>
-                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.ClaimPhases_id}}</td>
+                    <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.lastModified}}</td>
+                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.isApproved}}</td>
+<!--                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.creationDate}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>-->
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="edit/{{item.PurchaseOrders_id}}">Edit</a></li>
+                                <li><a ng-href="edit/{{item.Claims_id}}">Edit</a></li>
                             </ul>
                         </div>
                     </td>

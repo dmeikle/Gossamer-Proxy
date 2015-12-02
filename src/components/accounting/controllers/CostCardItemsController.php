@@ -19,11 +19,13 @@ use core\AbstractController;
  * @author Dave Meikle
  */
 class CostCardItemsController extends AbstractController {
-//    public function listallByClaim($claimId) {
-//        $params = array('Claims_id' => $claimId);
-//        $offset = 0;
-//        $limit = 500;
-//        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
-//        $this->render($result);
-//    }
+
+    public function listallByClaim($claimId) {
+        $params = array('Claims_id' => $claimId);
+        $offset = 0;
+        $limit = 500;
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
+        $this->render($result);
+    }
+
 }

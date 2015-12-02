@@ -14,16 +14,16 @@ namespace components\accounting\controllers;
 use core\AbstractController;
 
 /**
- * Description of PropertiesController
+ * Description of CostCardsController
  *
  * @author Dave Meikle
  */
 class CostCardsController extends AbstractController {
 
-    public function listallByClaim($claimId) {
+    public function listallByClaim($claimId, $offset, $limit) {
         $params = array('Claims_id' => $claimId);
-        $offset = 0;
-        $limit = 500;
+        $offset = intval($offset);
+        $limit = intval($limit);
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
         $this->render($result);
     }
