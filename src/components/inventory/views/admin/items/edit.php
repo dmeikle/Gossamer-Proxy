@@ -12,37 +12,39 @@
         <table class="table">
             <tr>
                 <td><?php echo $this->getString('INVENTORY_NAME') ?>:</td>
-                <td><?php echo $form['name']; ?></td>
+                <td><div class="form-group"><?php echo $form['name']; ?></div></td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('INVENTORY_PRODUCTCODE') ?>:</td>
-                <td><?php echo $form['productCode']; ?></td>
+                <td><div class="form-group"><?php echo $form['productCode']; ?></div></td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('INVENTORY_DESCRIPTION') ?>:</td>
-                <td><?php echo $form['description']; ?></td>
+                <td><div class="form-group"><?php echo $form['description']; ?></div></td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('INVENTORY_MINORDER') ?>:</td>
-                <td><?php echo $form['minOrderQuantity']; ?>
-                    <span><small class="help-block"><?php echo $this->getString('INVENTORY_MINORDER_STRING') ?></small></span>
+                <td><div class="form-group">
+                        <?php echo $form['minOrderQuantity']; ?>
+                        <span><small class="help-block"><?php echo $this->getString('INVENTORY_MINORDER_STRING') ?></small></span>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('INVENTORY_MAXORDER') ?>:</td>
-                <td><?php echo $form['maxQuantity']; ?></td>
+                <td><div class="form-group"><?php echo $form['maxQuantity']; ?></div></td>
             </tr>
             <tr>
                 <td><?php echo $this->getString('INVENTORY_PACKAGETYPE') ?>:</td>
-                <td><?php echo $form['PackageTypes_id']; ?></td>
+                <td><div class="form-group"><?php echo $form['PackageTypes_id']; ?></div></td>
             </tr>
             <tr>
                 <td>Inventory Type:</td>
-                <td><?php echo $form['InventoryTypes_id']; ?></td>
+                <td><div class="form-group"><?php echo $form['InventoryTypes_id']; ?></div></td>
             </tr>
             <tr>
                 <td>Category:</td>
-                <td><?php echo $form['InventoryCategories_id']; ?></td>
+                <td><div class="form-group"><?php echo $form['InventoryCategories_id']; ?></div></td>
             </tr>
             <tr>
                 <td>Price:</td>
@@ -54,15 +56,15 @@
             </tr>
             <tr>
                 <td>Tax Type:</td>
-                <td><?php echo $form['AccountingTaxTypes_id']; ?></td>
+                <td><div class="form-group"><?php echo $form['AccountingTaxTypes_id']; ?></div></td>
             </tr>
             <tr>
                 <td>MarkUp:</td>
-                <td><?php echo $form['markup']; ?></td>
+                <td><div class="form-group"><?php echo $form['markup']; ?></div></td>
             </tr>
             <tr>
                 <td>Warehouse Location:</td>
-                <td><?php echo $form['WarehouseLocations_id']; ?></td>
+                <td><div class="form-group"><?php echo $form['WarehouseLocations_id']; ?></div></td>
             </tr>
         </table>
         <form></form>
@@ -105,10 +107,10 @@
                             </tr>
                             <tr>
                                 <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
-                                <td><?php echo $vendorForm['vendorsAutocomplete']; ?></td>
-                                <td><?php echo $vendorForm['productCode']; ?></td>
-                                <td><?php echo $vendorForm['price']; ?></td>
-                                <td><?php echo $vendorForm['isPreferredVendor']; ?></td>
+                                <td><div class="form-group"><?php echo $vendorForm['vendorsAutocomplete']; ?></div></td>
+                                <td><div class="form-group"><?php echo $vendorForm['productCode']; ?><div class="form-group"></div></td>
+                                <td><div class="form-group"><?php echo $vendorForm['price']; ?></div></td>
+                                <td><div class="form-group"><?php echo $vendorForm['isPreferredVendor']; ?></div></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
@@ -119,9 +121,9 @@
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td><?php echo $vendorForm['numPerBox']; ?></td>
-                                <td><?php echo $vendorForm['minOrderQuantity']; ?></td>
-                                <td><?php echo $vendorForm['PackageTypes_id']; ?></td>
+                                <td><div class="form-group"><?php echo $vendorForm['numPerBox']; ?></div></td>
+                                <td><div class="form-group"><?php echo $vendorForm['minOrderQuantity']; ?></div></td>
+                                <td><div class="form-group"><?php echo $vendorForm['PackageTypes_id']; ?></div></td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
