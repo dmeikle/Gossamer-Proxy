@@ -32,6 +32,10 @@ class SubcontractorSearchBuilder extends AbstractBuilder {
 
         $builder->add('jobNumber', 'text', array('ng-model' => 'advancedSearch.query.jobNumber', 'class' => 'form-control'));
 
+        if (array_key_exists('subcontractorTypes', $options)) {
+            $builder->add('SubcontractorTypes_id', 'select', array('ng-model' => 'advancedSearch.query.SubcontractorTypes_id', 'class' => 'form-control', 'options' => $options['subcontractorTypes']));
+        }
+
         return $builder->getForm();
     }
 

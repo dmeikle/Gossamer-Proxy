@@ -23,6 +23,7 @@ module.controller('subcontractorsClaimsListCtrl', function ($scope, $uibModal, $
         subcontractorsClaimsListSrv.getClaimsList(subcontractorsId, row, numRows).then(function (response) {
             $scope.claimsList = subcontractorsClaimsListSrv.claimsList;
             $scope.totalItems = subcontractorsClaimsListSrv.claimsCount;
+            $scope.hasClaims = $scope.totalItems > 0;
         }).then(function () {
             $scope.loading = false;
         });
