@@ -75,7 +75,9 @@ class URITagHandler extends BaseHandler {
      * @param array $keys
      */
     function insertLinks($links) {
-
+        if (is_null($links)) {
+            return;
+        }
         $keys = array_keys($links);
         foreach ($links as $key => $value) {
             $this->template = str_replace($key, $value, $this->template);
