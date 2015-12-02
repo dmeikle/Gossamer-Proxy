@@ -190,5 +190,9 @@ return array(
     'CLAIMS_NO_ITEMS_MESSAGE_END' => ' items associated with this ',
     'CLAIMS_SECONDARY_SHEETS' => 'Secondary Sheets',
     'CLAIMS_WORK_DATE' => 'Work Date',
-    'CLAIMS_STAFF' => 'Staff'
+    'CLAIMS_STAFF' => 'Opened By',
+    'CLAIMS_CLOSED_BY_STAFF' => 'Closed By',
+    'CLAIMS_CREATION_DATE' => 'Created',
+    'CLAIMS_AREA' => 'Area',
+    'CLAIMS_NUMBER_OF_ITEMS' => '# Items'
 );

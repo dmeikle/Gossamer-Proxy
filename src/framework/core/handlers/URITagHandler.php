@@ -48,7 +48,7 @@ class URITagHandler extends BaseHandler {
         $links = $tags[0];
         $params = $tags[1];
         $router = new \core\system\Router($this->logger, $this->httpRequest);
-        $linkList = array();
+        $retval = array();
         for ($i = 0; $i < count($links); $i++) {
             $linkParams = $this->formatParams($params[$i]);
             $key = "<gcms:uri='" . $links[$i] . ((count($linkParams) > 0) ? "'" . $params[$i] : "'") . '/>';
