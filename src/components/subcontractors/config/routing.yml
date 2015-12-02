@@ -44,6 +44,19 @@ admin_subcontractors_search:
         datasource: datasource1 
     methods: [GET]
     
+
+admin_subcontractors_autocomplete:
+    pattern: admin/subcontractors/autocomplete
+    defaults:
+        component: components\subcontractors\SubcontractorsComponent
+        controller: components\subcontractors\controllers\SubcontractorsController
+        model: components\subcontractors\models\SubcontractorModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_subcontractors_autocomplete
+        datasource: datasource1 
+    methods: [GET]
+    
 admin_subcontractors_get:
     pattern: admin/subcontractors/*
 
