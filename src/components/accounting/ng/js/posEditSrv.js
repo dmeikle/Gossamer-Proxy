@@ -7,15 +7,27 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var self = this;
     
     //Claims Autocomplete
+//    this.fetchClaimsAutocomplete = function (searchObject) {
+//        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+//            self.autocomplete = searchSrv.autocomplete.Claims;
+//            self.autocompleteValues = [];
+//            for (var item in self.autocomplete) {
+//                if (!isNaN(item / 1)) {
+//                    self.autocompleteValues.push(self.autocomplete[item].jobNumber);
+//                }
+//            }
+//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+//                return self.autocompleteValues;
+//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+//                return undefined;
+//            }
+//        });
+//    };
+
+    //Claims Autocomplete
     this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
-            self.autocomplete = searchSrv.autocomplete.Claims;
-            self.autocompleteValues = [];
-            for (var item in self.autocomplete) {
-                if (!isNaN(item / 1)) {
-                    self.autocompleteValues.push(self.autocomplete[item].jobNumber);
-                }
-            }
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;
             if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
                 return self.autocompleteValues;
             } else if (self.autocompleteValues[0] === 'undefined undefined') {
@@ -44,19 +56,13 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Product Name Autocomplete
     this.fetchProductNameAutocomplete = function (searchObject) {
-        //var config = {};
-        //config.name = searchObject.name;
         return $http({
             method: 'GET',
             url: inventoryItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
-            self.materialsAutocompleteValues = [];
             self.materialsAutocomplete = response.data.InventoryItems;
             self.materialsAutocompleteValues = response.data.InventoryItems;
-//            for (var i in response.data.InventoryItems) {
-//                self.materialsAutocompleteValues.push(response.data.InventoryItems[i].name);
-//            }
             if (self.materialsAutocompleteValues.length > 0 && self.materialsAutocompleteValues[0] !== 'undefined undefined') {
                 return self.materialsAutocompleteValues;
             } else if (self.materialsAutocompleteValues[0] === 'undefined undefined') {
