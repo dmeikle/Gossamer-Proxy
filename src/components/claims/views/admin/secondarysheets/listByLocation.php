@@ -39,29 +39,41 @@
                 <tr>
                     <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_WORK_DATE'); ?></th>
                     <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_UNIT_NUMBER'); ?></th>
+                    <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_AREA'); ?></th>
                     <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_STAFF'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_CLOSED_BY_STAFF'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_NUMBER_OF_ITEMS'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_CREATION_DATE'); ?></th>
                     <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
                     <td></td>
+                    <td></td>
+                    <td></td>
                     <td colspan="2">
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in sheetsList"
                     ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
                     <td ng-click="selectRow(item)">{{item.workDate}}</td>
                     <td ng-click="selectRow(item)">{{item.unitNumber}}</td>
+                    <td ng-click="selectRow(item)">{{item.name}}</td>
                     <td ng-click="selectRow(item)">{{item.firstname}} {{item.lastname}}</td>
+                    <td ng-click="selectRow(item)">{{item.closedFirstname}} {{item.closedLastname}}</td>
+                    <td ng-click="selectRow(item)">{{item.numItems}}</td>
+                    <td ng-click="selectRow(item)">{{item.lastModified}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a gcms="{uri='admin_claims_secondarysheets_get' params='{{item.Claims_id}}/{{item.ClaimsLocations_id}}/{{item.id}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li><a gcms="{uri='admin_claims_secondarysheets_get' params='{{item.Claims_id}}/{{item.ClaimsLocations_id}}/{{item.id}}'}"><?php echo $this->getString('CLAIMS_EDIT_SECONDARY_SHEET'); ?></a></li>
                             </ul>
                         </div>
                     </td>
