@@ -40,9 +40,10 @@
                     <th column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_WORK_DATE'); ?></th>
                     <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_UNIT_NUMBER'); ?></th>
                     <th column-sortable data-column="title"><?php echo $this->getString('CLAIMS_AREA'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_NUMBER_OF_ITEMS'); ?></th>
+                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_NUMBER_OF_ITEMS_COMPLETED'); ?></th>
                     <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_STAFF'); ?></th>
                     <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_CLOSED_BY_STAFF'); ?></th>
-                    <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_NUMBER_OF_ITEMS'); ?></th>
                     <th column-sortable data-column="buildingName"><?php echo $this->getString('CLAIMS_CREATION_DATE'); ?></th>
                     <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                 </tr>
@@ -52,7 +53,8 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td colspan="2">
+                    <td></td>
+                    <td>
                         <span class="spinner-loader"></span>
                     </td>
                     <td></td>
@@ -64,9 +66,10 @@
                     <td ng-click="selectRow(item)">{{item.workDate}}</td>
                     <td ng-click="selectRow(item)">{{item.unitNumber}}</td>
                     <td ng-click="selectRow(item)">{{item.name}}</td>
+                    <td ng-click="selectRow(item)">{{item.numItems}}</td>
+                    <td ng-click="selectRow(item)">{{item.numItemsCompleted}}</td>
                     <td ng-click="selectRow(item)">{{item.firstname}} {{item.lastname}}</td>
                     <td ng-click="selectRow(item)">{{item.closedFirstname}} {{item.closedLastname}}</td>
-                    <td ng-click="selectRow(item)">{{item.numItems}}</td>
                     <td ng-click="selectRow(item)">{{item.lastModified}}</td>
                     <td class="row-controls">
                         <div class="dropdown">

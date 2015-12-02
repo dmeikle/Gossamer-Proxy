@@ -108,7 +108,7 @@
                                         <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
                                         <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
                                         <li>
-                                            <a gcms="{uri='admin_claims_secondarysheet_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_JOBSHEETS'); ?></a>
+                                            <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_JOBSHEETS'); ?></a>
                                         </li>
                                     </ul>
                                 </div>
