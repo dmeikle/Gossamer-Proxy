@@ -37,7 +37,7 @@ class PurchaseOrderBuilder extends AbstractBuilder {
                 ->add('Departments_id', 'select', array('ng-click' => 'updateTax($event)', 'class' => 'form-control col-md-7', 'ng-model' => 'item.Departments_id', 'options' => $options['departments']))
                 ->add('AccountingPaymentMethods_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.AccountingPaymentMethods_id', 'options' => $options['AccountingPaymentMethods']))
                 ->add('PurchaseOrderTypes_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.PurchaseOrderTypes_id', 'options' => $options['PurchaseOrderType']))
-                ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value for value in fetchClaimAutocomplete($viewValue)',
+                ->add('basicSearch', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)',
                     'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-7',
                     'typeahead-min-length' => '2', 'ng-blur' => 'getClaimsID(item.jobNumber)'))
                 ->add('ClaimPhases_id', 'select', array('class' => 'form-control col-md-7', 'ng-model' => 'item.ClaimPhases_id', 'options' => $options['claimPhases']))

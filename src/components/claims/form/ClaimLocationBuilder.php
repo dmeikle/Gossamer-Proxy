@@ -22,23 +22,23 @@ use Gossamer\CMS\Forms\FormBuilder;
 class ClaimLocationBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-
+        
         if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
-
+        
         $builder->add('unitNumber', 'text', array('ng-model' => 'item.unitNumber', 'class' => 'form-control'))
                 ->add('firstname', 'text', array('ng-model' => 'item.firstname', 'class' => 'form-control'))
                 ->add('lastname', 'text', array('ng-model' => 'item.lastname', 'class' => 'form-control'))
                 ->add('buzzer', 'text', array('ng-model' => 'item.buzzer', 'class' => 'form-control', 'ng-init' => "item.buzzer = '" . $this->getValue('buzzer', $values) . "'"))
-                ->add('lockBoxNumber', 'text', array('ng-model' => 'item.lockBoxNumber', 'class' => 'form-control', 'ng-init' => "item.lockBoxNumber = '" . $this->getValue('lockBoxNumber', $values) . "'"))
-                ->add('workAuthorizationReceived', 'check', array('ng-model' => 'item.workAuthorizationReceived', 'class' => 'form-control', 'ng-init' => "item.workAuthorizationReceived = '" . $this->getValue('workAuthorizationReceived', $values) . "'"))
-                ->add('picturesTaken', 'check', array('ng-model' => 'item.picturesTaken', 'class' => 'form-control', 'ng-init' => "item.picturesTaken = '" . $this->getValue('picturesTaken', $values) . "'"))
-                ->add('keysReceivedFrom', 'text', array('ng-model' => 'item.keysReceivedFrom', 'class' => 'form-control', 'ng-init' => "item.keysReceivedFrom = '" . $this->getValue('keysReceivedFrom', $values) . "'"))
+                ->add('lockBoxNumber', 'text', array('ng-model' => 'item.lockBoxNumber', 'ng-disabled' => '!ClaimLocation.lockBox', 'class' => 'form-control', 'ng-init' => "item.lockBoxNumber = '" . $this->getValue('lockBoxNumber', $values) . "'"))
+                // ->add('workAuthorizationReceived', 'check', array('ng-model' => 'item.workAuthorizationReceived', 'Questions_id' => 'ClaimLocation_workAuthorizationReceived', 'required' => '', 'ng-init' => "item.workAuthorizationReceived = '" . $this->getValue('workAuthorizationReceived', $values) . "'"))
+                // ->add('picturesTaken', 'check', array('ng-model' => 'item.picturesTaken', 'id' => 'ClaimLocation_picturesTaken', 'ng-init' => "item.picturesTaken = '" . $this->getValue('picturesTaken', $values) . "'"))
+                ->add('keysReceivedFrom', 'text', array('ng-model' => 'item.keysReceivedFrom', 'ng-disabled' => '!ClaimLocation.keysReceived', 'class' => 'form-control', 'ng-init' => "item.keysReceivedFrom = '" . $this->getValue('keysReceivedFrom', $values) . "'"))
                 ->add('daytimePhone', 'text', array('ng-model' => 'item.daytimePhone', 'class' => 'form-control'))
                 ->add('mobile', 'text', array('ng-model' => 'item.mobile', 'class' => 'form-control'))
                 ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
-                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values)), 'ng-model' => 'item.id'))
+                ->add('ClaimsLocations_id', 'hidden', array('value' => intval($this->getValue('ClaimsLocations_id', $values)), 'ng-model' => 'item.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'item.Claims_id'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));
 

@@ -377,4 +377,10 @@ class TemplateView extends AbstractView {
 //        $this->template = preg_replace('<img src="[\w/\.]+"(\s|)/>', '<img src="\/images\/components', $this->template);
     }
 
+    public function getValue($key) {
+        $tmp = $this->httpRequest->getAttribute($key);
+       
+        return $this->httpRequest->getAttribute($key);
+    }
+
 }
