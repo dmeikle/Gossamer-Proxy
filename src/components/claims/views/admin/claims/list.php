@@ -1,3 +1,5 @@
+
+
 <div class="widget" ng-controller="claimsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">Claim List</h1>
@@ -68,9 +70,10 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/claims/edit/{{claim.jobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
-                            </ul>
+                            </ul> <!--href="/admin/claims/edit/{{claim.jobNumber}}"     href="/admin/claims/edit/{{claim.unassignedJobNumber}}"-->
                         </div>
                     </td>
                 </tr>
@@ -78,7 +81,7 @@
         </table>
 
         <uib-pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-            class="pagination" boundary-links="true" rotate="false">
+                        class="pagination" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">

@@ -118,6 +118,27 @@ claimsAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+claimsEditTab:
+    path: 'src/components/claims/views/admin/claims/edit.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1' }
+
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimBuilder'
+            model: 'components\claims\models\ClaimModel'
+            cacheKey: 'ClaimForm'
+            formName: 'form'
+    #            dependencies:
+    #                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+    #                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+    #                - { dependency: ClaimStatusTypes, key: claimStatus, value: id, text: status }
+
 claimLocationModal:
     path: 'src/components/claims/ng/views/claimsLocationModal.php'
     langFiles:

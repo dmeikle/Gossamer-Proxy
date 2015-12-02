@@ -11,7 +11,9 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
         - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadCachedRenderedPageListener'}   
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
+        - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
         - { 'event': 'render_complete', 'listener': 'core\eventlisteners\SaveRenderedPageToCacheListener'}
+        
         
         - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
         - { 'event': 'token_expired', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}

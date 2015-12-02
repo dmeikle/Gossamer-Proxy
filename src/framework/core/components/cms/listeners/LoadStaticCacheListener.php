@@ -55,7 +55,7 @@ class LoadStaticCacheListener extends AbstractCachableListener {
         $locale = $this->getDefaultLocale();
         echo 'cms' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . $locale['locale'] . DIRECTORY_SEPARATOR . $key;
         $item = $this->getValuesFromCache('cms' . DIRECTORY_SEPARATOR . 'static' . DIRECTORY_SEPARATOR . $locale['locale'] . DIRECTORY_SEPARATOR . $key, true);
-        pr($item);
+        //pr($item);
         if ($item !== false) {
             echo 'static';
             $class = $this->listenerConfig['class'];

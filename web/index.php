@@ -10,6 +10,12 @@ include_once('../vendor/autoload.php');
 include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
+//$logger = $container->get('Logger');
+//$request = $container->get('HTTPRequest');
+//$it = new \extensions\angular\system\AngularRouter($logger, $request);
+//$list = $it->getQualifiedUrl('admin_claims_home', array());
+//pr($list);
+//die;
 //echo(__YML_KEY . "\r\n");
 
 use core\system\Kernel;

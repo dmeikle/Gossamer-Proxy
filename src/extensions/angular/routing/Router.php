@@ -9,54 +9,27 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\system;
+namespace extensions\angular\routing;
 
-use Monolog\Logger;
-use exceptions\RedirectKeyNotFoundException;
-use libraries\utils\YAMLKeyParser;
-use core\http\HTTPRequest;
+use core\system\Router;
 
 /**
- * Used for redirecting a request to a new URI
+ * Router
  *
  * @author Dave Meikle
  */
-class Router {
-
-    protected $logger = null;
-    protected $httpRequest = null;
-
-    public function __construct(Logger &$logger = null, HTTPRequest &$httpRequest) {
-        $this->logger = $logger;
-        $this->httpRequest = $httpRequest;
-    }
+class Router extends Router {
 
     public function getQualifiedUrl($ymlkey, $params = null) {
-        $ymlURI = $this->getURLByYamlKey($ymlkey);
+        $node = $this->getURLByYamlKey($ymlkey);
 
-        if (is_null($ymlURI)) {
+        if (is_null($node)) {
             throw new RedirectKeyNotFoundException('Router redirect key not found - check method [GET|POST]?');
         }
+
+        $ymlURI = $node['pattern'];
 
         return $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
-    }
-
-    public function redirect($ymlkey, array $params = null) {
-
-        $ymlURI = $this->getURLByYamlKey($ymlkey);
-
-        if (is_null($ymlURI)) {
-            throw new RedirectKeyNotFoundException('Router redirect key not found - check method [GET|POST]?');
-        }
-        $redirectUrl = $this->parseRequestUriParameters($this->httpRequest->getAttribute('HTTP_REFERER'), $ymlURI, $params);
-
-        if (!is_null($this->logger->addDebug('redirecting to ' . $redirectUrl)))
-            ;
-
-        /* Redirect browser */
-        header("Location: /$redirectUrl");
-        /* Make sure that code below does not get executed when we redirect. */
-        exit;
     }
 
     protected function getURLByYamlKey($ymlkey) {
@@ -65,13 +38,12 @@ class Router {
         $node = $loader->getNodeByKey($ymlkey, 'routing');
 
         if (!is_null($node) && count($node) > 0) {
-            return $node['pattern'];
+            return $node;
         }
     }
 
     protected function parseRequestUriParameters($uri, $ymlURI, array $params = null) {
         $uriList = explode('/', $uri);
-
         $rawUriList = explode('/', $ymlURI);
         if (is_null($params)) {
             return $ymlURI;
