@@ -31,7 +31,6 @@ class URITagHandler extends BaseHandler {
         $pattern = "/gcms=\"{uri='(.*?)'(.*?)}\"/";
 
         preg_match_all($pattern, $this->template, $matches);
-
         array_shift($matches);
 
         return $matches;
