@@ -67,8 +67,10 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 
     $scope.saveAndNext = function() {
+        $scope.saving = true;
         $scope.save().then(function(response) {
-            $scope.claim.query.id = response.data.Claim[0].Claim_id;
+            $scope.saving = false;
+            $scope.claim.query = response.data.Claim[0];
             $scope.nextPage();
         });
     };
@@ -85,39 +87,49 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         if ($scope.unit) {
             var object = {};
             object.unitNumber = $scope.unit;
-            $scope.checkUnitExists(object).then(function(response) {
-                if (response === false) {
-                    $scope.saveNewClaimLocation(object).then(function(response) {
-                        $scope.unitList.push(response.data.ClaimsLocation[0]);
-                    });
-                } else {
-                    $scope.unitList.push(response);
-                }
+            object.ProjectAddresses_id = $scope.claim.query.ProjectAddresses_id;
+            object.Claims_id = $scope.claim.query.id;
+
+            // $scope.checkUnitExists(object).then(function(response) {
+            //     if (response === false && $scope.claimLocations.indexOf($scope.unit)) {
+            //         $scope.saveNewClaimLocation(object).then(function(response) {
+            //             $scope.unitList.push(response.data.ClaimsLocation[0]);
+            //         });
+            //     } else if ($scope.claimLocations.indexOf($scope.unit)) {
+            //         $scope.unitList.push(response);
+            //     }
+            // });
+
+
+            $scope.saveNewClaimLocation(object).then(function(response) {
+                $scope.unitList.push(response.data.ClaimsLocation[0]);
             });
         }
     };
 
-    $scope.checkUnitExists = function(unit) {
-        var unitCheck = function(unit) {
-            for (var i = $scope.claimLocations.length - 1; i >= 0; i--) {
-                if ($scope.claimLocations[i].unitNumber === unit.unitNumber) {
-                    return $scope.claimLocations[i];
-                }
-            }
-            return false;
-        };
+    // DEPRECATED
+
+    // $scope.checkUnitExists = function(unit) {
+    //     var unitCheck = function(unit) {
+    //         for (var i = $scope.claimLocations.length - 1; i >= 0; i--) {
+    //             if ($scope.claimLocations[i].unitNumber === unit.unitNumber) {
+    //                 return $scope.claimLocations[i];
+    //             }
+    //         }
+    //         return false;
+    //     };
 
 
-        if (!$scope.claimLocations) {
-            return $scope.getClaimLocations().then(function() {
-                return unitCheck(unit);
-            });
-        } else {
-            return $q(function(resolve) {
-                resolve(unitCheck(unit));
-            });
-        }
-    };
+    //     if (!$scope.claimLocations) {
+    //         return $scope.getClaimLocations().then(function() {
+    //             return unitCheck(unit);
+    //         });
+    //     } else {
+    //         return $q(function(resolve) {
+    //             resolve(unitCheck(unit));
+    //         });
+    //     }
+    // };
 
     $scope.removeFromUnitList = function(unit) {
         for (var i = $scope.unitList.length - 1; i >= 0; i--) {
@@ -136,11 +148,20 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 
     $scope.confirm = function() {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $scope.claim.query.FORM_SECURITY_TOKEN = formToken;
         $uibModalInstance.close($scope.claim.query);
     };
 
     $scope.cancel = function() {
-        $uibModalInstance.dismiss('cancel');
+        if ($scope.claim.query.id) {
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            claimsEditSrv.setInactive($scope.claim.query, formToken).then(function() {
+                $uibModalInstance.dismiss('cancel');
+            });
+        } else {
+            $uibModalInstance.dismiss('cancel');
+        }
     };
 });
 
@@ -151,6 +172,26 @@ module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, 
 
     $scope.confirm = function() {
         var data = $scope.item;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        data.FORM_SECURITY_TOKEN = formToken;
+        $uibModalInstance.close(data);
+    };
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, claim) {
+    $scope.claim = claim;
+    $scope.isOpen = {};
+    $scope.openDatepicker = function (event) {
+        var datepicker = event.target.parentElement.dataset.datepickername;
+        $scope.isOpen[datepicker] = true;
+    };
+
+    $scope.submit = function() {
+        var data = $scope.claim;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         data.FORM_SECURITY_TOKEN = formToken;
         $uibModalInstance.close(data);

@@ -1,4 +1,4 @@
-module.controller('companyClientsListCtrl', function ($scope, $modal, companyClientsListSrv, companyClientsTemplateSrv) {
+module.controller('companyClientsListCtrl', function ($scope, $uibModal, companyClientsListSrv, companyClientsTemplateSrv) {
 
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
@@ -31,7 +31,7 @@ module.controller('companyClientsListCtrl', function ($scope, $modal, companyCli
 
     $scope.openAddNewModal = function () {
         var template = companyClientsTemplateSrv.AddNewModal;
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: template,
             controller: 'companyModalCtrl',
             size: 'xl'
@@ -115,14 +115,14 @@ module.controller('companyClientsListCtrl', function ($scope, $modal, companyCli
     });
 });
 
-module.controller('companyModalCtrl', function ($modalInstance, $scope) {
+module.controller('companyModalCtrl', function ($uibModalInstance, $scope) {
     $scope.company = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.company);
+        $uibModalInstance.close($scope.company);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

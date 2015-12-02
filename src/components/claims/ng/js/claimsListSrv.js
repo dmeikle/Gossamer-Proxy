@@ -8,15 +8,12 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
 
     var self = this;
 
+
+
     self.advancedSearch = {};
 
     this.getClaimsList = function(row, numRows) {
-        return $http.get(apiPath + row + '/' + numRows)
-            .then(function(response) {
-                self.claimsList = response.data.Claims;
-                self.claimsCount = response.data.ClaimsCount[0].rowCount;
-                return response;
-            });
+        return $http.get(apiPath + row + '/' + numRows);
     };
 
     this.getClaimDetail = function(object) {
@@ -27,11 +24,20 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
     };
 
 
-    this.saveProjectManager = function (object, formToken) {
+    this.saveProjectManager = function(object, formToken) {
         return crudSrv.save('/admin/claims/projectmanagers/' + object.id, object, 'ProjectManager', formToken).then(function(response) {
             return response.data.Claim[0];
         });
     };
+
+    this.getClaimsLocationsList = function(claimId) {
+        return $http.get(apiPath + 'locations/' + claimId)
+            .then(function(response) {
+                self.claimsLocations = response.data.ClaimsLocations;
+            });
+
+    };
+
 
 
     this.getClaimLocations = function(claimId) {

@@ -4,6 +4,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     var singleApiPath = '/admin/claim/';
     var projectApiPath = '/admin/projects/';
     var claimLocationsApiPath = '/admin/claimlocations/';
+    var removeApiPath = '/admin/claims/remove/';
 
     var self = this;
 
@@ -12,8 +13,10 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.save = function(object, formToken, page) {
 
         var requestPath;
-        if (object.id) {
+        if (object.id && page) {
             requestPath = singleApiPath + page + '/' + object.id;
+        } else if (!page) {
+            requestPath = singleApiPath + object.id;
         } else {
             requestPath = singleApiPath + page + '/0';
         }
@@ -74,4 +77,10 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.getClaimLocations = function(projectAddress) {
         return searchSrv.searchCall(claimLocationsApiPath + projectAddress.id + '/0/10');
     };
+
+    this.setInactive = function(object, formToken) {
+        var requestPath = removeApiPath + object.id;
+        return crudSrv.setInactive(requestPath, formToken);
+    };
+
 });

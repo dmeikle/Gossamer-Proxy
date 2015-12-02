@@ -37,16 +37,19 @@ class ClaimBuilder extends AbstractBuilder {
                 ->add('policyNumber', 'text', array('ng-model' => 'claim.policyNumber', 'class' => 'form-control', 'value' => $this->getValue('policyNumber', $values)))
                 ->add('asbestosTestRequired', 'text', array('ng-model' => 'claim.asbestosTestRequired', 'class' => 'form-control', 'value' => $this->getValue('asbestosTestRequired', $values)))
                 ->add('enteredByStaffId', 'text', array('ng-model' => 'claim.enteredByStaffId', 'class' => 'form-control', 'value' => $this->getValue('enteredByStaffId', $values)))
-                ->add('workAuthorizationReceiveDate', 'text', array('ng-model' => 'claim.workAuthorizationReceiveDate', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceiveDate', $values)))
+                ->add('workAuthorizationReceiveDate', 'text', array('ng-model' => 'claim.workAuthorizationReceiveDate', 'uib-datepicker-popup' => '', "data-datepickername" => 'workAuthorizationReceiveDate',
+                    'is-open' => 'datepicker.callIn', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceiveDate', $values)))
                 ->add('ClaimTypes_other', 'text', array('ng-model' => 'claim.ClaimTypes_other', 'class' => 'form-control', 'value' => $this->getValue('ClaimTypes_other', $values)))
-                ->add('dateReceived', 'text', array('ng-model' => 'claim.dateReceived', 'class' => 'form-control', 'value' => $this->getValue('dateReceived', $values)))
+                ->add('dateReceived', 'text', array('ng-model' => 'claim.dateReceived', 'uib-datepicker-popup' => '', 'is-open' => 'datepicker.received',  "data-datepickername" => 'dateReceived',
+                    'class' => 'form-control', 'value' => $this->getValue('dateReceived', $values)))
                 ->add('InsuranceCategories_id', 'text', array('ng-model' => 'claim.InsuranceCategories_id', 'class' => 'form-control', 'value' => $this->getValue('InsuranceCategories_id', $values)))
                 ->add('ProjectAddresses_id', 'hidden', array('ng-model' => 'claim.ProjectAddresses_id', 'class' => 'form-control', 'value' => $this->getValue('ProjectAddresses_id', $values)))
                 ->add('OnCallCallInstances_id', 'text', array('ng-model' => 'claim.OnCallCallInstances_id', 'class' => 'form-control', 'value' => $this->getValue('OnCallCallInstances_id', $values)))
                 ->add('parentClaims_id', 'text', array('ng-model' => 'claim.parentClaims_id', 'class' => 'form-control', 'value' => $this->getValue('parentClaims_id', $values)))
                 ->add('leadTechnicalStaff_id', 'text', array('ng-model' => 'claim.leadTechnicalStaff_id', 'class' => 'form-control', 'value' => $this->getValue('leadTechnicalStaff_id', $values)))
                 ->add('projectManager_id', 'text', array('ng-model' => 'claim.projectManager_id', 'class' => 'form-control', 'value' => $this->getValue('projectManager_id', $values)))
-                ->add('completionDate', 'text', array('ng-model' => 'claim.completionDate', 'class' => 'form-control', 'value' => $this->getValue('completionDate', $values)))
+                ->add('completionDate', 'text', array('ng-model' => 'claim.completionDate', 'uib-datepicker-popup' => '', 'is-open' => 'isOpen.completionDate', "data-datepickername" => 'completionDate',
+                    'class' => 'form-control', 'value' => $this->getValue('completionDate', $values)))
                 ->add('sourceUnitClaimsLocations_id', 'text', array('ng-model' => 'claim.sourceUnitClaimsLocations_id', 'class' => 'form-control', 'value' => $this->getValue('sourceUnitClaimsLocations_id', $values)))
                 ->add('sourceOther', 'text', array('ng-model' => 'claim.sourceOther', 'class' => 'form-control', 'value' => $this->getValue('sourceOther', $values)))
                 ->add('contactName', 'text', array('ng-model' => 'claim.contactName', 'class' => 'form-control', 'value' => $this->getValue('contactName', $values)))
@@ -55,6 +58,7 @@ class ClaimBuilder extends AbstractBuilder {
                 ->add('estimate', 'text', array('ng-model' => 'claim.estimate', 'class' => 'form-control', 'value' => $this->getValue('estimate', $values)))
                 ->add('contentsNeeded', 'text', array('ng-model' => 'claim.contentsNeeded', 'class' => 'form-control', 'value' => $this->getValue('contentsNeeded', $values)))
                 ->add('unassignedJobNumber', 'text', array('ng-model' => 'claim.unassignedJobNumber', 'class' => 'form-control', 'value' => $this->getValue('unassignedJobNumber', $values)))
+                ->add('unassignedJobNumberHidden', 'hidden', array('value' => $this->getValue('unassignedJobNumber', $values)))
                 ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
                 ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
 

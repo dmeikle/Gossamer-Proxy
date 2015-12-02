@@ -48,6 +48,8 @@ initialJobsheetWizardPages:
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'filerender_start', 'listener': 'components\inventory\listeners\ListEquipmentInitialJobsheetListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentModel', 'cacheKey': 'InventoryEquipment' }
+        
         # build the form for Project Address
         -
             event: 'filerender_start'
