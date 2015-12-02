@@ -1,6 +1,6 @@
 #------------------------ cost cards ----------------------------
 admin_claims_cost_cards_get:
-    pattern: admin/claims/costcards/get/*
+    pattern: admin/claims/costcards/get/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\accounting\controllers\CostCardItemsController
@@ -14,7 +14,7 @@ admin_claims_cost_cards_get:
     methods: [GET]
     
 admin_claims_cost_cards_edit:
-    pattern: admin/claims/costcards/edit/*
+    pattern: admin/claims/costcards/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\accounting\controllers\CostCardsController
@@ -53,6 +53,18 @@ admin_claims_cost_cards_list:
         datasource: datasource1
         langFiles:
             - 'src/components/claims/locales/*/claims'
+    methods: [GET]
+    
+admin_claims_cost_cards_totals:
+    pattern: admin/claims/costcards/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: listallWithParams
+        view: core\views\JSONView
+        viewKey: admin_claims_cost_cards_totals
+        datasource: datasource1
     methods: [GET]
 
 admin_claims_cost_cards_save:

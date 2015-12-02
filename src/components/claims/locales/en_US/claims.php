@@ -129,6 +129,7 @@ return array(
     'CLAIMS_WORKPHONE' => 'Work Phone',
     'CLAIMS_COST_CARD' => 'Cost Card',
     'CLAIMS_COST_CARDS' => 'Cost Cards',
+    'CLAIMS_NEW_COST_CARD' => 'New Cost Card',
     'CLAIMS_VIEW_COST_CARDS' => 'View Cost Cards',
     'CLAIMS_DESCRIPTION' => 'Description',
     'CLAIMS_DATE' => 'Date',

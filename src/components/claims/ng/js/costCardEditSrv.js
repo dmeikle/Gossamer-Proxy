@@ -1,6 +1,6 @@
 // Cost Card Modal Service
 module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) {
-    var apiPath = '/admin/claims/costcards/get/';
+    var apiPath = '/admin/claims/costcards/get/17/';
     var savePath = '/admin/claims/costcards/';
     var self = this;
     

@@ -20,10 +20,10 @@ use core\AbstractController;
  */
 class CostCardItemsController extends AbstractController {
 
-    public function listallByClaim($claimId) {
-        $params = array('Claims_id' => $claimId);
+    public function listallByClaim($claimId, $costCardId) {
+        $params = array('Claims_id' => intval($claimId), 'CostCards_id' => intval($costCardId));
         $offset = 0;
-        $limit = 500;
+        $limit = 1000;
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
         $this->render($result);
     }
