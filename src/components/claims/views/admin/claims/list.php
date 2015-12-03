@@ -1,3 +1,5 @@
+
+
 <div class="widget" ng-controller="claimsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">Claim List</h1>
@@ -69,7 +71,7 @@
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
@@ -80,12 +82,14 @@
                                         <?php echo $this->getString('CLAIMS_EDIT'); ?>
                                     </a>
                                 </li>
-                                <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_COSTCARDS'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a href="/admin/claims/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARDS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/breakdowns/{{claim.id}}"><?php echo $this->getString('CLAIMS_BREAKDOWNS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/invoices/{{claim.id}}"><?php echo $this->getString('CLAIMS_INVOICES'); ?></a></li>
-                                <li ng-if="!claim.jobNumber"><a href="/admin/claims/edit/{{claim.unassignedJobNumber}}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                                 <li><a href="" ng-click="remove(claim)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
+                                <li><a href="/admin/claims/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARD'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -94,7 +98,7 @@
         </table>
 
         <uib-pagination class="pull-left pagination" total-items="totalItems" ng-model="currentPage"
-            items-per-page="itemsPerPage" boundary-links="true" rotate="false">
+                        items-per-page="itemsPerPage" boundary-links="true" rotate="false">
         </uib-pagination>
 
         <div class="pull-right">
@@ -174,8 +178,8 @@
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
-                                type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="true">
+                                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
