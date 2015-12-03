@@ -8,17 +8,17 @@
                 <?php echo $this->getString('CLAIMS_COST_CARD') ?>
             </h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                       ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                               ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"  ng-click="approveSelected()"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
                         <span class="caret"></span>
-                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');                   ?></span>-->
+                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');                           ?></span>-->
                     </button>
                     <ul class="uib-dropdown-menu pull-right row-controls" role="menu" aria-labelledby="split-button">
-                        <!--<li role="menuitem"><a ng-click="approveAll()"><?php // echo $this->getString('CLAIMS_APPROVE_ALL');               ?></a></li>-->
-                        <!--<li role="menuitem"><a ng-click="disapproveSelected()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_SELECTED');               ?></a></li>-->
-                        <!--<li role="menuitem"><a ng-click="disapproveAll()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_ALL');               ?></a></li>-->
+                        <!--<li role="menuitem"><a ng-click="approveAll()"><?php // echo $this->getString('CLAIMS_APPROVE_ALL');                       ?></a></li>-->
+                        <!--<li role="menuitem"><a ng-click="disapproveSelected()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_SELECTED');                       ?></a></li>-->
+                        <!--<li role="menuitem"><a ng-click="disapproveAll()"><?php // echo $this->getString('CLAIMS_DISAPPROVE_ALL');                       ?></a></li>-->
                         <li role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_GENERATE_BREAKDOWN_REPORT'); ?></a></li>
                     </ul>
                 </div>
@@ -331,14 +331,14 @@
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <th><?php echo $this->getString('CLAIMS_CHARGE_OUT'); ?></th>
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');         ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-if="!loading && costCardMaterials[0].length === 0">
-                                    <td colspan="11" class="alert-info">
+                                    <td colspan="10" class="alert-info">
                                         <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_START'); ?>
                                         <?php echo $this->getString('CLAIMS_MATERIAL'); ?>
                                         <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
@@ -356,7 +356,7 @@
                                     </td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
+                                    <!--<td></td>-->
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -369,14 +369,14 @@
                                     <td>{{row.department}}</td>
                                     <td>{{row.productCode}}</td>
                                     <td>{{row.cost| currency}}</td>
-                                    <td>{{row.chargeout}}</td>
+                                    <!--<td>{{row.chargeout}}</td>-->
                                     <td>BREAK IT DOWN NOW</td>
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardMaterials[0].length !== 0">
                                     <th colspan="6"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
-                                    <th colspan="4">{{materialsTotalCost| currency}}</th>
+                                    <th colspan="3">{{materialsTotalCost| currency}}</th>
                                 </tr>
                             </tbody>
                         </table>
@@ -394,14 +394,14 @@
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <th><?php echo $this->getString('CLAIMS_CHARGE_OUT'); ?></th>
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');       ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-if="!loading && costCardMiscItems[0].length === 0">
-                                    <td colspan="8" class="alert-info">
+                                    <td colspan="7" class="alert-info">
                                         <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_START'); ?>
                                         <?php echo $this->getString('CLAIMS_MISC_GENERAL'); ?>
                                         <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
@@ -426,14 +426,14 @@
                                     <td>{{row.dateEntered}}</td>
                                     <td>{{row.phase}}</td>
                                     <td>{{row.cost| currency}}</td>
-                                    <td>{{row.chargeOut| currency}}</td>
+                                    <!--<td>{{row.chargeOut| currency}}</td>-->
                                     <td>{{row.breakdownReport}}</td>
                                     <td>{{row.statusType}}</td>
                                 </tr>
                                 <tr ng-if="!loading && costCardMiscItems[0].length !== 0">
                                     <th colspan="3"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
-                                    <th colspan="4">{{miscTotalCost| currency}}</th>
+                                    <th colspan="3">{{miscTotalCost| currency}}</th>
                                 </tr>
                             </tbody>
                         </table>
@@ -509,9 +509,9 @@
                     </div>
                 </uib-tab>
             </uib-tabset>
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                         ?></button>-->
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                         ?></button>-->
-<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                         ?></button></a>-->
+            <button class="btn-primary pull-right" ng-click="saveAndClose()"><?php echo $this->getString('SAVE'); ?></button>
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');       ?></button>-->
+            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');       ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

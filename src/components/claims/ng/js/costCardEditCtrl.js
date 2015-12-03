@@ -306,4 +306,9 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         costCardEditSrv.save(id, $scope.costCard, formToken);
     };
+    
+    $scope.save = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardEditSrv.save(id, $scope.costCard, formToken);
+    };
 });
