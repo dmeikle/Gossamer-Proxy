@@ -8,7 +8,8 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
     $scope.selectedSheet = {};
-
+    $scope.lastItem = {};
+    
     $scope.tablesSrv = tablesSrv;
 
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function () {
@@ -39,7 +40,15 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
                 });
         }
     };
-
+    $scope.isNewHeading = function(item) {
+        if($scope.lastItem.SecondarySheetCategories_id == item.SecondarySheetCategories_id) {
+            return false;
+        }
+        
+        $scope.lastItem = item;
+        return true;
+    };
+    
     $scope.openAddNewWizard = function() {
         var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/secondarySheetsAddNewModal',
