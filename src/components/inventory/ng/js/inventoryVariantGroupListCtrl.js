@@ -10,8 +10,6 @@ module.controller('variantGroupsListCtrl', function($scope, $modal, variantGroup
     $scope.advancedSearch = new AngularQueryObject();
     $scope.previouslyClickedObject = {};
 
-    var apiPath = "/admin/inventory/variantgroups/";
-
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
     $scope.$watch('tablesSrv.sortResult', function() {
@@ -99,8 +97,7 @@ module.controller('variantGroupsListCtrl', function($scope, $modal, variantGroup
             }
         });
 
-        modalInstance.result.then(function(result) {
-            variantGroupEditSrv.save(apiPath, result);
+        modalInstance.result.then(function() {
             $scope.getList();
         });
     };
@@ -136,7 +133,11 @@ module.controller('variantGroupModalCtrl', function($modalInstance, $scope, vari
     $scope.submit = function() {
         var data = $scope.variantGroup;
         data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
-        $modalInstance.close(data);
+        variantGroupEditSrv.save(apiPath, data).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.close = function() {

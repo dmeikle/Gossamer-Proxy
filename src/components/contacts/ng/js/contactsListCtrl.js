@@ -39,12 +39,8 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
             size: 'xl'
         });
 
-        modalInstance.result.then(function (contact) {
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-            contactsEditSrv.save(contact, formToken).then(function () {
-                getContactList();
-            });
+        modalInstance.result.then(function () {
+            getContactList();
         });
     };
 
@@ -123,8 +119,14 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
 module.controller('contactsModalCtrl', function ($modalInstance, $scope) {
     $scope.contacts = {};
 
-    $scope.confirm = function (contact) {
-        $modalInstance.close($scope.contact);
+    $scope.confirm = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+        contactsEditSrv.save($scope.contact, formToken).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

@@ -3,6 +3,7 @@ module.controller('staffEmergencyContactsCtrl', function ($scope, $location, $mo
     getStaffEmergencyInfo();
 
     function getStaffEmergencyInfo() {
+        $scope.loading = true;
         var object = {};
         object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 
@@ -25,13 +26,8 @@ module.controller('staffEmergencyContactsCtrl', function ($scope, $location, $mo
             }
         });
 
-        modalInstance.result.then(function (contact) {
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            contact.staffId = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-            $scope.loading = true;
-            staffEmergencyContactsSrv.save(contact, formToken).then(function () {
-                getStaffEmergencyInfo();
-            });
+        modalInstance.result.then(function () {
+            getStaffEmergencyInfo();
         });
     };
 
@@ -55,7 +51,14 @@ module.controller('staffEmergencyContactModalCtrl', function ($scope, $location,
     }
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.contact);
+
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $scope.contact.staffId = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
+        staffEmergencyContactsSrv.save($scope.contact, formToken).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.close = function () {

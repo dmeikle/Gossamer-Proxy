@@ -5,7 +5,7 @@
             <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_POS') ?></h1>
             <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
             <div ng-if="!loading" class="col-md-4 form-headings">
-
+                
                 <div class="form-group">
                     <label for="purchaseOrderType" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></label>
                     <?php echo $form['PurchaseOrderTypes_id']; ?>
@@ -24,9 +24,7 @@
                                     <label for="vendorLocations" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_LOCATION');  ?></label>
                                     <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
                                             ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
-                                </div>-->
-
-
+                                </div>-->              
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
@@ -53,7 +51,7 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
                 <div class="input-group form-group">
                     <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
-                    <div class="col-md-7 no-padding">
+                    <div class="col-md-7 no-padding">                    
                         <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
                                class="form-control datepicker disabled" datepicker-popup is-open="isOpen.datepicker"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" disabled/>
@@ -123,7 +121,7 @@
                             <td><?php echo $form['quantity']; ?></td>
                             <td><?php echo $form['unitPrice']; ?></td>
                             <td><?php echo $form['taxType']; ?></td>
-                            <td class="total">{{row.amount| currency}}</td>
+                            <td class="total">{{row.amount | currency}}</td>
                         </tr>
                     </tbody>
                 </table>

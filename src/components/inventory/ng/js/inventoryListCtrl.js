@@ -207,8 +207,7 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
             }
         });
 
-        modalInstance.result.then(function(result) {
-            inventoryTransferSrv.transfer(result);
+        modalInstance.result.then(function() {
             $scope.getList();
         });
     };
@@ -284,7 +283,12 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
             }
         }
         data.FORM_SECURITY_TOKEN = formToken;
-        $uibModalInstance.close(data);
+
+        inventoryTransferSrv.transfer(data).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });  
     };
 
     $scope.close = function() {
