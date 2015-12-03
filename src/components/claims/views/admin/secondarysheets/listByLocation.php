@@ -149,12 +149,10 @@
                     <th class="col-md-3"><?php echo $this->getString('CLAIMS_MOBILE') ?></th>
                     <th class="col-md-1"></th>
                 </tr>
-                <tr ng-repeat="location in selectedClaim.locations">
-                    <td>{{location.unitNumber}}</td>
-                    <td>{{location.firstname}} {{location.lastname}}</td>
-                    <td> {{location.daytimePhone}} </td>
-                    <td>{{location.mobile}}</td>
-                    <td><a href="/admin/claimlocations/{{selectedClaim.id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW') ?></a></td>
+                <tr ng-repeat="action in selectedSheet.actionsList">
+                    <td>{{action.action}}</td>
+                    <td>{{action.isDone}} </td>
+                    <td><a href="/admin/claimlocations/{{selectedClaim.id}}/{{action.id}}"><?php echo $this->getString('CLAIMS_VIEW') ?></a></td>
                 </tr>
             </table>
 

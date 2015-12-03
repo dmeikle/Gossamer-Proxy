@@ -32,13 +32,9 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
             $scope.selectedSheet = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            secondarySheetsListSrv.getSheetLocations(clickedObject.id)
+            secondarySheetsListSrv.getSheetActions(clickedObject)
                 .then(function() {
-                    $scope.selectedSheet.locations = secondarySheetsListSrv.secondarySheetsLocations;
-                });
-            secondarySheetsListSrv.getSheetContacts(clickedObject)
-                .then(function() {
-                    $scope.selectedSheet.contacts = secondarySheetsListSrv.claimContacts;
+                    $scope.selectedSheet.actionsList = secondarySheetsListSrv.sheetActionsList;
                     $scope.sidePanelLoading = false;
                 });
         }
