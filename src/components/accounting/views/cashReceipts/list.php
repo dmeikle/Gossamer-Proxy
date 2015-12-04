@@ -223,8 +223,5 @@
             </div>
         </div>
     </div>
-
     <div class="clearfix"></div>
 </div>
-<?php
-// pr($this->data); ?>

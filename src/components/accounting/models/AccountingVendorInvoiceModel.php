@@ -15,26 +15,52 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use core\UploadableInterface;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of PurchaseOrderModel
+ * Description of AccountingVendorInvoiceModel
  *
  * @author Dave Meikle
  */
-class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
+class AccountingVendorInvoiceModel extends AbstractModel implements UploadableInterface, FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'PurchaseOrder';
-        $this->tablename = 'purchaseorders';
+        $this->entity = 'VendorInvoice';
+        $this->tablename = 'accountingvendorinvoices';
+    }
+
+    public function getUploadPath() {
+        return __UPLOADED_FILES_PATH . 'invoices';
+    }
+
+    public function saveParamsOnComplete(array $params) {
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('VendorInvoice' => $params));
     }
 
     public function getFormWrapper() {
         return $this->entity;
+    }
+
+    /**
+     * performs a save to the datasource
+     *
+     * @param int $id
+     *
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params[$this->entity]['id'] = intval($id);
+//        pr($params);
+//        die();
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+//        pr($data);
+        return $data;
     }
 
     /**
@@ -60,22 +86,19 @@ class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
 
+//        if (is_array($data) && array_key_exists($this->entity, $data)) {
+//            $data = current($data[$this->entity]);
+//        }
+
         return $data;
     }
 
-    /**
-     * performs a save to the datasource
-     *
-     * @param int $id
-     *
-     * @return type
-     */
-    public function save($id) {
-        $params = $this->httpRequest->getPost();
-        $params['PurchaseOrder']['createStaff_id'] = $this->getLoggedInStaffId();
-        $params[$this->entity]['id'] = intval($id);
+    public function search(array $params) {
+        $locale = $this->getDefaultLocale();
+        $params['isActive'] = '1';
+        $params['locale'] = $locale['locale'];
 
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
 
         return $data;
     }

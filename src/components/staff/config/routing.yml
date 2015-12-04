@@ -1,3 +1,15 @@
+admin_staff_autocomplete:
+    pattern: admin/staff/autocomplete
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_staff_autocomplete
+        datasource: datasource1
+    methods: [GET]
+
 admin_staff_search:
     pattern: admin/staff/search
     listeners:
@@ -157,7 +169,7 @@ admin_staff_emergencycontacts_get:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
         model: components\staff\models\StaffEmergencyContactModel
-        method: get
+        method: getContact
         view: core\views\JSONView
         viewKey: admin_staff_emergencycontacts_get
         datasource: datasource1

@@ -60,3 +60,4 @@ admin_claims_view_initial_jobsheet:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
