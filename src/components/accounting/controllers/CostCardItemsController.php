@@ -21,7 +21,10 @@ use core\AbstractController;
 class CostCardItemsController extends AbstractController {
 
     public function listallByClaim($claimId, $costCardId) {
-        $params = array('Claims_id' => intval($claimId), 'CostCards_id' => intval($costCardId));
+        $params = array('Claims_id' => intval($claimId)); // 'CostCards_id' => intval($costCardId));
+        if (intval($costCardId) > 0) {
+            $params['CostCards_id'] = intval($costCardId);
+        }
         $offset = 0;
         $limit = 1000;
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');

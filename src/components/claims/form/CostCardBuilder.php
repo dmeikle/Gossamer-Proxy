@@ -27,8 +27,10 @@ class CostCardBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Claim']);
         }
 
-        $builder->add('ClaimPhases_id', 'select', array('class' => 'form-control', 'options' => $options['claimPhases'], 'ng-model' => 'costCardDetails.ClaimPhases_id'))
-                ->add('notes', 'textarea', array('class' => 'form-control', 'ng-model' => 'costCardDetails.notes'));
+        $builder->add('ClaimPhases_id', 'select', array('class' => 'form-control', 'options' => $options['claimPhases'], 'ng-model' => 'costCard.costCard.ClaimPhases_id'))
+                ->add('notes', 'textarea', array('class' => 'form-control', 'ng-model' => 'costCard.costCard.notes'));
+
+
         return $builder->getForm();
     }
 

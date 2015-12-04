@@ -24,38 +24,44 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     $scope.materialsTotalCost = 0;
     $scope.equipmentTotalCost = 0;
     $scope.miscTotalCost = 0;
+
+    var Claims_id = document.getElementById('Claims_id').value;
+    var CostCards_id = document.getElementById('CostCards_id').value;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     
-    //var apiPath = '/admin/accounting/pos/';
-    var path = $location.absUrl().split( '/' );;
-    
-    var id = path[path.length - 1];
-    var Claims_id = path[path.length - 2];
     getExistingItem ();
     
     function getExistingItem (){
-        if(id > 0){
+        if(CostCards_id > 0){
             $scope.editing = true;
-            costCardEditSrv.getCostCard(id, Claims_id).then(function () {
-                $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
-                $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
-                $scope.costCardEquipment = costCardEditSrv.costCardEquipment;
-                $scope.costCardMiscItems = costCardEditSrv.costCardMiscItems;
-                $scope.costCardPurchaseOrders = costCardEditSrv.costCardPurchaseOrders;
-                $scope.costCardDetails = costCardEditSrv.costCardDetails;
-                $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment, $scope.costCardMiscItems, $scope.costCardPurchaseOrders);
+            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function () {
+//                $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
+//                $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
+//                $scope.costCardEquipment = costCardEditSrv.costCardEquipment;
+//                $scope.costCardMiscItems = costCardEditSrv.costCardMiscItems;
+//                $scope.costCardPurchaseOrders = costCardEditSrv.costCardPurchaseOrders;
+//                $scope.costCardDetails = costCardEditSrv.costCardDetails;
+//                $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment, $scope.costCardMiscItems, $scope.costCardPurchaseOrders);
                 
-                $scope.costCard.timesheets = ($scope.costCardTimesheets);
-                $scope.costCard.inventoryUsed = $scope.costCardMaterials;
-                $scope.costCard.eqUsed = $scope.costCardEquipment;
-                $scope.costCard.miscUsed = $scope.costCardMiscItems;
-                $scope.costCard.purchaseOrders = $scope.costCardPurchaseOrders;
+                $scope.costCard = costCardEditSrv.costCardItems;
+                $scope.costCard.costCard = $scope.costCard.costCard[0];
+                delete $scope.costCard.costCard[0];
                 
-                $scope.getTimesheetTotalCost($scope.costCardTimesheets);
-                $scope.getTimesheetTotalHours($scope.costCardTimesheets);
-                $scope.getMaterialsTotalCost($scope.costCardMaterials);
-                $scope.getEquipmentTotalCost($scope.costCardEquipment);
-                $scope.getPurchaseOrdersCost($scope.costCardPurchaseOrders);
-                $scope.getMiscTotalCost($scope.costCardMiscItems);
+                $scope.costCard.costCard.Claims_id = Claims_id;
+//                $scope.costCard.timesheets = ($scope.costCardTimesheets);
+//                $scope.costCard.inventoryUsed = $scope.costCardMaterials;
+//                $scope.costCard.eqUsed = $scope.costCardEquipment;
+//                $scope.costCard.miscUsed = $scope.costCardMiscItems;
+//                $scope.costCard.purchaseOrders = $scope.costCardPurchaseOrders;
+//                $scope.costCard.costCard = costCardEditSrv.costCardDetails;
+                
+                
+                $scope.getTimesheetTotalCost($scope.costCard.timesheets);
+                $scope.getTimesheetTotalHours($scope.costCard.timesheets);
+                $scope.getMaterialsTotalCost($scope.costCard.inventoryUsed);
+                $scope.getEquipmentTotalCost($scope.costCard.eqUsed);
+                $scope.getPurchaseOrdersCost($scope.costCard.purchaseOrders);
+                $scope.getMiscTotalCost($scope.costCard.miscUsed);
                 $scope.getCostCardCosts();
                 $scope.loading = false;
                 
@@ -65,13 +71,15 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             $scope.editing = false;
             $scope.loading = false;
             $scope.item.id = 0;
-            costCardEditSrv.getCostCard(id, Claims_id);
+            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
+                $scope.costCard = costCardEditSrv.costCardItems;
+            });
         }
         
     }
     
     $scope.getTotals = function () {
-        costCardEditSrv.getTotals( Claims_id, id);
+        costCardEditSrv.getTotals(Claims_id, CostCards_id);
     };
     
     $scope.getTimesheetTotalHours = function(timesheets) {
@@ -266,8 +274,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     //Approve Selected Items
@@ -281,8 +288,8 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken);
+        
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     //Disapprove All Items
@@ -294,8 +301,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     //Disapprove Selected Items
@@ -309,20 +315,14 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     $scope.save = function () {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken).then(function () {
-            getExistingItem();
-        });
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     $scope.saveDetails = function () {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCardDetails, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken);
     };
 });

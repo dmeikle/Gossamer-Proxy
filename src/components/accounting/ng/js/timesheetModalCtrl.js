@@ -201,7 +201,8 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
         statRegularHours: 0,
         statOTHours: 0,
         statDoubleOTHours: 0,
-        totalHours: 0
+        totalHours: 0,
+        
     };
 
     //Check to see if a timesheet ID exists
@@ -435,7 +436,8 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
             workDate: date,
             Vehicles_id: $scope.vehicleID,
             hourlyRate: $scope.hourlyRate,
-            totalHours: $scope.sumTotal.totalHours
+            totalHours: $scope.sumTotal.totalHours,
+            isDeptApproved: 1
         };
 
         var tolls = $scope.getTolls(object, date);
