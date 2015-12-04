@@ -55,22 +55,14 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
             }
         });
 
-         modalInstance.result.then(function(object) {
+         modalInstance.result.then(function() {
             if (document.getElementById('Claim_id')) {
-                object.Claims_id = document.getElementById('Claim_id').value;
-
-                claimsLocationsEditSrv.save(object).then(function() {
                     $scope.getList();
-                });
             } else {
-                object.Claims_id = $scope.selectedClaim.Claims_id;
-
-                claimsLocationsEditSrv.save(object).then(function() {
-                    claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
-                        .then(function() {
-                            $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
-                        });
-                });
+                claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
+                    .then(function() {
+                        $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
+                    });
             }
             
         });
@@ -105,21 +97,14 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
         claimsLocationsEditSrv.delete(object).then(function() {
 
             if (document.getElementById('Claim_id')) {
-
-                object.Claims_id = document.getElementById('Claim_id').value;
-
-                claimsLocationsEditSrv.save(object).then(function() {
-                    $scope.getList();
-                });
+                $scope.getList();
             } else {
                 object.Claims_id = $scope.selectedClaim.Claims_id;
 
-                claimsLocationsEditSrv.save(object).then(function() {
-                    claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
-                        .then(function() {
-                            $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
-                        });
-                });
+                claimsListSrv.getClaimLocations($scope.selectedClaim.Claims_id)
+                    .then(function() {
+                        $scope.selectedClaim.locations = claimsListSrv.claimsLocations;
+                    });
             }
         });
     };

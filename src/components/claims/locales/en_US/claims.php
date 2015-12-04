@@ -106,7 +106,7 @@ return array(
     'CLAIMS_OWNERTENANT' => 'Owner/Tenant',
     'CLAIMS_PARENT_CLAIM' => 'Parent Claim',
     'CLAIMS_PHASE' => 'Phase',
-    'CLAIMS_PHASE_VS_ECD' => 'Claim Phase vs ECD',
+    'CLAIMS_PHASE_VS_ECD' => 'Phase vs ECD',
     'CLAIMS_PHONE' => 'Phone',
     'CLAIMS_PHOTOS' => 'Photos',
     'CLAIMS_PICTURES' => 'Photos',
@@ -195,5 +195,8 @@ return array(
     'CLAIMS_CREATION_DATE' => 'Created',
     'CLAIMS_AREA' => 'Area',
     'CLAIMS_NUMBER_OF_ITEMS' => '# Open',
-    'CLAIMS_NUMBER_OF_ITEMS_COMPLETED' => '# Completed'
+    'CLAIMS_NUMBER_OF_ITEMS_COMPLETED' => '# Completed',
+    'CLAIMS_WORK_AUTH_RECEIVE_DATE' => 'Work Authorized',
+    'CLAIMS_UNASSIGNED_JOB_NUMBER' => 'Unassigned Job Number',
+    'CLAIMS_NEW_SECONDARY_SHEET' => 'New Secondary Sheet'
 );

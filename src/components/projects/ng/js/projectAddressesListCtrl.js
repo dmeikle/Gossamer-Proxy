@@ -58,10 +58,8 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
             size: 'xl'
         });
 
-        modalInstance.result.then(function (projectAddress) {
-            projectAddressesEditSrv.save(projectAddress).then(function () {
-                getList();
-            });
+        modalInstance.result.then(function () {
+            getList();
         });
     };
 
@@ -140,7 +138,11 @@ module.controller('projectAddressModalCtrl', function ($modalInstance, $scope) {
     $scope.projectAddresses = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.projectAddresses);
+        projectAddressesEditSrv.save($scope.projectAddresses).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

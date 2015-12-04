@@ -22,13 +22,13 @@
                     <span class="spinner-loader"></span>
                 </div>
 
-                <div ng-if="!paLoading" class="form-group">
-                    <label ng-value="claim.buildingName">{{projectAddress.buildingName}}</label><br />
-                    <label>{{projectAddress.address1}}</label><br />
-                    <label>{{projectAddress.city}}</label><br />
-                    <label>{{projectAddress.postalCode}}</label><br />
-                    <label>{{projectAddress.neighborhood}}</label>
-                </div>
+                <address ng-if="!paLoading">
+                    <strong>{{projectAddress.buildingName}}</strong><br>
+                    {{projectAddress.neighborhood}}<br>
+                    {{projectAddress.address1}}<br>
+                    {{projectAddress.city}}<br>
+                    {{projectAddress.postalCode}}
+                </address>
 
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <div ng-if="claimLoading">
                     <span class="spinner-loader"></span>
                 </div>
-                <div ng-if="!claimLoading" class="form-group">
+                <div ng-if="!claimLoading">
                     <div style="float: right;
                          border: solid 1px #cccccc;
                          padding: 5px;
@@ -133,33 +133,34 @@
 
             </div>
         </div>
-        <div class = "clearfix" > </div>
-        <form class = "hide" > </form>
-        <div class = "col-xs-12" >
+        <div class="clearfix"></div>
+        <form class="hide"></form>
+        <div class="col-xs-12">
+
             <!-- Nav tabs -->
-            <ul class = "widgettabs" role = "tablist" >
-                <li role = "presentation" class = "active" >
-                    <a href = "#photos" aria-controls="photos" role="tab" data-toggle="tab" >
+            <ul class="widgettabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
                         <?php echo $this->getString('CLAIMS_PHOTOS') ?>
                     </a>
                 </li>
-                <li role = "presentation" >
-                    <a href = "#comments" aria-controls="comments" role="tab" data-toggle="tab" >
+                <li role="presentation">
+                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
                         <?php echo $this->getString('CLAIMS_COMMENTS') ?>
                     </a>
                 </li>
-                <li role = "presentation" >
-                    <a href = "#history" aria-controls="history" role="tab" data-toggle="tab" >
+                <li role="presentation">
+                    <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
                         <?php echo $this->getString('CLAIMS_HISTORY') ?>
                     </a>
                 </li>
             </ul>
 
             <!-- Tab panes -->
-            <div class = "tab-content" >
-                <div role = "tabpanel" class="widget tab-pane active" id="photos"> ... </div>
-                <div role = "tabpanel" class="widget tab-pane" id="comments"> ... </div>
-                <div role = "tabpanel" class="widget tab-pane" id="history"> ... </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="widget tab-pane active" id="photos">...</div>
+                <div role="tabpanel" class="widget tab-pane" id="comments">...</div>
+                <div role="tabpanel" class="widget tab-pane" id="history">...</div>
             </div>
 
         </div>

@@ -70,12 +70,8 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
             backdrop: 'static'
         });
 
-        modalInstance.result.then(function(object) {
-            var formToken = object.FORM_SECURITY_TOKEN;
-            delete object.FORM_SECURITY_TOKEN;
-            claimsEditSrv.save(object, formToken).then(function() {
-                getClaimsList();
-            });
+        modalInstance.result.then(function() {
+            getClaimsList();
         });
     };
 

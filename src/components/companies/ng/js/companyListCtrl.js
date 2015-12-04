@@ -33,10 +33,8 @@ module.controller('companyListCtrl', function ($scope, $modal, companyListSrv, c
             size: 'xl'
         });
 
-        modalInstance.result.then(function (company) {
-            companyEditSrv.save(company).then(function () {
+        modalInstance.result.then(function () {
                 getCompanyList();
-            });
         });
     };
 
@@ -116,7 +114,12 @@ module.controller('companyModalCtrl', function ($modalInstance, $scope) {
     $scope.company = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.company);
+
+        companyEditSrv.save($scope.company).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

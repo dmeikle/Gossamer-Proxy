@@ -15,7 +15,7 @@ use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\AbstractBuilder;
 
 /**
- * Description of StaffBuilder
+ * Description of ContactBuilder
  *
  * @author Dave Meikle
  */

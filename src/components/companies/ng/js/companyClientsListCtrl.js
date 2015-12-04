@@ -37,10 +37,8 @@ module.controller('companyClientsListCtrl', function ($scope, $uibModal, company
             size: 'xl'
         });
 
-        modalInstance.result.then(function (company) {
-            companyEditSrv.save(company).then(function () {
-                getCompanyClientsList();
-            });
+        modalInstance.result.then(function () {
+            getCompanyClientsList();
         });
     };
 
@@ -119,7 +117,12 @@ module.controller('companyModalCtrl', function ($uibModalInstance, $scope) {
     $scope.company = {};
 
     $scope.confirm = function () {
-        $uibModalInstance.close($scope.company);
+
+        companyEditSrv.save($scope.company).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

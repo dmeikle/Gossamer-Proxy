@@ -79,6 +79,11 @@ module.controller('addVendorLocationModalCtrl', function($scope, $uibModalInstan
         }
         var data = $scope.vendorLocation;
         data.FORM_SECURITY_TOKEN = formToken;
-        $uibModalInstance.close(data);
+
+        vendorLocationEditSrv.save(data).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close(data);
+            }
+        });
     };
 });

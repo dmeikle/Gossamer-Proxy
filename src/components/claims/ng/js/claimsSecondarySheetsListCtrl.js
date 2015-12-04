@@ -28,6 +28,7 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
 
     $scope.selectRow = function(clickedObject) {
         $scope.searching = false;
+        $scope.lastItem = {};
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.selectedSheet = clickedObject;
@@ -40,8 +41,17 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
                 });
         }
     };
+    
+    $scope.getClass = function(item) {
+        if(item.isDone == 1) {
+            return 'bg-success';
+        }
+        
+        return '';
+    };
+    
     $scope.isNewHeading = function(item) {
-        if($scope.lastItem.SecondarySheetCategories_id == item.SecondarySheetCategories_id) {
+        if(item.SecondarySheetCategories_id == $scope.lastItem.SecondarySheetCategories_id) {
             return false;
         }
         

@@ -39,11 +39,8 @@ module.controller('subcontractorsListCtrl', function ($scope, $uibModal, subcont
             }
         });
 
-        modalInstance.result.then(function (subcontractor) {
-            subcontractor.id = subcontractor.Subcontractors_id;
-            subcontractorsEditSrv.save(subcontractor).then(function () {
-                getSubcontractorList();
-            });
+        modalInstance.result.then(function () {
+            getSubcontractorList();
         });
     };
 
@@ -123,7 +120,13 @@ module.controller('subcontractorsModalCtrl', function ($uibModalInstance, $scope
     $scope.subcontractor = subcontractor;
 
     $scope.confirm = function () {
-        $uibModalInstance.close($scope.subcontractor);
+
+        $scope.subcontractor.id = $scope.subcontractor.Subcontractors_id;
+        subcontractorsEditSrv.save($scope.subcontractor).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

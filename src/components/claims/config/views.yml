@@ -31,6 +31,7 @@ admin_claim_edit:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/claims/views/admin/claims/edit.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -57,6 +58,7 @@ claims_new_claim_wizard_1:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/claims/views/admin/wizard1.php"
             "footer": "src/themes/default/templates/sections/footer.php"
 
@@ -66,6 +68,7 @@ admin_claims_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             "content": src/components/claims/views/admin/claims/list.php
             "footer": "src/themes/default/templates/sections/footer.php"
@@ -126,6 +129,7 @@ admin_claims_edit:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/claims/edit.php
             cards: src/components/claims/views/admin/claims/edit-cards.php
@@ -156,6 +160,7 @@ admin_claims_initial_jobsheet:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/initial-jobsheet/form.php
             cards: src/components/claims/views/admin/initial-jobsheet/form-cards.php
@@ -187,6 +192,7 @@ admin_claims_view_initial_jobsheet:
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/initial-jobsheet/view.php
             cards: src/components/claims/views/admin/initial-jobsheet/view-cards.php

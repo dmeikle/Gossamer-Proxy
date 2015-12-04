@@ -99,8 +99,7 @@ module.controller('variantOptionsListCtrl', function($scope, $modal, variantOpti
             }
         });
 
-        modalInstance.result.then(function(result) {
-            variantOptionsEditSrv.save(apiPath, result);
+        modalInstance.result.then(function() {
             $scope.getList();
         });
     };
@@ -131,7 +130,11 @@ module.controller('variantModalCtrl', function($modalInstance, $scope, variant, 
     $scope.submit = function() {
         var data = $scope.variant;
         data.FORM_SECURITY_TOKEN = document.getElementById('FORM_SECURITY_TOKEN').value;
-        $modalInstance.close(data);
+        variantOptionsEditSrv.save(apiPath, data).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.close = function() {

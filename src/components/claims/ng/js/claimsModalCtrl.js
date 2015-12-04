@@ -149,8 +149,11 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
 
     $scope.confirm = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        $scope.claim.query.FORM_SECURITY_TOKEN = formToken;
-        $uibModalInstance.close($scope.claim.query);
+        claimsEditSrv.save($scope.claim.query, formToken).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function() {
@@ -165,16 +168,32 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 });
 
-module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, claimLocation) {
+module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, claimLocation, claimsLocationsEditSrv) {
     if (claimLocation) {
         $scope.item = claimLocation;
     }
 
     $scope.confirm = function() {
-        var data = $scope.item;
+        var object = $scope.item;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        data.FORM_SECURITY_TOKEN = formToken;
-        $uibModalInstance.close(data);
+
+        if (document.getElementById('Claim_id')) {
+            object.Claims_id = document.getElementById('Claim_id').value;
+
+            claimsLocationsEditSrv.save(object, formToken).then(function(response) {
+                if (!response.data.result || response.data.result !== 'error') {
+                    $uibModalInstance.close();
+                }
+            });
+        } else {
+            object.Claims_id = $scope.selectedClaim.Claims_id;
+
+            claimsLocationsEditSrv.save(object, formToken).then(function(response) {
+                if (!response.data.result || response.data.result !== 'error') {
+                    $uibModalInstance.close();
+                }
+            });
+        }
     };
 
     $scope.cancel = function() {
