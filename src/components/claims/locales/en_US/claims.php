@@ -159,6 +159,7 @@ return array(
     'CLAIMS_PHOTOS' => 'Photos',
     'CLAIMS_PICTURES' => 'Photos',
     'CLAIMS_PRICE' => 'Price',
+    'CLAIMS_PRIMARY_CONTACT' => 'Primary Contact',
     'CLAIMS_PRODUCT_CODE' => 'Product Code',
     'CLAIMS_PROJECT_MANAGER' => 'Project Manager',
     'CLAIMS_PURCHASE_ORDER' => 'Purchase Order',

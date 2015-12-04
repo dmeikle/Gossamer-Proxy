@@ -18,7 +18,7 @@ admin_claims_initial_jobsheet:
 
 admin_claims_edit_initial_jobsheet:
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
@@ -52,18 +52,18 @@ admin_claims_edit_initial_jobsheet:
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
-            formBuilder: 'components\contacts\form\ContactBuilder'
-            model: 'components\contacts\models\ContactModel'
+            formBuilder: 'components\customers\form\CustomerBuilder'
+            model: 'components\customers\models\CustomerModel'
             cacheKey: 'ContactForm'
             formName: 'contactForm'
             dependencies:
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
                 - { dependency: Provinces, key: provinces, value: id, text: province }
-                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
 
 admin_claims_view_initial_jobsheet:
     listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
@@ -97,12 +97,12 @@ admin_claims_view_initial_jobsheet:
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
-            formBuilder: 'components\contacts\form\ContactBuilder'
-            model: 'components\contacts\models\ContactModel'
+            formBuilder: 'components\customers\form\CustomerBuilder'
+            model: 'components\customers\models\CustomerModel'
             cacheKey: 'ContactForm'
             formName: 'contactForm'
             dependencies:
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
                 - { dependency: Provinces, key: provinces, value: id, text: province }
-                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
 

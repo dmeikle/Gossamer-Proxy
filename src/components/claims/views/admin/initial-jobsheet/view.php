@@ -72,13 +72,14 @@
                 <div class="col-xs-12 form-group">
                     <hr />
                 </div>
-                <div class="col-xs-10 form-group">
+                <div class="col-xs-12 form-group">
                     <label>
                         <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
+                		<input type="checkbox" id="Contact_isPrimary" ng-model="contact.isPrimary" disabled>
+                		<?php echo $this->getString('CLAIMS_PRIMARY_CONTACT') ?>
                     </label>
-                    <?php echo $contactForm['ContactTypes_id'] ?>
-                    <p class="form-static-control">
-                    	{{contact.contactType}}
+                    <p class="form-control-static">
+                    	{{contact.type}}
                     </p>
                 </div>
                 <div class="col-xs-3 form-group">
@@ -101,9 +102,8 @@
                     <label>
                         <?php echo $this->getString('CLAIMS_VIP') ?>
                     </label>
-                    <?php echo $contactForm['ContactVIPTypes_id'] ?>
-					<p class="form-static-control">
-						{{contact.contactVIPType}}
+					<p class="form-control-static">
+						{{contact.vipType}}
 					</p>
                 </div>
                 <div class="col-xs-6 form-group">

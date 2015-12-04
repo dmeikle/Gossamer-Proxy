@@ -73,13 +73,16 @@
                 <div class="col-xs-12 form-group">
                     <hr />
                 </div>
-                <div class="col-xs-10 form-group">
+                <div class="col-xs-11 form-group">
                     <label>
                         <?php echo $this->getString('CLAIMS_OWNERTENANT') ?>
+                		<input type="checkbox" id="Contact_isPrimary" ng-model="contact.isPrimary" ng-true-value="1" 
+                			ng-false-value="0">
+                		<?php echo $this->getString('CLAIMS_PRIMARY_CONTACT') ?>
                     </label>
-                    <?php echo $contactForm['ContactTypes_id'] ?>
+                    <?php echo $contactForm['CustomerTypes_id'] ?>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1">
                     <div class="pull-right">
                         <button ng-click="removeOwnerTenant($event, $index)" class="btn-link">
                             <span class="glyphicon glyphicon-remove"></span>
