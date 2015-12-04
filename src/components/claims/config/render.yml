@@ -208,4 +208,11 @@ secondarySheetAdminTab:
     langFiles:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
-                
+
+photoUploadModal:
+    path: 'src/components/claims/ng/views/photoUploadModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+        - 'app/locales/*/website'
+

@@ -220,3 +220,21 @@ module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, cla
         $uibModalInstance.dismiss('cancel');
     };
 });
+
+module.controller('photoUploadModalCtrl', function(claim, claimLocations, $scope, $uibModalInstance,
+    photoUploadSrv) {
+    $scope.claim = claim;
+    $scope.claimLocations = claimLocations;
+
+    generateDropzoneConfigs();
+
+    function generateDropzoneConfigs() {
+        for (var i = claimLocations.length - 1; i >= 0; i--) {
+            $scope['dropzoneConfig' + i] = photoUploadSrv.generateDropzoneConfig($scope.claim.id, claimLocations[i].id);
+        }
+    }
+
+    $scope.close = function() {
+        $uibModalInstance.dismiss('close');
+    };
+});

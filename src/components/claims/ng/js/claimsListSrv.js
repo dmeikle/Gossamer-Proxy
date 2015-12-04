@@ -44,6 +44,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
         return $http.get(apiPathClaimLocation + claimId)
             .then(function(response) {
                 self.claimsLocations = response.data.ClaimsLocations;
+                return response;
             });
     };
 

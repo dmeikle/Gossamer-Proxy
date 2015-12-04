@@ -91,6 +91,25 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
         });
     };
 
+    $scope.openPhotoUploadModal = function(claim) {
+        $uibModal.open({
+            templateUrl: '/render/claims/photoUploadModal',
+            controller: 'photoUploadModalCtrl',
+            size: 'lg',
+            backdrop: 'static',
+            resolve: {
+                claim: function() {
+                    return claim;
+                },
+                claimLocations: function() {
+                    return claimsListSrv.getClaimLocations(claim.id).then(function(response) {
+                        return response.data.ClaimsLocations;
+                    });
+                }
+            }
+        });
+    };
+
     $scope.closeSidePanel = function() {
         $scope.sidePanelOpen = false;
     };
