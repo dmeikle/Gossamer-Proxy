@@ -139,6 +139,19 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     $scope.watchClaims = function (row) {
         fetchClaims(row.jobNumber, row);
     };
+    
+    //Claims Autocomplete
+    $scope.fetchClaimAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return timesheetSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    //Get Claims id
+    $scope.getClaimsID = function(claim, row){
+        row.Claims_id = claim.id;
+        console.log(claim);
+    };
 
     //Rate Variance (phase)
     $scope.getRateVarianceOptions = function (event) {

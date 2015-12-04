@@ -26,19 +26,22 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     $scope.miscTotalCost = 0;
     
     //var apiPath = '/admin/accounting/pos/';
-    var path = $location.absUrl();    
-    var id = path.substring(path.lastIndexOf("/")+1);
+    var path = $location.absUrl().split( '/' );;
+    
+    var id = path[path.length - 1];
+    var Claims_id = path[path.length - 2];
     getExistingItem ();
     
     function getExistingItem (){
         if(id > 0){
             $scope.editing = true;
-            costCardEditSrv.getCostCard(id, '17').then(function () {
+            costCardEditSrv.getCostCard(id, Claims_id).then(function () {
                 $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
                 $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
                 $scope.costCardEquipment = costCardEditSrv.costCardEquipment;
                 $scope.costCardMiscItems = costCardEditSrv.costCardMiscItems;
                 $scope.costCardPurchaseOrders = costCardEditSrv.costCardPurchaseOrders;
+                $scope.costCardDetails = costCardEditSrv.costCardDetails;
                 $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment, $scope.costCardMiscItems, $scope.costCardPurchaseOrders);
                 
                 $scope.costCard.timesheets = ($scope.costCardTimesheets);
@@ -62,9 +65,14 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             $scope.editing = false;
             $scope.loading = false;
             $scope.item.id = 0;
+            costCardEditSrv.getCostCard(id, Claims_id);
         }
         
     }
+    
+    $scope.getTotals = function () {
+        costCardEditSrv.getTotals( Claims_id, id);
+    };
     
     $scope.getTimesheetTotalHours = function(timesheets) {
         for(var i in timesheets) {
@@ -135,7 +143,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             if(purchaseOrders[i].total !== null){
                 $scope.purchaseOrdersTotal += parseFloat(purchaseOrders[i].total);
             }
-            
         }
     };
     
@@ -265,7 +272,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     
     //Approve Selected Items
     $scope.approveSelected = function () {
-        console.log('dkwoapdkopdwa');
         for(var i in $scope.costCard){
             if($scope.costCard[i][0].length !== 0){
                 for(var j in $scope.costCard[i]){
@@ -303,12 +309,20 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
+        
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         costCardEditSrv.save(id, $scope.costCard, formToken);
     };
     
     $scope.save = function () {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        costCardEditSrv.save(id, $scope.costCard, formToken);
+        costCardEditSrv.save(id, $scope.costCard, formToken).then(function () {
+            getExistingItem();
+        });
+    };
+    
+    $scope.saveDetails = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardEditSrv.save(id, $scope.costCardDetails, formToken);
     };
 });

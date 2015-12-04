@@ -28,4 +28,12 @@ class CostCardsController extends AbstractController {
         $this->render($result);
     }
 
+    public function listvalues($claimId, $costCardId) {
+        $params = array('Claims_id' => intval($claimId), 'id' => intval($costCardId));
+        $offset = 0;
+        $limit = 20;
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'listvalues');
+        $this->render($result);
+    }
+
 }
