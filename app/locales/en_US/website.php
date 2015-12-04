@@ -63,5 +63,6 @@ return array(
     'CLOSE' => 'Close',
     'ITEMS_PER_PAGE' => 'Items Per Page',
     'ADMIN_CONTRACTORS_LIST_ALL' => 'List All Contractors',
-    'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor'
+    'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor',
+    'REMOVE' => 'Remove',
 );

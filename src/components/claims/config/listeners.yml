@@ -16,6 +16,51 @@ admin_claims_initial_jobsheet:
                 - { dependency: Params, model: ClaimLocation }
 
 
+admin_claims_edit_initial_jobsheet:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
+        - { 'event': 'request_start', 'listener': 'components\inventory\listeners\ListEquipmentInitialJobsheetListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentModel', 'cacheKey': 'InventoryEquipment' }
+
+        # build the form for Project Address
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\projects\form\ProjectBuilder'
+            model: 'components\projects\models\ProjectAddressModel'
+            cacheKey: 'ProjectAddressForm'
+            formName: 'projectAddressForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+        # build the form for Claim Location
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'claimLocationForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Params, model: ClaimLocation }
+        # build the form for Contact
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\contacts\form\ContactBuilder'
+            model: 'components\contacts\models\ContactModel'
+            cacheKey: 'ContactForm'
+            formName: 'contactForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
 admin_claims_view_initial_jobsheet:
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
@@ -60,3 +105,4 @@ admin_claims_view_initial_jobsheet:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
