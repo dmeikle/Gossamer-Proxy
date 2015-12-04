@@ -8,7 +8,7 @@ module.config(function ($httpProvider) {
         return $.param(data);
     };
 
-    $httpProvider.interceptors.push(function(toastsSrv) {
+    $httpProvider.interceptors.push(function(toastsSrv, validationSrv) {
 	// toastsSrv Expects 
     // { formItemType : { 
     //         fieldName : 'Error string',
@@ -21,6 +21,7 @@ module.config(function ($httpProvider) {
 				response.config.method === 'POST' && 
 				response.data.result === 'error') {
     				toastsSrv.newAlert(response.data);
+                    validationSrv.showErrors(response.data);
     			} else if (response && 
 				response.config.method === 'POST' && 
 				response.data.result !== 'error') {

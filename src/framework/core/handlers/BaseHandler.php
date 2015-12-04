@@ -12,6 +12,7 @@
 namespace core\handlers;
 
 use Monolog\Logger;
+use core\http\HTTPRequest;
 
 /**
  * Base handler to abstract framework 'stuff' away from the developer
@@ -22,6 +23,7 @@ abstract class BaseHandler {
 
     protected $logger = null;
     protected $defaultLocale = null;
+    protected $httpRequest = null;
 
     /**
      *
@@ -29,6 +31,11 @@ abstract class BaseHandler {
      */
     public function __construct(Logger $logger) {
         $this->logger = $logger;
+    }
+
+    public function setHttpRequest(HTTPRequest $request) {
+
+        $this->httpRequest = $request;
     }
 
     /**

@@ -3,7 +3,9 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/pos/';
     var claimsPath = '/admin/claims/';
     var inventoryItemsAutocompletePath = '/admin/inventory/items/autocomplete';
+    var vendorItemsAutocompletePath = '/admin/vendors/items/autocomplete';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
+    var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
     var self = this;
     
     //Claims Autocomplete
@@ -35,17 +37,17 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             }
         });
     };
-    
+
     //Product Code Autocomplete
     this.fetchProductCodeAutocomplete = function (searchObject) {
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
-            self.productCodeAutocompleteValues = [];
-            self.productCodeAutocomplete = response.data.InventoryItems;
-            self.productCodeAutocompleteValues = response.data.InventoryItems;
+//            self.productCodeAutocompleteValues = [];
+//            self.productCodeAutocomplete = response.data.VendorItems;
+            self.productCodeAutocompleteValues = response.data.VendorItems;
             if (self.productCodeAutocompleteValues.length > 0 && self.productCodeAutocompleteValues[0] !== 'undefined undefined') {
                 return self.productCodeAutocompleteValues;
             } else if (self.productCodeAutocompleteValues[0] === 'undefined undefined') {
@@ -73,24 +75,32 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     
     //Vendor Autocomplete
     this.fetchVendorsAutocomplete = function(searchObject) {
+        var config = searchObject;
         return $http({
             method: 'GET',
             url: vendorsAutocompletePath,
-            params: searchObject
+            params: config
         }).then(function(response) {
-            self.vendorsAutocompleteValues = [];
-            self.vendorKeys = Object.keys(response.data.Vendors[0]);
-            
-            
-            for(var i in self.vendorKeys){
-                var obj = {};
-                obj.company = self.vendorKeys[i];
-                obj.locations = response.data.Vendors[0][self.vendorKeys[i]];
-                self.vendorsAutocompleteValues.push(obj);
-            }
+            self.vendorsAutocompleteValues = response.data.Vendors;
             if (self.vendorsAutocompleteValues.length > 0) {
                 return self.vendorsAutocompleteValues;
             } else if (self.vendorsAutocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    //Subcontractors Autocomplete
+    this.fetchSubcontractorsAutocomplete = function(searchObject) {
+        return $http({
+            method: 'GET',
+            url: subcontractorAutocompletePath,
+            params: searchObject
+        }).then(function(response) {
+            self.subcontractorsAutocompleteValues = response.data.Subcontractors;
+            if (self.subcontractorsAutocompleteValues.length > 0) {
+                return self.subcontractorsAutocompleteValues;
+            } else if (self.subcontractorsAutocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
         });
@@ -106,7 +116,9 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
             url: apiPath + id
         }).then(function (response) {
             self.purchaseOrder = response.data.PurchaseOrder.PurchaseOrder[0];
-            self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
+            if(response.data.PurchaseOrder.Vendor[0]){
+                self.Vendor = response.data.PurchaseOrder.Vendor[0].company;
+            }
             self.VendorLocations = response.data.PurchaseOrder.VendorLocations;
             self.purchaseOrderNotes = response.data.PurchaseOrder.PurchaseOrderNotes;
             self.purchaseOrderItems = response.data.PurchaseOrder.PurchaseOrderItems;
@@ -142,17 +154,17 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
         }
         
         for (i in lineItems) {
-            for (var j in lineItems[i]){                
-                if (lineItems[i][j] === null) {
+            for (var j in lineItems[i]){
+                if (lineItems[i][j] === null || lineItems[i][j] === 'undefined' || lineItems[i][j].length === 0) {
                     delete lineItems[i][j];
                 }
             }
         }
+        
         var data = {};
         data.PurchaseOrder = item;
         data.PurchaseOrderItems = lineItems;
         data.FORM_SECURITY_TOKEN = formToken;
-        console.log(data);
         
         return $http({
             method: 'POST',

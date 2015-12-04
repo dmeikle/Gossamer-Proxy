@@ -24,7 +24,10 @@ subcontractorsAdvancedSearchFilters:
     path: 'src/components/subcontractors/ng/views/subcontractorsAdvancedSearchFilters.php'
     langFiles:
         - 'src/components/subcontractors/locales/*/Subcontractors'
+        
     listeners:
+        - { 'class': 'components\subcontractors\models\SubcontractorTypeModel', 'cacheKey': 'SubcontractorTypes', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#       
         -
              event: 'filerender_start'
              listener: 'core\components\render\eventlisteners\FormBuilderListener'
@@ -33,3 +36,4 @@ subcontractorsAdvancedSearchFilters:
              model: 'components\subcontractors\models\SubcontractorModel'
              cacheKey: 'SubcontractorSearchForm'
              dependencies:
+                 - { dependency: SubcontractorTypes, key: subcontractorTypes, value: id, text: contractorType}

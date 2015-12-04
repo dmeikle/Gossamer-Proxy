@@ -39,5 +39,6 @@ return array(
     'SUBCONTRACTORS_START_DATE' => 'Start',
     'SUBCONTRACTORS_COMPLETION_DATE' => 'End',
     'SUBCONTRACTORS_JOBNUMBER' => 'Job Number',
-    'SUBCONTRACTORS_INFO' => 'Subcontractor Info'
+    'SUBCONTRACTORS_INFO' => 'Subcontractor Info',
+    'SUBCONTRACTORS_EDIT' => 'Edit'
 );

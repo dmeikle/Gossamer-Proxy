@@ -36,15 +36,11 @@ module.controller('costCardItemTypeCtrl', function ($scope, $modal, costCardItem
             }
         });
 
-        modalInstance.result.then(function (object) {
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            costCardItemTypeSrv.save(object, formToken)
-                    .then(function () {
-                        $scope.getList(row, numRows);
-                    });
+        modalInstance.result.then(function () {
+            $scope.getList(row, numRows);
         },
-                function () {
-                });
+        function () {
+        });
     };
 
     $scope.edit = function (object) {
@@ -76,7 +72,12 @@ module.controller('costCardItemTypeModalInstanceController', function ($scope, $
     $scope.costCardItemType = object;
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.costCardItemType);
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        costCardItemTypeSrv.save($scope.costCardItemType, formToken).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {
@@ -109,15 +110,11 @@ module.controller('pageTemplatesCtrl', function ($scope, $modal, pageTemplatesSr
             }
         });
 
-        modalInstance.result.then(function (pageTemplate) {
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            pageTemplatesSrv.savePageTemplate(pageTemplate, formToken)
-                    .then(function () {
-                        getPageTemplatesList(row, numRows);
-                    });
+        modalInstance.result.then(function () {
+            getPageTemplatesList(row, numRows);
         },
-                function () {
-                });
+        function () {
+        });
     };
 
     $scope.addNewPageTemplate = function () {
@@ -211,7 +208,13 @@ module.controller('pageTemplateModalInstanceController', function ($scope, $moda
     };
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.pageTemplate);
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            pageTemplatesSrv.savePageTemplate($scope.pageTemplate, formToken)
+                .then(function (response) {
+                    if (!response.data.result || response.data.result !== 'error') {
+                        $modalInstance.close();
+                    }
+                });
     };
 
     $scope.cancel = function () {

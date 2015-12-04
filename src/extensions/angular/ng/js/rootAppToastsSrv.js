@@ -30,7 +30,9 @@ module.service('toastsSrv', function ($timeout) {
             }
         }
         $timeout(10000).then(function() {
-            self.dismissAlert(self.alerts.indexOf(alert));
+            for (var i = self.alerts.length - 1; i >= 0; i--) {
+                self.dismissAlert(i);
+            }
         });
     };
 

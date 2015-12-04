@@ -22,13 +22,13 @@
                     <span class="spinner-loader"></span>
                 </div>
 
-                <div ng-if="!paLoading" class="form-group">
-                    <label ng-value="claim.buildingName">{{projectAddress.buildingName}}</label><br />
-                    <label>{{projectAddress.address1}}</label><br />
-                    <label>{{projectAddress.city}}</label><br />
-                    <label>{{projectAddress.postalCode}}</label><br />
-                    <label>{{projectAddress.neighborhood}}</label>
-                </div>
+                <address ng-if="!paLoading">
+                    <strong>{{projectAddress.buildingName}}</strong><br>
+                    {{projectAddress.neighborhood}}<br>
+                    {{projectAddress.address1}}<br>
+                    {{projectAddress.city}}<br>
+                    {{projectAddress.postalCode}}
+                </address>
 
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <div ng-if="claimLoading">
                     <span class="spinner-loader"></span>
                 </div>
-                <div ng-if="!claimLoading" class="form-group">
+                <div ng-if="!claimLoading">
                     <div style="float: right;
                          border: solid 1px #cccccc;
                          padding: 5px;
@@ -117,9 +117,13 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_LOCATIONS_EDIT') ?></a></li>
+                                        <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_LOCATIONS_EDIT') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                                        <li>
+                                            <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_JOBSHEETS'); ?></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>

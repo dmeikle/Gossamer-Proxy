@@ -37,10 +37,8 @@ module.controller('subcontractorsClientsListCtrl', function ($scope, $modal, sub
             size: 'xl'
         });
 
-        modalInstance.result.then(function (subcontractors) {
-            subcontractorsEditSrv.save(subcontractors).then(function () {
-                getCompanyClientsList();
-            });
+        modalInstance.result.then(function () {
+            getCompanyClientsList();
         });
     };
 
@@ -119,7 +117,12 @@ module.controller('subcontractorsModalCtrl', function ($modalInstance, $scope) {
     $scope.subcontractors = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.subcontractors);
+
+        subcontractorsEditSrv.save($scope.subcontractors).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

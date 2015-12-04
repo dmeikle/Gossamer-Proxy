@@ -58,10 +58,8 @@ module.controller('blogsListCtrl', function ($scope, $modal, blogsListSrv, blogs
             size: 'xl'
         });
 
-        modalInstance.result.then(function (blogs) {
-            blogsEditSrv.save(blogs).then(function () {
-                getBlogList();
-            });
+        modalInstance.result.then(function () {
+            getBlogList();
         });
     };
 
@@ -150,11 +148,16 @@ module.controller('blogsListCtrl', function ($scope, $modal, blogsListSrv, blogs
     });
 });
 
-module.controller('blogsModalCtrl', function ($modalInstance, $scope) {
+module.controller('blogsModalCtrl', function ($modalInstance, $scope, blogsEditSrv) {
     $scope.blogs = {};
 
     $scope.confirm = function () {
-        $modalInstance.close($scope.blogs);
+
+        blogsEditSrv.save($scope.blogs).then(function (response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.cancel = function () {

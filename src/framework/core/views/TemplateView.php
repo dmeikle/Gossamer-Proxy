@@ -116,6 +116,7 @@ class TemplateView extends AbstractView {
      */
     protected function renderURITags() {
         $uriHandler = new URITagHandler($this->logger);
+        $uriHandler->setHttpRequest($this->httpRequest);
 
         $uriHandler->setTemplate($this->template);
         $this->template = $uriHandler->handlerequest();

@@ -161,7 +161,7 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
             }
         });
 
-        modalInstance.result.then(function(result) {
+        modalInstance.result.then(function() {
             getVendorsList();
         });
     };
@@ -213,15 +213,13 @@ module.controller('vendorsListCtrl', function($scope, $uibModal, tablesSrv, vend
             }
         });
 
-        modalInstance.result.then(function(result) {
+        modalInstance.result.then(function() {
             $scope.sidePanelLoading = true;
-            vendorLocationEditSrv.save(result).then(function() {
-                vendorsListSrv.getVendorLocations($scope.previouslyClickedObject, 0, 5)
-                    .then(function(response) {
-                        $scope.vendorLocations = response.data.VendorLocations;
-                        $scope.sidePanelLoading = false;
-                    });
-            });
+            vendorsListSrv.getVendorLocations($scope.previouslyClickedObject, 0, 5)
+                .then(function(response) {
+                    $scope.vendorLocations = response.data.VendorLocations;
+                    $scope.sidePanelLoading = false;
+                });
         });
     };
 });

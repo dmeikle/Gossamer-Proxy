@@ -142,10 +142,6 @@ module.controller('inventoryListCtrl', function ($scope, $modal, tablesSrv,
                 }
             }
         });
-
-        modalInstance.result.then(function (result) {
-            inventoryTransferSrv.transfer(result);
-        });
     };
 
     $scope.delete = function (object) {
@@ -202,7 +198,12 @@ module.controller('transferModalController', function ($scope, $modalInstance,
             }
         }
         data.FORM_SECURITY_TOKEN = formToken;
-        $modalInstance.close(data);
+
+        inventoryTransferSrv.transfer(data).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
+        });
     };
 
     $scope.close = function () {

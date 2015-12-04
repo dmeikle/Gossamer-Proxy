@@ -20,45 +20,52 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     var apiPath = '/admin/accounting/pos/';
     var path = $location.absUrl();    
     var id = path.substring(path.lastIndexOf("/")+1);
+    getExistingItem();
     
-    if(id > 0){
-        $scope.editing = true;
-        posEditSrv.getPurchaseOrder(id).then(function () {
-            posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
-            $scope.item = posEditSrv.purchaseOrder;
-            $scope.item.company = posEditSrv.Vendor;
-            $scope.vendorLocations = posEditSrv.VendorLocations;
-            $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
-            $scope.lineItems = posEditSrv.purchaseOrderItems;
-            if($scope.lineItems[0].length === 0){
-                $scope.lineItems = [];
-                $scope.lineItems.push(new LineItems());
-            }
-            
+    function getExistingItem(){
+        if(id > 0){
+            $scope.editing = true;
+            posEditSrv.getPurchaseOrder(id).then(function () {
+                posEditSrv.purchaseOrder.creationDate = new Date(posEditSrv.purchaseOrder.creationDate);
+                $scope.item = posEditSrv.purchaseOrder;
+                if(posEditSrv.Vendor !== undefined){                    
+                    $scope.item.company = posEditSrv.Vendor + ' '+ $scope.item.city + ' ' + $scope.item.address1;
+                }
+                $scope.vendorLocations = posEditSrv.VendorLocations;
+                $scope.item.vendorLocation = posEditSrv.purchaseOrder.VendorLocations_id;
+                $scope.lineItems = posEditSrv.purchaseOrderItems;
+                $scope.item.subcontractor = $scope.item.companyName;
+                if($scope.lineItems[0].length === 0){
+                    $scope.lineItems = [];
+                    $scope.lineItems.push(new LineItems());
+                }
+
+                $scope.loading = false;
+                $scope.item.taxTypes = [];
+                if(posEditSrv.purchaseOrderNotes[0].length !== 0){
+                    notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
+                }
+            });
+        } else {
+            $scope.editing = false;
             $scope.loading = false;
-            $scope.item.taxTypes = [];
-            if(posEditSrv.purchaseOrderNotes[0].length !== 0){
-                notesSrv.notes = notesSrv.getNotes(posEditSrv.purchaseOrderNotes);
-            }
-        });
-    } else {
-        $scope.editing = false;
-        $scope.loading = false;
-        $scope.item.id = 0;
-        var date = new Date();
-        $scope.item.creationDate = date;
-    }    
+            $scope.item.id = 0;
+            var date = new Date();
+            $scope.item.creationDate = date;
+            $scope.vendorLocations = [];
+        }    
+    }
     
     function LineItems(){
         return {
             isSelected: false,
             productCode: '',
-            InventoryItems_id: '',
+//            InventoryItems_id: '',
             name: '',
             price: '',
             quantity: '',
             amount: '',
-            VendorItems_id: '',
+//            VendorItems_id: '',
             PurchaseOrders_id: $scope.item.id
         }; 
     }
@@ -82,7 +89,11 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.removeRows = function () {
         for (var i = $scope.lineItems.length - 1; i >= 0; i--) {
             if ($scope.lineItems[i].isSelected === true) {
-                $scope.lineItems.splice(parseInt(i), 1);
+                var deletedRow = {};
+                deletedRow.id = $scope.lineItems[i].id;
+                deletedRow.isActive = 0;
+                //$scope.lineItems.splice(parseInt(i), 1);
+                $scope.lineItems[i] = deletedRow;
             }
         }
     };
@@ -120,9 +131,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.vendorLocations = vendor.locations;
     };
     
-    $scope.getVendorInfo = function(vendorLocation){
-        $scope.item.Vendors_id = vendorLocation.Vendors_id;
-        $scope.item.VendorLocations_id = vendorLocation.VendorLocations_id;
+    $scope.getVendorInfo = function(vendor){
+        $scope.item.Vendors_id = vendor.Vendors_id;
+        $scope.item.VendorLocations_id = vendor.VendorLocations_id;
     };
     
     //Get Claims ID from autocomplete list
@@ -132,6 +143,17 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
                 $scope.item.Claims_id = posEditSrv.autocomplete[i].id;
             }
         }
+    };
+    
+    $scope.fetchSubcontractorsAutocomplete = function(viewVal) {
+        var searchObject = {};
+        searchObject.company = viewVal;
+        return posEditSrv.fetchSubcontractorsAutocomplete(searchObject);
+    };
+    
+    //Get Subcontractors ID from autocomplete list
+    $scope.getSubcontractorsID = function (subcontractor) {
+        $scope.item.SubContractors_id = subcontractor.id;
     };
 
     //Get Vendor items info
@@ -146,7 +168,7 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         row.InventoryItems_id = value.InventoryItems_id;
         $scope.updateTaxList(row, index, row.AccountingTaxTypes_id);
         $scope.updateAmount(row);
-    };    
+    };
     
     //Check selected
     $scope.checkSelected = function () {
@@ -184,8 +206,9 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
     $scope.updateSubtotal = function(){
         $scope.item.subtotal = 0;
         for(var i in $scope.lineItems){
-            if($scope.lineItems[i].amount === ''){
+            if($scope.lineItems[i].amount === null || $scope.lineItems[i].amount === '' || $scope.lineItems[i].isActive === 0){
                 $scope.item.subtotal += 0;
+                console.log('IS SZEROO');
             } else {
                 $scope.item.subtotal += $scope.lineItems[i].amount;
             }
@@ -216,22 +239,23 @@ module.controller('posEditCtrl', function ($scope, posEditSrv, $location, $filte
         $scope.item.taxTypes = [];
         $scope.item.tax = 0;
         for(var i in $scope.lineItems){
-            $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
-            $scope.item.tax += $scope.lineItems[i].tax;
-            var taxObj = {
-                id: $scope.lineItems[i].AccountingTaxTypes_id,
-                type: $scope.lineItems[i].taxType,
-                total: 0
-            };
-            
-            if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
-                $scope.item.taxTypes.push(taxObj);
-            }        
-            for(var j in $scope.item.taxTypes){
-                if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
-                    $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+            if($scope.lineItems[i].isActive !== 0){
+                $scope.lineItems[i].tax = $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                $scope.item.tax += $scope.lineItems[i].tax;
+                var taxObj = {
+                    id: $scope.lineItems[i].AccountingTaxTypes_id,
+                    type: $scope.lineItems[i].taxType,
+                    total: 0
+                };
+
+                if(taxObj.id !== undefined && !objectWithPropExists($scope.item.taxTypes, 'id', taxObj.id) && taxObj.id !== null && $scope.lineItems[i].taxAmount !== 0){
+                    $scope.item.taxTypes.push(taxObj);
+                }        
+                for(var j in $scope.item.taxTypes){
+                    if($scope.lineItems[i].AccountingTaxTypes_id === $scope.item.taxTypes[j].id){
+                        $scope.item.taxTypes[j].total += $scope.lineItems[i].amount * ($scope.lineItems[i].taxAmount * 0.01);
+                    }
                 }
-                
             }
         }
     };
