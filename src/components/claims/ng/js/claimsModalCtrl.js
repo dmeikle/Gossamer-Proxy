@@ -221,7 +221,7 @@ module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, cla
     };
 });
 
-module.controller('photoUploadModalCtrl', function(claim, claimLocations, $scope, $uibModalInstance,
+module.controller('photoUploadModalCtrl', function(claim, claimLocations, $scope, $rootScope, $uibModalInstance,
     photoUploadSrv) {
     $scope.claim = claim;
     $scope.claimLocations = claimLocations;
@@ -233,6 +233,10 @@ module.controller('photoUploadModalCtrl', function(claim, claimLocations, $scope
             $scope['dropzoneConfig' + i] = photoUploadSrv.generateDropzoneConfig($scope.claim.id, claimLocations[i].id);
         }
     }
+
+    $rootScope.$on('photoCountUpdated', function(event, response) {
+        $scope.photoCount = response.data;
+    });
 
     $scope.close = function() {
         $uibModalInstance.dismiss('close');

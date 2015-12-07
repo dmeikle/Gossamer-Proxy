@@ -12,6 +12,9 @@
                 <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?> 
                 {{claimLocation.unitNumber}}
             </p>
+            <p class="text-center text-muted">
+            	<small>{{photoCount[claimLocation.id]}} <?php echo $this->getString('CLAIMS_PHOTOS') ?></small>
+        	</p>
         </div>
 	</div>
 	<div class="clearfix"></div>

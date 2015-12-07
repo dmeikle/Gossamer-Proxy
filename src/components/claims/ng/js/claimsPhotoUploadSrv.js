@@ -1,4 +1,6 @@
-module.service('photoUploadSrv', function() {
+module.service('photoUploadSrv', function(crudSrv, $rootScope) {
+	var self = this;
+	var apiPath = '/admin/claimlocations/photos/count/';
 	
 	this.generateDropzoneConfig = function(claimId, claimLocationId) {
         return {
@@ -6,17 +8,20 @@ module.service('photoUploadSrv', function() {
                 'url': '/admin/claimlocations/photos/upload/' + 
                     claimId + '/' + claimLocationId,
                 'uploadMultiple': true,
-                'dictDefaultMessage': ''
+                'dictDefaultMessage': '',
+                // 'previewTemplate': '
             },
             'eventHandlers': {
                 'success': function() {
-		            photoUploadSrv.getPhotoCount(claimLocationId);
+		            self.getPhotoCount(claimLocationId);
 		        }
             }
         };
     };
 
     this.getPhotoCount = function(claimLocationId) {
-    	return ;
+    	return crudSrv.getDetails(apiPath, claimLocationId).then(function(response) {
+    		$rootScope.$broadcast('photoCountUpdated', response);
+    	});
     };
 });

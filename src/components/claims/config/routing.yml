@@ -630,6 +630,18 @@ admin_claimlocations_save_by_claimid:
 
 
 
+admin_count_location_photos:
+    pattern: admin/claimlocations/photos/count/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsPhotoModel
+        method: countLocationPhotos
+        view: core\views\JSONView
+        viewKey: admin_upload_location_photo
+        datasource: datasource1
+    methods: [GET]
+
 admin_upload_location_photo:
     pattern: admin/claimlocations/photos/upload/*/*
     listeners:
@@ -642,7 +654,7 @@ admin_upload_location_photo:
         view: core\views\JSONView
         viewKey: admin_upload_location_photo
         datasource: datasource1
-    methods: [GET]
+    methods: [POST]
 
 
 admin_claims_scheduling_list:
