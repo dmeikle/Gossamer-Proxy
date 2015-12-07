@@ -33,13 +33,13 @@ class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
             $path = $folder['path'] . DIRECTORY_SEPARATOR;
             //$folderList[] = $folder['name'];
             //$this->mergeFilepaths($folder, $folders, $folderList);
-            $count = iterator_count(new \DirectoryIterator($path . $claimLocation));
-            $totalFiles += $count;
-            $folderList[$claimLocation]['count'] = $count;
+            $count = iterator_count(new \DirectoryIterator($path . $claimLocation)) - 2; //remove . and ..
             if (array_key_exists($claimLocation, $locations)) {
-                $folderList[$claimLocation]['unitNumber'] = $locations[$claimLocation];
+                $totalFiles += $count;
+                $folderList['list'][$claimLocation]['count'] = $count;
+                $folderList['list'][$claimLocation]['unitNumber'] = $locations[$claimLocation];
             } else {
-                $folderList[$claimLocation]['unitNumber'] = '0';
+                // $folderList[$claimLocation]['unitNumber'] = '0';
             }
         }
         $folderList['totalFiles'] = $totalFiles;
