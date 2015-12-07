@@ -199,7 +199,6 @@ class StaffController extends AbstractController {
     //         if (is_dir($dir)) {
     //             continue;
     //         }
-
     //         if (true !== @mkdir($dir, $mode, true)) {
     //             $error = error_get_last();
     //             if (!is_dir($dir)) {
