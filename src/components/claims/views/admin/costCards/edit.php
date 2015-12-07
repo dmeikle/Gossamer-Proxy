@@ -13,14 +13,14 @@
                 <?php echo $this->getString('CLAIMS_COST_CARD') ?>
             </h1>
             <div class="toolbar form-inline">
-                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                             ?></button>-->
+                <!--<button class="btn-primary" ng-click="approveItems()"><?php // echo $this->getString('CLAIMS_APPROVE');                                                                                               ?></button>-->
                 <div class="btn-group" uib-dropdown>
                     <button id="split-button" type="button" class="btn btn-primary"  ng-click="disapproveSelected()">
                         <?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?>
                     </button>
                     <button type="button" class="btn btn-primary" uib-dropdown-toggle>
                         <span class="caret"></span>
-                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');                             ?></span>-->
+                        <!--<span class="sr-only"><?php // echo $this->getString('CLAIMS_APPROVE_SELECTED');                                                                                               ?></span>-->
                     </button>
                     <ul class="uib-dropdown-menu pull-right row-controls" role="menu" aria-labelledby="split-button">
                         <li role="menuitem"><a ng-click="assignSelected();"><?php echo $this->getString('CLAIMS_ASSIGN_SELECTED'); ?></a></li>
@@ -177,7 +177,7 @@
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                     ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                       ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_EXPORTED'); ?></th>
                                     <th ng-if="showHours"><?php echo $this->getString('CLAIMS_REGULAR_HOURS'); ?></th>
@@ -189,7 +189,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TOTAL_HOURS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_HOURLY_RATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');            ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                              ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -232,10 +232,10 @@
                                     <td ng-if="showHours" class="cell-border">{{row.statDoubleOTHours}}</td>
                                     <td>{{row.totalHours}}</td>
                                     <td>{{row.hourlyRate| currency}}</td>
-                                    <td>BREAK IT DOWN NOW</td>
+                                    <td>breakdown</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.timesheets[0].length !== 0">
+                                <tr ng-if="!loading && costCard.timesheets[0].length !== 0 && costCard.timesheets.length !== 0">
                                     <th colspan="5"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th ng-if="showHours" class="cell-border" colspan="1">{{timesheetsRegHours}}</th>
@@ -250,12 +250,42 @@
                                     </th>
                                     <th colspan="2">{{timesheetsTotalCost| currency}}</th>
                                 </tr>
-                                <tr>
-                                    <th colspan="9" ng-if="!showHours">Unassigned Items</th>
-                                    <th colspan="15" ng-if="showHours">Unassigned Items</th>
+                                <tr ng-if="!editing">
+                                    <th class="select-col"><input class="checkbox" type="checkbox" ng-model="selectUnassigned.timesheets" ng-click="selectAllUnassigned('timesheets', selectUnassigned.timesheets)"></th>
+                                    <th colspan="8" ng-if="!showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
+                                    <th colspan="14" ng-if="showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
                                 </tr>
-                                <tr ng-repeat="row in unassignedTimesheets">
-                                    <td colspan="9">Unassigned Item!</td>
+                                <tr ng-if="!editing && !loading" ng-repeat="row in unassignedItems.timesheets">
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkUnassignedSelected('timesheets', row.isSelected)"></td>
+                                    <td>{{row.lastname}}, {{row.firstname}}</td>
+                                    <td>{{row.workDate}}</td>
+                                    <td>{{row.phase}}</td>
+                                    <!--<td>{{row.category}}</td>-->
+                                    <td>{{row.department}}</td>
+                                    <td>{{row.isExported}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.regularHours}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.overtimeHours}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.doubleOTHours}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.statRegularHours}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.statOTHours}}</td>
+                                    <td ng-if="showHours" class="cell-border">{{row.statDoubleOTHours}}</td>
+                                    <td>{{row.totalHours}}</td>
+                                    <td>{{row.hourlyRate| currency}}</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.timesheets[0].length === 0 || !editing && !loading && unassignedItems.timesheets.length === 0">
+                                    <td ng-if="!showHours" colspan="9" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_TIMESHEET'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
+                                    <td ng-if="showHours" colspan="15" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_TIMESHEET'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -280,7 +310,7 @@
                                     <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRICE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                      ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                        ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -320,10 +350,36 @@
                                     <td>BREAK IT DOWN NOW</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.eqUsed[0].length !== 0">
+                                <tr ng-if="!loading && costCard.eqUsed[0].length !== 0 && costCard.eqUsed.length !== 0">
                                     <th colspan="7"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="2">{{equipmentTotalCost| currency}}</th>
+                                </tr>
+
+                                <!--Unassigned equipment items-->
+                                <tr ng-if="!editing">
+                                    <th class="select-col"><input class="checkbox" type="checkbox" ng-model="selectUnassigned.equipment" ng-click="selectAllUnassigned('eqUsed', selectUnassigned.equipment)"></th>
+                                    <th colspan="9" ng-if="!showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.eqUsed[0].length !== 0" ng-repeat="row in unassignedItems.eqUsed">
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkUnassignedSelected('eqUsed', row.isSelected)"></td>
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.transferDate}}</td>
+                                    <td>{{row.phase}}</td>
+                                    <td>{{row.category}}</td>
+                                    <td>{{row.number}}</td>
+                                    <td>{{row.numDays}}</td>
+                                    <td>{{row.maxDays}}</td>
+                                    <td>{{row.price| currency}}</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.eqUsed[0].length === 0 || !editing && !loading && unassignedItems.eqUsed.length === 0">
+                                    <td colspan="10" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_EQUIPMENT'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -346,9 +402,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                       ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                         ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                      ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                        ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -388,10 +444,36 @@
                                     <td>BREAK IT DOWN NOW</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.inventoryUsed[0].length !== 0">
+                                <tr ng-if="!loading && costCard.inventoryUsed[0].length !== 0 && costCard.inventoryUsed.length !== 0">
                                     <th colspan="6"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="2">{{materialsTotalCost| currency}}</th>
+                                </tr>
+
+                                <!--Unassigned material items-->
+                                <tr ng-if="!editing">
+                                    <th class="select-col"><input class="checkbox" type="checkbox" ng-model="selectUnassigned.material" ng-click="selectAllUnassigned('inventoryUsed', selectUnassigned.material)"></th>
+                                    <th colspan="8" ng-if="!showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.inventoryUsed[0].length !== 0" ng-repeat="row in unassignedItems.inventoryUsed">
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkUnassignedSelected('inventoryUsed', row.isSelected)"></td>
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.dateUsed}}</td>
+                                    <td>{{row.phase}}</td>
+                                    <td>{{row.category}}</td>
+                                    <td>{{row.department}}</td>
+                                    <td>{{row.productCode}}</td>
+                                    <td>{{row.cost| currency}}</td>
+                                    <!--<td>{{row.chargeout}}</td>-->
+                                    <td>-</td>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.inventoryUsed[0].length === 0 || !editing && !loading && unassignedItems.inventoryUsed.length === 0">
+                                    <td colspan="9" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_MATERIAL'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -411,9 +493,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                     ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                       ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                      ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                        ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -447,10 +529,32 @@
                                     <td>{{row.breakdownReport}}</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.miscUsed[0].length !== 0">
+                                <tr ng-if="!loading && costCard.miscUsed[0].length !== 0 && costCard.miscUsed.length !== 0">
                                     <th colspan="3"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="2">{{miscTotalCost| currency}}</th>
+                                </tr>
+                                <!--Unassigned Misc items-->
+                                <tr ng-if="!editing">
+                                    <th class="select-col"><input class="checkbox" type="checkbox" ng-model="selectUnassigned.miscItems" ng-click="selectAllUnassigned('miscUsed', selectUnassigned.miscItems)"></th>
+                                    <th colspan="5" ng-if="!showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.miscUsed[0].length !== 0" ng-repeat="row in unassignedItems.miscUsed">
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkUnassignedSelected('miscUsed', row.isSelected)"></td>
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.dateEntered}}</td>
+                                    <td>{{row.phase}}</td>
+                                    <td>{{row.cost| currency}}</td>
+                                    <!--<td>{{row.chargeOut| currency}}</td>-->
+                                    <td>-</td>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.miscUsed[0].length === 0 || !editing && !loading && unassignedItems.miscUsed.length === 0">
+                                    <td colspan="6" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_MISC_GENERAL'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -476,7 +580,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TAX'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_TOTAL'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                      ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                        ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -515,7 +619,7 @@
                                     <td>{{row.breakdownReport}}</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.purchaseOrders[0].length !== 0">
+                                <tr ng-if="!loading && costCard.purchaseOrders[0].length !== 0 && costCard.purchaseOrders">
                                     <th colspan="7"></th>
                                     <th colspan="1" class="align-right"><?php echo $this->getString('CLAIMS_TOTAL'); ?>:</th>
                                     <th colspan="1">{{purchaseOrdersSubtotal| currency}}</th>
@@ -523,15 +627,42 @@
                                     <th colspan="2">{{purchaseOrdersTotal| currency}}</th>
         <!--                            <th colspan="1">{{timesheetsTotalHours}}</th>-->
                                 </tr>
+                                <!-- Unassigned Purchase Orders -->
+                                <tr ng-if="!editing">
+                                    <th class="select-col"><input class="checkbox" type="checkbox" ng-model="selectUnassigned.purchaseOrders" ng-click="selectAllUnassigned('purchaseOrders', selectUnassigned.purchaseOrders)"></th>
+                                    <th colspan="11" ng-if="!showHours"><?php echo $this->getString('CLAIMS_UNASSIGNED_ITEMS'); ?></th>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.purchaseOrders[0].length !== 0" ng-repeat="row in unassignedItems.purchaseOrders">
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkUnassignedSelected('purchaseOrders', row.isSelected)"></td>
+                                    <td>{{row.items_id}}</td>
+                                    <td>{{row.creationDate}}</td>
+                                    <td>{{row.ClaimPhases_id}}</td>
+                                    <td>{{row.PurchaseOrderTypes_id}}</td>
+                                    <td>{{row.Departments_id}}</td>
+                                    <td>{{row.companyName}}</td>
+                                    <td>{{row.AccountingPaymentMethods_id}}</td>
+                                    <td>{{row.subtotal| currency}}</td>
+                                    <td>{{row.tax| currency}}</td>
+                                    <td>{{row.total| currency}}</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr ng-if="!editing && !loading && unassignedItems.purchaseOrders[0].length === 0 || !editing && !loading && unassignedItems.purchaseOrders.length === 0">
+                                    <td colspan="12" class="alert-success">
+                                        <?php echo $this->getString('CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START'); ?>
+                                        <?php echo $this->getString('CLAIMS_PURCHASE_ORDER'); ?>
+                                        <?php echo $this->getString('CLAIMS_NO_ITEMS_MESSAGE_END'); ?>
+                                        <?php echo $this->getString('CLAIMS_CLAIM'); ?>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </uib-tab>
             </uib-tabset>
             <button class="btn-primary pull-right" ng-click="save()"><?php echo $this->getString('SAVE'); ?></button>
-            <button class="btn-primary pull-right" ng-click="getTotals()"><?php echo $this->getString('GET_TOTALS'); ?></button>
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                    ?></button>-->
-            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                   ?></button></a>-->
+<!--            <button class="btn-primary pull-right" ng-click="getTotals()"><?php // echo $this->getString('GET_TOTALS');  ?></button>-->
+            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                      ?></button>-->
+            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                     ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

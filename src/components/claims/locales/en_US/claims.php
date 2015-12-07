@@ -190,7 +190,10 @@ return array(
     'CLAIMS_PURCHASE_ORDER' => 'Purchase Order',
     'CLAIMS_PURCHASE_ORDER_NUMBER' => 'PO Number',
     'CLAIMS_NO_ITEMS_MESSAGE_START' => 'There are no ',
+    'CLAIMS_NO_UNASSIGNED_ITEMS_MESSAGE_START' => 'There are no unassigned',
     'CLAIMS_NO_ITEMS_MESSAGE_END' => ' items associated with this ',
     'CLAIMS_PHASES' => 'Phases',
     'CLAIMS_ASSIGN_SELECTED' => 'Assign Selected',
+    'CLAIMS_CLAIM' => 'Claim',
+    'CLAIMS_UNASSIGNED_ITEMS' => 'Unassigned Items'
 );

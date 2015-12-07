@@ -14,12 +14,6 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
             },
             url: apiPath + Claims_id + '/' + CostCard_id
         }).then(function (response) {
-//            self.costCardTimesheets = response.data.timesheets;
-//            self.costCardMaterials = response.data.inventoryUsed;
-//            self.costCardEquipment = response.data.eqUsed;
-//            self.costCardMiscItems = response.data.miscUsed;
-//            self.costCardPurchaseOrders = response.data.purchaseOrders;
-//            self.costCardDetails = response.data.costCard[0];
             self.costCardItems = response.data;
         });
     };
@@ -37,7 +31,7 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
         });
     };
     
-    //Save the purchase order
+    //Save the cost card
     this.save = function (id, lineItems, formToken) {        
         for (var i in lineItems) {
             for (var j in lineItems[i]){

@@ -29,60 +29,73 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     var CostCards_id = document.getElementById('CostCards_id').value;
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     
+    $scope.selectUnassigned = {
+        timesheets: false,
+        inventoryUsed: false,
+        eqUsed: false,
+        costCard: false,
+        miscUsed: false
+    };
+    
+    $scope.costCard = {
+        timesheets: [],
+        inventoryUsed: [],
+        eqUsed: [],
+        costCard: {},
+        miscUsed: []
+    };
+    
     getExistingItem ();
     
     function getExistingItem (){
         if(CostCards_id > 0){
             $scope.editing = true;
             costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function () {
-//                $scope.costCardTimesheets = costCardEditSrv.costCardTimesheets;
-//                $scope.costCardMaterials = costCardEditSrv.costCardMaterials;
-//                $scope.costCardEquipment = costCardEditSrv.costCardEquipment;
-//                $scope.costCardMiscItems = costCardEditSrv.costCardMiscItems;
-//                $scope.costCardPurchaseOrders = costCardEditSrv.costCardPurchaseOrders;
-//                $scope.costCardDetails = costCardEditSrv.costCardDetails;
-//                $scope.lineItems = $scope.costCardTimesheets.concat($scope.costCardMaterials, $scope.costCardEquipment, $scope.costCardMiscItems, $scope.costCardPurchaseOrders);
                 
                 $scope.costCard = costCardEditSrv.costCardItems;
                 $scope.costCard.costCard = $scope.costCard.costCard[0];
                 delete $scope.costCard.costCard[0];
                 
                 $scope.costCard.costCard.Claims_id = Claims_id;
-//                $scope.costCard.timesheets = ($scope.costCardTimesheets);
-//                $scope.costCard.inventoryUsed = $scope.costCardMaterials;
-//                $scope.costCard.eqUsed = $scope.costCardEquipment;
-//                $scope.costCard.miscUsed = $scope.costCardMiscItems;
-//                $scope.costCard.purchaseOrders = $scope.costCardPurchaseOrders;
-//                $scope.costCard.costCard = costCardEditSrv.costCardDetails;
                 
-                
-                $scope.getTimesheetTotalCost($scope.costCard.timesheets);
-                $scope.getTimesheetTotalHours($scope.costCard.timesheets);
-                $scope.getMaterialsTotalCost($scope.costCard.inventoryUsed);
-                $scope.getEquipmentTotalCost($scope.costCard.eqUsed);
-                $scope.getPurchaseOrdersCost($scope.costCard.purchaseOrders);
-                $scope.getMiscTotalCost($scope.costCard.miscUsed);
-                $scope.getCostCardCosts();
+                $scope.getCostCardTotals();
                 $scope.loading = false;
-                
-                //console.log($scope.costCardEquipment[0].length);
             });
         } else {
             $scope.editing = false;
-            $scope.loading = false;
-            $scope.item.id = 0;
+            $scope.loading = true;
             costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
-                $scope.costCard = costCardEditSrv.costCardItems;
+                $scope.loading = false;
+                $scope.unassignedItems = costCardEditSrv.costCardItems;
+                $scope.costCard.costCard.Claims_id = Claims_id;
             });
         }
         
     }
     
     $scope.getTotals = function () {
+        console.log('getting totals...');
         costCardEditSrv.getTotals(Claims_id, CostCards_id);
+    };
+
+    $scope.getCostCardTotals = function() {
+        $scope.getTimesheetTotalCost($scope.costCard.timesheets);
+        $scope.getTimesheetTotalHours($scope.costCard.timesheets);
+        $scope.getMaterialsTotalCost($scope.costCard.inventoryUsed);
+        $scope.getEquipmentTotalCost($scope.costCard.eqUsed);
+        $scope.getPurchaseOrdersCost($scope.costCard.purchaseOrders);
+        $scope.getMiscTotalCost($scope.costCard.miscUsed);
+        $scope.getCostCardCosts();
     };
     
     $scope.getTimesheetTotalHours = function(timesheets) {
+        $scope.timesheetsRegHours = 0;
+        $scope.timesheetsOTHours = 0;
+        $scope.timesheetsDOTHours = 0;
+        $scope.timesheetsSRegHours = 0;
+        $scope.timesheetsSOTHours = 0;
+        $scope.timesheetsSDOTHours = 0;
+        $scope.timesheetsTotalHours = 0;
         for(var i in timesheets) {
             $scope.timesheetsRegHours += parseFloat(timesheets[i].regularHours);
             $scope.timesheetsOTHours += parseFloat(timesheets[i].overtimeHours);
@@ -197,57 +210,64 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             }
         }
     };
+//    $scope.selectUnassigned.timesheets = false;
+    //Check selected
+    $scope.checkUnassignedSelected = function (key, value) {
+        if(value === false){
+            $scope.selectUnassigned[key] = false;
+        }
+    };
     
     $scope.selectAllTimesheetsToggle = function (value) {
-        for (var i in $scope.costCardTimesheets) {
-            if ($scope.costCardTimesheets[i] !== null && value === true) {
-                $scope.costCardTimesheets[i].isSelected = true;
+        for (var i in $scope.costCard.timesheets) {
+            if ($scope.costCard.timesheets[i] !== null && value === true) {
+                $scope.costCard.timesheets[i].isSelected = true;
             } else {
-                $scope.costCardTimesheets[i].isSelected = false;
+                $scope.costCard.timesheets[i].isSelected = false;
             }
         }
         $scope.checkSelected();
     };
     
     $scope.selectAllMaterialsToggle = function (value) {
-        for (var i in $scope.costCardMaterials) {
-            if ($scope.costCardMaterials[i] !== null && value === true) {
-                $scope.costCardMaterials[i].isSelected = true;
+        for (var i in $scope.costCard.inventoryUsed) {
+            if ($scope.costCard.inventoryUsed[i] !== null && value === true) {
+                $scope.costCard.inventoryUsed[i].isSelected = true;
             } else {
-                $scope.costCardMaterials[i].isSelected = false;
+                $scope.costCard.inventoryUsed[i].isSelected = false;
             }
         }
         $scope.checkSelected();
     };
     
     $scope.selectAllEquipmentToggle = function (value) {
-        for (var i in $scope.costCardEquipment) {
-            if ($scope.costCardEquipment[i] !== null && value === true) {
-                $scope.costCardEquipment[i].isSelected = true;
+        for (var i in $scope.costCard.eqUsed) {
+            if ($scope.costCard.eqUsed[i] !== null && value === true) {
+                $scope.costCard.eqUsed[i].isSelected = true;
             } else {
-                $scope.costCardEquipment[i].isSelected = false;
+                $scope.costCard.eqUsed[i].isSelected = false;
             }
         }
         $scope.checkSelected();
     };
     
     $scope.selectAllMiscItemsToggle = function (value) {
-        for (var i in $scope.costCardMiscItems) {
-            if ($scope.costCardMiscItems[i] !== null && value === true) {
-                $scope.costCardMiscItems[i].isSelected = true;
+        for (var i in $scope.costCard.miscUsed) {
+            if ($scope.costCard.miscUsed[i] !== null && value === true) {
+                $scope.costCard.miscUsed[i].isSelected = true;
             } else {
-                $scope.costCardMiscItems[i].isSelected = false;
+                $scope.costCard.miscUsed[i].isSelected = false;
             }
         }
         $scope.checkSelected();
     };
     
     $scope.selectAllPurchaseOrdersToggle = function (value) {
-        for (var i in $scope.costCardPurchaseOrders) {
-            if ($scope.costCardPurchaseOrders[i] !== null && value === true) {
-                $scope.costCardPurchaseOrders[i].isSelected = true;
+        for (var i in $scope.costCard.purchaseOrders) {
+            if ($scope.costCard.purchaseOrders[i] !== null && value === true) {
+                $scope.costCard.purchaseOrders[i].isSelected = true;
             } else {
-                $scope.costCardPurchaseOrders[i].isSelected = false;
+                $scope.costCard.purchaseOrders[i].isSelected = false;
             }
         }
         $scope.checkSelected();
@@ -316,6 +336,31 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             }
         }
         costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
+    };
+    
+    //Assign the items to a cost card
+    $scope.assignSelected = function() {
+        for(var i in $scope.unassignedItems){
+            for(var j = $scope.unassignedItems[i].length-1; j >= 0; j--){
+                if($scope.unassignedItems[i][j].isSelected){
+                    $scope.unassignedItems[i][j].isSelected = false;
+                    $scope.unassignedItems[i][j].id = $scope.unassignedItems[i][j].items_id;                    
+                    $scope.costCard[i].push($scope.unassignedItems[i][j]);                    
+                    $scope.unassignedItems[i].splice(j, 1);
+                }                
+            }
+        }
+        $scope.getCostCardTotals();
+    };
+    
+    $scope.selectAllUnassigned = function(key, value) {
+        for(var i in $scope.unassignedItems[key]){
+            if(value === true){
+                $scope.unassignedItems[key][i].isSelected = true;
+            } else {
+                $scope.unassignedItems[key][i].isSelected = false;
+            }
+        }
     };
     
     $scope.save = function () {
