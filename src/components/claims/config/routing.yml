@@ -276,14 +276,25 @@ admin_claims_upload_claim_photos:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimPhotosController
         model: components\claims\models\ClaimPhotoModel
-        method: uploadPhotos
+        method: index
         view: core\views\JSONView
         viewKey: admin_claims_upload_claim_photos
         datasource: datasource1
     methods: [POST]
 
 
-
+admin_claims_list_claimlocation_photocounts:
+    pattern: admin/claim/photos/count/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: listByClaimId
+        view: core\views\JSONView
+        viewKey: admin_claims_list_claim_photos
+        datasource: datasource1
+    methods: [GET]
+    
 
 admin_claims_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/*/*

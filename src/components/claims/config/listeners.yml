@@ -61,3 +61,7 @@ admin_claims_view_initial_jobsheet:
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
 
+admin_claims_list_claimlocation_photocounts:    
+    listeners:
+        - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
+     

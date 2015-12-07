@@ -216,7 +216,3 @@ photoUploadModal:
         - 'src/components/projects/locales/*/Project'
         - 'app/locales/*/website'
 
-
-    listeners:
-        - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
-     
