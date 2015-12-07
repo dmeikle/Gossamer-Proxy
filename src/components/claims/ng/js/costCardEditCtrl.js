@@ -18,7 +18,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     $scope.timesheetsDOTHours = 0;
     $scope.timesheetsSRegHours = 0;
     $scope.timesheetsSOTHours = 0;
-    $scope.timesheetsSDOTHours = 0;    
+    $scope.timesheetsSDOTHours = 0;
     $scope.timesheetsTotalHours = 0;
     $scope.timesheetsTotalCost = 0;
     $scope.materialsTotalCost = 0;

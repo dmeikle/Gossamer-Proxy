@@ -1,7 +1,8 @@
 // Inventory service
 module.service('costCardListSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/claims/costcards/';
-
+    var totalsPath = '/admin/claims/costcards/totals/';
+    
     var self = this;
     self.error = {};
     self.error.showError = false;
@@ -43,16 +44,16 @@ module.service('costCardListSrv', function ($http, searchSrv, $filter, crudSrv) 
 //        });
 //    };
 //    
-//    this.getBreakdown = function(id){
-//        return $http({
-//            method: 'GET',
-//            headers: {
-//                'Content-Type': 'application/x-www-form-urlencoded'
-//            },
-//            url: apiPath + id
-//        }).then(function (response) {
-//            self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
-//            self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
-//        });
-//    };
+    this.getBreakdown = function(Claims_id, CostCard_id){
+        return $http({
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: totalsPath + Claims_id + '/' + CostCard_id
+        }).then(function (response) {
+            self.breakdown = response.data;
+//            self.breakdownLineItems = response.data;
+        });
+    };
 });

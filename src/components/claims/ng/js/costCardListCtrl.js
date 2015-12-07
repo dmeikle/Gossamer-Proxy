@@ -73,23 +73,28 @@ module.controller('costCardListCtrl', function ($scope, costCardListSrv, $locati
 //        getList(row, numRows);
 //    });
 //    
-//    $scope.selectRow = function(row){
-//        $scope.sidePanelOpen = true;
-//        $scope.selectedRow = row;
-//        $scope.sidePanelLoading = true;
-//        $scope.searching = false;
-//        
-//        posSrv.getBreakdown(row.PurchaseOrders_id).then(function(){
-//            $scope.breakdown = posSrv.breakdown;
-//            $scope.breakdownLineItems = posSrv.breakdownLineItems;
-//            $scope.sidePanelLoading = false;
-//        });
-//    };
-//
-//    $scope.closeSidePanel = function () {
-//        $scope.sidePanelOpen = false;
-//        $scope.selectedRow = {};
-//    };
+    $scope.selectRow = function(row){
+        $scope.sidePanelOpen = true;
+        $scope.selectedRow = row;
+        $scope.sidePanelLoading = true;
+        $scope.searching = false;
+        
+        costCardListSrv.getBreakdown(row.Claims_id, row.id).then(function(){
+            $scope.breakdown = costCardListSrv.breakdown;
+            $scope.breakdown.CostCards_id = row.id;
+            $scope.breakdown.timesheets = $scope.breakdown.timesheets[0];
+            $scope.breakdown.eqCosts = $scope.breakdown.eqCosts[0];
+            $scope.breakdown.generalCosts = $scope.breakdown.generalCosts[0][0];
+            $scope.breakdown.inventoryCosts = $scope.breakdown.inventoryCosts[0];
+            $scope.breakdown.purchaseOrders = $scope.breakdown.purchaseOrders[0];
+            $scope.sidePanelLoading = false;
+        });
+    };
+
+    $scope.closeSidePanel = function () {
+        $scope.sidePanelOpen = false;
+        $scope.selectedRow = {};
+    };
 //    
 //    //Search
 //    $scope.search = function (searchObject) {
@@ -135,12 +140,12 @@ module.controller('costCardListCtrl', function ($scope, costCardListSrv, $locati
 //        getList();
 //    };
 //    
-//    $scope.openAdvancedSearch = function () {
-//        $scope.sidePanelOpen = true;
-//        $scope.selectedTimesheet = undefined;
-//        $scope.searching = true;
-//        $scope.selectedRow = {};
-//    };
+    $scope.openAdvancedSearch = function () {
+        $scope.sidePanelOpen = true;
+        $scope.selectedTimesheet = undefined;
+        $scope.searching = true;
+        $scope.selectedRow = {};
+    };
 //    
 //    //Date Picker
 //    $scope.dateOptions = {'starting-day': 1};

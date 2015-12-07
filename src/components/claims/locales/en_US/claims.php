@@ -195,5 +195,7 @@ return array(
     'CLAIMS_PHASES' => 'Phases',
     'CLAIMS_ASSIGN_SELECTED' => 'Assign Selected',
     'CLAIMS_CLAIM' => 'Claim',
-    'CLAIMS_UNASSIGNED_ITEMS' => 'Unassigned Items'
+    'CLAIMS_UNASSIGNED_ITEMS' => 'Unassigned Items',
+    'CLAIMS_COST_CARD_ID' => 'Cost Card ID',
+    'CLAIMS_COST_SUMMARY' => 'Costs Summary'
 );

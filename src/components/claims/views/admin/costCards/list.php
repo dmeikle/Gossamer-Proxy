@@ -1,7 +1,10 @@
+<?php $params = $this->httpRequest->getParameters(); ?>
+<input type="hidden" id="Claims_id" value="<?php echo $params[0]; ?>" />
+
 <div class="widget" ng-controller="costCardListCtrl">
     <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARDS') ?></h1>
-        <!--<div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php // echo $this->getString('CLAIMS_DB_ERROR')            ?></div>-->
+        <!--<div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php // echo $this->getString('CLAIMS_DB_ERROR')                                                                    ?></div>-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('CLAIMS_ADVANCED_SEARCH') ?>
@@ -19,7 +22,7 @@
                     </button>
                 </span>
             </form>
-            <a href="edit/0"><button class="primary new-item"><?php echo $this->getString('CLAIMS_NEW_COST_CARD') ?></button></a>
+            <a href="<?php echo $params[0]; ?>/0"><button class="primary new-item"><?php echo $this->getString('CLAIMS_NEW_COST_CARD') ?></button></a>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -27,10 +30,11 @@
                 <tr>
                     <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                     <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('CLAIMS_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('CLAIMS_NOTES'); ?></th>
                     <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
-<!--                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php // echo $this->getString('CLAIMS_PHASE');             ?></th>
-                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php // echo $this->getString('CLAIMS_DATE');             ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php // echo $this->getString('CLAIMS_TOTAL');             ?></th>-->
+<!--                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php // echo $this->getString('CLAIMS_PHASE');                                                                     ?></th>
+                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php // echo $this->getString('CLAIMS_DATE');                                                                     ?></th>
+                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php // echo $this->getString('CLAIMS_TOTAL');                                                                     ?></th>-->
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
@@ -40,6 +44,7 @@
                     <td ng-hide="groupedBy === 'description'">
                         <span class="spinner-loader"></span>
                     </td>
+                    <td ng-hide="groupedBy === 'orderType'"></td>
                     <td ng-hide="groupedBy === 'orderType'"></td>
                     <!--<td ng-hide="groupedBy === 'company'"></td>-->
 <!--                    <td ng-hide="groupedBy === 'creationDate'" column-sortable data-column="department"></td>
@@ -55,8 +60,9 @@
                 </tr>
 
                 <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
-                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.ClaimPhases_id}}</td>
+                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.lastModified}}</td>
+                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.notes}}</td>
                     <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.isApproved}}</td>
 <!--                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.creationDate}}</td>
@@ -164,51 +170,79 @@
         <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('CLAIMS_PURCHASE_ORDER_TYPE') ?></h3>
-                    <p>{{selectedRow.orderType}}</p>
-                    <h3><?php echo $this->getString('CLAIMS_VENDOR') ?></h3>
-                    <p>{{selectedRow.company}}</p>
-                </div>
-                <div class="pull-right">
-                    <h3><?php echo $this->getString('CLAIMS_DATE') ?></h3>
-                    <p>{{selectedRow.creationDate}}</p>
-                    <h3><?php echo $this->getString('CLAIMS_JOB_NUMBER') ?></h3>
-                    <p>{{breakdown.jobNumber}}</p>
+                    <h3><?php echo $this->getString('CLAIMS_COST_CARD_ID') ?></h3>
+                    <p>{{breakdown.CostCards_id}}</p>
                 </div>
             </div>
-
-            <h4><?php echo $this->getString('CLAIMS_PURCHASE_ORDER_ITEMS') ?></h4>
-
+            <div class="clearfix"></div>
+            <h4><?php echo $this->getString('CLAIMS_COST_SUMMARY') ?></h4>
             <table class="table table-striped table-hover">
                 <tr>
-                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_PRODUCT_CODE') ?></th>
-                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_QUANTITY') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_PRICE') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_TAX_TYPE') ?></th>
-                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_AMOUNT') ?></th>
+                    <th class="col-md-6"><?php echo $this->getString('CLAIMS_NAME') ?></th>
+                    <th class="col-md-6"><?php echo $this->getString('CLAIMS_COST') ?></th>
                 </tr>
-                <tr ng-repeat="item in breakdownLineItems">
-                    <td>{{item.productCode}}</td>
-                    <td>{{item.quantity}}</td>
-                    <td>{{item.unitPrice| currency}}</td>
-                    <td>{{item.taxType}} </td>
-                    <td>{{item.amount| currency}}test</td>
+                <tr >
+                    <th colspan="2"><?php echo $this->getString('CLAIMS_TIMESHEETS') ?></th>
                 </tr>
+                <tr ng-if="breakdown.timesheets.regHoursCost > 0 && breakdown.timesheets.regHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_REGULAR_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.regHoursCost| currency}}</td>
+                </tr>
+                <tr ng-if="breakdown.timesheets.otHoursCost > 0 && breakdown.timesheets.otHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_OVERTIME_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.otHoursCost| currency}}</td>
+                </tr>
+                <tr ng-if="breakdown.timesheets.dotHoursCost > 0 && breakdown.timesheets.dotHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_DOUBLE_OVERTIME_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.dotHoursCost| currency}}</td>
+                </tr>
+                <tr ng-if="breakdown.timesheets.statRegHoursCost > 0 && breakdown.timesheets.statRegHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_STAT_REGULAR_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.statRegHoursCost| currency}}</td>
+                </tr>
+                <tr ng-if="breakdown.timesheets.statOTHoursCost > 0 && breakdown.timesheets.statOTHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_STAT_OVERTIME_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.statOTHoursCost| currency}}</td>
+                </tr>
+                <tr ng-if="breakdown.timesheets.statDotHoursCost > 0 && breakdown.timesheets.statDotHoursCost !== null">
+                    <td><?php echo $this->getString('CLAIMS_STAT_DOUBLE_OVERTIME_HOURS') ?></td>
+                    <td>{{breakdown.timesheets.statDotHoursCost| currency}}</td>
+                </tr>
+                <!-- Equipment -->
+                <tr ng-if="breakdown.eqCosts.cost > 0 && breakdown.eqCosts.cost !== null">
+                    <th colspan="2"><?php echo $this->getString('CLAIMS_EQUIPMENT') ?></th>
+                </tr>
+                <tr ng-if="breakdown.eqCosts.cost > 0 && breakdown.eqCosts.cost !== null">
+                    <td><?php echo $this->getString('CLAIMS_TOTAL_COST') ?></td>
+                    <td>{{breakdown.eqCosts.cost| currency}}</td>
+                </tr >
+                <!-- Materials -->
+                <tr ng-if="breakdown.inventoryCosts.cost > 0 && breakdown.inventoryCosts.cost !== null">
+                    <th colspan="2"><?php echo $this->getString('CLAIMS_MATERIAL') ?></th>
+                </tr>
+                <tr ng-if="breakdown.inventoryCosts.cost > 0 && breakdown.inventoryCosts.cost !== null">
+                    <td><?php echo $this->getString('CLAIMS_TOTAL_COST') ?></td>
+                    <td>{{breakdown.inventoryCosts.cost| currency}}</td>
+                </tr>
+                <!-- General -->
+                <tr ng-if="breakdown.generalCosts.cost > 0 && breakdown.generalCosts.cost !== null">
+                    <th colspan="2"><?php echo $this->getString('CLAIMS_MISC_GENERAL') ?></th>
+                </tr>
+                <tr ng-if="breakdown.generalCosts.cost > 0 && breakdown.generalCosts.cost !== null">
+                    <td><?php echo $this->getString('CLAIMS_TOTAL_COST') ?></td>
+                    <td>{{breakdown.generalCosts.cost| currency}}</td>
+                </tr>
+                <!-- Purchase Orders -->
+                <!--<div >-->
+                <tr ng-if="breakdown.purchaseOrders.cost > 0 && breakdown.purchaseOrders.cost !== null">
+                    <th colspan="2"><?php echo $this->getString('CLAIMS_PURCHASE_ORDERS') ?>{{breakdown.purchaseOrders}}</th>
+                </tr>
+                <tr ng-if="breakdown.purchaseOrders.cost > 0 && breakdown.purchaseOrders.cost !== null">
+                    <td><?php echo $this->getString('CLAIMS_TOTAL_COST') ?></td>
+                    <td>{{breakdown.purchaseOrders.cost| currency}}</td>
+                </tr>
+                <!--</div>-->
             </table>
-            <div class="col-md-5 col-md-offset-7">
-                <div class="pull-left">
-                    <p><strong><?php echo $this->getString('CLAIMS_SUBTOTAL') ?></strong></p>
-                    <p><strong><?php echo $this->getString('CLAIMS_DELIVERY_FEE') ?></strong></p>
-                    <p><strong><?php echo $this->getString('CLAIMS_TAX') ?></strong></p>
-                    <p><strong><?php echo $this->getString('CLAIMS_TOTAL') ?></strong></p>
-                </div>
-                <div class="pull-right">
-                    <p>{{breakdown.subtotal| currency}}</p>
-                    <p>{{breakdown.deliveryFee| currency}}</p>
-                    <p>{{breakdown.tax| currency}}</p>
-                    <p>{{breakdown.total| currency}}</p>
-                </div>
-            </div>
         </div>
     </div>
 
