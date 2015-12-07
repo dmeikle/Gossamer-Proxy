@@ -11,6 +11,8 @@
 
 namespace components\claims\listeners;
 
+use components\claims\models\ClaimModel;
+
 /**
  * LoadFileCountsListener
  *
@@ -21,28 +23,41 @@ class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
     public function on_filerender_start($params) {
 
         $path = __UPLOADED_FILES_PATH . 'claims' . DIRECTORY_SEPARATOR . $this->getClaimId();
-        echo $path . "\r\n";
+        $locations = $this->getClaimLocations();
+
         $folders = $this->folderlist($path);
 
-        $total_files = 0;
-        foreach ($folders as $folder) {
-            $path = $folder['path'];
-            $name = $folder['name'];
-            echo "path: $path\r\nname: $name \r\n\r\n";
-            $count = iterator_count(new \DirectoryIterator($path . $name));
-            $total_files += $count;
-
-            echo '<li>';
-            echo '<a href="' . $path . 'index.php?album=' . $name . '" class="style1">';
-            echo '<strong>' . $name . '</strong>';
-            echo ' (' . $count . ' files found)';
-            echo '</a>';
-            echo '</li>';
+        $folderList = array();
+        $totalFiles = 0;
+        foreach ($folders as $claimLocation => $folder) {
+            $path = $folder['path'] . DIRECTORY_SEPARATOR;
+            //$folderList[] = $folder['name'];
+            //$this->mergeFilepaths($folder, $folders, $folderList);
+            $count = iterator_count(new \DirectoryIterator($path . $claimLocation));
+            $totalFiles += $count;
+            $folderList[$claimLocation]['count'] = $count;
+            if (array_key_exists($claimLocation, $locations)) {
+                $folderList[$claimLocation]['unitNumber'] = $locations[$claimLocation];
+            } else {
+                $folderList[$claimLocation]['unitNumber'] = '0';
+            }
         }
+        $folderList['totalFiles'] = $totalFiles;
+
+        $this->httpRequest->setAttribute('folderList', $folderList);
+    }
+
+    private function getClaimLocations() {
+
+        $datasource = $this->getDatasource('components\\claims\\models\\ClaimModel');
+        $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
+        $params = array('Claims_id' => $this->getClaimId());
+
+        return $this->formatUnitNumbers($datasource->query('get', $model, 'getunitnumbers', $params));
     }
 
     private function getClaimId() {
-        $param = $this->httpRequest->getParameter('Claims_id');
+        $param = $this->httpRequest->getQueryParameter('Claims_id');
 
         return $param;
     }
@@ -56,16 +71,25 @@ class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
             if ($dh = opendir($startdir)) {
                 while (($folder = readdir($dh)) !== false) {
                     if (!(array_search($folder, $ignoredDirectory) > -1)) {
-                        if (filetype($startdir . $folder) == "dir") {
-                            $directorylist[$startdir . $folder]['name'] = $folder;
-                            $directorylist[$startdir . $folder]['path'] = $startdir;
+                        if (filetype($startdir . DIRECTORY_SEPARATOR . $folder) == "dir") {
+                            $directorylist[$folder]['id'] = $folder;
+                            $directorylist[$folder]['path'] = $startdir;
                         }
                     }
                 }
                 closedir($dh);
             }
         }
-        return($directorylist);
+
+        return ($directorylist);
+    }
+
+    private function formatUnitNumbers(array $units) {
+        $retval = array();
+        foreach ($units['unitNumbers'] as $unit) {
+            $retval[$unit['id']] = $unit['unitNumber'];
+        }
+        return $retval;
     }
 
 }
