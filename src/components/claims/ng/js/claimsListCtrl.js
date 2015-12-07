@@ -1,5 +1,6 @@
 
-module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv, claimsListSrv, tablesSrv, searchSrv) {
+module.controller('claimsListCtrl', function($scope, $controller, $location, $uibModal, claimsEditSrv, claimsListSrv, 
+    photoUploadSrv, tablesSrv, searchSrv) {
 
 
     var a = document.createElement('a');
@@ -104,6 +105,11 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
                 claimLocations: function() {
                     return claimsListSrv.getClaimLocations(claim.id).then(function(response) {
                         return response.data.ClaimsLocations;
+                    });
+                },
+                photoCounts: function() {
+                    return photoUploadSrv.getPhotoCount(event, claim.id).then(function(response) {
+                        return response.data.folderList.list;
                     });
                 }
             }

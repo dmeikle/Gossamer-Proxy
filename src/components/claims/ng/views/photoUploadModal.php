@@ -6,21 +6,16 @@
     </h1>
 </div>
 <div class="modal-body">
-    <div class="col-xs-4" >
-        <?php
-        $folderList = $this->httpRequest->getAttribute('folderList');
-        foreach ($folderList['list'] as $locationId => $folder) {
-            ?>
-            <div dropzone="dropzoneConfig<?php echo $locationId; ?>" class="dropzone">
-                <p class="text-center">
-                    <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
-                    <?php echo $folder['unitNumber']; ?>
-                </p>
-                <p class="text-center text-muted">
-                    <small><?php echo $folder['count']; ?> <?php echo $this->getString('CLAIMS_PHOTOS') ?></small>
-                </p>
-            </div>
-        <?php } ?>
+    <div class="col-xs-4" ng-repeat="claimLocation in claimLocations">
+        <div dropzone="dropzoneConfig{{claimLocation.id}}" class="dropzone">
+            <p class="text-center">
+                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?> 
+                {{claimLocation.unitNumber}}
+            </p>
+            <p class="text-center text-muted">
+                <small>{{photoCounts[claimLocation.id].count}} <?php echo $this->getString('CLAIMS_PHOTOS') ?></small>
+            </p>
+        </div>
     </div>
     <div class="clearfix"></div>
 </div>

@@ -25,13 +25,18 @@ class UploadLocationPhotosListener extends AbstractListener {
         $filenames = array();
         $requestParams = $this->httpRequest->getParameters();
         $locationId = $requestParams[0] . '/' . $requestParams[1];
+        $modelName = $this->listenerConfig['class'];
+        $model = new $modelName($this->httpRequest, $this->httpResponse, $this->logger);
 
-        $filepath = __SITE_PATH . "/../locationImages/$locationId";
+        $filepath =  $model->getUploadPath() . DIRECTORY_SEPARATOR . $locationId;   //__SITE_PATH . "/../locationImages/$locationId";
         $this->prepareDirectory($filepath);
-
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $filepath . "/" . $_FILES['file']['name'])) {
-            $filenames[] = $filepath . "/" . $_FILES['file']['name'];
+        
+        foreach ($_FILES['file']['name'] as $index => $file) {
+           if (move_uploaded_file($_FILES['file']['tmp_name'][$index], $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index])) {
+                $filenames[] = $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index];
+            } 
         }
+        
 
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
     }

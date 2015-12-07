@@ -221,21 +221,26 @@ module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, cla
     };
 });
 
-module.controller('photoUploadModalCtrl', function(claim, claimLocations, $scope, $rootScope, $uibModalInstance,
+module.controller('photoUploadModalCtrl', function(claim, claimLocations, photoCounts, $scope, $rootScope, $uibModalInstance,
     photoUploadSrv) {
     $scope.claim = claim;
     $scope.claimLocations = claimLocations;
+    $scope.photoCounts = photoCounts;
 
     generateDropzoneConfigs();
 
     function generateDropzoneConfigs() {
         for (var i = claimLocations.length - 1; i >= 0; i--) {
-            $scope['dropzoneConfig' + i] = photoUploadSrv.generateDropzoneConfig($scope.claim.id, claimLocations[i].id);
+            $scope['dropzoneConfig' + claimLocations[i].id] = photoUploadSrv.generateDropzoneConfig($scope.claim.id, claimLocations[i].id);
         }
     }
 
     $rootScope.$on('photoCountUpdated', function(event, response) {
-        $scope.photoCount = response.data;
+        $scope.photoCounts = response.data.folderList.list;
+    });
+
+    $rootScope.$on('photoUploaded', function() {
+        photoUploadSrv.getPhotoCount(event, photoUploadSrv.claimId);
     });
 
     $scope.close = function() {
