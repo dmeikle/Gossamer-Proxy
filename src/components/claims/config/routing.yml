@@ -25,6 +25,18 @@ admin_claims_cost_cards_totals:
         datasource: datasource1
     methods: [GET]
     
+admin_claims_cost_cards_search:
+    pattern: admin/claims/costcards/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: admin_claims_cost_cards_search
+        datasource: datasource1
+    methods: [GET]
+    
 admin_claims_cost_cards_edit:
     pattern: admin/claims/costcards/*/*
     defaults:
@@ -65,9 +77,9 @@ admin_claims_cost_cards_home:
         langFiles:
             - 'src/components/claims/locales/*/claims'
     methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
 
-
-    
 admin_claims_cost_cards_list:
     pattern: admin/claims/costcards/*/*/*
     defaults:
@@ -81,8 +93,6 @@ admin_claims_cost_cards_list:
         langFiles:
             - 'src/components/claims/locales/*/claims'
     methods: [GET]
-    
-
 
 admin_claims_cost_cards_save:
     pattern: admin/claims/costcards/*

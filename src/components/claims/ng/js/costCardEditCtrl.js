@@ -327,7 +327,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     //Disapprove Selected Items
     $scope.disapproveSelected = function () {
         for(var i in $scope.costCard){
-            if($scope.costCard[i][0].length !== 0){
+            if($scope.costCard[i][0] && $scope.costCard[i][0].length !== 0){
                 for(var j in $scope.costCard[i]){
                     if($scope.costCard[i][j].isSelected === true){                        
                         $scope.costCard[i][j].AccountingItemsStatusTypes_id = 3;
@@ -368,6 +368,8 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     };
     
     $scope.saveDetails = function () {
-        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken).then(function(){
+            console.log('done saving');
+        });
     };
 });

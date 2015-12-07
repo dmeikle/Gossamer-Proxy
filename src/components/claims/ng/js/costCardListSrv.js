@@ -12,6 +12,7 @@ module.service('costCardListSrv', function ($http, searchSrv, $filter, crudSrv) 
         return $http.get(apiPath + id + '/'  + row + '/' + numRows)
                 .then(function (response) {
                     self.list = response.data.CostCards;
+                    self.jobNumber = response.data.jobNumber[0].jobNumber;
 //                    self.listRowCount = response.data.PurchaseOrdersCount[0].rowCount;
                 }, function (response) {
                     //Handle any errors
@@ -19,31 +20,31 @@ module.service('costCardListSrv', function ($http, searchSrv, $filter, crudSrv) 
                 });
     };
     
-//    //Search
-//    this.search = function (searchObject) {
-//        return $http({
-//            url: apiPath + '0/20?name=' + searchObject,
-//            method: 'GET'
-//        }).then(function (response) {
-//            self.searchResults = response.data.PurchaseOrders;
-//            self.searchResultsCount = response.data.PurchaseOrdersCount[0].rowCount;
-//        });
-//    };
-//    
-//    this.advancedSearch = function (searchObject) {
-//        var config = angular.copy(searchObject);
-//            config.toDate = $filter('date')(config.toDate, 'yyyy-MM-dd', '+0000');
-//            config.fromDate = $filter('date')(config.fromDate, 'yyyy-MM-dd', '+0000');
-//        return $http({
-//            url: apiPath + 'search/0/20?',
-//            method: 'GET',
-//            params: config
-//        }).then(function (response) {
-//            self.advancedSearchResults = response.data.PurchaseOrders;
+    //Search
+    this.search = function (searchObject) {
+        return $http({
+            url: apiPath + '0/20?name=' + searchObject,
+            method: 'GET'
+        }).then(function (response) {
+            self.searchResults = response.data.PurchaseOrders;
+            self.searchResultsCount = response.data.PurchaseOrdersCount[0].rowCount;
+        });
+    };
+    
+    this.advancedSearch = function (searchObject) {
+        var config = angular.copy(searchObject);
+            config.toDate = $filter('date')(config.toDate, 'yyyy-MM-dd', '+0000');
+            config.fromDate = $filter('date')(config.fromDate, 'yyyy-MM-dd', '+0000');
+        return $http({
+            url: apiPath + 'search/',
+            method: 'GET',
+            params: config
+        }).then(function (response) {
+            self.advancedSearchResults = response.data.CostCards;
 //            self.advancedSearchResultsCount = response.data.PurchaseOrdersCount[0].rowCount;
-//        });
-//    };
-//    
+        });
+    };
+    
     this.getBreakdown = function(Claims_id, CostCard_id){
         return $http({
             method: 'GET',

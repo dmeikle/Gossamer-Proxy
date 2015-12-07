@@ -37,4 +37,11 @@ class CostCardModel extends AbstractModel implements FormBuilderInterface {
         return $this->entity;
     }
 
+    public function search(array $params) {
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'search', $params);
+
+        return $data;
+    }
+
 }

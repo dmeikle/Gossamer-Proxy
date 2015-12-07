@@ -1,10 +1,11 @@
 <?php $params = $this->httpRequest->getParameters(); ?>
+<?php // pr($this->model->getParameters();  ?>
 <input type="hidden" id="Claims_id" value="<?php echo $params[0]; ?>" />
 
 <div class="widget" ng-controller="costCardListCtrl">
     <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
-        <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARDS') ?></h1>
-        <!--<div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php // echo $this->getString('CLAIMS_DB_ERROR')                                                                    ?></div>-->
+        <h1 class="pull-left"><?php echo $this->getString('CLAIMS_COST_CARDS') ?><span ng-if="jobNumber"> - {{jobNumber}}</span></h1>
+        <!--<div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php // echo $this->getString('CLAIMS_DB_ERROR')                 ?></div>-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('CLAIMS_ADVANCED_SEARCH') ?>
@@ -28,27 +29,21 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'poNumber'" column-sortable data-column="poNumber"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                    <th ng-hide="groupedBy === 'orderType'" column-sortable data-column="orderType"><?php echo $this->getString('CLAIMS_DATE'); ?></th>
-                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('CLAIMS_NOTES'); ?></th>
-                    <th ng-hide="groupedBy === 'company'" column-sortable data-column="company"><?php echo $this->getString('CLAIMS_APPROVED'); ?></th>
-<!--                    <th ng-hide="groupedBy === 'description'" column-sortable data-column="description"><?php // echo $this->getString('CLAIMS_PHASE');                                                                     ?></th>
-                    <th ng-hide="groupedBy === 'creationDate'" column-sortable data-column="creationDate"><?php // echo $this->getString('CLAIMS_DATE');                                                                     ?></th>
-                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php // echo $this->getString('CLAIMS_TOTAL');                                                                     ?></th>-->
+                    <th ng-hide="groupedBy === 'phase'" column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'lastModified'" column-sortable data-column="lastModified"><?php echo $this->getString('CLAIMS_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'notes'" column-sortable data-column="notes"><?php echo $this->getString('CLAIMS_NOTES'); ?></th>
+                    <th ng-hide="groupedBy === 'total'" column-sortable data-column="total"><?php echo $this->getString('CLAIMS_TOTAL_COST'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td ng-hide="groupedBy === 'poNumber'"></td>
-                    <td ng-hide="groupedBy === 'description'">
+                    <td ng-hide="groupedBy === 'phase'"></td>
+                    <td ng-hide="groupedBy === 'lastModified'"></td>
+                    <td ng-hide="groupedBy === 'notes'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <td ng-hide="groupedBy === 'orderType'"></td>
-                    <!--<td ng-hide="groupedBy === 'company'"></td>-->
-<!--                    <td ng-hide="groupedBy === 'creationDate'" column-sortable data-column="department"></td>
-                    <td ng-hide="groupedBy === 'total'" column-sortable data-column="totalCost"></td>-->
+                    <td ng-hide="groupedBy === 'total'"></td>
                     <td></td>
                 </tr>
 
@@ -60,13 +55,10 @@
                 </tr>
 
                 <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
-                    <td ng-hide="groupedBy === 'poNumber'" ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-hide="groupedBy === 'orderType'" ng-click="selectRow(item)">{{item.lastModified}}</td>
-                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.notes}}</td>
-                    <td ng-hide="groupedBy === 'company'" ng-click="selectRow(item)">{{item.isApproved}}</td>
-<!--                    <td ng-hide="groupedBy === 'description'" ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-hide="groupedBy === 'creationDate'" ng-click="selectRow(item)">{{item.creationDate}}</td>
-                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.total| currency}}</td>-->
+                    <td ng-hide="groupedBy === 'phase'" ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-hide="groupedBy === 'lastModified'" ng-click="selectRow(item)">{{item.lastModified.split(' ')[0]}}</td>
+                    <td ng-hide="groupedBy === 'notes'" ng-click="selectRow(item)">{{item.notes}}</td>
+                    <td ng-hide="groupedBy === 'total'" ng-click="selectRow(item)">{{item.totalCost}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
@@ -121,33 +113,6 @@
                     </span>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
-                    <option value="" selected>-Vendor-</option>
-                    <?php
-                    foreach ($Vendors as $vendor) {
-                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
-                    }
-                    ?>
-                </select>
-
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.PurchaseOrderTypes_id">
-                    <option value="" selected>-Purchase Order Types-</option>
-                    <?php
-                    foreach ($PurchaseOrderTypes as $orderTypes) {
-                        echo '<option value="' . $orderTypes['id'] . '">' . $orderTypes['orderType'] . '</option>';
-                    }
-                    ?>
-                </select>
-
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
-                    <option value="" selected>-Payment Methods-</option>
-                    <?php
-                    foreach ($AccountingPaymentMethods as $paymentMethod) {
-                        echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
-                    }
-                    ?>
-                </select>
-
                 <select class="form-control" name="ClaimPhases" ng-model="advSearch.ClaimPhases_id">
                     <option value="" selected>-Claim Phases-</option>
                     <?php
@@ -161,8 +126,8 @@
 
             <div class="cardfooter">
                 <div class="btn-group pull-right">
-                    <input type="submit" class="btn btn-primary" ng-click="advancedSearch(advSearch)" value="<?php echo $this->getString('CLAIMS_SUBMIT') ?>">
-                    <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('CLAIMS_RESET') ?></button>
+                    <input type="submit" class="btn btn-primary" ng-click="advancedSearch(advSearch)" value="<?php echo $this->getString('SUBMIT') ?>">
+                    <button class="btn-default" ng-click="resetAdvancedSearch()"><?php echo $this->getString('RESET') ?></button>
                 </div>
             </div>
         </form>
