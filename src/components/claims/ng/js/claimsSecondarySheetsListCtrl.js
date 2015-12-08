@@ -62,7 +62,7 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
     $scope.openAddNewWizard = function() {
         var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/secondarySheetsAddNewModal',
-            controller: 'secondarySheetsModalCtrl',
+            controller: 'claimsSecondarySheetsModalCtrl',
             size: 'lg',
             backdrop: 'static'
         });
@@ -125,3 +125,4 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         getSheetsList();
     };
 });
+

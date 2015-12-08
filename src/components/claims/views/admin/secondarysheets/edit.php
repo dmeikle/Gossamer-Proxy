@@ -26,3 +26,14 @@
         <td colspan="4">Carpet Lino Tile Hardwood Other Leech Wan SqFt</td>
     </tr>
 </table>
+<?php
+$category = '';
+foreach ($Actions as $category => $questionList) {
+    echo "<h3>$category</h3>";
+    foreach ($questionList as $question) {
+        echo '<input name="action[' . $question['id'] . '" type="checkbox" id="qwe" value="1" ' . (('1' == $question['isActive']) ? 'checked="checked"' : '') . '/> ' .
+        $question['action'] . '&nbsp;&nbsp;';
+    }
+}
+?>
+<?php pr($this->data); ?>

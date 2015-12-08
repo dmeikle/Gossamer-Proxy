@@ -91,6 +91,17 @@ admin_claims_secondarysheets_get:
         view: core\views\JSONView
         viewKey: admin_claims_secondarysheets_get
         datasource: datasource1
+        
+admin_claims_secondarysheets_edit:
+    pattern: admin/claims/secondary-sheets/*/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: loadSheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_secondarysheets_edit
+        datasource: datasource1
                
 admin_claims_newcount:
     pattern: admin/claims/newcount/*

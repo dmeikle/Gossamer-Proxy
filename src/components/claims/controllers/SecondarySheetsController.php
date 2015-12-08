@@ -54,4 +54,18 @@ class SecondarySheetsController extends AbstractController {
         $this->render($result);
     }
 
+    public function loadSheet($claimId, $locationId, $areaId, $sheetId) {
+        $params = array(
+            'Claims_id' => intval($claimId),
+            'ClaimsLocations_id' => intval($locationId),
+            'AffectedAreas_id' => intval($areaId),
+            'SecondarySheets_id' => intval($sheetId)
+        );
+
+        $result = $this->model->listallWithParams(0, 1, $params, 'get');
+        $serializer = new \components\claims\serialization\SecondarySheetSerializer();
+
+        $this->render(array('Actions' => $serializer->serializeQuestions($result)));
+    }
+
 }
