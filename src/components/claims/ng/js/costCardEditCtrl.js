@@ -42,7 +42,8 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         inventoryUsed: [],
         eqUsed: [],
         costCard: {},
-        miscUsed: []
+        miscUsed: [],
+        purchaseOrders: []
     };
     
     getExistingItem ();
@@ -61,14 +62,19 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 
                 $scope.getCostCardTotals();
                 $scope.loading = false;
+                costCardEditSrv.getUnassignedItems(Claims_id).then(function(){
+                    $scope.loading = false;
+                    $scope.unassignedItems = costCardEditSrv.unassignedItems;
+                    $scope.costCard.costCard.Claims_id = Claims_id;
+                });
             });
         } else {
             $scope.editing = false;
             $scope.loading = true;
-            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
+//            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
+            costCardEditSrv.getUnassignedItems(Claims_id).then(function(){
                 $scope.loading = false;
-                $scope.unassignedItems = costCardEditSrv.costCardItems;
-                console.log($scope.unassignedItems);
+                $scope.unassignedItems = costCardEditSrv.unassignedItems;
                 $scope.costCard.costCard.Claims_id = Claims_id;
             });
         }
@@ -346,9 +352,29 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             for(var j = $scope.unassignedItems[i].length-1; j >= 0; j--){
                 if($scope.unassignedItems[i][j].isSelected){
                     $scope.unassignedItems[i][j].isSelected = false;
-//                    $scope.unassignedItems[i][j].id = $scope.unassignedItems[i][j].items_id;                    
+                    if($scope.costCard[i][0] && $scope.costCard[i][0].length === 0){
+                        $scope.costCard[i].splice(0, 1);
+                    }
+                    
                     $scope.costCard[i].push($scope.unassignedItems[i][j]);                    
                     $scope.unassignedItems[i].splice(j, 1);
+                }                
+            }
+        }
+        $scope.getCostCardTotals();
+        angular.forEach($scope.selectUnassigned, function(item, key){
+            $scope.selectUnassigned[key] = false;
+        });
+    };
+    
+    //Assign the items to a cost card
+    $scope.unassignSelected = function() {
+        for(var i in $scope.costCard){
+            for(var j = $scope.costCard[i].length-1; j >= 0; j--){
+                if($scope.costCard[i][j].isSelected){
+                    $scope.costCard[i][j].isSelected = false;
+                    $scope.unassignedItems[i].push($scope.costCard[i][j]);                    
+                    $scope.costCard[i].splice(j, 1);
                 }                
             }
         }
@@ -369,7 +395,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
             console.log('done saving');
             console.log(response);
-            CostCards_id = response.data.result[0].CostCards_id;
+            CostCards_id = response.data.result[0].costCardId;
             $scope.unassignedItems = {};
             
             getExistingItem();

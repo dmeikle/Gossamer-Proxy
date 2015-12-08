@@ -19,6 +19,19 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
     };
     
     //Get the cost card items
+    this.getUnassignedItems = function (Claims_id) {
+        return $http({
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: apiPath + Claims_id + '/0'
+        }).then(function (response) {
+            self.unassignedItems = response.data;
+        });
+    };
+    
+    //Get the cost card items
     this.getTotals = function (Claims_id, CostCard_id) {
         return $http({
             method: 'GET',

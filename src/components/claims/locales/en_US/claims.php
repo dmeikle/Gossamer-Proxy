@@ -194,8 +194,11 @@ return array(
     'CLAIMS_NO_ITEMS_MESSAGE_END' => ' items associated with this ',
     'CLAIMS_PHASES' => 'Phases',
     'CLAIMS_ASSIGN_SELECTED' => 'Assign Selected',
+    'CLAIMS_UNASSIGN_SELECTED' => 'Unassign Selected',
     'CLAIMS_CLAIM' => 'Claim',
     'CLAIMS_UNASSIGNED_ITEMS' => 'Unassigned Items',
     'CLAIMS_COST_CARD_ID' => 'Cost Card ID',
-    'CLAIMS_COST_SUMMARY' => 'Costs Summary'
+    'CLAIMS_COST_SUMMARY' => 'Costs Summary',
+    'CLAIMS_FINALIZE' => 'Finalize',
+    'CLAIMS_SAVE_ALL_ITEMS' => 'Save All Items'
 );
