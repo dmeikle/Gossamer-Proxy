@@ -49,6 +49,7 @@
             <div class="clearfix"></div>
             <hr>
             <!--Tabs-->
+            <button class="btn-primary pull-right" ng-click="save()"><?php echo $this->getString('CLAIMS_SAVE_ALL_ITEMS'); ?></button>
             <uib-tabset>
                 <!-- Summary Tab -->
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_SUMMARY'); ?>">
@@ -178,7 +179,7 @@
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                             ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                                ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_EXPORTED'); ?></th>
                                     <th ng-if="showHours"><?php echo $this->getString('CLAIMS_REGULAR_HOURS'); ?></th>
@@ -190,7 +191,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TOTAL_HOURS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_HOURLY_RATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                    ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                       ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -218,7 +219,7 @@
                                     <!--<td></td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.timesheets[0].length !== 0" ng-repeat="row in costCard.timesheets track by $index">
-                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.lastname}}, {{row.firstname}}</td>
                                     <td>{{row.workDate}}</td>
                                     <td>{{row.phase}}</td>
@@ -311,7 +312,7 @@
                                     <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRICE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -339,7 +340,7 @@
                                     <!--<td></td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.eqUsed[0].length !== 0" ng-repeat="row in costCard.eqUsed track by $index">
-                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.name}}</td>
                                     <td>{{row.transferDate}}</td>
                                     <td>{{row.phase}}</td>
@@ -403,9 +404,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                               ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                  ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -433,7 +434,7 @@
                                     <!--<td></td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.inventoryUsed[0].length !== 0" ng-repeat="row in costCard.inventoryUsed track by $index">
-                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.name}}</td>
                                     <td>{{row.dateUsed}}</td>
                                     <td>{{row.phase}}</td>
@@ -494,9 +495,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                             ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -521,7 +522,7 @@
                                     <!--<td></td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.miscUsed[0].length !== 0" ng-repeat="row in costCard.miscUsed track by $index">
-                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.name}}</td>
                                     <td>{{row.dateEntered}}</td>
                                     <td>{{row.phase}}</td>
@@ -581,7 +582,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TAX'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_TOTAL'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -606,7 +607,7 @@
                                     <!--<td></td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.purchaseOrders[0].length !== 0" ng-repeat="row in costCard.purchaseOrders track by $index">
-                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)"></td>
+                                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.items_id}}</td>
                                     <td>{{row.creationDate}}</td>
                                     <td>{{row.ClaimPhases_id}}</td>
@@ -660,12 +661,12 @@
                     </div>
                 </uib-tab>
                 <!-- Laborers / Timesheets Tab -->
-                <uib-tab heading="<?php echo $this->getString('CLAIMS_FINALIZE'); ?>">
+<!--                <uib-tab heading="<?php // echo $this->getString('CLAIMS_FINALIZE');    ?>">
                     <div class="tab-padding">
 
-                        <button class="btn-primary" ng-click="save()"><?php echo $this->getString('CLAIMS_SAVE_ALL_ITEMS'); ?></button>
+                        <button class="btn-primary" ng-click="save()"><?php // echo $this->getString('CLAIMS_SAVE_ALL_ITEMS');    ?></button>
                     </div>
-                </uib-tab>
+                </uib-tab>-->
             </uib-tabset>
         </div>
         <div class="clearfix"></div>

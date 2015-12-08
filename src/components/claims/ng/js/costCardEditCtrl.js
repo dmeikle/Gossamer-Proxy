@@ -4,7 +4,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     $scope.currentPage = 1;
     
     $scope.loading = false;
-    $scope.lineItems = [];
+//    $scope.lineItems = [];
     $scope.costCard = {};
     $scope.item = {};
     
@@ -202,17 +202,18 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         }
     };
     
-    //Check selected
-    $scope.checkSelected = function () {
-        $scope.rowSelected = false;
-        for (var index in $scope.lineItems) {
-            if ($scope.lineItems[index] !== null && $scope.lineItems[index].isSelected === true) {
-                $scope.rowSelected = true;
-            } else {
-                $scope.selectAll = false;
-            }
-        }
-    };
+//    //Check selected
+//    $scope.checkSelected = function () {
+//        $scope.rowSelected = false;
+//        for (var index in $scope.lineItems) {
+//            if ($scope.lineItems[index] !== null && $scope.lineItems[index].isSelected === true) {
+//                $scope.rowSelected = true;
+//            } else {
+//                $scope.selectAll = false;
+//            }
+//        }
+//    };
+//    
 //    $scope.selectUnassigned.timesheets = false;
     //Check selected
     $scope.checkUnassignedSelected = function (key, value) {
@@ -296,9 +297,13 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     
     $scope.save = function () {
         costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
-            CostCards_id = response.data.result[0].costCardId;
-            $scope.unassignedItems = {};
-            getExistingItem();
+            if(response.data.result){                
+                CostCards_id = response.data.result[0].costCardId;
+                $scope.unassignedItems = {};
+                getExistingItem();
+            } else {
+                getExistingItem();
+            }
         });
     };
 });
