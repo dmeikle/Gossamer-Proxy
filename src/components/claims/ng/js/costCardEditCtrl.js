@@ -7,7 +7,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     $scope.lineItems = [];
     $scope.costCard = {};
     $scope.item = {};
-    $scope.loading = true;
+    
     $scope.selectAll = false;
     $scope.showHours = false;
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -49,6 +49,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     
     function getExistingItem (){
         if(CostCards_id > 0){
+            $scope.loading = true;
             $scope.editing = true;
             costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function () {
                 
@@ -67,6 +68,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
                 $scope.loading = false;
                 $scope.unassignedItems = costCardEditSrv.costCardItems;
+                console.log($scope.unassignedItems);
                 $scope.costCard.costCard.Claims_id = Claims_id;
             });
         }
@@ -344,7 +346,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             for(var j = $scope.unassignedItems[i].length-1; j >= 0; j--){
                 if($scope.unassignedItems[i][j].isSelected){
                     $scope.unassignedItems[i][j].isSelected = false;
-                    $scope.unassignedItems[i][j].id = $scope.unassignedItems[i][j].items_id;                    
+//                    $scope.unassignedItems[i][j].id = $scope.unassignedItems[i][j].items_id;                    
                     $scope.costCard[i].push($scope.unassignedItems[i][j]);                    
                     $scope.unassignedItems[i].splice(j, 1);
                 }                
@@ -364,12 +366,23 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     };
     
     $scope.save = function () {
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
+            console.log('done saving');
+            console.log(response);
+            CostCards_id = response.data.result[0].CostCards_id;
+            $scope.unassignedItems = {};
+            
+            getExistingItem();
+        });
+//        $scope.editing = false;
     };
     
     $scope.saveDetails = function () {
-        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken).then(function(){
+        
+        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken).then( function() {
             console.log('done saving');
+//            console.log(response);
+
         });
     };
 });

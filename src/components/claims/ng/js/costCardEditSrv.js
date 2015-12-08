@@ -45,8 +45,9 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
                 }
             }
         }
-        return crudSrv.save(savePath + id, lineItems, 'CostCardItem', formToken).then(function(response){
-            console.log(response);
-        });
+        return crudSrv.save(savePath + id, lineItems, 'CostCardItem', formToken);//.then(function(response){
+//            console.log(response);
+//            return response;
+//        });
     };    
 });
