@@ -1,3 +1,3 @@
-admin_documents_list:
+admin_documents_upload:
     listeners:
-        # - { 'cacheKey': 'LocationFiles', 'class': 'components\documents\models\DocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'DocumentFiles', 'class': 'components\documents\models\DocumentModel', 'event': 'request_start', 'listener': 'components\documents\listeners\UploadDocumentsListener', 'datasource': 'datasource1' }

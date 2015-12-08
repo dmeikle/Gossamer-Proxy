@@ -22,6 +22,18 @@ admin_documents_list:
         datasource: datasource1
     methods: [GET]
 
+admin_claims_list_documents_count:
+    pattern: admin/documents/count/*
+    defaults:
+        component: components\documents\DocumentsComponent
+        controller: components\documents\controllers\DocumentsController
+        model: components\documents\models\DocumentModel
+        method: getCount
+        view: core\views\JSONView
+        viewKey: admin_claims_get_photo_count
+        datasource: datasource1
+    methods: [GET]
+
 super_documents_list:
     pattern: super/documents/*/*
     defaults:
