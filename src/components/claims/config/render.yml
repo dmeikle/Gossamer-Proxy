@@ -216,3 +216,9 @@ photoUploadModal:
         - 'src/components/projects/locales/*/Project'
         - 'app/locales/*/website'
 
+uploadDocumentModal:
+    path: 'src/components/claims/ng/views/documentUploadModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+        - 'app/locales/*/website'

@@ -29,9 +29,11 @@ tbody th {
 
 }
 
-.tabbed-container {
+.tab-content {
     border: 1px solid #ddd;
     border-top-width: 0px;
     border-radius: 0 0 4px 4px;
+    background-color:#fff;
+
     @extend .col-xs-12;
 }

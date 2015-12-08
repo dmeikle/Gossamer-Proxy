@@ -46,11 +46,11 @@ class ClaimPhotoModel extends AbstractModel implements FormBuilderInterface, \co
     }
 
     public function getUploadPath() {
-        return __UPLOADED_FILES_PATH . 'claims';
+        return __UPLOADED_FILES_PATH . 'images';
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('VendorInvoice' => $params));
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimPhotos' => $params));
     }
 
 }

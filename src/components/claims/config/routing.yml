@@ -178,6 +178,9 @@ admin_claims_home:
             - 'app/locales/*/website'
 
 
+
+
+# COMMENTS
 admin_claimslocation_view_comments:
     pattern: admin/claims/locations/comments/*
     defaults:

@@ -181,6 +181,7 @@ return array(
     'CLAIMS_STRATA' => 'Strata',
     'CLAIMS_STRATANUM' => 'Strata Number',
     'CLAIMS_SUBCONTRACTOR' => 'Subcontractor',
+    'CLAIMS_SUBCONTRACTORS' => 'Subcontractors',
     'CLAIMS_SUBTOTAL' => 'Subtotal',
     'CLAIMS_SUMMARY' => 'Summary',
     'CLAIMS_TAX' => 'Tax',

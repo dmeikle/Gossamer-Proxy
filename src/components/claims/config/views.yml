@@ -44,6 +44,8 @@ admin_claim_edit:
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
@@ -144,6 +146,7 @@ admin_claims_edit:
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
@@ -153,6 +156,7 @@ admin_claims_edit:
     css:
         - @components/claims/dist/css/claims.min.css
        # - @extensions/xeditable/ng/css/xeditable.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
 
 
 admin_claims_initial_jobsheet:
