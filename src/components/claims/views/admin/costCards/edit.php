@@ -172,13 +172,13 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllTimesheetsToggle(selectAllTimesheets)">
+                                    <th class="select-col" ng-click="selectAllToggle('timesheets', selectAllTimesheets)">
                                         <input class="select-all checkbox" type="checkbox" ng-model="selectAllTimesheets">
                                     </th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                           ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                             ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_EXPORTED'); ?></th>
                                     <th ng-if="showHours"><?php echo $this->getString('CLAIMS_REGULAR_HOURS'); ?></th>
@@ -190,7 +190,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TOTAL_HOURS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_HOURLY_RATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                  ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                    ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -299,7 +299,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllEquipmentToggle(selectAllEquipment)">
+                                    <th class="select-col" ng-click="selectAllToggle('eqUsed', selectAllEquipment)">
                                         <input class="select-all checkbox" type="checkbox" ng-model="selectAllEquipment">
                                     </th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
@@ -311,7 +311,7 @@
                                     <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRICE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                            ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -393,7 +393,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllMaterialsToggle(selectAllMaterials)">
+                                    <th class="select-col" ng-click="selectAllToggle('inventoryUsed', selectAllMaterials)">
                                         <input class="select-all checkbox" type="checkbox" ng-model="selectAllMaterials">
                                     </th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
@@ -403,9 +403,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                             ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                               ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                            ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -487,16 +487,16 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllMiscItemsToggle(selectAllMisc)">
+                                    <th class="select-col" ng-click="selectAllToggle('miscUsed', selectAllMisc)">
                                         <input class="select-all checkbox" type="checkbox" ng-model="selectAllMisc">
                                     </th>
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                           ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                             ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                            ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -567,7 +567,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="select-col" ng-click="selectAllPurchaseOrdersToggle(selectAllPurchaseOrders)">
+                                    <th class="select-col" ng-click="selectAllToggle('purchaseOrders', selectAllPurchaseOrders)">
                                         <input class="select-all checkbox" type="checkbox" ng-model="selectAllPurchaseOrders">
                                     </th>
                                     <th><?php echo $this->getString('CLAIMS_PURCHASE_ORDER_NUMBER'); ?></th>
@@ -581,7 +581,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TAX'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_TOTAL'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                            ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                              ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -667,9 +667,6 @@
                     </div>
                 </uib-tab>
             </uib-tabset>
-<!--            <button class="btn-primary pull-right" ng-click="getTotals()"><?php // echo $this->getString('GET_TOTALS');                                      ?></button>-->
-            <!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                                                          ?></button>-->
-            <!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                                                         ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

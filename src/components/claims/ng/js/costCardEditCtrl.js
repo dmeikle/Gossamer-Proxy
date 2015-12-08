@@ -176,24 +176,19 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     };
     
     $scope.getCostCardCosts = function() {
-        $scope.costCardTotalCost = 0;
-        
+        $scope.costCardTotalCost = 0;        
         if(!isNaN($scope.timesheetsTotalCost)){
             $scope.costCardTotalCost += $scope.timesheetsTotalCost;
-        }
-        
+        }        
         if(!isNaN($scope.materialsTotalCost)){
             $scope.costCardTotalCost += $scope.materialsTotalCost;
-        }
-        
+        }        
         if(!isNaN($scope.equipmentTotalCost)){
             $scope.costCardTotalCost += $scope.equipmentTotalCost;
-        }
-        
+        }        
         if(!isNaN($scope.miscTotalCost)){
         $scope.costCardTotalCost += $scope.miscTotalCost;
-        }
-        
+        }        
         if(!isNaN($scope.purchaseOrdersTotal)){
             $scope.costCardTotalCost += $scope.purchaseOrdersTotal;
         }
@@ -226,110 +221,16 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         }
     };
     
-    $scope.selectAllTimesheetsToggle = function (value) {
-        for (var i in $scope.costCard.timesheets) {
-            if ($scope.costCard.timesheets[i] !== null && value === true) {
-                $scope.costCard.timesheets[i].isSelected = true;
-            } else {
-                $scope.costCard.timesheets[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
-    
-    $scope.selectAllMaterialsToggle = function (value) {
-        for (var i in $scope.costCard.inventoryUsed) {
-            if ($scope.costCard.inventoryUsed[i] !== null && value === true) {
-                $scope.costCard.inventoryUsed[i].isSelected = true;
-            } else {
-                $scope.costCard.inventoryUsed[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
-    
-    $scope.selectAllEquipmentToggle = function (value) {
-        for (var i in $scope.costCard.eqUsed) {
-            if ($scope.costCard.eqUsed[i] !== null && value === true) {
-                $scope.costCard.eqUsed[i].isSelected = true;
-            } else {
-                $scope.costCard.eqUsed[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
-    
-    $scope.selectAllMiscItemsToggle = function (value) {
-        for (var i in $scope.costCard.miscUsed) {
-            if ($scope.costCard.miscUsed[i] !== null && value === true) {
-                $scope.costCard.miscUsed[i].isSelected = true;
-            } else {
-                $scope.costCard.miscUsed[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
-    
-    $scope.selectAllPurchaseOrdersToggle = function (value) {
-        for (var i in $scope.costCard.purchaseOrders) {
-            if ($scope.costCard.purchaseOrders[i] !== null && value === true) {
-                $scope.costCard.purchaseOrders[i].isSelected = true;
-            } else {
-                $scope.costCard.purchaseOrders[i].isSelected = false;
-            }
-        }
-        $scope.checkSelected();
-    };
-    
     //Select All
-    $scope.selectAllToggle = function (value) {
-        for (var i in $scope.lineItems) {
-            if ($scope.lineItems[i] !== null && value === true) {
-                $scope.lineItems[i].isSelected = true;
+    $scope.selectAllToggle = function (key, value) {
+        for (var i in $scope.costCard[key]) { 
+            if ($scope.costCard[key][i] !== null && value === true) {
+                $scope.costCard[key][i].isSelected = true;
             } else {
-                $scope.lineItems[i].isSelected = false;
+                $scope.costCard[key][i].isSelected = false;
             }
         }
         $scope.checkSelected();
-    };
-    
-    //Approve All Items
-    $scope.approveAll = function () {
-        for(var i in $scope.costCard){
-            if($scope.costCard[i][0].length !== 0){
-                for(var j in $scope.costCard[i]){                   
-                    $scope.costCard[i][j].AccountingItemsStatusTypes_id = 2;
-                }                
-            }
-        }
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
-    };
-    
-    //Approve Selected Items
-    $scope.approveSelected = function () {
-        for(var i in $scope.costCard){
-            if($scope.costCard[i][0].length !== 0){
-                for(var j in $scope.costCard[i]){
-                    if($scope.costCard[i][j].isSelected === true){                        
-                        $scope.costCard[i][j].AccountingItemsStatusTypes_id = 2;
-                    }
-                }                
-            }
-        }
-        
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
-    };
-    
-    //Disapprove All Items
-    $scope.disapproveAll = function () {
-        for(var i in $scope.costCard){
-            if($scope.costCard[i][0].length !== 0){
-                for(var j in $scope.costCard[i]){                   
-                    $scope.costCard[i][j].AccountingItemsStatusTypes_id = 3;
-                }                
-            }
-        }
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
     };
     
     //Disapprove Selected Items
@@ -343,7 +244,9 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken);
+        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
+            getExistingItem();
+        });
     };
     
     //Assign the items to a cost card
@@ -393,22 +296,9 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     
     $scope.save = function () {
         costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
-            console.log('done saving');
-            console.log(response);
             CostCards_id = response.data.result[0].costCardId;
             $scope.unassignedItems = {};
-            
             getExistingItem();
-        });
-//        $scope.editing = false;
-    };
-    
-    $scope.saveDetails = function () {
-        
-        costCardEditSrv.save(CostCards_id, $scope.costCardDetails, formToken).then( function() {
-            console.log('done saving');
-//            console.log(response);
-
         });
     };
 });
