@@ -58,10 +58,27 @@
 
 .widget-side-panel {
     @include width-transition;
-  width:0px;
-  overflow-x:hidden;
-  max-height:80vh;
-  overflow-y:auto;
+    width:0px;
+    overflow-x:hidden;
+    max-height:80vh;
+    overflow-y:auto;
+    &.datepicker-open{
+        overflow: visible;
+    }
+    #advancedSearch{
+        input, select{
+            margin-bottom:10px;
+        }
+        .input-group{
+            margin-bottom:10px;
+            input{
+                margin-bottom:0;
+            }
+        }
+        .date-picker{
+            width:50%;
+        }
+    }
 }
 
 .wizard-pages {

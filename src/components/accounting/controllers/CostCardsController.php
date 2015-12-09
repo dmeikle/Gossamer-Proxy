@@ -14,18 +14,42 @@ namespace components\accounting\controllers;
 use core\AbstractController;
 
 /**
- * Description of PropertiesController
+ * Description of CostCardsController
  *
  * @author Dave Meikle
  */
 class CostCardsController extends AbstractController {
 
-    public function listallByClaim($claimId) {
+    public function listallByClaim($claimId, $offset, $limit) {
         $params = array('Claims_id' => $claimId);
-        $offset = 0;
-        $limit = 500;
+        $offset = intval($offset);
+        $limit = intval($limit);
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
         $this->render($result);
+    }
+
+    public function listvalues($claimId, $costCardId) {
+        $params = array('Claims_id' => intval($claimId), 'id' => intval($costCardId));
+        $offset = 0;
+        $limit = 20;
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'listvalues');
+        $this->render($result);
+    }
+
+//    public function search() {
+//        $result = $this->model->search($this->httpRequest->getQueryParameters());
+//
+//        $this->render($result);
+//    }
+
+    public function advancedSearch($offset = 0, $limit = 20) {
+        $params = $this->httpRequest->getQueryParameters();
+        $locale = $this->getDefaultLocale();
+        $params['locale'] = $locale['locale'];
+
+        //$data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
+
+        $this->render($this->model->listallWithParams($offset, $limit, $params, 'search'));
     }
 
 }

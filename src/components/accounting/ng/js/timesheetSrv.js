@@ -121,14 +121,34 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
 
     //Claim Autocomplete
     this.claimsAutocomplete = function(searchObject) {
-        var value = searchObject;
-        var column = 'Claims_id';
-
-        return $http.get(claimsPath + 'search?' + column + '=' + value)
-            .then(function(response) {
-                self.claimsList = response.data;
-                self.claimsCount = Object.keys(response.data).length - 2;
-            });
+//        var value = searchObject;
+//        var column = 'name';
+//
+//        return $http.get(claimsPath + 'search?' + column + '=' + value)
+//            .then(function(response) {
+//                self.claimsList = response.data;
+//                self.claimsCount = Object.keys(response.data).length - 2;
+//            });
+//        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+//            self.autocompleteValues = searchSrv.autocomplete.Claims;
+//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+//                return self.autocompleteValues;
+//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+//                return undefined;
+//            }
+//        });
+    };
+    
+    //Claims Autocomplete
+    this.fetchClaimsAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
     };
 
     //Claim Search
