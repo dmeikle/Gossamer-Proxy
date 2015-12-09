@@ -31,19 +31,6 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
         });
     };
     
-    //Get the cost card items
-    this.getTotals = function (Claims_id, CostCard_id) {
-        return $http({
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: totalsPath + Claims_id + '/' + CostCard_id
-        }).then(function (response) {
-            //self.costCardTotals = response.data.timesheets;
-        });
-    };
-    
     //Save the cost card
     this.save = function (id, lineItems, formToken) {        
         for (var i in lineItems) {
@@ -58,9 +45,6 @@ module.service('costCardEditSrv', function ($http, searchSrv, $filter, crudSrv) 
                 }
             }
         }
-        return crudSrv.save(savePath + id, lineItems, 'CostCardItem', formToken);//.then(function(response){
-//            console.log(response);
-//            return response;
-//        });
+        return crudSrv.save(savePath + id, lineItems, 'CostCardItem', formToken);
     };    
 });

@@ -52,14 +52,11 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         if(CostCards_id > 0){
             $scope.loading = true;
             $scope.editing = true;
-            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function () {
-                
+            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function () {                
                 $scope.costCard = costCardEditSrv.costCardItems;
                 $scope.costCard.costCard = $scope.costCard.costCard[0];
-                delete $scope.costCard.costCard[0];
-                
-                $scope.costCard.costCard.Claims_id = Claims_id;
-                
+                delete $scope.costCard.costCard[0];                
+                $scope.costCard.costCard.Claims_id = Claims_id;                
                 $scope.getCostCardTotals();
                 $scope.loading = false;
                 costCardEditSrv.getUnassignedItems(Claims_id).then(function(){
@@ -71,7 +68,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         } else {
             $scope.editing = false;
             $scope.loading = true;
-//            costCardEditSrv.getCostCard(CostCards_id, Claims_id).then(function(){
             costCardEditSrv.getUnassignedItems(Claims_id).then(function(){
                 $scope.loading = false;
                 $scope.unassignedItems = costCardEditSrv.unassignedItems;
@@ -81,11 +77,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         
     }
     
-    $scope.getTotals = function () {
-        console.log('getting totals...');
-        costCardEditSrv.getTotals(Claims_id, CostCards_id);
-    };
-
     $scope.getCostCardTotals = function() {
         $scope.getTimesheetTotalCost($scope.costCard.timesheets);
         $scope.getTimesheetTotalHours($scope.costCard.timesheets);
@@ -159,16 +150,13 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         $scope.purchaseOrdersSubtotal = 0;
         $scope.purchaseOrdersTax = 0;
         $scope.purchaseOrdersTotal = 0;
-        for(var i in purchaseOrders) {
-    
+        for(var i in purchaseOrders) {    
             if(purchaseOrders[i].subtotal !== null){
                 $scope.purchaseOrdersSubtotal += parseFloat(purchaseOrders[i].subtotal);
-            }
-            
+            }            
             if(purchaseOrders[i].tax !== null){
                 $scope.purchaseOrdersTax += parseFloat(purchaseOrders[i].tax);
-            }
-            
+            }            
             if(purchaseOrders[i].total !== null){
                 $scope.purchaseOrdersTotal += parseFloat(purchaseOrders[i].total);
             }
@@ -202,19 +190,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
         }
     };
     
-//    //Check selected
-//    $scope.checkSelected = function () {
-//        $scope.rowSelected = false;
-//        for (var index in $scope.lineItems) {
-//            if ($scope.lineItems[index] !== null && $scope.lineItems[index].isSelected === true) {
-//                $scope.rowSelected = true;
-//            } else {
-//                $scope.selectAll = false;
-//            }
-//        }
-//    };
-//    
-//    $scope.selectUnassigned.timesheets = false;
     //Check selected
     $scope.checkUnassignedSelected = function (key, value) {
         if(value === false){
@@ -245,9 +220,6 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
                 }                
             }
         }
-        costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
-            getExistingItem();
-        });
     };
     
     //Assign the items to a cost card
@@ -296,6 +268,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
     };
     
     $scope.save = function () {
+        $scope.saving = true;
         costCardEditSrv.save(CostCards_id, $scope.costCard, formToken).then( function(response) {
             if(response.data.result){                
                 CostCards_id = response.data.result[0].costCardId;
@@ -304,6 +277,7 @@ module.controller('costCardEditCtrl', function ($scope, costCardEditSrv, $locati
             } else {
                 getExistingItem();
             }
+            $scope.saving = false;
         });
     };
 });

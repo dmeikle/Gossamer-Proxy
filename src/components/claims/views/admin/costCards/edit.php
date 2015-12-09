@@ -22,7 +22,7 @@
                     </button>
                     <ul class="uib-dropdown-menu pull-right row-controls" role="menu" aria-labelledby="split-button">
                         <li role="menuitem"><a ng-click="unassignSelected();"><?php echo $this->getString('CLAIMS_UNASSIGN_SELECTED'); ?></a></li>
-                        <li ng-if="editing" role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></a></li>
+                        <li ng-if="editing" role="menuitem"><a ng-click="disapproveSelected();"><?php echo $this->getString('CLAIMS_DISAPPROVE_SELECTED'); ?></a></li>
                         <li ng-if="editing" role="menuitem"><a href="#"><?php echo $this->getString('CLAIMS_GENERATE_BREAKDOWN_REPORT'); ?></a></li>
                     </ul>
                 </div>
@@ -49,7 +49,13 @@
             <div class="clearfix"></div>
             <hr>
             <!--Tabs-->
-            <button class="btn-primary pull-right" ng-click="save()"><?php echo $this->getString('CLAIMS_SAVE_ALL_ITEMS'); ?></button>
+            <div ng-if="!loading" class="pull-right">
+
+                <div ng-if="saving" class="spacer-right pull-left">
+                    <span class="spinner-loader"></span>
+                </div>
+                <button class="btn-primary" ng-click="save()"><?php echo $this->getString('CLAIMS_SAVE_ALL_ITEMS'); ?></button>
+            </div>
             <uib-tabset>
                 <!-- Summary Tab -->
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_SUMMARY'); ?>">
@@ -179,7 +185,7 @@
                                     <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                                ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CATEGORY');                                                                                                                                           ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_EXPORTED'); ?></th>
                                     <th ng-if="showHours"><?php echo $this->getString('CLAIMS_REGULAR_HOURS'); ?></th>
@@ -191,7 +197,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TOTAL_HOURS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_HOURLY_RATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                       ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                  ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -218,7 +224,7 @@
                                     <td></td>
                                     <!--<td></td>-->
                                 </tr>
-                                <tr ng-if="!loading && costCard.timesheets[0].length !== 0" ng-repeat="row in costCard.timesheets track by $index">
+                                <tr ng-if="!loading && costCard.timesheets[0].length !== 0 && row.AccountingItemsStatusTypes_id !== 3" ng-repeat="row in costCard.timesheets track by $index">
                                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="row.isSelected"></td>
                                     <td>{{row.lastname}}, {{row.firstname}}</td>
                                     <td>{{row.workDate}}</td>
@@ -234,7 +240,7 @@
                                     <td ng-if="showHours" class="cell-border">{{row.statDoubleOTHours}}</td>
                                     <td>{{row.totalHours}}</td>
                                     <td>{{row.hourlyRate| currency}}</td>
-                                    <td>breakdown</td>
+                                    <td>{{row.AccountingItemsStatusTypes_id}}</td>
                                     <!--<td>{{row.statusType}}</td>-->
                                 </tr>
                                 <tr ng-if="!loading && costCard.timesheets[0].length !== 0 && costCard.timesheets.length !== 0">
@@ -312,7 +318,7 @@
                                     <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRICE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                            ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -404,9 +410,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DEPARTMENT'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                  ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                             ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                            ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -495,9 +501,9 @@
                                     <th><?php echo $this->getString('CLAIMS_DATE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_PHASE'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_COST'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_CHARGE_OUT');                                                                                                                                                           ?></th>-->
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                            ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -582,7 +588,7 @@
                                     <th><?php echo $this->getString('CLAIMS_TAX'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_TOTAL'); ?></th>
                                     <th><?php echo $this->getString('CLAIMS_BREAKDOWN'); ?></th>
-                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                 ?></th>-->
+                                    <!--<th><?php // echo $this->getString('CLAIMS_APPROVED');                                                                                                                                            ?></th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -661,10 +667,10 @@
                     </div>
                 </uib-tab>
                 <!-- Laborers / Timesheets Tab -->
-<!--                <uib-tab heading="<?php // echo $this->getString('CLAIMS_FINALIZE');    ?>">
+<!--                <uib-tab heading="<?php // echo $this->getString('CLAIMS_FINALIZE');               ?>">
                     <div class="tab-padding">
 
-                        <button class="btn-primary" ng-click="save()"><?php // echo $this->getString('CLAIMS_SAVE_ALL_ITEMS');    ?></button>
+                        <button class="btn-primary" ng-click="save()"><?php // echo $this->getString('CLAIMS_SAVE_ALL_ITEMS');               ?></button>
                     </div>
                 </uib-tab>-->
             </uib-tabset>
