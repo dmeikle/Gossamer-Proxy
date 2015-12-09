@@ -209,3 +209,8 @@ secondarySheetAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
                 
+secondarySheetsAddNewModal:
+    path: /src/components/claims/ng/views/secondarySheet.php
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'

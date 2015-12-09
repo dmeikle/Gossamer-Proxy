@@ -62,7 +62,7 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
     $scope.openAddNewWizard = function() {
         var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/secondarySheetsAddNewModal',
-            controller: 'claimsSecondarySheetsModalCtrl',
+            controller: 'secondarySheetsModalCtrl',
             size: 'lg',
             backdrop: 'static'
         });
