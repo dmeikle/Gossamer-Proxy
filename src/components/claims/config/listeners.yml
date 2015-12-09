@@ -60,3 +60,19 @@ admin_claims_view_initial_jobsheet:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
+
+admin_claims_secondarysheets_get:
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\SecondaryJobSheetBuilder'
+            model: 'components\claims\models\SecondarySheetModel'
+            cacheKey: 'SecondarySheetQuestions'
+            formName: 'secondarySheet'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+    

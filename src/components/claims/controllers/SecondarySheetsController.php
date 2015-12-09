@@ -43,13 +43,9 @@ class SecondarySheetsController extends AbstractController {
     public function listallActions($claimId, $claimsLocationsId, $affectedAreasId) {
         $offset = 0;
         $limit = 100;
-        $params = array(
-            'Claims_id' => intval($claimId),
-            'ClaimsLocations_id' => intval($claimsLocationsId),
-            'AffectedAreas_id' => intval($affectedAreasId)
-        );
+        $params = array();
 
-        $result = $this->model->listallWithParams($offset, $limit, $params, 'get');
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'listquestions');
 
         $this->render($result);
     }
