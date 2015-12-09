@@ -4,11 +4,23 @@ admin_documents_upload:
         component: components\documents\DocumentsComponent
         controller: components\documents\controllers\DocumentsController
         model: components\documents\models\DocumentModel
-        method: uploadDocuments
+        method: index
         view: core\views\JSONView
         viewKey: super_documents_list
         datasource: datasource1
     methods: [POST]
+
+admin_documents_count:
+    pattern: admin/documents/count/*
+    defaults:
+        component: components\documents\DocumentsComponent
+        controller: components\documents\controllers\DocumentsController
+        model: components\documents\models\DocumentModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_documents_count
+        datasource: datasource1
+    methods: [GET]
 
 admin_documents_list:
     pattern: admin/documents/*/*
@@ -18,19 +30,7 @@ admin_documents_list:
         model: components\documents\models\DocumentModel
         method: listall
         view: core\views\JSONView
-        viewKey: super_documents_list
-        datasource: datasource1
-    methods: [GET]
-
-admin_claims_list_documents_count:
-    pattern: admin/documents/count/*
-    defaults:
-        component: components\documents\DocumentsComponent
-        controller: components\documents\controllers\DocumentsController
-        model: components\documents\models\DocumentModel
-        method: getCount
-        view: core\views\JSONView
-        viewKey: admin_claims_get_photo_count
+        viewKey: admin_documents_list
         datasource: datasource1
     methods: [GET]
 

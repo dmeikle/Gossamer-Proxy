@@ -24,7 +24,7 @@ class UploadDocumentsListener extends AbstractListener {
 
         $filenames = array();
         $requestParams = $this->httpRequest->getParameters();
-        $locationId = $requestParams[0] . '/' . $requestParams[1];
+        $locationId = $requestParams[0];
         $modelName = $this->listenerConfig['class'];
         $model = new $modelName($this->httpRequest, $this->httpResponse, $this->logger);
 

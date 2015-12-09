@@ -64,7 +64,3 @@ admin_claims_view_initial_jobsheet:
 admin_claims_list_claimlocation_photocounts:    
     listeners:
         - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
-
-admin_claims_list_documents_count:
-    listeners:
-        - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }

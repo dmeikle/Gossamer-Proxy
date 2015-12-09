@@ -6,11 +6,9 @@ module.directive('documents', function(documentSrv){
 		link: function(scope, element, attrs) {
 			scope.model = JSON.parse(attrs.model);
 
-			var apiPath = '/admin/documents/';
-
 			scope.loading = true;
 
-			documentSrv.getDocuments(apiPath, scope.model.id).then(function(response) {
+			documentSrv.getDocuments(scope.model.id).then(function(response) {
 				scope.documents = response.data;
 			});
 		},
@@ -23,6 +21,9 @@ module.directive('documents', function(documentSrv){
                     resolve: {
                         model: function() {
                             return model;
+                        },
+                        filesCount: function() {
+                        	return documentSrv.getFileCount(model.id);
                         }
                     }
                 });
