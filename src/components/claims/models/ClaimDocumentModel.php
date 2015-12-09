@@ -37,7 +37,17 @@ class ClaimDocumentModel extends AbstractModel implements \core\UploadableInterf
     }
 
     public function saveParamsOnComplete(array $params) {
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
+        $documents = array();
+        $post = $this->httpRequest->getPost();
+        foreach ($params as $item) {
+            if (array_key_exists('ClaimLocations_id', $post)) {
+                $item['ClaimLocations_id'] = intval($post['ClaimLocations_id']);
+            }
+            $item['DocumentTypes_id'] = intval($post['DocumentTypes_id']);
+            $documents[] = $item;
+        }
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $documents);
 
         return $data;
     }

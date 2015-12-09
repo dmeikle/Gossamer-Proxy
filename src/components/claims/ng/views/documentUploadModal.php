@@ -11,7 +11,7 @@
             <label for="DocumentType_documentType">
                 <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
             </label>
-            <?php echo $documentForm['documentType']; ?>
+            <?php echo $documentForm['DocumentTypes_id']; ?>
         </div>
         <div class="form-group">
             <label for="DocumentType_ClaimLocations_id">
@@ -30,7 +30,7 @@
             <p class="text-center text-muted">
                 <small>
                     <span ng-if="documentCount">{{documentCount}}</span>
-                    <span ng-if="!documentCount" class="spinner-loader"></span> 
+                    <span ng-if="!documentCount" class="spinner-loader"></span>
                     <?php echo $this->getString('CLAIMS_DOCUMENTS') ?>
                 </small>
             </p>

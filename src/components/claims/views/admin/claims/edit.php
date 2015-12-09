@@ -1,3 +1,5 @@
+<?php //pr($this->data);  ?>
+
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
     <?php echo $form['ProjectAddresses_id']; ?>
@@ -150,7 +152,7 @@
                     <div ng-if="!claimLoading">
                         <documents module="claims" model='{{claim}}' model-type="Claim">
                             <div class="pull-right">
-                                <button class="primary" ng-disabled="templateLoading" ng-click="openUploadDocumentsModal(claim)">   
+                                <button class="primary" ng-disabled="templateLoading" ng-click="openUploadDocumentsModal(claim)">
                                     <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                                 </button>
                             </div>
