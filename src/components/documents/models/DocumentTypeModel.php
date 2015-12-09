@@ -15,13 +15,14 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Description of DocumentTypeModel
  *
  * @author Dave Meikle
  */
-class DocumentTypeModel extends AbstractModel {
+class DocumentTypeModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -32,5 +33,8 @@ class DocumentTypeModel extends AbstractModel {
         $this->tablename = 'documenttypes';
     }
 
+    public function getFormWrapper() {
+        return $this->entity;
+    }
 
 }

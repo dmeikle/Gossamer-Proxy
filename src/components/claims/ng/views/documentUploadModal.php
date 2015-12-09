@@ -1,32 +1,34 @@
 <div class="modal-header">
-	<h1>
-		<?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?> 
-		<span ng-if="claim.jobNumber">{{claim.jobNumber}}</span>
-		<span ng-if="!claim.jobNumber">{{claim.unassignedJobNumber}}</span>
-	</h1>
+    <h1>
+        <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?>
+        <span ng-if="claim.jobNumber">{{claim.jobNumber}}</span>
+        <span ng-if="!claim.jobNumber">{{claim.unassignedJobNumber}}</span>
+    </h1>
 </div>
 <div class="modal-body">
-	<div class="col-xs-6">
-		<div dropzone="dropzoneConfig" class="dropzone">
+    <div class="col-xs-6">
+        <div dropzone="dropzoneConfig" class="dropzone">
             <p class="text-center">
-                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?> 
-				<span ng-if="claim.jobNumber">{{claim.jobNumber}}</span>
-				<span ng-if="!claim.jobNumber">{{claim.unassignedJobNumber}}</span>
+                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
+                <span ng-if="claim.jobNumber">{{claim.jobNumber}}</span>
+                <span ng-if="!claim.jobNumber">{{claim.unassignedJobNumber}}</span>
             </p>
             <p class="text-center text-muted">
                 <small>{{documentCount}} <?php echo $this->getString('CLAIMS_DOCUMENTS') ?></small>
             </p>
         </div>
-	</div>
-	<div class="col-xs-6">
-		
-	</div>
-	<div class="clearfix"></div>
+    </div>
+    <div class="col-xs-6">
+
+    </div>
+    <div class="clearfix"></div>
 </div>
+<?php echo $documentForm['documentType']; ?>
+<?php echo $documentForm['ClaimLocations_id']; ?>
 <div class="modal-footer">
-	<div class="pull-right">
-		<button class="primary" ng-click="close()">
-			<?php echo $this->getString('CLOSE') ?>
-		</button>
-	</div>
+    <div class="pull-right">
+        <button class="primary" ng-click="close()">
+            <?php echo $this->getString('CLOSE') ?>
+        </button>
+    </div>
 </div>
