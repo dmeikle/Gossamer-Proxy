@@ -44,9 +44,10 @@ class UploadDocumentsListener extends AbstractListener {
             }
         }
 
-        $model->saveParamsOnComplete($params);
+        $count = $model->saveParamsOnComplete($params);
 
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
+        $this->httpRequest->setAttribute('documentCount', $count);
     }
 
     private function prepareDirectory($filepath) {

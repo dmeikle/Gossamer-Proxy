@@ -29,7 +29,7 @@ class ClaimDocumentModel extends AbstractModel implements \core\UploadableInterf
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'ClaimDocument';
-        $this->tablename = 'claimsdocuments';
+        $this->tablename = 'claimdocuments';
     }
 
     public function getUploadPath() {
@@ -37,7 +37,9 @@ class ClaimDocumentModel extends AbstractModel implements \core\UploadableInterf
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
+
+        return $data;
     }
 
 }
