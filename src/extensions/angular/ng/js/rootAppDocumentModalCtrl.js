@@ -10,18 +10,21 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
             'dictDefaultMessage': ''
         },
         'eventHandlers': {
-            'success': function() {
-	            $rootScope.$broadcast('documentUploaded');
+            'success': function(file, response) {
+	            $rootScope.$broadcast('documentUploaded', response);
 	        }
         }
     };
 
     $rootScope.$on('documentCountUpdated', function(event, response) {
-        $scope.fileCount = response.data.folderList.list;
+    	if (response.documentCount) {
+	        $scope.documentCount = response.documentCount.ClaimDocumentsCount[0].rowCount;
+		}
     });
 
     $rootScope.$on('documentUploaded', function(event, response) {
-        documentSrv.getFileCount(event, documentSrv.id);
+        documentSrv.getFileCount(documentSrv.id);
+        $scope.documentCount = response.documentCount.ClaimDocumentsCount[0].rowCount;
     });
 
     $scope.close = function() {
