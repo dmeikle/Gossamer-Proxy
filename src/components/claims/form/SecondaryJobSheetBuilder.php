@@ -26,7 +26,14 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
         if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
-        pr($values);
+
+        foreach ($values as $item) {
+            if ($item['questionType'] == 'text') {
+                $builder->add($item['id'], $item['questionType'], array('ng-model' => 'secondarySheet.item_' . $item['id'], 'class' => 'form-control'));
+            } elseif ($item['questionType'] == 'check') {
+                $builder->add($item['id'], $item['questionType'], array('ng-model' => 'secondarySheet.item_' . $item['id'], 'class' => 'form-control', 'value' => '1'));
+            }
+        }
 //
 //        $builder->add('jobNumber', 'text', array('ng-model' => 'claim.jobNumber', 'class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
 //                ->add('jobNumberHidden', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
@@ -63,17 +70,9 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
 //                ->add('id', 'hidden', array('value' => intval($this->getValue('id', $values))))
 //                ->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)))
         //->add('Provinces_id', 'select', array('class' => 'form-control', 'options' => $options['provinces']))
-        ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
+//        ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
 
-        if (array_key_exists('claimTypes', $options)) {
-            $builder->add('ClaimTypes_id', 'select', array('ng-model' => 'claim.ClaimTypes_id', 'class' => 'form-control', 'options' => $options['claimTypes']));
-        }
-        if (array_key_exists('claimPhases', $options)) {
-            $builder->add('currentClaimPhases_id', 'select', array('ng-model' => 'claim.currentClaimPhases_id', 'class' => 'form-control', 'options' => $options['claimPhases']));
-        }
-        if (array_key_exists('claimTypes', $options)) {
-            $builder->add('currentClaimsStatusTypes_id', 'select', array('ng-model' => 'claim.currentClaimsStatusTypes_id', 'class' => 'form-control', 'options' => $options['claimTypes']));
-        }
+
         return $builder->getForm();
     }
 

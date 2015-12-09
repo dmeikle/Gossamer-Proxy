@@ -63,6 +63,10 @@ admin_claims_view_initial_jobsheet:
 
 
 admin_claims_secondarysheets_get:
+    listeners:
+        - { 'cacheKey': 'AffectedAreaActions', 'class': 'components\claims\models\SecondarySheetModel', responseKey: AffectedAreaActions, listener: 'components\claims\listeners\LoadSecondarySheetQuestionsListener', 'event': 'request_start', 'datasource': 'datasource1'}
+        - { 'cacheKey': 'SerializedAffectedAreaActions', 'dependency': AffectedAreaActions, 'class': 'components\claims\models\SecondarySheetModel', responseKey: SerializedAffectedAreaActions, listener: 'components\claims\listeners\SerializeSecondarySheetQuestionsListener', 'event': 'request_start', 'datasource': 'datasource1'}
+                
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -72,7 +76,5 @@ admin_claims_secondarysheets_get:
             cacheKey: 'SecondarySheetQuestions'
             formName: 'secondarySheet'
             dependencies:
-                - { dependency: Provinces, key: provinces, value: id, text: province }
-                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
-                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+                - { dependency: AffectedAreaActions, model: AffectedAreaActions }
     

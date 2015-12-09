@@ -87,8 +87,8 @@ admin_claims_secondarysheets_get:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\SecondarySheetsController
         model: components\claims\models\SecondarySheetModel
-        method: listallActions
-        view: core\views\JSONView
+        method: index
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_secondarysheets_get
         datasource: datasource1
         
