@@ -6,7 +6,7 @@ admin_documents_upload:
         model: components\documents\models\DocumentModel
         method: index
         view: core\views\JSONView
-        viewKey: super_documents_list
+        viewKey: admin_documents_upload
         datasource: datasource1
     methods: [POST]
 
