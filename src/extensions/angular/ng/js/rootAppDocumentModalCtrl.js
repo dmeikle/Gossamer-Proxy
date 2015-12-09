@@ -1,7 +1,7 @@
-module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibModalInstance, model, filesCount,
+module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibModalInstance, model,
 	documentSrv) {
 	$scope.claim = model;
-	$scope.filesCount = filesCount;
+	$scope.filesCount = documentSrv.getFileCount(model.id);
 
 	$scope.dropzoneConfig = {
         'options': {
@@ -10,6 +10,11 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
             'dictDefaultMessage': ''
         },
         'eventHandlers': {
+        	'sending': function(file, xhr, formData) {
+        		for (var property in $scope.upload) {
+        			formData.append(property, $scope.upload[property]);
+        		}
+        	},
             'success': function(file, response) {
 	            $rootScope.$broadcast('documentUploaded', response);
 	        }
@@ -17,8 +22,8 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     };
 
     $rootScope.$on('documentCountUpdated', function(event, response) {
-    	if (response.documentCount) {
-	        $scope.documentCount = response.documentCount.ClaimDocumentsCount[0].rowCount;
+    	if (response.data.documentCount) {
+	        $scope.documentCount = response.data.documentCount;
 		}
     });
 

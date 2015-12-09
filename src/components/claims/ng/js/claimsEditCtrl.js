@@ -4,6 +4,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.paLoading = true;
     $scope.claimLoading = true;
     $scope.authorizationLoading = true;
+    $scope.templateLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
     $scope.contacts = [];
@@ -17,6 +18,10 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         var datepicker = event.target.parentElement.dataset.datepickername;
         $scope.isOpen[datepicker] = true;
     };
+
+    $rootScope.$on('templateLoaded', function() {
+        $scope.templateLoading = false;
+    });
 
     function getClaimDetails() {
 

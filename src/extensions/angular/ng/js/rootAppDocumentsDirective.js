@@ -6,24 +6,29 @@ module.directive('documents', function(documentSrv){
 		link: function(scope, element, attrs) {
 			scope.model = JSON.parse(attrs.model);
 
-			scope.loading = true;
+			retrieveUploadDocumentsModal(attrs.module, attrs.modelType, scope.model.id);
 
 			documentSrv.getDocuments(scope.model.id).then(function(response) {
 				scope.documents = response.data;
 			});
+
+			function retrieveUploadDocumentsModal(module, modelType, modelId) {
+				documentSrv.getUploadDocumentModal(module, modelType, modelId)
+					.then(function(response) {
+						scope.uploadModal = response.data;
+						documentSrv.templateLoaded();
+					});
+			}
 		},
 		controller: function($scope, $uibModal) {
 			$scope.openUploadDocumentsModal = function(model) {
 				$uibModal.open({
-                    templateUrl: '/render/claims/uploadDocumentModal',
+                    template: $scope.uploadModal,
                     controller: 'uploadDocumentsModalCtrl',
                     size: 'lg',
                     resolve: {
                         model: function() {
                             return model;
-                        },
-                        filesCount: function() {
-                        	return documentSrv.getFileCount(model.id);
                         }
                     }
                 });

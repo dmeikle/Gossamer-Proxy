@@ -62,6 +62,8 @@ return array(
     'CLAIMS_DISAPPROVE_ALL' => 'Disapprove All',
     'CLAIMS_DISAPPROVE_SELECTED' => 'Disapprove Selected',
     'CLAIMS_DOCUMENTS' => 'Documents',
+    'CLAIMS_DOCUMENTS_SELECT_TYPE' => 'Select Type',
+    'CLAIMS_DOCUMENTS_SELECT_UNIT' => 'Select Location',
     'CLAIMS_DOUBLE_OVERTIME_HOURS' => 'DOT',
     'CLAIMS_EDIT' => 'Edit Claim',
     'CLAIMS_EDIT_INITIAL_JOBSHEET' => 'Edit Initial Jobsheet',

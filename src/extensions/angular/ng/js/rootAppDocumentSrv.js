@@ -1,5 +1,4 @@
-module.service('documentSrv', function(crudSrv, $rootScope) {
-	var self = this;
+module.service('documentSrv', function(crudSrv, $http, $rootScope) {
 	var apiPath = '/admin/documents/';
 
 	this.getDocuments = function(id) {
@@ -14,5 +13,19 @@ module.service('documentSrv', function(crudSrv, $rootScope) {
     		$rootScope.$broadcast('documentCountUpdated', response);
     		return response;
     	});
+	};
+
+	this.templateLoaded = function() {
+		$rootScope.$broadcast('templateLoaded');
+	};
+
+	this.getUploadDocumentModal = function(module, modelType, modelId) {
+		var config = {};
+		config[modelType+'s_id'] = modelId;
+		return $http({
+			method: 'GET',
+			url: '/render/' + module + '/uploadDocumentModal',
+			params: config,
+		});
 	};
 });
