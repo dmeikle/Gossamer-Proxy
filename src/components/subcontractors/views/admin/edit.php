@@ -88,7 +88,7 @@
                 <th class="col-md-1"></th>
             </tr>
         </thead>
-        <tr ng-repeat="claim in claimsList">
+        <tr ng-show="hasClaims" ng-repeat="claim in claimsList">
             <td>{{ claim.jobNumber}} </td>
             <td>{{ claim.unitNumber}} </td>
             <td>{{ claim.startDate}} </td>

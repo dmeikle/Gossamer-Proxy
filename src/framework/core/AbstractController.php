@@ -460,4 +460,31 @@ class AbstractController {
         return $config['default_locale'];
     }
 
+    /**
+     * Creates a directory recursively.
+     *
+     * @param string|array|\Traversable $dirs The directory path
+     * @param int                       $mode The directory mode
+     *
+     * @throws IOException On any directory creation failure
+     */
+    public function mkdir($dirs, $mode = 0777) {
+        foreach ($this->toIterator($dirs) as $dir) {
+            if (is_dir($dir)) {
+                continue;
+            }
+
+            if (true !== @mkdir($dir, $mode, true)) {
+                $error = error_get_last();
+                if (!is_dir($dir)) {
+                    // The directory was not created by a concurrent process. Let's throw an exception with a developer friendly error message if we have one
+                    if ($error) {
+                        throw new IOException(sprintf('Failed to create "%s": %s.', $dir, $error['message']), 0, null);
+                    }
+                    throw new IOException(sprintf('Failed to create "%s"', $dir), 0, null);
+                }
+            }
+        }
+    }
+
 }

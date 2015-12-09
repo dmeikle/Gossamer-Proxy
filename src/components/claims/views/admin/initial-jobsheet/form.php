@@ -2,6 +2,8 @@
     <div class="widgetheader">
         <h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>
     </div>
+    <?php echo $claimLocationForm['ClaimsLocations_id'] ?>
+    <?php echo $claimLocationForm['Claims_id'] ?>
 
     <div ng-if="loading || wizardLoading">
         <span class="spinner-loader"></span>

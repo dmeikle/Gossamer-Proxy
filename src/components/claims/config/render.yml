@@ -49,7 +49,8 @@ initialJobsheetWizardPages:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'event': 'filerender_start', 'listener': 'components\inventory\listeners\ListEquipmentInitialJobsheetListener', 'datasource': 'datasource1', 'class': 'components\inventory\models\InventoryEquipmentModel', 'cacheKey': 'InventoryEquipment' }
-        
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
+
         # build the form for Project Address
         -
             event: 'filerender_start'
@@ -72,6 +73,8 @@ initialJobsheetWizardPages:
             formName: 'claimLocationForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Params, model: ClaimLocation }
+
         # build the form for Contact
         -
             event: 'filerender_start'
@@ -120,6 +123,27 @@ claimsAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+claimsEditTab:
+    path: 'src/components/claims/views/admin/claims/edit.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1' }
+
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimBuilder'
+            model: 'components\claims\models\ClaimModel'
+            cacheKey: 'ClaimForm'
+            formName: 'form'
+    #            dependencies:
+    #                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+    #                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+    #                - { dependency: ClaimStatusTypes, key: claimStatus, value: id, text: status }
+
 claimLocationModal:
     path: 'src/components/claims/ng/views/claimsLocationModal.php'
     langFiles:
@@ -143,3 +167,45 @@ claimLocationModal:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: ClaimStatusTypes, key: claimStatus, value: id, text: status }
 
+
+
+secondarySheet:
+    path: 'src/components/claims/ng/views/secondarySheet.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimTypes', 'class': 'components\claims\models\ClaimTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\projects\form\ProjectBuilder'
+            model: 'components\projects\models\ProjectAddressModel'
+            cacheKey: 'ProjectAddressForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ProjectAddressModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'claimLocationForm'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
+                - { dependency: ClaimStatusTypes, key: claimStatus, value: ClaimStatusTypes_id, text: status }
+                
+
+secondarySheetAdminTab:
+    path: 'src/components/claims/views/admin/secondarysheets/list.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+                

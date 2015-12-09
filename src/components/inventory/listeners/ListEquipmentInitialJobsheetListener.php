@@ -30,9 +30,16 @@ class ListEquipmentInitialJobsheetListener extends AbstractListener {
         $params['locale'] = $locale['locale'];
 
         $result = $datasource->query('get', $model, 'initialjobsheet', $params);
-        if (array_key_exists('InventoryEquipment', $result)) {
+
+        if (is_array($result) && array_key_exists('InventoryEquipment', $result)) {
             $this->httpRequest->setAttribute('InventoryEquipment', $result['InventoryEquipment']);
+        } else {
+            $this->httpRequest->setAttribute('InventoryEquipment', array());
         }
+    }
+
+    public function on_request_start($params) {
+        $this->on_filerender_start($params);
     }
 
 }

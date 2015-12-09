@@ -2,7 +2,8 @@
     <div class="cardheader">
         <h1><?php echo $this->getString('CLAIMS_JOBSHEET') ?></h1>
     </div>
-    <table class="cardtable">
+    <div ng-if="paLoading"><span class="spinner-loader"></span></div>
+    <table ng-if="!paLoading" class="cardtable">
         <tbody>
             <tr>
                 <td><strong><?php echo $this->getString('CLAIMS_JOBSHEET_JOBNUM') ?></strong></td>

@@ -117,8 +117,13 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="/admin/claimlocations/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT') ?></a></li>
+                                        <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_LOCATIONS_EDIT') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                                        <li>
+                                            <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_JOBSHEETS'); ?></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
@@ -128,34 +133,33 @@
 
             </div>
         </div>
-        <div class="clearfix"></div>
-        <form class="hide"></form>
-        <div class="col-xs-12">
-
+        <div class = "clearfix" > </div>
+        <form class = "hide" > </form>
+        <div class = "col-xs-12" >
             <!-- Nav tabs -->
-            <ul class="widgettabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
+            <ul class = "widgettabs" role = "tablist" >
+                <li role = "presentation" class = "active" >
+                    <a href = "#photos" aria-controls="photos" role="tab" data-toggle="tab" >
                         <?php echo $this->getString('CLAIMS_PHOTOS') ?>
                     </a>
                 </li>
-                <li role="presentation">
-                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
+                <li role = "presentation" >
+                    <a href = "#comments" aria-controls="comments" role="tab" data-toggle="tab" >
                         <?php echo $this->getString('CLAIMS_COMMENTS') ?>
                     </a>
                 </li>
-                <li role="presentation">
-                    <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
+                <li role = "presentation" >
+                    <a href = "#history" aria-controls="history" role="tab" data-toggle="tab" >
                         <?php echo $this->getString('CLAIMS_HISTORY') ?>
                     </a>
                 </li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="widget tab-pane active" id="photos">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="comments">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="history">...</div>
+            <div class = "tab-content" >
+                <div role = "tabpanel" class="widget tab-pane active" id="photos"> ... </div>
+                <div role = "tabpanel" class="widget tab-pane" id="comments"> ... </div>
+                <div role = "tabpanel" class="widget tab-pane" id="history"> ... </div>
             </div>
 
         </div>

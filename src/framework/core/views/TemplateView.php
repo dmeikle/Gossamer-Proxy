@@ -116,6 +116,7 @@ class TemplateView extends AbstractView {
      */
     protected function renderURITags() {
         $uriHandler = new URITagHandler($this->logger);
+        $uriHandler->setHttpRequest($this->httpRequest);
 
         $uriHandler->setTemplate($this->template);
         $this->template = $uriHandler->handlerequest();
@@ -374,6 +375,12 @@ class TemplateView extends AbstractView {
 //        pr($imageList);
 //        die;
 //        $this->template = preg_replace('<img src="[\w/\.]+"(\s|)/>', '<img src="\/images\/components', $this->template);
+    }
+
+    public function getValue($key) {
+        $tmp = $this->httpRequest->getAttribute($key);
+       
+        return $this->httpRequest->getAttribute($key);
     }
 
 }
