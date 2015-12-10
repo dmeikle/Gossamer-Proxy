@@ -27,7 +27,7 @@ class DocumentBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Document']);
         }
 
-        $builder->add('documentType', 'select', array('ng-model' => 'upload.type', 'class' => 'form-control', 'options' => $options['documentTypes']));
+        $builder->add('documentType', 'select', array('ng-model' => 'upload.type', 'ng-change' => 'clearErrors()', 'class' => 'form-control', 'required' => 'true', 'options' => $options['documentTypes']));
         if (array_key_exists('claimLocations', $options)) {
             $builder->add('ClaimLocations_id', 'select', array('ng-model' => 'upload.locations', 'class' => 'form-control', 'multiple' => 'multiple', 'options' => $options['claimLocations']));
         }

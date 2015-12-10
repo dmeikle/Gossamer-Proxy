@@ -17,9 +17,11 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     if (!$scope.upload || !$scope.upload.type) {
                         this.removeFile(file);
                         $scope.hasError.type = true;
+                    } else {
+                        $scope.hasError = {};
+                        this.uploadFile(file);
+                        this.processQueue();
                     }
-                    this.uploadFile(file);
-                    this.processQueue();
                 },
                 'sending': function(file, xhr, formData) {
                     for (var property in $scope.upload) {
@@ -41,6 +43,10 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
         documentSrv.getFileCount(documentSrv.id);
         $scope.documentCount = response.documentCount.ClaimDocumentsCount[0].rowCount;
     });
+
+    $scope.clearErrors = function() {
+        $scope.hasError = {};
+    };
 
     $scope.close = function() {
         $uibModalInstance.dismiss('close');

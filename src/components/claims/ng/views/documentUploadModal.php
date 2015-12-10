@@ -6,7 +6,7 @@
     </h1>
 </div>
 <div class="modal-body">
-    <form>
+    <form name="documentUploadForm">
         <div class="col-xs-6">
             <div class="form-group">
                 <label for="DocumentType_documentType">
