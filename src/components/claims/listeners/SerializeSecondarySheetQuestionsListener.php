@@ -25,11 +25,10 @@ class SerializeSecondarySheetQuestionsListener extends AbstractCachableListener 
     public function on_request_start($params = array()) {
 
         $questions = $this->httpRequest->getAttribute($this->getDependencyKey());
-        pr($questions);
-        die;
-        $serializer = new SecondarySheetSerializer();
-        $result[$this->getDependencyKey()] = $serializer->serializeQuestions(array('Actions' => $questions));
 
+        $serializer = new SecondarySheetSerializer();
+        $result = $serializer->serializeQuestions(array('Actions' => $questions));
+        echo "result key " . $this->getResponseKey() . "<br>";
         $this->saveValuesToCache($this->getKey(), $result);
         $this->httpRequest->setAttribute($this->getResponseKey(), $result);
     }

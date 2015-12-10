@@ -21,6 +21,7 @@ use core\serialization\Serializer;
 class SecondarySheetSerializer extends Serializer {
 
     public function serializeQuestions(array $results) {
+
         if (!array_key_exists('Actions', $results)) {
             return array();
         }
@@ -31,22 +32,23 @@ class SecondarySheetSerializer extends Serializer {
         $categoryId = '';
         $category = '';
         $groupId = '';
-
         foreach ($results['Actions'] as $action) {
-
-            if ($groupId != $action['groupId'] && $categoryId == $action['SecondarySheetCategories_id']) {
-
-                $section[$groupId] = $row;
-                $row = array();
-                $groupId = $action['groupId'];
-            }
+//
+//            if ($groupId != $action['groupId'] && $categoryId == $action['SecondarySheetCategories_id']) {
+//
+//                $section[$groupId] = $row;
+//                $row = array();
+//                $groupId = $action['groupId'];
+//            }
+//
             if ($categoryId != $action['SecondarySheetCategories_id']) {
 
                 $section[$groupId] = $row;
                 $row = array();
                 $groupId = $action['groupId'];
 
-                $retval[$category] = $section;
+                // $retval[$category] = $section;
+                $retval[$action['keyName']] = $section;
                 $section = array();
                 $category = $action['category'];
                 $categoryId = $action['SecondarySheetCategories_id'];
@@ -56,6 +58,7 @@ class SecondarySheetSerializer extends Serializer {
             unset($action['SecondarySheetCategories_id']);
 
             $row[] = $action;
+//        }
         }
         //add the last iteration
         $retval['category'] = $section;

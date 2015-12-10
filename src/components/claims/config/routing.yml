@@ -91,6 +91,9 @@ admin_claims_secondarysheets_get:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_secondarysheets_get
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
         
 admin_claims_secondarysheets_edit:
     pattern: admin/claims/secondary-sheets/*/*/*/*

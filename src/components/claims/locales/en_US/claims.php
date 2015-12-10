@@ -198,5 +198,8 @@ return array(
     'CLAIMS_NUMBER_OF_ITEMS_COMPLETED' => '# Completed',
     'CLAIMS_WORK_AUTH_RECEIVE_DATE' => 'Work Authorized',
     'CLAIMS_UNASSIGNED_JOB_NUMBER' => 'Unassigned Job Number',
-    'CLAIMS_NEW_SECONDARY_SHEET' => 'New Secondary Sheet'
+    'CLAIMS_NEW_SECONDARY_SHEET' => 'New Secondary Sheet',
+    'CLAIMS_FLOORS' => 'Floors',
+    'CLAIMS_WALLS' => 'Walls',
+    'CLAIMS_OTHERS' => 'Others'
 );
