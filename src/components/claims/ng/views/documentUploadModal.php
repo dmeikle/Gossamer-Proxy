@@ -27,19 +27,26 @@
                 <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
                 <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
             </label>
-            <div dropzone="dropzoneConfig" class="dropzone">
-                <p class="text-center">
-                    <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
-                    <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
-                    <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
-                </p>
+            <div ng-if="!upload.type">
                 <p class="text-center text-muted">
-                    <small>
-                        <span ng-if="documentCount">{{documentCount}}</span>
-                        <span ng-if="!documentCount" class="spinner-loader"></span> 
-                        <?php echo $this->getString('CLAIMS_DOCUMENTS') ?>
-                    </small>
+                    <?php echo $this->getString('CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE') ?>
                 </p>
+            </div>
+            <div ng-if="upload.type">
+                <div dropzone="dropzoneConfig" class="dropzone">
+                    <p class="text-center">
+                        <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
+                        <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
+                        <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
+                    </p>
+                    <p class="text-center text-muted">
+                        <small>
+                            <span ng-if="documentCount">{{documentCount}}</span>
+                            <span ng-if="!documentCount" class="spinner-loader"></span> 
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS') ?>
+                        </small>
+                    </p>
+                </div>
             </div>
         </div>
     </form>

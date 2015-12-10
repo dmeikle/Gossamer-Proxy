@@ -28,7 +28,7 @@ module.service('documentSrv', function(crudSrv, $http, $rootScope) {
 			url: '/render/' + module + '/uploadDocumentModal',
 			params: config,
 		}).then(function(response) {
-			this.uploadModalTemplate = response.data;
+			self.uploadModalTemplate = response.data;
 			return response;
 		});
 	};

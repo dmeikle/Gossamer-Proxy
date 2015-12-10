@@ -1,5 +1,5 @@
 module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibModalInstance, 
-    model, documentSrv) {
+    model, documentSrv, toastsSrv) {
 	$scope.model = model;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
     $scope.hasError = {};
@@ -17,6 +17,14 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     if (!$scope.upload || !$scope.upload.type) {
                         this.removeFile(file);
                         $scope.hasError.type = true;
+                        var error = {};
+                        error.data = { DocumentType : { 
+                                type: 'Please select a document type'
+                            },
+                            result: 'error'
+                        };
+
+                        toastsSrv.newAlert(error);
                     } else {
                         $scope.hasError = {};
                         this.uploadFile(file);
