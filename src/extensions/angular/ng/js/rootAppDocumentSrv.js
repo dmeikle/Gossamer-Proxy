@@ -1,4 +1,5 @@
 module.service('documentSrv', function(crudSrv, $http, $rootScope) {
+	var self = this;
 	var apiPath = '/admin/documents/';
 
 	this.getDocuments = function(id) {
@@ -26,6 +27,9 @@ module.service('documentSrv', function(crudSrv, $http, $rootScope) {
 			method: 'GET',
 			url: '/render/' + module + '/uploadDocumentModal',
 			params: config,
+		}).then(function(response) {
+			this.uploadModalTemplate = response.data;
+			return response;
 		});
 	};
 });

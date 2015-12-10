@@ -5,25 +5,17 @@ module.directive('documents', function(documentSrv){
 		replace:false,
 		link: function(scope, element, attrs) {
 			scope.model = JSON.parse(attrs.model);
-
-			retrieveUploadDocumentsModal(attrs.module, attrs.modelType, scope.model.id);
+			scope.module = attrs.module;
+			scope.modelType = attrs.modelType;
 
 			documentSrv.getDocuments(scope.model.id).then(function(response) {
 				scope.documents = response.data;
 			});
-
-			function retrieveUploadDocumentsModal(module, modelType, modelId) {
-				documentSrv.getUploadDocumentModal(module, modelType, modelId)
-					.then(function(response) {
-						scope.uploadModal = response.data;
-						documentSrv.templateLoaded();
-					});
-			}
 		},
 		controller: function($scope, $uibModal) {
 			$scope.openUploadDocumentsModal = function(model) {
 				$uibModal.open({
-                    template: $scope.uploadModal,
+                    template: retrieveUploadDocumentsModal($scope.module, $scope.modelType, $scope.model.id),
                     controller: 'uploadDocumentsModalCtrl',
                     size: 'lg',
                     resolve: {
@@ -33,6 +25,17 @@ module.directive('documents', function(documentSrv){
                     }
                 });
 			};
+
+			function retrieveUploadDocumentsModal(module, modelType, modelId) {
+				if (!documentSrv.uploadModalTemplate) {
+					return documentSrv.getUploadDocumentModal(module, modelType, modelId)
+						.then(function(response) {
+							return response.data;
+						});
+				} else {
+					return documentSrv.uploadModalTemplate;
+				}
+			}
 		}
 	};
 });

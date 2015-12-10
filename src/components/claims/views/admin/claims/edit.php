@@ -150,7 +150,7 @@
                     <div ng-if="!claimLoading">
                         <documents module="claims" model='{{claim}}' model-type="Claim">
                             <div class="pull-right">
-                                <button class="primary" ng-disabled="templateLoading" ng-click="openUploadDocumentsModal(claim)">   
+                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">   
                                     <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                                 </button>
                             </div>

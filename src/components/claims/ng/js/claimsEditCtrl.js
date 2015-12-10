@@ -8,6 +8,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.authorization = {};
     $scope.isOpen = {};
     $scope.contacts = [];
+    $scope.hasError = {};
 
     getProjectAddress();
     getClaimDetails();
@@ -18,10 +19,6 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         var datepicker = event.target.parentElement.dataset.datepickername;
         $scope.isOpen[datepicker] = true;
     };
-
-    $rootScope.$on('templateLoaded', function() {
-        $scope.templateLoading = false;
-    });
 
     function getClaimDetails() {
 
@@ -80,5 +77,4 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             });
         });
     };
-
 });
