@@ -35,3 +35,8 @@ tbody th {
     border-radius: 0 0 4px 4px;
     @extend .col-xs-12;
 }
+
+.table-title-column {
+    background-color:#03A9F4;
+    color:white;
+}

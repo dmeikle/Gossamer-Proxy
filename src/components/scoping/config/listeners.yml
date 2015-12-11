@@ -1,0 +1,13 @@
+admin_scoping_takeoffs_edit:
+	listeners:
+        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        -
+	        event: 'filerender_start'
+	        listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+	        datasource: 'datasource1'
+	        formBuilder: 'components\scoping\form\MaterialTakeOffBuilder'
+	        model: 'components\scoping\models\ScopeMaterialTakeoffModel'
+	        cacheKey: 'MaterialTakeoffForm'
+	        formName: 'form'
+	        dependencies:
+	            - { dependency: Claims, key: claims, value: id, text: title }

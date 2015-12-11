@@ -88,7 +88,34 @@ admin_scoping_location_rooms_save:
             "section2": "src/components/scoping/views/subnav.php"
             "section3": "src/components/scoping/views/scopes/scope.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-    
+
+
+admin_scoping_takeoffs_home:
+    template: admin-list.php
+    sections:
+        -
+            header: src/themes/default/templates/sections/admin-header.php
+            notifications: src/themes/default/templates/sections/notification-area.php
+            content: src/components/scoping/views/takeoffs/edit.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - scopingAdmin
+    head:
+        - @components/scoping/dist/bower_components/angular/angular.min.js
+        - @components/scoping/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/scoping/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/scoping/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/scoping/dist/js/scoping.concat.js
+        #- @components/scoping/dist/js/scoping.min.js
+    css:
+        - @components/scoping/dist/css/scoping.min.css
+
 admin_scoping_location_takeoff:
     template: admin-list.php
     sections: 
@@ -109,13 +136,31 @@ admin_scoping_takeoffs_list:
  
 admin_scoping_takeoffs_edit:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/scoping/views/subnav.php"
-            "section3": "src/components/scoping/views/takeoffs/add.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    
+            header: src/themes/default/templates/sections/admin-header.php
+            notifications: src/themes/default/templates/sections/notification-area.php
+            content: src/components/scoping/views/takeoffs/edit.php
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - scopingAdmin
+    head:
+        - @components/scoping/dist/bower_components/angular/angular.min.js
+        - @components/scoping/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/scoping/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/scoping/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/scoping/dist/js/scoping.concat.js
+        #- @components/scoping/dist/js/scoping.min.js
+    css:
+        - @components/scoping/dist/css/scoping.min.css
+
+
 admin_scoping_rooms_list: 
     template: admin-list.php
     sections: 
