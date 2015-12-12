@@ -116,7 +116,7 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
     });
 });
 
-module.controller('contactsModalCtrl', function ($modalInstance, $scope) {
+module.controller('contactsModalCtrl', function ($modalInstance, $scope, contactsEditSrv) {
     $scope.contacts = {};
 
     $scope.confirm = function () {

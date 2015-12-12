@@ -123,17 +123,17 @@
             <h3><?php echo $this->getString('CONTACTS_ADDRESS') ?></h3>
             <p>{{selectedContact.city}}</p>
             <p>{{selectedContact.postalCode}}</p>
-            <h4><?php echo $this->getString('CONTACTS_NOTES') ?></h3>
-                <p>{{selectedContact.notes}}</p>
-                <h4><?php echo $this->getString('CONTACTS_COMPANY_INFO') ?></h3>
-                    <p>{{selectedCompany.name}}</p>
-                    <p>{{selectedCompany.address1}}</p>
-                    <p>{{selectedCompany.city}}</p>
-                    <p>{{selectedCompany.telephone}}</p>
-                    <p>{{selectedCompany.fax}}</p>
-                    <p>{{selectedCompany.url}}</p>
-                    </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <form class="hidden"></form>
-                    </div>
+            <h3><?php echo $this->getString('CONTACTS_NOTES') ?></h3>
+            <p>{{selectedContact.notes}}</p>
+            <h3><?php echo $this->getString('CONTACTS_COMPANY_INFO') ?></h3>
+            <p>{{selectedCompany.name}}</p>
+            <p>{{selectedCompany.address1}}</p>
+            <p>{{selectedCompany.city}}</p>
+            <p>{{selectedCompany.telephone}}</p>
+            <p>{{selectedCompany.fax}}</p>
+            <p>{{selectedCompany.url}}</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="hidden"></form>
+</div>
