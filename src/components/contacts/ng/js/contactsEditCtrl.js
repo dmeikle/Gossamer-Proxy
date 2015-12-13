@@ -5,7 +5,7 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
-    //getContactDetail();
+    getContactDetail();
 
     // datepicker stuffs
     $scope.dateOptions = {'starting-day': 1};
@@ -15,6 +15,7 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
     };
 
     function getContactDetail() {
+        $scope.loading = true;
         var object = {};
         object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
 

@@ -104,6 +104,9 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
                         $scope.claimsList = contactsClaimsListSrv.claimsList;
                         $scope.sidePanelLoading = false;
                     });
+            contactsEditSrv.getCompany(clickedObject).then(function() {
+                $scope.selectedCompany = contactsEditSrv.company;
+            });
         }
     };
 
