@@ -27,7 +27,7 @@
                     </button>
                 </span>
             </form>
-            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
+            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
