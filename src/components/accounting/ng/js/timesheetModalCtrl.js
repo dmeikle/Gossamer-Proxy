@@ -70,7 +70,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
 
     //get staff id and hourly rate
     $scope.getLaborerInfo = function (laborer) {
-        $scope.staffID = laborer.id;
+        $scope.Staff_id = laborer.id;
         $scope.hourlyRate = parseFloat(laborer.salary);
         timesheetTemplate.hourlyRate = laborer.hourlyRate;
         for (var j in $scope.timesheetItems) {
@@ -220,7 +220,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
         $scope.loading = true;
         if (timesheet.id) {
             $scope.timesheetID = timesheet.id;
-            $scope.staffID = timesheet.Staff_id;
+            $scope.staff_id = timesheet.Staff_id;
             $scope.laborer = timesheet.firstname + ' ' + timesheet.lastname;
             $scope.hourlyRate = timesheet.hourlyRate;
             var workDate = Date.parse((timesheet.workDate.replace(/-/g, "/")));
@@ -442,7 +442,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
 
         $scope.timesheet = {
             Timesheet_id: $scope.timesheetID,
-            staffID: $scope.staffID,
+            staff_id: $scope.staff_id,
             workDate: date,
             Vehicles_id: $scope.vehicleID,
             hourlyRate: $scope.hourlyRate,
