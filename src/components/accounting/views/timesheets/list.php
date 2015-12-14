@@ -88,8 +88,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openTimesheetModal(timesheet)">Edit</a></li>
-                                <li><a ng-click="deleteItem(timesheet)">Delete</a></li>
+                                <li><a ng-click="openTimesheetModal(timesheet)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a ng-click="deleteItem(timesheet)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>

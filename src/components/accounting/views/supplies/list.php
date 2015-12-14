@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')         ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')          ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -97,7 +97,7 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openModal(item)">Edit</a></li>
+                                <li><a ng-click="openModal(item)"><?php echo $this->getString('ACCOUNTING_EDIT') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -150,7 +150,7 @@
                 <input placeholder="Claim" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
 
                 <select class="form-control" name="ClaimPhases_id" ng-model="advSearch.ClaimPhases_id">
-                    <option value="" selected>-Phase code-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PHASE_CODE') ?>-</option>
                     <?php
                     foreach ($AccountingPhaseCodes as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
@@ -159,7 +159,7 @@
                 </select>
 
                 <select class="form-control" name="Departments_id" ng-model="advSearch.Departments_id">
-                    <option value="" selected>-Department-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_DEPARTMENT') ?>-</option>
                     <?php
                     foreach ($Departments as $department) {
                         echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
@@ -197,10 +197,10 @@
 
             <div ng-repeat="item in rowBreakdown">
                 <div class="card info-card">
-                    <p><strong>Name:</strong> {{item.name}}</p>
-                    <p><strong>Unit of Measure:</strong> {{item.packageType}}</p>
-                    <p><strong>Cost:</strong> {{item.cost| currency}}</p>
-                    <p><strong>Chargeout:</strong> {{item.chargeOut| currency}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_NAME') ?>:</strong> {{item.name}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_UNIT_OF_MEASURE') ?>:</strong> {{item.packageType}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_COST') ?>:</strong> {{item.cost| currency}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_CHARGEOUT') ?>:</strong> {{item.chargeOut| currency}}</p>
                 </div>
             </div>
         </div>
