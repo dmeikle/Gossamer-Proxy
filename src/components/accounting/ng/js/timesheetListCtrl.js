@@ -191,6 +191,8 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
     //Delete an item / set isActive to 0
     $scope.deleteItem = function(item){
         item.isActive = 0;
-        timesheetSrv.saveItem(item, formToken);
+        timesheetSrv.saveItem(item, formToken).then(function(){
+            getTimesheetList();
+        });
     };
 });

@@ -183,7 +183,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
         }
 
         var data = {};
-        data.timesheet = timesheet;
+        data.Timesheet = timesheet;
         data.timesheetItems = timesheetItems;
         //data.tolls = tolls;
         data.FORM_SECURITY_TOKEN = formToken;
