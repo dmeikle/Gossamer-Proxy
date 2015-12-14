@@ -5,6 +5,8 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
     $scope.authorizationLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
+    $scope.contact = {};
+    
     getContactDetail();
 
     // datepicker stuffs

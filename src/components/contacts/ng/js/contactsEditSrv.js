@@ -15,7 +15,7 @@ module.service('contactsEditSrv', function ($http) {
     this.getContactDetail = function (object) {
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-                    self.contactsDetail = response.data.Contact;
+                    self.contactsDetail = response.data.Contact[0];
                 });
     };
 
