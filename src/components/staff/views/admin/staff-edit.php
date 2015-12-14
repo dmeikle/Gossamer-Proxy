@@ -243,11 +243,6 @@
                             <input class="form-control" type="text" name="alarmPassword"
                                    id="staff-alarmPassword" ng-model="staff.alarmPassword">
                         </div>
-                        <div class="form-group">
-                            <label for="HiringAgencies_id"><?php echo $this->getString('STAFF_HIRINGAGENCY_ID'); ?></label>
-                            <!-- need to write the hiring agencies component still -->
-                            <?php echo $form['HiringAgencies_id']; ?>
-                        </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="cardfooter">
