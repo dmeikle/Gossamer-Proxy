@@ -27,7 +27,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
 
     //Get details for the breakdown view
     this.getTimesheetDetail = function(object) {
-        console.log('getting breakdown...');
+        //console.log('getting breakdown...');
         return $http.get(apiPath + 'breakdown/' + object.id)
             .then(function(response) {
                 self.timesheetBreakdown = response.data.TimesheetBreakdowns;
@@ -39,7 +39,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
         return $http.get(apiPath + id)
             .then(function(response) {
                 self.timesheetItems = response.data.Timesheet[1].TimesheetItems;
-                console.log(self.timesheetItems);
+                //console.log(self.timesheetItems);
                 for (var i in self.timesheetItems) {
                     self.timesheetItems[i].regularHours = parseFloat(self.timesheetItems[i].regularHours);
                     self.timesheetItems[i].overtimeHours = parseFloat(self.timesheetItems[i].overtimeHours);
@@ -74,10 +74,10 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
                 params: config
             })
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 self.timesheetSearchCount = response.data.TimesheetsCount[0].rowCount;
                 self.timesheetSearchResults = response.data.Timesheets[0];
-                console.log(response.data.Timesheets[0]);
+                //console.log(response.data.Timesheets[0]);
             });
     };
     
@@ -92,27 +92,39 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
             }
         });
     };
-
-    //Staff Autocomplete
-    this.staffAutocomplete = function(searchObject) {
-        var config = {};
-        config.name = searchObject;
-        return $http({
-                url: staffPath + 'search?',
-                method: 'GET',
-                params: config
-            })
-            .then(function(response) {
-                self.autocompleteList = response.data.Staffs;
-            });
+    
+    //Laborer Autocomplete
+    this.fetchLaborerAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Staffs;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
     };
+
+//    //Staff Autocomplete
+//    this.staffAutocomplete = function(searchObject) {
+//        var config = {};
+//        config.name = searchObject;
+//        return $http({
+//                url: staffPath + 'search?',
+//                method: 'GET',
+//                params: config
+//            })
+//            .then(function(response) {
+//                self.autocompleteList = response.data.Staffs;
+//            });
+//    };
 
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};
         if (object) {
             var splitObject = object.split(' ');
-            console.log(splitObject);
+//            console.log(splitObject);
             if (object || splitObject.length === 1) {
                 config.name = object;
             }
@@ -145,7 +157,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
 
     //Claim Search
     this.filterClaims = function(row, numRows, object) {
-        console.log(object);
+//        console.log(object);
         var config = {};
         if (object.val[0]) {
             config.claim = object.val[0];
@@ -162,7 +174,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
 
     //Save a Timesheet
     this.saveTimesheet = function(timesheet, timesheetItems, formToken) {
-        console.log('saving timesheet...');
+//        console.log('saving timesheet...');
         var timesheetID = '';
         if (timesheet.Timesheet_id) {
             timesheetID = parseInt(timesheet.Timesheet_id);
@@ -197,7 +209,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
 
     //Typeahead autocomplete
     this.fetchAutocomplete = function(searchObject) {
-        console.log('fetching typeahead autocomplete...');
+        //console.log('fetching typeahead autocomplete...');
         return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function() {
             self.autocomplete = searchSrv.autocomplete.Staffs;
             self.autocompleteValues = [];
@@ -232,7 +244,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
                 params: config
             })
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 self.advancedSearchResults = response.data.Timesheets;
                 self.advancedSearchResultsCount = response.data.TimesheetsCount[0].rowCount;
             });

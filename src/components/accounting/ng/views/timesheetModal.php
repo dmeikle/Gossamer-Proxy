@@ -9,11 +9,22 @@
         <div class="pull-left">
             <div class="form-group laborer">
                 <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
-                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="findExistingTimesheet(laborer, timesheetDate); getStaffInfo(laborer);">
+<!--                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="findExistingTimesheet(laborer, timesheetDate); getStaffInfo(laborer);">
                 <datalist id="timesheet-autocomplete-list">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-                </datalist>
+                </datalist>-->
+
+                <div class="input-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="laborer" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
+                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsLaborer" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="findExistingTimesheet(laborer, timesheetDate); getLaborerInfo(laborer);">
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
+
                 <label ng-if="findExisting"><?php echo $this->getString('ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET'); ?></label>
             </div>
 
@@ -26,7 +37,7 @@
                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                               typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
                             <div class="resultspane" ng-show="noResults">
-                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                    ?>
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                       ?>
                             </div>
                             <span class="input-group-btn" ng-if="!searchSubmitted">
                               <button type="submit" class="btn-default">
@@ -119,7 +130,7 @@
                             <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
                         </datalist>-->
                         <div class="input-group">
-                            <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="row.claim" typeahead-wait-ms="500"
+                            <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="row.jobNumber" typeahead-wait-ms="500"
                                    uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
                                    typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
                                    typeahead-min-length="2" typeahead-on-select="getClaimsID(row, row.claim)">
