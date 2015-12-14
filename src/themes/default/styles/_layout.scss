@@ -41,17 +41,14 @@
 
 button {
     @extend .btn;
+    .glyphicon {
+        line-height:1.428571429;
+    }
     &.primary {
         @extend .btn-primary;
     }
-}
-
-.input-group {
-    button {
-        border-radius:0 4px 4px 0;
-        border-left:0;
-
-        margin-left:-1px;
+    &.default {
+        @extend .btn-default;
     }
 }
 
@@ -123,8 +120,8 @@ th[column-sortable]:hover .clear-sort {
 }
 
 nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
-                                  padding-left:7px;
-                                  padding-right:7px;
+    padding-left:7px;
+    padding-right:7px;
 }
 
 nav .navbar-right .dropdown-menu {
