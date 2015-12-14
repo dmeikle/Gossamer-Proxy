@@ -74,14 +74,6 @@
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="/admin/claims/edit/{{claim.unassignedJobNumber}}" ng-if="!claim.jobNumber">
-                                        <?php echo $this->getString('CLAIMS_EDIT'); ?>
-                                    </a>
-                                    <a href="/admin/claims/edit/{{claim.jobNumber}}" ng-if="claim.jobNumber">
-                                        <?php echo $this->getString('CLAIMS_EDIT'); ?>
-                                    </a>
-                                </li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARDS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/breakdowns/{{claim.id}}"><?php echo $this->getString('CLAIMS_BREAKDOWNS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/invoices/{{claim.id}}"><?php echo $this->getString('CLAIMS_INVOICES'); ?></a></li>
