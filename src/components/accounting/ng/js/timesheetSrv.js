@@ -195,7 +195,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
             url: apiPath + timesheetID,
             data: data
         }).then(function(response) {
-            console.log(response);
+            //console.log(response);
         });
     };
 

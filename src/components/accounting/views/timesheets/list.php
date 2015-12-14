@@ -38,27 +38,25 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_LABORER'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_FIRSTNAME'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_LASTNAME'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_REG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_OT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SREG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SDOT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
+                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
                     <th class="cog-col">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
                     <td></td>
-                    <td>
-                        <span class="spinner-loader"></span>
-                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -67,6 +65,8 @@
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -75,7 +75,8 @@
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
 
-                    <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
+                    <td ng-click="selectRow(timesheet)">{{timesheet.firstname}}</td>
+                    <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate| currency}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.regularHours}}</td>
@@ -116,7 +117,7 @@
         <form ng-if="!sidePanelLoading && searching" ng-submit="advancedSearch(advSearch)">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
-                <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
+                <!--<input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">-->
 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
                 <div class="input-group">
@@ -131,7 +132,16 @@
                     <div class="clearfix"></div>
                 </div>
 
-                <input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <!--<input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
+                <div class="input-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="advSearch.jobNumber" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
+                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="getClaimsID(advSearch.jobNumber)">
+                    <div class="resultspane" ng-show="noResultsJobNumber">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
                 <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
                     <option value="" selected>-Phase Code-</option>

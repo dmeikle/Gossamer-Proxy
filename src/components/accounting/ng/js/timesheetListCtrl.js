@@ -8,7 +8,7 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
     $scope.noSearchResults = false;
 
     $scope.basicSearch = {};
-    $scope.advancedSearch = {};
+    $scope.advSearch = {};
     $scope.autocomplete = {};
     $scope.isOpen = {};
 
@@ -102,7 +102,17 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
         searchObject.name = viewVal;
         return timesheetSrv.fetchAutocomplete(searchObject);
     };
-
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return timesheetSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    $scope.getClaimsID = function(claim){
+        $scope.advSearch.jobNumber = claim.jobNumber;
+    };
     //Search
     $scope.search = function (searchObject) {
         $scope.noResults = undefined;
