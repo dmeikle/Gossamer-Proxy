@@ -1,5 +1,5 @@
 // Timesheet service
-module.service('timesheetSrv', function($http, searchSrv, $filter) {
+module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/timesheets/';
     var timesheetItemsPath = '/admin/accounting/timesheetitems/';
     var staffPath = '/admin/staff/';
@@ -248,5 +248,9 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
                 self.advancedSearchResults = response.data.Timesheets;
                 self.advancedSearchResultsCount = response.data.TimesheetsCount[0].rowCount;
             });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'Timesheet', formToken);//test
     };
 });

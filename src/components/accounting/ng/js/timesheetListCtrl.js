@@ -14,6 +14,7 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
@@ -185,5 +186,11 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (eventz) {
         $scope.isOpen.datepicker = true;
+    };
+    
+    //Delete an item / set isActive to 0
+    $scope.deleteItem = function(item){
+        item.isActive = 0;
+        timesheetSrv.saveItem(item, formToken);
     };
 });
