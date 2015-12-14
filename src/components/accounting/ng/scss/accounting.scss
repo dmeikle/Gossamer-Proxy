@@ -160,16 +160,21 @@
             width: 100%;
         }
         .rate{
-            width:70px;
+            /*width:70px;*/
             text-align:center;
         }
         .claims, .phase, .category, description{
             min-width:100px;
         }
+        .hours-heading{
+            width:6rem;
+            /*text-align:center;*/
+        }
         .hours{
-            width:50px;
+            /*width:50px;*/
             text-align:center;
         }
+        
         .checkbox, .select-all{
             width:30px;
             text-align:center;
@@ -226,6 +231,10 @@
 .modal-content{
     .typeahead{
         width:auto;
+    }
+    .row-typeahead .typeahead{
+        width:100%;
+        float:none;
     }
     .typeahead.col-md-12{
         width:100%;
@@ -406,4 +415,17 @@ label.heading-label{
 .save-note{
     margin-top:10px;
     float:right;
+}
+.table>tbody>tr>td.row-typeahead{
+    overflow:visible;
+}
+.row-typeahead{
+    overflow:visible;
+    input{
+        float:none;
+        width:100%;
+    }
+}
+.rate-heading{
+    width:8rem;
 }

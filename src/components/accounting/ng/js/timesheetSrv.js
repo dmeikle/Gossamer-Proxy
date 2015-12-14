@@ -80,6 +80,18 @@ module.service('timesheetSrv', function($http, searchSrv, $filter) {
                 console.log(response.data.Timesheets[0]);
             });
     };
+    
+    //Claims Autocomplete
+    this.fetchClaimsAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
 
     //Staff Autocomplete
     this.staffAutocomplete = function(searchObject) {
