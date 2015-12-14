@@ -1,6 +1,7 @@
-module.service('contactsEditSrv', function ($http) {
+module.service('contactsEditSrv', function ($http, searchSrv) {
     var apiPath = '/admin/contacts/';
     var companyApiPath = '/admin/companies/';
+    var companyList = [];
     
     var self = this;
 
@@ -19,7 +20,21 @@ module.service('contactsEditSrv', function ($http) {
                 });
     };
 
-
+    this.autocompleteCompanies = function(value) {
+        var config = {};
+        config.name = value;
+        
+        return searchSrv.fetchAutocomplete('/admin/companies/', config).then(function(response) {
+                   
+            if (response.data.Companys.length > 0 && response.data.Companys[0] !== 'undefined undefined') {
+                self.companyList = response.data.Companys;
+                return response;
+            } else if (response.data.Companys[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
     this.getCompany = function(object) {
         return $http.get(companyApiPath + object.id)
                     .then(function (response) {

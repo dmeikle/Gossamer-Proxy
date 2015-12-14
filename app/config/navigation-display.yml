@@ -23,9 +23,36 @@ super_user_home:
             display_roles:
               - IS_SUPER_USER
 
+admin_contacts:
+    text_key: 'ADMIN_CONTACT'
+    pattern: '#'
+    section: usermenu
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+    children:
+        admin_contacts_listall:
+            text_key: 'ADMIN_CONTACTS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/contacts/contactsAdminTab'
+            pattern: '/admin/contacts'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+                - IS_PROJECT_MANAGER
+        claims_create_new:
+            text_key: 'ADMIN_CONTACTS_CREATE_NEW'
+            pattern: '/admin/contacts/edit/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_PROJECT_MANAGER
+                - IS_PMA
+                - IS_PROJECT_MANAGER
+
 admin_contactus:
     text_key: 'ADMIN_CONTACTUS'
-    pattern: '/admin/contact/0/20'
+    pattern: '/admin/contactus'
     section: usermenu
     display_roles:
         - IS_ADMIN

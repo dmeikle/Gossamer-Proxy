@@ -66,6 +66,8 @@ module.service('searchSrv', function($http) {
         return self.searchCall(apiPath + 'search', config).then(function(response) {
 
             self.autocomplete = response.data;
+            
+            return response;
         });
     };
 });
