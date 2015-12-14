@@ -1,4 +1,5 @@
-module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, staffTemplateSrv, tablesSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, 
+    staffTemplateSrv, tablesSrv, toastsSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -150,6 +151,11 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
                     $scope.sidePanelLoading = false;
                 });
         }
+    };
+
+    $scope.removeStaff = function(object) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        staffListSrv.removeStaff(object, formToken);
     };
 
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {

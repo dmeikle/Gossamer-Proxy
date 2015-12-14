@@ -61,4 +61,11 @@ module.service('staffListSrv', function($http, searchSrv) {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };
+
+    this.removeStaff = function(object, formToken) {
+        if (confirm('Remove ' + object.firstname + ' ' + object.lastname + '?')) {
+            var requestPath = apiPath + object.id;
+            crudSrv.setInactive(requestPath, formToken);
+        }
+    };
 });

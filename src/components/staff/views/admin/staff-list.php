@@ -90,10 +90,8 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openStaffScheduleModal(staff)">Schedule</a></li>
-                                <li><a href="/admin/staff/edit/{{staff.id}}">Edit</a></li>
-                                <li><a href="#">Emergency Contacts</a></li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a href="/admin/staff/edit/{{staff.id}}"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a href="#" ng-click="removeStaff(staff)"><?php echo $this->getString('REMOVE') ?></a></li>
                             </ul>
                         </div>
                     </td>
