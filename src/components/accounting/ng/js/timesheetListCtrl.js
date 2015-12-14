@@ -1,4 +1,4 @@
-module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTypeSrv, accountingTemplateSrv, timesheetSrv) {
+module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTypeSrv, accountingTemplateSrv, timesheetSrv, tablesSrv) {
     // Stuff to run on controller load
     //$scope.rowsPerPage = 20;
     $scope.itemsPerPage = 20;
@@ -14,6 +14,27 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    
+    // Load up the table service so we can watch it!
+    $scope.tablesSrv = tablesSrv;
+    
+    $scope.$watch('tablesSrv.sortResult', function () {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.timesheetList = tablesSrv.sortResult.Timesheets;
+            $scope.loading = false;
+        }
+    });
+
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.Timesheets'], function () {
+        $scope.grouped = tablesSrv.grouped;
+        if ($scope.grouped === true) {
+            if (tablesSrv.groupResult && tablesSrv.groupResult.Timesheets)
+                $scope.timesheetList = tablesSrv.groupResult.Timesheets;
+            $scope.loading = false;
+        } else if ($scope.grouped === false) {
+            getTimesheetList();
+        }
+    });
 
     function getTimesheetList() {
         $scope.loading = true;

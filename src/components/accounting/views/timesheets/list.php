@@ -1,12 +1,7 @@
-
 <div class="widget" ng-controller="timesheetListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-        <h1 class="pull-left">Timesheet List</h1>
-        <div class="clearfix"></div>
+        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_TIMESHEETS') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
-        <div class="pull-left">
-            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
-        </div>
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openTimesheetAdvancedSearch()">
@@ -32,34 +27,35 @@
                     </button>
                 </span>
             </form>
-
+            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_FIRSTNAME'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_LASTNAME'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
+                    <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('ACCOUNTING_FIRST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('ACCOUNTING_LAST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'numJobs'" column-sortable data-column="numJobs"><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
+                    <th ng-hide="groupedBy === 'hourlyRate'" column-sortable data-column="hourlyRate"><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_REG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_OT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SREG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SDOT'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
-                    <th ng-hide="groupedBy === 'chequeNumber'" column-sortable data-column="chequeNumber"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
-                    <th class="cog-col">&nbsp;</th>
+                    <th ng-hide="groupedBy === 'workDate'" column-sortable data-column="workDate"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'isExported'" column-sortable data-column="isExported"><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
+                    <th ng-hide="groupedBy === 'totalHours'" column-sortable data-column="totalHours"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
+                    <!--<th class="cog-col">&nbsp;</th>-->
+                    <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td ng-hide="groupedBy === 'firstname'"></td>
+                    <td ng-hide="groupedBy === 'lastname'"></td>
+                    <td ng-hide="groupedBy === 'numJobs'"></td>
+                    <td ng-hide="groupedBy === 'hourlyRate'"></td>
                     <td></td>
                     <td></td>
                     <td>
@@ -68,26 +64,26 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td ng-hide="groupedBy === 'workDate'"></td>
+                    <td ng-hide="groupedBy === 'isExported'"></td>
+                    <td ng-hide="groupedBy === 'totalHours'"></td>
                     <td></td>
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
 
-                    <td ng-click="selectRow(timesheet)">{{timesheet.firstname}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate| currency}}</td>
+                    <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(timesheet)">{{timesheet.firstname}}</td>
+                    <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(timesheet)">{{timesheet.lastname}}</td>
+                    <td ng-hide="groupedBy === 'numJobs'" ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
+                    <td ng-hide="groupedBy === 'hourlyRate'" ng-click="selectRow(timesheet)">{{timesheet.hourlyRate| currency}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.regularHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.overtimeHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.doubleOTHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statRegularHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statOTHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statDoubleOTHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
+                    <td ng-hide="groupedBy === 'workDate'" ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
+                    <td ng-hide="groupedBy === 'isExported'" ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
+                    <td ng-hide="groupedBy === 'totalHours'" ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
