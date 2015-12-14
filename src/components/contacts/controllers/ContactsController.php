@@ -42,7 +42,6 @@ class ContactsController extends AbstractController {
     public function get($id) {
         $result = $this->model->edit($id);
 
-
         $this->render($result);
     }
 

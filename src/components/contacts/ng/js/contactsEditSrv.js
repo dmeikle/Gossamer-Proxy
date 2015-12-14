@@ -1,6 +1,7 @@
 module.service('contactsEditSrv', function ($http) {
     var apiPath = '/admin/contacts/';
-
+    var companyApiPath = '/admin/companies/';
+    
     var self = this;
 
     this.getContactList = function (row, numRows) {
@@ -12,23 +13,19 @@ module.service('contactsEditSrv', function ($http) {
     };
 
     this.getContactDetail = function (object) {
-        console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-//        if (response.data.Contact.dob) {
-//          response.data.Contact.dob = new Date(response.data.Contact.dob);
-//        }
-//        if (response.data.Contact.hireDate) {
-//          response.data.Contact.hireDate = new Date(response.data.Contact.hireDate);
-//        }
-//        if (response.data.Contact.departureDate) {
-//          response.data.Contact.departureDate = new Date(response.data.Contact.departureDate);
-//        }
-                    self.contactsDetail = response.data.Contact;
+                    self.contactsDetail = response.data.Contact[0];
                 });
     };
 
 
+    this.getCompany = function(object) {
+        return $http.get(companyApiPath + object.id)
+                    .then(function (response) {
+                        self.company = response.data.Company;
+                    });
+    };
     this.save = function (object, formToken) {
         var copiedObject = jQuery.extend(true, {}, object);
         for (var property in copiedObject) {

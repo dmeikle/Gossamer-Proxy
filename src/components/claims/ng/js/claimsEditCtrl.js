@@ -7,7 +7,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.authorization = {};
     $scope.isOpen = {};
     $scope.contacts = [];
-
+    
     getProjectAddress();
     getClaimDetails();
 

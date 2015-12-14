@@ -43,5 +43,7 @@ return array(
     'CONTACTS_CANCEL' => 'Cancel',
     'CONTACTS_ADD_NEW' => 'Add New Contact',
     'CONTACTS_EDIT' => 'Edit',
-    'CONTACTS_VIEW_CLAIMS' => 'View Claims'
+    'CONTACTS_VIEW_CLAIMS' => 'View Claims',
+    'CONTACTS_COMPANY' => 'Company',
+    'CONTACTS_MORE_INFO' => 'More Information'
 );
