@@ -63,14 +63,19 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
         $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
         suppliesModalSrv.getItems(row, numRows, suppliesUsed.id)
                 .then(function () {
-                    var lineItems = suppliesModalSrv.lineItems;
-                    for (var i in lineItems) {
-                        lineItems[i].cost = parseFloat(lineItems[i].cost);
-                        lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
-                        lineItems[i].quantity = parseFloat(lineItems[i].quantity);
-                        lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
-                    }
-                    $scope.lineItems = lineItems;
+                    if(suppliesModalSrv.lineItems[0].length === 0){
+                        $scope.lineItems = angular.copy([lineItemsTemplate]);
+                    } else {
+                        var lineItems = suppliesModalSrv.lineItems;
+                        for (var i in lineItems) {
+                            lineItems[i].cost = parseFloat(lineItems[i].cost);
+                            lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
+                            lineItems[i].quantity = parseFloat(lineItems[i].quantity);
+                            lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
+                        }
+                        $scope.lineItems = suppliesModalSrv.lineItems;
+                    }                    
+                    //$scope.lineItems = lineItems;
                     $scope.updateTotal();
                     $scope.loading = false;
                 });
@@ -90,6 +95,7 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
     $scope.getClaimsID = function (claim) {
         $scope.headings.Claims_id = claim.id;
         $scope.headings.jobNumber = claim.jobNumber;
+        $scope.getClaimsLocations($scope.headings.Claims_id);
     };
     
     //---Table Controls---
@@ -168,7 +174,8 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
     //Get Material info from material name
     $scope.getMaterialNameInfo = function (row, item) {
         row.productCode = item.productCode;
-        row.unitPrice = item.unitPrice;
+        row.name = item.name;
+        row.unitPrice = parseFloat(item.unitPrice);
         row.PackageTypes_id = item.PackageTypes_id;
         row.InventoryItems_id = item.InventoryItems_id;
 //        for (var j in suppliesModalSrv.materialsAutocomplete) {
@@ -183,7 +190,8 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
     //Get Material info from product code
     $scope.getProductCodeInfo = function (row, item) {
         row.name = item.name;
-        row.unitPrice = item.unitPrice;
+        row.productCode = item.productCode;
+        row.unitPrice = parseFloat(item.unitPrice);
         row.PackageTypes_id = item.PackageTypes_id;
         row.InventoryItems_id = item.id;
         

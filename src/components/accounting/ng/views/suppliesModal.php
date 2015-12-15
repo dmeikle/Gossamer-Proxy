@@ -13,7 +13,7 @@
                    uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchStaffAutocomplete($viewValue)"
                    typeahead-loading="loadingTypeaheadStaff" typeahead-no-results="noResultsStaff" class="form-control typeahead"
                    typeahead-min-length="3" typeahead-on-select="getStaffID(headings.staffName)">
-            <i ng-show="loadingTypeaheadStaff" class="glyphicon glyphicon-refresh"></i>
+            <!--<i ng-show="loadingTypeaheadStaff" class="glyphicon glyphicon-refresh"></i>-->
             <div class="resultspane" ng-show="noResultsStaff">
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
             </div>
@@ -138,7 +138,7 @@
                 </td>
 
                 <td>
-                    <input placeholder="Price" class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);
+                    <input placeholder="Price " class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);
                                 updateTotal();">
                 </td>
                 <td>

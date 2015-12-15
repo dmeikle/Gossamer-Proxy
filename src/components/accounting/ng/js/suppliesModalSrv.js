@@ -5,7 +5,8 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
     var claimsPath = '/admin/claims/';
     var materialsPath = '/admin/inventory/materials';
     var inventoryAutocompletePath = '/admin/inventory/items/autocomplete';
-    var claimsLocationsPath = '/admin/claims/locations/';
+//    var claimsLocationsPath = '/admin/claims/locations/';
+    var claimsLocationsPath = '/admin/claimlocations/claim/';
     var suppliesUsedPath = '/admin/accounting/suppliesused/';
 
     var self = this;
@@ -121,6 +122,14 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
         for (var i in headings) {
             if (headings[i] === null) {
                 delete headings[i];
+            }
+        }
+        
+        for (i in lineItems) {
+            for(var j in lineItems[i]){
+                if (lineItems[i][j] === null || lineItems[i][j].length === 0) {
+                    delete lineItems[i][j];
+                }
             }
         }
 

@@ -176,4 +176,11 @@ module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, account
             getList();
         });
     };
+    
+    $scope.deleteItem = function(item){
+        item.isActive = 0;
+        suppliesSrv.saveItem(item).then(function(){
+            getList();
+        });
+    };
 });

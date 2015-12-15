@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')          ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')            ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -97,7 +97,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openModal(item)"><?php echo $this->getString('ACCOUNTING_EDIT') ?></a></li>
+                                <li><a ng-click="openModal(item)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a ng-click="deleteItem(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>

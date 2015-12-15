@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')         ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')          ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -58,7 +58,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openGeneralCostsModal(item)">Edit</a></li>
+                                <li><a ng-click="openGeneralCostsModal(item)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a ng-click="openGeneralCostsModal(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -83,9 +84,9 @@
         <form ng-if="!sidePanelLoading && searching">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
-                <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
-                <input placeholder="Description" class="form-control" name="description" ng-model="advSearch.description">
-                <input placeholder="Claim" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_NAME') ?>" class="form-control" name="name" ng-model="advSearch.name">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_DESCRIPTION') ?>" class="form-control" name="description" ng-model="advSearch.description">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_CLAIM') ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
                 <label>From Date</label>
@@ -143,11 +144,11 @@
 
             <div ng-repeat="item in rowBreakdown">
                 <div class="card info-card">
-                    <p><strong>Name:</strong> {{item.name}}<span class="pull-right"><strong>Date:</strong> {{item.dateEntered}}</span></p>
-                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.cost| currency}}</span></p>
-                    <p>&nbsp;<span class="pull-right"><strong>Chargeout:</strong> {{item.chargeOut| currency}}</span></p>
-                    <p><strong>Department:</strong> {{item.name}}</p>
-                    <p><strong>Debit Account:</strong> {{item.accountingId}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_NAME') ?>:</strong> {{item.name}}<span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_DATE') ?>:</strong> {{item.dateEntered}}</span></p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DESCRIPTION') ?>:</strong> {{item.description}} <span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_COST') ?>:</strong> {{item.cost| currency}}</span></p>
+                    <p>&nbsp;<span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_CHARGEOUT') ?>:</strong> {{item.chargeOut| currency}}</span></p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DEPARTMENT') ?>:</strong> {{item.name}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT') ?>:</strong> {{item.accountingId}}</p>
                 </div>
             </div>
         </div>
