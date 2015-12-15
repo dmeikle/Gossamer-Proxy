@@ -8,7 +8,7 @@
 
             <form ng-submit="search(basicSearch.query)" class="input-group">
                 <input type="text" ng-model="basicSearch.query.name" ng-model-options="{debounce:500}"
-                    ng-change="search(basicSearch.query)" class="form-control">
+                       ng-change="search(basicSearch.query)" class="form-control">
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -90,8 +90,8 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="/admin/staff/edit/{{staff.id}}"><?php echo $this->getString('EDIT') ?></a></li>
-                                <li><a href="#" ng-click="removeStaff(staff)"><?php echo $this->getString('REMOVE') ?></a></li>
+                                <li><a href="/admin/staff/edit/{{staff.id}}"><?php echo $this->getString('STAFF_EDIT') ?></a></li>
+                                <li><a href="#" ng-click="removeStaff(staff)"><?php echo $this->getString('STAFF_REMOVE') ?></a></li>
                             </ul>
                         </div>
                     </td>
