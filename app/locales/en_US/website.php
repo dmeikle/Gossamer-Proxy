@@ -65,5 +65,6 @@ return array(
     'ADMIN_CONTRACTORS_LIST_ALL' => 'List All Contractors',
     'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor',
     'ADMIN_CONTACT' => 'Contacts',
-    'ADMIN_CONTACTS_CREATE_NEW' => 'Create New Contact'
+    'ADMIN_CONTACTS_CREATE_NEW' => 'Create New Contact',
+    'DELETE' => 'Delete',
 );

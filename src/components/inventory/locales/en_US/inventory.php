@@ -76,5 +76,6 @@ return array(
     'INVENTORY_CANCEL' => 'Cancel',
     'INVENTORY_NUM_PER_BOX' => '#/Box',
     'INVENTORY_PREFERRED' => 'Preferred',
-    'INVENTORY_SAVE' => 'Save'
+    'INVENTORY_SAVE' => 'Save',
+    'INVENTORY_NEWITEM' => 'New Inventory Item'
 );

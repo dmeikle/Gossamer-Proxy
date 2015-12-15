@@ -41,6 +41,16 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         });
     }
 
+    $scope.getStatusColor = function(claim) {
+        if (claim.phase.title == 'Cancelled') {
+            return 'warning';
+        } else if (claim.phase.title == 'Complete') {
+            return 'success';
+        } else {
+            return 'danger';
+        }
+    };
+
     $scope.save = function(object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         object.id = object.claimsId;

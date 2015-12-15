@@ -122,7 +122,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     $scope.resetSearch = function() {
         $scope.searchSubmitted = false;
         $scope.basicSearch.query = {};
-        getStaffList();
+        getClaimsList();
     };
 
     $scope.remove = function(object) {

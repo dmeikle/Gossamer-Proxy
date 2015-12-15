@@ -34,7 +34,7 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
             controller: 'claimsModalCtrl',
             size: 'lg',
             keyboard: false,
-            backdrop: "static"
+            backdrop: 'static'
         });
          modalInstance.result.then(function(object) {
             if (document.getElementById('Claims_id')) {
@@ -54,6 +54,7 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
                 },
                 claim: function() {
                     return $scope.selectedClaim;
+
                 }
             }
         });

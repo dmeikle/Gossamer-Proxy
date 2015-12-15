@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
-                <input class="form-control" type="date" name="dob"
+                <input class="form-control" type="text" name="dob"
                        id="staff-dob" ng-model="staff.dob">
             </div>
             <div class="form-group">

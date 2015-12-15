@@ -61,8 +61,11 @@ module.service('staffListSrv', function($http, searchSrv, crudSrv) {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };
-    
-    this.delete = function(object, formToken) {
-        return crudSrv.delete('/admin/staff/remove/', object, formToken);
+
+    this.removeStaff = function(object, formToken) {
+        if (confirm('Remove ' + object.firstname + ' ' + object.lastname + '?')) {
+            var requestPath = apiPath + object.id;
+            crudSrv.setInactive(requestPath, formToken);
+        }
     };
 });
