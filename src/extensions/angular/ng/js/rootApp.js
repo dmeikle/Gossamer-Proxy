@@ -19,13 +19,15 @@ module.config(function ($httpProvider) {
     		'response': function(response) {
     			if (response && 
 				response.config.method === 'POST' && 
+                response.config.method === 'DELETE' && 
 				response.data.result === 'error') {
     				toastsSrv.newAlert(response.data);
                     validationSrv.showErrors(response.data);
     			} else if (response && 
 				response.config.method === 'POST' && 
+                response.config.method === 'DELETE' && 
 				response.data.result !== 'error') {
-    				toastsSrv.newAlert({'data': { 'Success' : {'Success' : 'Saved'} }, 'result': 'success'});
+    				toastsSrv.newAlert({'data': { 'Success' : {'Success' : 'Action Completed'} }, 'result': 'success'});
     			}
     			return response;
     		}
