@@ -60,56 +60,16 @@
                     <span class="spinner-loader"></span>
                 </div>
                 <div ng-if="!claimLoading">
-                    <table class="table cardtable">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <strong>
-                                        <?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>:
-                                    </strong>
-                                </td>
-                                <td>{{claim.workAuthorizationReceiveDate}}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>
-                                        <?php echo $this->getString('CLAIMS_TYPE'); ?>:
-                                    </strong>
-                                </td>
-                                <td>{{claim.typeOfClaim}}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>
-                                        <?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>:
-                                    </strong>
-                                </td>
-                                <td>
-                                    {{claim.projectManager}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>
-                                        <?php echo $this->getString('CLAIMS_STATUS'); ?>:
-                                    </strong>
-                                </td>
-                                <td>
-                                    {{claim.status}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>
-                                        <?php echo $this->getString('CLAIMS_UNASSIGNED_JOB_NUMBER'); ?>:
-                                    </strong>
-                                </td>
-                                <td>
-                                    {{claim.unassignedJobNumber}}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div style="float: right;
+                         border: solid 1px #cccccc;
+                         padding: 5px;
+                         border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
+                        {{claim.phase.title}}</div>
+                    <label ng-value="claim.workAuthorizationReceiveDate"><?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>: {{claim.workAuthorizationReceiveDate}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.typeOfClaim}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>: {{claim.projectManager}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_STATUS'); ?>: {{claim.status}}</label><br />
+                    <label><?php echo $this->getString('CLAIMS_UNASSIGNED_JOB_NUMBER'); ?>: {{claim.unassignedJobNumber}}</label>
                 </div>
             </div>
         </div>
