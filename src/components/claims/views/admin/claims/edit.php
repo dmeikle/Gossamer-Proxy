@@ -24,6 +24,7 @@
 
                 <address ng-if="!paLoading">
                     <strong>{{projectAddress.buildingName}}</strong><br>
+                    {{projectAddress.strata}} - {{projectAddress.strataNumber}}<br>
                     {{projectAddress.neighborhood}}<br>
                     {{projectAddress.address1}}<br>
                     {{projectAddress.city}}<br>
