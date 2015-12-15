@@ -123,6 +123,7 @@ return array(
     'ACCOUNTING_RECEIPT_TYPE' => 'Receipt Type',
     'ACCOUNTING_FROM_DATE' => 'From Date',
     'ACCOUNTING_TO_DATE' => 'To Date',
-    'ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET' => 'Checking for existing timesheet'
+    'ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET' => 'Checking for existing timesheet',
+    'ACCOUNTING_SUPPLIES' => 'Supplies'
 );
 

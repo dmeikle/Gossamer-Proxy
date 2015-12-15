@@ -195,4 +195,16 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
             getTimesheetList();
         });
     };
+    
+    //Laborer Typeahead
+    $scope.fetchLaborerAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return timesheetSrv.fetchLaborerAutocomplete(searchObject);
+    };
+    
+    //Laborer Typeahead
+    $scope.setAdvancedSearchLaborer = function (laborer) {
+        $scope.advSearch.name = laborer.firstname + ' ' + laborer.lastname;
+    };
 });

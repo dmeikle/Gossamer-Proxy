@@ -105,20 +105,6 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
         });
     };
 
-//    //Staff Autocomplete
-//    this.staffAutocomplete = function(searchObject) {
-//        var config = {};
-//        config.name = searchObject;
-//        return $http({
-//                url: staffPath + 'search?',
-//                method: 'GET',
-//                params: config
-//            })
-//            .then(function(response) {
-//                self.autocompleteList = response.data.Staffs;
-//            });
-//    };
-
     //Staff Search
     this.filterListBy = function(row, numRows, object) {
         var config = {};

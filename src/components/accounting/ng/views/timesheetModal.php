@@ -18,8 +18,9 @@
                 <div class="input-group">
                     <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="laborer" typeahead-wait-ms="500"
                            uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
-                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsLaborer" class="form-control typeahead"
+                           typeahead-loading="loadingTypeaheadLaborer" typeahead-no-results="noResultsLaborer" class="form-control typeahead"
                            typeahead-min-length="2" typeahead-on-select="findExistingTimesheet(laborer, timesheetDate); getLaborerInfo(laborer);">
+                    <i ng-show="loadingTypeaheadLaborer" class="glyphicon glyphicon-refresh"></i>
                     <div class="resultspane" ng-show="noResultsCompany">
                         <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                     </div>
@@ -37,7 +38,7 @@
                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                               typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
                             <div class="resultspane" ng-show="noResults">
-                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                        ?>
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                         ?>
                             </div>
                             <span class="input-group-btn" ng-if="!searchSubmitted">
                               <button type="submit" class="btn-default">

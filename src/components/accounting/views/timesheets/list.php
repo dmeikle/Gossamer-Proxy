@@ -103,7 +103,7 @@
         <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker}">
+    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker, 'show-overflow': !sidePanelLoading && sidePanelOpen}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -114,8 +114,17 @@
         <form ng-if="!sidePanelLoading && searching" ng-submit="advancedSearch(advSearch)">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
-                <!--<input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">-->
-<!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
+
+                <div class="form-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="advSearch.name" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
+                           typeahead-no-results="noResultsLaborer" class="form-control typeahead"
+                           typeahead-min-length="3" typeahead-on-select="setAdvancedSearchLaborer(advSearch.name);" typeahead-loading="loadingTypeaheadLaborer">
+                    <i ng-show="loadingTypeaheadLaborer" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
                 <div class="input-group">
                     <input type="date" name="date" ng-model="advSearch.workDate" ng-model-options="{timezone: '+0000'}"
@@ -133,8 +142,9 @@
                 <div class="input-group">
                     <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="advSearch.jobNumber" typeahead-wait-ms="500"
                            uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
-                           typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
-                           typeahead-min-length="2" typeahead-on-select="getClaimsID(advSearch.jobNumber)">
+                           typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="getClaimsID(advSearch.jobNumber)" typeahead-loading="loadingTypeaheadJobNumber">
+                    <i ng-show="loadingTypeaheadJobNumber" class="glyphicon glyphicon-refresh"></i>
                     <div class="resultspane" ng-show="noResultsJobNumber">
                         <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                     </div>
