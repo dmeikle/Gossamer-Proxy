@@ -57,6 +57,7 @@ accounting_supplies_home:
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/accounting/views/supplies/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
     angular:
         bootstrap_modules:
             - rootApp
