@@ -51,9 +51,10 @@ admin_staff_home:
         - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
-        - @components/staff/dist/js/staff.concat.js
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/staff/dist/js/staff.concat.js
+        #- @components/staff/dist/js/staff.min.js
     css:
         - @components/staff/dist/css/staff.min.css
 
