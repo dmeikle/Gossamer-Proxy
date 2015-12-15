@@ -24,7 +24,7 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
         contactsEditSrv.getContactDetail(object).then(function () {
             $scope.contact = contactsEditSrv.contactsDetail;
             if($scope.contact.Company) {
-                //$scope.company = $scope.contact.Company;
+                $scope.company = $scope.contact.Company;
             }
             $scope.loading = false;
         });
@@ -36,11 +36,11 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
 
     $scope.save = function (object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        if(object.id == undefined || 0 == parseInt(object.id)) {
+        if(object.id === undefined || 0 === parseInt(object.id)) {
             object.id = object.contactsId;
         }
         contactsEditSrv.save(object, formToken).then(function () {
-            getContactDetail();
+            //getContactDetail();
         });
     };
 

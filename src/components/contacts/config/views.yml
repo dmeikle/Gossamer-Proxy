@@ -87,6 +87,7 @@ admin_contacts_edit:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/contacts/views/admin/contacts/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:

@@ -69,9 +69,8 @@
         </div>
         <div class="clearfix"></div>
         <div class="modal-footer">
-            <button class="primary" ng-click="confirm(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
-
+            <button class="btn btn-primary ng-scope" ng-click="save(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
+            <button ng-click="/admin/contacts" class="btn-default ng-scope" ><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
         </div>
-
     </form>
 </div>
