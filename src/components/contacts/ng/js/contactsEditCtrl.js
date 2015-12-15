@@ -57,4 +57,5 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;
     };
+    
 });
