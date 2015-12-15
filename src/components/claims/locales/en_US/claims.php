@@ -197,5 +197,9 @@ return array(
     'CLAIMS_NUMBER_OF_ITEMS' => '# Items',
     'CLAIMS_WORK_AUTH_RECEIVE_DATE' => 'Work Authorized',
     'CLAIMS_UNASSIGNED_JOB_NUMBER' => 'Unassigned Job Number',
-    'CLAIMS_PHASE_VS_ECD' => 'Phase vs ECD'
+    'CLAIMS_PHASE_VS_ECD' => 'Phase vs ECD',
+    'CLAIMS_BREAKDOWNS' => 'Breakdown Reports',
+    'CLAIMS_INVOICES' => 'Invoices',
+    'CLAIMS_REMOVE' => 'Delete Claim',
+    'CLAIMS_VIEW_COST_CARD' => 'CostCards'
 );
