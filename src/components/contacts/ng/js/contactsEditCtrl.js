@@ -36,7 +36,9 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
 
     $scope.save = function (object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        object.id = object.contactsId;
+        if(object.id == undefined || 0 == parseInt(object.id)) {
+            object.id = object.contactsId;
+        }
         contactsEditSrv.save(object, formToken).then(function () {
             getContactDetail();
         });
