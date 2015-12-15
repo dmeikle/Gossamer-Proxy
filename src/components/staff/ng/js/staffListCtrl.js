@@ -163,21 +163,12 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
             getStaffList(row, numRows);
         }
     });
-});
-
-module.controller('staffModalCtrl', function($modalInstance, $scope) {
-    $scope.staff = {};
-
-    $scope.confirm = function() {
-
-        staffEditSrv.save($scope.staff).then(function(response) {
-            if (!response.data.result || response.data.result !== 'error') {
-                $modalInstance.close();
-            }
+    
+    $scope.delete = function(object) {
+        $scope.loading = true;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        staffListSrv.delete(object, formToken).then(function() {
+            $scope.loading = false;
         });
-    };
-
-    $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
     };
 });

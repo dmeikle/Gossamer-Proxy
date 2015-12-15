@@ -1,4 +1,4 @@
-module.service('staffListSrv', function($http, searchSrv) {
+module.service('staffListSrv', function($http, searchSrv, crudSrv) {
 
     var apiPath = '/admin/staff/';
 
@@ -60,5 +60,9 @@ module.service('staffListSrv', function($http, searchSrv) {
         return searchSrv.getAdvancedSearchFilters('/render/staff/staffAdvancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
+    };
+    
+    this.delete = function(object, formToken) {
+        return crudSrv.delete('/admin/staff/remove/', object, formToken);
     };
 });
