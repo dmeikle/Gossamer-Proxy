@@ -53,11 +53,8 @@ class ContactsController extends AbstractController {
     public function save($id) {
 
         $result = $this->model->save($id);
-        pr($result);
-        pr($result['Contact']);
-        pr($result['Contact']['id']);
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_contacts_credentials_get', array($result['Contact']['id']));
+
+        $this->render($result);
     }
 
     public function view() {

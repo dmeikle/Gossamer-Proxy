@@ -1,50 +1,4 @@
 
-<script language="javascript">
-//    $(document).ready(function () {
-//
-//        $('.cancel').click(function (e) {
-//            window.location.href = '/admin/contacts/0/20';
-//        });
-//
-//        $('#contact-type').change(function (e) {
-//            id = $('#contact-type').val();
-//            if (id < 8) {
-//                $('#companyRow').show();
-//                $('#unitRow').hide();
-//            } else {
-//                $('#companyRow').hide();
-//                $('#unitRow').show();
-//            }
-//        });
-//
-//        var cache = {};
-//        function log(message) {
-//            $("<div>").text(message).prependTo("#log");
-//            $("#log").scrollTop(0);
-//        }
-//
-//        $("#company").autocomplete({
-//            minLength: 2,
-//            select: function (event, ui) {
-//                log(ui.item ?
-//                        "Selected: " + ui.item.value + " aka " + ui.item.id :
-//                        "Nothing selected, input was " + this.value);
-//            },
-//            source: function (request, response) {
-//                var term = request.term;
-//                if (term in cache) {
-//                    response(cache[ term ]);
-//                    return;
-//                }
-//
-//                $.post("/admin/companies/search", request, function (data, status, xhr) {
-//                    cache[ term ] = data;
-//                    response(data);
-//                });
-//            }
-//        });
-//    });
-</script>
 
 
 <h2 class="form-signin-heading">Add Contact</h2>
@@ -60,7 +14,15 @@
         </tr>
         <tr valign="top" id="companyRow">
             <td>Company:</td>
-            <td><input type="text" name="Contact[Companies_id]" id="company"  class="form-control"/></td>
+            <td>
+                <input type="text" ng-model="company"
+                       uib-typeahead="value as value.name for value in fetchCompaniesAutocomplete($viewValue)" typeahead-loading="loadingTypeaheadCompanies"
+                       typeahead-no-results="noResultsCompanies" class="form-control" typeahead-min-length='3'
+                       typeahead-on-select="setCompanyId(company);">
+                <div class="resultspane" ng-show="noResultsCompanies">
+                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+                </div>
+            </td>
         </tr>
         <tr valign="top">
             <td>Firstname:</td>

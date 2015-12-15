@@ -249,24 +249,9 @@ admin_contacts_list:
         viewKey: admin_contacts_list
         datasource: datasource1
         
-        
-admin_contacts_get:
-    pattern: admin/contacts/*
-    listeners:
-        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
-    defaults:
-        component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
-        model: components\contacts\models\ContactModel
-        method: get
-        view: core\views\JSONView
-        viewKey: admin_contacts_get
-        datasource: datasource1
-    methods: [GET]
-        
 admin_contacts_save:
     pattern: admin/contacts/*
+    methods: [POST]
     listeners:
      #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
     defaults:
@@ -276,6 +261,23 @@ admin_contacts_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_contacts_save
+        datasource: datasource1
+
+        
+        
+admin_contacts_get:
+    pattern: admin/contacts/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel   
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_contacts_get
         datasource: datasource1
     methods: [POST]
         

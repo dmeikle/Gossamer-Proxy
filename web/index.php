@@ -10,8 +10,6 @@ include_once('../vendor/autoload.php');
 include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
-//echo $_SERVER['REQUEST_METHOD'] . "\r\n";
-//
 //echo(__YML_KEY . "\r\n");
 
 use core\system\Kernel;

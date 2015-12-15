@@ -26,6 +26,10 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
             $scope.loading = false;
         });
     }
+    
+    $scope.setCompanyId = function(company) {
+        $scope.contact.Companies_id = company.id;
+    };
 
     $scope.save = function (object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
@@ -39,7 +43,11 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
         getContactDetail();
     };
 
-
+    $scope.fetchCompaniesAutocomplete = function(value) {
+       return contactsEditSrv.autocompleteCompanies(value).then(function(response) {
+        return contactsEditSrv.companyList;
+       });  
+    };
 
     $scope.clearErrors = function () {
         $scope.credentialStatus = undefined;

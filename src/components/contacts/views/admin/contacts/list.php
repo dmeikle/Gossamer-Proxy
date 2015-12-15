@@ -47,9 +47,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td colspan="2">
+                    <td></td>
+                    <td></td>
+                    <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
