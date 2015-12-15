@@ -205,4 +205,5 @@ return array(
     'CLAIMS_LOCATIONS_EDIT' => 'Edit Location',
     'CLAIMS_INITIAL_JOBSHEET' => 'Initial Jobsheet',
     'CLAIMS_EDIT_INITIAL_JOBSHEET' => 'Edit Initial Jobsheet',
+    'CLAIMS_ESTIMATE' => 'Estimate',
 );

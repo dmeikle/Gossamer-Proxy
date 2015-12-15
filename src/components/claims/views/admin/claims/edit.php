@@ -34,9 +34,11 @@
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="claim">
-                <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
-                    <div class="row-controls pull-right">
+                <div class="cardheader row">
+                    <h1 class="col-xs-4"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
+                    <div class="col-xs-5 text-right" ng-class="{'text-warning':claim.phase.title !== 'Cancelled' && claim.phase.title !== 'Complete',
+                    'text-success': claim.phase.title == 'Complete', 'text-danger':claim.phase.title == 'Cancelled'}">{{claim.phase.title}}</div>
+                    <div class="col-xs-3 text-right row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -57,16 +59,56 @@
                     <span class="spinner-loader"></span>
                 </div>
                 <div ng-if="!claimLoading">
-                    <div style="float: right;
-                         border: solid 1px #cccccc;
-                         padding: 5px;
-                         border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
-                        {{claim.phase.title}}</div>
-                    <label ng-value="claim.workAuthorizationReceiveDate"><?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>: {{claim.workAuthorizationReceiveDate}}</label><br />
-                    <label><?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.typeOfClaim}}</label><br />
-                    <label><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>: {{claim.projectManager}}</label><br />
-                    <label><?php echo $this->getString('CLAIMS_STATUS'); ?>: {{claim.status}}</label><br />
-                    <label><?php echo $this->getString('CLAIMS_UNASSIGNED_JOB_NUMBER'); ?>: {{claim.unassignedJobNumber}}</label>
+                    <table class="table cardtable">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>:
+                                    </strong>
+                                </td>
+                                <td>{{claim.workAuthorizationReceiveDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_TYPE'); ?>:
+                                    </strong>
+                                </td>
+                                <td>{{claim.typeOfClaim}}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>:
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{claim.projectManager}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_STATUS'); ?>:
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{claim.status}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_UNASSIGNED_JOB_NUMBER'); ?>:
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{claim.unassignedJobNumber}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
