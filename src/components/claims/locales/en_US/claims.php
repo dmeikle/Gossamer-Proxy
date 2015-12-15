@@ -201,5 +201,8 @@ return array(
     'CLAIMS_BREAKDOWNS' => 'Breakdown Reports',
     'CLAIMS_INVOICES' => 'Invoices',
     'CLAIMS_REMOVE' => 'Delete Claim',
-    'CLAIMS_VIEW_COST_CARD' => 'CostCards'
+    'CLAIMS_VIEW_COST_CARD' => 'CostCards',
+    'CLAIMS_LOCATIONS_EDIT' => 'Edit Location',
+    'CLAIMS_INITIAL_JOBSHEET' => 'Initial Jobsheet',
+    'CLAIMS_EDIT_INITIAL_JOBSHEET' => 'Edit Initial Jobsheet',
 );
