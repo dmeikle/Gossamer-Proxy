@@ -1,4 +1,4 @@
-module.controller('suppliesModalCtrl', function ($modalInstance, $scope, suppliesModalSrv, $filter, $timeout, suppliesUsed) {
+module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, suppliesModalSrv, $filter, $timeout, suppliesUsed) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = false;
 
@@ -10,11 +10,11 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
 
     //Modal Controls
     $scope.confirm = function () {
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
     //Set up the objects
@@ -82,27 +82,20 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
 
 
     //Get Staff ID from autocomplete list
-    $scope.getStaffID = function (name) {
-        if (name !== undefined) {
-            var splitName = name.split(' ');
-            for (var i in suppliesModalSrv.autocomplete) {
-                if (splitName[0] === suppliesModalSrv.autocomplete[i].firstname && splitName[1] === suppliesModalSrv.autocomplete[i].lastname) {
-                    $scope.headings.Staff_id = suppliesModalSrv.autocomplete[i].id;
-                }
-            }
-        }
+    $scope.getStaffID = function (staff) {
+        $scope.headings.Staff_id = staff.id;
     };
 
     //Get Claims ID from autocomplete list
-    $scope.getClaimsID = function (jobNumber) {
-        for (var i in suppliesModalSrv.claimsAutocomplete) {
-            if (suppliesModalSrv.claimsAutocomplete[i].jobNumber === jobNumber) {
-                $scope.headings.Claims_id = suppliesModalSrv.claimsAutocomplete[i].id;
-                $scope.getClaimsLocations($scope.headings.Claims_id);
-            }
-        }
+    $scope.getClaimsID = function (claim) {
+        $scope.headings.Claims_id = claim.id;
+        console.log('why must I cry why must I cry why');
     };
-
+    
+    
+    $scope.test = function(){
+        console.log('why must I crrrryyyyyyyyyyyy');
+    };
     //---Table Controls---
     //Add a row    
     $scope.addRow = function () {

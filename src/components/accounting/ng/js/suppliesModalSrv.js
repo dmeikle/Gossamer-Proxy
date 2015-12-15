@@ -21,16 +21,8 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
     };
 
     this.fetchStaffAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, staffPath).then(function () {
-            self.autocomplete = searchSrv.autocomplete.Staffs;
-            self.autocompleteValues = [];
-            if (searchObject.name) {
-                for (var staff in self.autocomplete) {
-                    if (self.autocomplete.hasOwnProperty(staff) && self.autocomplete.length > 0) {
-                        self.autocompleteValues.push(self.autocomplete[staff].firstname + ' ' + self.autocomplete[staff].lastname);
-                    }
-                }
-            }
+        return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Staffs;            
             if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
                 return self.autocompleteValues;
             } else if (self.autocompleteValues[0] === 'undefined undefined') {
@@ -40,17 +32,11 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
     };
 
     this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(searchObject, claimsPath).then(function () {
-            self.claimsAutocomplete = searchSrv.autocomplete.Claims;
-            self.claimsAutocompleteValues = [];
-            for (var item in self.claimsAutocomplete) {
-                if (!isNaN(item / 1)) {
-                    self.claimsAutocompleteValues.push(self.claimsAutocomplete[item].jobNumber);
-                }
-            }
-            if (self.claimsAutocompleteValues.length > 0 && self.claimsAutocompleteValues[0] !== 'undefined undefined') {
-                return self.claimsAutocompleteValues;
-            } else if (self.claimsAutocompleteValues[0] === 'undefined undefined') {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
                 return undefined;
             }
         });

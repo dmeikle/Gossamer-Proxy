@@ -1,4 +1,4 @@
-module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, suppliesSrv, $modal, tablesSrv) {
+module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, suppliesSrv, $uibModal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -159,7 +159,7 @@ module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, account
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
         var template = accountingTemplateSrv.suppliesModal;
-        var modal = $modal.open({
+        var modal = $uibModal.open({
             templateUrl: template,
             controller: 'suppliesModalCtrl',
             size: 'lg',
