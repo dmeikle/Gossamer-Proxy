@@ -122,11 +122,11 @@
             <h4><?php echo $this->getString('COMPANY_NAME') ?></h3>
                 <p><a href="/admin/companies/edit/{{selectedCompany.Companies_id}}">{{selectedCompany.name}}</a></p>
                 <div ng-repeat="claim in claimsList" class="sidePanelRow">
-                    <div class="name">{{ claim.jobNumber}}</div>
-                    <div class="dateReceived"><?php echo $this->getString('CLAIMS_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
+                    <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
+                    <div class="dateReceived"><?php echo $this->getString('COMPANIES_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
                     <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
-                    <div class="deductable"><?php echo $this->getString('CLAIMS_DEDUCTABLE') ?> {{ claim.deductable}}</div>
-                    <div class="reason"><?php echo $this->getString('CLAIMS_REASON') ?> <br />{{ claim.reason}}</div>
+                    <div class="deductable"><?php echo $this->getString('COMPANIES_DEDUCTABLE_AMOUNT') ?> {{ claim.deductable}}</div>
+                    <div class="reason"><?php echo $this->getString('COMPANIES_REASON') ?> <br />{{ claim.reason}}</div>
                     <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
                     <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
                     <div class="claimStatus">{{ claim.status}}</div>

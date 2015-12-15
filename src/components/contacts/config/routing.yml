@@ -252,7 +252,6 @@ admin_contacts_list:
         
 admin_contacts_get:
     pattern: admin/contacts/*
-    methods: [GET]
     listeners:
         - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
         - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
@@ -264,10 +263,10 @@ admin_contacts_get:
         view: core\views\JSONView
         viewKey: admin_contacts_get
         datasource: datasource1
+    methods: [GET]
         
 admin_contacts_save:
     pattern: admin/contacts/*
-    methods: [POST]
     listeners:
      #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
     defaults:
@@ -275,9 +274,10 @@ admin_contacts_save:
         controller: components\contacts\controllers\ContactsController
         model: components\contacts\models\ContactModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_contacts_save
         datasource: datasource1
+    methods: [POST]
         
  
         

@@ -24,6 +24,7 @@ admin_companies_home:
         datasource: datasource1
         langFiles:
             - 'src/components/companies/locales/*/Company'
+            - app/locales/*/website
 
 admin_companies_get:
     pattern: admin/companies/*
