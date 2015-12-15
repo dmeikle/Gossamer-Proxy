@@ -5,6 +5,9 @@ module.directive('formGroup', function($compile) {
             var nodes = element[0].getElementsByTagName('input');
             var classes = {};
             for (var i = nodes.length - 1; i >= 0; i--) {
+                if (nodes[i].hasAttribute('uib-typeahead')) {
+                    return;
+                }
                 var el = nodes[i];
                 if (el.attributes && el.attributes['ng-model']) {
                     var model = el.attributes['ng-model'].value.slice(el.attributes['ng-model'].value.lastIndexOf('.') + 1);
