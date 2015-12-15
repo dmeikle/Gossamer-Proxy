@@ -1,6 +1,6 @@
 <div  ng-controller="inventoryEditItemCtrl">
 
-    <div class="widget col-md-5">
+    <div class="widget col-md-6">
         <div class="widgetheader">
             <h1 ng-if="item.id"><?php echo $this->getString('EDIT') ?> {{item.name}}</h1>
             <h1 ng-if="!item.id"><?php echo $this->getString('INVENTORY_NEWITEM') ?></h1>
@@ -79,8 +79,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-1"></div>
-    <div class="widget col-md-5">
+    <div class="col-md-6">
         this is for displaying list of vendors and prices for this item
         <div class="widget" >
             <div class="widget-content">

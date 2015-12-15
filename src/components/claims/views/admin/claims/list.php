@@ -135,16 +135,36 @@
             <div>{{selectedClaim.city}}</div>
             <h4><?php echo $this->getString('CLAIMS_CONTACTS') ?></h4>
             <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
-                <p><strong class="ng-binding">{{contact.type}}:</strong> <a href="{{contact.email}}" class="ng-binding">{{contact.firstname}} {{contact.lastname}}</a>
-                    <span style="float: right" class="ng-binding"><strong><?php echo $this->getString('CLAIMS_COMPANY') ?>:</strong> {{contact.company}} </span></p>
-                <p class="ng-binding">
-                    <?php echo $this->getString('CLAIMS_OFFICE') ?>: {{contact.office}} {{contact.ext}}
-                    <span style="float: right" class="ng-binding"> Mobile: {{contact.mobile}}</span>
-                </p>
-
-                <div class="cardfooter clearfix">
-                    <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
+                <div class="cardheader row">
+                    <h1 ng-if="contact.type" class="col-xs-6">
+                        {{contact.type}}
+                    </h1>
+                    <h2 class="col-xs-6">
+                        <a href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
+                    </h2>
                 </div>
+                <table class="table cardtable">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong><?php echo $this->getString('CLAIMS_COMPANY'); ?></strong>
+                            </td>
+                            <td>{{contact.company}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong><?php echo $this->getString('CLAIMS_OFFICE'); ?></strong>
+                            </td>
+                            <td>{{contact.office}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong><?php echo $this->getString('CLAIMS_MOBILE'); ?></strong>
+                            </td>
+                            <td>{{contact.mobile}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div>
