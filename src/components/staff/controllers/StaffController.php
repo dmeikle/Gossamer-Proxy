@@ -39,12 +39,7 @@ class StaffController extends AbstractController {
     }
 
     public function search() {
-        $result = $this->httpRequest->getAttribute($this->getSearchKey());
-
-        if (!is_array($result)) {
-            $result = $this->model->search($this->httpRequest->getQueryParameters());
-            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'load_success', new Event('load_success', $result));
-        }
+        $result = $this->model->search($this->httpRequest->getQueryParameters());
 
         $this->render($result);
     }
@@ -199,7 +194,6 @@ class StaffController extends AbstractController {
     //         if (is_dir($dir)) {
     //             continue;
     //         }
-
     //         if (true !== @mkdir($dir, $mode, true)) {
     //             $error = error_get_last();
     //             if (!is_dir($dir)) {

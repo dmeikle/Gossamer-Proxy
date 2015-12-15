@@ -1,15 +1,15 @@
 admin_staff_search:
     pattern: admin/staff/search
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
-        - { 'event': 'load_success', 'listener': 'components\staff\listeners\SaveCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
+#    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
+#        - { 'event': 'load_success', 'listener': 'components\staff\listeners\SaveCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: search
         view: core\views\JSONView
-        viewKey: admin_staff_home
+        viewKey: admin_staff_search
         datasource: datasource1
     methods: [GET]
 
@@ -157,7 +157,7 @@ admin_staff_emergencycontacts_get:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
         model: components\staff\models\StaffEmergencyContactModel
-        method: get
+        method: getContacts
         view: core\views\JSONView
         viewKey: admin_staff_emergencycontacts_get
         datasource: datasource1
@@ -190,6 +190,20 @@ admin_staff_rest_save:
         datasource: datasource1
     methods: [POST]
 
+admin_staff_delete:
+    pattern: admin/staff/remove/*
+    listeners:
+     #   - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedAjaxFormListener' }
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_staff_delete
+        datasource: datasource1
+    methods: [DELETE]
+
 
 admin_staff_edit_home:
     pattern: admin/staff/edit/*
@@ -206,11 +220,12 @@ admin_staff_edit_home:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: edit
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1
         langFiles:
             - 'src/components/staff/locales/*/staff'
+            - app/locales/*/website
     methods: [GET]
 
 

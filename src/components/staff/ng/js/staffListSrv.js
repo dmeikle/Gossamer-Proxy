@@ -1,4 +1,4 @@
-module.service('staffListSrv', function($http, searchSrv) {
+module.service('staffListSrv', function($http, searchSrv, crudSrv) {
 
     var apiPath = '/admin/staff/';
 

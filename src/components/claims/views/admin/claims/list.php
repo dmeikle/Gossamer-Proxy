@@ -196,8 +196,8 @@
                                     aria-haspopup="true" aria-expanded="true">
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a href="" ng-click="openClaimLocationModal(location)">Edit</a></li>
-                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                                <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT') ?></a></li>
+                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
                             </ul>
                         </div>
                     </td>

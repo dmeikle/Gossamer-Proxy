@@ -1,4 +1,4 @@
-module.controller('staffListCtrl', function($scope, $modal, $location, staffListSrv, staffEditSrv, 
+module.controller('staffListCtrl', function($scope, $uibModal, $location, staffListSrv, staffEditSrv, 
     staffTemplateSrv, tablesSrv, toastsSrv) {
 
     var a = document.createElement('a');
@@ -70,7 +70,7 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
 
     $scope.openAddNewStaffModal = function() {
         var template = staffTemplateSrv.staffAddNewModal;
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: template,
             controller: 'staffModalCtrl',
             size: 'xl'
@@ -83,7 +83,7 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
 
     $scope.openStaffScheduleModal = function(staff) {
         var template = staffTemplateSrv.staffScheduleModal;
-        $modal.open({
+        $uibModal.open({
             templateUrl: template,
             controller: 'staffModalCtrl',
             size: 'lg',
@@ -171,7 +171,7 @@ module.controller('staffListCtrl', function($scope, $modal, $location, staffList
     });
 });
 
-module.controller('staffModalCtrl', function($modalInstance, $scope) {
+module.controller('staffModalCtrl', function($uibModalInstance, $scope) {
     $scope.staff = {};
 
     $scope.confirm = function() {
@@ -184,6 +184,6 @@ module.controller('staffModalCtrl', function($modalInstance, $scope) {
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

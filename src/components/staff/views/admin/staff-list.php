@@ -138,22 +138,22 @@
 
         <div ng-if="!sidePanelLoading && !searching">
             <h1><a href="/admin/staff/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
-            <h4><?php echo $this->getString('STAFF_TELEPHONE') ?></h3>
-                <p>{{selectedStaff.telephone}}</p>
-                <h4><?php echo $this->getString('STAFF_MOBILE') ?></h3>
-                    <p>{{selectedStaff.mobile}}</p>
-                    <h4><?php echo $this->getString('STAFF_EMAIL') ?></h3>
-                        <p>{{selectedStaff.email}}</p>
-                        <h4><?php echo $this->getString('STAFF_CITY') ?></h3>
-                            <p>{{selectedStaff.city}}</p>
-                            <h4><?php echo $this->getString('STAFF_POSTALCODE') ?></h3>
-                                <p>{{selectedStaff.postalCode}}</p>
-                                <h4><?php echo $this->getString('STAFF_TITLE') ?></h3>
-                                    <p>{{selectedStaff.title}}</p>
-                                    <h4><?php echo $this->getString('STAFF_EMPLOYEENUM') ?></h3>
-                                        <p>{{selectedStaff.employeeNumber}}</p>
-                                        </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <form class="hidden"></form>
-                                        </div>
+            <h3><?php echo $this->getString('STAFF_TELEPHONE') ?></h3>
+            <p>{{selectedStaff.telephone}}</p>
+            <h3><?php echo $this->getString('STAFF_MOBILE') ?></h3>
+            <p>{{selectedStaff.mobile}}</p>
+            <h3><?php echo $this->getString('STAFF_EMAIL') ?></h3>
+            <p>{{selectedStaff.email}}</p>
+            <h3><?php echo $this->getString('STAFF_CITY') ?></h3>
+            <p>{{selectedStaff.city}}</p>
+            <h3><?php echo $this->getString('STAFF_POSTALCODE') ?></h3>
+            <p>{{selectedStaff.postalCode}}</p>
+            <h3><?php echo $this->getString('STAFF_TITLE') ?></h3>
+            <p>{{selectedStaff.title}}</p>
+            <h3><?php echo $this->getString('STAFF_EMPLOYEENUM') ?></h3>
+            <p>{{selectedStaff.employeeNumber}}</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <form class="hidden"></form>
+</div>

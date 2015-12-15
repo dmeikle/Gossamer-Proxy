@@ -24,8 +24,8 @@
 }
 
 .modal-xl {
-    width: 1280px !important;
     @extend .modal-lg;
+    width: 1200px;
 
 }
 .select-col{

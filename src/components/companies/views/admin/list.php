@@ -120,6 +120,7 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
+
             <h1><a href="/admin/companies/edit/{{selectedCompany.Companies_id}}">{{selectedCompany.name}}</a></h1>
             <div ng-repeat="claim in claimsList" class="sidePanelRow">
                 <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
