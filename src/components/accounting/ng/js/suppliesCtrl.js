@@ -178,8 +178,10 @@ module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, account
     };
     
     $scope.deleteItem = function(item){
-        item.isActive = 0;
-        suppliesSrv.saveItem(item).then(function(){
+        var test = {};        
+        test.isActive = 0;
+        test.id = item.id;
+        suppliesSrv.saveItem(test).then(function(){
             getList();
         });
     };

@@ -8,7 +8,6 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
     var self = this;
 
     this.fetchAutocomplete = function(searchObject) {
-        console.log('fetching typeahead autocomplete...');
         return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function() {
             self.autocomplete = searchSrv.autocomplete.Staffs;
             self.autocompleteValues = [];
@@ -59,7 +58,6 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
 
     //Save the general cost items
     this.saveGeneralCosts = function(generalCosts, generalCostItems, formToken) {
-        console.log('saving general cost items...');
         var generalCostID = '';
         if (generalCosts.id) {
             generalCostID = parseInt(generalCosts.id);
@@ -77,7 +75,6 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
         for (var j in generalCostItems) {
             for (var p in generalCostItems[j]) {
                 if (generalCostItems[j][p] === null) {
-                    console.log(p + ' is null!');
                     delete generalCostItems[j][p];
                 }
             }
@@ -88,8 +85,6 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
         data.AccountingGeneralCostItems = generalCostItems;
         data.FORM_SECURITY_TOKEN = formToken;
 
-        console.log(data);
-
         return $http({
             method: 'POST',
             headers: {
@@ -98,7 +93,7 @@ module.service('generalCostsModalSrv', function($http, $filter, searchSrv) {
             url: generalCostsPath + generalCostID,
             data: data
         }).then(function(response) {
-            console.log(response);
+//            console.log(response);
         });
     };
 });

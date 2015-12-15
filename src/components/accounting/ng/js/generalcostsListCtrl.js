@@ -28,7 +28,6 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
                     $scope.loading = false;
                     $scope.generalCostsList = generalCostsSrv.generalCostsList;
                     $scope.totalItems = generalCostsSrv.generalCostsCount;
-                    console.log($scope.totalItems);
                     if (generalCostsSrv.error.showError === true) {
                         $scope.error.showError = true;
                         //$scope.error.message = 'Could not reach the database, please try again.';
@@ -127,7 +126,6 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
 
     //Modal
     $scope.openGeneralCostsModal = function (generalCost) {
-        console.log(generalCost);
         $scope.modalLoading = true;
         var template = accountingTemplateSrv.generalCostsModal;
         var modal = $modal.open({
