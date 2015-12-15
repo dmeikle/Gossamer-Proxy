@@ -56,7 +56,7 @@ return array(
     'STAFF_ROLES_RECEPTION' => 'Reception',
     'STAFF_ROLES_DATA_ENTRY' => 'Data Entry',
     'STAFF_ROLES_WEBSITE_EDITOR' => 'Website Editor',
-    'STAFF_ROLES_STAFF' => 'Staff',
+    'STAFF_ROLES_STAFF' => 'Staff Roles',
     'STAFF_ROLES_HUMAN_RESOURCES' => 'Human Resources',
     'STAFF_EMERGENCY_NAME' => 'Name',
     'STAFF_EMERGENCY_RELATIONSHIP' => 'Relation',

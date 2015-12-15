@@ -49,15 +49,6 @@ admin_contacts:
                 - IS_PROJECT_MANAGER
                 - IS_PMA
                 - IS_PROJECT_MANAGER
-
-admin_contactus:
-    text_key: 'ADMIN_CONTACTUS'
-    pattern: '/admin/contactus'
-    section: usermenu
-    display_roles:
-        - IS_ADMIN
-        - IS_ADMINISTRATOR
-        - IS_STAFF
         
 
 admin_claims:
@@ -530,34 +521,27 @@ admin_accounting_general:
 #            display_roles:
 #                - IS_ADMINISTRATOR
 #
-#directory:
-#    text_key: 'DIRECTORY'
-#    display_roles:
-#        - IS_ADMIN
-#        - IS_ADMINISTRATOR
-#        - IS_STAFF
-#    children:
-#        staff_list:
-#            text_key: 'ADMIN_STAFF'
-#            pattern: '#'
-#            display_roles:
-#                - IS_ADMIN
-#                - IS_ADMINISTRATOR
-#                - IS_STAFF
-#            children:
-#                staff_list:
-#                    text_key: 'ADMIN_STAFF_LIST'
-#                    pattern: '/admin/staff/0/20'
-#                    display_roles:
-#                        - IS_ADMIN
-#                        - IS_ADMINISTRATOR
-#                        - IS_STAFF
-#                staff_add_new:
-#                    text_key: 'ADMIN_STAFF_ADD_NEW'
-#                    pattern: '/admin/staff/0'
-#                    display_roles:
-#                        - IS_ADMINISTRATOR
-#                        - IS_HR_MANAGER
+amind_staff:
+    text_key: 'ADMIN_STAFF'
+    pattern: '#'
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
+    children:
+        staff_list:
+            text_key: 'ADMIN_STAFF_LIST'
+            pattern: '/admin/staff'
+            display_roles:
+                - IS_ADMIN
+                - IS_ADMINISTRATOR
+                - IS_STAFF
+        staff_add_new:
+            text_key: 'ADMIN_STAFF_ADD_NEW'
+            pattern: '/admin/staff/0'
+            display_roles:
+                - IS_ADMINISTRATOR
+                - IS_HR_MANAGER
 #        admin_contacts:
 #            text_key: 'ADMIN_CONTACTS'
 #            pattern: '/admin/contacts/0/20'
@@ -618,6 +602,15 @@ samples_list:
         - IS_STAFF
 
 
+
+admin_contactus:
+    text_key: 'ADMIN_CONTACTUS'
+    pattern: '/admin/contactus'
+    section: usermenu
+    display_roles:
+        - IS_ADMIN
+        - IS_ADMINISTRATOR
+        - IS_STAFF
 
                 
 #        admin_projects:
