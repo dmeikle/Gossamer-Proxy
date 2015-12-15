@@ -89,13 +89,9 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
     //Get Claims ID from autocomplete list
     $scope.getClaimsID = function (claim) {
         $scope.headings.Claims_id = claim.id;
-        console.log('why must I cry why must I cry why');
+        $scope.headings.jobNumber = claim.jobNumber;
     };
     
-    
-    $scope.test = function(){
-        console.log('why must I crrrryyyyyyyyyyyy');
-    };
     //---Table Controls---
     //Add a row    
     $scope.addRow = function () {
@@ -170,26 +166,35 @@ module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, supp
     };
 
     //Get Material info from material name
-    $scope.getMaterialNameInfo = function (row, value) {
-        for (var j in suppliesModalSrv.materialsAutocomplete) {
-            if (suppliesModalSrv.materialsAutocomplete[j].name === value) {
-                row.productCode = suppliesModalSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = suppliesModalSrv.materialsAutocomplete[j].purchaseCost;
-                row.PackageTypes_id = suppliesModalSrv.materialsAutocomplete[j].PackageTypes_id;
-            }
-        }
+    $scope.getMaterialNameInfo = function (row, item) {
+        row.productCode = item.productCode;
+        row.unitPrice = item.unitPrice;
+        row.PackageTypes_id = item.PackageTypes_id;
+        row.InventoryItems_id = item.InventoryItems_id;
+//        for (var j in suppliesModalSrv.materialsAutocomplete) {
+//            if (suppliesModalSrv.materialsAutocomplete[j].name === value) {
+//                row.productCode = suppliesModalSrv.materialsAutocomplete[j].productCode;
+//                row.unitPrice = suppliesModalSrv.materialsAutocomplete[j].purchaseCost;
+//                row.PackageTypes_id = suppliesModalSrv.materialsAutocomplete[j].PackageTypes_id;
+//            }
+//        }
     };
 
     //Get Material info from product code
-    $scope.getProductCodeInfo = function (row, value) {
-        for (var i in suppliesModalSrv.productCodeAutocomplete) {
-            if (suppliesModalSrv.productCodeAutocomplete[i].productCode === value) {
-                row.name = suppliesModalSrv.productCodeAutocomplete[i].name;
-                row.unitPrice = suppliesModalSrv.productCodeAutocomplete[i].purchaseCost;
-                row.PackageTypes_id = suppliesModalSrv.productCodeAutocomplete[i].PackageTypes_id;
-                row.InventoryItems_id = suppliesModalSrv.productCodeAutocomplete[i].id;
-            }
-        }
+    $scope.getProductCodeInfo = function (row, item) {
+        row.name = item.name;
+        row.unitPrice = item.unitPrice;
+        row.PackageTypes_id = item.PackageTypes_id;
+        row.InventoryItems_id = item.id;
+        
+//        for (var i in suppliesModalSrv.productCodeAutocomplete) {
+//            if (suppliesModalSrv.productCodeAutocomplete[i].productCode === value) {
+//                row.name = suppliesModalSrv.productCodeAutocomplete[i].name;
+//                row.unitPrice = suppliesModalSrv.productCodeAutocomplete[i].purchaseCost;
+//                row.PackageTypes_id = suppliesModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+//                row.InventoryItems_id = suppliesModalSrv.productCodeAutocomplete[i].id;
+//            }
+//        }
     };
 
     //Date Picker

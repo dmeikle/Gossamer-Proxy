@@ -68,4 +68,11 @@ module.service('searchSrv', function($http) {
             self.autocomplete = response.data;
         });
     };
+    
+    this.fetchAutocompleteNoSearch = function(apiPath, config) {
+        return self.searchCall(apiPath, config).then(function(response) {
+
+            self.autocomplete = response.data;
+        });
+    };
 });

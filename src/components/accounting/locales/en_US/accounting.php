@@ -126,6 +126,9 @@ return array(
     'ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET' => 'Checking for existing timesheet',
     'ACCOUNTING_SUPPLIES' => 'Supplies',
     'ACCOUNTING_NEW_MATERIAL_FROM_STOCK' => 'New Material From Stock',
-    'ACCOUNTING_STAFF_NAME' => 'Staff Name'
+    'ACCOUNTING_STAFF_NAME' => 'Staff Name',
+    'ACCOUNTING_PHASE_CODE' => 'Phase Code',
+    'ACCOUNTING_CLAIM_LOCATION' => 'Claim Location',
+    'ACCOUNTING_MATERIAL_NAME' => 'Material Name'
 );
 

@@ -106,10 +106,10 @@
                 </td>
                 <td class="typeahead-col">
                     <div class="input-group">
-                        <input placeholder="<?php echo $this->getString('ACCOUNTING_PRODUCT_CODE') ?>" type="text" ng-model="row.productCode" ng-model-options="{debounce:250}"
-                               uib-typeahead="value for value in fetchProductCodeAutocomplete($viewValue)"
+                        <input placeholder="<?php echo $this->getString('ACCOUNTING_PRODUCT_CODE') ?>" type="text" ng-model="row.productCode" typeahead-wait-ms="500"
+                               uib-typeahead="value as value.productCode for value in fetchProductCodeAutocomplete($viewValue)"
                                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsProductCode" class="form-control typeahead"
-                               typeahead-min-length="2" ng-blur="getProductCodeInfo(row, row.productCode)">
+                               typeahead-min-length="2" typeahead-on-select="getProductCodeInfo(row, row.productCode)">
                         <div class="resultspane claim-number" ng-show="noResultsProductCode">
                             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                         </div>
@@ -117,10 +117,10 @@
                 </td>
                 <td class="typeahead-col">
                     <div class="input-group">
-                        <input placeholder="<?php echo $this->getString('ACCOUNTING_MATERIAL_NAME') ?>" type="text" ng-model="row.name" ng-model-options="{debounce:250}"
-                               uib-typeahead="value for value in fetchMaterialsAutocomplete($viewValue)"
+                        <input placeholder="<?php echo $this->getString('ACCOUNTING_MATERIAL_NAME') ?>" type="text" ng-model="row.name" typeahead-wait-ms="500"
+                               uib-typeahead="value as value.name for value in fetchMaterialsAutocomplete($viewValue)"
                                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsMaterials" class="form-control typeahead"
-                               typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.name)">
+                               typeahead-min-length="2" typeahead-on-select="getMaterialNameInfo(row, row.name)">
                         <div class="resultspane claim-number" ng-show="noResultsMaterials">
                             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                         </div>
@@ -166,7 +166,7 @@
         </tbody>
     </table>
 
-    <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_ADD_ROW') ?></button>
+    <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW') ?></button>
     <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS') ?></button>
     <button class="btn-warning" ng-click="removeRows();
         updateTotal();" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS') ?></button>
