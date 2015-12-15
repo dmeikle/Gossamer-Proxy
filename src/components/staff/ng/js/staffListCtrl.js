@@ -1,4 +1,5 @@
-module.controller('staffListCtrl', function($scope, $uibModal, $location, staffListSrv, staffEditSrv, staffTemplateSrv, tablesSrv, toastsSrv) {
+module.controller('staffListCtrl', function($scope, $uibModal, $location, staffListSrv, staffEditSrv, 
+    staffTemplateSrv, tablesSrv, toastsSrv) {
 
     var a = document.createElement('a');
     a.href = $location.absUrl();
@@ -152,6 +153,11 @@ module.controller('staffListCtrl', function($scope, $uibModal, $location, staffL
         }
     };
 
+    $scope.removeStaff = function(object) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        staffListSrv.removeStaff(object, formToken);
+    };
+
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
         $scope.loading = true;
         row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -163,13 +169,21 @@ module.controller('staffListCtrl', function($scope, $uibModal, $location, staffL
             getStaffList(row, numRows);
         }
     });
-    
-    $scope.delete = function(object) {
-        $scope.loading = true;
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        staffListSrv.delete(object, formToken).then(function() {
-            $scope.loading = false;
-            getStaffList();
+});
+
+module.controller('staffModalCtrl', function($uibModalInstance, $scope) {
+    $scope.staff = {};
+
+    $scope.confirm = function() {
+
+        staffEditSrv.save($scope.staff).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $modalInstance.close();
+            }
         });
+    };
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
     };
 });

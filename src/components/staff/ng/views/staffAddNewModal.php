@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
-                    <input class="form-control" type="date" name="dob"
+                    <input class="form-control" type="text" name="dob"
                            id="staff-dob" ng-model="staff.dob" ng-model-options="{timezone: '+0000'}">
                 </div>
                 <div class="form-group">
@@ -121,12 +121,12 @@
                 </div>
                 <div class="form-group">
                     <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
-                    <input class="form-control" type="date" name="hireDate"
+                    <input class="form-control" type="text" name="hireDate"
                            id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}">
                 </div>
                 <div class="form-group">
                     <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
-                    <input class="form-control" type="date" name="departureDate"
+                    <input class="form-control" type="text" name="departureDate"
                            id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}">
                 </div>
                 <div class="form-group">

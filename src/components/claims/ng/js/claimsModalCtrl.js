@@ -168,9 +168,13 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 });
 
-module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, claimLocation) {
+module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, claimLocation, selectedClaim,
+    claimsLocationsEditSrv) {
     if (claimLocation) {
         $scope.item = claimLocation;
+    }
+    if (selectedClaim) {
+        $scope.selectedClaim = selectedClaim;
     }
 
     $scope.confirm = function() {

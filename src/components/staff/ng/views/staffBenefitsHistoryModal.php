@@ -39,9 +39,9 @@
                 </td>
                 <td><input class="form-control" type="number" name="staff-accruedVacationMonthly" id="staff-accruedVacationMonthly" ng-model="staff.accruedVacationMonthly"></td>
                 <td><input class="form-control" type="number" name="staff-accruedSickMonthly" id="staff-accruedSickMonthly" ng-model="staff.accruedSickMonthly"></td>
-                <td>
+                <td class="has-datepicker">
                     <div class="input-group">
-                        <input type="date" name="startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone: '+0000'}"
+                        <input type="text" name="startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone: '+0000'}"
                                class="form-control" datepicker-popup is-open="isOpen.startDate"
                                datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="startDate">
@@ -59,7 +59,7 @@
                 <td bool-to-string data-value="{{benefits.isHourly}}"></td>
                 <td>{{benefits.accruedVacationMonthly}}</td>
                 <td>{{benefits.accruedSickMonthly}}</td>
-                <td>{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
+                <td class="has-datepicker">{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
             </tr>
         </tbody>
     </table>
