@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')          ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                    ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>

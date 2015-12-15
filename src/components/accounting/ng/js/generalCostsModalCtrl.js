@@ -61,12 +61,9 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
     }
 
     //Get Claims ID from autocomplete list
-    $scope.getClaimsID = function (jobNumber) {
-        for (var i in generalCostsModalSrv.autocomplete) {
-            if (generalCostsModalSrv.autocomplete[i].jobNumber === jobNumber) {
-                $scope.AccountingGeneralCost.Claims_id = generalCostsModalSrv.autocomplete[i].id;
-            }
-        }
+    $scope.getClaimsID = function (claim) {
+        $scope.AccountingGeneralCost.jobNumber = claim.jobNumber;
+        $scope.AccountingGeneralCost.Claims_id = claim.id;
     };
 
     //---Table Controls---
