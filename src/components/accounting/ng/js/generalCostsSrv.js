@@ -1,5 +1,5 @@
 // General Costs service
-module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
+module.service('generalCostsSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';
     var claimsPath = '/admin/claims/';
@@ -69,5 +69,9 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
                 return undefined;
             }
         });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'SuppliesUseds', formToken);
     };
 });

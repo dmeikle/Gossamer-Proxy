@@ -18,7 +18,8 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
-
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    
     function getGeneralCostsList() {
         $scope.loading = true;
         $scope.noSearchResults = false;
@@ -153,6 +154,15 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
             $scope.modalLoading = false;
         });
         modal.result.then(function () {
+            getGeneralCostsList();
+        });
+    };
+    
+    $scope.deleteItem = function(item){
+//        var test = {};        
+        item.isActive = 0;
+//        test.id = item.id;
+        generalCostsSrv.saveItem(item, formToken).then(function(){
             getGeneralCostsList();
         });
     };
