@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                    ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                      ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -86,8 +86,19 @@
             <div id="advancedSearch">
                 <input placeholder="<?php echo $this->getString('ACCOUNTING_NAME') ?>" class="form-control" name="name" ng-model="advSearch.name">
                 <input placeholder="<?php echo $this->getString('ACCOUNTING_DESCRIPTION') ?>" class="form-control" name="description" ng-model="advSearch.description">
-                <input placeholder="<?php echo $this->getString('ACCOUNTING_CLAIM') ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+
+                <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="advSearch.jobNumber" typeahead-wait-ms="500"
+                       typeahead="value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)"
+                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
+                       typeahead-min-length="2" typeahead-on-select="getJobNumber(advSearch.jobNumber)">
+                <div class="resultspane claim-number" ng-show="noResultsJobNumber">
+                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                </div>
+                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')   ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
+
+
 
                 <label>From Date</label>
                 <div class="input-group date-picker">

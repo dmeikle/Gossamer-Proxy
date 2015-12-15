@@ -116,6 +116,17 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
         $scope.selectedTimesheet = undefined;
         $scope.searching = true;
     };
+    
+    $scope.fetchClaimAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return generalCostsSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    //Get JobNumber
+    $scope.getJobNumber = function (claim) {
+        $scope.advSearch.jobNumber = claim.jobNumber;
+    };
 
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};

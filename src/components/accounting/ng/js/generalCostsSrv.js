@@ -2,7 +2,8 @@
 module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
     var apiPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';
-
+    var claimsPath = '/admin/claims/';
+    
     var self = this;
 
     self.error = {};
@@ -57,5 +58,16 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
                     self.advancedSearchResults = response.data.AccountingGeneralCosts;
                     self.advancedSearchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
                 });
+    };
+    
+    this.fetchClaimsAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
     };
 });
