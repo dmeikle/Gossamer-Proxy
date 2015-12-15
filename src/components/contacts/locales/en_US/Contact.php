@@ -34,6 +34,7 @@ return array(
     'CONTACTS_FIRSTNAME' => 'Firstname',
     'CONTACTS_LASTNAME' => 'Lastname',
     'CONTACTS_PERSONALEMAIL' => 'Email',
+    'CONTACTS_EMAIL' => 'Email',
     'CONTACTS_MOBILE' => 'Mobile',
     'CONTACTS_OFFICE' => 'Office',
     'CONTACTS_HOME' => 'Home',

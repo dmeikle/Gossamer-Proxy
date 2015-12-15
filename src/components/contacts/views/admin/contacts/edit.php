@@ -1,72 +1,78 @@
+<div  ng-controller="contactsEditCtrl">
+    <div class="modal-header" ng-switch="contact.id">
+        <h1 class="modal-title"><?php echo $this->getString('CONTACTS_ADD_NEW'); ?></h1>
+    </div>
+    <form method="post">
+        <div class="modal-body">
+            <div class="cards col-md-12">
+                <div class="card-left col-md-6">
 
+                    <div class="form-group">
+                        <label for="contact-firstname"><?php echo $this->getString('CONTACTS_FIRSTNAME'); ?></label>
+                        <?php echo $form['firstname']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-lastname"><?php echo $this->getString('CONTACTS_LASTNAME'); ?></label>
+                        <?php echo $form['lastname']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-personalEmail"><?php echo $this->getString('CONTACTS_PERSONALEMAIL'); ?></label>
+                        <?php echo $form['email']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-mobile"><?php echo $this->getString('CONTACTS_MOBILE'); ?></label>
+                        <?php echo $form['mobile']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-office"><?php echo $this->getString('CONTACTS_OFFICE'); ?></label>
+                        <?php echo $form['office']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-home"><?php echo $this->getString('CONTACTS_HOME'); ?></label>
+                        <?php echo $form['home']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-extension"><?php echo $this->getString('CONTACTS_EXTENSION'); ?></label>
+                        <?php echo $form['extension']; ?>
+                    </div>
 
-
-<h2 class="form-signin-heading">Add Contact</h2>
-
-
-<form method="post">
-    <table class="table" ng-controller="contactsEditCtrl">
-        <tr valign="top">
-            <td>Contact Type:</td>
-            <td>
-                <?php echo $form['ContactTypes_id']; ?>
-            </td>
-        </tr>
-        <tr valign="top" id="companyRow">
-            <td>Company:</td>
-            <td>
-                <input type="text" ng-model="company"
-                       uib-typeahead="value as value.name for value in fetchCompaniesAutocomplete($viewValue)" typeahead-loading="loadingTypeaheadCompanies"
-                       typeahead-no-results="noResultsCompanies" class="form-control" typeahead-min-length='3'
-                       typeahead-on-select="setCompanyId(company);">
-                <div class="resultspane" ng-show="noResultsCompanies">
-                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
                 </div>
-            </td>
-        </tr>
-        <tr valign="top">
-            <td>Firstname:</td>
-            <td><?php echo $form['firstname']; ?></td>
-        </tr>
 
-        <tr valign="top">
-            <td>Lastname:</td>
-            <td><?php echo $form['lastname']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Email:</td>
-            <td><?php echo $form['email']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Mobile:</td>
-            <td><?php echo $form['mobile']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Home:</td>
-            <td><?php echo $form['home']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Office:</td>
-            <td><?php echo $form['office']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Extension:</td>
-            <td><?php echo $form['extension']; ?></td>
-        </tr>
-        <tr valign="top">
-            <td>Notes:</td>
-            <td><label for="select"></label>
-                <?php echo $form['notes']; ?></td>
-        </tr>
-        <tr>
-            <td>
+                <div class="card-right col-md-6">
+                    <div class="form-group">
+                        <label for="contact-company"><?php echo $this->getString('CONTACTS_COMPANY'); ?>:</label>
 
-            </td>
-            <td>
-                <?php echo $form['submit']; ?>
-                <?php echo $form['cancel']; ?>
+                        <input type="text" ng-model="company" 
+                               uib-typeahead="value as value.name for value in fetchCompaniesAutocomplete($viewValue)" typeahead-loading="loadingTypeaheadCompanies"
+                               typeahead-no-results="noResultsCompanies" class="form-control" typeahead-min-length='3'
+                               typeahead-on-select="setCompanyId(company);">
+                        <div class="resultspane" ng-show="noResultsCompanies">
+                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-CompanyTypes_id"><?php echo $this->getString('CONTACTS_CONTACTTYPE'); ?></label>
+                        <?php echo $form['ContactTypes_id']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-ContactVIPTypes_id"><?php echo $this->getString('CONTACTS_VIP'); ?></label>
+                        <?php echo $form['ContactVIPTypes_id']; ?>
+                    </div>
 
-            </td>
-        </tr>
-    </table>
-</form>
+                    <div class="form-group">
+                        <label for="contact-notes"><?php echo $this->getString('CONTACTS_NOTES'); ?></label>
+                        <?php echo $form['notes']; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+            <button class="primary" ng-click="confirm(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
+
+            <button ng-click="cancel()"><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
+        </div>
+
+    </form>
+</div>

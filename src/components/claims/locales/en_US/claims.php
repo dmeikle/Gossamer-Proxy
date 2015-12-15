@@ -201,5 +201,6 @@ return array(
     'CLAIMS_BREAKDOWNS' => 'Breakdown Reports',
     'CLAIMS_INVOICES' => 'Invoices',
     'CLAIMS_REMOVE' => 'Delete Claim',
-    'CLAIMS_VIEW_COST_CARD' => 'CostCards'
+    'CLAIMS_VIEW_COST_CARD' => 'CostCards',
+    'CLAIMS_EDIT_LOCATION' => 'Edit Location'
 );

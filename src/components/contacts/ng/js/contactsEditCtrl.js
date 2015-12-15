@@ -23,6 +23,9 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
 
         contactsEditSrv.getContactDetail(object).then(function () {
             $scope.contact = contactsEditSrv.contactsDetail;
+            if($scope.contact.Company) {
+                //$scope.company = $scope.contact.Company;
+            }
             $scope.loading = false;
         });
     }
@@ -44,7 +47,7 @@ module.controller('contactsEditCtrl', function ($scope, $location, contactsEditS
     };
 
     $scope.fetchCompaniesAutocomplete = function(value) {
-       return contactsEditSrv.autocompleteCompanies(value).then(function(response) {
+       return contactsEditSrv.autocompleteCompanies(value).then(function() {
         return contactsEditSrv.companyList;
        });  
     };

@@ -51,6 +51,9 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
             resolve: {
                 claimLocation: function() {
                     return object;
+                },
+                claim: function() {
+                    return $scope.selectedClaim;
                 }
             }
         });
