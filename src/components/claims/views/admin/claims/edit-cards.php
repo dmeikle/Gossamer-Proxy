@@ -1,7 +1,9 @@
 <div ng-controller="claimsContactsList">
     <div class="card">
         <div class="cardheader">
-            <h1><?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?></h1>
+            <h1>
+                <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
+            </h1>
         </div>
         <div ng-if="claimLoading">
             <div class="spinner-loader"></div>
@@ -47,8 +49,16 @@
         </div>
         <div class="clearfix"></div>
     </div>
+    
+    <div class="clearfix">
+        <h3 class="pull-left"><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
 
-    <h3><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
+        <div class="pull-right">
+            <button class="primary h3button" ng-click="openClientModal()">
+                <?php echo $this->getString('CLAIMS_NEW_CLIENT') ?>
+            </button>
+        </div>
+    </div>
     <div ng-if="loading">
         <div class="spinner-loader"></div>
     </div>
@@ -83,7 +93,13 @@
                 </tr>
             </tbody>
         </table>
-
+        <div class="cardfooter clearfix">
+            <div class="pull-right">
+                <a href="" ng-click="openClientModal(contact)">
+                    <small><?php echo $this->getString('EDIT') ?></small>
+                </a>
+            </div>
+        </div>
     </div>
     <div ng-if="!loading && !contacts[0].type">
         <p class="text-center text-muted">

@@ -31,7 +31,11 @@ return array(
     'CLAIMS_COMPANY' => 'Company',
     'CLAIMS_CONFIRM' => 'Is this correct?',
     'CLAIMS_CONTACT_EXT' => 'Extension',
-    'CLAIMS_CONTACT_FIRSTNAME' => "Contact's Name",
+    'CLAIMS_CONTACT_FIRSTNAME' => "Contact's First Name",
+    'CLAIMS_CONTACT_LASTNAME' => "Contact's Last Name",
+    'CLAIMS_CONTACT_COMPANY' => "Contact's Company",
+    'CLAIMS_CONTACT_MOBILE' => "Contact's Mobile",
+    'CLAIMS_CONTACT_OFFICE' => "Contact's Office Phone",
     'CLAIMS_CONTACT_PHONE' => "Contact's Phone Number",
     'CLAIMS_CONTACT_TYPE' => 'Contact Type',
     'CLAIMS_CONTACTS' => 'Contacts',
@@ -209,5 +213,6 @@ return array(
     'CLAIMS_NUMBER_OF_ITEMS' => '# Items',
     'CLAIMS_WORK_AUTH_RECEIVE_DATE' => 'Work Authorized',
     'CLAIMS_UNASSIGNED_JOB_NUMBER' => 'Unassigned Job Number',
-    'CLAIMS_PHASE_VS_ECD' => 'Phase vs ECD'
+    'CLAIMS_PHASE_VS_ECD' => 'Phase vs ECD',
+    'CLAIMS_NEW_CLIENT' => 'Add Client',
 );

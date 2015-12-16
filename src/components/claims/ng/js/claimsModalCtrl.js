@@ -220,3 +220,22 @@ module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, cla
         $uibModalInstance.dismiss('cancel');
     };
 });
+
+module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact, claimsEditSrv) {
+    $scope.contact = contact;
+    
+    $scope.submit = function() {
+        var data = $scope.contact;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+
+        claimsEditSrv.saveContact(data, formToken).then(function() {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });
+    };
+
+    $scope.cancel = function() {
+        $uibModalInstance.dismiss('cancel');
+    };
+});

@@ -1,4 +1,4 @@
-module.controller('claimsContactsList', function ($scope, $rootScope, claimsEditSrv) {
+module.controller('claimsContactsList', function ($scope, $rootScope, $uibModal, claimsEditSrv) {
 
     // Run on load
     $scope.loading = true;
@@ -51,5 +51,18 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
                 $scope.loading = false;
             }); 
     }
+
+    $scope.openClientModal = function(client) {
+        $uibModal.open({
+            templateUrl: '/render/claims/clientModal',
+            controller: 'clientModalCtrl',
+            size: 'md',
+            resolve: {
+                contact: function() {
+                    return client;
+                }
+            }
+        });
+    };
 
 });

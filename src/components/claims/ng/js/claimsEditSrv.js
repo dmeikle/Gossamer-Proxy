@@ -67,6 +67,10 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
         });
     };
 
+    this.saveContact = function(object, formToken) {
+        return crudSrv.save(singleApiPath, object, 'ClaimContact', formToken);
+    };
+
 
     this.loadPMList = function(claimId) {
         return crudSrv.getDetails('/admin/staff/pmlist/', claimId).then(function(response) {
