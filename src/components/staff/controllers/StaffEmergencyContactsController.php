@@ -72,6 +72,7 @@ class StaffEmergencyContactsController extends AbstractController {
     }
 
     public function getContacts($staffId, $contactId) {
+
         $offset = 0;
         $limit = 20;
         $params = array('Staff_id' => intval($staffId),
