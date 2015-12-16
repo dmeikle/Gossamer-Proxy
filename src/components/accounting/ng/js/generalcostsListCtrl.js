@@ -1,4 +1,4 @@
-module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal) {
+module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -19,6 +19,28 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
     var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    
+    // Load up the table service so we can watch it!
+    $scope.tablesSrv = tablesSrv;
+    
+    $scope.$watch('tablesSrv.sortResult', function () {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.list = tablesSrv.sortResult.AccountingGeneralCosts;
+            $scope.loading = false;
+        }
+    });
+
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.AccountingGeneralCosts'], function () {
+        $scope.grouped = tablesSrv.grouped;
+        if ($scope.grouped === true) {
+            if (tablesSrv.groupResult && tablesSrv.groupResult.AccountingGeneralCosts)
+                $scope.generalCostsList = tablesSrv.groupResult.AccountingGeneralCosts;
+            $scope.loading = false;
+        } else if ($scope.grouped === false) {
+            getGeneralCostsList();
+        }
+    });
+
     
     function getGeneralCostsList() {
         $scope.loading = true;
