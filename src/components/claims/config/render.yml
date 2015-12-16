@@ -218,7 +218,7 @@ clientModal:
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companies' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys' }
 
         # build the form for Contact
         -
@@ -232,4 +232,4 @@ clientModal:
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
-                - { dependency: Companies, key: companies, value: Companies_id, text: company }
+                - { dependency: Companys, key: companies, value: Companies_id, text: name }
