@@ -36,9 +36,7 @@
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="claim">
                 <div class="cardheader row">
-                    <h1 class="col-xs-4"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
-                    <div class="col-xs-5 text-right" ng-class="{'text-warning':claim.phase.title !== 'Cancelled' && claim.phase.title !== 'Complete',
-                    'text-success': claim.phase.title == 'Complete', 'text-danger':claim.phase.title == 'Cancelled'}">{{claim.phase.title}}</div>
+                    <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
                     <div class="col-xs-3 text-right row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
