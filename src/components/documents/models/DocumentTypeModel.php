@@ -18,31 +18,23 @@ use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of DocumentTypeModel
  *
  * @author Dave Meikle
  */
-class DocumentModel extends AbstractModel implements FormBuilderInterface, \core\UploadableInterface {
+class DocumentTypeModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Document';
-        $this->tablename = 'documents';
+        $this->entity = 'DocumentType';
+        $this->tablename = 'documenttypes';
     }
 
     public function getFormWrapper() {
         return $this->entity;
-    }
-
-    public function getUploadPath() {
-        return __UPLOADED_FILES_PATH . 'documents';
-    }
-
-    public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
     }
 
 }

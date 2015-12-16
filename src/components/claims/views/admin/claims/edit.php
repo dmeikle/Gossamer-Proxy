@@ -140,33 +140,29 @@
         <div class="clearfix"></div>
         <form class="hide"></form>
         <div class="col-xs-12">
+            <uib-tabset>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
+                    ...
+                </uib-tab>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">
+                    ...
+                </uib-tab>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_DOCUMENTS') ?>">
+                    <div ng-if="claimLoading">
+                        <div class="text-center"><span class="spinner-loader"></span></div>
+                    </div>
+                    <div ng-if="!claimLoading">
+                        <documents module="claims" model='{{claim}}' model-type="Claim">
+                            <div class="pull-right">
+                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">   
+                                    <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
+                                </button>
+                            </div>
 
-            <!-- Nav tabs -->
-            <ul class="widgettabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_PHOTOS') ?>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_COMMENTS') ?>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_HISTORY') ?>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="widget tab-pane active" id="photos">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="comments">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="history">...</div>
-            </div>
-
+                        </documents>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
         </div>
     </div>
 </div>

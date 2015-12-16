@@ -4,10 +4,13 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.paLoading = true;
     $scope.claimLoading = true;
     $scope.authorizationLoading = true;
+    $scope.templateLoading = true;
     $scope.authorization = {};
     $scope.isOpen = {};
     $scope.contacts = [];
-    
+
+    $scope.hasError = {};
+
     getProjectAddress();
     getClaimDetails();
 
@@ -20,9 +23,9 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
 
     function getClaimDetails() {
 
-        var claimId = document.getElementById('Claim_id').value;
+        $scope.claimId = document.getElementById('Claim_id').value;
 
-        claimsEditSrv.getClaimDetails(claimId).then(function() {
+        claimsEditSrv.getClaimDetails($scope.claimId).then(function() {
             $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
             $scope.claimLoading = false;
@@ -85,5 +88,4 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             });
         });
     };
-
 });

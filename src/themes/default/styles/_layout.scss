@@ -188,3 +188,11 @@ ul {
 .form-control-static {
     min-height: 36px;
 }
+
+.dropzone {
+    margin-bottom:1rem;
+}
+
+.dropzone div.dz-preview {
+    display:none;
+}

@@ -1,0 +1,6 @@
+admin_documents_upload:
+    listeners:
+        - { 'cacheKey': 'DocumentFiles', 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\documents\listeners\UploadDocumentsListener', 'datasource': 'datasource1' }
+admin_documents_count:
+    listeners:
+        - { 'cacheKey': 'DocumentFiles', 'class': 'components\documents\models\DocumentModel', 'event': 'request_start', 'listener': 'components\documents\listeners\LoadDocumentsCountsListener', 'datasource': 'datasource1' }

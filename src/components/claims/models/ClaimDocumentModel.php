@@ -9,32 +9,27 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\documents\models;
+namespace components\claims\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
-use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of DepartmentModel
+ * Description of ClaimDocumentModel
  *
  * @author Dave Meikle
  */
-class DocumentModel extends AbstractModel implements FormBuilderInterface, \core\UploadableInterface {
+class ClaimDocumentModel extends AbstractModel implements \core\UploadableInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Document';
-        $this->tablename = 'documents';
-    }
-
-    public function getFormWrapper() {
-        return $this->entity;
+        $this->entity = 'ClaimDocument';
+        $this->tablename = 'claimdocuments';
     }
 
     public function getUploadPath() {
@@ -42,7 +37,9 @@ class DocumentModel extends AbstractModel implements FormBuilderInterface, \core
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
+
+        return $data;
     }
 
 }

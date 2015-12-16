@@ -18,6 +18,7 @@ use core\http\HTTPRequest;
 use libraries\utils\Container;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
+use core\UploadableInterface;
 
 /**
  * base class for all Event Listeners - abstracts a lot of the framework
@@ -186,8 +187,7 @@ class AbstractListener {
      */
     protected function getLoggedInStaffId() {
         $token = $this->getSecurityToken();
-//TODO: remove this debug
-        return 2;
+
         return $token->getClient()->getId();
     }
 
