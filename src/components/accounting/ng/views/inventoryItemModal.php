@@ -4,7 +4,7 @@
     <h4 class="modal-title" id="myModalLabel">
         <span ng-if="newItem"><?php echo $this->getString('ACCOUNTING_NEW'); ?></span>
         <span ng-if="!newItem"><?php echo $this->getString('ACCOUNTING_EDIT'); ?></span>
-        Inventory Item</h4>
+        <?php echo $this->getString('ACCOUNTING_INVENTORY_ITEM'); ?></h4>
 </div>
 <div class="modal-body">
     <div class="cards col-md-12">
@@ -21,10 +21,10 @@
                 <label for="description"><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></label>
                 <?php echo $form['description']; ?>
             </div>
-<!--            <div class="form-group col-md-6">
-                <label for="PackageTypes_id"><?php echo $this->getString('ACCOUNTING_PACKAGE_TYPE'); ?></label>
-                <?php //echo $form['PackageTypes_id']; ?>
-            </div>-->
+            <!--            <div class="form-group col-md-6">
+                            <label for="PackageTypes_id"><?php echo $this->getString('ACCOUNTING_PACKAGE_TYPE'); ?></label>
+            <?php //echo $form['PackageTypes_id']; ?>
+                        </div>-->
             <div class="form-group col-md-6">
                 <label for="markup"><?php echo $this->getString('ACCOUNTING_MARKUP'); ?></label>
                 <?php echo $form['markup']; ?>
@@ -39,6 +39,8 @@
 </div>
 <div class="modal-footer">
     <button ng-click="cancel()"><?php echo $this->getString('ACCOUNTING_CANCEL'); ?></button>
-    <button class="primary" ng-click="save(inventoryItem);clear()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
-    <button class="primary" ng-click="save(inventoryItem);confirm()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
+    <button class="primary" ng-click="save(inventoryItem);
+        clear()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+    <button class="primary" ng-click="save(inventoryItem);
+        confirm()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
 </div>

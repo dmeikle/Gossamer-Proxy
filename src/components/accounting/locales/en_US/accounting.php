@@ -83,6 +83,7 @@ return array(
     'ACCOUNTING_MIN_ORDER' => 'Min Order',
     'ACCOUNTING_MAX_ORDER' => 'Max Order',
     'ACCOUNTING_PACKAGE_TYPE' => 'Package Type',
+    'ACCOUNTING_INVENTORY_ITEM' => 'Inventory Item',
     'ACCOUNTING_INVENTORY_TYPE' => 'Inventory Type',
     'ACCOUNTING_ACTIVE' => 'Active',
     'ACCOUNTING_PRICE' => 'Price ($)',
