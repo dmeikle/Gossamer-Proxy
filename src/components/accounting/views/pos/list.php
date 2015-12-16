@@ -19,7 +19,7 @@
                     </button>
                 </span>
             </form>
-            <a href="edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
+            <a href="/admin/accounting/pos/edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -166,13 +166,13 @@
 
         <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
-                <div class="pull-left">
+                <div class="pull-left col-sm-12 col-md-6">
                     <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE') ?></h3>
                     <p>{{selectedRow.orderType}}</p>
                     <h3><?php echo $this->getString('ACCOUNTING_VENDOR') ?></h3>
                     <p>{{selectedRow.company}}</p>
                 </div>
-                <div class="pull-right">
+                <div class="pull-right col-sm-12 col-md-6">
                     <h3><?php echo $this->getString('ACCOUNTING_DATE') ?></h3>
                     <p>{{selectedRow.creationDate}}</p>
                     <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></h3>
@@ -198,14 +198,14 @@
                     <td>{{item.amount| currency}}</td>
                 </tr>
             </table>
-            <div class="col-md-5 col-md-offset-7">
-                <div class="pull-left">
+            <div>
+                <div class="col-md-6 pull-left text-right">
                     <p><strong><?php echo $this->getString('ACCOUNTING_SUBTOTAL') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TAX') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TOTAL') ?></strong></p>
                 </div>
-                <div class="pull-right">
+                <div class="col-md-6 pull-right text-right">
                     <p>{{breakdown.subtotal| currency}}</p>
                     <p>{{breakdown.deliveryFee| currency}}</p>
                     <p>{{breakdown.tax| currency}}</p>
