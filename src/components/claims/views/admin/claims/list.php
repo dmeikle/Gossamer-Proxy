@@ -80,7 +80,7 @@
                                 <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li><a href="" ng-click="openPhotoUploadModal(claim)"><?php echo $this->getString('CLAIM_UPLOAD_PHOTOS') ?></a></li>
                                 <li><a href="" ng-click="remove(claim)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
-                                <li class="divider"></li>
+                                <li ng-if="claim.jobNumber" class="divider"></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/costcards/{{claim.id}}"><?php echo $this->getString('CLAIMS_VIEW_COST_CARDS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/breakdowns/{{claim.id}}"><?php echo $this->getString('CLAIMS_BREAKDOWNS'); ?></a></li>
                                 <li ng-if="claim.jobNumber"><a href="/admin/claims/accounting/invoices/{{claim.id}}"><?php echo $this->getString('CLAIMS_INVOICES'); ?></a></li>
