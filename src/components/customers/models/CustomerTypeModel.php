@@ -24,7 +24,7 @@ class CustomerTypeModel extends AbstractModel {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'CustomerType';
-        $this->tablename = 'contacttypes';
+        $this->tablename = 'customertypes';
     }
 
 }
