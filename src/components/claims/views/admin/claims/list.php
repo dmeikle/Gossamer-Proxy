@@ -4,7 +4,7 @@
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">Claim List</h1>
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openClaimAdvancedSearch()">
+            <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('CLAIMS_ADVANCED_SEARCH') ?>
             </button>
             <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>

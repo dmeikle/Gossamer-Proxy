@@ -105,6 +105,22 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     }
 
 
+
+    $scope.openAdvancedSearch = function () {
+        $scope.sidePanelOpen = true;
+        $scope.selectedClaim = undefined;
+        $scope.sidePanelLoading = true;
+        claimsListSrv.getAdvancedSearchFilters().then(function () {
+            $scope.sidePanelLoading = false;
+            $scope.searching = true;
+        });
+    };
+
+    $scope.resetAdvancedSearch = function () {
+        $scope.advancedSearch.query = {};
+        getClaimsList();
+    };
+    
     $scope.search = function(searchObject) {
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);

@@ -48,5 +48,6 @@ return array(
     'CONTACTS_COMPANY' => 'Company',
     'CONTACTS_MORE_INFO' => 'More Information',
     'CONTACTS_CONTACTTYPE' => 'Contact Type',
-    'CONTACTS_CONFIRM' => 'Confirm'
+    'CONTACTS_CONFIRM' => 'Confirm',
+    'CONTACTS_STATUS' => 'Status'
 );
