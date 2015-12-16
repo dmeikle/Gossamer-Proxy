@@ -117,4 +117,14 @@ module.controller('contactsListCtrl', function ($scope, $uibModal, contactsListS
 
         getContactList(row, numRows);
     });
+    
+    
+    $scope.delete = function (object)  {
+        $scope.loading = true;
+        var token = document.getElementById('FORM_SECURITY_TOKEN').value;
+        contactsListSrv.delete(object, token).then(function() {
+            $scope.loading = false;
+            getContactList();
+        });
+    };
 });

@@ -77,7 +77,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="/admin/contacts/claims/{{contacts.id}}"><?php echo $this->getString('CONTACTS_VIEW_CLAIMS'); ?></a></li>
                                 <li><a href="/admin/contacts/edit/{{contacts.id}}"><?php echo $this->getString('CONTACTS_EDIT'); ?></a></li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a href="" ng-click="delete(contacts)">Delete</a></li>
                             </ul>
                         </div>
                     </td>

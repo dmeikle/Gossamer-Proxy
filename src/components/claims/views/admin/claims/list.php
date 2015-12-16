@@ -4,7 +4,7 @@
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left">Claim List</h1>
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openClaimAdvancedSearch()">
+            <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('CLAIMS_ADVANCED_SEARCH') ?>
             </button>
             <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
@@ -63,7 +63,7 @@
                     <td ng-click="selectRow(claim)">{{claim.phase}}</td>
                     <td ng-click="selectRow(claim)">{{claim.buildingName}}</td>
                     <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.lossDate}}</td>
+                    <td ng-click="selectRow(claim)">{{claim.callInDate}}</td>
                     <td ng-click="selectRow(claim)">{{claim.status}}</td>
                     <td ng-click="selectRow(claim)">
                         <span ng-if="claim.firstname">{{claim.lastname}}, {{claim.firstname}}</span>
@@ -134,38 +134,19 @@
             <div>{{selectedClaim.address2}}</div>
             <div>{{selectedClaim.city}}</div>
             <h4><?php echo $this->getString('CLAIMS_CONTACTS') ?></h4>
-            <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
-                <div class="cardheader row">
-                    <h1 ng-if="contact.type" class="col-xs-6">
-                        {{contact.type}}
-                    </h1>
-                    <h2 class="col-xs-6">
-                        <a href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
-                    </h2>
+            <div ng-if="!loading && !hasContacts()" ng-repeat="contact in selectedClaim.contacts" class="card info-card ng-scope">
+                <p><strong class="ng-binding">{{contact.type}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
+                    <span class="ng-binding" style="float: right"><strong><?php echo $this->getString('CLAIMS_COMPANY'); ?>:</strong> {{contact.company}} </span></p>
+                <p class="ng-binding">
+                    <?php echo $this->getString('CLAIMS_OFFICE'); ?>: {{contact.office}}
+                    <span class="ng-binding" style="float: right"> <?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{contact.mobile}}</span>
+                </p>
+
+                <div class="cardfooter clearfix">
+                    <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('CLAIMS_MORE_INFORMATION'); ?></a></div>
                 </div>
-                <table class="table cardtable">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <strong><?php echo $this->getString('CLAIMS_COMPANY'); ?></strong>
-                            </td>
-                            <td>{{contact.company}}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong><?php echo $this->getString('CLAIMS_OFFICE'); ?></strong>
-                            </td>
-                            <td>{{contact.office}}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong><?php echo $this->getString('CLAIMS_MOBILE'); ?></strong>
-                            </td>
-                            <td>{{contact.mobile}}</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
+
 
             <div>
                 <h4 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>

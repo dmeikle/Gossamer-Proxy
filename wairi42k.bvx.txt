@@ -1,0 +1,52 @@
+﻿Merge remote-tracking branch 'origin/CP-204' into rc1.0.12
+
+Conflicts:
+	src/components/claims/locales/en_US/claims.php
+	src/components/claims/ng/js/claimsLocationsListCtrl.js
+	src/components/claims/ng/js/claimsModalCtrl.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch rc1.0.12
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   app/locales/en_US/website.php
+#	modified:   src/components/claims/locales/en_US/claims.php
+#	modified:   src/components/claims/ng/js/claimsEditCtrl.js
+#	modified:   src/components/claims/ng/js/claimsListCtrl.js
+#	modified:   src/components/claims/ng/js/claimsLocationsListCtrl.js
+#	modified:   src/components/claims/ng/js/claimsModalCtrl.js
+#	modified:   src/components/claims/ng/scss/claims.scss
+#	modified:   src/components/claims/views/admin/claims/edit.php
+#	modified:   src/components/claims/views/admin/claims/list.php
+#	modified:   src/components/companies/ng/scss/staff.scss
+#	modified:   src/components/contacts/ng/scss/staff.scss
+#	modified:   src/components/contacts/ng/views/staffEditModal.php
+#	modified:   src/components/inventory/locales/en_US/inventory.php
+#	modified:   src/components/inventory/ng/js/inventoryEditItemCtrl.js
+#	modified:   src/components/inventory/ng/js/inventoryEditSrv.js
+#	modified:   src/components/inventory/views/admin/items/edit.php
+#	modified:   src/components/inventory/views/admin/items/list.php
+#	modified:   src/components/projects/ng/scss/projects.scss
+#	modified:   src/components/staff/ng/js/staffBenefitsSrv.js
+#	modified:   src/components/staff/ng/js/staffListCtrl.js
+#	modified:   src/components/staff/ng/js/staffListSrv.js
+#	modified:   src/components/staff/ng/scss/staff.scss
+#	modified:   src/components/staff/ng/views/staffAddNewModal.php
+#	modified:   src/components/staff/ng/views/staffBenefitsHistoryModal.php
+#	modified:   src/components/staff/views/admin/staff-edit.php
+#	modified:   src/components/staff/views/admin/staff-list.php
+#	modified:   src/components/subcontractors/ng/scss/subcontractors.scss
+#	modified:   src/extensions/angular/ng/js/rootApp.js
+#	modified:   src/framework/core/components/blogs/ng/scss/blogs.scss
+#	modified:   src/themes/default/styles/_layout.scss
+#	modified:   src/themes/default/styles/_utilities.scss
+#
+

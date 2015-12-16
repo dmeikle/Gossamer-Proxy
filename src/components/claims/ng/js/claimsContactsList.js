@@ -52,4 +52,10 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
             }); 
     }
 
+
+    $scope.hasContacts = function() {
+        return $scope.contacts.length > 0;
+    };
+    
+    
 });

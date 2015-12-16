@@ -6,7 +6,7 @@
         <div class="modal-body">
             <div class="cards col-md-12">
                 <div class="card-left col-md-6">
-
+                    <?php echo $form['id']; ?>
                     <div class="form-group">
                         <label for="contact-firstname"><?php echo $this->getString('CONTACTS_FIRSTNAME'); ?></label>
                         <?php echo $form['firstname']; ?>
@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label for="contact-company"><?php echo $this->getString('CONTACTS_COMPANY'); ?>:</label>
 
-                        <input type="text" ng-model="company" 
+                        <input type="text" ng-model="company"
                                uib-typeahead="value as value.name for value in fetchCompaniesAutocomplete($viewValue)" typeahead-loading="loadingTypeaheadCompanies"
                                typeahead-no-results="noResultsCompanies" class="form-control" typeahead-min-length='3'
                                typeahead-on-select="setCompanyId(company);">
@@ -69,10 +69,8 @@
         </div>
         <div class="clearfix"></div>
         <div class="modal-footer">
-            <button class="primary" ng-click="confirm(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
-
-            <button ng-click="cancel()"><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
+            <button class="btn btn-primary ng-scope" ng-click="save(contact)"><?php echo $this->getString('CONTACTS_CONFIRM'); ?></button>
+            <button ng-click="/admin/contacts" class="btn-default ng-scope" ><?php echo $this->getString('CONTACTS_CANCEL'); ?></button>
         </div>
-
     </form>
 </div>
