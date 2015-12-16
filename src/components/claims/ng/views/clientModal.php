@@ -1,14 +1,14 @@
 <div class="modal-header">
-	<h1 ng-if="!client.id">
+	<h1 ng-if="!contact.id">
 		<?php echo $this->getString('CLAIMS_NEW_CLIENT') ?>
 	</h1>
-	<div ng-if="client.id">
+	<div ng-if="contact.id" class="clearfix">
 		<h1 class="pull-left">
 			<?php echo $this->getString('EDIT') ?> 
-			{{client.firstname}} {{client.lastname}}
+			{{contact.firstname}} {{contact.lastname}}
 		</h1>
 		<div class="pull-right">
-			<button class="btn-default">
+			<button class="btn-default" ng-click="remove(contact)">
 				<?php echo $this->getString('REMOVE') ?>
 			</button>
 		</div>
@@ -19,13 +19,25 @@
 		<label for="">
 			<?php echo $this->getString('CLAIMS_CONTACT_FIRSTNAME') ?>
 		</label>
-		<?php echo $contactForm['firstname'] ?>
+		<input type="text" ng-model="contact" 
+		uib-typeahead="contact as contact.firstname for contact in firstnameAutocomplete($viewValue)"
+		typeahead-loading="loadingFirstname" typeahead-no-results="noFirstnameResults"class="form-control"
+		typeahead-min-length="3">
+		<div ng-show="noFirstnameResults">
+	      <i class="glyphicon glyphicon-remove"></i>
+	    </div>
 	</div>
 	<div class="form-group col-xs-6">
 		<label for="">
 			<?php echo $this->getString('CLAIMS_CONTACT_LASTNAME') ?>
 		</label>
-		<?php echo $contactForm['lastname'] ?>
+		<input type="text" ng-model="contact" 
+		uib-typeahead="contact as contact.lastname for contact in lastnameAutocomplete($viewValue)"
+		typeahead-loading="loadingLastname" typeahead-no-results="noLastnameResults"class="form-control"
+		typeahead-min-length="3">
+		<div ng-show="noLastnameResults">
+	      <i class="glyphicon glyphicon-remove"></i>
+	    </div>
 	</div>
 	<div class="form-group col-xs-6">
 		<label for="">
@@ -58,7 +70,7 @@
 		</label>
 		<?php echo $contactForm['mobile'] ?>
 	</div>
-
+	<form></form>
 </div>
 <div class="modal-footer">
 	<div class="pull-right btn-group">

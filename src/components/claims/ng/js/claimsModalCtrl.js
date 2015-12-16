@@ -221,14 +221,32 @@ module.controller('claimsEditModalCtrl', function($scope, $uibModalInstance, cla
     };
 });
 
-module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact, claimsEditSrv) {
+module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact, claimId, 
+    claimsEditSrv, contactListSrv) {
     $scope.contact = contact;
-    
+
+    $scope.remove = function(object) {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        claimsEditSrv.removeContact(object, formToken).then(function(response) {
+            if (!response.data.result || response.data.result !== 'error') {
+                $uibModalInstance.close();
+            }
+        });
+    };
+
+    function autocomplete(value, type) {
+        return contactListSrv.autocomplete(value, type);
+    }
+
+    $scope.firstnameAutocomplete = function(viewValue) {
+        return autocomplete(viewValue, 'firstname');
+    };
+
     $scope.submit = function() {
         var data = $scope.contact;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        claimsEditSrv.saveContact(data, formToken).then(function() {
+        contactListSrv.save(data, formToken, claimId).then(function(response) {
             if (!response.data.result || response.data.result !== 'error') {
                 $uibModalInstance.close();
             }

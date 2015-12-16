@@ -53,15 +53,22 @@ module.controller('claimsContactsList', function ($scope, $rootScope, $uibModal,
     }
 
     $scope.openClientModal = function(client) {
-        $uibModal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/clientModal',
             controller: 'clientModalCtrl',
             size: 'md',
             resolve: {
                 contact: function() {
                     return client;
+                },
+                claimId: function() {
+                    return document.getElementById('Claim_id').value;
                 }
             }
+        });
+
+        modalInstance.result.then(function() {
+            listContactsByClaim();
         });
     };
 

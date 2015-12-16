@@ -68,7 +68,13 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     };
 
     this.saveContact = function(object, formToken) {
-        return crudSrv.save(singleApiPath, object, 'ClaimContact', formToken);
+        var requestPath;
+        if (object.id) {
+            requestPath = singleApiPath + 'contacts/' + object.id;
+        } else {
+            requestPath = singleApiPath + 'contacts/0';
+        }
+        return crudSrv.save(requestPath, object, 'ClaimContact', formToken);
     };
 
 
@@ -85,6 +91,10 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     this.setInactive = function(object, formToken) {
         var requestPath = removeApiPath + object.id;
         return crudSrv.setInactive(requestPath, formToken);
+    };
+
+    this.removeContact = function(object, formToken) {
+        return crudSrv.delete(singleApiPath + 'contacts/', object, formToken);
     };
 
 });
