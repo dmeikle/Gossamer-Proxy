@@ -19,7 +19,8 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     $scope.autocomplete = {};
     $scope.selectedClaim = {};
     $scope.loading = true;
-
+    
+    $scope.claimsListSrv = claimsListSrv;
     $scope.tablesSrv = tablesSrv;
     $controller('claimsLocationsListCtrl', {$scope: $scope}); 
 
@@ -108,12 +109,8 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
 
     $scope.openAdvancedSearch = function () {
         $scope.sidePanelOpen = true;
-        $scope.selectedClaim = undefined;
-        $scope.sidePanelLoading = true;
-        claimsListSrv.getAdvancedSearchFilters().then(function () {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
+        $scope.selectedStaff = undefined;
+        $scope.searching = true;
     };
 
     $scope.resetAdvancedSearch = function () {
