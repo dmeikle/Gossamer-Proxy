@@ -130,6 +130,7 @@ return array(
     'ACCOUNTING_PHASE_CODE' => 'Phase Code',
     'ACCOUNTING_CLAIM_LOCATION' => 'Claim Location',
     'ACCOUNTING_MATERIAL_NAME' => 'Material Name',
-    'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor'
+    'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
+    'ACCOUNTING_BLANK_FIELD' => 'Blank Field'
 );
 
