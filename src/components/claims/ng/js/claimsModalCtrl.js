@@ -168,9 +168,14 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 });
 
+
 module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, claimLocation, claim, claimsLocationsEditSrv) {
+
     if (claimLocation) {
         $scope.item = claimLocation;
+    }
+    if (claim) {
+        $scope.claim = claim;
     }
 
     $scope.confirm = function() {
@@ -186,7 +191,7 @@ module.controller('claimLocationModalCtrl', function($scope, $uibModalInstance, 
                 }
             });
         } else {
-            object.Claims_id = claim.Claims_id; //$scope.selectedClaim.Claims_id;
+            object.Claims_id = claim.Claims_id; 
 
             claimsLocationsEditSrv.save(object, formToken).then(function(response) {
                 if (!response.data.result || response.data.result !== 'error') {

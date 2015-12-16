@@ -2,7 +2,7 @@
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('INVENTORY_LIST') ?></h1>
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openAdvancedSearch()">
+            <button class="btn-link" ng-click="openAdvancedSearch()" ng-disabled="listType !=='materials'">
                 <?php echo $this->getString('ADVANCED_SEARCH') ?>
             </button>
             <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
