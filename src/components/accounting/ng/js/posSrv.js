@@ -57,6 +57,6 @@ module.service('posSrv', function ($http, searchSrv, $filter, crudSrv) {
     };
     
     this.saveItem = function(item, formToken){
-        return crudSrv.save(apiPath + item.id, item, 'GeneralCost', formToken);
+        return crudSrv.save(apiPath + item.id, item, 'PurchaseOrder', formToken);
     };
 });

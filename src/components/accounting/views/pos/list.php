@@ -119,14 +119,14 @@
                     </span>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
-                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>-</option>
-                    <?php
-                    foreach ($Vendors as $vendor) {
-                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
-                    }
-                    ?>
-                </select>
+<!--                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
+                    <option value="" selected>-<?php // echo $this->getString('ACCOUNTING_VENDOR');  ?>-</option>
+                <?php
+//                    foreach ($Vendors as $vendor) {
+//                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
+//                    }
+                ?>
+                </select>-->
 
                 <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.PurchaseOrderTypes_id">
                     <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?>-</option>
@@ -137,17 +137,17 @@
                     ?>
                 </select>
 
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
-                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?>-</option>
-                    <?php
-                    foreach ($AccountingPaymentMethods as $paymentMethod) {
-                        echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
-                    }
-                    ?>
-                </select>
+<!--                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
+                    <option value="" selected>-<?php // echo $this->getString('ACCOUNTING_PAYMENT_METHOD');  ?>-</option>
+                <?php
+//                    foreach ($AccountingPaymentMethods as $paymentMethod) {
+//                        echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
+//                    }
+                ?>
+                </select>-->
 
                 <select class="form-control" name="ClaimPhases" ng-model="advSearch.ClaimPhases_id">
-                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CLAIM_PHASES'); ?>-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CLAIM_PHASE'); ?>-</option>
                     <?php
                     foreach ($ClaimPhases as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['title'] . '</option>';
