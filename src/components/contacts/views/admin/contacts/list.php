@@ -32,6 +32,7 @@
                     <th column-sortable data-column="firstname"><?php echo $this->getString('CONTACTS_FIRSTNAME'); ?></th>
                     <th column-sortable data-column="lastname"><?php echo $this->getString('CONTACTS_LASTNAME'); ?></th>
                     <th column-sortable data-column="title"><?php echo $this->getString('CONTACTS_TITLE'); ?></th>
+                    <th column-sortable data-column="company"><?php echo $this->getString('CONTACTS_COMPANY'); ?></th>
                     <th column-sortable data-column="telephone"><?php echo $this->getString('CONTACTS_OFFICE'); ?></th>
                     <th column-sortable data-column="mobile"><?php echo $this->getString('CONTACTS_MOBILE'); ?></th>
                     <th column-sortable data-column="status"><?php echo $this->getString('CONTACTS_STATUS'); ?></th>
@@ -46,9 +47,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -58,6 +63,7 @@
                     <td ng-click="selectRow(contacts)">{{contacts.firstname}}</td>
                     <td ng-click="selectRow(contacts)">{{contacts.lastname}}</td>
                     <td ng-click="selectRow(contacts)">{{contacts.title}}</td>
+                    <td ng-click="selectRow(contacts)">{{contacts.company}}</td>
                     <td ng-click="selectRow(contacts)">{{contacts.telephone}}</td>
                     <td ng-click="selectRow(contacts)">{{contacts.mobile}}</td>
                     <td ng-click="selectRow(contacts)">{{contacts.status}}</td>
@@ -71,7 +77,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="/admin/contacts/claims/{{contacts.id}}"><?php echo $this->getString('CONTACTS_VIEW_CLAIMS'); ?></a></li>
                                 <li><a href="/admin/contacts/edit/{{contacts.id}}"><?php echo $this->getString('CONTACTS_EDIT'); ?></a></li>
-                                <li><a href="#">Delete</a></li>
+                                <li><a href="" ng-click="delete(contacts)">Delete</a></li>
                             </ul>
                         </div>
                     </td>
@@ -115,23 +121,53 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/contacts/edit/{{selectedContact.id}}">{{selectedContact.firstname}} {{selectedContact.lastname}}</a></h1>
-            <p>{{selectedContact.title}}</p>
-            <p>{{selectedContact.telephone}}</p>
-            <p>{{selectedContact.mobile}}</p>
-            <p><a href="mailto:{{selectedContact.email}}">{{selectedContact.email}}</a></p>
-            <h3><?php echo $this->getString('CONTACTS_ADDRESS') ?></h3>
-            <p>{{selectedContact.city}}</p>
-            <p>{{selectedContact.postalCode}}</p>
-            <h3><?php echo $this->getString('CONTACTS_NOTES') ?></h3>
-            <p>{{selectedContact.notes}}</p>
-            <h3><?php echo $this->getString('CONTACTS_COMPANY_INFO') ?></h3>
-            <p>{{selectedCompany.name}}</p>
-            <p>{{selectedCompany.address1}}</p>
-            <p>{{selectedCompany.city}}</p>
-            <p>{{selectedCompany.telephone}}</p>
-            <p>{{selectedCompany.fax}}</p>
-            <p>{{selectedCompany.url}}</p>
+
+            <div class="card info-card ng-scope">
+                <h1><a href="/admin/contacts/edit/{{selectedContact.id}}">{{selectedContact.firstname}} {{selectedContact.lastname}}</a></h1>
+                <p>{{selectedContact.title}}</p>
+                <p>{{selectedContact.telephone}}</p>
+                <p>{{selectedContact.mobile}}</p>
+                <p><a href="mailto:{{selectedContact.email}}">{{selectedContact.email}}</a></p>
+                <h3><?php echo $this->getString('CONTACTS_ADDRESS') ?></h3>
+                <p>{{selectedContact.city}}</p>
+                <p>{{selectedContact.postalCode}}</p>
+                <strong><?php echo $this->getString('CONTACTS_NOTES') ?></strong>
+                <p>{{selectedContact.notes}}</p>
+            </div>
+            <div class="card info-card ng-scope">
+                <h3>{{selectedCompany.name}}</h3>
+                <p>{{selectedCompany.address1}} {{selectedCompany.address2}} </p>
+                <p>{{selectedCompany.city}}</p>
+                <p>{{selectedCompany.postalCode}}</p>
+                <p>{{selectedCompany.telephone}}</p>
+                <p>{{selectedCompany.fax}}</p>
+                <p>{{selectedCompany.url}}</p>
+                <div class="cardfooter clearfix">
+                    <div class="pull-right"><a gcms="{uri='admin_companies_edit' params='{{selectedCompany.id}}'}"><?php echo $this->getString('CONTACTS_MORE_INFO') ?></a></div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th class="col-md-2">JobNumber</th>
+                    <th class="col-md-1"></th>
+                </tr>
+                <tr ng-repeat="claim in claimsList">
+                    <td>{{claim.jobNumber}}</td>
+                    <td class="row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a gcms="{uri='admin_claims_edit' params='{{claim.id}}'}"><?php echo $this->getString('CONTACTS_EDIT') ?></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
     <div class="clearfix"></div>

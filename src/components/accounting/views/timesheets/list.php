@@ -1,12 +1,7 @@
-
 <div class="widget" ng-controller="timesheetListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
-        <h1 class="pull-left">Timesheet List</h1>
-        <div class="clearfix"></div>
+        <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_TIMESHEETS') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_TIMESHEET_DB_ERROR') ?></div>
-        <div class="pull-left">
-            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button><span ng-cloak ng-if="modalLoading" class="modal-spinner spinner-loader"></span>
-        </div>
         <!--    <div class="pull-right">-->
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openTimesheetAdvancedSearch()">
@@ -32,36 +27,35 @@
                     </button>
                 </span>
             </form>
-
+            <button class="primary" ng-click="openTimesheetModal('')"><?php echo $this->getString('ACCOUNTING_NEW_TIMESHEET') ?></button>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_LABORER'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
+                    <th ng-hide="groupedBy === 'firstname'" column-sortable data-column="firstname"><?php echo $this->getString('ACCOUNTING_FIRST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'lastname'" column-sortable data-column="lastname"><?php echo $this->getString('ACCOUNTING_LAST_NAME'); ?></th>
+                    <th ng-hide="groupedBy === 'numJobs'" column-sortable data-column="numJobs"><?php echo $this->getString('ACCOUNTING_CLAIM'); ?></th>
+                    <th ng-hide="groupedBy === 'hourlyRate'" column-sortable data-column="hourlyRate"><?php echo $this->getString('ACCOUNTING_HOURLY_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_REG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_OT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_DOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SREG'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SOT'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_SDOT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
-                    <th class="cog-col">&nbsp;</th>
+                    <th ng-hide="groupedBy === 'workDate'" column-sortable data-column="workDate"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'isExported'" column-sortable data-column="isExported"><?php echo $this->getString('ACCOUNTING_EXPORTED'); ?></th>
+                    <th ng-hide="groupedBy === 'totalHours'" column-sortable data-column="totalHours"><?php echo $this->getString('ACCOUNTING_TOTAL'); ?></th>
+                    <!--<th class="cog-col">&nbsp;</th>-->
+                    <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td>
-                        <span class="spinner-loader"></span>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td ng-hide="groupedBy === 'firstname'"></td>
+                    <td ng-hide="groupedBy === 'lastname'"></td>
+                    <td ng-hide="groupedBy === 'numJobs'"></td>
+                    <td ng-hide="groupedBy === 'hourlyRate'"></td>
                     <td></td>
                     <td></td>
                     <td>
@@ -70,28 +64,32 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td ng-hide="groupedBy === 'workDate'"></td>
+                    <td ng-hide="groupedBy === 'isExported'"></td>
+                    <td ng-hide="groupedBy === 'totalHours'"></td>
                     <td></td>
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="timesheet in timesheetList" ng-class="{'selected': timesheet === previouslyClickedObject}">
 
-                    <td ng-click="selectRow(timesheet)">{{timesheet.lastname}}, {{timesheet.firstname}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.hourlyRate| currency}}</td>
+                    <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(timesheet)">{{timesheet.firstname}}</td>
+                    <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(timesheet)">{{timesheet.lastname}}</td>
+                    <td ng-hide="groupedBy === 'numJobs'" ng-click="selectRow(timesheet)">{{timesheet.numJobs}}</td>
+                    <td ng-hide="groupedBy === 'hourlyRate'" ng-click="selectRow(timesheet)">{{timesheet.hourlyRate| currency}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.regularHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.overtimeHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.doubleOTHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statRegularHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statOTHours}}</td>
                     <td ng-click="selectRow(timesheet)">{{timesheet.statDoubleOTHours}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
-                    <td ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
+                    <td ng-hide="groupedBy === 'workDate'" ng-click="selectRow(timesheet)">{{timesheet.workDate}}</td>
+                    <td ng-hide="groupedBy === 'isExported'" ng-click="selectRow(timesheet)">{{timesheet.isExported}}</td>
+                    <td ng-hide="groupedBy === 'totalHours'" ng-click="selectRow(timesheet)">{{timesheet.totalHours}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openTimesheetModal(timesheet)">Edit</a></li>
+                                <li><a ng-click="openTimesheetModal(timesheet)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a ng-click="deleteItem(timesheet)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -105,7 +103,7 @@
         <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker}">
+    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker, 'show-overflow': !sidePanelLoading && sidePanelOpen}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -116,8 +114,17 @@
         <form ng-if="!sidePanelLoading && searching" ng-submit="advancedSearch(advSearch)">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
-                <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
-<!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
+
+                <div class="form-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="advSearch.name" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
+                           typeahead-no-results="noResultsLaborer" class="form-control typeahead"
+                           typeahead-min-length="3" typeahead-on-select="setAdvancedSearchLaborer(advSearch.name);" typeahead-loading="loadingTypeaheadLaborer">
+                    <i ng-show="loadingTypeaheadLaborer" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
                 <div class="input-group">
                     <input type="date" name="date" ng-model="advSearch.workDate" ng-model-options="{timezone: '+0000'}"
@@ -131,7 +138,17 @@
                     <div class="clearfix"></div>
                 </div>
 
-                <input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <!--<input placeholder="Job Number" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
+                <div class="input-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="advSearch.jobNumber" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
+                           typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="getClaimsID(advSearch.jobNumber)" typeahead-loading="loadingTypeaheadJobNumber">
+                    <i ng-show="loadingTypeaheadJobNumber" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsJobNumber">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
 
                 <select placeholder="Phase Code" class="form-control" name="AccountingPhaseCodes_id" ng-model="advSearch.AccountingPhaseCodes_id">
                     <option value="" selected>-Phase Code-</option>

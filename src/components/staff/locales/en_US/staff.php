@@ -56,7 +56,7 @@ return array(
     'STAFF_ROLES_RECEPTION' => 'Reception',
     'STAFF_ROLES_DATA_ENTRY' => 'Data Entry',
     'STAFF_ROLES_WEBSITE_EDITOR' => 'Website Editor',
-    'STAFF_ROLES_STAFF' => 'Staff',
+    'STAFF_ROLES_STAFF' => 'Staff Roles',
     'STAFF_ROLES_HUMAN_RESOURCES' => 'Human Resources',
     'STAFF_EMERGENCY_NAME' => 'Name',
     'STAFF_EMERGENCY_RELATIONSHIP' => 'Relation',
@@ -76,7 +76,7 @@ return array(
     'STAFF_CLOSE' => 'Close',
     'STAFF_CREATE' => 'Add New Staff Member',
     'STAFF_BENEFITS_NONE' => 'No history found. Click More Information to add salary/benefits.',
-    'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergecy contact.',
+    'STAFF_EMERGENCY_NONE' => 'No emergency contacts found. Click Add New to enter a new emergency contact.',
     'STAFF_PHOTOUPLOAD' => 'Upload User Photo',
     'STAFF_PHOTOUPLOAD_UPLOADHERE' => 'Drag a photo or click here to upload a user photo',
     'STAFF_GROUPEDBY_FIRSTNAME' => 'Grouped by first name: ',
@@ -101,5 +101,9 @@ return array(
     'STAFF_TIMESHEET_HOURS_REGULAR' => 'REG',
     'STAFF_TIMESHEET_HOURS_OVERTIME' => 'OT',
     'STAFF_TIMESHEET_HOURS_DOUBLE_OVERTIME' => 'DOT',
-    'STAFF_TIMESHEET_HOURS_TOTALS' => 'Total'
+    'STAFF_TIMESHEET_HOURS_TOTALS' => 'Total',
+    'STAFF_EDIT' => 'Edit',
+    'STAFF_SCHEDULE' => 'Schedule',
+    'STAFF_EMERGENCY_CONTACTS' => 'Emergency Contacts',
+    'STAFF_DELETE' => 'Delete'
 );

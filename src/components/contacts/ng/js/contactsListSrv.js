@@ -1,4 +1,4 @@
-module.service('contactsListSrv', function($http, searchSrv) {
+module.service('contactsListSrv', function($http, searchSrv, crudSrv) {
 
     var apiPath = '/admin/contacts/';
 
@@ -32,5 +32,10 @@ module.service('contactsListSrv', function($http, searchSrv) {
         return searchSrv.getAdvancedSearchFilters('/render/contacts/contactAdvancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
+    };
+    
+    
+    this.delete = function(object, formToken) {
+        return crudSrv.delete('/admin/contacts/', object, formToken);
     };
 });

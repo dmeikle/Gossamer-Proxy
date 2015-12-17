@@ -1,6 +1,8 @@
-module.service('contactsEditSrv', function ($http) {
+module.service('contactsEditSrv', function ($http, searchSrv) {
     var apiPath = '/admin/contacts/';
-
+    var companyApiPath = '/admin/companies/';
+    var companyList = [];
+    
     var self = this;
 
     this.getContactList = function (row, numRows) {
@@ -12,23 +14,33 @@ module.service('contactsEditSrv', function ($http) {
     };
 
     this.getContactDetail = function (object) {
-        console.log(object);
         return $http.get(apiPath + object.id)
                 .then(function (response) {
-//        if (response.data.Contact.dob) {
-//          response.data.Contact.dob = new Date(response.data.Contact.dob);
-//        }
-//        if (response.data.Contact.hireDate) {
-//          response.data.Contact.hireDate = new Date(response.data.Contact.hireDate);
-//        }
-//        if (response.data.Contact.departureDate) {
-//          response.data.Contact.departureDate = new Date(response.data.Contact.departureDate);
-//        }
-                    self.contactsDetail = response.data.Contact;
+                    self.contactsDetail = response.data.Contact[0];
                 });
     };
 
-
+    this.autocompleteCompanies = function(value) {
+        var config = {};
+        config.name = value;
+        
+        return searchSrv.fetchAutocomplete('/admin/companies/', config).then(function(response) {
+                   
+            if (response.data.Companys.length > 0 && response.data.Companys[0] !== 'undefined undefined') {
+                self.companyList = response.data.Companys;
+                return response;
+            } else if (response.data.Companys[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    this.getCompany = function(object) {
+        return $http.get(companyApiPath + object.id)
+                    .then(function (response) {
+                        self.company = response.data.Company;
+                    });
+    };
     this.save = function (object, formToken) {
         var copiedObject = jQuery.extend(true, {}, object);
         for (var property in copiedObject) {

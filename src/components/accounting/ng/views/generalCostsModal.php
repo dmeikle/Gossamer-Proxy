@@ -7,10 +7,10 @@
 <div class="modal-body general-costs-modal">
     <div class="input-group">
         <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
-        <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="AccountingGeneralCost.jobNumber" ng-model-options="{debounce:100}"
-               typeahead="value for value in fetchClaimAutocomplete($viewValue)"
+        <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="AccountingGeneralCost.jobNumber" typeahead-wait-ms="500"
+               typeahead="value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)"
                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsClaim" class="form-control typeahead"
-               typeahead-min-length="2" ng-blur="getClaimsID(AccountingGeneralCost.jobNumber)">
+               typeahead-min-length="2" typeahead-on-select="getClaimsID(AccountingGeneralCost.jobNumber)">
         <div class="resultspane claim-number" ng-show="noResultsClaim">
             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
         </div>
@@ -45,10 +45,10 @@
                 <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                 <th><?php echo $this->getString('ACCOUNTING_NAME'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_DESCRIPTION'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
+                <th class="date-col"><?php echo $this->getString('ACCOUNTING_DATE'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
-                <th><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
+                <th class="cost-col"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                <th class="cost-col"><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
                 <th><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?></th>
             </tr>
         </thead>

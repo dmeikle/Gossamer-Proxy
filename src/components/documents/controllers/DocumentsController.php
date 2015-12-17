@@ -54,4 +54,23 @@ class DocumentsController extends AbstractController {
         return $this->entity;
     }
 
+    public function uploadDocuments($jobNumber, $locationId = 0) {
+        $filenames = array();
+        $claimDocumentPath = $this->model->getUploadPath() . DIRECTORY_SEPARATOR . $jobNumber . DIRECTORY_SEPARATOR;
+
+        if (intval($locationId) > 0) {
+            $claimDocumentPath .= intval($locationId) . DIRECTORY_SEPARATOR;
+        }
+
+        $this->mkdir($claimDocumentPath);
+
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $claimDocumentPath . $_FILES['file']['name'])) {
+            $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
+
+            $this->model->saveParams($params);
+        }
+
+        $this->render(array('success' => 'true'));
+    }
+
 }

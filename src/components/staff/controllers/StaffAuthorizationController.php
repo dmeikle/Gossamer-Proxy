@@ -94,7 +94,7 @@ class StaffAuthorizationController extends AbstractController {
 //        $router = new Router($this->logger, $this->httpRequest);
 //        $router->redirect('admin_staff_permissions_get', array($id));
         //$this->render(array('success' => 'true'));
-        $this->render($result);
+        $this->render(array('success' => 'true'));
     }
 
     public function ajaxSaveCredentials($id) {
@@ -172,7 +172,7 @@ class StaffAuthorizationController extends AbstractController {
     }
 
     public function checkUsernameExists($id, $username) {
-        $result = $this->model->get(array('username' => $username));
+        $result = $this->model->listallWithParams(0, 1, array('username' => $username), 'get');
 
         if (is_array($result) && array_key_exists('StaffAuthorization', $result) && count($result['StaffAuthorization']) > 0) {
             if ($result['StaffAuthorization'][0]['Staff_id'] != intval($id)) {
@@ -180,6 +180,8 @@ class StaffAuthorizationController extends AbstractController {
             } else {
                 $this->render(array('exists' => 'false'));
             }
+        } else {
+            $this->render(array('exists' => 'false'));
         }
     }
 

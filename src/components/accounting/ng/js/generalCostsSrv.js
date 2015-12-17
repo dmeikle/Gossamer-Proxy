@@ -1,8 +1,9 @@
 // General Costs service
-module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
+module.service('generalCostsSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';
-
+    var claimsPath = '/admin/claims/';
+    var removeApiPath = '/admin/accounting/generalcosts/remove/';
     var self = this;
 
     self.error = {};
@@ -12,7 +13,6 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
     this.getGeneralCostsList = function (row, numRows) {
         return $http.get(apiPath + row + '/' + numRows)
                 .then(function (response) {
-                    console.log(response);
                     self.generalCostsList = response.data.AccountingGeneralCosts;
                     self.generalCostsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
 
@@ -58,5 +58,20 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter) {
                     self.advancedSearchResults = response.data.AccountingGeneralCosts;
                     self.advancedSearchResultsCount = response.data.AccountingGeneralCostsCount[0].rowCount;
                 });
+    };
+    
+    this.fetchClaimsAutocomplete = function (searchObject) {
+        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+            self.autocompleteValues = searchSrv.autocomplete.Claims;            
+            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+                return self.autocompleteValues;
+            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+                return undefined;
+            }
+        });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'GeneralCost', formToken);
     };
 });

@@ -32,5 +32,20 @@ return array(
     'PROJECTS_MAINIMAGE' => "Main Image",
     'PROJECTS_GOOGLEMAPLINK' => "Google Map Link",
     'PROJECTS_CLAIMS_HISTORY' => "Claims History",
-    'PROJECTS_CONTACT_INFO' => "Contact Information"
+    'PROJECTS_CONTACT_INFO' => "Contact Information",
+    'PROJECTADDRESS_STRATANUMBER' => "Strata Number",
+    'PROJECTADDRESS_ADDRESS' => "Address",
+    'PROJECTADDRESS_NUMFLOORS' => 'Number of Floors',
+    'PROJECTADDRESS_PROPERTY' => 'Property',
+    'PROJECTADDRESS_NUMSTRATA' => 'Number of Strata',
+    'PROJECTADDRESS_NUMUNITS' => 'Number of Units',
+    'PROJECTADDRESS_PROPERTYTYPE' => 'Property Type',
+    'PROJECTS_NEIGHBORHOOD' => 'Neighborhood',
+    'PROJECTS_NOTES' => 'Notes',
+    'PROJECTS_MANAGEMENT' => 'Management',
+    'PROJECTS_DEPARTMENT_ID' => 'Department',
+    'PROJECTS_EMAIL' => 'Email',
+    'PROJECTS_MOBILE' => 'Mobile',
+    'PROJECTS_EXTENSION' => 'Extension',
+    'PROJECTS_SAVE' => 'Save'
 );

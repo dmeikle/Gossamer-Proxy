@@ -15,7 +15,7 @@ use core\eventlisteners\AbstractListener;
 use components\claims\models\ClaimLocationModel;
 
 /**
- * Description of LoadProjectAddressByClaimIdListener
+ * Description of LoadClaimLocationsByClaimIdListener
  *
  * @author Dave Meikle
  */
@@ -36,6 +36,27 @@ class LoadClaimLocationsByClaimIdListener extends AbstractListener {
 
             $this->httpResponse->setAttribute('ClaimsLocation', $result['ClaimsLocation']);
         }
+    }
+
+    public function on_filerender_start($params = array()) {
+        $params = $this->httpRequest->getParameters();
+
+        $datasource = $this->getDatasource('components\\claims\\models\\ClaimLocationModel');
+        $model = new ClaimLocationModel($this->httpRequest, $this->httpResponse, $this->logger);
+
+        $data = array('Claims_id' => $this->getClaimId());
+        // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
+
+        $result = $datasource->query('get', $model, 'list', $data);
+
+        if (is_array($result) && array_key_exists('ClaimsLocations', $result)) {
+
+            $this->httpRequest->setAttribute('ClaimsLocations', $result['ClaimsLocations']);
+        }
+    }
+
+    private function getClaimId() {
+        return intval($this->httpRequest->getQueryParameter('Claims_id'));
     }
 
 }

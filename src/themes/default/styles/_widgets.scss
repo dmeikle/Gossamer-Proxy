@@ -62,6 +62,15 @@
   overflow-x:hidden;
   max-height:80vh;
   overflow-y:auto;
+  &.show-overflow{
+    overflow-x:visible;
+    overflow-y:visible;
+  }
+  .side-panel-typeahead-loader{
+    display: flex;
+    left: 1rem;
+    top: 1rem;
+  }
 }
 
 .wizard-pages {

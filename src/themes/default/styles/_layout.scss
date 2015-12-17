@@ -41,17 +41,14 @@
 
 button {
     @extend .btn;
+    .glyphicon {
+        line-height:1.428571429;
+    }
     &.primary {
         @extend .btn-primary;
     }
-}
-
-.input-group {
-    button {
-        border-radius:0 4px 4px 0;
-        border-left:0;
-
-        margin-left:-1px;
+    &.default {
+        @extend .btn-default;
     }
 }
 
@@ -79,7 +76,7 @@ table .form-group {
     padding:4px;
     vertical-align: middle;
 }
-.table>tbody>tr>td:not(.row-controls) {
+.table>tbody>tr>td:not(.row-controls):not(.has-datepicker) {
     padding:.5em;
     white-space: nowrap;
     overflow:hidden;
@@ -123,8 +120,8 @@ th[column-sortable]:hover .clear-sort {
 }
 
 nav ul:not(.dropdown-menu)>li>a { //copying Bootstrap's selector
-                                  padding-left:7px;
-                                  padding-right:7px;
+    padding-left:7px;
+    padding-right:7px;
 }
 
 nav .navbar-right .dropdown-menu {
@@ -186,4 +183,19 @@ ul {
 
 .spacer{
     margin-top:1rem;
+}
+
+.form-control-static {
+    min-height: 36px;
+}
+
+.dropzone {
+    margin-bottom:1rem;
+}
+
+.dropzone div.dz-preview {
+    display:none;
+}
+.show-overflow {
+    overflow-x:visible;
 }

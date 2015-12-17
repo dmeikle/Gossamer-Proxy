@@ -24,6 +24,7 @@
 
                 <address ng-if="!paLoading">
                     <strong>{{projectAddress.buildingName}}</strong><br>
+                    {{projectAddress.strata}} - {{projectAddress.strataNumber}}<br>
                     {{projectAddress.neighborhood}}<br>
                     {{projectAddress.address1}}<br>
                     {{projectAddress.city}}<br>
@@ -34,9 +35,9 @@
         </div>
         <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="claim">
-                <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
-                    <div class="row-controls pull-right">
+                <div class="cardheader row">
+                    <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
+                    <div class="col-xs-3 text-right row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -117,13 +118,14 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                        <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_LOCATIONS_EDIT') ?></a></li>
+                                        <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
-                                        <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
-                                        <li><a href="" ng-click="delete(location)"><?php echo $this->getString('DELETE') ?></a></li>
+                                        <li><a href="/admin/claim/initial-jobsheet/edit/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW_INITIAL_JOBSHEET') ?></a></li>
                                         <li>
-                                            <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_JOBSHEETS'); ?></a>
+                                            <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_SHEETS'); ?></a>
                                         </li>
+                                        <li><a href="" ng-click="delete(location)"><?php echo $this->getString('REMOVE') ?></a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -136,33 +138,29 @@
         <div class="clearfix"></div>
         <form class="hide"></form>
         <div class="col-xs-12">
+            <uib-tabset>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
+                    ...
+                </uib-tab>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">
+                    ...
+                </uib-tab>
+                <uib-tab heading="<?php echo $this->getString('CLAIMS_DOCUMENTS') ?>">
+                    <div ng-if="claimLoading">
+                        <div class="text-center"><span class="spinner-loader"></span></div>
+                    </div>
+                    <div ng-if="!claimLoading">
+                        <documents module="claims" model='{{claim}}' model-type="Claim">
+                            <div class="pull-right">
+                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">   
+                                    <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
+                                </button>
+                            </div>
 
-            <!-- Nav tabs -->
-            <ul class="widgettabs" role="tablist">
-                <li role="presentation" class="active">
-                    <a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_PHOTOS') ?>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_COMMENTS') ?>
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a href="#history" aria-controls="history" role="tab" data-toggle="tab">
-                        <?php echo $this->getString('CLAIMS_HISTORY') ?>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="widget tab-pane active" id="photos">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="comments">...</div>
-                <div role="tabpanel" class="widget tab-pane" id="history">...</div>
-            </div>
-
+                        </documents>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
         </div>
     </div>
 </div>

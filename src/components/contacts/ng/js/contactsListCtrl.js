@@ -1,4 +1,4 @@
-module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv, contactsEditSrv, contactsTemplateSrv, tablesSrv, contactsClaimsListSrv) {
+module.controller('contactsListCtrl', function ($scope, $uibModal, contactsListSrv, contactsEditSrv, contactsTemplateSrv, tablesSrv, contactsClaimsListSrv) {
 
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
@@ -33,7 +33,7 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
 
     $scope.openAddNewContactModal = function () {
         var template = contactsTemplateSrv.AddNewModal;
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: template,
             controller: 'contactsModalCtrl',
             size: 'xl'
@@ -104,6 +104,9 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
                         $scope.claimsList = contactsClaimsListSrv.claimsList;
                         $scope.sidePanelLoading = false;
                     });
+            contactsEditSrv.getCompany(clickedObject).then(function() {
+                $scope.selectedCompany = contactsEditSrv.company;
+            });
         }
     };
 
@@ -114,22 +117,4 @@ module.controller('contactsListCtrl', function ($scope, $modal, contactsListSrv,
 
         getContactList(row, numRows);
     });
-});
-
-module.controller('contactsModalCtrl', function ($modalInstance, $scope, contactsEditSrv) {
-    $scope.contacts = {};
-
-    $scope.confirm = function () {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-
-        contactsEditSrv.save($scope.contact, formToken).then(function (response) {
-            if (!response.data.result || response.data.result !== 'error') {
-                $modalInstance.close();
-            }
-        });
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
 });

@@ -12,7 +12,7 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
     $scope.basicSearch.query = '';
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
-
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
     
@@ -114,6 +114,16 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
             $scope.modalLoading = false;
         });
         modal.result.then(function () {
+            getList();
+        });
+    };
+    
+    $scope.remove = function(object){
+        var item = {};
+        item.isActive = 0;
+        item.id = object.id;
+        
+        inventorySrv.saveItem(item, formToken).then(function(){
             getList();
         });
     };
