@@ -292,7 +292,7 @@ admin_claims_list_claimlocation_photocounts:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimPhotosController
         model: components\claims\models\ClaimPhotoModel
-        method: getCount
+        method: index
         view: core\views\JSONView
         viewKey: admin_claims_list_claim_photos
         datasource: datasource1

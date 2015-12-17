@@ -20,7 +20,7 @@ module.service('photoUploadSrv', function(crudSrv, $rootScope) {
         };
     };
 
-    this.getPhotoCount = function(event, claimId) {
+    this.getPhotoCount = function(claimId) {
     	return crudSrv.getDetails(apiPath, claimId).then(function(response) {
     		$rootScope.$broadcast('photoCountUpdated', response);
     		return response;

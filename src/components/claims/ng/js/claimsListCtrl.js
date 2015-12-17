@@ -103,14 +103,10 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
                 claim: function() {
                     return claim;
                 },
-                claimLocations: function() {
-                    return claimsListSrv.getClaimLocations(claim.id).then(function(response) {
-                        return response.data.ClaimsLocations;
-                    });
-                },
+                
                 photoCounts: function() {
-                    return photoUploadSrv.getPhotoCount(event, claim.id).then(function(response) {
-                        return response.data.folderList.list;
+                    return photoUploadSrv.getPhotoCount(claim.id).then(function(response) {
+                        return response.data.folderList.unitNumbers;
                     });
                 }
             }

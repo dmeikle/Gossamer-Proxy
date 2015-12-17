@@ -196,6 +196,17 @@ contacts_home:
             - 'src/components/contacts/locales/*/Contact'
             - app/locales/*/website
         
+admin_contacts_autocomplete:
+    pattern: admin/contacts/autocomplete
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_contacts_autocomplete
+        datasource: datasource1
+        
 admin_contacts_search:
     pattern: admin/contacts/search
     defaults:
