@@ -18,6 +18,7 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
@@ -142,5 +143,15 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (event, datepicker) {
         $scope.isOpen.datepicker[datepicker] = true;
+    };
+    
+    $scope.remove = function(object){
+        var item = {};        
+        item.isActive = 0;
+        item.id = object.id;
+        
+        posSrv.saveItem(item, formToken).then(function(){
+            getList();
+        });
     };
 });

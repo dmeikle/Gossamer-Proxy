@@ -1,5 +1,5 @@
 // Inventory service
-module.service('posSrv', function ($http, searchSrv, $filter) {
+module.service('posSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/pos/';
 
     var self = this;
@@ -54,5 +54,9 @@ module.service('posSrv', function ($http, searchSrv, $filter) {
             self.breakdown = response.data.PurchaseOrder.PurchaseOrder[0];
             self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
         });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'GeneralCost', formToken);
     };
 });

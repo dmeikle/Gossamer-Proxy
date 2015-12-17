@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                         ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                          ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -59,7 +59,7 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a ng-click="openGeneralCostsModal(item)"><?php echo $this->getString('EDIT') ?></a></li>
-                                <li><a ng-click="deleteItem(item)"><?php echo $this->getString('DELETE') ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -95,7 +95,7 @@
                 <div class="resultspane claim-number" ng-show="noResultsJobNumber">
                     <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                 </div>
-                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')      ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
+                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')       ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
 

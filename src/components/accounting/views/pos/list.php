@@ -68,7 +68,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="edit/{{item.PurchaseOrders_id}}">Edit</a></li>
+                                <li><a ng-href="/admin/accounting/pos/edit/{{item.PurchaseOrders_id}}"><?php echo $this->getString('EDIT'); ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE'); ?></a></li>
                             </ul>
                         </div>
                     </td>

@@ -394,6 +394,16 @@ accounting_generalcosts_search:
         viewKey: accounting_generalcosts_search
         datasource: datasource1
         
+accounting_generalcosts_setInactive:
+    pattern: admin/accounting/generalcosts/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_setInactive
+        datasource: datasource1
         
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
@@ -401,7 +411,7 @@ accounting_generalcosts_list:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\GeneralCostsController
         model: components\accounting\models\GeneralCostModel
-        method: listall
+        method: listallReverse
         view: core\views\JSONView
         viewKey: accounting_generalcosts_list
         datasource: datasource1

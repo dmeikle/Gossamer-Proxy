@@ -3,7 +3,7 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter, crudSrv) 
     var apiPath = '/admin/accounting/generalcosts/';
     var generalCostItemsPath = '/admin/accounting/generalcostitems/';
     var claimsPath = '/admin/claims/';
-    
+    var removeApiPath = '/admin/accounting/generalcosts/remove/';
     var self = this;
 
     self.error = {};
@@ -72,6 +72,6 @@ module.service('generalCostsSrv', function ($http, searchSrv, $filter, crudSrv) 
     };
     
     this.saveItem = function(item, formToken){
-        return crudSrv.save(apiPath + item.id, item, 'SuppliesUseds', formToken);
+        return crudSrv.save(apiPath + item.id, item, 'GeneralCost', formToken);
     };
 });

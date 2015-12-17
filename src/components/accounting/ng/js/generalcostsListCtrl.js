@@ -180,10 +180,14 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
         });
     };
     
-    $scope.deleteItem = function(item){
-//        var test = {};        
+    $scope.remove = function(object){
+        var item = {};        
         item.isActive = 0;
-//        test.id = item.id;
+        item.id = object.id;
+//        generalCostsSrv.setInactive(object, formToken).then(function(){
+//            getGeneralCostsList();
+//        });
+        
         generalCostsSrv.saveItem(item, formToken).then(function(){
             getGeneralCostsList();
         });
