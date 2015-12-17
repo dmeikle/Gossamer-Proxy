@@ -9,6 +9,8 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.isOpen = {};
     $scope.contacts = [];
 
+    $scope.hasError = {};
+
     getProjectAddress();
     getClaimDetails();
 
@@ -18,10 +20,6 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
         var datepicker = event.target.parentElement.dataset.datepickername;
         $scope.isOpen[datepicker] = true;
     };
-
-    $rootScope.$on('templateLoaded', function() {
-        $scope.templateLoading = false;
-    });
 
     function getClaimDetails() {
 
@@ -45,6 +43,16 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             $scope.paLoading = false;
         });
     }
+
+    $scope.getStatusColor = function(claim) {
+        if (claim.phase.title == 'Cancelled') {
+            return 'warning';
+        } else if (claim.phase.title == 'Complete') {
+            return 'success';
+        } else {
+            return 'danger';
+        }
+    };
 
     $scope.save = function(object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
@@ -80,5 +88,4 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             });
         });
     };
-
 });

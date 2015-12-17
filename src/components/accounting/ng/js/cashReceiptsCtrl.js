@@ -17,6 +17,7 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
     
     // Load up the table service so we can watch it!
     $scope.tablesSrv = tablesSrv;
@@ -187,6 +188,16 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
             $scope.modalLoading = false;
         });
         modal.result.then(function () {
+            getList();
+        });
+    };
+    
+    $scope.remove = function(object){
+        var item = {};
+        item.isActive = 0;
+        item.id = object.id;
+        
+        cashReceiptsSrv.saveItem(item, formToken).then(function(){
             getList();
         });
     };

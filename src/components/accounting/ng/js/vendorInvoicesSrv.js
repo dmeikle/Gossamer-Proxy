@@ -1,9 +1,9 @@
 // Inventory service
 module.service('vendorInvoicesSrv', function ($http, searchSrv, $filter) {
-    var apiPath = '/admin/accounting/payablesinvoices/';
+    var apiPath = '/admin/accounting/payables/invoices/';
     var vendorsAutocompletePath = '/admin/vendors/autocomplete';
     var subcontractorAutocompletePath = '/admin/subcontractors/autocomplete';
-    var breakdownPath = '/admin/accounting/payablesinvoices/details/';
+    var breakdownPath = '/admin/accounting/payables/invoices/details/';
     
     var self = this;
     self.error = {};

@@ -45,7 +45,9 @@ class UploadDocumentsListener extends AbstractListener {
         }
 
         $count = $model->saveParamsOnComplete($params);
-
+        if (array_key_exists('ClaimDocumentsCount', $count)) {
+            $count = $count['ClaimDocumentsCount'][0]['rowCount'];
+        }
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
         $this->httpResponse->setAttribute('documentCount', $count);
     }

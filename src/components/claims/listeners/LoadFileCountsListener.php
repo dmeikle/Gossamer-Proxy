@@ -24,19 +24,18 @@ class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
         $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
         $path = __UPLOADED_FILES_PATH . 'claims' . DIRECTORY_SEPARATOR . $this->getClaimId() . DIRECTORY_SEPARATOR;
         $locations = $this->getClaimLocations();
-
-
-        $folderList = array('list' => array());
-        $totalFiles = 0;
-        foreach ($locations as $claimLocationId => $unit) {
-            if (file_exists($path . $claimLocationId)) {
-                $folderList['list'][$claimLocationId]['count'] = iterator_count(new \DirectoryIterator($path . $claimLocationId)) - 2; //remove . and ..
-            } else {
-                $folderList['list'][$claimLocationId]['count'] = 0; //nothing uploaded yet
-            }
-        }
-
-        $this->httpResponse->setAttribute('folderList', $folderList);
+        $this->httpResponse->setAttribute('folderList', $locations);
+//
+//        $folderList = array('list' => array());
+//        $totalFiles = 0;
+//        foreach ($locations as $claimLocationId => $unit) {
+//            if (file_exists($path . $claimLocationId)) {
+//                $folderList['list'][$claimLocationId]['count'] = iterator_count(new \DirectoryIterator($path . $claimLocationId)) - 2; //remove . and ..
+//            } else {
+//                $folderList['list'][$claimLocationId]['count'] = 0; //nothing uploaded yet
+//            }
+//        }
+        //       $this->httpResponse->setAttribute('folderList', $folderList);
     }
 
     private function getClaimLocations() {
@@ -45,7 +44,8 @@ class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
         $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = array('Claims_id' => $this->getClaimId());
 
-        return $this->formatUnitNumbers($datasource->query('get', $model, 'getunitnumbers', $params));
+        return $datasource->query('get', $model, 'getunitnumbers', $params);
+        //return $this->formatUnitNumbers($datasource->query('get', $model, 'getunitnumbers', $params));
     }
 
     private function getClaimId() {

@@ -28,21 +28,27 @@ class CustomerBuilder extends AbstractBuilder {
         }
 
 
-        $builder->add('Companies_id', 'select', array('class' => 'form-control'))
-                ->add('CustomerTypes_id', 'select', array('class' => 'form-control', 'options' => $options['contactTypes']))
-                ->add('firstname', 'text', array('class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
-                ->add('lastname', 'text', array('class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
-                ->add('email', 'email', array('class' => 'form-control', 'value' => $this->getValue('email', $values)))
-                ->add('mobile', 'text', array('class' => 'form-control', 'value' => $this->getValue('mobile', $values)))
+        $builder->add('firstname', 'text', array('ng-model' => 'contact.firstname', 'class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
+                ->add('lastname', 'text', array('ng-model' => 'contact.lastname', 'class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
+                ->add('email', 'email', array('ng-model' => 'contact.email', 'class' => 'form-control', 'value' => $this->getValue('email', $values)))
+                ->add('mobile', 'text', array('ng-model' => 'contact.mobile', 'class' => 'form-control', 'value' => $this->getValue('mobile', $values)))
+                ->add('home', 'text', array('ng-model' => 'contact.home', 'class' => 'form-control', 'value' => $this->getValue('home', $values)))
+                ->add('office', 'text', array('ng-model' => 'contact.office', 'class' => 'form-control', 'value' => $this->getValue('office', $values)))
+                ->add('extension', 'text', array('ng-model' => 'contact.extension', 'class' => 'form-control', 'value' => $this->getValue('extension', $values)))
                 ->add('home', 'text', array('class' => 'form-control', 'value' => $this->getValue('home', $values)))
-                ->add('office', 'text', array('class' => 'form-control', 'value' => $this->getValue('office', $values)))
-                ->add('extension', 'text', array('class' => 'form-control', 'value' => $this->getValue('extension', $values)))
                 ->add('isActive', 'check', array('class' => 'form-control', 'value' => $this->getValue('isActive', $values)))
                 ->add('CustomerInvites_id', 'text', array('class' => 'form-control', 'value' => $this->getValue('CustomerInvites_id', $values)))
                 ->add('notes', 'textarea', array('class' => 'form-control', 'value' => $this->getValue('notes', $values)))
+                ->add('daytimePhone', 'text', array('ng-model' => 'contact.daytimePhone', 'class' => 'form-control'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary cancel'));
+        if (array_key_exists('customerTypes', $options)) {
+            $builder->add('CustomerTypes_id', 'select', array('ng-model' => 'contact.CustomerTypes_id', 'class' => 'form-control', 'options' => $options['customerTypes']));
+        }
 
+        if (array_key_exists('contactVIPTypes', $options)) {
+            $builder->add('ContactVIPTypes_id', 'select', array('ng-model' => 'contact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
+        }
 
         return $builder->getForm();
     }

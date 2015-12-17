@@ -46,7 +46,7 @@ class StaffModel extends AbstractModel implements FormBuilderInterface {
 
         $params = array(
             //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
+            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows, 'isActive' => '1'
         );
 
         foreach ($queryParams as $key => $value) {

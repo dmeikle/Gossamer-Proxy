@@ -1,5 +1,5 @@
 // Supplies service
-module.service('suppliesSrv', function ($http, searchSrv, $filter) {
+module.service('suppliesSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/supplies/';
 
     var self = this;
@@ -60,5 +60,9 @@ module.service('suppliesSrv', function ($http, searchSrv, $filter) {
                     self.advancedSearchResults = response.data.SuppliesUseds;
                     self.advancedSearchResultsCount = response.data.SuppliesUsedsCount[0].rowCount;
                 });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'SuppliesUseds', formToken);
     };
 });

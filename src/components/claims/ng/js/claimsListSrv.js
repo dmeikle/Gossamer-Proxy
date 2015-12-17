@@ -86,7 +86,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
     };
 
     this.getAdvancedSearchFilters = function() {
-        return searchSrv.getAdvancedSearchFilters('/render/claims/claimsAdvancedSearchFilters').then(function() {
+        return searchSrv.getAdvancedSearchFilters('/render/claims/advancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };

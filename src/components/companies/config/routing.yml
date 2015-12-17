@@ -24,6 +24,7 @@ admin_companies_home:
         datasource: datasource1
         langFiles:
             - 'src/components/companies/locales/*/Company'
+            - app/locales/*/website
 
 admin_companies_get:
     pattern: admin/companies/*
@@ -52,6 +53,9 @@ admin_companies_edit:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_companies_list
         datasource: datasource1 
+        langFiles:
+            - 'src/components/companies/locales/*/Company'
+            - 'app/locales/*/website'
     methods: [GET]      
 
 

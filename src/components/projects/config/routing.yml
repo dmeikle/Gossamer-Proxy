@@ -64,7 +64,8 @@ admin_projects_edit:
         viewKey: admin_projects_edit
         datasource: datasource1  
         langFiles:
-            -  'src/components/projects/locales/*/Project' 
+            - 'src/components/projects/locales/*/Project' 
+            - app/locales/*/website
         
 
 admin_projects_list:

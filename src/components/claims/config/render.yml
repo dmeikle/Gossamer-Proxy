@@ -1,5 +1,12 @@
-## YAML Template.
----
+
+advancedSearchFilters:
+    path: 'src/components/claims/ng/views/advancedSearchFilter.php'
+    langFiles:
+        - 'src/components/claims/locales/*/Claims'
+    listeners:
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+
+
 claimsAddNewModal:
     path: 'src/components/claims/ng/views/claimsAddNewModal.php'
     langFiles:

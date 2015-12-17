@@ -18,7 +18,7 @@ use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of PropertyModel
+ * Description of ClaimPhotoModel
  *
  * @author Dave Meikle
  */
@@ -50,7 +50,8 @@ class ClaimPhotoModel extends AbstractModel implements FormBuilderInterface, \co
     }
 
     public function saveParamsOnComplete(array $params) {
-        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimPhotos' => $params));
+
+        return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimPhotos' => $params));
     }
 
 }

@@ -36,6 +36,7 @@ return array(
     'ACCOUNTING_DATE' => 'Date',
     'ACCOUNTING_EXPORTED' => 'Exported',
     'ACCOUNTING_TOTAL' => 'Total',
+    'ACCOUNTING_TIMESHEETS' => 'Timesheets',
     'ACCOUNTING_NEW_TIMESHEET' => 'New Timesheet',
     'ACCOUNTING_NEW_TIMESHEET_ROW' => 'New Row',
     'ACCOUNTING_NEW_ROW' => 'New Row',
@@ -82,6 +83,7 @@ return array(
     'ACCOUNTING_MIN_ORDER' => 'Min Order',
     'ACCOUNTING_MAX_ORDER' => 'Max Order',
     'ACCOUNTING_PACKAGE_TYPE' => 'Package Type',
+    'ACCOUNTING_INVENTORY_ITEM' => 'Inventory Item',
     'ACCOUNTING_INVENTORY_TYPE' => 'Inventory Type',
     'ACCOUNTING_ACTIVE' => 'Active',
     'ACCOUNTING_PRICE' => 'Price ($)',
@@ -136,6 +138,16 @@ return array(
     'ACCOUNTING_UNASSOCIATE_ITEMS' => 'Unassociate Items',
     'ACCOUNTING_UNASSOCIATED_WARNING' => 'This invoice will be unassociated, inventory will not be tracked.',
     'ACCOUNTING_PAYABLES_INVOICES' => 'Payables Invoices',
-    'ACCOUNTING_CLAIM_PHASE' => 'Claim Phase'
+    'ACCOUNTING_CLAIM_PHASE' => 'Claim Phase',
+    'ACCOUNTING_DOWNLOAD_ATTACHED_PDF' => 'Download Attached PDF',
+    'ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET' => 'Checking for existing timesheet',
+    'ACCOUNTING_SUPPLIES' => 'Supplies',
+    'ACCOUNTING_NEW_MATERIAL_FROM_STOCK' => 'New Material From Stock',
+    'ACCOUNTING_STAFF_NAME' => 'Staff Name',
+    'ACCOUNTING_PHASE_CODE' => 'Phase Code',
+    'ACCOUNTING_CLAIM_LOCATION' => 'Claim Location',
+    'ACCOUNTING_MATERIAL_NAME' => 'Material Name',
+    'ACCOUNTING_SUBCONTRACTOR' => 'Subcontractor',
+    'ACCOUNTING_BLANK_FIELD' => 'Blank Field'
 );
 

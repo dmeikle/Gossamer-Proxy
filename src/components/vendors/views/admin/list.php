@@ -32,6 +32,7 @@
                 <tr>
                     <th column-sortable data-column="company"><?php echo $this->getString('VENDORS_COMPANY'); ?></th>
                     <th column-sortable data-column="telephone"><?php echo $this->getString('VENDORS_TELEPHONE'); ?></th>
+                    <th column-sortable data-column="tollFree"><?php echo $this->getString('VENDORS_TOLLFREE'); ?></th>
                     <th column-sortable data-column="accountId"><?php echo $this->getString('VENDORS_ACCOUNT_ID'); ?></th>
                     <th column-sortable data-column="salesRep"><?php echo $this->getString('VENDORS_SALES_REP'); ?></th>
                     <th column-sortable data-column="deliveryFee"><?php echo $this->getString('VENDORS_DELIVERY_FEE'); ?></th>
@@ -53,6 +54,7 @@
                         'inactive bg-warning text-warning': item.maxQuantity == 'inactive'}">
                     <td ng-click="selectRow(item)"><a href="{{item.url}}">{{item.company}}</a></td>
                     <td ng-click="selectRow(item)">{{item.telephone}}</td>
+                    <td ng-click="selectRow(item)">{{item.tollFree}}</td>
                     <td ng-click="selectRow(item)">{{item.accountId}}</td>
                     <td ng-click="selectRow(item)">{{item.salesRep}}</td>
                     <td ng-click="selectRow(item)">{{item.deliveryFee | currency}}</td>
@@ -130,76 +132,101 @@
             <div class="breakdown-title">
                 <div class="pull-left">
                     <h3>{{selectedRow.company}}</h3>
-                    <p>
-                        <span class="glyphicon glyphicon-envelope"></span>
-                        <a href="mailto:{{selectedRow.email}}">{{selectedRow.email}}</a>
-                    </p>
-                    <p>
-                        <span class="glyphicon glyphicon-earphone"></span>
-                        <a href="tel:{{selectedRow.tollFree}}">{{selectedRow.tollFree}}</a>
-                    </p>
-                    <!-- <p>{{selectedRow.address1}}</p>
-                    <p>{{selectedRow.city}}</p>
-                    <p>{{selectedRow.Provinces_id}}</p>
-                    <p>{{selectedRow.postalCode}}</p> -->
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <a href="mailto:{{selectedRow.email}}">{{selectedRow.email}}</a>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col-xs-2">
+                            <span class="glyphicon glyphicon-earphone"></span>
+                        </div>
+                        <div class="col-xs-10">
+                            <a href="tel:{{selectedRow.telephone}}">{{selectedRow.telephone}}</a>
+                        </div>
+                        <div class="col-xs-10 col-xs-offset-2">
+                            <a href="tel:{{selectedRow.tollFree}}">{{selectedRow.tollFree}}</a>
+                        </div>
+                    </div>
+                    <address>
+                        <div>
+                            {{selectedRow.address1}}
+                        </div>
+                        <div>
+                            {{selectedRow.address2}}
+                        </div>
+                        <div>
+                            {{selectedRow.city}}
+                        </div>
+                        <div>
+                            {{selectedRow.Provinces_id}}
+                        </div>
+                        <div>
+                            {{selectedRow.postalCode}}
+                        </div>
+                    </address>
                 </div>
             </div>
             <div class="clearfix"></div>
-
-            <div class="pull-right">
-                <button class="primary" ng-click="openAddVendorLocationModal()">
-                    <?php echo $this->getString('VENDORS_ADDLOCATION') ?>
-                </button>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="card" ng-repeat="item in vendorLocations">
-                <div class="cardheader">
-                    <h1>{{selectedRow.company}} - {{item.city}}</h1>
-                    <h2><?php echo $this->getString('VENDORS_ACCOUNT_ID') ?> {{item.accountId}}</h2>
+            <div ng-if="vendorLocations[0].city">
+                <div class="pull-right">
+                    <button class="primary" ng-click="openAddVendorLocationModal()">
+                        <?php echo $this->getString('VENDORS_ADDLOCATION') ?>
+                    </button>
                 </div>
-                <div>
-
-                </div>
-                <table class="table cardtable">
-                    <tr>
-                        <td>
-                            <strong>
-                                <?php echo $this->getString('VENDORS_ADDRESS1') ?>
-                            </strong>
-                        </td>
-                        <td>
-                            <div>
-                                {{item.address1}}
-                            </div>
-                            <div>
-                                {{item.address2}}
-                            </div>
-                            <div>
-                                {{item.city}}
-                            </div>
-                            <div>
-                                {{item.Provinces_id}}
-                            </div>
-                            <div>
-                                {{item.postalCode}}
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong><?php echo $this->getString('VENDORS_TELEPHONE') ?></strong></td>
-                        <td>{{item.telephone}}</td>
-                    </tr><tr>
-                        <td><strong><?php echo $this->getString('VENDORS_TOLLFREE') ?></strong></td>
-                        <td>{{item.tollFree}}</td>
-                    </tr>
-                </table>
                 <div class="clearfix"></div>
-                <div class="cardfooter clearfix">
-                    <div class="pull-right">
-                        <button class="btn-link" ng-click="openVendorLocationModal(item)">
-                            <?php echo $this->getString('MORE_INFO') ?>
-                        </button>
+
+                <div class="card" ng-repeat="item in vendorLocations">
+                    <div class="cardheader">
+                        <h1>{{selectedRow.company}} - {{item.city}}</h1>
+                        <h2><?php echo $this->getString('VENDORS_ACCOUNT_ID') ?> {{item.accountId}}</h2>
+                    </div>
+                    <div>
+
+                    </div>
+                    <table class="table cardtable">
+                        <tr>
+                            <td>
+                                <strong>
+                                    <?php echo $this->getString('VENDORS_ADDRESS1') ?>
+                                </strong>
+                            </td>
+                            <td>
+                                <div>
+                                    {{item.address1}}
+                                </div>
+                                <div>
+                                    {{item.address2}}
+                                </div>
+                                <div>
+                                    {{item.city}}
+                                </div>
+                                <div>
+                                    {{item.Provinces_id}}
+                                </div>
+                                <div>
+                                    {{item.postalCode}}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong><?php echo $this->getString('VENDORS_TELEPHONE') ?></strong></td>
+                            <td>{{item.telephone}}</td>
+                        </tr><tr>
+                            <td><strong><?php echo $this->getString('VENDORS_TOLLFREE') ?></strong></td>
+                            <td>{{item.tollFree}}</td>
+                        </tr>
+                    </table>
+                    <div class="clearfix"></div>
+                    <div class="cardfooter clearfix">
+                        <div class="pull-right">
+                            <button class="btn-link" ng-click="openVendorLocationModal(item)">
+                                <?php echo $this->getString('MORE_INFO') ?>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

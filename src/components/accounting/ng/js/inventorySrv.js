@@ -1,5 +1,5 @@
 // Inventory service
-module.service('inventorySrv', function ($http, searchSrv, $filter) {
+module.service('inventorySrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/inventory/';
 
     var self = this;
@@ -29,5 +29,9 @@ module.service('inventorySrv', function ($http, searchSrv, $filter) {
             self.searchResults = response.data.InventoryItems;
             self.searchResultsCount = response.data.InventoryItems[0].rowCount;
         });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'InventoryItem', formToken);
     };
 });

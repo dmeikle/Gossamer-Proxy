@@ -1,5 +1,7 @@
 <div class="widget" ng-controller="vendorInvoicesCtrl">
-    <div class="widget-content" ng-class="{'panel-open':sidePanelOpen}">
+    <div class="widget-content" ng-class="{
+            'panel-open'
+            :sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('ACCOUNTING_PAYABLES_INVOICES') ?></h1>
         <div class="alert alert-danger" role="alert" ng-if="error.showError" ng-cloak><?php echo $this->getString('ACCOUNTING_DB_ERROR') ?></div>
         <div class="toolbar form-inline">
@@ -19,7 +21,7 @@
                     </button>
                 </span>
             </form>
-            <a href="invoices/edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_INVOICE') ?></button></a>
+            <a href="invoices/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_INVOICE') ?></button></a>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -60,7 +62,9 @@
                     </th>
                 </tr>
 
-                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{'selected' : item === selectedRow}">
+                <tr ng-if="!loading && !noSearchResults" ng-repeat-end ng-class="{
+                        'selected'
+                        : item === selectedRow}">
                     <td ng-hide="groupedBy === 'invoiceNumber'" ng-click="selectRow(item)">{{item.invoiceNumber}}</td>
                     <td ng-hide="groupedBy === 'phase'" ng-click="selectRow(item)">{{item.phase}}</td>
                     <td ng-hide="groupedBy === 'department'" ng-click="selectRow(item)">{{item.department}}</td>
@@ -75,7 +79,7 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="./{{item.id}}">Edit</a></li>
+                                <li><a ng-href="invoices/{{item.id}}">Edit</a></li>
                             </ul>
                         </div>
                     </td>
@@ -89,7 +93,9 @@
         <uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage" class="pagination" boundary-links="true" rotate="false"></uib-pagination>
     </div>
 
-    <div class="widget-side-panel" ng-class="{'datepicker-open': isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
+    <div class="widget-side-panel" ng-class="{
+            'datepicker-open'
+            : isOpen.datepicker.fromDate || isOpen.datepicker.toDate}">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -201,7 +207,9 @@
                     <p>{{breakdown.jobNumber}}</p>
                 </div>
             </div>
-
+            <div ng-if="breakdown.filename">
+                <p><a href="invoices/download/{{breakdown.id}}" target="_blank"><i class="glyphicon glyphicon-download"></i> <?php echo $this->getString('ACCOUNTING_DOWNLOAD_ATTACHED_PDF'); ?></a></p>
+            </div>
             <h4><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_ITEMS') ?></h4>
 
             <table class="table table-striped table-hover">

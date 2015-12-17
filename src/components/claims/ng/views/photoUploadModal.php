@@ -6,14 +6,14 @@
     </h1>
 </div>
 <div class="modal-body">
-    <div class="col-xs-4" ng-repeat="claimLocation in claimLocations">
+    <div class="col-xs-4" ng-repeat="claimLocation in photoCounts">
         <div dropzone="dropzoneConfig{{claimLocation.id}}" class="dropzone">
             <p class="text-center">
-                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?> 
+                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
                 {{claimLocation.unitNumber}}
             </p>
             <p class="text-center text-muted">
-                <small>{{photoCounts[claimLocation.id].count}} <?php echo $this->getString('CLAIMS_PHOTOS') ?></small>
+                <small>{{claimLocation.photoCount}} <?php echo $this->getString('CLAIMS_PHOTOS') ?></small>
             </p>
         </div>
     </div>
