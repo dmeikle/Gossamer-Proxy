@@ -38,7 +38,7 @@
                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                               typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
                             <div class="resultspane" ng-show="noResults">
-                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                         ?>
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                           ?>
                             </div>
                             <span class="input-group-btn" ng-if="!searchSubmitted">
                               <button type="submit" class="btn-default">
@@ -125,11 +125,11 @@
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
                     <td class="row-typeahead">
-<!--                        <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
-                        <datalist id="timesheet-claims-list">
-                            <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
-                        </datalist>-->
+                        <!--                        <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
+                                                <datalist id="timesheet-claims-list">
+                                                    <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
+                                                    <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
+                                                </datalist>-->
                         <div class="input-group">
                             <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="row.jobNumber" typeahead-wait-ms="500"
                                    uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"

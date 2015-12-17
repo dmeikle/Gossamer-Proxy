@@ -71,6 +71,23 @@
     left: 1rem;
     top: 1rem;
   }
+    &.datepicker-open{
+        overflow: visible;
+    }
+    #advancedSearch{
+        input, select{
+            margin-bottom:10px;
+        }
+        .input-group{
+            margin-bottom:10px;
+            input{
+                margin-bottom:0;
+            }
+        }
+        .date-picker{
+            width:50%;
+        }
+    }
 }
 
 .wizard-pages {
