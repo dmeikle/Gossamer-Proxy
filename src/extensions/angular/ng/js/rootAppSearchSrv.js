@@ -70,4 +70,11 @@ module.service('searchSrv', function($http) {
             return response;
         });
     };
+    
+    this.fetchAutocompleteNoSearch = function(apiPath, config) {
+        return self.searchCall(apiPath, config).then(function(response) {
+
+            self.autocomplete = response.data;
+        });
+    };
 });

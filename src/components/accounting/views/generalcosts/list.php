@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')         ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                          ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -29,36 +29,37 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
-                    <th class="cog-col">&nbsp;</th>
+                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'phase'" column-sortable data-column="phase"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'creditAccount'" column-sortable data-column="creditAccount"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                    <th ng-hide="groupedBy === 'totalChargeout'" column-sortable data-column="totalChargeout"><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
+                    <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-if="loading">
-                    <td></td>
-                    <td></td>
-                    <td>
+                    <td ng-hide="groupedBy === 'jobNumber'" ></td>
+                    <td ng-hide="groupedBy === 'phase'"></td>
+                    <td ng-hide="groupedBy === 'creditAccount'">
                         <span class="spinner-loader"></span>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td ng-hide="groupedBy === 'totalCost'"></td>
+                    <td ng-hide="groupedBy === 'totalChargeout'"></td>
                     <td></td>
                 </tr>
                 <tr ng-if="!loading && !noSearchResults" ng-repeat="item in generalCostsList" ng-class="{'selected': item === previouslyClickedObject}">
-                    <td ng-click="selectRow(item)">{{item.jobNumber}}</td>
-                    <td ng-click="selectRow(item)">{{item.phase}}</td>
-                    <td ng-click="selectRow(item)">{{item.creditAccount}}</td>
-                    <td ng-click="selectRow(item)">{{item.totalCost| currency}}</td>
-                    <td ng-click="selectRow(item)">{{item.totalChargeout| currency}}</td>
+                    <td ng-hide="groupedBy === 'jobNumber'" ng-click="selectRow(item)">{{item.jobNumber}}</td>
+                    <td ng-hide="groupedBy === 'phase'" ng-click="selectRow(item)">{{item.phase}}</td>
+                    <td ng-hide="groupedBy === 'creditAccount'" ng-click="selectRow(item)">{{item.creditAccount}}</td>
+                    <td ng-hide="groupedBy === 'totalCost'" ng-click="selectRow(item)">{{item.totalCost| currency}}</td>
+                    <td ng-hide="groupedBy === 'totalChargeout'" ng-click="selectRow(item)">{{item.totalChargeout| currency}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openGeneralCostsModal(item)">Edit</a></li>
+                                <li><a ng-click="openGeneralCostsModal(item)"><?php echo $this->getString('EDIT') ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -83,10 +84,21 @@
         <form ng-if="!sidePanelLoading && searching">
             <h1><?php echo $this->getString('ACCOUNTING_ADVANCED_SEARCH'); ?></h1>
             <div id="advancedSearch">
-                <input placeholder="Name" class="form-control" name="name" ng-model="advSearch.name">
-                <input placeholder="Description" class="form-control" name="description" ng-model="advSearch.description">
-                <input placeholder="Claim" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_NAME') ?>" class="form-control" name="name" ng-model="advSearch.name">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_DESCRIPTION') ?>" class="form-control" name="description" ng-model="advSearch.description">
+
+                <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></label>
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="advSearch.jobNumber" typeahead-wait-ms="500"
+                       typeahead="value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)"
+                       typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsJobNumber" class="form-control typeahead"
+                       typeahead-min-length="2" typeahead-on-select="getJobNumber(advSearch.jobNumber)">
+                <div class="resultspane claim-number" ng-show="noResultsJobNumber">
+                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                </div>
+                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')       ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
+
+
 
                 <label>From Date</label>
                 <div class="input-group date-picker">
@@ -143,15 +155,15 @@
 
             <div ng-repeat="item in rowBreakdown">
                 <div class="card info-card">
-                    <p><strong>Name:</strong> {{item.name}}<span class="pull-right"><strong>Date:</strong> {{item.dateEntered}}</span></p>
-                    <p><strong>Description:</strong> {{item.description}} <span class="pull-right"><strong>Cost:</strong> {{item.cost| currency}}</span></p>
-                    <p>&nbsp;<span class="pull-right"><strong>Chargeout:</strong> {{item.chargeOut| currency}}</span></p>
-                    <p><strong>Department:</strong> {{item.name}}</p>
-                    <p><strong>Debit Account:</strong> {{item.accountingId}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_NAME') ?>:</strong> {{item.name}}<span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_DATE') ?>:</strong> {{item.dateEntered}}</span></p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DESCRIPTION') ?>:</strong> {{item.description}} <span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_COST') ?>:</strong> {{item.cost| currency}}</span></p>
+                    <p>&nbsp;<span class="pull-right"><strong><?php echo $this->getString('ACCOUNTING_CHARGEOUT') ?>:</strong> {{item.chargeOut| currency}}</span></p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DEPARTMENT') ?>:</strong> {{item.name}}</p>
+                    <p><strong><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT') ?>:</strong> {{item.accountingId}}</p>
                 </div>
             </div>
         </div>
     </div>
-
+    <form></form>
     <div class="clearfix"></div>
 </div>

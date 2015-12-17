@@ -13,6 +13,7 @@ admin_accounting_cashreceipts:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     methods: [GET]
     listeners: 
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
@@ -136,6 +137,7 @@ accounting_timesheets_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
 
@@ -245,6 +247,7 @@ accounting_pos_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
@@ -263,6 +266,7 @@ accounting_pos_edit:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
@@ -386,6 +390,7 @@ accounting_generalcosts_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
@@ -400,6 +405,16 @@ accounting_generalcosts_search:
         viewKey: accounting_generalcosts_search
         datasource: datasource1
         
+accounting_generalcosts_setInactive:
+    pattern: admin/accounting/generalcosts/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_setInactive
+        datasource: datasource1
         
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
@@ -407,7 +422,7 @@ accounting_generalcosts_list:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\GeneralCostsController
         model: components\accounting\models\GeneralCostModel
-        method: listall
+        method: listallReverse
         view: core\views\JSONView
         viewKey: accounting_generalcosts_list
         datasource: datasource1
@@ -1355,6 +1370,7 @@ accounting_supplies_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
@@ -1422,6 +1438,7 @@ accounting_inventory_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }

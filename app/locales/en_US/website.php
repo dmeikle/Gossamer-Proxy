@@ -53,6 +53,7 @@ return array(
     'NEW' => 'New',
     'ADVANCED_SEARCH' => 'Advanced Search',
     'EDIT' => 'Edit',
+    'DELETE' => 'Delete',
     'USERNAME' => 'Username',
     'PASSWORD' => 'Password',
     'CANCEL' => 'Cancel',
