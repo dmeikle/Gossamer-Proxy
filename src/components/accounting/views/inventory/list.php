@@ -9,8 +9,8 @@
             <?php // echo $this->getString('ACCOUNTING_ADVANCED_SEARCH') ?>
                         </button>-->
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
-                <input placeholder="Search" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')           ?></button>-->
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_SEARCH'); ?>" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')              ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -44,9 +44,8 @@
                     <td ng-hide="groupedBy === 'name'"></td>
                     <td ng-hide="groupedBy === 'jobNumber'"></td>
                     <td ng-hide="groupedBy === 'productCode'">
-                        <span class="spinner-loader"></span>
                     </td>
-                    <td ng-hide="groupedBy === 'packageType'"></td>
+                    <td ng-hide="groupedBy === 'packageType'"><span class="spinner-loader"></span></td>
                     <td ng-hide="groupedBy === 'purchaseCost'"></td>
                     <td ng-hide="groupedBy === 'markup'" column-sortable data-column="department"></td>
                     <td ng-hide="groupedBy === 'taxType'" column-sortable data-column="totalCost"></td>
@@ -56,7 +55,7 @@
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
                     <th colspan="7">
                         {{item[groupedBy]}}
-                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
+                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null"><?php echo $this->getString('ACCOUNTING_BLANK_FIELD'); ?></span>
                     </th>
                 </tr>
 
@@ -73,6 +72,7 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a ng-click="openModal(item)"><?php echo $this->getString('EDIT'); ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -122,7 +122,7 @@
                     </span>
                 </div>
 
-                <input placeholder="Claim" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_CLAIM'); ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">
 
                 <select class="form-control" name="ClaimPhases_id" ng-model="advSearch.ClaimPhases_id">
                     <option value="" selected>-Phase code-</option>
@@ -142,7 +142,7 @@
                     ?>
                 </select>
 
-                <input placeholder="Inventory Item" class="form-control" name="inventoryItemID" ng-model="advSearch.inventoryItem">
+                <input placeholder="<?php echo $this->getString('ACCOUNTING_INVENTORY_ITEM'); ?>" class="form-control" name="inventoryItemID" ng-model="advSearch.inventoryItem">
 
             </div>
 

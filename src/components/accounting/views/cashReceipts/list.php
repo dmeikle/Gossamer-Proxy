@@ -78,7 +78,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="openModal(item)">Edit</a></li>
+                                <li><a ng-click="openModal(item)"><?php echo $this->getString('EDIT'); ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -153,7 +154,7 @@
                 </div>
 
                 <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
-                    <option value="" selected>-Payment Methods-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD'); ?>-</option>
                     <?php
                     foreach ($AccountingPaymentMethods as $paymentMethod) {
                         echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
@@ -162,7 +163,7 @@
                 </select>
 
                 <select class="form-control" name="ClaimPhases" ng-model="advSearch.ClaimPhases_id">
-                    <option value="" selected>-Claim Phases-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PHASE'); ?>-</option>
                     <?php
                     foreach ($ClaimPhases as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['title'] . '</option>';
@@ -171,7 +172,7 @@
                 </select>
 
                 <select class="form-control" name="DebitAccounts" ng-model="advSearch.AccountingDebitAccounts_id">
-                    <option value="" selected>-Debit Account-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT'); ?>-</option>
                     <?php
                     foreach ($DebitAccounts as $debitAccount) {
                         echo '<option value="' . $debitAccount['id'] . '">' . $debitAccount['name'] . '</option>';
@@ -180,7 +181,7 @@
                 </select>
 
                 <select class="form-control" name="CreditAccounts" ng-model="advSearch.AccountingCreditAccounts_id">
-                    <option value="" selected>-Credit Account-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?>-</option>
                     <?php
                     foreach ($CreditAccounts as $creditAccount) {
                         echo '<option value="' . $creditAccount['id'] . '">' . $creditAccount['name'] . '</option>';
