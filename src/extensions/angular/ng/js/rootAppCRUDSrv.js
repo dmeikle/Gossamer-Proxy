@@ -61,6 +61,13 @@ module.service('crudSrv', function($http) {
             url: apiPath + id
         });
     };
+    
+    this.getTemplate = function(apiPath) {
+        return $http({
+            method: 'GET',
+            url: apiPath
+        });
+    };
 
     this.getList = function(apiPath, row, numRows, config) {
         if (config) {
