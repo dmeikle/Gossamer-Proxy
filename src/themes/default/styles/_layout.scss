@@ -199,3 +199,17 @@ ul {
 .show-overflow {
     overflow-x:visible;
 }
+.spacer-right{
+    margin-right:1rem;
+    display:inline-flex;
+}
+.align-right{
+    text-align:right;
+}
+.cell-border{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.tab-padding{
+    padding:1rem;
+}
