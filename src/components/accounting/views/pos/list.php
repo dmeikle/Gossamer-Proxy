@@ -19,7 +19,7 @@
                     </button>
                 </span>
             </form>
-            <a href="edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
+            <a href="/admin/accounting/pos/edit/0"><button class="primary new-item"><?php echo $this->getString('ACCOUNTING_NEW_POS') ?></button></a>
         </div>
         <div class="clearfix"></div>
         <table class="table table-striped table-hover">
@@ -52,7 +52,7 @@
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
                     <th colspan="7">
                         {{item[groupedBy]}}
-                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
+                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null"><?php echo $this->getString('ACCOUNTING_BLANK_FIELD'); ?></span>
                     </th>
                 </tr>
 
@@ -68,7 +68,8 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="edit/{{item.PurchaseOrders_id}}">Edit</a></li>
+                                <li><a ng-href="/admin/accounting/pos/edit/{{item.PurchaseOrders_id}}"><?php echo $this->getString('EDIT'); ?></a></li>
+                                <li><a ng-click="remove(item)"><?php echo $this->getString('DELETE'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -118,17 +119,17 @@
                     </span>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
-                    <option value="" selected>-Vendor-</option>
-                    <?php
-                    foreach ($Vendors as $vendor) {
-                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
-                    }
-                    ?>
-                </select>
+<!--                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
+                    <option value="" selected>-<?php // echo $this->getString('ACCOUNTING_VENDOR');   ?>-</option>
+                <?php
+//                    foreach ($Vendors as $vendor) {
+//                        echo '<option value="' . $vendor['id'] . '">' . $vendor['company'] . '</option>';
+//                    }
+                ?>
+                </select>-->
 
                 <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.PurchaseOrderTypes_id">
-                    <option value="" selected>-Purchase Order Types-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?>-</option>
                     <?php
                     foreach ($PurchaseOrderTypes as $orderTypes) {
                         echo '<option value="' . $orderTypes['id'] . '">' . $orderTypes['orderType'] . '</option>';
@@ -136,17 +137,17 @@
                     ?>
                 </select>
 
-                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
-                    <option value="" selected>-Payment Methods-</option>
-                    <?php
-                    foreach ($AccountingPaymentMethods as $paymentMethod) {
-                        echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
-                    }
-                    ?>
-                </select>
+<!--                <select class="form-control" name="PurchaseOrderTypes" ng-model="advSearch.AccountingPaymentMethods_id">
+                    <option value="" selected>-<?php // echo $this->getString('ACCOUNTING_PAYMENT_METHOD');   ?>-</option>
+                <?php
+//                    foreach ($AccountingPaymentMethods as $paymentMethod) {
+//                        echo '<option value="' . $paymentMethod['id'] . '">' . $paymentMethod['type'] . '</option>';
+//                    }
+                ?>
+                </select>-->
 
                 <select class="form-control" name="ClaimPhases" ng-model="advSearch.ClaimPhases_id">
-                    <option value="" selected>-Claim Phases-</option>
+                    <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PHASE'); ?>-</option>
                     <?php
                     foreach ($ClaimPhases as $phase) {
                         echo '<option value="' . $phase['id'] . '">' . $phase['title'] . '</option>';
@@ -166,13 +167,13 @@
 
         <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
-                <div class="pull-left">
+                <div class="pull-left col-sm-12 col-md-6">
                     <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE') ?></h3>
                     <p>{{selectedRow.orderType}}</p>
                     <h3><?php echo $this->getString('ACCOUNTING_VENDOR') ?></h3>
                     <p>{{selectedRow.company}}</p>
                 </div>
-                <div class="pull-right">
+                <div class="pull-right col-sm-12 col-md-6">
                     <h3><?php echo $this->getString('ACCOUNTING_DATE') ?></h3>
                     <p>{{selectedRow.creationDate}}</p>
                     <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></h3>
@@ -198,14 +199,14 @@
                     <td>{{item.amount| currency}}</td>
                 </tr>
             </table>
-            <div class="col-md-5 col-md-offset-7">
-                <div class="pull-left">
+            <div>
+                <div class="col-md-6 pull-left text-right">
                     <p><strong><?php echo $this->getString('ACCOUNTING_SUBTOTAL') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_DELIVERY_FEE') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TAX') ?></strong></p>
                     <p><strong><?php echo $this->getString('ACCOUNTING_TOTAL') ?></strong></p>
                 </div>
-                <div class="pull-right">
+                <div class="col-md-6 pull-right text-right">
                     <p>{{breakdown.subtotal| currency}}</p>
                     <p>{{breakdown.deliveryFee| currency}}</p>
                     <p>{{breakdown.tax| currency}}</p>

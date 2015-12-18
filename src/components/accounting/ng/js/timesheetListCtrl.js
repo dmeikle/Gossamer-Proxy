@@ -1,4 +1,4 @@
-module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTypeSrv, accountingTemplateSrv, timesheetSrv) {
+module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTypeSrv, accountingTemplateSrv, timesheetSrv, tablesSrv) {
     // Stuff to run on controller load
     //$scope.rowsPerPage = 20;
     $scope.itemsPerPage = 20;
@@ -8,12 +8,34 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
     $scope.noSearchResults = false;
 
     $scope.basicSearch = {};
-    $scope.advancedSearch = {};
+    $scope.advSearch = {};
     $scope.autocomplete = {};
     $scope.isOpen = {};
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    
+    // Load up the table service so we can watch it!
+    $scope.tablesSrv = tablesSrv;
+    
+    $scope.$watch('tablesSrv.sortResult', function () {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.timesheetList = tablesSrv.sortResult.Timesheets;
+            $scope.loading = false;
+        }
+    });
+
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.Timesheets'], function () {
+        $scope.grouped = tablesSrv.grouped;
+        if ($scope.grouped === true) {
+            if (tablesSrv.groupResult && tablesSrv.groupResult.Timesheets)
+                $scope.timesheetList = tablesSrv.groupResult.Timesheets;
+            $scope.loading = false;
+        } else if ($scope.grouped === false) {
+            getTimesheetList();
+        }
+    });
 
     function getTimesheetList() {
         $scope.loading = true;
@@ -102,7 +124,17 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
         searchObject.name = viewVal;
         return timesheetSrv.fetchAutocomplete(searchObject);
     };
-
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return timesheetSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    $scope.getClaimsID = function(claim){
+        $scope.advSearch.jobNumber = claim.jobNumber;
+    };
     //Search
     $scope.search = function (searchObject) {
         $scope.noResults = undefined;
@@ -154,5 +186,25 @@ module.controller('timesheetListCtrl', function ($scope, $modal, costCardItemTyp
     $scope.dateOptions = {'starting-day': 1};
     $scope.openDatepicker = function (eventz) {
         $scope.isOpen.datepicker = true;
+    };
+    
+    //Delete an item / set isActive to 0
+    $scope.deleteItem = function(item){
+        item.isActive = 0;
+        timesheetSrv.saveItem(item, formToken).then(function(){
+            getTimesheetList();
+        });
+    };
+    
+    //Laborer Typeahead
+    $scope.fetchLaborerAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return timesheetSrv.fetchLaborerAutocomplete(searchObject);
+    };
+    
+    //Laborer Typeahead
+    $scope.setAdvancedSearchLaborer = function (laborer) {
+        $scope.advSearch.name = laborer.firstname + ' ' + laborer.lastname;
     };
 });

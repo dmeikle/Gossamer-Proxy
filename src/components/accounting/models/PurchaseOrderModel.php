@@ -36,7 +36,7 @@ class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
     public function getFormWrapper() {
         return $this->entity;
     }
-    
+
     /**
      * retrieves a row from the datasource for editing
      *
@@ -59,10 +59,10 @@ class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
         );
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        
+
         return $data;
     }
-    
+
     /**
      * performs a save to the datasource
      *
@@ -79,4 +79,5 @@ class PurchaseOrderModel extends AbstractModel implements FormBuilderInterface {
 
         return $data;
     }
+
 }

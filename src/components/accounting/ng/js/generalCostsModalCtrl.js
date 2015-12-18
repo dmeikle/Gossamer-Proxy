@@ -8,7 +8,6 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
 
-    //console.log(generalCost);
     //Modal Controls
     $scope.confirm = function () {
         $modalInstance.close();
@@ -45,7 +44,6 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
         $scope.loading = true;
         generalCostsModalSrv.getGeneralCostItems(row, numRows, generalCost.id)
                 .then(function () {
-                    console.log(generalCostsModalSrv.generalCostItems);
                     var costItems = generalCostsModalSrv.generalCostItems;
                     for (var i in costItems) {
                         //costItems[i].dateEntered = Date.parse((costItems[i].dateEntered.replace(/-/g,"/")));
@@ -55,7 +53,6 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
                     }
                     $scope.AccountingGeneralCost = generalCost;
                     $scope.generalCostItems = costItems;
-                    console.log($scope.generalCostItems);
                     $scope.loading = false;
                 });
     } else {
@@ -64,12 +61,9 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
     }
 
     //Get Claims ID from autocomplete list
-    $scope.getClaimsID = function (jobNumber) {
-        for (var i in generalCostsModalSrv.autocomplete) {
-            if (generalCostsModalSrv.autocomplete[i].jobNumber === jobNumber) {
-                $scope.AccountingGeneralCost.Claims_id = generalCostsModalSrv.autocomplete[i].id;
-            }
-        }
+    $scope.getClaimsID = function (claim) {
+        $scope.AccountingGeneralCost.jobNumber = claim.jobNumber;
+        $scope.AccountingGeneralCost.Claims_id = claim.id;
     };
 
     //---Table Controls---
@@ -140,17 +134,12 @@ module.controller('generalCostsModalCtrl', function ($modalInstance, $scope, gen
     $scope.saveGeneralCostItems = function () {
         var generalCostItems = angular.copy($scope.generalCostItems);
         for (var i in generalCostItems) {
-            console.log('filtering date!');
             generalCostItems[i].dateEntered = $filter('date')(generalCostItems[i].dateEntered, 'yyyy-MM-dd');
         }
-        console.log('Saving Items!');
 
         //$scope.AccountingGeneralCost.AccountingGeneralCostItems = generalCostItems;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
         generalCostsModalSrv.saveGeneralCosts($scope.AccountingGeneralCost, generalCostItems, formToken);
-
-        console.log($scope.AccountingGeneralCost);
-        console.log($scope.generalCostItems);
     };
 });

@@ -9,12 +9,24 @@
         <div class="pull-left">
             <div class="form-group laborer">
                 <label for="timesheet-laborer"><?php echo $this->getString('ACCOUNTING_LABORER'); ?></label>
-                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="findExistingTimesheet(laborer, timesheetDate); getStaffInfo(laborer);">
+<!--                <input name="timesheet-laborer" class="form-control" type="text" list="timesheet-autocomplete-list" ng-model="laborer" ng-blur="findExistingTimesheet(laborer, timesheetDate); getStaffInfo(laborer);">
                 <datalist id="timesheet-autocomplete-list">
                     <option ng-if="!autocomplete.length > 0" value="">Loading</option>
                     <option ng-repeat="value in autocomplete" value="{{value.firstname}} {{value.lastname}}"></option>
-                </datalist>
-                <label ng-if="findExisting">Checking for existing timesheet...</label>
+                </datalist>-->
+
+                <div class="input-group">
+                    <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="laborer" typeahead-wait-ms="500"
+                           uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
+                           typeahead-loading="loadingTypeaheadLaborer" typeahead-no-results="noResultsLaborer" class="form-control typeahead"
+                           typeahead-min-length="2" typeahead-on-select="findExistingTimesheet(laborer, timesheetDate); getLaborerInfo(laborer);">
+                    <i ng-show="loadingTypeaheadLaborer" class="glyphicon glyphicon-refresh"></i>
+                    <div class="resultspane" ng-show="noResultsCompany">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    </div>
+                </div>
+
+                <label ng-if="findExisting"><?php echo $this->getString('ACCOUNTING_CHECKING_FOR_EXISTING_TIMESHEET'); ?></label>
             </div>
 
             <!--
@@ -26,7 +38,7 @@
                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                               typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
                             <div class="resultspane" ng-show="noResults">
-                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                ?>
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                           ?>
                             </div>
                             <span class="input-group-btn" ng-if="!searchSubmitted">
                               <button type="submit" class="btn-default">
@@ -55,8 +67,6 @@
                 <label for="vehicle-num"><?php echo $this->getString('ACCOUNTING_VEHICLE_NUMBER'); ?></label>
                 <select class="form-control" name="vehicle-num" ng-model="vehicleID" ng-change="getVehicleTolls(vehicleID)">
                     <?php
-                    //pr($Vehicles);
-
                     foreach ($Vehicles as $vehicle) {
                         echo '<option value="' . $vehicle['id'] . '">' . $vehicle['number'] . ' ' . $vehicle['licensePlate'] . '</option>';
                     }
@@ -77,17 +87,17 @@
                     <th class="select-col" ng-click="selectAllToggle(selectAll)"><input class="select-all" type="checkbox" ng-model="selectAll"></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_CLAIM'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_ITEM_RATE'); ?></th>
+                    <th class="rate-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_ITEM_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DESCRIPTION'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_REGULAR_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_OVERTIME_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DOUBLE_OT_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_REGULAR_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_OVERTIME_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOTAL_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_REGULAR_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_OVERTIME_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_DOUBLE_OT_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_REGULAR_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_OVERTIME_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_STAT_DOUBLE_OT_HOURS'); ?></th>
+                    <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOTAL_HOURS'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -114,19 +124,20 @@
                     <td>
                         <input class="checkbox" type="checkbox" ng-model="row.isSelected" ng-click="checkSelected(row.selected)">
                     </td>
-                    <td>
-<!--                        <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
-                        <datalist id="timesheet-claims-list">
-                            <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
-                            <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
-                            <option ng-repeat="value as value.jobNumber for value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
-                        </datalist>-->
-                        <input placeholder="Claim Number" type="text" ng-model="row.jobNumber" ng-model-options="{debounce:100}"
-                               typeahead="value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)"
-                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsClaim" class="form-control typeahead"
-                               typeahead-min-length="2" typeahead-on-select="getClaimsID(row.jobNumber, row)">
-                        <div class="resultspane claim-number" ng-show="noResultsClaim">
-                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                    <td class="row-typeahead">
+                        <!--                        <input class="claim form-control" type="text" ng-model="row.jobNumber" list="timesheet-claims-list" ng-change="watchClaims(row)" ng-model-options="{ debounce: 500 }" ng-blur="clearClaimsList(row)">
+                                                <datalist id="timesheet-claims-list">
+                                                    <option ng-if="!claimsAutocomplete.length > 0" value="">Loading</option>
+                                                    <option ng-repeat="value in claimsAutocomplete" value="{{value.label}}" data="{{value.id}}"></option>
+                                                </datalist>-->
+                        <div class="input-group">
+                            <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?>" type="text" ng-model="row.jobNumber" typeahead-wait-ms="500"
+                                   uib-typeahead="value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)"
+                                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsCompany" class="form-control typeahead"
+                                   typeahead-min-length="2" typeahead-on-select="getClaimsID(row, row.jobNumber)">
+                            <div class="resultspane" ng-show="noResultsCompany">
+                                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -139,13 +150,13 @@
                         </select>
                     </td>
                     <td>
-                        <input class="rate form-control" ng-model="row.hourlyRate">
+                        <input class="form-control" ng-model="row.hourlyRate">
                     </td>
                     <td>
                         <input class="description form-control" ng-model="row.description">
                     </td>
                     <td>
-                        <select class="toll form-control" ng-model="row.toll1">
+                        <select class="form-control" ng-model="row.toll1">
                             <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll1[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
 
@@ -156,7 +167,7 @@
                         -->
                     </td>
                     <td>
-                        <select class="toll form-control" ng-model="row.toll2">
+                        <select class="form-control" ng-model="row.toll2">
                             <option ng-repeat="toll in tolls track by $index" value="{{toll.cost}}" ng-selected="selectToll2[{{$parent.$index}}][{{$index}}]">{{toll.abbreviation}}</option>
                         </select>
                     </td>

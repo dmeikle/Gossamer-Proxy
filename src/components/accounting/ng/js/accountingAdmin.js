@@ -1,4 +1,4 @@
-var module = angular.module('accountingAdmin', ['ui.bootstrap']);
+var module = angular.module('accountingAdmin', ['ui.bootstrap', 'dropzone']);
 
 
 module.config(function ($httpProvider) {

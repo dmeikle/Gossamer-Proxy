@@ -231,6 +231,9 @@ admin_claims_home:
             - 'app/locales/*/website'
 
 
+
+
+# COMMENTS
 admin_claimslocation_view_comments:
     pattern: admin/claims/locations/comments/*
     defaults:
@@ -329,14 +332,25 @@ admin_claims_upload_claim_photos:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimPhotosController
         model: components\claims\models\ClaimPhotoModel
-        method: uploadPhotos
+        method: index
         view: core\views\JSONView
         viewKey: admin_claims_upload_claim_photos
         datasource: datasource1
     methods: [POST]
 
 
-
+admin_claims_list_claimlocation_photocounts:
+    pattern: admin/claim/photos/count/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_claims_list_claim_photos
+        datasource: datasource1
+    methods: [GET]
+    
 
 admin_claims_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/*/*
@@ -354,8 +368,21 @@ admin_claims_initial_jobsheet:
             - 'app/locales/*/website'
     methods: [GET]
 
-
-
+admin_claims_edit_initial_jobsheet:
+    pattern: admin/claim/initial-jobsheet/edit/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getInitialJobsheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_edit_initial_jobsheet
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/*/website'
+    methods: [GET]
 
 admin_claims_view_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/view/*/*
@@ -446,7 +473,7 @@ admin_claims_edit:
         datasource: datasource1
         langFiles:
             - 'src/components/claims/locales/*/claims'
-            - 'app/locales/en_US/website'
+            - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
 
 
@@ -683,19 +710,31 @@ admin_claimlocations_save_by_claimid:
 
 
 
-admin_upload_location_photo:
-    pattern: admin/claimlocations/photos/upload/*/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', 'datasource': 'datasource1'}
+admin_count_location_photos:
+    pattern: admin/claimlocations/photos/count/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
         model: components\claims\models\LocationsPhotoModel
-        method: saveClaimsLocationPhotos
+        method: countLocationPhotos
         view: core\views\JSONView
-        viewKey: admin_upload_location_photo
+        viewKey: admin_count_location_photos
         datasource: datasource1
     methods: [GET]
+
+admin_upload_location_photos:
+    pattern: admin/claimlocations/photos/upload/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', class: 'components\claims\models\ClaimPhotoModel', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsPhotoModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_upload_location_photos
+        datasource: datasource1
+    methods: [POST]
 
 
 admin_claims_scheduling_list:

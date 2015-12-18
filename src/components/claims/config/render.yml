@@ -1,5 +1,12 @@
-## YAML Template.
----
+
+advancedSearchFilters:
+    path: 'src/components/claims/ng/views/advancedSearchFilter.php'
+    langFiles:
+        - 'src/components/claims/locales/*/Claims'
+    listeners:
+#        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+
+
 claimsAddNewModal:
     path: 'src/components/claims/ng/views/claimsAddNewModal.php'
     langFiles:
@@ -208,4 +215,31 @@ secondarySheetAdminTab:
     langFiles:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
-                
+
+photoUploadModal:
+    path: 'src/components/claims/ng/views/photoUploadModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+        - 'app/locales/*/website'
+
+uploadDocumentModal:
+    path: 'src/components/claims/ng/views/documentUploadModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+        - 'app/locales/*/website'
+    listeners:
+        - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\documents\form\DocumentBuilder'
+            model: 'components\documents\models\DocumentTypeModel'
+            cacheKey: 'DocumentUploadForm'
+            formName: 'documentForm'
+            dependencies:
+                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }

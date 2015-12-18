@@ -426,13 +426,7 @@ class AbstractController {
             $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
             unset($pagination);
         }
-//        //TODO: this is simply here for debugging and should be removed
-//      $count = array();
-//      $count[] = array("offset"=>"0","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"2","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"4","limit"=>"2","current"=>"current");
-//      $count[] = array("offset"=>"6","limit"=>"2","current"=>"");
-//      $count[] = array("offset"=>"8","limit"=>"2","current"=>"");
+
         $this->render($count);
     }
 
@@ -460,6 +454,30 @@ class AbstractController {
         return $config['default_locale'];
     }
 
+    public function uploadItem($id) {
+
+        if (!$this->model instanceof UploadableInterface) {
+            throw new \exceptions\InterfaceNotImplementedException('Model must implement UploadableInterface');
+        }
+
+        $id = intval($id);
+        $filenames = array();
+        $imagePath = $this->model->getUploadPath();
+
+        $this->mkdir($imagePath);
+        $path_parts = pathinfo($_FILES["file"]["name"]);
+        $extension = $path_parts['extension'];
+        //changed fileName to filename to match column name
+        //if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '_' . $_FILES["file"]["name"])) {
+            $params = array('id' => intval($id), 'filename' => $id . '_' . $_FILES["file"]["name"]);
+
+            $this->model->saveParamsOnComplete($params);
+        }
+
+        $this->render(array('success' => 'true'));
+    }
+
     /**
      * Creates a directory recursively.
      *
@@ -468,7 +486,7 @@ class AbstractController {
      *
      * @throws IOException On any directory creation failure
      */
-    public function mkdir($dirs, $mode = 0777) {
+    protected function mkdir($dirs, $mode = 0777) {
         foreach ($this->toIterator($dirs) as $dir) {
             if (is_dir($dir)) {
                 continue;
@@ -479,12 +497,25 @@ class AbstractController {
                 if (!is_dir($dir)) {
                     // The directory was not created by a concurrent process. Let's throw an exception with a developer friendly error message if we have one
                     if ($error) {
-                        throw new IOException(sprintf('Failed to create "%s": %s.', $dir, $error['message']), 0, null);
+                        throw new \IOException(sprintf('Failed to create "%s": %s.', $dir, $error['message']), 0, null);
                     }
-                    throw new IOException(sprintf('Failed to create "%s"', $dir), 0, null);
+                    throw new \IOException(sprintf('Failed to create "%s"', $dir), 0, null);
                 }
             }
         }
+    }
+
+    /**
+     * @param mixed $files
+     *
+     * @return \Traversable
+     */
+    private function toIterator($files) {
+        if (!$files instanceof \Traversable) {
+            $files = new \ArrayObject(is_array($files) ? $files : array($files));
+        }
+
+        return $files;
     }
 
 }

@@ -1,4 +1,4 @@
-module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal) {
+module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv, accountingTemplateSrv, generalCostsSrv, $modal, tablesSrv) {
     // Stuff to run on controller load
     $scope.itemsPerPage = 20;
     $scope.currentPage = 1;
@@ -18,7 +18,30 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
 
     var row = (($scope.currentPage - 1) * $scope.itemsPerPage);
     var numRows = $scope.itemsPerPage;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    
+    // Load up the table service so we can watch it!
+    $scope.tablesSrv = tablesSrv;
+    
+    $scope.$watch('tablesSrv.sortResult', function () {
+        if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+            $scope.list = tablesSrv.sortResult.AccountingGeneralCosts;
+            $scope.loading = false;
+        }
+    });
 
+    $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.AccountingGeneralCosts'], function () {
+        $scope.grouped = tablesSrv.grouped;
+        if ($scope.grouped === true) {
+            if (tablesSrv.groupResult && tablesSrv.groupResult.AccountingGeneralCosts)
+                $scope.generalCostsList = tablesSrv.groupResult.AccountingGeneralCosts;
+            $scope.loading = false;
+        } else if ($scope.grouped === false) {
+            getGeneralCostsList();
+        }
+    });
+
+    
     function getGeneralCostsList() {
         $scope.loading = true;
         $scope.noSearchResults = false;
@@ -28,7 +51,6 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
                     $scope.loading = false;
                     $scope.generalCostsList = generalCostsSrv.generalCostsList;
                     $scope.totalItems = generalCostsSrv.generalCostsCount;
-                    console.log($scope.totalItems);
                     if (generalCostsSrv.error.showError === true) {
                         $scope.error.showError = true;
                         //$scope.error.message = 'Could not reach the database, please try again.';
@@ -117,6 +139,17 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
         $scope.selectedTimesheet = undefined;
         $scope.searching = true;
     };
+    
+    $scope.fetchClaimAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return generalCostsSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    //Get JobNumber
+    $scope.getJobNumber = function (claim) {
+        $scope.advSearch.jobNumber = claim.jobNumber;
+    };
 
     //Date Picker
     $scope.dateOptions = {'starting-day': 1};
@@ -127,7 +160,6 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
 
     //Modal
     $scope.openGeneralCostsModal = function (generalCost) {
-        console.log(generalCost);
         $scope.modalLoading = true;
         var template = accountingTemplateSrv.generalCostsModal;
         var modal = $modal.open({
@@ -144,6 +176,19 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
             $scope.modalLoading = false;
         });
         modal.result.then(function () {
+            getGeneralCostsList();
+        });
+    };
+    
+    $scope.remove = function(object){
+        var item = {};        
+        item.isActive = 0;
+        item.id = object.id;
+//        generalCostsSrv.setInactive(object, formToken).then(function(){
+//            getGeneralCostsList();
+//        });
+        
+        generalCostsSrv.saveItem(item, formToken).then(function(){
             getGeneralCostsList();
         });
     };
