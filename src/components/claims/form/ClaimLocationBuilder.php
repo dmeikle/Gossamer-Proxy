@@ -54,6 +54,9 @@ class ClaimLocationBuilder extends AbstractBuilder {
         if (array_key_exists('claimStatus', $options)) {
             $builder->add('ClaimStatus_id', 'select', array('ng-model' => 'item.ClaimStatus_id', 'class' => 'form-control', 'options' => $options['claimStatus']));
         }
+        if (array_key_exists('vehicles', $options)) {
+            $builder->add('Vehicles_id', 'select', array('ng-model' => 'item.Vehicles_id', 'class' => 'form-control', 'options' => $options['vehicles']));
+        }
 
 
 

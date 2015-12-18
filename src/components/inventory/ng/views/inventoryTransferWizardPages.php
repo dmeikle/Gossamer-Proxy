@@ -41,12 +41,12 @@
               typeahead="value.warehouseLocation for value in autocompleteWarehouseLocation($viewValue)"
               typeahead-loading="loadingTypeaheadWarehouseLocation" typeahead-no-results="noResultsWarehouseLocation" class="form-control"
               typeahead-min-length='3'>
-            <div class="resultspane" ng-show="noResultsJobNumber">
+            <div class="resultspane" ng-show="noResultsWarehouseLocation">
               <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
             </div>
             <i ng-show="loadingTypeaheadWarehouseLocation" class="glyphicon glyphicon-refresh"></i>
           </div>
-          <div class="form-group" ng-controller="claimsListCtrl">
+          <div class="form-group">
             <div>
               <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
               <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
@@ -58,10 +58,6 @@
               </div>
               <i ng-show="loadingTypeaheadJobNumber" class="glyphicon glyphicon-refresh"></i>
             </div>
-          </div>
-          <div class="form-group">
-            <label><?php echo $this->getString('INVENTORY_TRANSFER_CLAIM') ?></label>
-            getClaimLocation by ID for select box, taken from typeahead
           </div>
           <div class="form-group">
             <label><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
