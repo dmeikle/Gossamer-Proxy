@@ -161,9 +161,9 @@ module.controller('generalCostsListCtrl', function ($scope, costCardItemTypeSrv,
     //Modal
     $scope.openGeneralCostsModal = function (generalCost) {
         $scope.modalLoading = true;
-        var template = accountingTemplateSrv.generalCostsModal;
+        var template = accountingTemplateSrv.generalCostsModal();
         var modal = $modal.open({
-            templateUrl: template,
+            template: template,
             controller: 'generalCostsModalCtrl',
             size: 'lg',
             resolve: {
