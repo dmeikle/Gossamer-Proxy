@@ -256,15 +256,11 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     };
 
     $scope.autocompleteJobNumber = function(value) {
-        return autocomplete(value, 'jobNumber', '/admin/claims/').then(function() {
-            return inventoryTransferSrv.autocompleteResult.Claims;
-        });
+        return autocomplete(value, 'jobNumber', '/admin/claims/');
     };
 
     $scope.autocompleteWarehouseLocation = function(value) {
-        return autocomplete(value, 'WarehouseLocation_id', '/admin/inventory/warehouse').then(function() {
-            return inventoryTransferSrv.autocompleteResult.Claims;
-        });
+        return autocomplete(value, 'warehouseLocation', '/admin/inventory/warehouse/');
     };
 
     $scope.submit = function() {

@@ -29,30 +29,26 @@
 
         <div ng-if="equipmentList[0].location.warehouseLocation">
           <div class="form-group">
+            <!-- <input type="radio" name="cageTransferBy" ng-model="cageTransferBy" value="Vehicles_id" id=""> -->
             <label for="ClaimLocation_Vehicles_id"><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-            <?php echo $claimLocationForm['Vehicles_id'] ?>
+            <?php echo $transferForm['Vehicles_id'] ?>
           </div>
 
         </div>
         <div ng-if="equipmentList[0].location.vehicleNumber">
           <div  class="form-group">
+            <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="WarehouseLocations_id" id=""> -->
             <label><?php echo $this->getString('INVENTORY_TRANSFER_WAREHOUSE') ?></label>
-            <input type="text" ng-model="transfer.warehouseLocation" ng-model-options="{debounce:500}"
-              typeahead="value.warehouseLocation for value in autocompleteWarehouseLocation($viewValue)"
-              typeahead-loading="loadingTypeaheadWarehouseLocation" typeahead-no-results="noResultsWarehouseLocation" class="form-control"
-              typeahead-min-length='3'>
-            <div class="resultspane" ng-show="noResultsWarehouseLocation">
-              <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
-            </div>
-            <i ng-show="loadingTypeaheadWarehouseLocation" class="glyphicon glyphicon-refresh"></i>
+            <?php echo $transferForm['WarehouseLocations_id'] ?>
           </div>
           <div class="form-group">
             <div>
+              <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="jobNumber" id=""> -->
               <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
               <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
-                typeahead="value.jobNumber as value.jobNumber + ' - ' + value.buildingName for value in autocompleteJobNumber($viewValue)"
+                uib-typeahead="value as value[0].jobNumber for value in autocompleteJobNumber($viewValue)"
                 typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsJobNumber" class="form-control"
-                typeahead-min-length='3'>
+                typeahead-min-length='2'>
               <div class="resultspane" ng-show="noResultsJobNumber">
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
               </div>
@@ -60,16 +56,19 @@
             </div>
           </div>
           <div class="form-group">
+            <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="Vehicles_id" id=""> -->
             <label><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-            <?php echo $claimLocationForm['Vehicles_id'] ?>
+            <?php echo $transferForm['Vehicles_id'] ?>
           </div>
         </div>
         <div ng-if="equipmentList[0].location.unitNumber">
           <div class="form-group">
+            <!-- <input type="radio" name="unitNumberTransferBy" ng-model="unitNumberTransferBy" value="Vehicles_id" id=""> -->
             <label><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-            <?php echo $claimLocationForm['Vehicles_id'] ?>
+            <?php echo $transferForm['Vehicles_id'] ?>
           </div>
           <div class="form-group">
+            <!-- <input type="radio" name="unitNumberTransferBy" ng-model="unitNumberTransferBy" value="unitNumber" id=""> -->
             <label><?php echo $this->getString('INVENTORY_TRANSFER_UNIT') ?></label>
             <?php echo $claimLocationForm['unitNumber'] ?>
           </div>

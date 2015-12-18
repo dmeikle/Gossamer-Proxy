@@ -77,4 +77,8 @@ module.service('searchSrv', function($http) {
             self.autocomplete = response.data;
         });
     };
+
+    this.autocomplete = function(apiPath, config) {
+        return self.searchCall(apiPath + 'autocomplete', config);
+    };
 });

@@ -8,9 +8,15 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
         var config = {};
         config[type] = value;
 
-        return searchSrv.fetchAutocomplete(apiPath, config).then(function() {
-
-            self.autocompleteResult = searchSrv.autocomplete;
+        return searchSrv.autocomplete(apiPath, config).then(function(response) {
+            var object = {};
+            for (var i = response.data.Claims.length - 1; i >= 0; i--) {
+                object[response.data.Claims[i][0].jobNumber] = [];
+                for(var claimLocation in response.data.Claims[i]) {
+                    object[response.data.Claims[i][0].jobNumber].push(response.data.Claims[i][claimLocation]);
+                }
+            }
+            return object;
         });
     };
 
