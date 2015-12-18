@@ -19,7 +19,7 @@
                 <label for="DocumentType_ClaimLocations_id">
                     <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
                 </label>
-                <?php echo $documentForm['ClaimLocations_id']; ?>
+                <?php echo $documentForm['ClaimsLocations_id']; ?>
             </div>
         </div>
         <div class="col-xs-6">

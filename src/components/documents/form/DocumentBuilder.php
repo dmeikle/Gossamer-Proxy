@@ -32,7 +32,7 @@ class DocumentBuilder extends AbstractBuilder {
         }
 
         if (array_key_exists('claimLocations', $options)) {
-            $builder->add('ClaimLocations_id', 'select', array('ng-model' => 'upload.ClaimLocations_id', 'class' => 'form-control', 'multiple' => 'multiple', 'options' => $options['claimLocations']));
+            $builder->add('ClaimsLocations_id', 'select', array('ng-model' => 'upload.ClaimsLocations_id', 'class' => 'form-control', 'multiple' => 'multiple', 'options' => $options['claimLocations']));
         }
 
         return $builder->getForm();
