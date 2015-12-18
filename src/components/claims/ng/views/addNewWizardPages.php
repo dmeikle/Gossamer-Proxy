@@ -57,7 +57,7 @@
                 <p class="text-muted"><?php echo $this->getString('CLAIMS_NOPASELECTED') ?></p>
             </div>
             <address ng-if="claim.ProjectAddress">
-                <strong>{{claim.ProjectAddress.buildingName}}</strong>
+                <strong>{{claim.ProjectAddress.buildingName}}</strong><br>
                 <small>{{claim.ProjectAddress.strata}} #{{claim.ProjectAddress.strataNumber}}</small><br>
                 {{claim.ProjectAddress.address1}}<br>
                 <span ng-if="claim.ProjectAddress.address2">
@@ -135,7 +135,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="wizard-page" ng-show="currentPage === 1 && !loading"> <!-- PAGE 1 -->
-        <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-6">
         <?php echo $this->getString('CLAIMS_LOCATIONS_ADDORSELECT') ?>
         <form ng-submit="addToUnitList()">
             <div class="input-group">
@@ -172,7 +172,7 @@
                 <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
             </button>
             <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form">
-                        <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
+                <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
             </button>
         </div>
     </div>
@@ -210,11 +210,11 @@
                     <?php echo $this->getString('CLAIM_DATE'); ?>
                 </label>
                 <div class="input-group">
-                    <input type="date" name="date" id="claim-date" ng-model="claim.query.date" ng-model-options="{timezone: '+0000'}"
-                           class="form-control" uib-datepicker-popup is-open="isOpen.date"
+                    <input type="date" name="callInDate" id="claim-callInDate" ng-model="claim.query.callInDate" ng-model-options="{timezone: '+0000'}"
+                           class="form-control" uib-datepicker-popup is-open="isOpen.callInDate"
                            datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('CLAIM_CLOSE'); ?>" />
-                    <span class="input-group-btn" data-datepickername="date">
-                        <button type="button" class="btn-default" data-datepickername="date" ng-click="openDatepicker($event)">
+                    <span class="input-group-btn" data-datepickername="callInDate">
+                        <button type="button" class="btn-default" data-datepickername="callInDate" ng-click="openDatepicker($event)">
                             <i class="glyphicon glyphicon-calendar"></i>
                         </button>
                     </span>
@@ -227,7 +227,7 @@
                     <label class="control-label">
                         <?php echo $this->getString('CLAIM_TIME'); ?>
                         <uib-timepicker name="time" id="claim-time" ng-model="claim.query.date" ng-model-options="{timezone: '+0000'}"
-                            show-meridian="true" required></uib-timepicker>
+                                        show-meridian="true" required></uib-timepicker>
                     </label>
                 </div>
             </div>
@@ -250,9 +250,9 @@
 </form>
 <div ng-show="currentPage === 3"> <!-- PAGE 3 -->
     <form id="wizard-form" class="wizard-page" ng-show="!loading && !addingLocation">
-        
 
-        
+
+
     </form>
     <div class="pull-left">
         <button class="btn-default" ng-click="cancel()">
@@ -264,7 +264,7 @@
             <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
         </button>
         <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form">
-                    <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
+            <?php echo $this->getString('CLAIMS_ADDNEW_NEXT'); ?>
         </button>
     </div>
     <div class="clearfix"></div>
@@ -277,7 +277,7 @@
             <ul>
                 <li>
                     <div class="col-xs-12 col-md-6">
-                        <?php echo $this->getString('CLAIMS_CALLEDINBY'); ?>
+                        <?php echo $this->getString('CLAIMS_CALLED_IN_BY'); ?>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         {{claim.query.calledInBy}}&nbsp;
@@ -285,7 +285,7 @@
                 </li>
                 <li>
                     <div class="col-xs-12 col-md-6">
-                        <?php echo $this->getString('CLAIMS_CALLEDINPHONE'); ?>
+                        <?php echo $this->getString('CLAIMS_CALLED_IN_PHONE'); ?>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         {{claim.query.calledInPhone}}&nbsp;
@@ -354,7 +354,7 @@
                 </li>
                 <li>
                     <div class="col-xs-12 col-md-6">
-                        <?php echo $this->getString('CLAIMS_ASBESTOSTEST'); ?>
+                        <?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?>
                     </div>
                     <div class="col-xs-12 col-md-6">
                         {{claim.query.asbestosTestRequired}}&nbsp;
@@ -387,8 +387,8 @@
             <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
         </button>
         <button type="submit" ng-click="nextPage()" class="btn btn-primary" form="wizard-form"
-            ng-disabled="!claim.confirm">
-            <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
+                ng-disabled="!claim.confirm">
+                    <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
         </button>
     </div>
     <div class="clearfix"></div>
@@ -405,8 +405,8 @@
             <?php echo $this->getString('CLAIMS_ADDNEW_PREV'); ?>
         </button>
         <button type="submit" ng-click="confirm()" class="btn btn-primary" form="wizard-form"
-            ng-disabled="!claim.confirm">
-            <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
+                ng-disabled="!claim.confirm">
+                    <?php echo $this->getString('CLAIMS_ADDNEW_CONFIRM'); ?>
         </button>
     </div>
     <div class="clearfix"></div>

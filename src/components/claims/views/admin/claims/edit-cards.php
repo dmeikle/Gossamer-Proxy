@@ -49,7 +49,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    
+
     <div class="clearfix">
         <h3 class="pull-left"><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
 
@@ -62,48 +62,25 @@
     <div ng-if="loading">
         <div class="spinner-loader"></div>
     </div>
-    <div ng-if="!loading && contacts[0].type" class="card" ng-repeat="contact in contacts">
-        <div class="cardheader">
-            <h1 ng-if="contact.type" class="pull-left">
-                {{contact.type}}
-            </h1>
-            <h2 class="pull-right">
-                <a href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
-            </h2>
-        </div>
-        <table class="table cardtable">
-            <tbody>
-                <tr>
-                    <td>
-                        <strong><?php echo $this->getString('CLAIMS_COMPANY'); ?></strong>
-                    </td>
-                    <td>{{contact.company}}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong><?php echo $this->getString('CLAIMS_OFFICE'); ?></strong>
-                    </td>
-                    <td>{{contact.office}}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong><?php echo $this->getString('CLAIMS_MOBILE'); ?></strong>
-                    </td>
-                    <td>{{contact.mobile}}</td>
-                </tr>
-            </tbody>
-        </table>
+
+
+    <div ng-if="!loading && hasContacts()" ng-repeat="contact in contacts" class="card info-card ng-scope">
+        <p><strong class="ng-binding">{{contact.contactType}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
+            <span class="ng-binding" style="float: right"><strong><?php echo $this->getString('CLAIMS_COMPANY'); ?>:</strong> {{contact.company}} </span></p>
+        <p class="ng-binding">
+            <?php echo $this->getString('CLAIMS_OFFICE'); ?>: {{contact.office}}
+            <span class="ng-binding" style="float: right"> <?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{contact.mobile}}</span>
+        </p>
+
         <div class="cardfooter clearfix">
-            <div class="pull-right">
-                <a href="" ng-click="openClientModal(contact)">
-                    <small><?php echo $this->getString('EDIT') ?></small>
-                </a>
-            </div>
+            <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('CLAIMS_MORE_INFORMATION'); ?></a></div>
+
         </div>
     </div>
-    <div ng-if="!loading && !contacts[0].type">
+    <div ng-if="!loading && !hasContacts()">
         <p class="text-center text-muted">
             <?php echo $this->getString('CLAIMS_NOCONTACTS') ?>
         </p>
     </div>
+
 </div>

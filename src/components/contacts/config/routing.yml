@@ -194,6 +194,8 @@ contacts_home:
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/contacts/locales/*/Contact'
+            - app/locales/*/website
+
 
 admin_contacts_autocomplete:
     pattern: admin/contacts/autocomplete
@@ -206,6 +208,8 @@ admin_contacts_autocomplete:
         viewKey: admin_contacts_autocomplete
         datasource: datasource1
 
+
+        
 admin_contacts_search:
     pattern: admin/contacts/search
     defaults:
@@ -216,6 +220,40 @@ admin_contacts_search:
         view: core\views\JSONView
         viewKey: admin_contacts_search
         datasource: datasource1
+   
+    
+admin_contacts_edit:
+    pattern: admin/contacts/edit/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\contacts\form\ContactBuilder'
+            model: 'components\contacts\models\ContactModel'
+            cacheKey: 'contactForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_contacts_edit
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/contacts/locales/*/Contact'
+            - 'src/components/contacts/locales/*/login'
+            - app/locales/*/website
+   
+
     
 admin_contacts_list:
     pattern: admin/contacts/*/*
@@ -226,38 +264,6 @@ admin_contacts_list:
         method: listall
         view: core\views\JSONView
         viewKey: admin_contacts_list
-        datasource: datasource1
-   
-    
-admin_contacts_edit:
-    pattern: admin/contacts/edit/*
-    methods: [GET]
-    listeners:
-        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
-    defaults:
-        component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
-        model: components\contacts\models\ContactModel
-        method: edit
-        view: core\views\JSONView
-        viewKey: admin_contacts_get
-        datasource: datasource1
-   
-    
-admin_contacts_get:
-    pattern: admin/contacts/*
-    methods: [GET]
-    listeners:
-        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
-        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
-    defaults:
-        component: components\contacts\ContactsComponent
-        controller: components\contacts\controllers\ContactsController
-        model: components\contacts\models\ContactModel
-        method: get
-        view: core\views\JSONView
-        viewKey: admin_contacts_get
         datasource: datasource1
         
 admin_contacts_save:
@@ -270,7 +276,7 @@ admin_contacts_save:
         controller: components\contacts\controllers\ContactsController
         model: components\contacts\models\ContactModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_contacts_save
         datasource: datasource1
 
@@ -287,6 +293,38 @@ admin_contacts_remove:
         view: core\views\JSONView
         viewKey: admin_contacts_remove
         datasource: datasource1
+        
+admin_contacts_delete:
+    pattern: admin/contacts/*
+    methods: [DELETE]
+    listeners:
+     #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_contacts_delete
+        datasource: datasource1
+
+        
+        
+admin_contacts_get:
+    pattern: admin/contacts/*
+    methods: [GET]
+    listeners:
+        - { 'event': 'response_start', 'listener': 'components\companies\listeners\LoadCompanyByIdListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Company'}
+        - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes'}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel   
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_contacts_get
+        datasource: datasource1
+    methods: [POST]
         
  
         

@@ -18,11 +18,11 @@ use Monolog\Logger;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
- * Description of PropertyModel
+ * Description of ClaimPhotoModel
  *
  * @author Dave Meikle
  */
-class ClaimPhotoModel extends AbstractModel implements FormBuilderInterface {
+class ClaimPhotoModel extends AbstractModel implements FormBuilderInterface, \core\UploadableInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -43,6 +43,15 @@ class ClaimPhotoModel extends AbstractModel implements FormBuilderInterface {
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
 
         return $data;
+    }
+
+    public function getUploadPath() {
+        return __UPLOADED_FILES_PATH . 'images';
+    }
+
+    public function saveParamsOnComplete(array $params) {
+
+        return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimPhotos' => $params));
     }
 
 }

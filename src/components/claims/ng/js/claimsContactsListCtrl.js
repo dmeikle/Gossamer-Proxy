@@ -72,4 +72,10 @@ module.controller('claimsContactsList', function ($scope, $rootScope, $uibModal,
         });
     };
 
+
+    $scope.hasContacts = function() {
+        return $scope.contacts.length > 0;
+    };
+    
+    
 });

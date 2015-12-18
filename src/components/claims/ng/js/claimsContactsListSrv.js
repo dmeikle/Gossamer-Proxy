@@ -9,8 +9,8 @@ module.service('contactListSrv', function(searchSrv, crudSrv) {
 	};
 
 	this.save = function(object, formToken, claimId) {
-		object.Contacts_id = object.id;
 		object.Claims_id = claimId;
+                delete object.id;
 		return crudSrv.save('/admin/claim/contacts/' + claimId, object, 'ClaimContact', formToken);
 	};
 });

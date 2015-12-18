@@ -103,13 +103,13 @@
             </div>
             <div class="col-xs-6 form-group">
                 <label>
-                    <?php echo $this->getString('CLAIMS_MOBILEPHONE') ?>
+                    <?php echo $this->getString('CLAIMS_MOBILE_PHONE') ?>
                 </label>
                 <?php echo $contactForm['mobile'] ?>
             </div>
             <div class="col-xs-6 form-group">
                 <label>
-                    <?php echo $this->getString('CLAIMS_WORKPHONE') ?>
+                    <?php echo $this->getString('CLAIMS_WORK_PHONE') ?>
                 </label>
                 <?php echo $contactForm['office'] ?>
             </div>

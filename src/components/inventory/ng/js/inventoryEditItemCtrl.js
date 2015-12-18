@@ -25,7 +25,8 @@ module.controller('inventoryEditItemCtrl', function($scope, $location, inventory
     $scope.saveItem = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         inventoryEditSrv.save($scope.item, formToken).then(function(response) {
-            //do not fire a redirect to reload page
+            $scope.item = response.data.InventoryItem[0];
+            document.getElementById('InventoryItem_id').value = response.data.inventoryitem_id;
         });
     };
 

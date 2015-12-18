@@ -29,6 +29,7 @@ class ContactBuilder extends AbstractBuilder {
 
         $builder->add('firstname', 'text', array('ng-model' => 'contact.firstname', 'class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
                 ->add('lastname', 'text', array('ng-model' => 'contact.lastname', 'class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
+                ->add('id', 'hidden', array('ng-model' => 'contact.id', 'class' => 'form-control', 'value' => $this->getValue('id', $values)))
                 ->add('email', 'email', array('ng-model' => 'contact.email', 'class' => 'form-control', 'value' => $this->getValue('email', $values)))
                 ->add('mobile', 'text', array('ng-model' => 'contact.mobile', 'class' => 'form-control', 'value' => $this->getValue('mobile', $values)))
                 ->add('home', 'text', array('ng-model' => 'contact.home', 'class' => 'form-control', 'value' => $this->getValue('home', $values)))

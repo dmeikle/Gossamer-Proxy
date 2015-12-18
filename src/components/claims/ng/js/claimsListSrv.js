@@ -44,6 +44,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
         return $http.get(apiPathClaimLocation + claimId)
             .then(function(response) {
                 self.claimsLocations = response.data.ClaimsLocations;
+                return response;
             });
     };
 
@@ -85,7 +86,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
     };
 
     this.getAdvancedSearchFilters = function() {
-        return searchSrv.getAdvancedSearchFilters('/render/claims/claimsAdvancedSearchFilters').then(function() {
+        return searchSrv.getAdvancedSearchFilters('/render/claims/advancedSearchFilters').then(function() {
             self.advancedSearch.fields = searchSrv.advancedSearch.fields;
         });
     };

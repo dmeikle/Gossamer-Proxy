@@ -22,7 +22,7 @@ use Gossamer\CMS\Forms\FormBuilderInterface;
  *
  * @author Dave Meikle
  */
-class DocumentModel extends AbstractModel implements FormBuilderInterface {
+class DocumentModel extends AbstractModel implements FormBuilderInterface, \core\UploadableInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -35,6 +35,14 @@ class DocumentModel extends AbstractModel implements FormBuilderInterface {
 
     public function getFormWrapper() {
         return $this->entity;
+    }
+
+    public function getUploadPath() {
+        return __UPLOADED_FILES_PATH . 'documents';
+    }
+
+    public function saveParamsOnComplete(array $params) {
+        $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, array('ClaimDocuments' => $params));
     }
 
 }

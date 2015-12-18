@@ -13,6 +13,7 @@ admin_accounting_cashreceipts:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     methods: [GET]
     listeners: 
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
@@ -136,6 +137,7 @@ accounting_timesheets_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
 
@@ -222,6 +224,17 @@ accounting_timesheetitems_edit:
         
 
 #------------------------ purchase orders ----------------------------
+accounting_pos_autocomplete:
+    pattern: admin/accounting/pos/autocomplete
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\PurchaseOrdersController
+        model: components\accounting\models\PurchaseOrderModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: accounting_pos_autocomplete
+        datasource: datasource1
+
 accounting_pos_home:
     pattern: admin/accounting/pos
     defaults:
@@ -234,6 +247,7 @@ accounting_pos_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
@@ -252,6 +266,7 @@ accounting_pos_edit:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
@@ -375,6 +390,7 @@ accounting_generalcosts_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
 
@@ -389,6 +405,16 @@ accounting_generalcosts_search:
         viewKey: accounting_generalcosts_search
         datasource: datasource1
         
+accounting_generalcosts_setInactive:
+    pattern: admin/accounting/generalcosts/remove/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\GeneralCostsController
+        model: components\accounting\models\GeneralCostModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: accounting_generalcosts_setInactive
+        datasource: datasource1
         
 accounting_generalcosts_list:
     pattern: admin/accounting/generalcosts/*/*
@@ -396,7 +422,7 @@ accounting_generalcosts_list:
         component: components\accounting\AccountingComponent
         controller: components\accounting\controllers\GeneralCostsController
         model: components\accounting\models\GeneralCostModel
-        method: listall
+        method: listallReverse
         view: core\views\JSONView
         viewKey: accounting_generalcosts_list
         datasource: datasource1
@@ -879,7 +905,134 @@ accounting_cashreceipts_save:
         datasource: datasource1 
     methods: [POST]                                                   
     
+#------------------------ Accounting Invoices ----------------------------
+accounting_vendor_invoices_download:
+    pattern: admin/accounting/payables/invoices/download/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: download
+        view: components\fileuploads\views\FileDownloadView
+        viewKey: accounting_vendor_invoices_home
+        datasource: datasource1
+        
+accounting_vendor_invoices_home:
+    pattern: admin/accounting/payables/invoices
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_vendor_invoices_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
 
+
+accounting_vendor_invoices_details:
+    pattern: admin/accounting/payables/invoices/details/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_details
+        datasource: datasource1
+    methods: [GET]
+
+accounting_vendor_invoices_list:
+    pattern: admin/accounting/payables/invoices/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_list
+        datasource: datasource1
+    methods: [GET]
+    
+accounting_vendor_invoices_edit:
+    pattern: admin/accounting/payables/invoices/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: accounting_vendor_invoices_edit
+        datasource: datasource1
+        langFiles:
+            - 'src/components/accounting/locales/*/accounting'
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingPaymentMethodModel', 'cacheKey': 'AccountingPaymentMethods' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PurchaseOrderTypeModel', 'cacheKey': 'PurchaseOrderTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\AccountingTaxTypeModel',  'cacheKey': 'AccountingTaxTypes' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\accounting\form\VendorInvoicesBuilder'
+            model: 'components\accounting\models\AccountingVendorInvoiceModel'
+            cacheKey: 'VendorInvoicesBuilder'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: Vendors, key: vendors, value: id, text: company }
+                - { dependency: Departments, key: departments, value: id, text: name }
+                - { dependency: AccountingPaymentMethods, key: AccountingPaymentMethods, value: id, text: type }
+                - { dependency: PurchaseOrderTypes, key: PurchaseOrderType, value: id, text: orderType }
+                - { dependency: AccountingTaxTypes, key: taxTypes, value: id, text: type }
+    methods: [GET]
+
+
+accounting_vendor_invoices_save:
+    pattern: admin/accounting/payables/invoices/details/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: save
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_save
+        datasource: datasource1 
+    methods: [POST]                                                                
+    
+    
+accounting_invoice_upload:
+    pattern: admin/accounting/payables/invoices/upload/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: uploadItem
+        view: core\views\JSONView
+        viewKey: accounting_invoice_upload
+        datasource: datasource1 
+    methods: [POST]
+
+accounting_vendor_invoices_search:
+    pattern: admin/accounting/payables/invoices/search/*/*
+    defaults:
+        component: components\accounting\AccountingComponent
+        controller: components\accounting\controllers\AccountingVendorInvoicesController
+        model: components\accounting\models\AccountingVendorInvoiceModel
+        method: search
+        view: core\views\JSONView
+        viewKey: accounting_vendor_invoices_search
+        datasource: datasource1
+    methods: [GET]
 #------------------------ Accounting Invoice Extra ----------------------------
 accounting_invoiceextras_list:
     pattern: admin/accounting/invoiceextras/*/*
@@ -1217,6 +1370,7 @@ accounting_supplies_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }
@@ -1284,6 +1438,7 @@ accounting_inventory_home:
         datasource: datasource1
         langFiles:
             - 'src/components/accounting/locales/*/accounting'
+            - 'app/locales/*/website'
     listeners:
         #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments' }
         #- { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\accounting\models\PhaseCodeModel', 'cacheKey': 'AccountingPhaseCodes' }

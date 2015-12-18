@@ -1,5 +1,5 @@
 // Inventory service
-module.service('cashReceiptsSrv', function ($http, searchSrv, $filter) {
+module.service('cashReceiptsSrv', function ($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/cashreceipts/';
     var companiesPath = '/admin/companies/';
     var claimsPath = '/admin/claims/';
@@ -79,5 +79,9 @@ module.service('cashReceiptsSrv', function ($http, searchSrv, $filter) {
             self.breakdown = response;
             //self.breakdownLineItems = response.data.PurchaseOrder.PurchaseOrderItems;
         });
+    };
+    
+    this.saveItem = function(item, formToken){
+        return crudSrv.save(apiPath + item.id, item, 'CashReceipt', formToken);
     };
 });

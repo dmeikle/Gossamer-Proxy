@@ -53,6 +53,7 @@ return array(
     'NEW' => 'New',
     'ADVANCED_SEARCH' => 'Advanced Search',
     'EDIT' => 'Edit',
+    'DELETE' => 'Delete',
     'USERNAME' => 'Username',
     'PASSWORD' => 'Password',
     'CANCEL' => 'Cancel',
@@ -64,5 +65,9 @@ return array(
     'REMOVE' => 'Remove',
     'ITEMS_PER_PAGE' => 'Items Per Page',
     'ADMIN_CONTRACTORS_LIST_ALL' => 'List All Contractors',
-    'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor'
+    'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor',
+    'ADMIN_CONTACT' => 'Contacts',
+    'ADMIN_CONTACTS_CREATE_NEW' => 'Create New Contact',
+    'DELETE' => 'Delete',
+    'REMOVE' => 'Remove',
 );
