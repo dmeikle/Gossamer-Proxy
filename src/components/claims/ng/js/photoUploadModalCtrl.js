@@ -17,8 +17,8 @@ module.controller('photoUploadModalCtrl', function(claim, photoCounts, $scope, $
         $scope.photoCounts = response.data.folderList.unitNumbers;
     });
 
-    $rootScope.$on('photoUploaded', function() {
-        photoUploadSrv.getPhotoCount(photoUploadSrv.claimId);
+    $rootScope.$on('photoUploaded', function(response) {
+        $scope.photoCounts = response.data.folderList.unitNumbers;
     });
 
     $scope.close = function() {
