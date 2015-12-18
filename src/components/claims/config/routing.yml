@@ -612,7 +612,19 @@ admin_claims_autocomplete:
         view: core\views\JSONView
         viewKey: admin_claims_autocomplete
         datasource: datasource1
-
+        
+        
+admin_claims_autocompletelocations:
+    pattern: admin/claims/autocompletelocations
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: autocompleteWithLocations
+        view: core\views\JSONView
+        viewKey: admin_claims_autocomplete
+        datasource: datasource1
+        
 admin_claims_get:
     pattern: admin/claims/*
     defaults:
