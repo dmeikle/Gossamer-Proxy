@@ -45,7 +45,7 @@
             <div>
               <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="jobNumber" id=""> -->
               <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER')?></label>
-              <input type="text" ng-model="transfer.jobNumber" ng-model-options="{debounce:500}"
+              <input type="text" ng-model="Claim" ng-model-options="{debounce:500}"
                 uib-typeahead="value as value[0].jobNumber for value in autocompleteJobNumber($viewValue)"
                 typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsJobNumber" class="form-control"
                 typeahead-min-length='2'>
@@ -53,6 +53,9 @@
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
               </div>
               <i ng-show="loadingTypeaheadJobNumber" class="glyphicon glyphicon-refresh"></i>
+              <div ng-if="Claim[0].jobNumber">
+                <select class="form-control" ng-model="transfer.ClaimsLocations_id" ng-options="value.ClaimsLocations_id as value.unitNumber for value in Claim"></select>
+              </div>
             </div>
           </div>
           <div class="form-group">

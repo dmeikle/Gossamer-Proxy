@@ -8,15 +8,16 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
         var config = {};
         config[type] = value;
 
-        return searchSrv.autocomplete(apiPath, config).then(function(response) {
-            var object = {};
-            for (var i = response.data.Claims.length - 1; i >= 0; i--) {
-                object[response.data.Claims[i][0].jobNumber] = [];
-                for(var claimLocation in response.data.Claims[i]) {
-                    object[response.data.Claims[i][0].jobNumber].push(response.data.Claims[i][claimLocation]);
+        return searchSrv.fetchAutocompleteNoSearch(apiPath, config).then(function(response) {
+            var array = [];
+            for (var property in response.data) {
+                if (property !== 'modules' &&
+                property !== 'widgets/admin_claims_autocompletelocations') {
+                    response.data[property][0].jobNumber = property;
+                    array.push(response.data[property]);
                 }
             }
-            return object;
+            return array;
         });
     };
 

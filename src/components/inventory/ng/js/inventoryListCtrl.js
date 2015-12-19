@@ -256,7 +256,7 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     };
 
     $scope.autocompleteJobNumber = function(value) {
-        return autocomplete(value, 'jobNumber', '/admin/claims/');
+        return autocomplete(value, 'jobNumber', '/admin/claims/autocompletelocations');
     };
 
     $scope.autocompleteWarehouseLocation = function(value) {
