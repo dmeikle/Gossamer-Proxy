@@ -44,6 +44,15 @@ class StaffController extends AbstractController {
         $this->render($result);
     }
 
+    public function accountingSearch() {
+        $params = $this->httpRequest->getQueryParameters();
+        $params['salary'] = 'display';
+
+        $result = $this->model->search($params);
+
+        $this->render($result);
+    }
+
     private function getSearchKey() {
         $params = $this->httpRequest->getQueryParameters();
 

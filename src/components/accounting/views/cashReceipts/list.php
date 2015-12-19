@@ -202,24 +202,40 @@
         <div ng-if="!sidePanelLoading && !searching && sidePanelOpen">
             <div class="breakdown-title">
                 <div class="pull-left">
-                    <h3><?php echo $this->getString('ACCOUNTING_CHEQUE_NUMBER') ?></h3>
-                    <p>{{breakdown.chequeNumber}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_PAYER') ?></h3>
-                    <p>{{selectedRow.company}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT') ?></h3>
-                    <p>{{selectedRow.debitAccount}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD') ?></h3>
-                    <p>{{selectedRow.paymentMethod}}</p>
+                    <div ng-if="breakdown.chequeNumber">
+                        <h3><?php echo $this->getString('ACCOUNTING_CHEQUE_NUMBER') ?></h3>
+                        <p>{{breakdown.chequeNumber}}</p>
+                    </div>
+                    <div ng-if="breakdown.company">
+                        <h3><?php echo $this->getString('ACCOUNTING_PAYER') ?></h3>
+                        <p>{{selectedRow.company}}</p>
+                    </div>
+                    <div ng-if="breakdown.debitAccount">
+                        <h3><?php echo $this->getString('ACCOUNTING_DEBIT_ACCOUNT') ?></h3>
+                        <p>{{selectedRow.debitAccount}}</p>
+                    </div>
+                    <div ng-if="breakdown.paymentMethod">
+                        <h3><?php echo $this->getString('ACCOUNTING_PAYMENT_METHOD') ?></h3>
+                        <p>{{selectedRow.paymentMethod}}</p>
+                    </div>
                 </div>
                 <div class="pull-right">
-                    <h3><?php echo $this->getString('ACCOUNTING_DATE') ?></h3>
-                    <p>{{selectedRow.dateReceived}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></h3>
-                    <p>{{breakdown.jobNumber}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT') ?></h3>
-                    <p>{{selectedRow.creditAccount}}</p>
-                    <h3><?php echo $this->getString('ACCOUNTING_AMOUNT') ?></h3>
-                    <p>{{selectedRow.amount| currency}}</p>
+                    <div ng-if="breakdown.debitAccount">
+                        <h3><?php echo $this->getString('ACCOUNTING_DATE') ?></h3>
+                        <p>{{selectedRow.dateReceived}}</p>
+                    </div>
+                    <div ng-if="breakdown.debitAccount">
+                        <h3><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></h3>
+                        <p>{{breakdown.jobNumber}}</p>
+                    </div>
+                    <div ng-if="breakdown.debitAccount">
+                        <h3><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT') ?></h3>
+                        <p>{{selectedRow.creditAccount}}</p>
+                    </div>
+                    <div ng-if="breakdown.debitAccount">
+                        <h3><?php echo $this->getString('ACCOUNTING_AMOUNT') ?></h3>
+                        <p>{{selectedRow.amount| currency}}</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -24,6 +24,22 @@ admin_staff_search:
         viewKey: admin_staff_search
         datasource: datasource1
     methods: [GET]
+    
+admin_staff_accounting_search:
+    pattern: admin/staff/accountingsearch
+    #    listeners:
+    #        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
+    #        - { 'event': 'load_success', 'listener': 'components\staff\listeners\SaveCachedSearchResultsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffModel'}       
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: accountingSearch
+        view: core\views\JSONView
+        viewKey: admin_staff_search
+        datasource: datasource1
+    methods: [GET]
+
 
 
 admin_staff_projectmanagers_list:

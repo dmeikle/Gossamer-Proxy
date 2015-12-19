@@ -3,7 +3,7 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
     var apiPath = '/admin/accounting/timesheets/';
     var timesheetItemsPath = '/admin/accounting/timesheetitems/';
     var staffPath = '/admin/staff/';
-    var staffSearchPath = '/admin/staff/search';
+    var staffSearchPath = '/admin/staff/accountingsearch';
     var claimsPath = '/admin/claims/';
     var claimsSearchPath = '/admin/claims/search';
     var vehicleTollPath = '/admin/vehicles/tolls/';
@@ -82,20 +82,20 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
     };
     
     //Claims Autocomplete
-    this.fetchClaimsAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
-            self.autocompleteValues = searchSrv.autocomplete.Claims;            
-            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
-                return self.autocompleteValues;
-            } else if (self.autocompleteValues[0] === 'undefined undefined') {
-                return undefined;
-            }
-        });
-    };
+//    this.fetchClaimsAutocomplete = function (searchObject) {
+//        return searchSrv.fetchAutocomplete(claimsPath, searchObject).then(function () {
+//            self.autocompleteValues = searchSrv.autocomplete.Claims;            
+//            if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
+//                return self.autocompleteValues;
+//            } else if (self.autocompleteValues[0] === 'undefined undefined') {
+//                return undefined;
+//            }
+//        });
+//    };
     
     //Laborer Autocomplete
     this.fetchLaborerAutocomplete = function (searchObject) {
-        return searchSrv.fetchAutocomplete(staffPath, searchObject).then(function () {
+        return searchSrv.fetchAutocompleteNoSearch(staffSearchPath, searchObject).then(function () {
             self.autocompleteValues = searchSrv.autocomplete.Staffs;            
             if (self.autocompleteValues.length > 0 && self.autocompleteValues[0] !== 'undefined undefined') {
                 return self.autocompleteValues;
@@ -187,6 +187,20 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
         } else {
             timesheetID = '0';
         }
+        
+        for (var i in timesheet) {
+            if (timesheet[i] === null || isNaN(timesheet[i])) {
+                delete timesheet[i];
+            }
+        }
+        
+        for (i in timesheetItems) {
+            for(var j in timesheetItems[i]){
+                if (timesheetItems[i][j] === null || timesheetItems[i][j].length === 0) {
+                    delete timesheetItems[i][j];
+                }
+            }
+        }
 
         var data = {};
         data.Timesheet = timesheet;
@@ -200,8 +214,6 @@ module.service('timesheetSrv', function($http, searchSrv, $filter, crudSrv) {
             },
             url: apiPath + timesheetID,
             data: data
-        }).then(function(response) {
-            //console.log(response);
         });
     };
 

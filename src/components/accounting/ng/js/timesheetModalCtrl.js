@@ -23,19 +23,19 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     //Call getDates
     $scope.getDates();
 
-    $scope.search = function (searchObject) {
-        $scope.noResults = undefined;
-        var copiedObject = angular.copy(searchObject);
-        if (copiedObject && Object.keys(copiedObject).length > 0) {
-            $scope.searchSubmitted = true;
-            $scope.loading = true;
-            staffListSrv.search(copiedObject).then(function () {
-                $scope.staffList = staffListSrv.searchResults;
-                $scope.totalItems = staffListSrv.searchResultsCount;
-                $scope.loading = false;
-            });
-        }
-    };
+//    $scope.search = function (searchObject) {
+//        $scope.noResults = undefined;
+//        var copiedObject = angular.copy(searchObject);
+//        if (copiedObject && Object.keys(copiedObject).length > 0) {
+//            $scope.searchSubmitted = true;
+//            $scope.loading = true;
+//            staffListSrv.search(copiedObject).then(function () {
+//                $scope.staffList = staffListSrv.searchResults;
+//                $scope.totalItems = staffListSrv.searchResultsCount;
+//                $scope.loading = false;
+//            });
+//        }
+//    };
 
     $scope.resetSearch = function () {
         $scope.searchSubmitted = false;
@@ -51,6 +51,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
         for (var j in $scope.timesheetItems) {
             $scope.timesheetItems[j].hourlyRate = parseFloat($scope.hourlyRate * $scope.timesheetItems[j].rateVariance);
         }
+        
     };
 
     //Checks to see if a timesheet already exists
@@ -62,13 +63,14 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
                 $scope.loading = true;
                 timesheetSrv.searchTimesheets(name.firstname + ' ' + name.lastname, date)
                         .then(function () {
-                            if (timesheetSrv.timesheetSearchResults) {
+                            if(timesheetSrv.timesheetSearchCount === 1){
                                 var timesheet = timesheetSrv.timesheetSearchResults;
                                 $scope.loadTimesheetItems(timesheet);
                                 $scope.hourlyRate = parseFloat(timesheet.hourlyRate);
                                 timesheetTemplate.hourlyRate = $scope.hourlyRate;
                             } else {
-                                $scope.loadTimesheetItems('');
+                                timesheetTemplate.hourlyRate = $scope.hourlyRate;
+                                $scope.loadTimesheetItems('');                                
                                 $scope.findExisting = false;
                             }
                         });
@@ -402,10 +404,12 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
 
         $scope.timesheet = {
             Timesheet_id: $scope.timesheetID,
-            staff_id: $scope.staff_id,
+            Staff_id: $scope.Staff_id,
             workDate: date,
             Vehicles_id: $scope.vehicleID,
             hourlyRate: $scope.hourlyRate,
+//            hourlyRate: 5,
+
             totalHours: $scope.sumTotal.totalHours,
             isDeptApproved: 1
         };

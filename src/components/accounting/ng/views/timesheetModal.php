@@ -19,7 +19,7 @@
                     <input placeholder="<?php echo $this->getString('ACCOUNTING_LABORER'); ?>" type="text" ng-model="laborer" typeahead-wait-ms="500"
                            uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchLaborerAutocomplete($viewValue)"
                            typeahead-loading="loadingTypeaheadLaborer" typeahead-no-results="noResultsLaborer" class="form-control typeahead"
-                           typeahead-min-length="2" typeahead-on-select="findExistingTimesheet(laborer, timesheetDate); getLaborerInfo(laborer);">
+                           typeahead-min-length="3" typeahead-on-select="findExistingTimesheet(laborer, timesheetDate); getLaborerInfo(laborer);">
                     <i ng-show="loadingTypeaheadLaborer" class="glyphicon glyphicon-refresh"></i>
                     <div class="resultspane" ng-show="noResultsCompany">
                         <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
@@ -38,7 +38,7 @@
                               typeahead-loading="loadingTypeahead" typeahead-no-results="noResults" class="form-control"
                               typeahead-on-select="search(basicSearch.query)" typeahead-min-length='3'>
                             <div class="resultspane" ng-show="noResults">
-                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                           ?>
+                              <i class="glyphicon glyphicon-remove"></i> <?php // echo $this->getString('STAFF_NORESULTS')                             ?>
                             </div>
                             <span class="input-group-btn" ng-if="!searchSubmitted">
                               <button type="submit" class="btn-default">
@@ -89,8 +89,8 @@
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_PHASE'); ?></th>
                     <th class="rate-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_ITEM_RATE'); ?></th>
                     <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_DESCRIPTION'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
-                    <th><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
+                    <th class="toll-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL1'); ?></th>
+                    <th class="toll-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_TOLL2'); ?></th>
                     <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_REGULAR_HOURS'); ?></th>
                     <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_OVERTIME_HOURS'); ?></th>
                     <th class="hours-heading"><?php echo $this->getString('ACCOUNTING_TIMESHEET_DOUBLE_OT_HOURS'); ?></th>

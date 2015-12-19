@@ -75,7 +75,7 @@
                 <td>
                     <input placeholder="Description" class="form-control" type="text" ng-model="row.description">
                 </td>
-                <td class="date-col">
+                <td class="date-col has-datepicker">
                     <div class="input-group">
                         <input type="date" name="date{{$index}}" ng-model="row.dateEntered" ng-model-options="{timezone: '+0000'}"
                                class="form-control" datepicker-popup is-open="isOpen.datepicker[$index]"
@@ -118,15 +118,15 @@
         </tbody>
     </table>
 
-    <button class="btn-info" ng-click="addRow()">New Row</button>
-    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
-    <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected">Delete Row(s)</button>
+    <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW'); ?></button>
+    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
+    <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS'); ?></button>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems();
-        clearModal()">Save and New</button>
-    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems()">Save and Close</button>
+        clearModal()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
 </div>
 <form class="hidden"></form>
 <!--</form>-->

@@ -419,7 +419,7 @@ label.heading-label{
 .table>tbody>tr>td.row-typeahead{
     overflow:visible;
 }
-.row-typeahead{
+td.row-typeahead{
     overflow:visible;
     input{
         float:none;
@@ -428,4 +428,7 @@ label.heading-label{
 }
 .rate-heading{
     width:8rem;
+}
+.toll-heading{
+    width:10rem;
 }
