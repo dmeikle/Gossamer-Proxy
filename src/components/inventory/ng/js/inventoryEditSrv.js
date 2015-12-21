@@ -71,13 +71,12 @@ module.service('inventoryEditSrv', function(crudSrv, searchSrv) {
     };
 
     this.delete = function (object, formToken) {
-
-        return crudSrv.delete(apiPath + 'remove/', object, formToken);
+        return crudSrv.setInactive(apiPath + 'remove/' + object.id, formToken);
     };
 
     this.deleteVendorPrice = function (object, formToken) {
 
-        return crudSrv.delete(vendorApiPath + 'remove/', object, formToken);
+        return crudSrv.setInactive(vendorApiPath + 'remove/' + object.id, formToken);
     };
     
     this.fetchVendorsAutocomplete = function (searchObject) {

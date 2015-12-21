@@ -60,7 +60,7 @@ module.service('posEditSrv', function ($http, searchSrv, $filter) {
     this.fetchProductNameAutocomplete = function (searchObject) {
         return $http({
             method: 'GET',
-            url: inventoryItemsAutocompletePath,
+            url: vendorItemsAutocompletePath,
             params: searchObject
         }).then(function (response) {
             self.materialsAutocomplete = response.data.InventoryItems;

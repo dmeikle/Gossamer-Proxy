@@ -109,6 +109,9 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
 
         $params = array('Claims_id' => $claimId, 'ClaimsLocations_id' => $claimsLocationId);
 
+        $locale = $this->getDefaultLocale();
+        $params['locale'] = $locale['locale'];
+
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'getinitialjobsheet', $params);
 
         return $data;

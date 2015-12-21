@@ -23,31 +23,6 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     //Call getDates
     $scope.getDates();
 
-    //Laborer Autocomplete
-    function fetchAutocomplete() {
-        if ($scope.laborer.search(' ') === -1) {
-            timesheetSrv.staffAutocomplete($scope.laborer)
-                    .then(function () {
-                        $scope.autocomplete = timesheetSrv.autocompleteList;
-                    });
-        }
-    }
-
-    $scope.$watch('laborer', function () {
-        //$scope.autocomplete = {};
-        if ($scope.laborer) {
-            $scope.autocomplete.loading = true;
-            fetchAutocomplete();
-        }
-    });
-
-    //Laborer Typeahead
-    $scope.fetchLaborerAutocomplete = function (viewVal) {
-        var searchObject = {};
-        searchObject.name = viewVal;
-        return staffListSrv.fetchAutocomplete(searchObject);
-    };
-
     $scope.search = function (searchObject) {
         $scope.noResults = undefined;
         var copiedObject = angular.copy(searchObject);
@@ -69,20 +44,12 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     };
 
     //get staff id and hourly rate
-    $scope.getStaffInfo = function (name) {
-        if (name !== undefined) {
-            var splitName = name.split(' ');
-            for (var i in $scope.autocomplete) {
-                if (splitName[0] === $scope.autocomplete[i].firstname && splitName[1] === $scope.autocomplete[i].lastname) {
-                    $scope.staffID = $scope.autocomplete[i].id;
-                    $scope.hourlyRate = parseFloat($scope.autocomplete[i].salary);
-                    timesheetTemplate.hourlyRate = $scope.hourlyRate;
-                }
-            }
-            //Update the existing timesheet items with the rate            
-            for (var j in $scope.timesheetItems) {
-                $scope.timesheetItems[j].hourlyRate = parseFloat($scope.hourlyRate * $scope.timesheetItems[j].rateVariance);
-            }
+    $scope.getLaborerInfo = function (laborer) {
+        $scope.Staff_id = laborer.id;
+        $scope.hourlyRate = parseFloat(laborer.salary);
+        timesheetTemplate.hourlyRate = laborer.hourlyRate;
+        for (var j in $scope.timesheetItems) {
+            $scope.timesheetItems[j].hourlyRate = parseFloat($scope.hourlyRate * $scope.timesheetItems[j].rateVariance);
         }
     };
 
@@ -93,8 +60,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
             if (name !== $scope.prevName || date !== $scope.prevDate) {
                 $scope.findExisting = true;
                 $scope.loading = true;
-
-                timesheetSrv.searchTimesheets(name, date)
+                timesheetSrv.searchTimesheets(name.firstname + ' ' + name.lastname, date)
                         .then(function () {
                             if (timesheetSrv.timesheetSearchResults) {
                                 var timesheet = timesheetSrv.timesheetSearchResults;
@@ -139,6 +105,25 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     $scope.watchClaims = function (row) {
         fetchClaims(row.jobNumber, row);
     };
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return timesheetSrv.fetchClaimsAutocomplete(searchObject);
+    };
+    
+    $scope.getClaimsID = function(row, claim){
+        row.Claims_id = claim.id;
+        row.jobNumber = claim.jobNumber;
+    };
+    
+    //Laborer Typeahead
+    $scope.fetchLaborerAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.name = viewVal;
+        return timesheetSrv.fetchLaborerAutocomplete(searchObject);
+    };
 
     //Rate Variance (phase)
     $scope.getRateVarianceOptions = function (event) {
@@ -148,10 +133,8 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
     $scope.getRateVariance = function (row, phaseID) {
         for (var i = 0; i < $scope.rateVarianceList.length; i++) {
             if ($scope.rateVarianceList[i].attributes.value.nodeValue === phaseID) {
-
                 row.rateVariance = $scope.rateVarianceList[i].attributes['data-ratevariance'].nodeValue;
                 row.ClaimPhases_id = $scope.rateVarianceList[i].attributes['data-claimphase_id'].nodeValue;
-
                 row.hourlyRate = parseFloat($scope.hourlyRate * row.rateVariance);
             }
         }
@@ -188,7 +171,8 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
         statRegularHours: 0,
         statOTHours: 0,
         statDoubleOTHours: 0,
-        totalHours: 0
+        totalHours: 0,
+        
     };
 
     //Check to see if a timesheet ID exists
@@ -196,7 +180,7 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
         $scope.loading = true;
         if (timesheet.id) {
             $scope.timesheetID = timesheet.id;
-            $scope.staffID = timesheet.Staff_id;
+            $scope.staff_id = timesheet.Staff_id;
             $scope.laborer = timesheet.firstname + ' ' + timesheet.lastname;
             $scope.hourlyRate = timesheet.hourlyRate;
             var workDate = Date.parse((timesheet.workDate.replace(/-/g, "/")));
@@ -418,11 +402,12 @@ module.controller('timesheetModalCtrl', function ($modalInstance, $scope, timesh
 
         $scope.timesheet = {
             Timesheet_id: $scope.timesheetID,
-            staffID: $scope.staffID,
+            staff_id: $scope.staff_id,
             workDate: date,
             Vehicles_id: $scope.vehicleID,
             hourlyRate: $scope.hourlyRate,
-            totalHours: $scope.sumTotal.totalHours
+            totalHours: $scope.sumTotal.totalHours,
+            isDeptApproved: 1
         };
 
         var tolls = $scope.getTolls(object, date);

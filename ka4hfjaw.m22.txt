@@ -1,0 +1,49 @@
+﻿Merge branch 'CP-202' into rc1.0.12
+
+Conflicts:
+	src/components/claims/locales/en_US/claims.php
+	src/components/claims/ng/js/claimsLocationsListCtrl.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch rc1.0.12
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   s0nvrq4p.iup.txt
+#	modified:   src/components/claims/config/render.yml
+#	modified:   src/components/claims/controllers/ClaimsController.php
+#	modified:   src/components/claims/locales/en_US/claims.php
+#	modified:   src/components/claims/ng/js/claimsContactsList.js
+#	modified:   src/components/claims/ng/js/claimsEditSrv.js
+#	modified:   src/components/claims/ng/js/claimsListCtrl.js
+#	modified:   src/components/claims/ng/js/claimsListSrv.js
+#	new file:   src/components/claims/ng/js/claimsPMModalCtrl.js
+#	modified:   src/components/claims/ng/views/addNewWizardPages.php
+#	new file:   src/components/claims/ng/views/advancedSearchFilter.php
+#	modified:   src/components/claims/views/admin/claims/edit-cards.php
+#	modified:   src/components/claims/views/admin/claims/edit.php
+#	modified:   src/components/claims/views/admin/claims/list.php
+#	modified:   src/components/contacts/config/routing.yml
+#	modified:   src/components/contacts/config/views.yml
+#	modified:   src/components/contacts/form/ContactBuilder.php
+#	modified:   src/components/contacts/locales/en_US/Contact.php
+#	modified:   src/components/contacts/ng/js/contactsEditCtrl.js
+#	modified:   src/components/contacts/ng/js/contactsListCtrl.js
+#	modified:   src/components/contacts/ng/js/contactsListSrv.js
+#	modified:   src/components/contacts/ng/views/contactAdvancedSearchFilters.php
+#	modified:   src/components/contacts/views/admin/contacts/edit.php
+#	modified:   src/components/contacts/views/admin/contacts/list.php
+#	modified:   src/components/staff/models/StaffModel.php
+#	modified:   src/components/staff/views/admin/staff-list.php
+#	modified:   src/extensions/angular/ng/js/rootApp.js
+#	modified:   src/extensions/angular/ng/js/rootAppValidationDirectives.js
+#	new file:   wairi42k.bvx.txt
+#
+

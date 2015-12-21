@@ -1,4 +1,4 @@
-module.controller('suppliesModalCtrl', function ($modalInstance, $scope, suppliesModalSrv, $filter, $timeout, suppliesUsed) {
+module.controller('suppliesModalCtrl', function ($uibModalInstance, $scope, suppliesModalSrv, $filter, $timeout, suppliesUsed) {
     $scope.isOpen = {};
     $scope.isOpen.datepicker = false;
 
@@ -10,11 +10,11 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
 
     //Modal Controls
     $scope.confirm = function () {
-        $modalInstance.close();
+        $uibModalInstance.close();
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 
     //Set up the objects
@@ -63,14 +63,19 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
         $scope.getClaimsLocations($scope.headings.ClaimsLocations_id);
         suppliesModalSrv.getItems(row, numRows, suppliesUsed.id)
                 .then(function () {
-                    var lineItems = suppliesModalSrv.lineItems;
-                    for (var i in lineItems) {
-                        lineItems[i].cost = parseFloat(lineItems[i].cost);
-                        lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
-                        lineItems[i].quantity = parseFloat(lineItems[i].quantity);
-                        lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
-                    }
-                    $scope.lineItems = lineItems;
+                    if(suppliesModalSrv.lineItems[0].length === 0){
+                        $scope.lineItems = angular.copy([lineItemsTemplate]);
+                    } else {
+                        var lineItems = suppliesModalSrv.lineItems;
+                        for (var i in lineItems) {
+                            lineItems[i].cost = parseFloat(lineItems[i].cost);
+                            lineItems[i].chargeOut = parseFloat(lineItems[i].chargeOut);
+                            lineItems[i].quantity = parseFloat(lineItems[i].quantity);
+                            lineItems[i].unitPrice = parseFloat(lineItems[i].purchaseCost);
+                        }
+                        $scope.lineItems = suppliesModalSrv.lineItems;
+                    }                    
+                    //$scope.lineItems = lineItems;
                     $scope.updateTotal();
                     $scope.loading = false;
                 });
@@ -82,27 +87,17 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
 
 
     //Get Staff ID from autocomplete list
-    $scope.getStaffID = function (name) {
-        if (name !== undefined) {
-            var splitName = name.split(' ');
-            for (var i in suppliesModalSrv.autocomplete) {
-                if (splitName[0] === suppliesModalSrv.autocomplete[i].firstname && splitName[1] === suppliesModalSrv.autocomplete[i].lastname) {
-                    $scope.headings.Staff_id = suppliesModalSrv.autocomplete[i].id;
-                }
-            }
-        }
+    $scope.getStaffID = function (staff) {
+        $scope.headings.Staff_id = staff.id;
     };
 
     //Get Claims ID from autocomplete list
-    $scope.getClaimsID = function (jobNumber) {
-        for (var i in suppliesModalSrv.claimsAutocomplete) {
-            if (suppliesModalSrv.claimsAutocomplete[i].jobNumber === jobNumber) {
-                $scope.headings.Claims_id = suppliesModalSrv.claimsAutocomplete[i].id;
-                $scope.getClaimsLocations($scope.headings.Claims_id);
-            }
-        }
+    $scope.getClaimsID = function (claim) {
+        $scope.headings.Claims_id = claim.id;
+        $scope.headings.jobNumber = claim.jobNumber;
+        $scope.getClaimsLocations($scope.headings.Claims_id);
     };
-
+    
     //---Table Controls---
     //Add a row    
     $scope.addRow = function () {
@@ -177,26 +172,37 @@ module.controller('suppliesModalCtrl', function ($modalInstance, $scope, supplie
     };
 
     //Get Material info from material name
-    $scope.getMaterialNameInfo = function (row, value) {
-        for (var j in suppliesModalSrv.materialsAutocomplete) {
-            if (suppliesModalSrv.materialsAutocomplete[j].name === value) {
-                row.productCode = suppliesModalSrv.materialsAutocomplete[j].productCode;
-                row.unitPrice = suppliesModalSrv.materialsAutocomplete[j].purchaseCost;
-                row.PackageTypes_id = suppliesModalSrv.materialsAutocomplete[j].PackageTypes_id;
-            }
-        }
+    $scope.getMaterialNameInfo = function (row, item) {
+        row.productCode = item.productCode;
+        row.name = item.name;
+        row.unitPrice = parseFloat(item.unitPrice);
+        row.PackageTypes_id = item.PackageTypes_id;
+        row.InventoryItems_id = item.InventoryItems_id;
+//        for (var j in suppliesModalSrv.materialsAutocomplete) {
+//            if (suppliesModalSrv.materialsAutocomplete[j].name === value) {
+//                row.productCode = suppliesModalSrv.materialsAutocomplete[j].productCode;
+//                row.unitPrice = suppliesModalSrv.materialsAutocomplete[j].purchaseCost;
+//                row.PackageTypes_id = suppliesModalSrv.materialsAutocomplete[j].PackageTypes_id;
+//            }
+//        }
     };
 
     //Get Material info from product code
-    $scope.getProductCodeInfo = function (row, value) {
-        for (var i in suppliesModalSrv.productCodeAutocomplete) {
-            if (suppliesModalSrv.productCodeAutocomplete[i].productCode === value) {
-                row.name = suppliesModalSrv.productCodeAutocomplete[i].name;
-                row.unitPrice = suppliesModalSrv.productCodeAutocomplete[i].purchaseCost;
-                row.PackageTypes_id = suppliesModalSrv.productCodeAutocomplete[i].PackageTypes_id;
-                row.InventoryItems_id = suppliesModalSrv.productCodeAutocomplete[i].id;
-            }
-        }
+    $scope.getProductCodeInfo = function (row, item) {
+        row.name = item.name;
+        row.productCode = item.productCode;
+        row.unitPrice = parseFloat(item.unitPrice);
+        row.PackageTypes_id = item.PackageTypes_id;
+        row.InventoryItems_id = item.id;
+        
+//        for (var i in suppliesModalSrv.productCodeAutocomplete) {
+//            if (suppliesModalSrv.productCodeAutocomplete[i].productCode === value) {
+//                row.name = suppliesModalSrv.productCodeAutocomplete[i].name;
+//                row.unitPrice = suppliesModalSrv.productCodeAutocomplete[i].purchaseCost;
+//                row.PackageTypes_id = suppliesModalSrv.productCodeAutocomplete[i].PackageTypes_id;
+//                row.InventoryItems_id = suppliesModalSrv.productCodeAutocomplete[i].id;
+//            }
+//        }
     };
 
     //Date Picker

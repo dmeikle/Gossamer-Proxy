@@ -24,16 +24,27 @@ class UploadLocationPhotosListener extends AbstractListener {
 
         $filenames = array();
         $requestParams = $this->httpRequest->getParameters();
-        $locationId = $requestParams[0] . '/' . $requestParams[1];
+        $locationId = intval($requestParams[0]) . '/' . intval($requestParams[1]);
+        $modelName = $this->listenerConfig['class'];
+        $model = new $modelName($this->httpRequest, $this->httpResponse, $this->logger);
 
-        $filepath = __SITE_PATH . "/../locationImages/$locationId";
+        $conn = $this->getDatasource($modelName);
+        $model->setDatasource($conn);
+
+        $filepath = $model->getUploadPath() . DIRECTORY_SEPARATOR . $locationId;   //__SITE_PATH . "/../locationImages/$locationId";
         $this->prepareDirectory($filepath);
-
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $filepath . "/" . $_FILES['file']['name'])) {
-            $filenames[] = $filepath . "/" . $_FILES['file']['name'];
+        $params = array();
+        foreach ($_FILES['file']['name'] as $index => $file) {
+            if (move_uploaded_file($_FILES['file']['tmp_name'][$index], $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index])) {
+                $filenames[] = $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index];
+                $params[] = array('Claims_id' => intval($requestParams[0]), 'ClaimsLocations_id' => intval($requestParams[1]),
+                    'photo' => $_FILES['file']['name'][$index], 'Staff_id' => $this->getLoggedInStaffId());
+            }
         }
 
+
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
+        $this->httpResponse->setAttribute('fileCount', $model->saveParamsOnComplete($params));
     }
 
     private function prepareDirectory($filepath) {

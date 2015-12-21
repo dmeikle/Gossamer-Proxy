@@ -1,47 +1,100 @@
 #------------------------ cost cards ----------------------------
-claims_cost_cards_list:
-    pattern: admin/claims/costcards/
+admin_claims_cost_cards_get:
+    pattern: admin/claims/costcards/get/*/*
     defaults:
         component: components\claims\ClaimsComponent
-        controller: components\accounting\controllers\CostCardsController
+        controller: components\accounting\controllers\CostCardItemsController
         model: components\accounting\models\CostCardItemModel
         method: listallByClaim
         view: core\views\JSONView
-        viewKey: claims_cost_cards_home
+        viewKey: admin_claims_cost_cards_get
         datasource: datasource1
         langFiles:
             - 'src/components/claims/locales/*/claims'
     methods: [GET]
     
-claims_cost_cards_get:
-    pattern: admin/claims/costcards/get/*
+admin_claims_cost_cards_totals:
+    pattern: admin/claims/costcards/totals/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\accounting\controllers\CostCardsController
-        model: components\accounting\models\CostCardItemModel
-        method: listallByClaim
+        model: components\accounting\models\CostCardModel
+        method: listvalues
         view: core\views\JSONView
-        viewKey: claims_cost_cards_home
+        viewKey: admin_claims_cost_cards_totals
         datasource: datasource1
-        langFiles:
-            - 'src/components/claims/locales/*/claims'
     methods: [GET]
     
-claims_cost_cards_edit:
-    pattern: admin/claims/costcards/edit/*
+admin_claims_cost_cards_search:
+    pattern: admin/claims/costcards/search
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: admin_claims_cost_cards_search
+        datasource: datasource1
+    methods: [GET]
+    
+admin_claims_cost_cards_edit:
+    pattern: admin/claims/costcards/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\accounting\controllers\CostCardsController
         model: components\accounting\models\CostCardModel
         method: index
         view: extensions\angular\views\AngularTemplateView
-        viewKey: claims_cost_cards_edit
+        viewKey: admin_claims_cost_cards_edit
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+    methods: [GET]
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\CostCardBuilder'
+            model: 'components\accounting\models\CostCardModel'
+            cacheKey: 'CostCardForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                
+admin_claims_cost_cards_home:
+    pattern: admin/claims/costcards/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardItemModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_cost_cards_home
         datasource: datasource1
         langFiles:
             - 'src/components/claims/locales/*/claims'
     methods: [GET]
-    
-claims_cost_cards_save:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+
+admin_claims_cost_cards_list:
+    pattern: admin/claims/costcards/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\accounting\controllers\CostCardsController
+        model: components\accounting\models\CostCardModel
+        method: listallByClaim
+        view: core\views\JSONView
+        viewKey: admin_claims_cost_cards_list
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+    methods: [GET]
+
+admin_claims_cost_cards_save:
     pattern: admin/claims/costcards/*
     defaults:
         component: components\claims\ClaimsComponent
@@ -49,7 +102,7 @@ claims_cost_cards_save:
         model: components\accounting\models\CostCardItemModel
         method: save
         view: core\views\JSONView
-        viewKey: claims_cost_cards_save
+        viewKey: admin_claims_cost_cards_save
         datasource: datasource1
     methods: [POST]
     
@@ -178,6 +231,9 @@ admin_claims_home:
             - 'app/locales/*/website'
 
 
+
+
+# COMMENTS
 admin_claimslocation_view_comments:
     pattern: admin/claims/locations/comments/*
     defaults:
@@ -276,14 +332,25 @@ admin_claims_upload_claim_photos:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimPhotosController
         model: components\claims\models\ClaimPhotoModel
-        method: uploadPhotos
+        method: index
         view: core\views\JSONView
         viewKey: admin_claims_upload_claim_photos
         datasource: datasource1
     methods: [POST]
 
 
-
+admin_claims_list_claimlocation_photocounts:
+    pattern: admin/claim/photos/count/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimPhotosController
+        model: components\claims\models\ClaimPhotoModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_claims_list_claim_photos
+        datasource: datasource1
+    methods: [GET]
+    
 
 admin_claims_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/*/*
@@ -301,8 +368,21 @@ admin_claims_initial_jobsheet:
             - 'app/locales/*/website'
     methods: [GET]
 
-
-
+admin_claims_edit_initial_jobsheet:
+    pattern: admin/claim/initial-jobsheet/edit/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimsController
+        model: components\claims\models\ClaimModel
+        method: getInitialJobsheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_edit_initial_jobsheet
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'src/components/projects/locales/*/Project'
+            - 'app/locales/*/website'
+    methods: [GET]
 
 admin_claims_view_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/view/*/*
@@ -393,7 +473,7 @@ admin_claims_edit:
         datasource: datasource1
         langFiles:
             - 'src/components/claims/locales/*/claims'
-            - 'app/locales/en_US/website'
+            - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
 
 
@@ -630,19 +710,31 @@ admin_claimlocations_save_by_claimid:
 
 
 
-admin_upload_location_photo:
-    pattern: admin/claimlocations/photos/upload/*/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', 'datasource': 'datasource1'}
+admin_count_location_photos:
+    pattern: admin/claimlocations/photos/count/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
         model: components\claims\models\LocationsPhotoModel
-        method: saveClaimsLocationPhotos
+        method: countLocationPhotos
         view: core\views\JSONView
-        viewKey: admin_upload_location_photo
+        viewKey: admin_count_location_photos
         datasource: datasource1
     methods: [GET]
+
+admin_upload_location_photos:
+    pattern: admin/claimlocations/photos/upload/*/*
+    listeners:
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', class: 'components\claims\models\ClaimPhotoModel', 'datasource': 'datasource1'}
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\LocationsPhotoModel
+        method: index
+        view: core\views\JSONView
+        viewKey: admin_upload_location_photos
+        datasource: datasource1
+    methods: [POST]
 
 
 admin_claims_scheduling_list:

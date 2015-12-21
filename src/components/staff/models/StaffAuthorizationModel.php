@@ -87,7 +87,7 @@ class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterf
         return $this->entity;
     }
 
-    public function get(array $params) {
+    public function getByParams(array $params) {
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
 
         return $data;

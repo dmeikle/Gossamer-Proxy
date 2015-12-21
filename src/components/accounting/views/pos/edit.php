@@ -5,7 +5,7 @@
             <h1 ng-if="editing"><?php echo $this->getString('ACCOUNTING_EDIT_POS') ?></h1>
             <div ng-if="loading" class="col-md-12 form-headings"><span class="spinner-loader"></span></div>
             <div ng-if="!loading" class="col-md-4 form-headings">
-                
+
                 <div class="form-group">
                     <label for="purchaseOrderType" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_TYPE'); ?></label>
                     <?php echo $form['PurchaseOrderTypes_id']; ?>
@@ -20,11 +20,7 @@
                     <label for="vendors" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_VENDOR'); ?></label>
                     <?php echo $form['vendorsAutocomplete']; ?>
                 </div>
-                <!--                <div class="form-group" ng-if="vendorLocations[0] !== null && vendorLocations.length !== 0">
-                                    <label for="vendorLocations" class="heading-label col-md-5"><?php // echo $this->getString('ACCOUNTING_LOCATION');  ?></label>
-                                    <select class="form-control col-md-7" ng-options="option.VendorLocations_id as (option.address1 + ' ' + option.city) for option in vendorLocations"
-                                            ng-model="item.vendorLocation" ng-change="getVendorInfo(item.vendorLocation);"></select>
-                                </div>-->              
+
             </div>
 
             <div ng-if="!loading" class="col-md-4 form-headings">
@@ -51,8 +47,8 @@
             <div ng-if="!loading" class="col-md-4 form-headings">
                 <div class="input-group form-group">
                     <label for="creationDate" class="heading-label col-md-5"><?php echo $this->getString('ACCOUNTING_DATE'); ?></label>
-                    <div class="col-md-7 no-padding">                    
-                        <input type="date" name="date" ng-model="item.creationDate" ng-model-options="{timezone: '+0000'}"
+                    <div class="col-md-7 no-padding">
+                        <input type="date" name="date" ng-model="item.creationDate"
                                class="form-control datepicker disabled" datepicker-popup is-open="isOpen.datepicker"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" disabled/>
                         <span class="input-group-btn" data-datepickername="date">
@@ -75,6 +71,7 @@
                     <?php echo $form['description']; ?>
                 </div>
             </div>
+            <<<<<<< HEAD
             <div class="clearfix"></div>
             <div class="col-md-12 divider"></div>
             <!--        </div>
@@ -82,6 +79,13 @@
                 </div>
                 <div class="widget" >
                     <div class="widget-content">-->
+            =======
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="widget" >
+        <div class="widget-content">
+            >>>>>>> origin/CP-174
             <div class="form-items">
                 <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW'); ?></button>
                 <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
@@ -121,7 +125,7 @@
                             <td><?php echo $form['quantity']; ?></td>
                             <td><?php echo $form['unitPrice']; ?></td>
                             <td><?php echo $form['taxType']; ?></td>
-                            <td class="total">{{row.amount | currency}}</td>
+                            <td class="total">{{row.amount| currency}}</td>
                         </tr>
                     </tbody>
                 </table>

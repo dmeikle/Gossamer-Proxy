@@ -44,6 +44,8 @@ admin_claim_edit:
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
@@ -144,6 +146,7 @@ admin_claims_edit:
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
@@ -153,6 +156,7 @@ admin_claims_edit:
     css:
         - @components/claims/dist/css/claims.min.css
        # - @extensions/xeditable/ng/css/xeditable.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
 
 
 admin_claims_initial_jobsheet:
@@ -187,6 +191,37 @@ admin_claims_initial_jobsheet:
         - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
 
 
+admin_claims_edit_initial_jobsheet:
+    template: admin-list.php
+    sections:
+        -
+            header: src/themes/default/templates/sections/admin-header.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            content: src/components/claims/views/admin/initial-jobsheet/edit.php
+            cards: src/components/claims/views/admin/initial-jobsheet/edit-cards.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+
 admin_claims_view_initial_jobsheet:
     template: admin-list.php
     sections:
@@ -195,7 +230,6 @@ admin_claims_view_initial_jobsheet:
             "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/initial-jobsheet/view.php
-            cards: src/components/claims/views/admin/initial-jobsheet/view-cards.php
             footer: src/themes/default/templates/sections/footer.php
     angular:
         bootstrap_modules:
@@ -345,8 +379,31 @@ claims_list_by_projectaddress:
             #"section3": "src/components/claims/views/leftnav.php"
             "section4": "src/components/claims/views/list-by-address.php"
             "section5": "src/themes/default/templates/sections/footer.php"
-            
-claims_cost_cards_edit:
+
+admin_claims_cost_cards_home:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/claims/views/admin/costCards/list.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/claims/dist/js/claims.concat.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+
+admin_claims_cost_cards_edit:
     template: admin-list.php
     sections:
         -

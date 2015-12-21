@@ -17,5 +17,8 @@ return array(
     'COMPANY_NEW' => 'New Company',
     'COMPANY_ADVANCED_SEARCH' => 'Advanced Search',
     'COMPANY_TYPE' => 'Company Type',
-    'CLAIMS_DATE_RECEIVED' => 'Date Received'
+    'COMPANIES_DATE_RECEIVED' => 'Date Received',
+    'COMPANY_JOB_NUMBER' => 'Job Number',
+    'COMPANIES_DEDUCTABLE_AMOUNT' => 'Deductable Amount',
+    'COMPANIES_REASON' => 'Reason'
 );

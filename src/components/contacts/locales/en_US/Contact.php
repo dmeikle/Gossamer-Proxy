@@ -29,11 +29,12 @@ return array(
     'CONTACTS_NEW' => 'Create New',
     'ITEMS_PER_PAGE' => 'Items Per Page:',
     'CONTACTS_PERSONAL_INFO' => 'Personal Info',
-    'CONTACTS_COMPANYTYPE' => 'COmpany Type',
-    'CONTACTS_VIP' => 'VIP',
+    'CONTACTS_COMPANYTYPE' => 'Company Type',
+    'CONTACTS_VIP' => 'VIP Type',
     'CONTACTS_FIRSTNAME' => 'Firstname',
     'CONTACTS_LASTNAME' => 'Lastname',
     'CONTACTS_PERSONALEMAIL' => 'Email',
+    'CONTACTS_EMAIL' => 'Email',
     'CONTACTS_MOBILE' => 'Mobile',
     'CONTACTS_OFFICE' => 'Office',
     'CONTACTS_HOME' => 'Home',
@@ -43,5 +44,10 @@ return array(
     'CONTACTS_CANCEL' => 'Cancel',
     'CONTACTS_ADD_NEW' => 'Add New Contact',
     'CONTACTS_EDIT' => 'Edit',
-    'CONTACTS_VIEW_CLAIMS' => 'View Claims'
+    'CONTACTS_VIEW_CLAIMS' => 'View Claims',
+    'CONTACTS_COMPANY' => 'Company',
+    'CONTACTS_MORE_INFO' => 'More Information',
+    'CONTACTS_CONTACTTYPE' => 'Contact Type',
+    'CONTACTS_CONFIRM' => 'Confirm',
+    'CONTACTS_STATUS' => 'Status'
 );

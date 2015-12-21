@@ -1,37 +1,38 @@
 <!-- Supplies Modal -->
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">New Material From Stock</h4>
+    <h4 class="modal-title" id="myModalLabel"><?php echo $this->getString('ACCOUNTING_NEW_MATERIAL_FROM_STOCK') ?></h4>
 </div>
 <div class="modal-body general-costs-modal">
 
     <div id="item-headings">
 
         <div class="input-group">
-            <label>Staff Name</label>
-            <input placeholder="Staff Name" type="text" ng-model="headings.staffName" ng-model-options="{debounce:100}"
-                   typeahead="value for value in fetchStaffAutocomplete($viewValue)"
-                   typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsStaff" class="form-control typeahead"
-                   typeahead-min-length="2" ng-blur="getStaffID(headings.staffName)">
+            <label><?php echo $this->getString('ACCOUNTING_STAFF_NAME') ?></label>
+            <input placeholder="<?php echo $this->getString('ACCOUNTING_STAFF_NAME') ?>" type="text" ng-model="headings.staffName" typeahead-wait-ms="500"
+                   uib-typeahead="value as value.firstname + ' ' + value.lastname for value in fetchStaffAutocomplete($viewValue)"
+                   typeahead-loading="loadingTypeaheadStaff" typeahead-no-results="noResultsStaff" class="form-control typeahead"
+                   typeahead-min-length="3" typeahead-on-select="getStaffID(headings.staffName)">
+            <!--<i ng-show="loadingTypeaheadStaff" class="glyphicon glyphicon-refresh"></i>-->
             <div class="resultspane" ng-show="noResultsStaff">
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
             </div>
         </div>
 
         <div class="input-group">
-            <label>Claim Number</label>
-            <input placeholder="Claim Number" type="text" ng-model="headings.jobNumber" ng-model-options="{debounce:100}"
-                   typeahead="value for value in fetchClaimAutocomplete($viewValue)"
+            <label><?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?></label>
+            <input placeholder="<?php echo $this->getString('ACCOUNTING_JOB_NUMBER') ?>" type="text" ng-model="headings.jobNumber" typeahead-wait-ms="500"
+                   uib-typeahead="value as value.jobNumber for value in fetchClaimAutocomplete($viewValue)"
                    typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsClaim" class="form-control typeahead"
-                   typeahead-min-length="2" ng-blur="getClaimsID(headings.jobNumber)">
+                   typeahead-min-length="2" typeahead-on-select="getClaimsID(headings.jobNumber)">
             <div class="resultspane claim-number" ng-show="noResultsClaim">
                 <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
             </div>
         </div>
         <div class="input-group">
-            <label>Phase</label>
+            <label><?php echo $this->getString('ACCOUNTING_PHASE_CODE') ?></label>
             <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="headings.ClaimPhases_id">
-                <option value="" selected>-Phase Code-</option>
+                <option value="" selected>-<?php echo $this->getString('ACCOUNTING_PHASE_CODE') ?>-</option>
                 <?php
                 foreach ($AccountingPhaseCodes as $phase) {
                     echo '<option data-rateVariance="' . $phase['rateVariance'] . '" value="' . $phase['id'] . '">' . $phase['phaseCode'] . '</option>';
@@ -41,9 +42,9 @@
         </div>
 
         <div class="input-group">
-            <label>Department</label>
+            <label><?php echo $this->getString('ACCOUNTING_DEPARTMENT') ?></label>
             <select class="department form-control" name="unitMeasure" ng-model="headings.Departments_id">
-                <option value="" selected>-Department-</option>
+                <option value="" selected>-<?php echo $this->getString('ACCOUNTING_DEPARTMENT') ?>-</option>
                 <?php
                 foreach ($Departments as $department) {
                     echo '<option value="' . $department['id'] . '">' . $department['name'] . '</option>';
@@ -53,14 +54,14 @@
         </div>
 
         <div class="input-group">
-            <label>Claim Location</label>
+            <label><?php echo $this->getString('ACCOUNTING_CLAIM_LOCATION') ?></label>
             <select class="form-control" name="ClaimsLocations_id" ng-model="headings.ClaimsLocations_id" ng-options="obj.id as obj.unitNumber for obj in claimsLocations">
-                <option value="" selected>-Claims Locations-</option>
+                <option value="" selected>-<?php echo $this->getString('ACCOUNTING_CLAIM_LOCATION') ?>-</option>
             </select>
         </div>
 
         <div class="input-group date-input">
-            <label>Date</label>
+            <label><?php echo $this->getString('ACCOUNTING_DATE') ?></label>
             <input type="date" name="date{{$index}}" ng-model="headings.dateUsed" ng-model-options="{timezone: '+0000'}"
                    class="form-control" datepicker-popup is-open="isOpen.datepicker"
                    datepicker-options="dateOptions" close-text="<?php echo $this->getString('ACCOUNTING_CLOSE'); ?>" />
@@ -105,10 +106,10 @@
                 </td>
                 <td class="typeahead-col">
                     <div class="input-group">
-                        <input placeholder="Product Code" type="text" ng-model="row.productCode" ng-model-options="{debounce:250}"
-                               typeahead="value for value in fetchProductCodeAutocomplete($viewValue)"
+                        <input placeholder="<?php echo $this->getString('ACCOUNTING_PRODUCT_CODE') ?>" type="text" ng-model="row.productCode" typeahead-wait-ms="500"
+                               uib-typeahead="value as value.productCode for value in fetchProductCodeAutocomplete($viewValue)"
                                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsProductCode" class="form-control typeahead"
-                               typeahead-min-length="2" ng-blur="getProductCodeInfo(row, row.productCode)">
+                               typeahead-min-length="2" typeahead-on-select="getProductCodeInfo(row, row.productCode)">
                         <div class="resultspane claim-number" ng-show="noResultsProductCode">
                             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                         </div>
@@ -116,10 +117,10 @@
                 </td>
                 <td class="typeahead-col">
                     <div class="input-group">
-                        <input placeholder="Material Name" type="text" ng-model="row.name" ng-model-options="{debounce:250}"
-                               typeahead="value for value in fetchMaterialsAutocomplete($viewValue)"
+                        <input placeholder="<?php echo $this->getString('ACCOUNTING_MATERIAL_NAME') ?>" type="text" ng-model="row.name" typeahead-wait-ms="500"
+                               uib-typeahead="value as value.name for value in fetchMaterialsAutocomplete($viewValue)"
                                typeahead-loading="loadingTypeahead" typeahead-no-results="noResultsMaterials" class="form-control typeahead"
-                               typeahead-min-length="2" ng-blur="getMaterialNameInfo(row, row.name)">
+                               typeahead-min-length="2" typeahead-on-select="getMaterialNameInfo(row, row.name)">
                         <div class="resultspane claim-number" ng-show="noResultsMaterials">
                             <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                         </div>
@@ -127,7 +128,7 @@
                 </td>
                 <td>
                     <select class="department form-control" name="unitMeasure" ng-model="row.PackageTypes_id">
-                        <option value="" selected>-Unit of Measure-</option>
+                        <option value="" selected>-<?php echo $this->getString('ACCOUNTING_UNIT_OF_MEASURE') ?>-</option>
                         <?php
                         foreach ($PackageTypes as $type) {
                             echo '<option value="' . $type['id'] . '">' . $type['name'] . '</option>';
@@ -137,7 +138,7 @@
                 </td>
 
                 <td>
-                    <input placeholder="Price" class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);
+                    <input placeholder="Price " class="form-control cost" type="number" ng-model="row.unitPrice" ng-change="updateCost(row);
                                 updateTotal();">
                 </td>
                 <td>
@@ -158,23 +159,23 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Total:</td>
+                <td><?php echo $this->getString('ACCOUNTING_TOTAL') ?>:</td>
                 <td>{{total.cost}}</td>
                 <td>{{total.chargeOut}}</td>
             </tr>
         </tbody>
     </table>
 
-    <button class="btn-info" ng-click="addRow()">New Row</button>
-    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
+    <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW') ?></button>
+    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS') ?></button>
     <button class="btn-warning" ng-click="removeRows();
-        updateTotal();" ng-disabled="!rowSelected">Delete Row(s)</button>
+        updateTotal();" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS') ?></button>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-default" ng-click="cancel()"><?php echo $this->getString('ACCOUNTING_CANCEL') ?></button>
     <button type="button" class="btn btn-primary" ng-click="save();
-        clearModal()">Save and New</button>
+        clearModal()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW') ?></button>
     <button type="button" class="btn btn-primary" ng-click="save();
-        confirm();">Save and Close</button>
+        confirm();"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE') ?></button>
 </div>
 <form class="hidden"></form>

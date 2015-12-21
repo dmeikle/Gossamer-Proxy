@@ -26,7 +26,8 @@ contacts_home:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/contacts/views/admin/subnav.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
             "content": "src/components/contacts/views/admin/contacts/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
@@ -85,10 +86,35 @@ admin_contacts_edit:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/contacts/views/admin/subnav.php"
-            "section3": "src/components/contacts/views/admin/add.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
+            "content": "src/components/contacts/views/admin/contacts/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - contactsAdmin
+    head:
+        - @components/contacts/dist/bower_components/angular/angular.min.js
+        - @components/contacts/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/contacts/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/contacts/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - /js/extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/contacts/dist/js/contacts.concat.js
+        #- @components/contacts/dist/js/contacts.min.js
+    css:
+        - @components/contacts/dist/css/contacts.min.css
+    
+            
+            
+            
+            
+            
+            
             
 admin_contacts_save:       
     template: admin-list.php
