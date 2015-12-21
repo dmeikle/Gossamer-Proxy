@@ -2,7 +2,7 @@
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('INVENTORY_LIST') ?></h1>
         <div class="toolbar form-inline">
-            <button class="btn-link" ng-click="openAdvancedSearch()" ng-disabled="listType !=='materials'">
+            <button class="btn-link" ng-click="openAdvancedSearch()">
                 <?php echo $this->getString('ADVANCED_SEARCH') ?>
             </button>
             <i ng-show="loadingTypeahead" class="glyphicon glyphicon-refresh"></i>
@@ -78,14 +78,14 @@
                     <td ng-click="selectRow(item)">{{item.packageType}}</td>
                     <td ng-click="selectRow(item)">{{item.inventoryType}}</td>
                     <td ng-click="selectRow(item)">{{item.InventoryCategories_id}}</td>
-                    <td ng-click="selectRow(item)">{{item.price | currency}}</td>
+                    <td ng-click="selectRow(item)">{{item.price| currency}}</td>
                     <td ng-switch-when="true" ng-show="vendorSearch">
                         <span>
                             <?php echo $vendorItemListForm['vendorPrice'] ?>
                         </span>
                     </td>
                     <td ng-switch-default ng-show="vendorSearch" ng-click="selectRow(item)">
-                        {{item.vendorPrice | currency}}
+                        {{item.vendorPrice| currency}}
                     </td>
                     <td ng-click="selectRow(item)">{{item.warehouseLocation}}</td>
                     <td class="row-controls">
@@ -114,6 +114,7 @@
         <table ng-if="listType === 'equipment'" class="table table-striped table-hover">
             <thead>
                 <tr>
+                    <th class="cog-col"></th>
                     <th column-sortable data-column="name"><?php echo $this->getString('INVENTORY_NAME'); ?></th>
                     <th column-sortable data-column="number"><?php echo $this->getString('INVENTORY_NUMBER'); ?></th>
                     <th column-sortable data-column="InventoryEquipmentTypes_id"><?php echo $this->getString('INVENTORY_EQUIPMENTTYPESID'); ?></th>
@@ -131,6 +132,7 @@
                     <td>
                         <span class="spinner-loader"></span>
                     </td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
