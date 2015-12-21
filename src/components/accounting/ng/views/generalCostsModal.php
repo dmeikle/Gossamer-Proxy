@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="input-group">
-        <label>Phase</label>
+        <label><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="AccountingGeneralCost.ClaimPhases_id">
             <option value="" selected>-Phase Code-</option>
             <?php
@@ -28,7 +28,7 @@
     </div>
 
     <div class="input-group">
-        <label>Credit Account</label>
+        <label><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></label>
         <select class="credit-account form-control" name="AccountingCreditAccount_id" ng-model="AccountingGeneralCost.AccountingCreditAccounts_id">
             <option value="" selected>-Credit Account-</option>
             <?php
@@ -126,7 +126,8 @@
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems();
         clearModal()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
-    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
+    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems();
+        confirm();"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
 </div>
 <form class="hidden"></form>
 <!--</form>-->
