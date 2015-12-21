@@ -31,7 +31,7 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
                 for(var i in self.vendorInvoiceItems){
                     self.vendorInvoiceItems[i].quantity = parseFloat(self.vendorInvoiceItems[i].quantity);
                     self.vendorInvoiceItems[i].tax = parseFloat(self.vendorInvoiceItems[i].tax);
-                    self.vendorInvoiceItems[i].unitPrice = parseFloat(self.vendorInvoiceItems[i].unitPrice);
+                    self.vendorInvoiceItems[i].price = parseFloat(self.vendorInvoiceItems[i].price);
                     self.vendorInvoiceItems[i].amount = parseFloat(self.vendorInvoiceItems[i].amount);
                 }
             }
@@ -199,12 +199,22 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
                 for (var j in lineItems[i]){                
                     if (lineItems[i][j] === null) {
                         delete lineItems[i][j];
+                    } else {
+                        if (typeof lineItems[i][j] === 'string'){
+                            lineItems[i][j] = lineItems[i][j].replace("'", "\\'", 'g');
+//                            lineItems[i][j] = lineItems[i][j].replace("window", "test replace'", 'g');
+
+                            console.log(lineItems[i][j]);
+                        }
                     }
                 }
             } else {
                 delete lineItems[i];
             }
         }
+        
+        
+        
         var data = {};
         data.VendorInvoice = item;
         data.VendorInvoiceItems = lineItems;

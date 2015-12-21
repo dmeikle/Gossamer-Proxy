@@ -45,13 +45,13 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     function LineItems(){
         return {
             isSelected: false,
-            productCode: '',
-            InventoryItems_id: '',
+//            productCode: '',
+//            InventoryItems_id: '',
             name: '',
             price: '',
             quantity: '',
             amount: '',
-            VendorItems_id: '',
+//            VendorItems_id: '',
             PurchaseOrders_id: $scope.item.id
         }; 
     }
@@ -161,11 +161,11 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
     
     //Get Vendor items info
     $scope.getProductInfo = function (row, value, index) {
-        value.unitPrice = parseFloat(value.unitPrice);
+//        value.unitPrice = parseFloat(value.unitPrice);
         row.productCode = value.productCode;
         row.name = value.name;
         row.description = value.description;
-        row.price = value.unitPrice;
+        row.price = parseFloat(value.unitPrice);
         row.AccountingTaxTypes_id = value.AccountingTaxTypes_id;
         row.VendorItems_id = value.VendorItems_id;
         row.InventoryItems_id = value.InventoryItems_id;
@@ -304,6 +304,15 @@ module.controller('vendorInvoicesEditCtrl', function ($scope, vendorInvoicesEdit
         vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItem, formToken).then(function(){
             $window.location.href = apiPath;
         });
+    };
+    
+    //Save the item
+    $scope.save = function () {
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var VendorInvoice = angular.copy($scope.item);
+        var VendorInvoiceItem = angular.copy($scope.lineItems);
+        VendorInvoice.entryDate = $filter('date')(VendorInvoice.entryDate, 'yyyy-MM-dd', '+0000');
+        vendorInvoicesEditSrv.save(VendorInvoice, VendorInvoiceItem, formToken);
     };
     
     //Cancel

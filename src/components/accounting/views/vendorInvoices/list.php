@@ -58,7 +58,7 @@
                 <tr ng-cloak ng-if="!loading && grouped && item[groupedBy] !== list[$index - 1][groupedBy]" ng-repeat-start="item in list">
                     <th colspan="7">
                         {{item[groupedBy]}}
-                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null">Blank Field</span>
+                        <span ng-if="item[groupedBy] === '' || item[groupedBy] === null"><?php echo $this->getString('ACCOUNTING_BLANK_FIELD'); ?></span>
                     </th>
                 </tr>
 
@@ -79,7 +79,7 @@
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a ng-href="invoices/{{item.id}}">Edit</a></li>
+                                <li><a ng-href="invoices/{{item.id}}"><?php echo $this->getString('EDIT'); ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -146,7 +146,7 @@
                 <!--Subcontrators Typeahead-->
                 <div class="input-group">
                     <label><?php echo $this->getString('ACCOUNTING_SUBCONTRACTOR'); ?></label>
-                    <input type="text" ng-model="subcontractor" typeahead-wait-ms="500" typeahead-min-length="2" typeahead-on-select="getSubcontractorsID(claim)"
+                    <input type="text" ng-model="subcontractor" typeahead-wait-ms="500" typeahead-min-length="2" typeahead-on-select="getSubcontractorsID(subcontractor)"
                            uib-typeahead="value as value.companyName for value in fetchSubcontractorsAutocomplete($viewValue)" typeahead-loading="loadingSubcontractors"
                            typeahead-no-results="noResultsVendor" class="form-control typeahead">
                     <i ng-show="loadingSubcontractors" class="glyphicon glyphicon-refresh"></i>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
 
-                <select class="form-control" name="Vendors_id" ng-model="advSearch.Vendors_id">
+                <select class="form-control" name="Vendors_id" ng-model="advSearch.Departments_id">
                     <option value="" selected>-<?php echo $this->getString('ACCOUNTING_DEPARTMENT'); ?>-</option>
                     <?php
                     foreach ($Departments as $department) {
