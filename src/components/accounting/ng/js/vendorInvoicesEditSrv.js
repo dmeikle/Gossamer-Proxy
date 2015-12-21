@@ -202,9 +202,6 @@ module.service('vendorInvoicesEditSrv', function ($http, searchSrv, $filter) {
                     } else {
                         if (typeof lineItems[i][j] === 'string'){
                             lineItems[i][j] = lineItems[i][j].replace("'", "\\'", 'g');
-//                            lineItems[i][j] = lineItems[i][j].replace("window", "test replace'", 'g');
-
-                            console.log(lineItems[i][j]);
                         }
                     }
                 }
