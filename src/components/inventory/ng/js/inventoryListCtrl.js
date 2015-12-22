@@ -247,12 +247,12 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
 module.controller('transferModalController', function($scope, $uibModalInstance,
     inventoryTransferSrv, multiSelectArray, wizardSrv) {
     $scope.transfer = {};
-    $scope.loading = true;
+    $scope.loading = false;
     $scope.equipmentList = multiSelectArray;
-    $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
-        .then(function() {
-            $scope.loading = false;
-        });
+//    $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
+//        .then(function() {
+//            $scope.loading = false;
+//        });
 
     $scope.$watch('wizardSrv.wizardLoading', function() {
         $scope.wizardLoading = wizardSrv.wizardLoading;
