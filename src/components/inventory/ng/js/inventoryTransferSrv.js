@@ -43,5 +43,4 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
         config['directive::DIRECTION'] = 'desc';
         return searchSrv.searchCall(config, apiPath + 'transferhistory/0/10');
     };
-
 });
