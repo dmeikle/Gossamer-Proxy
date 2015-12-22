@@ -122,6 +122,7 @@
                                         <li><a href="/admin/claim/initial-jobsheet/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_INITIAL_JOBSHEET') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/edit/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW_INITIAL_JOBSHEET') ?></a></li>
+                                        <li><a href="/admin/scoping/takeoffs/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_SCOPING_MATERIAL_TAKEOFFS') ?></a></li>
                                         <li>
                                             <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_SHEETS'); ?></a>
                                         </li>
@@ -152,7 +153,7 @@
                     <div ng-if="!claimLoading">
                         <documents module="claims" model='{{claim}}' model-type="Claim">
                             <div class="pull-right">
-                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">   
+                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">
                                     <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                                 </button>
                             </div>

@@ -1,8 +1,8 @@
 admin_scoping_takeoffs_edit:
     listeners:
-        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
         -
-            event: 'request_end'
+            event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
             formBuilder: 'components\scoping\form\MaterialTakeOffBuilder'
@@ -11,3 +11,19 @@ admin_scoping_takeoffs_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claims, key: claims, value: id, text: title }
+
+
+admin_scoping_takeoffs_edit_sheet:
+    listeners:
+        #- { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\scoping\form\MaterialTakeOffBuilder'
+            model: 'components\scoping\models\ScopeMaterialTakeoffModel'
+            cacheKey: 'MaterialTakeoffForm'
+            formName: 'form'
+            dependencies:
+            #    - { dependency: Claims, key: claims, value: id, text: title }
+    

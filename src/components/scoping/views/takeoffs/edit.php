@@ -1,13 +1,16 @@
-<div class="widget" ng-controller="takeoffsEditCtrl">
+
+<div class="widget" ng-controller="scopingTakeoffsEditCtrl">
     <div class="widgetheader">
         <h1><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
     </div>
-    <?php echo $form['Claims_id'] ?>
+    <input type="hidden" value="<?php echo $Claims_id; ?>" id="Claims_id" />
+    <input type="hidden" value="<?php echo $ClaimsLocations_id; ?>" id="ClaimsLocations_id" />
+
     <div ng-if="loading">
         <div class="text-center"><span class="spinner-loader"></span></div>
     </div>
     <div ng-if="!loading">
-        <uib-tabset ng-repeat="location in claimLocations">
+        <uib-tabset>
             <uib-tab heading="location.unitNumber">
                 <table class="table table-hover table-striped">
                     <thead>
@@ -43,12 +46,12 @@
                                 <?php echo $this->getString('SCOPING_OTHER') ?>
                             </th>
                             <th class="cog-col">
-                                
+
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in affectedAreas">
+                        <tr  ng-repeat="item in takeOffDetails">
                             <td class="table-title-column">
                                 <div class="form-group">
                                     {{item.name}}

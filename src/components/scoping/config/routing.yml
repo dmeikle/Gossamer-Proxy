@@ -96,18 +96,19 @@ admin_scoping_takeoffs_home:
             - 'src/components/defaultItem/locales/*/Navigation'
     method: [GET]
 
-admin_scoping_takeoffs_list:
+admin_scoping_takeoffs_edit_sheet:
     pattern: admin/scoping/takeoffs/*/*
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController
         model: components\scoping\models\ScopeMaterialTakeoffModel
-        method: listall
-        view: core\views\JSONView
-        viewKey: admin_scoping_takeoffs_list
+        method: editByLocation
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_scoping_takeoffs_edit_sheet
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'
+            - 'src/components/scoping/locales/*/Scoping'
+            - 'app/locales/*/website'
     method: [GET]
 
 admin_scoping_takeoffs_edit:

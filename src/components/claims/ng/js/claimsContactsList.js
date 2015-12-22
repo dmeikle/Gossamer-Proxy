@@ -54,7 +54,11 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
 
 
     $scope.hasContacts = function() {
-        return $scope.contacts.length > 0;
+        if($scope.contacts && $scope.contacts.length !== undefined) {
+           return $scope.contacts.length > 0;
+        }
+        
+        return false;
     };
     
     

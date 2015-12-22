@@ -15,4 +15,11 @@ use core\AbstractController;
 
 class ScopeMaterialTakeoffsController extends AbstractController {
 
+    public function editByLocation($claimsId, $claimsLocationsId) {
+        //$results = $this->model->editByLocation($claimsId, $claimsLocationsId);
+        $results = array('Claims_id' => intval($claimsId), 'ClaimsLocations_id' => intval($claimsLocationsId));
+
+        $this->render($results);
+    }
+
 }

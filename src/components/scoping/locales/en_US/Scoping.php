@@ -1,0 +1,24 @@
+<?php
+
+/*
+ *  This file is part of the Quantum Unit Solutions development package.
+ *
+ *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
+ *
+ *  For the full copyright and license information, please view the LICENSE
+ *  file that was distributed with this source code.
+ */
+
+return array(
+    'SCOPING_UNIT' => 'Unit',
+    'SCOPING_INSULATION' => 'Insulation',
+    'SCOPING_VAPOUR_BARRIER' => 'Vapour Barrier',
+    'SCOPING_DRYWALL' => 'Drywall',
+    'SCOPING_CORNER_BEAD' => 'Corner Bead',
+    'SCOPING_J_BEAD' => 'JBead',
+    'SCOPING_BASE_BOARD' => 'Base Board',
+    'SCOPING_COVE' => 'Cove',
+    'SCOPING_CASING' => 'Casing',
+    'SCOPING_OTHER' => 'Other',
+    'SCOPING_MATERIAL_TAKE_OFF' => 'Material Takeoff Sheet'
+);

@@ -14,14 +14,14 @@ namespace core\components\render\eventlisteners;
 use Gossamer\CMS\Forms\FormBuilder;
 
 /**
- * FormBuilderListener
+ * MultiFormBuilderListener
  *
  * @author Dave Meikle
  */
 class MultiFormBuilderListener extends FormBuilderListener {
 
     public function on_filerender_start($params) {
-
+        error_log("draw form");
         if (!array_key_exists('formBuilder', $this->listenerConfig)) {
             throw new Exception('formBuilder key missing from listener config', 508, null);
         } elseif (!array_key_exists('model', $this->listenerConfig)) {
@@ -38,7 +38,13 @@ class MultiFormBuilderListener extends FormBuilderListener {
 
         $this->httpResponse->setAttribute($formName, $formBuilder->buildForm($builder, $this->getValues(), $this->getDependencies(), array()));
     }
+
     public function on_request_start($params) {
         $this->on_filerender_start($params);
     }
+
+    public function on_request_end($params) {
+        $this->on_filerender_start($params);
+    }
+
 }
