@@ -1,94 +1,60 @@
-<form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 0">
+<form id="wizard-form" name="wizard-form" ng-submit="nextPage()" ng-show="currentPage === 0" class="padding">
 
-    <ul class="content-list">
-        <li>
-            <div class="col-xs-4">
-                <strong><?php echo $this->getString('INVENTORY_TRANSFER_LOCATION') ?></strong>
-            </div>
-            <div class="col-xs-8">
-                <!--                <div>
-                                    {{equipmentList[0].location.currentLocation}}
-                                </div>-->
+    <!--<ul class="content-list">-->
 
-                <!--                <div>
-                                    {{equipmentList}}
-                                </div>-->
+    <table class="table table-striped table-hover">
+        <tr>
+            <th class="col-md-3"><?php echo $this->getString('INVENTORY_EQUIPMENT_NAME') ?></th>
+            <th class="col-md-3"><?php echo $this->getString('INVENTORY_EQUIPMENT_NUMBER') ?></th>
+            <th class="col-md-3 "><?php echo $this->getString('INVENTORY_DESCRIPTION') ?></th>
+            <th class="col-md-3"><?php echo $this->getString('INVENTORY_TRANSFER_LOCATION') ?></th>
+        </tr>
+        <tr ng-repeat="equipment in equipmentList">
+            <td>{{equipment.type}}</td>
+            <td>{{equipment.number}}</td>
+            <td>{{equipment.description}}</td>
+            <td>{{equipment.location.currentLocation}}</td>
+        </tr>
+    </table>
 
-                <div ng-repeat="equipment in equipmentList">
-                    {{equipment.location.currentLocation}}
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="col-xs-4">
-                <strong><?php echo $this->getString('INVENTORY_TRANSFER_EQUIPMENT') ?></strong>
-            </div>
-            <div class="col-xs-8">
-                <div ng-repeat="equipment in equipmentList">
-                    {{equipment.number}} ({{equipment.productCode}})
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="col-xs-4">
-                <strong><?php echo $this->getString('INVENTORY_TRANSFER_TO') ?></strong>
-            </div>
-            <div class="col-xs-8">
 
-                <div ng-if="equipmentList[0].location.warehouseLocation">
-                    <div class="form-group">
-                      <!-- <input type="radio" name="cageTransferBy" ng-model="cageTransferBy" value="Vehicles_id" id=""> -->
-                        <label for="ClaimLocation_Vehicles_id"><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-                        <?php echo $transferForm['Vehicles_id'] ?>
-                    </div>
-                </div>
+    <!--<li>-->
+    <div class="spacer">
 
-                <div ng-if="equipmentList[0].location.vehicleNumber">
-                    <div  class="form-group">
-                      <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="WarehouseLocations_id" id=""> -->
-                        <label><?php echo $this->getString('INVENTORY_TRANSFER_WAREHOUSE') ?></label>
-                        <?php echo $transferForm['WarehouseLocations_id'] ?>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                          <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="jobNumber" id=""> -->
-                            <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER') ?></label>
-                            <input type="text" ng-model="Claim" ng-model-options="{debounce:500}"
-                                   uib-typeahead="value as value[0].jobNumber for value in autocompleteJobNumber($viewValue)"
-                                   typeahead-loading="loadingTypeaheadJobNumber" typeahead-no-results="noResultsJobNumber" class="form-control"
-                                   typeahead-min-length='2'>
-                            <div class="resultspane" ng-show="noResultsJobNumber">
-                                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIM_NORESULTS') ?>
-                            </div>
-                            <i ng-show="loadingTypeaheadJobNumber" class="glyphicon glyphicon-refresh"></i>
-                            <div ng-if="Claim[0].jobNumber">
-                                <select class="form-control" ng-model="transfer.ClaimsLocations_id" ng-options="value.ClaimsLocations_id as value.unitNumber for value in Claim"></select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                      <!-- <input type="radio" name="vehicleTransferBy" ng-model="vehicleTransferBy" value="Vehicles_id" id=""> -->
-                        <label><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-                        <?php echo $transferForm['Vehicles_id'] ?>
-                    </div>
-                </div>
-                <div ng-if="equipmentList[0].location.unitNumber">
-                    <div class="form-group">
-                      <!-- <input type="radio" name="unitNumberTransferBy" ng-model="unitNumberTransferBy" value="Vehicles_id" id=""> -->
-                        <label><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></label>
-                        <?php echo $transferForm['Vehicles_id'] ?>
-                    </div>
-                    <div class="form-group">
-                      <!-- <input type="radio" name="unitNumberTransferBy" ng-model="unitNumberTransferBy" value="unitNumber" id=""> -->
-                        <label><?php echo $this->getString('INVENTORY_TRANSFER_UNIT') ?></label>
-                        <?php echo $claimLocationForm['unitNumber'] ?>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
+        <div class="col-xs-4">
+            <strong><?php echo $this->getString('INVENTORY_TRANSFER_TO') ?></strong>
+        </div>
+        <div class="col-xs-8">
+            <!--<div class="input-group">-->
+            <select class="form-control" ng-model="transferTo">
+                <option value="" default>-<?php echo $this->getString('INVENTORY_SELECT_TRANSFER_LOCATION') ?>-</option>
+                <option value="warehouse"><?php echo $this->getString('INVENTORY_WAREHOUSELOCATION') ?></option>
+                <option value="vehicle"><?php echo $this->getString('INVENTORY_TRANSFER_VEHICLE') ?></option>
+                <option value="claimLocation"><?php echo $this->getString('INVENTORY_CLAIM_LOCATION') ?></option>
+            </select>
+            <!--</div>-->
+        </div>
+        <!--</li>-->
+        <!--</ul>-->
+    </div>
     <div class="clearfix"></div>
-    <div class="widgetfooter clearfix">
+    <div class="spacer" ng-if="transferTo" ng-switch="transferTo">
+        <div class="col-xs-offset-4 col-xs-8" ng-switch-when="warehouse">
+            <?php echo $transferForm['WarehouseLocations_id'] ?>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8" ng-switch-when="vehicle">
+            <?php echo $transferForm['Vehicles_id'] ?>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8" ng-switch-when="claimLocation">
+            <label><?php echo $this->getString('INVENTORY_TRANSFER_JOBNUMBER') ?></label>
+            <?php echo $transferForm['jobNumber'] ?>
+            <select ng-if="claimLocations" class="form-control" ng-model="transfer.ClaimLocation" ng-options="value as value.unitNumber for value in claimLocations"></select>
+            {{transfer.ClaimLocation}}
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="widgetfooter clearfix spacer">
         <div class="pull-right btn-group">
             <button class="btn-default" ng-click="close()">
                 <?php echo $this->getString('CANCEL'); ?>

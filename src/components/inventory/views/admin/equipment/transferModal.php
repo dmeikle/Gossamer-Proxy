@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h1><?php echo $this->getString('TRANSFER') ?></h1>
+    <h1><?php echo $this->getString('INVENTORY_EQUIPMENT_TRANSFER') ?></h1>
 </div>
 <!--<div ng-if="loading || wizardLoading">
     <div class="spinner-loader"></div>

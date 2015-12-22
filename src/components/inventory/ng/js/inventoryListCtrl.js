@@ -269,6 +269,10 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     $scope.autocompleteWarehouseLocation = function(value) {
         return autocomplete(value, 'warehouseLocation', '/admin/inventory/warehouse/');
     };
+    
+    $scope.getClaimLocations = function(claim){
+        $scope.claimLocations = claim;
+    };
 
     $scope.submit = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
