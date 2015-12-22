@@ -172,7 +172,7 @@
         </div>
     </div>
 
-    <div class="widget-side-panel">
+    <div class="widget-side-panel" ng-class="{'show-overflow': searching }">
         <div class="pull-right">
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -224,7 +224,8 @@
             </table>
         </div>
 
-        <div ng-if="!sidePanelLoading && !searching && multiSelect">
+        <!--<div ng-if="!sidePanelLoading && !searching && multiSelect">-->
+        <div ng-if="!sidePanelLoading && multiSelect">
             <h1><?php echo $this->getString('SELECTED') ?></h1>
             <div class="card" ng-repeat="item in multiSelectArray">
                 <div class="cardheader">

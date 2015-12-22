@@ -151,7 +151,7 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
 
 
     $scope.search = function(searchObject) {
-        $scope.vendorSearch = (searchObject.Vendors_id !== undefined);
+        //$scope.vendorSearch = (searchObject.Vendors_id !== undefined);
         $scope.currentSearchParams = searchObject;
 
         $scope.noResults = undefined;
@@ -234,6 +234,13 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
             $scope.getList();
         }
     });
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return inventoryListSrv.fetchClaimsAutocomplete(searchObject);
+    };
 
 });
 

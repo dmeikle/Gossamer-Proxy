@@ -184,9 +184,18 @@ module.directive('multiSelect', function($compile) {
                 if (pageScope.multiSelectArray.length) {
                     pageScope.multiSelect = true;
                     pageScope.sidePanelOpen = true;
+                    pageScope.previouslyClickedObject = null;
                 } else {
                     pageScope.multiSelect = false;
-                    pageScope.sidePanelOpen = false;
+                    if(pageScope.isSearching !== true){
+                        if(!pageScope.previouslyClickedObject){
+                            pageScope.sidePanelOpen = false;
+                        }
+                        
+//                    } else {
+                    }
+                    //Was closing the sidepanel when we need it open to view our advanced search
+//                    pageScope.sidePanelOpen = false;
                 }
             };
         }

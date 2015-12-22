@@ -27,8 +27,14 @@ class InventoryBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['Department']);
         }
 
-        $builder->add('department', 'text', array('class' => 'form-control', 'value' => $this->getValue('department'), $values));
+        $builder->add('department', 'text', array('class' => 'form-control', 'value' => $this->getValue('department'), $values))
 
+                //Advanced Search
+                ->add('warehouseLocations', 'select', array('class' => 'form-control', 'ng-model' => 'advancedSearch.query.warehouseLocation', 'options' => $options['warehouseLocations']))
+                ->add('vehicles', 'select', array('class' => 'form-control', 'ng-model' => 'advancedSearch.query.vehicle', 'options' => $options['vehicles']))
+                ->add('jobNumber', 'text', array('ng-model' => 'item.jobNumber', 'uib-typeahead' => 'value as value.jobNumber for value in fetchClaimsAutocomplete($viewValue)',
+                    'typeahead-loading' => 'loadingTypeahead', 'typeahead-no-results' => 'noResultsClaim', 'class' => 'form-control typeahead col-md-12',
+                    'typeahead-min-length' => '2', 'typeahead-on-select' => 'getClaimsID(claim)', 'typeahead-wait-ms' => '500'));
         return $builder->getForm();
     }
 

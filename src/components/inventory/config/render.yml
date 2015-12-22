@@ -94,7 +94,8 @@ inventoryAdvancedSearchFilters:
         - 'src/components/inventory/locales/*/inventory'
     listeners:
         - { 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-        
+        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\WarehouseModel', 'cacheKey': 'WarehouseLocations', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         # build the form
         -
             event: 'filerender_start'
@@ -106,7 +107,8 @@ inventoryAdvancedSearchFilters:
             formName: 'inventoryForm'
             dependencies:
                 - { dependency: Vendors, key: vendors, value: id, text: company }
-
+                - { dependency: WarehouseLocations, key: warehouseLocations, value: id, text: name }
+                - { dependency: Vehicles, key: vehicles, value: id, text: number }
 vendorItemModal:
     path: 'src/components/inventory/ng/views/vendorItemModal.php'
     langFiles:

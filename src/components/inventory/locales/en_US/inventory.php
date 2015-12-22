@@ -16,7 +16,7 @@ return array(
     'INVENTORY_INVENTORYTYPE' => 'Inv Type',
     'INVENTORY_ISACTIVE' => 'Active',
     'INVENTORY_INVENTORYCATEGORY' => 'Category',
-    'INVENTORY_WAREHOUSELOCATION' => 'Location',
+    'INVENTORY_WAREHOUSELOCATION' => 'Warehouse Location',
     'INVENTORY_EQUIPMENT' => 'Equipment',
     'INVENTORY_MATERIALS' => 'Materials',
     'INVENTORY_MAXDAYS' => 'Max Days',
