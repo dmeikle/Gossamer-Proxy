@@ -54,6 +54,13 @@ module.service('crudSrv', function($http) {
             }
         });
     };
+    
+    this.get = function(apiPath) {
+        return $http({
+            method: 'GET',
+            url: apiPath
+        });
+    };
 
     this.getDetails = function(apiPath, id) {
         return $http({

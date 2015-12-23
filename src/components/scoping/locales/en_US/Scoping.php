@@ -20,5 +20,8 @@ return array(
     'SCOPING_COVE' => 'Cove',
     'SCOPING_CASING' => 'Casing',
     'SCOPING_OTHER' => 'Other',
-    'SCOPING_MATERIAL_TAKE_OFF' => 'Material Takeoff Sheet'
+    'SCOPING_MATERIAL_TAKE_OFF' => 'Material Takeoff Sheet',
+    'SCOPING_NEW_ROW' => 'New Row',
+    'SCOPING_INSERT_ROWS' => 'Insert Row(s)',
+    'SCOPING_DELETE_ROWS' => 'Delete Row(s)',
 );

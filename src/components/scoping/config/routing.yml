@@ -125,6 +125,19 @@ admin_scoping_takeoffs_edit:
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'
     method: [GET]
+    
+admin_scoping_takeoffs_get:
+    pattern: admin/scoping/takeoffs/get/*/*
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: get
+        view: core\views\JSONView
+        viewKey: admin_scoping_takeoffs_get
+        datasource: datasource1
+    method: [GET]
 
 admin_scoping_takeoffs_save:
     pattern: admin/scoping/takeoffs/save/*
