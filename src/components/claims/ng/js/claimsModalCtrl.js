@@ -9,8 +9,18 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     $scope.project = {};
     $scope.claim = {};
     $scope.claim.query = {};
+    $scope.currentPage = 0;
+    $scope.wizardLoading = false;   
 
-
+    var init = function() {
+        $scope.unitList = [];
+        $scope.project = {};
+        $scope.claim = {};
+        $scope.claim.query = {};
+        $scope.currentPage = 0;
+        $scope.wizardLoading = false;  
+    };
+    
     // datepicker stuffs
     $scope.isOpen = {};
     $scope.dateOptions = {
@@ -84,26 +94,18 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     };
 
     $scope.addToUnitList = function() {
-        if ($scope.unit) {
+        if ($scope.unit && !$scope.checkUnitExists($scope.unit)) {
             var object = {};
             object.unitNumber = $scope.unit;
             object.ProjectAddresses_id = $scope.claim.query.ProjectAddresses_id;
             object.Claims_id = $scope.claim.query.id;
-
-            // $scope.checkUnitExists(object).then(function(response) {
-            //     if (response === false && $scope.claimLocations.indexOf($scope.unit)) {
-            //         $scope.saveNewClaimLocation(object).then(function(response) {
-            //             $scope.unitList.push(response.data.ClaimsLocation[0]);
-            //         });
-            //     } else if ($scope.claimLocations.indexOf($scope.unit)) {
-            //         $scope.unitList.push(response);
-            //     }
-            // });
-
-
+            object.isActive = 1;
+            
             $scope.saveNewClaimLocation(object).then(function(response) {
                 $scope.unitList.push(response.data.ClaimsLocation[0]);
             });
+            
+            $scope.unit = '';
         }
     };
 
@@ -131,12 +133,24 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     //     }
     // };
 
-    $scope.removeFromUnitList = function(unit) {
+    //check to ensure this isn't a duplicate entry
+    $scope.checkUnitExists = function(unitNumber) {
         for (var i = $scope.unitList.length - 1; i >= 0; i--) {
+            if (unitNumber === $scope.unitList[i].unitNumber) { 
+                return true;
+            }
+        }
+        
+        return false;
+    };
+    
+    $scope.removeFromUnitList = function(unit) {
+        for (var i = 0; i < $scope.unitList.length; i++) {
             if (unit === $scope.unitList[i]) { 
                 $scope.unitList.splice(i, 1);
             }
         }
+        claimsLocationsEditSrv.delete(unit);
     };
 
     $scope.toggleAdding = function() {
@@ -149,22 +163,39 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
 
     $scope.confirm = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $scope.claim.query.isActive = 1;
         claimsEditSrv.save($scope.claim.query, formToken).then(function(response) {
             if (!response.data.result || response.data.result !== 'error') {
+                init();
                 $uibModalInstance.close();
             }
         });
     };
 
     $scope.cancel = function() {
-        if ($scope.claim.query.id) {
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            claimsEditSrv.setInactive($scope.claim.query, formToken).then(function() {
-                $uibModalInstance.dismiss('cancel');
-            });
-        } else {
-            $uibModalInstance.dismiss('cancel');
-        }
+        init();
+        $uibModalInstance.dismiss('cancel');
+            
+//        if ($scope.claim.query.id) {
+//            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+//            claimsEditSrv.setInactive($scope.claim.query, formToken).then(function() {
+//                init();
+//                $uibModalInstance.dismiss('cancel');
+//            });
+//        } else {
+//            init();
+//            $uibModalInstance.dismiss('cancel');
+//        }
     };
+    
+    
+
+            $scope.nextPage = function() {
+                $scope.currentPage++;
+            };
+
+            $scope.prevPage = function() {
+                $scope.currentPage--;
+            };
 });
 
