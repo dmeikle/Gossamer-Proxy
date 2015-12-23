@@ -25,7 +25,7 @@ return array(
     'INVENTORY_EQUIPMENT_NUMBER' => 'Equipment No.',
     'INVENTORY_EQUIPMENT_TRANSFER' => 'Equipment Transfer',
     'INVENTORY_TRANSFER_HISTORY' => 'Transfer History',
-    'INVENTORY_TRANSFER_ACKNOWLEDGE' => 'Sign to acknowledge receipt of this equipment',
+    'INVENTORY_TRANSFER_ACKNOWLEDGE' => 'I (the recipient), acknowledge this equipment has been transfered.',
     'INVENTORY_TRANSFER_TO' => 'Transfer To',
     'INVENTORY_TRANSFER_LOCATION' => 'Current Location',
     'INVENTORY_TRANSFER_EQUIPMENT' => 'Equipment',
@@ -82,5 +82,7 @@ return array(
     'INVENTORY_SAVE' => 'Save',
     'INVENTORY_NEWITEM' => 'New Inventory Item',
     'INVENTORY_CLAIM_LOCATION' => 'Claim Location',
-    'INVENTORY_SELECT_TRANSFER_LOCATION' => 'Select Transfer Location'
+    'INVENTORY_SELECT_TRANSFER_LOCATION' => 'Select Transfer Location',
+    'INVENTORY_UNIT_NUMBER' => 'Unit Number',
+    'INVENTORY_OPTIONAL' => 'Optional'
 );

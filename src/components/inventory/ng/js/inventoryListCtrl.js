@@ -208,6 +208,9 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
         });
 
         modalInstance.result.then(function() {
+            $scope.multiSelect = false;
+            $scope.sidePanelOpen = false;
+            $scope.previouslyClickedObject = undefined;
             $scope.getList();
         });
     };
@@ -249,6 +252,7 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     $scope.transfer = {};
     $scope.loading = false;
     $scope.equipmentList = multiSelectArray;
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 //    $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
 //        .then(function() {
 //            $scope.loading = false;
@@ -271,11 +275,18 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     };
     
     $scope.getClaimLocations = function(claim){
+        $scope.transfer.Claims_id = claim[0].Claims_id;
         $scope.claimLocations = claim;
     };
+    
+    $scope.clearTransfer = function(){
+        $scope.transfer = {};
+        if($scope.claimLocations){
+            $scope.claimLocations = null;
+        }
+    };
 
-    $scope.submit = function() {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    $scope.submit = function() {        
         for (var property in $scope.transfer) {
             if ($scope.transfer.hasOwnProperty(property) &&
                 !$scope.transfer[property]) {

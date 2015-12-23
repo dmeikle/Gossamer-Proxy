@@ -26,7 +26,6 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
     };
 
     this.transfer = function(object) {
-
         return $http({
             method: 'POST',
             url: '/admin/inventory/equipment/transfer',
@@ -36,6 +35,7 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
             data: object
         });
     };
+    
     this.getEquipmentTransferHistory = function(object) {
         var config = {};
         config.InventoryEquipment_id = object.id;
