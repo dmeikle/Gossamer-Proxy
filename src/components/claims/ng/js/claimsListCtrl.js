@@ -32,6 +32,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
         }
     });
 
+   
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
         if ($scope.currentPage && $scope.itemsPerPage) {
             row = (($scope.currentPage - 1) * $scope.itemsPerPage);

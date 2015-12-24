@@ -166,15 +166,18 @@
         </div>
         <div class="col-xs-12 col-md-6" ng-show="currentPage === 1 && !loading">
             <h4><?php echo $this->getString('CLAIMS_UNITS') ?></h4>
-            <ul>
-                <li ng-if="unitList.length > 0" ng-repeat="unit in unitList" class="clearfix">
-                    {{unit.unitNumber}}
-                    <button ng-click="removeFromUnitList(unit)" class="pull-right btn-link glyphicon glyphicon-remove"></button>
-                </li>
-                <li ng-if="unitList.length == 0">
+            <div class="form-group">
+                <div class="radio" ng-if="unitList.length > 0" ng-repeat="unit in unitList">
+                    <label title="<?php echo $this->getString('CLAIMS_SOURCE_UNIT') ?>">
+                        <input type="radio" name="sourceUnit" value="{{unit.id}}" ng-model="unit.sourceUnit" ng-change="setSourceUnit(unit)">
+                        {{unit.unitNumber}}
+                        <button ng-click="removeFromUnitList(unit)" class="pull-right btn-link glyphicon glyphicon-remove"></button>
+                    </label>
+                </div>
+                <div  ng-if="unitList.length == 0">
                     <?php echo $this->getString('CLAIMS_NOUNITS') ?>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
         <div class="clearfix"></div>
         <div class="modal-footer">
@@ -199,25 +202,25 @@
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label"><?php echo $this->getString('CLAIMS_CONTACT_FIRSTNAME'); ?></label>
-                    <input class="form-control" type="text" name="contactName" id="claim-contactName" ng-model="claim.query.contactName">
+                    <input class="form-control" type="text" name="contactName" id="claim-contactName" ng-model="claim.query.calledInBy">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label"><?php echo $this->getString('CLAIMS_CONTACT_PHONE'); ?></label>
-                    <input class="form-control" type="tel" name="contactPhone" id="claim-contactPhone" ng-model="claim.query.contactPhone">
+                    <input class="form-control" type="tel" name="contactPhone" id="claim-contactPhone" ng-model="claim.query.calledInPhone">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label"><?php echo $this->getString('CLAIMS_ALTERNATE_NAME'); ?></label>
-                    <input class="form-control" type="text" name="calledInBy" id="claim-calledInBy" ng-model="claim.query.calledInBy">
+                    <input class="form-control" type="text" name="calledInBy" id="claim-calledInBy" ng-model="claim.query.contactName">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="form-group">
                     <label class="control-label"><?php echo $this->getString('CLAIMS_ALTERNATE_PHONE'); ?></label>
-                    <input class="form-control" type="tel" name="calledInPhone" id="claim-calledInPhone" ng-model="claim.query.calledInPhone">
+                    <input class="form-control" type="tel" name="calledInPhone" id="claim-calledInPhone" ng-model="claim.query.contactPhone">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -276,6 +279,15 @@
                 <?php echo $claimForm['ClaimTypes_other']; ?>
             </div>
 
+            <div class="form-group">
+                <label class="control-label" for="project-ClaimPhases_id"><?php echo $this->getString('CLAIMS_LOCATIONS_PHASE'); ?></label>
+                <?php echo $claimForm['ClaimPhases_id']; ?>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="project-ClaimPhases_id"><?php echo $this->getString('CLAIMS_CONTENTS_NEEDED'); ?></label>
+                <input type="checkbox" value="1" ng-model="claim.query.contentsNeeded" />
+            </div>
 
         </form>
         <div class="pull-left">
@@ -297,7 +309,7 @@
     <form id="wizard-form" name="wizard-form" class="wizard-page" ng-show="!loading && currentPage === 4"> <!-- PAGE 4 -->
         <div class="col-md-12 cards">
             <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONFIRMATION'); ?></h2>
-            <?php echo $this->getString('CLAIMS_TYPE'); ?>: Water Damage<br>
+            <?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.ClaimTypes_other}} {{claim.ClaimTypes_id}} <br>
             <div ng-show="{{claim.query.asbestosTestRequired !== 'false'}}" class="bg-danger"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></div>
 
             <div class="col-md-6 cardleft">
@@ -315,18 +327,18 @@
             </div>
             <div class="col-md-6 cardright">
                 <h1><?php echo $this->getString('CLAIMS_ADDNEW_CONTACTDETAILS'); ?></h1>
-                <?php echo $this->getString('CLAIMS_CONTACT_NAME'); ?>: {{claim.query.contactName}}<br>
-                <?php echo $this->getString('CLAIMS_CONTACT_PHONE'); ?>: {{claim.query.contactPhone}}<br>
-                <?php echo $this->getString('CLAIMS_ALTERNATE_NAME'); ?>: {{claim.query.calledInBy}}<br>
-                <?php echo $this->getString('CLAIMS_ALTERNATE_PHONE'); ?>: {{claim.query.calledInPhone}}<br>
+                <?php echo $this->getString('CLAIMS_CONTACT_NAME'); ?>: {{claim.query.calledInBy}}<br>
+                <?php echo $this->getString('CLAIMS_CONTACT_PHONE'); ?>: {{claim.query.calledInPhone}}<br>
+                <?php echo $this->getString('CLAIMS_ALTERNATE_NAME'); ?>: {{claim.query.contactName}}<br>
+                <?php echo $this->getString('CLAIMS_ALTERNATE_PHONE'); ?>: {{claim.query.contactPhone}}<br>
             </div>
 
             <div class="clearfix"></div>
 
 
             <h3>Units within the claim</h3>
-            <ul ng-repeat="unit in unitList">
-                <li>{{unit.unitNumber}}</li>
+            <ul>
+                <li ng-class="getSourceUnitClass(unit)" ng-repeat="unit in unitList">{{unit.unitNumber}}</li>
             </ul>
 
 

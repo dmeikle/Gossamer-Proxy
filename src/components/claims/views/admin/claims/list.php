@@ -60,14 +60,12 @@
                         'inactive bg-warning text-warning': claim.status == 'inactive'}">
                     <td  ng-if="!claim.jobNumber" ng-click="selectRow(claim)">{{claim.unassignedJobNumber}}</td>
                     <td ng-if="claim.jobNumber" ng-click="selectRow(claim)">{{claim.jobNumber}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.phase}}</td>
+                    <td ng-click="selectRow(claim)">{{claim.title}}</td>
                     <td ng-click="selectRow(claim)">{{claim.buildingName}}</td>
-                    <td ng-click="selectRow(claim)">{{claim.losstype}}</td>
+                    <td ng-click="selectRow(claim)">{{claim.typeOfClaim}}</td>
                     <td ng-click="selectRow(claim)">{{claim.callInDate}}</td>
                     <td ng-click="selectRow(claim)">{{claim.status}}</td>
-                    <td ng-click="selectRow(claim)">
-                        <span ng-if="claim.firstname">{{claim.lastname}}, {{claim.firstname}}</span>
-                    </td>
+                    <td ng-click="selectRow(claim)">{{claim.lastname}}, {{claim.firstname}}</td>
                     <td ng-click="selectRow(claim)">{{claim.parentJobNumber}}</td>
                     <td class="row-controls">
                         <div class="dropdown">

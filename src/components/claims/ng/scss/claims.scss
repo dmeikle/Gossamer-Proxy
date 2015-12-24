@@ -34,3 +34,10 @@
 .expand-btn{
     cursor:pointer;
 }
+/*.table-striped>tbody>tr:nth-of-type(odd):not(.bg-warning) {
+    @extend .table-striped>tbody>tr:nth-of-type(odd);
+}*/
+.table-striped>tbody>tr:nth-of-type(odd).bg-warning{
+    /*@extend .table-striped>tbody>tr:nth-of-type(odd);*/
+    @extend .bg-warning;
+}

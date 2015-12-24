@@ -11,7 +11,8 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     $scope.claim.query = {};
     $scope.currentPage = 0;
     $scope.wizardLoading = false;   
-
+    $scope.sourceUnit = {};
+    
     var init = function() {
         $scope.unitList = [];
         $scope.project = {};
@@ -50,10 +51,10 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     $scope.selectAddress = function(item) {
         $scope.claim.ProjectAddress = item;
         $scope.claim.query.ProjectAddresses_id = item.id;
-        if (item.buildingYear.parseInt <= 1980) {
-            $scope.claim.query.asbestosTestRequired = 'true';
+        if (parseInt(item.buildingYear) < 1981) {
+            $scope.claim.query.asbestosTestRequired = '1';
         } else {
-            $scope.claim.query.asbestosTestRequired = 'false';
+            $scope.claim.query.asbestosTestRequired = '0';
         }
     };
 
@@ -109,33 +110,27 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         }
     };
 
-    // DEPRECATED
+    $scope.getSourceUnitClass = function(unit) {
+        if(unit.id == $scope.sourceUnit.id) {
+            return 'bg-warning';
+        }
+        
+        return '';
+    };
 
-    // $scope.checkUnitExists = function(unit) {
-    //     var unitCheck = function(unit) {
-    //         for (var i = $scope.claimLocations.length - 1; i >= 0; i--) {
-    //             if ($scope.claimLocations[i].unitNumber === unit.unitNumber) {
-    //                 return $scope.claimLocations[i];
-    //             }
-    //         }
-    //         return false;
-    //     };
-
-
-    //     if (!$scope.claimLocations) {
-    //         return $scope.getClaimLocations().then(function() {
-    //             return unitCheck(unit);
-    //         });
-    //     } else {
-    //         return $q(function(resolve) {
-    //             resolve(unitCheck(unit));
-    //         });
-    //     }
-    // };
-
+    $scope.setSourceUnit = function(unit) {
+        var data = {};
+        data.id = $scope.claim.query.claim_id;
+        data.sourceUnitClaimsLocations_id = unit.id;
+        $scope.sourceUnit = unit;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
+        return claimsEditSrv.save(data, formToken);
+    };
+    
     //check to ensure this isn't a duplicate entry
     $scope.checkUnitExists = function(unitNumber) {
-        for (var i = $scope.unitList.length - 1; i >= 0; i--) {
+        for (var i = 0; i < $scope.unitList.length; i++) {
             if (unitNumber === $scope.unitList[i].unitNumber) { 
                 return true;
             }
@@ -161,9 +156,17 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         $scope.addingLocation = !$scope.addingLocation;
     };
 
+    $scope.setContentsNeeded = function(contents) {
+        $scope.claim.query.contentsNeeded = contents;
+    };
+
     $scope.confirm = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         $scope.claim.query.isActive = 1;
+        $scope.claim.query.ClaimTypes_id = $scope.claim.ClaimTypes_id;
+        $scope.claim.query.ClaimTypes_other = $scope.claim.ClaimTypes_other;
+        $scope.claim.query.currentClaimPhases_id = $scope.claim.ClaimPhases_id;
+        
         claimsEditSrv.save($scope.claim.query, formToken).then(function(response) {
             if (!response.data.result || response.data.result !== 'error') {
                 init();
@@ -174,28 +177,16 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
 
     $scope.cancel = function() {
         init();
-        $uibModalInstance.dismiss('cancel');
-            
-//        if ($scope.claim.query.id) {
-//            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-//            claimsEditSrv.setInactive($scope.claim.query, formToken).then(function() {
-//                init();
-//                $uibModalInstance.dismiss('cancel');
-//            });
-//        } else {
-//            init();
-//            $uibModalInstance.dismiss('cancel');
-//        }
+        $uibModalInstance.dismiss('cancel');           
     };
-    
-    
+        
 
-            $scope.nextPage = function() {
-                $scope.currentPage++;
-            };
+    $scope.nextPage = function() {
+        $scope.currentPage++;
+    };
 
-            $scope.prevPage = function() {
-                $scope.currentPage--;
-            };
+    $scope.prevPage = function() {
+        $scope.currentPage--;
+    };
 });
 
