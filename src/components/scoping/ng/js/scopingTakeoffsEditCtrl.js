@@ -99,7 +99,8 @@
         
         vm.save = function () {
             $log.log(vm.lineItems);
-//            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
+            vm.lineItems.id = 0;
+            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
         };
         
         activate();

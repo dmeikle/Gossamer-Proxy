@@ -96,6 +96,20 @@ admin_scoping_takeoffs_home:
             - 'src/components/defaultItem/locales/*/Navigation'
     method: [GET]
 
+admin_scoping_takeoffs_save:
+    pattern: admin/scoping/takeoffs/save/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_scoping_takeoffs_save
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/defaultItem/locales/*/Navigation'
+    method: [POST]  
+
 admin_scoping_takeoffs_edit_sheet:
     pattern: admin/scoping/takeoffs/*/*
     defaults:
@@ -113,7 +127,6 @@ admin_scoping_takeoffs_edit_sheet:
 
 admin_scoping_takeoffs_edit:
     pattern: admin/scoping/takeoffs/*
-
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController
@@ -128,7 +141,6 @@ admin_scoping_takeoffs_edit:
     
 admin_scoping_takeoffs_get:
     pattern: admin/scoping/takeoffs/get/*/*
-
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController
@@ -137,22 +149,8 @@ admin_scoping_takeoffs_get:
         view: core\views\JSONView
         viewKey: admin_scoping_takeoffs_get
         datasource: datasource1
-    method: [GET]
-
-admin_scoping_takeoffs_save:
-    pattern: admin/scoping/takeoffs/save/*
-
-    defaults:
-        component: components\scoping\ScopingComponent
-        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
-        model: components\scoping\models\ScopeMaterialTakeoffModel
-        method: save
-        view: core\views\JSONView
-        viewKey: admin_scoping_takeoffs_save
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'
-       
+    method: [GET] 
+    
 admin_scoping_edit:
     pattern: admin/scoping/*
     defaults:
