@@ -13,6 +13,7 @@
         vm.takeOff = getTakeoffDetails(vm.claimId);
         vm.loading = true;
         
+        //Insulation Variants (hard-coded for now...)
         vm.insulationVariants = [{
             variant: '16x14',
             VariantOptions_id: '17'
@@ -27,11 +28,23 @@
             VariantOptions_id: '20'
         }];
         
+        //J Bead Variants (hard-coded for now...)
+        vm.jBeadVariants = [{
+            variant: '1/2"',
+            VariantOptions_id: '21'
+        },{
+            variant: '3/4"',
+            VariantOptions_id: '22'
+        }];
+        
+        //Default line items, sets default values for certain line items.
         function LineItem () {
             this.isSelected = false;
             this.insulation = angular.copy(vm.insulationVariants[0]);
+            this.jBead = angular.copy(vm.jBeadVariants[0]);
         }
         
+        //Get takeoff details
         function getTakeoffDetails() {
             var claimId = document.getElementById('Claims_id').value;
             var claimsLocationsId = document.getElementById('ClaimsLocations_id').value;
@@ -57,12 +70,14 @@
         //Removes and selected rows from the table
         vm.removeRows = function () {
             vm.lineItems = tableControlsSrv.removeRows(vm.lineItems);
-            vm.checkSelectAll();
+            
+            vm.checkSelected();
         };
         
         //Select all toggle for table
         vm.selectAllToggle = function (value) {
             vm.lineItems = tableControlsSrv.selectAll(vm.lineItems, value);
+            vm.checkSelected();
         };
         
         //check to see if a row is selected
@@ -76,6 +91,7 @@
             vm.selectAll = tableControlsSrv.checkSelectAll(vm.lineItems);
         };
         
+        //Set a item's variant and VariantOptions_id
         vm.setItemVariant = function (item, option) {
             item.variant = option.variant;
             item.VariantOptions_id = option.VariantOptions_id;

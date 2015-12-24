@@ -94,9 +94,24 @@
                             <?php echo $form['cornerBead'] ?>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
+                    <td class="show-overflow">
+                        <div class="form-group dropdown-group">
                             <?php echo $form['jBead'] ?>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{item.jBead.variant}}
+                                    <span class="caret"></span>
+                                </button>
+                                <!-- Insulation Variant Options -->
+                                <ul class="dropdown-menu pull-right">
+                                    <li ng-repeat="option in vm.jBeadVariants" ng-click="vm.setItemVariant(item.jBead, option)">
+                                        <a ng-class="{'bg-info': item.jBead.VariantOptions_id === option.VariantOptions_id}">
+                                            {{option.variant}}
+                                            <i ng-if="item.jBead.VariantOptions_id === option.VariantOptions_id" class="glyphicon glyphicon-ok"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                     <td>
