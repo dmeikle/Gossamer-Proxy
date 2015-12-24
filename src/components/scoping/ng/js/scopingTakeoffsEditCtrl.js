@@ -14,21 +14,22 @@
         vm.loading = true;
         
         vm.insulationVariants = [{
-            option: '16x14',
+            variant: '16x14',
             VariantOptions_id: '17'
         },{
-            option: '16x22',
+            variant: '16x22',
             VariantOptions_id: '18'
         },{
-            option: '24x14',
+            variant: '24x14',
             VariantOptions_id: '19'
         },{
-            option: '24x22',
+            variant: '24x22',
             VariantOptions_id: '20'
         }];
         
         function LineItem () {
             this.isSelected = false;
+            this.insulation = angular.copy(vm.insulationVariants[0]);
         }
         
         function getTakeoffDetails() {
@@ -75,8 +76,9 @@
             vm.selectAll = tableControlsSrv.checkSelectAll(vm.lineItems);
         };
         
-        vm.setItemVariant = function (item, variant) {
-            item.VariantOptions_id = variant.VariantOptions_id;
+        vm.setItemVariant = function (item, option) {
+            item.variant = option.variant;
+            item.VariantOptions_id = option.VariantOptions_id;
         };
         
         vm.save = function () {

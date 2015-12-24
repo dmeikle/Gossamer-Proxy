@@ -64,13 +64,15 @@
                             <!-- Variants Drop-down -->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{item.insulation.variant}}
                                     <span class="caret"></span>
                                 </button>
                                 <!-- Insulation Variant Options -->
                                 <ul class="dropdown-menu pull-right">
-                                    <li ng-repeat="variant in vm.insulationVariants" ng-click="vm.setItemVariant(item.insulation, variant)">
-                                        <a ng-class="{'bg-info': item.insulation.VariantOptions_id === variant.VariantOptions_id}">
-                                            {{variant.option}}
+                                    <li ng-repeat="option in vm.insulationVariants" ng-click="vm.setItemVariant(item.insulation, option)">
+                                        <a ng-class="{'bg-info': item.insulation.VariantOptions_id === option.VariantOptions_id}">
+                                            {{option.variant}}
+                                            <i ng-if="item.insulation.VariantOptions_id === option.VariantOptions_id" class="glyphicon glyphicon-ok"></i>
                                         </a>
                                     </li>
                                 </ul>

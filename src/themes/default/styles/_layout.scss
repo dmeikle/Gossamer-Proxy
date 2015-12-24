@@ -213,22 +213,3 @@ ul {
 .tab-padding {
     padding:1rem;
 }
-.dropdown-group {
-    display:flex;
-    input{
-        width:80%;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    .btn-group{
-        width:20%;        
-    }
-    .dropdown-toggle{
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-left:0;
-    }
-    .dropdown-menu{
-        min-width:100px;
-    }
-}
