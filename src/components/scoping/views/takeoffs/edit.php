@@ -3,7 +3,7 @@
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
     <!--</div>-->
     <div class="toolbar form-inline">
-        <button class="btn-primary" ng-click="vm.addRow()"><?php echo $this->getString('SAVE'); ?></button>
+        <button class="btn-primary" ng-click="vm.save()"><?php echo $this->getString('SAVE'); ?></button>
     </div>
     <input type="hidden" value="<?php echo $Claims_id; ?>" id="Claims_id" />
     <input type="hidden" value="<?php echo $ClaimsLocations_id; ?>" id="ClaimsLocations_id" />
@@ -57,23 +57,22 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in vm.lineItems track by $index">
-<!--                    <td class="table-title-column">
-                        <div class="form-group">
-                            {{item.name}}
-                        </div>
-                    </td>-->
                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>
                     <td class="show-overflow">
                         <div class="form-group dropdown-group">
                             <?php echo $form['insulation'] ?>
-                            <!-- Single button -->
+                            <!-- Variants Drop-down -->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
                                 </button>
                                 <!-- Insulation Variant Options -->
                                 <ul class="dropdown-menu pull-right">
-                                    <li ng-repeat="variant in vm.insulationVariants"><a ng-click="">{{variant.option}}</a></li>
+                                    <li ng-repeat="variant in vm.insulationVariants" ng-click="vm.setItemVariant(item.insulation, variant)">
+                                        <a ng-class="{'bg-info': item.insulation.VariantOptions_id === variant.VariantOptions_id}">
+                                            {{variant.option}}
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

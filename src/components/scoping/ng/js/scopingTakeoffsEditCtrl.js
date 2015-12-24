@@ -75,9 +75,13 @@
             vm.selectAll = tableControlsSrv.checkSelectAll(vm.lineItems);
         };
         
+        vm.setItemVariant = function (item, variant) {
+            item.VariantOptions_id = variant.VariantOptions_id;
+        };
+        
         vm.save = function () {
-            $log.log('log!');
-            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
+            $log.log(vm.lineItems);
+//            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
         };
         
         activate();
