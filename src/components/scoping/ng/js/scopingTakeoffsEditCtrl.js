@@ -1,20 +1,3 @@
-//module.controller('scopingTakeoffsEditCtrl', function($scope, scopingTakeOffsEditSrv) {
-//	$scope.loading = true;
-//
-//	
-//	$scope.takeOff = getTakeoffDetails($scope.claimId);
-//	
-//
-//	function getTakeoffDetails() {
-//            var claimId = document.getElementById('Claims_id').value;
-//            var claimsLocationsId = document.getElementById('ClaimsLocations_id').value;
-//            scopingTakeOffsEditSrv.getTakeoffDetails(claimId, claimsLocationsId).then(function () {
-//                $scope.takeoff = scopingTakeOffsEditSrv.takeOffDetails;
-//                $scope.loading = false;
-//            });
-//	}
-//});
-
 (function () {
 //    'use strict';
     
@@ -24,11 +7,25 @@
     
     function scopingTakeoffsEditCtrl(scopingTakeOffsEditSrv, tableControlsSrv, $log) {
         var vm = this;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
         vm.test = ' hello this is a test!';
         vm.takeOff = getTakeoffDetails(vm.claimId);
         vm.loading = true;
-        vm.lineItems = [new LineItem()];
+        
+        vm.insulationVariants = [{
+            option: '16x14',
+            VariantOptions_id: '17'
+        },{
+            option: '16x22',
+            VariantOptions_id: '18'
+        },{
+            option: '24x14',
+            VariantOptions_id: '19'
+        },{
+            option: '24x22',
+            VariantOptions_id: '20'
+        }];
         
         function LineItem () {
             this.isSelected = false;
@@ -78,10 +75,15 @@
             vm.selectAll = tableControlsSrv.checkSelectAll(vm.lineItems);
         };
         
+        vm.save = function () {
+            $log.log('log!');
+            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
+        };
+        
         activate();
         
         function activate() {
-//            $log.log('controller!');
+            vm.lineItems = [new LineItem()];
         }
         
         

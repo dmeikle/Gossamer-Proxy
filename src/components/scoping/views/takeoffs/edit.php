@@ -63,9 +63,19 @@
                         </div>
                     </td>-->
                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>
-                    <td>
-                        <div class="form-group">
+                    <td class="show-overflow">
+                        <div class="form-group dropdown-group">
                             <?php echo $form['insulation'] ?>
+                            <!-- Single button -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                                <!-- Insulation Variant Options -->
+                                <ul class="dropdown-menu pull-right">
+                                    <li ng-repeat="variant in vm.insulationVariants"><a ng-click="">{{variant.option}}</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -116,3 +126,4 @@
     </div>
     <div class="clearfix"></div>
 </div>
+<form></form>

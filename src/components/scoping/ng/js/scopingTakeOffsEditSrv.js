@@ -35,5 +35,9 @@
                 return response.data.TakeOff;
             });
         }
+        
+        function save(lineItems, formToken){
+            crudSrv.save(apiPath, lineItems, 'ScopeMaterialTakeoff', formToken);
+        }
     }
 })();

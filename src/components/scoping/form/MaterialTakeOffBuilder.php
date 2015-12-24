@@ -27,15 +27,15 @@ class MaterialTakeOffBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['MaterialTakeOff']);
         }
 
-        $builder->add('baseboard', 'text', array('ng-model' => 'item.baseboard', 'class' => 'form-control'))
-                ->add('casing', 'text', array('ng-model' => 'item.casing', 'class' => 'form-control'))
-                ->add('cornerBead', 'text', array('ng-model' => 'item.cornerBead', 'class' => 'form-control'))
-                ->add('cove', 'text', array('ng-model' => 'item.cove', 'class' => 'form-control'))
-                ->add('drywall', 'text', array('ng-model' => 'item.drywall', 'class' => 'form-control'))
-                ->add('insulation', 'text', array('ng-model' => 'item.insulation', 'class' => 'form-control'))
-                ->add('jBead', 'text', array('ng-model' => 'item.jBead', 'class' => 'form-control'))
-                ->add('other', 'text', array('ng-model' => 'item.other', 'class' => 'form-control'))
-                ->add('vapourBarrier', 'text', array('ng-model' => 'item.vapourBarrier', 'class' => 'form-control'));
+        $builder->add('baseboard', 'text', array('ng-model' => 'item.baseboard.amount', 'class' => 'form-control'))
+                ->add('casing', 'text', array('ng-model' => 'item.casing.amount', 'class' => 'form-control'))
+                ->add('cornerBead', 'text', array('ng-model' => 'item.cornerBead.amount', 'class' => 'form-control'))
+                ->add('cove', 'text', array('ng-model' => 'item.cove.amount', 'class' => 'form-control'))
+                ->add('drywall', 'text', array('ng-model' => 'item.drywall.amount', 'class' => 'form-control'))
+                ->add('insulation', 'text', array('ng-model' => 'item.insulation.amount', 'class' => 'form-control'))
+                ->add('jBead', 'text', array('ng-model' => 'item.jBead.amount', 'class' => 'form-control'))
+                ->add('other', 'text', array('ng-model' => 'item.other.amount', 'class' => 'form-control'))
+                ->add('vapourBarrier', 'text', array('ng-model' => 'item.vapourBarrier.amount', 'class' => 'form-control'));
 
         if (array_key_exists('Claims_id', $options)) {
             $builder->add('Claims_id', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('Claims_id', $values)));
