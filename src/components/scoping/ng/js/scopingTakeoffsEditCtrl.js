@@ -82,9 +82,9 @@
         
         //Get takeoff details
         function getTakeoffDetails() {
-            var claimId = document.getElementById('Claims_id').value;
-            var claimsLocationsId = document.getElementById('ClaimsLocations_id').value;
-            scopingTakeOffsEditSrv.getTakeoffDetails(claimId, claimsLocationsId).then(function () {
+//            var claimId = document.getElementById('Claims_id').value;
+//            var claimsLocationsId = document.getElementById('ClaimsLocations_id').value;
+            scopingTakeOffsEditSrv.getTakeoffDetails(Claims_id, ClaimsLocations_id).then(function () {
                 vm.takeoff = scopingTakeOffsEditSrv.takeOffDetails;
                 vm.loading = false;
             });
@@ -142,16 +142,12 @@
             vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
             $log.log(vm.totals);
             delete vm.totals.isSelected;
-//            delete vm.totals.Claims_id;
-//            delete vm.totals.ClaimsLocations_id;
         };
         
         activate();
         
         function activate() {
             vm.lineItems = [new LineItem()];
-//            vm.lineItems.Claims_id = Claims_id;
-            //vm.lineItems.ClaimsLocations_id = ClaimsLocations_id;
         }
         
         

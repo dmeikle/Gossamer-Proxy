@@ -1,5 +1,4 @@
-<input type="hidden" id="Claims_id" value="<?php echo $this->data['Claims_id']; ?>" />
-<input type="hidden" id="ClaimsLocations_id" value="<?php echo $this->data['ClaimsLocations_id']; ?>" />
+<?php // pr($this->data)  ?>
 <div class="widget" ng-controller="scopingTakeoffsEditCtrl as vm">
     <!--<div class="widgetheader">-->
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
@@ -9,6 +8,7 @@
     </div>
     <input type="hidden" value="<?php echo $Claims_id; ?>" id="Claims_id" />
     <input type="hidden" value="<?php echo $ClaimsLocations_id; ?>" id="ClaimsLocations_id" />
+
     <div class="clearfix"></div>
     <div ng-if="vm.loading">
         <div class="text-center"><span class="spinner-loader"></span></div>

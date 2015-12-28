@@ -47,9 +47,8 @@ class ScopeMaterialTakeoffModel extends AbstractModel implements FormBuilderInte
     public function save($id) {
         $params = $this->httpRequest->getPost();
         $params['Staff_id'] = $this->getLoggedInStaffId();
-        pr($params);
+//        pr($params);
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
-
         return $data;
     }
 

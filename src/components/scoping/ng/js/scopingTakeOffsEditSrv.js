@@ -28,7 +28,7 @@
         function save(lineItems, Claims_id, ClaimsLocations_id, formToken){
             var data = {};
             data.Claims_id = Claims_id;
-            data.ClaimsLocations_id = ClaimsLocations_id;            
+            data.ClaimsLocations_id = ClaimsLocations_id;
             crudSrv.saveWithData(apiPath + 'save/' + lineItems.id, lineItems, 'ScopeMaterialTakeoff', data, formToken);
         }
     }
