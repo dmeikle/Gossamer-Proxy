@@ -24,4 +24,5 @@ return array(
     'SCOPING_NEW_ROW' => 'New Row',
     'SCOPING_INSERT_ROWS' => 'Insert Row(s)',
     'SCOPING_DELETE_ROWS' => 'Delete Row(s)',
+    'SCOPING_TOTALS' => 'Totals'
 );

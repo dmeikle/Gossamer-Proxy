@@ -135,6 +135,12 @@
                         </div>
                     </td>
                 </tr>
+
+                <!--Totals Row-->
+                <tr>
+                    <th><?php echo $this->getString('SCOPING_TOTALS') ?>:</th>
+                    <th class="total-col" ng-repeat="total in vm.totals">{{total}}</th>
+                </tr>
             </tbody>
         </table>
         <!--        </uib-tab>

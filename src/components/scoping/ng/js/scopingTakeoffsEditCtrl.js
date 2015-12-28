@@ -5,13 +5,18 @@
             .module('scopingAdmin')
             .controller('scopingTakeoffsEditCtrl', scopingTakeoffsEditCtrl);
     
-    function scopingTakeoffsEditCtrl(scopingTakeOffsEditSrv, tableControlsSrv, $log) {
+    function scopingTakeoffsEditCtrl($scope, scopingTakeOffsEditSrv, tableControlsSrv, $log, totalsSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
         vm.test = ' hello this is a test!';
         vm.takeOff = getTakeoffDetails(vm.claimId);
         vm.loading = true;
+        
+        //Set a deep watch on the line items so that we can calculate the column totals when they change.
+        $scope.$watch('vm.lineItems', function(newValue, oldValue) {
+            vm.getColumnTotals();
+        }, true);
         
         //Insulation Variants (hard-coded for now...)
         vm.insulationVariants = [{
@@ -41,7 +46,14 @@
         function LineItem () {
             this.isSelected = false;
             this.insulation = angular.copy(vm.insulationVariants[0]);
+            this.vapourBarrier = {};
+            this.drywall = {};
+            this.cornerBead = {};
             this.jBead = angular.copy(vm.jBeadVariants[0]);
+            this.baseboard = {};
+            this.cove = {};
+            this.casing = {};
+            this.other = {};
         }
         
         //Get takeoff details
@@ -101,6 +113,12 @@
             $log.log(vm.lineItems);
             vm.lineItems.id = 0;
             scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
+        };
+        
+        vm.getColumnTotals = function () {
+            vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
+            $log.log(vm.totals);
+            delete vm.totals.isSelected;
         };
         
         activate();
