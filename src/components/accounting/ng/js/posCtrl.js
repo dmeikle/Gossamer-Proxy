@@ -140,7 +140,7 @@ module.controller('posCtrl', function ($scope, costCardItemTypeSrv, accountingTe
     };
     
     //Date Picker
-    $scope.dateOptions = {'starting-day': 1};
+    $scope.dateOptions = {'starting-day': 0};
     $scope.openDatepicker = function (event, datepicker) {
         $scope.isOpen.datepicker[datepicker] = true;
     };

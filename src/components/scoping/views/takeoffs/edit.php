@@ -1,3 +1,5 @@
+<input type="hidden" id="Claims_id" value="<?php echo $this->data['Claims_id']; ?>" />
+<input type="hidden" id="ClaimsLocations_id" value="<?php echo $this->data['ClaimsLocations_id']; ?>" />
 <div class="widget" ng-controller="scopingTakeoffsEditCtrl as vm">
     <!--<div class="widgetheader">-->
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
@@ -33,7 +35,10 @@
                         <?php echo $this->getString('SCOPING_VAPOUR_BARRIER') ?>
                     </th>
                     <th>
-                        <?php echo $this->getString('SCOPING_DRYWALL') ?>
+                        <?php echo $this->getString('SCOPING_DRYWALL_ONE_HALF') ?>
+                    </th>
+                    <th>
+                        <?php echo $this->getString('SCOPING_DRYWALL_FIVE_EIGHTHS') ?>
                     </th>
                     <th>
                         <?php echo $this->getString('SCOPING_CORNER_BEAD') ?>
@@ -56,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in vm.lineItems track by $index">
+                <tr class="center-row-inputs" ng-repeat="item in vm.lineItems track by $index">
                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>
                     <td class="show-overflow">
                         <div class="form-group dropdown-group">
@@ -86,7 +91,12 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <?php echo $form['drywall'] ?>
+                            <?php echo $form['drywall12'] ?>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <?php echo $form['drywall58'] ?>
                         </div>
                     </td>
                     <td>
@@ -137,7 +147,7 @@
                 </tr>
 
                 <!--Totals Row-->
-                <tr>
+                <tr ng-if="vm.lineItems.length > 0">
                     <th><?php echo $this->getString('SCOPING_TOTALS') ?>:</th>
                     <th class="total-col" ng-repeat="total in vm.totals">{{total}}</th>
                 </tr>

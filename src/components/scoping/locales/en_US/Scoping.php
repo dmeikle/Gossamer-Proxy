@@ -24,5 +24,7 @@ return array(
     'SCOPING_NEW_ROW' => 'New Row',
     'SCOPING_INSERT_ROWS' => 'Insert Row(s)',
     'SCOPING_DELETE_ROWS' => 'Delete Row(s)',
-    'SCOPING_TOTALS' => 'Totals'
+    'SCOPING_TOTALS' => 'Totals',
+    'SCOPING_DRYWALL_ONE_HALF' => 'Drywall 1/2"',
+    'SCOPING_DRYWALL_FIVE_EIGHTHS' => 'Drywall 5/8"',
 );

@@ -36,6 +36,31 @@ module.service('crudSrv', function($http) {
             }
         });
     };
+    
+    this.saveWithData = function(apiPath, object, objectType, data, formToken) {
+
+        var requestPath;
+        if (!object.id || object.id === '') {
+            requestPath = apiPath + '0';
+        } else {
+            requestPath = apiPath + object.id;
+        }
+        
+        data[objectType] = object;
+        data.FORM_SECURITY_TOKEN = formToken;
+
+        parseData(data);
+
+        return $http({
+            method: 'POST',
+            // url: requestPath,
+            url: apiPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
 
 
     this.saveMultiple = function(apiPath, object, formToken) {

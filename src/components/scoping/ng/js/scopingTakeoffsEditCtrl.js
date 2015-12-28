@@ -8,6 +8,8 @@
     function scopingTakeoffsEditCtrl($scope, scopingTakeOffsEditSrv, tableControlsSrv, $log, totalsSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        var Claims_id = document.getElementById('Claims_id').value;
+        var ClaimsLocations_id = document.getElementById('ClaimsLocations_id').value;
         
         vm.test = ' hello this is a test!';
         vm.takeOff = getTakeoffDetails(vm.claimId);
@@ -21,38 +23,60 @@
         //Insulation Variants (hard-coded for now...)
         vm.insulationVariants = [{
             variant: '16x14',
-            VariantOptions_id: '17'
+            VariantOptions_id: '17',
+            InventoryItems_id: '35'
         },{
             variant: '16x22',
-            VariantOptions_id: '18'
+            VariantOptions_id: '18',
+            InventoryItems_id: '35'
         },{
             variant: '24x14',
-            VariantOptions_id: '19'
+            VariantOptions_id: '19',
+            InventoryItems_id: '35'
         },{
             variant: '24x22',
-            VariantOptions_id: '20'
+            VariantOptions_id: '20',
+            InventoryItems_id: '35'
         }];
         
         //J Bead Variants (hard-coded for now...)
         vm.jBeadVariants = [{
             variant: '1/2"',
-            VariantOptions_id: '21'
+            VariantOptions_id: '21',
+            InventoryItems_id: '19'
         },{
             variant: '3/4"',
-            VariantOptions_id: '22'
+            VariantOptions_id: '22',
+            InventoryItems_id: '19'
         }];
         
         //Default line items, sets default values for certain line items.
+        //Inventory Items ID will be hard-coded for now        
         function LineItem () {
             this.isSelected = false;
             this.insulation = angular.copy(vm.insulationVariants[0]);
-            this.vapourBarrier = {};
-            this.drywall = {};
-            this.cornerBead = {};
+            this.vapourBarrier = {
+                InventoryItems_id: '17'
+            };
+            this.drywall12 = {
+                InventoryItems_id: '1'
+            };
+            this.drywall58 = {
+                InventoryItems_id: '4'
+            };
+            this.cornerBead = {
+                InventoryItems_id: '18'
+            };
             this.jBead = angular.copy(vm.jBeadVariants[0]);
-            this.baseboard = {};
-            this.cove = {};
-            this.casing = {};
+            this.baseboard = {
+                InventoryItems_id: '20'
+            };
+            this.cove = {
+                InventoryItems_id: '21'
+            };
+            this.casing = {
+                InventoryItems_id: '22'
+            };
             this.other = {};
         }
         
@@ -81,8 +105,7 @@
 
         //Removes and selected rows from the table
         vm.removeRows = function () {
-            vm.lineItems = tableControlsSrv.removeRows(vm.lineItems);
-            
+            vm.lineItems = tableControlsSrv.removeRows(vm.lineItems);            
             vm.checkSelected();
         };
         
@@ -112,19 +135,23 @@
         vm.save = function () {
             $log.log(vm.lineItems);
             vm.lineItems.id = 0;
-            scopingTakeOffsEditSrv.save(vm.lineItems, formToken);
+            scopingTakeOffsEditSrv.save(vm.lineItems, Claims_id, ClaimsLocations_id, formToken);
         };
         
         vm.getColumnTotals = function () {
             vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
             $log.log(vm.totals);
             delete vm.totals.isSelected;
+//            delete vm.totals.Claims_id;
+//            delete vm.totals.ClaimsLocations_id;
         };
         
         activate();
         
         function activate() {
             vm.lineItems = [new LineItem()];
+//            vm.lineItems.Claims_id = Claims_id;
+            //vm.lineItems.ClaimsLocations_id = ClaimsLocations_id;
         }
         
         
