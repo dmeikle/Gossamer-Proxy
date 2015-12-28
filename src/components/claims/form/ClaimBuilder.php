@@ -26,7 +26,7 @@ class ClaimBuilder extends AbstractBuilder {
         if (is_array($validationResults) && array_key_exists('Claim', $validationResults)) {
             $builder->addValidationResults($validationResults['Claim']);
         }
-        
+
         $builder->add('jobNumber', 'text', array('ng-model' => 'claim.jobNumber', 'class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('jobNumberHidden', 'hidden', array('class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('callInDate', 'text', array('ng-model' => 'claim.callInDate', 'class' => 'form-control', 'value' => $this->getValue('callInDate', $values)))
@@ -40,7 +40,7 @@ class ClaimBuilder extends AbstractBuilder {
                 ->add('workAuthorizationReceiveDate', 'text', array('ng-model' => 'claim.workAuthorizationReceiveDate', 'uib-datepicker-popup' => '', "data-datepickername" => 'workAuthorizationReceiveDate',
                     'is-open' => 'datepicker.callIn', 'class' => 'form-control', 'value' => $this->getValue('workAuthorizationReceiveDate', $values)))
                 ->add('ClaimTypes_other', 'text', array('ng-model' => 'claim.ClaimTypes_other', 'class' => 'form-control', 'value' => $this->getValue('ClaimTypes_other', $values)))
-                ->add('dateReceived', 'text', array('ng-model' => 'claim.dateReceived', 'uib-datepicker-popup' => '', 'is-open' => 'datepicker.received',  "data-datepickername" => 'dateReceived',
+                ->add('dateReceived', 'text', array('ng-model' => 'claim.dateReceived', 'uib-datepicker-popup' => '', 'is-open' => 'datepicker.received', "data-datepickername" => 'dateReceived',
                     'class' => 'form-control', 'value' => $this->getValue('dateReceived', $values)))
                 ->add('InsuranceCategories_id', 'text', array('ng-model' => 'claim.InsuranceCategories_id', 'class' => 'form-control', 'value' => $this->getValue('InsuranceCategories_id', $values)))
                 ->add('ProjectAddresses_id', 'hidden', array('ng-model' => 'claim.ProjectAddresses_id', 'class' => 'form-control', 'value' => $this->getValue('ProjectAddresses_id', $values)))
@@ -71,6 +71,7 @@ class ClaimBuilder extends AbstractBuilder {
         }
         if (array_key_exists('claimPhases', $options)) {
             $builder->add('currentClaimPhases_id', 'select', array('ng-model' => 'claim.currentClaimPhases_id', 'class' => 'form-control', 'options' => $options['claimPhases']));
+            $builder->add('ClaimPhases_id', 'select', array('ng-model' => 'claim.ClaimPhases_id', 'class' => 'form-control', 'options' => $options['claimPhases']));
         }
         if (array_key_exists('claimTypes', $options)) {
             $builder->add('currentClaimsStatusTypes_id', 'select', array('ng-model' => 'claim.currentClaimsStatusTypes_id', 'class' => 'form-control', 'options' => $options['claimTypes']));

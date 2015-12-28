@@ -286,7 +286,7 @@
 
             <div class="form-group">
                 <label class="control-label" for="project-ClaimPhases_id"><?php echo $this->getString('CLAIMS_CONTENTS_NEEDED'); ?></label>
-                <input type="checkbox" value="1" ng-model="claim.query.contentsNeeded" />
+                <input type="checkbox" value="1" ng-model="claim.query.contentsNeeded" ng-true-value="1" ng-false-value="0" />
             </div>
 
         </form>
@@ -310,8 +310,8 @@
         <div class="col-md-12 cards">
             <h2><?php echo $this->getString('CLAIMS_ADDNEW_CONFIRMATION'); ?></h2>
             <?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.ClaimTypes_other}} {{claim.ClaimTypes_id}} <br>
-            <div ng-show="{{claim.query.asbestosTestRequired !== 'false'}}" class="bg-danger"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></div>
-
+            <div ng-show="claim.query.contentsNeeded == '1'"><?php echo $this->getString('CLAIMS_CONTENTS_NEEDED'); ?></div>
+            <div ng-show="claim.query.asbestosTestRequired !== 'false'" class="bg-danger"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></div>
             <div class="col-md-6 cardleft">
                 <h1>{{claim.ProjectAddress.buildingName}}</h1>
                 {{claim.ProjectAddress.strata}} - {{claim.ProjectAddress.strataNumber}}<br>
