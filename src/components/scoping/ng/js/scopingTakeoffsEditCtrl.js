@@ -10,9 +10,10 @@
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         var Claims_id = document.getElementById('Claims_id').value;
         var ClaimsLocations_id = document.getElementById('ClaimsLocations_id').value;
+        var id = '';
         
         vm.test = ' hello this is a test!';
-        vm.takeOff = getTakeoffDetails(vm.claimId);
+        //vm.takeOff = getTakeoffDetails();
         vm.loading = true;
         
         //Set a deep watch on the line items so that we can calculate the column totals when they change.
@@ -82,10 +83,10 @@
         
         //Get takeoff details
         function getTakeoffDetails() {
-//            var claimId = document.getElementById('Claims_id').value;
-//            var claimsLocationsId = document.getElementById('ClaimsLocations_id').value;
-            scopingTakeOffsEditSrv.getTakeoffDetails(Claims_id, ClaimsLocations_id).then(function () {
-                vm.takeoff = scopingTakeOffsEditSrv.takeOffDetails;
+            scopingTakeOffsEditSrv.getTakeoffDetails(Claims_id, ClaimsLocations_id).then(function (response) {
+                id = response.id;
+//                vm.takeoff = scopingTakeOffsEditSrv.takeOffDetails;
+                vm.lineItems = response.ScopingMaterialTakeoffSheetItem;
                 vm.loading = false;
             });
 	}
@@ -130,26 +131,24 @@
         vm.setItemVariant = function (item, option) {
             item.variant = option.variant;
             item.VariantOptions_id = option.VariantOptions_id;
-        };
+        };        
         
+        //Save the takeoff sheet
         vm.save = function () {
-            $log.log(vm.lineItems);
-            vm.lineItems.id = 0;
-            scopingTakeOffsEditSrv.save(vm.lineItems, Claims_id, ClaimsLocations_id, formToken);
+            scopingTakeOffsEditSrv.save(id, vm.lineItems, Claims_id, ClaimsLocations_id, formToken);
         };
         
+        //Get the column totals
         vm.getColumnTotals = function () {
             vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
-            $log.log(vm.totals);
             delete vm.totals.isSelected;
         };
         
         activate();
         
         function activate() {
+            getTakeoffDetails();
             vm.lineItems = [new LineItem()];
         }
-        
-        
     }
 })();

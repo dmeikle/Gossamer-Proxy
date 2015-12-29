@@ -8,12 +8,13 @@
     function totalsSrv($log) {
         
         var service = {
-            getColumnTotals: getColumnTotals
+            getColumnTotals: getColumnTotals,
+            getRowTotals: getRowTotals
         };
 
         return service;
         
-        //Add another row to the lineItems
+        //Get the column totals
         function getColumnTotals(lineItems, key) {
             var totals = {};
             for(var i in lineItems) {
@@ -36,5 +37,15 @@
             return totals;
         }       
         
+        //Goes through each line items and returns the total for each row as 'rowTotal'
+        function getRowTotals(lineItems, key) {
+            for(var i in lineItems){
+                lineItems[i].rowTotal = 0;
+                for(var j in lineItems[i]){
+                    lineItems[i].rowTotal += lineItems[i][j][key];
+                }
+            }
+            return lineItems;
+        }
     }
 })();

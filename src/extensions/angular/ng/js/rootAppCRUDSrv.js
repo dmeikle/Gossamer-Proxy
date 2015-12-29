@@ -37,6 +37,7 @@ module.service('crudSrv', function($http) {
         });
     };
     
+    //Save with a custom data object
     this.saveWithData = function(apiPath, object, objectType, data, formToken) {
 
         var requestPath;
@@ -53,7 +54,6 @@ module.service('crudSrv', function($http) {
 
         return $http({
             method: 'POST',
-            // url: requestPath,
             url: apiPath,
             data: data,
             headers: {

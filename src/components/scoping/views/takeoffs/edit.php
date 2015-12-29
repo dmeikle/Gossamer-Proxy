@@ -1,4 +1,4 @@
-<?php // pr($this->data)  ?>
+<?php // pr($this->data)   ?>
 <div class="widget" ng-controller="scopingTakeoffsEditCtrl as vm">
     <!--<div class="widgetheader">-->
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
@@ -68,7 +68,7 @@
                             <?php echo $form['insulation'] ?>
                             <!-- Variants Drop-down -->
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
                                     {{item.insulation.variant}}
                                     <span class="caret"></span>
                                 </button>
@@ -108,7 +108,7 @@
                         <div class="form-group dropdown-group">
                             <?php echo $form['jBead'] ?>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="-1">
                                     {{item.jBead.variant}}
                                     <span class="caret"></span>
                                 </button>

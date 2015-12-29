@@ -33,11 +33,15 @@ class ScopeMaterialTakeoffModel extends AbstractModel implements FormBuilderInte
         return array();
     }
 
-    public function editByLocation($claimsId, $claimsLocationsId) {
+    public function editByLocation($claimsId, $claimsLocationsId, $id) {
         $params = array(
             'Claims_id' => intval($claimsId),
             'ClaimsLocations_id' => intval($claimsLocationsId)
         );
+
+        if (intval($id > 0)) {
+            $params['id'] = $id;
+        }
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
 
@@ -47,7 +51,6 @@ class ScopeMaterialTakeoffModel extends AbstractModel implements FormBuilderInte
     public function save($id) {
         $params = $this->httpRequest->getPost();
         $params['Staff_id'] = $this->getLoggedInStaffId();
-//        pr($params);
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
         return $data;
     }

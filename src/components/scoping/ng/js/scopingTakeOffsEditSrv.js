@@ -15,21 +15,21 @@
         
         var apiPath = '/admin/scoping/takeoffs/';
         //Service Variables
-        return service;
-        
+        return service;        
         
         //Get the takeoff sheet details
         function getTakeoffDetails(claimsId, claimsLocationsId) {
             return crudSrv.getDetails(apiPath + 'get/' + claimsId, '/' + claimsLocationsId).then(function(response) {
-                return response.data.TakeOff;
+                return response.data.ScopingMaterialTakeoffSheet[0];
             });
         }
         
-        function save(lineItems, Claims_id, ClaimsLocations_id, formToken){
+        //Save the takeoff sheet
+        function save(id, lineItems, Claims_id, ClaimsLocations_id, formToken){
             var data = {};
             data.Claims_id = Claims_id;
             data.ClaimsLocations_id = ClaimsLocations_id;
-            crudSrv.saveWithData(apiPath + 'save/' + lineItems.id, lineItems, 'ScopeMaterialTakeoff', data, formToken);
+            crudSrv.saveWithData(apiPath + 'save/' + id, lineItems, 'ScopeMaterialTakeoff', data, formToken);
         }
     }
 })();

@@ -22,4 +22,11 @@ class ScopeMaterialTakeoffsController extends AbstractController {
         $this->render($results);
     }
 
+    public function getByLocation($claimsId, $claimsLocationsId) {
+        $results = $this->model->editByLocation($claimsId, $claimsLocationsId, 0);
+        //$results = array('Claims_id' => intval($claimsId), 'ClaimsLocations_id' => intval($claimsLocationsId));
+
+        $this->render($results);
+    }
+
 }
