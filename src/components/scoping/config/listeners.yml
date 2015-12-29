@@ -1,6 +1,7 @@
 admin_scoping_takeoffs_edit:
     listeners:
         - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
+        #- { 'cacheKey': 'AreaTypes', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
         -
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -11,6 +12,7 @@ admin_scoping_takeoffs_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claims, key: claims, value: id, text: title }
+                #- { dependency: AreaTypes, key: areaTypes, value: id, text: title }
 
 
 admin_scoping_takeoffs_edit_sheet:

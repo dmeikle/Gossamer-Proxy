@@ -20,7 +20,7 @@
         //Get the takeoff sheet details
         function getTakeoffDetails(claimsId, claimsLocationsId) {
             return crudSrv.getDetails(apiPath + 'get/' + claimsId, '/' + claimsLocationsId).then(function(response) {
-                return response.data.ScopingMaterialTakeoffSheet[0];
+                return response.data;
             });
         }
         
@@ -31,5 +31,9 @@
             data.ClaimsLocations_id = ClaimsLocations_id;
             crudSrv.saveWithData(apiPath + 'save/' + id, lineItems, 'ScopeMaterialTakeoff', data, formToken);
         }
+        
+//        function mapTakeoffItems(takeoffItems){
+//            
+//        }
     }
 })();

@@ -1,4 +1,4 @@
-<?php // pr($this->data)   ?>
+<?php // pr($this->data)    ?>
 <div class="widget" ng-controller="scopingTakeoffsEditCtrl as vm">
     <!--<div class="widgetheader">-->
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
@@ -24,10 +24,10 @@
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-<!--                    <th>
-                    <?php // echo $this->getString('SCOPING_UNIT') ?>
-                    </th>-->
                     <th class="select-col" ng-click="vm.selectAllToggle(vm.selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="vm.selectAll"></th>
+                    <th>
+                        <?php echo $this->getString('SCOPING_UNIT') ?>
+                    </th>
                     <th>
                         <?php echo $this->getString('SCOPING_INSULATION') ?>
                     </th>
@@ -63,6 +63,10 @@
             <tbody>
                 <tr class="center-row-inputs" ng-repeat="item in vm.lineItems track by $index">
                     <td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>
+                    <td>
+                        <span>{{item.areaType}}</span>
+                    </td>
+
                     <td class="show-overflow">
                         <div class="form-group dropdown-group">
                             <?php echo $form['insulation'] ?>

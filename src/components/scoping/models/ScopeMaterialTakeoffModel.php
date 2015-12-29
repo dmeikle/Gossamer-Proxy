@@ -34,9 +34,12 @@ class ScopeMaterialTakeoffModel extends AbstractModel implements FormBuilderInte
     }
 
     public function editByLocation($claimsId, $claimsLocationsId, $id) {
+        $locale = $this->getDefaultLocale();
+
         $params = array(
             'Claims_id' => intval($claimsId),
-            'ClaimsLocations_id' => intval($claimsLocationsId)
+            'ClaimsLocations_id' => intval($claimsLocationsId),
+            'locale' => $locale['locale']
         );
 
         if (intval($id > 0)) {

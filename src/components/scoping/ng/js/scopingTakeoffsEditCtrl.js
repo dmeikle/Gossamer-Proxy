@@ -84,10 +84,16 @@
         //Get takeoff details
         function getTakeoffDetails() {
             scopingTakeOffsEditSrv.getTakeoffDetails(Claims_id, ClaimsLocations_id).then(function (response) {
-                id = response.id;
+//                id = response.id;
 //                vm.takeoff = scopingTakeOffsEditSrv.takeOffDetails;
-                vm.lineItems = response.ScopingMaterialTakeoffSheetItem;
+                vm.areaTypes = response.AreaTypes;
+//                vm.lineItems = response.ScopingMaterialTakeoffSheetItem;
                 vm.loading = false;
+                vm.lineItems = [];
+                for(var i in vm.areaTypes) {
+                    vm.lineItems.push(new LineItem());
+                    vm.lineItems[i].areaType = vm.areaTypes[i].areaType;
+                }
             });
 	}
         
@@ -142,13 +148,14 @@
         vm.getColumnTotals = function () {
             vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
             delete vm.totals.isSelected;
+            delete vm.totals.areaType;
         };
         
         activate();
         
         function activate() {
             getTakeoffDetails();
-            vm.lineItems = [new LineItem()];
+            //vm.lineItems = [new LineItem()];
         }
     }
 })();
