@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -17,7 +17,7 @@ use Monolog\Logger;
  * converts UTF8 values to regular strings
  *
  * @author  Dave Meikle
- * 
+ *
  * @date    August 11, 2014
  */
 class UnicodeHandler {
@@ -25,7 +25,7 @@ class UnicodeHandler {
     private $config = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      * @param array $configuration
      */
@@ -36,9 +36,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param type $string
-     * 
+     *
      * @return boolean
      */
     private function isJson($string) {
@@ -47,9 +47,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param type $object
-     * 
+     *
      * @return array
      */
     private function convertObjectToArray($object) {
@@ -72,9 +72,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param mixed $parameters
-     * 
+     *
      * @return array
      */
     public function formatToAsciiAfterReceiving($parameters) {
@@ -86,12 +86,13 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param mixed $parameters
-     * 
+     *
      * @return array
      */
     private function decoupleToArray($parameters) {
+
 
         if (is_object($parameters)) {
             $parameters = get_object_vars($parameters);
@@ -101,9 +102,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param array $parameters
-     * 
+     *
      * @return array
      */
     private function convertArrayText($parameters = null) {
@@ -125,9 +126,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param array $parameters
-     * 
+     *
      * @return array
      */
     public function decode($parameters) {
@@ -138,9 +139,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param array $parameters
-     * 
+     *
      * @return array
      */
     public function encode($parameters) {
@@ -149,9 +150,9 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param array $parameters
-     * 
+     *
      * @return array
      */
     private function formatToHexForSending($parameters) {
@@ -172,10 +173,10 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param string $key
      * @param string $ascii
-     * 
+     *
      * @return string
      */
     private function ascii2hex($key, $ascii) {
@@ -196,10 +197,10 @@ class UnicodeHandler {
     }
 
     /**
-     * 
+     *
      * @param string $key
      * @param string $hex
-     * 
+     *
      * @return string
      */
     private function hex2ascii($key, $hex) {
