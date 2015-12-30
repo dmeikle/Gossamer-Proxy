@@ -97,7 +97,7 @@ admin_scoping_takeoffs_home:
     method: [GET]
 
 admin_scoping_takeoffs_save:
-    pattern: admin/scoping/takeoffs/save/*/*
+    pattern: admin/scoping/takeoffs/save/*
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController

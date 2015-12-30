@@ -1,4 +1,4 @@
-<?php // pr($this->data)    ?>
+<?php // pr($this->data)           ?>
 <div class="widget" ng-controller="scopingTakeoffsEditCtrl as vm">
     <!--<div class="widgetheader">-->
     <h1 class="pull-left"><?php echo $this->getString('SCOPING_MATERIAL_TAKE_OFF') ?></h1>
@@ -14,17 +14,15 @@
         <div class="text-center"><span class="spinner-loader"></span></div>
     </div>
     <div ng-if="!vm.loading">
-        <!--        <uib-tabset>
-                    <uib-tab heading="vmlocation.unitNumber">-->
 
-        <button class="btn-info" ng-click="vm.addRow()"><?php echo $this->getString('SCOPING_NEW_ROW'); ?></button>
-        <button class="btn-info" ng-click="vm.insertRows()" ng-disabled="!vm.rowSelected"><?php echo $this->getString('SCOPING_INSERT_ROWS'); ?></button>
-        <button class="btn-warning" ng-click="vm.removeRows()" ng-disabled="!vm.rowSelected"><?php echo $this->getString('SCOPING_DELETE_ROWS'); ?></button>
+<!--        <button class="btn-info" ng-click="vm.addRow()"><?php // echo $this->getString('SCOPING_NEW_ROW');    ?></button>
+        <button class="btn-info" ng-click="vm.insertRows()" ng-disabled="!vm.rowSelected"><?php // echo $this->getString('SCOPING_INSERT_ROWS');    ?></button>
+        <button class="btn-warning" ng-click="vm.removeRows()" ng-disabled="!vm.rowSelected"><?php // echo $this->getString('SCOPING_DELETE_ROWS');    ?></button>-->
         <div class="divider"></div>
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    <th class="select-col" ng-click="vm.selectAllToggle(vm.selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="vm.selectAll"></th>
+                    <!--<th class="select-col" ng-click="vm.selectAllToggle(vm.selectAll)"><input class="select-all checkbox" type="checkbox" ng-model="vm.selectAll"></th>-->
                     <th>
                         <?php echo $this->getString('SCOPING_UNIT') ?>
                     </th>
@@ -62,7 +60,7 @@
             </thead>
             <tbody>
                 <tr class="center-row-inputs" ng-repeat="item in vm.lineItems track by $index">
-                    <td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>
+                    <!--<td class="select-col"><input class="checkbox" type="checkbox" ng-model="item.isSelected"  ng-click="vm.checkSelected()"></td>-->
                     <td>
                         <span>{{item.areaType}}</span>
                     </td>
@@ -157,9 +155,8 @@
                 </tr>
             </tbody>
         </table>
-        <!--        </uib-tab>
-                </uib-tabset>-->
     </div>
     <div class="clearfix"></div>
+    <!--{{vm.lineItems}}-->
 </div>
 <form></form>
