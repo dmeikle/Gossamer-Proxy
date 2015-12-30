@@ -181,6 +181,7 @@ secondarySheet:
     langFiles:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
+        - 'app/locales/*/website'
     listeners:
         - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
         - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
@@ -216,6 +217,30 @@ secondarySheetAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+
+clientModal:
+    path: 'src/components/claims/ng/views/clientModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+    listeners:
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel', 'cacheKey': 'ContactTypes' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+        - { 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\companies\models\CompanyModel', 'cacheKey': 'Companys' }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\contacts\form\ContactBuilder'
+            model: 'components\contacts\models\ContactModel'
+            cacheKey: 'ClientForm'
+            formName: 'contactForm'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
+                - { dependency: Companys, key: companies, value: Companies_id, text: name }
+        # build the form for Contact
+
 photoUploadModal:
     path: 'src/components/claims/ng/views/photoUploadModal.php'
     langFiles:
@@ -243,3 +268,5 @@ uploadDocumentModal:
             dependencies:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
                 - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+
+

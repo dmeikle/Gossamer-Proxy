@@ -167,4 +167,3 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         }
     };
 });
-

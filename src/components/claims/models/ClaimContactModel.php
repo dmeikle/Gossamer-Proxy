@@ -37,4 +37,19 @@ class ClaimContactModel extends AbstractModel implements FormBuilderInterface {
         return $this->entity;
     }
 
+    /**
+     * performs a save to the datasource
+     *
+     * @param int $id
+     *
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
+
+        return $data;
+    }
+
 }

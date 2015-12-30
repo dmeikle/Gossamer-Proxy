@@ -1,4 +1,4 @@
-module.controller('claimsContactsList', function ($scope, $rootScope, claimsEditSrv) {
+module.controller('claimsContactsList', function ($scope, $rootScope, $uibModal, claimsEditSrv) {
 
     // Run on load
     $scope.loading = true;
@@ -51,6 +51,26 @@ module.controller('claimsContactsList', function ($scope, $rootScope, claimsEdit
                 $scope.loading = false;
             }); 
     }
+
+    $scope.openClientModal = function(client) {
+        var modalInstance = $uibModal.open({
+            templateUrl: '/render/claims/clientModal',
+            controller: 'clientModalCtrl',
+            size: 'md',
+            resolve: {
+                contact: function() {
+                    return client;
+                },
+                claimId: function() {
+                    return document.getElementById('Claim_id').value;
+                }
+            }
+        });
+
+        modalInstance.result.then(function() {
+            listContactsByClaim();
+        });
+    };
 
 
     $scope.hasContacts = function() {

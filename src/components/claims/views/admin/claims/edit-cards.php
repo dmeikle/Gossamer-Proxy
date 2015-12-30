@@ -1,7 +1,9 @@
 <div ng-controller="claimsContactsList">
     <div class="card">
         <div class="cardheader">
-            <h1><?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?></h1>
+            <h1>
+                <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
+            </h1>
         </div>
         <div ng-if="claimLoading">
             <div class="spinner-loader"></div>
@@ -48,13 +50,22 @@
         <div class="clearfix"></div>
     </div>
 
-    <h3><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
+    <div class="clearfix">
+        <h3 class="pull-left"><?php echo $this->getString('CLAIMS_CONTACTS_LIST'); ?></h3>
+
+        <div class="pull-right">
+            <button class="primary h3button" ng-click="openClientModal()">
+                <?php echo $this->getString('CLAIMS_NEW_CLIENT') ?>
+            </button>
+        </div>
+    </div>
     <div ng-if="loading">
         <div class="spinner-loader"></div>
     </div>
 
-    <div ng-if="!loading && !hasContacts()" ng-repeat="contact in contacts" class="card info-card ng-scope">
-        <p><strong class="ng-binding">{{contact.type}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
+
+    <div ng-if="!loading && hasContacts()" ng-repeat="contact in contacts" class="card info-card ng-scope">
+        <p><strong class="ng-binding">{{contact.contactType}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
             <span class="ng-binding" style="float: right"><strong><?php echo $this->getString('CLAIMS_COMPANY'); ?>:</strong> {{contact.company}} </span></p>
         <p class="ng-binding">
             <?php echo $this->getString('CLAIMS_OFFICE'); ?>: {{contact.office}}
@@ -63,9 +74,9 @@
 
         <div class="cardfooter clearfix">
             <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('CLAIMS_MORE_INFORMATION'); ?></a></div>
+
         </div>
     </div>
-
     <div ng-if="!loading && !hasContacts()">
         <p class="text-center text-muted">
             <?php echo $this->getString('CLAIMS_NOCONTACTS') ?>

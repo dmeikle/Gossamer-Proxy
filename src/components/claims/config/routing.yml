@@ -625,6 +625,31 @@ admin_claim_contacts:
         view: core\views\JSONView
         viewKey: admin_claim_contacts
         datasource: datasource1
+    methods: [GET]
+
+admin_claim_contacts_save:
+    pattern: admin/claim/contacts/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimContactsController
+        model: components\claims\models\ClaimContactModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claim_contacts_save
+        datasource: datasource1
+    methods: [POST]
+
+admin_claim_contacts_remove:
+    pattern: admin/claim/contacts/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimContactsController
+        model: components\claims\models\ClaimContactModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_claim_contacts_remove
+        datasource: datasource1
+    methods: [DELETE]
 
 
 admin_claims_list:

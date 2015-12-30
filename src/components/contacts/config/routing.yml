@@ -195,7 +195,8 @@ contacts_home:
             - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/contacts/locales/*/Contact'
             - app/locales/*/website
-        
+
+
 admin_contacts_autocomplete:
     pattern: admin/contacts/autocomplete
     defaults:
@@ -206,6 +207,8 @@ admin_contacts_autocomplete:
         view: core\views\JSONView
         viewKey: admin_contacts_autocomplete
         datasource: datasource1
+
+
         
 admin_contacts_search:
     pattern: admin/contacts/search
@@ -275,6 +278,20 @@ admin_contacts_save:
         method: save
         view: core\views\JSONView
         viewKey: admin_contacts_save
+        datasource: datasource1
+
+admin_contacts_remove:
+    pattern: admin/contacts/*
+    methods: [DELETE]
+    listeners:
+     #   - { 'event': 'save_success', 'listener': 'components\contacts\listeners\SaveContactLocallyListener', 'datasource': 'datasource3', 'methods': [POST]}
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactsController
+        model: components\contacts\models\ContactModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_contacts_remove
         datasource: datasource1
         
 admin_contacts_delete:

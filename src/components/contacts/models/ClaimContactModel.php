@@ -36,6 +36,8 @@ class ClaimContactModel extends AbstractModel implements FormBuilderInterface {
     public function listallByClaim($jobNumber) {
 
         $params = array('jobNumber' => $jobNumber);
+        $locale = $this->getDefaultLocale();
+        $params['locale'] = $locale['locale'];
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'listByClaim', $params);
 
