@@ -13,7 +13,6 @@
         var id = '';
         
         vm.test = ' hello this is a test!';
-        //vm.takeOff = getTakeoffDetails();
         vm.loading = true;
         
         //Set a deep watch on the line items so that we can calculate the column totals when they change.
@@ -25,36 +24,30 @@
         vm.insulationVariants = [{
             variant: '16x14',
             VariantOptions_id: '17',
-            InventoryItems_id: '35',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '35'
         },{
             variant: '16x22',
             VariantOptions_id: '18',
-            InventoryItems_id: '35',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '35'
         },{
             variant: '24x14',
             VariantOptions_id: '19',
-            InventoryItems_id: '35',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '35'
         },{
             variant: '24x22',
             VariantOptions_id: '20',
-            InventoryItems_id: '35',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '35'
         }];
         
         //J Bead Variants (hard-coded for now...)
         vm.jBeadVariants = [{
             variant: '1/2"',
             VariantOptions_id: '21',
-            InventoryItems_id: '19',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '19'
         },{
             variant: '3/4"',
             VariantOptions_id: '22',
-            InventoryItems_id: '19',
-//            ScopingMaterialTakeoffSheets_id: id
+            InventoryItems_id: '19'
         }];
         
         //Default line items, sets default values for certain line items.
@@ -63,33 +56,26 @@
 //            this.isSelected = false;
             this.insulation = angular.copy(vm.insulationVariants[0]);
             this.vapourBarrier = {
-                InventoryItems_id: '17',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '17'
             };
             this.drywall12 = {
-                InventoryItems_id: '1',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '1'
             };
             this.drywall58 = {
-                InventoryItems_id: '4',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '4'
             };
             this.cornerBead = {
-                InventoryItems_id: '18',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '18'
             };
             this.jBead = angular.copy(vm.jBeadVariants[0]);
             this.baseboard = {
-                InventoryItems_id: '20',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '20'
             };
             this.cove = {
-                InventoryItems_id: '21',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '21'
             };
             this.casing = {
-                InventoryItems_id: '22',
-//                ScopingMaterialTakeoffSheets_id: id
+                InventoryItems_id: '22'
             };
             this.other = {};
         }
@@ -153,7 +139,6 @@
         
         //Save the takeoff sheet
         vm.save = function () {
-            $log.log(vm.lineItems);
             scopingTakeOffsEditSrv.save(id, vm.lineItems, Claims_id, ClaimsLocations_id, formToken);
         };
         
@@ -170,7 +155,6 @@
         
         function activate() {
             getTakeoffDetails();
-            //vm.lineItems = [new LineItem()];
         }
     }
 })();
