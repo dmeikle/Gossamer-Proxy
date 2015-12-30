@@ -15,8 +15,9 @@ use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
+use Gossamer\CMS\Forms\FormBuilderInterface;
 
-class ScopeMaterialTakeoffModel extends AbstractModel {
+class ScopeMaterialTakeoffModel extends AbstractModel implements FormBuilderInterface {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
@@ -24,12 +25,42 @@ class ScopeMaterialTakeoffModel extends AbstractModel {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'ScopeMaterialTakeoff';
-        $this->tablename = 'scopeMaterialTakeoffs';
+        $this->tablename = 'scopingmaterialtakeoffsheets';
     }
 
     public function getTakeoff($id) {
 
         return array();
+    }
+
+    public function editByLocation($claimsId, $claimsLocationsId, $id) {
+        $locale = $this->getDefaultLocale();
+
+        $params = array(
+            'Claims_id' => intval($claimsId),
+            'ClaimsLocations_id' => intval($claimsLocationsId),
+            'locale' => $locale['locale']
+        );
+
+        if (intval($id > 0)) {
+            $params['id'] = $id;
+        }
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
+
+        return $data;
+    }
+
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params['Staff_id'] = $this->getLoggedInStaffId();
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params);
+//        pr($data);
+        return $data;
+    }
+
+    public function getFormWrapper() {
+        return $this->entity;
     }
 
 }

@@ -1,0 +1,24 @@
+{
+    "name": "Scoping Component",
+    "version": "0.1.0",
+    "authors": [
+        "Dave Meikle <davemeikle@ymail.com>"
+    ],
+    "description": "",
+    "main": "",
+    "moduleType": [],
+    "license": "MIT",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular-bootstrap": "~0.14.3",
+        "bootstrap-sass": "~3.3.5"
+    }
+}

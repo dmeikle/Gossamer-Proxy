@@ -10,4 +10,5 @@
 module.config(function (uibDatepickerConfig, uibDatepickerPopupConfig) {
     uibDatepickerConfig.showWeeks = false;
     uibDatepickerPopupConfig.showButtonBar = false;
+    uibDatepickerConfig.startingDay = 1;
 });
