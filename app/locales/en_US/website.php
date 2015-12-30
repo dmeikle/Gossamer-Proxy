@@ -70,4 +70,6 @@ return array(
     'ADMIN_CONTACTS_CREATE_NEW' => 'Create New Contact',
     'DELETE' => 'Delete',
     'REMOVE' => 'Remove',
+    'SELECTED' => 'Selected',
+    'TRANSFER' => 'Transfer'
 );

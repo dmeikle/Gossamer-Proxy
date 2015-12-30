@@ -152,4 +152,19 @@ class ClaimsController extends AbstractController {
         $this->render($result);
     }
 
+    public function autocompleteWithLocations() {
+
+        $params = $this->httpRequest->getQueryParameters();
+        $results = $this->model->autocomplete($params);
+
+        $retval = array();
+        foreach ($results['Claims'] as $row) {
+            $key = is_null($row['jobNumber']) || strlen($row['jobNumber']) == 0 ? $row['unassignedJobNunber'] : $row['jobNumber'];
+            unset($row['jobNumber']);
+            unset($row['unassignedJobNumber']);
+            $retval[$key][] = $row;
+        }
+        $this->render($retval);
+    }
+
 }

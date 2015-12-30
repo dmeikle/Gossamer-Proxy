@@ -8,9 +8,16 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
         var config = {};
         config[type] = value;
 
-        return searchSrv.fetchAutocomplete(apiPath, config).then(function() {
-
-            self.autocompleteResult = searchSrv.autocomplete;
+        return searchSrv.fetchAutocompleteNoSearch(apiPath, config).then(function(response) {
+            var array = [];
+            for (var property in response.data) {
+                if (property !== 'modules' &&
+                property !== 'widgets/admin_claims_autocompletelocations') {
+                    response.data[property][0].jobNumber = property;
+                    array.push(response.data[property]);
+                }
+            }
+            return array;
         });
     };
 
@@ -19,7 +26,6 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
     };
 
     this.transfer = function(object) {
-
         return $http({
             method: 'POST',
             url: '/admin/inventory/equipment/transfer',
@@ -29,6 +35,7 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
             data: object
         });
     };
+    
     this.getEquipmentTransferHistory = function(object) {
         var config = {};
         config.InventoryEquipment_id = object.id;
@@ -36,5 +43,4 @@ module.service('inventoryTransferSrv', function($http, searchSrv) {
         config['directive::DIRECTION'] = 'desc';
         return searchSrv.searchCall(config, apiPath + 'transferhistory/0/10');
     };
-
 });

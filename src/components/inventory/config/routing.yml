@@ -439,6 +439,7 @@ admin_warehouse_locations_home:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+
     
 admin_inventory_search:
     pattern: admin/inventory/search/*/*
@@ -466,6 +467,18 @@ admin_warehouse_locations_list:
         datasource: datasource1
     methods: [GET]
 
+
+admin_warehouse_locations_autocomplete:
+    pattern: admin/inventory/warehouse/autocomplete
+    defaults:
+        component: components\inventory\InventoryComponent
+        controller: components\inventory\controllers\WarehouseController
+        model: components\inventory\models\WarehouseModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: admin_warehouse_locations_autocomplete
+        datasource: datasource1
+    methods: [GET]
 
 admin_warehouse_locations_get:
     pattern: admin/inventory/warehouse/*

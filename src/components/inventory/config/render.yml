@@ -2,7 +2,9 @@
 ---
 transferModal:
     path: 'src/components/inventory/views/admin/equipment/transferModal.php'
-
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+        - 'app/locales/*/website'
 
 
 inventoryTransferWizardPages:
@@ -13,6 +15,7 @@ inventoryTransferWizardPages:
     listeners:
         - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\WarehouseModel', 'cacheKey': 'WarehouseLocations', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
 
         # build the form for Claim Location
         -
@@ -25,6 +28,18 @@ inventoryTransferWizardPages:
             formName: 'claimLocationForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: Vehicles, key: vehicles, value: id, text: number }
+        # build the form for Transfer
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\InventoryEquipmentTransferBuilder'
+            model: 'components\inventory\models\InventoryEquipmentModel'
+            cacheKey: 'TransferForm'
+            formName: 'transferForm'
+            dependencies:
+                - { dependency: WarehouseLocations, key: warehouseLocations, value: id, text: name }
                 - { dependency: Vehicles, key: vehicles, value: id, text: number }
         # build the form for StaffAuthorization
         -
@@ -81,7 +96,8 @@ inventoryAdvancedSearchFilters:
         - 'src/components/inventory/locales/*/inventory'
     listeners:
         - { 'class': 'components\vendors\models\VendorModel', 'cacheKey': 'Vendors', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
-        
+        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\WarehouseModel', 'cacheKey': 'WarehouseLocations', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         # build the form
         -
             event: 'filerender_start'
@@ -93,7 +109,8 @@ inventoryAdvancedSearchFilters:
             formName: 'inventoryForm'
             dependencies:
                 - { dependency: Vendors, key: vendors, value: id, text: company }
-
+                - { dependency: WarehouseLocations, key: warehouseLocations, value: id, text: name }
+                - { dependency: Vehicles, key: vehicles, value: id, text: number }
 vendorItemModal:
     path: 'src/components/inventory/ng/views/vendorItemModal.php'
     langFiles:
