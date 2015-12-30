@@ -161,7 +161,7 @@
         vm.getColumnTotals = function () {
             vm.totals = totalsSrv.getColumnTotals(vm.lineItems, 'quantity');
             //Trim off any unneeded items
-            delete vm.totals.isSelected;
+//            delete vm.totals.isSelected;
             delete vm.totals.areaType;
             delete vm.totals.AffectedAreas_id;
         };
