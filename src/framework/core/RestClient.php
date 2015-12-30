@@ -170,7 +170,7 @@ class RestClient implements \Iterator, \ArrayAccess {
 
         if (strtoupper($method) == 'POST') {
             $curlopt[CURLOPT_POST] = TRUE;
-            $curlopt[CURLOPT_POSTFIELDS] = $client->format_query($parameters_string);
+            $curlopt[CURLOPT_POSTFIELDS] = $client->format_query($parameters);
         } elseif (strtoupper($method) != 'GET') {
             $curlopt[CURLOPT_CUSTOMREQUEST] = strtoupper($method);
             $curlopt[CURLOPT_POSTFIELDS] = $client->format_query($parameters_string);
