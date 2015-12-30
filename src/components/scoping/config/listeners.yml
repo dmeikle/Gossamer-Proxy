@@ -29,3 +29,13 @@ admin_scoping_takeoffs_edit_sheet:
             dependencies:
             #    - { dependency: Claims, key: claims, value: id, text: title }
     
+    
+admin_scoping_takeoffs_get:
+    listeners:
+       # - { 'cacheKey': 'AreaTypes', 'class': 'components\scoping\models\AreaTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        
+admin_scoping_takeoffs_save:    
+    listeners:
+       # - { 'cacheKey': 'AreaTypes', 'class': 'components\scoping\models\AreaTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+            
+       

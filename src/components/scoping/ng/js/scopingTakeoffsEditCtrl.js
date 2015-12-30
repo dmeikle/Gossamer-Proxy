@@ -140,6 +140,7 @@
         //Save the takeoff sheet
         vm.save = function () {
             scopingTakeOffsEditSrv.save(id, vm.lineItems, Claims_id, ClaimsLocations_id, formToken);
+            getTakeoffDetails();
         };
         
         //Get the column totals
