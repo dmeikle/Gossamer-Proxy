@@ -48,9 +48,9 @@ class ClaimsController extends AbstractController {
     public function getInitialJobsheet($claimId, $claimsLocationId) {
 
         $result = $this->model->getInitialJobsheet($claimId, $claimsLocationId);
-        $user = $this->getLoggedInUser();
 
-        $result['username'] = $user->getCredentials();
+//        $user = $this->getLoggedInUser();
+//        $result['username'] = $user->getCredentials();
 
         $this->render($result);
     }
