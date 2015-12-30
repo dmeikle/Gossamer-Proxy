@@ -99,9 +99,9 @@ module.controller('inventoryCtrl', function ($scope, costCardItemTypeSrv, accoun
     //Modal
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
-        var template = accountingTemplateSrv.inventoryModal;
+        var template = accountingTemplateSrv.inventoryModal();
         var modal = $modal.open({
-            templateUrl: template,
+            template: template,
             controller: 'inventoryModalCtrl',
             size: 'md',
             resolve: {

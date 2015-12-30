@@ -173,9 +173,9 @@ module.controller('cashReceiptsCtrl', function ($scope, costCardItemTypeSrv, acc
     //Modal
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
-        var template = accountingTemplateSrv.cashReceiptsModal;
+//        var template = accountingTemplateSrv.cashReceiptsModal();
         var modal = $uibModal.open({
-            templateUrl: template,
+            template: accountingTemplateSrv.cashReceiptsModal(),
             controller: 'cashReceiptsModalCtrl',
             size: 'md',
             resolve: {
