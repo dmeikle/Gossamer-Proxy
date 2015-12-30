@@ -248,7 +248,6 @@
         </div>
         <div class="col-xs-12">
             <label for="jobSheet-existing">
-
                 <?php echo $this->getString('CLAIMS_JOBSHEET_EXISTING') ?>
             </label>
             <?php echo $claimLocationForm['existingDamage'] ?>
