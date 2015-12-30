@@ -32,6 +32,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
         }
     });
 
+   
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function() {
         if ($scope.currentPage && $scope.itemsPerPage) {
             row = (($scope.currentPage - 1) * $scope.itemsPerPage);
@@ -66,7 +67,7 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
 
     $scope.openAddNewWizard = function() {
         var modalInstance = $uibModal.open({
-            templateUrl: '/render/claims/claimsAddNewModal',
+            templateUrl: '/render/claims/addNewWizardPages',
             controller: 'claimsModalCtrl',
             size: 'lg',
             backdrop: 'static'

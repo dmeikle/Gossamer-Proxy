@@ -18,7 +18,7 @@
 	        <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
 	        <label for="jobsheet-is-source">
 	            <input type="checkbox" disabled name="jobsheet-is-source" id="jobsheet-is-source" ng-model="jobSheet.isSource">
-	            <?php echo $this->getString('CLAIMS_ISSOURCE') ?>
+	            <?php echo $this->getString('CLAIMS_SOURCE_UNIT') ?>
 	        </label>
             <p class="form-control-static">
             	{{jobSheet.query.ClaimLocation.source}}

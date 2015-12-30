@@ -34,6 +34,15 @@
 .expand-btn{
     cursor:pointer;
 }
+
 .h3button {
     margin-top:20px;
+}
+/*.table-striped>tbody>tr:nth-of-type(odd):not(.bg-warning) {
+    @extend .table-striped>tbody>tr:nth-of-type(odd);
+}*/
+.table-striped>tbody>tr:nth-of-type(odd).bg-warning{
+    /*@extend .table-striped>tbody>tr:nth-of-type(odd);*/
+    @extend .bg-warning;
+
 }

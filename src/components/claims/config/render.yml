@@ -38,6 +38,18 @@ addNewWizardPages:
             event: 'filerender_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimBuilder'
+            model: 'components\claims\models\ClaimModel'
+            cacheKey: 'ClaimForm'
+            formName: 'claimForm'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
+                - { dependency: ClaimStatusTypes, key: claimStatus, value: ClaimStatusTypes_id, text: status }
+        -
+            event: 'filerender_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
             formBuilder: 'components\claims\form\ClaimLocationBuilder'
             model: 'components\claims\models\ProjectAddressModel'
             cacheKey: 'ClaimLocationForm'
