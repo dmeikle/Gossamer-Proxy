@@ -17,14 +17,22 @@
 }
 
 .document-icon {
-    width:20px;
+    width: 25px;
     margin-left: 8px;
-    vertical-align: middle;
-    &.pdf {        
-        content: url('/images/web-icons/file-pdf.svg');
+    vertical-align: middle;        
+    display: inline-block;
+    /*height: 25px;*/
+    &.pdf {
+        /*background-color: #E12025;*/
+        /*-webkit-mask-image: url("/images/web-icons/file-pdf.svg");*/
+        content: url("/images/web-icons/file-pdf.svg");
+        .path{
+            fill: #ff0000;
+        }
     }
     &.doc, &.docx {        
         content: url('/images/web-icons/file-word.svg');
+        /*background-color: #1F7246;*/
     }
     &.xls &.xlsx {        
         content: url('/images/web-icons/file-excel.svg');
