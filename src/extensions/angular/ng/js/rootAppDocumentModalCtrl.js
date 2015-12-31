@@ -3,7 +3,6 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
 	$scope.model = model;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
     $scope.hasError = {};
-    $scope.documentCount = '77';
     
     $scope.dropzoneConfig = {
         'options': {
@@ -39,36 +38,26 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
             },
             'success': function(file, response) {
                 $rootScope.$broadcast('documentUploaded', response);
-                $log.log('document uploaded successfully');
             }
         }
     };
 
 
     $rootScope.$on('documentCountUpdated', function(event, response) {
-        $log.log('doc count updated!');
-        $log.log(event);
-        $log.log(response);
-//        $scope.documentCount = '32';
-//    	if (response.data && response.data.documentCount) {
-//	        $scope.documentCount = response.data.documentCount;
-//		} else {
-//            $scope.documentCount = response.documentCount;
-//        }
+    	if (response.data && response.data.documentCount) {
+            $scope.documentCount = response.data.documentCount;
+        } else {
+            $scope.documentCount = response.documentCount;
+        }
     });
 
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
-        $log.log('uploaded event happened!');
-//        $log.log(event);
-        $log.log($scope);
-//        $scope.documentCount = '54';
         if (response.data && response.data.documentCount) {
             $scope.documentCount = response.data.documentCount;
+            $scope.$digest();
         } else {
-            $log.log('update the document count!');
             $scope.documentCount = response.documentCount;
-            $log.log($scope);
             $scope.$digest();
         }
     });
