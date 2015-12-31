@@ -1,0 +1,32 @@
+.document-list{
+    h4, .secondary-text {
+        font-size:14px;
+        color:rgba(0,0,0,.54);
+    }
+    h4{
+        font-weight:600;
+    }
+    .secondary-text{
+        font-weight:400;
+        margin-left:16px;
+        vertical-align: middle;
+    }
+    .title {
+        font-size:16px;
+    }
+}
+
+.document-icon {
+    width:20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    &.pdf {        
+        content: url('/images/web-icons/file-pdf.svg');
+    }
+    &.doc, &.docx {        
+        content: url('/images/web-icons/file-word.svg');
+    }
+    &.xls &.xlsx {        
+        content: url('/images/web-icons/file-excel.svg');
+    }
+}

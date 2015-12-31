@@ -1,4 +1,4 @@
-<?php //pr($this->data);    ?>
+<?php //pr($this->data);                                           ?>
 
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
@@ -153,13 +153,35 @@
                         <div class="text-center"><span class="spinner-loader"></span></div>
                     </div>
                     <div ng-if="!claimLoading">
-                        <documents module="claims" model='{{claim}}' model-type="Claim">
+                        <documents module="claims" model='{{claim}}' model-type="Claim" class="padding">
                             <div class="pull-right">
                                 <button class="primary" ng-click="openUploadDocumentsModal(claim)">
                                     <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                                 </button>
                             </div>
+                            <section class="document-list">
+                                <div ng-repeat="(unitKey, docTypes) in documents">
+                                    <h4>{{unitKey}}</h4>
+                                    <div ng-repeat="(typeKey, documents) in docTypes">
+                                        <p class="title">{{typeKey}}</p>
+                                        <div ng-repeat="document in documents">
+                                            <span class="secondary-text">{{document.filename}}</span>
+                                            <i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                </div>
 
+                                <!--                                <ul ng-repeat="(unitKey, docTypes) in documents">
+                                                                    <li><strong>{{unitKey}}</strong></li>
+                                                                    <ul ng-repeat="(typeKey, documents) in docTypes">
+                                                                        <li><strong>{{typeKey}}</strong></li>
+                                                                        <ul ng-repeat="document in documents">
+                                                                            <li>{{document.filename}}</li>
+                                                                        </ul>
+                                                                    </ul>
+                                                                </ul>-->
+                            </section>
                         </documents>
                     </div>
                 </uib-tab>

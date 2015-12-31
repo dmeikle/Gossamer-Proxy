@@ -15,7 +15,7 @@ use core\AbstractController;
 use components\documents\form\DocumentBuilder;
 use Gossamer\CMS\Forms\FormBuilder;
 use Gossamer\CMS\Forms\FormBuilderInterface;
-use core\system\Router;
+use core\navigation\Pagination;
 
 class DocumentsController extends AbstractController {
 //    public function save($id) {
@@ -71,6 +71,32 @@ class DocumentsController extends AbstractController {
         }
 
         $this->render(array('success' => 'true'));
+    }
+
+    /**
+     * listall - retrieves rows based on offset, limit
+     *
+     * @param int offset    database page to start at
+     * @param int limit     max rows to return
+     */
+    public function listall($offset = 0, $limit = 20) {
+        $params = $this->httpRequest->getQueryParameters();
+        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
+
+        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
+            $pagination = new Pagination($this->logger);
+
+            //CP-33 changed to json output for new Angular based page draws
+            $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
+            unset($pagination);
+        }
+
+        $serializer = new \components\claims\serialization\ClaimDocumentSerializer();
+        if (array_key_exists('Documents', $result)) {
+            $result = $serializer->groupDocuments($result['Documents']);
+        }
+
+        $this->render(array('Documents' => $result));
     }
 
 }
