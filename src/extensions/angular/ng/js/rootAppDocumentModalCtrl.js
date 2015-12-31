@@ -4,7 +4,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
 	$scope.filesCount = documentSrv.getFileCount(model.id);
     $scope.hasError = {};
     $scope.documentUploading = false;
-    
+    $scope.documentUploaded = false;
     $scope.dropzoneConfig = {
         'options': {
             'url': '/admin/documents/upload/' + $scope.model.id,
@@ -58,6 +58,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
         $scope.documentUploading = false;
+        $scope.documentUploaded = true;
         if (response.data && response.data.documentCount) {
             $scope.documentCount = response.data.documentCount;
             $scope.$digest();
@@ -72,6 +73,6 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     };
 
     $scope.close = function() {
-        $uibModalInstance.dismiss('close');
+        $uibModalInstance.close($scope.documentUploaded);
     };
 });

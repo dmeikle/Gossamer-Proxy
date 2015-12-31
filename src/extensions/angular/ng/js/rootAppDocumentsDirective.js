@@ -14,7 +14,7 @@ module.directive('documents', function(documentSrv){
         },
         controller: function($scope, $uibModal) {
             $scope.openUploadDocumentsModal = function(model) {
-                $uibModal.open({
+                 var modalInstance = $uibModal.open({
                     template: retrieveUploadDocumentsModal($scope.module, $scope.modelType, $scope.model.id),
                     controller: 'uploadDocumentsModalCtrl',
                     size: 'lg',
@@ -22,6 +22,14 @@ module.directive('documents', function(documentSrv){
                         model: function() {
                             return model;
                         }
+                    }
+                });
+                modalInstance.result.then(function (result) {
+                    //Refresh the document list if the result (documentUploaded) is true
+                    if(result === true) {
+                        documentSrv.getDocuments($scope.model.id).then(function(response) {
+                            $scope.documents = response.data.Documents;
+                        });                        
                     }
                 });
             };
