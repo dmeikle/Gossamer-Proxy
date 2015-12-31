@@ -1,4 +1,4 @@
-<?php //pr($this->data);                                           ?>
+<?php //pr($this->data);                                             ?>
 
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
@@ -164,9 +164,9 @@
                                     <h4>{{unitKey}}</h4>
                                     <div ng-repeat="(typeKey, documents) in docTypes">
                                         <p class="title">{{typeKey}}</p>
-                                        <div ng-repeat="document in documents">
-                                            <span class="secondary-text">{{document.filename}}</span>
+                                        <div class="document" ng-repeat="document in documents">
                                             <i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i>
+                                            <span class="secondary-text">{{document.filename}}</span>
                                         </div>
                                     </div>
                                     <div class="divider"></div>
