@@ -83,7 +83,7 @@ return array(
     'CLAIMS_HOMEPHONE' => 'Home Phone',
     'CLAIMS_HOURLY_RATE' => 'Hourly Rate',
     'CLAIMS_INITIAL_JOBSHEET' => 'Create Initial Jobsheet',
-    'CLAIMS_ISKEYS' => 'Received from',
+    'CLAIMS_ISKEYS' => 'Keys Received from',
     'CLAIMS_ISLOCKBOX' => 'Lockbox Number',
     'CLAIMS_ISPICTURES' => 'Photos Taken',
     'CLAIMS_SOURCE_UNIT' => 'Source Unit',
@@ -328,5 +328,6 @@ return array(
     'CLAIMS_INSURANCE_CATEGORY' => 'Insurance Category',
     'CLAIMS_COMPLETION_DATE' => 'Completion Date',
     'CLAIMS_MORE_INFORMATION' => 'More Information',
-    'CLAIMS_WORK_DATE' => 'Work Date'
+    'CLAIMS_WORK_DATE' => 'Work Date',
+    'CLAIMS_ISSOURCE' => 'Source Unit'
 );

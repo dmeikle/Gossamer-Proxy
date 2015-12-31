@@ -46,25 +46,27 @@
 
             {{location.existingDamage}}
         </div>
-    </div>
-
-    <table class="table">
-        <tbody>
-            <?php
-            $equipment = $this->getValue('InventoryEquipment');
-            foreach ($equipment as $eq) {
-                ?>
-                <tr>
+        <div class="col-xs-6" ng-show="equipment">
+            <h3>Equipment On Site:</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="eq in equipment">
                     <td>
-                        <strong><?php echo $eq['inventoryType']; ?></strong>
+                        <strong>{{eq.inventoryType}}</strong>
                     </td>
                     <td>
-                        <?php echo $eq['numItems']; ?>
+                        {{eq.numItems}}
                     </td>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+            </table>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </div>
 
 <div class="clearfix"></div>
