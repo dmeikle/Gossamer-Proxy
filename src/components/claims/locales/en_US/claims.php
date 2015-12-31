@@ -208,6 +208,7 @@ return array(
     'CLAIM_UPLOAD_PHOTOS' => 'Upload Photos',
     'CLAIMS_UPLOAD_PHOTOS_FOR' => 'Upload Photos For',
     'CLAIMS_UPLOAD_TO' => 'Upload to',
+    'CLAIMS_UPLOADING' => 'Uploading',
     'CLAIMS_VIEW' => 'View',
     'CLAIMS_VIEW_COST_CARDS' => 'View Cost Cards',
     'CLAIMS_VIEW_INITIAL_JOBSHEET' => 'View Initial Jobsheet',

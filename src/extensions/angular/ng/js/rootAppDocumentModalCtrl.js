@@ -3,6 +3,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
 	$scope.model = model;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
     $scope.hasError = {};
+    $scope.documentUploading = false;
     
     $scope.dropzoneConfig = {
         'options': {
@@ -27,17 +28,20 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     toastsSrv.newAlert(error);
                 } else {
                     $scope.hasError = {};
+                    $scope.documentUploading = true;
+                    $scope.$digest();
                     this.uploadFile(file);
                     this.processQueue();
                 }
             },
-            'sending': function(file, xhr, formData) {
+            'sending': function(file, xhr, formData) {                
                 for (var property in $scope.upload) {
                     formData.append(property, $scope.upload[property]);
                 }
             },
             'success': function(file, response) {
                 $rootScope.$broadcast('documentUploaded', response);
+                
             }
         }
     };
@@ -53,6 +57,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
 
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
+        $scope.documentUploading = false;
         if (response.data && response.data.documentCount) {
             $scope.documentCount = response.data.documentCount;
             $scope.$digest();
