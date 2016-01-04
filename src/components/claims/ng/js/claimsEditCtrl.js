@@ -29,9 +29,10 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
             $scope.claimLoading = false;
-
+            
         });
     }
+    
 
     function getProjectAddress() {
 
