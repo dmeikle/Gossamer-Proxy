@@ -1,4 +1,4 @@
-<?php //pr($this->data);     ?>
+<?php //pr($this->data);      ?>
 
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
@@ -93,6 +93,9 @@
                             <th column-sortable data-column="phase">
                                 <?php echo $this->getString('CLAIMS_PHASE'); ?>
                             </th>
+                            <th column-sortable data-column="buzzerCode">
+                                <?php echo $this->getString('CLAIMS_BUZZER'); ?>
+                            </th>
                             <th column-sortable data-column="parentClaim">
                                 <?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?>
                             </th>
@@ -112,6 +115,7 @@
                                 'inactive bg-warning text-warning': claim.status == 'inactive'}">
                             <td ng-click="selectRow(location)">{{location.unitNumber}}</td>
                             <td ng-click="selectRow(location)">{{location.phase}}</td>
+                            <td ng-click="selectRow(location)">{{location.buzzerCode}}</td>
                             <td ng-click="selectRow(location)">{{location.jobNumber}}</td>
                             <td class="row-controls">
                                 <div class="dropdown">
