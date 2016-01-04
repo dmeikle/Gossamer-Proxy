@@ -329,5 +329,8 @@ return array(
     'CLAIMS_INSURANCE_CATEGORY' => 'Insurance Category',
     'CLAIMS_COMPLETION_DATE' => 'Completion Date',
     'CLAIMS_MORE_INFORMATION' => 'More Information',
-    'CLAIMS_WORK_DATE' => 'Work Date'
+    'CLAIMS_WORK_DATE' => 'Work Date',
+    'CLAIMS_FILE_NAME' => 'File Name',
+    'CLAIMS_UPLOADED' => 'Uploaded',
+    'CLAIMS_CREATED_BY' => 'Created By'
 );

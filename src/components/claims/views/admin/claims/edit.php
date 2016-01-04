@@ -1,4 +1,4 @@
-<?php //pr($this->data);                                             ?>
+<?php //pr($this->data);                                                                                 ?>
 
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
@@ -160,27 +160,47 @@
                                 </button>
                             </div>
                             <section class="document-list">
-                                <div ng-repeat="(unitKey, docTypes) in documents">
-                                    <h4>{{unitKey}}</h4>
-                                    <div ng-repeat="(typeKey, documents) in docTypes">
-                                        <p class="title">{{typeKey}}</p>
-                                        <div class="document" ng-repeat="document in documents">
-                                            <i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i>
-                                            <span class="secondary-text">{{document.filename}}</span>
-                                        </div>
-                                    </div>
-                                    <div class="divider"></div>
-                                </div>
+                                <!--                                <div ng-repeat="(unitKey, docTypes) in documents">
+                                                                    <h4>{{unitKey}}</h4>
+                                                                    <div ng-repeat="(typeKey, documents) in docTypes">
+                                                                        <p class="title">{{typeKey}}</p>
+                                                                        <div class="document" ng-repeat="document in documents">
+                                                                            <i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i>
+                                                                            <span class="secondary-text">{{document.filename}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="divider"></div>
+                                                                </div>-->
 
-                                <!--                                <ul ng-repeat="(unitKey, docTypes) in documents">
-                                                                    <li><strong>{{unitKey}}</strong></li>
-                                                                    <ul ng-repeat="(typeKey, documents) in docTypes">
-                                                                        <li><strong>{{typeKey}}</strong></li>
-                                                                        <ul ng-repeat="document in documents">
-                                                                            <li>{{document.filename}}</li>
-                                                                        </ul>
-                                                                    </ul>
-                                                                </ul>-->
+                                <table class="table table-striped table-hover">
+                                    <tr class="table-header">
+                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
+                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_CREATED_BY') ?></th>
+                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
+                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
+                                    </tr>
+                                    <tbody ng-repeat-start="(unitKey, docTypes) in documents">
+                                        <tr>
+                                            <th colspan="4" class="bg-info">{{unitKey}}</th>
+                                        </tr>
+                                        <tr ng-repeat-start="(typeKey, documents) in docTypes">
+                                            <th colspan="4">{{typeKey}}</th>
+                                        </tr>
+                                        <tr ng-repeat-end ng-repeat="document in documents">
+                                            <td>{{document.filename}}</td>
+                                            <td>{{document.firstname}} {{document.lastname}}</td>
+                                            <td>{{document.uploadDate| date:'yyyy-MM-dd'}}</td>
+                                            <td><i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i></td>
+                                        </tr>
+
+                                    </tbody>
+
+                                    <tbody ng-repeat-end></tbody>
+                                    <!--                                    <div ng-repeat-end></div>
+                                                                        <div ng-repeat-end></div>-->
+
+                                    <!--<tr ng-repeat-end></tr>-->
+                                </table>
                             </section>
                         </documents>
                     </div>
