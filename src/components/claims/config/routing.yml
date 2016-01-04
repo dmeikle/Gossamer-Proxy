@@ -475,6 +475,7 @@ admin_claims_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
+    
 
 
 admin_claims_view:
@@ -575,21 +576,34 @@ admin_claims_save:
         viewKey: admin_claims_save
         datasource: datasource1
 
-
-admin_claim_edit:
-    pattern: admin/claims/edit/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimsController
-        model: components\claims\models\ClaimModel
-        method: edit
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_claim_edit
-        datasource: datasource1
+#
+#admin_claim_edit:
+#    pattern: admin/claims/edit/*
+#    defaults:
+#        component: components\claims\ClaimsComponent
+#        controller: components\claims\controllers\ClaimsController
+#        model: components\claims\models\ClaimModel
+#        method: index
+#        view: extensions\angular\views\AngularTemplateView
+#        viewKey: admin_claim_edit
+#        datasource: datasource1
+#    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
+#        - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#        - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
+#        -
+#            event: 'request_end'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\documents\form\DocumentBuilder'
+#            model: 'components\documents\models\DocumentTypeModel'
+#            cacheKey: 'DocumentUploadForm'
+#            formName: 'documentForm'
+#            dependencies:
+#                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+#                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
 
 admin_claim_setInactive:
     pattern: admin/claims/remove/*

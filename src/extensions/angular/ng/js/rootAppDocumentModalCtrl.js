@@ -5,6 +5,9 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     $scope.hasError = {};
     $scope.documentUploading = false;
     $scope.documentUploaded = false;
+    $scope.documentQueue = 0;
+    $scope.filesUploaded = 0;
+    
     $scope.dropzoneConfig = {
         'options': {
             'url': '/admin/documents/upload/' + $scope.model.id,
@@ -28,6 +31,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     toastsSrv.newAlert(error);
                 } else {
                     $scope.hasError = {};
+                    $scope.documentQueue++;
                     $scope.documentUploading = true;
                     $scope.$digest();
                     this.uploadFile(file);
@@ -39,9 +43,8 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     formData.append(property, $scope.upload[property]);
                 }
             },
-            'success': function(file, response) {
-                $rootScope.$broadcast('documentUploaded', response);
-                
+            'success': function(file, response) {                
+                $rootScope.$broadcast('documentUploaded', response);                
             }
         }
     };
@@ -57,7 +60,11 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
 
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
-        $scope.documentUploading = false;
+        $scope.filesUploaded++;
+        
+        if($scope.documentQueue === $scope.filesUploaded) {
+            $scope.documentUploading = false;            
+        }
         $scope.documentUploaded = true;
         if (response.data && response.data.documentCount) {
             $scope.documentCount = response.data.documentCount;

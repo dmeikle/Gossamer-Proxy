@@ -22,8 +22,8 @@ use Gossamer\CMS\Forms\FormBuilder;
 class ClaimDocumentUploadBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
-        
-        $builder->add('unitNumber', 'text', array('ng-model' => 'item.unitNumber', 'class' => 'form-control'))
+
+        $builder->add('unitNumber', 'text', array('ng-model' => 'item.unitNumber', 'class' => 'form-control'));
 
         return $builder->getForm();
     }

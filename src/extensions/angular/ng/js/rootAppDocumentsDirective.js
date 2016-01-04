@@ -13,9 +13,10 @@ module.directive('documents', function(documentSrv){
             });
         },
         controller: function($scope, $uibModal) {
-            $scope.openUploadDocumentsModal = function(model) {
+            $scope.openUploadDocumentsModal = function(model, template) {
+                console.log(model);
                  var modalInstance = $uibModal.open({
-                    template: retrieveUploadDocumentsModal($scope.module, $scope.modelType, $scope.model.id),
+                    templateUrl: template,
                     controller: 'uploadDocumentsModalCtrl',
                     size: 'lg',
                     resolve: {
