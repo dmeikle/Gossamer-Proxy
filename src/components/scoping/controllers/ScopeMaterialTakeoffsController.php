@@ -12,6 +12,7 @@
 namespace components\scoping\controllers;
 
 use core\AbstractController;
+use core\eventlisteners\Event;
 
 class ScopeMaterialTakeoffsController extends AbstractController {
 
@@ -30,6 +31,7 @@ class ScopeMaterialTakeoffsController extends AbstractController {
                 $areaTypes = $results['AreaTypes'];
                 $id = $results['ScopingMaterialTakeoffSheet'][0]['id'];
                 $areas = $results['ScopingMaterialTakeoffSheet'][0]['ScopingMaterialTakeoffSheetItem'];
+
                 $results = $serializer->formatAreaTypes($results['AreaTypes'], $areas);
                 $results['AreaTypes'] = $areaTypes;
                 $results['id'] = $id;
@@ -44,4 +46,24 @@ class ScopeMaterialTakeoffsController extends AbstractController {
         $this->render($results);
     }
 
+    /**
+     * save - saves/updates row
+     *
+     * @param int id    primary key of item to save
+
+      public function save($id) {
+
+      $result = $this->model->save($id);
+
+      $params = array('entity' => $this->model->getEntity(true), 'result' => $result, 'id' => $id);
+      $event = new Event('save_success', $params);
+      $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+
+      $areaTypes = $this->httpRequest->getAttribute('AreaTypes');
+      $serializer = new \components\scoping\serialization\MaterialTakeoffSheetSerializer();
+      $result = $serializer->formatAreaTypesRaw($areaTypes, $result);
+
+      $this->render($result);
+      }
+     */
 }

@@ -249,6 +249,13 @@ class RestClient implements \Iterator, \ArrayAccess {
     }
 
     public function decode_response() {
+
+        //fix for odd bug where header info gets cast into response data
+        if (strpos($this->response, '{') != 0) {
+            $tmp = explode('{', $this->response, 2);
+            $this->response = '{' . $tmp[1];
+        }
+
         if (empty($this->decoded_response)) {
             $format = $this->get_response_format();
             if (!array_key_exists($format, $this->options['decoders']))

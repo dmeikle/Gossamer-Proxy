@@ -29,6 +29,7 @@ module.controller('initialJobsheetCtrl', function($scope, $rootScope, claimsInit
             $scope.areaList = response.data.AffectedAreas;
             $scope.location = response.data.ClaimLocation[0];
             $scope.contacts = response.data.Contacts;
+            $scope.equipment = response.data.InventoryEquipment;
             $scope.claim = response.data.Claim[0];
             $scope.loading = false;
             for (var i = 0; i < $scope.areaList.length; i++) {

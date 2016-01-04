@@ -57,7 +57,7 @@ return array(
     'USERNAME' => 'Username',
     'PASSWORD' => 'Password',
     'CANCEL' => 'Cancel',
-    'CONFIRM' => 'Okay',
+    'CONFIRM' => 'Confirm',
     'SAVE' => 'Save',
     'STATUS' => 'Status',
     'DATE' => 'Date',

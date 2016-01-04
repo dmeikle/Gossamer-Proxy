@@ -12,6 +12,7 @@ use core\serialization\Serializer;
 class MaterialTakeoffSheetSerializer extends Serializer {
 
     public function formatAreaTypes(array $areaTypes, array $sheetItems) {
+
         $retval = array();
         foreach ($areaTypes as $type) {
             $key = $type['areaType'];

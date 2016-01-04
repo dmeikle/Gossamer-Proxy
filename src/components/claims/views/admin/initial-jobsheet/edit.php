@@ -14,60 +14,60 @@
         <span class="spinner-loader"></span>
     </div>
     <div ng-if="!loading">
-        <div class="col-xs-6 form-group">
-            <label for="jobsheet-source"><?php echo $this->getString('CLAIMS_SOURCE') ?></label>
-            <label for="jobsheet-is-source">
-                <input type="checkbox" name="jobsheet-is-source" id="jobsheet-is-source" ng-model="jobSheet.isSource">
-                <?php echo $this->getString('CLAIMS_SOURCE_UNIT') ?>
-            </label>
-            <input type="text" name="jobsheet-source" id="jobsheet-source" class="form-control"
-                   ng-model="jobSheet.query.ClaimLocation.source" ng-disabled="!jobSheet.isSource"
-                   ng-required="jobSheet.isSource">
-        </div>
-        <div class="col-xs-6 form-group">
-            <label for="jobsheet-is-lockBox">
-                <?php echo $this->getString('CLAIMS_LOCKBOX') ?>
-                <input type="checkbox" id="jobsheet-is-lockBox" ng-model="ClaimLocation.lockBox">
-                <?php echo $this->getString('CLAIMS_ISLOCKBOX') ?>
-            </label>
-            <?php echo $claimLocationForm['lockBoxNumber'] ?>
-        </div>
-        <div class="col-xs-6 form-group">
+        <div class="col-xs-4 form-group">
             <div class="input-group">
                 <label for="ClaimLocation_workAuthorizationReceived">
                     <input type="checkbox" name="ClaimLocation[workAuthorizationReceived]"
-                           ng-model="item.workAuthorizationReceived" required ng-true-value="'1'"
+                           ng-model="location.workAuthorizationReceived" required ng-true-value="'1'"
                            id="ClaimLocation_workAuthorizationReceived">
                            <?php echo $this->getString('CLAIMS_ISWORKAUTHORIZATION') ?>
                 </label>
             </div>
         </div>
-        <div class="col-xs-6 form-group">
+        <div class="col-xs-4 form-group">
+            <label for="jobSheet-is-source">
+                <input type="checkbox" name="jobSheet-is-source" id="jobSheet-is-source" ng-value="location.id" ng-model="claim.sourceUnitClaimsLocations_id"> <?php echo $this->getString('CLAIMS_ISSOURCE') ?>
+            </label>
+
+        </div>
+        <div class="col-xs-4 form-group">
             <div>
                 <label for="ClaimLocation_picturesTaken">
                     <input type="checkbox" name="ClaimLocation[picturesTaken]"
-                           ng-model="item.picturesTaken" id="ClaimLocation_picturesTaken"
+                           ng-model="location.picturesTaken" id="ClaimLocation_picturesTaken"
                            ng-true-value="'1'">
                            <?php echo $this->getString('CLAIMS_ISPICTURES') ?>
                 </label>
             </div>
-        </div>
-        <div class="col-xs-6 form-group">
-            <label for="jobsheet-is-keys">
-                <?php echo $this->getString('CLAIMS_KEYS') ?>
-                <input type="checkbox" name="jobsheet-is-keys" id="jobsheet-is-keys" ng-model="ClaimLocation.keysReceived">
-                <?php echo $this->getString('CLAIMS_ISKEYS') ?>
+        </div><div class="col-xs-6 form-group">
+            <label>
+                <?php echo $this->getString('CLAIMS_BUZZER') ?>
             </label>
-            <?php echo $claimLocationForm['keysReceivedFrom'] ?>
+            <?php echo $claimLocationForm['buzzerCode'] ?>
         </div>
         <div class="clearfix"></div>
+        <div class="col-xs-6 form-group">
+
+            <div>
+                <?php echo $this->getString('CLAIMS_ISLOCKBOX') ?>
+                <?php echo $claimLocationForm['lockBoxNumber'] ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-6 form-group">
+            <div>
+                <?php echo $this->getString('CLAIMS_ISKEYS') ?>
+                <?php echo $claimLocationForm['keysReceivedFrom'] ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
         <!-- PAGE TWO FIELDS -->
         <div class="toolbar">
             <a href="" class="btn btn-default" ng-click="addOwnerTenant()">
                 <?php echo $this->getString('NEW') ?>
             </a>
         </div>
-
 
         <div ng-repeat="contact in contacts">
             <div ng-show="contact.isActive !== '0'">
@@ -255,35 +255,39 @@
         </div>
         <div class="clearfix"></div>
         <!-- EQUIPMENT PAGE -->
-        <table class="table">
-            <tbody>
-                <?php
-                $equipment = $this->getValue('InventoryEquipment');
-                foreach ($equipment as $eq) {
-                    ?>
+        <div class="col-xs-6" ng-show="equipment">
+            <h3>Equipment On Site:</h3>
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            <strong><?php echo $eq['inventoryType']; ?></strong>
-                        </td>
-                        <td>
-                            <?php echo $eq['numItems']; ?>
-                        </td>
+                        <th>Equipment</th>
+                        <th>Quantity</th>
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="clearfix"></div>
-    <div class="widgetfooter">
-        <div class="btn-group pull-right">
-            <button class="btn-default" ng-click="reset()">
-                <?php echo $this->getString('RESET') ?>
-            </button>
-            <button class="primary" ng-click="finish()">
-                <?php echo $this->getString('SAVE') ?>
-            </button>
+                </thead>
+                <tr ng-repeat="eq in equipment">
+                    <td>
+                        <strong>{{eq.inventoryType}}</strong>
+                    </td>
+                    <td>
+                        {{eq.numItems}}
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="clearfix"></div>
     </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="widgetfooter">
+    <div class="btn-group pull-right">
+        <button class="btn-default" ng-click="reset()">
+            <?php echo $this->getString('RESET') ?>
+        </button>
+        <button class="primary" ng-click="finish()">
+            <?php echo $this->getString('SAVE') ?>
+        </button>
+    </div>
+    <div class="clearfix"></div>
+</div>
 </div>

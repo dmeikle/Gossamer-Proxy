@@ -61,11 +61,12 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
         $scope.filesUploaded++;
-        
-        if($scope.documentQueue === $scope.filesUploaded) {
-            $scope.documentUploading = false;            
-        }
         $scope.documentUploaded = true;
+        if($scope.documentQueue === $scope.filesUploaded) {
+            $scope.documentUploading = false;
+            $scope.documentQueue = 0;
+            $scope.filesUploaded = 0;
+        }
         if (response.data && response.data.documentCount) {
             $scope.documentCount = response.data.documentCount;
             $scope.$digest();
