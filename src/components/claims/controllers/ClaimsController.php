@@ -56,7 +56,9 @@ class ClaimsController extends AbstractController {
     }
 
     public function editByJobNumber($jobNumber) {
-        $result = $this->model->get(array('jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));
+        $locale = $this->getDefaultLocale();
+
+        $result = $this->model->get(array('locale' => $locale['locale'], 'jobNumber' => preg_replace('/[^A-z0-9\-]/', '', $jobNumber)));
         $companyTypes = $this->httpRequest->getAttribute('CompanyTypes');
 
         if (!is_null($companyTypes)) {
