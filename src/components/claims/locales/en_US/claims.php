@@ -4,6 +4,7 @@ return array(
     'CLAIM_DATE' => 'Date',
     'CLAIM_TIME' => 'Time',
     'CLAIMS_ACTIONS' => 'Actions',
+    'CLAIMS_CITY' => 'City',
     'CLAIMS_ADDNEW_ADDRESS' => 'Address',
     'CLAIMS_ADDNEW_BUILDING' => 'Building',
     'CLAIMS_ADDNEW_CONFIRM' => 'Confirm',
