@@ -19,16 +19,17 @@ class ClaimDocumentSerializer extends Serializer {
 
     public function groupDocuments(array $documents) {
         $retval = array();
+        if(count($documents) === 0) {
 
-        foreach ($documents as $document) {
-            if (array_key_exists('unitNumber', $document)) {
-//                $retval[$document['unitNumber']][] = $document;
-                $retval[$document['unitNumber']][$document['type']][] = $document;
-            } else {
-                $retval[$document['type']][] = $document;
+            foreach ($documents as $document) {
+                if (array_key_exists('unitNumber', $document)) {
+    //                $retval[$document['unitNumber']][] = $document;
+                    $retval[$document['unitNumber']][$document['type']][] = $document;
+                } else {
+                    $retval[$document['type']][] = $document;
+                }
             }
         }
-
         return $retval;
     }
 
