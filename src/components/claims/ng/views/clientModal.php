@@ -24,9 +24,10 @@
                typeahead-loading="loadingFirstname" typeahead-no-results="noFirstnameResults" class="form-control"
                typeahead-min-length="3" typeahead-on-select="selectContact()"
                typeahead-template-url="customTemplate.html">
-        <div ng-show="noFirstnameResults">
-            <i class="glyphicon glyphicon-remove"></i>
+        <div class="resultspane" ng-show="noFirstnameResults">
+            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIMS_NO_RESULTS') ?>
         </div>
+
     </div>
     <div class="clearfix"></div>
 

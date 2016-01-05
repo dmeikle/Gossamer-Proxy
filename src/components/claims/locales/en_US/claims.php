@@ -330,5 +330,6 @@ return array(
     'CLAIMS_COMPLETION_DATE' => 'Completion Date',
     'CLAIMS_MORE_INFORMATION' => 'More Information',
     'CLAIMS_WORK_DATE' => 'Work Date',
-    'CLAIMS_ISSOURCE' => 'Source Unit'
+    'CLAIMS_ISSOURCE' => 'Source Unit',
+    'CLAIMS_NO_RESULTS' => 'No Results'
 );
