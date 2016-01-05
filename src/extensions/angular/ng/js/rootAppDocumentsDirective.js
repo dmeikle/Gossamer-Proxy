@@ -14,7 +14,6 @@ module.directive('documents', function(documentSrv){
         },
         controller: function($scope, $uibModal) {
             $scope.openUploadDocumentsModal = function(model, template) {
-                console.log(model);
                  var modalInstance = $uibModal.open({
                     templateUrl: template,
                     controller: 'uploadDocumentsModalCtrl',
