@@ -126,7 +126,7 @@ admin_claims_edit:
             formName: 'documentForm'
             dependencies:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
-                - { dependency: ClaimsLocation, key: claimLocations, value: id, text: unitNumber }
+                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
