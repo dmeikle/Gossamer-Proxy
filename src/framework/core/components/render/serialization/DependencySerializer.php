@@ -22,13 +22,17 @@ class DependencySerializer extends Serializer {
 
     public function formatSelectionBox($id, $value, array $options, $selectedId = null) {
 
+        if (count($options) == 0) {
+            return array();
+        }
         $retval = '';
         foreach ($options as $option) {
 
             if (!array_key_exists($id, $option)) {
-                throw new \Exception("key $id not found in result - check dependency configuration");
+                continue;
+                throw new \Exception("key '$id' not found in result - check dependency configuration");
             } elseif (!array_key_exists($value, $option)) {
-                throw new \Exception("value $value not found in result - check dependency configuration");
+                throw new \Exception("value '$value' not found in result - check dependency configuration");
             }
 
 

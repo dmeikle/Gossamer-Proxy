@@ -1,0 +1,36 @@
+@import 'bootstrap-custom';
+
+@mixin width-transition {
+    transition: width ease .25s;
+}
+
+.widget-content {
+    @include width-transition;
+}
+
+.widget-side-panel {
+    @include width-transition;
+}
+
+.splitcolumn {
+    @extend .col-xs-6;
+
+    &.left {
+        padding-left:0;
+    }
+    &.right {
+        padding-right:0;
+    }
+}
+
+.modal-xl {
+    @extend .modal-lg;
+    width: 1200px;
+
+}
+.select-col{
+    width:45px;
+}
+.expand-btn{
+    cursor:pointer;
+}

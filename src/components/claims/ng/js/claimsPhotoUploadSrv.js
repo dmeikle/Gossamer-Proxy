@@ -13,8 +13,8 @@ module.service('photoUploadSrv', function(crudSrv, $rootScope) {
                 // 'previewTemplate': '
             },
             'eventHandlers': {
-                'queuecomplete': function() {
-		            $rootScope.$broadcast('photoUploaded');
+                'success': function(file, response) {
+		            $rootScope.$broadcast('photoUploaded', response);
 		        }
             }
         };

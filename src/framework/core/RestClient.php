@@ -11,16 +11,15 @@
 
 namespace core;
 
+use libraries\utils\UnicodeHandler;
+use \libraries\utils\YAMLParser;
+use Monolog\Logger;
+
 /**
  * PHP REST Client
  * https://github.com/tcdent/php-restclient
  * (c) 2013 Travis Dent <tcdent@gmail.com>
  */
-
-use libraries\utils\UnicodeHandler;
-use \libraries\utils\YAMLParser;
-use Monolog\Logger;
-
 class RestClientException extends \Exception {
 
 }
@@ -29,13 +28,11 @@ class RestClient implements \Iterator, \ArrayAccess {
 
     public $options;
     public $handle; // cURL resource handle.
-
     // Populated after execution:
     public $response; // Response body.
-    public $headers; // Parsed reponse header object.
+    public $headers; // Parsed response header object.
     public $info; // Response info object.
     public $error; // Response error string.
-
     // Populated as-needed.
     public $decoded_response; // Decoded response body.
     private $iterator_positon;
@@ -47,7 +44,7 @@ class RestClient implements \Iterator, \ArrayAccess {
             'headers' => array(),
             'parameters' => array(),
             'curl_options' => array(),
-            'user_agent' => "PHP RestClient/0.1.1",
+            'user_agent' => "PHP RestClient/0.1.4",
             'base_url' => NULL,
             'format' => NULL,
             'format_regex' => "/(\w+)\/(\w+)(;[.+])?/",
@@ -65,10 +62,6 @@ class RestClient implements \Iterator, \ArrayAccess {
                     $default_options['decoders'], $options['decoders']);
     }
 
-    public function setLogger(Logger $logger) {
-        $this->logger = $logger;
-    }
-
     public function set_option($key, $value) {
         $this->options[$key] = $value;
     }
@@ -80,7 +73,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     }
 
     // Iterable methods:
-    public function rewind(){
+    public function rewind() {
         $this->decode_response();
         return reset($this->decoded_response);
     }
@@ -131,27 +124,16 @@ class RestClient implements \Iterator, \ArrayAccess {
     }
 
     public function post($url, $parameters = array(), $headers = array()) {
-
         return $this->execute($url, 'POST', $parameters, $headers);
     }
 
-    public function put($url, $parameters=array(), $headers=array()){
-        $parameters['_method'] = "PUT";
-        return $this->execute($url, 'POST', $parameters, $headers);
+    public function put($url, $parameters = array(), $headers = array()) {
+        return $this->execute($url, 'PUT', $parameters, $headers);
     }
 
     public function delete($url, $parameters = array(), $headers = array()) {
-        $parameters['_method'] = "DELETE";
-        return $this->execute($url, 'POST', $parameters, $headers);
+        return $this->execute($url, 'DELETE', $parameters, $headers);
     }
-
-// to curl upload an image:
-//$ch = curl_init();
-//$data = array('name' => 'Foo', 'file' => '@/path/to/image.jpeg');
-//curl_setopt($ch, CURLOPT_URL, 'http://localhost/upload.php');
-//curl_setopt($ch, CURLOPT_POST, 1);
-//curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-//curl_exec($ch);
 
     public function execute($url, $method = 'GET', $parameters = array(), $headers = array()) {
         $client = clone $this;
@@ -163,51 +145,57 @@ class RestClient implements \Iterator, \ArrayAccess {
             CURLOPT_USERAGENT => $client->options['user_agent']
         );
 
-        if ($client->options['username'] && $client->options['password']) {
+        if ($client->options['username'] && $client->options['password'])
             $curlopt[CURLOPT_USERPWD] = sprintf("%s:%s", $client->options['username'], $client->options['password']);
-        }
 
         if (count($client->options['headers']) || count($headers)) {
             $curlopt[CURLOPT_HTTPHEADER] = array();
-
             $headers = array_merge($client->options['headers'], $headers);
             foreach ($headers as $key => $value) {
                 $curlopt[CURLOPT_HTTPHEADER][] = sprintf("%s:%s", $key, $value);
             }
         }
 
-        //   if($client->options['format'])
-        //      $client->url .= '.'.$client->options['format'];
-        if (is_null($parameters)) {
-            $parameters = array();
-        }
-        $parameters = array_merge($client->options['parameters'], $parameters);
+//        if ($client->options['format'])
+//            $client->url .= '.' . $client->options['format'];
+//
+        // Allow passing parameters as a pre-encoded string (or something that
+        // allows casting to a string). Parameters passed as strings will not be
+        // merged with parameters specified in the default options.
+        if (is_array($parameters)) {
+            $parameters = array_merge($client->options['parameters'], $parameters);
+            $parameters_string = $client->format_query($parameters);
+        } else
+            $parameters_string = (string) $parameters;
 
         if (strtoupper($method) == 'POST') {
             $curlopt[CURLOPT_POST] = TRUE;
             $curlopt[CURLOPT_POSTFIELDS] = $client->format_query($parameters);
-            // echo $client->format_query($parameters);
-        } elseif (count($parameters)) {
+        } elseif (strtoupper($method) != 'GET') {
+            $curlopt[CURLOPT_CUSTOMREQUEST] = strtoupper($method);
+            $curlopt[CURLOPT_POSTFIELDS] = $client->format_query($parameters_string);
+        } elseif ($parameters_string) {
             $client->url .= strpos($client->url, '?') ? '&' : '?';
 
-            $client->url .= $this->buildGetParameters($parameters); //http_build_query($parameters);
+            $client->url .= $this->buildGetParameters($parameters);
         }
 
         if ($client->options['base_url']) {
-            if ($client->url[0] != '/' || substr($client->options['base_url'], -1) != '/')
+            if ($client->url[0] != '/' && substr($client->options['base_url'], -1) != '/')
                 $client->url = '/' . $client->url;
             $client->url = $client->options['base_url'] . $client->url;
         }
-
         $curlopt[CURLOPT_URL] = $client->url;
-        curl_setopt($client->handle, CURLOPT_ENCODING, "");
+
         if ($client->options['curl_options']) {
             // array_merge would reset our numeric keys.
             foreach ($client->options['curl_options'] as $key => $value) {
                 $curlopt[$key] = $value;
             }
         }
+
         $this->lastUrl = $client->url;
+
         curl_setopt_array($client->handle, $curlopt);
 
         $client->parse_response(curl_exec($client->handle));
@@ -217,6 +205,91 @@ class RestClient implements \Iterator, \ArrayAccess {
         curl_close($client->handle);
 
         return $client;
+    }
+
+    public function parse_response($response) {
+        $headers = array();
+        $http_ver = strtok($response, "\n");
+
+        while ($line = strtok("\n")) {
+            if (strlen(trim($line)) == 0)
+                break;
+
+            list($key, $value) = explode(':', $line, 2);
+            $key = trim(strtolower(str_replace('-', '_', $key)));
+            $value = trim($value);
+            if (empty($headers[$key]))
+                $headers[$key] = $value;
+            elseif (is_array($headers[$key]))
+                $headers[$key][] = $value;
+            else
+                $headers[$key] = array($headers[$key], $value);
+        }
+
+        $this->headers = (object) $headers;
+        $this->response = strtok("");
+    }
+
+    public function get_response_format() {
+        if (!$this->response)
+            throw new RestClientException(
+            "A response must exist before it can be decoded.");
+
+        // User-defined format.
+        if (!empty($this->options['format']))
+            return $this->options['format'];
+
+        // Extract format from response content-type header.
+        if (!empty($this->headers->content_type))
+            if (preg_match($this->options['format_regex'], $this->headers->content_type, $matches))
+                return $matches[2];
+
+        throw new RestClientException(
+        "Response format could not be determined.");
+    }
+
+    public function decode_response() {
+
+        //fix for odd bug where header info gets cast into response data
+        if (strpos($this->response, '{') != 0) {
+            $tmp = explode('{', $this->response, 2);
+            $this->response = '{' . $tmp[1];
+        }
+
+        if (empty($this->decoded_response)) {
+            $format = $this->get_response_format();
+            if (!array_key_exists($format, $this->options['decoders']))
+                throw new RestClientException("'${format}' is not a supported " .
+                "format, register a decoder to handle this response.");
+
+            $this->decoded_response = call_user_func(
+                    $this->options['decoders'][$format], $this->response);
+        }
+
+        $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
+
+        $this->decoded_response = $uh->decode($this->decoded_response);
+
+        //$this->decoded_response = $uh->decode($this->decoded_response);
+        unset($uh);
+        $result = json_decode(json_encode($this->decoded_response), true);
+
+
+        return $result;
+    }
+
+    // additions
+    // to curl upload an image:
+//$ch = curl_init();
+//$data = array('name' => 'Foo', 'file' => '@/path/to/image.jpeg');
+//curl_setopt($ch, CURLOPT_URL, 'http://localhost/upload.php');
+//curl_setopt($ch, CURLOPT_POST, 1);
+//curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+//curl_exec($ch);
+
+
+    public function setLogger(Logger $logger) {
+        $this->logger = $logger;
     }
 
     private function buildGetParameters($parameters) {
@@ -258,47 +331,6 @@ class RestClient implements \Iterator, \ArrayAccess {
         return rtrim($query, $secondary);
     }
 
-    public function parse_response($response) {
-        $headers = array();
-        $http_ver = strtok($response, "\n");
-
-        while ($line = strtok("\n")) {
-            if (strlen(trim($line)) == 0)
-                break;
-
-            list($key, $value) = explode(':', $line, 2);
-            $key = trim(strtolower(str_replace('-', '_', $key)));
-            $value = trim($value);
-
-            if (empty($headers[$key]))
-                $headers[$key] = $value;
-            elseif (is_array($headers[$key]))
-                $headers[$key][] = $value;
-            else
-                $headers[$key] = array($headers[$key], $value);
-        }
-
-        $this->headers = (object) $headers;
-        $this->response = strtok("");
-    }
-
-    public function get_response_format() {
-        if (!$this->response)
-            throw new RestClientException("last URL: " . $this->lastUrl . "\r\nA response must exist before it can be decoded.");
-
-        // User-defined format.
-        if (!empty($this->options['format']))
-            return $this->options['format'];
-
-        // Extract format from response content-type header.
-        if (!empty($this->headers->content_type))
-            if (preg_match($this->options['format_regex'], $this->headers->content_type, $matches))
-                return $matches[2];
-
-        throw new RestClientException(
-        "Response format could not be determined.");
-    }
-
     private function loadEncodingConfiguration() {
 
         $loader = new YAMLParser($this->logger);
@@ -310,32 +342,6 @@ class RestClient implements \Iterator, \ArrayAccess {
         unset($loader);
 
         return $config;
-    }
-
-    public function decode_response() {
-
-        if (empty($this->decoded_response)) {
-            $format = $this->get_response_format();
-
-            if (!array_key_exists($format, $this->options['decoders']))
-                throw new RestClientException("'${format}' is not a supported " .
-                "format, register a decoder to handle this response.");
-
-            $this->decoded_response = call_user_func(
-                    $this->options['decoders'][$format], $this->response);
-        }
-//pr($this->response);
-
-        $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
-
-        $this->decoded_response = $uh->decode($this->decoded_response);
-
-        //$this->decoded_response = $uh->decode($this->decoded_response);
-        unset($uh);
-        $result = json_decode(json_encode($this->decoded_response), true);
-
-
-        return $result;
     }
 
     private function text2bin($parameters) {
@@ -434,4 +440,5 @@ class RestClient implements \Iterator, \ArrayAccess {
         }
         return($ascii);
     }
+
 }

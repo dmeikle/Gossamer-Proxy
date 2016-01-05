@@ -48,9 +48,9 @@ class ClaimsController extends AbstractController {
     public function getInitialJobsheet($claimId, $claimsLocationId) {
 
         $result = $this->model->getInitialJobsheet($claimId, $claimsLocationId);
-        $user = $this->getLoggedInUser();
 
-        $result['username'] = $user->getCredentials();
+//        $user = $this->getLoggedInUser();
+//        $result['username'] = $user->getCredentials();
 
         $this->render($result);
     }
@@ -150,6 +150,21 @@ class ClaimsController extends AbstractController {
         $result = $this->model->savePM($claimId);
 
         $this->render($result);
+    }
+
+    public function autocompleteWithLocations() {
+
+        $params = $this->httpRequest->getQueryParameters();
+        $results = $this->model->autocomplete($params);
+
+        $retval = array();
+        foreach ($results['Claims'] as $row) {
+            $key = is_null($row['jobNumber']) || strlen($row['jobNumber']) == 0 ? $row['unassignedJobNunber'] : $row['jobNumber'];
+            unset($row['jobNumber']);
+            unset($row['unassignedJobNumber']);
+            $retval[$key][] = $row;
+        }
+        $this->render($retval);
     }
 
 }

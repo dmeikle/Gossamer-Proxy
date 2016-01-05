@@ -57,11 +57,12 @@ return array(
     'USERNAME' => 'Username',
     'PASSWORD' => 'Password',
     'CANCEL' => 'Cancel',
-    'CONFIRM' => 'Okay',
+    'CONFIRM' => 'Confirm',
     'SAVE' => 'Save',
     'STATUS' => 'Status',
     'DATE' => 'Date',
     'CLOSE' => 'Close',
+    'REMOVE' => 'Remove',
     'ITEMS_PER_PAGE' => 'Items Per Page',
     'ADMIN_CONTRACTORS_LIST_ALL' => 'List All Contractors',
     'ADMIN_CONTRACTORS_CREATE_NEW' => 'Create New Contractor',
@@ -69,4 +70,6 @@ return array(
     'ADMIN_CONTACTS_CREATE_NEW' => 'Create New Contact',
     'DELETE' => 'Delete',
     'REMOVE' => 'Remove',
+    'SELECTED' => 'Selected',
+    'TRANSFER' => 'Transfer'
 );

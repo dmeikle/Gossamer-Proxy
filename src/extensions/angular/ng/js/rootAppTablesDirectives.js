@@ -164,15 +164,16 @@ module.directive('multiSelect', function($compile) {
         controller: function($scope, $rootScope, tablesSrv) {
             var pageScope = $scope.$parent.$parent.$parent;
             pageScope.multiSelectArray = [];
-
-            $scope.$on('lastRepeat', function() {
-                var table = $scope.table;
-                // Add column to header
-                var theadTr = table.children[0].children[0];
-                var emptyTh = document.createElement('th');
-                emptyTh.setAttribute('class', 'cog-col');
-                theadTr.insertBefore(emptyTh, theadTr.firstElementChild);
-            });
+            
+            //Was causing a th with class 'cog-col' to be inserted every time a call was made
+//            $scope.$on('lastRepeat', function() {
+//                var table = $scope.table;
+//                // Add column to header
+//                var theadTr = table.children[0].children[0];
+//                var emptyTh = document.createElement('th');
+//                emptyTh.setAttribute('class', 'cog-col');
+//                theadTr.insertBefore(emptyTh, theadTr.firstElementChild);
+//            });
 
             $scope.toggleMulti = function(object) {
                 if (pageScope.multiSelectArray.indexOf(object) === -1) {
@@ -183,9 +184,18 @@ module.directive('multiSelect', function($compile) {
                 if (pageScope.multiSelectArray.length) {
                     pageScope.multiSelect = true;
                     pageScope.sidePanelOpen = true;
+                    pageScope.previouslyClickedObject = null;
                 } else {
                     pageScope.multiSelect = false;
-                    pageScope.sidePanelOpen = false;
+                    if(pageScope.isSearching !== true){
+                        if(!pageScope.previouslyClickedObject){
+                            pageScope.sidePanelOpen = false;
+                        }
+                        
+//                    } else {
+                    }
+                    //Was closing the sidepanel when we need it open to view our advanced search
+//                    pageScope.sidePanelOpen = false;
                 }
             };
         }

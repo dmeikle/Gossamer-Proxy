@@ -14,7 +14,7 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
             'eventHandlers': {
                 'addedfile': function(file) {
                     $scope.hasError = {};
-                    if (!$scope.upload || !$scope.upload.type) {
+                    if (!$scope.upload || !$scope.upload.DocumentTypes_id) {
                         this.removeFile(file);
                         $scope.hasError.type = true;
                         var error = {};
@@ -35,21 +35,29 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
                     for (var property in $scope.upload) {
                         formData.append(property, $scope.upload[property]);
                     }
+                },
+                'success': function(file, response) {
+                    $rootScope.$broadcast('documentUploaded', response);
                 }
             }
         };
 
 
     $rootScope.$on('documentCountUpdated', function(event, response) {
-    	if (response.data.documentCount) {
+    	if (response.data && response.data.documentCount) {
 	        $scope.documentCount = response.data.documentCount;
-		}
+		} else {
+            $scope.documentCount = response.documentCount;
+        }
     });
 
     // TODO: FIXME! don't use ClaimsDocumentsCount
     $rootScope.$on('documentUploaded', function(event, response) {
-        documentSrv.getFileCount(documentSrv.id);
-        $scope.documentCount = response.documentCount.ClaimDocumentsCount[0].rowCount;
+        if (response.data && response.data.documentCount) {
+            $scope.documentCount = response.data.documentCount;
+        } else {
+            $scope.documentCount = response.documentCount;
+        }
     });
 
     $scope.clearErrors = function() {

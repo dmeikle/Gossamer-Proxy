@@ -97,7 +97,7 @@
         </tr>
     </table>
 
-    <pagination total-items="totalItems" ng-model="currentPage" max-size="itemsPerPage"
+    <pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
                 class="pagination" boundary-links="true" rotate="false">
     </pagination>
 

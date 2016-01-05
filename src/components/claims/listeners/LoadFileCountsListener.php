@@ -21,7 +21,7 @@ use components\claims\models\ClaimModel;
 class LoadFileCountsListener extends \core\eventlisteners\AbstractListener {
 
     public function on_request_start($params) {
-
+        $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
         $path = __UPLOADED_FILES_PATH . 'claims' . DIRECTORY_SEPARATOR . $this->getClaimId() . DIRECTORY_SEPARATOR;
         $locations = $this->getClaimLocations();
         $this->httpResponse->setAttribute('folderList', $locations);

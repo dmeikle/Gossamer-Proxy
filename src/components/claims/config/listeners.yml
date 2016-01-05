@@ -130,3 +130,8 @@ admin_claims_list_claimlocation_photocounts:
         - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
 
 
+admin_claims_edit:   
+    listeners:
+        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
+
+

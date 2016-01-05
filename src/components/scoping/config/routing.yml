@@ -80,36 +80,76 @@ admin_scoperequests_list:
         datasource: datasource1
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'
-                        
-admin_scoping_takeoffs_list:
-    pattern: admin/scoping/takeoffs/*/*
 
+# TAKEOFFS
+admin_scoping_takeoffs_home:
+    pattern: admin/scoping/takeoffs
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController
         model: components\scoping\models\ScopeMaterialTakeoffModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: admin_scoping_takeoffs_list
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_scoping_takeoffs_home
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
+            - 'src/components/defaultItem/locales/*/Navigation'
+    method: [GET]
+
+admin_scoping_takeoffs_save:
+    pattern: admin/scoping/takeoffs/save/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_scoping_takeoffs_save
+        datasource: datasource1
+        langFiles: 
+    method: [POST]  
+
+admin_scoping_takeoffs_edit_sheet:
+    pattern: admin/scoping/takeoffs/*/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: editByLocation
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_scoping_takeoffs_edit_sheet
+        datasource: datasource1
+        langFiles: 
+            - 'src/components/scoping/locales/*/Scoping'
+            - 'app/locales/*/website'
+    method: [GET]
 
 admin_scoping_takeoffs_edit:
     pattern: admin/scoping/takeoffs/*
-
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ScopeMaterialTakeoffsController
         model: components\scoping\models\ScopeMaterialTakeoffModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_scoping_takeoffs_edit
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'  
-  
-       
+            - 'src/components/defaultItem/locales/*/Navigation'
+    method: [GET]
+    
+admin_scoping_takeoffs_get:
+    pattern: admin/scoping/takeoffs/get/*/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopeMaterialTakeoffsController
+        model: components\scoping\models\ScopeMaterialTakeoffModel
+        method: getByLocation
+        view: core\views\JSONView
+        viewKey: admin_scoping_takeoffs_get
+        datasource: datasource1
+    method: [GET] 
+    
 admin_scoping_edit:
     pattern: admin/scoping/*
     defaults:

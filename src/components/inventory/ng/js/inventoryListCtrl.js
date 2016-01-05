@@ -151,7 +151,7 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
 
 
     $scope.search = function(searchObject) {
-        $scope.vendorSearch = (searchObject.Vendors_id !== undefined);
+        //$scope.vendorSearch = (searchObject.Vendors_id !== undefined);
         $scope.currentSearchParams = searchObject;
 
         $scope.noResults = undefined;
@@ -208,6 +208,9 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
         });
 
         modalInstance.result.then(function() {
+            $scope.multiSelect = false;
+            $scope.sidePanelOpen = false;
+            $scope.previouslyClickedObject = undefined;
             $scope.getList();
         });
     };
@@ -234,18 +237,26 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
             $scope.getList();
         }
     });
+    
+    //Claims Typeahead
+    $scope.fetchClaimsAutocomplete = function (viewVal) {
+        var searchObject = {};
+        searchObject.jobNumber = viewVal;
+        return inventoryListSrv.fetchClaimsAutocomplete(searchObject);
+    };
 
 });
 
 module.controller('transferModalController', function($scope, $uibModalInstance,
     inventoryTransferSrv, multiSelectArray, wizardSrv) {
     $scope.transfer = {};
-    $scope.loading = true;
+    $scope.loading = false;
     $scope.equipmentList = multiSelectArray;
-    $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
-        .then(function() {
-            $scope.loading = false;
-        });
+    var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+//    $scope.warehouseLocation = inventoryTransferSrv.getLocation($scope.equipmentList[0])
+//        .then(function() {
+//            $scope.loading = false;
+//        });
 
     $scope.$watch('wizardSrv.wizardLoading', function() {
         $scope.wizardLoading = wizardSrv.wizardLoading;
@@ -256,19 +267,26 @@ module.controller('transferModalController', function($scope, $uibModalInstance,
     };
 
     $scope.autocompleteJobNumber = function(value) {
-        return autocomplete(value, 'jobNumber', '/admin/claims/').then(function() {
-            return inventoryTransferSrv.autocompleteResult.Claims;
-        });
+        return autocomplete(value, 'jobNumber', '/admin/claims/autocompletelocations');
     };
 
     $scope.autocompleteWarehouseLocation = function(value) {
-        return autocomplete(value, 'WarehouseLocation_id', '/admin/inventory/warehouse').then(function() {
-            return inventoryTransferSrv.autocompleteResult.Claims;
-        });
+        return autocomplete(value, 'warehouseLocation', '/admin/inventory/warehouse/');
+    };
+    
+    $scope.getClaimLocations = function(claim){
+        $scope.transfer.Claims_id = claim[0].Claims_id;
+        $scope.claimLocations = claim;
+    };
+    
+    $scope.clearTransfer = function(){
+        $scope.transfer = {};
+        if($scope.claimLocations){
+            $scope.claimLocations = null;
+        }
     };
 
-    $scope.submit = function() {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+    $scope.submit = function() {        
         for (var property in $scope.transfer) {
             if ($scope.transfer.hasOwnProperty(property) &&
                 !$scope.transfer[property]) {

@@ -158,9 +158,9 @@ module.controller('suppliesCtrl', function ($scope, costCardItemTypeSrv, account
     //Modal
     $scope.openModal = function (item) {
         $scope.modalLoading = true;
-        var template = accountingTemplateSrv.suppliesModal;
+        var template = accountingTemplateSrv.suppliesModal();
         var modal = $uibModal.open({
-            templateUrl: template,
+            template: template,
             controller: 'suppliesModalCtrl',
             size: 'lg',
             resolve: {

@@ -53,7 +53,9 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
                     return object;
                 },
                 claim: function() {
-                    return $scope.selectedClaim;
+                    var object = {};
+                    object.id = document.getElementById('Claim_id').value;
+                    return object;
                 }
             }
         });

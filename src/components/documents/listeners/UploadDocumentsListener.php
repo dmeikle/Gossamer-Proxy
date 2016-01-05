@@ -27,7 +27,7 @@ class UploadDocumentsListener extends AbstractListener {
         $locationId = intval($requestParams[0]);
         $modelName = $this->listenerConfig['class'];
         $model = new $modelName($this->httpRequest, $this->httpResponse, $this->logger);
-
+        $post = $this->httpRequest->getPost();
         if (!$model instanceof \core\UploadableInterface) {
             throw new \Exception($modelName . ' must implement UploadableInterface');
         }
@@ -40,12 +40,15 @@ class UploadDocumentsListener extends AbstractListener {
         foreach ($_FILES['file']['name'] as $index => $file) {
             if (move_uploaded_file($_FILES['file']['tmp_name'][$index], $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index])) {
                 $filenames[] = $filepath . DIRECTORY_SEPARATOR . $_FILES['file']['name'][$index];
-                $params[] = array('Claims_id' => $locationId, 'filename' => $_FILES['file']['name'][$index], 'Staff_id' => $this->getLoggedInStaffId());
+                $params[] = array('Claims_id' => $locationId, 'filename' => $_FILES['file']['name'][$index], 'Staff_id' => $this->getLoggedInStaffId(), 'ClaimsLocations_id' => intval($post['ClaimsLocations_id']));
             }
         }
-
+        unset($post);
         $count = $model->saveParamsOnComplete($params);
 
+        if (array_key_exists('ClaimDocumentsCount', $count)) {
+            $count = $count['ClaimDocumentsCount'][0]['rowCount'];
+        }
         $this->httpRequest->setAttribute('uploadedFiles', $filenames);
         $this->httpResponse->setAttribute('documentCount', $count);
     }
