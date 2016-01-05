@@ -10,18 +10,10 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.contacts = [];
 
     $scope.hasError = {};
-    $scope.documentUploadModal = document.getElementById('documentUploadModal').outerHTML;
-    console.log($scope.documentUploadModal);
-    
+    $scope.documentUploadModal = document.getElementById('documentUploadModal').outerHTML;    
     
     getProjectAddress();
     getClaimDetails();
-    
-//    $scope.uploadDocumentModalLoaded = function(){
-////        console.log('done loading the modal!');
-//        $scope.modalInclude = document.getElementById('modalInclude');
-//        console.log($scope.modalInclude);
-//    };
 
     // datepicker stuffs
     $scope.dateOptions = {'starting-day': 1};

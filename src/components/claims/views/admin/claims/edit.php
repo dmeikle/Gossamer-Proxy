@@ -107,6 +107,7 @@
                                 <span class="spinner-loader"></span>
                             </td>
                             <td></td>
+                            <td></td>
                         </tr>
                         <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
                             ng-class="{'selected': location === previouslyClickedObject,
@@ -161,18 +162,6 @@
                                 </button>
                             </div>
                             <section class="document-list">
-                                <!--                                <div ng-repeat="(unitKey, docTypes) in documents">
-                                                                    <h4>{{unitKey}}</h4>
-                                                                    <div ng-repeat="(typeKey, documents) in docTypes">
-                                                                        <p class="title">{{typeKey}}</p>
-                                                                        <div class="document" ng-repeat="document in documents">
-                                                                            <i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i>
-                                                                            <span class="secondary-text">{{document.filename}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="divider"></div>
-                                                                </div>-->
-
                                 <table class="table table-striped table-hover">
                                     <tr class="table-header">
                                         <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
@@ -182,7 +171,8 @@
                                     </tr>
                                     <tbody ng-repeat-start="(unitKey, docTypes) in documents">
                                         <tr>
-                                            <th colspan="4" class="bg-info">{{unitKey}}</th>
+                                            <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
+                                            <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
                                         </tr>
                                         <tr ng-repeat-start="(typeKey, documents) in docTypes">
                                             <th colspan="4">{{typeKey}}</th>
@@ -193,14 +183,8 @@
                                             <td>{{document.uploadDate| date:'yyyy-MM-dd'}}</td>
                                             <td><i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i></td>
                                         </tr>
-
                                     </tbody>
-
                                     <tbody ng-repeat-end></tbody>
-                                    <!--                                    <div ng-repeat-end></div>
-                                                                        <div ng-repeat-end></div>-->
-
-                                    <!--<tr ng-repeat-end></tr>-->
                                 </table>
                             </section>
                         </documents>
@@ -210,74 +194,70 @@
         </div>
     </div>
 
-    <!-- <div id="modalInclude" ng-include="'/render/claims/uploadDocumentModal?Claims_id=49'" onLoad="uploadDocumentModalLoaded()" ></div>
-   <script type="text/ng-template" id="documentUploadModal" ng-include="'/render/claims/uploadDocumentModal?Claims_id=49'">
-    </script>-->
-
     <script type="text/ng-template" id="documentUploadModal">
         <div class="modal-header">
-    <h1>
-        <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?>
-        <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
-        <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
-    </h1>
-    </div>
-    <div class="modal-body">
-
-        <form name="documentUploadForm">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label for="DocumentType_documentType">
-                        <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
-                    </label>
-                    <?php echo $documentForm['DocumentTypes_id']; ?>
-                </div>
-                <div class="form-group">
-                    <label for="DocumentType_ClaimLocations_id">
-                        <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
-                    </label>
-                    <?php echo $documentForm['ClaimsLocations_id']; ?>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <label>
-                    <?php echo $this->getString('CLAIMS_UPLOAD_TO') ?>
-                    <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
-                    <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
-                </label>
-
-                <div ng-if="!upload.DocumentTypes_id">
-                    <p class="text-center text-muted">
-                        <?php echo $this->getString('CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE') ?>
-                    </p>
-                </div>
-                <div ng-if="upload.DocumentTypes_id">
-                    <div dropzone="dropzoneConfig" class="dropzone">
-                        <p class="text-center">
-                            <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
-                            <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
-                            <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
-                        </p>
-                        <p class="text-center text-muted">
-                            <small>
-                                <span ng-if="documentCount && !documentUploading">{{documentCount}} <?php echo $this->getString('CLAIMS_DOCUMENTS') ?></span>
-                                <span ng-if="documentUploading">
-                                    <span class="spinner-loader align-middle padding-right"></span> <?php echo $this->getString('CLAIMS_UPLOADING') ?>
-                                </span>
-
-                            </small>
-                        </p>
+            <h1>
+                <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?>
+                <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
+                <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
+            </h1>
+        </div>
+        <div class="modal-body">
+            <form name="documentUploadForm">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="DocumentType_documentType">
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
+                        </label>
+                        <?php echo $documentForm['DocumentTypes_id']; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="DocumentType_ClaimLocations_id">
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
+                        </label>
+                        <?php echo $documentForm['ClaimsLocations_id']; ?>
                     </div>
                 </div>
-            </div>
-        </form>
-        <div class="clearfix"></div>
-    </div><div class="modal-footer">
-        <div class="pull-right">
-            <button class="primary" ng-click="close()">
-                <?php echo $this->getString('CLOSE') ?>
-            </button>
+                <div class="col-xs-6">
+                    <label>
+                        <?php echo $this->getString('CLAIMS_UPLOAD_TO') ?>
+                        <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
+                        <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
+                    </label>
+
+                    <div ng-if="!upload.DocumentTypes_id">
+                        <p class="text-center text-muted">
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE') ?>
+                        </p>
+                    </div>
+                    <div ng-if="upload.DocumentTypes_id">
+                        <div dropzone="dropzoneConfig" class="dropzone">
+                            <p class="text-center">
+                                <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
+                                <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
+                                <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
+                            </p>
+                            <p class="text-center text-muted">
+                                <small>
+                                    <span ng-if="documentCount && !documentUploading">{{documentCount}} <?php echo $this->getString('CLAIMS_DOCUMENTS') ?></span>
+                                    <span ng-if="documentUploading">
+                                        <span class="spinner-loader align-middle padding-right"></span> <?php echo $this->getString('CLAIMS_UPLOADING') ?>
+                                    </span>
+
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="clearfix"></div>
         </div>
-    </div>
+        <div class="modal-footer">
+        <div class="pull-right">
+                <button class="primary" ng-click="close()">
+                    <?php echo $this->getString('CLOSE') ?>
+                </button>
+            </div>
+        </div>
     </script>
 </div>

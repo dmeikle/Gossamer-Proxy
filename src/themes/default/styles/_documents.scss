@@ -26,6 +26,7 @@
     vertical-align: middle;        
     display: inline-block;
     /*float:right;*/
+    content: url('/images/web-icons/file.svg');
     &.pdf {
         content: url("/images/web-icons/file-pdf.svg");
     }
@@ -34,6 +35,9 @@
     }
     &.xls, &.xlsx {        
         content: url('/images/web-icons/file-excel.svg');
+    }
+    &.jpg, &.gif, &.png, &.tif, &.tiff, &.jpeg {
+        content: url('/images/web-icons/file-image.svg');
     }
 }
 

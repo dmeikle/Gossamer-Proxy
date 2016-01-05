@@ -65,6 +65,7 @@ return array(
     'CLAIMS_DISAPPROVE_ALL' => 'Disapprove All',
     'CLAIMS_DISAPPROVE_SELECTED' => 'Disapprove Selected',
     'CLAIMS_DOCUMENTS' => 'Documents',
+    'CLAIMS_CLAIM_DOCUMENTS' => 'Claim Documents',
     'CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE' => 'Please select a document type to continue',
     'CLAIMS_DOCUMENTS_SELECT_TYPE' => 'Select Type',
     'CLAIMS_DOCUMENTS_SELECT_UNIT' => 'Select Location',

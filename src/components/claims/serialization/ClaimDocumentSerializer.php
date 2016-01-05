@@ -19,8 +19,8 @@ class ClaimDocumentSerializer extends Serializer {
 
     public function groupDocuments(array $documents) {
         $retval = array();
-        if(count($documents) === 0) {
 
+        if(count($documents) !== 0) {
             foreach ($documents as $document) {
                 if (array_key_exists('unitNumber', $document)) {
     //                $retval[$document['unitNumber']][] = $document;
