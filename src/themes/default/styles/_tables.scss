@@ -4,3 +4,7 @@
 .center-row-inputs>td input{
     text-align: center;
 }
+
+.table-striped>tbody>tr:nth-of-type(odd).bg-warning{
+    background-color: #fcf8e3;
+}
