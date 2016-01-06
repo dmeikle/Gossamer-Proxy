@@ -5,6 +5,11 @@
     text-align: center;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd).bg-warning{
-    background-color: #fcf8e3;
+.table-striped>tbody>tr {
+    &.bg-warning {
+        background-color: #fcf8e3;
+        &:hover {
+            background-color: #F5EFCF;
+        }
+    }
 }
