@@ -158,6 +158,9 @@ admin_claims_secondarysheets_edit:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_secondarysheets_edit
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
                
 admin_claims_newcount:
     pattern: admin/claims/newcount/*

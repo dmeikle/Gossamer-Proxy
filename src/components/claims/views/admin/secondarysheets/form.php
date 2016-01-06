@@ -1,3 +1,4 @@
+
 <?php pr(array_keys($SerializedAffectedAreaActions)); ?>
 <div ng-controller="costCardEditCtrl">
     <div class="widget" >
@@ -126,9 +127,9 @@
 
 
             </uib-tabset>
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                               ?></button>-->
-<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                               ?></button>-->
-<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                               ?></button></a>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndClose()"><?php //echo $this->getString('CLAIMS_SAVE_AND_CLOSE');                                                                                                 ?></button>-->
+<!--<button class="btn-primary save-purchase-order" ng-click="saveAndNew()"><?php // echo $this->getString('ACCOUNTING_SAVE_AND_NEW');                                                                                                 ?></button>-->
+<!--<a href="../"><button class="btn-default save-purchase-order"><?php // echo $this->getString('ACCOUNTING_CANCEL');                                                                                                 ?></button></a>-->
         </div>
         <div class="clearfix"></div>
     </div>

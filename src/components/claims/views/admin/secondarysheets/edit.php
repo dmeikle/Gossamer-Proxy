@@ -18,22 +18,28 @@
         <td><?php echo $this->getString('CLAIMS_CITY'); ?></td>
         <td> </td>
     </tr>
-
-    <tr>
-        <td colspan="4">EXTRACTION</td>
-    </tr>
-    <tr>
-        <td colspan="4">Carpet Lino Tile Hardwood Other Leech Wan SqFt</td>
-    </tr>
 </table>
-<?php
-$category = '';
-foreach ($Actions as $category => $questionList) {
-    echo "<h3>$category</h3>";
-    foreach ($questionList as $question) {
-        echo '<input name="action[' . $question['id'] . '" type="checkbox" id="qwe" value="1" ' . (('1' == $question['isActive']) ? 'checked="checked"' : '') . '/> ' .
-        $question['action'] . '&nbsp;&nbsp;';
+<form class="form-inline">
+    <?php
+    $category = '';
+    foreach ($Actions as $category => $group) {
+        echo '<h3>' . $this->getString('CLAIMS_' . $category) . '</h3>';
+        foreach ($group as $questionList) {
+            $columnCount = count($questionList);
+            $columnSize = intval(12 / $columnCount);
+            foreach ($questionList as $question) {
+                if ($question['questionType'] == 'check') {
+                    echo '<div class="form-group col-md-' . $columnSize . '"><label>' . current($question['html']) .
+                    $question['action'] . ' ' . '</label></div>';
+                } else {
+                    echo '<div class="form-group col-md-' . $columnSize . '"><label class="col-md-12">' .
+                    $question['action'] . ' ' . current($question['html']) . ' ' . $question['description'] . '</label></div>';
+                }
+            }
+            echo '<div class="clearfix"></div>';
+        }
+        echo '<div class="clearfix"></div>';
     }
-}
-?>
-<?php pr($this->data); ?>
+    ?>
+    <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="saveSecondarySheet(secondarySheet)" />
+</form>

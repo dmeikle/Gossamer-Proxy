@@ -12,6 +12,7 @@
 namespace components\claims\controllers;
 
 use core\AbstractController;
+use Gossamer\CMS\Forms\FormBuilder;
 
 /**
  * Description of SecondarySheetsController
@@ -59,9 +60,23 @@ class SecondarySheetsController extends AbstractController {
         );
 
         $result = $this->model->listallWithParams(0, 1, $params, 'get');
+        $form = $this->drawForm($this->model, $result);
+
         $serializer = new \components\claims\serialization\SecondarySheetSerializer();
 
-        $this->render(array('Actions' => $serializer->serializeQuestions($result)));
+        $this->render(array('Actions' => $serializer->serializeQuestions($form)));
+    }
+
+    protected function drawForm(\Gossamer\CMS\Forms\FormBuilderInterface $model, array $values = null) {
+        $builder = new FormBuilder($this->logger, $model);
+        $sheetBuilder = new \components\claims\form\SecondaryJobSheetBuilder();
+        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
+
+        $options = array();
+        //needed because builder will re-instantiate on each item (custom)
+        $sheetBuilder->setModel($model);
+
+        return $sheetBuilder->buildForm($builder, $values, $options, $results);
     }
 
 }

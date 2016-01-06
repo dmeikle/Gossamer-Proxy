@@ -333,5 +333,13 @@ return array(
     'CLAIMS_COMPLETION_DATE' => 'Completion Date',
     'CLAIMS_MORE_INFORMATION' => 'More Information',
     'CLAIMS_WORK_DATE' => 'Work Date',
-    'CLAIMS_ISSOURCE' => 'Source Unit'
+    'CLAIMS_ISSOURCE' => 'Source Unit',
+    'CLAIMS_EXTRACTION' => 'Extraction',
+    'CLAIMS_SUBTRADES' => 'Subtrades',
+    'CLAIMS_MISCELLANEOUS' => 'Miscellaneous',
+    'CLAIMS_FLOORING' => 'Flooring',
+    'CLAIMS_BASEBOARDS' => 'Baseboards',
+    'CLAIMS_DRYWALL' => 'Drywall',
+    'CLAIMS_INSULATION' => 'Insulation',
+    'CLAIMS_SAMPLES' => 'Samples'
 );

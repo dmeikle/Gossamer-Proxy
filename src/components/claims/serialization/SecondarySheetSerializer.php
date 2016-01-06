@@ -26,45 +26,10 @@ class SecondarySheetSerializer extends Serializer {
             return array();
         }
         $retval = array();
-        $section = array();
-        $row = array();
 
-        $categoryId = '';
-        $category = '';
-        $groupId = '';
         foreach ($results['Actions'] as $action) {
-//
-//            if ($groupId != $action['groupId'] && $categoryId == $action['SecondarySheetCategories_id']) {
-//
-//                $section[$groupId] = $row;
-//                $row = array();
-//                $groupId = $action['groupId'];
-//            }
-//
-            if ($categoryId != $action['SecondarySheetCategories_id']) {
-
-                $section[$groupId] = $row;
-                $row = array();
-                $groupId = $action['groupId'];
-
-                // $retval[$category] = $section;
-                $retval[$action['keyName']] = $section;
-                $section = array();
-                $category = $action['category'];
-                $categoryId = $action['SecondarySheetCategories_id'];
-            }
-            unset($action['category']);
-            unset($action['groupId']);
-            unset($action['SecondarySheetCategories_id']);
-
-            $row[] = $action;
-//        }
+            $retval[$action['keyName']][$action['groupId']][] = $action;
         }
-        //add the last iteration
-        $retval['category'] = $section;
-
-        //lost the first empty element
-        array_shift($retval);
 
         return $retval;
     }
