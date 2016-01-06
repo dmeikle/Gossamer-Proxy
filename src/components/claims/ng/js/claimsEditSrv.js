@@ -3,7 +3,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
     var apiPath = '/admin/claims/';
     var singleApiPath = '/admin/claim/';
     var projectApiPath = '/admin/projects/';
-    var claimLocationsApiPath = '/admin/claimlocations/';
+    var claimLocationsApiPath = '/admin/claims/locations/';
     var removeApiPath = '/admin/claims/remove/';
 
     var self = this;

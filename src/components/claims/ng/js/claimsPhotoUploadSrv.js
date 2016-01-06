@@ -6,7 +6,7 @@ module.service('photoUploadSrv', function(crudSrv, $rootScope) {
 		this.claimId = claimId;
         return {
             'options': {
-                'url': '/admin/claimlocations/photos/upload/' + 
+                'url': '/admin/claims/locations/photos/upload/' + 
                     claimId + '/' + claimLocationId,
                 'uploadMultiple': true,
                 'dictDefaultMessage': '',

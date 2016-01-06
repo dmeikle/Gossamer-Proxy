@@ -1,6 +1,6 @@
 module.service('claimsLocationsEditSrv', function(crudSrv) {
 	var objectType = 'ClaimLocation';
-	var apiPath = '/admin/claimlocations/claim/';
+	var apiPath = '/admin/claims/locations/claim/';
 
 	this.save = function(object) {
 		for (var property in object) {
@@ -31,6 +31,6 @@ module.service('claimsLocationsEditSrv', function(crudSrv) {
         }
 
 		var formToken = object.FORM_SECURITY_TOKEN;
-		return crudSrv.save('/admin/claimlocations/remove/' + object.id, object, objectType, formToken);
+		return crudSrv.save('/admin/claims/locations/remove/' + object.id, object, objectType, formToken);
 	};
 });

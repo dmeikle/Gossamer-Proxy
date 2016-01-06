@@ -3,7 +3,7 @@ module.service('secondarySheetsListSrv', function(crudSrv, searchSrv, $http) {
     var apiPath = '/admin/claims/secondary-sheets/';
     var singleApiPath = '/admin/claim/';
     var projectApiPath = '/admin/projects/';
-    var claimLocationsApiPath = '/admin/claimlocations/';
+    var claimLocationsApiPath = '/admin/claims/locations/';
 
     var self = this;
 

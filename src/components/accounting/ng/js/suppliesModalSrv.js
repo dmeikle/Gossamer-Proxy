@@ -6,7 +6,7 @@ module.service('suppliesModalSrv', function ($http, searchSrv, $filter) {
     var materialsPath = '/admin/inventory/materials';
     var inventoryAutocompletePath = '/admin/inventory/items/autocomplete';
 //    var claimsLocationsPath = '/admin/claims/locations/';
-    var claimsLocationsPath = '/admin/claimlocations/claim/';
+    var claimsLocationsPath = '/admin/claims/locations/claim/';
     var suppliesUsedPath = '/admin/accounting/suppliesused/';
 
     var self = this;
