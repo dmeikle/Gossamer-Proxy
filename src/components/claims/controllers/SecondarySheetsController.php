@@ -21,6 +21,17 @@ use Gossamer\CMS\Forms\FormBuilder;
  */
 class SecondarySheetsController extends AbstractController {
 
+    public function listAllResponsesBySheetId($claimId, $locationId, $sheetId) {
+        $offset = 0;
+        $limit = 100; //there happens to be exactly 100 possible questions
+
+        $params = array('Claims_id' => intval($claimId), 'ClaimsLocations_id' => intval($locationId), 'AffectedAreas_id' => intval($sheetId));
+
+        $result = $this->model->listAllWithParams($offset, $limit, $params, 'listCurrentResponses');
+
+        $this->render($result);
+    }
+
     public function listAllByLocation($claimId, $claimLocationId) {
         $offset = 0;
         $limit = 100;
@@ -64,7 +75,7 @@ class SecondarySheetsController extends AbstractController {
 
         $serializer = new \components\claims\serialization\SecondarySheetSerializer();
 
-        $this->render(array('Actions' => $serializer->serializeQuestions($form)));
+        $this->render(array('Actions' => $serializer->serializeQuestions($form), 'Claims_id' => intval($claimId), 'ClaimsLocations_id' => intval($locationId), 'AffectedAreas_id' => intval($areaId), 'SecondarySheets_id' => intval($sheetId)));
     }
 
     protected function drawForm(\Gossamer\CMS\Forms\FormBuilderInterface $model, array $values = null) {

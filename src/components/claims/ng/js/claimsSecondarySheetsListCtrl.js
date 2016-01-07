@@ -1,5 +1,5 @@
 
-module.controller('secondarySheetsListCtrl', function($scope, $uibModal, secondarySheetsListSrv, tablesSrv) {
+module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsSecondarySheetsSrv, tablesSrv) {
 
     
     $scope.currentPage = 1;
@@ -34,10 +34,11 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
             $scope.selectedSheet = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            secondarySheetsListSrv.getSheetActions(clickedObject)
-                .then(function() {
-                    $scope.selectedSheet.actionsList = secondarySheetsListSrv.sheetActionsList;
+            claimsSecondarySheetsSrv.getSheetActions(clickedObject)
+                .then(function(response) {
+                    $scope.selectedSheet.actionsList = response.sheetActionsList;
                     $scope.sidePanelLoading = false;
+                    $scope.hasActions = response.sheetActionsListCount > 0;
                 });
         }
     };
@@ -97,9 +98,9 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         var claimId = document.getElementById('Claims_id').value;
         var claimLocationsId = document.getElementById('ClaimsLocations_id').value;
         
-        secondarySheetsListSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
-            $scope.sheetsList = secondarySheetsListSrv.sheetsList;
-            $scope.totalItems = secondarySheetsListSrv.sheetsCount;
+        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
+            $scope.sheetsList = response.sheetsList;
+            $scope.totalItems = response.sheetsCount;
             $scope.loading = false;
         });
     }
@@ -111,9 +112,9 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            secondarySheetsListSrv.search(copiedObject).then(function() {
-                $scope.secondarySheetsList = secondarySheetsListSrv.searchResults;
-                $scope.totalItems = secondarySheetsListSrv.searchResultsCount;
+            claimsSecondarySheetsSrv.search(copiedObject).then(function() {
+                $scope.secondarySheetsList = claimsSecondarySheetsSrv.searchResults;
+                $scope.totalItems = claimsSecondarySheetsSrv.searchResultsCount;
                 $scope.loading = false;
             });
         }

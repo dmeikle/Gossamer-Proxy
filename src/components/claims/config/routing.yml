@@ -162,6 +162,18 @@ admin_claims_secondarysheets_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
                
+admin_claims_secondarysheets_list_responses:
+    pattern: admin/claims/secondary-sheets/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: listAllResponsesBySheetId
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_list_responses
+        datasource: datasource1
+            
+            
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:

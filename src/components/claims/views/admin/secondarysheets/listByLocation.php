@@ -62,7 +62,7 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in sheetsList"
-                    ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                    ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.status == 'inactive'}">
                     <td ng-click="selectRow(item)">{{item.workDate}}</td>
                     <td ng-click="selectRow(item)">{{item.unitNumber}}</td>
                     <td ng-click="selectRow(item)">{{item.name}}</td>
@@ -120,7 +120,7 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedSheet.id}}">{{selectedSheet.workDate}}</a></h1>
+            <h1><a gcms="{uri='admin_claims_secondarysheets_edit' params='{{selectedSheet.Claims_id}}/{{selectedSheet.ClaimsLocations_id}}/{{selectedSheet.AffectedAreas_id}}/{{selectedSheet.id}}'}">{{selectedSheet.workDate}}</a></h1>
 
 
             <div class="card">
@@ -129,6 +129,9 @@
                     <div ng-class="getClass(action)" style="padding: 2px 5px; margin-top: 1px">
                         {{action.action}}
                     </div>
+                </div>
+                <div ng-if="!hasActions">
+                    <?php echo $this->getString("CLAIMS_SECONDARY_SHEETS_NO_ACTIONS"); ?>
                 </div>
             </div>
         </div>
