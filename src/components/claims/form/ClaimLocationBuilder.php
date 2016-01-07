@@ -41,7 +41,8 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
                 ->add('ClaimsLocations_id', 'hidden', array('value' => intval($this->getValue('ClaimsLocations_id', $values)), 'ng-model' => 'location.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'location.Claims_id'))
-                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));
+                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'))
+                ->add('specialInstructions', 'textarea', array('ng-model' => 'vm.location.specialInstructions', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));

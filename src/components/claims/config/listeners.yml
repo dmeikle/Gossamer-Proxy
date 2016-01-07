@@ -115,3 +115,19 @@ admin_claims_edit:
     listeners:
         - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
 
+admin_claims_location_view:
+    listeners:
+#        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
+        # build the form for Claim Location
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'form'
+#            dependencies:
+#                - { dependency: Provinces, key: provinces, value: id, text: province }
+#                - { dependency: Params, model: ClaimLocation }

@@ -29,7 +29,7 @@
                 vm.location = JSON.parse(document.getElementById('ClaimsLocation').value);
                 vm.affectedAreas = JSON.parse(document.getElementById('AffectedAreas').value);
                 vm.projectAddress = JSON.parse(document.getElementById('ProjectAddress').value);
-//                $log.log(vm.location);
+                vm.phase = JSON.parse(document.getElementById('Phase').value);
             });
             
             

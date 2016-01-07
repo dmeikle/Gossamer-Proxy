@@ -330,5 +330,8 @@ return array(
     'CLAIMS_WORK_DATE' => 'Work Date',
     'CLAIMS_ISSOURCE' => 'Source Unit',
     'CLAIMS_EDIT_LOCATION' => 'Edit Location',
-    'CLAIMS_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details'
+    'CLAIMS_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details',
+    'CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT' => 'Special Instructions',
+    'CLAIMS_CURRENT_KEY_HOLDER' => 'Current Key Holder',
+    'CLAIMS_EQUIPMENT_ON_SITE' => 'Equipment on Site'
 );
