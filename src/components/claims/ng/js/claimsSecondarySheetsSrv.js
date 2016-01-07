@@ -145,7 +145,8 @@
         function getResponses(clickedObject) {
             return $http.get(apiPath + clickedObject.Claims_id + '/' + clickedObject.ClaimsLocations_id + '/'+ clickedObject.SecondarySheets_id)
                 .then(function(response) {
-                    response.secondarySheetResponses = response.data.Actions;
+                    response.secondarySheetResponses = response.data.AffectedAreaActions;
+                    response.secondarySheetResponsesCount = response.data.AffectedAreaActionsCount[0].rowCount;
 
                     return response;
                 });

@@ -25,7 +25,7 @@ class SecondarySheetsController extends AbstractController {
         $offset = 0;
         $limit = 100; //there happens to be exactly 100 possible questions
 
-        $params = array('Claims_id' => intval($claimId), 'ClaimsLocations_id' => intval($locationId), 'AffectedAreas_id' => intval($sheetId));
+        $params = array('Claims_id' => intval($claimId), 'ClaimsLocations_id' => intval($locationId), 'AffectedAreasSecondarySheets_id' => intval($sheetId));
 
         $result = $this->model->listAllWithParams($offset, $limit, $params, 'listCurrentResponses');
 
