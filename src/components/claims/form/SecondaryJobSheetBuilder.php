@@ -50,9 +50,9 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
         foreach ($values['Actions'] as $item) {
             $builder = new FormBuilder(null, $this->model);
             if ($item['questionType'] == 'text' || $item['questionType'] == 'textarea') {
-                $builder->add($item['id'], $item['questionType'], array('ng-model' => 'secondarySheet.item[' . $item['id'] . ']', 'class' => 'form-control'));
+                $builder->add($item['id'], $item['questionType'], array('ng-model' => 'ctrl.secondarySheet.item[' . $item['id'] . '].value', 'class' => 'form-control'));
             } elseif ($item['questionType'] == 'check') {
-                $builder->add($item['id'], $item['questionType'], array('ng-checked' => 'secondarySheet.item[' . $item['id'] . '].isDone', 'ng-true-value' => '1', 'ng-model' => 'secondarySheet.item[' . $item['id'] . ']', 'class' => 'form-control'));
+                $builder->add($item['id'], $item['questionType'], array('ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] .'\'].isDone', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\']', 'class' => 'form-control'));
             }
             $item['html'] = $builder->getForm();
             $retval['Actions'][] = $item;

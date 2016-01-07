@@ -18,15 +18,13 @@
         var self = this;
         self.secondarySheet = {};
         self.secondarySheet.item = [];
+        self.test = {};
+        
         
         $scope.$on('secondary_sheet_loaded', function(event, args) {
-           for(var index in args.secondarySheet) {
-               var userResponse = args.secondarySheet[index];
-               console.log(userResponse);
-               self.secondarySheet.item[3].isDone = userResponse.isDone;
-               self.secondarySheet.item[3].id = userResponse.id;
-              // secondarySheet.item[userResponse.AffectedAreaActions_id].
-           }
+            for(var i in args.secondarySheet) {
+                self.secondarySheet.item[args.secondarySheet[i].AffectedAreaActions_id] = args.secondarySheet[i];
+            }
         });
         
         activate();
