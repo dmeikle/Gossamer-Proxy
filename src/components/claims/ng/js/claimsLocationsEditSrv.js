@@ -17,20 +17,20 @@ module.service('claimsLocationsEditSrv', function(crudSrv) {
         } else {
             requestPath = apiPath + object.id;
         }
-		var formToken = object.FORM_SECURITY_TOKEN;
-		return crudSrv.save(requestPath, object, objectType, formToken);
+            var formToken = object.FORM_SECURITY_TOKEN;
+            return crudSrv.save(requestPath, object, objectType, formToken);
 	};
 
 	this.delete = function(object) {
-		for (var property in object) {
-            if (object.hasOwnProperty(property) && 
-                property.substr(property.length - 3) == '_id' && 
-                !object[property]) {
-                delete object[property];
+            for (var property in object) {
+                if (object.hasOwnProperty(property) && 
+                    property.substr(property.length - 3) == '_id' && 
+                    !object[property]) {
+                    delete object[property];
+                }
             }
-        }
 
-		var formToken = object.FORM_SECURITY_TOKEN;
-		return crudSrv.save('/admin/claims/locations/remove/' + object.id, object, objectType, formToken);
+            var formToken = object.FORM_SECURITY_TOKEN;
+            return crudSrv.save('/admin/claims/locations/remove/' + object.id, object, objectType, formToken);
 	};
 });

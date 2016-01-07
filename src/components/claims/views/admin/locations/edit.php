@@ -1,8 +1,3 @@
-<?php // pr($this->data); ?>
-<?php // pr($ClaimsLocation[0]); ?>
-<!--<div class="widget" ng-controller="claimsLocationsCtrl as claimLocation">-->
-    <!--<div class="widgetheader">-->
-
 <div ng-controller="claimsLocationsCtrl as vm">
     <input type="hidden" value='<?php echo json_encode($ClaimsLocations[0]); ?>' id="ClaimsLocation" ng-if="vm.loaded === true" />
     <input type="hidden" value='<?php echo json_encode($AffectedAreas); ?>' id="AffectedAreas" ng-if="vm.loaded === true" />
@@ -80,19 +75,66 @@
     </div>
 
     <div class="col-md-4">
-        <div class="widget">
+        <div class="card">
+            <div class="cardheader">
+                <h1>
+                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
+                </h1>
+            </div>
+            <div ng-if="claimLoading">
+                <div class="spinner-loader"></div>
+            </div>
+            <div ng-if="!claimLoading && claim.phase.title">
+                <div class="cardleft">
+                    <h1>{{claim.phase.title}}</h1>
+                    <span class="big" ng-class="{'text-danger':timeRemaining.past}">
+                        <span ng-if="timeRemaining.past">- </span>{{timeRemaining.days}} d, {{timeRemaining.hours}} h
+                    </span>
+                </div>
+                <div class="cardright">
+                    <table class="table cardtable">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_STARTDATE') ?>
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{startDate| date: mediumDate : '+0000'}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <?php echo $this->getString('CLAIMS_ESTIMATE') ?>
+                                    </strong>
+                                </td>
+                                <td>
+                                    {{endDate| date : mediumDate : '+0000'}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div ng-if="!claimLoading && !claim.phase.title">
+                <p class="text-center text-muted">
+                    <?php echo $this->getString('CLAIMS_NOPHASE') ?>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="card">
             <p>This is a widget!</p>
         </div>
 
-        <div class="widget">
+        <div class="card">
             <p>This is a widget!</p>
         </div>
 
-        <div class="widget">
-            <p>This is a widget!</p>
-        </div>
-
-        <div class="widget">
+        <div class="card">
             <p>This is a widget!</p>
         </div>
     </div>

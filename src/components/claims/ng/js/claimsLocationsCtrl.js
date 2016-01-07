@@ -5,8 +5,13 @@
         .module('claimsAdmin')
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
-    function claimsLocationsCtrl($log, $timeout, $scope) {
+    function claimsLocationsCtrl($log, $timeout, $scope, $rootScope) {
         var vm = this;        
+        
+        // listen for the event in the relevant $scope
+//        $scope.$on('event_thingy', function (event) {
+//            console.log('event happened'); // 'Data to send'
+//        });        
         
         activate();
 
@@ -14,6 +19,7 @@
             vm.loaded = true;
             getLocationDetails();
         }
+        
         
         function getLocationDetails() {
             
