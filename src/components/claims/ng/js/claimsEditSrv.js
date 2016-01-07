@@ -21,7 +21,7 @@ module.service('claimsEditSrv', function(crudSrv, searchSrv) {
             requestPath = singleApiPath + page + '/0';
         }
         var copiedObject = angular.copy(object);
-        if (object.callInDate) {
+        if (object.callInDate && object.callInDate.length > 10) {
             copiedObject.callInDate = object.callInDate.toISOString().substring(0, 10);
         }
         return crudSrv.save(requestPath, copiedObject, objectType, formToken);
