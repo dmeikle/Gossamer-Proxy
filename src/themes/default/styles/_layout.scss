@@ -214,3 +214,19 @@ ul {
 
     padding:1rem;
 }
+
+.no-padding, div.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.no-padding-left, div.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right, div.no-padding-right {
+    padding-right: 0;
+}
+address {
+    margin-bottom:0;
+}

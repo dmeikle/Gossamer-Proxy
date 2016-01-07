@@ -802,7 +802,7 @@ admin_claims_location_view:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
         model: components\claims\models\ClaimLocationModel
-        method: viewLocation
+        method: listLocationAreasById
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claimlocation_view
         datasource: datasource1
