@@ -75,7 +75,8 @@
     </div>
 
     <div class="col-md-4">
-        <div class="card">
+        <!--Phase VS Estimated Completion Date-->
+        <div class="card" ng-controller="claimsContactsList">
             <div class="cardheader">
                 <h1>
                     <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
@@ -143,4 +144,3 @@
 <form></form>
 <div class="clearfix"></div>
 <?php pr($this->data); ?>
-<?php // pr($ClaimsLocations[0]); ?>
