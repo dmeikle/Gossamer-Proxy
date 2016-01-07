@@ -330,5 +330,6 @@ return array(
     'CLAIMS_MORE_INFORMATION' => 'More Information',
     'CLAIMS_WORK_DATE' => 'Work Date',
     'CLAIMS_ISSOURCE' => 'Source Unit',
-    'CLAIMS_EDIT_LOCATION' => 'Edit Location'
+    'CLAIMS_EDIT_LOCATION' => 'Edit Location',
+    'CLAIMS_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details'
 );
