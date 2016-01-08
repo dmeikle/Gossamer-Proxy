@@ -333,5 +333,11 @@ return array(
     'CLAIMS_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details',
     'CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT' => 'Special Instructions',
     'CLAIMS_CURRENT_KEY_HOLDER' => 'Current Key Holder',
-    'CLAIMS_EQUIPMENT_ON_SITE' => 'Equipment on Site'
+    'CLAIMS_EQUIPMENT_ON_SITE' => 'Equipment on Site',
+    'CLAIMS_ROOM_TYPE' => 'Room Type',
+    'CLAIMS_WIDTH' => 'Width',
+    'CLAIMS_HEIGHT' => 'Height',
+    'CLAIMS_LENGTH' => 'Length',
+    'CLAIMS_AFFECTED_AREAS' => 'Affected Areas',
+    'CLAIMS_VIP_TYPE' => 'VIP Type'
 );

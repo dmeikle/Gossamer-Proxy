@@ -1,8 +1,11 @@
 <div ng-controller="claimsLocationsCtrl as vm">
-    <input type="hidden" value='<?php echo json_encode($ClaimsLocations[0]); ?>' id="ClaimsLocation" ng-if="vm.loaded === true" />
-    <input type="hidden" value='<?php echo json_encode($AffectedAreas); ?>' id="AffectedAreas" ng-if="vm.loaded === true" />
-    <input type="hidden" value='<?php echo json_encode($ProjectAddress[0]); ?>' id="ProjectAddress" ng-if="vm.loaded === true" />
-    <input type="hidden" value='<?php echo json_encode($ClaimPhase[0]); ?>' id="Phase" ng-if="vm.loaded === true" />
+    <input type="hidden" value='<?php echo json_encode($ClaimsLocations[0]); ?>' id="ClaimsLocation" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($AffectedAreas); ?>' id="AffectedAreas" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($ProjectAddress[0]); ?>' id="ProjectAddress" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($ClaimPhase[0]); ?>' id="Phase" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
+    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id); ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
+
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?> - {{vm.location.jobNumber}}</h1>
@@ -38,23 +41,37 @@
         <div class="col-md-6 no-padding">
             <div class="card">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                    <h1><?php echo $this->getString('CLAIMS_CUSTOMER_CONTACT_DETAILS'); ?></h1>
                 </div>
+                <div ng-repeat="customer in vm.claimsCustomers">
+                    <div ng-if="customer.isPrimary === '1'"><strong><?php echo $this->getString('CLAIMS_PRIMARY_CONTACT'); ?></strong></div>
+                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
+                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
+                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                    <div class="divider"></div>
+                </div>
+
             <!--<div class="widget">-->
                 <!--<p>{{vm.affectedAreas}}</p>-->
             </div>
         </div>
 
         <div class="col-md-12 no-padding">
-            <div class="widget">
+            <div class="card">
+                <div class="cardheader">
+                    <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
+                </div>
                 <table class="table table-striped table-hover">
                     <thead>
 
                         <tr>
-                            <th>Room Type</th>
-                            <th>Width</th>
-                            <th>Height</th>
-                            <th>Length</th>
+                            <th><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_WIDTH'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
                         </tr>
                     </thead>
                     <tr ng-repeat="area in vm.affectedAreas">
@@ -84,19 +101,15 @@
                     ...
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_DOCUMENTS') ?>">
-                    <div ng-if="claimLoading">
-                        <div class="text-center"><span class="spinner-loader"></span></div>
-                    </div>
-                    <div ng-if="!claimLoading">
-<!--                        <documents module="claims" model='{{claim}}' model-type="Claim">
-                            <div class="pull-right">
-                                <button class="primary" ng-click="openUploadDocumentsModal(claim)">
-                                    <?php // echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
-                                </button>
-                            </div>
+                    ...
+                    <documents module="claims" model="{{vm.claim}}" model-type="Claim" ng-if="vm.claim.id" >
+                        <div class="pull-right">
+                            <button class="primary" ng-click="openUploadDocumentsModal(vm.claim)">
+                                <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
+                            </button>
+                        </div>
 
-                        </documents>-->
-                    </div>
+                    </documents>
                 </uib-tab>
             </uib-tabset>
         </div>
@@ -107,13 +120,11 @@
         <div class="card">
             <div class="cardheader">
                 <h1>
-                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
+                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>dsadada
                 </h1>
             </div>
-<!--            <div ng-if="ctrl.claimLoading">
-                <div class="spinner-loader"></div>
-            </div>-->
             <div class="cardleft">
+
                 <h1>{{vm.phase.title}}</h1>
 
                 <span class="big" ng-class="{'text-danger' : vm.phase.numDays > 0}">

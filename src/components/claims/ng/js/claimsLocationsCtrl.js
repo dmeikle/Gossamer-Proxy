@@ -7,7 +7,7 @@
 
     function claimsLocationsCtrl($log, $timeout, $scope, $rootScope) {
         var vm = this;        
-        
+        vm.claim = {};
         // listen for the event in the relevant $scope
 //        $scope.$on('event_thingy', function (event) {
 //            console.log('event happened'); // 'Data to send'
@@ -16,7 +16,7 @@
         activate();
 
         function activate() {
-            vm.loaded = true;
+            vm.loaded = false;
             getLocationDetails();
         }
         
@@ -30,6 +30,10 @@
                 vm.affectedAreas = JSON.parse(document.getElementById('AffectedAreas').value);
                 vm.projectAddress = JSON.parse(document.getElementById('ProjectAddress').value);
                 vm.phase = JSON.parse(document.getElementById('Phase').value);
+                vm.claimsCustomers = JSON.parse(document.getElementById('ClaimsCustomers').value);
+                vm.claim.id = vm.location.Claims_id;
+                vm.loaded = true;
+//                $log.log(vm.claimsCustomers);
             });
             
             
