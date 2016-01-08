@@ -8,6 +8,7 @@
     function claimsLocationsCtrl($log, $timeout, $scope, $rootScope) {
         var vm = this;        
         vm.claim = {};
+        vm.documentsConfig = {};
         // listen for the event in the relevant $scope
 //        $scope.$on('event_thingy', function (event) {
 //            console.log('event happened'); // 'Data to send'
@@ -33,6 +34,9 @@
                 vm.claimsCustomers = JSON.parse(document.getElementById('ClaimsCustomers').value);
                 vm.claim.id = vm.location.Claims_id;
                 vm.loaded = true;
+                
+                vm.documentsConfig.Claims_id = vm.claim.id;
+                vm.documentsConfig.ClaimsLocations_id = vm.location.id;
 //                $log.log(vm.claimsCustomers);
             });
             

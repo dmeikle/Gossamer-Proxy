@@ -1,13 +1,19 @@
 module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibModalInstance, 
-    model, documentSrv, toastsSrv, $log) {
+    model, config, documentSrv, toastsSrv, $log) {
 	$scope.model = model;
+        $scope.config = config;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
         $scope.hasError = {};
         $scope.documentUploading = false;
         $scope.documentUploaded = false;
         $scope.documentQueue = 0;
         $scope.filesUploaded = 0;
-    
+        $scope.upload = {};
+        
+        if($scope.config.ClaimsLocations_id) {
+            $scope.upload.ClaimsLocations_id = $scope.config.ClaimsLocations_id;
+        }
+        
     $scope.dropzoneConfig = {
         'options': {
             'url': '/admin/documents/upload/' + $scope.model.id,

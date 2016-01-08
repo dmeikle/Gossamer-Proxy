@@ -13,7 +13,7 @@ module.directive('documents', function(documentSrv){
             });
         },
         controller: function($scope, $uibModal) {
-            $scope.openUploadDocumentsModal = function(model, template) {
+            $scope.openUploadDocumentsModal = function(model, config, template) {
                  var modalInstance = $uibModal.open({
                     templateUrl: template,
                     controller: 'uploadDocumentsModalCtrl',
@@ -21,6 +21,9 @@ module.directive('documents', function(documentSrv){
                     resolve: {
                         model: function() {
                             return model;
+                        },
+                        config: function() {
+                            return config;
                         }
                     }
                 });

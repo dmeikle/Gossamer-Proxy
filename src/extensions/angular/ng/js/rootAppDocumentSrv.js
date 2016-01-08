@@ -10,9 +10,9 @@ module.service('documentSrv', function(crudSrv, $http, $rootScope) {
     this.getFileCount = function(id) {
         this.id = id;
         return crudSrv.getDetails(apiPath + 'count/', id).then(function(response) {
-        $rootScope.$broadcast('documentCountUpdated', response);
-        return response;
-    });
+            $rootScope.$broadcast('documentCountUpdated', response);
+            return response;
+        });
     };
 
     this.templateLoaded = function() {

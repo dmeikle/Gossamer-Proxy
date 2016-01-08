@@ -8,7 +8,7 @@
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
-    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?> - {{vm.location.jobNumber}}</h1>
+    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?> - {{vm.location.jobNumber}} - {{vm.location.unitNumber}}</h1>
     <div class="pull-right">
         <button class="primary h3button" ng-click="">
             <?php echo $this->getString('SAVE') ?>
@@ -101,14 +101,38 @@
                     ...
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_DOCUMENTS') ?>">
-                    ...
-                    <documents module="claims" model="{{vm.claim}}" model-type="Claim" ng-if="vm.claim.id" >
+                    <documents module="claims" model="{{vm.claim}}" config="{{vm.documentsConfig}}" model-type="Claim" ng-if="vm.claim.id" class="padding-vertical">
                         <div class="pull-right">
-                            <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, 'documentUploadModal')">
+                            <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, vm.documentsConfig, 'documentUploadModal')">
                                 <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                             </button>
                         </div>
-
+                        <section class="document-list">
+                                <table class="table table-striped table-hover">
+                                    <tr class="table-header">
+                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
+                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_CREATED_BY') ?></th>
+                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
+                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
+                                    </tr>
+                                    <tbody ng-repeat-start="(unitKey, docTypes) in documents" ng-if="unitKey === vm.location.unitNumber">
+                                        <tr>
+                                            <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
+                                            <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
+                                        </tr>
+                                        <tr ng-repeat-start="(typeKey, documents) in docTypes">
+                                            <th colspan="4">{{typeKey}}</th>
+                                        </tr>
+                                        <tr ng-repeat-end ng-repeat="document in documents">
+                                            <td>{{document.filename}}</td>
+                                            <td>{{document.firstname}} {{document.lastname}}</td>
+                                            <td>{{document.uploadDate| date:'yyyy-MM-dd'}}</td>
+                                            <td><i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody ng-repeat-end></tbody>
+                                </table>
+                            </section>
                     </documents>
                 </uib-tab>
             </uib-tabset>
@@ -204,12 +228,6 @@
                         </label>
                         <?php echo $documentForm['DocumentTypes_id']; ?>
                     </div>
-//                    <div class="form-group">
-//                        <!--<label for="DocumentType_ClaimLocations_id">-->
-                            <?php // echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
-//                        </label>
-                        <?php // echo $documentForm['ClaimsLocations_id']; ?>
-//                    </div>
                 </div>
                 <div class="col-xs-6">
                     <label>
@@ -257,4 +275,3 @@
 
 <form></form>
 <div class="clearfix"></div>
-<?php // pr($this->data); ?>
