@@ -161,7 +161,9 @@ admin_claims_secondarysheets_edit:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
-               
+    methods: [GET]
+    
+#this is for displaying the input form to select what needs to be done               
 admin_claims_secondarysheets_list_responses:
     pattern: admin/claims/secondary-sheets/*/*/*
     defaults:
@@ -171,8 +173,20 @@ admin_claims_secondarysheets_list_responses:
         method: listAllResponsesBySheetId
         view: core\views\JSONView
         viewKey: admin_claims_secondarysheets_list_responses
+        datasource: datasource1  
+    methods: [GET] 
+        
+admin_claims_secondarysheets_save_responses:
+    pattern: admin/claims/secondary-sheets/*/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: saveAllResponsesBySheetId
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_save_responses
         datasource: datasource1
-            
+    methods: [POST]       
             
 admin_claims_newcount:
     pattern: admin/claims/newcount/*

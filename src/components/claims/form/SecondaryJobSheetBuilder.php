@@ -52,7 +52,7 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
             if ($item['questionType'] == 'text' || $item['questionType'] == 'textarea') {
                 $builder->add($item['id'], $item['questionType'], array('ng-model' => 'ctrl.secondarySheet.item[' . $item['id'] . '].value', 'class' => 'form-control'));
             } elseif ($item['questionType'] == 'check') {
-                $builder->add($item['id'], $item['questionType'], array('ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] .'\'].isDone', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\']', 'class' => 'form-control'));
+                $builder->add($item['id'], $item['questionType'], array('ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].check', 'class' => 'form-control'));
             }
             $item['html'] = $builder->getForm();
             $retval['Actions'][] = $item;

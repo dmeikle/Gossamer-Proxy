@@ -32,6 +32,12 @@ class SecondarySheetsController extends AbstractController {
         $this->render($result);
     }
 
+    public function saveAllResponsesBySheetId($claimId, $locationId, $affectedAreasId, $sheetId) {
+        $result = $this->model->saveAllResponsesBySheetId($claimId, $locationId, $affectedAreasId, $sheetId);
+
+        $this->render($result);
+    }
+
     public function listAllByLocation($claimId, $claimLocationId) {
         $offset = 0;
         $limit = 100;

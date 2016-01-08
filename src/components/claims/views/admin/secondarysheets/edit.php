@@ -20,11 +20,12 @@
     </tr>
 </table>
 <form class="form-inline">
-    <input type="hidden" id="Claims_id" name="SecondarySheet[Claims_id]" value="<?php echo $Claims_id; ?>" />
-    <input type="hidden" id="ClaimsLocations_id" name="SecondarySheet[ClaimsLocations_id]" value="<?php echo $ClaimsLocations_id; ?>" />
-    <input type="hidden" id="AffectedAreas_id" name="SecondarySheet[AffectedAreas_id]" value="<?php echo $AffectedAreas_id; ?>" />
-    <input type="hidden" id="SecondarySheets_id" name="SecondarySheet[SecondarySheets_id]" value="<?php echo $SecondarySheets_id; ?>" />
+
     <div ng-controller="claimsSecondarySheetEditCtrl as ctrl">
+        <input type="hidden" ng-model="secondarySheet.Claims_id" id="Claims_id" name="SecondarySheet[Claims_id]" value="<?php echo $Claims_id; ?>" />
+        <input type="hidden" ng-model="secondarySheet.ClaimsLocations_id" id="ClaimsLocations_id" name="SecondarySheet[ClaimsLocations_id]" value="<?php echo $ClaimsLocations_id; ?>" />
+        <input type="hidden" ng-model="secondarySheet.AffectedAreas_id" id="AffectedAreas_id" name="SecondarySheet[AffectedAreas_id]" value="<?php echo $AffectedAreas_id; ?>" />
+        <input type="hidden" ng-model="secondarySheet.SecondarySheets_id" id="SecondarySheets_id" name="SecondarySheet[SecondarySheets_id]" value="<?php echo $SecondarySheets_id; ?>" />
         <?php
         $category = '';
         foreach ($Actions as $category => $group) {
@@ -46,7 +47,8 @@
             echo '<div class="clearfix"></div>';
         }
         ?>
-        <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="saveSecondarySheet(secondarySheet)" />
+        {{ctrl.secondarySheet}}
+        <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="ctrl.saveSecondarySheet(ctrl.secondarySheet)" />
     </div>
 </form>
 

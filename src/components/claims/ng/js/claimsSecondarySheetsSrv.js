@@ -59,7 +59,7 @@
             });
 	}
 
-        function save(object) {
+        function save(object, formToken) {
             for (var property in object) {
                 if (object.hasOwnProperty(property) && 
                     property.substr(property.length - 3) == '_id' && !object[property]) {
@@ -67,14 +67,8 @@
                 }
             }
             delete object.$hashKey;
-            var requestPath;
-            if (!object.id || object.id === '') {
-                requestPath = apiPath + '0';
-            } else {
-                requestPath = apiPath + object.id;
-            }
-            var formToken = object.FORM_SECURITY_TOKEN;
-
+            var requestPath = apiPath + object.Claims_id + '/' + object.ClaimsLocations_id + '/'+ object.AffectedAreas_id + '/' + object.SecondarySheets_id;
+            
             return crudSrv.save(requestPath, object, objectType, formToken);
         }
 
