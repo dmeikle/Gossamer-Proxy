@@ -113,7 +113,32 @@ admin_claims_list_claimlocation_photocounts:
 
 admin_claims_edit:   
     listeners:
-        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
+        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: Claim}
+        - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\documents\form\DocumentBuilder'
+            model: 'components\documents\models\DocumentTypeModel'
+            cacheKey: 'DocumentUploadForm'
+            formName: 'documentForm'
+            dependencies:
+                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimBuilder'
+            model: 'components\claims\models\ClaimModel'
+            cacheKey: 'ClaimForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Claim, model: Claim}
+                
+#        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
 
 admin_claims_location_view:
     listeners:

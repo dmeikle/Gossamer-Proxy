@@ -10,7 +10,8 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
     $scope.contacts = [];
 
     $scope.hasError = {};
-
+    $scope.documentUploadModal = document.getElementById('documentUploadModal').outerHTML;    
+    
     getProjectAddress();
     getClaimDetails();
 
