@@ -155,14 +155,14 @@ admin_claims_location_view:
             model: 'components\claims\models\ClaimLocationModel'
             cacheKey: 'ClaimLocationForm'
             formName: 'form'
-#        -
-#            event: 'request_end'
-#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-#            datasource: 'datasource1'
-#            formBuilder: 'components\documents\form\DocumentBuilder'
-#            model: 'components\documents\models\DocumentTypeModel'
-#            cacheKey: 'DocumentUploadForm'
-#            formName: 'documentForm'
-#            dependencies:
-#                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\documents\form\DocumentBuilder'
+            model: 'components\documents\models\DocumentTypeModel'
+            cacheKey: 'DocumentUploadForm'
+            formName: 'documentForm'
+            dependencies:
+                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
 #                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }

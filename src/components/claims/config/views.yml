@@ -318,7 +318,7 @@ admin_claims_location_view:
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
         - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
-#        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
 
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js

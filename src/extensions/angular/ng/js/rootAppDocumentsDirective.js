@@ -7,8 +7,8 @@ module.directive('documents', function(documentSrv){
             scope.model = JSON.parse(attrs.model);
             scope.module = attrs.module;
             scope.modelType = attrs.modelType;
-
-            documentSrv.getDocuments(scope.model.id).then(function(response) {
+            scope.config = attrs.config;
+            documentSrv.getDocuments(scope.config).then(function(response) {
                 scope.documents = response.data.Documents;
             });
         },
@@ -26,8 +26,11 @@ module.directive('documents', function(documentSrv){
                 });
                 modalInstance.result.then(function (result) {
                     //Refresh the document list if the result (documentUploaded) is true
+//                    var config = {};
+                    
+                    
                     if(result === true) {
-                        documentSrv.getDocuments($scope.model.id).then(function(response) {
+                        documentSrv.getDocuments($scope.config).then(function(response) {
                             $scope.documents = response.data.Documents;
                         });                        
                     }

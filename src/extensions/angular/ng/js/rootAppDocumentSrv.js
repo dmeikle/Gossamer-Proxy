@@ -2,9 +2,8 @@ module.service('documentSrv', function(crudSrv, $http, $rootScope) {
     var self = this;
     var apiPath = '/admin/documents/';
 
-    this.getDocuments = function(id) {
-        var config = {};
-        config.Claims_id = id;
+    this.getDocuments = function(config) {
+        config = JSON.parse(config);
         return crudSrv.getList(apiPath, 0, 20, config);
     };
 

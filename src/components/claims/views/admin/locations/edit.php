@@ -204,12 +204,12 @@
                         </label>
                         <?php echo $documentForm['DocumentTypes_id']; ?>
                     </div>
-                    <div class="form-group">
-                        <label for="DocumentType_ClaimLocations_id">
-                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
-                        </label>
-                        <?php echo $documentForm['ClaimsLocations_id']; ?>
-                    </div>
+//                    <div class="form-group">
+//                        <!--<label for="DocumentType_ClaimLocations_id">-->
+                            <?php // echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
+//                        </label>
+                        <?php // echo $documentForm['ClaimsLocations_id']; ?>
+//                    </div>
                 </div>
                 <div class="col-xs-6">
                     <label>

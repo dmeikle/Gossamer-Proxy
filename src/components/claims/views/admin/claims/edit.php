@@ -155,7 +155,7 @@
                         <div class="text-center"><span class="spinner-loader"></span></div>
                     </div>
                     <div ng-if="!claimLoading">
-                        <documents module="claims" model='{{claim}}' model-type="Claim" class="padding">
+                        <documents module="claims" model='{{claim}}' config="{{documentConfig}}" model-type="Claim" class="padding">
                             <div class="pull-right">
                                 <button class="primary" ng-click="openUploadDocumentsModal(claim, 'documentUploadModal')">
                                     <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>

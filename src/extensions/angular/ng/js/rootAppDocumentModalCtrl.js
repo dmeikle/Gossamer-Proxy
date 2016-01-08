@@ -2,11 +2,11 @@ module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibM
     model, documentSrv, toastsSrv, $log) {
 	$scope.model = model;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
-    $scope.hasError = {};
-    $scope.documentUploading = false;
-    $scope.documentUploaded = false;
-    $scope.documentQueue = 0;
-    $scope.filesUploaded = 0;
+        $scope.hasError = {};
+        $scope.documentUploading = false;
+        $scope.documentUploaded = false;
+        $scope.documentQueue = 0;
+        $scope.filesUploaded = 0;
     
     $scope.dropzoneConfig = {
         'options': {
