@@ -142,6 +142,8 @@ admin_claims_edit:
 
 admin_claims_location_view:
     listeners:
+        - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+#        - { 'cacheKey': 'test', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
 #        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
         # build the form for Claim Location
@@ -153,6 +155,14 @@ admin_claims_location_view:
             model: 'components\claims\models\ClaimLocationModel'
             cacheKey: 'ClaimLocationForm'
             formName: 'form'
+#        -
+#            event: 'request_end'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\documents\form\DocumentBuilder'
+#            model: 'components\documents\models\DocumentTypeModel'
+#            cacheKey: 'DocumentUploadForm'
+#            formName: 'documentForm'
 #            dependencies:
-#                - { dependency: Provinces, key: provinces, value: id, text: province }
-#                - { dependency: Params, model: ClaimLocation }
+#                - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+#                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
