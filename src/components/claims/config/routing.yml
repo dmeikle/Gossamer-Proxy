@@ -784,44 +784,6 @@ admin_claims_scheduling_list:
         datasource: datasource1
 
 
-admin_claims_location_view:
-    pattern: admin/claims/locations/*/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: listLocationAreasById
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_claimlocation_view
-        datasource: datasource1
-        langFiles:
-            - 'src/components/claims/locales/*/claims'
-            - 'app/locales/*/website'
-    methods: [GET]
-
-admin_claims_locations_setinactive:
-    pattern: admin/claims/locations/remove/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: setInactive
-        view: core\views\JSONView
-        viewKey: admin_claimlocation_setinactive
-        datasource: datasource1
-    methods: [POST]
-
-admin_claims_locations_list_by_projectaddress:
-    pattern: admin/claims/locations/*/*/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimLocationsController
-        model: components\claims\models\ClaimLocationModel
-        method: listallByProjectAddress
-        view: core\views\JSONView
-        viewKey: admin_claims_list_by_projectaddress
-        datasource: datasource1
-
 #------------------------ Claims Locations comments/notes ----------------------------
 claims_locations_notes_remove:
     pattern: admin/claims/locations/notes/remove/*
@@ -870,6 +832,44 @@ claims_locations_notes_save:
         viewKey: claims_locations_notes_save
         datasource: datasource1 
     methods: [POST]   
+
+admin_claims_location_view:
+    pattern: admin/claims/locations/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: listLocationAreasById
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claimlocation_view
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+    methods: [GET]
+
+admin_claims_locations_setinactive:
+    pattern: admin/claims/locations/remove/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_claimlocation_setinactive
+        datasource: datasource1
+    methods: [POST]
+
+admin_claims_locations_list_by_projectaddress:
+    pattern: admin/claims/locations/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: listallByProjectAddress
+        view: core\views\JSONView
+        viewKey: admin_claims_list_by_projectaddress
+        datasource: datasource1
 
 
 

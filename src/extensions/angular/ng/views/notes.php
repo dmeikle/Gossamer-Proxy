@@ -19,5 +19,5 @@
 
     <textarea name="newNote" class="form-control ng-valid ng-dirty ng-touched new-note note-input" ng-model="newNote" id="newNote"></textarea>
     <button class="btn-info" ng-click="saveNewNote(newNote)"><?php echo $this->getString('ACCOUNTING_SAVE_PURCHASE_ORDER_NOTE'); ?></button>
-    <span ng-if="loading.newNote" class="spinner-loader new-note-spinner"></span>
+    <span ng-if="savingNote" class="spinner-loader new-note-spinner"></span>
 </div>

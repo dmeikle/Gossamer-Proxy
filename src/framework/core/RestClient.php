@@ -315,10 +315,14 @@ class RestClient implements \Iterator, \ArrayAccess {
     public function format_query($parameters, $primary = '=', $secondary = '&') {
         $query = "";
         $uh = new UnicodeHandler($this->logger, $this->loadEncodingConfiguration());
-
+echo "enter uh\r\n";
+pr($parameters);
+if(is_array($parameters)) {
         $parameters = $uh->encode($parameters); // $this->formatToHexForSending($parameters);
-
+}
+echo "\r\nexit uh\r\n";
         unset($uh);
+
         foreach ($parameters as $key => $value) {
             if (is_array($value)) {
                 $value = json_encode($value);

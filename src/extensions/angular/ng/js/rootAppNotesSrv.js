@@ -1,4 +1,4 @@
-module.service('notesSrv', function ($http, $log) {   
+module.service('notesSrv', function ($http) {   
     var self = this;
     
     self.notes = [];
@@ -11,7 +11,6 @@ module.service('notesSrv', function ($http, $log) {
         for(var i in notes){
             notes[i].edit = false;
         }
-        $log.log(notes);
         return notes;
     };
     
