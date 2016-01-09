@@ -14,7 +14,7 @@ namespace components\claims\controllers;
 use core\AbstractController;
 
 /**
- * Description of PropertiesController
+ * Description of ClaimLocationCommentsController
  *
  * @author Dave Meikle
  */
@@ -26,11 +26,5 @@ class ClaimLocationCommentsController extends AbstractController {
         $this->render($this->model->listCommentsByJobnumber($params));
     }
 
-    public function save($id) {
-        $params = $this->httpRequest->getPost();
-        $this->model->save($params);
-
-        $this->render(array('success' => 'true'));
-    }
 
 }

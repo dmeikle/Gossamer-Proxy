@@ -4,6 +4,7 @@
     <input type="hidden" value='<?php echo json_encode($ProjectAddress[0]); ?>' id="ProjectAddress" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimPhase[0]); ?>' id="Phase" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($ClaimsLocationsNotes); ?>' id="ClaimsLocationsNotes" ng-if="!vm.loaded" />
     <!--<input type="hidden" value='<?php // echo json_encode($Claims_id); ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
@@ -41,21 +42,16 @@
         <div class="col-md-6 no-padding">
             <div class="card">
                 <div class="cardheader">
-                    <h1><?php echo $this->getString('CLAIMS_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                    <h1><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
                 </div>
-                <div ng-repeat="customer in vm.claimsCustomers">
-                    <div ng-if="customer.isPrimary === '1'"><strong><?php echo $this->getString('CLAIMS_PRIMARY_CONTACT'); ?></strong></div>
+                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'">
                     <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
                     <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
                     <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
                     <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
                     <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
                     <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
-                    <div class="divider"></div>
                 </div>
-
-            <!--<div class="widget">-->
-                <!--<p>{{vm.affectedAreas}}</p>-->
             </div>
         </div>
 
@@ -95,44 +91,52 @@
         <div class="col-md-12 no-padding">
             <uib-tabset>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
-                    ...
+                    <notes api-path="/admin/claims/locations/notes/"
+                        parent-item-id="{{vm.location.id}}"
+                        parent-item-name="ClaimsLocations_id"
+                        item-name="ClaimsLocationNote"
+                        class="padding-vertical">
+                    </notes>
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">
                     ...
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_DOCUMENTS') ?>">
                     <documents module="claims" model="{{vm.claim}}" config="{{vm.documentsConfig}}" model-type="Claim" ng-if="vm.claim.id" class="padding-vertical">
-                        <div class="pull-right">
+                        <div ng-if="loadingDocuments">
+                            <div class="text-center"><span class="spinner-loader"></span></div>
+                        </div>
+                        <div class="pull-right" ng-if="!loadingDocuments">
                             <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, vm.documentsConfig, 'documentUploadModal')">
                                 <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                             </button>
                         </div>
-                        <section class="document-list">
-                                <table class="table table-striped table-hover">
-                                    <tr class="table-header">
-                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
-                                        <th class="col-md-3"><?php echo $this->getString('CLAIMS_CREATED_BY') ?></th>
-                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
-                                        <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
+                        <section class="document-list" ng-if="!loadingDocuments">
+                            <table class="table table-striped table-hover">
+                                <tr class="table-header">
+                                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
+                                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_CREATED_BY') ?></th>
+                                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
+                                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
+                                </tr>
+                                <tbody ng-repeat-start="(unitKey, docTypes) in documents" ng-if="unitKey === vm.location.unitNumber">
+                                    <tr>
+                                        <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
+                                        <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
                                     </tr>
-                                    <tbody ng-repeat-start="(unitKey, docTypes) in documents" ng-if="unitKey === vm.location.unitNumber">
-                                        <tr>
-                                            <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
-                                            <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
-                                        </tr>
-                                        <tr ng-repeat-start="(typeKey, documents) in docTypes">
-                                            <th colspan="4">{{typeKey}}</th>
-                                        </tr>
-                                        <tr ng-repeat-end ng-repeat="document in documents">
-                                            <td>{{document.filename}}</td>
-                                            <td>{{document.firstname}} {{document.lastname}}</td>
-                                            <td>{{document.uploadDate| date:'yyyy-MM-dd'}}</td>
-                                            <td><i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i></td>
-                                        </tr>
-                                    </tbody>
-                                    <tbody ng-repeat-end></tbody>
-                                </table>
-                            </section>
+                                    <tr ng-repeat-start="(typeKey, documents) in docTypes">
+                                        <th colspan="4">{{typeKey}}</th>
+                                    </tr>
+                                    <tr ng-repeat-end ng-repeat="document in documents">
+                                        <td>{{document.filename}}</td>
+                                        <td>{{document.firstname}} {{document.lastname}}</td>
+                                        <td>{{document.uploadDate| date:'yyyy-MM-dd'}}</td>
+                                        <td><i class="document-icon {{document.filename.slice(document.filename.lastIndexOf('.') + 1)}}"></i></td>
+                                    </tr>
+                                </tbody>
+                                <tbody ng-repeat-end></tbody>
+                            </table>
+                        </section>
                     </documents>
                 </uib-tab>
             </uib-tabset>
@@ -209,6 +213,21 @@
                 <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
             </div>
         </div>
+
+        <div class="card">
+            <div class="cardheader">
+                <h1><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+            </div>
+            <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'">
+                <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
+                <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
+                <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
+                <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
+                <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
+                <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+            </div>
+        </div>
     </div>
 
     <script type="text/ng-template" id="documentUploadModal">
@@ -275,3 +294,4 @@
 
 <form></form>
 <div class="clearfix"></div>
+<?php pr($this->data); ?>

@@ -822,10 +822,58 @@ admin_claims_locations_list_by_projectaddress:
         viewKey: admin_claims_list_by_projectaddress
         datasource: datasource1
 
+#------------------------ Claims Locations comments/notes ----------------------------
+claims_locations_notes_remove:
+    pattern: admin/claims/locations/notes/remove/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_remove
+        datasource: datasource1 
+    methods: [POST] 
+    
+claims_locations_notes_list:
+    pattern: admin/claims/locations/notes/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: claims_locations_notes_list
+        datasource: datasource1
+
+
+claims_locations_notes_edit:
+    pattern: admin/claims/locations/notes/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+claims_locations_notes_save:
+    pattern: admin/claims/locations/notes/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_save
+        datasource: datasource1 
+    methods: [POST]   
 
 
 
-    #-----------------------------start client portal section --------------------------------
+#-----------------------------start client portal section --------------------------------
 claims_list:
     pattern: portal/claims/*/*
     defaults:

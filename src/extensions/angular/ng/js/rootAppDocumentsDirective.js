@@ -8,8 +8,10 @@ module.directive('documents', function(documentSrv){
             scope.module = attrs.module;
             scope.modelType = attrs.modelType;
             scope.config = attrs.config;
+            scope.loadingDocuments = true;
             documentSrv.getDocuments(scope.config).then(function(response) {
                 scope.documents = response.data.Documents;
+                scope.loadingDocuments = false;
             });
         },
         controller: function($scope, $uibModal) {

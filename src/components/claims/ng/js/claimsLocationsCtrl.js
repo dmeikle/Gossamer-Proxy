@@ -5,7 +5,7 @@
         .module('claimsAdmin')
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
-    function claimsLocationsCtrl($log, $timeout, $scope, $rootScope) {
+    function claimsLocationsCtrl($log, $timeout, notesSrv) {
         var vm = this;        
         vm.claim = {};
         vm.documentsConfig = {};
@@ -32,15 +32,26 @@
                 vm.projectAddress = JSON.parse(document.getElementById('ProjectAddress').value);
                 vm.phase = JSON.parse(document.getElementById('Phase').value);
                 vm.claimsCustomers = JSON.parse(document.getElementById('ClaimsCustomers').value);
+                vm.claimsLocationsNotes = JSON.parse(document.getElementById('ClaimsLocationsNotes').value);
+                
                 vm.claim.id = vm.location.Claims_id;
                 vm.loaded = true;
                 
                 vm.documentsConfig.Claims_id = vm.claim.id;
                 vm.documentsConfig.ClaimsLocations_id = vm.location.id;
 //                $log.log(vm.claimsCustomers);
-            });
+
+                formatNotes(vm.claimsLocationsNotes);
+            });            
             
+        }
+        
+        function formatNotes(notes) {
+            $log.log(notes);
             
+            if(notes.length > 0) {
+                notesSrv.notes = notesSrv.getNotes(notes);
+            }
         }
     }
 })();

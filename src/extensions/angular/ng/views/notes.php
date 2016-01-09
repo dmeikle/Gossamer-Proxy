@@ -1,5 +1,5 @@
-<div class="notes">    
-    <h3><?php echo $this->getString('ACCOUNTING_PURCHASE_ORDER_NOTES'); ?></h3>
+<div class="notes">
+    <!--<h3><?php // echo $this->getString('NOTES'); ?></h3>-->
     <div class="note" ng-repeat="note in notes track by $index" ng-switch="note.edit">
         <div ng-switch-when="false">
             <span ng-if="loading[$index]" class="spinner-loader edit-note-spinner"></span>
@@ -10,8 +10,8 @@
                     <li><a ng-click="deleteNote($index)"><?php echo $this->getString('ACCOUNTING_DELETE'); ?></a></li>
                 </ul>
             </div>
-        </div>        
-        <div ng-switch-when="true">            
+        </div>
+        <div ng-switch-when="true">
             <textarea  ng-model="note.notes" class="form-control edit-note note-input"></textarea>
             <button class="btn-info save-note" ng-click="saveNote(note, $index)"><?php echo $this->getString('ACCOUNTING_SAVE'); ?></button>
         </div>

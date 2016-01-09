@@ -76,7 +76,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
         $api->setLogger($this->logger);
 
         $result = $api->$queryType($entity->getTablename() . "/$verb/", $params);
-        //pr($result);
+//        pr($result);
         if ($result->info->http_code == 200) {
             $decodedResult = $result->decode_response();
 

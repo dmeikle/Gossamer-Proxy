@@ -36,4 +36,5 @@ class PurchaseOrderNoteModel extends AbstractModel implements \Gossamer\CMS\Form
         return $this->entity;
     }
 
+    
 }
