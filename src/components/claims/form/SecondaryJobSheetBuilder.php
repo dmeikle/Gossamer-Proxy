@@ -48,17 +48,29 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
         }
 
         foreach ($values['Actions'] as $item) {
-            $builder = new FormBuilder(null, $this->model);
-            if ($item['questionType'] == 'text' || $item['questionType'] == 'textarea') {
-                $builder->add($item['id'], $item['questionType'], array('ng-model' => 'ctrl.secondarySheet.item[' . $item['id'] . '].value', 'class' => 'form-control'));
-            } elseif ($item['questionType'] == 'check') {
-                $builder->add($item['id'], $item['questionType'], array('ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].check', 'class' => 'form-control'));
-            }
-            $item['html'] = $builder->getForm();
+            $this->getInitialFormItem($item);
+            $this->getUpdateFormItem($item);
             $retval['Actions'][] = $item;
         }
 
         return $retval;
+    }
+
+    private function getInitialFormItem(array &$item) {
+        $builder = new FormBuilder(null, $this->model);
+        if ($item['questionType'] == 'text' || $item['questionType'] == 'textarea') {
+            $builder->add($item['id'], $item['questionType'], array('ng-model' => 'ctrl.secondarySheet.item[' . $item['id'] . '].value', 'class' => 'form-control'));
+        } elseif ($item['questionType'] == 'check') {
+            $builder->add($item['id'], $item['questionType'], array('ng-change' => 'ctrl.itemChanged(\'' . $item['id'] . '\')', 'ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].check', 'class' => 'form-control'));
+        }
+        $item['html'] = $builder->getForm();
+    }
+
+    private function getUpdateFormItem(array &$item) {
+        $builder = new FormBuilder(null, $this->model);
+        $builder->add($item['id'], $item['questionType'], array('ng-change' => 'ctrl.itemChanged(\'' . $item['id'] . '\')', 'ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isDone', 'class' => 'form-control'));
+
+        $item['updateHtml'] = $builder->getForm();
     }
 
 }
