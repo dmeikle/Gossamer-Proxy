@@ -56,7 +56,7 @@
             <?php
             foreach ($group as $questionList) {
                 foreach ($questionList as $question) {
-                    echo '<div class="col-md-6">' . $question['action'] . '</div><div class="col-md-6">' . $question['updateHtml'] . '</div>';
+                    echo '<div class="col-md-6">' . $question['action'] . '</div><div class="col-md-6">' . current($question['updateHtml']) . '</div>';
                 }
             }
             ?>
