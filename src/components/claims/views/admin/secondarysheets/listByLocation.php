@@ -32,7 +32,7 @@
                     </button>
                 </span>
             </form>
-            <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW_SECONDARY_SHEET'); ?></a>
+            <a gcms="{href='admin_claims_secondarysheets_edit' params=''}" class="btn btn-primary">this belongs on affected areas <?php echo $this->getString('CLAIMS_NEW_SECONDARY_SHEET'); ?></a>
         </div>
         <table class="table table-striped table-hover">
             <thead>

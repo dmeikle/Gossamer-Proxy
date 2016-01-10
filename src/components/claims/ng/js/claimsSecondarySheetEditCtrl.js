@@ -66,24 +66,23 @@
             self.secondarySheetResults[id] = self.secondarySheet.item[id];
         };
         
-        self.saveSecondarySheetResults = function(secondarySheet) {
-//            for(var i in args.secondarySheet) {
-//                if(args.secondarySheet[i].isSelected) {  
-//                    if(args.secondarySheet[i].questionType != 'check') {
-//                        self.secondarySheet.item[args.secondarySheet[i].AffectedAreaActions_id] = args.secondarySheet[i];
-//                    } else {
-//                        self.secondarySheet.item[args.secondarySheet[i].AffectedAreaActions_id] = args.secondarySheet[i];                        
-//                    }
-//                }
-//            }
-            secondarySheet.Claims_id = document.getElementById('Claims_id').value;
-            secondarySheet.ClaimsLocations_id = document.getElementById('ClaimsLocations_id').value;
-            secondarySheet.AffectedAreas_id = document.getElementById('AffectedAreas_id').value;
-            secondarySheet.SecondarySheets_id = document.getElementById('SecondarySheets_id').value;
+        self.saveSecondarySheetResults = function(items) {
+
+            var secondarySheet = {};
+            secondarySheet.item = self.formatResults(items);
+            self.saveSecondarySheet(secondarySheet);
+        };
+        
+        //this is for trimming the result set down
+        self.formatResults = function(items) {
+            var retval = [];
+            for(var index in items) {
+                if(items[index].isDone !== undefined && '1' == items[index].isDone) {
+                    retval.push(items[index]);
+                }
+            }
             
-            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            
-            claimsSecondarySheetsSrv.save(secondarySheet, formToken);
+            return retval;
         };
         
     }

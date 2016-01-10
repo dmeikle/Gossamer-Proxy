@@ -67,8 +67,9 @@ class SecondaryJobSheetBuilder extends AbstractBuilder {
     }
 
     private function getUpdateFormItem(array &$item) {
+
         $builder = new FormBuilder(null, $this->model);
-        $builder->add($item['id'], $item['questionType'], array('ng-change' => 'ctrl.itemChanged(\'' . $item['id'] . '\')', 'ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isDone', 'class' => 'form-control'));
+        $builder->add($item['id'], 'check', array('ng-change' => 'ctrl.itemChanged(\'' . $item['id'] . '\')', 'ng-true-value' => $item['id'], 'ng-checked' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isSelected', 'ng-model' => 'ctrl.secondarySheet.item[\'' . $item['id'] . '\'].isDone', 'class' => 'form-control'));
 
         $item['updateHtml'] = $builder->getForm();
     }

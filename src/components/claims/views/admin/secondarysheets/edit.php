@@ -22,8 +22,8 @@
 <form class="form-inline">
 
     <div ng-controller="claimsSecondarySheetEditCtrl
-                as
-                ctrl">
+            as
+            ctrl">
         <input type="hidden" ng-model="secondarySheet.Claims_id" id="Claims_id" name="SecondarySheet[Claims_id]" value="<?php echo $Claims_id; ?>" />
         <input type="hidden" ng-model="secondarySheet.ClaimsLocations_id" id="ClaimsLocations_id" name="SecondarySheet[ClaimsLocations_id]" value="<?php echo $ClaimsLocations_id; ?>" />
         <input type="hidden" ng-model="secondarySheet.AffectedAreas_id" id="AffectedAreas_id" name="SecondarySheet[AffectedAreas_id]" value="<?php echo $AffectedAreas_id; ?>" />
@@ -52,14 +52,9 @@
 
         <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="ctrl.saveSecondarySheet(ctrl.secondarySheet)" />
         <input type="button" value="Set Complete Items" ng-click="openResultsModal" />
+        <div class="clearfix"></div>
         <div id="editResultsModal">modal here
-            <?php
-            foreach ($group as $questionList) {
-                foreach ($questionList as $question) {
-                    echo '<div class="col-md-6">' . $question['action'] . '</div><div class="col-md-6">' . current($question['updateHtml']) . '</div>';
-                }
-            }
-            ?>
+
             <div ng-repeat="item in ctrl.secondarySheetResults track by $index" ng-show="item.value || item.isSelected">
 
                 <div class="form-group col-md-6">{{item.action}}</div>
