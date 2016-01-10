@@ -47,6 +47,7 @@ class SecondarySheetModel extends AbstractModel implements FormBuilderInterface 
      */
     public function saveAllResponsesBySheetId($claimId, $locationId, $affectedAreasId, $sheetId) {
         $params = $this->httpRequest->getPost();
+
         $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
         $params[$this->entity]['id'] = intval($sheetId);
         $params[$this->entity]['AffectedAreasSecondarySheets_id'] = intval($sheetId);

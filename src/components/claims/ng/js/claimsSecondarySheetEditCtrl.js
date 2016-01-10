@@ -20,6 +20,7 @@
         self.secondarySheet = {};
         self.secondarySheet.item = [];
         self.secondarySheetResults = [];
+        self.secondarySheetResults.item = [];
         
         $scope.$on('secondary_sheet_loaded', function(event, args) {
             for(var i in args.secondarySheet) {
@@ -43,8 +44,6 @@
             secondarySheet.SecondarySheets_id = document.getElementById('SecondarySheets_id').value;
             
             claimsSecondarySheetsSrv.getResponses(secondarySheet).then(function(response) {
-                //store this for drawing the edit modal later
-                self.secondarySheetResults = response.secondarySheetResponses;
                 
                 $scope.$broadcast('secondary_sheet_loaded', { secondarySheet: response.secondarySheetResponses} );
             });
@@ -62,14 +61,18 @@
             claimsSecondarySheetsSrv.save(secondarySheet, formToken);
         };
         
-        self.itemChanged = function(id) {
-            self.secondarySheetResults[id] = self.secondarySheet.item[id];
+        self.itemChanged = function(item) {
+            if(item.isDone === false) {
+                item.isDone = '0';
+            } 
+            
+            self.secondarySheetResults.item[item.AffectedAreaActions_id] = item;
         };
         
         self.saveSecondarySheetResults = function(items) {
 
             var secondarySheet = {};
-            secondarySheet.item = self.formatResults(items);
+            secondarySheet.item = items.item;
             self.saveSecondarySheet(secondarySheet);
         };
         

@@ -53,13 +53,25 @@
         <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="ctrl.saveSecondarySheet(ctrl.secondarySheet)" />
         <input type="button" value="Set Complete Items" ng-click="openResultsModal" />
         <div class="clearfix"></div>
-        <div id="editResultsModal">modal here
+        <div id="editResultsModal">
+            <?php
+            foreach ($Actions as $category => $group) {
+                foreach ($group as $questionList) {
+                    foreach ($questionList as $question) {
+                        if (is_null($question['updateHtml'])) {
+                            continue;
+                        }
+                        echo '<div class="col-md-6">' . $question['action'] . '</div><div class="col-md-6">' . current($question['updateHtml']) . '</div>';
+                    }
+                }
+            }
+            ?>
+            <!--            <div ng-repeat="item in ctrl.secondarySheetResults track by $index" ng-show="item.value || item.isSelected">
 
-            <div ng-repeat="item in ctrl.secondarySheetResults track by $index" ng-show="item.value || item.isSelected">
-
-                <div class="form-group col-md-6">{{item.action}}</div>
-                <div class="form-group col-md-6"><input type="checkbox" ng-model="item.isDone" ng-true-value="1" /> Completed</div>
-            </div>
+                            <div class="form-group col-md-6">{{item.action}}</div>
+                            <div class="form-group col-md-6"><input type="checkbox" ng-model="item.isDone" ng-true-value="1" /> Completed</div>
+                        </div>-->
+            <div class="clearfix"></div>
             <input type="submit" value="<?php echo $this->getString('SAVE'); ?>" ng-click="ctrl.saveSecondarySheetResults(ctrl.secondarySheetResults)" />
         </div>
     </div>
