@@ -1,4 +1,4 @@
-<?php //pr($this->data);      ?>
+<?php //pr($this->data);         ?>
 
 <div ng-controller="claimsEditCtrl" ng-cloak>
     <?php echo $form['id']; ?>
@@ -10,7 +10,10 @@
             <h1 class="pull-left">
                 <?php echo $this->getString('CLAIMS_EDIT') ?>
                 <span ng-if="!claim" class="spinner-loader"></span>
-                <span ng-if="claim">{{claim.jobNumber}}</span>
+                <span ng-if="claim">
+                    <span ng-show="claim.jobNumber">{{claim.jobNumber}} / </span>
+                    {{claim.unassignedJobNumber}}
+                </span>
             </h1>
             <div class="clearfix"></div>
         </div>
@@ -64,7 +67,7 @@
                          border: solid 1px #cccccc;
                          padding: 5px;
                          border-radius: 5px;text-align: center;margin-top: 10px"><strong>Phase</strong><br>
-                        {{claim.phase.title}}</div>
+                        {{claim.phase.title}}<br /></div>
                     <label ng-value="claim.workAuthorizationReceiveDate"><?php echo $this->getString('CLAIMS_WORK_AUTH_RECEIVE_DATE'); ?>: {{claim.workAuthorizationReceiveDate}}</label><br />
                     <label><?php echo $this->getString('CLAIMS_TYPE'); ?>: {{claim.typeOfClaim}}</label><br />
                     <label><?php echo $this->getString('CLAIMS_PROJECT_MANAGER'); ?>: {{claim.projectManager}}</label><br />

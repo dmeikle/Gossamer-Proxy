@@ -40,7 +40,7 @@ return array(
     'CLAIMS_CLOSED_BY_STAFF' => 'Closed By',
     'CLAIMS_COMMENTS' => 'Comments',
     'CLAIMS_COMPANY' => 'Company',
-    'CLAIMS_CONFIRM' => 'Is this correct?',
+    'CLAIMS_CONFIRM' => 'Confirm',
     'CLAIMS_CONTACT_EXT' => 'Extension',
     'CLAIMS_CONTACT_FIRSTNAME' => "Contact's First Name",
     'CLAIMS_CONTACT_LASTNAME' => "Contact's Last Name",

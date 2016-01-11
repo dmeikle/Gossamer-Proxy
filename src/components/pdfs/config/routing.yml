@@ -1,0 +1,13 @@
+
+
+
+admin_pdfs_get:
+    pattern: admin/pdfs/get/*
+    defaults:
+        component: components\pdfs\PdfComponent
+        controller: components\pdfs\controllers\PdfsController
+        model: components\pdfs\models\PdfModel
+        method: get
+        view: core\views\FileDownloadView
+        viewKey: admin_pdfs_get
+        datasource: datasource5

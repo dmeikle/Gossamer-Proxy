@@ -110,6 +110,8 @@ initialJobsheetWizardPages:
 
 claimEditModal:
     path: 'src/components/claims/ng/views/claimEditModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
     listeners:
         - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
@@ -127,7 +129,7 @@ claimEditModal:
             dependencies:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
-                - { dependency: ClaimStatusTypes, key: claimTypes, value: ClaimStatusTypes_id, text: status }
+                - { dependency: ClaimStatusTypes, key: claimStatusTypes, value: ClaimStatusTypes_id, text: status }
 
 
 assignPMModal:
