@@ -347,5 +347,6 @@ return array(
     'CLAIMS_FILE_NAME' => 'File Name',
     'CLAIMS_UPLOADED' => 'Uploaded',
     'CLAIMS_CREATED_BY' => 'Created By',
-    'CLAIMS_ISSOURCE' => 'Source Unit'
+    'CLAIMS_ISSOURCE' => 'Source Unit',
+    'CLAIMS_ADD_AFFECTED_AREA' => 'Add Affected Area'
 );

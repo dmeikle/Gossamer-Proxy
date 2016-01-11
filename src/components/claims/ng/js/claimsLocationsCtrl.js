@@ -5,14 +5,40 @@
         .module('claimsAdmin')
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
-    function claimsLocationsCtrl($log, $timeout, notesSrv) {
+    function claimsLocationsCtrl($log, $timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
         var vm = this;        
         vm.claim = {};
         vm.documentsConfig = {};
-        // listen for the event in the relevant $scope
-//        $scope.$on('event_thingy', function (event) {
-//            console.log('event happened'); // 'Data to send'
-//        });        
+        
+        vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;
+        
+        vm.openAffectedAreasModal = function (template) {
+            var modalInstance = $uibModal.open({
+              templateUrl: template,
+              controller: 'ClaimsLocationsModalCtrl',
+              controllerAs: 'modal',
+              size: 'md',
+              resolve: {
+                ClaimsLocations_id: function () {
+                  return vm.location.id;
+                }
+              }
+            });
+
+            modalInstance.result.then(function () {
+//              $scope.selected = selectedItem;
+                $log.log('modal closed');
+                getAffectedAreas();
+            }, function () {
+                $log.log('modal dismissed');
+                
+            });
+        };
+          
+//        vm.getAffectedAreas = function () {
+//            var apiPath = '/'
+//            crudSrv.getDetails()
+//        };
         
         activate();
 
@@ -21,7 +47,7 @@
             getLocationDetails();
         }
         
-        
+        //Get all the location details from the hidden input fields
         function getLocationDetails() {
             
             //This $timeout simply tells the function call on the next digest cycle
@@ -44,8 +70,9 @@
                 formatNotes(vm.claimsLocationsNotes);
             });            
             
-        }
+        }       
         
+        //Format the notes (if needed)
         function formatNotes(notes) {
             $log.log(notes);
             
@@ -53,5 +80,21 @@
                 notesSrv.notes = notesSrv.getNotes(notes);
             }
         }
+        
+        function getAffectedAreas () {
+            vm.affectedAreasLoading = true;
+            var apiPath = '/admin/scoping/affected-areas/get/';      
+            $log.log(vm.affectedAreas);
+            
+            crudSrv.getDetails(apiPath, vm.location.id).then(function(response){
+               vm.affectedAreas = response.data.AffectedAreas;
+//               $log.log(response);
+                vm.affectedAreasLoading = false;
+            });
+        }
+        
+        
+        
+        
     }
 })();

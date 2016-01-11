@@ -42,7 +42,12 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('ClaimsLocations_id', 'hidden', array('value' => intval($this->getValue('ClaimsLocations_id', $values)), 'ng-model' => 'location.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'location.Claims_id'))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'))
-                ->add('specialInstructions', 'textarea', array('ng-model' => 'vm.location.specialInstructions', 'class' => 'form-control'));
+                ->add('specialInstructions', 'textarea', array('ng-model' => 'vm.location.specialInstructions', 'class' => 'form-control'))
+
+                //For Affected Areas modal
+                ->add('width', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
+                ->add('height', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'))
+                ->add('length', 'text', array('ng-model' => 'modal.item.length', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
@@ -59,6 +64,10 @@ class ClaimLocationBuilder extends AbstractBuilder {
         if (array_key_exists('vehicles', $options)) {
             $builder->add('Vehicles_id', 'select', array('ng-model' => 'item.Vehicles_id', 'class' => 'form-control', 'options' => $options['vehicles']));
         }
+        if (array_key_exists('areaTypes', $options)) {
+            $builder->add('AreaTypes', 'select', array('ng-model' => 'modal.item.AreaTypes_id', 'class' => 'form-control', 'options' => $options['areaTypes']));
+        }
+
 
 
 

@@ -143,6 +143,8 @@ admin_claims_edit:
 admin_claims_location_view:
     listeners:
         - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'AreaTypes', 'class': 'components\scoping\models\AreaTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+
 #        - { 'cacheKey': 'test', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
 #        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
@@ -155,6 +157,8 @@ admin_claims_location_view:
             model: 'components\claims\models\ClaimLocationModel'
             cacheKey: 'ClaimLocationForm'
             formName: 'form'
+            dependencies:
+                - { dependency: AreaTypes, key: areaTypes, value: id, text: type }
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -165,4 +169,5 @@ admin_claims_location_view:
             formName: 'documentForm'
             dependencies:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
+#                - { dependency: AreaTypes, key: areaTypes, value: id, text: title }
 #                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }

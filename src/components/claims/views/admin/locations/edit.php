@@ -58,7 +58,14 @@
         <div class="col-md-12 no-padding">
             <div class="card">
                 <div class="cardheader">
-                    <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
+                    <div class="pull-left">
+                        <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
+                    </div>
+                    <div class="pull-right" ng-if="!loadingDocuments">
+                        <button class="primary" ng-click="vm.openAffectedAreasModal('affectedAreasModal')">
+                            <?php echo $this->getString('CLAIMS_ADD_AFFECTED_AREA') ?>
+                        </button>
+                    </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
@@ -70,7 +77,13 @@
                             <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
                         </tr>
                     </thead>
-                    <tr ng-repeat="area in vm.affectedAreas">
+                    <tr ng-if="vm.affectedAreasLoading">
+                        <td></td>
+                        <td></td>
+                        <td><span class="spinner-loader"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading">
                         <td>
                             {{area.roomType}}
                         </td>
@@ -107,7 +120,7 @@
                             <div class="text-center"><span class="spinner-loader"></span></div>
                         </div>
                         <div class="pull-right" ng-if="!loadingDocuments">
-                            <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, vm.documentsConfig, 'documentUploadModal')">
+                            <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, vm.documentsConfig, vm.claimLocationDocumentModal)">
                                 <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                             </button>
                         </div>
@@ -290,6 +303,58 @@
             </div>
         </div>
     </script>
+
+    <script type="text/ng-template" id="affectedAreasModal">
+        <div class="modal-header">
+            <h1>
+                <?php echo $this->getString('CLAIMS_ADD_AFFECTED_AREA') ?>
+            </h1>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="DocumentType_documentType">
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
+                        </label>
+                        <?php echo $form['AreaTypes']; ?>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_WIDTH') ?></label>
+                    <?php echo $form['width']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_HEIGHT') ?></label>
+                    <?php echo $form['height']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_LENGTH') ?></label>
+                    <?php echo $form['length']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_IS_NORTH') ?></label>
+                    <input type="checkbox">
+                </div>
+            </form>
+            <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+        {{modal.item}}
+            <div class="pull-right">
+                <div class="btn-group" role="group">
+                    <button class="primary" ng-click="modal.save()">
+                        <?php echo $this->getString('SAVE') ?>
+                    </button>
+                    <button class="default" ng-click="modal.close()">
+                        <?php echo $this->getString('CLOSE') ?>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <form></form>
+    </script>
+
 </div>
 
 <form></form>
