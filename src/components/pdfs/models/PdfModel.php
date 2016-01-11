@@ -28,13 +28,13 @@ class PdfModel extends AbstractModel {
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = '.a';
-        $this->tablename = '.a';
+        $this->entity = 'Pdf';
+        $this->tablename = 'service';
     }
 
-    public function get($id) {
+    public function getPdf(array $params) {
 
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'get', array());
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'pdf', $params);
 
         return $data;
     }

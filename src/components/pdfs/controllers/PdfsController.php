@@ -20,8 +20,17 @@ use core\AbstractController;
  */
 class PdfsController extends AbstractController {
 
-    public function get($id) {
-        $data = $this->model->get($id);
+    public function getWorkAuth($claimId, $claimLocationId = null) {
+        $locale = $this->getDefaultLocale();
+
+        $params = array('pdfName' => 'workauth', 'Claims_id' => intval($claimId), 'locale' => $locale['locale']);
+
+        if (!is_null($claimLocationId)) {
+            $params['ClaimsLocations_id'] = intval($claimLocationId);
+        }
+
+        $data = $this->model->getPdf($params);
+        $data['filename'] = 'work-authorization.pdf';
 
         $this->render($data);
     }

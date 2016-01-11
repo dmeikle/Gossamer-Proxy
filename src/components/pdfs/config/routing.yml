@@ -1,13 +1,25 @@
 
 
 
-admin_pdfs_get:
-    pattern: admin/pdfs/get/*
+admin_pdfs_workauth_by_claim:
+    pattern: admin/pdfs/workauth/*
     defaults:
         component: components\pdfs\PdfComponent
         controller: components\pdfs\controllers\PdfsController
         model: components\pdfs\models\PdfModel
-        method: get
+        method: getWorkAuth
         view: core\views\FileDownloadView
-        viewKey: admin_pdfs_get
+        viewKey: admin_pdfs_workauth_by_claim
         datasource: datasource5
+        
+
+admin_pdfs_workauth_by_location:
+    pattern: admin/pdfs/workauth/*/*
+    defaults:
+        component: components\pdfs\PdfComponent
+        controller: components\pdfs\controllers\PdfsController
+        model: components\pdfs\models\PdfModel
+        method: getWorkAuth
+        view: core\views\FileDownloadView
+        viewKey: admin_pdfs_workauth_by_location
+        datasource: datasource5        
