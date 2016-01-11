@@ -5,11 +5,11 @@
         .module('claimsAdmin')
         .controller('ClaimsLocationsModalCtrl', ClaimsLocationsModalCtrl);
 
-    function ClaimsLocationsModalCtrl($uibModalInstance, $scope, $log, crudSrv, ClaimsLocations_id) {
+    function ClaimsLocationsModalCtrl($uibModalInstance, $scope, $log, crudSrv, ClaimsLocations_id, item) {
 //        $log.log(ClaimsLocations_id);
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        vm.item = {};
+        vm.item = item;
         vm.item.ClaimsLocations_id = ClaimsLocations_id;
         
         vm.close = function () {
@@ -17,15 +17,21 @@
         };
         
         vm.save = function () {
-            var apiPath = '/admin/scoping/affected-areas/0';
+            var apiPath = '/admin/scoping/affected-areas/' + vm.item.id;
             crudSrv.save(apiPath, vm.item, 'AffectedArea', formToken);
             $uibModalInstance.close();
+        };
+        
+        vm.getAreaDetails = function() {
+            if(!vm.item.id){
+                vm.item.id = 0;
+            }
         };
 
         activate();
 
         function activate() {
-
+            vm.getAreaDetails();
         }
 
     }

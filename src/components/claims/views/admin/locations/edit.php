@@ -5,6 +5,7 @@
     <input type="hidden" value='<?php echo json_encode($ClaimPhase[0]); ?>' id="Phase" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsLocationsNotes); ?>' id="ClaimsLocationsNotes" ng-if="!vm.loaded" />
+    <input type="hidden" value='<?php echo json_encode($EquipmentLocations); ?>' id="EquipmentLocations" ng-if="!vm.loaded" />
     <!--<input type="hidden" value='<?php // echo json_encode($Claims_id); ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
@@ -62,25 +63,28 @@
                         <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
                     </div>
                     <div class="pull-right" ng-if="!loadingDocuments">
-                        <button class="primary" ng-click="vm.openAffectedAreasModal('affectedAreasModal')">
+                        <button class="primary" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
                             <?php echo $this->getString('CLAIMS_ADD_AFFECTED_AREA') ?>
                         </button>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
-
                         <tr>
                             <th><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_WIDTH'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></th>
+                            <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                         </tr>
                     </thead>
                     <tr ng-if="vm.affectedAreasLoading">
                         <td></td>
                         <td></td>
                         <td><span class="spinner-loader"></span></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                     </tr>
                     <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading">
@@ -95,6 +99,20 @@
                         </td>
                         <td>
                             {{area.length}}
+                        </td>
+                        <td>
+                            <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
+                            <i ng-if="area.entryIsNorth == 0"></i>
+                        </td>
+                        <td class="row-controls">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                        id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                </button>
+                                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                    <li><a href="" ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)"><?php echo $this->getString('EDIT'); ?></a></li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -225,6 +243,33 @@
             <div class="cardheader">
                 <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
             </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
+                        <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
+                        <th><?php echo $this->getString('CLAIMS_PRODUCT_NUMBER'); ?></th>
+                        <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
+                    </tr>
+                </thead>
+
+                <tr ng-repeat="equipment in vm.equipmentLocations" ng-if="!vm.affectedAreasLoading">
+                    <td>
+                        {{equipment.name}}
+                    </td>
+                    <td>
+                        {{equipment.productCode}}
+                    </td>
+                    <td>
+                        {{equipment.number}}
+                    </td>
+                    <td>
+                        {{equipment.maxDays}}
+                    </td>
+                </tr>
+            </table>
+
+
         </div>
 
         <div class="card">
@@ -333,8 +378,8 @@
                     <?php echo $form['length']; ?>
                 </div>
                 <div class="col-xs-3">
-                    <label><?php echo $this->getString('CLAIMS_IS_NORTH') ?></label>
-                    <input type="checkbox">
+                    <label><?php echo $this->getString('CLAIMS_ENRTY_IS_NORTH') ?></label>
+                    <div><input type="checkbox" ng-model="modal.item.entryIsNorth" ng-true-value="1" ng-false-value="0"></div>
                 </div>
             </form>
             <div class="clearfix"></div>

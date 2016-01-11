@@ -12,7 +12,7 @@
         
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;
         
-        vm.openAffectedAreasModal = function (template) {
+        vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
               templateUrl: template,
               controller: 'ClaimsLocationsModalCtrl',
@@ -21,6 +21,9 @@
               resolve: {
                 ClaimsLocations_id: function () {
                   return vm.location.id;
+                },
+                item: function () {
+                    return area;
                 }
               }
             });
@@ -59,6 +62,7 @@
                 vm.phase = JSON.parse(document.getElementById('Phase').value);
                 vm.claimsCustomers = JSON.parse(document.getElementById('ClaimsCustomers').value);
                 vm.claimsLocationsNotes = JSON.parse(document.getElementById('ClaimsLocationsNotes').value);
+                vm.equipmentLocations = JSON.parse(document.getElementById('EquipmentLocations').value);
                 
                 vm.claim.id = vm.location.Claims_id;
                 vm.loaded = true;
