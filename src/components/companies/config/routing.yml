@@ -26,6 +26,7 @@ admin_companies_home:
             - 'src/components/companies/locales/*/Company'
             - app/locales/*/website
 
+                 
 admin_companies_get:
     pattern: admin/companies/*
     defaults:
