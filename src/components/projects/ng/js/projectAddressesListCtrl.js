@@ -67,11 +67,12 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
     $scope.openAdvancedSearch = function () {
         $scope.sidePanelOpen = true;
         $scope.selectedProjectAddress = undefined;
-        $scope.sidePanelLoading = true;
-        projectAddressesListSrv.getAdvancedSearchFilters().then(function () {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
+        $scope.searching = true;
+        //$scope.sidePanelLoading = true;
+//        projectAddressesListSrv.getAdvancedSearchFilters().then(function () {
+//            $scope.sidePanelLoading = false;
+//            $scope.searching = true;
+//        });
     };
 
     $scope.resetAdvancedSearch = function () {
