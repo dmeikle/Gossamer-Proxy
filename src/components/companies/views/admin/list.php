@@ -123,15 +123,18 @@
 
             <h1><a href="/admin/companies/edit/{{selectedCompany.Companies_id}}">{{selectedCompany.name}}</a></h1>
             <div ng-repeat="claim in claimsList" class="sidePanelRow">
-                <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
-                <div class="dateReceived"><?php echo $this->getString('COMPANIES_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
-                <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
-                <div class="deductable"><?php echo $this->getString('COMPANIES_DEDUCTABLE_AMOUNT') ?> {{ claim.deductable}}</div>
-                <div class="reason"><?php echo $this->getString('COMPANIES_REASON') ?> <br />{{ claim.reason}}</div>
-                <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
-                <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
-                <div class="claimStatus">{{ claim.status}}</div>
+                <div ng-show="claim.claimsList">
+                    <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
+                    <div class="dateReceived"><?php echo $this->getString('COMPANIES_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
+                    <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
+                    <div class="deductable"><?php echo $this->getString('COMPANIES_DEDUCTABLE_AMOUNT') ?> {{ claim.deductable}}</div>
+                    <div class="reason"><?php echo $this->getString('COMPANIES_REASON') ?> <br />{{ claim.reason}}</div>
+                    <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
+                    <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
+                    <div class="claimStatus">{{ claim.status}}</div>
+                </div>
             </div>
+            <div ng-show="!claim.claimsList"><?php echo $this->getString('COMPANIES_NO_CLAIMS_FOUND'); ?></div>
         </div>
     </div>
     <div class="clearfix"></div>
