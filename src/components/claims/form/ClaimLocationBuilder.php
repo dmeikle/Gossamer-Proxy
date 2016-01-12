@@ -59,7 +59,8 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('email', 'text', array('ng-model' => 'modal.newContact.email', 'class' => 'form-control'))
                 ->add('daytimePhone', 'text', array('ng-model' => 'modal.newContact.daytimePhone', 'class' => 'form-control'))
                 ->add('mobile', 'text', array('ng-model' => 'modal.newContact.mobile', 'class' => 'form-control'))
-                ->add('buzzer', 'text', array('ng-model' => 'modal.newContact.buzzer', 'class' => 'form-control'));
+                ->add('buzzer', 'text', array('ng-model' => 'modal.newContact.buzzer', 'class' => 'form-control'))
+                ->add('notes', 'textarea', array('ng-model' => 'modal.newContact.notes', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
@@ -78,6 +79,9 @@ class ClaimLocationBuilder extends AbstractBuilder {
         }
         if (array_key_exists('areaTypes', $options)) {
             $builder->add('AreaTypes', 'select', array('ng-model' => 'modal.item.AreaTypes_id', 'class' => 'form-control', 'options' => $options['areaTypes']));
+        }
+        if (array_key_exists('contactVIPTypes', $options)) {
+            $builder->add('VIPType', 'select', array('ng-model' => 'modal.newContact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
         }
 
 

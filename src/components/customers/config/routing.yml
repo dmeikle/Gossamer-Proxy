@@ -148,7 +148,17 @@ admin_customers_credentials_save:
         datasource: datasource1
     methods: [POST]      
     
-    
+customers_autocomplete:
+    pattern: admin/customers/autocomplete
+    methods: [GET]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: customers_autocomplete
+        datasource: datasource1
     
 customers_list:
     pattern: admin/customers/*/*

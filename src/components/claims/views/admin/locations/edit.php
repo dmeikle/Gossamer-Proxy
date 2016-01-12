@@ -436,54 +436,62 @@
     <script type="text/ng-template" id="contactsModal">
         <div class="modal-header">
             <h1>
-                <?php echo $this->getString('CLAIMS_ADD_LOCATION_CONTACT') ?>
+                <?php echo $this->getString('CLAIMS_ADD_LOCATION_CUSTOMER') ?>
             </h1>
         </div>
         <div class="modal-body">
             <form>
                 <uib-tabset>
-                    <uib-tab heading="<?php echo $this->getString('CLAIMS_SEARCH_EXISTING_CONTACTS') ?>" select="modal.createNew = false">
+                    <uib-tab heading="<?php echo $this->getString('CLAIMS_SEARCH_EXISTING_CUSTOMERS') ?>" select="modal.createNew = false">
                         <div class="padding">
                             <label><?php echo $this->getString('CLAIMS_CONTACT_NAME') ?></label>
                             <?php echo $form['contactsAutocomplete']; ?>
                             <div class="padding-vertical">
                                 <div ng-if="modal.item.firstname || modal.item.lastname"><strong><?php echo $this->getString('CLAIMS_NAME') ?>:</strong> {{modal.item.firstname}} {{modal.item.lastname}}</div>
                                 <div ng-if="modal.item.contactType"><strong><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?>:</strong> {{modal.item.contactType}}</div>
-                                <div ng-if="modal.item.telephone"><strong><?php echo $this->getString('CLAIMS_LOCATIONS_DAYTIMEPHONE') ?>:</strong> {{modal.item.telephone}}</div>
+                                <div ng-if="modal.item.daytimePhone"><strong><?php echo $this->getString('CLAIMS_LOCATIONS_DAYTIMEPHONE') ?>:</strong> {{modal.item.daytimePhone}}</div>
                                 <div ng-if="modal.item.office"><strong><?php echo $this->getString('CLAIMS_OFFICE') ?>:</strong> {{modal.item.office}} <span ng-if="modal.item.extension">({{modal.item.extension}})</span></div>
                                 <div ng-if="modal.item.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE') ?>:</strong> {{modal.item.mobile}}</div>
                                 <div ng-if="modal.item.email"><strong><?php echo $this->getString('CLAIMS_EMAIL') ?>:</strong> {{modal.item.email}}</div>
                             </div>
                         </div>
                     </uib-tab>
-                    <uib-tab heading="<?php echo $this->getString('CLAIMS_CREATE_NEW_CONTACT') ?>" select="modal.createNew = true">
+                    <uib-tab heading="<?php echo $this->getString('CLAIMS_CREATE_NEW_CUSTOMER') ?>" select="modal.createNew = true">
                         <div class="padding-vertical new-contact-form">
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_FIRSTNAME') ?></label>
                                 <?php echo $form['firstname']; ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_LASTNAME') ?></label>
                                 <?php echo $form['lastname']; ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_PHONE') ?></label>
                                 <?php echo $form['daytimePhone']; ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_MOBILE') ?></label>
                                 <?php echo $form['mobile']; ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_EMAIL') ?></label>
                                 <?php echo $form['email']; ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_BUZZER') ?></label>
                                 <?php echo $form['buzzer']; ?>
                             </div>
+                            <div class="col-md-6 form-group">
+                                <label><?php echo $this->getString('CLAIMS_VIP_TYPE') ?></label>
+                                <?php echo $form['VIPType']; ?>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label><?php echo $this->getString('CLAIMS_NOTES') ?></label>
+                                <?php echo $form['notes']; ?>
+                            </div>
                         </div>
-                <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                     </uib-tab>
                 </uib-tabset>
             </form>

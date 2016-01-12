@@ -351,8 +351,8 @@ return array(
     'CLAIMS_ADD_AFFECTED_AREA' => 'Add Affected Area',
     'CLAIMS_ENTRY_IS_NORTH' => 'Entry Is North',
     'CLAIMS_PRODUCT_NUMBER' => 'Product No.',
-    'CLAIMS_ADD_LOCATION_CONTACT' => 'Add Location Contact',
-    'CLAIMS_SEARCH_EXISTING_CONTACTS' => 'Search Existing Contacts',
-    'CLAIMS_ADD_EXISTING_CONTACT' => 'Add Existing Contact',
-    'CLAIMS_CREATE_NEW_CONTACT' => 'Create New Contact'
+    'CLAIMS_ADD_LOCATION_CUSTOMER' => 'Add Location Customer',
+    'CLAIMS_SEARCH_EXISTING_CUSTOMERS' => 'Search Existing Customers',
+    'CLAIMS_ADD_EXISTING_CUSTOMER' => 'Add Existing Customer',
+    'CLAIMS_CREATE_NEW_CUSTOMER' => 'Create New Customer'
 );

@@ -15,12 +15,12 @@
         vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
               templateUrl: template,
-              controller: 'ClaimsLocationsModalCtrl',
+              controller: 'ClaimsLocationsAreaModalCtrl',
               controllerAs: 'modal',
               size: 'md',
               resolve: {
-                ClaimsLocations_id: function () {
-                  return vm.location.id;
+                location: function () {
+                  return vm.location;
                 },
                 item: function () {
                     return area;
@@ -35,18 +35,18 @@
             });
         };
         
-        vm.openContactsModal = function (template, contact) {
+        vm.openContactsModal = function (template, customer) {
             var modalInstance = $uibModal.open({
               templateUrl: template,
-              controller: 'ClaimsLocationsModalCtrl',
+              controller: 'ClaimsLocationsCustomerModalCtrl',
               controllerAs: 'modal',
               size: 'md',
               resolve: {
-                ClaimsLocations_id: function () {
-                  return vm.location.id;
+                location: function () {
+                  return vm.location;
                 },
-                item: function () {
-                    return contact;
+                customer: function () {
+                    return customer;
                 }
               }
             });
@@ -93,8 +93,7 @@
         
         //Format the notes (if needed)
         function formatNotes(notes) {
-            $log.log(notes);
-            
+//            $log.log(notes);            
             if(notes.length > 0) {
                 notesSrv.notes = notesSrv.getNotes(notes);
             }
@@ -103,7 +102,7 @@
         function getAffectedAreas () {
             vm.affectedAreasLoading = true;
             var apiPath = '/admin/scoping/affected-areas/get/';      
-            $log.log(vm.affectedAreas);
+//            $log.log(vm.affectedAreas);
             
             crudSrv.getDetails(apiPath, vm.location.id).then(function(response){
                vm.affectedAreas = response.data.AffectedAreas;

@@ -3,22 +3,23 @@
 
     angular
         .module('claimsAdmin')
-        .controller('ClaimsLocationsModalCtrl', ClaimsLocationsModalCtrl);
+        .controller('ClaimsLocationsAreaModalCtrl', ClaimsLocationsAreaModalCtrl);
 
-    function ClaimsLocationsModalCtrl($uibModalInstance, $scope, $log, crudSrv, ClaimsLocations_id, item, contactListSrv) {
+    function ClaimsLocationsAreaModalCtrl($uibModalInstance, $log, crudSrv, location, item) {
 //        $log.log(ClaimsLocations_id);
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         vm.item = item;
-        vm.item.ClaimsLocations_id = ClaimsLocations_id;
-        vm.createNew = false;
-        vm.test = 'why';
+//        vm.item.ClaimsLocations_id = location.ClaimsLocations_id;
         
         vm.close = function () {
             $uibModalInstance.dismiss();
         };
         
         vm.save = function () {
+//            vm.item.id = location.id;
+            vm.item.ClaimsLocations_id = location.id;
+            $log.log(vm.item);
             var apiPath = '/admin/scoping/affected-areas/' + vm.item.id;
             crudSrv.save(apiPath, vm.item, 'AffectedArea', formToken);
             $uibModalInstance.close();
@@ -32,15 +33,6 @@
 
         activate();
         
-        vm.contactsAutocomplete = function(value, type) {
-            return contactListSrv.autocomplete(value, type);
-        };
-        
-        vm.getContact = function(contact) {
-            vm.item = contact;
-            vm.contact = '';
-        };
-
         function activate() {
             vm.getAreaDetails();
         }
