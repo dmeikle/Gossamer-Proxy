@@ -47,7 +47,15 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 //For Affected Areas modal
                 ->add('width', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
                 ->add('height', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'))
-                ->add('length', 'text', array('ng-model' => 'modal.item.length', 'class' => 'form-control'));
+                ->add('length', 'text', array('ng-model' => 'modal.item.length', 'class' => 'form-control'))
+
+                //For Claims Customers/Contacts
+                ->add('firstname', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
+                ->add('lastname', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'))
+                ->add('email', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
+                ->add('daytimePhone', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'))
+                ->add('mobile', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
+                ->add('buzzer', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));

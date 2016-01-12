@@ -33,6 +33,19 @@
     .cardfooter button {
         font-size:80%;
     }
+    .dropdown {
+        display:none;
+    }
+    &:hover { 
+        .dropdown {
+            display:block;
+        }
+    }
+    table{
+        .dropdown {
+            display:block;
+        }
+    }
 }
 
 .info-card {

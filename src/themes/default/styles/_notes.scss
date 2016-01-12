@@ -1,9 +1,17 @@
 notes{
     display: block;
+    .dropdown{
+        display:none;
+    }
     .note{
         border-bottom:1px solid rgba(0,0,0,.15);
         &:nth-last-child(3){
             border-bottom: none;
+        }
+        &:hover{
+            .dropdown{
+                display:block;
+            }
         }
     }
     p{
@@ -28,6 +36,17 @@ notes{
             margin: 20px 0;
             left: 20px;
         }
+    }
+    .author-info {
+        font-size:.8em;
+        line-height: .8em;
+        margin-bottom:0;
+    }
+    .clearfix{
+        height:0;
+    }
+    a{
+        cursor:pointer;
     }
 }
 

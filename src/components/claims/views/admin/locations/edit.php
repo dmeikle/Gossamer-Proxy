@@ -28,6 +28,7 @@
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
                 </div>
+
                 <div class="clearfix"></div>
                 <address>
                     <div><strong>{{vm.projectAddress.buildingName}}</strong></div>
@@ -42,9 +43,25 @@
 
         <div class="col-md-6 no-padding">
             <div class="card">
-                <div class="cardheader">
-                    <h1><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                <div class="cardheader row">
+                    <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                    <div class="col-xs-3 text-right row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="openEditModal(claim)">
+                                        <?php echo $this->getString('EDIT') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+
                 <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'">
                     <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
                     <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
@@ -273,9 +290,24 @@
         </div>
 
         <div class="card">
-            <div class="cardheader">
-                <h1><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+            <div class="cardheader row">
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                <div class="col-xs-3 text-right row-controls">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        </button>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a href="#" ng-click="openEditModal(claim)">
+                                    <?php echo $this->getString('EDIT') ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
             <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'">
                 <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
                 <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
@@ -400,6 +432,57 @@
         <form></form>
     </script>
 
+    <!--Contacts Modal-->
+    <script type="text/ng-template" id="contactsModal">
+        <div class="modal-header">
+            <h1>
+                <?php echo $this->getString('CLAIMS_ADD_CONTACT') ?>
+            </h1>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="DocumentType_documentType">
+                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
+                        </label>
+                        <?php echo $form['AreaTypes']; ?>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_WIDTH') ?></label>
+                    <?php echo $form['width']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_HEIGHT') ?></label>
+                    <?php echo $form['height']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_LENGTH') ?></label>
+                    <?php echo $form['length']; ?>
+                </div>
+                <div class="col-xs-3">
+                    <label><?php echo $this->getString('CLAIMS_ENRTY_IS_NORTH') ?></label>
+                    <div><input type="checkbox" ng-model="modal.item.entryIsNorth" ng-true-value="1" ng-false-value="0"></div>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+        </div>
+        <div class="modal-footer">
+        {{modal.item}}
+            <div class="pull-right">
+                <div class="btn-group" role="group">
+                    <button class="primary" ng-click="modal.save()">
+                        <?php echo $this->getString('SAVE') ?>
+                    </button>
+                    <button class="default" ng-click="modal.close()">
+                        <?php echo $this->getString('CLOSE') ?>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <form></form>
+    </script>
 </div>
 
 <form></form>
