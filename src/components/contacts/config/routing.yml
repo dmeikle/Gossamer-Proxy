@@ -97,7 +97,17 @@ admin_contact_claims_list:
         datasource: datasource1                    
                   
                   
-                  
+contacts_autocomplete:
+    pattern: contacts/autocomplete/*
+    defaults:
+        component: components\contacts\ContactsComponent
+        controller: components\contacts\controllers\ContactController
+        model: components\contacts\models\ContactModel
+        method: autocomplete
+        view: core\views\JSONView
+        viewKey: contacts_get
+        datasource: datasource1
+    methods: [GET]               
                   
 contacts_get:
     pattern: contacts/get/*
@@ -110,6 +120,8 @@ contacts_get:
         viewKey: contacts_get
         datasource: datasource1
     methods: [POST]
+    
+    
     
 admin_contacts_permissions_get:
     pattern: admin/contacts/permissions/*

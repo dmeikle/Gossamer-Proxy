@@ -52,7 +52,7 @@
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
-                                    <a href="#" ng-click="openEditModal(claim)">
+                                    <a href="#" ng-click="vm.openContactsModal('contactsModal', {})">
                                         <?php echo $this->getString('EDIT') ?>
                                     </a>
                                 </li>
@@ -436,44 +436,67 @@
     <script type="text/ng-template" id="contactsModal">
         <div class="modal-header">
             <h1>
-                <?php echo $this->getString('CLAIMS_ADD_CONTACT') ?>
+                <?php echo $this->getString('CLAIMS_ADD_LOCATION_CONTACT') ?>
             </h1>
         </div>
         <div class="modal-body">
             <form>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="DocumentType_documentType">
-                            <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
-                        </label>
-                        <?php echo $form['AreaTypes']; ?>
-                    </div>
-                </div>
-                <div class="col-xs-3">
-                    <label><?php echo $this->getString('CLAIMS_WIDTH') ?></label>
-                    <?php echo $form['width']; ?>
-                </div>
-                <div class="col-xs-3">
-                    <label><?php echo $this->getString('CLAIMS_HEIGHT') ?></label>
-                    <?php echo $form['height']; ?>
-                </div>
-                <div class="col-xs-3">
-                    <label><?php echo $this->getString('CLAIMS_LENGTH') ?></label>
-                    <?php echo $form['length']; ?>
-                </div>
-                <div class="col-xs-3">
-                    <label><?php echo $this->getString('CLAIMS_ENRTY_IS_NORTH') ?></label>
-                    <div><input type="checkbox" ng-model="modal.item.entryIsNorth" ng-true-value="1" ng-false-value="0"></div>
-                </div>
+                <uib-tabset>
+                    <uib-tab heading="<?php echo $this->getString('CLAIMS_SEARCH_EXISTING_CONTACTS') ?>" select="modal.createNew = false">
+                        <div class="padding">
+                            <label><?php echo $this->getString('CLAIMS_CONTACT_NAME') ?></label>
+                            <?php echo $form['contactsAutocomplete']; ?>
+                            <div class="padding-vertical">
+                                <div ng-if="modal.item.firstname || modal.item.lastname"><strong><?php echo $this->getString('CLAIMS_NAME') ?>:</strong> {{modal.item.firstname}} {{modal.item.lastname}}</div>
+                                <div ng-if="modal.item.contactType"><strong><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?>:</strong> {{modal.item.contactType}}</div>
+                                <div ng-if="modal.item.telephone"><strong><?php echo $this->getString('CLAIMS_LOCATIONS_DAYTIMEPHONE') ?>:</strong> {{modal.item.telephone}}</div>
+                                <div ng-if="modal.item.office"><strong><?php echo $this->getString('CLAIMS_OFFICE') ?>:</strong> {{modal.item.office}} <span ng-if="modal.item.extension">({{modal.item.extension}})</span></div>
+                                <div ng-if="modal.item.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE') ?>:</strong> {{modal.item.mobile}}</div>
+                                <div ng-if="modal.item.email"><strong><?php echo $this->getString('CLAIMS_EMAIL') ?>:</strong> {{modal.item.email}}</div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab heading="<?php echo $this->getString('CLAIMS_CREATE_NEW_CONTACT') ?>" select="modal.createNew = true">
+                        <div class="padding-vertical new-contact-form">
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_FIRSTNAME') ?></label>
+                                <?php echo $form['firstname']; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_LASTNAME') ?></label>
+                                <?php echo $form['lastname']; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_PHONE') ?></label>
+                                <?php echo $form['daytimePhone']; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_MOBILE') ?></label>
+                                <?php echo $form['mobile']; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_EMAIL') ?></label>
+                                <?php echo $form['email']; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <label><?php echo $this->getString('CLAIMS_BUZZER') ?></label>
+                                <?php echo $form['buzzer']; ?>
+                            </div>
+                        </div>
+                <div class="clearfix"></div>
+                    </uib-tab>
+                </uib-tabset>
             </form>
             <div class="clearfix"></div>
         </div>
         <div class="modal-footer">
-        {{modal.item}}
             <div class="pull-right">
                 <div class="btn-group" role="group">
-                    <button class="primary" ng-click="modal.save()">
+                    <button class="primary" ng-click="modal.save()" ng-if="!modal.createNew">
                         <?php echo $this->getString('SAVE') ?>
+                    </button>
+                    <button class="primary" ng-click="modal.save()" ng-if="modal.createNew">
+                        <?php echo $this->getString('SAVE') ?> New
                     </button>
                     <button class="default" ng-click="modal.close()">
                         <?php echo $this->getString('CLOSE') ?>
@@ -488,3 +511,5 @@
 <form></form>
 <div class="clearfix"></div>
 <?php pr($this->data); ?>
+
+

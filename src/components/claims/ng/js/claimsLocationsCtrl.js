@@ -8,7 +8,7 @@
     function claimsLocationsCtrl($log, $timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
         var vm = this;        
         vm.claim = {};
-        vm.documentsConfig = {};
+        vm.documentsConfig = {};        
         
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;
         
@@ -29,19 +29,34 @@
             });
 
             modalInstance.result.then(function () {
-//              $scope.selected = selectedItem;
-                $log.log('modal closed');
                 getAffectedAreas();
             }, function () {
-                $log.log('modal dismissed');
-                
+                $log.log('modal dismissed');                
             });
         };
-          
-//        vm.getAffectedAreas = function () {
-//            var apiPath = '/'
-//            crudSrv.getDetails()
-//        };
+        
+        vm.openContactsModal = function (template, contact) {
+            var modalInstance = $uibModal.open({
+              templateUrl: template,
+              controller: 'ClaimsLocationsModalCtrl',
+              controllerAs: 'modal',
+              size: 'md',
+              resolve: {
+                ClaimsLocations_id: function () {
+                  return vm.location.id;
+                },
+                item: function () {
+                    return contact;
+                }
+              }
+            });
+
+            modalInstance.result.then(function () {
+                getAffectedAreas();
+            }, function () {
+                $log.log('modal dismissed');                
+            });
+        };
         
         activate();
 

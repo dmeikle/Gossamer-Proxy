@@ -5,12 +5,14 @@
         .module('claimsAdmin')
         .controller('ClaimsLocationsModalCtrl', ClaimsLocationsModalCtrl);
 
-    function ClaimsLocationsModalCtrl($uibModalInstance, $scope, $log, crudSrv, ClaimsLocations_id, item) {
+    function ClaimsLocationsModalCtrl($uibModalInstance, $scope, $log, crudSrv, ClaimsLocations_id, item, contactListSrv) {
 //        $log.log(ClaimsLocations_id);
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         vm.item = item;
         vm.item.ClaimsLocations_id = ClaimsLocations_id;
+        vm.createNew = false;
+        vm.test = 'why';
         
         vm.close = function () {
             $uibModalInstance.dismiss();
@@ -29,6 +31,15 @@
         };
 
         activate();
+        
+        vm.contactsAutocomplete = function(value, type) {
+            return contactListSrv.autocomplete(value, type);
+        };
+        
+        vm.getContact = function(contact) {
+            vm.item = contact;
+            vm.contact = '';
+        };
 
         function activate() {
             vm.getAreaDetails();
