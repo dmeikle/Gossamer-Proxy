@@ -28,7 +28,8 @@
         //TODO: change these params
         var apiPath = '/admin/staff/';
 	var objectType = 'Staff';
-
+        var authorizationObjectType = 'StaffAuthorization';
+        
         var self = this;
 	self.advancedSearch = {};
 		
@@ -39,7 +40,8 @@
 	    remove: remove,
 	    autocomplete: autocomplete,
             search: search,
-            getAdvancedSearchFilters: getAdvancedSearchFilters
+            getAdvancedSearchFilters: getAdvancedSearchFilters,
+            getAuthorization: getAuthorization
         };
         
         return service;
@@ -64,6 +66,13 @@
             });
 	}
 
+        function getAuthorization(id) {
+             return crudSrv.getDetails(apiPath + 'credentials/', id).then(function(response) {
+		
+                return response.data.StaffAuthorization;
+            });  
+        }
+        
         function save(object) {
             for (var property in object) {
                 if (object.hasOwnProperty(property) && 

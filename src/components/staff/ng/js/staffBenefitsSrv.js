@@ -3,7 +3,7 @@ module.service('staffBenefitsSrv', function ($http) {
 
     var apiPath = '/admin/staff/benefits/';
 
-    this.getStaffBenefits = function (object) {
+    self.getStaffBenefits = function (object) {
         return $http.get(apiPath + object.id).then(function (response) {
             if (response.data.StaffBenefits[0]) {
                 for (var benefits in response.data.StaffBenefits) {
@@ -12,11 +12,13 @@ module.service('staffBenefitsSrv', function ($http) {
                     }
                 }
                 self.staffBenefits = response.data.StaffBenefits;
+                
+                return self.staffBenefits;
             }
         });
     };
 
-    this.save = function (object, formToken) {
+    self.save = function (object, formToken) {
         var copiedObject = jQuery.extend(true, {}, object);
 
         copiedObject.startDate = object.startDate.toISOString().substring(0, 10);
