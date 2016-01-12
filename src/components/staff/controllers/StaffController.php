@@ -96,10 +96,10 @@ class StaffController extends AbstractController {
             $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
 
 
-            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
-            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
-                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
-            }
+//            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
+//            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
+//                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
+//            }
         }
 
         if (intval($id) == 0) {

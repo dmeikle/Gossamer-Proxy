@@ -129,7 +129,7 @@ class StaffAuthorizationController extends AbstractController {
         }
         $result = $this->model->edit(intval($id));
 
-        if (array_key_exists('StaffAuthorization', $result)) {
+        if (array_key_exists('StaffAuthorization', $result) && array_key_exists('roles', $result['StaffAuthorization'])) {
             $this->render(array('roles' => explode('|', $result['StaffAuthorization']['roles'])));
         } else {
             $this->render(array('success' => 'false', 'message' => 'unable to locate user'));

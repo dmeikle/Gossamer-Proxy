@@ -3,6 +3,7 @@ module.service('staffRolesSrv', function ($http) {
 
     var self = this;
 
+
     this.getStaffRoles = function (object) {
         return $http.get(apiPath + 'permissions/' + object.id)
                 .then(function (response) {
