@@ -10,7 +10,7 @@ admin_staff_edit_home:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes'}
     
-         #build the form for StaffAuthorization Location
+         #build the form for StaffAuthorization 
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -21,3 +21,15 @@ admin_staff_edit_home:
             formName: 'aForm'
             dependencies:
                 - { dependency: StaffAuthorization, model: StaffAuthorization }
+        
+        #build the form for Staff Roles/permissions
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\staff\form\StaffRoleBuilder'
+            model: 'components\staff\models\StaffRoleModel'
+            cacheKey: 'StaffRolesForm'
+            formName: 'roleForm'
+            dependencies:
+                - { dependency: StaffRoles, model: StaffRole }

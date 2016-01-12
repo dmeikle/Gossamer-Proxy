@@ -89,74 +89,11 @@
 
                 <div class="clearfix"></div>
                 <div class="cardfooter">
-                    <input type="submit" class="btn btn-primary pull-right" ng-disabled="!staff.telephone || !staff.email"
+                    <input type="submit" class="btn btn-primary pull-right" ng-disabled="!ctrl.staff.firstname || !ctrl.staff.lastname"
                            value="<?php echo $this->getString('STAFF_SAVE'); ?>">
                     <div class="clearfix"></div>
                 </div>
-                <div class="card" ng-controller="staffRolesCtrl">
-                    <div class="cardheader">
-                        <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
-                    </div>
-                    <div ng-if="staffRoles.loading">
-                        <div class="spinner-loader"></div>
-                    </div>
-                    <div ng-if="!staffRoles.loading">
-                        <fieldset ng-disabled="!staff">
-                            <div class="cardleft">
-                                <div class="form-group">
-                                    <input type="checkbox" name="administrator" id="staff-roles-administrator" ng-model="staffRoles.IS_ADMINISTRATOR">
-                                    <label for="staff-roles-administrator"><?php echo $this->getString('STAFF_ROLES_ADMINISTRATOR'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="super-user" id="staff-roles-super-user" ng-model="staffRoles.IS_SUPER_USER">
-                                    <label for="staff-roles-super-user"><?php echo $this->getString('STAFF_ROLES_SUPERUSER'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="manager" id="staff-roles-manager" ng-model="staffRoles.IS_MANAGER">
-                                    <label for="staff-roles-manager"><?php echo $this->getString('STAFF_ROLES_MANAGER'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="developer" id="staff-roles-developer" ng-model="staffRoles.IS_DEVELOPER">
-                                    <label for="staff-roles-developer"><?php echo $this->getString('STAFF_ROLES_DEVELOPER'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="reception" id="staff-roles-reception" ng-model="staffRoles.IS_RECEPTION">
-                                    <label for="staff-roles-reception"><?php echo $this->getString('STAFF_ROLES_RECEPTION'); ?></label>
-                                </div>
-                            </div>
-                            <div class="cardright">
-                                <div class="form-group">
-                                    <input type="checkbox" name="data-entry" id="staff-roles-data-entry" ng-model="staffRoles.IS_DATA_ENTRY">
-                                    <label for="staff-roles-data-entry"><?php echo $this->getString('STAFF_ROLES_DATA_ENTRY'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="website-editor" id="staff-roles-website-editor" ng-model="staffRoles.IS_WEBSITE_EDITOR">
-                                    <label for="staff-roles-website-editor"><?php echo $this->getString('STAFF_ROLES_WEBSITE_EDITOR'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="staff" id="staff-roles-staff" ng-model="staffRoles.IS_STAFF">
-                                    <label for="staff-roles-staff"><?php echo $this->getString('STAFF_ROLES_STAFF'); ?></label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="human-resources" id="staff-roles-human-resources" ng-model="staffRoles.IS_HUMAN_RESOURCES">
-                                    <label for="staff-roles-human-resources"><?php echo $this->getString('STAFF_ROLES_HUMAN_RESOURCES'); ?></label>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="clearfix"></div>
-                        <div class="cardfooter">
-                            <div class="pull-right btn-group">
-                                <button class="primary" ng-click="submitRoles(staffRoles)" ng-disabled="!staff">
-                                    <?php echo $this->getString('STAFF_SUBMIT'); ?>
-                                </button>
-                                <button ng-click="resetCredentials()" ng-disabled="!staff">
-                                    <?php echo $this->getString('STAFF_RESET'); ?>
-                                </button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="cards">
@@ -218,7 +155,7 @@
                     <div class="form-group">
                         <label for="staff-gender"><?php echo $this->getString('STAFF_GENDER'); ?></label>
                         <input class="form-control" type="text" name="gender"
-                               id="staff-gender" ng-model="staff.gender">
+                               id="staff-gender" ng-model="ctrl.staff.gender">
                     </div>
 
 
@@ -226,7 +163,7 @@
 
                     <div class="clearfix"></div>
                     <div class="cardfooter">
-                        <input type="submit" class="btn btn-primary pull-right" ng-disabled="!staff.firstname || !staff.lastname"
+                        <input type="submit" class="btn btn-primary pull-right" ng-disabled="!ctrl.staff.firstname || !ctrl.staff.lastname"
                                value="<?php echo $this->getString('STAFF_SAVE'); ?>">
                         <div class="clearfix"></div>
                     </div>
@@ -329,9 +266,26 @@
 
             <div class="cardright" ng-if="!ctrl.loading && ctrl.staff.imageName">
                 <img class="staff-picture pull-right" ng-src="/images/staff/{{ctrl.staff.imageName}}">
-
+                <div class="clearfix"></div>
+                <a href=#" ng-click="ctrl.displayPhotoUploadForm()">Upload New Image</a>
             </div>
             <div class="clearfix"></div>
+
+            <div class="card" ng-controller="staffPhotoCtrl as ctrl" ng-show="ctrl.displayForm">
+                <div class="cardheader">
+                    <h1><?php echo $this->getString('STAFF_PHOTOUPLOAD') ?></h1>
+                </div>
+                <div ng-if="loading">
+                    <span class="spinner-loader"></span>
+                </div>
+                <div ng-if="!loading">
+                    <div dropzone="ctrl.dropzoneConfig" class="dropzone">
+                        <p class="text-center">
+                            <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="card" ng-controller="staffAuthorizationCtrl as ctrl">
             <div class="cardheader">
@@ -361,7 +315,7 @@
                     <?php echo $aForm['password']; ?>
                 </div>
                 <div class="form-group" ng-class="{'has-success':ctrl.staffAuthorization.password !== undefined && ctrl.staffAuthorization.password === ctrl.staffAuthorization.passwordConfirm,
-                                    'has-error':ctrl.staffAuthorization.password !== undefined && ctrl.staffAuthorization.password !== ctrl.staffAuthorization.passwordConfirm}">
+                                        'has-error':ctrl.staffAuthorization.password !== undefined && ctrl.staffAuthorization.password !== ctrl.staffAuthorization.passwordConfirm}">
                     <label for="StaffAuthorization_passwordConfirm"><?php echo $this->getString('STAFF_PASSWORD_CONFIRM'); ?></label>
                     <?php echo $aForm['passwordConfirm']; ?>
                 </div>
@@ -379,10 +333,10 @@
 
             <div class="cardfooter">
                 <div class="pull-right btn-group">
-                    <button class="primary" ng-click="submitCredentials(authorization)" ng-disabled="!staff">
+                    <button class="primary" ng-click="ctrl.submitCredentials(ctrl.staffAuthorization)" ng-disabled="!ctrl.staff">
                         <?php echo $this->getString('STAFF_SUBMIT'); ?>
                     </button>
-                    <button ng-click="resetCredentials()" ng-disabled="!staff">
+                    <button ng-click="resetCredentials()" ng-disabled="!ctrl.staff">
                         <?php echo $this->getString('STAFF_RESET'); ?>
                     </button>
                 </div>
@@ -399,86 +353,193 @@
 <form>
     <input type="hidden" value="<?php echo intval($id); ?>" id="Staff_id" />
 </form>
+<div class="col-xs-12">
+    <uib-tabset>
+        <uib-tab heading="Emergency Contacts">
+            <div class="card" ng-controller="staffEmergencyContactsCtrl">
+                <div class="cardheader">
+                    <h1 class="pull-left"><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
+                    <button ng-if="!loading" class="primary pull-right"
+                            ng-click="openEditEmergencyContactModal()"  ng-disabled="!staff">
+                                <?php echo $this->getString('STAFF_NEW') ?>
+                    </button>
+                </div>
+                <div ng-if="loading"><span class="spinner-loader"></span></div>
+                <div ng-if="!loading">
+                    <p ng-if="!staffEmergencyContacts">
+                        <?php echo $this->getString('STAFF_EMERGENCY_NONE'); ?>
+                    </p>
+                    <table ng-if="staffEmergencyContacts" class="cardtable">
+                        <thead>
+                            <tr>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_NAME'); ?></td>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_RELATIONSHIP'); ?></td>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_MOBILE'); ?></td>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_TELEPHONE'); ?></td>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_WORKTELEPHONE'); ?></td>
+                                <td><?php echo $this->getString('STAFF_EMERGENCY_EMAIL'); ?></td>
+                                <td class="cog-col">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in staffEmergencyContacts">
+                                <td><strong>{{contact.firstname}} {{contact.lastname}}</strong></td>
+                                <td>{{contact.relation}}</td>
+                                <td>{{contact.mobile}}</td>
+                                <td>{{contact.telephone}}</td>
+                                <td>{{contact.workTelephone}}</td>
+                                <td>{{contact.email}}</td>
+                                <td class="row-controls">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                            <li><a ng-click="openEditEmergencyContactModal(contact)">Edit</a></li>
+                                            <li><a ng-click="delete(contact)">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="clearfix"></div>
+                </div>
 
-<div ng-controller="staffBenefitsCtrl as ctrl">
-    <div class="modal-header">
-        <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
-        <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!ctrl.staff">
-            <?php echo $this->getString('STAFF_NEW'); ?>
-        </button>
-        <div ng-if="addingNew" class="btn-group pull-right">
-            <button class="primary" ng-click="saveNewBenefits(staff)">
-                <?php echo $this->getString('STAFF_SAVE'); ?>
-            </button>
-            <button ng-click="toggleAddNewBenefits()">
-                <?php echo $this->getString('STAFF_RESET'); ?>
-            </button>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="modal-body">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></th>
-                    <th><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></th>
-                    <th><?php echo $this->getString('STAFF_SALARY'); ?></th>
-                    <th><?php echo $this->getString('STAFF_IS_HOURLY'); ?></th>
-                    <th><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></th>
-                    <th><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></th>
-                    <th><?php echo $this->getString('STAFF_STARTDATE'); ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-if="addingNew">
-                    <td><?php echo $form['StaffPositions_id']; ?></td>
-                    <td><?php echo $form['Departments_id']; ?></td>
-                    <td><input class="form-control" type="number" name="staff-salary" id="staff-salary" ng-model="ctrl.staff.salary"></td>
-                    <td>
-                        <select class="form-control" ng-model="ctrl.staff.isHourly" name="staff-hourly" id="staff-hourly">
-                            <option value="0" selected>No</option>
-                            <option value="1">Yes</option>
-                        </select>
-                    </td>
-                    <td><input class="form-control" type="number" name="staff-accruedVacationMonthly" id="staff-accruedVacationMonthly" ng-model="staff.accruedVacationMonthly"></td>
-                    <td><input class="form-control" type="number" name="staff-accruedSickMonthly" id="staff-accruedSickMonthly" ng-model="staff.accruedSickMonthly"></td>
-                    <td class="has-datepicker">
-                        <div class="input-group">
-                            <input type="text" name="startDate" id="staff-startDate" ng-model="ctrl.staff.startDate" ng-model-options="{timezone: '+0000'}"
-                                   class="form-control" datepicker-popup is-open="isOpen.startDate"
-                                   datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
-                            <span class="input-group-btn" data-datepickername="startDate">
-                                <button type="button" class="btn-default" data-datepickername="startDate" ng-click="openDatepicker($event)">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </button>
-                            </span>
+            </div>
+        </uib-tab>
+        <uib-tab heading="Benefits">
+
+
+            <div ng-controller="staffBenefitsCtrl as ctrl">
+                <div class="modal-header">
+                    <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
+                    <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!ctrl.staff">
+                        <?php echo $this->getString('STAFF_NEW'); ?>
+                    </button>
+                    <div ng-if="addingNew" class="btn-group pull-right">
+                        <button class="primary" ng-click="saveNewBenefits(staff)">
+                            <?php echo $this->getString('STAFF_SAVE'); ?>
+                        </button>
+                        <button ng-click="toggleAddNewBenefits()">
+                            <?php echo $this->getString('STAFF_RESET'); ?>
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></th>
+                                <th><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></th>
+                                <th><?php echo $this->getString('STAFF_SALARY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_IS_HOURLY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_STARTDATE'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="addingNew">
+                                <td><?php echo $form['StaffPositions_id']; ?></td>
+                                <td><?php echo $form['Departments_id']; ?></td>
+                                <td><input class="form-control" type="number" name="staff-salary" id="staff-salary" ng-model="ctrl.staff.salary"></td>
+                                <td>
+                                    <select class="form-control" ng-model="ctrl.staff.isHourly" name="staff-hourly" id="staff-hourly">
+                                        <option value="0" selected>No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </td>
+                                <td><input class="form-control" type="number" name="staff-accruedVacationMonthly" id="staff-accruedVacationMonthly" ng-model="staff.accruedVacationMonthly"></td>
+                                <td><input class="form-control" type="number" name="staff-accruedSickMonthly" id="staff-accruedSickMonthly" ng-model="staff.accruedSickMonthly"></td>
+                                <td class="has-datepicker">
+                                    <div class="input-group">
+                                        <input type="text" name="startDate" id="staff-startDate" ng-model="ctrl.staff.startDate" ng-model-options="{timezone: '+0000'}"
+                                               class="form-control" datepicker-popup is-open="isOpen.startDate"
+                                               datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
+                                        <span class="input-group-btn" data-datepickername="startDate">
+                                            <button type="button" class="btn-default" data-datepickername="startDate" ng-click="openDatepicker($event)">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="benefits in ctrl.staffBenefits">
+                                <td>{{benefits.position}}</td>
+                                <td>{{benefits.department}}</td>
+                                <td>{{benefits.salary| currency}}</td>
+                                <td bool-to-string data-value="{{benefits.isHourly}}"></td>
+                                <td>{{benefits.accruedVacationMonthly}}</td>
+                                <td>{{benefits.accruedSickMonthly}}</td>
+                                <td class="has-datepicker">{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form class="hidden"></form>
+                </div>
+                <div class="modal-footer">
+                    <button ng-if="!addingNew" class="primary" ng-click="close()">
+                        <?php echo $this->getString('STAFF_CLOSE'); ?>
+                    </button>
+                    <div ng-if="addingNew" class="btn-group pull-right">
+                        <button class="primary" ng-click="saveNewBenefits(staff)">
+                            <?php echo $this->getString('STAFF_SAVE'); ?>
+                        </button>
+                        <button ng-click="toggleAddNewBenefits()">
+                            <?php echo $this->getString('STAFF_RESET'); ?>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab heading="Documents">
+            <div ng-if="claimLoading">
+                <div class="text-center"><span class="spinner-loader"></span></div>
+            </div>
+            <div ng-if="!claimLoading">
+                <documents module="claims" model='{{claim}}' model-type="Claim">
+                    <div class="pull-right">
+                        <button class="primary" ng-click="openUploadDocumentsModal(claim)">
+                            Upload Documents
+                        </button>
+                    </div>
+                </documents>
+            </div>
+        </uib-tab>
+        <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>">
+            <div class="card" ng-controller="staffRolesCtrl as ctrl">
+                <div class="cardheader">
+                    <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+                </div>
+                <div ng-if="ctrl.loading">
+                    <div class="spinner-loader"></div>
+                </div>
+                <div ng-if="!ctrl.loading" ng-disabled="!ctrl.staffLoaded">
+
+
+                    <?php foreach ($roleForm as $item) { ?>
+                        <div class="form-group col-md-4">
+                            <?php echo $item['html']; ?>
+                            <label for="StaffRoles[<?php echo $item['id']; ?>]"><?php echo $this->getString('STAFF_ROLES_' . $item['role']); ?></label>
                         </div>
-                    </td>
-                </tr>
-                <tr ng-repeat="benefits in ctrl.staffBenefits">
-                    <td>{{benefits.position}}</td>
-                    <td>{{benefits.department}}</td>
-                    <td>{{benefits.salary| currency}}</td>
-                    <td bool-to-string data-value="{{benefits.isHourly}}"></td>
-                    <td>{{benefits.accruedVacationMonthly}}</td>
-                    <td>{{benefits.accruedSickMonthly}}</td>
-                    <td class="has-datepicker">{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <form class="hidden"></form>
-    </div>
-    <div class="modal-footer">
-        <button ng-if="!addingNew" class="primary" ng-click="close()">
-            <?php echo $this->getString('STAFF_CLOSE'); ?>
-        </button>
-        <div ng-if="addingNew" class="btn-group pull-right">
-            <button class="primary" ng-click="saveNewBenefits(staff)">
-                <?php echo $this->getString('STAFF_SAVE'); ?>
-            </button>
-            <button ng-click="toggleAddNewBenefits()">
-                <?php echo $this->getString('STAFF_RESET'); ?>
-            </button>
-        </div>
-    </div>
+                        <?php
+                    }
+                    ?>
+
+                    <div class="clearfix"></div>
+                    <div class="cardfooter">
+                        <div class="pull-right btn-group">
+                            <button class="primary" ng-click="ctrl.submitRoles(ctrl.staffRoles)">
+                                <?php echo $this->getString('STAFF_SUBMIT'); ?>
+                            </button>
+                            <button ng-click="ctrl.resetCredentials()">
+                                <?php echo $this->getString('STAFF_RESET'); ?>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
 </div>

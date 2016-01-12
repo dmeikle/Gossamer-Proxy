@@ -11,5 +11,9 @@
             self.staff = args.staff;
         });
         
+        self.displayPhotoUploadForm = function() {
+           $rootScope.$broadcast('DISPLAY_PHOTO_UPLOAD_FORM');
+        };
+        
     }
 })();

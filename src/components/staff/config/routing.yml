@@ -229,6 +229,7 @@ admin_staff_edit_home:
         datasource: datasource1
         langFiles:
             - 'src/components/staff/locales/*/staff'
+            - 'src/components/staff/locales/*/Roles'
             - app/locales/*/website
     methods: [GET]
 
