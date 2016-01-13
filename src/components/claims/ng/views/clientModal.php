@@ -19,8 +19,10 @@
         <label for="">
             <?php echo $this->getString('CLAIMS_CONTACT_FIRSTNAME') ?>
         </label>
-        <input type="text" ng-model="contactInput" ng-bind-html-unsafe="contactInput"
-               uib-typeahead="contact as contact.firstname + ' ' + contact.lastname + contact.company for contact in firstnameAutocomplete($viewValue)"
+
+        <input type="text" ng-model="contact"
+               uib-typeahead="contact as contact.firstname + ' ' + contact.lastname + ' - ' + contact.company + ' - ' + contact.contactType for contact in firstnameAutocomplete($viewValue)"
+
                typeahead-loading="loadingFirstname" typeahead-no-results="noFirstnameResults" class="form-control"
                typeahead-min-length="3" typeahead-on-select="selectContact()"
                typeahead-template-url="customTemplate.html">
@@ -52,12 +54,12 @@
 </div>
 
 <script type="text/ng-template" id="customTemplate.html">
-<a>
-<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
-<div><strong>{{match.model.firstname}} {{match.model.lastname}}<span ng-if="match.model.contactType"> - {{match.model.contactType}}</span></strong></div>
-<small>{{match.model.company}}</small>
-<div><?php echo $this->getString('CLAIMS_CITY') ?>: {{match.model.city}}</div>
-<div><?php echo $this->getString('CLAIMS_PHONE') ?>: {{match.model.telephone}}</div>
-<div><?php echo $this->getString('CLAIMS_EMAIL') ?>: {{match.model.email}}</div>
-</a>
+    <a>
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    <div><strong>{{match.model.firstname}} {{match.model.lastname}}<span ng-if="match.model.contactType"> - {{match.model.contactType}}</span></strong></div>
+    <small>{{match.model.company}}</small>
+    <div><?php echo $this->getString('CLAIMS_CITY') ?>: {{match.model.city}}</div>
+    <div><?php echo $this->getString('CLAIMS_PHONE') ?>: {{match.model.telephone}}</div>
+    <div><?php echo $this->getString('CLAIMS_EMAIL') ?>: {{match.model.email}}</div>
+    </a>
 </script>

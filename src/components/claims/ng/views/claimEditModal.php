@@ -15,7 +15,7 @@
                 <?php echo $form['parentClaims_id']; ?>
             </div>
             <div class="form-group">
-                <label for="Claim_sourceUnitClaimsLocations_id"><?php echo $this->getString('CLAIMS_SOURCE'); ?></label>        
+                <label for="Claim_sourceUnitClaimsLocations_id"><?php echo $this->getString('CLAIMS_SOURCE'); ?></label>
                 <?php echo $form['sourceUnitClaimsLocations_id']; ?>
             </div>
             <div class="form-group">
@@ -23,15 +23,15 @@
                 <?php echo $form['sourceOther']; ?>
             </div>
             <div class="form-group">
-                <label for="Claim_reason"><?php echo $this->getString('CLAIMS_REASON'); ?></label>        
+                <label for="Claim_reason"><?php echo $this->getString('CLAIMS_REASON'); ?></label>
                 <?php echo $form['reason']; ?>
             </div>
             <div class="form-group">
-                <label for="Claim_contentsNeeded"><?php echo $this->getString('CLAIMS_CONTENTS_ON_SITE'); ?></label>        
+                <label for="Claim_contentsNeeded"><?php echo $this->getString('CLAIMS_CONTENTS_ON_SITE'); ?></label>
                 <?php echo $form['contentsNeeded']; ?>
             </div>
             <div class="form-group">
-                <label for="Claim_asbestosTestRequired"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></label>        
+                <label for="Claim_asbestosTestRequired"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></label>
                 <p class="form-control-static" bool-to-string data-value="{{claim.asbestosTestRequired}}"></p>
             </div>
 
@@ -101,7 +101,7 @@
     </div> <div class="clearfix"></div>
     <div class="modal-footer">
         <div class="btn-group">
-            <button class="primary" ng-click="submit(claim)"><?php echo $this->getString('CLAIMS_CONFIRM'); ?></button>
+            <button class="primary" ng-click="submit(claim)"><?php echo $this->getString('CLAIMS_SAVE'); ?></button>
 
             <button ng-click="cancel()"><?php echo $this->getString('CLAIMS_CANCEL'); ?></button>
         </div>

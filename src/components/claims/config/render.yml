@@ -110,6 +110,8 @@ initialJobsheetWizardPages:
 
 claimEditModal:
     path: 'src/components/claims/ng/views/claimEditModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
     listeners:
         - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
