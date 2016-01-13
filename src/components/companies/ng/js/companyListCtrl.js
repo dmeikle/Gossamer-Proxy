@@ -42,11 +42,12 @@ module.controller('companyListCtrl', function ($scope, $modal, companyListSrv, c
     $scope.openCompanyAdvancedSearch = function () {
         $scope.sidePanelOpen = true;
         $scope.selectedCompany = undefined;
-        $scope.sidePanelLoading = true;
-        companyListSrv.getAdvancedSearchFilters().then(function () {
-            $scope.sidePanelLoading = false;
-            $scope.searching = true;
-        });
+        $scope.searching = true;
+      //  $scope.sidePanelLoading = true;
+//        companyListSrv.getAdvancedSearchFilters().then(function () {
+//            $scope.sidePanelLoading = false;
+//            $scope.searching = true;
+//        });
     };
 
     $scope.resetAdvancedSearch = function () {
