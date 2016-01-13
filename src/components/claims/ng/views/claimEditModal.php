@@ -16,7 +16,11 @@
             </div>
             <div class="form-group">
                 <label for="Claim_sourceUnitClaimsLocations_id"><?php echo $this->getString('CLAIMS_SOURCE'); ?></label>
+
                 <?php echo $form['sourceUnitClaimsLocations_id']; ?>
+
+                {{claim.unitNumber}}
+
             </div>
             <div class="form-group">
                 <label for="Claim_sourceOther"><?php echo $this->getString('CLAIMS_SOURCEOTHER') ?></label>
@@ -27,12 +31,12 @@
                 <?php echo $form['reason']; ?>
             </div>
             <div class="form-group">
-                <label for="Claim_contentsNeeded"><?php echo $this->getString('CLAIMS_CONTENTS_ON_SITE'); ?></label>
-                <?php echo $form['contentsNeeded']; ?>
+
+                <label ng-show="claim.contentsNeeded == '1'" for="Claim_contentsNeeded"><?php echo $this->getString('CLAIMS_CONTENTS_ON_SITE'); ?></label>
+
             </div>
             <div class="form-group">
-                <label for="Claim_asbestosTestRequired"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></label>
-                <p class="form-control-static" bool-to-string data-value="{{claim.asbestosTestRequired}}"></p>
+                <label ng-show="claim.asbestosTestRequired" for="Claim_asbestosTestRequired"><?php echo $this->getString('CLAIMS_ASBESTOS_TEST'); ?></label>
             </div>
 
         </div>
@@ -101,8 +105,7 @@
     </div> <div class="clearfix"></div>
     <div class="modal-footer">
         <div class="btn-group">
-            <button class="primary" ng-click="submit(claim)"><?php echo $this->getString('CLAIMS_SAVE'); ?></button>
-
+            <button class="primary" ng-click="submit(claim)"><?php echo $this->getString('SAVE'); ?></button>
             <button ng-click="cancel()"><?php echo $this->getString('CLAIMS_CANCEL'); ?></button>
         </div>
     </div>
