@@ -245,7 +245,6 @@ return array(
     'CLAIMS_DISAPPROVE_ALL' => 'Disapprove All',
     'CLAIMS_ACTIONS' => 'Actions',
     'CLAIMS_MAX_DAYS' => 'Max Days',
-    'CLAIMS_NUM_DAYS' => '# Days',
     'CLAIMS_PRICE' => 'Price',
     'CLAIMS_NUMBER' => 'Number',
     'CLAIMS_HOURLY_RATE' => 'Hourly Rate',

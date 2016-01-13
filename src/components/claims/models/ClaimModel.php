@@ -64,7 +64,7 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
         $params['ClaimLocation']['id'] = intval($claimsLocationId);
         $params['AffectedAreas']['Claims_id'] = intval($claimId);
         $params['AffectedAreas']['ClaimsLocations_id'] = intval($claimsLocationId);
-        
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveinitialjobsheet', $params);
 
         return $data;
@@ -113,6 +113,24 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
         $params['locale'] = $locale['locale'];
 
         $data = $this->dataSource->query(self::METHOD_GET, $this, 'getinitialjobsheet', $params);
+
+        return $data;
+    }
+
+    /**
+     * performs a save to the datasource
+     *
+     * @param int $id
+     *
+     * @return type
+     */
+    public function save($id) {
+        $params = $this->httpRequest->getPost();
+        $params[$this->entity]['id'] = intval($id);
+        $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
+        $params[$this->entity]['ClaimPhases_id'] = $params[$this->entity]['currentClaimPhases_id'];
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
 
         return $data;
     }
