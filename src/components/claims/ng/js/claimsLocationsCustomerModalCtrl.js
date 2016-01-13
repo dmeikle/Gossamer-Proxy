@@ -8,6 +8,7 @@
     function ClaimsLocationsCustomerModalCtrl($uibModalInstance, $scope, $log, crudSrv, location, customer, contactListSrv, searchSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        $log.log(location);
         vm.customer = customer;
         vm.createNew = false;
         
@@ -15,16 +16,12 @@
             $uibModalInstance.dismiss();
         };
         
-//        vm.save = function () {
-//            vm.item.id = location.id;
-//            var apiPath = '/admin/scoping/affected-areas/' + vm.item.id;
-//            crudSrv.save(apiPath, vm.item, 'AffectedArea', formToken);
-//            $uibModalInstance.close();
-//        };
-        
         vm.saveNewCustomer = function () {
-            var apiPath = '/admin/scoping/affected-areas/' + vm.customer.id;
-            crudSrv.save(apiPath, vm.customer, 'AffectedArea', formToken);
+            vm.newCustomer.Claims_id = location.Claims_id;
+            vm.newCustomer.ClaimsLocations_id = location.id;
+            $log.log(vm.newCustomer);
+            var apiPath = '/admin/customers/0';
+            crudSrv.save(apiPath, vm.newCustomer, 'Customer', formToken);
         };
         
         vm.getContactDetails = function() {
@@ -35,7 +32,7 @@
 
         activate();
         
-        vm.customerAutocomplete = function(value, type) {
+        vm.customersAutocomplete = function(value, type) {
 //            return contactListSrv.autocomplete(value, type);
             var config = {};
             config[type] = value;

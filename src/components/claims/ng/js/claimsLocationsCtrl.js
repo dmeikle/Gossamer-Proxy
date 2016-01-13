@@ -35,7 +35,7 @@
             });
         };
         
-        vm.openContactsModal = function (template, customer) {
+        vm.openCustomersModal = function (template, customer) {
             var modalInstance = $uibModal.open({
               templateUrl: template,
               controller: 'ClaimsLocationsCustomerModalCtrl',
@@ -92,8 +92,7 @@
         }       
         
         //Format the notes (if needed)
-        function formatNotes(notes) {
-//            $log.log(notes);            
+        function formatNotes(notes) {       
             if(notes.length > 0) {
                 notesSrv.notes = notesSrv.getNotes(notes);
             }
@@ -101,18 +100,12 @@
         
         function getAffectedAreas () {
             vm.affectedAreasLoading = true;
-            var apiPath = '/admin/scoping/affected-areas/get/';      
-//            $log.log(vm.affectedAreas);
-            
+            var apiPath = '/admin/scoping/affected-areas/get/';
             crudSrv.getDetails(apiPath, vm.location.id).then(function(response){
                vm.affectedAreas = response.data.AffectedAreas;
-//               $log.log(response);
                 vm.affectedAreasLoading = false;
             });
         }
-        
-        
-        
         
     }
 })();

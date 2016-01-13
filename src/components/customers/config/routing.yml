@@ -196,7 +196,7 @@ admin_customers_save:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: save
-        view: core\views\TemplateView
+        view: core\views\JSONView
         viewKey: admin_customers_save
         datasource: datasource1
         

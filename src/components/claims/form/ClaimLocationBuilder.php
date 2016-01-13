@@ -50,17 +50,17 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('length', 'text', array('ng-model' => 'modal.item.length', 'class' => 'form-control'))
 
                 //For Claims Customers/Contacts
-                ->add('contactsAutocomplete', 'text', array('ng-model' => 'modal.contact',
-                    'uib-typeahead' => "value as value.firstname + ' ' + value.lastname for value in modal.contactsAutocomplete(\$viewValue, 'name')",
-                    'typeahead-loading' => 'loadingContactsTypeahead', 'typeahead-no-results' => 'noResultsContacts', 'class' => 'form-control typeahead',
-                    'typeahead-min-length' => '3', 'typeahead-on-select' => 'modal.getContact(modal.contact)', 'typeahead-wait-ms' => '500'))
-                ->add('firstname', 'text', array('ng-model' => 'modal.newContact.firstname', 'class' => 'form-control'))
-                ->add('lastname', 'text', array('ng-model' => 'modal.newContact.lastname', 'class' => 'form-control'))
-                ->add('email', 'text', array('ng-model' => 'modal.newContact.email', 'class' => 'form-control'))
-                ->add('daytimePhone', 'text', array('ng-model' => 'modal.newContact.daytimePhone', 'class' => 'form-control'))
-                ->add('mobile', 'text', array('ng-model' => 'modal.newContact.mobile', 'class' => 'form-control'))
-                ->add('buzzer', 'text', array('ng-model' => 'modal.newContact.buzzer', 'class' => 'form-control'))
-                ->add('notes', 'textarea', array('ng-model' => 'modal.newContact.notes', 'class' => 'form-control'));
+                ->add('customersAutocomplete', 'text', array('ng-model' => 'modal.customerName',
+                    'uib-typeahead' => "value as value.firstname + ' ' + value.lastname for value in modal.customersAutocomplete(\$viewValue, 'name')",
+                    'typeahead-loading' => 'loadingCustomersTypeahead', 'typeahead-no-results' => 'noResultsCustomers', 'class' => 'form-control typeahead',
+                    'typeahead-min-length' => '3', 'typeahead-on-select' => 'modal.getCustomer(modal.customerName)', 'typeahead-wait-ms' => '500'))
+                ->add('firstname', 'text', array('ng-model' => 'modal.newCustomer.firstname', 'class' => 'form-control'))
+                ->add('lastname', 'text', array('ng-model' => 'modal.newCustomer.lastname', 'class' => 'form-control'))
+                ->add('email', 'text', array('ng-model' => 'modal.newCustomer.email', 'class' => 'form-control'))
+                ->add('daytimePhone', 'text', array('ng-model' => 'modal.newCustomer.daytimePhone', 'class' => 'form-control'))
+                ->add('mobile', 'text', array('ng-model' => 'modal.newCustomer.mobile', 'class' => 'form-control'))
+                ->add('buzzer', 'text', array('ng-model' => 'modal.newCustomer.buzzer', 'class' => 'form-control'))
+                ->add('notes', 'textarea', array('ng-model' => 'modal.newCustomer.notes', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));

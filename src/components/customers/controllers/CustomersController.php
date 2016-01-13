@@ -46,15 +46,15 @@ class CustomersController extends AbstractController {
      *
      * @param int id    primary key of item to save
      */
-    public function save($id) {
-
-        $result = $this->model->save($id);
-        pr($result);
-        pr($result['Customer']);
-        pr($result['Customer']['id']);
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_Customer_credentials_get', array($result['Customer']['id']));
-    }
+//    public function save($id) {
+//
+//        $result = $this->model->save($id);
+////        pr($result);
+////        pr($result['Customer']);
+////        pr($result['Customer']['id']);
+//        $router = new Router($this->logger, $this->httpRequest);
+//        $router->redirect('admin_Customer_credentials_get', array($result['Customer']['id']));
+//    }
 
     public function view() {
         $result = $this->model->view();

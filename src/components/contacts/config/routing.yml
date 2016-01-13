@@ -602,8 +602,3 @@ portal_contacts_credentials_save:
         viewKey: portal_contacts_credentials_save
         datasource: datasource1
     methods: [POST] 
-    
-    
-
-
-            
