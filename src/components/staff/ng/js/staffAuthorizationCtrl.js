@@ -18,7 +18,7 @@
         
         $rootScope.$on('STAFFAUTHORIZATION_LOADED', function(event, args) {
             self.staffAuthorization = args.staffAuthorization;
-            delete self.staffAuthorization.username;
+            delete self.staffAuthorization.roles;
         });
         
         
@@ -28,5 +28,20 @@
             });
         }
         
+        
+        self.submitCredentials = function(credentials) {
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            credentials.Staff_id = document.getElementById('Staff_id').value;
+            
+            switch (credentials.emailUser) {
+                case true:
+                    staffSrv.generateEmailReset(credentials, formToken);
+                    break;
+                default:
+                    staffSrv.saveCredentials(credentials, formToken).then(function (response) {
+                        $scope.credentialStatus = staffEditSrv.credentialStatus;
+                    });
+            }
+        };
     }
 })();

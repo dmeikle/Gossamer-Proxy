@@ -123,14 +123,14 @@
         };
         
         self.delete = function (contact) {
-        var confirmed = confirm('Are you sure you want to delete ' + contact.firstname + ' ' + contact.lastname + '?');
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            var confirmed = confirm('Are you sure you want to delete ' + contact.firstname + ' ' + contact.lastname + '?');
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
 
-        if (confirmed) {
-            staffEmergencyContactsSrv.delete(contact, formToken).then(function () {
-                $scope.$broadcast('CONTACT_DELETED', {contact: contact});
-            });
-        }
-    };
+            if (confirmed) {
+                staffEmergencyContactsSrv.delete(contact, formToken).then(function () {
+                    $scope.$broadcast('CONTACT_DELETED', {contact: contact});
+                });
+            }
+        };
     }
 })();

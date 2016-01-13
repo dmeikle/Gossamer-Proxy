@@ -288,7 +288,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" ng-controller="staffCredentialsCtrl as ctrl">
+        <div class="card" ng-controller="staffAuthorizationCtrl as ctrl">
             <div class="cardheader">
                 <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
             </div>
@@ -320,7 +320,7 @@
             <div class="clearfix"></div>
             <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES'); ?></p>
             <div class="form-group">
-                <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="ctrl.staffAuthorization.emailUser" ng-disabled="!staff">
+                <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="ctrl.staffAuthorization.emailUser">
                 <label for="staff-emailUser"><?php echo $this->getString('STAFF_EMAILUSER'); ?></label>
                 <p class="help-block">
                     <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
@@ -332,7 +332,7 @@
                     <button class="primary" ng-click="ctrl.submitCredentials(ctrl.staffAuthorization)" ng-disabled="!ctrl.staff && ! ctrl.staffAuthorization.username">
                         <?php echo $this->getString('STAFF_SUBMIT'); ?>
                     </button>
-                    <button ng-click="ctrl.resetCredentials()" ng-disabled="!ctrl.staff">
+                    <button ng-click="ctrl.resetCredentials()">
                         <?php echo $this->getString('STAFF_RESET'); ?>
                     </button>
                 </div>
@@ -354,7 +354,7 @@
         <uib-tab heading="Emergency Contacts">
             <div class="card" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                      ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                ?></h1>
                     <button ng-if="!ctrl.loading" class="primary pull-right"
                             ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
@@ -407,15 +407,15 @@
 
             <div ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                      ?></h1>
-                    <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!ctrl.staff">
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                ?></h1>
+                    <button ng-if="!ctrl.addingNew" class="pull-right" ng-click="ctrl.openAddNewBenefitsModal()" ng-disabled="!ctrl.staffLoaded">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
-                    <div ng-if="addingNew" class="btn-group pull-right">
-                        <button class="primary" ng-click="saveNewBenefits(staff)">
+                    <div ng-if="ctrl.addingNew" class="btn-group pull-right">
+                        <button class="primary" ng-click="ctrl.saveNewBenefits(staff)">
                             <?php echo $this->getString('STAFF_SAVE'); ?>
                         </button>
-                        <button ng-click="toggleAddNewBenefits()">
+                        <button ng-click="ctrl.toggleAddNewBenefits()">
                             <?php echo $this->getString('STAFF_RESET'); ?>
                         </button>
                     </div>
@@ -505,7 +505,7 @@
         <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>">
             <div class="card" ng-controller="staffRolesCtrl as ctrl">
                 <div class="cardheader">
-                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                     ?></h1>
+                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                               ?></h1>
                 </div>
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>
@@ -541,7 +541,13 @@
 </div>
 
 <script id="emergencyContactInfo" type="text/ng-template">
+<?php
+include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/editEmergencyContactModal.php');
+?>
+</script>
+
+<script id="addNewBenefit" type="text/ng-template">
     <?php
-    include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/editEmergencyContactModal.php');
+    include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/addNewBenefitForm.php');
     ?>
 </script>

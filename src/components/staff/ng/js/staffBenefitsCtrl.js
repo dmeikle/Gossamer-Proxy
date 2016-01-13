@@ -7,11 +7,14 @@
             .module('staffAdmin')
             .controller('staffBenefitsCtrl', staffBenefitsCtrl);
     
-    function staffBenefitsCtrl($rootScope, $scope, staffBenefitsSrv) {
+    function staffBenefitsCtrl($rootScope, $scope, $modal, staffBenefitsSrv) {
         var self = this;
+        
+        self.staffLoaded = false;
         
         $rootScope.$on('STAFF_LOADED', function(event, args) {
             if(self.staffBenefits === undefined) {
+                self.staffLoaded = true;
                 loadBenefits(args.staff);
             }
         });
@@ -28,23 +31,23 @@
         }
         
       
-    self.openStaffBenefitsHistoryModal = function () {
-        var template = staffTemplateSrv.staffBenefitsHistoryModal;
-        var modalInstance = $modal.open({
-            templateUrl: template,
-            controller: 'staffBenefitsHistoryModalCtrl',
-            size: 'lg',
-            resolve: {
-                staffBenefits: function () {
-                    return $scope.staffBenefits;
+        self.openAddNewBenefitsModal = function () {
+            
+            var modalInstance = $modal.open({
+                templateUrl: 'addNewBenefit',
+                controller: 'staffBenefitsHistoryModalCtrl',
+                size: 'lg',
+                resolve: {
+                    staffBenefits: function () {
+                        return self.staffBenefits;
+                    }
                 }
-            }
-        });
+            });
 
-        modalInstance.result.then(function () {
-            getStaffBenefits();
-        });
-    };
+            modalInstance.result.then(function () {
+                getStaffBenefits();
+            });
+        };
     }
 })();
 

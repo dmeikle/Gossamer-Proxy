@@ -185,4 +185,16 @@ class StaffAuthorizationController extends AbstractController {
         }
     }
 
+    /**
+     * edit - display an input form based on requested id
+     *
+     * @param int id    primary key of item to edit
+     */
+    public function edit($id) {
+        $result = $this->model->edit($id);
+        unset($result['StaffAuthorization']['password']);
+
+        $this->render($result);
+    }
+
 }
