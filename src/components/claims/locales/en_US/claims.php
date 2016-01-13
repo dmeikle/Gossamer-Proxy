@@ -4,6 +4,7 @@ return array(
     'CLAIM_DATE' => 'Date',
     'CLAIM_TIME' => 'Time',
     'CLAIMS_ACTIONS' => 'Actions',
+    'CLAIMS_CITY' => 'City',
     'CLAIMS_ADDNEW_ADDRESS' => 'Address',
     'CLAIMS_ADDNEW_BUILDING' => 'Building',
     'CLAIMS_ADDNEW_CONFIRM' => 'Confirm',
@@ -329,5 +330,6 @@ return array(
     'CLAIMS_COMPLETION_DATE' => 'Completion Date',
     'CLAIMS_MORE_INFORMATION' => 'More Information',
     'CLAIMS_WORK_DATE' => 'Work Date',
-    'CLAIMS_ISSOURCE' => 'Source Unit'
+    'CLAIMS_ISSOURCE' => 'Source Unit',
+    'CLAIMS_NO_RESULTS' => 'No Results'
 );

@@ -1,7 +1,7 @@
-
-module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact, claimId, claimsEditSrv, contactListSrv) {
+module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact, claimId, claimsEditSrv, contactListSrv, $filter, $sce) {
     $scope.contact = contact;
-
+    $sce.trustAsHtml($scope.contactInput);
+    
     $scope.remove = function(object) {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         claimsEditSrv.removeContact(object, formToken).then(function(response) {
@@ -33,4 +33,11 @@ module.controller('clientModalCtrl', function($scope, $uibModalInstance, contact
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
+    
+    $scope.selectContact = function() {
+        $scope.contact = angular.copy($scope.contactInput);
+        $scope.contactInput = '';
+    };   
+
 });
+
