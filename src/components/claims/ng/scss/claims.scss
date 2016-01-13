@@ -44,5 +44,22 @@
 .table-striped>tbody>tr:nth-of-type(odd).bg-warning{
     /*@extend .table-striped>tbody>tr:nth-of-type(odd);*/
     @extend .bg-warning;
+}
 
+.form-control[type="checkbox"] {
+    box-shadow: none;
+}
+
+#secondary-sheet {
+    h3 {
+        margin-top: 11px;
+    }
+    input, label { 
+        margin-top:0;
+        margin-bottom:0;
+    }
+    .col-md-12 > .col-md-12{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }

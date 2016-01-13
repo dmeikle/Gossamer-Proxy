@@ -14,7 +14,7 @@
         .module('claimsAdmin')
         .controller('claimsSecondarySheetEditCtrl', claimsSecondarySheetEditCtrl);
 
-    function claimsSecondarySheetEditCtrl($scope, claimsSecondarySheetsSrv) {
+    function claimsSecondarySheetEditCtrl($scope, claimsSecondarySheetsSrv, $uibModal) {
         var self = this;
         
         self.secondarySheet = {};
@@ -34,6 +34,27 @@
             }
         });
         
+        self.openSecondarySheetModal = function (template) {
+
+            var modalInstance = $uibModal.open({
+//                animation: $scope.animationsEnabled,
+                templateUrl: template,
+//                controller: 'ModalInstanceCtrl',
+                size: 'md',
+//                resolve: {
+//                    items: function () {
+//                        return $scope.items;
+//                    }
+//                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+//                $scope.selected = selectedItem;
+            }, function () {
+                //Modal Dismissed
+            });
+        };
+
         activate();
 
         function activate() {
