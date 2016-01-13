@@ -39,13 +39,14 @@
             var modalInstance = $uibModal.open({
 //                animation: $scope.animationsEnabled,
                 templateUrl: template,
-//                controller: 'ModalInstanceCtrl',
+                controller: 'secondarySheetsModalCtrl',
+                controllerAs: 'modal',
                 size: 'md',
-//                resolve: {
-//                    items: function () {
-//                        return $scope.items;
-//                    }
-//                }
+                resolve: {
+                    secondarySheetResults: function () {
+                        return self.secondarySheetResults;
+                    }
+                }
             });
 
             modalInstance.result.then(function (selectedItem) {
@@ -91,7 +92,6 @@
         };
         
         self.saveSecondarySheetResults = function(items) {
-
             var secondarySheet = {};
             secondarySheet.item = items.item;
             self.saveSecondarySheet(secondarySheet);

@@ -19,6 +19,8 @@
     <div class="clearfix"></div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <div class="btn-group">
+        <button ng-click="modal.cancel()"><?php echo $this->getString('CLAIMS_CANCEL'); ?></button>
+        <button class="primary" ng-click="modal.saveSecondarySheetResults(modal.secondarySheetResults)"><?php echo $this->getString('SAVE'); ?></button>
+    </div>
 </div>
