@@ -20,5 +20,6 @@ return array(
     'COMPANIES_DATE_RECEIVED' => 'Date Received',
     'COMPANY_JOB_NUMBER' => 'Job Number',
     'COMPANIES_DEDUCTABLE_AMOUNT' => 'Deductable Amount',
-    'COMPANIES_REASON' => 'Reason'
+    'COMPANIES_REASON' => 'Reason',
+    'COMPANIES_NO_CLAIMS_FOUND' => 'There are no claims found for this company'
 );
