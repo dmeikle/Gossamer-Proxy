@@ -66,6 +66,7 @@ return array(
     'CLAIMS_DISAPPROVE_ALL' => 'Disapprove All',
     'CLAIMS_DISAPPROVE_SELECTED' => 'Disapprove Selected',
     'CLAIMS_DOCUMENTS' => 'Documents',
+    'CLAIMS_CLAIM_DOCUMENTS' => 'Claim Documents',
     'CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE' => 'Please select a document type to continue',
     'CLAIMS_DOCUMENTS_SELECT_TYPE' => 'Select Type',
     'CLAIMS_DOCUMENTS_SELECT_UNIT' => 'Select Location',
@@ -209,6 +210,7 @@ return array(
     'CLAIM_UPLOAD_PHOTOS' => 'Upload Photos',
     'CLAIMS_UPLOAD_PHOTOS_FOR' => 'Upload Photos For',
     'CLAIMS_UPLOAD_TO' => 'Upload to',
+    'CLAIMS_UPLOADING' => 'Uploading',
     'CLAIMS_VIEW' => 'View',
     'CLAIMS_VIEW_COST_CARDS' => 'View Cost Cards',
     'CLAIMS_VIEW_INITIAL_JOBSHEET' => 'View Initial Jobsheet',
@@ -330,5 +332,8 @@ return array(
     'CLAIMS_MORE_INFORMATION' => 'More Information',
     'CLAIMS_WORK_DATE' => 'Work Date',
     'CLAIMS_ISSOURCE' => 'Source Unit',
-    'CLAIMS_NO_RESULTS' => 'No Results'
+    'CLAIMS_NO_RESULTS' => 'No Results',
+    'CLAIMS_FILE_NAME' => 'File Name',
+    'CLAIMS_UPLOADED' => 'Uploaded',
+    'CLAIMS_CREATED_BY' => 'Created By'
 );

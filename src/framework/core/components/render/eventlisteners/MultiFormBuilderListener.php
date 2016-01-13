@@ -21,7 +21,6 @@ use Gossamer\CMS\Forms\FormBuilder;
 class MultiFormBuilderListener extends FormBuilderListener {
 
     public function on_filerender_start($params) {
-        error_log("draw form");
         if (!array_key_exists('formBuilder', $this->listenerConfig)) {
             throw new Exception('formBuilder key missing from listener config', 508, null);
         } elseif (!array_key_exists('model', $this->listenerConfig)) {

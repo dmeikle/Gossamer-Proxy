@@ -43,9 +43,11 @@
                     </p>
                     <p class="text-center text-muted">
                         <small>
-                            <span ng-if="documentCount">{{documentCount}}</span>
-                            <span ng-if="!documentCount" class="spinner-loader"></span>
-                            <?php echo $this->getString('CLAIMS_DOCUMENTS') ?>
+                            <span ng-if="documentCount && !documentUploading">{{documentCount}} <?php echo $this->getString('CLAIMS_DOCUMENTS') ?></span>
+                            <span ng-if="documentUploading">
+                                <span class="spinner-loader align-middle padding-right"></span> <?php echo $this->getString('CLAIMS_UPLOADING') ?>
+                            </span>
+
                         </small>
                     </p>
                 </div>
