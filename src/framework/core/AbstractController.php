@@ -171,7 +171,10 @@ class AbstractController {
      * @param array $data
      */
     public function render(array $data = null) {
+
+        $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_END);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::REQUEST_END);
+
         $this->view->render($data);
     }
 

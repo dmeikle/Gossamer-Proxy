@@ -107,12 +107,32 @@ admin_claims_view_initial_jobsheet:
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
 
 
+
+admin_claims_secondarysheets_get:
+    listeners:
+        - { 'cacheKey': 'AffectedAreaActions', 'class': 'components\claims\models\SecondarySheetModel', responseKey: AffectedAreaActions, listener: 'components\claims\listeners\LoadSecondarySheetQuestionsListener', 'event': 'request_start', 'datasource': 'datasource1'}
+        - { 'cacheKey': 'SerializedAffectedAreaActions', 'dependency': AffectedAreaActions, 'class': 'components\claims\models\SecondarySheetModel', responseKey: SerializedAffectedAreaActions, listener: 'components\claims\listeners\SerializeSecondarySheetQuestionsListener', 'event': 'request_start', 'datasource': 'datasource1'}
+                
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\SecondaryJobSheetBuilder'
+            model: 'components\claims\models\SecondarySheetModel'
+            cacheKey: 'SecondarySheetQuestions'
+            formName: 'secondarySheet'
+            dependencies:
+                - { dependency: AffectedAreaActions, model: AffectedAreaActions }
+    
+
 admin_claims_list_claimlocation_photocounts:    
     listeners:
         - { 'cacheKey': 'LocationFiles', 'class': 'components\claims\models\ClaimModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadFileCountsListener', 'datasource': 'datasource1' }
 
+
 admin_claims_edit:   
     listeners:
+        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: Claim}
         - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
@@ -137,4 +157,5 @@ admin_claims_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claim, model: Claim}
-                
+              
+        

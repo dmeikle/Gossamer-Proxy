@@ -231,6 +231,13 @@ secondarySheetAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+ 
+secondarySheetsAddNewModal:
+    path: /src/components/claims/ng/views/secondarySheet.php
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+
 
 clientModal:
     path: 'src/components/claims/ng/views/clientModal.php'
@@ -254,6 +261,7 @@ clientModal:
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: Companys, key: companies, value: Companies_id, text: name }
         # build the form for Contact
+
 
 photoUploadModal:
     path: 'src/components/claims/ng/views/photoUploadModal.php'

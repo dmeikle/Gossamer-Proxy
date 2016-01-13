@@ -53,7 +53,7 @@ admin_inventory_equipment_edit:
             cacheKey: 'InventoryEquipmentForm'
             formName: 'inventoryEquipmentForm'
             dependencies:
-                - { dependency: PackageTypes, key: packageTypes, value: id, text: province }
+              #  - { dependency: PackageTypes, key: packageTypes, value: id, text: province }
                 - { dependency: InventoryEquipmentTypes, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: InventoryTypes, key: inventoryEquipmentTypes, value: id, text: number }
                 - { dependency: InventoryCategorys, key: inventoryEquipmentTypes, value: id, text: number }
