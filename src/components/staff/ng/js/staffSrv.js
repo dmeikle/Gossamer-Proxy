@@ -41,7 +41,8 @@
 	    autocomplete: autocomplete,
             search: search,
             getAdvancedSearchFilters: getAdvancedSearchFilters,
-            getAuthorization: getAuthorization
+            getAuthorization: getAuthorization,
+            saveCredentials: saveCredentials
         };
         
         return service;
@@ -73,7 +74,7 @@
             });  
         }
         
-        function save(object) {
+        function save(object, formToken) {
             for (var property in object) {
                 if (object.hasOwnProperty(property) && 
                     property.substr(property.length - 3) == '_id' && !object[property]) {
@@ -87,20 +88,19 @@
             } else {
                 requestPath = apiPath + object.id;
             }
-            var formToken = object.FORM_SECURITY_TOKEN;
 
-            return crudSrv.save(requestPath, object, objectType, formToken);
+            return crudSrv.save(requestPath, object, objectType, formToken).then(function(response) {
+                return response.data.Staff[0];
+            });
         }
 
-        function remove(object) {
+        function remove(object, formToken) {
             for (var property in object) {
                 if (object.hasOwnProperty(property) && property.substr(property.length - 3) == '_id' && 
                         !object[property]) {
                         delete object[property];
                 }
             }
-
-            var formToken = object.FORM_SECURITY_TOKEN;
 
             return crudSrv.save(apiPath + '/remove/' + object.id, object, objectType, formToken);
         }
@@ -132,6 +132,29 @@
             return searchSrv.getAdvancedSearchFilters('/render-path').then(function() {
                     self.advancedSearch.fields = searchSrv.advancedSearch.fields;
             });
+        }
+        
+        
+        /**
+         * section for custom methods not part of standard Srv class
+         */
+        
+        function saveCredentials(object, formToken) {
+            var credentialsApiPath = apiPath + 'credentials-reset/' + object.Staff_id;
+           
+            return crudSrv.save(credentialsApiPath, object, authorizationObjectType, formToken).then(function(response) {
+                return response.data.StaffAuthorization[0];
+            });
+//            return $http({
+//                method: 'POST',
+//                headers: {
+//                    'Content-Type': 'application/x-www-form-urlencoded'
+//                },
+//                url: apiPath + 'credentials/' + object.id,
+//                data: data
+//            }).then(function (response) {
+//                return response.data;
+//            });
         }
     }
 })();

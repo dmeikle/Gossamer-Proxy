@@ -6,7 +6,7 @@
             .module('staffAdmin')
             .controller('staffAuthorizationCtrl', staffAuthorizationCtrl);
     
-    function staffAuthorizationCtrl($rootScope, $scope, staffSrv) {
+    function staffAuthorizationCtrl($rootScope, staffSrv) {
         var self = this;
         
         $rootScope.$on('STAFF_LOADED', function(event, args) {
@@ -16,15 +16,17 @@
             }
         });
         
-        $scope.$on('STAFFAUTHORIZATION_LOADED', function(event, args) {
+        $rootScope.$on('STAFFAUTHORIZATION_LOADED', function(event, args) {
             self.staffAuthorization = args.staffAuthorization;
+            delete self.staffAuthorization.username;
         });
         
         
         function loadAuthorizations(staff) {           
             staffSrv.getAuthorization(staff.id).then(function(staffAuthorization) {
-		$scope.$broadcast('STAFFAUTHORIZATION_LOADED', {staffAuthorization: staffAuthorization});                
+		$rootScope.$broadcast('STAFFAUTHORIZATION_LOADED', {staffAuthorization: staffAuthorization});                
             });
         }
+        
     }
 })();

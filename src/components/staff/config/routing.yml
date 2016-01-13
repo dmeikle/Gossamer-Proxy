@@ -151,7 +151,7 @@ admin_staff_emergencycontacts_list:
 
 
 admin_staff_emergencycontacts_save:
-    pattern: admin/staff/emergencycontacts/*
+    pattern: admin/staff/emergencycontacts/*/*
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
@@ -196,7 +196,7 @@ admin_staff_rest_save:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: ajaxSave
+        method: save
         view: core\views\JSONView
         viewKey: admin_staff_rest_save
         datasource: datasource1
@@ -390,7 +390,26 @@ admin_staff_credentials_save:
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
 
-
+admin_staff_credentials_reset:
+    pattern: admin/staff/credentials-reset/*
+    listeners:
+       # - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        #- { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'false' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'false' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'false' }}
+      #  - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: saveCredentials
+        view: core\views\JSONView
+        viewKey: admin_staff_credentials_save
+        datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/validation'
+    methods: [POST]
 
 
 

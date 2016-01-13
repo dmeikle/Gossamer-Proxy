@@ -62,11 +62,11 @@
                 <div class="form-group">
                     <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
                     <div class="input-group">
-                        <input type="text" name="dob" id="staff-hireDate" ng-model="staff.hireDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control" datepicker-popup is-open="isOpen.hireDate"
+                        <input type="text" name="hireDate" id="staff-hireDate" ng-model="ctrl.staff.hireDate" ng-model-options="{timezone: '+0000'}"
+                               class="form-control" datepicker-popup is-open="ctrl.isOpen.hireDate"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="hireDate">
-                            <button type="button" class="btn-default" data-datepickername="hireDate" ng-click="openDatepicker($event)">
+                            <button type="button" class="btn-default" data-datepickername="hireDate" ng-click="ctrl.openDatepicker('hireDate')">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -75,11 +75,11 @@
                 <div class="form-group">
                     <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
                     <div class="input-group">
-                        <input type="text" name="departureDate" id="staff-departureDate" ng-model="staff.departureDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control" datepicker-popup is-open="isOpen.departureDate"
+                        <input type="text" name="departureDate" id="staff-departureDate" ng-model="ctrl.staff.departureDate" ng-model-options="{timezone: '+0000'}"
+                               class="form-control" datepicker-popup is-open="ctrl.isOpen.departureDate"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="departureDate">
-                            <button type="button" class="btn-default" data-datepickername="departureDate" ng-click="openDatepicker($event)">
+                            <button type="button" class="btn-default" data-datepickername="departureDate" ng-click="ctrl.openDatepicker('departureDate')">
                                 <i class="glyphicon glyphicon-calendar"></i>
                             </button>
                         </span>
@@ -89,7 +89,7 @@
 
                 <div class="clearfix"></div>
                 <div class="cardfooter">
-                    <input type="submit" class="btn btn-primary pull-right" ng-disabled="!ctrl.staff.firstname || !ctrl.staff.lastname"
+                    <input type="button" ng-click="ctrl.save(ctrl.staff)" class="btn btn-primary pull-right" ng-disabled="!ctrl.staff.firstname || !ctrl.staff.lastname"
                            value="<?php echo $this->getString('STAFF_SAVE'); ?>">
                     <div class="clearfix"></div>
                 </div>
@@ -106,7 +106,7 @@
                     <span class="spinner-loader"></span>
                 </div>
 
-                <div ng-submit="save(staff)">
+                <div>
 
 
                     <div class="form-group">
@@ -142,11 +142,11 @@
                     <div class="form-group splitcolumn right-tight">
                         <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
                         <div class="input-group">
-                            <input type="text" name="dob" id="staff-dob" ng-model="staff.dob" ng-model-options="{timezone: '+0000'}"
-                                   class="form-control" datepicker-popup is-open="isOpen.dob"
+                            <input type="text" name="dob" id="staff-dob" ng-model="ctrl.staff.dob" ng-model-options="{timezone: '+0000'}"
+                                   class="form-control" datepicker-popup is-open="ctrl.isOpen.dob"
                                    datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                             <span class="input-group-btn" data-datepickername="dob">
-                                <button type="button" class="btn-default" data-datepickername="dob" ng-click="openDatepicker($event)">
+                                <button type="button" class="btn-default" data-datepickername="dob" ng-click="ctrl.openDatepicker('dob')">
                                     <i class="glyphicon glyphicon-calendar"></i>
                                 </button>
                             </span>
@@ -154,8 +154,14 @@
                     </div>
                     <div class="form-group">
                         <label for="staff-gender"><?php echo $this->getString('STAFF_GENDER'); ?></label>
-                        <input class="form-control" type="text" name="gender"
-                               id="staff-gender" ng-model="ctrl.staff.gender">
+                        <div class="input-group">
+                            <label style="margin-right: 20px">
+                                <input type="radio" ng-model="ctrl.staff.gender" value="m" /> <?php echo $this->getString('STAFF_MALE'); ?>
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="ctrl.staff.gender" value="f" /> <?php echo $this->getString('STAFF_FEMALE'); ?>
+                            </label>
+                        </div>
                     </div>
 
 
@@ -164,7 +170,7 @@
                     <div class="clearfix"></div>
                     <div class="cardfooter">
                         <input type="submit" class="btn btn-primary pull-right" ng-disabled="!ctrl.staff.firstname || !ctrl.staff.lastname"
-                               value="<?php echo $this->getString('STAFF_SAVE'); ?>">
+                               value="<?php echo $this->getString('STAFF_SAVE'); ?>" ng-click="ctrl.save(ctrl.staff)">
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -213,12 +219,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="cardfooter">
-                    <button class="btn-link pull-right" ng-click="ctrl.openStaffBenefitsHistoryModal()">
-                        <?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?>
-                    </button>
-                    <div class="clearfix"></div>
-                </div>
+
             </div>
         </div>
 
@@ -287,19 +288,14 @@
                 </div>
             </div>
         </div>
-        <div class="card" ng-controller="staffAuthorizationCtrl as ctrl">
+        <div class="card" ng-controller="staffCredentialsCtrl as ctrl">
             <div class="cardheader">
                 <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
             </div>
 
-            <div ng-if="ctrl.authorizationLoading">
-                <span class="spinner-loader"></span>
-            </div>
-
-
-            <div class="alert alert-warning" ng-if="credentialStatus.success === 'false'">
+            <div class="alert alert-warning" ng-if="ctrl.credentialStatus.success === 'false'">
                 <p>
-                    {{credentialStatus.message}}
+                    {{ctrl.credentialStatus.message}}
                 </p>
             </div>
             <fieldset ng-disabled="!ctrl.staffLoaded">
@@ -324,7 +320,7 @@
             <div class="clearfix"></div>
             <p class="help-block"><?php echo $this->getString('STAFF_PASSWORD_RULES'); ?></p>
             <div class="form-group">
-                <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="authorization.emailUser" ng-disabled="!staff">
+                <input type="checkbox" name="emailUser" id="staff-emailUser" ng-model="ctrl.staffAuthorization.emailUser" ng-disabled="!staff">
                 <label for="staff-emailUser"><?php echo $this->getString('STAFF_EMAILUSER'); ?></label>
                 <p class="help-block">
                     <?php echo $this->getString('STAFF_SEND_TO_USER'); ?>
@@ -333,10 +329,10 @@
 
             <div class="cardfooter">
                 <div class="pull-right btn-group">
-                    <button class="primary" ng-click="ctrl.submitCredentials(ctrl.staffAuthorization)" ng-disabled="!ctrl.staff">
+                    <button class="primary" ng-click="ctrl.submitCredentials(ctrl.staffAuthorization)" ng-disabled="!ctrl.staff && ! ctrl.staffAuthorization.username">
                         <?php echo $this->getString('STAFF_SUBMIT'); ?>
                     </button>
-                    <button ng-click="resetCredentials()" ng-disabled="!ctrl.staff">
+                    <button ng-click="ctrl.resetCredentials()" ng-disabled="!ctrl.staff">
                         <?php echo $this->getString('STAFF_RESET'); ?>
                     </button>
                 </div>
@@ -356,33 +352,33 @@
 <div class="col-xs-12">
     <uib-tabset>
         <uib-tab heading="Emergency Contacts">
-            <div class="card" ng-controller="staffEmergencyContactsCtrl">
+            <div class="card" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('STAFF_EMERGENCY_INFO'); ?></h1>
-                    <button ng-if="!loading" class="primary pull-right"
-                            ng-click="openEditEmergencyContactModal()"  ng-disabled="!staff">
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                      ?></h1>
+                    <button ng-if="!ctrl.loading" class="primary pull-right"
+                            ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
                     </button>
                 </div>
                 <div ng-if="loading"><span class="spinner-loader"></span></div>
-                <div ng-if="!loading">
-                    <p ng-if="!staffEmergencyContacts">
-                        <?php echo $this->getString('STAFF_EMERGENCY_NONE'); ?>
+                <div ng-if="!ctrl.loading">
+                    <p ng-if="!ctrl.staffEmergencyContacts">
+                        <?php echo $this->getString('STAFF_NONE'); ?>
                     </p>
-                    <table ng-if="staffEmergencyContacts" class="cardtable">
+                    <table ng-if="ctrl.staffEmergencyContacts" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_NAME'); ?></td>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_RELATIONSHIP'); ?></td>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_MOBILE'); ?></td>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_TELEPHONE'); ?></td>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_WORKTELEPHONE'); ?></td>
-                                <td><?php echo $this->getString('STAFF_EMERGENCY_EMAIL'); ?></td>
-                                <td class="cog-col">&nbsp;</td>
+                                <th><?php echo $this->getString('STAFF_NAME'); ?></th>
+                                <th><?php echo $this->getString('STAFF_RELATIONSHIP'); ?></th>
+                                <th><?php echo $this->getString('STAFF_MOBILE'); ?></th>
+                                <th><?php echo $this->getString('STAFF_TELEPHONE'); ?></th>
+                                <th><?php echo $this->getString('STAFF_WORK_TELEPHONE'); ?></th>
+                                <th><?php echo $this->getString('STAFF_EMAIL'); ?></th>
+                                <th class="cog-col">&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="contact in staffEmergencyContacts">
+                            <tr ng-repeat="contact in ctrl.staffEmergencyContacts">
                                 <td><strong>{{contact.firstname}} {{contact.lastname}}</strong></td>
                                 <td>{{contact.relation}}</td>
                                 <td>{{contact.mobile}}</td>
@@ -393,8 +389,8 @@
                                     <div class="dropdown">
                                         <button class="dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                                         <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                            <li><a ng-click="openEditEmergencyContactModal(contact)">Edit</a></li>
-                                            <li><a ng-click="delete(contact)">Delete</a></li>
+                                            <li><a ng-click="ctrl.openEditEmergencyContactModal(contact)">Edit</a></li>
+                                            <li><a ng-click="ctrl.delete(contact)">Delete</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -411,7 +407,7 @@
 
             <div ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php echo $this->getString('STAFF_BENEFITS_HISTORY'); ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                      ?></h1>
                     <button ng-if="!addingNew" class="pull-right" ng-click="toggleAddNewBenefits()" ng-disabled="!ctrl.staff">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
@@ -471,11 +467,11 @@
                                 <td bool-to-string data-value="{{benefits.isHourly}}"></td>
                                 <td>{{benefits.accruedVacationMonthly}}</td>
                                 <td>{{benefits.accruedSickMonthly}}</td>
-                                <td class="has-datepicker">{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
+                                <td class="has-datepicker">{{benefits.startDate| date:'yyyy-MM-dd':+0000}}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <form class="hidden"></form>
+
                 </div>
                 <div class="modal-footer">
                     <button ng-if="!addingNew" class="primary" ng-click="close()">
@@ -509,7 +505,7 @@
         <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>">
             <div class="card" ng-controller="staffRolesCtrl as ctrl">
                 <div class="cardheader">
-                    <h1><?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?></h1>
+                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                     ?></h1>
                 </div>
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>
@@ -543,3 +539,9 @@
         </uib-tab>
     </uib-tabset>
 </div>
+
+<script id="emergencyContactInfo" type="text/ng-template">
+    <?php
+    include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/editEmergencyContactModal.php');
+    ?>
+</script>
