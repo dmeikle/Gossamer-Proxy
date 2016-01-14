@@ -81,7 +81,10 @@ class ClaimLocationBuilder extends AbstractBuilder {
             $builder->add('AreaTypes', 'select', array('ng-model' => 'modal.item.AreaTypes_id', 'class' => 'form-control', 'options' => $options['areaTypes']));
         }
         if (array_key_exists('contactVIPTypes', $options)) {
-            $builder->add('VIPType', 'select', array('ng-model' => 'modal.newContact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
+            $builder->add('VIPType', 'select', array('ng-model' => 'modal.newCustomer.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
+        }
+        if (array_key_exists('customerTypes', $options)) {
+            $builder->add('CustomerType', 'select', array('ng-model' => 'modal.newCustomer.CustomerTypes_id', 'class' => 'form-control', 'options' => $options['customerTypes']));
         }
 
 

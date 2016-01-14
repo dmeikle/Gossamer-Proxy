@@ -315,7 +315,7 @@
                 <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
                 <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
                 <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
-                <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                <div ng-if="$index < vm.claimsCustomers.length-2" class="divider"></div>
             </div>
         </div>
     </div>
@@ -483,10 +483,14 @@
                                 <?php echo $form['buzzer']; ?>
                             </div>
                             <div class="col-md-6 form-group">
+                                <label><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?></label>
+                                <?php echo $form['CustomerType']; ?>
+                            </div>
+                            <div class="col-md-6 form-group">
                                 <label><?php echo $this->getString('CLAIMS_VIP_TYPE') ?></label>
                                 <?php echo $form['VIPType']; ?>
                             </div>
-                            <div class="col-md-6 form-group">
+                            <div class="col-md-12 form-group">
                                 <label><?php echo $this->getString('CLAIMS_NOTES') ?></label>
                                 <?php echo $form['notes']; ?>
                             </div>
