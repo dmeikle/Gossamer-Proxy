@@ -53,7 +53,7 @@
                     <?php echo $form['StaffTypes_id']; ?>
                 </div>
                 <div class="form-group">
-                    <label for="staff-StaffPositions_id"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></label>
+                    <label for="staff-StaffPositions_id"><?php echo $this->getString('STAFF_POSITION'); ?></label>
                     <?php echo $form['StaffPositions_id']; ?>
                 </div>
 
@@ -181,11 +181,11 @@
                         <table class="cardtable">
                             <tbody>
                                 <tr>
-                                    <td><strong><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></strong></td>
+                                    <td><strong><?php echo $this->getString('STAFF_POSITION'); ?></strong></td>
                                     <td>{{staffBenefits[0].position}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
+                                    <td><strong><?php echo $this->getString('STAFF_DEPARTMENT'); ?></strong></td>
                                     <td>{{staffBenefits[0].department}}</td>
                                 </tr>
                                 <tr>
@@ -203,15 +203,15 @@
                         <table class="cardtable">
                             <tbody>
                                 <tr>
-                                    <td><strong><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></strong></td>
+                                    <td><strong><?php echo $this->getString('STAFF_VACATION_MONTHLY'); ?></strong></td>
                                     <td>{{ctrl.staffBenefits[0].accruedVacationMonthly}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></strong></td>
+                                    <td><strong><?php echo $this->getString('STAFF_SICK_MONTHLY'); ?></strong></td>
                                     <td>{{ctrl.staffBenefits[0].accruedSickMonthly}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong><?php echo $this->getString('STAFF_STARTDATE'); ?></strong></td>
+                                    <td><strong><?php echo $this->getString('STAFF_START_DATE'); ?></strong></td>
                                     <td>{{ctrl.staffBenefits[0].startDate| date:'dd-MM-yyyy':+0000}}</td>
                                 </tr>
                             </tbody>
@@ -245,7 +245,7 @@
                                 <td>{{ctrl.staff.employeeNumber}}</td>
                             </tr>
                             <tr>
-                                <td><strong><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></strong></td>
+                                <td><strong><?php echo $this->getString('STAFF_DEPARTMENT'); ?></strong></td>
                                 <td get-department></td>
                             </tr>
                             <tr>
@@ -425,13 +425,13 @@
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></th>
-                                <th><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></th>
+                                <th><?php echo $this->getString('STAFF_POSITION'); ?></th>
+                                <th><?php echo $this->getString('STAFF_DEPARTMENT'); ?></th>
                                 <th><?php echo $this->getString('STAFF_SALARY'); ?></th>
                                 <th><?php echo $this->getString('STAFF_IS_HOURLY'); ?></th>
-                                <th><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></th>
-                                <th><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></th>
-                                <th><?php echo $this->getString('STAFF_STARTDATE'); ?></th>
+                                <th><?php echo $this->getString('STAFF_VACATION_MONTHLY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_SICK_MONTHLY'); ?></th>
+                                <th><?php echo $this->getString('STAFF_START_DATE'); ?></th>
                             </tr>
                         </thead>
                         <tbody>

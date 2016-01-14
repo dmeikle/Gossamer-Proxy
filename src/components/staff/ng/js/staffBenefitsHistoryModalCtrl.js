@@ -1,40 +1,82 @@
-module.controller('staffBenefitsHistoryModalCtrl', function ($modalInstance, $scope, $location, staffBenefits, staffBenefitsSrv) {
-    $scope.staffBenefits = staffBenefits;
-    $scope.staff = {};
-    $scope.isOpen = {};
-    $scope.addingNew = false;
+//module.controller('staffBenefitsHistoryModalCtrl', function ($modalInstance,$scope, staffBenefits, staffBenefitsSrv) {
+//    var self = this;
+//    
+//    self.staffBenefits = staffBenefits;
+//    self.staff = {};
+//    self.isOpen = {};
+//    self.addingNew = false;
+//
+//    // datepicker stuffs
+//    self.dateOptions = {'starting-day': 1};
+//    
+//    $scope.$on('BENEFITS_SAVED', function() {
+//        self.addingNew = false;
+//        self.close();
+//    });
+//    
+//    self.openDatepicker = function (event) {
+//        var datepicker = event.target.parentElement.dataset.datepickername;
+//        self.isOpen[datepicker] = true;
+//    };
+//
+//    self.toggleAddNewBenefits = function () {
+//        self.addingNew = !self.addingNew;
+//    };
+//
+//    self.saveNewBenefits = function (object) {
+//        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+//        object.Staff_id = document.getElementById('Staff_id').value;
+//        
+//        staffBenefitsSrv.save(object, formToken).then(function () {
+//            $scope.$broadcast('BENEFITS_SAVED');            
+//        });
+//    };
+//
+//    self.close = function () {
+//        $modalInstance.close();
+//    };
+//});
 
-    // datepicker stuffs
-    $scope.dateOptions = {'starting-day': 1};
-    $scope.openDatepicker = function (event) {
-        var datepicker = event.target.parentElement.dataset.datepickername;
-        $scope.isOpen[datepicker] = true;
-    };
+(function() {
+    angular
+        .module('staffAdmin')
+        .controller('staffBenefitsHistoryModalCtrl', staffBenefitsHistoryModalCtrl);
 
-    $scope.toggleAddNewBenefits = function () {
-        if ($scope.addingNew === true) {
-            $scope.addingNew = false;
-        } else {
-            $scope.addingNew = true;
-        }
-    };
+    function staffBenefitsHistoryModalCtrl($modalInstance,$scope, staffBenefits, staffBenefitsSrv) {
+        var self = this;
+    
+        self.staffBenefits = staffBenefits;
+        self.staff = {};
+        self.isOpen = {};
+        self.addingNew = false;
 
-    $scope.saveNewBenefits = function (object) {
-        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
+        // datepicker stuffs
+        self.dateOptions = {'starting-day': 1};
 
-        staffBenefitsSrv.save(object, formToken).then(function () {
-            $scope.addingNew = false;
-            var object = {};
-            object.id = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-
-            staffBenefitsSrv.getStaffBenefits(object).then(function () {
-                $scope.staffBenefits = staffBenefitsSrv.staffBenefits;
-            });
+        $scope.$on('BENEFITS_SAVED', function() {
+            self.addingNew = false;
+            self.close();
         });
-    };
 
-    $scope.close = function () {
-        $modalInstance.close();
-    };
-});
+        self.openDatepicker = function (datepicker) {
+            self.isOpen[datepicker] = true;
+        };
+
+        self.toggleAddNewBenefits = function () {
+            self.addingNew = !self.addingNew;
+        };
+
+        self.save = function (object) {
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            object.Staff_id = document.getElementById('Staff_id').value;
+
+            staffBenefitsSrv.save(object, formToken).then(function () {
+                $scope.$broadcast('BENEFITS_SAVED');            
+            });
+        };
+
+        self.close = function () {
+            $modalInstance.close();
+        };
+    }
+})();

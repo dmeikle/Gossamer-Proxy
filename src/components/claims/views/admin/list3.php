@@ -58,7 +58,7 @@
     });
 </script>
 
-<input type="hidden" id="departmentId" value="staff_department_id" />
+<input type="hidden" id="departmentId" value="STAFF_DEPARTMENT" />
 
 <table class="table table-striped table-hover selectable-rows">
     <thead>

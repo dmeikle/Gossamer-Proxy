@@ -4,14 +4,14 @@ return array(
     'STAFF_PERSONAL_INFO' => 'Personal Information',
     'STAFF_EMPLOYMENT_INFO' => 'Employment Information',
     'STAFF_GENERAL_INFO' => 'General Information',
-    'STAFF_STAFFPOSITIONS_ID' => 'Position',
+    'STAFF_POSITION' => 'Position',
     'STAFF_STAFFTYPE_ID' => 'Staff Type',
-    'STAFF_DEPARTMENT_ID' => 'Department',
+    'STAFF_DEPARTMENT' => 'Department',
     'STAFF_SALARY' => 'Salary',
     'STAFF_IS_HOURLY' => 'Hourly',
-    'STAFF_VACATIONMONTHLY' => 'Vacation/Month',
-    'STAFF_SICKMONTHLY' => 'Sick Days/Month',
-    'STAFF_STARTDATE' => 'Start Date',
+    'STAFF_VACATION_MONTHLY' => 'Vacation/Month',
+    'STAFF_SICK_MONTHLY' => 'Sick Days/Month',
+    'STAFF_START_DATE' => 'Start Date',
     'STAFF_FIRSTNAME' => 'First Name',
     'STAFF_LASTNAME' => 'Last Name',
     'STAFF_PERSONALEMAIL' => 'Personal Email',
@@ -97,5 +97,6 @@ return array(
     'STAFF_EDIT' => 'Edit',
     'STAFF_SCHEDULE' => 'Schedule',
     'STAFF_CONTACTS' => 'Emergency Contacts',
-    'STAFF_DELETE' => 'Delete'
+    'STAFF_DELETE' => 'Delete',
+    'STAFF_EMERGENCY_ADDNEW' => 'Add New Staff Benefit'
 );

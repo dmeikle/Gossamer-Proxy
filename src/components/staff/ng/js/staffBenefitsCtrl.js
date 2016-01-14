@@ -35,7 +35,7 @@
             
             var modalInstance = $modal.open({
                 templateUrl: 'addNewBenefit',
-                controller: 'staffBenefitsHistoryModalCtrl',
+                controller: 'staffBenefitsHistoryModalCtrl as ctrl',
                 size: 'lg',
                 resolve: {
                     staffBenefits: function () {
