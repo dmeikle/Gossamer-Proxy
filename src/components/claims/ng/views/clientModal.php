@@ -20,7 +20,7 @@
             <?php echo $this->getString('CLAIMS_CONTACT_FIRSTNAME') ?>
         </label>
 
-        <input type="text" ng-model="contact"
+        <input type="text" ng-model="contactInput"
                uib-typeahead="contact as contact.firstname + ' ' + contact.lastname + ' - ' + contact.company + ' - ' + contact.contactType for contact in firstnameAutocomplete($viewValue)"
 
                typeahead-loading="loadingFirstname" typeahead-no-results="noFirstnameResults" class="form-control"
@@ -32,7 +32,6 @@
 
     </div>
     <div class="clearfix"></div>
-
     <div ng-if="contact.firstname" class="col-xs-6">
         <strong>{{contact.company}}</strong><br/>
         {{contact.contactType}}<br/>
