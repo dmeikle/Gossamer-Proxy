@@ -42,7 +42,7 @@
         .module('staffAdmin')
         .controller('staffBenefitsHistoryModalCtrl', staffBenefitsHistoryModalCtrl);
 
-    function staffBenefitsHistoryModalCtrl($modalInstance,$scope, staffBenefits, staffBenefitsSrv) {
+    function staffBenefitsHistoryModalCtrl($modalInstance,$scope, staffBenefits, staffId, staffBenefitsSrv) {
         var self = this;
     
         self.staffBenefits = staffBenefits;
@@ -68,8 +68,8 @@
 
         self.save = function (object) {
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            object.Staff_id = document.getElementById('Staff_id').value;
-
+            
+            object.id = staffId;
             staffBenefitsSrv.save(object, formToken).then(function () {
                 $scope.$broadcast('BENEFITS_SAVED');            
             });

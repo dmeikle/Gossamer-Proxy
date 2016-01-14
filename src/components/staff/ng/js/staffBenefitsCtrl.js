@@ -30,6 +30,10 @@
             });            
         }
         
+        self.getMostRecent = function() {
+            var item = self.staffBenefits[0];
+            return item;
+        }
       
         self.openAddNewBenefitsModal = function () {
             
@@ -40,12 +44,17 @@
                 resolve: {
                     staffBenefits: function () {
                         return self.staffBenefits;
+                    },
+                    staffId: function()  {
+                        return document.getElementById('Staff_id').value
                     }
                 }
             });
 
             modalInstance.result.then(function () {
-                getStaffBenefits();
+                var staff = {};
+                staff.id = document.getElementById('Staff_id').value;
+                loadBenefits(staff);
             });
         };
     }

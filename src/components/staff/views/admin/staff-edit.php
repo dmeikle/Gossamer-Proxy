@@ -182,37 +182,37 @@
                             <tbody>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_POSITION'); ?></strong></td>
-                                    <td>{{staffBenefits[0].position}}</td>
+                                    <td>{{ctrl.getMostRecent().position}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_DEPARTMENT'); ?></strong></td>
-                                    <td>{{staffBenefits[0].department}}</td>
+                                    <td>{{ctrl.getMostRecent().department}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_SALARY'); ?></strong></td>
-                                    <td>{{staffBenefits[0].salary| currency:$}}</td>
+                                    <td>{{ctrl.getMostRecent().salary | currency:$}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_IS_HOURLY'); ?></strong></td>
-                                    <td bool-to-string data-value="{{staffBenefits[0].isHourly}}"></td>
+                                    <td bool-to-string data-value="{{ctrl.getMostRecent().isHourly}}"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="card">
+                    <div class="cardright">
                         <table class="cardtable">
                             <tbody>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_VACATION_MONTHLY'); ?></strong></td>
-                                    <td>{{ctrl.staffBenefits[0].accruedVacationMonthly}}</td>
+                                    <td>{{ctrl.getMostRecent().accruedVacationMonthly}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_SICK_MONTHLY'); ?></strong></td>
-                                    <td>{{ctrl.staffBenefits[0].accruedSickMonthly}}</td>
+                                    <td>{{ctrl.getMostRecent().accruedSickMonthly}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong><?php echo $this->getString('STAFF_START_DATE'); ?></strong></td>
-                                    <td>{{ctrl.staffBenefits[0].startDate| date:'dd-MM-yyyy':+0000}}</td>
+                                    <td>{{ctrl.getMostRecent().startDate | date:'dd-MM-yyyy': + 0000}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -354,7 +354,7 @@
         <uib-tab heading="Emergency Contacts">
             <div class="card" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                          ?></h1>
                     <button ng-if="!ctrl.loading" class="primary pull-right"
                             ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
@@ -379,7 +379,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="contact in ctrl.staffEmergencyContacts">
-                                <td><strong>{{contact.firstname}} {{contact.lastname}}</strong></td>
+                                <td>{{contact.firstname}} {{contact.lastname}}</td>
                                 <td>{{contact.relation}}</td>
                                 <td>{{contact.mobile}}</td>
                                 <td>{{contact.telephone}}</td>
@@ -407,7 +407,7 @@
 
             <div ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                          ?></h1>
                     <button ng-if="!ctrl.addingNew" class="pull-right" ng-click="ctrl.openAddNewBenefitsModal()" ng-disabled="!ctrl.staffLoaded">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
@@ -467,33 +467,21 @@
                                 <td bool-to-string data-value="{{benefits.isHourly}}"></td>
                                 <td>{{benefits.accruedVacationMonthly}}</td>
                                 <td>{{benefits.accruedSickMonthly}}</td>
-                                <td class="has-datepicker">{{benefits.startDate| date:'yyyy-MM-dd':+0000}}</td>
+                                <td>{{benefits.startDate| date:'yyyy-MM-dd':+0000}}</td>
                             </tr>
                         </tbody>
                     </table>
 
                 </div>
-                <div class="modal-footer">
-                    <button ng-if="!addingNew" class="primary" ng-click="close()">
-                        <?php echo $this->getString('STAFF_CLOSE'); ?>
-                    </button>
-                    <div ng-if="addingNew" class="btn-group pull-right">
-                        <button class="primary" ng-click="saveNewBenefits(staff)">
-                            <?php echo $this->getString('STAFF_SAVE'); ?>
-                        </button>
-                        <button ng-click="toggleAddNewBenefits()">
-                            <?php echo $this->getString('STAFF_RESET'); ?>
-                        </button>
-                    </div>
-                </div>
             </div>
         </uib-tab>
+        <!--
         <uib-tab heading="Documents">
             <div ng-if="claimLoading">
                 <div class="text-center"><span class="spinner-loader"></span></div>
             </div>
             <div ng-if="!claimLoading">
-                <documents module="claims" model='{{claim}}' model-type="Claim">
+                <documents module="staff" model='{{staff}}' model-type="Staff">
                     <div class="pull-right">
                         <button class="primary" ng-click="openUploadDocumentsModal(claim)">
                             Upload Documents
@@ -502,10 +490,11 @@
                 </documents>
             </div>
         </uib-tab>
+        -->
         <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>">
             <div class="card" ng-controller="staffRolesCtrl as ctrl">
                 <div class="cardheader">
-                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                               ?></h1>
+                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                         ?></h1>
                 </div>
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>

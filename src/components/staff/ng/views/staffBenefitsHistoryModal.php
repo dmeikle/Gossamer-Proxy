@@ -59,7 +59,7 @@
                 <td bool-to-string data-value="{{benefits.isHourly}}"></td>
                 <td>{{benefits.accruedVacationMonthly}}</td>
                 <td>{{benefits.accruedSickMonthly}}</td>
-                <td class="has-datepicker">{{benefits.startDate| date:'dd-MM-yyyy':+0000}}</td>
+                <td class="has-datepicker">{{benefits.startDate}}</td>
             </tr>
         </tbody>
     </table>
