@@ -37,4 +37,24 @@ class SecondarySheetModel extends AbstractModel implements FormBuilderInterface 
         return $this->entity;
     }
 
+    /**
+     * this is for saving the selected form inputs to display later
+     *
+     * @param type $claimId
+     * @param type $locationId
+     * @param type $affectedAreasId
+     * @param type $sheetId
+     */
+    public function saveAllResponsesBySheetId($claimId, $locationId, $affectedAreasId, $sheetId) {
+        $params = $this->httpRequest->getPost();
+
+        $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
+        $params[$this->entity]['id'] = intval($sheetId);
+        $params[$this->entity]['AffectedAreasSecondarySheets_id'] = intval($sheetId);
+
+        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
+
+        return $data;
+    }
+
 }

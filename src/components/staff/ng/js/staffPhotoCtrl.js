@@ -1,6 +1,15 @@
-module.controller('staffPhotoCtrl', function ($scope, $location, staffPhotoSrv) {
-    var staffId = $location.absUrl().substring($location.absUrl().lastIndexOf('/') + 1, $location.absUrl().length);
-    $scope.dropzoneConfig = {
+module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv) {
+    var staffId = document.getElementById('Staff_id').value;
+    
+    var self = this;
+    
+    self.displayForm = false;
+    
+    $rootScope.$on('DISPLAY_PHOTO_UPLOAD_FORM', function() {
+       self.displayForm = true; 
+    });
+    
+    self.dropzoneConfig = {
         'options': {// passed into the Dropzone constructor
             'url': '/admin/staff/photo/upload/' + staffId,
             'uploadMultiple': false,
@@ -18,4 +27,6 @@ module.controller('staffPhotoCtrl', function ($scope, $location, staffPhotoSrv) 
     getStaffPhoto = function () {
         staffPhotoSrv.getStaffPhoto(staffId);
     };
+    
+    
 });

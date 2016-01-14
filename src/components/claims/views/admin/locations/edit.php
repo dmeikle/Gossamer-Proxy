@@ -196,7 +196,7 @@
         <div class="card">
             <div class="cardheader">
                 <h1>
-                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>dsadada
+                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
                 </h1>
             </div>
             <div class="cardleft">

@@ -110,6 +110,8 @@ initialJobsheetWizardPages:
 
 claimEditModal:
     path: 'src/components/claims/ng/views/claimEditModal.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
     listeners:
         - { 'cacheKey': 'ClaimStatusTypes', 'class': 'components\claims\models\ClaimStatusModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimPhases', 'class': 'components\claims\models\ClaimPhaseModel', 'event': 'filerender_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
@@ -127,7 +129,7 @@ claimEditModal:
             dependencies:
                 - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
                 - { dependency: ClaimTypes, key: claimTypes, value: ClaimTypes_id, text: typeOfClaim }
-                - { dependency: ClaimStatusTypes, key: claimTypes, value: ClaimStatusTypes_id, text: status }
+                - { dependency: ClaimStatusTypes, key: claimStatusTypes, value: ClaimStatusTypes_id, text: status }
 
 
 assignPMModal:
@@ -229,6 +231,13 @@ secondarySheetAdminTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
 
+ 
+secondarySheetsAddNewModal:
+    path: /src/components/claims/ng/views/secondarySheet.php
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
+
 
 clientModal:
     path: 'src/components/claims/ng/views/clientModal.php'
@@ -252,6 +261,7 @@ clientModal:
                 - { dependency: ContactTypes, key: contactTypes, value: ContactTypes_id, text: contactType }
                 - { dependency: Companys, key: companies, value: Companies_id, text: name }
         # build the form for Contact
+
 
 photoUploadModal:
     path: 'src/components/claims/ng/views/photoUploadModal.php'

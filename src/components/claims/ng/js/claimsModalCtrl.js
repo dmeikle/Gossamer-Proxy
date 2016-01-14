@@ -185,7 +185,9 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         $scope.currentPage++;
     };
 
+
     $scope.prevPage = function() {
         $scope.currentPage--;
     };
+
 });

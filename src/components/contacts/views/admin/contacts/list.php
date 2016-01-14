@@ -121,6 +121,7 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
+
             <div class="card info-card ng-scope">
                 <h1><a href="/admin/contacts/edit/{{selectedContact.id}}">{{selectedContact.firstname}} {{selectedContact.lastname}}</a></h1>
                 <p>{{selectedContact.title}}</p>
@@ -166,6 +167,7 @@
                     </td>
                 </tr>
             </table>
+
         </div>
     </div>
     <div class="clearfix"></div>

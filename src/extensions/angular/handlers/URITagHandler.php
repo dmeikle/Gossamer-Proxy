@@ -48,7 +48,7 @@ class URITagHandler extends BaseHandler {
             try {
                 $retval[$key] = $router->getQualifiedUrl($links[$i], $linkParams);
             } catch (\Exception $e) {
-                throw new Exception('unable to locate ' . $links[$i] . ' while rendering URI Tag');
+                throw new Exception('unable to locate ' . $links[$i] . ' while rendering Angular URI Tag');
             }
             //$router->getQualifiedUrl($links[$i], $linkParams);
         }

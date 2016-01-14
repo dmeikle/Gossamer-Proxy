@@ -35,6 +35,7 @@ admin_companies_edit:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
             "context-button": "src/components/companies/views/admin/context-button.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/companies/views/admin/edit.php"
             "sidecolumn": "src/components/companies/views/admin/edit-rightcol.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"

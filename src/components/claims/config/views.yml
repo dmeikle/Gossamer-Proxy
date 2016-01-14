@@ -25,6 +25,31 @@ admin_claims_secondarysheets_home:
     css:
         - @components/claims/dist/css/claims.min.css
         
+admin_claims_secondarysheets_edit:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "content": "src/components/claims/views/admin/secondarysheets/edit.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+    
     
 admin_claim_edit:
     template: admin-list.php
@@ -431,6 +456,29 @@ admin_claims_cost_cards_edit:
             "header": "src/themes/default/templates/sections/admin-header.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
             "content": "src/components/claims/views/admin/costCards/edit.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/claims/dist/js/claims.concat.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+
+admin_claims_secondarysheets_get:
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/claims/views/admin/secondarysheets/form.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:

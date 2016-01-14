@@ -147,6 +147,9 @@ vehicles:
 
 vendors:
     component: "src/components/vendors/config/routing.yml"
+
+pdfs:
+    component: "src/components/pdfs/config/routing.yml"
     
 #this is the default fallback to use if not found    
 default:

@@ -1,5 +1,5 @@
 
-module.controller('secondarySheetsListCtrl', function($scope, $uibModal, secondarySheetsListSrv, tablesSrv) {
+module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsSecondarySheetsSrv, tablesSrv) {
 
     
     $scope.currentPage = 1;
@@ -8,7 +8,8 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
     $scope.advancedSearch = {};
     $scope.autocomplete = {};
     $scope.selectedSheet = {};
-
+    $scope.lastItem = {};
+    
     $scope.tablesSrv = tablesSrv;
 
     $scope.$watchGroup(['currentPage', 'itemsPerPage'], function () {
@@ -27,23 +28,38 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
 
     $scope.selectRow = function(clickedObject) {
         $scope.searching = false;
+        $scope.lastItem = {};
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
             $scope.selectedSheet = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            secondarySheetsListSrv.getSheetLocations(clickedObject.id)
-                .then(function() {
-                    $scope.selectedSheet.locations = secondarySheetsListSrv.secondarySheetsLocations;
-                });
-            secondarySheetsListSrv.getSheetContacts(clickedObject)
-                .then(function() {
-                    $scope.selectedSheet.contacts = secondarySheetsListSrv.claimContacts;
+            claimsSecondarySheetsSrv.getSheetActions(clickedObject)
+                .then(function(response) {
+                    $scope.selectedSheet.actionsList = response.sheetActionsList;
                     $scope.sidePanelLoading = false;
+                    $scope.hasActions = response.sheetActionsListCount > 0;
                 });
         }
     };
-
+    
+    $scope.getClass = function(item) {
+        if(item.isDone == 1) {
+            return 'bg-success';
+        }
+        
+        return '';
+    };
+    
+    $scope.isNewHeading = function(item) {
+        if(item.SecondarySheetCategories_id == $scope.lastItem.SecondarySheetCategories_id) {
+            return false;
+        }
+        
+        $scope.lastItem = item;
+        return true;
+    };
+    
     $scope.openAddNewWizard = function() {
         var modalInstance = $uibModal.open({
             templateUrl: '/render/claims/secondarySheetsAddNewModal',
@@ -82,9 +98,9 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         var claimId = document.getElementById('Claims_id').value;
         var claimLocationsId = document.getElementById('ClaimsLocations_id').value;
         
-        secondarySheetsListSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
-            $scope.sheetsList = secondarySheetsListSrv.sheetsList;
-            $scope.totalItems = secondarySheetsListSrv.sheetsCount;
+        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
+            $scope.sheetsList = response.sheetsList;
+            $scope.totalItems = response.sheetsCount;
             $scope.loading = false;
         });
     }
@@ -96,9 +112,9 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         if (copiedObject && Object.keys(copiedObject).length > 0) {
             $scope.searchSubmitted = true;
             $scope.loading = true;
-            secondarySheetsListSrv.search(copiedObject).then(function() {
-                $scope.secondarySheetsList = secondarySheetsListSrv.searchResults;
-                $scope.totalItems = secondarySheetsListSrv.searchResultsCount;
+            claimsSecondarySheetsSrv.search(copiedObject).then(function() {
+                $scope.secondarySheetsList = claimsSecondarySheetsSrv.searchResults;
+                $scope.totalItems = claimsSecondarySheetsSrv.searchResultsCount;
                 $scope.loading = false;
             });
         }
@@ -110,3 +126,4 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, seconda
         getSheetsList();
     };
 });
+

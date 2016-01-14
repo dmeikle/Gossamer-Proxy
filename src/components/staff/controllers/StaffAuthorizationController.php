@@ -66,15 +66,6 @@ class StaffAuthorizationController extends AbstractController {
         }
     }
 
-    public function save($id) {
-        echo 'in basic save';
-        $result = $this->model->save($id);
-        pr($result);
-        die('save complete');
-//        $router = new Router($this->logger, $this->httpRequest);
-//        $router->redirect('admin_staff_permissions_get');
-    }
-
     public function savePermissions($id) {
 
         $result = $this->model->savePermissions($id);
@@ -87,13 +78,13 @@ class StaffAuthorizationController extends AbstractController {
 
     public function saveCredentials($id) {
         $result = $this->model->saveCredentials($id);
-
+        $this->httpRequest->setAttribute('components\staff\models\StaffAuthorizationModel', null);
+        $this->httpResponse->setAttribute('components\staff\models\StaffAuthorizationModel', null);
+        unset($result['password']);
+        unset($result['passwordHistory']);
         //update the local user settings
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $result));
-//
-//        $router = new Router($this->logger, $this->httpRequest);
-//        $router->redirect('admin_staff_permissions_get', array($id));
-        //$this->render(array('success' => 'true'));
+
         $this->render(array('success' => 'true'));
     }
 
@@ -129,7 +120,7 @@ class StaffAuthorizationController extends AbstractController {
         }
         $result = $this->model->edit(intval($id));
 
-        if (array_key_exists('StaffAuthorization', $result)) {
+        if (array_key_exists('StaffAuthorization', $result) && array_key_exists('roles', $result['StaffAuthorization'])) {
             $this->render(array('roles' => explode('|', $result['StaffAuthorization']['roles'])));
         } else {
             $this->render(array('success' => 'false', 'message' => 'unable to locate user'));
@@ -183,6 +174,18 @@ class StaffAuthorizationController extends AbstractController {
         } else {
             $this->render(array('exists' => 'false'));
         }
+    }
+
+    /**
+     * edit - display an input form based on requested id
+     *
+     * @param int id    primary key of item to edit
+     */
+    public function edit($id) {
+        $result = $this->model->edit($id);
+        unset($result['StaffAuthorization']['password']);
+
+        $this->render($result);
     }
 
 }
