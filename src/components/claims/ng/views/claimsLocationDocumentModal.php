@@ -50,7 +50,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="modal-footer">
-<div class="pull-right">
+    <div class="pull-right">
         <button class="primary" ng-click="close()">
             <?php echo $this->getString('CLOSE') ?>
         </button>
