@@ -143,7 +143,8 @@
             var credentialsApiPath = apiPath + 'credentials-reset/' + object.Staff_id;
            
             return crudSrv.save(credentialsApiPath, object, authorizationObjectType, formToken).then(function(response) {
-                return response.data.StaffAuthorization[0];
+                
+                return response.data;
             });
 //            return $http({
 //                method: 'POST',

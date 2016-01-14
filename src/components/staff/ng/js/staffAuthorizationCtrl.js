@@ -39,7 +39,9 @@
                     break;
                 default:
                     staffSrv.saveCredentials(credentials, formToken).then(function (response) {
-                        $scope.credentialStatus = staffEditSrv.credentialStatus;
+                        if(response.StaffAuthorization == undefined) {
+                            self.credentialStatus = response;
+                        }                        
                     });
             }
         };
