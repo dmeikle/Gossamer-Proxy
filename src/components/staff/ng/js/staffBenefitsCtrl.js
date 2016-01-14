@@ -33,7 +33,7 @@
         self.getMostRecent = function() {
             var item = self.staffBenefits[0];
             return item;
-        }
+        };
       
         self.openAddNewBenefitsModal = function () {
             
@@ -46,7 +46,7 @@
                         return self.staffBenefits;
                     },
                     staffId: function()  {
-                        return document.getElementById('Staff_id').value
+                        return document.getElementById('Staff_id').value;
                     }
                 }
             });

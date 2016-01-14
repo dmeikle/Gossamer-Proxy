@@ -10,13 +10,19 @@
         var vm = this;
         
         vm.secondarySheetResults = secondarySheetResults;
-        $log.log(secondarySheetResults);
+    
         vm.ok = function () {
             $uibModalInstance.close($scope.selected.item);
         };
 
         vm.cancel = function () {
             $uibModalInstance.dismiss();
+        };
+        
+        vm.itemChanged = function(object) {
+            var index = object.isDone < 0 ? (-1 * object.isDone) : object.isDone;
+      
+            vm.secondarySheetResults.item[index] = object.isDone < 0 ? 0 : 1;
         };
         
         vm.saveSecondarySheet = function(secondarySheet) {
@@ -28,20 +34,32 @@
             
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
             
-            claimsSecondarySheetsSrv.save(secondarySheet, formToken);
+            claimsSecondarySheetsSrv.saveResponses(secondarySheet, formToken);
         };
         
         vm.saveSecondarySheetResults = function(items) {
             var secondarySheet = {};
-            secondarySheet.item = items.item;
+            var results = [];
+            for(var index in items.item) {
+                var item = {};
+                item.AffectedAreaActions_id = index;
+                item.isDone = items.item[index];
+                results.push(item);
+            }
+            secondarySheet.item = results; //items.item;
             vm.saveSecondarySheet(secondarySheet);
         };
-        
-        activate();
-
-        function activate() {
-
-        }
+        //this is for trimming the result set down
+        self.formatResults = function(items) {
+            var retval = [];
+            for(var index in items) {
+                if(items[index].isDone !== undefined && '1' == items[index].isDone) {
+                    retval.push(items[index]);
+                }
+            }
+            
+            return retval;
+        };
     }
 })();
 
