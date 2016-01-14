@@ -354,5 +354,7 @@ return array(
     'CLAIMS_ADD_LOCATION_CUSTOMER' => 'Add Location Customer',
     'CLAIMS_SEARCH_EXISTING_CUSTOMERS' => 'Search Existing Customers',
     'CLAIMS_ADD_EXISTING_CUSTOMER' => 'Add Existing Customer',
-    'CLAIMS_CREATE_NEW_CUSTOMER' => 'Create New Customer'
+    'CLAIMS_CREATE_NEW_CUSTOMER' => 'Create New Customer',
+    'CLAIMS_IS_PRIMARY' => 'Is Primary',
+    'CLAIMS_ADD_CUSTOMER' => 'Add Customer'
 );

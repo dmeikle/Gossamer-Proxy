@@ -51,8 +51,9 @@
               }
             });
 
-            modalInstance.result.then(function () {
-                getAffectedAreas();
+            modalInstance.result.then(function (customer) {
+                //getAffectedAreas();
+                updateCustomers(customer);
             }, function () {
                 $log.log('modal dismissed');                
             });
@@ -105,6 +106,16 @@
                vm.affectedAreas = response.data.AffectedAreas;
                 vm.affectedAreasLoading = false;
             });
+        }
+        
+        function updateCustomers (customer) {
+            $log.log('update the customers!');
+            $log.log(customer);
+            for(var i in vm.claimsCustomers) {
+                if(vm.claimsCustomers[i].id === customer.id) {
+                    vm.claimsCustomers[i] = customer;
+                }
+            }
         }
         
     }

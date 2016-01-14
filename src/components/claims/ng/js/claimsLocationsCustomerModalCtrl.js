@@ -24,6 +24,16 @@
             crudSrv.save(apiPath, vm.newCustomer, 'Customer', formToken);
         };
         
+        vm.saveExistingCustomer = function () {
+            vm.customer.Claims_id = location.Claims_id;
+            vm.customer.ClaimsLocations_id = location.id;
+            var apiPath = '/admin/customers/' + vm.customer.id;
+            crudSrv.save(apiPath, vm.customer, 'Customer', formToken).then(function(response){
+                var customer = response.data.Customer;
+                $uibModalInstance.close(customer);
+            });
+        };
+        
         vm.getContactDetails = function() {
             if(!vm.customer.id){
                 vm.customer.id = 0;

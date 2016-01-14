@@ -1,7 +1,7 @@
 module.directive('formGroup', function($compile) {
     return {
         restrict: 'C',
-        link: function(scope, element, attrs) {
+        link: function(scope, element, attrs) {            
             var nodes = element[0].getElementsByTagName('input');
             var classes = {};
             for (var i = nodes.length - 1; i >= 0; i--) {
@@ -22,7 +22,7 @@ module.directive('formGroup', function($compile) {
             // TODO: Change how compile works to stop uiBootstrap throwing console errors
 
             attrs.$set('ng-class', '{\'has-error\':' + classes['has-error'] +'}');
-            var oldClasses = attrs.class;
+            var oldClasses = attrs.class;            
             // var oldChildren = angular.element(element.html());
             attrs.$set('class', '');
             // element.empty();
