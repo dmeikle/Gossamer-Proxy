@@ -155,13 +155,13 @@ class StaffController extends AbstractController {
 
         $this->mkdir($staffImagePath);
 
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $staffImagePath . $_FILES['file']['name'])) {
-            $params = array('id' => intval($id), 'imageName' => $_FILES['file']['name']);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $staffImagePath . intval($id) . '_' . $_FILES['file']['name'])) {
+            $params = array('id' => intval($id), 'imageName' => intval($id) . '_' . $_FILES['file']['name']);
 
             $this->model->saveParams($params);
         }
 
-        $this->render(array('success' => 'true'));
+        $this->render(array('success' => 'true', 'fileName' => intval($id) . '_' . $_FILES['file']['name']));
     }
 
     /**

@@ -1,4 +1,4 @@
-module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv) {
+module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv, $log) {
     var staffId = document.getElementById('Staff_id').value;
     
     var self = this;
@@ -19,7 +19,7 @@ module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv)
             'sending': function (file, xhr, formData) {
             },
             'success': function (file, response) {
-                getStaffPhoto();
+                $rootScope.$broadcast('PROFILE_PIC_UPDATED', response.fileName);
             }
         }
     };
