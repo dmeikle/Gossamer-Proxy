@@ -73,7 +73,7 @@
         .module('staffAdmin')
         .controller('staffEmergencyContactsCtrl', staffEmergencyContactsCtrl);
 
-    function staffEmergencyContactsCtrl($rootScope, $scope, $modal, staffEmergencyContactsSrv) {
+    function staffEmergencyContactsCtrl($rootScope, $scope, $uibModal, staffEmergencyContactsSrv) {
         var self = this;
         self.loading = false;
         self.staffLoaded = false;
@@ -106,7 +106,7 @@
         
         self.openEditEmergencyContactModal = function (contact) {
 
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'emergencyContactInfo',
                 controller: 'staffEmergencyContactModalCtrl as ctrl',
                 size: 'md',

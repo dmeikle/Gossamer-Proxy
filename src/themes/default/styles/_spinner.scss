@@ -62,4 +62,9 @@
     &.padding-left {
         padding-left: 1em;
     }
+    &.align-center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 }

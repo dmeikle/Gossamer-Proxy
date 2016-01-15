@@ -7,7 +7,7 @@
             .module('staffAdmin')
             .controller('staffBenefitsCtrl', staffBenefitsCtrl);
     
-    function staffBenefitsCtrl($rootScope, $scope, $modal, staffBenefitsSrv) {
+    function staffBenefitsCtrl($rootScope, $scope, $uibModal, staffBenefitsSrv) {
         var self = this;
         
         self.staffLoaded = false;
@@ -37,7 +37,7 @@
       
         self.openAddNewBenefitsModal = function () {
             
-            var modalInstance = $modal.open({
+            var modalInstance = $uibModal.open({
                 templateUrl: 'addNewBenefit',
                 controller: 'staffBenefitsHistoryModalCtrl as ctrl',
                 size: 'lg',

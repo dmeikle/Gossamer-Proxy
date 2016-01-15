@@ -63,7 +63,7 @@
                     <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
                     <div class="input-group">
                         <input type="text" name="hireDate" id="staff-hireDate" ng-model="ctrl.staff.hireDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control" datepicker-popup is-open="ctrl.isOpen.hireDate"
+                               class="form-control" uib-datepicker-popup is-open="ctrl.isOpen.hireDate"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="hireDate">
                             <button type="button" class="btn-default" data-datepickername="hireDate" ng-click="ctrl.openDatepicker('hireDate')">
@@ -76,7 +76,7 @@
                     <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
                     <div class="input-group">
                         <input type="text" name="departureDate" id="staff-departureDate" ng-model="ctrl.staff.departureDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control" datepicker-popup is-open="ctrl.isOpen.departureDate"
+                               class="form-control" uib-datepicker-popup is-open="ctrl.isOpen.departureDate"
                                datepicker-options="dateOptions" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="departureDate">
                             <button type="button" class="btn-default" data-datepickername="departureDate" ng-click="ctrl.openDatepicker('departureDate')">
@@ -143,7 +143,7 @@
                         <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
                         <div class="input-group">
                             <input type="text" name="dob" id="staff-dob" ng-model="ctrl.staff.dob" ng-model-options="{timezone: '+0000'}"
-                                   class="form-control" datepicker-popup is-open="ctrl.isOpen.dob"
+                                   class="form-control" uib-datepicker-popup is-open="ctrl.isOpen.dob"
                                    datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                             <span class="input-group-btn" data-datepickername="dob">
                                 <button type="button" class="btn-default" data-datepickername="dob" ng-click="ctrl.openDatepicker('dob')">
@@ -268,12 +268,11 @@
             <div class="cardright" ng-if="!ctrl.loading && ctrl.staff.imageName">
                 <img class="staff-picture pull-right" ng-src="/images/staff/{{ctrl.staff.imageName}}">
                 <div class="clearfix"></div>
-                <a href=#" ng-click="ctrl.displayPhotoUploadForm()">Upload New Image</a>
+                <a class="pull-right" href=#" ng-click="ctrl.displayPhotoUploadForm()"><?php echo $this->getString('STAFF_UPLOAD_NEW_IMAGE') ?></a>
             </div>
             <div class="clearfix"></div>
-
-            <div class="card" ng-controller="staffPhotoCtrl as photoCtrl" ng-show="photoCtrl.displayForm">
-                {{photoCtrl.dropzoneConfig}}
+            <div class="divider" ng-if="ctrl.displayForm"></div>
+            <div ng-controller="staffPhotoCtrl as photoCtrl" ng-show="ctrl.displayForm">
                 <div class="cardheader">
                     <h1><?php echo $this->getString('STAFF_PHOTOUPLOAD') ?></h1>
                 </div>
@@ -283,9 +282,22 @@
                 <div ng-if="!loading">
                 <!--<div>-->
                     <div dropzone="dropzoneConfig" class="dropzone">
-                        <p class="text-center">
-                            <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
-                        </p>
+
+                            <div ng-if="!photoCtrl.uploading">
+                                <p class="text-center">
+                                    <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
+                                </p>
+                            </div>
+
+                            <div ng-if="photoCtrl.uploading">
+                                <p class="text-center">
+                                <?php echo $this->getString('STAFF_UPLOADING_PROFILE_PHOTO'); ?>
+                                </p>
+                                <div class="clearfix"></div>
+                                <span class="spinner-loader align-center" ></span>
+
+                            </div>
+
                     </div>
                 </div>
             </div>
@@ -452,7 +464,7 @@
                                 <td class="has-datepicker">
                                     <div class="input-group">
                                         <input type="text" name="startDate" id="staff-startDate" ng-model="ctrl.staff.startDate" ng-model-options="{timezone: '+0000'}"
-                                               class="form-control" datepicker-popup is-open="isOpen.startDate"
+                                               class="form-control" uib-datepicker-popup is-open="isOpen.startDate"
                                                datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                                         <span class="input-group-btn" data-datepickername="startDate">
                                             <button type="button" class="btn-default" data-datepickername="startDate" ng-click="openDatepicker($event)">

@@ -1,18 +1,18 @@
 
 
-module.controller('staffModalCtrl', function($modalInstance, $scope) {
+module.controller('staffModalCtrl', function($uibModalInstance, $scope, staffEditSrv) {
     $scope.staff = {};
 
     $scope.confirm = function() {
 
         staffEditSrv.save($scope.staff).then(function(response) {
             if (!response.data.result || response.data.result !== 'error') {
-                $modalInstance.close();
+                $uibModalInstance.close();
             }
         });
     };
 
     $scope.cancel = function() {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

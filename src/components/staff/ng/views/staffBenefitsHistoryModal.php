@@ -42,7 +42,7 @@
                 <td class="has-datepicker">
                     <div class="input-group">
                         <input type="text" name="startDate" id="staff-startDate" ng-model="staff.startDate" ng-model-options="{timezone: '+0000'}"
-                               class="form-control" datepicker-popup is-open="isOpen.startDate"
+                               class="form-control" uib-datepicker-popup is-open="isOpen.startDate"
                                datepicker-options="dateOptions" ng-required="true" close-text="<?php echo $this->getString('STAFF_CLOSE'); ?>" />
                         <span class="input-group-btn" data-datepickername="startDate">
                             <button type="button" class="btn-default" data-datepickername="startDate" ng-click="openDatepicker($event)">

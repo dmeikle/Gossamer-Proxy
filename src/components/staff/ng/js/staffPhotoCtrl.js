@@ -4,10 +4,11 @@ module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv,
     var self = this;
     
     self.displayForm = false;
+    self.uploading = false;
     
-    $rootScope.$on('DISPLAY_PHOTO_UPLOAD_FORM', function() {
-       self.displayForm = true; 
-    });
+//    $rootScope.$on('DISPLAY_PHOTO_UPLOAD_FORM', function() {
+//       self.displayForm = true; 
+//    });
     
     $scope.dropzoneConfig = {
         'options': {// passed into the Dropzone constructor
@@ -17,8 +18,11 @@ module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv,
         },
         'eventHandlers': {
             'sending': function (file, xhr, formData) {
+                self.uploading = true;
+                $scope.$digest();
             },
             'success': function (file, response) {
+                self.uploading = false;
                 $rootScope.$broadcast('PROFILE_PIC_UPDATED', response.fileName);
             }
         }
