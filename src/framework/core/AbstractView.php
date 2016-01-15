@@ -146,6 +146,7 @@ class AbstractView {
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_START, $params);
 
         $this->setData($params->getParams());
+
         $this->renderView();
 
         //package the current output and send it to the eventdispatcher in case
@@ -153,6 +154,7 @@ class AbstractView {
         $eventParams = array('content' => $this->template);
         $params = new Event(KernelEvents::RESPONSE_END, $eventParams);
         $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RESPONSE_END, $params);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END, $params);
         $eventParams = $params->getParams();
         $this->template = $eventParams['content'];
 
