@@ -248,19 +248,22 @@
                             </button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
-                                    <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
+                                    <a href="#" ng-click="vm.removeCustomer(customer)">
                                         <?php echo $this->getString('REMOVE') ?>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
-                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
-                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                    <div class="pull-left">
+                        <div>{{customer.customerType}}: {{customer.firstname}} {{customer.lastname}}</div>
+                        <div ng-if="customer.daytimePhone"><?php echo $this->getString('CLAIMS_PHONE'); ?>: {{customer.daytimePhone}}</div>
+                        <div ng-if="customer.mobile"><?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{customer.mobile}}</div>
+                        <div ng-if="customer.email"><?php echo $this->getString('CLAIMS_EMAIL'); ?>:{{customer.email}}</div>
+                    </div>
+                    <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
+                    <div class="clearfix"></div>
+                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
                 </div>
             </div>
 
@@ -283,12 +286,14 @@
                             </ul>
                         </div>
                     </div>
-                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
-                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
-                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                    <div class="pull-left">
+                        <div>{{customer.customerType}}: {{customer.firstname}} {{customer.lastname}}</div>
+                        <div ng-if="customer.daytimePhone"><?php echo $this->getString('CLAIMS_PHONE'); ?>: {{customer.daytimePhone}}</div>
+                        <div ng-if="customer.mobile"><?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{customer.mobile}}</div>
+                        <div ng-if="customer.email"><?php echo $this->getString('CLAIMS_EMAIL'); ?>: {{customer.email}}</div>
+                    </div>
+                        <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
+                    <div class="clearfix"></div>
                     <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
                 </div>
 

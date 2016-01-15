@@ -11,7 +11,8 @@
         
         vm.claim = {};
         vm.documentsConfig = {};        
-        vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;
+        vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;     
+        
         
         vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
@@ -28,7 +29,6 @@
                 }
               }
             });
-
             modalInstance.result.then(function () {
                 getAffectedAreas();
             }, function () {
@@ -65,6 +65,11 @@
             crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);
         };
         
+        vm.removeCustomer = function (customer) {
+            var apiPath = '/admin/customers/remove/' + customer.id;
+            crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);
+        };
+        
         activate();
 
         function activate() {
@@ -87,12 +92,10 @@
                 vm.equipmentLocations = JSON.parse(document.getElementById('EquipmentLocations').value);
                 
                 vm.claim.id = vm.location.Claims_id;
-                vm.loaded = true;
-                
+                vm.loaded = true;                
                 vm.documentsConfig.Claims_id = vm.claim.id;
                 vm.documentsConfig.ClaimsLocations_id = vm.location.id;
-//                $log.log(vm.claimsCustomers);
-
+                
                 formatNotes(vm.claimsLocationsNotes);
             });            
             
@@ -117,12 +120,7 @@
         
         //Update the customers list when the modal is closed
         function updateCustomers (customer) {
-            $log.log(customer);
-            $log.log(vm.claimsCustomers);
-            $log.log(vm.claimsCustomers.length);
-            
             for(var i in vm.claimsCustomers) {
-                $log.log(i);
                 if(vm.claimsCustomers[i].id === customer.id) {
                     $log.log('This is a new customer!');
                     vm.claimsCustomers[i] = customer;
@@ -134,7 +132,6 @@
                     }
                 }
             }
-        }
-        
+        }        
     }
 })();
