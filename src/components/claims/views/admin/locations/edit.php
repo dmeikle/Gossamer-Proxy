@@ -240,7 +240,21 @@
             </div>
 
             <div class="padding-vertical">
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'">
+                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'" class="list-item">
+                    <div class="pull-right text-right row-controls">
+                        <div class="dropdown list-dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
+                                        <?php echo $this->getString('REMOVE') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
                     <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
                     <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>

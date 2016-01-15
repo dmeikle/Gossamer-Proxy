@@ -25,9 +25,7 @@ super_customers_roles_remove:
         view: core\views\JSONView
         viewKey: super_customers_roles_save
         datasource: datasource1
-    methods: [POST]   
-    
-    
+    methods: [POST]
 
 super_customers_roles_list:
     pattern: super/customers/roles/*/*
@@ -159,7 +157,19 @@ customers_autocomplete:
         view: core\views\JSONView
         viewKey: customers_autocomplete
         datasource: datasource1
-    
+
+admin_customers_remove:
+    pattern: admin/customers/remove/*
+    methods: [POST]
+    defaults:
+        component: components\customers\CustomersComponent
+        controller: components\customers\controllers\CustomersController
+        model: components\customers\models\CustomerModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_customers_remove
+        datasource: datasource1
+
 customers_list:
     pattern: admin/customers/*/*
     defaults:
@@ -199,7 +209,6 @@ admin_customers_save:
         view: core\views\JSONView
         viewKey: admin_customers_save
         datasource: datasource1
-        
   
 admin_scoping_add_customer:
     pattern: admin/scoping/requests/addCustomer
