@@ -717,6 +717,7 @@ admin_claims_list:
         view: core\views\JSONView
         viewKey: admin_claims_list
         datasource: datasource1
+    methods: [GET]
 
 admin_claim_view:
     pattern: admin/claim/*
@@ -890,6 +891,18 @@ admin_claims_location_view:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
     methods: [GET]
+    
+admin_claims_location_save:
+    pattern: admin/claims/locations/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_location_save
+        datasource: datasource1
+    methods: [POST]
 
 admin_claims_locations_setinactive:
     pattern: admin/claims/locations/remove/*

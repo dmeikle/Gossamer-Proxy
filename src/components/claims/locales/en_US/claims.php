@@ -375,5 +375,6 @@ return array(
     'CLAIMS_BASEBOARDS' => 'Baseboards',
     'CLAIMS_DRYWALL' => 'Drywall',
     'CLAIMS_INSULATION' => 'Insulation',
-    'CLAIMS_SAMPLES' => 'Samples'
+    'CLAIMS_SAMPLES' => 'Samples',
+    'CLAIMS_ADD_NEW' => 'Add New'
 );

@@ -12,7 +12,7 @@
 
     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?> - {{vm.location.jobNumber}} - {{vm.location.unitNumber}}</h1>
     <div class="pull-right">
-        <button class="primary h3button" ng-click="">
+        <button class="primary h3button" ng-click="vm.saveLocation()">
             <?php echo $this->getString('SAVE') ?>
         </button>
     </div>
@@ -42,34 +42,13 @@
         </div>
 
         <div class="col-md-6 no-padding">
+
             <div class="card">
-                <div class="cardheader row">
-                    <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-                    <div class="col-xs-3 text-right row-controls">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            </button>
-                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
-                                        <?php echo $this->getString('EDIT') ?>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="cardheader">
+                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT'); ?></h1>
+                    <?php echo $form['specialInstructions'] ?>
                 </div>
-
-
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'">
-                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
-                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
-                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
-                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
-                </div>
+                <p></p>
             </div>
         </div>
 
@@ -242,18 +221,64 @@
         </div>
 
         <div class="card">
-            <div class="cardheader">
-                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT'); ?></h1>
-                <?php echo $form['specialInstructions'] ?>
+            <div class="cardheader row">
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                <div class="col-xs-3 text-right row-controls">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        </button>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
+                                    <?php echo $this->getString('CLAIMS_ADD_NEW') ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <p></p>
-        </div>
 
-        <div class="card">
-            <div class="cardheader">
-                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_CURRENT_KEY_HOLDER'); ?></h1>
+            <div class="padding-vertical">
+                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'">
+                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
+                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
+                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                </div>
             </div>
-            <p>...</p>
+
+            <div class="cardheader row">
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+            </div>
+            <div class="padding-vertical">
+                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'" class="list-item">
+                    <div class="pull-right text-right row-controls">
+                        <div class="dropdown list-dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
+                                        <?php echo $this->getString('REMOVE') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
+                    <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
+                    <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
+                    <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
+                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                </div>
+
+            </div>
         </div>
 
         <div class="card">
@@ -285,38 +310,13 @@
                     </td>
                 </tr>
             </table>
-
-
         </div>
 
         <div class="card">
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-                <div class="col-xs-3 text-right row-controls">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        </button>
-                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                            <li>
-                                <a href="#" ng-click="openEditModal(claim)">
-                                    <?php echo $this->getString('EDIT') ?>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="cardheader">
+                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_CURRENT_KEY_HOLDER'); ?></h1>
             </div>
-
-            <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'">
-                <div><strong><?php echo $this->getString('CLAIMS_NAME'); ?>:</strong> {{customer.firstname}} {{customer.lastname}}</div>
-                <div><strong><?php echo $this->getString('CLAIMS_TYPE'); ?>:</strong> {{customer.customerType}}</div>
-                <div ng-if="customer.vipType"><strong><?php echo $this->getString('CLAIMS_VIP_TYPE'); ?>:</strong> {{customer.vipType}}</div>
-                <div><strong><?php echo $this->getString('CLAIMS_PHONE'); ?>:</strong> {{customer.daytimePhone}}</div>
-                <div ng-if="customer.mobile"><strong><?php echo $this->getString('CLAIMS_MOBILE'); ?>:</strong> {{customer.mobile}}</div>
-                <div><strong><?php echo $this->getString('CLAIMS_EMAIL'); ?>:</strong> {{customer.email}}</div>
-                <div ng-if="$index < vm.claimsCustomers.length-2" class="divider"></div>
-            </div>
+            <p>...</p>
         </div>
     </div>
 
@@ -336,6 +336,6 @@
 
 <form></form>
 <div class="clearfix"></div>
-<?php pr($this->data); ?>
+<?php // pr($this->data); ?>
 
 

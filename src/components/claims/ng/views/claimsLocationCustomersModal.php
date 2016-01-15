@@ -78,8 +78,9 @@
 </div>
 <div class="modal-footer">
     <div class="pull-right">
+        <span class="spinner-loader modal-spinner" ng-if="modal.saving"></span>
         <div class="btn-group" role="group">
-            <button class="default" ng-click="modal.close()">
+            <button class="default" ng-click="modal.close()" ng-disabled="modal.saving">
                 <?php echo $this->getString('CLOSE') ?>
             </button>
             <button class="primary" ng-click="modal.saveExistingCustomer()" ng-if="!modal.createNew" ng-disabled="!modal.customer.CustomerTypes_id || !modal.customer.id">

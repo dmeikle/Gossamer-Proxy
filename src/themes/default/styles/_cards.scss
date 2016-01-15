@@ -37,7 +37,7 @@
         display:none;
     }
     &:hover { 
-        .dropdown {
+        .dropdown:not(.list-dropdown) {
             display:block;
         }
     }
@@ -79,5 +79,16 @@
         font-size:80%;
         height:80%;
         padding:3px 6px;
+    }
+}
+
+.card .list-item {
+    .dropdown {
+        display:none;
+    }
+    &:hover { 
+        .dropdown {
+            display:block;
+        }
     }
 }

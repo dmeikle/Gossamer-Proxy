@@ -6,10 +6,11 @@
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
     function claimsLocationsCtrl($log, $timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
-        var vm = this;        
+        var vm = this;
+        var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
         vm.claim = {};
         vm.documentsConfig = {};        
-        
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;
         
         vm.openAffectedAreasModal = function (template, area) {
@@ -57,6 +58,11 @@
             }, function () {
                 $log.log('modal dismissed');                
             });
+        };
+        
+        vm.saveLocation = function () {
+            var apiPath = '/admin/claims/locations/' + vm.location.id;
+            crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);
         };
         
         activate();
@@ -108,12 +114,24 @@
             });
         }
         
+        
+        //Update the customers list when the modal is closed
         function updateCustomers (customer) {
-            $log.log('update the customers!');
             $log.log(customer);
+            $log.log(vm.claimsCustomers);
+            $log.log(vm.claimsCustomers.length);
+            
             for(var i in vm.claimsCustomers) {
+                $log.log(i);
                 if(vm.claimsCustomers[i].id === customer.id) {
+                    $log.log('This is a new customer!');
                     vm.claimsCustomers[i] = customer;
+                } else {
+                    if(parseInt(i) === vm.claimsCustomers.length-1) {
+                        $log.log('This is a new customer!');
+                        vm.claimsCustomers.push(customer);
+                        $log.log(vm.claimsCustomers);
+                    }
                 }
             }
         }
