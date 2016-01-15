@@ -58,9 +58,8 @@ class Kernel {
         //first, run any security checks before starting the request
         $event = new Event(KernelEvents::ENTRY_POINT, $httpRequest);
 
-        $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_START);
-
         //still here? ok, now start the request
+        $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_START);
         $event = new Event(KernelEvents::REQUEST_START, $httpRequest);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::REQUEST_START);
 

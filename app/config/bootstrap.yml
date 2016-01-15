@@ -13,6 +13,8 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
         - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
         - { 'event': 'render_complete', 'listener': 'core\eventlisteners\SaveRenderedPageToCacheListener'}
+        - { 'event': 'render_complete', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
+        - { 'event': 'render_bypass', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
         
         
         - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
@@ -21,7 +23,6 @@ all:
         - { 'event': 'response_start', 'listener': 'core\components\locales\eventlisteners\StringifyBeforeRenderListener' }
         - { 'event': 'response_start', 'listener': 'core\components\access\eventlisteners\LoadNavigationListener'}  
         - { 'event': 'response_start', 'listener': 'core\components\security\eventlisteners\GenerateTokenOnAjaxPostListener', 'methods': [POST]}
-        - { 'event': 'response_end', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
         - { 'event': 'response_end', 'listener': 'core\components\security\eventlisteners\GenerateFormTokenListener', 'methods': [GET]}
         
             

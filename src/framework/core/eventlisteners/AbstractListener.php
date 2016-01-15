@@ -198,4 +198,10 @@ class AbstractListener {
         return $langFiles->getString($key);
     }
 
+    protected function getClient() {
+        $token = $this->getSecurityToken();
+
+        return $token->getClient();
+    }
+
 }

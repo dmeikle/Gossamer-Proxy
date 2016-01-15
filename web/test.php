@@ -38,8 +38,8 @@ function html_no_permissions($html) {
 
 
     // remove all comment elements
-//    foreach ($html->find('input[type=checkbox]') as $e)
-//        $e->outertext = '';
+    foreach ($html->find('form[permissions=true]') as $e)
+        $e->outertext = '';
 
     $ret = $html->save();
 
@@ -61,93 +61,60 @@ function str_get_html($str, $lowercase = true, $forceTagsClosed = true, $target_
     return $dom;
 }
 
-$html = '<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Bootstrap 101 Template</title>
+$html = '
+<!-- list -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <title>|title|</title>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+                    <link rel="stylesheet" href="/css/core.min.css">
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body>
-<h1>Hello, world!</h1>
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-  <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[1]" value="1" ng-model="secondarySheet.item_1" id="SecondarySheet_question" />
-        Carpet </label>
-    </div>
-  <div class="panel-heading"> Extraction </div>
+                        <link href="/css/components/staff/dist/css/staff.min.css" rel="stylesheet">
 
-  <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[1]" value="1" ng-model="secondarySheet.item_1" id="SecondarySheet_question" />
-        Carpet </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[2]" value="1" ng-model="secondarySheet.item_2" id="SecondarySheet_question" />
-        Lino </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[3]" value="1" ng-model="secondarySheet.item_3" id="SecondarySheet_question" />
-        Tile </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[4]" value="1" ng-model="secondarySheet.item_4" id="SecondarySheet_question" />
-        Hardwood </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[5]" value="1" ng-model="secondarySheet.item_5" id="SecondarySheet_question" />
-        Other </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="SecondarySheet[6]" value="1" ng-model="secondarySheet.item_6" id="SecondarySheet_question" />
-        Leech Wand </label>
-    </div>
+                        </head>
 
-  <button type="submit" class="btn btn-default">Submit</button>
+                        <body>
+                            <div id="container">
+                                <!---header--->
+                                <div id="lower">
+
+<div style="max-width:400px; padding-left: auto; padding-right: auto">
+    <h2>Login Form</h2>
+    <form role="form" method="post" permissions="true">
+        <div class="form-group" permissions="true">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" id="email" />        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" />        </div>
+        <div style="text-align:right">
+            <a href="/admin/login/reset">I forgot my password</a>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+    <input type="hidden" name="FORM_SECURITY_TOKEN" id="FORM_SECURITY_TOKEN" value="$1$5Cu3aClT$Azln3iYdjajtM6GhV9P1c." />
 </form>
 
-<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
+</div>
+                                    <div id="payload">
+                                        <!---payload--->
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
-</html>
+                                    </div>
+
+                                </div>
+                                <div id="footer">  <!---section5---> </div>
+                            </div>
+
+
+                        </body>
+
+
+                        </html>
+
 ';
 
 $dom = str_get_html($html);

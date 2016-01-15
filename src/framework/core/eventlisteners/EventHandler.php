@@ -125,7 +125,7 @@ class EventHandler {
         foreach ($this->listeners as $listener) {
 
             $listenerClass = $listener['listener'];
-            echo "class $listenerClass<br>";
+            // echo "class $listenerClass<br>";
             $handler = array($listenerClass, 'on_' . $this->state);
             if ($this->state == $listener['event'] && is_callable($handler)) {
                 unset($listener['listener']);
@@ -135,16 +135,16 @@ class EventHandler {
                 $eventListener->setDatasourceKey($this->datasourceKey);
                 $eventListener->setEventDispatcher($this->eventDispatcher);
                 $eventListener->setConfig($listener);
-                echo "execute " . get_class($eventListener) . "\r\n";
+                //echo "execute " . get_class($eventListener) . "<br>\r\n";
                 $eventListener->execute($this->state, $this->params);
             } elseif ($this->state == $listener['event']) {
-                echo ($listenerClass . ' handler not callable ' . 'on_' . $this->state . "\r\n");
+                // echo ($listenerClass . ' handler not callable ' . 'on_' . $this->state . "<br>\r\n");
             } elseif (file_exists($listenerClass)) {
-                echo "$listenerClass found but not callable on this event\r\n";
+                // echo "$listenerClass found but not callable on this event\r\n";
             } else {
                 //   pr(is_callable($handler));
                 $this->logger->addError($listenerClass . ' not found by EventHandler::notifyListeners');
-                echo "unable call $listenerClass " . $this->state . "\r\n";
+                //echo "unable call $listenerClass " . $this->state . "<br>\r\n";
             }
         }
     }

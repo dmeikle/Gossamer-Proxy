@@ -11,6 +11,9 @@
 
 namespace libraries\utils\traits;
 
+use Gossamer\Caching\CacheManager;
+use libraries\utils\YamlFileIterator;
+
 /**
  * LoadConfigFile
  *
@@ -30,6 +33,23 @@ trait LoadConfigFile {
         $loader = new \libraries\utils\YAMLKeyParser();
 
         return $loader->getNodeByKey($ymlkey, $filename);
+    }
+
+    public function loadCachedComponentConfig($ymlKey, $cacheKey, $filename = 'routing') {
+        $manager = new CacheManager($this->logger);
+        $routing = $manager->retrieveFromCache($cacheKey);
+        if ($routing === false) {
+            $routing = $this->generateCachableYamlKeyList($filename);
+            $manager->saveToCache($cacheKey, $routing);
+        }
+
+        return $routing;
+    }
+
+    protected function generateCachableYamlKeyList($filename) {
+        $it = new YamlFileIterator();
+
+        return $it->loadAllYamlFiles($filename);
     }
 
 }

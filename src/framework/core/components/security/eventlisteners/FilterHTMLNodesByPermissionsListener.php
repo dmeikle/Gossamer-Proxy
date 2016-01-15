@@ -12,8 +12,9 @@
 namespace core\components\security\eventlisteners;
 
 use core\components\security\lib\HTMLDomParser;
-use core\components\security\lib\HTMLDomNode;
+use core\eventlisteners\Event;
 use core\eventlisteners\AbstractListener;
+use libraries\utils\YamlFileIterator;
 
 define('HDOM_TYPE_ELEMENT', 1);
 define('HDOM_TYPE_COMMENT', 2);
@@ -44,38 +45,87 @@ define('MAX_FILE_SIZE', 600000);
  */
 class FilterHTMLNodesByPermissionsListener extends AbstractListener {
 
-    public function on_request_end($params) {
-        error_log('inside filter nodes');
-        pr($parms);
-        die;
-        $this->filterHTMLPermissionsDivs($html);
+    use \libraries\utils\traits\LoadConfigFile;
+
+    public function on_render_complete(Event &$event) {
+        $this->filterPage($event);
     }
 
-    function filterHTMLPermissionsDivs($html) {
+    public function on_render_bypass(Event &$event) {
+        $this->filterPage($event);
+    }
 
+    private function filterPage(Event &$event) {
 
-        // remove all comment elements
-        foreach ($html->find('div[permissions=true]') as $e) {
-            $e->outertext = '';
+        $permissions = $this->loadPermissionsConfig();
+        if (is_null($permissions)) {
+            return;
         }
-        $ret = $html->save();
+
+        $params = $event->getParams();
+
+        $html = $params['renderedPage'];
+        $dom = $this->getDomByString($html);
+        $params['renderedPage'] = $this->filterHTMLPermissionsDivs($dom, $permissions);
+        $event->setParams($params);
+    }
+
+    public function filterHTMLPermissionsDivs(HTMLDomParser $dom, array $row) {
+        $clientPermissions = $this->getClientPermissions();
+
+        foreach ($row['tags'] as $permission) {
+            $tag = $permission['tag'];
+            $key = $permission['permission-key'];
+
+            $roles = $permission['roles'];
+
+            $permittedRoles = array_intersect($clientPermissions, $roles);
+
+            if (count($permittedRoles) == 0) {
+
+                foreach ($dom->find($tag . '[permission-key=' . $key . ']') as $e) {
+                    $e->outertext = '';
+                }
+            }
+        }
+
+        $ret = $dom->save();
 
         // clean up memory
-        $html->clear();
-        unset($html);
+        $dom->clear();
+        unset($dom);
 
         return $ret;
     }
 
 // get html dom from string
-    function str_get_html($str, $lowercase = true, $forceTagsClosed = true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN = true, $defaultBRText = DEFAULT_BR_TEXT, $defaultSpanText = DEFAULT_SPAN_TEXT) {
+    function getDomByString($str, $lowercase = true, $forceTagsClosed = true, $target_charset = DEFAULT_TARGET_CHARSET, $stripRN = true, $defaultBRText = DEFAULT_BR_TEXT, $defaultSpanText = DEFAULT_SPAN_TEXT) {
         $dom = new HTMLDomParser(null, $lowercase, $forceTagsClosed, $target_charset, $stripRN, $defaultBRText, $defaultSpanText);
+
         if (empty($str) || strlen($str) > MAX_FILE_SIZE) {
             $dom->clear();
             return false;
         }
+
         $dom->load($str, $lowercase, $stripRN);
+
         return $dom;
+    }
+
+    private function getClientPermissions() {
+        $client = $this->getClient();
+
+        return $client->getRoles();
+    }
+
+    private function loadPermissionsConfig() {
+        $config = $this->loadCachedComponentConfig(__YML_KEY, 'permissions_config', 'permissions');
+
+        if (array_key_exists(__YML_KEY, $config)) {
+            return $config[__YML_KEY];
+        } else {
+            return null;
+        }
     }
 
 }

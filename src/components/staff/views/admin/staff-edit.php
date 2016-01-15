@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card" ng-controller="staffBenefitsCtrl as ctrl">
+            <div class="card" ng-controller="staffBenefitsCtrl as ctrl" permission-key="accounting">
                 <div ng-if="!ctrl.staffBenefitsLoading && ctrl.staffBenefits">
                     <div class="cardleft">
                         <table class="cardtable">
@@ -288,7 +288,7 @@
                 </div>
             </div>
         </div>
-        <div class="card" ng-controller="staffAuthorizationCtrl as ctrl">
+        <div class="card" ng-controller="staffAuthorizationCtrl as ctrl" permission-key="humanresources">
             <div class="cardheader">
                 <h1><?php echo $this->getString('STAFF_CREDENTIALS'); ?></h1>
             </div>
@@ -354,7 +354,7 @@
         <uib-tab heading="Emergency Contacts">
             <div class="card" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                           ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                               ?></h1>
                     <button ng-if="!ctrl.loading" class="primary pull-right"
                             ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
@@ -402,12 +402,12 @@
 
             </div>
         </uib-tab>
-        <uib-tab heading="Benefits">
+        <uib-tab heading="Benefits"  permission-key="accounting">
 
 
             <div ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                           ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                               ?></h1>
                     <button ng-if="!ctrl.addingNew" class="pull-right" ng-click="ctrl.openAddNewBenefitsModal()" ng-disabled="!ctrl.staffLoaded">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
@@ -491,10 +491,10 @@
             </div>
         </uib-tab>
         -->
-        <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>">
+        <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>" permission-key="humanresources">
             <div class="card" ng-controller="staffRolesCtrl as ctrl">
                 <div class="cardheader">
-                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                          ?></h1>
+                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                              ?></h1>
                 </div>
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>

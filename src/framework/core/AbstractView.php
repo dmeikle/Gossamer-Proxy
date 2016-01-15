@@ -157,9 +157,6 @@ class AbstractView {
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END, $params);
         $eventParams = $params->getParams();
         $this->template = $eventParams['content'];
-
-
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RESPONSE_END);
     }
 
     /**
@@ -199,16 +196,24 @@ class AbstractView {
             (eval("?>" . $this->template));
             $result = ob_get_clean();
 
-            //write it to the page - do not delete! this is not debug
-            print($result);
+
+
 
             $this->template = '';
             $this->renderComplete = true;
 
-            $params = array('renderedPage' => $result);
+            /**
+             * CP-237 - added this event to be able to edit the output before we print to the page.
+             * used for filtering out rendered elements based on permissions
+             */
+            $event = new Event(KernelEvents::RENDER_COMPLETE, $params);
+            $event->setParams(array('renderedPage' => $result));
+            $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE, $event);
+            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, $event);
+            $params = $event->getParams();
 
-            $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
-            $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, new Event(KernelEvents::RENDER_COMPLETE, $params));
+            //write it to the page - do not delete! this is not debug
+            print($params['renderedPage']);
         }
     }
 

@@ -232,7 +232,7 @@ admin_staff_edit_home:
             - 'src/components/staff/locales/*/Roles'
             - app/locales/*/website
     methods: [GET]
-
+    staticCache: true
 
 
 

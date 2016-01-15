@@ -32,13 +32,16 @@ class LoadCachedRenderedPageListener extends AbstractCachableListener {
         $filepath = 'pages' . DIRECTORY_SEPARATOR . __YML_KEY;
 
         $page = $this->getValuesFromCache($filepath, true);
+
         if ($page == false) {
+
             return;
         }
+        $this->httpRequest->setAttribute('CACHED_PAGE_ON_ENTRY_POINT', $page);
 
-        print($page);
-        //no further processing required
-        exit;
+//        print($page);
+//        //no further processing required
+//        exit;
     }
 
     private function isCachablePage() {
