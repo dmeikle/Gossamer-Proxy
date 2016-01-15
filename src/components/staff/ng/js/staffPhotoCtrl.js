@@ -9,7 +9,7 @@ module.controller('staffPhotoCtrl', function ($rootScope, $scope, staffPhotoSrv)
        self.displayForm = true; 
     });
     
-    self.dropzoneConfig = {
+    $scope.dropzoneConfig = {
         'options': {// passed into the Dropzone constructor
             'url': '/admin/staff/photo/upload/' + staffId,
             'uploadMultiple': false,

@@ -272,7 +272,8 @@
             </div>
             <div class="clearfix"></div>
 
-            <div class="card" ng-controller="staffPhotoCtrl as ctrl" ng-show="ctrl.displayForm">
+            <div class="card" ng-controller="staffPhotoCtrl as photoCtrl" ng-show="photoCtrl.displayForm">
+                {{photoCtrl.dropzoneConfig}}
                 <div class="cardheader">
                     <h1><?php echo $this->getString('STAFF_PHOTOUPLOAD') ?></h1>
                 </div>
@@ -280,7 +281,8 @@
                     <span class="spinner-loader"></span>
                 </div>
                 <div ng-if="!loading">
-                    <div dropzone="ctrl.dropzoneConfig" class="dropzone">
+                <!--<div>-->
+                    <div dropzone="dropzoneConfig" class="dropzone">
                         <p class="text-center">
                             <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
                         </p>
