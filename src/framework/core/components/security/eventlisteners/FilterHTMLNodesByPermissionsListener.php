@@ -13,6 +13,7 @@ namespace core\components\security\eventlisteners;
 
 use core\components\security\lib\HTMLDomParser;
 use core\components\security\lib\HTMLDomNode;
+use core\eventlisteners\AbstractListener;
 
 define('HDOM_TYPE_ELEMENT', 1);
 define('HDOM_TYPE_COMMENT', 2);
@@ -35,14 +36,13 @@ define('DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('DEFAULT_BR_TEXT', "\r\n");
 define('DEFAULT_SPAN_TEXT', " ");
 define('MAX_FILE_SIZE', 600000);
-die('loaded');
 
 /**
  * FilterHTMLNodesByPermissionsListener
  *
  * @author Dave Meikle
  */
-class FilterHTMLNodesByPermissionsListener {
+class FilterHTMLNodesByPermissionsListener extends AbstractListener {
 
     public function on_request_end($params) {
         error_log('inside filter nodes');
