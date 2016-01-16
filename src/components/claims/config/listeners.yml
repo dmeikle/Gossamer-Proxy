@@ -136,6 +136,9 @@ admin_claims_edit:
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: Claim}
         - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
+
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -148,7 +151,7 @@ admin_claims_edit:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
                 - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
         -
-            event: 'request_end'
+            event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
             formBuilder: 'components\claims\form\ClaimBuilder'
@@ -157,6 +160,8 @@ admin_claims_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claim, model: Claim}
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
                 
 #        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
 
