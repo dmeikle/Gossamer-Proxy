@@ -8,7 +8,6 @@
     function ClaimsLocationsCustomerModalCtrl($uibModalInstance, $scope, $log, crudSrv, location, customer, contactListSrv, searchSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-        $log.log(location);
         vm.customer = customer;
         vm.createNew = false;
         vm.saving = false;
@@ -53,7 +52,13 @@
             var config = {};
             config[type] = value;
             return searchSrv.autocomplete('/admin/customers/', config).then(function(response){
-                return response.data.Customers;
+                console.log(response.data.CustomersCount[0].rowCount);
+                if(response.data.CustomersCount[0].rowCount > 0) {
+                    return response.data.Customers;
+                } else {
+                    return undefined;
+                }
+                
             });
         };
         

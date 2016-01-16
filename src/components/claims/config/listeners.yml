@@ -196,3 +196,20 @@ admin_claims_location_view:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }                
 #                - { dependency: AreaTypes, key: areaTypes, value: id, text: title }
 #                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+
+admin_claims_home:        
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
