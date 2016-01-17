@@ -11,7 +11,7 @@
 
 namespace core\components\blogs\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use core\eventlisteners\Event;
 use Gossamer\Caching\CacheManager;
 use exceptions\KeyNotSetException;

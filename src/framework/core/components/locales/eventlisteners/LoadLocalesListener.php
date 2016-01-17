@@ -11,7 +11,7 @@
 
 namespace core\components\locales\eventlisteners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use core\components\locales\models\LocaleModel;
 
 /**

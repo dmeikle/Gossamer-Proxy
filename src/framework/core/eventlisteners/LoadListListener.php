@@ -11,6 +11,8 @@
 
 namespace core\eventlisteners;
 
+use core\components\caching\eventlisteners\AbstractCachableListener;
+
 /**
  * loads a list of items that might be needed by another resource
  *
@@ -54,7 +56,7 @@ class LoadListListener extends AbstractCachableListener {
                 $key = key($result);
                 $caching = false; //it wasn't set so don't try to cache the value
             }
-            
+
             $list = $result[$key];
         }
 

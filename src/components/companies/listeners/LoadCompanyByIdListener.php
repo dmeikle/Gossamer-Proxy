@@ -11,7 +11,7 @@
 
 namespace components\companies\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use components\companies\models\CompanyModel;
 
 /**

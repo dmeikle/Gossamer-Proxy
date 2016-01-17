@@ -159,3 +159,16 @@ admin_claims_edit:
                 - { dependency: Claim, model: Claim}
               
         
+admin_claims_cost_cards_edit:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\CostCardBuilder'
+            model: 'components\accounting\models\CostCardModel'
+            cacheKey: 'CostCardForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }

@@ -112,7 +112,7 @@ super_ticket_statuses_edit:
 super_ticket_statuses_save:
     pattern: super/tickets/statuses/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent
@@ -173,7 +173,7 @@ super_tickets_types_edit:
 super_tickets_types_save:
     pattern: super/tickets/types/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent
@@ -222,7 +222,7 @@ super_tickets_priorities_edit:
 super_tickets_priorities_save:
     pattern: super/tickets/priorities/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent
@@ -284,7 +284,7 @@ super_tickets_resolutions_edit:
 super_tickets_resolutions_save:
     pattern: super/tickets/resolutions/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent
@@ -346,7 +346,7 @@ super_tickets_actions_edit:
 super_tickets_actions_save:
     pattern: super/tickets/actions/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent
@@ -409,7 +409,7 @@ super_tickets_categories_edit:
 super_tickets_categories_save:
     pattern: super/tickets/categories/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\tickets\TicketsComponent

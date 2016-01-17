@@ -86,7 +86,7 @@ super_event_types_edit:
 super_event_types_save:
     pattern: super/events/eventtypes/*
     listeners:
-        - { 'event': 'save_success', 'listener': 'core\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
+        - { 'event': 'save_success', 'listener': 'core\components\caching\eventlisteners\DeleteCacheFileListener', 'datasource': 'datasource1' }
     
     defaults:
         component: components\events\EventsComponent

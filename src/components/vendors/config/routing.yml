@@ -26,16 +26,12 @@ admin_vendor_items_autocomplete:
 #-------------------------- vendors ------------
 
 admin_vendors_home:
-
     pattern: admin/vendors
-
     defaults:
         component: components\vendors\VendorsComponent
         controller: components\vendors\controllers\VendorsController
         model: components\vendors\models\VendorModel
-
         method: index
-
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_vendors_home
         datasource: datasource1
@@ -43,6 +39,7 @@ admin_vendors_home:
             - 'src/components/vendors/locales/*/Vendors'
             - 'app/locales/*/website'
     methods: [GET]
+    staticCache: true
 
 
 admin_vendors_search:
@@ -62,7 +59,6 @@ admin_vendors_edit:
     pattern: admin/vendors/*
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces'}
-
     defaults:
         component: components\vendors\VendorsComponent
         controller: components\vendors\controllers\VendorsController
@@ -74,6 +70,7 @@ admin_vendors_edit:
         langFiles:
             - 'src/components/vendors/locales/*/Vendors'
     methods: [GET]
+    staticCache: true
 
 
 admin_vendors_save:
