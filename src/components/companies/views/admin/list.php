@@ -108,9 +108,20 @@
 
         <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">
             <h1><?php echo $this->getString('COMPANY_ADVANCED_SEARCH'); ?></h1>
-            <company-advanced-search-filters>
 
-            </company-advanced-search-filters>
+            <div class="form-group">
+                <label for="advancedSearch-url"><?php echo $this->getString('COMPANY_JOB_NUMBER'); ?></label>
+                <input type="text" name="jobNumber" id="advancedSearch-jobNumber" ng-model="advancedSearch.query.jobNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="advancedSearch-CompanyTypes_id"><?php echo $this->getString('COMPANY_TYPE'); ?></label>
+                <select name="CompanyTypes_id" id="advancedSearch-CompanyTypes_id" ng-model="advancedSearch.query.CompanyTypes_id" class="form-control">
+                    <option value=""> - <?php echo $this->getString('COMPANY_TYPE'); ?> - </option>
+                    <?php foreach ($CompanyTypes as $item) { ?>
+                        <option value="<?php echo $item['id']; ?>"><?php echo $item['type']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
             <div class="cardfooter">
                 <div class="btn-group pull-right">
                     <input type="submit" class="btn btn-primary" value="<?php echo $this->getString('SUBMIT') ?>">
@@ -123,15 +134,18 @@
 
             <h1><a href="/admin/companies/edit/{{selectedCompany.Companies_id}}">{{selectedCompany.name}}</a></h1>
             <div ng-repeat="claim in claimsList" class="sidePanelRow">
-                <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
-                <div class="dateReceived"><?php echo $this->getString('COMPANIES_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
-                <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
-                <div class="deductable"><?php echo $this->getString('COMPANIES_DEDUCTABLE_AMOUNT') ?> {{ claim.deductable}}</div>
-                <div class="reason"><?php echo $this->getString('COMPANIES_REASON') ?> <br />{{ claim.reason}}</div>
-                <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
-                <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
-                <div class="claimStatus">{{ claim.status}}</div>
+                <div ng-show="claim.claimsList">
+                    <div class="name"><a href="/admin/claims/edit/{{ claim.jobNumber}}">{{ claim.jobNumber}}</a></div>
+                    <div class="dateReceived"><?php echo $this->getString('COMPANIES_DATE_RECEIVED') ?> {{ claim.dateReceived}}</div>
+                    <div class="claimType">{{ claim.icon}}  {{ claim.typeOfClaim}} {{ claim.ClaimTypes_other}}</div>
+                    <div class="deductable"><?php echo $this->getString('COMPANIES_DEDUCTABLE_AMOUNT') ?> {{ claim.deductable}}</div>
+                    <div class="reason"><?php echo $this->getString('COMPANIES_REASON') ?> <br />{{ claim.reason}}</div>
+                    <div class="unassignedJobNumber">{{ claim.unassignedJobNumber}}</div>
+                    <div class="projectManager">{{ claim.firstname}} {{ claim.lastname}}</div>
+                    <div class="claimStatus">{{ claim.status}}</div>
+                </div>
             </div>
+            <div ng-show="!claim.claimsList"><?php echo $this->getString('COMPANIES_NO_CLAIMS_FOUND'); ?></div>
         </div>
     </div>
     <div class="clearfix"></div>

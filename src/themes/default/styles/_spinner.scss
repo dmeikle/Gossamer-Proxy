@@ -53,4 +53,13 @@
     margin: 1.5em;
     overflow: hidden;
     text-indent: 100%;
+    &.align-middle{
+        vertical-align: middle;
+    }
+    &.padding-right {
+        padding-right: 1em;
+    }
+    &.padding-left {
+        padding-left: 1em;
+    }
 }

@@ -31,7 +31,7 @@ class CheckPasswordInHistoryListener extends AbstractListener {
         $member = $this->httpRequest->getAttribute('components\\staff\\models\\StaffAuthorizationModel');
 
         $password = new Password();
-        if (!array_key_exists('StaffAuthorization', $params) || !array_key_exists('passwordHistory', $member)) {
+        if ((!array_key_exists('StaffAuthorization', $params) || !array_key_exists('password', $params['StaffAuthorization'])) || !array_key_exists('passwordHistory', $member)) {
             //perhaps a new member with no credentials yet
             return;
         }

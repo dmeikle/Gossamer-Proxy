@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="advancedSearch-Departments_id"><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></label>
+    <label for="advancedSearch-Departments_id"><?php echo $this->getString('STAFF_DEPARTMENT'); ?></label>
     <select name="Departments_id" id="advancedSearch-Departments_id" ng-model="advancedSearch.query.Departments_id" class="form-control">
         <?php foreach ($Departments as $item) { ?>
             <option value="<?php echo $item['id']; ?>"><?php echo $item['name']; ?></option>
@@ -15,7 +15,7 @@
     </select>
 </div>
 <div class="form-group">
-    <label for="advancedSearch-StaffPositions_id"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></label>
+    <label for="advancedSearch-StaffPositions_id"><?php echo $this->getString('STAFF_POSITION'); ?></label>
     <select name="StaffPositions_id" id="advancedSearch-StaffPositions_id" ng-model="advancedSearch.query.StaffPositions_id" class="form-control">
         <?php foreach ($StaffPositions as $item) { ?>
             <option value="<?php echo $item['id']; ?>"><?php echo $item['position']; ?></option>
@@ -35,6 +35,6 @@
     <input type="text" class="form-control" id="advancedSearch-city" name="city" ng-model="advancedSearch.query.city">
 </div>
 <div class="form-group">
-    <label for="advancedSearch-gender"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></label>
+    <label for="advancedSearch-gender"><?php echo $this->getString('STAFF_POSITION'); ?></label>
     <input type="text" class="form-control" id="advancedSearch-gender" name="gender" ng-model="advancedSearch.query.gender">
 </div>

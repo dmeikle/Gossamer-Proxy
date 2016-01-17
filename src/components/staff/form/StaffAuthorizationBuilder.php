@@ -27,9 +27,10 @@ class StaffAuthorizationBuilder extends AbstractBuilder {
             $builder->addValidationResults($validationResults['StaffAuthorization']);
         }
 
-        $builder->add('username', 'text', array('ng-model' => 'authorization.username', 'ng-model-options' => '{debounce:500}', 'check-username-exists' => '', 'ng-focus' => 'clearErrors()', 'class' => 'form-control', 'value' => $this->getValue('username', $values)))
-                ->add('password', 'password', array('ng-disabled' => 'authorization.emailUser', 'ng-model' => 'authorization.password', 'class' => 'form-control'))
-                ->add('passwordConfirm', 'password', array('ng-disabled' => 'authorization.emailUser', 'ng-model' => 'authorization.passwordConfirm', 'class' => 'form-control'))
+        $builder->add('username', 'text', array('ng-model' => 'ctrl.staffAuthorization.username', 'ng-model-options' => '{debounce:500}', 'check-username-exists' => '', 'ng-focus' => 'clearErrors()', 'class' => 'form-control', 'value' => $this->getValue('username', $values)))
+                ->add('password', 'password', array('ng-disabled' => '!ctrl.staffAuthorization.username', 'ng-model' => 'ctrl.staffAuthorization.password', 'class' => 'form-control'))
+                ->add('passwordConfirm', 'password', array('ng-disabled' => '!ctrl.staffAuthorization.username', 'ng-model' => 'ctrl.staffAuthorization.passwordConfirm', 'class' => 'form-control'))
+                ->add('alarmCode', 'text', array('ng-model' => 'ctrl.staffAuthorization.alarmCode', 'class' => 'form-control'))
                 ->add('cancel', 'button', array('value' => 'Cancel', 'class' => 'btn btn-lg'))
                 ->add('saveCredentials', 'button', array('value' => 'Next', 'class' => 'btn btn-primary save-staff', 'ng-click' => 'saveCredentials(authorization)'));
 

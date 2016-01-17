@@ -27,14 +27,17 @@ class LoadClaimLocationsByClaimIdListener extends AbstractListener {
         $datasource = $this->getDatasource('components\\claims\\models\\ClaimLocationModel');
         $model = new ClaimLocationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $claim = $this->httpRequest->getAttribute('Claim');
+
         $data = array('Claims_id' => $claim['id']);
         // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
 
-        $result = $datasource->query('get', $model, 'get', $data);
+        $result = $datasource->query('get', $model, 'list', $data);
+//        pr($result);
+//        die();
+        if (is_array($result) && array_key_exists('ClaimsLocations', $result)) {
 
-        if (is_array($result) && array_key_exists('ClaimsLocation', $result)) {
-
-            $this->httpResponse->setAttribute('ClaimsLocation', $result['ClaimsLocation']);
+            $this->httpRequest->setAttribute('ClaimsLocations', $result['ClaimsLocations']);
+            $this->httpResponse->setAttribute('ClaimsLocations', $result['ClaimsLocations']);
         }
     }
 

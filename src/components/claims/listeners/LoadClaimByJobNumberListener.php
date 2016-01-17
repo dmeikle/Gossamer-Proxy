@@ -23,13 +23,17 @@ class LoadClaimByJobNumberListener extends AbstractListener {
 
     public function on_request_start($params = array()) {
         $params = $this->httpRequest->getParameters();
-
+        $locale = $this->getDefaultLocale();
         $datasource = $this->getDatasource('components\\claims\\models\\ClaimModel');
         $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
-        $data = array('jobNumber' => $params[0]);
+        $data = array(
+            'locale' => $locale['locale'],
+            'jobNumber' => $params[0]
+        );
         // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
 
         $result = $datasource->query('get', $model, 'get', $data);
+
         if (is_array($result) && array_key_exists('Claim', $result)) {
             $this->httpRequest->setAttribute('Claim', current($result['Claim']));
         }

@@ -109,7 +109,7 @@
                     <?php echo $form['StaffTypes_id']; ?>
                 </div>
                 <div class="form-group">
-                    <label for="staff-StaffPositions_id"><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></label>
+                    <label for="staff-StaffPositions_id"><?php echo $this->getString('STAFF_POSITION'); ?></label>
                     <?php echo $form['StaffPositions_id']; ?>
                 </div>
             </div>

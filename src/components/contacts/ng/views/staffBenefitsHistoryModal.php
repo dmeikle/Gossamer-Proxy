@@ -17,13 +17,13 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th><?php echo $this->getString('STAFF_STAFFPOSITIONS_ID'); ?></th>
-                <th><?php echo $this->getString('STAFF_DEPARTMENT_ID'); ?></th>
+                <th><?php echo $this->getString('STAFF_POSITION'); ?></th>
+                <th><?php echo $this->getString('STAFF_DEPARTMENT'); ?></th>
                 <th><?php echo $this->getString('STAFF_SALARY'); ?></th>
                 <th><?php echo $this->getString('STAFF_IS_HOURLY'); ?></th>
-                <th><?php echo $this->getString('STAFF_VACATIONMONTHLY'); ?></th>
-                <th><?php echo $this->getString('STAFF_SICKMONTHLY'); ?></th>
-                <th><?php echo $this->getString('STAFF_STARTDATE'); ?></th>
+                <th><?php echo $this->getString('STAFF_VACATION_MONTHLY'); ?></th>
+                <th><?php echo $this->getString('STAFF_SICK_MONTHLY'); ?></th>
+                <th><?php echo $this->getString('STAFF_START_DATE'); ?></th>
             </tr>
         </thead>
         <tbody>

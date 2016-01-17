@@ -82,13 +82,6 @@ class URITagHandler extends BaseHandler {
         foreach ($links as $key => $value) {
             $this->template = str_replace($key, $value, $this->template);
         }
-//
-//        $string = preg_replace_callback('/%(.+?)%/', function($arr) use($links) {
-//            $key = $arr[1];
-//            return array_key_exists($key, $links) ? $links[$key] : $arr[0];
-//        }, $this->template);
-//
-//        $this->template = $string;
     }
 
     /**

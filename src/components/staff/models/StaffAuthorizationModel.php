@@ -39,12 +39,13 @@ class StaffAuthorizationModel extends AbstractModel implements FormBuilderInterf
 
         $params = $this->httpRequest->getPost();
         $member = $this->httpRequest->getAttribute('components\\staff\\models\\StaffAuthorizationModel');
-
-        $params['StaffAuthorization']['password'] = crypt($params['StaffAuthorization']['password']);
-        $password = new Password();
-        $params['StaffAuthorization']['passwordHistory'] = $password->formatPasswordHistory($params['StaffAuthorization']['password'], $member);
+        if (array_key_exists('password', $params['StaffAuthorization'])) {
+            $params['StaffAuthorization']['password'] = crypt($params['StaffAuthorization']['password']);
+            $password = new Password();
+            $params['StaffAuthorization']['passwordHistory'] = $password->formatPasswordHistory($params['StaffAuthorization']['password'], $member);
+            unset($password);
+        }
         $params['StaffAuthorization']['Staff_id'] = $id;
-        unset($password);
         unset($params['StaffAuthorization']['passwordConfirm']);
 
 

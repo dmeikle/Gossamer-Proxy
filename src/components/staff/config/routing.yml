@@ -152,7 +152,7 @@ admin_staff_emergencycontacts_list:
 
 
 admin_staff_emergencycontacts_save:
-    pattern: admin/staff/emergencycontacts/*
+    pattern: admin/staff/emergencycontacts/*/*
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffEmergencyContactsController
@@ -197,7 +197,7 @@ admin_staff_rest_save:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: ajaxSave
+        method: save
         view: core\views\JSONView
         viewKey: admin_staff_rest_save
         datasource: datasource1
@@ -220,14 +220,6 @@ admin_staff_delete:
 
 admin_staff_edit_home:
     pattern: admin/staff/edit/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffRoleModel', 'cacheKey': 'StaffRoles' }
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffAuthorizationsByIdListener', 'datasource': 'datasource1' }
-        - { 'event': 'request_start', 'listener': 'components\staff\listeners\LoadStaffRolesByIdListener', 'datasource': 'datasource1' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\departments\models\DepartmentModel', 'cacheKey': 'Departments'}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffPositionModel', 'cacheKey': 'StaffPositions'}
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffTypeModel', 'cacheKey': 'StaffTypes'}
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -238,6 +230,7 @@ admin_staff_edit_home:
         datasource: datasource1
         langFiles:
             - 'src/components/staff/locales/*/staff'
+            - 'src/components/staff/locales/*/Roles'
             - app/locales/*/website
     methods: [GET]
     staticCache: true
@@ -399,7 +392,26 @@ admin_staff_credentials_save:
             - 'src/components/staff/locales/*/validation'
     methods: [POST]
 
-
+admin_staff_credentials_reset:
+    pattern: admin/staff/credentials-reset/*
+    listeners:
+       # - { 'event': 'entry_point', 'listener': 'components\validation\listeners\ValidateNestedFormListener', 'methods': [POST] }
+        #- { 'event': 'entry_point', 'listener': 'components\staff\listeners\StaffPasswordValidListener', 'params': {'failkey': 'false' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\LoadStaffCredentialsListener', 'datasource': 'datasource1', 'class': 'components\staff\models\StaffAuthorizationModel' }
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\CheckPasswordInHistoryListener', 'params': {'failkey': 'false' }}
+        - { 'event': 'entry_point', 'listener': 'components\staff\listeners\UsernameExistsListener', 'datasource': 'datasource1', 'params': {'failkey': 'false' }}
+      #  - { 'event': 'save_success', 'listener': 'components\staff\listeners\SaveStaffLocallyListener', 'datasource': 'datasource3'}
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffAuthorizationController
+        model: components\staff\models\StaffAuthorizationModel
+        method: saveCredentials
+        view: core\views\JSONView
+        viewKey: admin_staff_credentials_save
+        datasource: datasource1
+        langFiles:
+            - 'src/components/staff/locales/*/validation'
+    methods: [POST]
 
 
 

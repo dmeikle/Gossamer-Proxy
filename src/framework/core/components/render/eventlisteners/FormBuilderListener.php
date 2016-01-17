@@ -79,7 +79,6 @@ class FormBuilderListener extends \core\components\caching\eventlisteners\Abstra
         if (array_key_exists('formatting', $dependency) && $dependency['formatting'] == 'raw') {
             return $this->httpRequest->getAttribute($dependency['dependency']);
         }
-
         return $serializer->formatSelectionBox($dependency['value'], $dependency['text'], $this->httpRequest->getAttribute($dependency['dependency']));
     }
 

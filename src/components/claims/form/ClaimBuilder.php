@@ -66,6 +66,7 @@ class ClaimBuilder extends AbstractBuilder {
                 //->add('Provinces_id', 'select', array('class' => 'form-control', 'options' => $options['provinces']))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'));
 
+
         if (array_key_exists('claimTypes', $options)) {
             $builder->add('ClaimTypes_id', 'select', array('ng-model' => 'claim.ClaimTypes_id', 'class' => 'form-control', 'options' => $options['claimTypes']));
         }

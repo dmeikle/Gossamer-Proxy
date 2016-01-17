@@ -28,16 +28,6 @@ use libraries\utils\Pagination;
 
 class StaffController extends AbstractController {
 
-    public function save($id) {
-
-        $result = $this->getEntity('Staff', $this->model->save(intval($id)));
-        $entity = $this->getEntity('Staff', $result);
-
-        //TODO: figure out where to redirect if result holds no 'id' key
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect('admin_staff_credentials_edit', array($result['id']));
-    }
-
     public function search() {
         $result = $this->model->search($this->httpRequest->getQueryParameters());
 
@@ -65,13 +55,6 @@ class StaffController extends AbstractController {
         return preg_replace('/[^A-z]/', '', substr($rawName, 0, 10));
     }
 
-    public function ajaxSave($id = null) {
-
-        $result = $this->model->save(intval($id));
-        error_log('here ' . print_r($result, true));
-        $this->render($result);
-    }
-
     public function index() {
         $result = array();
 
@@ -96,10 +79,10 @@ class StaffController extends AbstractController {
             $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
 
 
-            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
-            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
-                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
-            }
+//            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
+//            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
+//                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
+//            }
         }
 
         if (intval($id) == 0) {

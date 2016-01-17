@@ -4,9 +4,8 @@ module.service('staffEmergencyContactsSrv', function ($http) {
 
     this.getStaffEmergencyInfo = function (object) {
         return $http.get(apiPath + object.id).then(function (response) {
-            if (response.data.EmergencyContacts[0].length > 0) {
-                self.staffEmergencyContacts = response.data.EmergencyContacts;
-            }
+               
+            return response.data.EmergencyContacts;            
         });
     };
 

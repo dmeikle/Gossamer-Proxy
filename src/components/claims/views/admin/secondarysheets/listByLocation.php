@@ -32,7 +32,7 @@
                     </button>
                 </span>
             </form>
-            <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW'); ?></a>
+            <a gcms="{href='admin_claims_secondarysheets_edit' params=''}" class="btn btn-primary">this belongs on affected areas <?php echo $this->getString('CLAIMS_NEW_SECONDARY_SHEET'); ?></a>
         </div>
         <table class="table table-striped table-hover">
             <thead>
@@ -62,7 +62,7 @@
                     <td></td>
                 </tr>
                 <tr ng-if="!loading" ng-repeat="item in sheetsList"
-                    ng-class="{'selected': claim === previouslyClickedObject, 'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                    ng-class="{'selected': item === previouslyClickedObject, 'inactive bg-warning text-warning': item.status == 'inactive'}">
                     <td ng-click="selectRow(item)">{{item.workDate}}</td>
                     <td ng-click="selectRow(item)">{{item.unitNumber}}</td>
                     <td ng-click="selectRow(item)">{{item.name}}</td>
@@ -120,44 +120,20 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/claims/edit/{{selectedClaim.id}}">{{selectedClaim.jobNumber}}</a></h1>
-            <h4><?php echo $this->getString('CLAIMS_ADDRESS') ?></h4>
-            <div>{{selectedClaim.address1}}</div>
-            <div>{{selectedClaim.address2}}</div>
-            <div>{{selectedClaim.city}}</div>
-            <h4><?php echo $this->getString('CLAIMS_CONTACTS') ?></h4>
-            <div class="card info-card" ng-repeat="contact in selectedClaim.contacts">
-                <p><strong class="ng-binding">{{contact.type}}:</strong> <a href="{{contact.email}}" class="ng-binding">{{contact.firstname}} {{contact.lastname}}</a>
-                    <span style="float: right" class="ng-binding"><strong><?php echo $this->getString('CLAIMS_COMPANY') ?>:</strong> {{contact.company}} </span></p>
-                <p class="ng-binding">
-                    <?php echo $this->getString('CLAIMS_OFFICE') ?>: {{contact.office}} {{contact.ext}}
-                    <span style="float: right" class="ng-binding"> Mobile: {{contact.mobile}}</span>
-                </p>
+            <h1><a gcms="{uri='admin_claims_secondarysheets_edit' params='{{selectedSheet.Claims_id}}/{{selectedSheet.ClaimsLocations_id}}/{{selectedSheet.AffectedAreas_id}}/{{selectedSheet.id}}'}">{{selectedSheet.workDate}}</a></h1>
 
-                <div class="cardfooter clearfix">
-                    <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('MORE_INFO') ?></a></div>
+
+            <div class="card">
+                <div ng-repeat="action in selectedSheet.actionsList">
+                    <h3 ng-if="isNewHeading(action)" >{{action.category}}</h3>
+                    <div ng-class="getClass(action)" style="padding: 2px 5px; margin-top: 1px">
+                        {{action.action}}
+                    </div>
+                </div>
+                <div ng-if="!hasActions">
+                    <?php echo $this->getString("CLAIMS_SECONDARY_SHEETS_NO_ACTIONS"); ?>
                 </div>
             </div>
-
-            <h4><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h4>
-
-            <table class="table table-striped table-hover">
-                <tr>
-                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_UNIT_NUMBER') ?></th>
-                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
-                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_PHONE') ?></th>
-                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_MOBILE') ?></th>
-                    <th class="col-md-1"></th>
-                </tr>
-                <tr ng-repeat="location in selectedClaim.locations">
-                    <td>{{location.unitNumber}}</td>
-                    <td>{{location.firstname}} {{location.lastname}}</td>
-                    <td> {{location.daytimePhone}} </td>
-                    <td>{{location.mobile}}</td>
-                    <td><a href="/admin/claimlocations/{{selectedClaim.id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW') ?></a></td>
-                </tr>
-            </table>
-
         </div>
     </div>
     <div class="clearfix"></div>

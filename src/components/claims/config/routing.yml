@@ -131,11 +131,54 @@ admin_claims_secondarysheets_get:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\SecondarySheetsController
         model: components\claims\models\SecondarySheetModel
-        method: loadByLocation
-        view: core\views\JSONView
+        method: index
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_secondarysheets_get
         datasource: datasource1
-               
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+        
+admin_claims_secondarysheets_edit:
+    pattern: admin/claims/secondary-sheets/*/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: loadSheet
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_secondarysheets_edit
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+    methods: [GET]
+    
+#this is for displaying the input form to select what needs to be done               
+admin_claims_secondarysheets_list_responses:
+    pattern: admin/claims/secondary-sheets/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: listAllResponsesBySheetId
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_list_responses
+        datasource: datasource1  
+    methods: [GET] 
+        
+admin_claims_secondarysheets_save_responses:
+    pattern: admin/claims/secondary-sheets/*/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: saveAllResponsesBySheetId
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_save_responses
+        datasource: datasource1
+    methods: [POST]       
+            
 admin_claims_newcount:
     pattern: admin/claims/newcount/*
     defaults:
@@ -461,7 +504,8 @@ admin_claims_edit:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
         model: components\claims\models\ClaimModel
-        method: editByJobNumber
+#        method: editByJobNumber
+        method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claims_view
         datasource: datasource1
@@ -586,6 +630,7 @@ admin_claim_edit:
         viewKey: admin_claim_edit
         datasource: datasource1
     staticCache: true
+
 
 admin_claim_setInactive:
     pattern: admin/claims/remove/*
