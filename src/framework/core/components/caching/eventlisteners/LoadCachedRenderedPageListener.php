@@ -9,9 +9,9 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\eventlisteners;
+namespace core\components\caching\eventlisteners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 
 /**
  * LoadCachedRenderedPageListener
@@ -28,8 +28,8 @@ class LoadCachedRenderedPageListener extends AbstractCachableListener {
         if (!$this->isCachablePage()) {
             return;
         }
-
-        $filepath = 'pages' . DIRECTORY_SEPARATOR . __YML_KEY;
+        //CP-238 - added agenttype for segregating cache for mobile, desktop and tablet
+        $filepath = 'pages' . DIRECTORY_SEPARATOR . __YML_KEY . $this->getAgentTypesAsKeyString();
 
         $page = $this->getValuesFromCache($filepath, true);
         if ($page == false) {

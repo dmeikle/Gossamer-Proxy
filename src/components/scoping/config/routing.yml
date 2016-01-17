@@ -95,6 +95,7 @@ admin_scoping_takeoffs_home:
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'
     method: [GET]
+    staticCache: true
 
 admin_scoping_takeoffs_save:
     pattern: admin/scoping/takeoffs/save/*
@@ -123,6 +124,7 @@ admin_scoping_takeoffs_edit_sheet:
             - 'src/components/scoping/locales/*/Scoping'
             - 'app/locales/*/website'
     method: [GET]
+    staticCache: true
 
 admin_scoping_takeoffs_edit:
     pattern: admin/scoping/takeoffs/*
@@ -137,6 +139,7 @@ admin_scoping_takeoffs_edit:
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'
     method: [GET]
+    staticCache: true
     
 admin_scoping_takeoffs_get:
     pattern: admin/scoping/takeoffs/get/*/*

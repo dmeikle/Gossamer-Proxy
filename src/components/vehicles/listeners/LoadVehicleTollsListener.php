@@ -11,7 +11,7 @@
 
 namespace components\vehicles\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use components\vehicles\models\VehicleTollModel;
 
 /**

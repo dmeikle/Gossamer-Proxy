@@ -19,6 +19,7 @@ use libraries\utils\Container;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
 use core\UploadableInterface;
+use libraries\utils\MobileDetect;
 
 /**
  * base class for all Event Listeners - abstracts a lot of the framework
@@ -196,6 +197,20 @@ class AbstractListener {
 
 
         return $langFiles->getString($key);
+    }
+
+    /**
+     * determines if we are dealing with a computer or mobile device
+     *
+     * @return array
+     */
+    protected function getLayoutType() {
+        $detector = new MobileDetect();
+        $isMobile = $detector->isMobile();
+        $isTablet = $detector->isTablet();
+        unset($detector);
+
+        return array('isMobile' => $isMobile, 'isTablet' => $isTablet, 'isDesktop' => (!$isMobile && !$isTablet));
     }
 
 }

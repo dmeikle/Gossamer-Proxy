@@ -297,6 +297,7 @@ admin_inventory_equipment_locations:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+    staticCache: true
 
 admin_inventory_equipment_get:
     pattern: admin/inventory/equipment/get/*
@@ -344,6 +345,7 @@ admin_inventory_equipment_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+    staticCache: true
     
     
 
@@ -379,6 +381,7 @@ admin_inventory_items_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+    staticCache: true
 
 
 
@@ -439,6 +442,7 @@ admin_warehouse_locations_home:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+    staticCache: true
 
     
 admin_inventory_search:
@@ -520,6 +524,7 @@ admin_inventory_list:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 #-------------------------- variant options -----------------------
 
@@ -537,6 +542,7 @@ admin_inventory_variantoptions:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 
 admin_inventory_variantoptions_list:
@@ -595,6 +601,7 @@ admin_inventory_variantgroups:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 
 admin_inventory_variantgroups_list:

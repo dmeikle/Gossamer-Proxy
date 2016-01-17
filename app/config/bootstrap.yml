@@ -9,10 +9,10 @@ all:
         #TODO: commented out during development testing
         #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
         - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
-        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadCachedRenderedPageListener'}   
+        - { 'event': 'entry_point', 'listener': 'core\components\caching\eventlisteners\LoadCachedRenderedPageListener'}   
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
         - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
-        - { 'event': 'render_complete', 'listener': 'core\eventlisteners\SaveRenderedPageToCacheListener'}
+        - { 'event': 'render_complete', 'listener': 'core\components\caching\eventlisteners\SaveRenderedPageToCacheListener'}
         
         
         - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  

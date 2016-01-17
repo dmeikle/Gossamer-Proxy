@@ -51,18 +51,7 @@ admin_claims_cost_cards_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
     methods: [GET]
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
-        -
-            event: 'request_start'
-            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-            datasource: 'datasource1'
-            formBuilder: 'components\claims\form\CostCardBuilder'
-            model: 'components\accounting\models\CostCardModel'
-            cacheKey: 'CostCardForm'
-            formName: 'form'
-            dependencies:
-                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+    staticCache: true
                 
 admin_claims_cost_cards_home:
     pattern: admin/claims/costcards/*
@@ -79,6 +68,7 @@ admin_claims_cost_cards_home:
     methods: [GET]
     listeners:
         - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+    staticCache: true
 
 admin_claims_cost_cards_list:
     pattern: admin/claims/costcards/*/*/*
@@ -120,6 +110,7 @@ admin_claims_secondarysheets_home:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
+    staticCache: true
         
  #claimId, locationId
 admin_claims_secondarysheets_list:
@@ -229,7 +220,7 @@ admin_claims_home:
             - 'src/components/claims/locales/*/claims'
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
-
+    staticCache: true
 
 
 
@@ -367,6 +358,7 @@ admin_claims_initial_jobsheet:
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
     methods: [GET]
+    staticCache: true
 
 admin_claims_edit_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/edit/*/*
@@ -383,6 +375,7 @@ admin_claims_edit_initial_jobsheet:
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
     methods: [GET]
+    staticCache: true
 
 admin_claims_view_initial_jobsheet:
     pattern: admin/claim/initial-jobsheet/view/*/*
@@ -399,6 +392,7 @@ admin_claims_view_initial_jobsheet:
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
     methods: [GET]
+    staticCache: true
 
 
 admin_claims_get_initial_jobsheet:
@@ -475,6 +469,7 @@ admin_claims_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
+    staticCache: true
 
 
 admin_claims_view:
@@ -590,6 +585,7 @@ admin_claim_edit:
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claim_edit
         datasource: datasource1
+    staticCache: true
 
 admin_claim_setInactive:
     pattern: admin/claims/remove/*

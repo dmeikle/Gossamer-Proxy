@@ -19,7 +19,7 @@ use core\components\render\serialization\DependencySerializer;
  *
  * @author Dave Meikle
  */
-class FormBuilderListener extends \core\eventlisteners\AbstractCachableListener {
+class FormBuilderListener extends \core\components\caching\eventlisteners\AbstractCachableListener {
 
     public function on_filerender_start($params) {
 
