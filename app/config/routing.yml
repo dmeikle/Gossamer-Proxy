@@ -3,6 +3,9 @@ locale:
     component: "src/framework/core/components/locales/config/routing.yml"
 angular:
     component: "src/extensions/angular/config/routing.yml"
+dashboard:
+    component: "src/components/dashboard/config/routing.yml"
+    
 vendors:
     component: "src/components/vendors/config/routing.yml"
 
