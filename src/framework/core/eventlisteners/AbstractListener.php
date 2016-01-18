@@ -201,7 +201,8 @@ class AbstractListener {
 
     protected function getClient() {
         $token = $this->getSecurityToken();
-
+//        pr($this);
+//        die();
         return $token->getClient();
     }
 
