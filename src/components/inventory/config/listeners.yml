@@ -76,6 +76,8 @@ admin_inventory_list:
     listeners:
         - { 'class': 'components\inventory\models\PackageTypeModel', 'cacheKey': 'PackageTypes', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'class': 'components\inventory\models\VendorItemModel', params: {'type': 'query' }, 'event': 'request_start', 'listener': 'core\eventlisteners\LoadItemListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\vehicles\models\VehicleModel', 'cacheKey': 'Vehicles', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
+        - { 'class': 'components\inventory\models\WarehouseModel', 'cacheKey': 'WarehouseLocations', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
 
         # build the form
         -
@@ -89,3 +91,14 @@ admin_inventory_list:
             dependencies:
                 - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
                 - { dependency: 'components\inventory\models\VendorItemModel', model: VendorItem }
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\inventory\form\InventoryEquipmentTransferBuilder'
+            model: 'components\inventory\models\InventoryEquipmentModel'
+            cacheKey: 'TransferForm'
+            formName: 'transferForm'
+            dependencies:
+                - { dependency: WarehouseLocations, key: warehouseLocations, value: id, text: name }
+                - { dependency: Vehicles, key: vehicles, value: id, text: number }

@@ -197,7 +197,9 @@ module.controller('inventoryListCtrl', function($scope, $uibModal, tablesSrv,
 
     var openTransferModal = function() {
         var modalInstance = $uibModal.open({
-            templateUrl: '/render/inventory/transferModal',
+//            templateUrl: '/render/inventory/transferModal',
+            templateUrl: 'equipmentTransferModal',
+
             controller: 'transferModalController',
             size: 'md',
             resolve: {

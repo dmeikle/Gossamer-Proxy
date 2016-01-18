@@ -176,11 +176,6 @@ admin_claims_location_view:
 #        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces' }
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadQueryParamsListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimModel', 'cacheKey': 'Params' }
         # build the form for Claim Location
-              
-        
-admin_claims_cost_cards_edit:
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
         -
             event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -193,6 +188,7 @@ admin_claims_cost_cards_edit:
                 - { dependency: AreaTypes, key: areaTypes, value: id, text: type }
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
                 - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
+
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -222,6 +218,20 @@ admin_claims_home:
             dependencies:
                 - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
                 - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
+            formBuilder: 'components\claims\form\CostCardBuilder'
+            model: 'components\accounting\models\CostCardModel'
+            cacheKey: 'CostCardForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ClaimPhases, key: claimPhases, value: id, text: title }
+                
+admin_claims_cost_cards_edit:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
             formBuilder: 'components\claims\form\CostCardBuilder'
             model: 'components\accounting\models\CostCardModel'
             cacheKey: 'CostCardForm'

@@ -242,3 +242,8 @@
     <div class="clearfix"></div>
     <form class="hidden"></form>
 </div>
+
+<!--Equipment Transfer Modal-->
+<script type="text/ng-template" id="equipmentTransferModal">
+    <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/views/admin/equipment/transferModal.php'); ?>
+</script>

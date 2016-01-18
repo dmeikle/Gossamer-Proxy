@@ -351,6 +351,11 @@
     <script type="text/ng-template" id="customersModal">
         <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
     </script>
+
+    <!--Equipment Transfer Modal-->
+    <script type="text/ng-template" id="equipmentTransferModal">
+        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/equipmentTransferModal.php'); ?>
+    </script>
 </div>
 
 <form></form>

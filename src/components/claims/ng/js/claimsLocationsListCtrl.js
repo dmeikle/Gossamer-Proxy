@@ -90,6 +90,24 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
             }
         });
     };
+    
+    $scope.openEquipmentTransferModal = function(template) {
+        $uibModal.open({
+            templateUrl: template,
+//            controller: 'EquipmentTransferModal',
+//            controllerAs: 'modal',
+            size: 'md',
+            backdrop: 'static',
+//            resolve: {
+//                location: function() {
+//                    return location;
+//                },
+//                customer: function() {
+//                    return customer;
+//                }
+//            }
+        });
+    };
 
 
     $scope.getList = function() {
