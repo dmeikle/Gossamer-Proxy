@@ -73,18 +73,21 @@ class FilterHTMLNodesByPermissionsListener extends AbstractListener {
     public function filterHTMLPermissionsDivs(HTMLDomParser $dom, array $row) {
         $clientPermissions = $this->getClientPermissions();
 
-        foreach ($row['tags'] as $permission) {
-            $tag = $permission['tag'];
-            $key = $permission['permission-key'];
+        if (!is_null($clientPermissions)) {
 
-            $roles = $permission['roles'];
+            foreach ($row['tags'] as $permission) {
+                $tag = $permission['tag'];
+                $key = $permission['permission-key'];
 
-            $permittedRoles = array_intersect($clientPermissions, $roles);
+                $roles = $permission['roles'];
 
-            if (count($permittedRoles) == 0) {
+                $permittedRoles = array_intersect($clientPermissions, $roles);
 
-                foreach ($dom->find($tag . '[permission-key=' . $key . ']') as $e) {
-                    $e->outertext = '';
+                if (count($permittedRoles) == 0) {
+
+                    foreach ($dom->find($tag . '[permission-key=' . $key . ']') as $e) {
+                        $e->outertext = '';
+                    }
                 }
             }
         }
@@ -114,6 +117,10 @@ class FilterHTMLNodesByPermissionsListener extends AbstractListener {
 
     private function getClientPermissions() {
         $client = $this->getClient();
+
+        if (is_null($client)) {
+            return null;
+        }
 
         return $client->getRoles();
     }

@@ -35,21 +35,21 @@ trait LoadConfigFile {
         return $loader->getNodeByKey($ymlkey, $filename);
     }
 
-    public function loadCachedComponentConfig($ymlKey, $cacheKey, $filename = 'routing') {
+    public function loadCachedComponentConfig($ymlKey, $cacheKey, $filename = 'routing', $includeAppFolder = false) {
         $manager = new CacheManager($this->logger);
         $routing = $manager->retrieveFromCache($cacheKey);
         if ($routing === false) {
-            $routing = $this->generateCachableYamlKeyList($filename);
+            $routing = $this->generateCachableYamlKeyList($filename, $includeAppFolder);
             $manager->saveToCache($cacheKey, $routing);
         }
 
         return $routing;
     }
 
-    protected function generateCachableYamlKeyList($filename) {
+    protected function generateCachableYamlKeyList($filename, $includeAppFolder = false) {
         $it = new YamlFileIterator();
 
-        return $it->loadAllYamlFiles($filename);
+        return $it->loadAllYamlFiles($filename, $includeAppFolder);
     }
 
 }

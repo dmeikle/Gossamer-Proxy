@@ -10,3 +10,10 @@ admin_staff_edit_home:
         - { tag: div, permission-key: accounting, roles: [IS_ACCOUNTING] }
         - { tag: div, permission-key: humanresources, roles: [IS_HR, IS_ADMINISTRATOR] }
         - { tag: uib-tab, permission-key: accounting, roles: [IS_ACCOUNTING] }
+    access:
+        roles:
+            - IS_HR
+            - IS_ADMINISTRATOR
+            - IS_DEVELOPER
+            - IS_ACCOUNTING
+        

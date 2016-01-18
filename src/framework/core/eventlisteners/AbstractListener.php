@@ -18,7 +18,7 @@ use core\http\HTTPRequest;
 use libraries\utils\Container;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
-use core\UploadableInterface;
+use core\components\security\core\SecurityToken;
 use libraries\utils\MobileDetect;
 
 /**
@@ -195,14 +195,18 @@ class AbstractListener {
     protected function getString($key) {
         $langFiles = $this->httpRequest->getAttribute('langFiles');
 
-
         return $langFiles->getString($key);
     }
 
     protected function getClient() {
         $token = $this->getSecurityToken();
 
-        return $token->getClient();
+        if (!is_null($token) && $token instanceof SecurityToken) {
+
+            return $token->getClient();
+        }
+
+        return null;
     }
 
     /**
