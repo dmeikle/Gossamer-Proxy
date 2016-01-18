@@ -900,6 +900,7 @@ admin_claims_location_view:
         langFiles:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
+            - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
     
 admin_claims_location_save:

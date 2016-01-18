@@ -60,6 +60,41 @@
             });
         };
         
+        vm.openEquipmentTransferModal = function (template) {
+            var modalInstance = $uibModal.open({
+              templateUrl: template,
+              controller: 'transferModalController',
+              controllerAs: 'modal',
+              size: 'md',
+              resolve: {
+                multiSelectArray: function () {
+                  return getSelectedEquipment();
+                },
+                location: function () {
+                    return vm.location;
+                }
+              }
+            });
+
+            modalInstance.result.then(function (customer) {
+                //getAffectedAreas();
+                updateCustomers(customer);
+            }, function () {
+                $log.log('modal dismissed');                
+            });
+        };
+        
+        function getSelectedEquipment() {
+            var selectedEquipment = [];
+            for(var i in vm.equipmentLocations){
+                if(vm.equipmentLocations[i].isSelected === true) {
+                    selectedEquipment.push(vm.equipmentLocations[i]);
+                }
+            }
+            return selectedEquipment;
+        }
+        
+        
         vm.saveLocation = function () {
             var apiPath = '/admin/claims/locations/' + vm.location.id;
             crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);

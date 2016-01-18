@@ -301,20 +301,42 @@
         </div>
 
         <div class="card">
-            <div class="cardheader">
-                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
+            <div class="cardheader row">
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
+                <div class="col-xs-3 text-right row-controls">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        </button>
+                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                            <li>
+                                <a href="#" ng-click="vm.openEquipmentTransferModal('equipmentTransferModal')">
+                                    <?php echo $this->getString('CLAIMS_TRANSFER_SELECTED') ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th class="select-col" ng-click="selectAllEquipmentToggle(selectAllEquipment)"><input class="select-all" type="checkbox" ng-model="selectAllEquipment"></th>
                         <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                         <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                         <th><?php echo $this->getString('CLAIMS_PRODUCT_NUMBER'); ?></th>
                         <th><?php echo $this->getString('CLAIMS_MAX_DAYS'); ?></th>
                     </tr>
                 </thead>
-
-                <tr ng-repeat="equipment in vm.equipmentLocations" ng-if="!vm.affectedAreasLoading">
+                <tr ng-if="!vm.affectedAreasLoading && vm.equipmentLocations[0].length === 0">
+                    <td colspan="5" class="info">
+                        <?php echo $this->getString('CLAIMS_NO_EQUIPMENT_AT_LOCATION'); ?>
+                    </td>
+                </tr>
+                <tr ng-repeat="equipment in vm.equipmentLocations" ng-if="!vm.affectedAreasLoading && vm.equipmentLocations[0].length !== 0">
+                    <td>
+                        <input class="checkbox" type="checkbox" ng-model="equipment.isSelected">
+                    </td>
                     <td>
                         {{equipment.name}}
                     </td>
@@ -360,6 +382,6 @@
 
 <form></form>
 <div class="clearfix"></div>
-<?php // pr($this->data); ?>
+<?php pr($this->data); ?>
 
 
