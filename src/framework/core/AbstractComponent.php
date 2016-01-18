@@ -105,12 +105,21 @@ abstract class AbstractComponent {
 
             //$commandName = $this->command;
             $model = new $this->modelName($httpRequest, $httpResponse, $this->logger);
-            $static = $httpRequest->getAttribute($this->modelName . '_static');
+
+            $static = $this->checkStaticCache($httpRequest);
             if (!is_null($static) && strlen($static) > 0) {
 
+                $params = array(
+                    'renderedPage' => $static
+                );
+                $event = new Event(system\KernelEvents::RENDER_BYPASS, $params);
+
+                $this->container->get('EventDispatcher')->dispatch('all', system\KernelEvents::RENDER_BYPASS, $event);
+                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, system\KernelEvents::RENDER_BYPASS, $event);
+                $params = $event->getParams();
+                $static = $params['renderedPage'];
+
                 echo $static;
-                $this->container->get('EventDispatcher')->dispatch('all', system\KernelEvents::RENDER_BYPASS, new Event());
-                $this->container->get('EventDispatcher')->dispatch(__YML_KEY, system\KernelEvents::RENDER_BYPASS, new Event());
 
                 return;
             }
@@ -163,6 +172,20 @@ abstract class AbstractComponent {
             pr($handler);
             throw new HandlerNotCallableException('unable to match method ' . $this->method . ' to controller');
         }
+    }
+
+    private function checkStaticCache(HTTPRequest $httpRequest) {
+
+        $cache = $httpRequest->getAttribute('CACHED_PAGE_ON_ENTRY_POINT');
+
+        if (!is_null($cache)) {
+
+            return $cache;
+        }
+
+        $cache = $httpRequest->getAttribute($this->modelName . '_static');
+
+        return $cache;
     }
 
     /**

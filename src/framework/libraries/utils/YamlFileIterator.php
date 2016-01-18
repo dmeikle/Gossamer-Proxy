@@ -26,14 +26,14 @@ class YamlFileIterator {
         $this->logger = $logger;
     }
 
-    public function loadAllYamlFiles() {
+    public function loadAllYamlFiles($filename = 'routing') {
         $parser = new YAMLParser($this->logger);
         $directories = getDirectoryList();
 
         $retval = array();
         foreach ($directories as $directory) {
             $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $directory);
-            $parser->setFilePath($directory . '/config/routing.yml');
+            $parser->setFilePath($directory . '/config/' . $filename . '.yml');
             $config = $parser->loadConfig();
 
             if (is_array($config)) {

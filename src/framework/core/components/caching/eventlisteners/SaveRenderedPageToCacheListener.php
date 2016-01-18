@@ -9,9 +9,9 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\eventlisteners;
+namespace core\components\caching\eventlisteners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use core\eventlisteners\Event;
 
 /**
@@ -26,12 +26,14 @@ use core\eventlisteners\Event;
 class SaveRenderedPageToCacheListener extends AbstractCachableListener {
 
     public function on_render_complete(Event $event) {
+
         if (!$this->isCachablePage()) {
 
             return;
         }
 
-        $filepath = 'pages' . DIRECTORY_SEPARATOR . __YML_KEY;
+        //CP-238 - added agent type for segregating cache based on mobile, tablet and desktop
+        $filepath = 'pages' . DIRECTORY_SEPARATOR . __YML_KEY . $this->getAgentTypesAsKeyString();
 
         $params = $event->getParams();
         $this->saveValuesToCache($filepath, $params['renderedPage']);

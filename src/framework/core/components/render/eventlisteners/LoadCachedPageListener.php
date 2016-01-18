@@ -11,7 +11,7 @@
 
 namespace core\components\render\eventlisteners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 
 /**
  * LoadCachedPageListener

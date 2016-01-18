@@ -91,6 +91,7 @@ class TemplateView extends AbstractView {
         $this->renderURITags($template);
 
         $this->renderImages();
+        //die('here');
     }
 
     private function setViewConfigs(array $config) {
@@ -379,7 +380,7 @@ class TemplateView extends AbstractView {
 
     public function getValue($key) {
         $tmp = $this->httpRequest->getAttribute($key);
-       
+
         return $this->httpRequest->getAttribute($key);
     }
 

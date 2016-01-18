@@ -25,6 +25,7 @@ class HTTPRequest extends AbstractHTTP {
     protected $uri = null;
     protected $modules = array();
     protected $nodeConfig;
+    protected $layoutType;
 
     /**
      *
@@ -51,6 +52,14 @@ class HTTPRequest extends AbstractHTTP {
 
     public function getRestParameters() {
         return json_decode(file_get_contents("php://input"), true);
+    }
+
+    public function setLayoutType(array $agentType) {
+        $this->layoutType = $agentType;
+    }
+
+    public function getLayoutType() {
+        return $this->layoutType;
     }
 
     public function setNodeConfig(array $config) {

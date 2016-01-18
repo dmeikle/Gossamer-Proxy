@@ -57,6 +57,7 @@ class YAMLConfiguration {
      * @return array
      */
     public function getNodeParameters($uri) {
+
         if ($uri == '/' || $uri == '') {
             $uri = 'index';
         }

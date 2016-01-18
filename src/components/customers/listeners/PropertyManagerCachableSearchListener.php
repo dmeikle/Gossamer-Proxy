@@ -11,7 +11,7 @@
 
 namespace components\customers\listeners;
 
-use core\eventlistenersCachableSearchListener;
+use core\components\caching\eventlisteners\CachableSearchListener;
 
 /**
  * Description of CustomersCachableSearchListener

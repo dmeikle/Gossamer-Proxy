@@ -12,6 +12,7 @@
 namespace libraries\utils;
 
 use Monolog\Logger;
+use Gossamer\Caching\CacheManager;
 
 /**
  * parses files and returns the key
