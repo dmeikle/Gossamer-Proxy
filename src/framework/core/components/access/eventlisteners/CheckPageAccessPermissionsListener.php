@@ -23,7 +23,7 @@ use libraries\utils\URISectionComparator;
  *
  * @author Dave Meikle
  */
-class LoadAccessNodeListener extends AbstractListener {
+class CheckPageAccessPermissionsListener extends AbstractListener {
 
     use \libraries\utils\traits\LoadConfigFile;
 
@@ -32,9 +32,22 @@ class LoadAccessNodeListener extends AbstractListener {
      * @param void $params
      */
     public function on_entry_point($params) {
+
         $config = $this->loadAccessNode();
 
-        $this->httpRequest->setAttribute('AccessNode', $config);
+        //nothing to check
+        if (is_null($config) || !array_key_exists('access', $config)) {
+
+            return;
+        }
+        $client = $this->getClient();
+        $roles = $client->getRoles();
+
+        $matchingRoles = array_intersect($config['access']['roles'], $roles);
+
+        if (count($matchingRoles) == 0) {
+            throw new \exceptions\UserRolesNotPermittedException();
+        }
     }
 
     /**
@@ -45,15 +58,11 @@ class LoadAccessNodeListener extends AbstractListener {
     private function loadAccessNode() {
         $config = $this->loadCachedComponentConfig(__YML_KEY, 'navigation_access', 'permissions', true);
 
-        $parser = new URISectionComparator();
-        $key = $parser->findPattern($config, __URI);
-        if (!$key) {
-            return null;
+        if (array_key_exists(__YML_KEY, $config)) {
+            return $config[__YML_KEY];
         }
 
-        if (array_key_exists($key, $config)) {
-            return $config[$key];
-        }
+        return null;
     }
 
 }

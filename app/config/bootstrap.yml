@@ -8,7 +8,9 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
         #TODO: commented out during development testing
         #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
-        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}   
+        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'} 
+        - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\CheckPageAccessPermissionsListener'} 
+        
         - { 'event': 'entry_point', 'listener': 'core\components\caching\eventlisteners\LoadCachedRenderedPageListener'}   
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
         - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
