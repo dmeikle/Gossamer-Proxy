@@ -104,7 +104,7 @@
                 }
             }
             vm.checkSelectedEquipment();
-        }
+        };
         
 //        function getSelectedEquipment() {
 //            var selectedEquipment = [];
@@ -159,8 +159,8 @@
         }       
         
         //Format the notes (if needed)
-        function formatNotes(notes) {       
-            if(notes.length > 0) {
+        function formatNotes(notes) {
+            if(notes.length > 0 && notes[0].length === undefined) {
                 notesSrv.notes = notesSrv.getNotes(notes);
             }
         }

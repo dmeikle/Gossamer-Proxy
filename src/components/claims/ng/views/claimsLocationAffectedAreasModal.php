@@ -18,12 +18,12 @@
             <?php echo $form['width']; ?>
         </div>
         <div class="col-xs-3">
-            <label><?php echo $this->getString('CLAIMS_HEIGHT') ?></label>
-            <?php echo $form['height']; ?>
-        </div>
-        <div class="col-xs-3">
             <label><?php echo $this->getString('CLAIMS_LENGTH') ?></label>
             <?php echo $form['length']; ?>
+        </div>
+        <div class="col-xs-3">
+            <label><?php echo $this->getString('CLAIMS_HEIGHT') ?></label>
+            <?php echo $form['height']; ?>
         </div>
         <div class="col-xs-3">
             <label><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH') ?></label>

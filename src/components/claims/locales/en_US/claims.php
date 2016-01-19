@@ -379,5 +379,7 @@ return array(
     'CLAIMS_ADD_NEW' => 'Add New',
     'CLAIMS_TRANSFER_SELECTED' => 'Transfer Selected',
     'CLAIMS_EQUIPMENT_TRANSFER' => 'Equipment Transfer',
-    'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location'
+    'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location',
+    'CLAIMS_NO_DOCUMENTS' => 'No Documents found',
+    'CLAIMS_NO_AFFECTED_AREAS' => 'No Affected Areas found'
 );

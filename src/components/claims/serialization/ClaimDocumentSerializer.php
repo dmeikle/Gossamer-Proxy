@@ -22,11 +22,14 @@ class ClaimDocumentSerializer extends Serializer {
 
         if(count($documents) !== 0) {
             foreach ($documents as $document) {
+//                pr($document);
                 if (array_key_exists('unitNumber', $document)) {
     //                $retval[$document['unitNumber']][] = $document;
                     $retval[$document['unitNumber']][$document['type']][] = $document;
                 } else {
-                    $retval[$document['type']][] = $document;
+                    if (array_key_exists('type', $document)){
+                        $retval[$document['type']][] = $document;
+                    }
                 }
             }
         }

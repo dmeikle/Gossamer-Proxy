@@ -69,8 +69,8 @@
                         <tr>
                             <th><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_WIDTH'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></th>
                             <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                         </tr>
@@ -83,7 +83,10 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading">
+                    <tr ng-if="vm.affectedAreas[0].length === 0">
+                        <td class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></td>
+                    </tr>
+                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0">
                         <td>
                             {{area.roomType}}
                         </td>
@@ -91,10 +94,10 @@
                             {{area.width}}
                         </td>
                         <td>
-                            {{area.height}}
+                            {{area.length}}
                         </td>
                         <td>
-                            {{area.length}}
+                            {{area.height}}
                         </td>
                         <td>
                             <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
@@ -146,7 +149,9 @@
                                     <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
                                     <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
                                 </tr>
+                                <tr class="warning"><td colspan="4"><?php echo $this->getString('CLAIMS_NO_DOCUMENTS') ?></td></tr>
                                 <tbody ng-repeat-start="(unitKey, docTypes) in documents" ng-if="unitKey === vm.location.unitNumber">
+
                                     <tr>
                                         <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
                                         <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
