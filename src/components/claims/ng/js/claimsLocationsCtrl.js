@@ -5,7 +5,7 @@
         .module('claimsAdmin')
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
-    function claimsLocationsCtrl($log, $timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
+    function claimsLocationsCtrl($timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
@@ -32,7 +32,7 @@
             modalInstance.result.then(function () {
                 getAffectedAreas();
             }, function () {
-                $log.log('modal dismissed');                
+                //modal dismissed              
             });
         };
         
@@ -56,7 +56,7 @@
                 //getAffectedAreas();
                 updateCustomers(customer);
             }, function () {
-                $log.log('modal dismissed');                
+                //modal dismissed                
             });
         };
         
@@ -80,7 +80,7 @@
                 //getAffectedAreas();
 //                updateCustomers(customer);
             }, function () {
-                $log.log('modal dismissed');                
+                //modal dismissed                
             });
         };
         
@@ -199,7 +199,6 @@
                     }
                 }
             }
-            $log.log(vm.claimsCustomers);
             formatCustomers(vm.claimsCustomers);            
         }
     }

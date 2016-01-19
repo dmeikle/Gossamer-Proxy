@@ -21,7 +21,6 @@
             vm.saving = true;
             crudSrv.save(apiPath, vm.item, 'AffectedArea', formToken).then(function(response){
                 vm.saving = false;
-                $log.log(response);
                 $uibModalInstance.close();                
             });
         };

@@ -399,6 +399,6 @@
 
 <form></form>
 <div class="clearfix"></div>
-<?php pr($this->data); ?>
+<?php // pr($this->data); ?>
 
 
