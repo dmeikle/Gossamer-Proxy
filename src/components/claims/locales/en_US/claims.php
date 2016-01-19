@@ -339,8 +339,9 @@ return array(
     'CLAIMS_ISSOURCE' => 'Source Unit',
     'CLAIMS_EDIT_LOCATION' => 'Edit Location',
     'CLAIMS_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details',
-    'CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS' => 'Primary Customer Contact Details',
-    'CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS' => 'Secondary Customer Contact Details',
+    'CLAIMS_PRIMARY' => 'Primary',
+    'CLAIMS_SECONDARY' => 'Secondary',
+    'CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details',
     'CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT' => 'Special Instructions',
     'CLAIMS_CURRENT_KEY_HOLDER' => 'Current Key Holder',
     'CLAIMS_EQUIPMENT_ON_SITE' => 'Equipment on Site',
@@ -381,5 +382,6 @@ return array(
     'CLAIMS_EQUIPMENT_TRANSFER' => 'Equipment Transfer',
     'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location',
     'CLAIMS_NO_DOCUMENTS' => 'No Documents found',
-    'CLAIMS_NO_AFFECTED_AREAS' => 'No Affected Areas found'
+    'CLAIMS_NO_AFFECTED_AREAS' => 'No Affected Areas found',
+    'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location'
 );

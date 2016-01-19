@@ -192,7 +192,7 @@
                     <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
                 </h1>
             </div>
-            <div class="cardleft">
+            <div class="cardleft" ng-if="vm.phase.title">
 
                 <h1>{{vm.phase.title}}</h1>
 
@@ -227,17 +227,17 @@
                 </table>
             </div>
             <div ng-if="!vm.phase.numDays">
-                <p class="text-center text-muted">
+                <div class="text-center text-muted padding-vertical">
                     <?php echo $this->getString('CLAIMS_NOPHASE') ?>
-                </p>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="card">
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-                <div class="col-xs-3 text-right row-controls">
+            <div class="cardheader">
+                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                <div class="pull-right text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                 id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -252,9 +252,13 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="vm.primaryCustomers.length === 0 && vm.secondaryCustomers.length === 0">
+                <div class="text-primary padding-vertical"><?php echo $this->getString('CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION') ?></div>
+            </div>
+            <div class="padding-vertical" ng-if="vm.primaryCustomers.length !== 0">
+                <p><strong><?php echo $this->getString('CLAIMS_PRIMARY'); ?></strong></p>
 
-            <div class="padding-vertical">
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'" class="list-item">
+                <div ng-repeat="customer in vm.primaryCustomers" class="list-item">
                     <div class="pull-right text-right row-controls">
                         <div class="dropdown list-dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -277,15 +281,12 @@
                     </div>
                     <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                    <div class="divider" ng-if="vm.secondaryCustomers.length !== 0"></div>
                 </div>
             </div>
-
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-            </div>
-            <div class="padding-vertical">
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'" class="list-item">
+            <div ng-if="vm.secondaryCustomers.length !== 0">
+                <p><strong><?php echo $this->getString('CLAIMS_SECONDARY'); ?></strong></p>
+                <div ng-repeat="customer in vm.secondaryCustomers" class="list-item">
                     <div class="pull-right text-right row-controls">
                         <div class="dropdown list-dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -308,7 +309,7 @@
                     </div>
                         <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                    <div ng-if="$index < vm.secondaryCustomers.length-1" class="divider"></div>
                 </div>
 
             </div>
@@ -316,9 +317,9 @@
 
         <!--Equipment on Site/Location-->
         <div class="card">
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
-                <div class="col-xs-3 text-right row-controls">
+            <div class="cardheader">
+                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
+                <div class="pull-right text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                 id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

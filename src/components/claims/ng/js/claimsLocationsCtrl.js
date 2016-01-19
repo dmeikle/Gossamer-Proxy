@@ -78,7 +78,7 @@
 
             modalInstance.result.then(function (customer) {
                 //getAffectedAreas();
-                updateCustomers(customer);
+//                updateCustomers(customer);
             }, function () {
                 $log.log('modal dismissed');                
             });
@@ -153,10 +153,23 @@
                 vm.documentsConfig.Claims_id = vm.claim.id;
                 vm.documentsConfig.ClaimsLocations_id = vm.location.id;
                 
+                formatCustomers(vm.claimsCustomers);
                 formatNotes(vm.claimsLocationsNotes);
-            });            
+            });
+        }
+        
+        function formatCustomers(customers) {
+            vm.primaryCustomers = [];
+            vm.secondaryCustomers = [];
             
-        }       
+            for(var i in customers) {
+                if(customers[i].isPrimary === "1") {
+                    vm.primaryCustomers.push(customers[i]);
+                } else if( customers[i].isPrimary === "0") {
+                    vm.secondaryCustomers.push(customers[i]);
+                }                
+            }
+        }
         
         //Format the notes (if needed)
         function formatNotes(notes) {
@@ -169,7 +182,7 @@
             vm.affectedAreasLoading = true;
             var apiPath = '/admin/scoping/affected-areas/get/';
             crudSrv.getDetails(apiPath, vm.location.id).then(function(response){
-               vm.affectedAreas = response.data.AffectedAreas;
+                vm.affectedAreas = response.data.AffectedAreas;
                 vm.affectedAreasLoading = false;
             });
         }
@@ -179,16 +192,15 @@
         function updateCustomers (customer) {
             for(var i in vm.claimsCustomers) {
                 if(vm.claimsCustomers[i].id === customer.id) {
-                    $log.log('This is a new customer!');
                     vm.claimsCustomers[i] = customer;
                 } else {
                     if(parseInt(i) === vm.claimsCustomers.length-1) {
-                        $log.log('This is a new customer!');
                         vm.claimsCustomers.push(customer);
-                        $log.log(vm.claimsCustomers);
                     }
                 }
             }
-        }        
+            $log.log(vm.claimsCustomers);
+            formatCustomers(vm.claimsCustomers);            
+        }
     }
 })();

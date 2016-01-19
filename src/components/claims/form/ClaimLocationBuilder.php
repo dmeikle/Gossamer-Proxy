@@ -90,11 +90,6 @@ class ClaimLocationBuilder extends AbstractBuilder {
             $builder->add('CustomerType', 'select', array('ng-model' => 'modal.customer.CustomerTypes_id', 'class' => 'form-control', 'options' => $options['customerTypes']));
         }
 
-
-
-
-
-
         return $builder->getForm();
     }
 
