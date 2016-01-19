@@ -39,13 +39,10 @@ module.controller('sideNavCtrl', function ($scope, tabsSrv, sideNavSrv, $window,
     };
 
     $scope.toggleSidenav = function () {
-        $log.log('toggle side close');
         if (sideNavSrv.sideNavOpen === true) {
-            $log.log('toggle side close');
             sideNavSrv.sideNavOpen = false;
             localStorage.setItem('sideNavOpen', false);
         } else {
-            $log.log('toggle side open');
             sideNavSrv.sideNavOpen = true;
             localStorage.setItem('sideNavOpen', true);
         }
