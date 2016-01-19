@@ -96,4 +96,18 @@ class SecondarySheetsController extends AbstractController {
         return $sheetBuilder->buildForm($builder, $values, $options, $results);
     }
 
+    public function listSheetsByAffectedArea($claimId, $locationId, $affectedAreaId) {
+        $filter = array(
+            'Claims_id' => intval($claimId),
+            'ClaimsLocations_id' => intval($locationId),
+            'AffectedAreas_id' => intval($affectedAreaId)
+        );
+        $offset = 0;
+        $limit = 50;
+
+        $result = $this->model->listAllWithParams($offset, $limit, 'list', $filter);
+
+        $this->render($result);
+    }
+
 }

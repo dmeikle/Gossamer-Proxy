@@ -103,7 +103,7 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsS
         $scope.claimsLocationsId = claimLocationsId;
         $scope.affectedAreasId = affectedAreasId;
         
-        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
+        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId, affectedAreasId).then(function(response) {
             $scope.sheetsList = response.sheetsList;
             $scope.totalItems = response.sheetsCount;
             $scope.loading = false;

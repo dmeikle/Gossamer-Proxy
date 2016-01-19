@@ -139,6 +139,21 @@ admin_claims_secondarysheets_get:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
         
+admin_claims_secondarysheets_list:
+    pattern: admin/claims/secondary-sheets/list/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: listSheetsByAffectedArea
+        view: core\views\JSONView
+        viewKey: admin_claims_secondarysheets_list
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+    methods: [GET]
+        
 admin_claims_secondarysheets_edit:
     pattern: admin/claims/secondary-sheets/*/*/*/*
     defaults:
