@@ -89,9 +89,22 @@
             for(var i in vm.equipmentLocations) {
                 if(vm.equipmentLocations[i].isSelected === true) {
                     vm.selectedEquipment.push(vm.equipmentLocations[i]);
+                } else {
+                    vm.selectAllEquipment = false;
                 }
             }
         };
+        
+        vm.selectAllEquipmentToggle = function(value) {
+            for(var i in vm.equipmentLocations) {
+                if(value === true){
+                    vm.equipmentLocations[i].isSelected = true;
+                } else {
+                    vm.equipmentLocations[i].isSelected = false;
+                }
+            }
+            vm.checkSelectedEquipment();
+        }
         
 //        function getSelectedEquipment() {
 //            var selectedEquipment = [];

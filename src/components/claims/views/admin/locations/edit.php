@@ -303,7 +303,7 @@
         <!--Equipment on Site/Location-->
         <div class="card">
             <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?>{{vm.selectedEquipment.length}}</h1>
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
                 <div class="col-xs-3 text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -323,7 +323,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="select-col" ng-click="selectAllEquipmentToggle(selectAllEquipment)"><input class="select-all" type="checkbox" ng-model="selectAllEquipment"></th>
+                        <th class="select-col" ng-click="vm.selectAllEquipmentToggle(vm.selectAllEquipment)"><input class="select-all" type="checkbox" ng-model="vm.selectAllEquipment"></th>
                         <th><?php echo $this->getString('CLAIMS_NAME'); ?></th>
                         <th><?php echo $this->getString('CLAIMS_PRODUCT_CODE'); ?></th>
                         <th><?php echo $this->getString('CLAIMS_PRODUCT_NUMBER'); ?></th>
