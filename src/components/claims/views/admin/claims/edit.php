@@ -4,6 +4,7 @@
     <?php echo $form['ProjectAddresses_id']; ?>
     <?php echo $form['jobNumberHidden']; ?>
     <?php echo $form['unassignedJobNumberHidden']; ?>
+
     <div>
         <div class="col-xs-12">
             <h1 class="pull-left">
