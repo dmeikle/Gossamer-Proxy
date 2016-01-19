@@ -18,7 +18,8 @@ use core\http\HTTPRequest;
 use libraries\utils\Container;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
-use core\UploadableInterface;
+use core\components\security\core\SecurityToken;
+use libraries\utils\MobileDetect;
 
 /**
  * base class for all Event Listeners - abstracts a lot of the framework
@@ -194,8 +195,32 @@ class AbstractListener {
     protected function getString($key) {
         $langFiles = $this->httpRequest->getAttribute('langFiles');
 
-
         return $langFiles->getString($key);
+    }
+
+    protected function getClient() {
+        $token = $this->getSecurityToken();
+
+        if (!is_null($token) && $token instanceof SecurityToken) {
+
+            return $token->getClient();
+        }
+
+        return null;
+    }
+
+    /**
+     * determines if we are dealing with a computer or mobile device
+     *
+     * @return array
+     */
+    protected function getLayoutType() {
+        $detector = new MobileDetect();
+        $isMobile = $detector->isMobile();
+        $isTablet = $detector->isTablet();
+        unset($detector);
+
+        return array('isMobile' => $isMobile, 'isTablet' => $isTablet, 'isDesktop' => (!$isMobile && !$isTablet));
     }
 
 }

@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -15,7 +15,7 @@ namespace core\system;
  * a container of constant strings used by the Framework for events to be
  * raised for the EventDispatcher. Developer is free to call their own
  * custom events at any time - this file is just used as static framework calls
- * 
+ *
  * @author Dave Meikle
  */
 final class KernelEvents {
@@ -60,6 +60,7 @@ final class KernelEvents {
      * just send the static HTML out and quit the request.
      */
     const RENDER_BYPASS = 'render_bypass';
+    const PAGE_DRAW_FINALIZED = 'page_draw_finalized';
     const RENDER_COMPLETE = 'render_complete';
 
     /**

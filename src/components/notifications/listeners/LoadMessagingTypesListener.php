@@ -11,7 +11,7 @@
 
 namespace components\notifications\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use components\notifications\models\MessagingTypeModel;
 
 /**

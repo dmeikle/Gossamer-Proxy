@@ -11,7 +11,7 @@
 
 namespace components\accounting\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use components\accounting\models\AccountingGeneralCostTypeModel;
 
 /**
@@ -19,7 +19,7 @@ use components\accounting\models\AccountingGeneralCostTypeModel;
  *
  * @author Dave Meikle
  */
-class LoadTollListener extends \core\eventlisteners\AbstractCachableListener {
+class LoadTollListener extends \core\components\caching\eventlisteners\AbstractCachableListener {
 
     public function on_filerender_start() {
 

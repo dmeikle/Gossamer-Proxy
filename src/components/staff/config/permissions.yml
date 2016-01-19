@@ -1,0 +1,19 @@
+
+
+admin_login:
+    tags:
+        - { tag: div, permission-key: accounting, roles: [IS_ADMIN, IS_STAFF] }
+        - { tag: div, permission-key: water, roles: [IS_SOMETHING] }
+        
+admin_staff_edit_home:
+    tags:
+        - { tag: div, permission-key: accounting, roles: [IS_ACCOUNTING] }
+        - { tag: div, permission-key: humanresources, roles: [IS_HR, IS_ADMINISTRATOR] }
+        - { tag: uib-tab, permission-key: accounting, roles: [IS_ACCOUNTING] }
+    access:
+        roles:
+            - IS_HR
+            - IS_ADMINISTRATOR
+            - IS_DEVELOPER
+            - IS_ACCOUNTING
+        

@@ -11,6 +11,8 @@
 
 namespace core\eventlisteners;
 
+use core\components\caching\eventlisteners\AbstractCachableListener;
+
 /**
  * loads a single item that may be needed by another method.
  *

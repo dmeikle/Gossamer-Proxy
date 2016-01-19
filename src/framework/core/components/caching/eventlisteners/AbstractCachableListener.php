@@ -9,10 +9,11 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\eventlisteners;
+namespace core\components\caching\eventlisteners;
 
 use exceptions\KeyNotSetException;
 use Gossamer\Caching\CacheManager;
+use core\eventlisteners\AbstractListener;
 
 /**
  * abstract listener for Event Listeners that want to cache results and
@@ -22,7 +23,7 @@ use Gossamer\Caching\CacheManager;
  */
 class AbstractCachableListener extends AbstractListener {
 
-    const MAX_FILE_LIFESPAN = 20000; //20 minutes
+    const MAX_FILE_LIFESPAN = 12000; //20 minutes
 
     //this value MUST be assigned by child class
 
@@ -146,6 +147,11 @@ class AbstractCachableListener extends AbstractListener {
         $manager = new CacheManager($this->logger);
 
         return $manager->retrieveFromCache($key, $static);
+    }
+
+    protected function getAgentTypesAsKeyString() {
+
+        return implode('_', $this->getLayoutType());
     }
 
 }

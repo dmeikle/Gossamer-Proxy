@@ -1,0 +1,28 @@
+
+
+
+admin_dashboard_home:  
+    template: admin-list.php
+    sections:
+        -
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/dashboard/views/index.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - dashboardAdmin
+    head:
+        - @components/dashboard/dist/bower_components/angular/angular.min.js
+        - @components/dashboard/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/dashboard/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/dashboard/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/dashboard/dist/js/dashboard.concat.js
+        #- @components/dashboard/dist/js/claims.min.js
+    css:
+        - @components/dashboard/dist/css/dashboard.min.css

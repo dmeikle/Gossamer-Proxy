@@ -289,7 +289,7 @@ admin_inventory_equipment_locations:
         controller: components\inventory\controllers\InventoryEquipmentController
         model: components\inventory\models\InventoryItemModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_equipment_home
         datasource: datasource1
         langFiles:
@@ -297,6 +297,7 @@ admin_inventory_equipment_locations:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+    staticCache: true
 
 admin_inventory_equipment_get:
     pattern: admin/inventory/equipment/get/*
@@ -336,7 +337,7 @@ admin_inventory_equipment_edit:
         controller: components\inventory\controllers\InventoryEquipmentController
         model: components\inventory\models\InventoryEquipmentModel
         method: edit
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_equipment_edit
         datasource: datasource1
         langFiles:
@@ -344,6 +345,7 @@ admin_inventory_equipment_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+    staticCache: true
     
     
 
@@ -371,7 +373,7 @@ admin_inventory_items_edit:
         controller: components\inventory\controllers\InventoryItemsController
         model: components\inventory\models\InventoryItemModel
         method: edit
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_items_edit
         datasource: datasource1
         langFiles:
@@ -379,6 +381,7 @@ admin_inventory_items_edit:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/components/defaultItem/locales/*/Navigation'
     methods: [GET]
+    staticCache: true
 
 
 
@@ -439,6 +442,7 @@ admin_warehouse_locations_home:
             - 'src/components/inventory/locales/*/inventory'
             - 'src/framework/core/components/locales/resources/*/Navigation'
     methods: [GET]
+    staticCache: true
 
     
 admin_inventory_search:
@@ -513,13 +517,14 @@ admin_inventory_list:
         controller: components\inventory\controllers\InventoryController
         model: components\inventory\models\InventoryModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_list
         datasource: datasource1
         langFiles:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 #-------------------------- variant options -----------------------
 
@@ -537,6 +542,7 @@ admin_inventory_variantoptions:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 
 admin_inventory_variantoptions_list:
@@ -595,6 +601,7 @@ admin_inventory_variantgroups:
             - 'app/locales/*/website'
             - 'src/components/inventory/locales/*/inventory'
     methods: [GET]
+    staticCache: true
 
 
 admin_inventory_variantgroups_list:

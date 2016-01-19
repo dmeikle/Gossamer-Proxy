@@ -6,7 +6,7 @@
     <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsLocationsNotes); ?>' id="ClaimsLocationsNotes" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($EquipmentLocations); ?>' id="EquipmentLocations" ng-if="!vm.loaded" />
-    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id); ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
+    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id);     ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
@@ -107,6 +107,7 @@
                                 </button>
                                 <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                     <li><a href="" ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)"><?php echo $this->getString('EDIT'); ?></a></li>
+                                    <li><a gcms="{uri='admin_claims_secondarysheets_home' params='{{vm.claim.id}}/{{vm.location.id}}/{{area.id}}'}">secondary sheets</a>
                                 </ul>
                             </div>
                         </td>
@@ -119,10 +120,10 @@
             <uib-tabset>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
                     <notes api-path="/admin/claims/locations/notes/"
-                        parent-item-id="{{vm.location.id}}"
-                        parent-item-name="ClaimsLocations_id"
-                        item-name="ClaimsLocationNote"
-                        class="padding-vertical">
+                           parent-item-id="{{vm.location.id}}"
+                           parent-item-name="ClaimsLocations_id"
+                           item-name="ClaimsLocationNote"
+                           class="padding-vertical">
                     </notes>
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">
@@ -263,7 +264,7 @@
                     </div>
                     <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                    <div ng-if="$index < vm.claimsCustomers.length - 1" class="divider"></div>
                 </div>
             </div>
 
@@ -292,9 +293,9 @@
                         <div ng-if="customer.mobile"><?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{customer.mobile}}</div>
                         <div ng-if="customer.email"><?php echo $this->getString('CLAIMS_EMAIL'); ?>: {{customer.email}}</div>
                     </div>
-                        <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
+                    <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.claimsCustomers.length-1" class="divider"></div>
+                    <div ng-if="$index < vm.claimsCustomers.length - 1" class="divider"></div>
                 </div>
 
             </div>
@@ -340,16 +341,16 @@
     </div>
 
     <script type="text/ng-template" id="documentUploadModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationDocumentModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationDocumentModal.php'); ?>
     </script>
 
     <script type="text/ng-template" id="affectedAreasModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationAffectedAreasModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationAffectedAreasModal.php'); ?>
     </script>
 
     <!--Customers Modal-->
     <script type="text/ng-template" id="customersModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
     </script>
 </div>
 

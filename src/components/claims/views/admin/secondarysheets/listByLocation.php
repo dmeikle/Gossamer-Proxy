@@ -3,6 +3,7 @@
 
 <input type="hidden" id="Claims_id" value="<?php echo intval($params[0]); ?>" />
 <input type="hidden" id="ClaimsLocations_id" value="<?php echo intval($params[1]); ?>" />
+<input type="hidden" id="AffectedAreas_id" value="<?php echo intval($params[2]); ?>" />
 
 
 
@@ -32,7 +33,7 @@
                     </button>
                 </span>
             </form>
-            <a gcms="{href='admin_claims_secondarysheets_edit' params=''}" class="btn btn-primary">this belongs on affected areas <?php echo $this->getString('CLAIMS_NEW_SECONDARY_SHEET'); ?></a>
+            <a gcms="{uri='admin_claims_secondarysheets_edit' params='{{claimId}}/{{claimsLocationsId}}/{{affectedAreasId}}/0'}" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW_SECONDARY_SHEET'); ?></a>
         </div>
         <table class="table table-striped table-hover">
             <thead>
@@ -76,7 +77,7 @@
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li><a gcms="{uri='admin_claims_secondarysheets_get' params='{{item.Claims_id}}/{{item.ClaimsLocations_id}}/{{item.id}}'}"><?php echo $this->getString('CLAIMS_EDIT_SECONDARY_SHEET'); ?></a></li>
+                                <li><a gcms="{uri='admin_claims_secondarysheets_edit' params='{{item.Claims_id}}/{{item.ClaimsLocations_id}}/{{affectedAreasId}}/{{item.id}}'}"><?php echo $this->getString('CLAIMS_EDIT_SECONDARY_SHEET'); ?></a></li>
                             </ul>
                         </div>
                     </td>

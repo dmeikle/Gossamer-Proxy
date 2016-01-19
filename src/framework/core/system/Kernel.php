@@ -45,6 +45,8 @@ class Kernel {
 
         $httpRequest = $this->container->get('HTTPRequest');
         $httpResponse = $this->container->get('HTTPResponse');
+        //CP-238 set it in request so we can determine things like cache type
+        $httpRequest->setLayoutType($this->getLayoutType());
 
         $componentName = $controllerNode['component'];
         $controllerName = $controllerNode['controller'];
@@ -58,15 +60,16 @@ class Kernel {
         //first, run any security checks before starting the request
         $event = new Event(KernelEvents::ENTRY_POINT, $httpRequest);
 
-        $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_START);
-
         //still here? ok, now start the request
+        $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_START);
         $event = new Event(KernelEvents::REQUEST_START, $httpRequest);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::REQUEST_START);
 
         $this->logger->addDebug('dispatcher started in index - state set to ' . KernelEvents::REQUEST_START);
 
-        $cmd = new $componentName($controllerName, $viewName, $modelName, $method, $httpRequest->getParameters(), $this->logger, $this->getLayoutType());
+
+
+        $cmd = new $componentName($controllerName, $viewName, $modelName, $method, $httpRequest->getParameters(), $this->logger, $httpRequest->getLayoutType());
         $cmd->setContainer($this->container);
 
         return $cmd->handleRequest($httpRequest, $httpResponse);
@@ -83,7 +86,7 @@ class Kernel {
         $isTablet = $detector->isTablet();
         unset($detector);
 
-        return array('isMobile' => $isMobile, 'isTablet' => $isTablet);
+        return array('isMobile' => $isMobile, 'isTablet' => $isTablet, 'isDesktop' => (!$isMobile && !$isTablet));
     }
 
     /**

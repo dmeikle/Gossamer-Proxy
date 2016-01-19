@@ -11,7 +11,7 @@
 
 namespace components\staff\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 
 /**
  * LoadCachedSearchResultsFilter

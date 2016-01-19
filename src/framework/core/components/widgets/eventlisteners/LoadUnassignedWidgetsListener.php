@@ -11,7 +11,7 @@
 
 namespace core\components\widgets\eventlisteners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use core\components\widgets\models\WidgetModel;
 use core\navigation\Pagination;
 

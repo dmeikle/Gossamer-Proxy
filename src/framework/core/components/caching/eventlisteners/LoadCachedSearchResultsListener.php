@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\eventlisteners;
+namespace core\components\caching\eventlisteners;
 
 /**
  * LoadCachedSearchResultsFilter

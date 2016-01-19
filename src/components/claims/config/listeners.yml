@@ -157,8 +157,12 @@ admin_claims_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claim, model: Claim}
-                
-#        - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
+
+
+admin_claims_cost_cards_edit:
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\claims\models\ClaimPhaseModel', 'cacheKey': 'ClaimPhases' }
+
 
 admin_claims_location_view:
     listeners:

@@ -125,6 +125,7 @@ function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
 function getDirectoryList() {
 
     $retval = array();
+
     if ($handle = opendir(__SITE_PATH . '/src/components')) {
         $blacklist = array('.', '..', 'somedir', 'somefile.php');
         while (false !== ($file = readdir($handle))) {

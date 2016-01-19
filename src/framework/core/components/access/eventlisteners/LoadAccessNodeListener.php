@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -25,54 +25,34 @@ use libraries\utils\URISectionComparator;
  */
 class LoadAccessNodeListener extends AbstractListener {
 
-    private $config = null;
+    use \libraries\utils\traits\LoadConfigFile;
 
     /**
-     * 
-     * @param Logger $logger
-     * @param HTTPRequest $httpRequest
-     * @param HTTPResponse $httpResponse
-     */
-    public function __construct(Logger $logger, HTTPRequest $httpRequest, HTTPResponse $httpResponse) {
-        parent::__construct($logger, $httpRequest, $httpResponse);
-        $this->loadAccessNode();
-    }
-
-    /**
-     * 
+     *
      * @param void $params
      */
-    public function on_request_start($params) {
-        $this->httpRequest->setAttribute('AccessNode', $this->config);
-    }
+    public function on_entry_point($params) {
+        $config = $this->loadAccessNode();
 
-    /**
-     * loads the configuration of the yml file
-     * 
-     * @return array
-     */
-    private function loadConfig() {
-        $loader = new YAMLParser($this->logger);
-        $loader->setFilePath(__SITE_PATH . '/app/config/navigation-access.yml');
-
-        return $loader->loadConfig();
+        $this->httpRequest->setAttribute('AccessNode', $config);
     }
 
     /**
      * loads the current access configuration node based on current URI
-     * 
+     *
      * @return void
      */
     private function loadAccessNode() {
-        $config = $this->loadConfig();
+        $config = $this->loadCachedComponentConfig(__YML_KEY, 'navigation_access', 'permissions', true);
 
         $parser = new URISectionComparator();
         $key = $parser->findPattern($config, __URI);
         if (!$key) {
-            return;
+            return null;
         }
+
         if (array_key_exists($key, $config)) {
-            $this->config = $config[$key];
+            return $config[$key];
         }
     }
 

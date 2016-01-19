@@ -52,6 +52,7 @@ admin_staff_timesheets_home:
         langFiles:
             - 'src/components/staff/locales/*/staff'
             - 'app/locales/*/website'
+    staticCache: true
 
 admin_staff_timesheets_list:
     pattern: admin/staff/timesheets/*/*
@@ -232,8 +233,7 @@ admin_staff_edit_home:
             - 'src/components/staff/locales/*/Roles'
             - app/locales/*/website
     methods: [GET]
-
-
+    staticCache: true
 
 
 admin_staff_benefits_list:
@@ -295,7 +295,7 @@ admin_staff_timesheets:
             - 'src/components/staff/locales/*/staff'
             - 'app/locales/*/website'
     methods: [GET]
-    #staticCache: true
+    staticCache: true
 
 #--------------------------- end timesheets ---------------------
 

@@ -2,7 +2,7 @@
 
 namespace core\components\blogs\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use Gossamer\Caching\CacheManager;
 use core\eventlisteners\Event;
 
