@@ -34,6 +34,7 @@
 </div>
 <div class="modal-footer">
     <div class="pull-right">
+        <span class="spinner-loader modal-spinner" ng-if="modal.saving"></span>
         <div class="btn-group" role="group">
             <button class="primary" ng-click="modal.save()">
                 <?php echo $this->getString('SAVE') ?>

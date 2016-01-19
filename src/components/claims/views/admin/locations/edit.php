@@ -58,10 +58,19 @@
                     <div class="pull-left">
                         <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
                     </div>
-                    <div class="pull-right" ng-if="!loadingDocuments">
-                        <button class="primary" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
-                            <?php echo $this->getString('CLAIMS_ADD_AFFECTED_AREA') ?>
-                        </button>
+                    <div class="pull-right text-right row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
+                                        <?php echo $this->getString('CLAIMS_ADD_NEW') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
@@ -83,7 +92,7 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-if="vm.affectedAreas[0].length === 0">
+                    <tr ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading">
                         <td class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></td>
                     </tr>
                     <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0">
