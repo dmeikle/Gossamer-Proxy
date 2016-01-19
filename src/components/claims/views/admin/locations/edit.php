@@ -300,9 +300,10 @@
             </div>
         </div>
 
+        <!--Equipment on Site/Location-->
         <div class="card">
             <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
+                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?>{{vm.selectedEquipment.length}}</h1>
                 <div class="col-xs-3 text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -310,7 +311,8 @@
                         </button>
                         <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                             <li>
-                                <a href="#" ng-click="vm.openEquipmentTransferModal('equipmentTransferModal')">
+                                <!--ng-class="{'disabled' : vm.selectedEquipment.length === 0}"-->
+                                <a href="#" ng-class="{'disabled' : vm.selectedEquipment.length === 0}" class="btn" ng-click="vm.openEquipmentTransferModal('equipmentTransferModal')">
                                     <?php echo $this->getString('CLAIMS_TRANSFER_SELECTED') ?>
                                 </a>
                             </li>
@@ -335,7 +337,7 @@
                 </tr>
                 <tr ng-repeat="equipment in vm.equipmentLocations" ng-if="!vm.affectedAreasLoading && vm.equipmentLocations[0].length !== 0">
                     <td>
-                        <input class="checkbox" type="checkbox" ng-model="equipment.isSelected">
+                        <input class="checkbox" type="checkbox" ng-model="equipment.isSelected" ng-click="vm.checkSelectedEquipment()">
                     </td>
                     <td>
                         {{equipment.name}}

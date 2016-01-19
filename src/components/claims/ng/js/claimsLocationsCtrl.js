@@ -12,7 +12,7 @@
         vm.claim = {};
         vm.documentsConfig = {};        
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;     
-        
+        vm.selectedEquipment = [];
         
         vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
@@ -68,7 +68,7 @@
               size: 'md',
               resolve: {
                 multiSelectArray: function () {
-                  return getSelectedEquipment();
+                  return vm.selectedEquipment;
                 },
                 location: function () {
                     return vm.location;
@@ -84,15 +84,24 @@
             });
         };
         
-        function getSelectedEquipment() {
-            var selectedEquipment = [];
-            for(var i in vm.equipmentLocations){
+        vm.checkSelectedEquipment = function() {
+            vm.selectedEquipment = [];
+            for(var i in vm.equipmentLocations) {
                 if(vm.equipmentLocations[i].isSelected === true) {
-                    selectedEquipment.push(vm.equipmentLocations[i]);
+                    vm.selectedEquipment.push(vm.equipmentLocations[i]);
                 }
             }
-            return selectedEquipment;
-        }
+        };
+        
+//        function getSelectedEquipment() {
+//            var selectedEquipment = [];
+//            for(var i in vm.equipmentLocations){
+//                if(vm.equipmentLocations[i].isSelected === true) {
+//                    selectedEquipment.push(vm.equipmentLocations[i]);
+//                }
+//            }
+//            return selectedEquipment;
+//        }
         
         
         vm.saveLocation = function () {
