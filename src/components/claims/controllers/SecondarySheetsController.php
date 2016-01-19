@@ -105,7 +105,7 @@ class SecondarySheetsController extends AbstractController {
         $offset = 0;
         $limit = 50;
 
-        $result = $this->model->listAllWithParams($offset, $limit, 'list', $filter);
+        $result = $this->model->listAllWithParams($offset, $limit, $filter, 'list');
 
         $this->render($result);
     }

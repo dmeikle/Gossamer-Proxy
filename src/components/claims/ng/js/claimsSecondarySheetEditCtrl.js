@@ -37,10 +37,9 @@
         self.openSecondarySheetModal = function (template) {
 
             var modalInstance = $uibModal.open({
-//                animation: $scope.animationsEnabled,
                 templateUrl: template,
-                controller: 'secondarySheetsModalCtrl as modal',
-               // controllerAs: 'modal',
+                controller: 'secondarySheetsModalCtrl',
+                controllerAs: 'modal',
                 size: 'md',
                 resolve: {
                     secondarySheetResults: function () {

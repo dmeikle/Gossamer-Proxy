@@ -6,7 +6,6 @@
 <input type="hidden" id="AffectedAreas_id" value="<?php echo intval($params[2]); ?>" />
 
 
-
 <div class="widget" ng-controller="secondarySheetsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SECONDARY_SHEETS') ?></h1>

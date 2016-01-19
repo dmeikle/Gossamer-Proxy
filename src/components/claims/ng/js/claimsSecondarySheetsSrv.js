@@ -129,7 +129,7 @@
         
         
         function getSheetActions(clickedObject) {
-            return $http.get(apiPath + 'list/' + clickedObject.Claims_id + '/' + clickedObject.ClaimsLocations_id + '/'+ clickedObject.AffectedAreas_id)
+            return $http.get(apiPath + 'list/' + clickedObject.Claims_id + '/' + clickedObject.ClaimsLocations_id + '/'+ clickedObject.AffectedAreas_id + '/' + clickedObject.id)
                 .then(function(response) {
                     response.sheetActionsList = response.data.AffectedAreaActions;
                     response.sheetActionsListCount = response.data.AffectedAreaActionsCount[0].rowCount;
@@ -139,7 +139,7 @@
         }
 
         function getResponses(clickedObject) {
-            return $http.get(apiPath + clickedObject.Claims_id + '/' + clickedObject.ClaimsLocations_id + '/'+ clickedObject.SecondarySheets_id)
+            return $http.get(apiPath + 'responses/' + clickedObject.Claims_id + '/' + clickedObject.ClaimsLocations_id + '/'+ clickedObject.SecondarySheets_id)
                 .then(function(response) {
                     response.secondarySheetResponses = response.data.AffectedAreaActions;
                     response.secondarySheetResponsesCount = response.data.AffectedAreaActionsCount[0].rowCount;
