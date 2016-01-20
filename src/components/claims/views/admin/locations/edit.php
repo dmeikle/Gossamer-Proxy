@@ -73,47 +73,59 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_WIDTH'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></th>
-                            <th sort-by-button class="cog-col row-controls">&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tr ng-if="vm.affectedAreasLoading">
-                        <td></td>
-                        <td></td>
-                        <td><span class="spinner-loader"></span></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading">
-                        <td class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></td>
-                    </tr>
-                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0">
-                        <td>
+                <ul class="table table-striped table-hover flex-table">
+                    <!--<thead>-->
+                        <li class="head">
+                            <div><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></div>
+                            <div><?php echo $this->getString('CLAIMS_LENGTH'); ?></div>
+                            <div><?php echo $this->getString('CLAIMS_WIDTH'); ?></div>
+                            <div><?php echo $this->getString('CLAIMS_HEIGHT'); ?></div>
+                            <div><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></div>
+                            <div sort-by-button class="cog-col row-controls">&nbsp;</div>
+                        </li>
+                    <!--</thead>-->
+                    <li ng-if="vm.affectedAreasLoading" class="flex-row">
+                        <div></div>
+                        <div></div>
+                        <div><span class="spinner-loader"></span></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </li>
+                    <div class="flex-tbody">
+                    <li ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading" class="flex-row">
+                        <div class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></div>
+                    </li>
+                    <li ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0" class="flex-row">
+                        <div class="flex-left">
+                            <div class="content"><h4>{{area.roomType}}</h4></div>
+                            <div class="content">{{area.length}} x {{area.width}} x {{area.height}}</div>
+                            <div class="content"><?php echo $this->getString('CLAIMS_LWH'); ?></div>
+                        </div>
+                        <div class="flex-right">
+                            <div class="content"><a ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)" href="#"><?php echo $this->getString('EDIT'); ?></a></div>
+                            <div class="content"><a href="#">Scope</a></div>
+                            <div class="content"><a href="#">Secondary Sheet</a></div>
+                            <div class="content"><a href="#">Material Takeoffs</a></div>
+                        </div>
+                        <div>
                             {{area.roomType}}
-                        </td>
-                        <td>
-                            {{area.width}}
-                        </td>
-                        <td>
+                        </div>
+                        <div>
                             {{area.length}}
-                        </td>
-                        <td>
+                        </div>
+                        <div>
+                            {{area.width}}
+                        </div>
+                        <div>
                             {{area.height}}
-                        </td>
-                        <td>
+                        </div>
+                        <div>
                             <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
                             <i ng-if="area.entryIsNorth == 0"></i>
-                        </td>
-                        <td class="row-controls">
-                            <div class="dropdown">
+                        </div>
+                        <div class="row-controls">
+                            <div class="dropdown flex-dropdown">
                                 <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                         id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 </button>
@@ -121,9 +133,10 @@
                                     <li><a href="" ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)"><?php echo $this->getString('EDIT'); ?></a></li>
                                 </ul>
                             </div>
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                    </li>
+                    </div>
+                </ul>
             </div>
         </div>
 
@@ -183,7 +196,7 @@
             </uib-tabset>
         </div>
     </div>
-
+    <div class="clearfix hidden-lg hidden-md padding-vertical"></div>
     <div class="col-md-4 no-padding-right">
         <!--Phase VS Estimated Completion Date-->
         <div class="card">

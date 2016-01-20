@@ -13,3 +13,103 @@
         }
     }
 }
+
+.flex-table {
+    @extend table;
+    @extend .table-hover;
+    @extend .table-striped;
+    display:table;
+    .flex-tbody {
+        display: table-row-group;
+        @extend tbody;
+    }
+    .head{
+        @extend thead;
+        display:table-row;        
+        div{
+            @extend th;  
+            padding: 8px;
+            line-height: 1.428571429;
+            vertical-align: bottom;
+            display:table-cell;           
+            font-weight: bold;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }    
+    .flex-row{
+        @extend tr;
+        display:table-row;
+        div:not(.flex-left):not(.flex-right):not(.dropdown){
+            @extend td;
+            display:table-cell;
+            padding: .5em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        &:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }
+    }
+    .row-controls {
+        padding: 8px;
+        overflow: visible;
+    }
+    &.table .dropdown {
+        display: inline;
+        padding: 0;
+    }
+    h4 {
+        margin:0;
+    }
+    .flex-left {
+        width:66.666%;
+    }
+    .flex-right {
+        width:33.333%;
+    }
+}
+
+@media (min-width: 992px) {
+    .flex-table .flex-row {
+        .flex-left, .flex-right {
+            display: none;
+        }        
+    }
+}
+
+@media (max-width: 991px) { 
+    .flex-table {
+        .head{
+            display:none;
+        }
+        .flex-tbody {
+            display: block;
+        }
+        display:block;
+        .flex-row > div:not(.flex-left):not(.flex-right):not(.dropdown) {
+            display:none;
+        }
+        .flex-row {
+            /*display:block;*/
+                display: flex;
+        }
+        .flex-left {
+            float: left;
+        }
+        .flex-right {
+            float: right;
+            clear: right;
+        }
+        .flex-left, .flex-right {
+            .content {
+                display: block;
+            }
+        }
+        .clearfix {
+            display:block;
+        }
+    }
+}

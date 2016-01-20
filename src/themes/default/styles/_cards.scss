@@ -40,13 +40,18 @@
         }
     }
     &:hover { 
-        .dropdown:not(.list-dropdown) {
+        .dropdown:not(.list-dropdown):not(.flex-dropdown) {
             display:block;
         }
     }
     table{
         .dropdown {
             display:block;
+        }
+    }
+    .flex-table {
+        .dropdown {
+            display:inline;
         }
     }
 }

@@ -383,5 +383,6 @@ return array(
     'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location',
     'CLAIMS_NO_DOCUMENTS' => 'No Documents found',
     'CLAIMS_NO_AFFECTED_AREAS' => 'No Affected Areas found',
-    'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location'
+    'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location',
+    'CLAIMS_LWH' => '(L x W x H)'
 );
