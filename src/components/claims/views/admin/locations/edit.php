@@ -11,11 +11,7 @@
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?> - {{vm.location.jobNumber}} - {{vm.location.unitNumber}}</h1>
-    <div class="pull-right">
-        <button class="primary h3button" ng-click="vm.saveLocation()">
-            <?php echo $this->getString('SAVE') ?>
-        </button>
-    </div>
+
     <div class="clearfix"></div>
 
     <div ng-if="vm.loading">
@@ -46,9 +42,31 @@
             <div class="card">
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT'); ?></h1>
-                    <?php echo $form['specialInstructions'] ?>
+                    <div class="pull-right text-right row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="vm.editInstructions()">
+                                        <?php echo $this->getString('EDIT') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <p></p>
+                    <div class="padding-top" ng-if="!vm.editingInstructions">{{vm.location.instructions}}</div>
+                    <div ng-if="vm.editingInstructions" class="padding-top">
+                        <?php echo $form['specialInstructions'] ?>
+                        <div class="pull-right padding-top">
+                            <button class="primary" ng-click="vm.saveInstructions()">
+                                <?php echo $this->getString('SAVE') ?>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
             </div>
         </div>
 
@@ -74,16 +92,14 @@
                     </div>
                 </div>
                 <ul class="table table-striped table-hover flex-table">
-                    <!--<thead>-->
-                        <li class="head">
-                            <div><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></div>
-                            <div><?php echo $this->getString('CLAIMS_LENGTH'); ?></div>
-                            <div><?php echo $this->getString('CLAIMS_WIDTH'); ?></div>
-                            <div><?php echo $this->getString('CLAIMS_HEIGHT'); ?></div>
-                            <div><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></div>
-                            <div sort-by-button class="cog-col row-controls">&nbsp;</div>
-                        </li>
-                    <!--</thead>-->
+                    <li class="head">
+                        <div><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></div>
+                        <div><?php echo $this->getString('CLAIMS_LENGTH'); ?></div>
+                        <div><?php echo $this->getString('CLAIMS_WIDTH'); ?></div>
+                        <div><?php echo $this->getString('CLAIMS_HEIGHT'); ?></div>
+                        <div><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></div>
+                        <div sort-by-button class="cog-col row-controls">&nbsp;</div>
+                    </li>
                     <li ng-if="vm.affectedAreasLoading" class="flex-row">
                         <div></div>
                         <div></div>
@@ -147,7 +163,7 @@
                         parent-item-id="{{vm.location.id}}"
                         parent-item-name="ClaimsLocations_id"
                         item-name="ClaimsLocationNote"
-                        class="padding-vertical">
+                        class="padding-vertical tab-notes">
                     </notes>
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">

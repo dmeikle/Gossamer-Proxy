@@ -5,7 +5,7 @@
         .module('claimsAdmin')
         .controller('claimsLocationsCtrl', claimsLocationsCtrl);
 
-    function claimsLocationsCtrl($timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv) {
+    function claimsLocationsCtrl($timeout, notesSrv, claimsTemplateSrv, $uibModal, crudSrv, $log) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         
@@ -13,6 +13,7 @@
         vm.documentsConfig = {};        
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;     
         vm.selectedEquipment = [];
+        vm.editingInstructions = false;
         
         vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
@@ -106,6 +107,10 @@
             vm.checkSelectedEquipment();
         };
         
+        vm.editInstructions = function() {
+            vm.editingInstructions = !vm.editingInstructions;
+        };
+        
 //        function getSelectedEquipment() {
 //            var selectedEquipment = [];
 //            for(var i in vm.equipmentLocations){
@@ -117,9 +122,18 @@
 //        }
         
         
-        vm.saveLocation = function () {
+//        vm.saveLocation = function () {
+//            var apiPath = '/admin/claims/locations/' + vm.location.id;
+//            crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);
+//        };
+        
+        vm.saveInstructions = function () {
             var apiPath = '/admin/claims/locations/' + vm.location.id;
-            crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken);
+            vm.editingInstructions = false;
+            vm.savingInstructions = true;
+            crudSrv.save(apiPath, vm.location, 'ClaimLocation', formToken).then(function(){
+                vm.savingInstructions = false;
+            });
         };
         
         vm.removeCustomer = function (customer) {

@@ -103,3 +103,11 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .card, .card .list-item {
+        .dropdown {
+            display:block;
+        }
+    }
+}

@@ -5,19 +5,19 @@
     <?php echo $form['jobNumberHidden']; ?>
     <?php echo $form['unassignedJobNumberHidden']; ?>
 
-    <div>
-        <div class="col-xs-12">
-            <h1 class="pull-left">
-                <?php echo $this->getString('CLAIMS_EDIT') ?>
-                <span ng-if="!claim" class="spinner-loader"></span>
-                <span ng-if="claim">
-                    <span ng-show="claim.jobNumber">{{claim.jobNumber}} / </span>
-                    {{claim.unassignedJobNumber}}
-                </span>
-            </h1>
-            <div class="clearfix"></div>
-        </div>
-        <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12">
+        <h1 class="pull-left">
+            <?php echo $this->getString('CLAIMS_EDIT') ?>
+            <span ng-if="!claim" class="spinner-loader"></span>
+            <span ng-if="claim">
+                <span ng-show="claim.jobNumber">{{claim.jobNumber}} / </span>
+                {{claim.unassignedJobNumber}}
+            </span>
+        </h1>
+        <div class="clearfix"></div>
+    </div>
+    <div class="col-md-8 no-padding">
+        <div class="col-xs-12 col-md-6 no-padding-left">
             <div class="card" ng-model="projectAddress">
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
@@ -38,7 +38,7 @@
 
             </div>
         </div>
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6 no-padding">
             <div class="card" ng-model="claim">
                 <div class="cardheader row">
                     <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 no-padding">
             <div class="widget" ng-controller="claimsLocationsListCtrl">
                 <div class="widgetheader">
                     <h2 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h2>
@@ -87,6 +87,16 @@
                         </button>
                     </div>
                 </div>
+    <!--                <ul class="table table-striped table-hover flex-table">
+                    <li class="head">
+                        <div><?php // echo $this->getString('CLAIMS_JOBNUMBER'); ?></div>
+                        <div><?php // echo $this->getString('CLAIMS_PHASE'); ?></div>
+                        <div><?php // echo $this->getString('CLAIMS_BUZZER'); ?></div>
+                        <div><?php // echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></div>
+                    </li>
+                    <div sort-by-button class="cog-col row-controls">&nbsp;</div>
+                </ul>-->
+
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -146,9 +156,10 @@
 
             </div>
         </div>
+
         <div class="clearfix"></div>
         <form class="hide"></form>
-        <div class="col-xs-12">
+        <div class="col-xs-12 no-padding">
             <uib-tabset>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
                     ...
@@ -199,7 +210,10 @@
             </uib-tabset>
         </div>
     </div>
-
+    <div class="clearfix hidden-lg hidden-md padding-vertical"></div>
+    <div class="col-md-4 no-padding-right">
+        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/views/admin/claims/edit-cards.php'); ?>
+    </div>
     <script type="text/ng-template" id="documentUploadModal">
         <div class="modal-header">
         <h1>
