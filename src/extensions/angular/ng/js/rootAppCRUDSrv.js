@@ -14,12 +14,7 @@ module.service('crudSrv', function($http) {
 
     this.save = function(apiPath, object, objectType, formToken) {
 
-        var requestPath;
-        if (!object.id || object.id === '') {
-            requestPath = apiPath + '0';
-        } else {
-            requestPath = apiPath + object.id;
-        }
+       
         var data = {};
         data[objectType] = object;
         data.FORM_SECURITY_TOKEN = formToken;
@@ -28,7 +23,6 @@ module.service('crudSrv', function($http) {
 
         return $http({
             method: 'POST',
-            // url: requestPath,
             url: apiPath,
             data: data,
             headers: {
@@ -40,12 +34,6 @@ module.service('crudSrv', function($http) {
     //Save with a custom data object
     this.saveWithData = function(apiPath, object, objectType, data, formToken) {
 
-        var requestPath;
-        if (!object.id || object.id === '') {
-            requestPath = apiPath + '0';
-        } else {
-            requestPath = apiPath + object.id;
-        }
         
         data[objectType] = object;
         data.FORM_SECURITY_TOKEN = formToken;

@@ -39,7 +39,7 @@
                     break;
                 default:
                     staffSrv.saveCredentials(credentials, formToken).then(function (response) {
-                        if(response.StaffAuthorization == undefined) {
+                        if(response.StaffAuthorization === undefined) {
                             self.credentialStatus = response;
                         }                        
                     });

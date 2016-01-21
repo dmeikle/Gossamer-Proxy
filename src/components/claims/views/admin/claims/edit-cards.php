@@ -64,21 +64,23 @@
         <div ng-if="loading">
             <div class="spinner-loader"></div>
         </div>
+        <div ng-controller="messagingEditCtrl as messageCtrl">
+            <div ng-if="!loading && hasContacts()" ng-repeat="contact in contacts" class="card info-card ng-scope">
+                <p><strong class="ng-binding">{{contact.contactType}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
+                    <span class="ng-binding" style="float: right"><strong><?php echo $this->getString('CLAIMS_COMPANY'); ?>:</strong> {{contact.company}} </span></p>
+                <p class="ng-binding">
+                    <?php echo $this->getString('CLAIMS_OFFICE'); ?>: {{contact.office}}
+                    <span class="ng-binding" style="float: right"> <?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{contact.mobile}}</span>
+                </p>
 
-
-        <div ng-if="!loading && hasContacts()" ng-repeat="contact in contacts" class="card info-card ng-scope">
-            <p><strong class="ng-binding">{{contact.contactType}}:</strong> <a class="ng-binding" href="mailto:{{contact.email}}">{{contact.firstname}} {{ contact.lastname}}</a>
-                <span class="ng-binding" style="float: right"><strong><?php echo $this->getString('CLAIMS_COMPANY'); ?>:</strong> {{contact.company}} </span></p>
-            <p class="ng-binding">
-                <?php echo $this->getString('CLAIMS_OFFICE'); ?>: {{contact.office}}
-                <span class="ng-binding" style="float: right"> <?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{contact.mobile}}</span>
-            </p>
-
-            <div class="cardfooter clearfix">
-                <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('CLAIMS_MORE_INFORMATION'); ?></a></div>
-
+                <div class="cardfooter clearfix">
+                    <a href="" ng-click="messageCtrl.showMessagePane(contact, claim)">send message</a>
+                    <div class="pull-right"><a href="/admin/contacts/{{contact.id}}"><?php echo $this->getString('CLAIMS_MORE_INFORMATION'); ?></a></div>
+                </div>
             </div>
+
         </div>
+
         <div ng-if="!loading && !hasContacts()">
             <p class="text-center text-muted">
                 <?php echo $this->getString('CLAIMS_NOCONTACTS') ?>
@@ -86,3 +88,23 @@
         </div>
     </div>
 </div>
+
+<script type="text/ng-template" id="messagePaneModal"
+        <div class="message-pane" >
+
+        <div class="prompt">
+        Subject:
+        </div>
+        <div class="field">
+        <input type="text" class="form-control" ng-model="modalCtrl.message.subject" />
+        </div>
+        <div class="prompt">
+        Message:
+        </div>
+        <div class="field">
+        <textarea class="form-control" ng-model="modalCtrl.message.message" ></textarea>
+        <button ng-click="" class="btn btn-primary">Cancel</button> <button ng-click="modalCtrl.sendMessage(modalCtrl.message)" class="btn btn-primary">Send</button>
+        </div>
+
+        </div>
+    </script>

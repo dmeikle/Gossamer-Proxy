@@ -10,10 +10,13 @@ admin_messaging_home:
         controller: components\messaging\controllers\MessagesController
         model: components\messaging\models\DiscussionModel
         method: index
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_messaging_home
         datasource: datasource1
-
+        langFiles:
+            - 'app/locales/*/website'
+            - 'src/components/messaging/locales/*/Messaging'
+    #staticCache: true
 
 admin_messaging_view_message:
     pattern: admin/messaging/view/*

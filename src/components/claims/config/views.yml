@@ -78,6 +78,7 @@ admin_claim_edit:
         #- @components/claims/dist/js/claims.min.js
     css:
         - @components/claims/dist/css/claims.min.css
+        - @components/messaging/dist/css/messaging.min.css
 
 
 claims_new_claim_wizard_1:
@@ -165,6 +166,7 @@ admin_claims_edit:
         bootstrap_modules:
             - rootApp
             - claimsAdmin
+            - messagingAdmin
           #  - xeditable
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
@@ -177,9 +179,12 @@ admin_claims_edit:
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
         #- @components/claims/dist/js/claims.min.js
+        - @components/messaging/dist/js/messaging.concat.js
+        #- @components/messaging/dist/js/messaging.min.js
        # - @extensions/xeditable/dist/js/xeditable-extension.concat.js
     css:
         - @components/claims/dist/css/claims.min.css
+        - @components/messaging/dist/css/messaging.min.css
        # - @extensions/xeditable/ng/css/xeditable.css
         - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
 

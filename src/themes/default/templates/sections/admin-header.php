@@ -23,8 +23,46 @@
                 <li class="dropdown" id="reminders">
 
                 </li>
-                <li class="dropdown" id="messages">
-                    <span class="glyphicon glyphicon-envelope-over"></span>
+                <li class="dropdown" id="messages" style="margin-right: 15px;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-envelope" style="color:antiquewhite"></span>
+                    </a>
+                    <span style="float: right; margin-top: -25px;">4</span>
+                    <ul class="dropdown-menu">
+                        <li class="message-count"><p>You have 4 new messages</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender">Samantha Carter</div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender">Samantha Carter</div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender">Samantha Carter</div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="view-all">
+                            <p>
+                                <a gcms="{uri='admin_messaging_home'}">See all messages
+                                    <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></i>
+                                </a>
+                            </p>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown" id="notifications">
 

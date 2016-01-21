@@ -97,6 +97,7 @@ module.controller('companyListCtrl', function ($scope, $modal, companyListSrv, c
                     .then(function () {
                         $scope.selectedCompany = clickedObject;
                         $scope.claimsList = companyClaimsListSrv.claimsList;
+                        $scope.hasClaims = companyClaimsListSrv.claimsCount > 0; 
                         $scope.sidePanelLoading = false;
                     });
         }
