@@ -51,6 +51,7 @@ return array(
     'CLAIMS_CONTACT_PHONE' => "Contact's Phone Number",
     'CLAIMS_CONTACT_TYPE' => 'Contact Type',
     'CLAIMS_CONTACTS' => 'Contacts',
+    'CLAIMS_LIST' => 'Claims List',
     'CLAIMS_CONTACTS_LIST' => 'Client List',
     'CLAIMS_CONVERT_TO_BREAKDOWN' => 'Convert to Breakdown',
     'CLAIMS_COST' => 'Cost',

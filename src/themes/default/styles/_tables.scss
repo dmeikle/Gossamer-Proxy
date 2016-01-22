@@ -50,12 +50,13 @@
         &.danger div{            
             background-color: #f2dede;            
         }
-        div:not(.flex-left):not(.flex-right):not(.dropdown){
+        div:not(.flex-left):not(.flex-right):not(.dropdown):not(.row-controls){
             @extend td;
             display:table-cell;
             padding: .5em;
             white-space: nowrap;
             text-overflow: ellipsis;
+            overflow: hidden;
             
         }
         
@@ -63,9 +64,17 @@
             background-color: #f9f9f9;
         }
     }
-    .row-controls {
-        padding: 8px;
+    .row-controls {        
         overflow: visible;
+        padding:4px;
+        vertical-align: middle;
+        display: table-cell;    
+        .dropdown-toggle {
+            z-index: 2;
+        }
+        .dropdown-menu {
+            z-index: 3;
+        }
     }
     &.table .dropdown {
         display: inline;
@@ -114,7 +123,7 @@
         .flex-row > div:not(.flex-left):not(.flex-right):not(.dropdown):not(.flex-loading) {
             display:none;
         }
-        .flex-row div:not(.flex-left):not(.flex-right):not(.dropdown) {
+        .flex-row div:not(.flex-left):not(.flex-right):not(.dropdown):not(.row-controls) {
             padding: 4px;
         }
 /*        .flex-loading div {
@@ -139,6 +148,11 @@
         }
         .clearfix {
             display:block;
+        }
+        .row-controls {            
+            position: absolute;
+            right: 20px;
+            padding: 4px;
         }
     }
 }
