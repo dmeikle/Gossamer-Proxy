@@ -71,18 +71,36 @@ class RemoteFileDataSource implements DataSourceInterface {
         return array('content' => $this->execute($entity->getTablename(), $verb, substr($queryString, 1)));
     }
 
-    private function execute($segment, $verb, $queryString) {
+    private function mail(AbstractModel $entity, $verb, array $params) {
+
+        return array('content' => $this->execute($entity->getTablename(), $verb, null, $params));
+    }
+
+    private function execute($segment, $verb, $queryString = null, array $params = null) {
         if (is_null($this->credentials)) {
             $this->setCredentials($this->keyname);
         }
-        error_log($this->credentials['baseUrl'] . "$segment/$verb/?" . $queryString);
+
         set_time_limit(0);
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->credentials['baseUrl'] . "$segment/$verb/?" . $queryString);
+        curl_setopt($ch, CURLOPT_URL, $this->credentials['baseUrl'] . "$segment/$verb" . (!is_null($queryString) ? "/?" . $queryString : ''));
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        if (!is_null($params)) {
+
+            $fieldsString = '';
+            error_log('posting');
+
+            //url-ify the data for the POST
+            $fieldsString = json_encode($params);
+
+            curl_setopt($ch, CURLOPT_POST, count($params));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fieldsString);
+            file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', print_r($fieldsString, true), FILE_APPEND);
+        }
         $r = curl_exec($ch);
         curl_close($ch);
 

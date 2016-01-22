@@ -75,7 +75,9 @@ class YAMLConfiguration {
             $nodeParams = $this->getYMLNodeParameters($ymlKey);
         } catch (\Exception $e) {
             error_log("error getting node parameters $ymlKey");
+            error_log($_SERVER['REQUEST_URI']);
             error_log($e->getMessage());
+
             http_response_code(404);
             throw new \exceptions\Error404Exception();
         }

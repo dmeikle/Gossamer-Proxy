@@ -29,7 +29,7 @@
             var modal = $uibModal.open({
                 templateUrl: template,
                 controller: 'messagingModalCtrl',
-                controllerAs: 'modalCtrl',
+                controllerAs: 'ctrl',
                 size: 'lg',
                 resolve: {
                         contact: function() {

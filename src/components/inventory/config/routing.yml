@@ -289,7 +289,7 @@ admin_inventory_equipment_locations:
         controller: components\inventory\controllers\InventoryEquipmentController
         model: components\inventory\models\InventoryItemModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_equipment_home
         datasource: datasource1
         langFiles:
@@ -337,7 +337,7 @@ admin_inventory_equipment_edit:
         controller: components\inventory\controllers\InventoryEquipmentController
         model: components\inventory\models\InventoryEquipmentModel
         method: edit
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_equipment_edit
         datasource: datasource1
         langFiles:
@@ -373,7 +373,7 @@ admin_inventory_items_edit:
         controller: components\inventory\controllers\InventoryItemsController
         model: components\inventory\models\InventoryItemModel
         method: edit
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_items_edit
         datasource: datasource1
         langFiles:
@@ -517,7 +517,7 @@ admin_inventory_list:
         controller: components\inventory\controllers\InventoryController
         model: components\inventory\models\InventoryModel
         method: index
-        view: core\views\AngularTemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_inventory_list
         datasource: datasource1
         langFiles:

@@ -12,8 +12,11 @@
             <div class="cardleft">
                 <h1>{{ctrl.phaseTitle}}</h1>
 
-                <span class="big" ng-class="{'text-danger':ctrl.pastDue}">
+                <span ng-show="!ctrl.pastDue" class="big">
                     {{ ctrl.daysRemainingInClaimPhase}} <?php echo $this->getString('CLAIMS_DAYS_REMAINING') ?>
+                </span>
+                <span ng-show="ctrl.pastDue" class="big text-danger">
+                    {{ ctrl.daysRemainingInClaimPhase}} <?php echo $this->getString('CLAIMS_DAYS_PASSED_DUE') ?>
                 </span>
             </div>
             <div class="cardright">
@@ -89,22 +92,41 @@
     </div>
 </div>
 
-<script type="text/ng-template" id="messagePaneModal"
-        <div class="message-pane" >
+<script type="text/ng-template" id="messagePaneModal">
+    <div class="modal-header">
+    <h1>
+    <?php echo $this->getString('CLAIMS_SEND_MESSAGE') ?>
+    </h1>
+    <div  class="clearfix">
+    <h3>
+    {{ctrl.contact.firstname}} {{ctrl.contact.lastname}}
+    </h1>
+    </div>
+    </div>
+    <div class="modal-body clearfix">
+    <div class="message-pane" >
 
-        <div class="prompt">
-        Subject:
-        </div>
-        <div class="field">
-        <input type="text" class="form-control" ng-model="modalCtrl.message.subject" />
-        </div>
-        <div class="prompt">
-        Message:
-        </div>
-        <div class="field">
-        <textarea class="form-control" ng-model="modalCtrl.message.message" ></textarea>
-        <button ng-click="" class="btn btn-primary">Cancel</button> <button ng-click="modalCtrl.sendMessage(modalCtrl.message)" class="btn btn-primary">Send</button>
-        </div>
+    <div class="prompt">Message Type:</div>
+    <div class="field">
+    <?php echo $messageForm['MessageTypes_id']; ?>
+    </div>
+    <div class="prompt">
+    Subject:
+    </div>
+    <div class="field">
 
-        </div>
-    </script>
+    <?php echo $messageForm['subject']; ?>
+    </div>
+    <div class="prompt">
+    Message:
+    </div>
+    <div class="field">
+    <?php echo $messageForm['message']; ?>
+    </div>
+    <div class="field">
+    <button ng-click="ctrl.cancel()" class="btn btn-primary">Cancel</button> <button ng-click="ctrl.sendMessage(ctrl.message)" class="btn btn-primary">Send</button>
+    </div>
+
+    </div>
+    </div>
+</script>

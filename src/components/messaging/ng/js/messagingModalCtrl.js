@@ -14,9 +14,12 @@
         .module('messagingAdmin')
         .controller('messagingModalCtrl', messagingModalCtrl);
 
-    function messagingModalCtrl(contact, claim, messagingSrv) {
+    function messagingModalCtrl($uibModalInstance, contact, claim, messagingSrv) {
         var self = this;
-
+        
+        //make it visible to the view
+        self.contact = contact;
+        
         self.sendMessage = function(message) {
             var package = {};
             package.Message = message;
@@ -24,7 +27,14 @@
             package.Claim = claim;
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
             
-            messagingSrv.save(package, formToken);
+            messagingSrv.save(package, formToken).then(function() {
+                $uibModalInstance.close();
+            });
+            
+        };
+        
+        self.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
         };
     }
 })();

@@ -15,6 +15,7 @@ use core\AbstractController;
 use Gossamer\CMS\Forms\FormBuilderInterface;
 use Gossamer\CMS\Forms\FormBuilder;
 use components\messaging\form\MessageBuilder;
+use core\eventlisteners\Event;
 
 /**
  * Description of MessagesController
@@ -114,7 +115,9 @@ class MessagesController extends AbstractController {
 
     public function sendNewMessage() {
 
-        $this->model->save(0);
+        $result = $this->model->save(0);
+
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', new Event('save_success', $result));
 
         $this->render(array('success' => 'true'));
     }

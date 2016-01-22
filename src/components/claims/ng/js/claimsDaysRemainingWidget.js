@@ -20,7 +20,7 @@
         vm.claimLoading = true;
         
         $rootScope.$on('claimDetailsLoaded', function() {
-            vm.daysRemainingInClaimPhase = claimsEditSrv.claimDetails.phase.numDays;
+            vm.daysRemainingInClaimPhase = Math.abs(claimsEditSrv.claimDetails.phase.numDays); //convert to positive regardless of value
             vm.pastDue = claimsEditSrv.claimDetails.phase.numDays < 0;
             vm.phaseTitle = claimsEditSrv.claimDetails.phase.title;
             vm.startDate = claimsEditSrv.claimDetails.phase.startDate;

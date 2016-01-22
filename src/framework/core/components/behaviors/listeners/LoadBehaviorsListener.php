@@ -51,9 +51,9 @@ class LoadBehaviorsListener extends AbstractListener {
     private function loadBehaviorConfig($path) {
         $parser = new YAMLParser($this->logger);
         $parser->setFilePath($path);
-        $config = $parser->loadConfig();
 
-        if ($config !== false && array_key_exists(__YML_KEY, $config) && array_key_exists('listeners', $config[__YML_KEY])) {
+        $config = $parser->loadConfig();
+        if (!is_null($config) && $config !== false && array_key_exists(__YML_KEY, $config) && array_key_exists('listeners', $config[__YML_KEY])) {
             return $config[__YML_KEY]['listeners'];
         }
 

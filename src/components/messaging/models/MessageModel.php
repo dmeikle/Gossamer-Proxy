@@ -65,11 +65,14 @@ class MessageModel extends AbstractModel implements FormBuilderInterface {
             $discussion = $params['MessagingDiscussion'];
             $params['Message']['MessagingDiscussions_id'] = intval($discussion['MessagingDiscussions_id']);
         }
+        if ($params['Message']['MessageTypes_id'] == 2) { //in-app message
+            $params['Message']['message'] = str_replace("\n", "<br>", $params['Message']['message']);
+        }
         unset($params['FORM_SECURITY_TOKEN']);
-        pr($params);
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveMessage', $params[$this->entity]);
 
-        return $data;
+        return $params;
     }
 
 //

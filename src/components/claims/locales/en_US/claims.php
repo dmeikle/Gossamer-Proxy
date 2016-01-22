@@ -58,6 +58,7 @@ return array(
     'CLAIMS_CREATION_DATE' => 'Created',
     'CLAIMS_DATE' => 'Date',
     'CLAIMS_DAYS_REMAINING' => 'Days Remaining',
+    'CLAIMS_DAYS_PASSED_DUE' => 'Days Passed Due',
     'CLAIMS_DAYTIME_PHONE' => 'Daytime Phone',
     'CLAIMS_DEPARTMENT' => 'Department',
     'CLAIMS_DESCRIPTION' => 'Description',
@@ -349,5 +350,6 @@ return array(
     'CLAIMS_BASEBOARDS' => 'Baseboards',
     'CLAIMS_DRYWALL' => 'Drywall',
     'CLAIMS_INSULATION' => 'Insulation',
-    'CLAIMS_SAMPLES' => 'Samples'
+    'CLAIMS_SAMPLES' => 'Samples',
+    'CLAIMS_SEND_MESSAGE' => 'Send Message'
 );
