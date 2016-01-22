@@ -105,6 +105,7 @@
     </div>
     <div class="modal-body clearfix">
     <div class="message-pane" >
+    <input type="text" name="Message[messageType]" ng-model="ctrl.message.messageType" id="Message_messageType" ng-init="ctrl.message.messageType='BASIC_IN_APP_MESSAGE'" />
 
     <div class="prompt">Message Type:</div>
     <div class="field">
@@ -129,4 +130,5 @@
 
     </div>
     </div>
+
 </script>

@@ -2,4 +2,12 @@
 
 admin_messaging_send:
     listeners:
-         - { 'class': 'components\inventory\models\WarehouseModel', 'event': 'save_success', 'listener': 'components\messaging\listeners\SendInAppMessageListener', 'datasource': 'java_proxy' }
+         -  
+            class: 'components\messaging\models\MessagingNotificationTemplateModel'
+            event: save_success
+            listener: 'components\messaging\listeners\SendInAppMessageListener'
+            datasource: java_proxy
+            datasources: 
+               - { key: 'components\messaging\models\MessagingNotificationTemplateModel', 'datasource': datasource1 }
+               - { key: 'extensions\proxyserver\models\ProxyMessageModel', 'datasource': java_proxy }
+         
