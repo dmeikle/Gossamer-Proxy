@@ -61,6 +61,9 @@
                     <div ng-if="vm.editingInstructions" class="padding-top">
                         <?php echo $form['specialInstructions'] ?>
                         <div class="pull-right padding-top">
+                            <button class="default" ng-click="vm.editInstructions()">
+                                <?php echo $this->getString('CANCEL') ?>
+                            </button>
                             <button class="primary" ng-click="vm.saveInstructions()">
                                 <?php echo $this->getString('SAVE') ?>
                             </button>
@@ -100,57 +103,57 @@
                         <div><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></div>
                         <div sort-by-button class="cog-col row-controls">&nbsp;</div>
                     </li>
-                    <li ng-if="vm.affectedAreasLoading" class="flex-row">
-                        <div></div>
-                        <div></div>
-                        <div><span class="spinner-loader"></span></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </li>
                     <div class="flex-tbody">
-                    <li ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading" class="flex-row">
-                        <div class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></div>
-                    </li>
-                    <li ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0" class="flex-row">
-                        <div class="flex-left">
-                            <div class="content"><h4>{{area.roomType}}</h4></div>
-                            <div class="content">{{area.length}} x {{area.width}} x {{area.height}}</div>
-                            <div class="content"><?php echo $this->getString('CLAIMS_LWH'); ?></div>
-                        </div>
-                        <div class="flex-right">
-                            <div class="content"><a ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)" href="#"><?php echo $this->getString('EDIT'); ?></a></div>
-                            <div class="content"><a href="#">Scope</a></div>
-                            <div class="content"><a href="#">Secondary Sheet</a></div>
-                            <div class="content"><a href="#">Material Takeoffs</a></div>
-                        </div>
-                        <div>
-                            {{area.roomType}}
-                        </div>
-                        <div>
-                            {{area.length}}
-                        </div>
-                        <div>
-                            {{area.width}}
-                        </div>
-                        <div>
-                            {{area.height}}
-                        </div>
-                        <div>
-                            <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
-                            <i ng-if="area.entryIsNorth == 0"></i>
-                        </div>
-                        <div class="row-controls">
-                            <div class="dropdown flex-dropdown">
-                                <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                        id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                </button>
-                                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                    <li><a href="" ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)"><?php echo $this->getString('EDIT'); ?></a></li>
-                                </ul>
+                        <li ng-if="vm.affectedAreasLoading" class="flex-row flex-loading">
+                            <div></div>
+                            <div></div>
+                            <div><span class="spinner-loader"></span></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </li>
+                        <li ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading" class="flex-row">
+                            <div class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></div>
+                        </li>
+                        <li ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0" class="flex-row">
+                            <div class="flex-left">
+                                <div class="content"><h4>{{area.roomType}}</h4></div>
+                                <div class="content">{{area.length}} x {{area.width}} x {{area.height}}</div>
+                                <div class="content"><?php echo $this->getString('CLAIMS_LWH'); ?></div>
                             </div>
-                        </div>
-                    </li>
+                            <div class="flex-right">
+                                <div class="content"><a ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)" href="#"><?php echo $this->getString('EDIT'); ?></a></div>
+                                <div class="content"><a href="#">Scope</a></div>
+                                <div class="content"><a href="#">Secondary Sheet</a></div>
+                                <div class="content"><a href="#">Material Takeoffs</a></div>
+                            </div>
+                            <div>
+                                {{area.roomType}}
+                            </div>
+                            <div>
+                                {{area.length}}
+                            </div>
+                            <div>
+                                {{area.width}}
+                            </div>
+                            <div>
+                                {{area.height}}
+                            </div>
+                            <div>
+                                <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
+                                <i ng-if="area.entryIsNorth == 0"></i>
+                            </div>
+                            <div class="row-controls">
+                                <div class="dropdown flex-dropdown">
+                                    <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    </button>
+                                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                        <li><a href="" ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)"><?php echo $this->getString('EDIT'); ?></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                     </div>
                 </ul>
             </div>

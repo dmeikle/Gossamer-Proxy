@@ -109,6 +109,13 @@
         
         vm.editInstructions = function() {
             vm.editingInstructions = !vm.editingInstructions;
+            
+            //Create a backup if they decide to cancel their current action
+            if(vm.editingInstructions === true){
+                vm.instructionsBackup = vm.location.instructions;                
+            } else {
+                vm.location.instructions = vm.instructionsBackup;     
+            }
         };
         
 //        function getSelectedEquipment() {

@@ -18,15 +18,16 @@
     @extend table;
     @extend .table-hover;
     @extend .table-striped;
+    padding-left: 0;
     display:table;
     .flex-tbody {
         display: table-row-group;
         @extend tbody;
     }
-    .head{
+    .head {
         @extend thead;
         display:table-row;        
-        div{
+        div {
             @extend th;  
             padding: 8px;
             line-height: 1.428571429;
@@ -38,15 +39,24 @@
             overflow: hidden;
         }
     }    
-    .flex-row{
+    .flex-row {
         @extend tr;
         display:table-row;
+        &:hover {
+            &.danger div {            
+                background-color: #ebcccc;
+            }
+        }
+        &.danger div{            
+            background-color: #f2dede;            
+        }
         div:not(.flex-left):not(.flex-right):not(.dropdown){
             @extend td;
             display:table-cell;
             padding: .5em;
             white-space: nowrap;
             text-overflow: ellipsis;
+            
         }
         
         &:nth-of-type(odd) {
@@ -66,9 +76,21 @@
     }
     .flex-left {
         width:66.666%;
+        div {
+            padding: 4px;
+        }
     }
     .flex-right {
         width:33.333%;
+        div {
+            padding: 4px;
+        }
+    }
+    .flex-loading {
+        display:table-row;
+        div {
+            display: table-cell;
+        }
     }
 }
 
@@ -89,12 +111,19 @@
             display: block;
         }
         display:block;
-        .flex-row > div:not(.flex-left):not(.flex-right):not(.dropdown) {
+        .flex-row > div:not(.flex-left):not(.flex-right):not(.dropdown):not(.flex-loading) {
             display:none;
         }
+        .flex-row div:not(.flex-left):not(.flex-right):not(.dropdown) {
+            padding: 4px;
+        }
+/*        .flex-loading div {
+            display: table-cell;
+        }*/
         .flex-row {
             /*display:block;*/
-                display: flex;
+            display: flex;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
         }
         .flex-left {
             float: left;
