@@ -72,13 +72,11 @@ module.directive('columnSortable', function($compile, $location) {
 });
 //console.log('this is a test!');
 module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
-    console.log('this is a test!!!!!!');
     return {
         restrict: 'A',
         scope: false,
         transclude: true,
         link: function(scope, element, attrs) {
-            console.log('this is a test!');
             var buttonDOM = document.createElement('div');
             buttonDOM.setAttribute('class', 'dropdown');
             buttonDOM.innerHTML = '<button class="btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-magnet"></span></button>';
@@ -86,7 +84,6 @@ module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
 
             var columns = [];
             for (var th in element[0].parentElement.children) {
-                console.log(th);
                 if (element[0].parentElement.children.hasOwnProperty(th) &&
                     element[0].parentElement.children[th].className.indexOf('cog-col') === -1) {
                     columns.push(element[0].parentElement.children[th]);
