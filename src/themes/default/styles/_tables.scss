@@ -20,6 +20,7 @@
     @extend .table-striped;
     padding-left: 0;
     display:table;
+    margin-bottom: 1rem;
     .flex-tbody {
         display: table-row-group;
         @extend tbody;
@@ -37,6 +38,9 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
+            &.row-controls{
+                overflow: visible;
+            }
         }
     }    
     .flex-row {
@@ -68,7 +72,7 @@
         overflow: visible;
         padding:4px;
         vertical-align: middle;
-        display: table-cell;    
+        display: table-cell;
         .dropdown-toggle {
             z-index: 2;
         }
@@ -95,11 +99,19 @@
             padding: 4px;
         }
     }
-    .flex-loading {
+/*    .flex-loading {
         display:table-row;
         div {
             display: table-cell;
         }
+        }*/
+    .flex-loading {
+        display: table-row;
+        div {
+            display: table-cell;
+            text-align: center;
+            background-color:#fefefe;
+        } 
     }
 }
 
@@ -113,6 +125,10 @@
 
 @media (max-width: 991px) { 
     .flex-table {
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        &.loading{
+            border:none;
+        }
         .head{
             display:none;
         }
@@ -126,9 +142,14 @@
         .flex-row div:not(.flex-left):not(.flex-right):not(.dropdown):not(.row-controls) {
             padding: 4px;
         }
-/*        .flex-loading div {
-            display: table-cell;
-        }*/
+        .flex-loading {
+            display: block;
+            div {
+                display: block;
+                text-align: center;
+                background-color:#fefefe;
+            } 
+        }
         .flex-row {
             /*display:block;*/
             display: flex;

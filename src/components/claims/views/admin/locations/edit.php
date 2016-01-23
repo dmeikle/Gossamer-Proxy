@@ -6,7 +6,7 @@
     <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsLocationsNotes); ?>' id="ClaimsLocationsNotes" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($EquipmentLocations); ?>' id="EquipmentLocations" ng-if="!vm.loaded" />
-    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id); ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
+    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id);  ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
@@ -57,19 +57,19 @@
                         </div>
                     </div>
                 </div>
-                    <div class="padding-top" ng-if="!vm.editingInstructions">{{vm.location.instructions}}</div>
-                    <div ng-if="vm.editingInstructions" class="padding-top">
-                        <?php echo $form['specialInstructions'] ?>
-                        <div class="pull-right padding-top">
-                            <button class="default" ng-click="vm.editInstructions()">
-                                <?php echo $this->getString('CANCEL') ?>
-                            </button>
-                            <button class="primary" ng-click="vm.saveInstructions()">
-                                <?php echo $this->getString('SAVE') ?>
-                            </button>
-                        </div>
-                        <div class="clearfix"></div>
+                <div class="padding-top" ng-if="!vm.editingInstructions">{{vm.location.instructions}}</div>
+                <div ng-if="vm.editingInstructions" class="padding-top">
+                    <?php echo $form['specialInstructions'] ?>
+                    <div class="pull-right padding-top">
+                        <button class="default" ng-click="vm.editInstructions()">
+                            <?php echo $this->getString('CANCEL') ?>
+                        </button>
+                        <button class="primary" ng-click="vm.saveInstructions()">
+                            <?php echo $this->getString('SAVE') ?>
+                        </button>
                     </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
 
@@ -104,10 +104,10 @@
                         <div sort-by-button class="cog-col row-controls">&nbsp;</div>
                     </li>
                     <div class="flex-tbody">
-                        <li ng-if="vm.affectedAreasLoading" class="flex-row flex-loading">
+                        <li ng-if="vm.affectedAreasLoading" class="flex-loading">
                             <div></div>
                             <div></div>
-                            <div><span class="spinner-loader"></span></div>
+                            <div class="padding-vertical"><span class="spinner-loader"></span></div>
                             <div></div>
                             <div></div>
                             <div></div>
@@ -163,10 +163,10 @@
             <uib-tabset>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
                     <notes api-path="/admin/claims/locations/notes/"
-                        parent-item-id="{{vm.location.id}}"
-                        parent-item-name="ClaimsLocations_id"
-                        item-name="ClaimsLocationNote"
-                        class="padding-vertical tab-notes">
+                           parent-item-id="{{vm.location.id}}"
+                           parent-item-name="ClaimsLocations_id"
+                           item-name="ClaimsLocationNote"
+                           class="padding-vertical tab-notes">
                     </notes>
                 </uib-tab>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_HISTORY') ?>">
@@ -339,9 +339,9 @@
                         <div ng-if="customer.mobile"><?php echo $this->getString('CLAIMS_MOBILE'); ?>: {{customer.mobile}}</div>
                         <div ng-if="customer.email"><?php echo $this->getString('CLAIMS_EMAIL'); ?>: {{customer.email}}</div>
                     </div>
-                        <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
+                    <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.secondaryCustomers.length-1" class="divider"></div>
+                    <div ng-if="$index < vm.secondaryCustomers.length - 1" class="divider"></div>
                 </div>
 
             </div>
@@ -411,21 +411,21 @@
     </div>
 
     <script type="text/ng-template" id="documentUploadModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationDocumentModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationDocumentModal.php'); ?>
     </script>
 
     <script type="text/ng-template" id="affectedAreasModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationAffectedAreasModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationAffectedAreasModal.php'); ?>
     </script>
 
     <!--Customers Modal-->
     <script type="text/ng-template" id="customersModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
     </script>
 
     <!--Equipment Transfer Modal-->
     <script type="text/ng-template" id="equipmentTransferModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/equipmentTransferModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/equipmentTransferModal.php'); ?>
     </script>
 </div>
 
