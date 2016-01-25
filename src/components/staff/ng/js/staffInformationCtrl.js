@@ -41,29 +41,17 @@
             load();
         }
         
-        //Datepicker testing code
-        //Remove this later
-        self.popup1 = {};
-        self.maxDate = new Date(2020, 5, 22);
-        self.minDate = $scope.minDate ? null : new Date();
-//        self.dateOptions = {
-//            formatYear: 'yy',
-//            startingDay: 1
-//          };
-
-        self.open1 = function() {
-            self.popup1.opened = true;
-          };
-        
         self.openDatepicker = function (datepicker) {            
             self.isOpen[datepicker] = true;
         };
-        //End of test code
         
         function load() {
             var id = document.getElementById('Staff_id').value;
             staffSrv.getRow(id).then(function (staff) {
-                $scope.$broadcast('STAFF_LOADED', {staff: staff});
+                staff.dob = Date.parse((staff.dob.replace(/-/g, "/")));
+                staff.hireDate = Date.parse((staff.hireDate.replace(/-/g, "/")));
+                staff.departureDate = Date.parse((staff.departureDate.replace(/-/g, "/")));
+//                $scope.$broadcast('STAFF_LOADED', {staff: staff});
                 $rootScope.$broadcast('STAFF_LOADED', {staff: staff});
             });            
         }
