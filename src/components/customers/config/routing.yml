@@ -66,7 +66,7 @@ admin_customers_company_edit:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customers_edit
         datasource: datasource1
                 
@@ -78,7 +78,7 @@ customers_get:
         controller: components\customers\controllers\CustomerController
         model: components\customers\models\CustomerModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: customers_get
         datasource: datasource1
     methods: [POST]
@@ -92,7 +92,7 @@ admin_customers_permissions_get:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customers_permissions_get
         datasource: datasource1
     methods: [GET]    
@@ -108,7 +108,7 @@ admin_customer_permissions_save:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: savePermissions
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customer_permissions_save
         datasource: datasource1
     methods: [POST]          
@@ -121,7 +121,7 @@ admin_customers_credentials_get:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: editCredentials
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customers_credentials_get
         datasource: datasource1
     methods: [GET]    
@@ -141,7 +141,7 @@ admin_customers_credentials_save:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: saveCredentials
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customers_credentials_save
         datasource: datasource1
     methods: [POST]      
@@ -177,7 +177,7 @@ customers_list:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: listall
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: customers_list
         datasource: datasource1
    
@@ -192,7 +192,7 @@ admin_customers_edit:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_customers_edit
         datasource: datasource1
         
@@ -217,7 +217,7 @@ admin_scoping_add_customer:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: save
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_scoping_add_customer
         datasource: datasource1           
         
@@ -230,7 +230,7 @@ portal_login:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerModel
         method: login
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_login
         datasource: datasource1
         langFiles: 
@@ -252,7 +252,7 @@ portal_login_submit:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerModel
         method: login
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_login_submit
         datasource: datasource1
         langFiles: 
@@ -269,7 +269,7 @@ customers_login_locked:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerModel
         method: view
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: customers_login_locked
         datasource: datasource1   
 
@@ -280,7 +280,7 @@ customers_login_failed:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerModel
         method: view
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: customers_login_failed
         datasource: datasource1 
             
@@ -293,7 +293,7 @@ portal_customer_settings:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: view
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_settings
         datasource: datasource1 
       
@@ -318,7 +318,7 @@ portal_customer_invites_invite:
         controller: components\customers\controllers\CustomerInvitesController
         model: components\customers\models\CustomerInviteModel
         method: invite
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_invite
         datasource: datasource1         
         
@@ -331,7 +331,7 @@ portal_customer_invites_edit:
         controller: components\customers\controllers\CustomerInvitesController
         model: components\customers\models\CustomerInviteModel
         method: edit
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_edit
         datasource: datasource1 
         
@@ -343,7 +343,7 @@ portal_customer_invites_save:
         controller: components\customers\controllers\CustomerInvitesController
         model: components\customers\models\CustomerInviteModel
         method: save
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_save
         datasource: datasource1         
         
@@ -354,7 +354,7 @@ portal_customer_invites_list:
         controller: components\customers\controllers\CustomerInvitesController
         model: components\customers\models\CustomerInviteModel
         method: listall
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_list
         datasource: datasource1 
           
@@ -367,7 +367,7 @@ portal_customer_invites_login:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerInviteModel
         method: login
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_login
         datasource: datasource1           
 
@@ -379,7 +379,7 @@ portal_customer_invites_login_submit:
         controller: components\customers\controllers\LoginController
         model: components\customers\models\CustomerInviteModel
         method: login
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customer_invites_login_submit
         datasource: datasource1             
         
@@ -391,7 +391,7 @@ portal_customers_list:
         controller: components\customers\controllers\CustomersFriendsController
         model: components\customers\models\CustomerFriendModel
         method: listall
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customers_list
         datasource: datasource1   
         
@@ -407,7 +407,7 @@ portal_customers_edit:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: load
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customers_edit
         datasource: datasource1             
         
@@ -419,7 +419,7 @@ portal_customers_save:
         controller: components\customers\controllers\CustomersController
         model: components\customers\models\CustomerModel
         method: saveInfo
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customers_save
         datasource: datasource1          
         
@@ -432,7 +432,7 @@ portal_customers_credentials_get:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: viewCredentials
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customers_credentials_get
         datasource: datasource1
     methods: [GET]    
@@ -452,7 +452,7 @@ portal_customers_credentials_save:
         controller: components\customers\controllers\CustomerAuthorizationsController
         model: components\customers\models\CustomerAuthorizationModel
         method: portalSaveCredentials
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: portal_customers_credentials_save
         datasource: datasource1
     methods: [POST] 
