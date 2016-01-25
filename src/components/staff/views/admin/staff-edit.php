@@ -1,4 +1,3 @@
-
 <div class="content full-width">
 
 
@@ -12,6 +11,13 @@
                     <h1 class="pull-left"><?php echo $this->getString('STAFF_EMPLOYMENT_INFO'); ?></h1>
                 </div>
                 <div class="clearfix"></div>
+
+<!--                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MMMM-yyyy" ng-model="dt" is-open="ctrl.popup1.opened" min-date="ctrl.minDate" max-date="ctrl.maxDate" datepicker-options="ctrl.dateOptions" close-text="Close"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>-->
 
                 <div ng-if="ctrl.loading">
                     <span class="spinner-loader"></span>
@@ -59,7 +65,7 @@
 
 
 
-                <div class="form-group">
+                <div>
                     <label for="staff-hireDate"><?php echo $this->getString('STAFF_HIREDATE'); ?></label>
                     <div class="input-group">
                         <input type="text" name="hireDate" id="staff-hireDate" ng-model="ctrl.staff.hireDate" ng-model-options="{timezone: '+0000'}"
@@ -72,7 +78,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div>
                     <label for="staff-departureDate"><?php echo $this->getString('STAFF_DEPARTUREDATE'); ?></label>
                     <div class="input-group">
                         <input type="text" name="departureDate" id="staff-departureDate" ng-model="ctrl.staff.departureDate" ng-model-options="{timezone: '+0000'}"
@@ -139,7 +145,7 @@
                         <label for="staff-postalCode"><?php echo $this->getString('STAFF_POSTALCODE'); ?></label>
                         <?php echo $form['postalCode']; ?>
                     </div>
-                    <div class="form-group splitcolumn right-tight">
+                    <div class="splitcolumn right-tight">
                         <label for="staff-dob"><?php echo $this->getString('STAFF_DOB'); ?></label>
                         <div class="input-group">
                             <input type="text" name="dob" id="staff-dob" ng-model="ctrl.staff.dob" ng-model-options="{timezone: '+0000'}"
@@ -354,7 +360,7 @@
         <uib-tab heading="Emergency Contacts">
             <div class="card" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                               ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                                        ?></h1>
                     <button ng-if="!ctrl.loading" class="primary pull-right"
                             ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
@@ -407,7 +413,7 @@
 
             <div ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                               ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                                        ?></h1>
                     <button ng-if="!ctrl.addingNew" class="pull-right" ng-click="ctrl.openAddNewBenefitsModal()" ng-disabled="!ctrl.staffLoaded">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
@@ -494,7 +500,7 @@
         <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>" permission-key="humanresources">
             <div class="card" ng-controller="staffRolesCtrl as ctrl">
                 <div class="cardheader">
-                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                              ?></h1>
+                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                                       ?></h1>
                 </div>
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>
