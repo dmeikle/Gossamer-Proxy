@@ -48,9 +48,15 @@
         function load() {
             var id = document.getElementById('Staff_id').value;
             staffSrv.getRow(id).then(function (staff) {
-                staff.dob = Date.parse((staff.dob.replace(/-/g, "/")));
-                staff.hireDate = Date.parse((staff.hireDate.replace(/-/g, "/")));
-                staff.departureDate = Date.parse((staff.departureDate.replace(/-/g, "/")));
+                if(staff.dob) {
+                    staff.dob = Date.parse((staff.dob.replace(/-/g, "/")));                    
+                }
+                if(staff.hireDate) {                    
+                    staff.hireDate = Date.parse((staff.hireDate.replace(/-/g, "/")));
+                }
+                if(staff.departureDate) {                    
+                    staff.departureDate = Date.parse((staff.departureDate.replace(/-/g, "/")));
+                }
 //                $scope.$broadcast('STAFF_LOADED', {staff: staff});
                 $rootScope.$broadcast('STAFF_LOADED', {staff: staff});
             });            
