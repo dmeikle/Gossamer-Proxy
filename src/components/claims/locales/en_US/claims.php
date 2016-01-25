@@ -51,7 +51,6 @@ return array(
     'CLAIMS_CONTACT_PHONE' => "Contact's Phone Number",
     'CLAIMS_CONTACT_TYPE' => 'Contact Type',
     'CLAIMS_CONTACTS' => 'Contacts',
-    'CLAIMS_LIST' => 'Claims List',
     'CLAIMS_CONTACTS_LIST' => 'Client List',
     'CLAIMS_CONVERT_TO_BREAKDOWN' => 'Convert to Breakdown',
     'CLAIMS_COST' => 'Cost',
@@ -344,7 +343,6 @@ return array(
     'CLAIMS_SECONDARY' => 'Secondary',
     'CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS' => 'Customer Contact Details',
     'CLAIMS_SPECIAL_INSTRUCTIONS_FOR_UNIT' => 'Special Instructions',
-    'CLAIMS_INSTRUCTIONS' => 'Instructions',
     'CLAIMS_CURRENT_KEY_HOLDER' => 'Current Key Holder',
     'CLAIMS_EQUIPMENT_ON_SITE' => 'Equipment on Site',
     'CLAIMS_ROOM_TYPE' => 'Room Type',
@@ -385,8 +383,5 @@ return array(
     'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location',
     'CLAIMS_NO_DOCUMENTS' => 'No Documents found',
     'CLAIMS_NO_AFFECTED_AREAS' => 'No Affected Areas found',
-    'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location',
-    'CLAIMS_LWH' => '(L x W x H)',
-    'CLAIMS_SCOPING_MATERIAL_TAKEOFFS' => 'Material Takeoff Sheet',
-    'CLAIMS_NO_PHASE_SET' => 'No Phase set'
+    'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location'
 );

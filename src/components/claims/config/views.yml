@@ -152,16 +152,14 @@ admin_claims_list:
         - @components/claims/dist/css/claims.min.css
 
 admin_claims_edit:
-#    template: admin-2cols.php
-    template: admin-list.php
-
+    template: admin-2cols.php
     sections:
         -
             header: src/themes/default/templates/sections/admin-header.php
             "notifications": "/src/themes/default/templates/sections/notification-area.php"
             leftnav: src/themes/default/templates/sections/left-nav.php
             content: src/components/claims/views/admin/claims/edit.php
-#            cards: src/components/claims/views/admin/claims/edit-cards.php
+            cards: src/components/claims/views/admin/claims/edit-cards.php
             footer: src/themes/default/templates/sections/footer.php
     angular:
         bootstrap_modules:

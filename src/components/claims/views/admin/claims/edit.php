@@ -5,19 +5,19 @@
     <?php echo $form['jobNumberHidden']; ?>
     <?php echo $form['unassignedJobNumberHidden']; ?>
 
-    <div class="col-xs-12">
-        <h1 class="pull-left">
-            <?php echo $this->getString('CLAIMS_EDIT') ?>
-            <span ng-if="!claim" class="spinner-loader"></span>
-            <span ng-if="claim">
-                <span ng-show="claim.jobNumber">{{claim.jobNumber}} / </span>
-                {{claim.unassignedJobNumber}}
-            </span>
-        </h1>
-        <div class="clearfix"></div>
-    </div>
-    <div class="col-md-8 no-padding">
-        <div class="col-xs-12 col-md-6 no-padding-left">
+    <div>
+        <div class="col-xs-12">
+            <h1 class="pull-left">
+                <?php echo $this->getString('CLAIMS_EDIT') ?>
+                <span ng-if="!claim" class="spinner-loader"></span>
+                <span ng-if="claim">
+                    <span ng-show="claim.jobNumber">{{claim.jobNumber}} / </span>
+                    {{claim.unassignedJobNumber}}
+                </span>
+            </h1>
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="projectAddress">
                 <div class="cardheader">
                     <h1 class="pull-left"><?php echo $this->getString('CLAIMS_ADDRESS_INFO'); ?></h1>
@@ -38,14 +38,11 @@
 
             </div>
         </div>
-        <div class="col-xs-12 col-md-6 no-padding">
+        <div class="col-xs-12 col-md-6">
             <div class="card" ng-model="claim">
-                <div class="cardheader">
-                    <div class="pull-left">
-                        <h1><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
-                    </div>
-
-                    <div class="pull-right text-right row-controls">
+                <div class="cardheader row">
+                    <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SUMMARY'); ?></h1>
+                    <div class="col-xs-3 text-right row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                     id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -80,100 +77,55 @@
             </div>
         </div>
 
-        <div class="col-xs-12 no-padding">
-            <div class="card" ng-controller="claimsLocationsListCtrl">
-                <div class="cardheader">
-                    <h1 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h1>
-                    <!--                    <div class="pull-right">
-                                            <button class="primary" ng-click="openClaimLocationModal()">
-                    <?php // echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
-                                            </button>
-                                        </div>-->
-
-                    <div class="pull-right text-right row-controls">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            </button>
-                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                <li>
-                                    <a href="#" ng-click="openClaimLocationModal()">
-                                        <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+        <div class="col-xs-12">
+            <div class="widget" ng-controller="claimsLocationsListCtrl">
+                <div class="widgetheader">
+                    <h2 class="pull-left"><?php echo $this->getString('CLAIMS_LOCATIONS') ?></h2>
+                    <div class="pull-right">
+                        <button class="primary" ng-click="openClaimLocationModal()">
+                            <?php echo $this->getString('CLAIMS_LOCATIONS_ADDNEW') ?>
+                        </button>
                     </div>
                 </div>
-
-                <ul class="table table-striped table-hover flex-table">
-                    <li class="head">
-                        <div column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></div>
-                        <div column-sortable data-column="phase"><?php echo $this->getString('CLAIMS_PHASE'); ?></div>
-                        <div column-sortable data-column="buzzerCode"><?php echo $this->getString('CLAIMS_BUZZER'); ?></div>
-                        <div column-sortable data-column="parentClaim"><?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?></div>
-                        <div sort-by-button class="cog-col row-controls">&nbsp;</div>
-                    </li>
-                    <div class="flex-tbody">
-                        <li ng-if="loading" class="flex-loading">
-                            <div></div>
-                            <div></div>
-                            <div class="padding-vertical"><span class="spinner-loader"></span></div>
-                            <div></div>
-                            <div></div>
-                        </li>
-                        <li ng-repeat="location in claimsLocations" class="flex-row"  ng-class="getStatusColor(location)" ng-click="selectRow(location)">
-                            <div class="flex-left">
-                                <div>
-                                    <div class="content"><h4><?php echo $this->getString('CLAIMS_UNIT_NUMBER') ?>{{location.unitNumber}}</h4></div>
-                                    <div class="content" ng-if="location.phase"><?php echo $this->getString('CLAIMS_PHASE') ?>: {{location.phase}}</div>
-                                    <div class="content" ng-if="!location.phase"><?php echo $this->getString('CLAIMS_NO_PHASE_SET') ?></div>
-                                    <div class="content" ng-if="location.instructions"><?php echo $this->getString('CLAIMS_INSTRUCTIONS') ?>: {{location.instructions}}</div>
-                                </div>
-                            </div>
-                            <div class="flex-right">
-                                <div class="row-controls pull-right">
-                                    <div class="dropdown flex-dropdown">
-                                        <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                                id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                                            <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
-                                            <li><a href="" ng-click="openCustomersModal('customersModal', location, {})"><?php echo $this->getString('CLAIMS_ADD_CUSTOMER') ?></a></li>
-                                            <li><a href="/admin/claim/initial-jobsheet/edit/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
-                                            <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW_INITIAL_JOBSHEET') ?></a></li>
-                                            <li><a href="/admin/scoping/takeoffs/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_SCOPING_MATERIAL_TAKEOFFS') ?></a></li>
-                                            <li>
-                                                <a gcms="{uri='admin_claims_secondarysheets_home' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_SECONDARY_SHEETS'); ?></a>
-                                            </li>
-                                            <li><a href="" ng-click="delete(location)"><?php echo $this->getString('REMOVE') ?></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="">
-
-                                    <div class="content" ng-if="location.firstname || location.lastname">{{location.firstname}} {{location.lastname}}</div>
-                                    <div class="content" ng-if="location.daytimePhone">{{location.daytimePhone}}</div>
-                                    <div class="content" ng-if="location.buzzerCode"><?php echo $this->getString('CLAIMS_BUZZER') ?>: {{location.buzzerCode}}</div>
-
-                                </div>
-                            </div>
-                            <div>
-                                {{location.unitNumber}}
-                            </div>
-                            <div>
-                                {{location.phase}}
-                            </div>
-                            <div>
-                                {{location.buzzerCode}}
-                            </div>
-                            <div>
-                                {{location.jobNumber}}
-                            </div>
-                            <div class="row-controls">
-                                <div class="dropdown flex-dropdown">
-                                    <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
-                                            id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th column-sortable data-column="jobNumber">
+                                <?php echo $this->getString('CLAIMS_JOBNUMBER'); ?>
+                            </th>
+                            <th column-sortable data-column="phase">
+                                <?php echo $this->getString('CLAIMS_PHASE'); ?>
+                            </th>
+                            <th column-sortable data-column="buzzerCode">
+                                <?php echo $this->getString('CLAIMS_BUZZER'); ?>
+                            </th>
+                            <th column-sortable data-column="parentClaim">
+                                <?php echo $this->getString('CLAIMS_PARENT_CLAIM'); ?>
+                            </th>
+                            <th sort-by-button class="cog-col row-controls">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="loading">
+                            <td></td>
+                            <td colspan="2">
+                                <span class="spinner-loader"></span>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr ng-if="!loading" ng-repeat="location in claimsLocations" ng-class="getStatusColor(location)"
+                            ng-class="{'selected': location === previouslyClickedObject,
+                                'inactive bg-warning text-warning': claim.status == 'inactive'}">
+                            <td ng-click="selectRow(location)">{{location.unitNumber}}</td>
+                            <td ng-click="selectRow(location)">{{location.phase}}</td>
+                            <td ng-click="selectRow(location)">{{location.buzzerCode}}</td>
+                            <td ng-click="selectRow(location)">{{location.jobNumber}}</td>
+                            <td class="row-controls">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                            type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                         <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
@@ -187,18 +139,16 @@
                                         <li><a href="" ng-click="delete(location)"><?php echo $this->getString('REMOVE') ?></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                        </li>
-                    </div>
-                    <!--<div sort-by-button class="cog-col row-controls">&nbsp;</div>-->
-                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
         </div>
-
         <div class="clearfix"></div>
         <form class="hide"></form>
-        <div class="col-xs-12 no-padding">
+        <div class="col-xs-12">
             <uib-tabset>
                 <uib-tab heading="<?php echo $this->getString('CLAIMS_COMMENTS') ?>">
                     ...
@@ -249,10 +199,7 @@
             </uib-tabset>
         </div>
     </div>
-    <div class="clearfix hidden-lg hidden-md padding-vertical"></div>
-    <div class="col-md-4 no-padding-right">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/views/admin/claims/edit-cards.php'); ?>
-    </div>
+
     <script type="text/ng-template" id="documentUploadModal">
         <div class="modal-header">
         <h1>
