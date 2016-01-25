@@ -263,7 +263,9 @@ admin_claims_home:
             - 'src/components/claims/locales/*/claims'
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
-    staticCache: true
+#    staticCache: true
+    staticCache: false
+
 
 
 
@@ -513,7 +515,7 @@ admin_claims_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
-    staticCache: true
+    staticCache: false
 
 
 admin_claims_view:
