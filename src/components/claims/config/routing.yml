@@ -872,7 +872,19 @@ admin_claimlocations_list_by_projectaddress:
         viewKey: admin_claims_list_by_projectaddress
         datasource: datasource1
 
+#claimId, $claimlocationId, $customerId
+admin_claimcustomers_remove:
+    pattern: admin/customers/remove/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimCustomerModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_claimcustomers_remove
+        datasource: datasource1
 
+    
 
 
     #-----------------------------start client portal section --------------------------------
