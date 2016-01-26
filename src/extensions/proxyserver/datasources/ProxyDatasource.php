@@ -40,7 +40,7 @@ class ProxyDatasource implements DataSourceInterface {
         $this->keyname = $keyName;
     }
 
-    private function mail(AbstractModel $entity, $verb, array $params) {
+    private function email(AbstractModel $entity, $verb, array $params) {
 
         return array('content' => $this->execute($entity->getTablename(), $verb, null, $params));
     }

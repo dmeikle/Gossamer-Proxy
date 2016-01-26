@@ -31,23 +31,24 @@ class SendInAppMessageListener extends AbstractListener {
         $this->loadTemplate($params['Message']['messageType']);
 
         $recipient = $this->getRecipient($params);
-        file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', str_replace('<!---message--->', $params['Message']['message'], $this->template), FILE_APPEND);
+
         $post = array(
             'Message' => array(
-                'requestType' => 'BASIC_EMAIL',
                 'to' => array($recipient['email']),
                 'cc' => array(),
                 'bcc' => array(),
+                'from' => 'davemeikle@ymail.com',
                 'subject' => $params['Message']['subject'],
                 'html' => str_replace('<!---message--->', $params['Message']['message'], $this->template),
                 'plainText' => $params['Message']['message']
-            )
+            ),
+            'List' => array()
         );
 
         $datasource = $this->getDatasource('extensions\\proxyserver\\models\\ProxyMessageModel');
         $model = new ProxyMessageModel($this->httpRequest, $this->httpResponse, $this->logger);
 
-        $result = $datasource->query('post', $model, 'mail', $post);
+        $result = $datasource->query('post', $model, 'email', $post);
     }
 
     private function getRecipient(array $message) {

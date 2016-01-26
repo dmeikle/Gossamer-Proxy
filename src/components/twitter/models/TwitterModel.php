@@ -69,7 +69,7 @@ class TwitterModel extends AbstractModel {
 
     public function requestToken($staffId, $ipAddress) {
 
-        $webSocketClient = new WebSocketClient('192.168.2.252', 9001);
+        $webSocketClient = new WebSocketClient('phoenix.quantumunit.com', 9000);
         $rawResponse = $webSocketClient->requestNewToken($staffId, $ipAddress);
         unset($webSocketClient);
         $responseArray = $this->parseResponse($rawResponse);

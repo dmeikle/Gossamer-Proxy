@@ -29,7 +29,7 @@ class ProxyMessageModel extends AbstractModel {
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
         $this->entity = 'ProxyMessage';
-        $this->tablename = 'service/proxy';
+        $this->tablename = 'service';
     }
 
 }

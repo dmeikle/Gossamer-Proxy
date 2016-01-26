@@ -104,17 +104,17 @@ class AbstractListener {
          * for requested modelName before defaulting to datasourceKey which is
          * specified in default routing config.
          */
-        if (!is_object($modelName) && !array_key_exists($modelName, $this->datasources)) {
-            if (!is_null($this->datasourceKey)) {
-
-                $datasource = $this->datasourceFactory->getDatasource($this->datasourceKey, $this->logger);
-                $datasource->setDatasourceKey($this->datasourceKey);
-            } else {
-                throw new \Exception($modelName . ' datasource key missing from listeners configuration');
-            }
-        } else {
+        if (is_object($modelName) && array_key_exists($modelName->getTablename(), $this->datasources)) {
+            $datasource = $this->datasourceFactory->getDatasource($this->datasources[$modelName->getTablename()], $this->logger);
+            $datasource->setDatasourceKey($this->datasources[$modelName->getTablename()]);
+        } elseif (!is_object($modelName) && array_key_exists($modelName, $this->datasources)) {
             $datasource = $this->datasourceFactory->getDatasource($this->datasources[$modelName], $this->logger);
             $datasource->setDatasourceKey($this->datasources[$modelName]);
+        } elseif (!is_null($this->datasourceKey)) {
+            $datasource = $this->datasourceFactory->getDatasource($this->datasourceKey, $this->logger);
+            $datasource->setDatasourceKey($this->datasourceKey);
+        } else {
+            throw new \Exception($modelName . ' datasource key missing from listeners configuration');
         }
 
         return $datasource;

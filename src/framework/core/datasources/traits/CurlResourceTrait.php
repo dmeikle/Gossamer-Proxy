@@ -26,6 +26,7 @@ trait CurlResourceTrait {
         if (is_null($this->credentials)) {
             $this->setCredentials($this->keyname);
         }
+        file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', $this->credentials['baseUrl'] . "$segment/$verb" . (!is_null($queryString) ? "/?" . $queryString : ''), FILE_APPEND);
 
         set_time_limit(0);
         $ch = curl_init();
@@ -44,10 +45,11 @@ trait CurlResourceTrait {
 
             curl_setopt($ch, CURLOPT_POST, count($params));
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fieldsString);
-            file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', print_r($fieldsString, true), FILE_APPEND);
+            file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', $fieldsString, FILE_APPEND);
         }
         $r = curl_exec($ch);
         curl_close($ch);
+        file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', print_r($r, true), FILE_APPEND);
 
         return $r;
     }
