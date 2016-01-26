@@ -43,16 +43,24 @@
             padding:1rem;
             box-shadow: none;
             border: 1px solid #ddd;
+            border-top:0;
         }
         > div {
-            padding:1rem;
+            /*padding:1rem;*/
         }
     }
     .tab-content{
         /*box-shadow: 0 0.1rem 0.25rem rgba(0,0,0,0.25);*/
         /*padding: 1rem;*/
-        /*background-color: #fff;*/
+        /*background-color: rgba(0,0,0,0);*/
+        /*padding: 0;*/
     }
+    >div>.tab-content{
+        background-color: rgba(0,0,0,0);
+        padding: 0;
+        border: 0;
+    }
+    
 }
 .tab-container{
     margin-left:$side-nav-width;
