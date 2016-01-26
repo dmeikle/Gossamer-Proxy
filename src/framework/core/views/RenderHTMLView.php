@@ -13,6 +13,7 @@ namespace core\views;
 
 use core\AbstractView;
 use core\eventlisteners\Event;
+use core\handlers\URITagHandler;
 
 /**
  * Used as the view for all Ajax requests that need the response header
@@ -47,6 +48,7 @@ class RenderHTMLView extends AbstractView {
                 $config = $event->getParams();
 
                 $this->template = $config['html'];
+                $this->renderURITags();
             } catch (\Exception $e) {
                 $this->logger->addError($e->getMessage());
             }
@@ -55,6 +57,17 @@ class RenderHTMLView extends AbstractView {
 
     public function getValue($key) {
         return $this->httpRequest->getAttribute($key);
+    }
+
+    /**
+     * render the URI tags
+     */
+    protected function renderURITags() {
+        $uriHandler = new URITagHandler($this->logger);
+        $uriHandler->setHttpRequest($this->httpRequest);
+
+        $uriHandler->setTemplate($this->template);
+        $this->template = $uriHandler->handlerequest();
     }
 
 }

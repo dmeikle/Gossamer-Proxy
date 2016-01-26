@@ -148,6 +148,7 @@ admin_claims_edit:
             dependencies:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
                 - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+#                - { dependency: Claim, key: claimTest, value: id, text: phase }
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'

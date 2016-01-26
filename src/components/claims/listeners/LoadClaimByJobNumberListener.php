@@ -22,13 +22,27 @@ use components\claims\models\ClaimModel;
 class LoadClaimByJobNumberListener extends AbstractListener {
 
     public function on_request_start($params = array()) {
+
         $params = $this->httpRequest->getParameters();
+        $this->executeRequest($params);
+    }
+
+    public function on_filerender_start($params = array()) {
+//        $this->on_request_start($params);
+        $params = $this->httpRequest->getQueryParameters();
+        $this->executeRequest($params);
+    }
+
+    private function executeRequest($params = array()) {
+
+//        pr($params);
+//        pr($this->httpRequest);
         $locale = $this->getDefaultLocale();
         $datasource = $this->getDatasource('components\\claims\\models\\ClaimModel');
         $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
         $data = array(
             'locale' => $locale['locale'],
-            'jobNumber' => $params[0]
+            'jobNumber' => current($params)
         );
         // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
 

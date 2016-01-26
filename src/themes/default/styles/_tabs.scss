@@ -20,12 +20,12 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             user-drag: none;
-            border: 1px solid #ddd;
+            /*border: 1px solid #ddd;*/
             //border-bottom-color: rgba(0, 0, 0, 0);
             padding: 5px 10px;
         }
         .active a{
-            border: 1px solid #ddd;
+            /*border: 1px solid #ddd;*/
             border-bottom-color: rgba(0, 0, 0, 0);
         }
 
@@ -40,14 +40,18 @@
     }
     .tab-include{
         > .widget{
-            padding:0rem;
+            padding:1rem;
             box-shadow: none;
+            border: 1px solid #ddd;
+        }
+        > div {
+            padding:1rem;
         }
     }
     .tab-content{
-        box-shadow: 0 0.1rem 0.25rem rgba(0,0,0,0.25);
-        padding: 1rem;
-        background-color: #fff;
+        /*box-shadow: 0 0.1rem 0.25rem rgba(0,0,0,0.25);*/
+        /*padding: 1rem;*/
+        /*background-color: #fff;*/
     }
 }
 .tab-container{

@@ -499,7 +499,9 @@ admin_claims_edit:
     ng:
         text_key: 'ADMIN_CLAIMS_EDIT'
         ng-click: 'addTab("text_key", "template")'
-        template: '/render/claims/claimsEditTab' 
+        template: '/render/claims/claimsEditTab?jobNumber=VA-15JR103' 
+#        template: '/render/claims/claimsEditTab/VA-15JR103'
+
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController
@@ -615,21 +617,21 @@ admin_claims_save:
         datasource: datasource1
 
 
-admin_claim_edit:
-    pattern: admin/claims/edit/*
-    listeners:
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
-        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\ClaimsController
-        model: components\claims\models\ClaimModel
-        method: edit
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_claim_edit
-        datasource: datasource1
-    staticCache: true
+#admin_claim_edit:
+#    pattern: admin/claims/edit/*
+#    listeners:
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\projects\listeners\LoadProjectAddressByIdListener', 'datasource': 'datasource1'}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1'}
+#    defaults:
+#        component: components\claims\ClaimsComponent
+#        controller: components\claims\controllers\ClaimsController
+#        model: components\claims\models\ClaimModel
+#        method: edit
+#        view: extensions\angular\views\AngularTemplateView
+#        viewKey: admin_claim_edit
+#        datasource: datasource1
+#    staticCache: true
 
 
 admin_claim_setInactive:
