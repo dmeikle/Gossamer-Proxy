@@ -102,7 +102,8 @@ class RenderRouter extends YamlRouter {
     }
 
     /**
-     * used for getting a string value from a locale file based on its key
+     * used for getting a string value from a local
+     * e file based on its key
      *
      * @param string $key
      * @return string

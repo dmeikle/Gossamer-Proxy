@@ -76,6 +76,8 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='TESTING'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
+
                                 <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li><a href="" ng-click="openPhotoUploadModal(claim)"><?php echo $this->getString('CLAIM_UPLOAD_PHOTOS') ?></a></li>
                                 <li><a href="" ng-click="remove(claim)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
@@ -135,7 +137,7 @@
                 <select name="ContactVIPTypes_id" id="advancedSearch-ContactVIPTypes_id" ng-model="advancedSearch.query.ContactVIPTypes_id" class="form-control">
                     <option value="" selected>- VIP Type -</option>
                     <?php //foreach (ContactVIPTypes as $item) { ?>
-                    <option value="<?php //echo $item['ContactVIPTypes_id'];       ?>"><?php //echo $item['contactVIPType'];       ?></option>
+                    <option value="<?php //echo $item['ContactVIPTypes_id'];         ?>"><?php //echo $item['contactVIPType'];         ?></option>
                     <?php //} ?>
                 </select>
             </div>
