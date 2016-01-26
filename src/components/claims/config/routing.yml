@@ -498,8 +498,8 @@ admin_claims_edit:
     pattern: admin/claims/edit/*    
     ng:
         text_key: 'ADMIN_CLAIMS_EDIT'
-        ng-click: 'addTab("text_key", "template")'
-        template: '/render/claims/claimsEditTab?jobNumber=VA-15JR103' 
+        ng-click: 'addTab(claim.jobNumber, "template", claim, "id", claim.unassignedJobNumber)'
+        template: '/render/claims/claimsEditTab' 
 #        template: '/render/claims/claimsEditTab/VA-15JR103'
 
     defaults:

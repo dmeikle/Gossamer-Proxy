@@ -74,7 +74,7 @@ admin_home_tabbed:
         viewKey: admin_home_tabbed
         datasource: datasource1
         langFiles:
-            - 'src/components/defaultItem/locales/*/Navigation'
+            - 'app/locales/*/website'
             - 'src/components/defaultItem/locales/*/Contact'
             - 'src/components/accounting/locales/*/accounting'
     

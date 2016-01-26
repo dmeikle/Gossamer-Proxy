@@ -11,10 +11,20 @@ module.controller('tabsCtrl', function ($scope, tabsSrv) {
         $scope.tabs.push(defaultTab);
     }
 
-    $scope.addTab = function (title, template) {
+    $scope.addTab = function (title, template, object, params, defaultTitle) {
+        var qs = '';
+        if(object !== undefined && params !== undefined) {
+            items = params.split(',');
+            for(var item in items) {
+                if(object.hasOwnProperty(items[item])) {
+                   qs += '&' + items[item] + '=' + object[items[item]];
+                }
+            }
+            qs = '?' + qs.slice(1);
+        }
         var tabObj = {
-            title: title,
-            template: template
+            title: (title !== null && title.length > 0) ? title : defaultTitle,
+            template: template + qs
         };
         tabsSrv.addTab(tabObj);
         $scope.tabs = tabsSrv.tabs;

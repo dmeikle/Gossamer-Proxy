@@ -137,7 +137,7 @@
                 <select name="ContactVIPTypes_id" id="advancedSearch-ContactVIPTypes_id" ng-model="advancedSearch.query.ContactVIPTypes_id" class="form-control">
                     <option value="" selected>- VIP Type -</option>
                     <?php //foreach (ContactVIPTypes as $item) { ?>
-                    <option value="<?php //echo $item['ContactVIPTypes_id'];         ?>"><?php //echo $item['contactVIPType'];         ?></option>
+                    <option value="<?php //echo $item['ContactVIPTypes_id'];           ?>"><?php //echo $item['contactVIPType'];           ?></option>
                     <?php //} ?>
                 </select>
             </div>

@@ -23,30 +23,33 @@ class LoadClaimByJobNumberListener extends AbstractListener {
 
     public function on_request_start($params = array()) {
 
-        $params = $this->httpRequest->getParameters();
+        $rawParams = $this->httpRequest->getParameters();
+        $params = array(
+            'jobNumber' => current($rawParams)
+        );
+
         $this->executeRequest($params);
     }
 
     public function on_filerender_start($params = array()) {
 //        $this->on_request_start($params);
-        $params = $this->httpRequest->getQueryParameters();
+        $rawParams = $this->httpRequest->getQueryParameters();
+        $params = array(
+            'id' => intval(current($rawParams))
+        );
         $this->executeRequest($params);
     }
 
     private function executeRequest($params = array()) {
 
-//        pr($params);
-//        pr($this->httpRequest);
         $locale = $this->getDefaultLocale();
         $datasource = $this->getDatasource('components\\claims\\models\\ClaimModel');
         $model = new ClaimModel($this->httpRequest, $this->httpResponse, $this->logger);
-        $data = array(
-            'locale' => $locale['locale'],
-            'jobNumber' => current($params)
-        );
+        $params['locale'] = $locale['locale'];
+
         // $params = array('jobNumber' => , 'directive::ORDER_BY' => 'id', 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50');
 
-        $result = $datasource->query('get', $model, 'get', $data);
+        $result = $datasource->query('get', $model, 'get', $params);
 
         if (is_array($result) && array_key_exists('Claim', $result)) {
             $this->httpRequest->setAttribute('Claim', current($result['Claim']));
