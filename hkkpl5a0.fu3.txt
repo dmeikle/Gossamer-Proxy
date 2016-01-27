@@ -1,0 +1,35 @@
+﻿Merge remote-tracking branch 'origin/CP-211' into rc1.0.15
+
+Conflicts:
+	src/components/accounting/views/pos/edit.php
+	src/themes/default/styles/_layout.scss
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch rc1.0.15
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   src/components/accounting/ng/js/timesheetModalCtrl.js
+#	modified:   src/components/accounting/ng/js/timesheetSrv.js
+#	modified:   src/components/accounting/ng/js/vendorInvoicesEditCtrl.js
+#	modified:   src/components/accounting/ng/js/vendorInvoicesEditSrv.js
+#	modified:   src/components/accounting/ng/scss/accounting.scss
+#	modified:   src/components/accounting/ng/views/generalCostsModal.php
+#	modified:   src/components/accounting/ng/views/timesheetModal.php
+#	modified:   src/components/accounting/views/cashReceipts/list.php
+#	modified:   src/components/accounting/views/pos/edit.php
+#	modified:   src/components/accounting/views/vendorInvoices/edit.php
+#	modified:   src/components/accounting/views/vendorInvoices/list.php
+#	modified:   src/components/staff/config/routing.yml
+#	modified:   src/components/staff/controllers/StaffController.php
+#	modified:   src/themes/default/styles/_datepicker.scss
+#	modified:   src/themes/default/styles/_layout.scss
+#
+

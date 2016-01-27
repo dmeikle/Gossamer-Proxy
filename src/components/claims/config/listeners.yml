@@ -137,6 +137,9 @@ admin_claims_edit:
 #        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: 'claimTest'}
         - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
+
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -150,7 +153,7 @@ admin_claims_edit:
                 - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
 #                - { dependency: Claim, key: claimTest, value: id, text: phase }
         -
-            event: 'request_end'
+            event: 'request_start'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
             datasource: 'datasource1'
             formBuilder: 'components\claims\form\ClaimBuilder'
@@ -159,6 +162,9 @@ admin_claims_edit:
             formName: 'form'
             dependencies:
                 - { dependency: Claim, model: Claim}
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }
+
 
 admin_claims_cost_cards_edit:
     listeners:
@@ -201,3 +207,20 @@ admin_claims_location_view:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }                
 #                - { dependency: AreaTypes, key: areaTypes, value: id, text: title }
 #                - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+
+admin_claims_home:        
+    listeners:
+        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactVIPTypeModel', 'cacheKey': 'ContactVIPTypes' }
+        - { 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\customers\models\CustomerTypeModel', 'cacheKey': 'CustomerTypes' }
+        -
+            event: 'request_start'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\claims\form\ClaimLocationBuilder'
+            model: 'components\claims\models\ClaimLocationModel'
+            cacheKey: 'ClaimLocationForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: ContactVIPTypes, key: contactVIPTypes, value: ContactVIPTypes_id, text: type }
+                - { dependency: CustomerTypes, key: customerTypes, value: CustomerTypes_id, text: type }

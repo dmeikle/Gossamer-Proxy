@@ -10,6 +10,9 @@
                 <div class="padding">
                     <label><?php echo $this->getString('CLAIMS_CONTACT_NAME') ?></label>
                     <?php echo $form['customersAutocomplete']; ?>
+                    <div class="resultspane claim-number" ng-show="noResultsCustomers">
+                        <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIMS_NO_RESULTS') ?>
+                    </div>
                     <div class="padding-vertical">
                         <div ng-if="modal.customer.firstname || modal.customer.lastname"><strong><?php echo $this->getString('CLAIMS_NAME') ?>:</strong> {{modal.customer.firstname}} {{modal.customer.lastname}}</div>
                         <div ng-if="modal.customer.contactType"><strong><?php echo $this->getString('CLAIMS_CONTACT_TYPE') ?>:</strong> {{modal.customer.contactType}}</div>

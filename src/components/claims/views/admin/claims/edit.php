@@ -128,7 +128,12 @@
                                             aria-haspopup="true" aria-expanded="true">
                                     </button>
                                     <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+<!--<<<<<<< HEAD-->
                                         <li><a gcms="{uri='admin_claims_location_view' params='{{location.Claims_id}}/{{location.id}}'}"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
+                                        <!--=======
+                                                                                <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
+                                                                                <li><a href="" ng-click="openCustomersModal('customersModal', location, {})"><?php echo $this->getString('CLAIMS_ADD_CUSTOMER') ?></a></li>
+                                        >>>>>>> origin/CP-208-->
                                         <li><a href="/admin/claim/initial-jobsheet/edit/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_EDIT_INITIAL_JOBSHEET') ?></a></li>
                                         <li><a href="/admin/claim/initial-jobsheet/view/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_VIEW_INITIAL_JOBSHEET') ?></a></li>
                                         <li><a href="/admin/scoping/takeoffs/{{location.Claims_id}}/{{location.id}}"><?php echo $this->getString('CLAIMS_SCOPING_MATERIAL_TAKEOFFS') ?></a></li>
@@ -266,5 +271,12 @@
         </div>
     </script>
 </div>
-<?php
-// pr($this->data); ?>
+<<<<<<< HEAD
+<?php// pr($this->data); ?>
+=======
+
+<!--Customers Modal-->
+<script type="text/ng-template" id="customersModal">
+    <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+</script>
+>>>>>>> origin/CP-208

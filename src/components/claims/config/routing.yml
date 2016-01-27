@@ -249,8 +249,8 @@ admin_claims_home:
         text_key: 'ADMIN_CLAIMS_LIST_ALL'
         ng-click: 'addTab("text_key", "template")'
         template: '/render/claims/claimsAdminTab'        
-    listeners:
-        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
+#    listeners:
+#        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1', 'cacheKey': 'SystemWidgets'}
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimsController

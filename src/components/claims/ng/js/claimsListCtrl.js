@@ -113,6 +113,24 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
             }
         });
     };
+    
+    $scope.openCustomersModal = function(template, location, customer) {
+        $uibModal.open({
+            templateUrl: template,
+            controller: 'ClaimsLocationsCustomerModalCtrl',
+            controllerAs: 'modal',
+            size: 'md',
+            backdrop: 'static',
+            resolve: {
+                location: function() {
+                    return location;
+                },
+                customer: function() {
+                    return customer;
+                }
+            }
+        });
+    };
 
     $scope.closeSidePanel = function() {
         $scope.sidePanelOpen = false;

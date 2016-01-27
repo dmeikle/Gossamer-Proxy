@@ -211,6 +211,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
                                 <li><a href="" ng-click="delete(location)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
+                                <li><a href="" ng-click="openCustomersModal('customersModal', location, {})"><?php echo $this->getString('CLAIMS_ADD_CUSTOMER') ?></a></li>
                             </ul>
                         </div>
                     </td>
@@ -222,3 +223,8 @@
     <div class="clearfix"></div>
     <form class="hidden"></form>
 </div>
+
+<!--Customers Modal-->
+<script type="text/ng-template" id="customersModal">
+    <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+</script>
