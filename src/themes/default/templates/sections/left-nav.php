@@ -1,4 +1,4 @@
-<nav id="side-nav" ng-controller="sideNavCtrl" ng-class="{'closed': sideNavOpen == false}">
+<nav id="side-nav" ng-controller="sideNavCtrl" ng-class="{'closed': sideNavOpen == false}" ng-cloak>
 
     <ul class="nav-list" ng-show="sideNavOpen == true" ng-controller="tabsCtrl">
         <?php

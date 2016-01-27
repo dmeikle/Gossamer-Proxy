@@ -1,4 +1,4 @@
-module.controller('sideNavCtrl', function ($scope, tabsSrv, sideNavSrv, $window, $document) {
+module.controller('sideNavCtrl', function ($scope, tabsSrv, sideNavSrv, $window, $document, $log) {
 
     $scope.prevClickedItem = '';
     $scope.prevSubItems = '';
@@ -41,8 +41,10 @@ module.controller('sideNavCtrl', function ($scope, tabsSrv, sideNavSrv, $window,
     $scope.toggleSidenav = function () {
         if (sideNavSrv.sideNavOpen === true) {
             sideNavSrv.sideNavOpen = false;
+            localStorage.setItem('sideNavOpen', false);
         } else {
             sideNavSrv.sideNavOpen = true;
+            localStorage.setItem('sideNavOpen', true);
         }
     };
 
