@@ -1,6 +1,27 @@
 
-
-
+admin_scoping_affected_areas_get_by_claim_location:
+    pattern: admin/scoping/affected-areas/get/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\AffectedAreasController
+        model: components\scoping\models\AffectedAreaModel
+        method: listByClaimLocation
+        view: core\views\JSONView
+        viewKey: admin_scoping_affected_areas_get_by_claim_location
+        datasource: datasource1
+    method: [GET]
+    
+admin_scoping_affected_areas_save:
+    pattern: admin/scoping/affected-areas/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\AffectedAreasController
+        model: components\scoping\models\AffectedAreaModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_scoping_affected_areas_save
+        datasource: datasource1
+    method: [POST]
     
 
 admin_scoperequest_edit:
@@ -260,8 +281,8 @@ admin_scoping_rooms_list:
         datasource: datasource1
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'          
-        
-          
+       
+    
 admin_scoping_home:
     pattern: admin/scoping/*/*
 
@@ -274,4 +295,5 @@ admin_scoping_home:
         viewKey: admin_scoping_home
         datasource: datasource1
         langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'                   
+            - 'src/components/defaultItem/locales/*/Navigation'          
+            

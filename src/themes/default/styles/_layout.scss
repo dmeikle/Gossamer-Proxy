@@ -16,7 +16,6 @@
 .notification-area {
     margin:0 auto;
     width:40%;
-
     position:fixed;
     left:30%;
     top:5vh;
@@ -212,6 +211,25 @@ ul {
 }
 
 .tab-padding, .padding{
-
     padding:1rem;
+}
+
+.padding-vertical {
+    padding: 1rem 0;
+}
+
+.no-padding, div.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.no-padding-left, div.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right, div.no-padding-right {
+    padding-right: 0;
+}
+address {
+    margin-bottom:0;
 }

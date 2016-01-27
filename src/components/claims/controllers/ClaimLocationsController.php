@@ -28,7 +28,6 @@ class ClaimLocationsController extends AbstractController {
 
     public function viewLocation($claimId, $locationId) {
         $result = $this->model->viewLocation($claimId, $locationId);
-
         $this->render($result);
     }
 
@@ -65,6 +64,12 @@ class ClaimLocationsController extends AbstractController {
     public function listallByProjectAddress($addressId, $offset, $limit) {
         $result = $this->model->listallByProjectAddress($addressId, $offset, $limit);
 
+        $this->render($result);
+    }
+
+    public function listLocationAreasById($claimId, $claimLocationId) {
+        $result = $this->model->listLocationAreasById($claimId, $claimLocationId);
+//        pr($result);
         $this->render($result);
     }
 

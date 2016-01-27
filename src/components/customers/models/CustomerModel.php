@@ -25,8 +25,8 @@ class CustomerModel extends AbstractModel implements FormBuilderInterface {
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'Customer';
-        $this->tablename = 'Customer';
+        $this->entity = 'Customers';
+        $this->tablename = 'customers';
     }
 
     public function login() {

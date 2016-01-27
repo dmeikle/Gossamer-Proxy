@@ -4,3 +4,12 @@
 .center-row-inputs>td input{
     text-align: center;
 }
+
+.table-striped>tbody>tr {
+    &.bg-warning {
+        background-color: #fcf8e3;
+        &:hover {
+            background-color: #F5EFCF;
+        }
+    }
+}

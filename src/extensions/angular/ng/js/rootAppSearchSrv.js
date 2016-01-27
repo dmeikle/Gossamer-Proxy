@@ -17,7 +17,8 @@ module.service('searchSrv', function($http) {
         return $http({
             url: apiPath,
             method: 'GET',
-            params: config
+            params: config,
+            cache: true
         });
     };
 
@@ -56,7 +57,8 @@ module.service('searchSrv', function($http) {
         return $http({
             url: apiPath,
             method: 'GET',
-            params: config
+            params: config,
+            cache: true
         }).then(function(response) {
             self.sortResult = response.data;
         });

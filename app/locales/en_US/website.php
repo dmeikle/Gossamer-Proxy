@@ -71,5 +71,6 @@ return array(
     'DELETE' => 'Delete',
     'REMOVE' => 'Remove',
     'SELECTED' => 'Selected',
-    'TRANSFER' => 'Transfer'
+    'TRANSFER' => 'Transfer',
+    'NOTES' => 'Notes'
 );

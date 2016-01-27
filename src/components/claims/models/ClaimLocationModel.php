@@ -61,6 +61,25 @@ class ClaimLocationModel extends AbstractModel implements FormBuilderInterface {
         return $data;
     }
 
+//    public function listLocationsByClaimId($claimId) {
+//
+//        $params = array('Claims_id' => $claimId);
+//
+//        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+//
+//        return $data;
+//    }
+
+    public function listLocationAreasById($claimId, $claimLocationId) {
+        $locale = $this->getDefaultLocale();
+        $params = array('Claims_id' => intval($claimId), 'ClaimsLocations_id' => intval($claimLocationId));
+        $params['locale'] = $locale['locale'];
+
+        $data = $this->dataSource->query(self::METHOD_GET, $this, 'listareas', $params);
+//        pr($data);
+        return $data;
+    }
+
     /**
      * listallByProjectAddress - assumes you have already filtered to ensure
      *                          requester has permission to view this address

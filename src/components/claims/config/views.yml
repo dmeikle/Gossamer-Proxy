@@ -324,16 +324,37 @@ admin_claim_view:
             "content": "src/components/claims/views/admin/claims/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
 
-admin_claimlocation_view:
+admin_claims_location_view:
     template: admin-list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/claims/views/admin/subnav.php"
-            "section3": "src/components/claims/views/admin/locations-edit.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            header: src/themes/default/templates/sections/admin-header.php
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            content: src/components/claims/views/admin/locations/edit.php
+            cards: src/components/claims/views/admin/initial-jobsheet/edit-cards.php
+            footer: src/themes/default/templates/sections/footer.php
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
 
-admin_claimlocation_edit_work:
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+        - @components/claims/dist/js/claims.concat.js
+        #- @components/staff/dist/js/staff.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+
+admin_claims_location_edit_work:
     template: admin-list.php
     sections:
         -
@@ -342,7 +363,7 @@ admin_claimlocation_edit_work:
             "section3": "src/components/claims/views/admin/locationswork-list.php"
             "section4": "src/themes/default/templates/sections/footer.php"
 
-admin_claimlocation_work_history:
+admin_claims_location_work_history:
     template: admin-list.php
     sections:
         -

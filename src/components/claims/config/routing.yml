@@ -95,22 +95,6 @@ admin_claims_cost_cards_save:
         viewKey: admin_claims_cost_cards_save
         datasource: datasource1
     methods: [POST]
-    
-#claimId, locationId
-admin_claims_secondarysheets_home:
-    pattern: admin/claims/secondary-sheets/*/*
-    defaults:
-        component: components\claims\ClaimsComponent
-        controller: components\claims\controllers\SecondarySheetsController
-        model: components\claims\models\SecondarySheetModel
-        method: index
-        view: extensions\angular\views\AngularTemplateView
-        viewKey: admin_claims_secondarysheet_home
-        datasource: datasource1
-        langFiles:
-            - 'src/components/claims/locales/*/claims'
-            - 'app/locales/*/website'
-    staticCache: true
         
  #claimId, locationId
 admin_claims_secondarysheets_list:
@@ -123,6 +107,22 @@ admin_claims_secondarysheets_list:
         view: core\views\JSONView
         viewKey: admin_claims_secondarysheets_list
         datasource: datasource1
+    
+#claimId, locationId
+admin_claims_secondarysheets_home:
+    pattern: admin/claims/secondary-sheets/*/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\SecondarySheetsController
+        model: components\claims\models\SecondarySheetModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_claims_secondarysheet_home
+        datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
+    staticCache: true
         
  #claimId, locationId
 admin_claims_secondarysheets_get:
@@ -729,6 +729,7 @@ admin_claims_list:
         view: core\views\JSONView
         viewKey: admin_claims_list
         datasource: datasource1
+    methods: [GET]
 
 admin_claim_view:
     pattern: admin/claim/*
@@ -745,8 +746,8 @@ admin_claim_view:
         viewKey: admin_claim_view
         datasource: datasource1
 
-admin_claimlocation_edit_work:
-    pattern: admin/claimlocations/work/*/*/*
+admin_claims_location_edit_work:
+    pattern: admin/claims/locations/work/*/*/*
    # listeners:
    #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
     defaults:
@@ -758,8 +759,8 @@ admin_claimlocation_edit_work:
         viewKey: admin_claimlocation_edit_work
         datasource: datasource1
 
-admin_claimlocation_work_history:
-    pattern: admin/claimlocations/work/*/*
+admin_claims_location_work_history:
+    pattern: admin/claims/locations/work/*/*
    # listeners:
    #     - { 'event': 'response_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1', 'class': 'components\contacts\models\ContactTypeModel'}
     defaults:
@@ -772,8 +773,8 @@ admin_claimlocation_work_history:
         datasource: datasource1
 
 
-admin_claimlocations_by_claimid:
-    pattern: admin/claimlocations/claim/*
+admin_claims_locations_by_claimid:
+    pattern: admin/claims/locations/claim/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
@@ -784,8 +785,8 @@ admin_claimlocations_by_claimid:
         datasource: datasource1
     methods: [GET]
 
-admin_claimlocations_save_by_claimid:
-    pattern: admin/claimlocations/claim/*
+admin_claims_locations_save_by_claimid:
+    pattern: admin/claims/locations/claim/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
@@ -801,7 +802,7 @@ admin_claimlocations_save_by_claimid:
 
 
 admin_count_location_photos:
-    pattern: admin/claimlocations/photos/count/*/*
+    pattern: admin/claims/locations/photos/count/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
@@ -813,7 +814,7 @@ admin_count_location_photos:
     methods: [GET]
 
 admin_upload_location_photos:
-    pattern: admin/claimlocations/photos/upload/*/*
+    pattern: admin/claims/locations/photos/upload/*/*
     listeners:
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\UploadLocationPhotosListener', class: 'components\claims\models\ClaimPhotoModel', 'datasource': 'datasource1'}
     defaults:
@@ -839,20 +840,84 @@ admin_claims_scheduling_list:
         datasource: datasource1
 
 
-admin_claimlocation_view:
-    pattern: admin/claimlocations/*/*
+#------------------------ Claims Locations comments/notes ----------------------------
+claims_locations_notes_remove:
+    pattern: admin/claims/locations/notes/remove/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_remove
+        datasource: datasource1 
+    methods: [POST] 
+    
+claims_locations_notes_list:
+    pattern: admin/claims/locations/notes/*/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: claims_locations_notes_list
+        datasource: datasource1
+
+
+claims_locations_notes_edit:
+    pattern: admin/claims/locations/notes/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_edit
+        datasource: datasource1 
+    methods: [GET]
+
+claims_locations_notes_save:
+    pattern: admin/claims/locations/notes/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationCommentsController
+        model: components\claims\models\ClaimLocationCommentModel
+        method: save
+        view: core\views\JSONView
+        viewKey: claims_locations_notes_save
+        datasource: datasource1 
+    methods: [POST]   
+
+admin_claims_location_view:
+    pattern: admin/claims/locations/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
         model: components\claims\models\ClaimLocationModel
-        method: viewLocation
-        view: core\views\TemplateView
+        method: listLocationAreasById
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_claimlocation_view
         datasource: datasource1
+        langFiles:
+            - 'src/components/claims/locales/*/claims'
+            - 'app/locales/*/website'
     methods: [GET]
+    
+admin_claims_location_save:
+    pattern: admin/claims/locations/*
+    defaults:
+        component: components\claims\ClaimsComponent
+        controller: components\claims\controllers\ClaimLocationsController
+        model: components\claims\models\ClaimLocationModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_claims_location_save
+        datasource: datasource1
+    methods: [POST]
 
-admin_claimlocation_setinactive:
-    pattern: admin/claimlocations/remove/*
+admin_claims_locations_setinactive:
+    pattern: admin/claims/locations/remove/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
@@ -863,8 +928,8 @@ admin_claimlocation_setinactive:
         datasource: datasource1
     methods: [POST]
 
-admin_claimlocations_list_by_projectaddress:
-    pattern: admin/claimlocations/*/*/*
+admin_claims_locations_list_by_projectaddress:
+    pattern: admin/claims/locations/*/*/*
     defaults:
         component: components\claims\ClaimsComponent
         controller: components\claims\controllers\ClaimLocationsController
@@ -888,8 +953,7 @@ admin_claimcustomers_remove:
 
     
 
-
-    #-----------------------------start client portal section --------------------------------
+#-----------------------------start client portal section --------------------------------
 claims_list:
     pattern: portal/claims/*/*
     defaults:

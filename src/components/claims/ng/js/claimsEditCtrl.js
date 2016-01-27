@@ -11,6 +11,7 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
 
     $scope.hasError = {};
     $scope.documentUploadModal = document.getElementById('documentUploadModal').outerHTML;    
+    $scope.documentConfig = {};
     
     getProjectAddress();
     getClaimDetails();
@@ -30,7 +31,8 @@ module.controller('claimsEditCtrl', function ($scope, $rootScope, $uibModal, cla
             $rootScope.$broadcast('claimDetailsLoaded');
             $scope.claim = claimsEditSrv.claimDetails;
             $scope.claimLoading = false;
-            
+            $scope.documentConfig.Claims_id = $scope.claim.id;
+//            console.log( $scope.documentConfig );
         });
     }
     

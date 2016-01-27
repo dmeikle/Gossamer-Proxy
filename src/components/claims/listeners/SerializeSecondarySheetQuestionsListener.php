@@ -11,7 +11,7 @@
 
 namespace components\claims\listeners;
 
-use core\eventlisteners\AbstractCachableListener;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 use components\claims\models\SecondarySheetModel;
 use components\claims\serialization\SecondarySheetSerializer;
 

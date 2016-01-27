@@ -10,4 +10,5 @@
 
 module.service('claimsTemplateSrv', function () {
     this.claimEditModal = '/render/claims/claimEditModal';
+    this.claimLocationDocumentModal = '/render/claims/locationUploadDocumentModal';
 });

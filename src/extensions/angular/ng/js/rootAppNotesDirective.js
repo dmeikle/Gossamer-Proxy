@@ -12,6 +12,7 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
         controller: function ($scope) {
             $scope.notes = notesSrv.notes;
             $scope.loading = {};
+            $scope.savingNote = false;
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
             
             //Edit Note
@@ -22,7 +23,7 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
             //Delete Note
             $scope.deleteNote = function(index){
                 $scope.loading[index] = true;
-                notesSrv.remove($scope.apiPath, $scope.notes[index].id).then(function(){
+                notesSrv.remove($scope.apiPath, $scope.notes[index].id, formToken).then(function(){
                     $scope.notes.splice(index, 1);
                     notesSrv.notes = $scope.notes;
                     $scope.loading[index] = false;
@@ -34,12 +35,13 @@ module.directive('notes', function (rootTemplateSrv, notesSrv) {
                 var note = {};
                 note.notes = newNote;
                 note.id = 0;
-                $scope.loading.newNote = true;
+                $scope.savingNote = true;
                 notesSrv.save($scope.apiPath, note, $scope.parentItemName, $scope.parentItemId, $scope.itemName, formToken).then(function(note){
                     note.edit = false;
                     notesSrv.notes.push(note);
                     $scope.notes = notesSrv.notes;
-                    $scope.loading = false;
+//                    $scope.loading = false;
+                    $scope.savingNote = false;
                 });
                 
                 $scope.newNote = '';

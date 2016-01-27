@@ -97,6 +97,11 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsS
         $scope.loading = true;
         var claimId = document.getElementById('Claims_id').value;
         var claimLocationsId = document.getElementById('ClaimsLocations_id').value;
+        var affectedAreasId = document.getElementById('AffectedAreas_id').value;
+        
+        $scope.claimId = claimId;
+        $scope.claimsLocationsId = claimLocationsId;
+        $scope.affectedAreasId = affectedAreasId;
         
         claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
             $scope.sheetsList = response.sheetsList;

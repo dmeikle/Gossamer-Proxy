@@ -8,7 +8,7 @@ module.service('contactListSrv', function(searchSrv, crudSrv) {
                     return response.data.Contacts;
                 } else {
                     return undefined;
-                }        	
+                }
             });
 	};
 

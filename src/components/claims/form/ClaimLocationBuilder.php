@@ -41,7 +41,28 @@ class ClaimLocationBuilder extends AbstractBuilder {
                 ->add('claimLocationsAutocomplete', 'text', array('ng-model' => 'unit', 'ng-disabled' => '!claim.ProjectAddress', 'class' => 'form-control'))
                 ->add('ClaimsLocations_id', 'hidden', array('value' => intval($this->getValue('ClaimsLocations_id', $values)), 'ng-model' => 'location.id'))
                 ->add('Claims_id', 'hidden', array('value' => $this->getValue('Claims_id', $values), 'ng-model' => 'location.Claims_id'))
-                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'));
+                ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-primary'))
+
+                //For Claims Locations Edit
+                ->add('specialInstructions', 'textarea', array('ng-model' => 'vm.location.instructions', 'class' => 'form-control location-textarea'))
+
+                //For Affected Areas modal
+                ->add('width', 'text', array('ng-model' => 'modal.item.width', 'class' => 'form-control'))
+                ->add('height', 'text', array('ng-model' => 'modal.item.height', 'class' => 'form-control'))
+                ->add('length', 'text', array('ng-model' => 'modal.item.length', 'class' => 'form-control'))
+
+                //For Claims Customers/Contacts
+                ->add('customersAutocomplete', 'text', array('ng-model' => 'modal.customerName',
+                    'uib-typeahead' => "value as value.firstname + ' ' + value.lastname for value in modal.customersAutocomplete(\$viewValue, 'name')",
+                    'typeahead-loading' => 'loadingCustomersTypeahead', 'typeahead-no-results' => 'noResultsCustomers', 'class' => 'form-control typeahead',
+                    'typeahead-min-length' => '3', 'typeahead-on-select' => 'modal.getCustomer(modal.customerName)', 'typeahead-wait-ms' => '500'))
+                ->add('firstname', 'text', array('ng-model' => 'modal.newCustomer.firstname', 'class' => 'form-control'))
+                ->add('lastname', 'text', array('ng-model' => 'modal.newCustomer.lastname', 'class' => 'form-control'))
+                ->add('email', 'text', array('ng-model' => 'modal.newCustomer.email', 'class' => 'form-control'))
+                ->add('daytimePhone', 'text', array('ng-model' => 'modal.newCustomer.daytimePhone', 'class' => 'form-control'))
+                ->add('mobile', 'text', array('ng-model' => 'modal.newCustomer.mobile', 'class' => 'form-control'))
+                ->add('buzzer', 'text', array('ng-model' => 'modal.newCustomer.buzzer', 'class' => 'form-control'))
+                ->add('notes', 'textarea', array('ng-model' => 'modal.newCustomer.notes', 'class' => 'form-control'));
 
         if (array_key_exists('projectAddressesFloorPlans', $options)) {
             $builder->add('ProjectAddressesFloorPlans_id', 'text', array('ng-model' => 'location.ProjectAddressesFloorPlans_id', 'class' => 'form-control', 'options' => $options['projectAddressesFloorPlans']));
@@ -58,6 +79,17 @@ class ClaimLocationBuilder extends AbstractBuilder {
         if (array_key_exists('vehicles', $options)) {
             $builder->add('Vehicles_id', 'select', array('ng-model' => 'item.Vehicles_id', 'class' => 'form-control', 'options' => $options['vehicles']));
         }
+        if (array_key_exists('areaTypes', $options)) {
+            $builder->add('AreaTypes', 'select', array('ng-model' => 'modal.item.AreaTypes_id', 'class' => 'form-control', 'options' => $options['areaTypes']));
+        }
+        if (array_key_exists('contactVIPTypes', $options)) {
+            $builder->add('VIPType', 'select', array('ng-model' => 'modal.newCustomer.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
+        }
+        if (array_key_exists('customerTypes', $options)) {
+            $builder->add('CustomerTypeNew', 'select', array('ng-model' => 'modal.newCustomer.CustomerTypes_id', 'class' => 'form-control', 'options' => $options['customerTypes']));
+            $builder->add('CustomerType', 'select', array('ng-model' => 'modal.customer.CustomerTypes_id', 'class' => 'form-control', 'options' => $options['customerTypes']));
+        }
+
 
 
 

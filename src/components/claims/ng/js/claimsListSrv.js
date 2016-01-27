@@ -3,7 +3,7 @@ module.service('claimsListSrv', function ($http, searchSrv, crudSrv) {
 
 
     var apiPath = '/admin/claims/';
-    var apiPathClaimLocation = '/admin/claimlocations/claim/';
+    var apiPathClaimLocation = '/admin/claims/locations/claim/';
     var apiPathClaimContacts = '/admin/claim/contacts/';
 
     var self = this;

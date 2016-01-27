@@ -160,6 +160,8 @@ class UnicodeHandler {
         if (!is_array($parameters)) {
 
             return $this->ascii2hex($parameters);
+            //commented by Devin, was throwing error for Claims Location Notes / Comments
+//            return $parameters;
         }
         foreach ($parameters as $key => $value) {
             if (is_array($value)) {

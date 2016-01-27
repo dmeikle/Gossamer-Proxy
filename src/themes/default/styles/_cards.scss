@@ -17,7 +17,7 @@
         margin:1rem 0;
     }
     .big {
-        font-size:3rem;
+        font-size:2.5rem;
         sup {
             font-size:2rem;
         }
@@ -32,6 +32,19 @@
     }
     .cardfooter button {
         font-size:80%;
+    }
+    .dropdown {
+        display:none;
+    }
+    &:hover { 
+        .dropdown:not(.list-dropdown) {
+            display:block;
+        }
+    }
+    table{
+        .dropdown {
+            display:block;
+        }
     }
 }
 
@@ -66,5 +79,16 @@
         font-size:80%;
         height:80%;
         padding:3px 6px;
+    }
+}
+
+.card .list-item {
+    .dropdown {
+        display:none;
+    }
+    &:hover { 
+        .dropdown {
+            display:block;
+        }
     }
 }

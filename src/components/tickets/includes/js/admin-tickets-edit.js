@@ -44,7 +44,7 @@ $(function () {
 
 
     function getLocations() {
-        $.getJSON("/admin/claimlocations/claim/" + $('#Ticket_Claims_id').val(), function (data) {
+        $.getJSON("/admin/claims/locations/claim/" + $('#Ticket_Claims_id').val(), function (data) {
             var options = $('#Ticket_ClaimsLocations_id');
             options.append('<option value="null">Choose Location</option>');
 

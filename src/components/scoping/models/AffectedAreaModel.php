@@ -9,32 +9,35 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\accounting\models;
+namespace components\scoping\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
 use core\http\HTTPResponse;
 use Monolog\Logger;
 
-/**
- * Description of PurchaseOrderModel
- *
- * @author Dave Meikle
- */
-class PurchaseOrderNoteModel extends AbstractModel implements \Gossamer\CMS\Forms\FormBuilderInterface {
+class AffectedAreaModel extends AbstractModel {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'PurchaseOrderNote';
-        $this->tablename = 'accountingpurchaseordernotes';
+        $this->entity = 'AffectedArea';
+        $this->tablename = 'affectedareas';
     }
 
-    public function getFormWrapper() {
-        return $this->entity;
+    public function listByClaimLocation($claimLocationId) {
+        $locale = $this->getDefaultLocale();
+
+        $params = array(
+            'ClaimsLocations_id' => intval($claimLocationId),
+            'locale' => $locale['locale']
+        );
+
+        $affectedAreas = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
+
+        return $affectedAreas;
     }
 
-    
 }
