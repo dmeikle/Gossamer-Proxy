@@ -1,5 +1,5 @@
 <div ng-controller="claimsLocationsCtrl
-                    as
+            as
             vm">
     <input type="hidden" value='<?php echo json_encode($ClaimsLocations[0]); ?>' id="ClaimsLocation" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($AffectedAreas); ?>' id="AffectedAreas" ng-if="!vm.loaded" />
@@ -52,7 +52,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="#" ng-click="vm.editInstructions()">
-<?php echo $this->getString('EDIT') ?>
+                                        <?php echo $this->getString('EDIT') ?>
                                     </a>
                                 </li>
                             </ul>
@@ -61,13 +61,13 @@
                 </div>
                 <div class="padding-top" ng-if="!vm.editingInstructions">{{vm.location.instructions}}</div>
                 <div ng-if="vm.editingInstructions" class="padding-top">
-<?php echo $form['specialInstructions'] ?>
+                    <?php echo $form['specialInstructions'] ?>
                     <div class="pull-right padding-top">
                         <button class="default" ng-click="vm.editInstructions()">
-<?php echo $this->getString('CANCEL') ?>
+                            <?php echo $this->getString('CANCEL') ?>
                         </button>
                         <button class="primary" ng-click="vm.saveInstructions()">
-<?php echo $this->getString('SAVE') ?>
+                            <?php echo $this->getString('SAVE') ?>
                         </button>
                     </div>
                     <div class="clearfix"></div>
@@ -89,7 +89,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="#" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
-<?php echo $this->getString('CLAIMS_ADD_NEW') ?>
+                                        <?php echo $this->getString('CLAIMS_ADD_NEW') ?>
                                     </a>
                                 </li>
                             </ul>
@@ -122,7 +122,6 @@
                                 <div class="content"><h4>{{area.roomType}}</h4></div>
                                 <div class="content">{{area.length}} x {{area.width}} x {{area.height}}</div>
                                 <div class="content"><?php echo $this->getString('CLAIMS_LWH'); ?></div>
-                                >>>>>>> origin/CP-247
                             </div>
                             <div class="flex-right">
                                 <div class="content"><a ng-click="vm.openAffectedAreasModal('affectedAreasModal', area)" href="#"><?php echo $this->getString('EDIT'); ?></a></div>
@@ -183,7 +182,7 @@
                         </div>
                         <div class="pull-right" ng-if="!loadingDocuments">
                             <button class="primary" ng-click="openUploadDocumentsModal(vm.claim, vm.documentsConfig, vm.claimLocationDocumentModal)">
-<?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
+                                <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS') ?>
                             </button>
                         </div>
                         <section class="document-list" ng-if="!loadingDocuments">
@@ -225,7 +224,7 @@
         <div class="card">
             <div class="cardheader">
                 <h1>
-<?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
+                    <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
                 </h1>
             </div>
             <div class="cardleft" ng-if="vm.phase.title">
@@ -242,7 +241,7 @@
                         <tr>
                             <td>
                                 <strong>
-<?php echo $this->getString('CLAIMS_STARTDATE') ?>
+                                    <?php echo $this->getString('CLAIMS_STARTDATE') ?>
                                 </strong>
                             </td>
                             <td>
@@ -252,7 +251,7 @@
                         <tr>
                             <td>
                                 <strong>
-<?php echo $this->getString('CLAIMS_ESTIMATE') ?>
+                                    <?php echo $this->getString('CLAIMS_ESTIMATE') ?>
                                 </strong>
                             </td>
                             <td>
@@ -264,7 +263,7 @@
             </div>
             <div ng-if="!vm.phase.numDays">
                 <div class="text-center text-muted padding-vertical">
-<?php echo $this->getString('CLAIMS_NOPHASE') ?>
+                    <?php echo $this->getString('CLAIMS_NOPHASE') ?>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -281,7 +280,7 @@
                         <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                             <li>
                                 <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
-<?php echo $this->getString('CLAIMS_ADD_NEW') ?>
+                                    <?php echo $this->getString('CLAIMS_ADD_NEW') ?>
                                 </a>
                             </li>
                         </ul>
@@ -303,7 +302,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="#" ng-click="vm.removeCustomer(customer)">
-<?php echo $this->getString('REMOVE') ?>
+                                        <?php echo $this->getString('REMOVE') ?>
                                     </a>
                                 </li>
                             </ul>
@@ -333,7 +332,7 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li>
                                     <a href="#" ng-click="vm.openCustomersModal('customersModal', {})">
-<?php echo $this->getString('REMOVE') ?>
+                                        <?php echo $this->getString('REMOVE') ?>
                                     </a>
                                 </li>
                             </ul>
@@ -370,7 +369,7 @@
                             <li>
                                 <!--ng-class="{'disabled' : vm.selectedEquipment.length === 0}"-->
                                 <a href="#" ng-class="{'disabled' : vm.selectedEquipment.length === 0}" class="btn" ng-click="vm.openEquipmentTransferModal('equipmentTransferModal')">
-<?php echo $this->getString('CLAIMS_TRANSFER_SELECTED') ?>
+                                    <?php echo $this->getString('CLAIMS_TRANSFER_SELECTED') ?>
                                 </a>
                             </li>
                         </ul>
@@ -389,7 +388,7 @@
                 </thead>
                 <tr ng-if="!vm.affectedAreasLoading && vm.equipmentLocations[0].length === 0">
                     <td colspan="5" class="info">
-<?php echo $this->getString('CLAIMS_NO_EQUIPMENT_AT_LOCATION'); ?>
+                        <?php echo $this->getString('CLAIMS_NO_EQUIPMENT_AT_LOCATION'); ?>
                     </td>
                 </tr>
                 <tr ng-repeat="equipment in vm.equipmentLocations" ng-if="!vm.affectedAreasLoading && vm.equipmentLocations[0].length !== 0">
