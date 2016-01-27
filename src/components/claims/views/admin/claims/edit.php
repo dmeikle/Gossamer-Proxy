@@ -377,7 +377,7 @@
     <script type="text/ng-template" id="documentUploadModal">
         <div class="modal-header">
         <h1>
-        <?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?>
+<?php echo $this->getString('CLAIMS_UPLOAD_DOCUMENTS_TO') ?>
         <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
         <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
         </h1>
@@ -387,33 +387,33 @@
         <div class="col-xs-6">
         <div class="form-group">
         <label for="DocumentType_documentType">
-        <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
+<?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_TYPE') ?>
         </label>
-        <?php echo $documentForm['DocumentTypes_id']; ?>
+<?php echo $documentForm['DocumentTypes_id']; ?>
         </div>
         <div class="form-group">
         <label for="DocumentType_ClaimLocations_id">
-        <?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
+<?php echo $this->getString('CLAIMS_DOCUMENTS_SELECT_UNIT') ?>
         </label>
-        <?php echo $documentForm['ClaimsLocations_id']; ?>
+<?php echo $documentForm['ClaimsLocations_id']; ?>
         </div>
         </div>
         <div class="col-xs-6">
         <label>
-        <?php echo $this->getString('CLAIMS_UPLOAD_TO') ?>
+<?php echo $this->getString('CLAIMS_UPLOAD_TO') ?>
         <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
         <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
         </label>
 
         <div ng-if="!upload.DocumentTypes_id">
         <p class="text-center text-muted">
-        <?php echo $this->getString('CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE') ?>
+<?php echo $this->getString('CLAIMS_DOCUMENTS_PLEASE_SELECT_TYPE') ?>
         </p>
         </div>
         <div ng-if="upload.DocumentTypes_id">
         <div dropzone="dropzoneConfig" class="dropzone">
         <p class="text-center">
-        <?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
+<?php echo $this->getString('CLAIMS_UPLOAD_TO'); ?>
         <span ng-if="model.jobNumber">{{model.jobNumber}}</span>
         <span ng-if="!model.jobNumber">{{model.unassignedJobNumber}}</span>
         </p>
@@ -435,18 +435,16 @@
         <div class="modal-footer">
         <div class="pull-right">
         <button class="primary" ng-click="close()">
-        <?php echo $this->getString('CLOSE') ?>
+<?php echo $this->getString('CLOSE') ?>
         </button>
         </div>
         </div>
     </script>
 </div>
-<<<<<<< HEAD
-<?php// pr($this->data); ?>
-=======
+
 
 <!--Customers Modal-->
 <script type="text/ng-template" id="customersModal">
     <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
 </script>
->>>>>>> origin/CP-208
+

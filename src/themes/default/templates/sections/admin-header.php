@@ -23,8 +23,8 @@
                 <li class="dropdown" id="reminders">
 
                 </li>
-                <li class="dropdown" id="messages" style="margin-right: 15px;" ng-controller="messagingSocketCtrl">
-                    <input type="text" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                <li class="dropdown" id="messages" style="margin-right: 15px;" ngcontroller="messagingSocketCtrl">
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-envelope" style="color:antiquewhite"></span>
                     </a>
