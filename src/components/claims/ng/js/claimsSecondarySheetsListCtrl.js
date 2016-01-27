@@ -34,14 +34,26 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsS
             $scope.selectedSheet = clickedObject;
             $scope.sidePanelLoading = true;
             $scope.sidePanelOpen = true;
-            claimsSecondarySheetsSrv.getSheetActions(clickedObject)
+            clickedObject.SecondarySheets_id = clickedObject.id;
+            claimsSecondarySheetsSrv.getResponses(clickedObject)
                 .then(function(response) {
-                    $scope.selectedSheet.actionsList = response.sheetActionsList;
+                    $scope.selectedSheet.actionsList = pruneList(response.secondarySheetResponses);
                     $scope.sidePanelLoading = false;
-                    $scope.hasActions = response.sheetActionsListCount > 0;
+                    $scope.hasActions = response.secondarySheetResponsesCount > 0;
                 });
         }
     };
+    
+    function pruneList(items) {
+        var retval = [];
+        for(var index in items) {
+            if(items[index].isSelected !== null) {
+                retval.push(items[index]);
+            }
+        }
+        
+        return retval;
+    }
     
     $scope.getClass = function(item) {
         if(item.isDone == 1) {
@@ -103,7 +115,7 @@ module.controller('secondarySheetsListCtrl', function($scope, $uibModal, claimsS
         $scope.claimsLocationsId = claimLocationsId;
         $scope.affectedAreasId = affectedAreasId;
         
-        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId).then(function(response) {
+        claimsSecondarySheetsSrv.getSheetsList(claimId, claimLocationsId, affectedAreasId).then(function(response) {
             $scope.sheetsList = response.sheetsList;
             $scope.totalItems = response.sheetsCount;
             $scope.loading = false;
