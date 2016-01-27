@@ -154,6 +154,18 @@ class EventDispatcher {
                 }
             }
 
+            /**
+             * CP-251 - added ability for multiple datasources since some listeners need to query
+             * (for example) the database then send those results to (for example) a proxy
+             * service for generating a pdf or an email. This allows the listener to access
+             * multiple datasources without making the 'code' aware of which one to ask for.
+             */
+            if (array_key_exists('datasources', $listener)) {
+                foreach ($listener['datasources'] as $datasource) {
+                    $this->datasources[$datasource['key']] = $datasource['datasource'];
+                }
+            }
+
             $handler = new EventHandler($this->logger, $this->httpRequest, $this->httpResponse);
             $handler->setDatasources($this->datasourceFactory, $this->datasources);
             $handler->setEventDispatcher($this);

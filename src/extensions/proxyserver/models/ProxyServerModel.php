@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace components\messaging\models;
+namespace extensions\proxyserver\models;
 
 use core\AbstractModel;
 use core\http\HTTPRequest;
@@ -17,19 +17,19 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 
 /**
- * Description of PropertyModel
+ * ProxyServerModel
  *
  * @author Dave Meikle
  */
-class MessagingNotificationTemplateModel extends AbstractModel {
+class ProxyServerModel extends AbstractModel {
 
     public function __construct(HTTPRequest $httpRequest, HTTPResponse $httpResponse, Logger $logger) {
         parent::__construct($httpRequest, $httpResponse, $logger);
 
         $this->childNamespace = str_replace('\\', DIRECTORY_SEPARATOR, __NAMESPACE__);
 
-        $this->entity = 'MessagingNotification';
-        $this->tablename = 'messagingnotificationtemplates';
+        $this->entity = 'Proxy';
+        $this->tablename = 'service/proxy';
     }
 
 }

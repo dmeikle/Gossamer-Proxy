@@ -11,7 +11,8 @@ include_once('includes/init.php');
 include_once('includes/bootstrap.php');
 
 //echo(__YML_KEY . "\r\n");
-error_log(__YML_KEY);
+//error_log(__YML_KEY);
+
 
 use core\system\Kernel;
 use core\system\KernelEvents;

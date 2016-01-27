@@ -9,7 +9,7 @@ module.service('companyClaimsListSrv', function ($http, searchSrv) {
         return $http.get(apiPath + companyId)
                 .then(function (response) {
                     self.claimsList = response.data.Claims;
-                    //self.claimsCount = response.data[0].Claims.rowCount;
+                    self.claimsCount = response.data.ClaimsCount[0].rowCount;
                 });
     };
 

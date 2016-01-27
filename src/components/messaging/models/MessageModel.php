@@ -42,19 +42,45 @@ class MessageModel extends AbstractModel implements FormBuilderInterface {
     }
 
     public function save($id) {
+
         $params = $this->httpRequest->getPost();
         $params['Message']['fromStaff_id'] = $this->getLoggedInStaffId();
+        if (array_key_exists('Contact', $params)) {
+            $contact = $params['Contact'];
+            $params['Message']['toContacts_id'] = intval($contact['id']);
+        }
+        if (array_key_exists('Claim', $params)) {
+            $claim = $params['Claim'];
+            $params['Message']['Claims_id'] = intval($claim['id']);
+        }
+        if (array_key_exists('ClaimLocation', $params)) {
+            $claimLocation = $params['ClaimLocation'];
+            $params['Message']['ClaimsLocations_id'] = intval($claimLocation['id']);
+        }
+        if (array_key_exists('DiscussionType', $params)) {
+            $type = $params['DiscussionType'];
+            $params['Message']['DiscussionTypes_id'] = intval($type['id']);
+        }
+        if (array_key_exists('MessagingDiscussion', $params)) {
+            $discussion = $params['MessagingDiscussion'];
+            $params['Message']['MessagingDiscussions_id'] = intval($discussion['MessagingDiscussions_id']);
+        }
+        if ($params['Message']['MessageTypes_id'] == 2) { //in-app message
+            $params['Message']['message'] = str_replace("\n", "<br>", $params['Message']['message']);
+        }
+        unset($params['FORM_SECURITY_TOKEN']);
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveMessage', $params[$this->entity]);
 
-        return $data;
+        return $params;
     }
 
-    public function get(array $params) {
-        $data = $this->dataSource->query(self::METHOD_GET, $this, 'viewmessage', $params);
-
-        return $data;
-    }
+//
+//    public function get(array $params) {
+//        $data = $this->dataSource->query(self::METHOD_GET, $this, 'viewmessage', $params);
+//
+//        return $data;
+//    }
 
     public function create($claimId, $locationId, $discussionId) {
 

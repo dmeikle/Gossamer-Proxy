@@ -532,8 +532,8 @@ admin_claims_edit:
             - 'src/components/claims/locales/*/claims'
             - 'app/locales/*/website'
             - 'src/components/projects/locales/*/Project'
-
     staticCache: true
+
 
 
 admin_claims_view:

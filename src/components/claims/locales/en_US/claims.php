@@ -59,6 +59,7 @@ return array(
     'CLAIMS_CREATION_DATE' => 'Created',
     'CLAIMS_DATE' => 'Date',
     'CLAIMS_DAYS_REMAINING' => 'Days Remaining',
+    'CLAIMS_DAYS_PASSED_DUE' => 'Days Passed Due',
     'CLAIMS_DAYTIME_PHONE' => 'Daytime Phone',
     'CLAIMS_DEPARTMENT' => 'Department',
     'CLAIMS_DESCRIPTION' => 'Description',
@@ -388,5 +389,6 @@ return array(
     'CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION' => 'No Primary or Secondary Contacts for this Location',
     'CLAIMS_LWH' => '(L x W x H)',
     'CLAIMS_SCOPING_MATERIAL_TAKEOFFS' => 'Material Takeoff Sheet',
-    'CLAIMS_NO_PHASE_SET' => 'No Phase set'
+    'CLAIMS_NO_PHASE_SET' => 'No Phase set',
+    'CLAIMS_SEND_MESSAGE' => 'Send Message'
 );

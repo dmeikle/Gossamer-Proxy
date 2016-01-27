@@ -6,11 +6,11 @@
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
+ 
 
 $(document).ready(function () {
     //create a new WebSocket object.
-    var wsTrafficUri = "ws://traffic2.phoenixrestorations.com:9001/staff/connect?" + encodeURI($('#traffic-token').val());
+    var wsTrafficUri = "ws://phoenix.quantumunit.com:9000/staff/connect?" + encodeURI($('#traffic-token').val());
     var lastTrafficRow = 0;
     trafficSocket = new WebSocket(wsTrafficUri);
 

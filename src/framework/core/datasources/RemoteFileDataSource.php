@@ -13,7 +13,6 @@ namespace core\datasources;
 
 use core\datasources\DataSourceInterface;
 use core\AbstractModel;
-use libraries\utils\YAMLCredentialsConfiguration;
 use Monolog\Logger;
 
 /**
@@ -25,7 +24,8 @@ class RemoteFileDataSource implements DataSourceInterface {
 
     private $keyname;
     private $logger = null;
-    private $credentials = null;
+
+    use core\datasources\traits\CurlResourceTrait;
 
     public function __construct(Logger $logger) {
         $this->logger = $logger;
@@ -41,7 +41,7 @@ class RemoteFileDataSource implements DataSourceInterface {
      * @param array params      parameters needed for file I/O
      */
     public function query($queryType, AbstractModel $entity, $verb, $params) {
-        error_log($verb);
+
         return $this->$verb($entity, $verb, $params);
     }
 
@@ -69,43 +69,6 @@ class RemoteFileDataSource implements DataSourceInterface {
         }
 
         return array('content' => $this->execute($entity->getTablename(), $verb, substr($queryString, 1)));
-    }
-
-    private function execute($segment, $verb, $queryString) {
-        if (is_null($this->credentials)) {
-            $this->setCredentials($this->keyname);
-        }
-        error_log($this->credentials['baseUrl'] . "$segment/$verb/?" . $queryString);
-        set_time_limit(0);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->credentials['baseUrl'] . "$segment/$verb/?" . $queryString);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $r = curl_exec($ch);
-        curl_close($ch);
-
-        return $r;
-    }
-
-    /**
-     * sets the credentials to identify ourselves to the API server
-     *
-     * @param type $ymlKey
-     *
-     * @return array
-     */
-    private function setCredentials($ymlKey) {
-
-        $config = new YAMLCredentialsConfiguration($this->logger);
-
-        $credentials = $config->getNodeParameters($ymlKey);
-
-        file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', print_r($credentials, true));
-        unset($config);
-        $this->credentials = $credentials['credentials'];
-        file_put_contents('/var/www/ip2/phoenixrestorations.com/logs/save.log', print_r($this->credentials, true), FILE_APPEND);
     }
 
 }

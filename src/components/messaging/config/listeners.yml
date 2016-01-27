@@ -1,0 +1,22 @@
+
+
+admin_messaging_home:
+    listeners:
+         -  
+            class: 'components\messaging\models\MessagingNotificationTemplateModel'
+            event: request_start
+            listener: 'components\messaging\listeners\GenerateMessagingTokenListener'
+            datasource: datasource1
+            
+            
+admin_messaging_send:
+    listeners:
+         -  
+            class: 'components\messaging\models\MessagingNotificationTemplateModel'
+            event: save_success
+            listener: 'components\messaging\listeners\SendInAppMessageListener'
+            datasource: java_proxy
+            datasources: 
+               - { key: 'components\messaging\models\MessagingNotificationTemplateModel', 'datasource': datasource1 }
+               - { key: 'extensions\proxyserver\models\ProxyMessageModel', 'datasource': java_proxy }
+         
