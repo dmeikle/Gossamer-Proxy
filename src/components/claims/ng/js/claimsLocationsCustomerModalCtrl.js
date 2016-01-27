@@ -5,10 +5,12 @@
         .module('claimsAdmin')
         .controller('ClaimsLocationsCustomerModalCtrl', ClaimsLocationsCustomerModalCtrl);
 
-    function ClaimsLocationsCustomerModalCtrl($uibModalInstance, $scope, $log, crudSrv, location, customer, contactListSrv, searchSrv) {
+    function ClaimsLocationsCustomerModalCtrl($uibModalInstance, crudSrv, location, customer, contactListSrv, searchSrv) {
         var vm = this;
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
         vm.customer = customer;
+        vm.newCustomer = {};
+        vm.newCustomer.isPrimary = 0;        
         vm.createNew = false;
         vm.saving = false;
         
@@ -64,6 +66,7 @@
         
         vm.getCustomer = function(customer) {
             vm.customer = customer;
+            vm.customer.isPrimary = 0;
             vm.customerInput = '';
         };
 

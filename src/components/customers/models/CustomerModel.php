@@ -42,6 +42,9 @@ class CustomerModel extends AbstractModel implements FormBuilderInterface {
         $params = $this->httpRequest->getPost();
         $params['Customer']['id'] = intval($id);
 
+        $locale = $this->getDefaultLocale();
+        $params['Customer']['locale'] = $locale['locale'];
+
         $data = $this->dataSource->query(self::METHOD_POST, $this, 'saveCustomer', $params['Customer']);
 
         return array('Customer' => $data['Customer'][0], 'roles' => array());

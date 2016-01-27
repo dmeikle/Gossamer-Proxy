@@ -6,7 +6,7 @@
     <input type="hidden" value='<?php echo json_encode($ClaimsCustomers); ?>' id="ClaimsCustomers" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($ClaimsLocationsNotes); ?>' id="ClaimsLocationsNotes" ng-if="!vm.loaded" />
     <input type="hidden" value='<?php echo json_encode($EquipmentLocations); ?>' id="EquipmentLocations" ng-if="!vm.loaded" />
-    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id);     ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
+    <!--<input type="hidden" value='<?php // echo json_encode($Claims_id);      ?>' id="Claims_id" ng-if="vm.loaded === true" />-->
 
     <!--<input type="hidden" value='5' id="ClaimsLocation" ng-if="vm.loaded === true" />-->
 
@@ -58,10 +58,19 @@
                     <div class="pull-left">
                         <h1><?php echo $this->getString('CLAIMS_AFFECTED_AREAS'); ?></h1>
                     </div>
-                    <div class="pull-right" ng-if="!loadingDocuments">
-                        <button class="primary" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
-                            <?php echo $this->getString('CLAIMS_ADD_AFFECTED_AREA') ?>
-                        </button>
+                    <div class="pull-right text-right row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
+                                    id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li>
+                                    <a href="#" ng-click="vm.openAffectedAreasModal('affectedAreasModal', {})">
+                                        <?php echo $this->getString('CLAIMS_ADD_NEW') ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
@@ -69,8 +78,8 @@
                         <tr>
                             <th><?php echo $this->getString('CLAIMS_ROOM_TYPE'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_WIDTH'); ?></th>
-                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_LENGTH'); ?></th>
+                            <th><?php echo $this->getString('CLAIMS_HEIGHT'); ?></th>
                             <th><?php echo $this->getString('CLAIMS_ENTRY_IS_NORTH'); ?></th>
                             <th sort-by-button class="cog-col row-controls">&nbsp;</th>
                         </tr>
@@ -83,7 +92,10 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading">
+                    <tr ng-if="vm.affectedAreas[0].length === 0 && !vm.affectedAreasLoading">
+                        <td class="warning" colspan="6"><?php echo $this->getString('CLAIMS_NO_AFFECTED_AREAS'); ?></td>
+                    </tr>
+                    <tr ng-repeat="area in vm.affectedAreas" ng-if="!vm.affectedAreasLoading && vm.affectedAreas[0].length !== 0">
                         <td>
                             {{area.roomType}}
                         </td>
@@ -91,10 +103,10 @@
                             {{area.width}}
                         </td>
                         <td>
-                            {{area.height}}
+                            {{area.length}}
                         </td>
                         <td>
-                            {{area.length}}
+                            {{area.height}}
                         </td>
                         <td>
                             <i class="glyphicon glyphicon-ok" ng-if="area.entryIsNorth == 1"></i>
@@ -147,7 +159,9 @@
                                     <th class="col-md-2"><?php echo $this->getString('CLAIMS_UPLOADED') ?></th>
                                     <th class="col-md-2"><?php echo $this->getString('CLAIMS_TYPE') ?></th>
                                 </tr>
+                                <tr class="warning"><td colspan="4"><?php echo $this->getString('CLAIMS_NO_DOCUMENTS') ?></td></tr>
                                 <tbody ng-repeat-start="(unitKey, docTypes) in documents" ng-if="unitKey === vm.location.unitNumber">
+
                                     <tr>
                                         <th ng-if="unitKey" colspan="4" class="bg-info">{{unitKey}}</th>
                                         <th ng-if="!unitKey" colspan="4" class="bg-info"><?php echo $this->getString('CLAIMS_CLAIM_DOCUMENTS') ?></th>
@@ -179,7 +193,7 @@
                     <?php echo $this->getString('CLAIMS_PHASE_VS_ECD') ?>
                 </h1>
             </div>
-            <div class="cardleft">
+            <div class="cardleft" ng-if="vm.phase.title">
 
                 <h1>{{vm.phase.title}}</h1>
 
@@ -214,17 +228,17 @@
                 </table>
             </div>
             <div ng-if="!vm.phase.numDays">
-                <p class="text-center text-muted">
+                <div class="text-center text-muted padding-vertical">
                     <?php echo $this->getString('CLAIMS_NOPHASE') ?>
-                </p>
+                </div>
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="card">
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_PRIMARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-                <div class="col-xs-3 text-right row-controls">
+            <div class="cardheader">
+                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_CUSTOMER_CONTACT_DETAILS'); ?></h1>
+                <div class="pull-right text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                 id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -239,9 +253,13 @@
                     </div>
                 </div>
             </div>
+            <div ng-if="vm.primaryCustomers.length === 0 && vm.secondaryCustomers.length === 0">
+                <div class="text-primary padding-vertical"><?php echo $this->getString('CLAIMS_NO_PRIMARY_OR_SECONDARY_CONTACTS_AT_LOCATION') ?></div>
+            </div>
+            <div class="padding-vertical" ng-if="vm.primaryCustomers.length !== 0">
+                <p><strong><?php echo $this->getString('CLAIMS_PRIMARY'); ?></strong></p>
 
-            <div class="padding-vertical">
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary === '1'" class="list-item">
+                <div ng-repeat="customer in vm.primaryCustomers" class="list-item">
                     <div class="pull-right text-right row-controls">
                         <div class="dropdown list-dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -264,15 +282,14 @@
                     </div>
                     <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
-                    <div ng-if="$index < vm.claimsCustomers.length - 1" class="divider"></div>
+
+                    <div class="divider" ng-if="vm.secondaryCustomers.length !== 0"></div>
+
                 </div>
             </div>
-
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_SECONDARY_CUSTOMER_CONTACT_DETAILS'); ?></h1>
-            </div>
-            <div class="padding-vertical">
-                <div ng-repeat="customer in vm.claimsCustomers" ng-if="customer.isPrimary !== '1'" class="list-item">
+            <div ng-if="vm.secondaryCustomers.length !== 0">
+                <p><strong><?php echo $this->getString('CLAIMS_SECONDARY'); ?></strong></p>
+                <div ng-repeat="customer in vm.secondaryCustomers" class="list-item">
                     <div class="pull-right text-right row-controls">
                         <div class="dropdown list-dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
@@ -295,7 +312,11 @@
                     </div>
                     <div ng-if="customer.vipType" class="pull-right vip-type">{{customer.vipType}}</div>
                     <div class="clearfix"></div>
+                    <<<<<<< HEAD
                     <div ng-if="$index < vm.claimsCustomers.length - 1" class="divider"></div>
+                    =======
+                    <div ng-if="$index < vm.secondaryCustomers.length - 1" class="divider"></div>
+                    >>>>>>> origin/CP-246
                 </div>
 
             </div>
@@ -303,9 +324,9 @@
 
         <!--Equipment on Site/Location-->
         <div class="card">
-            <div class="cardheader row">
-                <h1 class="col-xs-9"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
-                <div class="col-xs-3 text-right row-controls">
+            <div class="cardheader">
+                <h1 class="pull-left"><?php echo $this->getString('CLAIMS_EQUIPMENT_ON_SITE'); ?></h1>
+                <div class="pull-right text-right row-controls">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button"
                                 id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -379,12 +400,12 @@
 
     <!--Equipment Transfer Modal-->
     <script type="text/ng-template" id="equipmentTransferModal">
-        <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/equipmentTransferModal.php'); ?>
+<?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/equipmentTransferModal.php'); ?>
     </script>
 </div>
 
 <form></form>
 <div class="clearfix"></div>
-<?php pr($this->data); ?>
+<?php // pr($this->data); ?>
 
 

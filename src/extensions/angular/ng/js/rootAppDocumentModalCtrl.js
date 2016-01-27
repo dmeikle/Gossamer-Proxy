@@ -1,5 +1,5 @@
 module.controller('uploadDocumentsModalCtrl', function($scope, $rootScope, $uibModalInstance, 
-    model, config, documentSrv, toastsSrv, $log) {
+    model, config, documentSrv, toastsSrv) {
 	$scope.model = model;
         $scope.config = config;
 	$scope.filesCount = documentSrv.getFileCount(model.id);
