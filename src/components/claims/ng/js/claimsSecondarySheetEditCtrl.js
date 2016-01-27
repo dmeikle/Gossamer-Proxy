@@ -39,8 +39,8 @@
             var modalInstance = $uibModal.open({
 //                animation: $scope.animationsEnabled,
                 templateUrl: template,
-                controller: 'secondarySheetsModalCtrl',
-                controllerAs: 'modal',
+                controller: 'secondarySheetsModalCtrl as modal',
+               // controllerAs: 'modal',
                 size: 'md',
                 resolve: {
                     secondarySheetResults: function () {
@@ -49,8 +49,8 @@
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
-//                $scope.selected = selectedItem;
+            modalInstance.result.then(function (results) {
+               saveSecondarySheetResults(results);
             }, function () {
                 //Modal Dismissed
             });

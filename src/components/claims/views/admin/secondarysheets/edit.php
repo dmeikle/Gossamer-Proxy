@@ -22,9 +22,7 @@
 </div>
 <form class="form-inline">
 
-    <div id="secondary-sheet" ng-controller="claimsSecondarySheetEditCtrl
-            as
-            ctrl">
+    <div id="secondary-sheet" ng-controller="claimsSecondarySheetEditCtrl as ctrl">
         <input type="hidden" ng-model="secondarySheet.Claims_id" id="Claims_id" name="SecondarySheet[Claims_id]" value="<?php echo $Claims_id; ?>" />
         <input type="hidden" ng-model="secondarySheet.ClaimsLocations_id" id="ClaimsLocations_id" name="SecondarySheet[ClaimsLocations_id]" value="<?php echo $ClaimsLocations_id; ?>" />
         <input type="hidden" ng-model="secondarySheet.AffectedAreas_id" id="AffectedAreas_id" name="SecondarySheet[AffectedAreas_id]" value="<?php echo $AffectedAreas_id; ?>" />
@@ -52,7 +50,7 @@
                 }
                 $i++;
                 echo '<div class="clearfix"></div>';
-                if($i < count($group)){
+                if ($i < count($group)) {
                     echo '<div class="divider"></div>';
                 }
             }
@@ -66,8 +64,8 @@
         <button class="btn-primary"  ng-click="ctrl.saveSecondarySheet(ctrl.secondarySheet)"><?php echo $this->getString('SAVE'); ?></button>
         <button class="btn-primary"  ng-click="ctrl.openSecondarySheetModal('secondarySheetModal')">Set Complete Items</button>
         <div class="clearfix"></div>
-<!--        <div id="editResultsModal">
-            <?php
+        <!--        <div id="editResultsModal">
+        <?php
 //            foreach ($Actions as $category => $group) {
 //                foreach ($group as $questionList) {
 //                    foreach ($questionList as $question) {
@@ -78,21 +76,21 @@
 //                    }
 //                }
 //            }
-            ?>
-                        <div ng-repeat="item in ctrl.secondarySheetResults track by $index" ng-show="item.value || item.isSelected">
+        ?>
+                                <div ng-repeat="item in ctrl.secondarySheetResults track by $index" ng-show="item.value || item.isSelected">
 
-                            <div class="form-group col-md-6">{{item.action}}</div>
-                            <div class="form-group col-md-6"><input type="checkbox" ng-model="item.isDone" ng-true-value="1" /> Completed</div>
-                        </div>
-            <div class="clearfix"></div>
-            <input type="submit" value="<?php // echo $this->getString('SAVE'); ?>" ng-click="ctrl.saveSecondarySheetResults(ctrl.secondarySheetResults)" />
-        </div>-->
+                                    <div class="form-group col-md-6">{{item.action}}</div>
+                                    <div class="form-group col-md-6"><input type="checkbox" ng-model="item.isDone" ng-true-value="1" /> Completed</div>
+                                </div>
+                    <div class="clearfix"></div>
+                    <input type="submit" value="<?php // echo $this->getString('SAVE');  ?>" ng-click="ctrl.saveSecondarySheetResults(ctrl.secondarySheetResults)" />
+                </div>-->
     </div>
 </form>
 
 <script type="text/ng-template" id="secondarySheetModal">
     <?php
-       include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/secondarySheetModal.php');
+    include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/secondarySheetModal.php');
     ?>
 </script>
 

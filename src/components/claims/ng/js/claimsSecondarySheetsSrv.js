@@ -33,7 +33,8 @@
             getAdvancedSearchFilters: getAdvancedSearchFilters,
             getSheetsList: getSheetsList,
             getSheetActions: getSheetActions,
-            getResponses: getResponses
+            getResponses: getResponses,
+            saveResponses: saveResponses
         };
         
         return service;
@@ -67,6 +68,7 @@
                 }
             }
             delete object.$hashKey;
+           
             var requestPath = apiPath + object.Claims_id + '/' + object.ClaimsLocations_id + '/'+ object.AffectedAreas_id + '/' + object.SecondarySheets_id;
             
             return crudSrv.save(requestPath, object, objectType, formToken);
@@ -144,6 +146,22 @@
 
                     return response;
                 });
+        }
+        
+        
+
+        function saveResponses(object, formToken) {
+            for (var property in object) {
+                if (object.hasOwnProperty(property) && 
+                    property.substr(property.length - 3) == '_id' && !object[property]) {
+                        delete object[property];
+                }
+            }
+            delete object.$hashKey;
+        
+            var requestPath = apiPath + object.Claims_id + '/' + object.ClaimsLocations_id + '/'+ object.AffectedAreas_id +'/' + object.SecondarySheets_id;
+            
+            return crudSrv.save(requestPath, object, objectType, formToken);
         }
     }
 })();
