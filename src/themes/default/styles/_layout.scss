@@ -75,7 +75,8 @@ table .form-group {
     padding:4px;
     vertical-align: middle;
 }
-.table>tbody>tr>td:not(.row-controls):not(.has-datepicker):not(.show-overflow) {
+
+.table>tbody>tr>td:not(.row-controls):not(.has-datepicker):not(.row-typeahead) {
     padding:.5em;
     white-space: nowrap;
     overflow:hidden;

@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="input-group">
-        <label>Phase</label>
+        <label><?php echo $this->getString('ACCOUNTING_PHASE'); ?></label>
         <select class="phase form-control" name="AccountingPhaseCodes_id" ng-model="AccountingGeneralCost.ClaimPhases_id">
             <option value="" selected>-Phase Code-</option>
             <?php
@@ -28,7 +28,7 @@
     </div>
 
     <div class="input-group">
-        <label>Credit Account</label>
+        <label><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></label>
         <select class="credit-account form-control" name="AccountingCreditAccount_id" ng-model="AccountingGeneralCost.AccountingCreditAccounts_id">
             <option value="" selected>-Credit Account-</option>
             <?php
@@ -75,7 +75,7 @@
                 <td>
                     <input placeholder="Description" class="form-control" type="text" ng-model="row.description">
                 </td>
-                <td class="date-col">
+                <td class="date-col has-datepicker">
                     <div class="input-group">
                         <input type="date" name="date{{$index}}" ng-model="row.dateEntered" ng-model-options="{timezone: '+0000'}"
                                class="form-control" datepicker-popup is-open="isOpen.datepicker[$index]"
@@ -118,15 +118,16 @@
         </tbody>
     </table>
 
-    <button class="btn-info" ng-click="addRow()">New Row</button>
-    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected">Insert Row(s)</button>
-    <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected">Delete Row(s)</button>
+    <button class="btn-info" ng-click="addRow()"><?php echo $this->getString('ACCOUNTING_NEW_ROW'); ?></button>
+    <button class="btn-info" ng-click="insertRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_INSERT_ROWS'); ?></button>
+    <button class="btn-warning" ng-click="removeRows()" ng-disabled="!rowSelected"><?php echo $this->getString('ACCOUNTING_DELETE_ROWS'); ?></button>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
     <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems();
-        clearModal()">Save and New</button>
-    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems()">Save and Close</button>
+        clearModal()"><?php echo $this->getString('ACCOUNTING_SAVE_AND_NEW'); ?></button>
+    <button type="button" class="btn btn-primary" ng-click="saveGeneralCostItems();
+        confirm();"><?php echo $this->getString('ACCOUNTING_SAVE_AND_CLOSE'); ?></button>
 </div>
 <form class="hidden"></form>
 <!--</form>-->
