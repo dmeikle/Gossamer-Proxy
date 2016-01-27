@@ -81,7 +81,7 @@
                     <td ng-hide="groupedBy === 'firstname'" ng-click="selectRow(staff)">{{staff.firstname}}</td>
                     <td ng-hide="groupedBy === 'lastname'" ng-click="selectRow(staff)">{{staff.lastname}}</td>
                     <td ng-hide="groupedBy === 'title'" ng-click="selectRow(staff)">{{staff.title}}</td>
-                    <td ng-hide="groupedBy === 'telephone'" ng-click="selectRow(staff)">{{staff.telephone}}</td>
+                    <td ng-hide="groupedBy === 'telephone'" ng-click="selectRow(staff)">{{staff.extension}}</td>
                     <td ng-hide="groupedBy === 'mobile'" ng-click="selectRow(staff)">{{staff.mobile}}</td>
                     <td ng-hide="groupedBy === 'status'" ng-click="selectRow(staff)">{{staff.status}}</td>
                     <td ng-hide="groupedBy === 'lastLogin'" ng-click="selectRow(staff)">{{staff.lastLogin}}</td>
@@ -137,21 +137,53 @@
         </form>
 
         <div ng-if="!sidePanelLoading && !searching">
-            <h1><a href="/admin/staff/edit/{{selectedStaff.id}}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h1>
-            <h3><?php echo $this->getString('STAFF_TELEPHONE') ?></h3>
-            <p>{{selectedStaff.telephone}}</p>
-            <h3><?php echo $this->getString('STAFF_MOBILE') ?></h3>
-            <p>{{selectedStaff.mobile}}</p>
-            <h3><?php echo $this->getString('STAFF_EMAIL') ?></h3>
-            <p>{{selectedStaff.email}}</p>
-            <h3><?php echo $this->getString('STAFF_CITY') ?></h3>
-            <p>{{selectedStaff.city}}</p>
-            <h3><?php echo $this->getString('STAFF_POSTALCODE') ?></h3>
-            <p>{{selectedStaff.postalCode}}</p>
-            <h3><?php echo $this->getString('STAFF_TITLE') ?></h3>
-            <p>{{selectedStaff.title}}</p>
-            <h3><?php echo $this->getString('STAFF_EMPLOYEENUM') ?></h3>
-            <p>{{selectedStaff.employeeNumber}}</p>
+
+
+            <div class="card" >
+                <div class="cardheader">
+                    <h1><?php echo $this->getString('STAFF_GENERAL_INFO'); ?></h1>
+                </div>
+
+                <div ng-if="loading">
+                    <span class="spinner-loader"></span>
+                </div>
+
+                <div ng-if="!loading">
+                    <h3><a gcms="{uri='admin_staff_edit_home' params='{{selectedStaff.id}}'}">{{selectedStaff.firstname}} {{selectedStaff.lastname}}</a></h3>
+                    <h4>{{selectedStaff.title}}</h4>
+                    <div class="cardleft">
+                        <table class="cardtable">
+                            <tbody>
+                                <tr>
+                                    <td><strong><?php echo $this->getString('STAFF_EMPLOYEENUM'); ?></strong></td>
+                                    <td>{{selectedStaff.employeeNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><?php echo $this->getString('STAFF_TITLE'); ?></strong></td>
+                                    <td>{{selectedStaff.title}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><?php echo $this->getString('STAFF_EMAIL'); ?></strong></td>
+                                    <td>{{selectedStaff.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><?php echo $this->getString('STAFF_MOBILE'); ?></strong></td>
+                                    <td>{{selectedStaff.mobile}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong><?php echo $this->getString('STAFF_EXTENSION'); ?></strong></td>
+                                    <td>{{selectedStaff.extension}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="cardright" ng-if="!ctrl.loading && selectedStaff.imageName">
+                    <img class="staff-picture pull-right" ng-src="/images/staff/{{selectedStaff.imageName}}">
+                </div>
+                <div class="clearfix"></div>
+            </div>
         </div>
     </div>
     <div class="clearfix"></div>
