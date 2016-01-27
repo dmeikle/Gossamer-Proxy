@@ -1,3 +1,4 @@
+//NOTE: this directive seems to be causing some duplication bugs, especially with uib-datepickers
 module.directive('formGroup', function($compile) {
     return {
         restrict: 'C',
