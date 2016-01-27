@@ -14,7 +14,7 @@
         .module('staffAdmin')
         .controller('staffEmergencyContactModalCtrl', staffEmergencyContactModalCtrl);
 
-    function staffEmergencyContactModalCtrl($modalInstance, contact, staffEmergencyContactsSrv) {
+    function staffEmergencyContactModalCtrl($uibModalInstance, contact, staffEmergencyContactsSrv) {
         var self = this;
         
 
@@ -26,13 +26,13 @@
             
             staffEmergencyContactsSrv.save(item, formToken).then(function (response) {
                 if (!response.data.result || response.data.result !== 'error') {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 }
             });
         };
 
         self.close = function () {
-            $modalInstance.dismiss('close');
+            $uibModalInstance.dismiss('close');
         };
     }
 })();

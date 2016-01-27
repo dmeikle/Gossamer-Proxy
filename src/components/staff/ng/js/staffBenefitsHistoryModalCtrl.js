@@ -42,7 +42,7 @@
         .module('staffAdmin')
         .controller('staffBenefitsHistoryModalCtrl', staffBenefitsHistoryModalCtrl);
 
-    function staffBenefitsHistoryModalCtrl($modalInstance,$scope, staffBenefits, staffId, staffBenefitsSrv) {
+    function staffBenefitsHistoryModalCtrl($uibModalInstance, $scope, staffBenefits, staffId, staffBenefitsSrv) {
         var self = this;
     
         self.staffBenefits = staffBenefits;
@@ -76,7 +76,7 @@
         };
 
         self.close = function () {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
     }
 })();
