@@ -35,13 +35,39 @@ default_collection:
         - "section3": "src/components/defaultItem/views/content/collection.php"
         - "section4": "src/themes/default/templates/sections/footer.php"        
         
+
+
 admin_home:
     template: admin-list.php
-    sections: 
+    sections:
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section3": "src/components/defaultItem/views/admin/home.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            "notifications": "/src/themes/default/templates/sections/notification-area.php"
+            leftnav: src/themes/default/templates/sections/left-nav.php
+            "content": "src/components/defaultItem/views/admin/home.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - messagingAdmin
+            
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular/dist/bower_components/dropzone/dist/min/dropzone.min.js
+
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        - @components/messaging/dist/js/messaging.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+       
+    css:
+        - @extensions/angular/dist/bower_components/dropzone/dist/dropzone.css
+          
+          
+          
           
 admin_home_tabbed:
     template: admin-list.php

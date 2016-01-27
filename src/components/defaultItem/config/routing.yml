@@ -55,13 +55,16 @@ admin_home:
         controller: components\defaultItem\controllers\DefaultController
         model: components\defaultItem\models\DefaultModel
         method: index
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_home
         datasource: datasource1
         langFiles: 
+            - app/locales/*/website
             - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Contact'
     methods: [GET]     
+    
+    
     
 admin_home_tabbed:
     pattern: admin/home/tabbed

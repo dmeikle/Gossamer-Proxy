@@ -104,7 +104,8 @@ admin_claims_home:
         bootstrap_modules:
             - rootApp
             - claimsAdmin
-
+            - messagingAdmin
+            
     head:
         - @components/claims/dist/bower_components/angular/angular.min.js
         - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
@@ -116,6 +117,9 @@ admin_claims_home:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.concat.min.js
+        - @components/messaging/dist/js/messaging.concat.js
+        #- @components/messaging/dist/js/messaging.concat.min.js
 
         #- @components/staff/dist/js/staff.min.js
     css:
