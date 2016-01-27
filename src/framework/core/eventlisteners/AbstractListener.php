@@ -202,7 +202,6 @@ class AbstractListener {
         $token = $this->getSecurityToken();
 
         if (!is_null($token) && $token instanceof SecurityToken) {
-
             return $token->getClient();
         }
 

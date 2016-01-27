@@ -35,6 +35,9 @@
     }
     .dropdown {
         display:none;
+        &.open {
+            display:block;
+        }
     }
     &:hover { 
         .dropdown:not(.list-dropdown) {
@@ -85,6 +88,9 @@
 .card .list-item {
     .dropdown {
         display:none;
+        &.open {
+            display:block;
+        }
     }
     &:hover { 
         .dropdown {

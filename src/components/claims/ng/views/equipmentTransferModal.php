@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h1><?php echo $this->getString('INVENTORY_EQUIPMENT_TRANSFER') ?></h1>
+    <h1><?php echo $this->getString('CLAIMS_EQUIPMENT_TRANSFER') ?></h1>
 </div>
 <!--<div ng-if="loading || wizardLoading">
     <div class="spinner-loader"></div>
@@ -10,7 +10,5 @@
         <div class="spinner-loader"></div>
     </div>
     <!--<wizard class="modal-body" data-module="inventory" data-filename="inventoryTransferWizardPages"></wizard>-->
-    <!--<script type="text/ng-template" id="inventoryTransferWizardPages">-->
-        <?php include(__SITE_PATH . '/src/components/inventory/ng/views/inventoryTransferWizardPages.php'); ?>
-    <!--</script>-->
+    <?php include(__SITE_PATH . '/src/components/claims/ng/views/inventoryTransferWizardPages.php'); ?>
 </div>

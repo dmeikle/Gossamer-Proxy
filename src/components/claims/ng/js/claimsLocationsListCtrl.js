@@ -89,7 +89,8 @@ module.controller('claimsLocationsListCtrl', function($scope, $location, $uibMod
                 }
             }
         });
-    };
+    };    
+    
 
 
     $scope.getList = function() {

@@ -12,7 +12,7 @@
         vm.claim = {};
         vm.documentsConfig = {};        
         vm.claimLocationDocumentModal = claimsTemplateSrv.claimLocationDocumentModal;     
-        
+        vm.selectedEquipment = [];
         
         vm.openAffectedAreasModal = function (template, area) {
             var modalInstance = $uibModal.open({
@@ -59,6 +59,63 @@
                 $log.log('modal dismissed');                
             });
         };
+        
+        vm.openEquipmentTransferModal = function (template) {
+            var modalInstance = $uibModal.open({
+              templateUrl: template,
+              controller: 'transferModalController',
+              controllerAs: 'modal',
+              size: 'md',
+              resolve: {
+                multiSelectArray: function () {
+                  return vm.selectedEquipment;
+                },
+                location: function () {
+                    return vm.location;
+                }
+              }
+            });
+
+            modalInstance.result.then(function (customer) {
+                //getAffectedAreas();
+                updateCustomers(customer);
+            }, function () {
+                $log.log('modal dismissed');                
+            });
+        };
+        
+        vm.checkSelectedEquipment = function() {
+            vm.selectedEquipment = [];
+            for(var i in vm.equipmentLocations) {
+                if(vm.equipmentLocations[i].isSelected === true) {
+                    vm.selectedEquipment.push(vm.equipmentLocations[i]);
+                } else {
+                    vm.selectAllEquipment = false;
+                }
+            }
+        };
+        
+        vm.selectAllEquipmentToggle = function(value) {
+            for(var i in vm.equipmentLocations) {
+                if(value === true){
+                    vm.equipmentLocations[i].isSelected = true;
+                } else {
+                    vm.equipmentLocations[i].isSelected = false;
+                }
+            }
+            vm.checkSelectedEquipment();
+        }
+        
+//        function getSelectedEquipment() {
+//            var selectedEquipment = [];
+//            for(var i in vm.equipmentLocations){
+//                if(vm.equipmentLocations[i].isSelected === true) {
+//                    selectedEquipment.push(vm.equipmentLocations[i]);
+//                }
+//            }
+//            return selectedEquipment;
+//        }
+        
         
         vm.saveLocation = function () {
             var apiPath = '/admin/claims/locations/' + vm.location.id;

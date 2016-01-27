@@ -376,5 +376,8 @@ return array(
     'CLAIMS_DRYWALL' => 'Drywall',
     'CLAIMS_INSULATION' => 'Insulation',
     'CLAIMS_SAMPLES' => 'Samples',
-    'CLAIMS_ADD_NEW' => 'Add New'
+    'CLAIMS_ADD_NEW' => 'Add New',
+    'CLAIMS_TRANSFER_SELECTED' => 'Transfer Selected',
+    'CLAIMS_EQUIPMENT_TRANSFER' => 'Equipment Transfer',
+    'CLAIMS_NO_EQUIPMENT_AT_LOCATION' => 'No Equipment found at location'
 );

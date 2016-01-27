@@ -10,6 +10,7 @@
  */
 
 namespace core\eventlisteners;
+use core\components\caching\eventlisteners\AbstractCachableListener;
 
 use core\components\caching\eventlisteners\AbstractCachableListener;
 
