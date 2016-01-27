@@ -134,6 +134,7 @@ admin_claims_edit:
     listeners:
         - { 'class': 'components\claims\models\ClaimDocumentModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadDocumentCountsListener', 'datasource': 'datasource1' }
         - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: Claim}
+#        - { 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1', cacheKey: 'claimTest'}
         - { 'cacheKey': 'DocumentTypes', 'class': 'components\documents\models\DocumentTypeModel', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }
         - { 'cacheKey': 'ClaimsLocations', 'class': 'components\claims\models\ClaimLocationModel', 'event': 'request_start', 'listener': 'components\claims\listeners\LoadClaimLocationsByClaimIdListener', 'datasource': 'datasource1' }
         -
@@ -147,6 +148,7 @@ admin_claims_edit:
             dependencies:
                 - { dependency: DocumentTypes, key: documentTypes, value: id, text: type }
                 - { dependency: ClaimsLocations, key: claimLocations, value: id, text: unitNumber }
+#                - { dependency: Claim, key: claimTest, value: id, text: phase }
         -
             event: 'request_end'
             listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
@@ -156,8 +158,7 @@ admin_claims_edit:
             cacheKey: 'ClaimForm'
             formName: 'form'
             dependencies:
-                - { dependency: Claim, model: Claim}
-              
+                - { dependency: Claim, model: Claim }
         
 admin_claims_cost_cards_edit:
     listeners:

@@ -150,7 +150,7 @@ claimsEditTab:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
     listeners:
-        - { 'cacheKey': 'Claims', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1' }
+        - { 'cacheKey': 'Claim', 'class': 'components\claims\models\ClaimModel', 'event': 'filerender_start', 'listener': 'components\claims\listeners\LoadClaimByJobNumberListener', 'datasource': 'datasource1' }
 
         -
             event: 'filerender_start'

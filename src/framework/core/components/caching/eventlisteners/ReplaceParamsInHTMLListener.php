@@ -41,7 +41,6 @@ class ReplaceParamsInHTMLListener extends \core\eventlisteners\AbstractListener 
     }
 
     private function embedObjectParams(array $list, $html) {
-
         foreach ($list as $className => $item) {
             foreach ($item as $fieldName) {
                 $class = $this->httpRequest->getAttribute($className);

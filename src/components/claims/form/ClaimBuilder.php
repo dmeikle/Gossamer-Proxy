@@ -29,6 +29,7 @@ class ClaimBuilder extends AbstractBuilder {
 
         $builder->add('jobNumber', 'text', array('ng-model' => 'claim.jobNumber', 'class' => 'form-control', 'value' => $this->getValue('jobNumber', $values)))
                 ->add('jobNumberHidden', 'hidden', array('gcms' => "{object='Claim' param='jobNumber'}"))
+//                ->add('jobNumberHidden', 'hidden', array('class' => "testing"))
                 ->add('callInDate', 'text', array('ng-model' => 'claim.callInDate', 'class' => 'form-control', 'value' => $this->getValue('callInDate', $values)))
                 ->add('calledInBy', 'text', array('ng-model' => 'claim.calledInBy', 'class' => 'form-control', 'value' => $this->getValue('calledInBy', $values)))
                 ->add('calledInPhone', 'text', array('ng-model' => 'claim.calledInPhone', 'class' => 'form-control', 'value' => $this->getValue('calledInPhone', $values)))

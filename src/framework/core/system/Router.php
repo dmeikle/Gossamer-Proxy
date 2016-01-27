@@ -71,7 +71,6 @@ class Router {
 
     protected function parseRequestUriParameters($uri, $ymlURI, array $params = null) {
         $uriList = explode('/', $uri);
-
         $rawUriList = explode('/', $ymlURI);
         if (is_null($params)) {
             return $ymlURI;
