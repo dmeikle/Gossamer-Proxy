@@ -219,6 +219,10 @@ ul {
     padding: 1rem 0;
 }
 
+.padding-top {
+    padding: 1rem 0 0 0;
+}
+
 .no-padding, div.no-padding {
     padding-left: 0;
     padding-right: 0;
@@ -239,3 +243,17 @@ address {
     pointer-events: none;
     cursor: not-allowed;
 }*/
+
+
+@media (max-width: 991px) {
+    .no-padding-left, div.no-padding-left {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .no-padding-right, div.no-padding-right {
+        padding-left: 0;
+        padding-right: 0;        
+    }
+}
+

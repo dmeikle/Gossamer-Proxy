@@ -40,13 +40,18 @@
         }
     }
     &:hover { 
-        .dropdown:not(.list-dropdown) {
+        .dropdown:not(.list-dropdown):not(.flex-dropdown) {
             display:block;
         }
     }
     table{
         .dropdown {
             display:block;
+        }
+    }
+    .flex-table {
+        .dropdown {
+            display:inline;
         }
     }
 }
@@ -93,6 +98,14 @@
         }
     }
     &:hover { 
+        .dropdown {
+            display:block;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .card, .card .list-item {
         .dropdown {
             display:block;
         }

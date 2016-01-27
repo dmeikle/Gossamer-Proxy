@@ -70,7 +70,7 @@ module.directive('columnSortable', function($compile, $location) {
         }
     };
 });
-
+//console.log('this is a test!');
 module.directive('groupByButton', function(rootTemplateSrv, $http, $compile) {
     return {
         restrict: 'A',
