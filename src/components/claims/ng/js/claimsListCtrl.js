@@ -3,14 +3,6 @@ module.controller('claimsListCtrl', function($scope, $controller, $location, $ui
     photoUploadSrv, tablesSrv, searchSrv) {
 
 
-    var a = document.createElement('a');
-    a.href = $location.absUrl();
-    var apiPath;
-    if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
-        apiPath = a.pathname;
-    } else {
-        apiPath = a.pathname.slice(0, -1);
-    }
     var row = 0;
     var numRows = 20;
     $scope.currentPage = 1;

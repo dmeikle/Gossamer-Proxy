@@ -1,4 +1,44 @@
 
+    
+admin_scoping_home:
+    pattern: admin/scoping
+
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ClaimScopeModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_scoping_home
+        datasource: datasource1
+        langFiles: 
+            - 'app/locales/*/website'  
+            - src/components/scoping/locales/*/scoping
+            - src/components/claims/locales/*/claims
+            
+
+    
+admin_scoping_list:
+    pattern: admin/scoping/*/*
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ScopeModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: admin_scoping_list
+        datasource: datasource1      
+
+
+
+
+
+
+
+#-------------- legacy nodes ------------------------------
+
+
+
 admin_scoping_affected_areas_get_by_claim_location:
     pattern: admin/scoping/affected-areas/get/*
     defaults:
@@ -282,18 +322,5 @@ admin_scoping_rooms_list:
         langFiles: 
             - 'src/components/defaultItem/locales/*/Navigation'          
        
-    
-admin_scoping_home:
-    pattern: admin/scoping/*/*
 
-    defaults:
-        component: components\scoping\ScopingComponent
-        controller: components\scoping\controllers\ClaimScopesController
-        model: components\scoping\models\ClaimScopeModel
-        method: listall
-        view: core\views\TemplateView
-        viewKey: admin_scoping_home
-        datasource: datasource1
-        langFiles: 
-            - 'src/components/defaultItem/locales/*/Navigation'          
             
