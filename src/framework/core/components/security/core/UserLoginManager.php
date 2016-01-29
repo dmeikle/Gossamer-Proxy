@@ -87,7 +87,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
                 $this->logger->addAlert('login_password_mismatch');
                 echo $client->getPassword() . ' ' . $token->getClient()->getPassword() . '<br>';
                 echo __YML_KEY;
-                die('mismatch');
+                echo (' mismatch<br>');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_password_mismatch', new Event('login_password_mismatch', $eventParams));
             }
 

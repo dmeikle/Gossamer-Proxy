@@ -15,5 +15,8 @@ return array(
     'LOGIN_RESET_FORM' => 'Reset Password',
     'LOGIN_SUBMIT' => 'Submit',
     'LOGIN_CANCEL' => 'Cancel',
-    'LOGIN_ENTER_USERNAME' => 'Enter Username'
+    'LOGIN_ENTER_USERNAME' => 'Enter Username',
+    'LOGIN_ERROR_HEADER' => 'Login Error',
+    'LOGIN_ERROR_TEXT' => 'Incorrect Username/Password, please try again.',
+    'LOGIN_RETURN' => 'Return'
 );

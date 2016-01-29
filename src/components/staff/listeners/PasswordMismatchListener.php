@@ -29,7 +29,8 @@ class PasswordMismatchListener extends AbstractListener {
 
         $staff = new StaffModel($this->httpRequest, $this->httpResponse, $this->logger);
         $params = $this->httpRequest->getParameters();
-        die('here');
+//        die('here!!!');
+//        echo('on pw mismatch<br>');
         $datasource = $this->getDatasource($staff);
 
         $rawResult = $datasource->query('post', $staff, 'incrementfailedlogin', array('Staff_id' => intval($params[0])));

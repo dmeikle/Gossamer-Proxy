@@ -593,12 +593,14 @@ admin_login_failed:
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
         method: index
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_login_failed
         datasource: datasource1
         langFiles:
             - 'src/components/shoppingcart/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Roles'
+            - 'src/components/staff/locales/*/login'
+            - 'src/components/staff/locales/*/validation'
 
 admin_status_locked:
     pattern: admin/login/locked

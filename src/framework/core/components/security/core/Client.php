@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -28,16 +28,22 @@ class Client implements ClientInterface {
     protected $status = null;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = array()) {
 
         if (count($params) > 0) {
-            $this->password = $params['password'];
-            $this->status = $params['status'];
-            $this->roles = explode('|', $params['roles']);
-            $this->credentials = (array_key_exists('credentials', $params)) ? $params['credentials'] : $params['username'];
+//            $this->password = $params['password'];
+            $this->password = (array_key_exists('password', $params)) ? $params['password'] : '';
+            //$this->status = $params['status'];
+            $this->status = (array_key_exists('status', $params)) ? $params['status'] : '';
+//            $this->roles = explode('|', $params['roles']);
+            $this->roles = (array_key_exists('roles', $params)) ? $params['roles'] : '';
+
+            $username = (array_key_exists('username', $params)) ? $params['username'] : '';
+
+            $this->credentials = (array_key_exists('credentials', $params)) ? $params['credentials'] : $username;
             $this->ipAddress = (array_key_exists('ipAddress', $params)) ? $params['ipAddress'] : '';
             $this->id = (array_key_exists('Staff_id', $params)) ? $params['Staff_id'] : '';
 
@@ -50,8 +56,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $password
      */
     public function setPassword($password) {
@@ -59,8 +65,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param array $roles
      */
     public function setRoles(array $roles) {
@@ -68,8 +74,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $credentials
      */
     public function setCredentials($credentials) {
@@ -77,8 +83,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $ipAddress
      */
     public function setIpAddress($ipAddress) {
@@ -86,17 +92,18 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getPassword() {
+        echo 'get password';
         return $this->password;
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return array
      */
     public function getRoles() {
@@ -104,8 +111,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getCredentials() {
@@ -113,8 +120,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getIpAddress() {
@@ -122,8 +129,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function setStatus($status) {
@@ -131,8 +138,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getStatus() {
@@ -140,8 +147,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return int
      */
     public function getId() {

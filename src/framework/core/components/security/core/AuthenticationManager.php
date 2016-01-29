@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -33,7 +33,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     protected $node = null;
 
     /**
-     * 
+     *
      * @param Logger $logger
      */
     public function __construct(Logger $logger) {
@@ -41,8 +41,8 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param Container $container
      */
     public function setContainer(Container $container) {
@@ -51,9 +51,9 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
 
     /**
      * authenticates a user based on their context
-     * 
+     *
      * @param \core\components\security\core\SecurityContextInterface $context
-     * 
+     *
      * @throws ClientCredentialsNotFoundException
      */
     public function authenticate(SecurityContextInterface $context) {
@@ -78,14 +78,14 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
      * placeholder function since we need the ServiceInterface
      */
     public function execute() {
-        
+
     }
 
     /**
      * accessor for passing in array of params
-     * 
+     *
      * @param array $params
-     * 
+     *
      * @throws ArgumentNotPassedException
      */
     public function setParameters(array $params) {
@@ -99,7 +99,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
 
     /**
      * generates a default token
-     * 
+     *
      * @return SecurityToken
      */
     public function generateEmptyToken() {
@@ -115,7 +115,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
 
     /**
      * generates a new token based on current client
-     * 
+     *
      * @return SecurityToken
      */
     public function generateNewToken() {
@@ -126,10 +126,11 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
     }
 
     /**
-     * 
+     *
      * @return \core\components\security\core\Client
      */
     public function getClient() {
+
         $client = new Client();
         $client->setIpAddress($_SERVER['REMOTE_ADDR']);
         $client->setRoles(array('ROLE_ANONYMOUS_USER'));
@@ -140,7 +141,7 @@ class AuthenticationManager implements AuthenticationManagerInterface, ServiceIn
 
     /**
      * retrieves a list of credentials (IS_ADMINISTRATOR|IS_ANONYMOUS...)
-     * 
+     *
      * @return array(credentials)|null
      */
     protected function getClientHeaderCredentials() {
