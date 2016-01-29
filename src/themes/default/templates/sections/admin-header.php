@@ -1,4 +1,3 @@
-
 <header ng-controller="tabsCtrl">
     <nav>
         <div class="navbar-header">

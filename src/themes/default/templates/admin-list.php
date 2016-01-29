@@ -55,9 +55,6 @@
     </body>
 
     <!---javascript--->
-
-
-
     <script language="javascript">
         (function () {
             angular.bootstrap(document, [<?php echo $modules; ?>]);

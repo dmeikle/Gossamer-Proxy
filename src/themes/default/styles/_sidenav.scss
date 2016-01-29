@@ -84,8 +84,9 @@
     cursor:pointer;
     background-color:#E4E4E4;
     width:$side-nav-toggle-width;
+    display : flex;
+    align-items : center;
     span{
-        top:25%;
         width:100%;
         text-align:center;
         vertical-align: middle;

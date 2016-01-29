@@ -1,4 +1,4 @@
-<ul id="nav">
+<!--<ul id="nav">
     <li><a href="/restoration/services">WEBSITE_SERVICES</a></li>
 
     <li><a href="/portal/entrance">WEBSITE_LOGIN</a></li>
@@ -20,4 +20,24 @@
         margin-left: 20px;
     }
 
-</style>
+</style>-->
+<header>
+    <nav>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed primary" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+                <img class="default-logo" src="/images/logo.png" alt="Logo">
+            </a>
+        </div>
+
+
+
+    </nav>
+</header>

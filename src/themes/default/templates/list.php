@@ -12,23 +12,29 @@
 
                         <!---css--->
                         </head>
-
                         <body>
+                            <!---header--->
+                            <!---leftnav--->
                             <div id="container">
-                                <!---header--->
-                                <div id="lower">
+                                <!--<div id="lower">-->
+                                <main ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}" class="content full-width">
+
                                     <!---section3--->
                                     <div id="payload">
                                         <!---payload--->
-
                                     </div>
 
-                                </div>
+                                </main>
+                                <!--</div>-->
                                 <div id="footer">  <!---section5---> </div>
                             </div>
 
 
                         </body>
                         <!---javascript--->
-
+                        <script language="javascript">
+                            (function () {
+                                angular.bootstrap(document, [<?php echo $modules; ?>]);
+                            })();
+                        </script>
                         </html>
