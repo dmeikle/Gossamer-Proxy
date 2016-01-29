@@ -6,11 +6,11 @@ admin_propertymanagers_search:
 
 component_list:
     template: list.php
-    sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
+    sections: {"header": "src/themes/default/templates/sections/header.php", "leftnav": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
     
 users_list2:
     template: list.php
-    sections: {"section1": "src/themes/default/templates/sections/header.php", "section2": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
+    sections: {"header": "src/themes/default/templates/sections/header.php", "leftnav": "src/components/users/views/leftnav.php", "section3": "src/components/users/views/payload.php"}
  
 admin_contacts_company_edit: 
     template: admin-list.php
@@ -70,9 +70,9 @@ portal_login:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
-            "section3": "src/components/contacts/views/login/login-form.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/header.php"
+            "content": "src/components/contacts/views/login/login-form.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
             
 portal_login_submit:
     template: portal-list.php
@@ -169,19 +169,19 @@ contacts_login_locked:
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/contacts/views/subnav.php"
-            "section3": "src/components/contacts/views/locked.php"
-            "section4": "src/themes/default/templates/sections/footer.php"  
+            "header": "src/themes/default/templates/sections/header.php"
+#            "section2": "src/components/contacts/views/subnav.php"
+            "content": "src/components/contacts/views/locked.php"
+            "footer": "src/themes/default/templates/sections/footer.php"  
 
 contacts_login_failed:  
     template: list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/header.php"
-            "section2": "src/components/contacts/views/subnav.php"
-            "section3": "src/components/contacts/views/login/failed.php"
-            "section4": "src/themes/default/templates/sections/footer.php"       
+            "header": "src/themes/default/templates/sections/header.php"
+#            "section2": "src/components/contacts/views/subnav.php"
+            "content": "src/components/contacts/views/login/failed.php"
+            "footer": "src/themes/default/templates/sections/footer.php"       
             
 portal_contacts_edit: 
     template: portal-list.php

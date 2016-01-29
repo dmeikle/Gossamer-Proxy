@@ -16,7 +16,7 @@
 
 <div id="locales">
     <?php //$locale = $this->getDefaultLocale(); ?>
-    <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];        ?>.gif">
+    <img id="locale-icon" src="/images/flags/<?php //echo $locale['icon'];         ?>.gif">
     <a class="select-locale" data-id="en_US">EN</a>
     <a class="select-locale" data-id="zh_CN">&#20013;&#25991;</a>
     <a class="select-locale" data-id="hi_IN">Hindi</a>
@@ -54,12 +54,12 @@
 
         if (array_key_exists('active', $item) && $item['active'] == false) {
             ?>
-                                                                                       <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
+                                                                                               <li title="disabled on this release"><?php echo $this->getString($item['text_key']); ?></li>
             <?php
             continue;
         }
         ?>
-                                               <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']); ?></a></li>
+                                                   <li><a href="<?php echo $item['pattern']; ?>"><?php echo $this->getString($item['text_key']); ?></a></li>
 
     <?php }
     ?>

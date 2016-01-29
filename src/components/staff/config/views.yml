@@ -105,12 +105,12 @@ admin_login:
     template: list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section3": "src/components/staff/views/login/login-form.php"
-            "section5": "src/themes/default/templates/sections/footer.php"
+#            "section1": "src/themes/default/templates/sections/portal-header.php"
+            "content": "src/components/staff/views/login/login-form.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
             "header": "src/themes/default/templates/sections/header.php"
-#            "context-button": "src/components/staff/views/admin/context-button.php"
             "leftnav": "src/themes/default/templates/sections/left-nav.php"
+#            "context-button": "src/components/staff/views/admin/context-button.php"
 #            "content": "src/components/staff/views/login/login-form.php"
 #            "section2": "src/components/staff/views/admin/subnav.php"
 #            "footer": "src/themes/default/templates/sections/footer.php"
