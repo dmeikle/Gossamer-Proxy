@@ -100,5 +100,6 @@ return array(
     'STAFF_DELETE' => 'Delete',
     'STAFF_EMERGENCY_ADDNEW' => 'Add New Staff Benefit',
     'STAFF_UPLOADING_PROFILE_PHOTO' => 'Uploading Profile Photo...',
-    'STAFF_UPLOAD_NEW_IMAGE' => 'Upload New Image'
+    'STAFF_UPLOAD_NEW_IMAGE' => 'Upload New Image',
+    'STAFF_LOGIN' => 'Staff Login'
 );

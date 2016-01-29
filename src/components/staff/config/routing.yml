@@ -533,15 +533,16 @@ admin_login:
         controller: components\staff\controllers\LoginController
         model: components\staff\models\StaffModel
         method: login
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_login
         datasource: datasource1
         langFiles:
             - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
+            - app/locales/*/website
     methods: [GET]
-    staticCache: true
+    staticCache: false
 
 admin_login_submit:
     pattern: admin/login

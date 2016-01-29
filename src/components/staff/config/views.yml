@@ -102,14 +102,30 @@ admin_staff_timesheets:
 
 #--------------------- login section -------------------------
 admin_login:
-    template: list.php
+    template: admin-list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section3": "src/components/staff/views/login/login-form.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+#            "section1": "src/themes/default/templates/sections/portal-header.php"
+#            "section3": "src/components/staff/views/login/login-form.php"
+#            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/admin-header.php"
+#            "context-button": "src/components/staff/views/admin/context-button.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+            "content": "src/components/staff/views/login/login-form.php"
+            "section2": "src/components/staff/views/admin/subnav.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - staffAdmin
     head:
+        - @components/staff/dist/bower_components/angular/angular.min.js
+        - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
+        - @components/staff/dist/js/staff.concat.js
+        - @extensions/angular/dist/js/angular-extension.concat.js
     css:
         - @components/staff/dist/css/staff.min.css
 

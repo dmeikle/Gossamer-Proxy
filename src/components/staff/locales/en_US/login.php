@@ -2,6 +2,7 @@
 
 return array(
     'LOGIN_FORM' => 'Login Form',
+    'LOGIN_STAFF' => 'Staff Login',
     'LOGIN_EMAIL' => 'Email',
     'LOGIN_EMAIL_PROMPT' => 'enter your email address',
     'LOGIN_PASSWORD' => 'Password',
