@@ -601,6 +601,7 @@ admin_login_failed:
             - 'src/components/defaultItem/locales/*/Roles'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
+            - app/locales/*/website
 
 admin_status_locked:
     pattern: admin/login/locked
@@ -615,6 +616,7 @@ admin_status_locked:
         langFiles:
             - 'src/components/shoppingcart/locales/*/Navigation'
             - 'src/components/defaultItem/locales/*/Roles'
+            - app/locales/*/website
 
 #--------------------------- end login ---------------------
 
