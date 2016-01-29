@@ -513,15 +513,16 @@ admin_login_reset:
         controller: components\staff\controllers\StaffAuthorizationController
         model: components\staff\models\StaffAuthorizationModel
         method: displayResetForm
-        view: core\views\TemplateView
+        view: extensions\angular\views\AngularTemplateView
         viewKey: admin_login_reset
         datasource: datasource1
         langFiles:
             - 'src/components/defaultItem/locales/*/Navigation'
             - 'src/components/staff/locales/*/login'
             - 'src/components/staff/locales/*/validation'
+            - app/locales/*/website
     methods: [GET]
-    staticCache: true
+    staticCache: false
 
 
 admin_login:

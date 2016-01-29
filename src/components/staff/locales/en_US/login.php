@@ -11,5 +11,9 @@ return array(
     'LOGIN_SIGNIN' => 'Sign In',
     'LOGIN_NEW' => 'New?',
     'LOGIN_SIGNUP' => 'Sign Up',
-    'LOGIN_STAY_LOGGED_IN' => 'Keep me logged in for the day'
+    'LOGIN_STAY_LOGGED_IN' => 'Keep me logged in for the day',
+    'LOGIN_RESET_FORM' => 'Reset Password',
+    'LOGIN_SUBMIT' => 'Submit',
+    'LOGIN_CANCEL' => 'Cancel',
+    'LOGIN_ENTER_USERNAME' => 'Enter Username'
 );

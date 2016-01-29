@@ -133,13 +133,23 @@ admin_login_reset:
     template: list.php
     sections:
         -
-            "section1": "src/themes/default/templates/sections/portal-header.php"
-            "section3": "src/components/staff/views/login/reset.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
+            "header": "src/themes/default/templates/sections/header.php"
+            "content": "src/components/staff/views/login/reset.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+            "leftnav": "src/themes/default/templates/sections/left-nav.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+            - staffAdmin
     head:
+        - @components/staff/dist/bower_components/angular/angular.min.js
+        - @components/staff/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/staff/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/staff/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
     javascript:
+        - @components/staff/dist/js/staff.concat.js
+        - @extensions/angular/dist/js/angular-extension.concat.js
     css:
-
         - @components/staff/dist/css/staff.min.css
 
 admin_login_reset_submit:
