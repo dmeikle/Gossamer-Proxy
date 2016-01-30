@@ -113,8 +113,6 @@ admin_staff_timesheets_save:
 
 admin_staff_home:
     pattern: admin/staff
-    listeners:
-
     defaults:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
@@ -128,6 +126,22 @@ admin_staff_home:
         - 'app/locales/*/website'
     methods: [GET]
     staticCache: true
+    
+
+
+admin_staff_listbyroles:
+    pattern: admin/staff/listbyroles/*/*
+    defaults:
+        component: components\staff\StaffComponent
+        controller: components\staff\controllers\StaffController
+        model: components\staff\models\StaffModel
+        method: listByRoles
+        view: core\views\JSONView
+        viewKey: admin_staff_listbyroles
+        datasource: datasource1
+    methods: [GET]
+
+
 
 admin_staff_create_new:
     pattern: admin/staff/create

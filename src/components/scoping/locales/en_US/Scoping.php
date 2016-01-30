@@ -27,4 +27,14 @@ return array(
     'SCOPING_TOTALS' => 'Totals',
     'SCOPING_DRYWALL_ONE_HALF' => 'Drywall 1/2"',
     'SCOPING_DRYWALL_FIVE_EIGHTHS' => 'Drywall 5/8"',
+    'SCOPING_SCOPE_WRITER' => 'Scope Writer',
+    'SCOPING_CLAIMS_LIST' => 'Claim Scopes',
+    'SCOPING_PHASE_CHANGE_DATE' => 'Phase Date',
+    'SCOPING_SCHEDULE_DATE' => 'Schedule Date',
+    'SCOPING_SOURCE' => 'Source',
+    'SCOPING_SCOPE_WRITER' => 'Scope Writer',
+    'SCOPING_STATUS' => 'Status',
+    'SCOPING_CLAIMS_LIST' => 'Scoping List',
+    'SCOPING_NUM_UNITS' => '# Units',
+    'CLAIMS_ASSIGN_SCOPE_WRITER' => 'Assign Scope Writer'
 );

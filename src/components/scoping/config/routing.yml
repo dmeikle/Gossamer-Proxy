@@ -13,8 +13,23 @@ admin_scoping_home:
         datasource: datasource1
         langFiles: 
             - 'app/locales/*/website'  
-            - src/components/scoping/locales/*/scoping
+            - src/components/scoping/locales/*/Scoping
             - src/components/claims/locales/*/claims
+    staticCache: true
+
+
+admin_scoping_assign_writer:
+    pattern: admin/scoping/assign-writer
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ScopingInstancesController
+        model: components\scoping\models\ScopingInstanceModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_scoping_assign_writer
+        datasource: datasource1  
+    methods: [POST]
+
             
 
     
@@ -28,11 +43,6 @@ admin_scoping_list:
         view: core\views\JSONView
         viewKey: admin_scoping_list
         datasource: datasource1      
-
-
-
-
-
 
 
 #-------------- legacy nodes ------------------------------

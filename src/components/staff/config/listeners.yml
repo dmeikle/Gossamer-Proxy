@@ -33,3 +33,18 @@ admin_staff_edit_home:
             formName: 'roleForm'
             dependencies:
                 - { dependency: StaffRoles, model: StaffRole }
+                
+        #build the form for Staff
+        -
+            event: 'request_end'
+            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+            datasource: 'datasource1'
+            formBuilder: 'components\staff\form\StaffBuilder'
+            model: 'components\staff\models\StaffModel'
+            cacheKey: 'StaffForm'
+            formName: 'form'
+            dependencies:
+                - { dependency: Provinces, key: provinces, value: id, text: province }
+                - { dependency: StaffPositions, key: staffPositions, value: id, text: position }
+                - { dependency: Departments, key: departments, value: id, text: name }
+                - { dependency: StaffTypes, key: staffTypes, value: id, text: typeOfStaff }

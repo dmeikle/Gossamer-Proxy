@@ -8,6 +8,7 @@
     
     function staffAuthorizationCtrl($rootScope, staffSrv) {
         var self = this;
+        self.staffAuthorization = {};
         
         $rootScope.$on('STAFF_LOADED', function(event, args) {
             if(args.staff.id !== undefined && args.staff.id > 0) {
