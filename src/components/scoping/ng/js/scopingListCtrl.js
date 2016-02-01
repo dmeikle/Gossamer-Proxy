@@ -27,6 +27,8 @@
         self.sidePanelLoading = false;
         self.sidePanelOpen = false;
         self.searching = false;
+        self.basicSearch = {};
+        
         
         $scope.$on('LOAD_COMPLETE', function() {
             self.loading = false;
@@ -78,6 +80,24 @@
                     }
                 }
             });
+        };
+        
+        self.search = function(searchObject) {
+            self.noResults = undefined;
+            var copiedObject = angular.copy(searchObject);
+            if (copiedObject && Object.keys(copiedObject).length > 0) {
+                self.searchSubmitted = true;
+                self.loading = true;
+                scopingSrv.search(copiedObject).then(function() {
+                    self.claimsList = claimsListSrv.searchResults;
+                    self.totalItems = claimsListSrv.searchResultsCount;
+                    self.loading = false;
+                });
+            }
+        };
+        
+         self.closeSidePanel = function() {
+            self.sidePanelOpen = false;
         };
     }
 })();

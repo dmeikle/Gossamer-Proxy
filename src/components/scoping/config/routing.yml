@@ -2,7 +2,6 @@
     
 admin_scoping_home:
     pattern: admin/scoping
-
     defaults:
         component: components\scoping\ScopingComponent
         controller: components\scoping\controllers\ClaimScopesController
@@ -16,6 +15,20 @@ admin_scoping_home:
             - src/components/scoping/locales/*/Scoping
             - src/components/claims/locales/*/claims
     staticCache: true
+    
+
+    
+admin_scoping_search:
+    pattern: admin/scoping/search
+    defaults:
+        component: components\scoping\ScopingComponent
+        controller: components\scoping\controllers\ClaimScopesController
+        model: components\scoping\models\ClaimScopeModel
+        method: search
+        view: core\views\JSONView
+        viewKey: admin_scoping_search
+        datasource: datasource1
+    
 
 
 admin_scoping_assign_writer:

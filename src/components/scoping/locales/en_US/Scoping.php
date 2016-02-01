@@ -36,5 +36,9 @@ return array(
     'SCOPING_STATUS' => 'Status',
     'SCOPING_CLAIMS_LIST' => 'Scoping List',
     'SCOPING_NUM_UNITS' => '# Units',
-    'CLAIMS_ASSIGN_SCOPE_WRITER' => 'Assign Scope Writer'
+    'SCOPING_ASSIGN_SCOPE_WRITER' => 'Assign Scope Writer',
+    'SCOPING_TELEPHONE' => 'Telephone',
+    'SCOPING_MOBILE' => 'Mobile',
+    'SCOPING_BUZZER' => 'Buzzer',
+    'SCOPING_ROOMS' => 'Rooms'
 );

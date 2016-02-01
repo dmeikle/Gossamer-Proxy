@@ -109,9 +109,8 @@
         function search(searchObject) {
             return searchSrv.search(apiPath, searchObject).then(function() {
 
-                //TODO: change ObjectTypes to expected result type
-                self.searchResults = searchSrv.searchResults.ObjectTypes;
-                self.searchResultsCount = searchSrv.searchResults.CompanysCount[0].rowCount;
+                self.searchResults = searchSrv.searchResults.Scopes;
+                self.searchResultsCount = searchSrv.searchResults.ScopesCount[0].rowCount;
             });
         }
 
