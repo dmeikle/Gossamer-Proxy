@@ -1,13 +1,13 @@
-admin_login:
-    listeners:
-        -
-            event: 'request_end'
-            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
-            datasource: 'datasource1'
-            formBuilder: 'components\staff\form\LoginBuilder'
-            model: 'components\staff\models\StaffModel'
-            cacheKey: 'LoginForm'
-            formName: 'form'
+#admin_login:
+#    listeners:
+#        -
+#            event: 'request_end'
+#            listener: 'core\components\render\eventlisteners\MultiFormBuilderListener'
+#            datasource: 'datasource1'
+#            formBuilder: 'components\staff\form\LoginBuilder'
+#            model: 'components\staff\models\StaffModel'
+#            cacheKey: 'LoginForm'
+#            formName: 'form'
 
 admin_staff_edit_home:
     listeners:
