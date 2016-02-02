@@ -27,4 +27,13 @@ class ClaimScopeModel extends AbstractModel {
         $this->tablename = 'claimscopes';
     }
 
+    public function search(array $term) {
+        $params = array('directive::ORDER_BY' => key($term), 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
+        $params = array_merge($params, $term);
+//        pr($term);
+        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
+
+        return $data;
+    }
+
 }

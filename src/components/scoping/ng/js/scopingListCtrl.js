@@ -14,7 +14,7 @@
         .module('scopingAdmin')
         .controller('scopingListCtrl', scopingListCtrl);
 
-    function scopingListCtrl($scope, $uibModal, scopingSrv) {
+    function scopingListCtrl($scope, $uibModal, scopingSrv, $log) {
         var self = this;
         var row = 0;
         var numRows = 20;
@@ -84,16 +84,33 @@
         
         self.search = function(searchObject) {
             self.noResults = undefined;
+            self.loading = true;
             var copiedObject = angular.copy(searchObject);
             if (copiedObject && Object.keys(copiedObject).length > 0) {
                 self.searchSubmitted = true;
                 self.loading = true;
-                scopingSrv.search(copiedObject).then(function() {
-                    self.claimsList = claimsListSrv.searchResults;
-                    self.totalItems = claimsListSrv.searchResultsCount;
+                scopingSrv.search(copiedObject).then(function(results) {
+                    $log.log(results);
+                    self.claimsList = results.searchResults;
+                    self.totalItems = results.searchResultsCount;
                     self.loading = false;
                 });
             }
+        };
+        
+        self.openAdvancedSearch = function () {
+            self.sidePanelOpen = true;
+            self.searching = true;
+        };
+        
+        self.resetSearch = function () {
+            self.search.query = {};
+            getList();
+        };
+        
+        self.resetAdvancedSearch = function () {
+            self.advancedSearch.query = {};
+            getList();
         };
         
          self.closeSidePanel = function() {

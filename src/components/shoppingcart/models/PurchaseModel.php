@@ -67,13 +67,13 @@ class PurchaseModel extends AbstractModel {
         return ($data);
     }
 
-    public function delete() {
-        $params = $this->httpRequest->getPost();
-
-        $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
-
-        $this->listall(0, 20);
-    }
+//    public function delete() {
+//        $params = $this->httpRequest->getPost();
+//
+//        $data = $this->dataSource->query(self::METHOD_DELETE, $this, self::VERB_DELETE, $params);
+//
+//        $this->listall(0, 20);
+//    }
 
     public function getSalesTotals() {
         return (array());

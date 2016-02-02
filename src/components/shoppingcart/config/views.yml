@@ -8,7 +8,7 @@ default_index:
             "section2": "src/components/users/views/leftnav.php"
             "section3": "src/components/shoppingcart/views/payload.php"
             "section4": "src/themes/default/templates/sections/footer.php"
-            
+    
 
 
 cart_categories_list:
@@ -35,11 +35,26 @@ cart_admin_home:
     template: admin-list.php
     sections: 
         -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/shoppingcart/views/admin/topnav.php"
-            "section3": "src/components/shoppingcart/views/admin/home.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    
+            "header": "src/themes/default/templates/sections/admin-header.php"
+            leftnav: "src/components/shoppingcart/views/admin/topnav.php"
+            "content": "src/components/shoppingcart/views/admin/home.php"
+            "footer": "src/themes/default/templates/sections/footer.php"
+    angular:
+        bootstrap_modules:
+            - rootApp
+#            - claimsAdmin
+    head:
+        - @components/claims/dist/bower_components/angular/angular.min.js
+        - @components/claims/dist/bower_components/jquery/dist/jquery.min.js
+        - @components/claims/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
+        - @components/claims/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+    javascript:
+        - @extensions/angular/dist/js/angular-extension.concat.js
+        #- @extensions/angular/dist/js/angular-extension.min.js
+#        - @components/claims/dist/js/claims.concat.js
+        #- @components/claims/dist/js/claims.min.js
+    css:
+        - @components/claims/dist/css/claims.min.css
 
     
 cart_admin_categories_list:

@@ -1,6 +1,6 @@
 
 
-<div class="widget" ng-controller="scopingListCtrl as ctrl">
+<div class="widget" ng-controller="scopingListCtrl as ctrl" ng-cloak>
     <div class="widget-content" ng-class="{'panel-open': ctrl.sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('SCOPING_CLAIMS_LIST') ?></h1>
         <div class="toolbar form-inline">
@@ -43,15 +43,25 @@
                 <div group-by-button class="cog-col row-controls">&nbsp;</div>
             </li>
             <div class="flex-tbody">
-                <li ng-if="loading" class="flex-loading">
+                <li ng-if="ctrl.loading" class="flex-loading">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                     <div class="padding-vertical"><span class="spinner-loader"></span></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </li>
-                <li ng-if="!loading" class="flex-row" ng-repeat="claim in ctrl.claimsList"
-                    ng-class="{'selected': claim === previouslyClickedObject,
+                <li ng-if="!ctrl.loading" class="flex-row" ng-repeat="claim in ctrl.claimsList"
+                    ng-class="{'selected': claim === ctrl.previouslyClickedObject,
                                             'inactive bg-warning text-warning': claim.status == 'pending assignment'}">
                     <div class="flex-left">
                         <div>
-                            <div class="content" ng-if="claim.jobNumber"><h4><?php echo $this->getString('CLAIMS_JOBNUMBER') ?> {{claim.jobNumber}}</h4></div>
+                            <div class="content" ng-if="claim.jobNumber"><h4>{{claim.jobNumber}}</h4></div>
                             <div class="content" ng-if="!claim.jobNumber"><h4><?php echo $this->getString('CLAIMS_JOBNUMBER') ?> {{claim.unassignedJobNumber}}</h4></div>
                             <div class="content" ng-if="claim.buildingName">{{claim.buildingName}}<br />{{claim.address1}}<br />{{claim.city}}, {{claim.postalCode}}</div>
                             <div class="content" ng-if="claim.numUnits"><?php echo $this->getString('SCOPING_NUM_UNITS') ?>:  {{claim.numUnits}}</div>
@@ -125,7 +135,7 @@
         </div>
     </div>
 
-    <div class="widget-side-panel">
+    <div class="widget-side-panel" ng-class="{'show-overflow':ctrl.sidePanelOpen}">
         <div class="pull-right">
             <button class="btn-link" ng-click="ctrl.closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
@@ -133,7 +143,7 @@
             <span class="spinner-loader"></span>
         </div>
 
-        <form ng-if="!ctrl.sidePanelLoading && ctrl.searching" ng-submit="ctrl.search(advancedSearch.query)">
+        <form ng-if="!ctrl.sidePanelLoading && ctrl.searching" ng-submit="ctrl.search(ctrl.advancedSearch.query)">
             <h1><?php echo $this->getString('CLAIMS_ADVANCED_SEARCH'); ?></h1>
 
             <div class="form-group">
@@ -190,29 +200,59 @@
                     </button>
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <div class="location" ng-if="!loading" ng-repeat="location in ctrl.selectedClaim.locations" class="card info-card ng-scope">
-                <div class="unit"><h3><div ng-show="location.numRooms > 0" class="numRooms">{{location.numRooms}} <?php echo $this->getString('SCOPING_ROOMS') ?></div>{{location.unitNumber}}</h3></div>
-                <div class="buzzer"><?php echo $this->getString('SCOPING_BUZZER') ?> {{location.buzzerCode}}</div>
-                <div class="clearfix"></div>
-                <div class="name">{{location.firstname}} {{location.lastname}}</div>
-                <div class="telephone"><?php echo $this->getString('SCOPING_TELEPHONE') ?> {{location.daytimePhone}}</div>
-                <div class="mobile"><?php echo $this->getString('SCOPING_MOBILE') ?> {{location.mobile}}</div>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
-                            type="button" id="dropdownMenu1" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="true">
-                    </button>
-                    <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
-                        <li><a href="" ng-click="ctrl.openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
-                        <li><a href="" ng-click="ctrl.delete(location)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
-                        <li><a href="" ng-click="ctrl.openCustomersModal('customersModal', location, {})"><?php echo $this->getString('CLAIMS_ADD_CUSTOMER') ?></a></li>
-                    </ul>
-                </div>
-                <div class="cardfooter clearfix">
-                    more information
-                </div>
-            </div>
+
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th class="col-md-2"><?php echo $this->getString('CLAIMS_UNIT_NUMBER') ?></th>
+                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_NAME') ?></th>
+                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_PHONE') ?></th>
+                    <th class="col-md-3"><?php echo $this->getString('CLAIMS_MOBILE') ?></th>
+                    <th class="col-md-1"></th>
+                </tr>
+                <tr ng-repeat="location in ctrl.selectedClaim.locations">
+                    <td>{{location.unitNumber}}</td>
+                    <td>{{location.firstname}} {{location.lastname}}</td>
+                    <td> {{location.daytimePhone}} </td>
+                    <td>{{location.mobile}}</td>
+                    <td class="row-controls">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="true">
+                            </button>
+                            <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="" ng-click="openClaimLocationModal(location)"><?php echo $this->getString('CLAIMS_EDIT_LOCATION') ?></a></li>
+                                <li><a href="" ng-click="delete(location)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>
+                                <li><a href="" ng-click="openCustomersModal('customersModal', location, {})"><?php echo $this->getString('CLAIMS_ADD_CUSTOMER') ?></a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <!--<div class="clearfix"></div>-->
+            <!--            <div class="location" ng-if="!loading" ng-repeat="location in ctrl.selectedClaim.locations" class="card info-card ng-scope">
+                            <div class="unit"><h3><div ng-show="location.numRooms > 0" class="numRooms">{{location.numRooms}} <?php // echo $this->getString('SCOPING_ROOMS')                  ?></div>{{location.unitNumber}}</h3></div>
+                            <div class="buzzer"><?php // echo $this->getString('SCOPING_BUZZER')                  ?> {{location.buzzerCode}}</div>
+                            <div class="clearfix"></div>
+                            <div class="name">{{location.firstname}} {{location.lastname}}</div>
+                            <div class="telephone"><?php // echo $this->getString('SCOPING_TELEPHONE')                  ?> {{location.daytimePhone}}</div>
+                            <div class="mobile"><?php // echo $this->getString('SCOPING_MOBILE')                  ?> {{location.mobile}}</div>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog"
+                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="true">
+                                </button>
+                                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                                    <li><a href="" ng-click="ctrl.openClaimLocationModal(location)"><?php // echo $this->getString('CLAIMS_EDIT_LOCATION')                  ?></a></li>
+                                    <li><a href="" ng-click="ctrl.delete(location)"><?php // echo $this->getString('CLAIMS_REMOVE')                  ?></a></li>
+                                    <li><a href="" ng-click="ctrl.openCustomersModal('customersModal', location, {})"><?php // echo $this->getString('CLAIMS_ADD_CUSTOMER')                  ?></a></li>
+                                </ul>
+                            </div>
+                            <div class="cardfooter clearfix">
+                                more information
+                            </div>
+                        </div>-->
         </div>
     </div>
     <div class="clearfix"></div>

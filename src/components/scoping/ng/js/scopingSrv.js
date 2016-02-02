@@ -36,7 +36,9 @@
             getAdvancedSearchFilters: getAdvancedSearchFilters,
             getClaimContacts: getClaimContacts,
             getClaimLocations: getClaimLocations,
-            saveScopeWriter: saveScopeWriter
+            saveScopeWriter: saveScopeWriter,
+//            responseList: responseList,
+//            responseListCount: responseListCount
         };
         
         return service;
@@ -108,9 +110,10 @@
 
         function search(searchObject) {
             return searchSrv.search(apiPath, searchObject).then(function() {
-
-                self.searchResults = searchSrv.searchResults.Scopes;
-                self.searchResultsCount = searchSrv.searchResults.ScopesCount[0].rowCount;
+                var results = {};
+                results.searchResults = searchSrv.searchResults.Claims;
+                results.searchResultsCount = searchSrv.searchResults.ClaimsCount[0].rowCount;
+                return results;
             });
         }
 

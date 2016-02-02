@@ -14,7 +14,7 @@ admin_scoping_home:
             - 'app/locales/*/website'  
             - src/components/scoping/locales/*/Scoping
             - src/components/claims/locales/*/claims
-    staticCache: true
+    staticCache: false
     
 
     
@@ -42,8 +42,8 @@ admin_scoping_assign_writer:
         viewKey: admin_scoping_assign_writer
         datasource: datasource1  
     methods: [POST]
-
-            
+    
+    
 
     
 admin_scoping_list:

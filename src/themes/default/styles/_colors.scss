@@ -16,6 +16,13 @@ th {
 
 table.table tbody tr.selected {
     background-color:rgba(3,146,211,.4);
+    td {
+        color:#31708f;
+        
+    }
+    &:hover{
+        background-color:rgba(3,146,211,.5);
+    }
 }
 
 .cardtable>tbody>tr:first-of-type>td {
