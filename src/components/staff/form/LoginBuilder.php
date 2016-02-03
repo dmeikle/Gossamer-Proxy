@@ -25,6 +25,7 @@ class LoginBuilder extends AbstractBuilder {
 
         $builder->addValidationResults($validationResults);
         $builder->add('email', 'text', array('class' => 'form-control'))
+                ->add('username', 'text', array('class' => 'form-control'))
                 ->add('password', 'password', array('class' => 'form-control'))
                 ->add('submit', 'submit', array('value' => 'LOGIN_SIGNIN', 'class' => 'btn btn-primary'));
 

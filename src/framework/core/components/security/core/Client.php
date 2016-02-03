@@ -107,7 +107,11 @@ class Client implements ClientInterface {
      * @return array
      */
     public function getRoles() {
-        return $this->roles;
+        if (is_array($this->roles)) {
+            return $this->roles;
+        }
+
+        return explode('|', $this->roles);
     }
 
     /**

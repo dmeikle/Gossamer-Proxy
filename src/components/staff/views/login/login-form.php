@@ -4,12 +4,12 @@
         <h1><?php echo $this->getString('LOGIN_STAFF'); ?></h1>
         <form action role="form" method="post">
             <div class="form-group">
-                <label for="email"><?php echo $this->getString('LOGIN_EMAIL'); ?></label>
-                <?php echo $form['email']; ?>
+                <label for="email"><?php echo $this->getString('LOGIN_USERNAME'); ?></label>
+                <input type="text" name="username" class="form-control" id="Staff_username">
             </div>
             <div class="form-group">
                 <label for="password"><?php echo $this->getString('LOGIN_PASSWORD'); ?></label>
-                <?php echo $form['password']; ?>
+                <input type="password" name="password" class="form-control" id="Staff_password">
             </div>
             <div style="text-align:right">
                 <a class="padding" href="/admin/login/reset"><?php echo $this->getString('LOGIN_LOST_PASSWORD'); ?></a>

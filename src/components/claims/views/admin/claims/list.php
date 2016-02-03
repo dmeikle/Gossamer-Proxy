@@ -11,7 +11,7 @@
 
             <form ng-submit="search(basicSearch.query)" class="input-group">
                 <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
-                       ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)">
+                       ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)" ng-minlength="3">
                 <div class="resultspane" ng-show="noResults">
                     <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CLAIMS_NORESULTS') ?>
                 </div>
@@ -110,8 +110,6 @@
                             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
                                 <li ng-if="!claim.jobNumber"><a href="" ng-click="assignPM(claim)"><?php echo $this->getString('CLAIMS_ASSIGN_PM'); ?></a></li>
                                 <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.unassignedJobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
-                                <li ng-if="!claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='TESTING'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
-
                                 <li ng-if="claim.jobNumber"><a gcms="{uri='admin_claims_edit' params='{{claim.jobNumber}}'}"><?php echo $this->getString('CLAIMS_EDIT'); ?></a></li>
                                 <li><a href="" ng-click="openPhotoUploadModal(claim)"><?php echo $this->getString('CLAIM_UPLOAD_PHOTOS') ?></a></li>
                                 <li><a href="" ng-click="remove(claim)"><?php echo $this->getString('CLAIMS_REMOVE') ?></a></li>

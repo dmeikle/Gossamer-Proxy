@@ -128,6 +128,11 @@ class ClaimModel extends AbstractModel implements FormBuilderInterface {
         $params = $this->httpRequest->getPost();
         $params[$this->entity]['id'] = intval($id);
         $params[$this->entity]['Staff_id'] = $this->getLoggedInStaffId();
+        if (intval($id) == 0) {
+            $params[$this->entity]['enteredByStaffId'] = $this->getLoggedInStaffId();
+        } else {
+            unset($params[$this->entity]['enteredByStaffId']);
+        }
         $params[$this->entity]['ClaimPhases_id'] = $params[$this->entity]['currentClaimPhases_id'];
 
         $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params[$this->entity]);
