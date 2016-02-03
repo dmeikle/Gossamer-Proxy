@@ -27,9 +27,11 @@ use libraries\utils\YAMLParser;
 class LoadBehaviorsListener extends AbstractListener {
 
     public function on_entry_point($params) {
+
         $nodeConfig = $this->httpRequest->getNodeConfig();
         $path = str_replace('\\', DIRECTORY_SEPARATOR, $nodeConfig['namespace']) . DIRECTORY_SEPARATOR . $nodeConfig['componentFolder'] . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'listeners.yml';
-
+        echo $path;
+//        die();
         $config = $this->loadBehaviorConfig(__SITE_PATH . DIRECTORY_SEPARATOR . $path);
         if (!is_null($config)) {
             $nodeConfig['listeners'] = $config;

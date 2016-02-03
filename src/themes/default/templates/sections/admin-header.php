@@ -1,7 +1,7 @@
 
 <header ng-controller="tabsCtrl">
     <nav>
-        <div class="navbar-header">
+        <div class="navbar-header" ng-controller="StateCtrl as vm">
             <button type="button" class="navbar-toggle collapsed primary" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 
@@ -13,6 +13,7 @@
             <a href="/" class="navbar-brand">
                 <img class="default-logo" src="/images/logo.png" alt="Logo">
             </a>
+            <loading-spinner ng-if="vm.loading"></loading-spinner>
         </div>
 
 

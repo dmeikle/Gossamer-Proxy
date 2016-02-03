@@ -1,4 +1,4 @@
-module.controller('tabsCtrl', function ($scope, tabsSrv) {
+module.controller('tabsCtrl', function ($scope, tabsSrv, $rootScope, $state) {
     $scope.tabs = tabsSrv.tabs;
 
     var defaultTab = {
@@ -41,5 +41,6 @@ module.controller('tabsCtrl', function ($scope, tabsSrv) {
 
     $scope.setTabbedView = function (value) {
         tabsSrv.setTabbedView(value);
-    };
+    };    
+    
 });

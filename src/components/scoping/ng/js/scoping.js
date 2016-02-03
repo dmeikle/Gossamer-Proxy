@@ -1,4 +1,4 @@
-var module = angular.module('scopingAdmin', ['ui.bootstrap', 'dropzone']);
+var module = angular.module('scopingAdmin', ['ui.bootstrap', 'dropzone', 'ui.router']);
 
 module.config(function ($httpProvider) {
     $httpProvider.defaults.transformRequest = function (data) {

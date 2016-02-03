@@ -17,7 +17,7 @@ all:
 
         - { 'event': 'render_bypass', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
         - { 'event': 'render_bypass', listener: 'core\components\caching\eventlisteners\ReplaceParamsInHTMLListener' }
-#        - { 'event': 'render_complete', 'listener': 'core\components\caching\eventlisteners\SaveRenderedPageToCacheListener'}
+        - { 'event': 'render_complete', 'listener': 'core\components\caching\eventlisteners\SaveRenderedPageToCacheListener'}
         - { 'event': 'render_complete', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
         - { 'event': 'render_complete', listener: 'core\components\caching\eventlisteners\ReplaceParamsInHTMLListener' }
 

@@ -1,4 +1,4 @@
-
+<?php // pr($this->data);  ?>
 
 <div class="widget" ng-controller="claimsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">

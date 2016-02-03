@@ -1,1 +1,1 @@
-this is the dashboard
+<div ui-view></div>

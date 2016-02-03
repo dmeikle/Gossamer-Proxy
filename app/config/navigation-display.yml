@@ -64,6 +64,7 @@ admin_claims:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/claims/claimsAdminTab'
             pattern: '/admin/claims'
+            state: 'claimsList'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -581,6 +582,7 @@ admin_scoping:
         scoping_list_all:
             text_key: 'ADMIN_SCOPING_LIST_ALL'
             pattern: '/admin/scoping'
+            state: 'scoping'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_SCOPER
