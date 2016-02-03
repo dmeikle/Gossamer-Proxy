@@ -1,0 +1,5 @@
+adminDashboard:
+    path: 'src/components/dashboard/views/dashboard.php'
+    langFiles: 
+        - 'app/locales/*/website'
+        - 'src/components/dashboard/locales/*/Dashboard'
