@@ -39,7 +39,6 @@ class ContactBuilder extends AbstractBuilder {
                 ->add('ContactInvites_id', 'text', array('ng-model' => 'contact.ContactInvites_id', 'class' => 'form-control', 'value' => $this->getValue('ContactInvites_id', $values)))
                 ->add('notes', 'textarea', array('ng-model' => 'contact.notes', 'class' => 'form-control', 'value' => $this->getValue('notes', $values)))
                 ->add('submit', 'submit', array('value' => 'Next', 'class' => 'btn btn-lg btn-primary'))
-                ->add('Companies_id', 'select', array('ng-model' => 'contact.Companies_id', 'class' => 'form-control', 'options' => $options['companies']))
                 ->add('cancel', 'cancel', array('value' => 'Cancel', 'class' => 'btn btn-lg btn-primary cancel'))
                 ->add('daytimePhone', 'text', array('ng-model' => 'contact.daytimePhone', 'class' => 'form-control'));
 
@@ -52,6 +51,9 @@ class ContactBuilder extends AbstractBuilder {
             $builder->add('ContactVIPTypes_id', 'select', array('ng-model' => 'contact.ContactVIPTypes_id', 'class' => 'form-control', 'options' => $options['contactVIPTypes']));
         }
 
+        if (array_key_exists('companies', $options)) {
+            $builder->add('Companies_id', 'select', array('ng-model' => 'contact.Companies_id', 'class' => 'form-control', 'options' => $options['companies']));
+        }
 
         return $builder->getForm();
     }
