@@ -1,4 +1,4 @@
-module.controller('tabsCtrl', function ($scope, tabsSrv, $rootScope, $state) {
+module.controller('tabsCtrl', function ($scope, tabsSrv) {
     $scope.tabs = tabsSrv.tabs;
 
     var defaultTab = {
