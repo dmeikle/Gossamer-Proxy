@@ -49,7 +49,7 @@ class ConfigurationListener extends AbstractCachableListener {
         $config = $parser->loadConfig();
 
 //set up any listeners that the file requires
-      
+
         $this->loadListeners($config, $file);
 
         return $config[$file];
@@ -81,6 +81,10 @@ class ConfigurationListener extends AbstractCachableListener {
         }
 
         $this->eventDispatcher->configListeners(array(__YML_KEY => $config[$file]));
+    }
+
+    public function on_entry_point($params) {
+        $this->on_request_start($params);
     }
 
 }

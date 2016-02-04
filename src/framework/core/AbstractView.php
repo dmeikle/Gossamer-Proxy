@@ -216,6 +216,7 @@ class AbstractView {
             $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::RENDER_COMPLETE, $event);
             $params = $event->getParams();
 
+
             //write it to the page - do not delete! this is not debug
             print($params['renderedPage']);
         }

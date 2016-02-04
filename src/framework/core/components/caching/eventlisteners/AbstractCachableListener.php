@@ -49,6 +49,7 @@ class AbstractCachableListener extends AbstractListener {
             $values = '';
 
             if (!is_null($key)) {
+
                 $values = $this->getValuesFromCache($key, $this->getIsStaticCache());
             }
 

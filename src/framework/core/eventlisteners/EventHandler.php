@@ -125,7 +125,7 @@ class EventHandler {
         foreach ($this->listeners as $listener) {
 
             $listenerClass = $listener['listener'];
-            //echo "class $listenerClass on " . $this->state . "\r\n";
+            //  echo "class $listenerClass on " . $this->state . "\r\n";
             $handler = array($listenerClass, 'on_' . $this->state);
             if ($this->state == $listener['event'] && is_callable($handler)) {
                 unset($listener['listener']);
