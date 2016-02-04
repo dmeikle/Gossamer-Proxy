@@ -22,6 +22,7 @@ use Gossamer\CMS\Forms\AbstractBuilder;
 class LoginBuilder extends AbstractBuilder {
 
     public function buildForm(FormBuilder $builder, array $values = null, array $options = null, array $validationResults = null) {
+//        $results = $this->httpRequest->getAttribute('ERROR_RESULT');
 
         $builder->addValidationResults($validationResults);
         $builder->add('email', 'text', array('class' => 'form-control'))
