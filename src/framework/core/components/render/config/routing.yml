@@ -1,5 +1,4 @@
-## YAML Template.
----
+
 
 render_file:
     pattern: render/*/*
@@ -17,8 +16,7 @@ render_file:
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\LoadCachedPageListener', static: 'true'}
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\ConfigureLocaleStringsListener' }
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener' }
-        #- { 'event': 'render_complete', 'listener': 'core\components\render\eventlisteners\SaveCachedPageListener', static: 'true'}
-
+        - { 'event': 'render_complete', 'listener': 'core\components\render\eventlisteners\SaveCachedPageListener', static: 'true'}
     methods: [GET]
     
 

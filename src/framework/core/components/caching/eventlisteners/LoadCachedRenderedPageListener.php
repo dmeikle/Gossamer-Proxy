@@ -26,6 +26,7 @@ class LoadCachedRenderedPageListener extends AbstractCachableListener {
     public function on_entry_point($params) {
 
         if (!$this->isCachablePage()) {
+
             return;
         }
         //CP-238 - added agenttype for segregating cache for mobile, desktop and tablet

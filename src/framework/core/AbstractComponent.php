@@ -123,6 +123,7 @@ abstract class AbstractComponent {
 
                 return;
             }
+
             $model->setContainer($this->container);
 
             $model->setDatasource($this->getDatasource());
