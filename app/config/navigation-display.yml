@@ -2,7 +2,7 @@
 # USER CONTEXT MENU - DROPDOWN ON THE RIGHT
 admin_home:
     text_key: 'ADMIN_HOME'
-    pattern: '/admin/home'
+    pattern: '/admin/dashboard'
     section: usermenu
     display_roles:
         - IS_ADMIN
