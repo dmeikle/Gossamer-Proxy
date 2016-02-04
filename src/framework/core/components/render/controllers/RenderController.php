@@ -21,8 +21,12 @@ use core\AbstractController;
 class RenderController extends AbstractController {
 
     public function renderFile($component, $filename) {
-        $this->container->get('EventDispatcher')->dispatch('all', 'filerender_entry_point');
         list($widget, $ymlKey) = $this->httpRequest->getParameters();
+
+        $this->container->get('EventDispatcher')->dispatch('all', 'filerender_entry_point');
+
+        $this->container->get('EventDispatcher')->dispatch($ymlKey, 'filerender_request_start');
+
 
         $this->container->get('EventDispatcher')->dispatch($ymlKey, 'request_start');
 

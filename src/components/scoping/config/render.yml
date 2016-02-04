@@ -5,3 +5,4 @@ scopingList:
             - 'src/components/dashboard/locales/*/Dashboard'
             - 'src/components/claims/locales/*/claims'
             - 'src/components/scoping/locales/*/Scoping'
+        

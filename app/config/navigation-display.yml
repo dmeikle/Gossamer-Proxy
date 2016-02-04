@@ -2,7 +2,7 @@
 # USER CONTEXT MENU - DROPDOWN ON THE RIGHT
 admin_home:
     text_key: 'ADMIN_HOME'
-    pattern: '/admin/home'
+    pattern: '/admin/dashboard'
     section: usermenu
     display_roles:
         - IS_ADMIN
@@ -109,6 +109,7 @@ admin_inventory:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/inventory/inventoryListTab'
             pattern: '/admin/inventory'
+            state: 'inventoryList'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -255,6 +256,7 @@ admin_costing:
             pattern: '/admin/accounting/generalcosts'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/generalCostsTab'
+            state: 'accounting_generalcosts_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -265,6 +267,7 @@ admin_costing:
             pattern: '/admin/accounting/timesheets'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/timesheetsTab'
+            state: 'accounting_timesheets_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -275,6 +278,7 @@ admin_costing:
             pattern: '/admin/accounting/supplies'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/suppliesTab'
+            state: 'accounting_supplies_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -533,6 +537,7 @@ amind_staff:
         staff_list:
             text_key: 'ADMIN_STAFF_LIST'
             pattern: '/admin/staff'
+            state: 'staff_home'
             display_roles:
                 - IS_ADMIN
                 - IS_ADMINISTRATOR

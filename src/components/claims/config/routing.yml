@@ -278,8 +278,7 @@ admin_claims_home:
             - 'src/components/claims/locales/*/claims'
             - 'src/components/projects/locales/*/Project'
             - 'app/locales/*/website'
-#    staticCache: true
-    staticCache: false
+    staticCache: true
 
 
 

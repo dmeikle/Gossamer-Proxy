@@ -14,19 +14,12 @@ namespace core\components\render\eventlisteners;
 use core\components\caching\eventlisteners\AbstractCachableListener;
 
 /**
- * LoadCachedPageListener
+ * LoadFileToRenderListener
  *
  * @author Dave Meikle
  */
-class LoadCachedPageListener extends AbstractCachableListener {
+class LoadFileToRenderListener extends AbstractCachableListener {
 
-    /**
-     * we are here because the abstract did not find a cached file to load.
-     * this file will load the contents of the file to render for the controller instead
-     *
-     * @param array $params
-     * @throws \Exception
-     */
     public function on_request_start($params) {
 
         $config = $this->httpRequest->getAttribute('RENDER_CONFIG');
@@ -47,10 +40,6 @@ class LoadCachedPageListener extends AbstractCachableListener {
         $key = DIRECTORY_SEPARATOR . 'render' . DIRECTORY_SEPARATOR . $widget . DIRECTORY_SEPARATOR . $file . '_' . $locale['locale'];
 
         return $key;
-    }
-
-    protected function getResponseKey() {
-        return 'CACHED_PAGE_ON_ENTRY_POINT';
     }
 
     public function on_filerender_request_start($params) {

@@ -106,3 +106,8 @@ staffTimesheetsTab:
     path: 'src/components/staff/views/admin/timesheets.php'
     langFiles:
         - 'src/components/staff/locales/*/staff'
+        
+admin_staff_home:
+    path: 'src/components/staff/views/admin/staff-list.php'
+    langFiles:
+        - 'src/components/staff/locales/*/staff'
