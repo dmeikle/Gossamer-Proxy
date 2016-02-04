@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\components\access\eventlisteners;
+namespace core\components\security\eventlisteners;
 
 use core\eventlisteners\AbstractListener;
 use core\components\security\core\Client;
@@ -27,8 +27,7 @@ class CheckPageAccessPermissionsListener extends AbstractListener {
     public function on_entry_point($params) {
 
         $permissionsConfig = $this->loadPermissionsConfig();
-
-        if (is_null($permissionsConfig) || !array_key_exists('access', $permissionsConfig)) {
+        if (is_null($permissionsConfig)) {
             return; //no need, there's no spec in the permissions.yml for this
         }
 
@@ -37,27 +36,19 @@ class CheckPageAccessPermissionsListener extends AbstractListener {
 
     private function checkPermissions(array $permissionsConfig) {
         $client = $this->getClient();
-        if (is_null($client)) {
-            $this->eventDispatcher->dispatch('all', 'unauthorized_access', new Event());
-        }
-
         $checkByRoles = $this->checkPermissionsByRoles($client, $permissionsConfig);
         if ($checkByRoles) {
             return true;
         }
-
         //still here? check to see if we can go by specific userId
         if (!$this->checkPermissionsById($client, $permissionsConfig)) {
-            $this->eventDispatcher->dispatch('all', 'unauthorized_access', new Event());
+            $this->container->get('EventDispatcher')->dispatch('all', 'unauthorized_access', new Event('unauthorized_access', array()));
         }
     }
 
     private function checkPermissionsById(Client $client, array $permissionsConfig) {
-
         if (array_key_exists('access', $permissionsConfig) && array_key_exists('self', $permissionsConfig['access'])) {
-
-            if ($permissionsConfig['access']['self'] != true) {
-
+            if ($permissionsConfig['access']['self'] != 'true') {
                 return false;
             }
         }
@@ -67,7 +58,6 @@ class CheckPageAccessPermissionsListener extends AbstractListener {
     }
 
     private function checkPermissionsByRoles(Client $client, array $permissionsConfig) {
-
         if (array_key_exists('access', $permissionsConfig) && array_key_exists('roles', $permissionsConfig['access'])) {
             $foundRoles = array_intersect($permissionsConfig['access']['roles'], $client->getRoles());
 
