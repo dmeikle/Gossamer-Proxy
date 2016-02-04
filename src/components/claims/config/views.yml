@@ -22,6 +22,7 @@ admin_claims_secondarysheets_home:
         #- @extensions/angular/dist/js/angular-extension.min.js
         - @components/claims/dist/js/claims.concat.js
         #- @components/claims/dist/js/claims.min.js
+#        - @extensions/angular-ui-router/angular-ui-router.js
     css:
         - @components/claims/dist/css/claims.min.css
         
@@ -120,6 +121,8 @@ admin_claims_home:
         #- @components/claims/dist/js/claims.concat.min.js
         - @components/messaging/dist/js/messaging.concat.js
         #- @components/messaging/dist/js/messaging.concat.min.js
+        - @extensions/angular-ui-router/dist/js/angular-ui-router-extension.concat.js
+        - @extensions/angular-ui-router/dist/js/angular-ui-router-extension.min.js
 
         #- @components/staff/dist/js/staff.min.js
     css:

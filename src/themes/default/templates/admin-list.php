@@ -19,10 +19,6 @@
         <!-- css end -->
 
 
-        <!-- head start -->
-        <!---head--->
-        <!-- head end -->
-
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -54,10 +50,15 @@
         <!---footer--->
     </body>
 
+    <!-- javascript head start -->
+    <!---head--->
+    <!-- javascript head end -->
+
+
     <!---javascript--->
     <script language="javascript">
-        (function () {
-            angular.bootstrap(document, [<?php echo $modules; ?>]);
-        })();
+            (function () {
+                angular.bootstrap(document, [<?php echo $modules; ?>]);
+            })();
     </script>
 </html>

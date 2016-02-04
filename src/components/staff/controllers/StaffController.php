@@ -80,25 +80,22 @@ class StaffController extends AbstractController {
      * @param int id    primary key of item to edit
      */
     public function edit($id) {
-        $result = (intval($id) > 0) ? $this->model->edit(intval($id)) : array();
-        $staffAuthorization = new \components\staff\models\StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
-
-        $result['form'] = $this->drawForm($this->model, $result);
-        if (is_array($result)) {
-            $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
-
-
+        //$result = (intval($id) > 0) ? $this->model->edit(intval($id)) : array();
+        //$staffAuthorization = new \components\staff\models\StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
+        // $result['form'] = $this->drawForm($this->model, $result);
+        // if (is_array($result)) {
+        //     $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
 //            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
 //            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
 //                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
 //            }
-        }
-
-        if (intval($id) == 0) {
-            $result['aform'] = $this->drawCredentialsForm($staffAuthorization, array());
-        }
+        //      }
+//        if (intval($id) == 0) {
+//            $result['aform'] = $this->drawCredentialsForm($staffAuthorization, array());
+//        }
+        $result = array();
         $result['id'] = intval($id);
-
+        $this->httpRequest->setAttribute('Staff', $result);
         $this->render($result);
     }
 
@@ -194,6 +191,14 @@ class StaffController extends AbstractController {
      */
     public function listall($offset = 0, $limit = 20) {
         $result = $this->model->listall($offset, $limit);
+
+        $this->render($result);
+    }
+
+    public function listByRoles($offset, $limit) {
+        $params = $this->httpRequest->getQueryParameters();
+
+        $result = $this->model->listAllWithParams(intval($offset), intval($limit), $params, 'listbyroles');
 
         $this->render($result);
     }

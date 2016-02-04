@@ -82,7 +82,8 @@ admin_subcontractors_edit:
         viewKey: admin_subcontractors_edit
         datasource: datasource1
         langFiles: 
-            - 'src/components/subcontractors/locales/*/Subcontractors'  
+            - 'app/locales/*/website' 
+            - 'src/components/subcontractors/locales/*/Subcontractors'       
     methods: [GET]
     listeners:
         - { 'class': 'components\geography\models\ProvinceModel', 'cacheKey': 'Provinces', 'event': 'request_start', 'listener': 'core\eventlisteners\LoadListListener', 'datasource': 'datasource1' }

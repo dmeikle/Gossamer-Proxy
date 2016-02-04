@@ -55,9 +55,15 @@
                                 <?php
                             } else {
                                 //is a child, no ng-click
-                                ?>
-                                <li><a href="<?php echo $childItem['pattern']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
-                                <?php
+                                if (array_key_exists('state', $childItem)) {
+                                    ?>
+                                    <li><a ui-sref="<?php echo $childItem['state']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li><a href="<?php echo $childItem['pattern']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
+                                    <?php
+                                }
                             }
                             ?>
 

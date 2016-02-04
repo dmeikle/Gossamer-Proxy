@@ -37,7 +37,7 @@ class UserAuthenticationProvider extends DatasourceAware implements Authenticati
      * @throws ClientCredentialsNotFoundException
      */
     public function loadClientByCredentials($credential) {
-        die('here');
+
         $result = $this->datasource->query(sprintf("select * from UserAuthentications where username = '%s' limit 1", $credential));
 
         if ($result) {

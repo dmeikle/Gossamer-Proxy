@@ -31,7 +31,7 @@ class StaffBuilder extends AbstractBuilder {
         }
 
         $builder->add('firstname', 'text', array('ng-model' => 'ctrl.staff.firstname', 'class' => 'form-control', 'value' => $this->getValue('firstname', $values)))
-                ->add('id', 'hidden', array('ng-model' => 'ctrl.staff.id', 'value' => $this->getValue('id', $values)))
+                ->add('id', 'hidden', array('gcms' => "{object='Staff' param='id'}"))
                 ->add('lastname', 'text', array('ng-model' => 'ctrl.staff.lastname', 'class' => 'form-control', 'value' => $this->getValue('lastname', $values)))
                 ->add('telephone', 'text', array('ng-model' => 'ctrl.staff.telephone', 'class' => 'form-control ', 'value' => $this->getValue('telephone', $values)))
                 ->add('mobile', 'text', array('ng-model' => 'ctrl.staff.mobile', 'class' => 'form-control ', 'value' => $this->getValue('mobile', $values)))

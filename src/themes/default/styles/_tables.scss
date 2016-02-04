@@ -11,9 +11,14 @@
         &:hover {
             background-color: #F5EFCF;
         }
-    }
+    }    
 }
 
+table {
+    td {
+        vertical-align: middle;
+    }
+}
 .flex-table {
     @extend table;
     @extend .table-hover;

@@ -276,23 +276,23 @@
                     <span class="spinner-loader"></span>
                 </div>
                 <div ng-if="!loading">
-                <!--<div>-->
+                    <!--<div>-->
                     <div dropzone="dropzoneConfig" class="dropzone">
 
-                            <div ng-if="!photoCtrl.uploading">
-                                <p class="text-center">
-                                    <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
-                                </p>
-                            </div>
+                        <div ng-if="!photoCtrl.uploading">
+                            <p class="text-center">
+                                <?php echo $this->getString('STAFF_PHOTOUPLOAD_UPLOADHERE'); ?>
+                            </p>
+                        </div>
 
-                            <div ng-if="photoCtrl.uploading">
-                                <p class="text-center">
+                        <div ng-if="photoCtrl.uploading">
+                            <p class="text-center">
                                 <?php echo $this->getString('STAFF_UPLOADING_PROFILE_PHOTO'); ?>
-                                </p>
-                                <div class="clearfix"></div>
-                                <span class="spinner-loader align-center" ></span>
+                            </p>
+                            <div class="clearfix"></div>
+                            <span class="spinner-loader align-center" ></span>
 
-                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -357,14 +357,14 @@
 
 <div class="clearfix"></div>
 <form>
-    <input type="hidden" value="<?php echo intval($id); ?>" id="Staff_id" />
+    <?php echo $form['id']; ?>
 </form>
 <div class="col-xs-12">
     <uib-tabset>
         <uib-tab heading="Emergency Contacts">
             <div class="padding-vertical" ng-controller="staffEmergencyContactsCtrl as ctrl">
                 <div class="cardheader">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                                                  ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_INFO');                                                                       ?></h1>
                     <button ng-if="!ctrl.loading" class="primary pull-right"
                             ng-click="ctrl.openEditEmergencyContactModal()"  ng-disabled="!ctrl.staffLoaded">
                                 <?php echo $this->getString('STAFF_NEW') ?>
@@ -415,7 +415,7 @@
         <uib-tab heading="Benefits"  permission-key="accounting">
             <div class="padding-vertical" ng-controller="staffBenefitsCtrl as ctrl">
                 <div class="modal-header">
-                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                                                  ?></h1>
+                    <h1 class="pull-left"><?php //echo $this->getString('STAFF_BENEFITS_HISTORY');                                                                       ?></h1>
                     <button ng-if="!ctrl.addingNew" class="pull-right" ng-click="ctrl.openAddNewBenefitsModal()" ng-disabled="!ctrl.staffLoaded">
                         <?php echo $this->getString('STAFF_NEW'); ?>
                     </button>
@@ -502,7 +502,7 @@
         <uib-tab heading="<?php echo $this->getString('STAFF_ACCESS_LEVELS'); ?>" permission-key="humanresources">
             <div class="padding-vertical" ng-controller="staffRolesCtrl as ctrl">
                 <!--                <div class="cardheader">
-                                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                                                 ?></h1>
+                                    <h1><?php // /echo $this->getString('STAFF_ACCESS_LEVELS');                                                                      ?></h1>
                                 </div>-->
                 <div ng-if="ctrl.loading">
                     <div class="spinner-loader"></div>

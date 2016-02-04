@@ -34,3 +34,20 @@
 .expand-btn{
     cursor:pointer;
 }
+.info-card {
+    background: #f9f9f9;
+}
+
+.location {
+	width: 100%;
+}
+.location .buzzer {
+	float: right;
+}
+.location .telephone {
+	width: 50%;
+	float: left;
+}
+.location .unit h3 .numRooms {
+	float: right;
+}

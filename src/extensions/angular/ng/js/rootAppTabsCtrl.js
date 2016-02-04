@@ -41,5 +41,6 @@ module.controller('tabsCtrl', function ($scope, tabsSrv) {
 
     $scope.setTabbedView = function (value) {
         tabsSrv.setTabbedView(value);
-    };
+    };    
+    
 });

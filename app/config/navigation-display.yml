@@ -64,6 +64,7 @@ admin_claims:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/claims/claimsAdminTab'
             pattern: '/admin/claims'
+            state: 'claimsList'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -121,9 +122,9 @@ admin_inventory:
                 
                 
 admin_subcontractors:
-    active: false
+    active: true
     text_key: 'ADMIN_SUBCONTRACTORS'
-    pattern: '/admin/subcontractors/0/20'
+    pattern: '#'
     display_roles:
         - IS_ADMINISTRATOR
     children:        
@@ -138,7 +139,7 @@ admin_subcontractors:
         admin_subcontractors_create:
             active: true
             text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
-            pattern: '/admin/subcontractors/0'
+            pattern: '/admin/subcontractors/edit/0'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -572,7 +573,7 @@ amind_staff:
 
 admin_scoping:
     text_key: 'ADMIN_SCOPING'
-    pattern: '/admin/scoping/requests/0/20'
+    pattern: '/admin/scoping'
     display_roles:
         - IS_ADMINISTRATOR
         - IS_SCOPER
@@ -580,14 +581,15 @@ admin_scoping:
     children:
         scoping_list_all:
             text_key: 'ADMIN_SCOPING_LIST_ALL'
-            pattern: '/admin/scoping/requests/0/20'
+            pattern: '/admin/scoping'
+            state: 'scoping'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_SCOPER
                 - IS_PROJECT_MANAGER
         scoping_takeoffs_list_all:
             text_key: 'ADMIN_SCOPING_TAKEOFFS_LIST_ALL'
-            pattern: '/admin/scoping/takeoffs/0/20'
+            pattern: '/admin/scoping/takeoffs'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_SCOPER

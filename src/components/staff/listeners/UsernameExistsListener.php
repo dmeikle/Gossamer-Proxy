@@ -28,6 +28,7 @@ class UsernameExistsListener extends AbstractListener {
 
         $staff = new StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $post = $this->httpRequest->getPost();
+
         $staffData = $post['StaffAuthorization'];
         $uriParams = $this->httpRequest->getParameters();
         $params = array('username' => $staffData['username']);
@@ -54,6 +55,10 @@ class UsernameExistsListener extends AbstractListener {
 
     private function isDifferentUser($currentId, array $result) {
         $resultStaff = current($result['StaffAuthorization']);
+        //staffauthorization does not yet exist for this user. possible imported from a list into Staff table only
+        if (!array_key_exists('Staff_id', $result)) {
+            return false;
+        }
 
         return (intval($currentId) != $resultStaff['Staff_id']);
     }
