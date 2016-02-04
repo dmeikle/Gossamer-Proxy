@@ -19,6 +19,12 @@ generalCostsTab:
     path: 'src/components/accounting/views/generalcosts/list.php'
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
+        
+accounting_generalcosts_home:
+    path: 'src/components/accounting/views/generalcosts/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+        - 'app/locales/*/website'
 
 suppliesTab:
     path: 'src/components/accounting/views/supplies/list.php'

@@ -212,6 +212,7 @@ admin_inventory_list:
         - @components/inventory/dist/bower_components/jquery/dist/jquery.min.js
         - @components/inventory/dist/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js
         - @components/inventory/dist/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+        - @extensions/angular-ui-router/angular-ui-router.js
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js

@@ -1,4 +1,4 @@
-<?php // pr($this->data);  ?>
+<?php // pr($this->data);   ?>
 
 <div class="widget" ng-controller="claimsListCtrl">
     <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
@@ -257,6 +257,10 @@
 </div>
 
 <!--Customers Modal-->
+<!--<script type="text/ng-template" id="customersModal">-->
+<?php // include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+<!--</script>-->
+
 <script type="text/ng-template" id="customersModal">
-    <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+    <?php include(__SITE_PATH . '/src/components/claims/ng/views/claimsLocationCustomersModal.php'); ?>
 </script>
