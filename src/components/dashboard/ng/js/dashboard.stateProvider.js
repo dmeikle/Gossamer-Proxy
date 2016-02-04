@@ -40,6 +40,14 @@ module.config(function($stateProvider, $urlRouterProvider) {
         url: "/accounting/generalcosts",
         templateUrl: "/render/accounting/accounting_generalcosts_home"
     })
+    .state('accounting_timesheets_home', {
+        url: "/accounting/generalcosts",
+        templateUrl: "/render/accounting/accounting_timesheets_home"
+    })
+    .state('accounting_supplies_home', {
+        url: "/accounting/generalcosts",
+        templateUrl: "/render/accounting/accounting_supplies_home"
+    })
     //-----
     //Inventory
     //-----

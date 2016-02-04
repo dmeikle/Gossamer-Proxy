@@ -14,6 +14,12 @@ timesheetsTab:
     path: 'src/components/accounting/views/timesheets/list.php'
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
+        - 'app/locales/*/website'
+        
+accounting_timesheets_home:
+    path: 'src/components/accounting/views/timesheets/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
 
 generalCostsTab:
     path: 'src/components/accounting/views/generalcosts/list.php'
@@ -31,7 +37,11 @@ suppliesTab:
     langFiles:
         - 'src/components/accounting/locales/*/accounting'
 
-
+accounting_supplies_home:
+    path: 'src/components/accounting/views/supplies/list.php'
+    langFiles:
+        - 'src/components/accounting/locales/*/accounting'
+        
 timesheetModal:
     path: 'src/components/accounting/ng/views/timesheetModal.php'
     langFiles:

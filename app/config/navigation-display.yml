@@ -267,6 +267,7 @@ admin_costing:
             pattern: '/admin/accounting/timesheets'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/timesheetsTab'
+            state: 'accounting_timesheets_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -277,6 +278,7 @@ admin_costing:
             pattern: '/admin/accounting/supplies'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/suppliesTab'
+            state: 'accounting_supplies_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING

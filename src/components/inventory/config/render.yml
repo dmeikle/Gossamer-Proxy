@@ -137,3 +137,4 @@ admin_inventory_list:
     langFiles:
         - 'src/components/inventory/locales/*/inventory'
         - 'app/locales/*/website'
+    staticCache: true
