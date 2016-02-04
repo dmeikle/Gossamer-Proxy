@@ -23,8 +23,8 @@ class LoadClaimLocationsByJobNumberListener extends AbstractListener {
 
     public function on_request_start($params = array()) {
         $params = $this->httpRequest->getParameters();
-pr($params);
-die;
+//pr($params);
+//die;
         $datasource = $this->getDatasource('components\\claims\\models\\ClaimLocationModel');
         $model = new ClaimLocationModel($this->httpRequest, $this->httpResponse, $this->logger);
         $claim = $this->httpRequest->getAttribute('Claim');

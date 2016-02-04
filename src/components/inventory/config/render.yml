@@ -131,3 +131,10 @@ vendorItemModal:
             dependencies:
                 - { dependency: PackageTypes, key: packageTypes, value: id, text: name }
                 - { dependency: 'components\inventory\models\VendorItemModel', model: VendorItem }
+                
+admin_inventory_list:
+    path: 'src/components/inventory/views/admin/items/list.php'
+    langFiles:
+        - 'src/components/inventory/locales/*/inventory'
+        - 'app/locales/*/website'
+    staticCache: true

@@ -1,5 +1,5 @@
 
-var module = angular.module('inventoryAdmin', ['ui.bootstrap']);
+var module = angular.module('inventoryAdmin', ['ui.bootstrap', 'ui.router']);
 
 module.config(function($httpProvider) {
     $httpProvider.defaults.transformRequest = function(data) {
@@ -10,3 +10,11 @@ module.config(function($httpProvider) {
     };
 
 });
+
+//module.config(function($stateProvider, $urlRouterProvider) {  
+//    $stateProvider
+//    .state('inventoryList', {
+//        url: "/inventory",
+//        templateUrl: "/render/inventory/admin_inventory_list"
+//    });
+//});
