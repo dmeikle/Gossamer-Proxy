@@ -1,7 +1,9 @@
-<?php // pr($this->data);  ?>
+<?php // pr($this->data);          ?>
 
 <div class="widget" ng-controller="claimsListCtrl">
-    <div class="widget-content" ng-class="{'panel-open': sidePanelOpen}">
+    <div class="widget-content" ng-class="{
+                'panel-open'
+                        : sidePanelOpen}">
         <h1 class="pull-left"><?php echo $this->getString('CLAIMS_LIST') ?></h1>
         <div class="toolbar form-inline">
             <button class="btn-link" ng-click="openAdvancedSearch()">
@@ -29,7 +31,9 @@
             <a ng-click="openAddNewWizard()" class="btn btn-primary"><?php echo $this->getString('CLAIMS_NEW'); ?></a>
         </div>
         <div class="clearfix"></div>
-        <ul class="table table-striped table-hover flex-table"  ng-class="{'loading':loading}">
+        <ul class="table table-striped table-hover flex-table"  ng-class="{
+                    'loading'
+                            :loading}">
             <li class="head">
                 <div column-sortable data-column="jobNumber"><?php echo $this->getString('CLAIMS_JOBNUMBER'); ?></div>
                 <div column-sortable data-column="title"><?php echo $this->getString('CLAIMS_PHASE'); ?></div>
@@ -54,8 +58,11 @@
                     <div></div>
                 </li>
                 <li ng-if="!loading" class="flex-row" ng-repeat="claim in claimsList"
-                    ng-class="{'selected': claim === previouslyClickedObject,
-                        'inactive bg-warning text-warning': claim.status == 'pending assignment'}">
+                    ng-class="{
+                                'selected'
+                                :claim === previouslyClickedObject,
+                                        'inactive bg-warning text-warning'
+                                        : claim.status == 'pending assignment'}">
                     <div class="flex-left">
                         <div>
                             <div class="content" ng-if="!claim.jobNumber"><h4><?php echo $this->getString('CLAIMS_JOBNUMBER') ?> {{claim.unassignedJobNumber}}</h4></div>
@@ -134,9 +141,15 @@
         <div class="pull-right">
             <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
             <ul class="btn-group pull-right">
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
-                <button type="button" class="btn-link" ng-class="{'active':itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
+                <button type="button" class="btn-link" ng-class="{
+                            'active'
+                                    :itemsPerPage === 10}" ng-click="setItemsPerPage(10)">10</button>
+                <button type="button" class="btn-link" ng-class="{
+                            'active'
+                                    :itemsPerPage === 20}" ng-click="setItemsPerPage(20)">20</button>
+                <button type="button" class="btn-link" ng-class="{
+                            'active'
+                                    :itemsPerPage === 50}" ng-click="setItemsPerPage(50)">50</button>
             </ul>
         </div>
     </div>
@@ -258,5 +271,7 @@
 
 <!--Customers Modal-->
 <script type="text/ng-template" id="customersModal">
-    <?php include(__SITE_PATH . '/src/components/' . __COMPONENT_FOLDER . '/ng/views/claimsLocationCustomersModal.php'); ?>
+    <?php
+    include(__SITE_PATH . DIRECTORY_SEPARATOR . $componentFolder . 'ng/views/claimsLocationCustomersModal.php');
+    ?>
 </script>

@@ -25,12 +25,13 @@ admin_dashboard_home:
     javascript:
         - @extensions/angular/dist/js/angular-extension.concat.js
         #- @extensions/angular/dist/js/angular-extension.min.js
+        - @extensions/angular-ui-router/dist/js/angular-ui-router-extension.concat.js
+        #- @extensions/angular-ui-router/dist/js/angular-ui-router-extension.min.js
+        - @extensions/require/require.js
         - @components/dashboard/dist/js/dashboard.concat.js
         - @components/scoping/dist/js/scoping.concat.js
         - @components/accounting/dist/js/accounting.concat.js
         - @components/claims/dist/js/claims.concat.js
         
-        - @extensions/angular-ui-router/angular-ui-router.js
-        - @extensions/require/require.js
     css:
         - @components/dashboard/dist/css/dashboard.min.css

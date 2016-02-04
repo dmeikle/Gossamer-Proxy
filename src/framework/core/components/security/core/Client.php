@@ -2,9 +2,9 @@
 
 /*
  *  This file is part of the Quantum Unit Solutions development package.
- * 
+ *
  *  (c) Quantum Unit Solutions <http://github.com/dmeikle/>
- * 
+ *
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
@@ -28,7 +28,7 @@ class Client implements ClientInterface {
     protected $status = null;
 
     /**
-     * 
+     *
      * @param array $params
      */
     public function __construct(array $params = array()) {
@@ -50,8 +50,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $password
      */
     public function setPassword($password) {
@@ -59,8 +59,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param array $roles
      */
     public function setRoles(array $roles) {
@@ -68,8 +68,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $credentials
      */
     public function setCredentials($credentials) {
@@ -77,8 +77,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @param string $ipAddress
      */
     public function setIpAddress($ipAddress) {
@@ -86,8 +86,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getPassword() {
@@ -95,17 +95,21 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return array
      */
     public function getRoles() {
-        return $this->roles;
+        if (is_array($this->roles)) {
+            return $this->roles;
+        }
+
+        return explode('|', $this->roles);
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getCredentials() {
@@ -113,8 +117,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getIpAddress() {
@@ -122,8 +126,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function setStatus($status) {
@@ -131,8 +135,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return string
      */
     public function getStatus() {
@@ -140,8 +144,8 @@ class Client implements ClientInterface {
     }
 
     /**
-     * accessor 
-     * 
+     * accessor
+     *
      * @return int
      */
     public function getId() {

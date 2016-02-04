@@ -126,8 +126,9 @@ class EventDispatcher {
 
         if (array_key_exists('listeners', $listeners) && count($listeners['listeners']) > 0) {
             try {
+                // echo 'EventDispatcher::configListeners adding eventhandler for ' . $uri . "\r\n";
                 $this->logger->addDebug('EventDispatcher::configListeners adding eventhandler for ' . $uri);
-                $this->addEventHandler($uri, $listeners['listeners']);
+                $this->addEventHandler($uri, $listeners['listeners'], true);
             } catch (\Exception $e) {
                 //assume the developer has an empty element such as:
                 //listeners:
@@ -145,7 +146,7 @@ class EventDispatcher {
      * @param type $uri
      * @param array $listeners
      */
-    private function addEventHandler($uri, array $listeners) {
+    private function addEventHandler($uri, array $listeners, $overRideYamlKey = false) {
 
         foreach ($listeners as $listener) {
             if (array_key_exists('methods', $listener)) {
@@ -178,7 +179,7 @@ class EventDispatcher {
             if (array_key_exists('listener', $listener)) {
                 $this->logger->addDebug('listener added for ' . $listener['listener']);
             }
-            $this->listen($uri, $handler);
+            $this->listen($uri, $handler, $overRideYamlKey);
         }
     }
 
@@ -188,12 +189,15 @@ class EventDispatcher {
      * @param type $uri
      * @param EventHandler $handler
      */
-    public function listen($uri, EventHandler $handler) {
+    public function listen($uri, EventHandler $handler, $overRideYamlKey) {
         //CP-2 added this while working on calling listeners during core/components/render call
         //no need to add handlers that will never match our request
-        if ($uri != 'all' && $uri != __YML_KEY) {
+        //CP-265 - $overRideYamlKey - render component is the main __YML_KEY but we are still
+        //needing to use the local  node configuration for the render call
+        if ($uri != 'all' && $uri != __YML_KEY && !$overRideYamlKey) {
             return;
         }
+
         $this->logger->addDebug('adding eventhandler for ' . $uri . ' to listeners list');
 
         $this->listeners[$uri][] = $handler;
@@ -210,19 +214,22 @@ class EventDispatcher {
      * @return void
      */
     public function dispatch($uri, $state, Event &$params = null) {
-
+        //echo "**dispatch $uri $state\r\n";
         //error_log("dispatch called for $uri with state set to $state");
         $this->logger->addDebug("dispatch called for $uri with state set to $state");
         $keys = array_keys($this->listeners);
         if (!array_key_exists($uri, $this->listeners)) {
-
+            // echo "no listeners found for $uri with state set to $state\r\n";
+            if ($state == 'request_start') {
+                pr(array_keys($this->listeners));
+            }
             $this->logger->addDebug("no listeners found for $uri with state set to $state");
             return;
         }
         $this->logger->addDebug("listeners found - iterating");
 
         foreach ($this->listeners[$uri] as $listener) {
-            //echo('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri."\r\n");
+            // echo('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri . "\r\n");
             $this->logger->addDebug('dispatching ' . $state . ' on ' . get_class($listener) . ' listener class for uri: ' . $uri);
             $listener->setState($state, $params);
             //  echo $state . ' listener class for uri: ' . $uri."\r\n";
