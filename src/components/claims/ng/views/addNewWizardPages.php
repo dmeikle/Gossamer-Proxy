@@ -46,6 +46,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+
                     <label class="control-label">
                         <input type="radio" name="claim-by" id="claim-by-address" ng-model="claim.by" value="address">
                         <?php echo $this->getString('CLAIMS_ADDNEW_ADDRESS'); ?>

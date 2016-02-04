@@ -9,7 +9,7 @@
 
             <form ng-submit="search(basicSearch.query)" class="input-group">
                 <input class="form-control" type="text" list="autocomplete-list" ng-model="basicSearch.query.name"
-                       ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)">
+                       ng-model-options="{debounce:500}" ng-change="search(basicSearch.query)" ng-minlength="3">
                 <div class="resultspane" ng-show="noResults">
                     <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('CONTACTS_NORESULTS') ?>
                 </div>

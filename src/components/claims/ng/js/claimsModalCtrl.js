@@ -1,5 +1,5 @@
 
-module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, claimsEditSrv, 
+module.controller('claimsModalCtrl', function ($filter, $uibModalInstance, $scope, claimsEditSrv, 
     claimsLocationsEditSrv) {
 
     $scope.addNewClient = false;
@@ -9,6 +9,7 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
     $scope.project = {};
     $scope.claim = {};
     $scope.claim.query = {};
+    $scope.claim.query.currentClaimPhases_id = '1';
     $scope.currentPage = 0;
     $scope.wizardLoading = false;   
     $scope.sourceUnit = {};
@@ -18,6 +19,7 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         $scope.project = {};
         $scope.claim = {};
         $scope.claim.query = {};
+        $scope.claim.query.currentClaimPhases_id = '1';
         $scope.currentPage = 0;
         $scope.wizardLoading = false;  
     };
@@ -74,6 +76,7 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
 
     $scope.save = function() {
         var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+        
         return claimsEditSrv.save($scope.claim.query, formToken, $scope.currentPage + 1);
     };
 
@@ -165,7 +168,8 @@ module.controller('claimsModalCtrl', function ($q, $uibModalInstance, $scope, cl
         $scope.claim.query.isActive = 1;
         $scope.claim.query.ClaimTypes_id = $scope.claim.ClaimTypes_id;
         $scope.claim.query.ClaimTypes_other = $scope.claim.ClaimTypes_other;
-        $scope.claim.query.currentClaimPhases_id = $scope.claim.ClaimPhases_id;
+        $scope.claim.query.currentClaimPhases_id = $scope.claim.ClaimPhases_id;        
+        $scope.claim.query.callInDate = $filter('date')($scope.claim.query.callInDate, 'yyyy-MM-dd', '+0000');
         
         claimsEditSrv.save($scope.claim.query, formToken).then(function(response) {
             if (!response.data.result || response.data.result !== 'error') {
