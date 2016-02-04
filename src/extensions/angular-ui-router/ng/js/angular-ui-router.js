@@ -640,7 +640,7 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
    */
   this.fromUrl = function (url, params) {
     if (isFunction(url)) url = url(params);
-    if (url == null) return null;
+    if (url === null) return null;
     else return $http
         .get(url, { cache: $templateCache, headers: { Accept: 'text/html' }})
         .then(function(response) { return response.data; });
@@ -1010,7 +1010,7 @@ UrlMatcher.prototype.format = function (values) {
     if (isPathParam) {
       var nextSegment = segments[i + 1];
       if (squash === false) {
-        if (encoded != null) {
+        if (encoded !== null) {
           if (isArray(encoded)) {
             result += map(encoded, encodeDashes).join("-");
           } else {
@@ -1025,7 +1025,7 @@ UrlMatcher.prototype.format = function (values) {
         result += squash + nextSegment;
       }
     } else {
-      if (encoded == null || (isDefaultValue && squash !== false)) continue;
+      if (encoded === null || (isDefaultValue && squash !== false)) continue;
       if (!isArray(encoded)) encoded = [ encoded ];
       encoded = map(encoded, encodeURIComponent).join('&' + name + '=');
       result += (search ? '&' : '?') + (name + '=' + encoded);
@@ -1239,8 +1239,8 @@ function $UrlMatcherFactory() {
 
   var isCaseInsensitive = false, isStrictMode = true, defaultSquashPolicy = false;
 
-  function valToString(val) { return val != null ? val.toString().replace(/\//g, "%2F") : val; }
-  function valFromString(val) { return val != null ? val.toString().replace(/%2F/g, "/") : val; }
+  function valToString(val) { return val !== null ? val.toString().replace(/\//g, "%2F") : val; }
+  function valFromString(val) { return val !== null ? val.toString().replace(/%2F/g, "/") : val; }
 
   var $types = {}, enqueue = true, typeQueue = [], injector, defaultTypes = {
     string: {
@@ -1248,7 +1248,7 @@ function $UrlMatcherFactory() {
       decode: valFromString,
       // TODO: in 1.0, make string .is() return false if value is undefined/null by default.
       // In 0.2.x, string params are optional by default for backwards compat
-      is: function(val) { return val == null || !isDefined(val) || typeof val === "string"; },
+      is: function(val) { return val === null || !isDefined(val) || typeof val === "string"; },
       pattern: /[^/]*/
     },
     int: {
@@ -1599,7 +1599,7 @@ function $UrlMatcherFactory() {
     function getSquashPolicy(config, isOptional) {
       var squash = config.squash;
       if (!isOptional || squash === false) return false;
-      if (!isDefined(squash) || squash == null) return defaultSquashPolicy;
+      if (!isDefined(squash) || squash === null) return defaultSquashPolicy;
       if (squash === true || isString(squash)) return squash;
       throw new Error("Invalid squash policy: '" + squash + "'. Valid policies: false, true, or arbitrary string");
     }
@@ -1742,7 +1742,7 @@ function $UrlRouterProvider(   $locationProvider,   $urlMatcherFactory) {
   // Returns a string that is a prefix of all strings matching the RegExp
   function regExpPrefix(re) {
     var prefix = /^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(re.source);
-    return (prefix != null) ? prefix[1].replace(/\\(.)/g, "$1") : '';
+    return (prefix !== null) ? prefix[1].replace(/\\(.)/g, "$1") : '';
   }
 
   // Interpolates matched values into a String.replace()-style pattern

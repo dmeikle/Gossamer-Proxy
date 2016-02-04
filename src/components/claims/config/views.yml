@@ -121,7 +121,8 @@ admin_claims_home:
         #- @components/claims/dist/js/claims.concat.min.js
         - @components/messaging/dist/js/messaging.concat.js
         #- @components/messaging/dist/js/messaging.concat.min.js
-        - @extensions/angular-ui-router/angular-ui-router.js
+        - @extensions/angular-ui-router/dist/js/angular-ui-router-extension.concat.js
+        - @extensions/angular-ui-router/dist/js/angular-ui-router-extension.min.js
 
         #- @components/staff/dist/js/staff.min.js
     css:

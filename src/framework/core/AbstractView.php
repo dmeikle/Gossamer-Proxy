@@ -118,6 +118,10 @@ class AbstractView {
         $modules = array('modules' => "'" . implode("','", $this->httpRequest->getModules()) . "'");
 
         $this->data = array_merge($data, $this->httpResponse->getAttributes(), $modules);
+
+        if (!array_key_exists('componentFolder', $this->data)) {
+            $this->data['componentFolder'] = __COMPONENT_FOLDER;
+        }
         // $this->data = $data;
     }
 

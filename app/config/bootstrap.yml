@@ -14,6 +14,7 @@ all:
         - { 'event': 'entry_point', 'listener': 'core\components\caching\eventlisteners\LoadCachedRenderedPageListener'}   
         - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
         - { 'event': 'filerender_end', 'listener': 'core\components\render\eventlisteners\DrawURILinksListener'}
+        - { 'event': 'filerender_entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'} 
 
         - { 'event': 'render_bypass', listener: 'core\components\security\eventlisteners\FilterHTMLNodesByPermissionsListener' }
         - { 'event': 'render_bypass', listener: 'core\components\caching\eventlisteners\ReplaceParamsInHTMLListener' }
