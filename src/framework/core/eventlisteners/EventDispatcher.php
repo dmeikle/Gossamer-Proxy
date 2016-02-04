@@ -220,9 +220,7 @@ class EventDispatcher {
         $keys = array_keys($this->listeners);
         if (!array_key_exists($uri, $this->listeners)) {
             // echo "no listeners found for $uri with state set to $state\r\n";
-            if ($state == 'request_start') {
-                pr(array_keys($this->listeners));
-            }
+
             $this->logger->addDebug("no listeners found for $uri with state set to $state");
             return;
         }
