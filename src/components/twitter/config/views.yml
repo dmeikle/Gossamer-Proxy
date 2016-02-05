@@ -1,9 +1,0 @@
-
-
-       
-admin_twitter_traffic:  
-    template: newsfeed.php
-    sections: 
-        -
-            "section1": "src/components/twitter/views/traffic.php"
-     

@@ -1,9 +1,0 @@
-
-default:
-    htmltags:
-        container: CmsPage
-        tags:            
-                title: @metaTitle
-                description: @metaDescription
-                type: website
-

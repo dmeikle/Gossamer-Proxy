@@ -1,5 +1,0 @@
-## YAML Template.
----
-
-tickets_open_count:
-    'src/components/tickets/views/admin/tickets-open-count.php'
