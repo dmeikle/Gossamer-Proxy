@@ -1,8 +1,0 @@
-scopingList:
-    path: 'src/components/scoping/views/admin/scopes/list.php'
-    langFiles: 
-            - 'app/locales/*/website'
-            - 'src/components/dashboard/locales/*/Dashboard'
-            - 'src/components/claims/locales/*/claims'
-            - 'src/components/scoping/locales/*/Scoping'
-        

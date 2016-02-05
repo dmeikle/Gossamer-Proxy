@@ -1,9 +1,0 @@
-admin_messaging_list:
-    template: admin-list.php
-    sections: 
-        -
-            "section1": "src/themes/default/templates/sections/admin-header.php"
-            "section2": "src/components/messaging/views/admin/subnav.php"
-            "section3": "src/components/messaging/views/admin/list.php"
-            "section4": "src/themes/default/templates/sections/footer.php"
-    

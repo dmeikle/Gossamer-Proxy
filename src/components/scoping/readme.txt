@@ -1,2 +1,0 @@
-notes on scoping tables:
-

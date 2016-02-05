@@ -1,1 +1,0 @@
-<h2>this page is waiting for design before proceeding</h2>
