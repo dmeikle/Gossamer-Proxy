@@ -149,6 +149,12 @@ admin_claims_home:
     langFiles:
         - 'src/components/claims/locales/*/claims'
         - 'src/components/projects/locales/*/Project'
+        
+admin_claims_location_view:
+    path: 'src/components/claims/views/admin/locations/edit.php'
+    langFiles:
+        - 'src/components/claims/locales/*/claims'
+        - 'src/components/projects/locales/*/Project'
 
 claimsEditTab:
     path: 'src/components/claims/views/admin/claims/edit.php'

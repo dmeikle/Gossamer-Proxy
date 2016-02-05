@@ -19,6 +19,7 @@ admin_dashboard_home:
             - claimsAdmin
             - inventoryAdmin
             - staffAdmin
+            - projectAddressesAdmin
     head:
         - @components/dashboard/dist/bower_components/angular/angular.min.js
         - @components/dashboard/dist/bower_components/jquery/dist/jquery.min.js
@@ -38,6 +39,7 @@ admin_dashboard_home:
         - @components/claims/dist/js/claims.concat.js
         - @components/staff/dist/js/staff.concat.js
         - @components/inventory/dist/js/inventory.concat.js
+        - @components/projects/dist/js/projects.concat.js
         #- @extensions/require/require.js
 
     css:

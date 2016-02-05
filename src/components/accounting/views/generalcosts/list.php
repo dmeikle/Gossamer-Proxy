@@ -10,7 +10,7 @@
             </button>
             <form ng-submit="search(basicSearch.query, 'name')" class="input-group">
                 <input placeholder="Search General Costs" type="text" ng-model="basicSearch.query" ng-model-options="{debounce:500}" class="form-control" ng-change="autoSearch(basicSearch.query)">
-<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                          ?></button>-->
+<!--                <button type="submit" class="primary"><?php // echo $this->getString('ACCOUNTING_SEARCH')                                     ?></button>-->
                 <span class="input-group-btn" ng-if="!searchSubmitted">
                     <button type="submit" class="btn-default">
                         <span class="glyphicon glyphicon-search"></span>
@@ -29,11 +29,11 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
-                    <th ng-hide="groupedBy === 'phase'" column-sortable data-column="phase"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
-                    <th ng-hide="groupedBy === 'creditAccount'" column-sortable data-column="creditAccount"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
-                    <th ng-hide="groupedBy === 'totalCost'" column-sortable data-column="totalCost"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
-                    <th ng-hide="groupedBy === 'totalChargeout'" column-sortable data-column="totalChargeout"><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
+                    <th ng-hide="groupedBy === 'jobNumber'" column-sortable api-path="/admin/accounting/generalcosts" data-column="jobNumber"><?php echo $this->getString('ACCOUNTING_JOB_NUMBER'); ?></th>
+                    <th ng-hide="groupedBy === 'phase'" column-sortable api-path="/admin/accounting/generalcosts" data-column="phase"><?php echo $this->getString('ACCOUNTING_PHASE'); ?></th>
+                    <th ng-hide="groupedBy === 'creditAccount'" column-sortable api-path="/admin/accounting/generalcosts" data-column="creditAccount"><?php echo $this->getString('ACCOUNTING_CREDIT_ACCOUNT'); ?></th>
+                    <th ng-hide="groupedBy === 'totalCost'" column-sortable api-path="/admin/accounting/generalcosts" data-column="totalCost"><?php echo $this->getString('ACCOUNTING_COST'); ?></th>
+                    <th ng-hide="groupedBy === 'totalChargeout'" column-sortable api-path="/admin/accounting/generalcosts" data-column="totalChargeout"><?php echo $this->getString('ACCOUNTING_CHARGEOUT'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
@@ -42,7 +42,8 @@
                     <td ng-hide="groupedBy === 'jobNumber'" ></td>
                     <td ng-hide="groupedBy === 'phase'"></td>
                     <td ng-hide="groupedBy === 'creditAccount'">
-                        <span class="spinner-loader"></span>
+                        <span><loading-spinner class="blue table-spinner"></loading-spinner></span>
+                        <!--<loading-spinner></loading-spinner>-->
                     </td>
                     <td ng-hide="groupedBy === 'totalCost'"></td>
                     <td ng-hide="groupedBy === 'totalChargeout'"></td>
@@ -95,7 +96,7 @@
                 <div class="resultspane claim-number" ng-show="noResultsJobNumber">
                     <i class="glyphicon glyphicon-remove"></i> <?php echo $this->getString('ACCOUNTING_NO_RESULTS') ?>
                 </div>
-                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')       ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
+                <!--<input placeholder="<?php // echo $this->getString('ACCOUNTING_CLAIM')                  ?>" class="form-control" name="jobNumber" ng-model="advSearch.jobNumber">-->
                 <!--                <input placeholder="Date" class="form-control" name="date" ng-model="advSearch.workDate">-->
 
 

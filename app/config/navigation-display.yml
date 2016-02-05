@@ -159,6 +159,7 @@ admin_projects:
             active: true
             text_key: 'ADMIN_PROJECTS_LIST_ALL'
             pattern: '/admin/projects'
+            state: 'admin_projects_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR

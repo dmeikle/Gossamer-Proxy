@@ -37,3 +37,9 @@ projectAddressAddNewModal:
             cacheKey: 'ProjectAddressForm'
             dependencies:
                 - { dependency: Provinces, key: provinces, value: id, text: province }
+                
+admin_projects_home:
+    path: 'src/components/projects/views/admin/addresses/list.php'
+    langFiles:
+        - 'src/components/projects/locales/*/Project'
+        - 'app/locales/en_US/website'

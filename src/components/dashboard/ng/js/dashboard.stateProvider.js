@@ -54,5 +54,12 @@ module.config(function($stateProvider, $urlRouterProvider) {
     .state('inventoryList', {
         url: "/inventory",
         templateUrl: "/render/inventory/admin_inventory_list"
+    })
+    //-----
+    //Projects
+    //-----
+    .state('admin_projects_home', {
+        url: "/projects",
+        templateUrl: "/render/projects/admin_projects_home"
     });
 });

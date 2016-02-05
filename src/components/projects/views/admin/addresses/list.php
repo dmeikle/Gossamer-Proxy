@@ -31,14 +31,14 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th column-sortable data-column="buildingName"><?php echo $this->getString('PROJECTS_BUILDINGNAME'); ?></th>
-                    <th column-sortable data-column="address1"><?php echo $this->getString('PROJECTS_ADDRESS'); ?></th>
-                    <th column-sortable data-column="city"><?php echo $this->getString('PROJECTS_CITY'); ?></th>
-                    <th column-sortable data-column="postalCode"><?php echo $this->getString('PROJECTS_POSTALCODE'); ?></th>
-                    <th column-sortable data-column="Provinces_id"><?php echo $this->getString('PROJECTS_PROVINCE'); ?></th>
-                    <th column-sortable data-column="strataNumber"><?php echo $this->getString('PROJECTS_STRATANUMBER'); ?></th>
-                    <th column-sortable data-column="activeClaimsCount"><?php echo $this->getString('PROJECTS_CLAIMSCOUNT'); ?></th>
-                    <th column-sortable><?php echo $this->getString('PROJECTS_HISTORYCOUNT'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="buildingName"><?php echo $this->getString('PROJECTS_BUILDINGNAME'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="address1"><?php echo $this->getString('PROJECTS_ADDRESS'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="city"><?php echo $this->getString('PROJECTS_CITY'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="postalCode"><?php echo $this->getString('PROJECTS_POSTALCODE'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="Provinces_id"><?php echo $this->getString('PROJECTS_PROVINCE'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="strataNumber"><?php echo $this->getString('PROJECTS_STRATANUMBER'); ?></th>
+                    <th column-sortable api-path="/admin/projects" data-column="activeClaimsCount"><?php echo $this->getString('PROJECTS_CLAIMSCOUNT'); ?></th>
+                    <th column-sortable api-path="/admin/projects" ><?php echo $this->getString('PROJECTS_HISTORYCOUNT'); ?></th>
                     <th sort-by-button class="cog-col row-controls" data-column="claimsHistoryCount">&nbsp;</th>
                 </tr>
             </thead>
@@ -49,22 +49,24 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <span class="spinner-loader"></span>
+                        <span>
+                            <loading-spinner class="table-spinner blue"></loading-spinner>
+                        </span>
                     </td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                <tr ng-if="!loading" ng-repeat="project in projectAddressesList" ng-click="selectRow(project)" ng-class="{'selected': project.clicked}">
-                    <td>{{project.buildingName}}</td>
-                    <td>{{project.address1}}</td>
-                    <td>{{project.city}}</td>
-                    <td>{{project.postalCode}}</td>
-                    <td>{{project.Provinces_id}}</td>
-                    <td>{{project.strataNumber}}</td>
-                    <td>{{project.activeClaimsCount}}</td>
-                    <td>{{project.claimsHistoryCount}}</td>
+                <tr ng-if="!loading" ng-repeat="project in projectAddressesList" ng-class="{'selected': project === selectedRow}">
+                    <td ng-click="selectRow(project)">{{project.buildingName}}</td>
+                    <td ng-click="selectRow(project)">{{project.address1}}</td>
+                    <td ng-click="selectRow(project)">{{project.city}}</td>
+                    <td ng-click="selectRow(project)">{{project.postalCode}}</td>
+                    <td ng-click="selectRow(project)">{{project.Provinces_id}}</td>
+                    <td ng-click="selectRow(project)">{{project.strataNumber}}</td>
+                    <td ng-click="selectRow(project)">{{project.activeClaimsCount}}</td>
+                    <td ng-click="selectRow(project)">{{project.claimsHistoryCount}}</td>
                     <td class="row-controls">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle glyphicon glyphicon-cog" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
@@ -96,7 +98,8 @@
             <button class="btn-link" ng-click="closeSidePanel()"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
         <div ng-if="sidePanelLoading">
-            <span class="spinner-loader"></span>
+            <!--<span class="spinner-loader"></span>-->
+            <loading-spinner class="blue"></loading-spinner>
         </div>
 
         <form ng-if="!sidePanelLoading && searching" ng-submit="search(advancedSearch.query)">

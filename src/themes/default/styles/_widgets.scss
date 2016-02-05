@@ -59,9 +59,11 @@
 .widget-side-panel {
     @include width-transition;
   width:0px;
+  height:auto;
   overflow-x:hidden;
   max-height:80vh;
   overflow-y:auto;
+  white-space: nowrap;
   &.show-overflow{
     overflow-x:visible;
     overflow-y:visible;

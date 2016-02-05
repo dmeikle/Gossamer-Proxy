@@ -111,19 +111,26 @@ module.controller('projectAddressesListCtrl', function ($scope, $modal, projectA
         if (!$scope.selectedProjectAddress && !$scope.searching) {
             $scope.sidePanelOpen = false;
         }
+        $scope.selectedRow = {};
     };
 
     $scope.selectRow = function (clickedObject) {
         $scope.searching = false;
         if ($scope.previouslyClickedObject !== clickedObject) {
             $scope.previouslyClickedObject = clickedObject;
+            $scope.sidePanelOpen = true;
             $scope.sidePanelLoading = true;
+            $scope.selectedRow = clickedObject;
             projectAddressesListSrv.getProjectAddressDetail(clickedObject)
                     .then(function () {
                         $scope.selectedProjectAddress = projectAddressesListSrv.projectAddressDetail;
                         $scope.sidePanelOpen = true;
                         $scope.sidePanelLoading = false;
                     });
+        } else {
+            $scope.sidePanelOpen = false;
+            $scope.sidePanelLoading = false;
+            $scope.selectedRow = {};
         }
     };
     $scope.$watch('currentPage + itemsPerPage', function () {
