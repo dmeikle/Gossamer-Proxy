@@ -4,8 +4,8 @@
 
 cookies:
     secure: true
-    salt: D!dYewKn0wTh3En1gm@D3v1c#w@zaF*rM1dabL3Encyp+i0nD3v!s?
-    name: phoenix_restorations
+    salt: th!zi&YorL0n&saltv!s?
+    name: cookienamehere
     
 application:
     #possible choices: debug|production
@@ -48,10 +48,10 @@ logger:
 
 twitter:
     credentials:
-        oauth_access_token: 874094586-baTudjt9mnnLqDTKiBD3Ir2jhzmHrRR8HItGVWbS
-        oauth_access_token_secret: s5q9rrfJgJftVp3L73Fw5NVtKB2Rx5nAYiX2KMUyUuJmV
-        consumer_key: YMz5fs0XbKG6AQE3f5x9FxtX2
-        consumer_secret: iIaxj9XBN6OQVuoJx3scC6bGzA1nBzjDCBYdBH1sBB8kkC9R00
+        oauth_access_token: putyouroauthtokenhere
+        oauth_access_token_secret: putyoursecrettokenhere
+        consumer_key: putyourkeyhere
+        consumer_secret: putyoursecrethere
     connection:
         url: 'https://api.twitter.com/1.1/statuses/user_timeline.json'
         screen_name: am730traffic
@@ -59,5 +59,5 @@ twitter:
         method: GET
     
 ticker:
-    url: ticker.phoenixrestorations.com
+    url: ticker.yourdomain.com
     port: 9000
