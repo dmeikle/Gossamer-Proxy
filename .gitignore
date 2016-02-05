@@ -19,6 +19,13 @@ logs
 
 node_modules
 
+src/components/*
+!src/components/defaultItem
+!src/components/users
+!src/components/geography
+!src/components/fileuploads
+!src/components/cssmenu
+
 src/components/*/dist
 src/extensions/*/dist
 src/framework/core/components/*/dist
