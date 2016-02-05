@@ -254,7 +254,7 @@ admin_staff_edit_home:
         component: components\staff\StaffComponent
         controller: components\staff\controllers\StaffController
         model: components\staff\models\StaffModel
-        method: edit
+        method: index
         view: extensions\angular\views\AngularTemplateView
         viewKey: admin_staff_edit_home
         datasource: datasource1

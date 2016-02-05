@@ -12,9 +12,8 @@ admin_staff_edit_home:
         - { tag: uib-tab, permission-key: accounting, roles: [IS_ACCOUNTING] }
     access:
         roles:
-          #  - IS_HR
-          #  - IS_ADMINISTRATOR
-           # - IS_DEVELOPER
-          #  - IS_ACCOUNTING
-          - IS_nothing
+            - IS_HR
+            - IS_ADMINISTRATOR
+            - IS_DEVELOPER
+            - IS_ACCOUNTING          
         self: true

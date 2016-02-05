@@ -74,31 +74,6 @@ class StaffController extends AbstractController {
         $this->edit(0);
     }
 
-    /**
-     * edit - display an input form based on requested id
-     *
-     * @param int id    primary key of item to edit
-     */
-    public function edit($id) {
-        //$result = (intval($id) > 0) ? $this->model->edit(intval($id)) : array();
-        //$staffAuthorization = new \components\staff\models\StaffAuthorizationModel($this->httpRequest, $this->httpResponse, $this->logger);
-        // $result['form'] = $this->drawForm($this->model, $result);
-        // if (is_array($result)) {
-        //     $result['eform'] = $this->drawEmergencyContactForm($this->model, array());
-//            $staffAuth = $this->httpRequest->getAttribute('StaffAuthorization');
-//            if (is_array($staffAuth) && array_key_exists('StaffAuthorization', $staffAuth)) {
-//                $result['aform'] = $this->drawCredentialsForm($staffAuthorization, $staffAuth['StaffAuthorization'][0]);
-//            }
-        //      }
-//        if (intval($id) == 0) {
-//            $result['aform'] = $this->drawCredentialsForm($staffAuthorization, array());
-//        }
-        $result = array();
-        $result['id'] = intval($id);
-        $this->httpRequest->setAttribute('Staff', $result);
-        $this->render($result);
-    }
-
     public function get($id) {
         $result = $this->model->edit(intval($id));
         unset($result['emergencyContacts']);
