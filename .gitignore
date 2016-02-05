@@ -1,5 +1,4 @@
 
-
 .sass-cache
 .Trash-1000
 nbproject/*
@@ -18,6 +17,13 @@ logs
 
 
 node_modules
+
+src/components/*
+!src/components/defaultItem
+!src/components/users
+!src/components/geography
+!src/components/fileuploads
+!src/components/cssmenu
 
 src/components/*/dist
 src/extensions/*/dist
