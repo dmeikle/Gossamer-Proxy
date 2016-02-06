@@ -137,7 +137,6 @@ class YAMLViewConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-
         if (array_key_exists($ymlKey, $this->config)) {
             return $nodeParams = $this->config[$ymlKey];
         }

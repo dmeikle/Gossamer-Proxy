@@ -155,11 +155,16 @@ class TemplateView extends AbstractView {
         $jsIncludeString = '';
         //remove any duplicates from files calling same includes
         $list = array_unique($this->jsIncludeFiles);
-
-        foreach ($list as $file) {
-            $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
+//
+//        foreach ($list as $file) {
+//            $jsIncludeString .= "<script language=\"javascript\" src=\"$file\"></script>\r\n";
+//        }
+        $newlist = array();
+        foreach ($list as $item) {
+            $newlist[] = substr($item, 3);
         }
-
+        $file = implode(',', $newlist);
+        $jsIncludeString .= "<script language=\"javascript\" src=\"/compression/js?files=$file\"></script>\r\n";
         $this->template = str_replace('<!---javascript--->', $jsIncludeString, $this->template);
     }
 
