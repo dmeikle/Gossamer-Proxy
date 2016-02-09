@@ -21,13 +21,19 @@ use core\eventlisteners\Event;
  */
 class ResourceFileView extends AbstractView {
 
+    use \core\components\compression\traits\KeyTrait;
+
     /**
      * to be called in child class
      */
     protected function renderView() {
 
+
         // Send Content-Type
         header("Content-Type: text/" . $this->data['type']);
+        // Send Etag hash
+        $this->setEtag($this->getKey());
+
         if (isset($encoding) && $encoding != 'none') {
             // Send compressed contents
             $contents = gzencode($contents, 9, $gzip ? FORCE_GZIP : FORCE_DEFLATE);
@@ -39,6 +45,7 @@ class ResourceFileView extends AbstractView {
             header('Content-Length: ' . strlen($this->data['contents']));
             echo $this->data['contents'];
         }
+
         $event = new Event('render_complete', $this->data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'render_complete', $event);
     }
@@ -46,6 +53,12 @@ class ResourceFileView extends AbstractView {
     //need this to override the default destruct in parent class
     public function __destruct() {
 
+    }
+
+    protected function setEtag($key) {
+        $date = getdate();
+
+        header("Etag: \"" . $date['month'] . $date['mday'] . $date['year'] . '-' . md5($key) . "\"");
     }
 
 }

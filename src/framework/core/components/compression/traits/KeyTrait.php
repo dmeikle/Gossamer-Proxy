@@ -14,6 +14,7 @@ namespace core\components\compression\traits;
 trait KeyTrait {
 
     protected function getKey($params = null) {
+
         $filename = '';
         $fileList = explode(',', $this->httpRequest->getQueryParameter('files'));
         $type = $this->getType($fileList[0]);
@@ -24,7 +25,7 @@ trait KeyTrait {
             $filename .= '_' . str_replace($type, '', $name);
         }
 
-        return md5($type . str_replace('.', '-', $filename));
+        return $type . DIRECTORY_SEPARATOR . md5($type . str_replace('.', '-', $filename));
     }
 
     private function getType($fileList) {

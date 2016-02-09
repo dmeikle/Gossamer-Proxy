@@ -20,6 +20,7 @@ use core\components\caching\eventlisteners\AbstractCachableListener;
  */
 class LoadConcatenatedFileFromCacheListener extends AbstractCachableListener {
 
+    // load the key formatting
     use \core\components\compression\traits\KeyTrait;
 
     public function on_entry_point($event) {

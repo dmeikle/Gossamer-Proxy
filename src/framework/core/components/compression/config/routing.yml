@@ -4,10 +4,13 @@ compression_css:
         component: core\components\compression\CompressionComponent
         controller:  core\components\compression\controllers\CompressionController
         model:  core\components\compression\models\CompressionModel
-        method: sendFile
+        method: sendCSSFile
         view: core\components\compression\views\ResourceFileView
         viewKey: compression_css
-        datasource: datasource1             
+        datasource: datasource1   
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'core\components\compression\listeners\LoadConcatenatedFileFromCacheListener', responseKey: CACHED_PAGE_ON_ENTRY_POINT }
+        - { 'event': 'render_complete', 'listener': 'core\components\compression\listeners\SaveConcatenatedFileToCacheListener' }           
         
 compression_js:
     pattern: compression/js
@@ -15,7 +18,7 @@ compression_js:
         component: core\components\compression\CompressionComponent
         controller:  core\components\compression\controllers\CompressionController
         model:  core\components\compression\models\CompressionModel
-        method: sendFile
+        method: sendJSFile
         view: core\components\compression\views\ResourceFileView
         cachedView: core\components\compression\views\ResourceFileView
         viewKey: compression_js

@@ -20,26 +20,20 @@ use core\AbstractController;
  */
 class CompressionController extends AbstractController {
 
-    public function sendFile() {
+    public function sendJSFile() {
         $fileList = $this->httpRequest->getQueryParameter('files');
-        $type = $this->getType($fileList);
-        if (is_null($type)) {
-            throw new \Exception('Unable to determine file type');
-        }
-        $concat = $this->model->loadFiles($fileList, $type);
 
-        $this->render(array('contents' => $concat, 'type' => $type));
+        $concat = $this->model->loadFiles($fileList, 'js');
+
+        $this->render(array('contents' => $concat, 'type' => 'js'));
     }
 
-    private function getType($fileList) {
-        $type = substr($fileList, strlen($fileList) - 4);
-        if ($type == '.css') {
-            return 'css';
-        } elseif (substr($type, 1) == '.js') {
-            return 'js';
-        }
+    public function sendCSSFile() {
+        $fileList = $this->httpRequest->getQueryParameter('files');
 
-        return null;
+        $concat = $this->model->loadFiles($fileList, 'css');
+
+        $this->render(array('contents' => $concat, 'type' => 'css'));
     }
 
 }
