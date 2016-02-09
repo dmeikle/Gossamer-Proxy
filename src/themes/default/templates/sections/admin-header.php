@@ -23,12 +23,12 @@
                 <li class="dropdown" id="reminders">
 
                 </li>
-                <li class="dropdown" id="messages" style="margin-right: 15px;" ngcontroller="messagingSocketCtrl">
+                <li class="dropdown notification-dropdown" id="messages" ngcontroller="messagingSocketCtrl">
                     <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-envelope" style="color:antiquewhite"></span>
+                        <span class="glyphicon glyphicon-envelope notification-icon"></span>
                     </a>
-                    <span style="float: right; margin-top: -25px;">4</span>
+                    <span class="badge notification-badge">4</span>
                     <ul class="dropdown-menu">
                         <li class="message-count"><p>You have 4 new messages</li>
                         <li role="separator" class="divider"></li>
