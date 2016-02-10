@@ -20,9 +20,6 @@
 
 
             <ul class="navbar-right">
-                <li class="dropdown" id="reminders">
-
-                </li>
                 <li class="dropdown notification-dropdown" id="messages" ngcontroller="messagingSocketCtrl">
                     <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -30,8 +27,8 @@
                     </a>
                     <span class="badge notification-badge">4</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have <span class="badge">4</span></p><p>new messages</p></li>
-                        <li role="separator" class="divider"></li>
+                        <li class="message-count"><p>You have <span class="badge">4</span></p><p>unread messages</p></li>
+                        <!--<li role="separator" class="divider"></li>-->
                         <li class="message-alert">
                             <a href="#">
                                 <div class="sender"><strong>Samantha Carter</strong></div>
@@ -42,37 +39,114 @@
                         </li>
                         <li class="message-alert">
                             <a href="#">
-                                <div class="sender">Samantha Carter</div>
+                                <div class="sender"><strong>Samantha Carter</strong></div>
                                 <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
+                                <div class="receiveTime text-muted">just now</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li class="message-alert">
                             <a href="#">
-                                <div class="sender">Samantha Carter</div>
+                                <div class="sender"><strong>Samantha Carter</strong></div>
                                 <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
+                                <div class="receiveTime text-muted">just now</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
-                        <li class="view-all padding">
-                            <span>
-                                <a gcms="{uri='admin_messaging_home'}">See all messages
-                                    <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></i>
-                                </a>
-                            </span>
+                        <li class="view-all text-center">
+                            <!--<span>-->
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            </a>
+                            <!--</span>-->
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown" id="notifications">
-
+                <li class="dropdown notification-dropdown" id="reminders">
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon glyphicon-time"></span>
+                    </a>
+                    <span class="badge notification-badge">3</span>
+                    <ul class="dropdown-menu">
+                        <li class="message-count"><p>You have <span class="badge">3</span></p><p>unread messages</p></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="view-all text-center">
+                            <!--<span>-->
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            </a>
+                            <!--</span>-->
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown notification-dropdown" id="notifications">
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                    <span class="badge notification-badge">2</span>
+                    <ul class="dropdown-menu">
+                        <li class="message-count"><p>You have <span class="badge">2</span></p><p>unread messages</p></li>
+                        <!--<li role="separator" class="divider"></li>-->
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="message-alert">
+                            <a href="#">
+                                <div class="sender"><strong>Samantha Carter</strong></div>
+                                <div class="subject">re: Approved proposal</div>
+                                <div class="receiveTime text-muted">just now</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="view-all text-center">
+                            <!--<span>-->
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            </a>
+                            <!--</span>-->
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown" id="context-button">
                     <!---context-button--->
                 </li>
                 <li class="dropdown">
-
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="userimage" src="http://placehold.it/25x25" alt=""> User Name <span class="caret"></span>
                     </a>
