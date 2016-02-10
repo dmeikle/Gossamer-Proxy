@@ -37,6 +37,7 @@ admin_contacts:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/contacts/contactsAdminTab'
             pattern: '/admin/contacts'
+            state: 'contacts_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -133,6 +134,7 @@ admin_subcontractors:
             active: true
             text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
             pattern: '/admin/subcontractors'
+            state: 'admin_subcontractors_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -188,6 +190,7 @@ admin_companies:
             pattern: '/admin/companies'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/companies/companiesAdminTab'
+            state: 'admin_companies_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -362,6 +365,7 @@ admin_accounting_accounts_payables:
             pattern: '/admin/accounting/pos'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'accounting_pos_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -382,6 +386,7 @@ admin_accounting_accounts_payables:
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'accounting_vendor_invoices_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -454,6 +459,7 @@ admin_accounting_general:
             pattern: '/admin/accounting/inventory'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/inventory'
+            state: 'accounting_inventory_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING    
