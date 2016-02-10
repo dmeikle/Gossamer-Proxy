@@ -18,46 +18,27 @@
 
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
 
-
+            <!--<ul class="navbar-right" ng-controller="messagingSocketCtrl as msgCtrl">-->
             <ul class="navbar-right">
                 <li class="dropdown notification-dropdown" id="messages" ngcontroller="messagingSocketCtrl">
                     <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-envelope notification-icon"></span>
                     </a>
-                    <span class="badge notification-badge">4</span>
+                    <span class="badge notification-badge">{{msgCtrl.newMessages.length}}</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have <span class="badge">4</span></p><p>unread messages</p></li>
-                        <!--<li role="separator" class="divider"></li>-->
-                        <li class="message-alert">
+                        <li class="message-count"><p class="text-primary"><strong>Messages</strong></p></li>
+                        <li class="message-alert" ng-repeat="message in msgCtrl.newMessages">
                             <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
+                                <div class="sender"><strong>{{message.sender}}</strong></div>
+                                <div class="subject">{{message.subject}}</div>
+                                <div class="receiveTime text-muted">{{message.timeSent}}</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <!--<span>-->
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
                             </a>
-                            <!--</span>-->
                         </li>
                     </ul>
                 </li>
@@ -66,39 +47,19 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon glyphicon-time"></span>
                     </a>
-                    <span class="badge notification-badge">3</span>
+                    <span class="badge notification-badge">{{msgCtrl.newReminders.length}}</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have <span class="badge">3</span></p><p>unread messages</p></li>
-                        <!--<li role="separator" class="divider"></li>-->
-                        <li class="message-alert">
+                        <li class="message-count"><p class="text-primary"><strong>Reminders</strong></p></li>
+                        <li class="message-alert" ng-repeat="reminder in msgCtrl.newReminders">
                             <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
+                                <div class="subject"><strong>{{reminder.subject}}</strong></div>
+                                <div class="receiveTime text-muted">{{reminder.timeSent}}</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <!--<span>-->
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all reminders <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
                             </a>
-                            <!--</span>-->
                         </li>
                     </ul>
                 </li>
@@ -107,39 +68,19 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-bell"></span>
                     </a>
-                    <span class="badge notification-badge">2</span>
+                    <span class="badge notification-badge">{{msgCtrl.newNotifications.length}}</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have <span class="badge">2</span></p><p>unread messages</p></li>
-                        <!--<li role="separator" class="divider"></li>-->
-                        <li class="message-alert">
+                        <li class="message-count"><p class="text-primary"><strong>Notifications</strong></p></li>
+                        <li class="message-alert" ng-repeat="notification in msgCtrl.newNotifications">
                             <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender"><strong>Samantha Carter</strong></div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime text-muted">just now</div>
+                                <div class="subject"><strong>{{notification.subject}}</strong></div>
+                                <div class="receiveTime text-muted">{{notification.timeSent}}</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <!--<span>-->
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></p></i>
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all notifications <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
                             </a>
-                            <!--</span>-->
                         </li>
                     </ul>
                 </li>
