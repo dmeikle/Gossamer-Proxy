@@ -30,13 +30,13 @@
                     </a>
                     <span class="badge notification-badge">4</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have 4 new messages</li>
+                        <li class="message-count"><p>You have <span class="badge">4</span></p><p>new messages</p></li>
                         <li role="separator" class="divider"></li>
                         <li class="message-alert">
                             <a href="#">
-                                <div class="sender">Samantha Carter</div>
+                                <div class="sender"><strong>Samantha Carter</strong></div>
                                 <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
+                                <div class="receiveTime text-muted">just now</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
@@ -56,12 +56,12 @@
                                 <div class="clearfix"></div>
                             </a>
                         </li>
-                        <li class="view-all">
-                            <p>
+                        <li class="view-all padding">
+                            <span>
                                 <a gcms="{uri='admin_messaging_home'}">See all messages
                                     <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></i>
                                 </a>
-                            </p>
+                            </span>
                         </li>
                     </ul>
                 </li>

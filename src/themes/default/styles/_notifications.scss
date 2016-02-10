@@ -1,0 +1,29 @@
+/*.badge {
+    color: #fff;
+    background-color: #FF0000;
+    border-radius: 50%;
+}*/
+
+.notification-icon {
+    color:#fff;
+}
+
+.notification-badge {
+    background-color: #ff4081;
+    position:absolute;
+    top:5px;
+    left:24px;
+    font-size: 12px;
+    height:20px;
+    width:20px;
+    line-height: 14px;
+}
+.notification-dropdown {
+    /*margin-right:1em;*/
+    width:48px;
+    text-align:center;
+    p {
+        margin: 0;
+        text-align:center;
+    }
+}
