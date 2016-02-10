@@ -37,6 +37,7 @@ admin_contacts:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/contacts/contactsAdminTab'
             pattern: '/admin/contacts'
+            state: 'contacts_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
