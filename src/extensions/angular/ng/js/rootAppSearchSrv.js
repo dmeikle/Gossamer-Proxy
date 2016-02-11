@@ -91,4 +91,21 @@ module.service('searchSrv', function($http) {
     this.autocomplete = function(apiPath, config) {
         return self.searchCall(apiPath + 'autocomplete', config);
     };
+    
+    this.advancedSearch = function(apiPath, object, page, numRows) {
+
+        if (page !== undefined && numRows !== undefined) {
+            apiPath += 'advancedsearch/' + page + '/' + numRows;
+        } else {
+            apiPath += 'advancedsearch';
+        }
+
+        return self.searchCall(apiPath, object).then(function(response) {
+
+            self.searchResults = response.data;
+            self.searchResultsCount = response.data;
+
+            return response;
+        });
+    };
 });
