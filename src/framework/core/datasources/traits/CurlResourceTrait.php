@@ -23,6 +23,7 @@ trait CurlResourceTrait {
     private $credentials = null;
 
     protected function execute($segment, $verb, $queryString = null, array $params = null) {
+
         if (is_null($this->credentials)) {
             $this->setCredentials($this->keyname);
         }

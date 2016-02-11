@@ -25,7 +25,7 @@ class RemoteFileDataSource implements DataSourceInterface {
     private $keyname;
     private $logger = null;
 
-    use core\datasources\traits\CurlResourceTrait;
+    use \core\datasources\traits\CurlResourceTrait;
 
     public function __construct(Logger $logger) {
         $this->logger = $logger;

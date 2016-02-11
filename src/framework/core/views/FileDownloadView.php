@@ -36,12 +36,12 @@ class FileDownloadView extends AbstractView {
 //            exit;
             throw new \Exception('content not found while rendering view');
         }
-//        $extension = $this->getExtension($this->data['filename']);
-//        switch ($extension) {
-//            case "pdf":
-//                header("Content-type: application/pdf");
-//                break;
-//        }
+        $extension = $this->getExtension($this->data['filename']);
+        switch ($extension) {
+            case "pdf":
+                header("Content-type: application/pdf");
+                break;
+        }
 
         header('Expires: 0'); // no cache
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

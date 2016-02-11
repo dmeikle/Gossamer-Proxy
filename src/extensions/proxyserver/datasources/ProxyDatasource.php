@@ -45,4 +45,14 @@ class ProxyDatasource implements DataSourceInterface {
         return array('content' => $this->execute($entity->getTablename(), $verb, null, $params));
     }
 
+    private function pdf(AbstractModel $entity, $verb, array $params) {
+
+        $queryString = '';
+        foreach ($params as $key => $value) {
+            $queryString .= "&$key=" . urldecode($value);
+        }
+
+        return array('content' => $this->execute($entity->getTablename(), $verb, substr($queryString, 1)));
+    }
+
 }
