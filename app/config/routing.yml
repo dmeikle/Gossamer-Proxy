@@ -22,6 +22,8 @@ render:
   
 image:
     component: "src/components/images/config/routing.yml"
+images:
+    component: "src/components/images/config/routing.yml"
     
 basicmenu:
     component: "src/framework/core/components/basicmenu/config/routing.yml"

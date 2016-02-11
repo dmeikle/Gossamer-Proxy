@@ -22,7 +22,9 @@ use core\eventlisteners\Event;
 class SaveCachedPageListener extends AbstractCachableListener {
 
     public function on_render_complete(Event $event) {
-
+        if (!array_key_exists('cacheKey', $this->listenerConfig)) {
+            return;
+        }
         $params = $event->getParams();
         $this->saveValuesToCache($this->getKey(), $params['renderedPage'], true);
     }
