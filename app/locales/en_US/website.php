@@ -72,5 +72,7 @@ return array(
     'REMOVE' => 'Remove',
     'SELECTED' => 'Selected',
     'TRANSFER' => 'Transfer',
-    'NOTES' => 'Notes'
+    'NOTES' => 'Notes',
+    'SUBMIT' => 'Submit',
+    'RESET' => 'Reset'
 );
