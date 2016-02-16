@@ -27,7 +27,7 @@ module.controller('tabsCtrl', function ($scope, tabsSrv) {
             template: template + qs
         };
         tabsSrv.addTab(tabObj);
-        $scope.tabs = tabsSrv.tabs;
+//        $scope.tabs = tabsSrv.tabs;
     };
 
     $scope.closeTab = function (index) {
