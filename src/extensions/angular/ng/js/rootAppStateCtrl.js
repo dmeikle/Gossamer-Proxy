@@ -17,12 +17,10 @@
         }
         
         $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-            console.log('state changed!');
             vm.loading = true;
         });
         
         $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
-            console.log('state change success!');
             vm.loading = false;
         });
     }

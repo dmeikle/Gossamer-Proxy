@@ -97,15 +97,9 @@
             echo 'hide';
         }
         ?>">
-            <tabset>
-                <tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
-                    <tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></tab-heading>
-
-                    <!--                    <div ng-if="tab.loading" class="tab-loader">
-                                            <span><loading-spinner class="table-spinner blue"></loading-spinner></span>
-                                        </div>
-
-                                        <div ng-include="tab.template" onload="hideSpinner(tab)" class="tab-include"></div>-->
+            <uib-tabset>
+                <uib-tab sortable-tab ng-repeat="tab in tabs track by tab.title" active="tab.active" disable="tab.disabled">
+                    <uib-tab-heading>{{tab.title}}<span ng-click="closeTab($index)" class='close-tab glyphicon glyphicon-remove'></span></uib-tab-heading>
 
                     <div ng-if="dashCtrl.tabsLoading[tab.title] === true" class="tab-loader">
                         <span><loading-spinner class="table-spinner blue"></loading-spinner></span>
@@ -113,8 +107,8 @@
 
                     <div ng-include="tab.template" onload="dashCtrl.tabLoaded(tab.title)" class="tab-include"></div>
                     <div>{{tab.content}} {{tab.template}}</div>
-                </tab>
-            </tabset>
+                </uib-tab>
+            </uib-tabset>
         </div>
     </div>
 </div>
