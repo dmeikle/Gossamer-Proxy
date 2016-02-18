@@ -27,7 +27,7 @@
         <![endif]-->
     </head>
 
-    <body cz-shortcut-listen="true" ng-cloak>
+    <body cz-shortcut-listen="true" ng-cloak ng-controller="dashboardCtrl as dashCtrl">
         <!---header--->
 
         <!---subnav--->
@@ -57,8 +57,8 @@
 
     <!---javascript--->
     <script language="javascript">
-            (function () {
+                (function () {
                 angular.bootstrap(document, [<?php echo $modules; ?>]);
-            })();
+                })();
     </script>
 </html>
