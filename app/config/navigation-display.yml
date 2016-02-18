@@ -133,6 +133,8 @@ admin_subcontractors:
         admin_subcontractors_list:
             active: true
             text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/subcontractors/admin_subcontractors_home'
             pattern: '/admin/subcontractors'
             state: 'admin_subcontractors_home'
             display_roles:
