@@ -46,18 +46,18 @@
                                 <?php
                                 continue;
                             }
-                            if (array_key_exists('ng-click', $childItem) && $this->getViewType() == 'tabbed') {
-                                $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
-                                $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
+                            if (array_key_exists('state', $childItem) && $this->getViewType() == 'tabbed') {
+//                                $tmp = str_replace('text_key', $this->getString($childItem['text_key']), $childItem['ng-click']);
+//                                $ngLink = str_replace('template', $this->getString($childItem['template']), $tmp);
                                 //is a child, has ng-click
                                 ?>
-                                <li><span><a ng-click="<?php echo $ngLink; ?>"><?php echo $this->getString($childItem['text_key']) ?></a></span></li>
+                                <li><a ng-click="dashCtrl.go('<?php echo $childItem['state']; ?>', null, '<?php echo $this->getString($childItem['text_key']); ?>')"><?php echo $this->getString($childItem['text_key']); ?></a></li>
                                 <?php
                             } else {
                                 //is a child, no ng-click
                                 if (array_key_exists('state', $childItem)) {
                                     ?>
-                                    <li><a ui-sref="<?php echo $childItem['state']; ?>"><?php echo $this->getString($childItem['text_key']); ?></a></li>
+                                    <li><a ng-click="dashCtrl.go('<?php echo $childItem['state']; ?>')"><?php echo $this->getString($childItem['text_key']); ?></a></li>
                                     <?php
                                 } else {
                                     ?>

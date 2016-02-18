@@ -96,6 +96,9 @@ loading-spinner {
         position: relative;
         padding: 0;
     }
+    &.action-spinner .loader {
+        width: 32px;
+    }
 }
 
 

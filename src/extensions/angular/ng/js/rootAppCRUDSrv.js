@@ -12,11 +12,25 @@ module.service('crudSrv', function($http) {
         }
     }
 
+    function confirmIsObject(object) {
+        if(object.constructor !== Array) {
+            return object;
+        }
+        
+        var rv = {};
+       
+        for (var index in object) {
+            rv[index] = object[index];
+        }
+        
+        return rv;
+    }
+    
     this.save = function(apiPath, object, objectType, formToken) {
 
        
         var data = {};
-        data[objectType] = object;
+        data[objectType] = confirmIsObject(object);
         data.FORM_SECURITY_TOKEN = formToken;
 
         parseData(data);

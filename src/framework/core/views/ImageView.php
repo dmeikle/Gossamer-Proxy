@@ -28,8 +28,9 @@ class ImageView extends AbstractView {
         $filepath = $this->data['filepath'];
 
         if (file_exists($filepath)) {
-            error_log('exists');
+
             $path_parts = pathinfo($filepath);
+
             switch (strtolower($path_parts['extension'])) {
                 case "gif":
                     header("Content-type: image/gif");
