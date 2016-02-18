@@ -11,3 +11,13 @@
 .messagefooter {
     @extend .widgetfooter;
 }
+.message-window {
+    background-color: #fff;
+    position: fixed;
+    right: 0;
+    bottom: 0px;
+    padding: 1rem;    
+    width: 450px
+        
+}
+  

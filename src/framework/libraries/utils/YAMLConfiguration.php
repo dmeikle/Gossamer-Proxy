@@ -134,7 +134,7 @@ class YAMLConfiguration {
 
         $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
-        if ($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super') {
+        if ($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super' || $chunk == 'service') {
             $chunk = array_shift($pieces); //drop the admin for the routing file
         }
         $config = $parser->loadConfig();
