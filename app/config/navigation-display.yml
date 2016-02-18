@@ -65,7 +65,7 @@ admin_claims:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/claims/claimsAdminTab'
             pattern: '/admin/claims'
-            state: 'claimsList'
+            state: 'admin_claims_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -110,7 +110,7 @@ admin_inventory:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/inventory/inventoryListTab'
             pattern: '/admin/inventory'
-            state: 'inventoryList'
+            state: 'admin_inventory_list'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -320,10 +320,11 @@ admin_accounts_receivable:
                 - IS_DEVELOPER
         admin_accounting_cash_receipts:
             active: true
-            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            text_key: 'ADMIN_ACCOUNTING_CASH_RECEIPTS'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'admin_accounting_cashreceipts'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -594,7 +595,7 @@ admin_scoping:
         scoping_list_all:
             text_key: 'ADMIN_SCOPING_LIST_ALL'
             pattern: '/admin/scoping'
-            state: 'scoping'
+            state: 'admin_scoping_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_SCOPER

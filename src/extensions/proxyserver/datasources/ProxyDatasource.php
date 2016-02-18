@@ -33,6 +33,7 @@ class ProxyDatasource implements DataSourceInterface {
     }
 
     public function query($queryType, AbstractModel $entity, $verb, $params) {
+
         return $this->$verb($entity, $verb, $params);
     }
 

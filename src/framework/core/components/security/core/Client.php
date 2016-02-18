@@ -26,6 +26,7 @@ class Client implements ClientInterface {
     protected $credentials = 'anonymous';
     protected $ipAddress = null;
     protected $status = null;
+    protected $email = null;
 
     /**
      *
@@ -46,6 +47,7 @@ class Client implements ClientInterface {
             $this->credentials = (array_key_exists('credentials', $params)) ? $params['credentials'] : $username;
             $this->ipAddress = (array_key_exists('ipAddress', $params)) ? $params['ipAddress'] : '';
             $this->id = (array_key_exists('Staff_id', $params)) ? $params['Staff_id'] : '';
+            $this->email = (array_key_exists('email', $params)) ? $params['email'] : null;
 
             if (array_key_exists('Contacts_id', $params)) {
                 $this->id = $params['Contacts_id'];
@@ -89,6 +91,15 @@ class Client implements ClientInterface {
      */
     public function setIpAddress($ipAddress) {
         $this->ipAddress = $ipAddress;
+    }
+
+    /**
+     * accessor
+     *
+     * @param string $email
+     */
+    public function setEmail($email) {
+        $this->email = $email;
     }
 
     /**
@@ -157,6 +168,15 @@ class Client implements ClientInterface {
      */
     public function getId() {
         return $this->id;
+    }
+
+    /**
+     * accessor
+     *
+     * @return string
+     */
+    public function getEmail() {
+        return $this->email;
     }
 
 }
