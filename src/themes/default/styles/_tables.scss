@@ -19,6 +19,12 @@ table {
         vertical-align: middle;
     }
 }
+.table>tbody>tr>td:not(.row-controls):not(.has-datepicker):not(.row-typeahead).show-overflow {
+    overflow: visible;
+}
+.number-col{
+    width:120px;
+}
 .flex-table {
     @extend table;
     @extend .table-hover;
@@ -180,5 +186,8 @@ table {
             right: 20px;
             padding: 4px;
         }
+    }
+    .number-col{
+        width:60px;
     }
 }
