@@ -132,7 +132,7 @@
 
 
             <!--<div class="card" >-->
-            <h1><?php echo $this->getString('BUGS_GENERAL_INFO'); ?></h1>
+            <h1> <a ng-click="dashCtrl.go('bugs_edit_home', {'id': ctrl.selectedBug.id}, ctrl.selectedBug.ticketId)"><?php echo $this->getString('BUGS_TICKET'); ?> {{ctrl.selectedBug.ticketId}}</a></h1>
 
 
             <div ng-if="ctrl.loading">
@@ -142,22 +142,22 @@
             <div class="clearfix"></div>
 
             <ul class="sp-list">
-                <li class="sp-list-item" ng-if="ctrl.selectedBug.ticketId">
-                    <div  class="sp-list-item-content">
-                        <span class="sp-list-title"><?php echo $this->getString('BUGS_TICKET_ID'); ?></span>
-                        <span class="sp-list-secondary">{{ctrl.selectedBug.ticketId}}</span>
-                    </div>
-                </li>
-                <li class="sp-list-item" ng-if="ctrl.selectedBug.staff">
-                    <div  class="sp-list-item-content">
-                        <span class="sp-list-title"><?php echo $this->getString('BUGS_STAFF'); ?></span>
-                        <span class="sp-list-secondary">{{ctrl.selectedBug.staff}}</span>
-                    </div>
-                </li>
+                <!--                <li class="sp-list-item" ng-if="ctrl.selectedBug.ticketId">
+                                    <div  class="sp-list-item-content">
+                                        <span class="sp-list-title"><?php // echo $this->getString('BUGS_TICKET_ID');    ?></span>
+                                        <span class="sp-list-secondary">{{ctrl.selectedBug.ticketId}}</span>
+                                    </div>
+                                </li>-->
                 <li class="sp-list-item" ng-if="ctrl.selectedBug.subject">
                     <div  class="sp-list-item-content">
                         <span class="sp-list-title"><?php echo $this->getString('BUGS_SUBJECT'); ?></span>
                         <span class="sp-list-secondary">{{ctrl.selectedBug.subject}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_STAFF'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.staff}}</span>
                     </div>
                 </li>
                 <li class="sp-list-item" ng-if="ctrl.selectedBug.comments">

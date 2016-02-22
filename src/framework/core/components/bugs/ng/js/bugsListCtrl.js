@@ -54,6 +54,10 @@
             self.sidePanelOpen = true;
         };
         
+        self.closeSidePanel = function() {
+            self.sidePanelOpen = false;
+        };
+        
         self.selectRow = function(bug) {
             $log.log(bug);
             self.sidePanelOpen = true;

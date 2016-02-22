@@ -89,9 +89,6 @@
                             <h3>Submit a Bug Report</h3>
                         </div>
                         <div class="clearfix"></div>
-                        <input type="hidden" ng-model="bug.BugTypes_id" ng-init="bug.BugTypes_id = 1" />
-                        <!--<div class="prompt">Subject</div>-->
-                        <!--<div class="field"><input class="form-control" type="text" ng-model="bug.subject" /></div>-->
                         <div class="form-group">
                             <label for="bugSubject">Subject</label>
                             <input class="form-control" type="text" ng-model="bug.subject" placeholder="Subject"/>
@@ -101,14 +98,15 @@
                             <label for="bugDetails">Details</label>
                             <textarea class="form-control" ng-model="bug.comments" id="bugDetails" placeholder="Describe what happened"></textarea>
                         </div>
-                        <!--                        <div class="prompt">Error Message</div>
-                                                <div class="field"><textarea class="form-control" ng-model="bug.errorMessage"></textarea></div>-->
                         <div class="form-group">
                             <label for="errorMessage">Error Message</label>
-                            <textarea type="text" class="form-control" id="errorMessage" placeholder="Paste or describe the error message"></textarea>
+                            <textarea type="text" class="form-control" id="errorMessage" placeholder="Paste or describe the error message" ng-model="bug.errorMessage"></textarea>
                         </div>
                         <div class="pull-right">
                             <div class="field">
+                                <span ng-if="bugCtrl.saving">
+                                    <loading-spinner class="action-spinner blue"></loading-spinner>
+                                </span>
                                 <button class="btn-default" ng-click="bugCtrl.cancel()">Cancel</button>
                                 <button class="btn-primary" ng-click="bugCtrl.save(bug)">Submit</button>
                             </div>

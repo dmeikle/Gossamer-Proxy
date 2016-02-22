@@ -16,10 +16,13 @@
 
     function bugsEditCtrl($rootScope, bugsSrv, dataService) {
         var self = this;
+        
         self.bug = angular.copy(dataService.data);
         self.display = false;
-        
-       
+//        console.log('data service:');
+//        console.log(dataService.data);
+//        console.log('bug:');
+//        console.log(self.bug);
         
         self.displayForm = function() {
           self.display = true;  
@@ -30,11 +33,12 @@
         };
         
         self.save = function(bug) {
-            
+            bug.BugTypes_id = 1;
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
-            
+            self.saving = true;
             bugsSrv.save(bug, formToken).then(function() {
-                init();       
+//                init();       
+                self.saving = false;
                 $rootScope.$broadcast('INVALIDATE_BUGS_LIST');
             });
         };

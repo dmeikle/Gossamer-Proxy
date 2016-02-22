@@ -25,5 +25,10 @@ return array(
     'BUGS_ERROR_MESSAGE' => 'Error Message',
     'BUGS_CURRENT_URL' => 'Current URL',
     'BUGS_REFERER_URL' => 'Referer URL',
-    'BUGS_NOTES' => 'Notes'
+    'BUGS_NOTES' => 'Notes',
+    'BUGS_DATE_ENTERED' => 'Date Entered',
+    'BUGS_ENTERED_BY' => 'Entered By',
+    'BUGS_VIEW_BUG' => 'View Bug',
+    'BUGS_STATUS' => 'Status',
+    'BUGS_TICKET' => 'Ticket'
 );

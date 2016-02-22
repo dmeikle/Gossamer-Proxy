@@ -87,6 +87,7 @@ loading-spinner {
     padding: 0 1rem;
     display: inline-block;
     overflow: hidden;
+    vertical-align: middle;
     &.blue {
         .path {
             stroke: $blue;
