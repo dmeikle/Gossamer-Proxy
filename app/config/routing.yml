@@ -1,6 +1,7 @@
 compression:
     component: "src/framework/core/components/compression/config/routing.yml"
-    
+bugs:
+    component: "src/framework/core/components/bugs/config/routing.yml"
 locale:
     component: "src/framework/core/components/locales/config/routing.yml"
 angular:

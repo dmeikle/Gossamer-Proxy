@@ -61,10 +61,10 @@ class YAMLViewConfiguration {
 
         $explodedPath = explode('/', $routingPath);
         $result = $this->getYMLNodeParameters($ymlKey);
-        if (is_array($result)) {
-            return array_merge($this->getYMLNodeParameters($ymlKey), $siteConfig);
-        }
 
+        if (is_array($result)) {
+            return array_merge($result, $siteConfig);
+        }
 
         return $siteConfig;
     }
@@ -137,6 +137,9 @@ class YAMLViewConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
+        if (!is_array($this->config)) {
+            throw new \Exception('yaml key not found in views config');
+        }
         if (array_key_exists($ymlKey, $this->config)) {
             return $nodeParams = $this->config[$ymlKey];
         }
