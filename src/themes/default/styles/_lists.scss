@@ -1,0 +1,23 @@
+.sp-list {
+    padding:0;
+    .sp-list-item {
+        height:60px;
+    }
+    .sp-list-item-content {
+        padding: 10px 0;
+    }
+    .sp-list-title, .sp-list-secondary{
+        display:block;
+        line-height:16px;
+    }
+    .sp-list-title {
+        font-weight: 500;
+        font-size:16px;
+        margin-bottom:4px;
+    }
+    .sp-list-secondary {
+        font-size:14px;
+        color: rgba(0,0,0,.54);
+    }
+}
+
