@@ -14,7 +14,7 @@
         .module('bugsAdmin')
         .controller('bugsListCtrl', bugsListCtrl);
 
-    function bugsListCtrl($rootScope, bugsSrv) {
+    function bugsListCtrl($rootScope, bugsSrv, $log) {
         var self = this;
         
         // Stuff to run on controller load
@@ -55,6 +55,7 @@
         };
         
         self.selectRow = function(bug) {
+            $log.log(bug);
             self.sidePanelOpen = true;
             self.selectedBug = bug;
         };

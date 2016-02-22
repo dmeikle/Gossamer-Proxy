@@ -71,6 +71,50 @@
                 <li class="dropdown" id="context-button">
                     <!---context-button--->
                 </li>
+                <li ng-controller="bugsEditCtrl as bugCtrl" class="dropdown" id="bugs">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span><img src="/images/web-icons/bug-report-24.png" /></span>
+                        <!--<i class="glyphicon glyphicon-bug icon-size-small"></i>-->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="bugCtrl.displayForm()">submit a bug report</a></li>
+                        <li><a ng-click="dashCtrl.go('bugs_list_home', null, 'View Bugs')">view bugs</a></li>
+
+                    </ul>
+                    <form></form>
+                    <div id="bugform" ng-show="bugCtrl.display" class="whiteframe-z2">
+                        <div>
+                            <!--<img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/12b/1f4/1636c7e.jpg">-->
+                            <button class="btn-link pull-right" ng-click="bugCtrl.cancel()"><span class="glyphicon glyphicon-remove"></span></button>
+                            <h3>Submit a Bug Report</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                        <input type="hidden" ng-model="bug.BugTypes_id" ng-init="bug.BugTypes_id = 1" />
+                        <!--<div class="prompt">Subject</div>-->
+                        <!--<div class="field"><input class="form-control" type="text" ng-model="bug.subject" /></div>-->
+                        <div class="form-group">
+                            <label for="bugSubject">Subject</label>
+                            <input class="form-control" type="text" ng-model="bug.subject" placeholder="Subject"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bugDetails">Details</label>
+                            <textarea class="form-control" ng-model="bug.comments" id="bugDetails" placeholder="Describe what happened"></textarea>
+                        </div>
+                        <!--                        <div class="prompt">Error Message</div>
+                                                <div class="field"><textarea class="form-control" ng-model="bug.errorMessage"></textarea></div>-->
+                        <div class="form-group">
+                            <label for="errorMessage">Error Message</label>
+                            <textarea type="text" class="form-control" id="errorMessage" placeholder="Paste or describe the error message"></textarea>
+                        </div>
+                        <div class="pull-right">
+                            <div class="field">
+                                <button class="btn-default" ng-click="bugCtrl.cancel()">Cancel</button>
+                                <button class="btn-primary" ng-click="bugCtrl.save(bug)">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -84,29 +128,7 @@
                         <li><a href="#">Logout</a></li>
                     </ul>
                 </li>
-                <li ng-controller="bugsEditCtrl as ctrl" class="dropdown" id="bugs">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span><img src="/images/web-icons/bug.png" /></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a ng-click="ctrl.displayForm()">submit a bug report</a></li>
-                        <li><a ng-click="dashCtrl.go('bugs_list_home', null, 'View Bugs')">view bugs</a></li>
 
-                    </ul>
-                    <form></form>
-                    <div id="bugform" ng-show="ctrl.display">
-                        <img style="float:left; margin: 0px 10px 10px 0px" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/12b/1f4/1636c7e.jpg" width="50">Hi! Welcome to live chat. Please enter your bug details here.<br />
-                        <div class="clearfix"></div>
-                        <input type="hidden" ng-model="bug.BugTypes_id" ng-init="bug.BugTypes_id = 1" />
-                        <div class="prompt">Subject</div>
-                        <div class="field"><input class="form-control" type="text" ng-model="bug.subject" /></div>
-                        <div class="prompt">Details</div>
-                        <div class="field"><textarea class="form-control" ng-model="bug.comments"></textarea></div>
-                        <div class="prompt">Error Message</div>
-                        <div class="field"><textarea class="form-control" ng-model="bug.errorMessage"></textarea></div>
-                        <div class="field"><button ng-click="ctrl.cancel()">Cancel</button> <button ng-click="ctrl.save(bug)">Submit</button></div>
-                    </div>
-                </li>
             </ul>
         </div>
     </nav>

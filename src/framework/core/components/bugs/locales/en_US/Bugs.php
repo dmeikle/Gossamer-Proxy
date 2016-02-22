@@ -20,5 +20,10 @@ return array(
     'ITEMS_PER_PAGE' => 'Items Per Page',
     'BUGS_EDIT' => 'Edit',
     'BUGS_REMOVE' => 'Remove',
-    'BUGS_TICKET_ID' => 'Ticket ID'
+    'BUGS_TICKET_ID' => 'Ticket ID',
+    'BUGS_GENERAL_INFO' => 'Bug Info',
+    'BUGS_ERROR_MESSAGE' => 'Error Message',
+    'BUGS_CURRENT_URL' => 'Current URL',
+    'BUGS_REFERER_URL' => 'Referer URL',
+    'BUGS_NOTES' => 'Notes'
 );

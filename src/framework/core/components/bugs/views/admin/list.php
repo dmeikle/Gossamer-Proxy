@@ -10,7 +10,7 @@
                 <?php echo $this->getString('BUGS_ADVANCED_SEARCH') ?>
             </button>
 
-            <div>
+            <div  class="input-group">
                 <input type="text" ng-model="basicSearch.name" ng-model-options="{debounce:500}"
                        ng-change="ctrl.search(basicSearch)" class="form-control">
                 <span class="input-group-btn" ng-if="!ctrl.searchSubmitted">
@@ -26,6 +26,8 @@
             </div>
 
         </div>
+
+
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -129,54 +131,69 @@
         <div ng-if="!ctrl.sidePanelLoading && !ctrl.searching">
 
 
-            <div class="card" >
-                <h1><?php echo $this->getString('BUGS_GENERAL_INFO'); ?></h1>
+            <!--<div class="card" >-->
+            <h1><?php echo $this->getString('BUGS_GENERAL_INFO'); ?></h1>
 
 
-                <div ng-if="ctrl.loading">
-                    <span><loading-spinner class="table-spinner blue"></loading-spinner></span>
-                </div>
-
-                <div class="clearfix"></div>
-                <table class="cardtable">
-                    <tbody>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_TICKET_ID'); ?></strong></td>
-                            <td>{{selectedBug.ticketId}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_STAFF'); ?></strong></td>
-                            <td>{{selectedBug.staff}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_SUBJECT'); ?></strong></td>
-                            <td>{{selectedBug.subject}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_COMMENTS'); ?></strong></td>
-                            <td>{{selectedBug.comments}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_ERROR_MESSAGE'); ?></strong></td>
-                            <td>{{selectedBug.message}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_CURRENT_URL'); ?></strong></td>
-                            <td>{{selectedBug.currentURL}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('BUGS_REFERER_URL'); ?></strong></td>
-                            <td>{{selectedBug.refererURL}}</td>
-                        </tr>
-                        <tr>
-                            <td><strong><?php echo $this->getString('NOTES'); ?></strong></td>
-                            <td>{{selectedBug.notes}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="clearfix"></div>
+            <div ng-if="ctrl.loading">
+                <span><loading-spinner class="table-spinner blue"></loading-spinner></span>
             </div>
+
+            <div class="clearfix"></div>
+
+            <ul class="sp-list">
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.ticketId">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_TICKET_ID'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.ticketId}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.staff">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_STAFF'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.staff}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.subject">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_SUBJECT'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.subject}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.comments">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_COMMENTS'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.comments}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.message">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_ERROR_MESSAGE'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.message}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.currentURL">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_CURRENT_URL'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.currentURL}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.refererURL">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_REFERER_URL'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.refererURL}}</span>
+                    </div>
+                </li>
+                <li class="sp-list-item" ng-if="ctrl.selectedBug.notes">
+                    <div  class="sp-list-item-content">
+                        <span class="sp-list-title"><?php echo $this->getString('BUGS_NOTES'); ?></span>
+                        <span class="sp-list-secondary">{{ctrl.selectedBug.notes}}</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="clearfix"></div>
+            <!--</div>-->
         </div>
     </div>
     <div class="clearfix"></div>
