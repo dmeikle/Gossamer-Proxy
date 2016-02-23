@@ -47,4 +47,8 @@ class MultiFormBuilderListener extends FormBuilderListener {
         $this->on_filerender_start($params);
     }
 
+    public function on_filerender_end($params) {
+        $this->on_filerender_start($params);
+    }
+
 }
