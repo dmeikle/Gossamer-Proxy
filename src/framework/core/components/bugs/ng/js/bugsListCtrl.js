@@ -35,7 +35,7 @@
 
         $scope.$watch('tablesSrv.sortResult', function () {
             if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
-                console.log(tablesSrv.sortResult);
+//                console.log(tablesSrv.sortResult);
 //                self.bugList = angular.copy(tablesSrv.sortResult.Bugs);
 //                self.loading = false;
 //                self.test = 'lol';
@@ -83,7 +83,7 @@
         };
         
         self.selectRow = function(bug) {
-            $log.log(bug);
+//            $log.log(bug);
             self.sidePanelOpen = true;
             self.selectedBug = bug;
         };

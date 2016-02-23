@@ -19,10 +19,6 @@
         
         self.bug = angular.copy(dataService.data);
         self.display = false;
-//        console.log('data service:');
-//        console.log(dataService.data);
-//        console.log('bug:');
-//        console.log(self.bug);
         
         self.displayForm = function() {
           self.display = true;  
