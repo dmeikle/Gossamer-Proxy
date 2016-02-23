@@ -84,6 +84,7 @@
         
         self.selectRow = function(bug) {
 //            $log.log(bug);
+            self.selectedRow = bug;
             self.sidePanelOpen = true;
             self.selectedBug = bug;
         };

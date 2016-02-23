@@ -73,7 +73,7 @@
                     </th>
                 </tr>
                 <tr ng-if="!ctrl.loading" ng-repeat-end
-                    ng-class="{'selected': bug === previouslyClickedObject,
+                    ng-class="{'selected-row': bug === ctrl.selectedRow,
                                'pending bg-warning text-warning': bug.status == 'pending',
                                'success completed text-success': bug.status == 'completed',
                                'bg-info in-progress text-info': bug.status == 'active',
