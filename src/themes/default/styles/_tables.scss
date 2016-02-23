@@ -1,6 +1,18 @@
 .total-col{
     text-align:center;
 }
+.table-striped>tbody>tr {
+    &.bg-info td {
+        background-color: #d9edf7;
+    }
+    &:nth-of-type(odd).bg-info {
+        background-color: #d9edf7;        
+    }
+    &.bg-info:hover, &.bg-info:hover td {
+        background-color: #C4E2F1;
+    }
+}
+
 .center-row-inputs>td input{
     text-align: center;
 }
@@ -180,5 +192,44 @@ table {
             right: 20px;
             padding: 4px;
         }
+    }
+}
+
+.inactive {
+    td:first-of-type:after {
+        font-family:'Glyphicons Halflings';
+        content:'\e023';
+
+        /*color:orange;*/
+
+        position:relative;
+        left:1em;
+    }
+}
+.pending {
+    td:first-of-type:after {
+        font-family:'Glyphicons Halflings';
+        content:'\e023';
+
+        /*color:orange;*/
+
+        position:relative;
+        left:1em;
+    }
+}
+.completed {
+    td:first-of-type:after {
+        font-family:'Glyphicons Halflings';
+        content: '\e013';
+        position:relative;
+        left:1em;
+    }
+}
+.in-progress {
+    td:first-of-type:after {
+        font-family:'Glyphicons Halflings';
+        content: '\e072';
+        position:relative;
+        left:1em;
     }
 }

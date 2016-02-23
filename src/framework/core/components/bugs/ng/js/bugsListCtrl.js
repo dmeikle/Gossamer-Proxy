@@ -14,7 +14,7 @@
         .module('bugsAdmin')
         .controller('bugsListCtrl', bugsListCtrl);
 
-    function bugsListCtrl($rootScope, bugsSrv, $log) {
+    function bugsListCtrl($rootScope, $scope, bugsSrv, $log, tablesSrv) {
         var self = this;
         
         // Stuff to run on controller load
@@ -29,6 +29,30 @@
         $rootScope.$on('INVALIDATE_BUGS_LIST', function() {
             activate();
         });
+        
+        // Load up the table service so we can watch it!
+        $scope.tablesSrv = tablesSrv;
+
+        $scope.$watch('tablesSrv.sortResult', function () {
+            if (tablesSrv.sortResult !== undefined && tablesSrv.sortResult !== {}) {
+                console.log(tablesSrv.sortResult);
+//                self.bugList = angular.copy(tablesSrv.sortResult.Bugs);
+//                self.loading = false;
+//                self.test = 'lol';
+//                $scope.$digest();
+            }
+        });
+        
+//        $scope.$watchGroup(['tablesSrv.grouped', 'tablesSrv.groupResult.AccountingCashReceipts'], function () {
+//            self.grouped = tablesSrv.grouped;
+//            if (self.grouped === true) {
+//                if (tablesSrv.groupResult && tablesSrv.groupResult.Bugs)
+//                    self.bugList = tablesSrv.sortResult.Bugs;
+//                    self.loading = false;
+//            } else if (self.grouped === false) {
+//                activate();
+//            }
+//        });
         
         activate();
 

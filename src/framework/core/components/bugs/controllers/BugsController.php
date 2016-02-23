@@ -20,4 +20,9 @@ use core\AbstractController;
  */
 class BugsController extends AbstractController {
 
+    public function listallReverse($offset = 0, $limit = 20) {
+        $result = $this->model->listallReverse($offset, $limit);
+        $this->render($result);
+    }
+
 }

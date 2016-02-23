@@ -32,12 +32,25 @@
             self.display = false;
         };
         
+        self.saveNew = function(bug) {
+            bug.BugTypes_id = 1;
+            var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
+            self.savingNew = true;
+            self.bugSubmitted = false;
+            bugsSrv.save(bug, formToken).then(function() {
+//                init();       
+                self.newBug = {};
+                self.savingNew = false;
+                self.bugSubmitted = true;
+                $rootScope.$broadcast('INVALIDATE_BUGS_LIST');
+            });
+        };
+        
         self.save = function(bug) {
             bug.BugTypes_id = 1;
             var formToken = document.getElementById('FORM_SECURITY_TOKEN').value;
             self.saving = true;
             bugsSrv.save(bug, formToken).then(function() {
-//                init();       
                 self.saving = false;
                 $rootScope.$broadcast('INVALIDATE_BUGS_LIST');
             });

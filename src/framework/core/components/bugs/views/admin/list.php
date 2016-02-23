@@ -31,24 +31,25 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <th ng-hide="groupedBy === 'ticketId'" column-sortable data-column="ticketId"><?php echo $this->getString('BUGS_TICKET_ID'); ?></th>
-                    <th ng-hide="groupedBy === 'subject'" column-sortable data-column="firstname"><?php echo $this->getString('BUGS_SUBJECT'); ?></th>
-                    <th ng-hide="groupedBy === 'comments'" column-sortable data-column="lastname"><?php echo $this->getString('BUGS_COMMENTS'); ?></th>
-                    <th ng-hide="groupedBy === 'staff'" column-sortable data-column="title"><?php echo $this->getString('BUGS_STAFF'); ?></th>
-                    <th ng-hide="groupedBy === 'lastModified'" column-sortable data-column="telephone"><?php echo $this->getString('BUGS_DATE'); ?></th>
-                    <th ng-hide="groupedBy === 'status'" column-sortable data-column="status"><?php echo $this->getString('BUGS_STATUS'); ?></th>
+                    <th ng-hide="groupedBy === 'ticketId'" api-path="/admin/bugs" column-sortable data-column="ticketId"><?php echo $this->getString('BUGS_TICKET_ID'); ?></th>
+                    <th ng-hide="groupedBy === 'subject'" api-path="/admin/bugs" column-sortable data-column="subject"><?php echo $this->getString('BUGS_SUBJECT'); ?></th>
+                    <th ng-hide="groupedBy === 'comments'" api-path="/admin/bugs" column-sortable data-column="comments"><?php echo $this->getString('BUGS_COMMENTS'); ?></th>
+                    <th ng-hide="groupedBy === 'staff'" api-path="/admin/bugs" column-sortable data-column="staff"><?php echo $this->getString('BUGS_STAFF'); ?></th>
+                    <th ng-hide="groupedBy === 'lastModified'" api-path="/admin/bugs" column-sortable data-column="lastModified"><?php echo $this->getString('BUGS_DATE'); ?></th>
+                    <th ng-hide="groupedBy === 'status'" api-path="/admin/bugs" column-sortable data-column="status"><?php echo $this->getString('BUGS_STATUS'); ?></th>
                     <th group-by-button class="cog-col row-controls"></th>
                 </tr>
             </thead>
-            <tbody ng-if="loading">
+<!--            <tbody ng-if="ctrl.loading">
                 <tr>
                     <td colspan="6" align="center">
                         <span>                             <loading-spinner class="table-spinner blue"></loading-spinner>                         </span>
                     </td>
                 </tr>
-            </tbody>
+            </tbody>-->
             <tbody>
-                <tr ng-if="!loading && grouped && bug[groupedBy] !== ctrl.bugList[$index - 1][groupedBy]" ng-repeat-start="bug in ctrl.bugList">
+                <!--ng-if="!loading && grouped && bug[groupedBy] !== ctrl.bugList[$index - 1][groupedBy]"-->
+                <tr ng-if="!loading && grouped && bug[groupedBy] !== bugList[$index - 1][groupedBy]" ng-repeat-start="bug in ctrl.bugList">
                     <th colspan="8">
                         <span ng-if="groupedBy === 'ticketId'">
                             <?php echo $this->getString('BUGS_GROUPEDBY_TICKET_ID'); ?>
@@ -71,8 +72,13 @@
                         {{bug[groupedBy]}}
                     </th>
                 </tr>
-                <tr ng-if="!loading" ng-repeat-end
-                    ng-class="{'selected': bug === previouslyClickedObject, 'inactive bg-warning text-warning': bug.status == 'inactive'}">
+                <tr ng-if="!ctrl.loading" ng-repeat-end
+                    ng-class="{'selected': bug === previouslyClickedObject,
+                               'pending bg-warning text-warning': bug.status == 'pending',
+                               'success completed text-success': bug.status == 'completed',
+                               'bg-info in-progress text-info': bug.status == 'active',
+                               'inactive bg-danger text-danger': bug.status == 'inactive'
+                            }">
                     <td ng-hide="groupedBy === 'ticketId'" ng-click="ctrl.selectRow(bug)">{{bug.ticketId}}</td>
                     <td ng-hide="groupedBy === 'subject'" ng-click="ctrl.selectRow(bug)">{{bug.subject}}</td>
                     <td ng-hide="groupedBy === 'comments'" ng-click="ctrl.selectRow(bug)">{{bug.comments}}</td>
@@ -92,11 +98,10 @@
                 </tr>
             </tbody>
         </table>
-
-        <pagination class="pull-left" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"
-                    class="pagination" boundary-links="true" rotate="false">
-        </pagination>
-
+        <!--{{ctrl.bugList}}-->
+        <uib-pagination class="pull-left" total-items="ctrl.bugListCount" ng-model="ctrl.currentPage" items-per-page="ctrl.itemsPerPage"
+                        class="pagination" boundary-links="true" rotate="false">
+        </uib-pagination>
         <div class="pull-right">
             <p class="pull-left"><?php echo $this->getString('ITEMS_PER_PAGE'); ?></p>
             <ul class="btn-group pull-right">
@@ -140,14 +145,14 @@
             </div>
 
             <div class="clearfix"></div>
-
+            <div ng-if="ctrl.selectedBug.status" class="status-badge" ng-class="{
+                               'bg-warning text-warning': ctrl.selectedBug.status == 'pending',
+                               'bg-success text-success': ctrl.selectedBug.status == 'completed',
+                               'bg-info text-info': ctrl.selectedBug.status == 'active',
+                               'bg-danger text-danger': ctrl.selectedBug.status == 'inactive'
+                            }">{{ctrl.selectedBug.status| uppercase}}</div>
             <ul class="sp-list">
-                <!--                <li class="sp-list-item" ng-if="ctrl.selectedBug.ticketId">
-                                    <div  class="sp-list-item-content">
-                                        <span class="sp-list-title"><?php // echo $this->getString('BUGS_TICKET_ID');    ?></span>
-                                        <span class="sp-list-secondary">{{ctrl.selectedBug.ticketId}}</span>
-                                    </div>
-                                </li>-->
+
                 <li class="sp-list-item" ng-if="ctrl.selectedBug.subject">
                     <div  class="sp-list-item-content">
                         <span class="sp-list-title"><?php echo $this->getString('BUGS_SUBJECT'); ?></span>

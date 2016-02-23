@@ -3,6 +3,8 @@ module.directive('columnSortable', function($compile, $location) {
         restricted: 'A',
         scope: false,
         link: function(scope, element, attrs) {
+//            console.log(attrs);
+            scope.apiPath = attrs.apiPath;
             var a = document.createElement('a');
             a.setAttribute('ng-click', 'sortByColumn($event)');
             a.setAttribute('href', '');
@@ -31,14 +33,19 @@ module.directive('columnSortable', function($compile, $location) {
         controller: function($scope, tablesSrv) {
             $scope.sorting = {};
             $scope.sortedBy = {};
-
+            console.log($scope.apiPath);
+            
             var a = document.createElement('a');
             a.href = $location.absUrl();
             var apiPath;
-            if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
-                apiPath = a.pathname;
+            if($scope.apiPath) {
+                apiPath = $scope.apiPath;
             } else {
-                apiPath = a.pathname.slice(0, -1);
+                if (a.pathname.lastIndexOf('/') !== a.pathname.length - 1) {
+                    apiPath = a.pathname;
+                } else {
+                    apiPath = a.pathname.slice(0, -1);
+                }                
             }
 
             $scope.sortByColumn = function(event) {

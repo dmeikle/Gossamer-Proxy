@@ -77,38 +77,47 @@
                         <!--<i class="glyphicon glyphicon-bug icon-size-small"></i>-->
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a ng-click="bugCtrl.displayForm()">submit a bug report</a></li>
-                        <li><a ng-click="dashCtrl.go('bugs_list_home', null, 'View Bugs')">view bugs</a></li>
+                        <li><a ng-click="bugCtrl.displayForm()">Submit a Bug Report</a></li>
+                        <li><a ng-click="dashCtrl.go('bugs_list_home', null, 'Bugs List')">Bugs List</a></li>
 
                     </ul>
                     <form></form>
-                    <div id="bugform" ng-show="bugCtrl.display" class="whiteframe-z2">
+                    <div id="bugform" ng-show="bugCtrl.display" class="whiteframe-z2" ng-cloak>
                         <div>
-                            <!--<img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/12b/1f4/1636c7e.jpg">-->
                             <button class="btn-link pull-right" ng-click="bugCtrl.cancel()"><span class="glyphicon glyphicon-remove"></span></button>
                             <h3>Submit a Bug Report</h3>
                         </div>
+                        <div class="divider"></div>
+                        <div>
+                            <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/1/000/12b/1f4/1636c7e.jpg">
+                            <span>Hi! Welcome to live chat. Please enter your bug details here. Phoenix Retina Scan™ coming soon.</span>
+                        </div>
+                        <div class="divider"></div>
                         <div class="clearfix"></div>
                         <div class="form-group">
                             <label for="bugSubject">Subject</label>
-                            <input class="form-control" type="text" ng-model="bug.subject" placeholder="Subject"/>
+                            <input class="form-control" type="text" ng-model="bugCtrl.newBug.subject" placeholder="Subject"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="bugDetails">Details</label>
-                            <textarea class="form-control" ng-model="bug.comments" id="bugDetails" placeholder="Describe what happened"></textarea>
+                            <label for="bugDetails">Bug Details</label>
+                            <textarea class="form-control" ng-model="bugCtrl.newBug.comments" id="bugDetails" placeholder="Describe what happened"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="errorMessage">Error Message</label>
-                            <textarea type="text" class="form-control" id="errorMessage" placeholder="Paste or describe the error message" ng-model="bug.errorMessage"></textarea>
+                            <textarea type="text" class="form-control" id="errorMessage" placeholder="Paste or describe the error message" ng-model="bugCtrl.newBug.errorMessage"></textarea>
                         </div>
+<!--                        <span class="text-success pull-left" ng-if="!bugCtrl.bugSubmitted">
+                            Bug Submitted <i class="glyphicon glyphicon-ok"></i>
+                        </span>-->
                         <div class="pull-right">
                             <div class="field">
-                                <span ng-if="bugCtrl.saving">
-                                    <loading-spinner class="action-spinner blue"></loading-spinner>
+                                <span >
+                                    <loading-spinner class="action-spinner blue align-middle" ng-if="bugCtrl.savingNew"></loading-spinner>
+                                    <i class="text-success glyphicon glyphicon-ok submit-icon" ng-if="bugCtrl.bugSubmitted"></i>
                                 </span>
                                 <button class="btn-default" ng-click="bugCtrl.cancel()">Cancel</button>
-                                <button class="btn-primary" ng-click="bugCtrl.save(bug)">Submit</button>
+                                <button class="btn-primary" ng-click="bugCtrl.saveNew(bugCtrl.newBug)">Submit</button>
                             </div>
                         </div>
                     </div>
