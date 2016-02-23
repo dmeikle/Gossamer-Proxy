@@ -36,6 +36,12 @@ table {
         vertical-align: middle;
     }
 }
+.table>tbody>tr>td:not(.row-controls):not(.has-datepicker):not(.row-typeahead).show-overflow {
+    overflow: visible;
+}
+.number-col{
+    width:120px;
+}
 .flex-table {
     @extend table;
     @extend .table-hover;
@@ -198,8 +204,13 @@ table {
             padding: 4px;
         }
     }
-}
 
+    
+}
+.number-col{
+    width:60px;
+}
+    
 .inactive {
     td:first-of-type:after {
         font-family:'Glyphicons Halflings';
@@ -236,5 +247,4 @@ table {
         content: '\e072';
         position:relative;
         left:1em;
-    }
 }
