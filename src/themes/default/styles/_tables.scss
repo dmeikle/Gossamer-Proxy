@@ -1,6 +1,7 @@
 .total-col{
     text-align:center;
 }
+
 .table-striped>tbody>tr {
     &.bg-info td {
         background-color: #d9edf7;
@@ -11,13 +12,18 @@
     &.bg-info:hover, &.bg-info:hover td {
         background-color: #C4E2F1;
     }
-    &.selected-row {
+    &.selected-row, &.selected {
         td {
             font-weight:500;
         }
     }
 }
-
+table.table tbody tr.selected {
+    /*background-color:rgba(3,146,211,.4);*/
+    td {
+        font-weight:500;
+    }
+}
 th {
     font-weight: 500;
 }

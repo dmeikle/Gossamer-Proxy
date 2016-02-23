@@ -14,17 +14,16 @@ th {
 }
 
 
-table.table tbody tr.selected {
+/*table.table tbody tr.selected {
     background-color:rgba(3,146,211,.4);
     td {
-        /*color:#31708f;*/
-        color: #4C4C4C;
-        
+        color:#31708f;
+        color: #4C4C4C;        
     }
     &:hover{
         background-color:rgba(3,146,211,.45);
     }
-}
+}*/
 
 .cardtable>tbody>tr:first-of-type>td {
     border-top:0;
