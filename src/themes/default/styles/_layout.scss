@@ -71,6 +71,9 @@ table .form-group {
 .cog-col {
     width:40px;
 }
+.table>thead>tr>th.cog-col {
+    padding: 5px;
+}
 .table>tbody>tr>td{
     padding:4px;
     vertical-align: middle;

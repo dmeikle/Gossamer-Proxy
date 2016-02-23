@@ -13,9 +13,13 @@
     }
     &.selected-row {
         td {
-            font-weight:700;
+            font-weight:500;
         }
     }
+}
+
+th {
+    font-weight: 500;
 }
 
 .center-row-inputs>td input{
@@ -55,19 +59,21 @@ table {
     }
     .head {
         @extend thead;
-        display:table-row;        
+        display:table-row;
         div {
             @extend th;  
             padding: 8px;
-            line-height: 1.428571429;
+            /*line-height: 1.428571429;*/
             vertical-align: bottom;
-            display:table-cell;           
-            font-weight: bold;
+            display:table-cell;     
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
             &.row-controls{
                 overflow: visible;
+            }
+            &.cog-col {
+                padding: 5px;
             }
         }
     }    
@@ -247,4 +253,5 @@ table {
         content: '\e072';
         position:relative;
         left:1em;
+    }
 }
