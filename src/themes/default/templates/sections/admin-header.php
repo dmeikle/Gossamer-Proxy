@@ -18,55 +18,71 @@
 
         <div id="bs-example-navbar-collapse" class="collapse navbar-collapse">
 
-
+            <!--<ul class="navbar-right" ng-controller="messagingSocketCtrl as msgCtrl">-->
             <ul class="navbar-right">
-                <li class="dropdown" id="reminders">
-
-                </li>
-                <li class="dropdown" id="messages" style="margin-right: 15px;" ngcontroller="messagingSocketCtrl">
+                <li class="dropdown notification-dropdown" id="messages" ngcontroller="messagingSocketCtrl">
                     <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-envelope" style="color:antiquewhite"></span>
+                        <span class="glyphicon glyphicon-envelope notification-icon"></span>
                     </a>
-                    <span style="float: right; margin-top: -25px;">4</span>
+                    <span class="badge notification-badge">{{msgCtrl.newMessages.length}}</span>
                     <ul class="dropdown-menu">
-                        <li class="message-count"><p>You have 4 new messages</li>
-                        <li role="separator" class="divider"></li>
-                        <li class="message-alert">
+                        <li class="message-count"><p class="text-primary"><strong>Messages</strong></p></li>
+                        <li class="message-alert" ng-repeat="message in msgCtrl.newMessages">
                             <a href="#">
-                                <div class="sender">Samantha Carter</div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
+                                <div class="sender"><strong>{{message.sender}}</strong></div>
+                                <div class="subject">{{message.subject}}</div>
+                                <div class="receiveTime text-muted">{{message.timeSent}}</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender">Samantha Carter</div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
-                                <div class="clearfix"></div>
+                        <li class="view-all text-center">
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
                             </a>
-                        </li>
-                        <li class="message-alert">
-                            <a href="#">
-                                <div class="sender">Samantha Carter</div>
-                                <div class="subject">re: Approved proposal</div>
-                                <div class="receiveTime">just now</div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
-                        <li class="view-all">
-                            <p>
-                                <a gcms="{uri='admin_messaging_home'}">See all messages
-                                    <i class="glyphicon glyphicon-circle-arrow-right icon-size-small"></i>
-                                </a>
-                            </p>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown" id="notifications">
-
+                <li class="dropdown notification-dropdown" id="reminders">
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon glyphicon-time"></span>
+                    </a>
+                    <span class="badge notification-badge">{{msgCtrl.newReminders.length}}</span>
+                    <ul class="dropdown-menu">
+                        <li class="message-count"><p class="text-primary"><strong>Reminders</strong></p></li>
+                        <li class="message-alert" ng-repeat="reminder in msgCtrl.newReminders">
+                            <a href="#">
+                                <div class="subject"><strong>{{reminder.subject}}</strong></div>
+                                <div class="receiveTime text-muted">{{reminder.timeSent}}</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="view-all text-center">
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all reminders <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown notification-dropdown" id="notifications">
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-bell"></span>
+                    </a>
+                    <span class="badge notification-badge">{{msgCtrl.newNotifications.length}}</span>
+                    <ul class="dropdown-menu">
+                        <li class="message-count"><p class="text-primary"><strong>Notifications</strong></p></li>
+                        <li class="message-alert" ng-repeat="notification in msgCtrl.newNotifications">
+                            <a href="#">
+                                <div class="subject"><strong>{{notification.subject}}</strong></div>
+                                <div class="receiveTime text-muted">{{notification.timeSent}}</div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+                        <li class="view-all text-center">
+                            <a gcms="{uri='admin_messaging_home'}"><p>See all notifications <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="dropdown" id="context-button">
                     <!---context-button--->
@@ -123,7 +139,6 @@
                     </div>
                 </li>
                 <li class="dropdown">
-
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="userimage" src="http://placehold.it/25x25" alt=""> User Name <span class="caret"></span>
                     </a>
