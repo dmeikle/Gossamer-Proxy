@@ -11,6 +11,11 @@
     &.bg-info:hover, &.bg-info:hover td {
         background-color: #C4E2F1;
     }
+    &.selected-row {
+        td {
+            font-weight:700;
+        }
+    }
 }
 
 .center-row-inputs>td input{
