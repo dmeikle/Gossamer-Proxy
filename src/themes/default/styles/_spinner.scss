@@ -102,9 +102,21 @@ loading-spinner {
     &.action-spinner .loader {
         width: 32px;
     }
+    &.modal-spinner {
+        margin-top:2px;
+        .loader {
+            width:30px;
+        }
+    }
+    &.small-spinner {
+        vertical-align: -webkit-baseline-middle;
+        .loader {
+            width:24px;
+        }
+    }
 }
 
-
+    
 .loader {
     /*position: relative;*/
     margin: 0px auto;
