@@ -45,6 +45,9 @@ admin_contacts:
         claims_create_new:
             text_key: 'ADMIN_CONTACTS_CREATE_NEW'
             pattern: '/admin/contacts/edit/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/contacts/admin_contacts_edit'
+            state: 'admin_contacts_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_PROJECT_MANAGER
@@ -201,9 +204,12 @@ admin_companies:
         contacts_add_new_company:
             text_key: 'ADMIN_COMPANIES_ADD_NEW'
             pattern: '/admin/companies/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/companies/admin_companies_edit'
+            state: 'admin_companies_edit'
             display_roles:
                 - IS_ADMINISTRATOR
-                - IS_STAFF
+                - IS_DEVELOPER
                 - IS_PROJECT_MANAGER
                 - IS_PMA         
 #
