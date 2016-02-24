@@ -109,13 +109,14 @@ loading-spinner {
         }
     }
     &.small-spinner {
+        vertical-align: -webkit-baseline-middle;
         .loader {
             width:24px;
         }
     }
 }
 
-
+    
 .loader {
     /*position: relative;*/
     margin: 0px auto;
