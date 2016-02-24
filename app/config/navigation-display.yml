@@ -73,14 +73,17 @@ admin_claims:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
                 - IS_PROJECT_MANAGER
-        claims_create_new:
-            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-            pattern: '/admin/claims/new/1/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-                - IS_PROJECT_MANAGER
+#        claims_create_new:
+#            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+#            pattern: '/admin/claims/edit/0'
+#            ng-click: "addTab('text_key', 'template')"
+#            template: '/render/claims/admin_claims_edit'
+#            state: 'admin_claims_edit'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_PROJECT_MANAGER
+#                - IS_PMA
+#                - IS_PROJECT_MANAGER
         claims_scheduling:
             text_key: 'ADMIN_CLAIMS_SCHEDULING'
             pattern: '/admin/claims/scheduling/0/20'
@@ -88,13 +91,13 @@ admin_claims:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
                 - IS_PROJECT_MANAGER
-        admin_keys:
-            active: false
-            text_key: 'ADMIN_KEYS'
-            pattern: '/admin/keys/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
+#        admin_keys:
+#            active: false
+#            text_key: 'ADMIN_KEYS'
+#            pattern: '/admin/keys/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
                 
 
 
@@ -148,6 +151,9 @@ admin_subcontractors:
             active: true
             text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
             pattern: '/admin/subcontractors/edit/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/subcontractors/admin_subcontractors_edit'
+            state: 'admin_subcontractors_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -171,10 +177,13 @@ admin_projects:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
                 - IS_STAFF
-        projects:
+        projects_create_new:
             active: true
             text_key: 'ADMIN_PROJECTS_CREATE_NEW'
             pattern: '/admin/projects/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/projects/admin_projects_edit'
+            state: 'admin_projects_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -542,7 +551,7 @@ admin_accounting_general:
 #            display_roles:
 #                - IS_ADMINISTRATOR
 #
-amind_staff:
+admin_staff:
     text_key: 'ADMIN_STAFF'
     pattern: '#'
     display_roles:
@@ -561,6 +570,8 @@ amind_staff:
         staff_add_new:
             text_key: 'ADMIN_STAFF_ADD_NEW'
             pattern: '/admin/staff/0'
+            state: 'admin_staff_edit_home'
+            ng-click: "addTab('text_key', 'template')"
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_HR_MANAGER
