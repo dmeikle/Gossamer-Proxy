@@ -74,5 +74,8 @@ return array(
     'TRANSFER' => 'Transfer',
     'NOTES' => 'Notes',
     'SUBMIT' => 'Submit',
-    'RESET' => 'Reset'
+    'RESET' => 'Reset',
+    'EDIT_PROFILE' => 'Edit Profile',
+    'TOGGLE_VIEW' => 'Toggle View',
+    'LIST_YOUR_TICKETS' => 'My Tickets'
 );

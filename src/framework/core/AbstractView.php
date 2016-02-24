@@ -291,4 +291,13 @@ class AbstractView {
         }
     }
 
+    public function getClient() {
+        $serializedToken = getSession('_security_secured_area');
+        $token = unserialize($serializedToken);
+
+        $token = $this->getSecurityToken();
+
+        return $token->getClient();
+    }
+
 }

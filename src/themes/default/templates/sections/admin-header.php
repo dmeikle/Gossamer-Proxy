@@ -132,29 +132,29 @@
                                     <loading-spinner class="action-spinner blue align-middle" ng-if="bugCtrl.savingNew"></loading-spinner>
                                     <i class="text-success glyphicon glyphicon-ok submit-icon" ng-if="bugCtrl.bugSubmitted"></i>
                                 </span>
-                                <button class="btn-default" ng-click="bugCtrl.cancel()">Cancel</button>
-                                <button class="btn-primary" ng-click="bugCtrl.saveNew(bugCtrl.newBug)">Submit</button>
+                                <button class="btn-default" ng-click="bugCtrl.cancel()"><?php echo $this->getString('CANCEL'); ?></button>
+                                <button class="btn-primary" ng-click="bugCtrl.saveNew(bugCtrl.newBug)"><?php echo $this->getString('SUBMIT'); ?></button>
                             </div>
                         </div>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img class="userimage" src="http://placehold.it/25x25" alt=""> User Name <span class="caret"></span>
+                        <img class="userimage" src="http://placehold.it/25x25" alt=""> {{dashCtrl.client.username}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li  permission-key="developer"><a href="#">Your Tickets</a></li>
-                        <li  permission-key="developer"><a ng-click="setTabbedView('<?php echo $this->getViewType() == 'tabbed' ? 'html' : 'tabbed'; ?>')">Toggle View</a></li>
+                        <li><a ng-click="dashCtrl.go('admin_staff_edit_home', {'id': dashCtrl.client.Client_id}, dashCtrl.client.username)"><?php echo $this->getString('EDIT_PROFILE'); ?></a></li>
+                        <li  permission-key="developer"><a href="#"><?php echo $this->getString('LIST_YOUR_TICKETS'); ?></a></li>
+                        <li  permission-key="developer"><a ng-click="setTabbedView('<?php echo $this->getViewType() == 'tabbed' ? 'html' : 'tabbed'; ?>')"><?php echo $this->getString('TOGGLE_VIEW'); ?></a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Logout</a></li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </nav>
     <input type="hidden" id="viewType" value="<?php echo $this->getViewType(); ?>">
+
 </header>
 
 <div class="tab-container" ng-controller="sideNavCtrl" ng-class="{'sideNavClosed': sideNavOpen == false}">
