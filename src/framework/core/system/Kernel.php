@@ -34,6 +34,11 @@ class Kernel {
         $this->logger = $logger;
     }
 
+    public function __destruct() {
+        super_unset($this->container);
+        super_unset($this->logger);
+    }
+
     /**
      * main entry point for this class
      *

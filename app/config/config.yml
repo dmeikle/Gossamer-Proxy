@@ -9,7 +9,7 @@ cookies:
     
 application:
     #possible choices: debug|production
-    mode: debug
+    mode: production
 
 blog:
     caching: false

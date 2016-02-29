@@ -1,4 +1,5 @@
 <header ng-controller="tabsCtrl">
+    <span ng-controller="notifierCtrl as notifierCtrl"></span>
     <nav>
         <div class="navbar-header" ng-controller="StateCtrl as vm">
             <button type="button" class="navbar-toggle collapsed primary" data-toggle="collapse"
@@ -20,30 +21,27 @@
 
             <!--<ul class="navbar-right" ng-controller="messagingSocketCtrl as msgCtrl">-->
             <ul class="navbar-right">
-                <li class="dropdown notification-dropdown" id="messages" ngcontroller="messagingSocketCtrl">
-                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="dropdown notification-dropdown" id="messages" ng-controller="messagingListenerCtrl as mlCtrl">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-click="mlCtrl.resetCount()">
                         <span class="glyphicon glyphicon-envelope notification-icon"></span>
                     </a>
-                    <span class="badge notification-badge">{{msgCtrl.newMessages.length}}</span>
+                    <span class="badge notification-badge" ng-show="mlCtrl.messages.length > 0">{{mlCtrl.messages.length}}</span>
                     <ul class="dropdown-menu">
                         <li class="message-count"><p class="text-primary"><strong>Messages</strong></p></li>
-                        <li class="message-alert" ng-repeat="message in msgCtrl.newMessages">
-                            <a href="#">
-                                <div class="sender"><strong>{{message.sender}}</strong></div>
+                        <li class="message-alert" ng-repeat="message in mlCtrl.messages">
+                            <a ng-click="dashCtrl.go('admin_messaging_home', {id: message.uniqueId})">
+                                <div class="sender"><strong>{{message.firstname}} {{message.firstname}}</strong></div>
                                 <div class="subject">{{message.subject}}</div>
-                                <div class="receiveTime text-muted">{{message.timeSent}}</div>
+                                <div class="receiveTime text-muted">{{message.sendDate}}</div>
                                 <div class="clearfix"></div>
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all messages <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
-                            </a>
+                            <a ng-click="dashCtrl.go('admin_messaging_home', {'offset': '0', 'limit': '20'}, 'Messages')"><p>See all messages <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown notification-dropdown" id="reminders">
-                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon glyphicon-time"></span>
                     </a>
@@ -58,13 +56,13 @@
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all reminders <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
+                            <a href=""><p>See all reminders <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown notification-dropdown" id="notifications">
-                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php echo $MESSAGING_TOKEN; ?>" />
+                    <input type="hidden" id="MESSAGING_TOKEN" value="<?php //  echo $MESSAGING_TOKEN;                ?>" />
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-bell"></span>
                     </a>
@@ -79,7 +77,7 @@
                             </a>
                         </li>
                         <li class="view-all text-center">
-                            <a gcms="{uri='admin_messaging_home'}"><p>See all notifications <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p></i>
+                            <a href=""><p>See all notifications <i class="glyphicon glyphicon-chevron-right icon-size-small"></i></p>
                             </a>
                         </li>
                     </ul>

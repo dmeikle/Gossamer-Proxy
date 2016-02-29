@@ -45,10 +45,11 @@ class URITagHandler extends BaseHandler {
         for ($i = 0; $i < count($links); $i++) {
             $linkParams = $this->formatParams($params[$i]);
             $key = "gcms=\"{uri='" . $links[$i] . ((count($linkParams) > 0) ? "'" . $params[$i] : "'") . '}"';
+
             try {
                 $retval[$key] = $router->getQualifiedUrl($links[$i], $linkParams);
             } catch (\Exception $e) {
-                throw new Exception('unable to locate ' . $links[$i] . ' while rendering Angular URI Tag');
+                throw new \Exception('unable to locate ' . $links[$i] . ' while rendering Angular URI Tag');
             }
             //$router->getQualifiedUrl($links[$i], $linkParams);
         }

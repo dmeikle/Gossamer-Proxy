@@ -51,12 +51,10 @@ class AbstractCachableListener extends AbstractListener {
             $values = '';
 
             if (!is_null($key)) {
-
                 $values = $this->getValuesFromCache($key, $this->getIsStaticCache());
             }
 
             if (is_null($key) || $values === false) {
-
                 $this->logger->addDebug('class: ' . get_class($this) . ' found');
                 call_user_func_array(array($this, $method), array($params));
 

@@ -20,10 +20,10 @@ use core\system\KernelEvents;
 $kernel = new Kernel($container, $logger);
 $kernel->run();
 
-unset($kernel);
-
+error_log(memory_get_usage(true));
 
 $container->get('EventDispatcher')->dispatch(KernelEvents::TERMINATE, 'terminate');
 
+super_unset($kernel);
 
 
