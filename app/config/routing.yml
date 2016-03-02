@@ -1,10 +1,12 @@
 
 locale:
     component: "src/framework/core/components/locales/config/routing.yml"
-angular:
-    component: "src/extensions/angular/config/routing.yml"
+members:
+    component: "src/components/members/config/routing.yml"
 dashboard:
     component: "src/components/dashboard/config/routing.yml"
+oauth:
+    component: "src/extensions/oauth/config/routing.yml"
     
 vendors:
     component: "src/components/vendors/config/routing.yml"
@@ -155,6 +157,6 @@ pdfs:
     component: "src/components/pdfs/config/routing.yml"
     
 #this is the default fallback to use if not found    
-default:
-    component: "src/components/cms/config/routing.yml"
-    ymlkey: cms_view_page_1
+#default:
+#    component: "src/components/cms/config/routing.yml"
+#    ymlkey: cms_view_page_1

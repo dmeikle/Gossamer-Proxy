@@ -25,7 +25,9 @@
                 "gossamer/caching": "dev-master",
                 "gossamer/pesedget": "dev-master",
                 "gossamer/horus": "dev-master",
-                "j7mbo/twitter-api-php": "dev-master"
+                "j7mbo/twitter-api-php": "dev-master",
+                "bramus/router": "dev-master",
+                "auth0/auth0-php": "~3.0"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}

@@ -1,8 +1,0 @@
-## YAML Template.
----
-commentsTemplate:
-    template: src/extentions/angular/views/comments.php
-    
-#extension_flex_row:
-##    path: 'src/extentions/angular/views/flexRow.php'
-#    template: src/extentions/angular/views/flexRow.php

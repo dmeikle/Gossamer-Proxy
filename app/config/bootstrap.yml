@@ -25,7 +25,7 @@ all:
 
         
         
-        - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
+       # - { 'event': 'request_start', 'listener': 'core\components\widgets\eventlisteners\LoadSystemWidgetsListener', 'datasource': 'datasource1'}  
         - { 'event': 'token_expired', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
         - { 'event': 'token_missing', 'listener': 'core\components\security\eventlisteners\AuthorizationListener'}
         - { 'event': 'response_start', 'listener': 'core\components\locales\eventlisteners\StringifyBeforeRenderListener' }

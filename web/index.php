@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 
 
 //these are included in order of operation - do not change!
-include_once('includes/configuration.php');
+include_once('../app/includes/configuration.php');
 include_once('../vendor/autoload.php');
-include_once('includes/init.php');
-include_once('includes/bootstrap.php');
+include_once('../app/includes/init.php');
+include_once('../app/includes/bootstrap.php');
 
 //echo(__YML_KEY . "\r\n");
 //error_log(__YML_KEY);
