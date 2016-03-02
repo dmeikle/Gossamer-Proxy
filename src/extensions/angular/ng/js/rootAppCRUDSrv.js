@@ -1,0 +1,142 @@
+module.service('crudSrv', function($http) {
+
+    function parseData(data) {
+        for (var property in data) {
+            if (typeof data[property] === 'object' && data[property] !== null) {
+                parseData(data[property]);
+            } else {
+                if (property.slice(-3) === '_id' && !data[property]) {
+                    delete data[property];
+                }
+            }
+        }
+    }
+
+    function confirmIsObject(object) {
+        if(object.constructor !== Array) {
+            return object;
+        }
+        
+        var rv = {};
+       
+        for (var index in object) {
+            rv[index] = object[index];
+        }
+        
+        return rv;
+    }
+    
+    this.save = function(apiPath, object, objectType, formToken) {
+
+       
+        var data = {};
+        data[objectType] = confirmIsObject(object);
+        data.FORM_SECURITY_TOKEN = formToken;
+
+        parseData(data);
+
+        return $http({
+            method: 'POST',
+            url: apiPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+    
+    //Save with a custom data object
+    this.saveWithData = function(apiPath, object, objectType, data, formToken) {
+
+        
+        data[objectType] = object;
+        data.FORM_SECURITY_TOKEN = formToken;
+
+        parseData(data);
+
+        return $http({
+            method: 'POST',
+            url: apiPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+
+
+    this.saveMultiple = function(apiPath, object, formToken) {
+
+        var data = object;
+        data.FORM_SECURITY_TOKEN = formToken;
+
+        parseData(data);
+
+        return $http({
+            method: 'POST',
+            url: apiPath,
+            data: data,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+    
+    this.get = function(apiPath) {
+        return $http({
+            method: 'GET',
+            url: apiPath
+        });
+    };
+
+    this.getDetails = function(apiPath, id) {
+        return $http({
+            method: 'GET',
+            url: apiPath + id
+        });
+    };
+    
+    this.getTemplate = function(apiPath) {
+        return $http({
+            method: 'GET',
+            url: apiPath
+        });
+    };
+
+    this.getList = function(apiPath, row, numRows, config) {
+        if (config) {
+            return $http({
+                method: 'GET',
+                url: apiPath + row + '/' + numRows,
+                params: config
+            });
+        }
+        return $http({
+            method: 'GET',
+            url: apiPath + row + '/' + numRows
+        });
+    };
+
+    this.delete = function(apiPath, object, formToken) {
+        var config = {};
+        config.FORM_SECURITY_TOKEN = formToken;
+        return $http({
+            method: 'DELETE',
+            url: apiPath + object.id,
+            config: config
+        });
+    };
+
+    this.setInactive = function(requestPath, formToken) {
+        var config = {};
+        config.FORM_SECURITY_TOKEN = formToken;
+
+        parseData(config);
+
+        return $http({
+            method: 'POST',
+            url: requestPath,
+            params: config
+        });
+    };
+});

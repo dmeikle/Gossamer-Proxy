@@ -37,6 +37,7 @@ admin_contacts:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/contacts/contactsAdminTab'
             pattern: '/admin/contacts'
+            state: 'contacts_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -44,6 +45,9 @@ admin_contacts:
         claims_create_new:
             text_key: 'ADMIN_CONTACTS_CREATE_NEW'
             pattern: '/admin/contacts/edit/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/contacts/admin_contacts_edit'
+            state: 'admin_contacts_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_PROJECT_MANAGER
@@ -64,19 +68,22 @@ admin_claims:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/claims/claimsAdminTab'
             pattern: '/admin/claims'
-            state: 'claimsList'
+            state: 'admin_claims_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
                 - IS_PROJECT_MANAGER
-        claims_create_new:
-            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
-            pattern: '/admin/claims/new/1/0'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_PROJECT_MANAGER
-                - IS_PMA
-                - IS_PROJECT_MANAGER
+#        claims_create_new:
+#            text_key: 'ADMIN_CLAIMS_CREATE_NEW'
+#            pattern: '/admin/claims/edit/0'
+#            ng-click: "addTab('text_key', 'template')"
+#            template: '/render/claims/admin_claims_edit'
+#            state: 'admin_claims_edit'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_PROJECT_MANAGER
+#                - IS_PMA
+#                - IS_PROJECT_MANAGER
         claims_scheduling:
             text_key: 'ADMIN_CLAIMS_SCHEDULING'
             pattern: '/admin/claims/scheduling/0/20'
@@ -84,13 +91,13 @@ admin_claims:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
                 - IS_PROJECT_MANAGER
-        admin_keys:
-            active: false
-            text_key: 'ADMIN_KEYS'
-            pattern: '/admin/keys/0/20'
-            display_roles:
-                - IS_ADMINISTRATOR
-                - IS_STAFF
+#        admin_keys:
+#            active: false
+#            text_key: 'ADMIN_KEYS'
+#            pattern: '/admin/keys/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
                 
 
 
@@ -109,7 +116,7 @@ admin_inventory:
             ng-click: "addTab('text_key', 'template')"
             template: '/render/inventory/inventoryListTab'
             pattern: '/admin/inventory'
-            state: 'inventoryList'
+            state: 'admin_inventory_list'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -132,7 +139,10 @@ admin_subcontractors:
         admin_subcontractors_list:
             active: true
             text_key: 'ADMIN_CONTRACTORS_LIST_ALL'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/subcontractors/admin_subcontractors_home'
             pattern: '/admin/subcontractors'
+            state: 'admin_subcontractors_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -141,6 +151,9 @@ admin_subcontractors:
             active: true
             text_key: 'ADMIN_CONTRACTORS_CREATE_NEW'
             pattern: '/admin/subcontractors/edit/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/subcontractors/admin_subcontractors_edit'
+            state: 'admin_subcontractors_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -164,10 +177,13 @@ admin_projects:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
                 - IS_STAFF
-        projects:
+        projects_create_new:
             active: true
             text_key: 'ADMIN_PROJECTS_CREATE_NEW'
             pattern: '/admin/projects/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/projects/admin_projects_edit'
+            state: 'admin_projects_edit'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_EDITOR
@@ -188,6 +204,7 @@ admin_companies:
             pattern: '/admin/companies'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/companies/companiesAdminTab'
+            state: 'admin_companies_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -196,9 +213,12 @@ admin_companies:
         contacts_add_new_company:
             text_key: 'ADMIN_COMPANIES_ADD_NEW'
             pattern: '/admin/companies/0'
+            ng-click: "addTab('text_key', 'template')"
+            template: '/render/companies/admin_companies_edit'
+            state: 'admin_companies_edit'
             display_roles:
                 - IS_ADMINISTRATOR
-                - IS_STAFF
+                - IS_DEVELOPER
                 - IS_PROJECT_MANAGER
                 - IS_PMA         
 #
@@ -317,10 +337,11 @@ admin_accounts_receivable:
                 - IS_DEVELOPER
         admin_accounting_cash_receipts:
             active: true
-            text_key: 'ADMIN_ACCOUNTING_MATERIAL_FROM_STOCK'
+            text_key: 'ADMIN_ACCOUNTING_CASH_RECEIPTS'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'admin_accounting_cashreceipts'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -362,6 +383,7 @@ admin_accounting_accounts_payables:
             pattern: '/admin/accounting/pos'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'accounting_pos_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -382,6 +404,7 @@ admin_accounting_accounts_payables:
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
             template: ''
+            state: 'accounting_vendor_invoices_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING
@@ -454,6 +477,7 @@ admin_accounting_general:
             pattern: '/admin/accounting/inventory'
             ng-click: "addTab('text_key', 'template')"
             template: '/render/accounting/inventory'
+            state: 'accounting_inventory_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING    
@@ -527,7 +551,7 @@ admin_accounting_general:
 #            display_roles:
 #                - IS_ADMINISTRATOR
 #
-amind_staff:
+admin_staff:
     text_key: 'ADMIN_STAFF'
     pattern: '#'
     display_roles:
@@ -546,6 +570,8 @@ amind_staff:
         staff_add_new:
             text_key: 'ADMIN_STAFF_ADD_NEW'
             pattern: '/admin/staff/0'
+            state: 'admin_staff_edit_home'
+            ng-click: "addTab('text_key', 'template')"
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_HR_MANAGER
@@ -588,7 +614,7 @@ admin_scoping:
         scoping_list_all:
             text_key: 'ADMIN_SCOPING_LIST_ALL'
             pattern: '/admin/scoping'
-            state: 'scoping'
+            state: 'admin_scoping_home'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_SCOPER

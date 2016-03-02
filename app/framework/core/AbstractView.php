@@ -53,7 +53,7 @@ class AbstractView {
      * @param HTTPRequest $httpRequest
      * @param HTTPResponse $httpResponse
      */
-    public function __construct(Logger $logger, $ymlKey, array $agentType, HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
+    public function __construct(Logger &$logger, $ymlKey, array $agentType, HTTPRequest &$httpRequest, HTTPResponse &$httpResponse) {
         $this->logger = $logger;
         $this->ymlKey = $ymlKey;
         $this->agentType = $agentType;
@@ -219,6 +219,9 @@ class AbstractView {
 
             //write it to the page - do not delete! this is not debug
             print($params['renderedPage']);
+
+            super_unset($this->data);
+            super_unset($event);
         }
     }
 
@@ -289,6 +292,15 @@ class AbstractView {
 
             return $this->getContent($ymlkey, $params);
         }
+    }
+
+    public function getClient() {
+        $serializedToken = getSession('_security_secured_area');
+        $token = unserialize($serializedToken);
+
+        $token = $this->getSecurityToken();
+
+        return $token->getClient();
     }
 
 }

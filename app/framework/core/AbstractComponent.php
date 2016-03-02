@@ -43,6 +43,11 @@ abstract class AbstractComponent {
     private $container = null;
     private $agentType;
 
+    public function __destruct() {
+        super_unset($this->logger);
+        // super_unset($this->container);
+    }
+
     /**
      *
      * @param string $controllerName
@@ -132,7 +137,7 @@ abstract class AbstractComponent {
 
             $view->setContainer($this->container);
 
-            $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $httpResponse, $this->logger);
+            $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $httpResponse);
 
             $controller->setContainer($this->container);
             try {

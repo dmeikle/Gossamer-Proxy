@@ -82,7 +82,7 @@ class AbstractController {
      * @param Registry values to be built upon throughout the response
      *
      */
-    public function __construct(AbstractModel $model, AbstractView $view, Logger $logger, HTTPRequest &$request, HTTPResponse &$response, Logger $logger) {
+    public function __construct(AbstractModel &$model, AbstractView &$view, Logger &$logger, HTTPRequest &$request, HTTPResponse &$response) {
 
         $this->controllerName = strtolower(get_class($this));
 

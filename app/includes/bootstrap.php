@@ -181,3 +181,14 @@ function loadServiceConfigurations() {
 
     return $serviceBootstraps;
 }
+
+function super_unset($item) {
+    try {
+        if (is_object($item) && method_exists($item, "__destruct")) {
+            $item->__destruct();
+        }
+    } catch (\Exception $e) {
+
+    }
+    unset($item);
+}

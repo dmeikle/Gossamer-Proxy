@@ -61,10 +61,10 @@ class YAMLViewConfiguration {
 
         $explodedPath = explode('/', $routingPath);
         $result = $this->getYMLNodeParameters($ymlKey);
-        if (is_array($result)) {
-            return array_merge($this->getYMLNodeParameters($ymlKey), $siteConfig);
-        }
 
+        if (is_array($result)) {
+            return array_merge($result, $siteConfig);
+        }
 
         return $siteConfig;
     }
@@ -85,7 +85,7 @@ class YAMLViewConfiguration {
 
         $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
-        if ($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super') {
+        if ($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super' || $chunk == 'service') {
             $chunk = array_shift($pieces); //drop the admin for the routing file
         }
         $config = $parser->loadConfig();
@@ -137,7 +137,9 @@ class YAMLViewConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-
+        if (!is_array($this->config)) {
+            throw new \Exception('yaml key not found in views config');
+        }
         if (array_key_exists($ymlKey, $this->config)) {
             return $nodeParams = $this->config[$ymlKey];
         }

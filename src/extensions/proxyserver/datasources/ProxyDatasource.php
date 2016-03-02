@@ -33,6 +33,7 @@ class ProxyDatasource implements DataSourceInterface {
     }
 
     public function query($queryType, AbstractModel $entity, $verb, $params) {
+
         return $this->$verb($entity, $verb, $params);
     }
 
@@ -43,6 +44,16 @@ class ProxyDatasource implements DataSourceInterface {
     private function email(AbstractModel $entity, $verb, array $params) {
 
         return array('content' => $this->execute($entity->getTablename(), $verb, null, $params));
+    }
+
+    private function pdf(AbstractModel $entity, $verb, array $params) {
+
+        $queryString = '';
+        foreach ($params as $key => $value) {
+            $queryString .= "&$key=" . urldecode($value);
+        }
+
+        return array('content' => $this->execute($entity->getTablename(), $verb, substr($queryString, 1)));
     }
 
 }

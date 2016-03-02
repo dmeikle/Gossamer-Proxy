@@ -31,8 +31,8 @@ define('__XML_CONFIG_PATH', __SITE_PATH . DIRECTORY_SEPARATOR . 'classes' . DIRE
 define('__URI', $requestURI);
 define('__REQUEST_URI', $requestURI);
 define('__CACHE_DIRECTORY', __SITE_PATH . '/app/cache/');
-define('__UPLOADED_IMAGES_PATH', $site_path . '/web/images/');
-define('__UPLOADED_FILES_PATH', $site_path . '/uploads/');
+define('__UPLOADED_IMAGES_PATH', $site_path . '/images/'); //this is in the root of the site, outside of web folder
+define('__UPLOADED_FILES_PATH', $site_path . '/uploads/'); //this is in the root of the site, outside of web folder
 
 function findConfigKeyByURIPattern($configList, $node, $uriPattern) {
     $comparator = new URIComparator(new \Gossamer\Caching\CacheManager());

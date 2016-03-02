@@ -32,7 +32,14 @@ class ConfigurationListener extends AbstractCachableListener {
         //first check the main routing to see where the component is located
         $renderPath = $this->loadPathFromMainRouting($widget);
 
-        $config = $this->loadConfig($renderPath, $file);
+        $listenerConfig = $this->loadConfig($renderPath . '/listeners.yml', $file);
+        $renderConfig = $this->loadConfig($renderPath . '/render.yml', $file);
+
+
+        $config = array_merge($renderConfig, $listenerConfig);
+
+        //set up any listeners that the file requires
+        $this->loadListeners($config, $file);
 
         $this->httpRequest->setAttribute('RENDER_CONFIG', $config);
     }
@@ -47,12 +54,11 @@ class ConfigurationListener extends AbstractCachableListener {
         $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
 
         $config = $parser->loadConfig();
+        if ($config !== false && array_key_exists($file, $config)) {
+            return $config[$file];
+        }
 
-//set up any listeners that the file requires
-
-        $this->loadListeners($config, $file);
-
-        return $config[$file];
+        return array();
     }
 
     /**
@@ -71,16 +77,17 @@ class ConfigurationListener extends AbstractCachableListener {
             throw new \Exception('routing path not found in RenderConfigurationListener');
         }
 
-        return str_replace('routing.yml', 'render.yml', $routingPath);
+        return str_replace('routing.yml', '', $routingPath);
     }
 
     private function loadListeners(array $config, $file) {
 
-        if (!array_key_exists($file, $config) || !array_key_exists('listeners', $config[$file]) || count($config[$file]['listeners']) == 0) {
+        if (!array_key_exists('listeners', $config) || count($config['listeners']) == 0) {
+
             return;
         }
 
-        $this->eventDispatcher->configListeners(array(__YML_KEY => $config[$file]));
+        $this->eventDispatcher->configListeners(array(__YML_KEY => $config));
     }
 
     public function on_entry_point($params) {

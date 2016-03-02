@@ -1,4 +1,7 @@
-
+compression:
+    component: "src/framework/core/components/compression/config/routing.yml"
+bugs:
+    component: "src/framework/core/components/bugs/config/routing.yml"
 locale:
     component: "src/framework/core/components/locales/config/routing.yml"
 members:
@@ -21,6 +24,8 @@ render:
     component: "src/framework/core/components/render/config/routing.yml" 
   
 image:
+    component: "src/components/images/config/routing.yml"
+images:
     component: "src/components/images/config/routing.yml"
     
 basicmenu:

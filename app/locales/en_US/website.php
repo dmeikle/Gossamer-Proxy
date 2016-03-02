@@ -32,6 +32,7 @@ return array(
     'ADMIN_CLAIMS_CREATE_NEW' => 'New Claim',
     'ADMIN_CLAIMS_SCHEDULING' => 'Claim Scheduling',
     'ADMIN_PROJECTS_LIST_ALL' => 'List All Projects',
+    'ADMIN_PROJECTS_CREATE_NEW' => 'Create New Address',
     'ADMIN_STAFF_LIST' => 'List All Staff',
     'ADMIN_STAFF_ADD_NEW' => 'New Staff',
     'ADMIN_SCOPING_LIST_ALL' => 'List All Scoping',
@@ -72,5 +73,10 @@ return array(
     'REMOVE' => 'Remove',
     'SELECTED' => 'Selected',
     'TRANSFER' => 'Transfer',
-    'NOTES' => 'Notes'
+    'NOTES' => 'Notes',
+    'SUBMIT' => 'Submit',
+    'RESET' => 'Reset',
+    'EDIT_PROFILE' => 'Edit Profile',
+    'TOGGLE_VIEW' => 'Toggle View',
+    'LIST_YOUR_TICKETS' => 'My Tickets'
 );
