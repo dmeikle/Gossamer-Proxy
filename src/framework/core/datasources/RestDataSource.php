@@ -123,9 +123,8 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
      */
     private function buildHeaders($credentials) {
 
-        $retval = array(
-            'serverAuth' => $credentials['headers']['serverAuth']
-        );
+        $retval = $credentials['headers'];
+
         if (isset($_SESSION['AuthorizationToken'])) {
             $retval['Authorization'] = $_SESSION['AuthorizationToken'];
         }

@@ -4,7 +4,11 @@ locale:
 angular:
     component: "src/extensions/angular/config/routing.yml"
 dashboard:
-    component: "src/components/dashboard/config/routing.yml"
+    component: "src/extensions/dashboard/config/routing.yml"
+    
+    
+members:
+    component: "src/components/members/config/routing.yml"
     
 vendors:
     component: "src/components/vendors/config/routing.yml"
