@@ -92,7 +92,7 @@ class YAMLKeyParser extends YAMLParser {
      * @return array
      */
     private function searchKeyInCore($ymlkey, $filename, $method = 'GET') {
-        $subdirectories = $this->getDirectoryList('/src/framework/core/components/');
+        $subdirectories = $this->getDirectoryList('/app/framework/core/components/');
 
         $parser = new YAMLParser($this->logger);
         foreach ($subdirectories as $folder) {

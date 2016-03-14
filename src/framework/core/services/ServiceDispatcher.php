@@ -85,11 +85,11 @@ class ServiceDispatcher {
             }
             closedir($handle);
         }
-        if ($handle = opendir(__SITE_PATH . '/src/framework/core/components')) {
+        if ($handle = opendir(__SITE_PATH . '/app/framework/core/components')) {
             $blacklist = array('.', '..', 'somedir', 'somefile.php');
             while (false !== ($file = readdir($handle))) {
                 if (!in_array($file, $blacklist)) {
-                    $retval[] = __SITE_PATH . '/src/framework/core/components/' . $file;
+                    $retval[] = __SITE_PATH . '/app/framework/core/components/' . $file;
                 }
             }
             closedir($handle);
