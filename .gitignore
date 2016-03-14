@@ -28,9 +28,8 @@ src/*
 !src/components/cssmenu
 !src/components/cms
 
-src/components/*/dist
-src/extensions/*/dist
-src/framework/core/components/*/dist
+
+
 
 vendor
 
