@@ -7,8 +7,11 @@ app/cache/*
 app/logs/*
 app/config/credentials.yml
 app/config/routing.yml
+<<<<<<< HEAD
 app/framework/core/components/*/dist
 
+=======
+>>>>>>> 92f45c77a63a11e023027bead4f4f04b13b134f1
 
 bower_components
 
@@ -21,7 +24,11 @@ logs
 
 node_modules
 
+<<<<<<< HEAD
 src/*
+=======
+src/
+>>>>>>> 92f45c77a63a11e023027bead4f4f04b13b134f1
 !src/components/defaultItem
 !src/components/users
 !src/components/geography
