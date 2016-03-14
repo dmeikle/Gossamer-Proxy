@@ -1,8 +1,0 @@
-
-
-
-basicmenu_ceilingbar:    
-    template: newsfeed.php
-    sections: 
-        -
-            "section1": "src/framework/core/components/basicmenu/views/ceilingbar.php"     
