@@ -19,7 +19,7 @@ logs
 
 node_modules
 
-src/*
+src/
 !src/components/defaultItem
 !src/components/users
 !src/components/geography
