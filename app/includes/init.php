@@ -8,14 +8,14 @@
       $loader->add('components', __SITE_PATH .'/src');
       $loader->add('usercommands', __SITE_PATH.'/src');
       $loader->add('userentities', __SITE_PATH.'/src');
-      $loader->add('controllers', __SITE_PATH.'/src/framework');
-      $loader->add('core', __SITE_PATH.'/src/framework');
-      $loader->add('database', __SITE_PATH.'/src/framework');
-      $loader->add('entities', __SITE_PATH.'/src/framework');
-      $loader->add('exceptions', __SITE_PATH.'/src/framework');
-      $loader->add('listeners', __SITE_PATH.'/src/framework');
-      $loader->add('libraries', __SITE_PATH.'/src/framework');
-      $loader->add('security', __SITE_PATH.'/src/framework');
+      $loader->add('controllers', __SITE_PATH.'/app/framework');
+      $loader->add('core', __SITE_PATH.'/app/framework');
+      $loader->add('database', __SITE_PATH.'/app/framework');
+      $loader->add('entities', __SITE_PATH.'/app/framework');
+      $loader->add('exceptions', __SITE_PATH.'/app/framework');
+      $loader->add('listeners', __SITE_PATH.'/app/framework');
+      $loader->add('libraries', __SITE_PATH.'/app/framework');
+      $loader->add('security', __SITE_PATH.'/app/framework');
       $loader->add('extensions', __SITE_PATH .'/src');
  
       // activate the autoloader
