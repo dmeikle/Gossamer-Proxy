@@ -73,18 +73,6 @@ class AbstractModel {
         $this->entity = get_called_class();
     }
 
-    /*
-      public function search(array $term) {
-
-      $params = array('directive::ORDER_BY' => key($term), 'directive::DIRECTION' => 'DESC', 'directive::LIMIT' => '50', 'directive::OFFSET' => '0');
-      $params = array_merge($params, $term);
-
-      $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
-
-      return $data;
-      }
-     */
-
     /**
      *
      * @return boolean
@@ -263,7 +251,7 @@ class AbstractModel {
         if (!array_key_exists('isActive', $params)) {
             $params['isActive'] = '1';
         }
-        // pr($params);
+
         $data = $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
 
         return $data;

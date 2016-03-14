@@ -196,6 +196,8 @@ class AbstractController {
      */
     public function listall($offset = 0, $limit = 20) {
         $params = $this->httpRequest->getQueryParameters();
+
+
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 
         if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
