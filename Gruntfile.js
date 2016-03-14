@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['src/components/*/dist/*', 'src/framework/core/components/*/dist/*', 'src/extensions/*/dist/*'],
+    clean: ['src/components/*/dist/*', 'app/framework/core/components/*/dist/*', 'src/extensions/*/dist/*'],
 
     concat: {
       options: {
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       },
       framework: {
         expand:true,
-        cwd: 'src/framework/core/components/',
+        cwd: 'app/framework/core/components/',
         src:['*/ng/js/*.js'],
         dest: 'dist/js/',
         rename: function(dest, src, options) {
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
       },
       bower_framework: {
         expand:true,
-        cwd: 'src/framework/core/components/',
+        cwd: 'app/framework/core/components/',
         src: ['*/ng/bower_components/**/*'],
         dest: 'dist/bower_components',
         rename: function(dest, src, options) {
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
 
     jshint: {
       files: ['Gruntfile.js', 'src/components/*/dist/js/*.concat.js',
-      'src/framework/core/components/*/dist/js/*.concat.js',
+      'app/framework/core/components/*/dist/js/*.concat.js',
       'src/extensions/*/dist/js/*.concat.js'],
       options: {
         // options here to override JSHint defaults
@@ -122,7 +122,7 @@ module.exports = function(grunt) {
       framework: {
         files: [{
           expand: true,
-          cwd: 'src/framework/core/components/',
+          cwd: 'app/framework/core/components/',
           src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
           dest: 'dist/css/',
           rename: function(dest, src, options) {
@@ -161,7 +161,7 @@ module.exports = function(grunt) {
       framework: {
         files: [{
           expand:true,
-          cwd: 'src/framework/core/components/',
+          cwd: 'app/framework/core/components/',
           src: ['*/dist/js/*.concat.js'],
           dest: 'dist/js/',
           rename: function(dest, src, options) {
@@ -195,7 +195,7 @@ module.exports = function(grunt) {
       },
 
       concat_framework:{
-        files:['src/framework/core/components/*/ng/js/*.js'],
+        files:['app/framework/core/components/*/ng/js/*.js'],
         tasks: ['concat:framework']
       },
 
@@ -215,7 +215,7 @@ module.exports = function(grunt) {
       },
 
       uglify_framework: {
-        files: ['src/framework/core/components/*/dist/js/*.concat.js'],
+        files: ['app/framework/core/components/*/dist/js/*.concat.js'],
         tasks: ['uglify:framework']
       },
 
@@ -231,7 +231,7 @@ module.exports = function(grunt) {
       },
 
       sass_framework: {
-        files: ['src/framework/core/components/*/ng/scss/*.scss', '!src/framework/core/components/*/ng/scss/_*.scss'],
+        files: ['app/framework/core/components/*/ng/scss/*.scss', '!app/framework/core/components/*/ng/scss/_*.scss'],
         tasks: ['sass:framework'],
         spawn:false
       },

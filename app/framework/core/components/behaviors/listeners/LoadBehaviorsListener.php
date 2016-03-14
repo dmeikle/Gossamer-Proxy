@@ -75,7 +75,7 @@ class LoadBehaviorsListener extends AbstractListener {
         $parser->setFilePath($path);
 
         $config = $parser->loadConfig();
-
+//        pr($config);
         if (!is_null($config) && $config !== false && array_key_exists($ymlKey, $config) && array_key_exists('listeners', $config[$ymlKey])) {
             return $config[$ymlKey]['listeners'];
         }

@@ -26,11 +26,10 @@ class RenderController extends AbstractController {
         $this->container->get('EventDispatcher')->dispatch('all', 'filerender_entry_point');
 
         $this->container->get('EventDispatcher')->dispatch($ymlKey, 'filerender_request_start');
-
-
-        $this->container->get('EventDispatcher')->dispatch($ymlKey, 'request_start');
-
-        $this->container->get('EventDispatcher')->dispatch($ymlKey, 'request_end');
+        error_log($ymlKey);
+//        $this->container->get('EventDispatcher')->dispatch($ymlKey, 'request_start');
+//
+//        $this->container->get('EventDispatcher')->dispatch($ymlKey, 'request_end');
 
         $html = $this->httpRequest->getAttribute($this->getKey());
 

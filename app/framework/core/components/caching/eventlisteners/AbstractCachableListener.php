@@ -46,20 +46,24 @@ class AbstractCachableListener extends AbstractListener {
             //first check cache
             $key = $this->getKey($params);
 
+            $this->checkEtag($key);
+
             $values = '';
 
             if (!is_null($key)) {
-
                 $values = $this->getValuesFromCache($key, $this->getIsStaticCache());
             }
 
             if (is_null($key) || $values === false) {
-
                 $this->logger->addDebug('class: ' . get_class($this) . ' found');
                 call_user_func_array(array($this, $method), array($params));
 
+                $this->setEtag($key);
+
                 return;
             }
+
+            $this->setEtag($key);
             //pass it along the request in case there's more processing to do
             // $this->httpRequest->setAttribute(self::getKey(), $values);
             //changed to '$key' because it was losing values in some instances with '/' in the key
@@ -153,6 +157,27 @@ class AbstractCachableListener extends AbstractListener {
     protected function getAgentTypesAsKeyString() {
 
         return implode('_', $this->getLayoutType());
+    }
+
+    protected function checkEtag($key) {
+
+        if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+                stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"' . $this->getEtag($key) . '"') {
+            // Return visit and no modifications, so do not send anything
+            header("HTTP/1.0 304 Not Modified");
+            header('Content-Length: 0');
+            exit;
+        }
+    }
+
+    protected function setEtag($key) {
+//        header("Etag: \"" . $this->getEtag($key) . "\"");
+    }
+
+    protected function getEtag($key) {
+        $date = getdate();
+
+        return $date['month'] . $date['mday'] . $date['year'] . '-' . md5($key) . "\"";
     }
 
 }

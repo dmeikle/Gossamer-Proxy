@@ -58,6 +58,7 @@ class FilterHTMLNodesByPermissionsListener extends AbstractListener {
     private function filterPage(Event &$event) {
 
         $permissions = $this->loadPermissionsConfig();
+
         if (is_null($permissions)) {
             return;
         }
@@ -73,21 +74,25 @@ class FilterHTMLNodesByPermissionsListener extends AbstractListener {
     public function filterHTMLPermissionsDivs(HTMLDomParser $dom, array $row) {
         $clientPermissions = $this->getClientPermissions();
 
-        if (!is_null($clientPermissions)) {
 
-            foreach ($row['tags'] as $permission) {
-                $tag = $permission['tag'];
-                $key = $permission['permission-key'];
+        //we need to set the empty array. that way if not permissions are set
+        //at all, we can filter all the secure nodes out of the page
+        if (is_null($clientPermissions)) {
+            $clientPermissions = array();
+        }
 
-                $roles = $permission['roles'];
+        foreach ($row['tags'] as $permission) {
+            $tag = $permission['tag'];
+            $key = $permission['permission-key'];
 
-                $permittedRoles = array_intersect($clientPermissions, $roles);
+            $roles = $permission['roles'];
 
-                if (count($permittedRoles) == 0) {
+            $permittedRoles = array_intersect($clientPermissions, $roles);
 
-                    foreach ($dom->find($tag . '[permission-key=' . $key . ']') as $e) {
-                        $e->outertext = '';
-                    }
+            if (count($permittedRoles) == 0) {
+
+                foreach ($dom->find($tag . '[permission-key=' . $key . ']') as $e) {
+                    $e->outertext = '';
                 }
             }
         }
@@ -125,9 +130,10 @@ class FilterHTMLNodesByPermissionsListener extends AbstractListener {
         return $client->getRoles();
     }
 
-    private function loadPermissionsConfig() {
+    protected function loadPermissionsConfig() {
         $config = $this->loadCachedComponentConfig(__YML_KEY, 'permissions_config', 'permissions');
-
+        // pr($config);
+        error_log('yml key is ' . __YML_KEY);
         if (array_key_exists(__YML_KEY, $config)) {
             return $config[__YML_KEY];
         } else {

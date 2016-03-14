@@ -5,7 +5,7 @@ super_widgetpages_get:
     sections:
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"
-            "section3": "src/framework/core/components/widgets/views/super/pages/edit.php"
+            "section3": "app/framework/core/components/widgets/views/super/pages/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -16,8 +16,8 @@ super_widgets_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/header.php"
-            "context-button": "src/framework/core/components/widgets/views/super/context-button.php"
-            "section3": "src/framework/core/components/widgets/views/super/list.php"
+            "context-button": "app/framework/core/components/widgets/views/super/context-button.php"
+            "section3": "app/framework/core/components/widgets/views/super/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -28,7 +28,7 @@ super_widgets_system_home:
     sections:
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"
-            "section3": "src/framework/core/components/widgets/views/super/system/list.php"
+            "section3": "app/framework/core/components/widgets/views/super/system/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -40,7 +40,7 @@ super_widgetpages_list:
     sections:
         -
             "section1": "src/components/shoppingcart/views/admin/topnav.php"
-            "section3": "src/framework/core/components/widgets/views/super/pages/list.php"
+            "section3": "app/framework/core/components/widgets/views/super/pages/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -52,8 +52,8 @@ super_widgetpages_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/header.php"
-            "context-button": "src/framework/core/components/widgets/views/super/pages/context-button.php"
-            "section3": "src/framework/core/components/widgets/views/super/pages/list.php"
+            "context-button": "app/framework/core/components/widgets/views/super/pages/context-button.php"
+            "section3": "app/framework/core/components/widgets/views/super/pages/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:

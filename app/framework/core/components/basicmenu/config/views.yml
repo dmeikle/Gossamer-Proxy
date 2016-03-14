@@ -5,4 +5,4 @@ basicmenu_ceilingbar:
     template: newsfeed.php
     sections: 
         -
-            "section1": "src/framework/core/components/basicmenu/views/ceilingbar.php"     
+            "section1": "app/framework/core/components/basicmenu/views/ceilingbar.php"     

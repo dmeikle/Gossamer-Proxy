@@ -21,7 +21,7 @@ locales_remove:
         viewKey: locales_edit
         datasource: datasource1  
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'    
     methods: [POST]
         
@@ -36,7 +36,7 @@ locales_list:
         viewKey: locales_list
         datasource: datasource1  
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'  
     
     
@@ -51,7 +51,7 @@ locales_edit:
         viewKey: locales_edit
         datasource: datasource1  
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'    
     methods: [GET]
             
@@ -66,6 +66,6 @@ locales_save:
         viewKey: locales_save
         datasource: datasource1  
         langFiles: 
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'    
     methods: [POST]            
