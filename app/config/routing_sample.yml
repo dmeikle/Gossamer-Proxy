@@ -1,0 +1,160 @@
+
+locale:
+    component: "src/framework/core/components/locales/config/routing.yml"
+angular:
+    component: "src/extensions/angular/config/routing.yml"
+dashboard:
+    component: "src/components/dashboard/config/routing.yml"
+    
+vendors:
+    component: "src/components/vendors/config/routing.yml"
+
+locales:
+    component: "src/framework/core/components/locales/config/routing.yml"
+
+widgets:
+    component: "src/framework/core/components/widgets/config/routing.yml"
+  
+render:
+    component: "src/framework/core/components/render/config/routing.yml" 
+  
+image:
+    component: "src/components/images/config/routing.yml"
+    
+basicmenu:
+    component: "src/framework/core/components/basicmenu/config/routing.yml"
+
+customers:
+    component: "src/components/customers/config/routing.yml"
+    
+tabbedview:
+    component: "src/framework/core/components/tabbedview/config/routing.yml"
+    
+documents:
+    component: "src/components/documents/config/routing.yml"
+    
+about:
+    component: "src/components/defaultItem/config/routing.yml"
+  
+twitter:
+    component: "src/components/twitter/config/routing.yml"     
+
+users:
+    component: "src/components/users/config/routing.yml"
+ 
+login:
+    component: "src/components/staff/config/routing.yml"    
+    
+staff:
+    component: "src/components/staff/config/routing.yml"
+    
+entrance:
+    component: "src/components/contacts/config/routing.yml"  
+    
+cart:
+    component: "src/components/shoppingcart/config/routing.yml"
+    
+home:
+    component: "src/components/defaultItem/config/routing.yml"
+    
+scoping:
+    component: "src/components/scoping/config/routing.yml"
+    
+projects:
+    component: "src/components/projects/config/routing.yml"
+    
+companies:
+    component: "src/components/companies/config/routing.yml"
+    
+claim:
+    component: "src/components/claims/config/routing.yml"
+claims:
+    component: "src/components/claims/config/routing.yml"
+claimlocations:   
+    component: "src/components/claims/config/routing.yml"
+    
+    
+subcontractors:
+    component: "src/components/subcontractors/config/routing.yml"
+    
+callmatrix:
+    component: "src/components/callmatrix/config/routing.yml"
+
+contacts:
+    component: "src/components/contacts/config/routing.yml"
+    
+fileuploads:
+    component: "src/components/fileuploads/config/routing.yml"
+
+scheduling:
+    component: "src/components/scheduling/config/routing.yml"
+contents:
+    component: "src/components/contents/config/routing.yml"
+
+samples:
+    component: "src/components/samples/config/routing.yml"
+    
+workperformed:
+    component: "src/components/workperformed/config/routing.yml"
+    
+surveys:
+    component: "src/components/surveys/config/routing.yml"
+    
+cms:
+    component: "src/framework/core/components/cms/config/routing.yml"
+    
+messaging:
+    component: "src/components/messaging/config/routing.yml"
+    
+notifications:
+    component: "src/components/notifications/config/routing.yml"
+
+reminders:
+    component: "src/components/reminders/config/routing.yml"
+
+
+incidents:
+    component: "src/components/incidents/config/routing.yml"
+
+events:
+    component: "src/components/events/config/routing.yml"
+
+blogs:
+    component: "src/framework/core/components/blogs/config/routing.yml"
+    
+contactus:
+    component: "src/components/contactus/config/routing.yml"
+
+
+restoration:   
+    component: "src/components/cms/config/routing.yml" 
+    
+cssmenu:
+    component: "src/components/cssmenu/config/routing.yml"
+departments:
+    component: "src/components/departments/config/routing.yml"
+keys:
+    component: "src/components/keys/config/routing.yml"
+tickets:
+    component: "src/components/tickets/config/routing.yml"
+ticker:
+    component: "src/components/ticker/config/routing.yml"
+inventory:
+    component: "src/components/inventory/config/routing.yml"
+
+accounting:
+    component: "src/components/accounting/config/routing.yml" 
+
+vehicles:
+    component: "src/components/vehicles/config/routing.yml"
+
+vendors:
+    component: "src/components/vendors/config/routing.yml"
+
+pdfs:
+    component: "src/components/pdfs/config/routing.yml"
+    
+#this is the default fallback to use if not found    
+default:
+    component: "src/components/cms/config/routing.yml"
+    ymlkey: cms_view_page_1
