@@ -13,6 +13,6 @@ basicmenu_ceilingbar:
         viewKey: basicmenu_ceilingbar
         datasource: datasource1
         langFiles: 
-            - 'src/framework/core/components/basicmenu/locales/*/menu'
+            - 'app/framework/core/components/basicmenu/locales/*/menu'
 
     

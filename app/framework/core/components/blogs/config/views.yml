@@ -3,8 +3,8 @@ admin_blogs_home:
     sections:
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "subnav": "src/framework/core/components/blogs/views/admin/subnav.php"
-            "content": "src/framework/core/components/blogs/views/admin/list.php"
+            "subnav": "app/framework/core/components/blogs/views/admin/subnav.php"
+            "content": "app/framework/core/components/blogs/views/admin/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
     angular:
         bootstrap_modules:
@@ -31,8 +31,8 @@ admin_blogs_list:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "subnav": "src/framework/core/components/blogs/views/admin/subnav.php"
-            "content": "src/framework/core/components/blogs/views/admin/list.php"
+            "subnav": "app/framework/core/components/blogs/views/admin/subnav.php"
+            "content": "app/framework/core/components/blogs/views/admin/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"
  
 admin_blogs_calendar:
@@ -40,8 +40,8 @@ admin_blogs_calendar:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "subnav": "src/framework/core/components/blogs/views/admin/subnav.php"
-            "content": "src/framework/core/components/blogs/views/calendar.php"
+            "subnav": "app/framework/core/components/blogs/views/admin/subnav.php"
+            "content": "app/framework/core/components/blogs/views/calendar.php"
             "footer": "src/themes/default/templates/sections/footer.php"
 
 admin_blogs_edit:
@@ -49,8 +49,8 @@ admin_blogs_edit:
     sections: 
         -
             "header": "src/themes/default/templates/sections/admin-header.php"
-            "subnav": "src/framework/core/components/blogs/views/admin/subnav.php"
-            "content": "src/framework/core/components/blogs/views/admin/edit.php"
+            "subnav": "app/framework/core/components/blogs/views/admin/subnav.php"
+            "content": "app/framework/core/components/blogs/views/admin/edit.php"
             "footer": "src/themes/default/templates/sections/footer.php"
             
 website_blogs_list: 
@@ -58,8 +58,8 @@ website_blogs_list:
     sections: 
         -
             "header": "src/themes/default/templates/sections/header.php"
-            "subnav": "src/framework/core/components/blogs/views/subnav.php"
-            "payload": "src/framework/core/components/blogs/views/list.php"
+            "subnav": "app/framework/core/components/blogs/views/subnav.php"
+            "payload": "app/framework/core/components/blogs/views/list.php"
             "footer": "src/themes/default/templates/sections/footer.php"   
             
 website_blogs_view:   
@@ -67,18 +67,18 @@ website_blogs_view:
     sections: 
         -
             "header": "src/themes/default/templates/sections/header.php"
-            "subnav": "src/framework/core/components/blogs/views/subnav.php"
-            "payload": "src/framework/core/components/blogs/views/view.php"
+            "subnav": "app/framework/core/components/blogs/views/subnav.php"
+            "payload": "app/framework/core/components/blogs/views/view.php"
             "footer": "src/themes/default/templates/sections/footer.php"     
           
 website_blogs_feed:     
     template: newsfeed.php
     sections: 
         -
-            "header": "src/framework/core/components/blogs/views/feed.php"     
+            "header": "app/framework/core/components/blogs/views/feed.php"     
             
 website_blogs_minimenu:   
     template: newsfeed.php
     sections: 
         -
-            "header": "src/framework/core/components/blogs/views/adminminimenu.php"          
+            "header": "app/framework/core/components/blogs/views/adminminimenu.php"          

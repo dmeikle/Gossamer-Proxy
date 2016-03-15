@@ -10,8 +10,8 @@ super_widgetpages_home:
         viewKey: super_widgetpages_home
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/framework/core/components/widgets/locales/*/Widgets'
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 
@@ -41,7 +41,7 @@ super_widgetpages_get:
         viewKey: super_widgetpages_get
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
 
@@ -58,7 +58,7 @@ super_widgetpages_save:
         viewKey: super_widgetpages_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
 
@@ -77,7 +77,7 @@ super_widgets_list_unassigned_all:
         viewKey: super_widgets_list_unassigned_all
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
 
@@ -138,7 +138,7 @@ super_widgets_list_unassigned:
         viewKey: super_widgets_list_unassigned
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
 
@@ -155,8 +155,8 @@ super_widgetpages_widgets_list:
         viewKey: super_widgetpages_widgets_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/framework/core/components/widgets/locales/*/Widgets'
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 super_widgetpages_widgets_save:
@@ -170,7 +170,7 @@ super_widgetpages_widgets_save:
         viewKey: super_widgetpages_widgets_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
 
@@ -186,8 +186,8 @@ super_widgets_home:
         viewKey: super_widgets_home
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/framework/core/components/widgets/locales/*/Widgets'
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 
@@ -202,8 +202,8 @@ super_widgets_system_home:
         viewKey: super_widgets_system_home
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
-            - 'src/framework/core/components/widgets/locales/*/Widgets'
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/widgets/locales/*/Widgets'
     methods: [GET]
 
 super_widgets_list:
@@ -217,7 +217,7 @@ super_widgets_list:
         viewKey: super_widgets_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]
 
@@ -234,7 +234,7 @@ super_widgets_save:
         viewKey: super_widgets_save
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [POST]
 
@@ -252,6 +252,6 @@ super_widgetpages_list:
         viewKey: super_widgetpages_list
         datasource: datasource1
         langFiles:
-            - 'src/framework/core/components/locales/resources/*/Locales'
+            - 'app/framework/core/components/locales/resources/*/Locales'
             - 'src/components/shoppingcart/locales/*/Navigation'
     methods: [GET]

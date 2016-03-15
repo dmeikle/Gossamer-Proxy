@@ -76,7 +76,7 @@ abstract class BaseHandler {
      */
     protected function getOriginFilePath($filepath) {
 
-        return __SITE_PATH . '/src' . $filepath;
+        return file_exists(__SITE_PATH . '/src' . $filepath) ? __SITE_PATH . '/src' . $filepath : __SITE_PATH . '/app' . $filepath;
     }
 
     /**
@@ -109,7 +109,7 @@ abstract class BaseHandler {
 
         $filename = array_pop($chunks);
         $old_umask = umask(0);
-        $parsedFromPath = __SITE_PATH . '/src';
+        $parsedFromPath = file_exists(__SITE_PATH . '/src' . $filepath) ? __SITE_PATH . '/src' : __SITE_PATH . '/app';
         $parsedToPath = __SITE_PATH . '/web/' . $rootFolder . implode('/', $chunks);
 
         @chmod(__SITE_PATH . '/web/' . $rootFolder . '/', 777);

@@ -17,7 +17,9 @@ render_file:
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\LoadFileToRenderListener', static: 'true'}
         - { 'event': 'request_start', 'listener': 'core\components\render\eventlisteners\ConfigureLocaleStringsListener' }
         - { 'event': 'request_start', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener' }
-        - { 'event': 'render_complete', 'listener': 'core\components\render\eventlisteners\SaveCachedPageListener', static: 'true'}
+       # - { 'event': 'render_complete', 'listener': 'core\components\render\eventlisteners\SaveCachedPageListener', static: 'true'}
+        - { 'event': 'render_complete', listener: 'core\components\render\eventlisteners\FilterHTMLNodesByPermissionsListener' }
+        - { 'event': 'render_complete', listener: 'core\components\caching\eventlisteners\ReplaceParamsInHTMLListener' }
     methods: [GET]
     
 

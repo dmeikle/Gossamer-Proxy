@@ -1,0 +1,38 @@
+/*
+ This file is part of the Quantum Unit Solutions development package.
+
+ (c) Quantum Unit Solutions <http://github.com/dmeikle/>
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+*/
+/* 
+    Created on : 18-Feb-2016, 9:51:59 AM
+    Author     : davem
+*/
+
+#bugform {
+    background-color: #fff;
+    position: fixed;
+    right: 15px;
+    top: 60px;
+    padding: 20px;
+    width: 450px;
+    img {
+        float: left;
+        margin: 0px 10px 10px 0px;
+        width: 44px;
+        height: 44px;
+    }
+    .btn-link {
+        color: #000;
+        margin-top:0;
+    }
+    h3 {
+        margin-top: 0;
+    }
+}
+.submit-icon {
+    margin-right: 1rem;
+    vertical-align: middle;
+}

@@ -42,7 +42,7 @@ admin_contacts:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
                 - IS_PROJECT_MANAGER
-        claims_create_new:
+        contacts_create_new:
             text_key: 'ADMIN_CONTACTS_CREATE_NEW'
             pattern: '/admin/contacts/edit/0'
             ng-click: "addTab('text_key', 'template')"
@@ -117,6 +117,7 @@ admin_inventory:
             template: '/render/inventory/inventoryListTab'
             pattern: '/admin/inventory'
             state: 'admin_inventory_list'
+
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
@@ -127,6 +128,13 @@ admin_inventory:
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_STAFF
+#
+#        admin_inventory_equipment:
+#            text_key: 'ADMIN_INVENTORY_EQUIPMENT'
+#            pattern: '/admin/inventory/equipment/0/20'
+#            display_roles:
+#                - IS_ADMINISTRATOR
+#                - IS_STAFF
                 
                 
 admin_subcontractors:
@@ -320,7 +328,8 @@ admin_accounts_receivable:
             text_key: 'ADMIN_ACCOUNTING_SALES_INVOICES'
             pattern: '#'
             ng-click: "addTab('text_key', 'template')"
-            template: ''
+            template: '/render/accounting/admin_accounting_sales_invoices'
+            state: 'admin_accounting_sales_invoices'
             display_roles:
                 - IS_ADMINISTRATOR
                 - IS_ACCOUNTING

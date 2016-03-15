@@ -171,6 +171,7 @@ class AbstractCachableListener extends AbstractListener {
     }
 
     protected function setEtag($key) {
+
         header("Etag: \"" . $this->getEtag($key) . "\"");
     }
 
