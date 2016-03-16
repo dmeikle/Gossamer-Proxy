@@ -13,7 +13,9 @@ namespace libraries\utils\preferences;
 
 class UserPreferences {
 
-    private $params = array();
+    private $params = array(
+        'DefaultView' => 'tabbed'
+    );
 
     public function __construct(array $params = null) {
         if (!is_null($params)) {
