@@ -35,7 +35,6 @@ class ConfigurationListener extends AbstractCachableListener {
         $listenerConfig = $this->loadConfig($renderPath . '/listeners.yml', $file);
         $renderConfig = $this->loadConfig($renderPath . '/render.yml', $file);
 
-
         $config = array_merge($renderConfig, $listenerConfig);
 
         //set up any listeners that the file requires
@@ -54,7 +53,8 @@ class ConfigurationListener extends AbstractCachableListener {
         $parser->setFilePath(__SITE_PATH . DIRECTORY_SEPARATOR . $routingPath);
 
         $config = $parser->loadConfig();
-        if ($config !== false && array_key_exists($file, $config)) {
+
+        if ($config !== false && is_array($config) && array_key_exists($file, $config)) {
             return $config[$file];
         }
 

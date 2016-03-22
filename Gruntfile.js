@@ -132,6 +132,19 @@ module.exports = function(grunt) {
           }
         }]
       },
+      extensions: {
+        files: [{
+          expand: true,
+          cwd: 'src/extensions/',
+          src: ['*/ng/scss/*.scss', '!*/ng/scss/_*.scss'],
+          dest: 'dist/css/',
+          rename: function(dest, src, options) {
+            var srcSplit = src.split('/');
+            var componentName = srcSplit[srcSplit.indexOf('ng')-1];
+            return options.cwd + componentName + '/' + dest + componentName + '.min.css';
+          }
+        }]
+      },
       theme: {
         files: {
           'web/css/core.min.css':'src/themes/default/core.scss'
@@ -233,6 +246,12 @@ module.exports = function(grunt) {
       sass_framework: {
         files: ['app/framework/core/components/*/ng/scss/*.scss', '!app/framework/core/components/*/ng/scss/_*.scss'],
         tasks: ['sass:framework'],
+        spawn:false
+      },
+
+      sass_extensions: {
+        files: ['src/extensions/*/ng/scss/*.scss', '!src/extensions/*/ng/scss/_*.scss'],
+        tasks: ['sass:extensions'],
         spawn:false
       },
 
