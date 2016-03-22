@@ -197,8 +197,10 @@ class AbstractAPIController {
     public function listall() {
 
         $params = $this->httpRequest->getQueryParameters();
-        $offset = intval($params['directive::OFFSET']);
-        $limit = intval($params['directive::LIMIT']);
+        $offset = intval($params['offset']);
+        $limit = intval($params['limit']);
+        unset($params['offset']);
+        unset($params['limit']);
 
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 

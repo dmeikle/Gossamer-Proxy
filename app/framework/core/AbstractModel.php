@@ -201,6 +201,8 @@ class AbstractModel {
      * @return type
      */
     public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
+        error_log("offset: $offset limit $rows");
+        error_log(print_r($params, true));
 
         if (is_null($params)) {
             $params = array();
