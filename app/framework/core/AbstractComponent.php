@@ -140,12 +140,14 @@ abstract class AbstractComponent {
             $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $httpResponse);
 
             $controller->setContainer($this->container);
+            
             try {
                 //before we attempt to continue, check to see if there is an
                 //validation exception flag
                 if (!is_null($httpRequest->getAttribute('ExceptionOccurred'))) {
                     throw new ValidationFailedException();
                 }
+
                 return call_user_func_array(array(
                     $controller,
                     $this->method

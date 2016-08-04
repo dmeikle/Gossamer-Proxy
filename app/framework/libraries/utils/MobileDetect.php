@@ -310,7 +310,7 @@ class MobileDetect {
         // @ref: http://www.pointofview-online.com/showroom.php?shop_mode=product_listing&category_id=118
         'PointOfViewTablet' => 'TAB-P506|TAB-navi-7-3G-M|TAB-P517|TAB-P-527|TAB-P701|TAB-P703|TAB-P721|TAB-P731N|TAB-P741|TAB-P825|TAB-P905|TAB-P925|TAB-PR945|TAB-PL1015|TAB-P1025|TAB-PI1045|TAB-P1325|TAB-PROTAB[0-9]+|TAB-PROTAB25|TAB-PROTAB26|TAB-PROTAB27|TAB-PROTAB26XL|TAB-PROTAB2-IPS9|TAB-PROTAB30-IPS9|TAB-PROTAB25XXL|TAB-PROTAB26-IPS10|TAB-PROTAB30-IPS10',
         // @ref: http://www.overmax.pl/pl/katalog-produktow,p8/tablety,c14/
-        // @todo: add more tests.
+        // @todo: add more gcmstests_old.
         'OvermaxTablet' => 'OV-(SteelCore|NewBase|Basecore|Baseone|Exellen|Quattor|EduTab|Solution|ACTION|BasicTab|TeddyTab|MagicTab|Stream|TB-08|TB-09)',
         // @ref: http://hclmetablet.com/India/index.php
         'HCLTablet' => 'HCL.*Tablet|Connect-3G-2.0|Connect-2G-2.0|ME Tablet U1|ME Tablet U2|ME Tablet G1|ME Tablet X1|ME Tablet Y2|ME Tablet Sync',
@@ -1109,7 +1109,7 @@ class MobileDetect {
                 // Tizen (pre-release) - Tested on early hardware
                 $this->is('Tizen') ||
                 // Samsung Bada 2.0 - Tested on a Samsung Wave 3, Dolphin browser
-                // @todo: more tests here!
+                // @todo: more gcmstests_old here!
                 $this->is('Dolfin') && $this->version('Bada', self::VERSION_TYPE_FLOAT) >= 2.0 ||
                 // UC Browser - Tested on Android 2.3 device
                 ( ($this->is('UC Browser') || $this->is('Dolfin')) && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3 ) ||

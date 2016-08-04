@@ -103,24 +103,7 @@ class AbstractController {
         }
     }
 
-    public function autocomplete() {
-        $params = $this->httpRequest->getQueryParameters();
 
-        $this->render($this->model->autocomplete($params));
-    }
-
-    public function advancedSearch($offset = 0, $limit = 20) {
-        $params = $this->httpRequest->getQueryParameters();
-        //$data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_SEARCH, $params);
-
-        $this->render($this->model->listallWithParams($offset, $limit, $params, 'search'));
-    }
-
-    protected function getSearchArguments() {
-        $rawterm = $this->httpRequest->getQueryParameter('term');
-
-        return preg_replace('/[^A-z0-9\-]/', '', substr($rawterm, 0, 10));
-    }
 
     /**
      * creates a default entity and populates it
@@ -137,14 +120,6 @@ class AbstractController {
         return $entity->getArray();
     }
 
-    /**
-     * determines whether we are reloading the page after a failed validation
-     *
-     * @return boolean
-     */
-    protected function isFailedValidationAttempt() {
-        return !is_null($this->httpRequest->getAttribute('ERROR_RESULT'));
-    }
 
     /**
      * injection method intended for overriding the default view in case of Exception
@@ -188,122 +163,17 @@ class AbstractController {
         $this->render($result);
     }
 
+
+
     /**
-     * listall - retrieves rows based on offset, limit
+     * edit - display an input form based on requested id
      *
-     * @param int offset    database page to start at
-     * @param int limit     max rows to return
+     * @param int id    primary key of item to edit
      */
-    public function listall($offset = 0, $limit = 20) {
+    public function get() {
         $params = $this->httpRequest->getQueryParameters();
-
-
-        $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-
-            //CP-33 changed to json output for new Angular based page draws
-            $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-            unset($pagination);
-        }
-
-        $this->render($result);
-    }
-
-    /**
-     * listall - retrieves rows based on offset, limit
-     *
-     * @param int offset    database page to start at
-     * @param int limit     max rows to return
-     */
-    public function listallWithForm($offset = 0, $limit = 20) {
-        $result = $this->model->listall($offset, $limit);
-        $paginationResult = '';
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-            $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-            unset($pagination);
-
-            $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
-        } else {
-            $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
-        }
-    }
-
-    /**
-     * listallReverseWithForm - retrieves rows based on offset, limit
-     *
-     * @param int offset    database page to start at
-     * @param int limit     max rows to return
-     */
-    public function listallReverseWithForm($offset = 0, $limit = 20) {
-        $result = $this->model->listallReverse($offset, $limit);
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-            $paginationResult = $pagination->paginate($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-            unset($pagination);
-
-            $this->render(array($this->model->getEntity() . 's' => current($result), 'pagination' => $paginationResult, 'form' => $this->drawForm($this->model, array())));
-        } else {
-            $this->render(array($this->model->getEntity() . 's' => $result, 'form' => $this->drawForm($this->model, array())));
-        }
-
-        // $this->render($result);
-    }
-
-    /**
-     * listallReverse - retrieves rows based on offset, limit
-     *
-     * @param int offset    database page to start at
-     * @param int limit     max rows to return
-     */
-    public function listallReverse($offset = 0, $limit = 20) {
-        $result = $this->model->listallReverse($offset, $limit);
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-
-            //CP-33 changed to json output for new Angular based page draws
-            $result['pagination'] = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit, $this->getUriWithoutOffsetLimit());
-            unset($pagination);
-        }
-
-        $this->render($result);
-    }
-
-    /**
-     *
-     * @return string
-     */
-    protected function getUriWithoutOffsetLimit() {
-        $pieces = explode('/', __URI);
-        array_pop($pieces);
-        array_pop($pieces);
-
-        return '/' . implode('/', $pieces);
-    }
-
-    /**
-     * edit - display an input form based on requested id
-     *
-     * @param int id    primary key of item to edit
-     */
-    public function edit($id) {
-        $result = $this->model->edit($id);
-
-        $this->render($result);
-    }
-
-    /**
-     * edit - display an input form based on requested id
-     *
-     * @param int id    primary key of item to edit
-     */
-    public function get($id) {
-        $result = $this->model->get($id);
+        
+        $result = $this->model->get($params);
 
         $this->render($result);
     }
@@ -313,80 +183,48 @@ class AbstractController {
      *
      * @param int id    primary key of item to save
      */
-    public function save($id) {
+    public function save() {
+        $params = $this->httpRequest->getPost();
 
-        $result = $this->model->save($id);
-        $params = array('entity' => $this->model->getEntity(true), 'result' => $result, 'id' => $id);
-        $event = new Event('save_success', $params);
+        $data = $this->model->save($params);
+
+
+        $event = new Event('save_success', $data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
 
-        $this->render($result);
+        $this->render($data);
     }
+
+
 
     /**
-     * saves values and performs a redirect upon completion
+     * listall - returns all rows
      *
-     * @param int $id
-     * @param string $ymlKey
-     * @param array $params
+     * @param void
      */
-    protected function saveAndRedirect($id, $ymlKey, array $params) {
-        $result = $this->model->save($id);
+    public function listall() {
+        $params = $this->httpRequest->getQueryParameters();
 
-        $eventParams = array('entity' => $this->model->getEntity(true));
-        $event = new Event('save_success', $eventParams);
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+        $data = $this->model->listall($params);
 
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect($ymlKey, $params);
+        $this->render($data);
     }
+
+
+
 
     /**
      * delete - removes a row from the database
      *
      * @param int id    primary key of item to delete
      */
-    public function delete($id) {
-        $result = $this->model->delete($id);
+    public function delete() {
+        $params = $this->httpRequest->getPost();
+        $result = $this->model->delete($params);
 
         $this->render($result);
     }
 
-    /**
-     * view - dependent on listeners to provide all data
-     *
-     * @param int id    primary key of item to retrieve
-
-      public function view($id = null) {
-
-
-      $this->render(array());
-      } */
-
-    /**
-     *
-     * @param string $uri
-     */
-    protected function redirect($uri) {
-
-        /* Redirect browser */
-        header("Location: $uri");
-
-        /* Make sure that code below does not get executed when we redirect. */
-        exit;
-    }
-
-    /**
-     * method for building forms within the view to be called if needed by
-     * child classes
-     *
-     * @param FormBuilderInterface $model
-     * @param array $values
-     * @throws Exception
-     */
-    protected function drawForm(FormBuilderInterface $model, array $values = null) {
-        throw new \Exception('drawFrom not overwritten by child class');
-    }
 
     /**
      *
@@ -405,121 +243,7 @@ class AbstractController {
         return $datasource;
     }
 
-    public function setInactive($id) {
-        $this->model->setInactive($id);
 
-        $this->render();
-    }
 
-    protected function setInactiveAndRedirect($id, $ymlKey, array $params = array()) {
-        $this->model->setInactive($id);
-
-        $eventParams = array('entity' => $this->model->getEntity(true));
-        $event = new Event('set_inactive_success', $eventParams);
-        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'set_inactive_success', $event);
-
-        $router = new Router($this->logger, $this->httpRequest);
-        $router->redirect($ymlKey, $params);
-    }
-
-    public function paginationJson($offset, $limit) {
-        $result = $this->model->paginate($offset, $limit);
-
-        if (is_array($result) && array_key_exists($this->model->getEntity() . 'sCount', $result)) {
-            $pagination = new Pagination($this->logger);
-            $count = $pagination->getPaginationJson($result[$this->model->getEntity() . 'sCount'], $offset, $limit);
-            unset($pagination);
-        }
-
-        $this->render($count);
-    }
-
-    /**
-     *
-     * @return Locale
-     */
-    protected function getDefaultLocale() {
-
-        //check to see if it's in the query string - a menu request perhaps?
-        $queryLocale = $this->httpRequest->getQueryParameter('locale');
-        if (!is_null($queryLocale)) {
-            return array('locale' => $queryLocale);
-        }
-
-        $manager = new UserPreferencesManager($this->httpRequest);
-        $userPreferences = $manager->getPreferences();
-
-        if (!is_null($userPreferences) && $userPreferences instanceof UserPreferences && strlen($userPreferences->getDefaultLocale()) > 0) {
-            return array('locale' => $userPreferences->getDefaultLocale());
-        }
-
-        $config = $this->httpRequest->getAttribute('defaultPreferences');
-
-        return $config['default_locale'];
-    }
-
-    public function uploadItem($id) {
-
-        if (!$this->model instanceof UploadableInterface) {
-            throw new \exceptions\InterfaceNotImplementedException('Model must implement UploadableInterface');
-        }
-
-        $id = intval($id);
-        $filenames = array();
-        $imagePath = $this->model->getUploadPath();
-
-        $this->mkdir($imagePath);
-        $path_parts = pathinfo($_FILES["file"]["name"]);
-        $extension = $path_parts['extension'];
-        //changed fileName to filename to match column name
-        //if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . $_FILES['file']['name'])) {
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $imagePath . DIRECTORY_SEPARATOR . $id . '_' . $_FILES["file"]["name"])) {
-            $params = array('id' => intval($id), 'filename' => $id . '_' . $_FILES["file"]["name"]);
-
-            $this->model->saveParamsOnComplete($params);
-        }
-
-        $this->render(array('success' => 'true'));
-    }
-
-    /**
-     * Creates a directory recursively.
-     *
-     * @param string|array|\Traversable $dirs The directory path
-     * @param int                       $mode The directory mode
-     *
-     * @throws IOException On any directory creation failure
-     */
-    protected function mkdir($dirs, $mode = 0777) {
-        foreach ($this->toIterator($dirs) as $dir) {
-            if (is_dir($dir)) {
-                continue;
-            }
-
-            if (true !== @mkdir($dir, $mode, true)) {
-                $error = error_get_last();
-                if (!is_dir($dir)) {
-                    // The directory was not created by a concurrent process. Let's throw an exception with a developer friendly error message if we have one
-                    if ($error) {
-                        throw new \IOException(sprintf('Failed to create "%s": %s.', $dir, $error['message']), 0, null);
-                    }
-                    throw new \IOException(sprintf('Failed to create "%s"', $dir), 0, null);
-                }
-            }
-        }
-    }
-
-    /**
-     * @param mixed $files
-     *
-     * @return \Traversable
-     */
-    private function toIterator($files) {
-        if (!$files instanceof \Traversable) {
-            $files = new \ArrayObject(is_array($files) ? $files : array($files));
-        }
-
-        return $files;
-    }
 
 }

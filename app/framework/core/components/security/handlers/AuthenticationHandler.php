@@ -131,6 +131,7 @@ class AuthenticationHandler extends DatasourceAware implements ServiceInterface 
         try {
             $this->securityManager->authenticate($this->securityContext);
         } catch (\Exception $e) {
+            die($e->getMessage());
             header('Location: ' . $this->getSiteURL() . $this->node['fail_url']);
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-
+$session = array();
  $loader = new \Composer\Autoload\ClassLoader();
  
  
@@ -42,13 +42,14 @@ function pr($item){
 
 
 function getSession($key) {
-    $session = $_SESSION;
+   // $session = $_SESSION;
 
     return fixObject($session[$key]);
 }
 
 function setSession($key, $value) {
-    $_SESSION[$key] = $value;
+    //$_SESSION[$key] = $value;
+    $session[$key] = $value;
 }
     
 function fixObject (&$object)

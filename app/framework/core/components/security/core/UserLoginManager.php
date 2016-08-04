@@ -78,11 +78,13 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
 
             //since we want to know WHY a person was not allowed, run each check individually
             if ($this->statusIsLocked($client)) {
+
                 $this->logger->addAlert('login_status_locked');
                 $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_status_locked', new Event('login_status_locked', $eventParams));
 
                 setSession('_security_secured_area', null);
             }
+
             if (!$this->checkPasswordsMatch($client->getPassword(), $token->getClient()->getPassword())) {
                 $this->logger->addAlert('login_password_mismatch');
                 echo $client->getPassword() . ' ' . $token->getClient()->getPassword() . '<br>';
@@ -109,6 +111,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
         $this->container->set('securityContext', 'core\components\security\core\SecurityContext', $context);
 
         $eventParams = array('client' => $client);
+
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'login_success', new Event('login_success', $eventParams));
     }
 
@@ -118,7 +121,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      * @param \core\components\security\core\Client $client
      * @return boolean
      */
-    private function checkRolesSet(Client $client) {
+    protected function checkRolesSet(Client $client) {
         if (count($client->getRoles()) > 1) {
             return true;
         }
@@ -135,7 +138,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      *
      * @return boolean
      */
-    private function statusIsLocked(Client $client) {
+    protected function statusIsLocked(Client $client) {
 
         return ($client->getStatus() == 'locked');
     }
@@ -148,7 +151,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      *
      * @return boolean
      */
-    private function checkPasswordsMatch($clientPassword, $tokenPassword) {
+    protected function checkPasswordsMatch($clientPassword, $tokenPassword) {
 
         $result = (crypt($tokenPassword, $clientPassword) == $clientPassword);
 
@@ -162,7 +165,7 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      *
      * @return boolean
      */
-    private function checkStatus(Client $client) {
+    protected function checkStatus(Client $client) {
         return ($client->getStatus() == 'active');
     }
 
@@ -236,10 +239,10 @@ class UserLoginManager implements AuthenticationManagerInterface, ServiceInterfa
      */
     protected function getClientCredentials() {
 
-        if (array_key_exists('username', $_POST)) {
-            return $_POST['username'];
-        } elseif (array_key_exists('email', $_POST)) {
-            return $_POST['email'];
+        if (array_key_exists('username', $_GET)) {
+            return $_GET['username'];
+        } elseif (array_key_exists('email', $_GET)) {
+            return $_GET['email'];
         }
 
         //if all else fails check the headers

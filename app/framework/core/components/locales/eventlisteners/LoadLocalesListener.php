@@ -40,7 +40,7 @@ class LoadLocalesListener extends AbstractCachableListener {
         try {
             //query the database for the list of locales
             $result = $datasource->query('get', $model, 'list', $params);
-
+            die('here2');
             if (is_array($result) && count($result) > 0) {
                 $locales = current($result);
 

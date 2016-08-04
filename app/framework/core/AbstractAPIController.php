@@ -197,10 +197,11 @@ class AbstractAPIController {
     public function listall() {
 
         $params = $this->httpRequest->getQueryParameters();
-        $offset = intval($params['offset']);
-        $limit = intval($params['limit']);
-        unset($params['offset']);
-        unset($params['limit']);
+
+        $offset = intval($params['directive::OFFSET']);
+        $limit = intval($params['directive::LIMIT']);
+        unset($params['directive::OFFSET']);
+        unset($params['directive::LIMIT']);
 
         $result = $this->model->listallWithParams($offset, $limit, $params, 'list');
 
@@ -307,7 +308,16 @@ class AbstractAPIController {
      * @param int id    primary key of item to edit
      */
     public function get($id) {
-        $result = $this->model->get($id);
+
+        $result = $this->model->get(intval($id));
+
+        $this->render($result);
+    }
+
+    public function load() {
+        $params = $this->httpRequest->getQueryParameters();
+
+        $result = $this->model->load($params);
 
         $this->render($result);
     }

@@ -45,7 +45,7 @@ class Kernel {
      * @return string|JSON - the completed html or json array
      */
     public function run() {
-
+       
         $controllerNode = $this->container->get('controllerNode');
 
         $httpRequest = $this->container->get('HTTPRequest');

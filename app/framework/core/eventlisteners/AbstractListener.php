@@ -50,6 +50,7 @@ class AbstractListener {
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         // echo get_called_class().'<br>';
+
     }
 
     /**

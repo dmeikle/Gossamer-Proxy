@@ -1,6 +1,6 @@
 <?php
+//session_start();
 
-session_start();
 
 //TODO change to use filter_input(INPUT_SERVER, 'SERVER_NAME', FILTER_SANITIZE_STRING)
 if (strlen($_SERVER['REQUEST_URI']) < 2) {

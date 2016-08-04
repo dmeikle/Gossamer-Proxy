@@ -17,14 +17,13 @@ use core\http\HTTPResponse;
 use Monolog\Logger;
 use libraries\utils\preferences\UserPreferences;
 use libraries\utils\preferences\UserPreferencesManager;
-use Gossamer\CMS\Forms\FormBuilderInterface;
 
 /**
  * Model for the Locales table
  *
  * @author Dave Meikle
  */
-class LocaleModel extends AbstractModel implements FormBuilderInterface {
+class LocaleModel extends AbstractModel {
 
     /**
      *
@@ -88,63 +87,19 @@ class LocaleModel extends AbstractModel implements FormBuilderInterface {
         $manager->savePreferences($userPreferences->toArray());
     }
 
-    /**
-     * list all locales
-     *
-     * @param type $offset
-     * @param type $rows
-     * @param type $customVerb
-     */
-    public function listall($offset = 0, $rows = 20, $customVerb = null, array $params = null) {
 
-        $params = array(
-            //'directive::OFFSET' => $offset, 'directive::LIMIT' => $limit, 'directive::ORDER_BY' => 'Products.id asc'
-            'directive::OFFSET' => $offset, 'directive::LIMIT' => $rows
-        );
-
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_LIST, $params);
-
-        if (array_key_exists(ucfirst($this->tablename) . 'Count', $data)) {
-            $data['pagination'] = $this->getPagination($data[ucfirst($this->tablename) . 'Count'], $offset, $rows);
-        }
-
-        return $data;
-    }
-
-    /**
-     * loads a locale for editing
-     *
-     * @param int $id
-     */
-    public function edit($id) {
-
-        $params = array(
-            'id' => intval($id)
-        );
-
-        $data = $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
-        $data['thumbnails'] = $this->getFileList(__SITE_PATH . "/images/flags/");
-
-        $this->render($data);
-    }
 
     /**
      * saves a locale to the db
      *
      * @param int $id
      */
-    public function save($id) {
+    public function save(array $params, $customVerb = null) {
 
         $params = $this->httpRequest->getPost();
-        $params['Locale']['id'] = intval($id);
 
-        $data = $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['Locale']);
+        return $this->dataSource->query(self::METHOD_POST, $this, self::VERB_SAVE, $params['Locale']);
 
-        return $data;
-    }
-
-    public function getFormWrapper() {
-        return $this->entity;
     }
 
 }

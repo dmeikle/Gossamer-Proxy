@@ -23,9 +23,9 @@ admin_login_get:
     methods: [GET]
     
 admin_login_submit:
-    pattern: admin/login
+    pattern: staff/staff/login
     authentication: staff_login_auth
-    methods: [POST]
+    methods: [GET]
     
 admin_area2:
     pattern: /admin
