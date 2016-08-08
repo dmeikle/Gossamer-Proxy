@@ -61,7 +61,7 @@ class BaseTest extends \PHPUnit_Framework_TestCase
     protected function getContainer() {
         if (is_null($this->container)) {
             $this->container = new \libraries\utils\Container();
-            //instantiate the database entity manager
+            //instantiate the database entity manager            
             $this->container->set('EntityManager', 'Gossamer\Pesedget\Database\EntityManager', EntityManager::getInstance());
         }
 

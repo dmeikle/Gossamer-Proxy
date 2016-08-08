@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="local api">
+  <component name="PublishConfigData" autoUpload="Always" serverName="office-binghan-multi-api">
     <serverData>
-      <paths name="local api">
+      <paths name="office-binghan-multi-api">
         <serverdata>
           <mappings>
             <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="quantumunit.com">
+      <paths name="office-binghan-multi-htdocs">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

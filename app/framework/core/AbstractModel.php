@@ -18,9 +18,6 @@ use core\datasources\DataSourceInterface;
 use libraries\utils\Container;
 use libraries\utils\Pagination;
 use Gossamer\Caching\CacheManager;
-use core\components\mappings\models\MappingModel;
-use libraries\utils\preferences\UserPreferencesManager;
-use libraries\utils\preferences\UserPreferences;
 
 /**
  * abstract base class for models
@@ -168,6 +165,21 @@ class AbstractModel {
      * @return array
      */
     public function listall(array $params, $customVerb = null) {
+
+        return $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
+    }
+
+    /**
+     * queries the database with custom passed in params and returns the result
+     *
+     * @param int $offset
+     * @param int $rows
+     * @param array $params
+     * @param string $customVerb
+     *
+     * @return array
+     */
+    public function listallWithParams(array $params, $customVerb = null) {
 
         return $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
     }
