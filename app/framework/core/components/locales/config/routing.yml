@@ -1,3 +1,15 @@
+locales_list:
+    pattern: locales/list
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: locales_list
+        datasource: datasource1
+
+
 locale_change:
     pattern: locale/change
     defaults:

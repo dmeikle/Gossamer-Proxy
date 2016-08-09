@@ -137,7 +137,7 @@ abstract class AbstractComponent {
 
             $view->setContainer($this->container);
 
-            $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $httpResponse);
+            $controller = new $this->controllerName($model, $view, $this->logger, $httpRequest, $httpResponse, $this->logger);
 
             $controller->setContainer($this->container);
             

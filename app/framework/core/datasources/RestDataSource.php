@@ -34,7 +34,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
     const METHOD_POST = 'post';
     const METHOD_GET = 'get';
     const VERB_LIST = 'list';
-    const VERB_DELETET = 'delete';
+    const VERB_DELETE = 'delete';
     const VERB_GET = 'get';
     const VERB_SAVE = 'save';
 

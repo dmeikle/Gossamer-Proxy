@@ -33,17 +33,6 @@ class LocaleController extends AbstractController {
         $this->redirect(($uri));
     }
 
-    /**
-     * save a locale's info to the database
-     *
-     * @param int $id
-     */
-    public function save($id) {
-
-        $result = $this->model->save(intval($id));
-
-
-        $this->render($result);
-    }
+   
 
 }

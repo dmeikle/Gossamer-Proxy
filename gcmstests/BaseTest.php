@@ -2,6 +2,7 @@
 
 namespace gcmstests;
 
+use core\views\JSONView;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Gossamer\Pesedget\Database\EntityManager;
@@ -69,6 +70,13 @@ class BaseTest extends \PHPUnit_Framework_TestCase {
         
 
         return $this->container;
+    }
+    
+    protected function getView($ymlKey, $request, $response) {
+        $array = array();
+        $logger = $this->getLogger();
+
+        return new JSONView($logger,$ymlKey,$array,$request, $response);
     }
 
 }
