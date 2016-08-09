@@ -64,7 +64,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
      */
     public function query($queryType, AbstractModel $entity, $verb, $params) {
         $ymlKey = $this->keyname;
-
+        
         $configParams = $this->getCredentials($ymlKey);
         $credentials = $configParams['credentials'];
 

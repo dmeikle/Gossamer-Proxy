@@ -150,7 +150,7 @@ class AbstractController {
         $this->container->get('EventDispatcher')->dispatch('all', KernelEvents::REQUEST_END);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, KernelEvents::REQUEST_END);
 
-        $this->view->render($data);
+        return $this->view->render($data);
     }
 
     /**
@@ -160,7 +160,7 @@ class AbstractController {
     public function index() {
         $result = $this->model->index(array());
 
-        $this->render($result);
+        return $this->render($result);
     }
 
 
@@ -175,7 +175,7 @@ class AbstractController {
         
         $result = $this->model->get($params);
 
-        $this->render($result);
+        return $this->render($result);
     }
 
     /**
@@ -192,7 +192,7 @@ class AbstractController {
         $event = new Event('save_success', $data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
 
-        $this->render($data);
+        return $this->render($data);
     }
 
 
@@ -207,7 +207,7 @@ class AbstractController {
 
         $data = $this->model->listall($params);
 
-        $this->render($data);
+        return $this->render($data);
     }
 
 
@@ -222,7 +222,7 @@ class AbstractController {
         $params = $this->httpRequest->getPost();
         $result = $this->model->delete($params);
 
-        $this->render($result);
+        return $this->render($result);
     }
 
 

@@ -19,6 +19,7 @@ $loader = new Composer\Autoload\ClassLoader();
 // register classes with namespaces
 $loader->add('components', __SITE_PATH . '/src');
 $loader->add('core', __SITE_PATH . '/app/framework');
+$loader->add('exceptions', __SITE_PATH . '/app/framework');
 $loader->add('libraries', __SITE_PATH . '/app/framework');
 $loader->add('Gossamer\\Horus', __SITE_PATH . '/vendor/horus/caching/src');
 $loader->add('Gossamer\\Caching', __SITE_PATH . '/vendor/gossamer/caching/src');
@@ -68,4 +69,4 @@ function super_unset($item) {
 
 
 
-echo "\r\n********** phpunit.bootstrap complete *************\r\n";
+//echo "\r\n********** phpunit.bootstrap complete *************\r\n";
