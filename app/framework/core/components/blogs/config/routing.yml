@@ -1,0 +1,128 @@
+admin_blogs_home:
+    pattern: admin/blogs
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: index
+        view: extensions\angular\views\AngularTemplateView
+        viewKey: admin_blogs_home
+        datasource: datasource1
+        
+
+admin_blogs_edit:
+    pattern: admin/blogs/*
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+    methods: [GET]
+
+admin_blogs_save:
+    pattern: admin/blogs/*
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: save
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+    methods: [POST]
+    
+admin_blogs_list:
+    pattern: admin/blogs/*/*
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: admin_blogs_list
+        datasource: datasource1
+        
+admin_blogs_calendar:
+    pattern: admin/blogs/calendar/*/*
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: showCalendar
+        view: core\views\TemplateView
+        viewKey: admin_blogs_calendar
+        datasource: datasource1  
+    
+website_blogs_feed:
+    pattern: blogs/feed/*/*
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: listallReverse
+        view: core\views\TemplateView
+        viewKey: website_blogs_feed
+        datasource: datasource1
+    methods: [GET]  
+
+
+
+website_blogs_minimenu: 
+    pattern: blogs/minimenu/*    
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogAdminMenuController
+        model: core\components\blogs\models\BlogModel
+        method: getAdminMiniMenu
+        view: core\views\TemplateView
+        viewKey: website_blogs_minimenu
+        datasource: datasource1
+    methods: [GET] 
+    
+    
+website_blogs_list:
+    pattern: blogs/*/*
+    listeners:
+        #use this to pre-cache the db result into an array, saving a hit to the database through the network
+        # - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
+        #or use these 3 to make the complete page static
+        - { 'event': 'request_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'response_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'render_complete', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: listallReverse
+        view: core\views\TemplateView
+        viewKey: website_blogs_list
+        datasource: datasource1
+    methods: [GET]
+    
+    
+
+    
+        
+website_blogs_view:
+    pattern: blogs/*/*/*
+    listeners:
+        #use this to pre-cache the db result into an array, saving a hit to the database through the network
+        # - { 'event': 'request_start', 'cacheKey': 'CmsPage', 'listener': 'core\components\cms\listeners\LoadByPermalinkCachableListener', 'datasource': 'datasource1', 'class': 'components\cms\models\PageModel'}
+        #or use these 3 to make the complete page static
+        - { 'event': 'request_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\LoadStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'response_start', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'render_complete', 'cacheKey': 'Blog', 'listener': 'core\components\blogs\listeners\SaveStaticCacheListener', 'datasource': 'datasource1', 'class': 'core\components\blogs\models\BlogModel'}
+        - { 'event': 'load_complete', 'listener': 'components\staff\listeners\LoadStaffByIdListener', 'datasource': 'datasource1'}
+    defaults:
+        component: core\components\blogs\BlogsComponent
+        controller: core\components\blogs\controllers\BlogsController
+        model: core\components\blogs\models\BlogModel
+        method: view
+        view: core\views\TemplateView
+        viewKey: website_blogs_view
+        datasource: datasource1
+    methods: [GET]
+    

@@ -1,0 +1,36 @@
+{
+	"name": "gossamercms/web-repo",
+    	"type": "library",
+        "description": "RESTful API for database calls",
+	"keywords": ["lightweight","framework", "mvc", "php"],
+	"homepage": "https://github.com/dmeikle/gossamerCMS-V2",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Dave Meikle",
+			"email": "david@quantumunit.com",
+			"homepage": "http://www.gossamercms.com",
+			"role": "Developer"
+		}
+	],
+
+	"require-dev": {
+		"phpunit/phpunit": "4.0.*"
+	},
+	"require": {
+		"monolog/monolog": "1.2.*",
+                "willdurand/geocoder": "@stable",
+                "quantumunit/php-validation": "dev-master",
+                "gossamer/form-builder": "dev-master",
+                "gossamer/caching": "dev-master",
+                "gossamer/pesedget": "dev-master",
+                "gossamer/horus": "dev-master",
+                "j7mbo/twitter-api-php": "dev-master",
+                "bramus/router": "dev-master",
+                "auth0/auth0-php": "~3.0"
+	},
+	"autoload": {
+		"psr-0": {"": "./"}
+	}
+	
+}

@@ -1,0 +1,12 @@
+
+tabbed_view_change:
+    pattern: admin/tabbedview/set
+    defaults:
+        component: core\components\tabbedview\TabbedViewComponent
+        controller:  core\components\tabbedview\controllers\TabbedViewController
+        model:  core\components\tabbedview\models\TabbedViewModel
+        method: change
+        view: core\views\JSONView
+        viewKey: tabbed_view_change
+        datasource: datasource1 
+
