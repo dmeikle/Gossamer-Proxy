@@ -1,0 +1,10 @@
+bugs_list_home:
+    path: 'app/framework/core/components/bugs/views/admin/list.php'
+    langFiles:
+        - 'app/framework/core/components/bugs/locales/*/Bugs'
+    
+bugs_edit_home:
+    path: 'app/framework/core/components/bugs/views/admin/edit.php'
+    langFiles:
+        - 'app/framework/core/components/bugs/locales/*/Bugs'
+        
