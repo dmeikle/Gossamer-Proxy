@@ -138,6 +138,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     public function execute($url, $method = 'GET', $parameters = array(), $headers = array()) {
         $client = clone $this;
         $client->url = $url;
+       
         $client->handle = curl_init();
         $curlopt = array(
             CURLOPT_HEADER => TRUE,

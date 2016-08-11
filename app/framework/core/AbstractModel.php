@@ -24,7 +24,8 @@ use Gossamer\Caching\CacheManager;
  *
  * @author Dave Meikle
  */
-class AbstractModel {
+class AbstractModel
+{
 
     protected $view = null;
     protected $dataSource = null;
@@ -63,7 +64,8 @@ class AbstractModel {
      * @param HTTPResponse $httpResponse
      * @param Logger $logger
      */
-    public function __construct(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse = null, Logger $logger) {
+    public function __construct(HTTPRequest &$httpRequest, HTTPResponse &$httpResponse = null, Logger $logger)
+    {
         $this->httpRequest = $httpRequest;
         $this->httpResponse = $httpResponse;
         $this->logger = $logger;
@@ -76,7 +78,8 @@ class AbstractModel {
      *
      * @return string
      */
-    public function getComponentName() {
+    public function getComponentName()
+    {
         $pieces = explode(DIRECTORY_SEPARATOR, $this->childNamespace);
         array_pop($pieces);
 
@@ -88,7 +91,8 @@ class AbstractModel {
      *
      * @return string
      */
-    function getTablename() {
+    function getTablename()
+    {
         return $this->tablename;
     }
 
@@ -97,7 +101,8 @@ class AbstractModel {
      *
      * @param Container $container
      */
-    public function setContainer(Container $container) {
+    public function setContainer(Container $container)
+    {
         $this->container = $container;
     }
 
@@ -107,7 +112,8 @@ class AbstractModel {
      *
      * @return string
      */
-    public function getEntity($stripNamespace = false) {
+    public function getEntity($stripNamespace = false)
+    {
         if ($stripNamespace) {
             $pieces = explode('\\', $this->entity);
 
@@ -121,11 +127,12 @@ class AbstractModel {
      *
      * @param DataSourceInterface $dataSource
      */
-    public function setDataSource(DataSourceInterface $dataSource) {
+    public function setDataSource(DataSourceInterface $dataSource)
+    {
         $this->dataSource = $dataSource;
     }
 
-    
+
     /**
      * queries the datasource and deletes the record
      *
@@ -134,7 +141,8 @@ class AbstractModel {
      *
      * @return array
      */
-    public function delete($customVerb = null) {
+    public function delete($customVerb = null)
+    {
 
         return $this->dataSource->query(self::METHOD_DELETE, $this, (is_null($customVerb) ? self::VERB_DELETE : $customVerb), $params);
     }
@@ -147,11 +155,11 @@ class AbstractModel {
      *
      * @return type
      */
-    public function save(array $params, $customVerb = null) {
+    public function save(array $params, $customVerb = null)
+    {
 
         return $this->dataSource->query(self::METHOD_POST, $this, (is_null($customVerb) ? self::VERB_SAVE : $customVerb), $params);
     }
-
 
 
     /**
@@ -164,8 +172,9 @@ class AbstractModel {
      *
      * @return array
      */
-    public function listall(array $params, $customVerb = null) {
-
+    public function listall(array $params, $customVerb = null)
+    {
+    
         return $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
     }
 
@@ -179,7 +188,8 @@ class AbstractModel {
      *
      * @return array
      */
-    public function listallWithParams(array $params, $customVerb = null) {
+    public function listallWithParams(array $params, $customVerb = null)
+    {
 
         return $this->dataSource->query(self::METHOD_GET, $this, (is_null($customVerb) ? self::VERB_LIST : $customVerb), $params);
     }
@@ -192,7 +202,8 @@ class AbstractModel {
      *
      * @return array
      */
-    public function get(array $params) {
+    public function get(array $params)
+    {
 
         return $this->dataSource->query(self::METHOD_GET, $this, self::VERB_GET, $params);
     }
@@ -203,7 +214,8 @@ class AbstractModel {
      *
      * @return HttpRequest
      */
-    public function getHttpRequest() {
+    public function getHttpRequest()
+    {
         return $this->httpRequest;
     }
 
@@ -212,10 +224,10 @@ class AbstractModel {
      *
      * @return HttpResponse
      */
-    public function getHttpResponse() {
+    public function getHttpResponse()
+    {
         return $this->httpResponse;
     }
-
 
 
 }
