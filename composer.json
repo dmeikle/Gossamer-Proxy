@@ -19,15 +19,9 @@
 	},
 	"require": {
 		"monolog/monolog": "1.2.*",
-                "willdurand/geocoder": "@stable",
-                "quantumunit/php-validation": "dev-master",
-                "gossamer/form-builder": "dev-master",
                 "gossamer/caching": "dev-master",
                 "gossamer/pesedget": "dev-master",
-                "gossamer/horus": "dev-master",
-                "j7mbo/twitter-api-php": "dev-master",
-                "bramus/router": "dev-master",
-                "auth0/auth0-php": "~3.0"
+                "gossamer/horus": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {"": "./"}
