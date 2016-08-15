@@ -166,7 +166,7 @@ class AbstractController {
 
 
     /**
-     * edit - display an input form based on requested id
+     * get - display an input form based on requested id
      *
      * @param int id    primary key of item to edit
      */
@@ -176,6 +176,42 @@ class AbstractController {
         $result = $this->model->get($params);
 
         return $this->render($result);
+    }
+    
+    /**
+     * customGet - call a custom verb using GET method
+     *
+     * @param void
+     */
+    public function customGet() {
+        $segments = $this->httpRequest->getUrlSegments();
+        $verb = array_pop($segments);
+
+        $params = $this->httpRequest->getQueryParameters();
+
+        $result = $this->model->listallWithParams($params, $verb);
+
+        return $this->render($result);
+    }
+
+    /**
+     * customPost - call a custom verb using POST method
+     *
+     * @param void
+     */
+    public function customPost() {
+        $segments = $this->httpRequest->getUrlSegments();
+        $verb = array_pop($segments);
+
+        $params = $this->httpRequest->getPost();
+
+        $data = $this->model->save($params, $verb);
+
+
+        $event = new Event('save_success', $data);
+        $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+
+        return $this->render($data);
     }
 
     /**

@@ -16,7 +16,8 @@ namespace core\http;
  *
  * @author Dave Meikle
  */
-class HTTPRequest extends AbstractHTTP {
+class HTTPRequest extends AbstractHTTP
+{
 
     protected $postParameters = null;
     protected $requestParameters = null;
@@ -32,7 +33,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param type $requestParameters
      * @param type $pattern
      */
-    public function __construct($requestParameters = null, $pattern = '') {
+    public function __construct($requestParameters = null, $pattern = '')
+    {
 
         $uri = __REQUEST_URI;
 
@@ -50,23 +52,28 @@ class HTTPRequest extends AbstractHTTP {
         $this->requestParameters = $params;
     }
 
-    public function getRestParameters() {
+    public function getRestParameters()
+    {
         return json_decode(file_get_contents("php://input"), true);
     }
 
-    public function setLayoutType(array $agentType) {
+    public function setLayoutType(array $agentType)
+    {
         $this->layoutType = $agentType;
     }
 
-    public function getLayoutType() {
+    public function getLayoutType()
+    {
         return $this->layoutType;
     }
 
-    public function setNodeConfig(array $config) {
+    public function setNodeConfig(array $config)
+    {
         $this->nodeConfig = $config;
     }
 
-    public function getNodeConfig() {
+    public function getNodeConfig()
+    {
         return $this->nodeConfig;
     }
 
@@ -77,7 +84,8 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return string|null
      */
-    public function getQueryParameter($key) {
+    public function getQueryParameter($key)
+    {
         if (array_key_exists($key, $this->queryString)) {
             return $this->queryString[$key];
         }
@@ -85,14 +93,16 @@ class HTTPRequest extends AbstractHTTP {
         return null;
     }
 
-    public function getQueryParameters() {
+    public function getQueryParameters()
+    {
         return $this->queryString;
     }
 
     /**
      * formats the query string into a readable array
      */
-    protected function formatQueryString() {
+    protected function formatQueryString()
+    {
         $temp = explode('&', $_SERVER['QUERY_STRING']);
 
         foreach ($temp as $row) {
@@ -114,7 +124,8 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return array
      */
-    protected function getParams($filter, $uri) {
+    protected function getParams($filter, $uri)
+    {
 
         if (substr($filter, 0, 1) == '/' && substr($uri, 0, 1) != '/') {
             $filter = substr($filter, 1); //knock the preceding '/' if it's not there - varies from server to server
@@ -139,7 +150,8 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return string
      */
-    protected function parseURIParams($pattern) {
+    protected function parseURIParams($pattern)
+    {
 
         $pieces = explode('/', $pattern);
         $retval = '';
@@ -159,14 +171,16 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return string
      */
-    public function getHeader($headerName) {
+    public function getHeader($headerName)
+    {
         return $this->headers[$headerName];
     }
 
     /**
      * initialize values
      */
-    protected function init() {
+    protected function init()
+    {
 
         $this->headers = getallheaders();
         $this->attributes['ipAddress'] = $_SERVER['REMOTE_ADDR'];
@@ -178,7 +192,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param string $key
      * @param string $value
      */
-    public function setAttribute($key, $value) {
+    public function setAttribute($key, $value)
+    {
 
         $this->attributes[$key] = $value;
     }
@@ -189,7 +204,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param string $key
      * @return string
      */
-    public function getAttribute($key) {
+    public function getAttribute($key)
+    {
 
         if (is_null($this->attributes)) {
             return null;
@@ -206,7 +222,8 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return array
      */
-    public function getParameters() {
+    public function getParameters()
+    {
         return $this->requestParameters;
     }
 
@@ -215,7 +232,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param string $key
      * @return string
      */
-    public function getParameter($key) {
+    public function getParameter($key)
+    {
         if (array_key_exists($key, $this->requestParameters)) {
             return $this->requestParameters[$key];
         }
@@ -228,7 +246,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param string $key
      * @return string|null
      */
-    public function getPostParameter($key) {
+    public function getPostParameter($key)
+    {
 
         if (array_key_exists($key, $this->postParameters)) {
             return $this->postParameters[$key];
@@ -244,7 +263,8 @@ class HTTPRequest extends AbstractHTTP {
      * @param string $key
      * @param mixed $value
      */
-    public function setPostParameter($key, $value) {
+    public function setPostParameter($key, $value)
+    {
         $this->postParameters[$key] = $value;
     }
 
@@ -253,7 +273,8 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return array
      */
-    public function getPost() {
+    public function getPost()
+    {
         return $this->postParameters;
     }
 
@@ -261,18 +282,29 @@ class HTTPRequest extends AbstractHTTP {
      *
      * @return string
      */
-    public function getUri() {
+    public function getUri()
+    {
         return $this->uri;
     }
 
-    public function addModule($module) {
+    public function addModule($module)
+    {
         if (!in_array($module, $this->modules)) {
             $this->modules[] = $module;
         }
     }
 
-    public function getModules() {
+    public function getModules()
+    {
         return $this->modules;
     }
 
+    public function getUrlSegments()
+    {
+        $segments = explode('/', $this->uri);
+        if(count($segments) > 2) {
+            array_pop($segments);
+        }
+        return $segments;
+    }
 }
