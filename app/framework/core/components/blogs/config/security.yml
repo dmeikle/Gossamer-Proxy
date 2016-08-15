@@ -1,7 +1,0 @@
-
-
-website_blogs_minimenu:
-    roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    
