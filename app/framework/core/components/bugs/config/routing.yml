@@ -1,0 +1,68 @@
+
+
+admin_bugs_save:
+    pattern: admin/bugs/*
+    defaults:
+        component: core\components\bugs\BugsComponent
+        controller: core\components\bugs\controllers\BugsController
+        model: core\components\bugs\models\BugModel
+        method: save
+        view: core\views\JSONView
+        viewKey: admin_bugs_save
+        datasource: datasource1
+    methods: [POST]
+        
+admin_bugs_search:
+    pattern: admin/bugs/search
+    defaults:
+        component: core\components\bugs\BugsComponent
+        controller: core\components\bugs\controllers\BugsController
+        model: core\components\bugs\models\BugModel
+        method: advancedSearch
+        view: core\views\JSONView
+        viewKey: admin_bugs_search
+        datasource: datasource1
+    methods: [GET]
+
+
+admin_bugs_get:
+    pattern: admin/bugs/*
+    defaults:
+        component: core\components\bugs\BugsComponent
+        controller: core\components\bugs\controllers\BugsController
+        model: core\components\bugs\models\BugModel
+        method: edit
+        view: core\views\JSONView
+        viewKey: admin_bugs_remove
+        datasource: datasource1
+    methods: [GET]
+        
+ 
+admin_bugs_remove:
+    pattern: admin/bugs/remove/*
+    defaults:
+        component: core\components\bugs\BugsComponent
+        controller: core\components\bugs\controllers\BugsController
+        model: core\components\bugs\models\BugModel
+        method: setInactive
+        view: core\views\JSONView
+        viewKey: admin_bugs_remove
+        datasource: datasource1
+    methods: [POST]
+    
+
+admin_bugs_list:
+    pattern: admin/bugs/*/*
+    defaults:
+        component: core\components\bugs\BugsComponent
+        controller: core\components\bugs\controllers\BugsController
+        model: core\components\bugs\models\BugModel
+        method: listAllReverse
+        view: core\views\JSONView
+        viewKey: admin_bugs_list
+        datasource: datasource1
+    methods: [GET]
+    
+    
+    
+       
