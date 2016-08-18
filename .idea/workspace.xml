@@ -2,39 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60d516cc-0811-49f5-8587-f27f3b293fe1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/messagingarticles/tests/controllers/MessagingArticlesControllerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/messagingarticles/config/views.yml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsSrv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/BugsComponent.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/config/render.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/locales/en_US/Bugs.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsAdmin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/config/credentials-sample.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/models/BugModel.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/config/routing.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/controllers/BugsController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/views/admin/edit.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsEditCtrl.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/messagingarticles/tests/controllers/MessagingArticlesControllerTest.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/views/admin/list.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/scss/bugs.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/views/admin/edit.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/locales/en_US/Bugs.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/config/credentials-sample.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/BugsComponent.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/config/views.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsSrv.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsAdmin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/models/BugModel.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsListCtrl.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/components/locales/controllers/LocaleController.php" afterPath="$PROJECT_DIR$/app/framework/core/components/locales/controllers/LocaleController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gcmstests_old/BaseTest.php" afterPath="$PROJECT_DIR$/gcmstests_old/BaseTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src" afterPath="$PROJECT_DIR$/src" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/bootstrap.yml" afterPath="$PROJECT_DIR$/app/config/bootstrap.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/AbstractModel.php" afterPath="$PROJECT_DIR$/app/framework/core/AbstractModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gcmstests/BaseTest.php" afterPath="$PROJECT_DIR$/gcmstests/BaseTest.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/js/bugsEditCtrl.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/scss/bugs.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/ng/bower.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/config/render.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/controllers/BugsController.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/framework/core/bugs/config/routing.yml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/AbstractComponent.php" afterPath="$PROJECT_DIR$/app/framework/core/AbstractComponent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/components/locales/config/routing.yml" afterPath="$PROJECT_DIR$/app/framework/core/components/locales/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/members/controllers/MembersController.php" afterPath="$PROJECT_DIR$/src/components/members/controllers/MembersController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/members/models/MemberModel.php" afterPath="$PROJECT_DIR$/src/components/members/models/MemberModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gcmstests/BaseTest.php" afterPath="$PROJECT_DIR$/gcmstests/BaseTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/members/controllers/MembersController.php" afterPath="$PROJECT_DIR$/src/components/members/controllers/MembersController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/components/locales/config/routing.yml" afterPath="$PROJECT_DIR$/app/framework/core/components/locales/config/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/components/locales/controllers/LocaleController.php" afterPath="$PROJECT_DIR$/app/framework/core/components/locales/controllers/LocaleController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/framework/core/AbstractModel.php" afterPath="$PROJECT_DIR$/app/framework/core/AbstractModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src" afterPath="$PROJECT_DIR$/src" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gcmstests_old/BaseTest.php" afterPath="$PROJECT_DIR$/gcmstests_old/BaseTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/bootstrap.yml" afterPath="$PROJECT_DIR$/app/config/bootstrap.yml" />
     </list>
     <ignored path="api.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,14 +79,14 @@
       <file leaf-file-name="RestDataSource.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/framework/core/datasources/RestDataSource.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="425">
               <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -96,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
@@ -109,7 +109,7 @@
       <file leaf-file-name="BaseTest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gcmstests/BaseTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1275">
+            <state relative-caret-position="1615">
               <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
               <folding>
                 <element signature="e#29#63#0#PHP" expanded="true" />
@@ -121,7 +121,7 @@
       <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="85">
               <caret line="5" column="29" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="29" />
               <folding />
             </state>
@@ -131,7 +131,7 @@
       <file leaf-file-name="MessagingArticleModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/models/MessagingArticleModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="102">
               <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
               <folding>
                 <element signature="e#139#162#0#PHP" expanded="true" />
@@ -249,6 +249,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="Scratches">
         <subPane />
       </pane>
@@ -271,9 +274,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
       </pane>
     </panes>
   </component>
@@ -348,11 +348,12 @@
       <workItem from="1470721769356" duration="174000" />
       <workItem from="1470721952191" duration="1323000" />
       <workItem from="1470888168103" duration="1225000" />
+      <workItem from="1471487608539" duration="10000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30363000" />
+    <option name="totallyTimeSpent" value="30373000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="29" y="33" width="1429" height="1070" extended-state="0" />
@@ -363,7 +364,6 @@
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19522326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -372,6 +372,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19522326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -625,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,7 +666,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="85">
           <caret line="5" column="29" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="29" />
           <folding />
         </state>
@@ -674,7 +674,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gcmstests/BaseTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
+        <state relative-caret-position="1615">
           <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
           <folding>
             <element signature="e#29#63#0#PHP" expanded="true" />
@@ -682,25 +682,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/tests/controllers/MessagingArticlesControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gcmstests_old/BaseTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="63" column="53" selection-start-line="63" selection-start-column="53" selection-end-line="63" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/tests/controllers/MessagingArticlesControllerTest.php" />
+    <entry file="file://$PROJECT_DIR$/gcmstests_old/BaseTest.php" />
     <entry file="file://$PROJECT_DIR$/src/components/messagingarticles/models/MessagingArticleModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="102">
           <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
           <folding>
             <element signature="e#139#162#0#PHP" expanded="true" />
@@ -747,16 +733,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/framework/core/datasources/RestDataSource.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="425">
           <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -765,6 +743,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
           <folding />
         </state>
       </provider>
