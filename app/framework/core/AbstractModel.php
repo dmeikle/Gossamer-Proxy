@@ -157,7 +157,6 @@ class AbstractModel
      */
     public function save(array $params, $customVerb = null)
     {
-
         return $this->dataSource->query(self::METHOD_POST, $this, (is_null($customVerb) ? self::VERB_SAVE : $customVerb), $params);
     }
 

@@ -207,7 +207,6 @@ class AbstractController {
 
         $data = $this->model->save($params, $verb);
 
-
         $event = new Event('save_success', $data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
 
@@ -223,7 +222,6 @@ class AbstractController {
         $params = $this->httpRequest->getPost();
 
         $data = $this->model->save($params);
-
 
         $event = new Event('save_success', $data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);

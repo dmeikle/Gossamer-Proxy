@@ -25,6 +25,9 @@ define('__YML_KEY', $nodeConfig['ymlKey']);
 define('__VIEW_KEY', $controllerNode['viewKey']);
 define('__COMPONENT_FOLDER', $nodeConfig['componentFolder']);
 define('__NAMESPACE', $nodeConfig['namespace']);
+
+define('__DEBUG_OUTPUT_PATH', '/var/www/binghan/logs/api_debug.log');
+
 //echo '<br>key: '.__YML_KEY;
 $datasources = $container->get('datasources', array());
 
