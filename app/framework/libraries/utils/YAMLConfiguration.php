@@ -190,6 +190,7 @@ class YAMLConfiguration {
     private function getYMLNodeParameters($ymlKey) {
 
         if ($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
+          
             throw new \exceptions\YamlKeyNotFoundException('Yml Key not found in config routing file.');
         }
         return $nodeParams = $this->config[$ymlKey];
