@@ -13,10 +13,14 @@ use core\eventlisteners\EventDispatcher;
 $logger = new Logger('namespace');
 $langFilesList = array();
 $configuration = new YAMLConfiguration($logger);
-//error_log(__REQUEST_URI);
-//echo __REQUEST_URI;
 
-$nodeConfig = $configuration->getNodeParameters(__REQUEST_URI);
+$nodeConfig = null;
+try {
+    $nodeConfig = $configuration->getNodeParameters(__REQUEST_URI);
+} catch (\Exception $e) {
+    echo json_encode(array('code' => $e->getCode(), 'message' => $e->getMessage()));
+    exit;
+}
 
 $controllerNode = $nodeConfig['defaults'];
 $controllerNode['pattern'] = $nodeConfig['pattern'];
@@ -70,7 +74,7 @@ $container->get('HTTPRequest')->setAttribute('langFilesList', $langFilesList);
 try {
     //fire any on_entry events for all uris
     $container->get('EventDispatcher')->dispatch('all', 'entry_point');
- 
+
     $container->get('EventDispatcher')->dispatch(__YML_KEY, 'entry_point');
 
 } catch (core\components\security\exceptions\TokenExpiredException $e) {
@@ -94,7 +98,8 @@ try {
     die;
 }
 
-function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
+function iterateComponentConfigurations(EventDispatcher $eventDispatcher)
+{
     global $logger;
     global $langFilesList;
 
@@ -126,7 +131,8 @@ function iterateComponentConfigurations(EventDispatcher $eventDispatcher) {
     return $retval;
 }
 
-function getDirectoryList() {
+function getDirectoryList()
+{
 
     $retval = array();
 
@@ -161,7 +167,8 @@ function getDirectoryList() {
     return $retval;
 }
 
-function loadServiceConfigurations() {
+function loadServiceConfigurations()
+{
     global $logger;
     $subdirectories = getDirectoryList();
     $serviceBootstraps = array();
@@ -186,7 +193,8 @@ function loadServiceConfigurations() {
     return $serviceBootstraps;
 }
 
-function super_unset($item) {
+function super_unset($item)
+{
     try {
         if (is_object($item) && method_exists($item, "__destruct")) {
             $item->__destruct();

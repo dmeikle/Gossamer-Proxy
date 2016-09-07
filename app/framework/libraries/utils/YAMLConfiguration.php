@@ -64,6 +64,7 @@ class YAMLConfiguration {
 
         $routingPath = $this->getInitialRouting($uri);
 
+
         $this->loadConfig($routingPath);
         $explodedPath = explode('/', $routingPath);
 
@@ -79,7 +80,7 @@ class YAMLConfiguration {
             error_log($e->getMessage());
 
             http_response_code(404);
-            throw new \exceptions\Error404Exception();
+            throw new \exceptions\Error404Exception('URL does not exist in API',404);
         }
         $nodeParams['namespace'] = $namespace;
         $nodeParams['ymlKey'] = $ymlKey;
