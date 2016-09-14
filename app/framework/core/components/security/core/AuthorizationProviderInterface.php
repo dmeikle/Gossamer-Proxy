@@ -11,7 +11,7 @@
 
 namespace core\components\security\core;
 
-use core\components\security\core\ClientInterface;
+use core\components\security\core\ServerInterface;
 
 /**
  * AuthorizationProviderInterface
@@ -20,7 +20,7 @@ use core\components\security\core\ClientInterface;
  */
 interface AuthorizationProviderInterface {
 
-    public function setClient(ClientInterface $client);
+    public function setServer(ServerInterface $server);
 
-    public function isAuthorized();
+    public function isAuthorized(Server $server, $memberId);
 }

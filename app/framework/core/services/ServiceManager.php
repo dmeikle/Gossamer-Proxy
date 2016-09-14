@@ -11,6 +11,7 @@
 
 namespace core\services;
 
+use core\services\traits\MultipleDatasourcesTrait;
 use libraries\utils\YAMLParser;
 use core\services\ServiceInterface;
 use Monolog\Logger;
@@ -103,6 +104,11 @@ class ServiceManager {
 
                 $class->setDatasource($conn);
             }
+        }
+        $usedTraits = class_uses($class);
+
+        if(array_key_exists('core\services\traits\MultipleDatasourcesTrait', $usedTraits)) {
+            $class->setDatasourceFactory($this->datasourceFactory);
         }
 
         if ($class instanceof HttpAwareInterface) {

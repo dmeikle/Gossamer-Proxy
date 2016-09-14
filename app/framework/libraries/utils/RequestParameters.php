@@ -15,103 +15,43 @@ use database\DBConnection;
 
 /**
  * Request class - used to protect system from directly accessing $_REQUEST values
- *               - and mysql escaping them before permitting access to them
+ *               - determines name and value based on configuration
  *
  * @author Dave Meikle
  * Copyright: Quantum Unit Solutions 2013
  */
-class RequestParameters {
+class RequestParameters
+{
 
-    /**
-     * we need a connection so we can access the mysql methods
-     */
-    private $conn = null;
+    private $uri;
 
-    /**
-     * the request method we are handling
-     */
-    private $method;
+    private $container = null;
 
-    /**
-     * array of parameters we receive
-     */
-    private $params = null;
+    private $config;
+
 
     /**
      * constructor
      *
      * @param string    method (optional)
      */
-    public function __construct($method = null) {
-        $this->method = $method;
+    public function __construct($uri)
+    {
+        $this->uri = $uri;
+
     }
 
     /**
-     * getConnection
-     *
-     * we just need any connection so no need to inject one
-     *
-     * @return DBConnection conn
+     * @param Container $container
      */
-    private function getConnection() {
-        if (is_null($this->conn)) {
-            $this->conn = new DBConnection();
-        }
+    public function setContainer(Container $container) {
+        $this->container = $container;
 
-        return $this->conn->getConnection();
+        $this->config = $this->container->get('HTTPRequest')->getNodeConfig();
     }
 
-    /**
-     * setParams - accessor
-     *
-     * @param array     params - received params from either $_POST or $_GET
-     */
-    public function setParams($params) {
-        $this->params = $this->scrub($params);
+    public function getURIParameters() {
+        pr($this->config);
+        die;
     }
-
-    /**
-     * get - returns a value from the parameters scrubbed
-     *
-     * @param string    fieldname
-     *
-     * @return variant
-     */
-    public function get($fieldName) {
-        return $this->params[$fieldname];
-    }
-
-    /**
-     * scrub - mysql escapes passed in values
-     *
-     * @param string|array  params - values to scrub
-     *
-     * @return string|array the escaped values
-     */
-    public function scrub($params) {
-        $conn = $this->getConnection();
-        if (!is_array($params)) {
-            return mysqli_real_escape_string($conn, $params);
-        }
-        $retval = array();
-        foreach ($params as $key => $value) {
-            if (is_array($value)) {
-                $retval[$key] = $this->scrub($value);
-            } else {
-                $retval[$key] = mysqli_real_escape_string($conn, $value);
-            }
-        }
-
-        return $retval;
-    }
-
-    /**
-     * getParams - returns the complete list
-     *
-     * @return array
-     */
-    public function getParams() {
-        return $this->params;
-    }
-
 }

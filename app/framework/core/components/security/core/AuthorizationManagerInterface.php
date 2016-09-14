@@ -9,7 +9,7 @@
  *  file that was distributed with this source code.
  */
 
-namespace core\components\security\core; 
+namespace core\components\security\core;
 
 use core\components\security\core\SecurityContextInterface;
 
@@ -18,11 +18,11 @@ use core\components\security\core\SecurityContextInterface;
  *
  * @author Dave Meikle
  */
-interface AuthenticationManagerInterface {
+interface AuthorizationManagerInterface {
 
-    public function authenticate(SecurityContextInterface $context); //(TokenInterface $token);    
+    public function authorize(SecurityContextInterface $context); //(TokenInterface $token);
 
     public function generateEmptyToken();
 
-    public function getClient();
+    public function getServer();
 }

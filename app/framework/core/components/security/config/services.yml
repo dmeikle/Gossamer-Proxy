@@ -47,4 +47,5 @@ authentication_contactlogin_manager:
 authentication_invitelogin_manager:  
     handler: 'core\components\security\core\UserLoginManager'
     'arguments': 
-        - '@invite_authentication_provider'       
+        - '@invite_authentication_provider'
+

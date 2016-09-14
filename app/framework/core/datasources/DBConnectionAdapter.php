@@ -23,9 +23,9 @@ use core\datasources\DataSourceInterface;
  */
 class DBConnectionAdapter extends ConnectionAdapter implements DataSourceInterface {
 
-    public function __construct(Logger $logger, DBConnection $conn = null) {
+    public function __construct(Logger $logger = null, DBConnection $conn = null, array $credentials = null) {
         if(is_null($conn)) {
-            parent::__construct($logger, new DBConnection());
+            parent::__construct($logger, new DBConnection($credentials['host'], $credentials['username'], $credentials['password'], $credentials['dbName']));
         } else {
             parent::__construct($logger, $conn);
         }

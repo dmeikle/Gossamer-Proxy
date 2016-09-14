@@ -47,4 +47,43 @@ portal_invite_login_submit:
     pattern: portal/contacts/invite/login
     authentication: invite_login_auth
     fail_url: portal/contacts/invite/login
-    methods: [POST]        
+    methods: [POST]
+
+
+#members module
+member_reports:
+    pattern: members/*/reports
+    authorization: member_info_auth
+    methods: [POST]
+
+member_receipts:
+    pattern: members/*/receipts/*
+    authorization: member_info_auth
+    methods: [GET]
+
+member_reports_v1:
+    pattern: member_reports/*
+    authorization: member_info_auth
+    methods: [POST]
+
+
+#receipts module
+receipt_details:
+    pattern: receiptDetails/*
+    authorization: receipt_info_auth
+    methods: [GET]
+
+company_reports:
+    pattern: reports
+    authorization: report_info_auth
+    methods: [POST]
+
+receipt_backdate:
+    pattern: receipt/backdate
+    authorization: receipt_backdate_auth
+    methods: [POST]
+
+receipt_comments:
+    pattern: receiptComments/*
+    authorization: receipt_comments_auth
+    methods: [GET]

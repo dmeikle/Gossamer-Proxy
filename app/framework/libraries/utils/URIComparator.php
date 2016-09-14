@@ -34,6 +34,7 @@ class URIComparator {
      * @return boolean
      */
     public function findPattern($config, $uri) {
+
         $key = $this->retrieveFromCache($uri, true);
         if (!is_null($key) && $key !== false) {
 
@@ -49,9 +50,11 @@ class URIComparator {
                     continue;
                 }
             }
+
             if (array_key_exists('pattern', $grouping)) {
 
                 if ($grouping['pattern'] == $uri) {
+
                     $this->saveToCache($uri, $outerkey);
 
                     return $outerkey;
@@ -151,7 +154,6 @@ class URIComparator {
         for ($i = 0; $i < count($uriPieces); $i++) {
             if (array_key_exists($i, $pagePieces)) {
                 if ($pagePieces[$i] == '*') {
-
                     continue;
                 }
 

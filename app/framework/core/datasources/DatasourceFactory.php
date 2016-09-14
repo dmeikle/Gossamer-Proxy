@@ -32,7 +32,7 @@ class DatasourceFactory {
      * 
      * @throws \Exception
      */
-    public function getDatasource($sourceName, Logger $logger) {
+    public function getDatasource($sourceName, Logger $logger = null) {
         $datasources = $this->getDatasources();
 
         if (!array_key_exists($sourceName, $datasources)) {
@@ -68,7 +68,7 @@ class DatasourceFactory {
      * 
      * @return \core\datasources\datasourceClass
      */
-    private function buildDatasourceInstance($sourceName, Logger $logger) {
+    private function buildDatasourceInstance($sourceName, Logger $logger = null) {
         $parser = new YAMLParser($logger);
         $ymlFilePath = __SITE_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'credentials.yml';
         $parser->setFilePath($ymlFilePath);
@@ -77,11 +77,19 @@ class DatasourceFactory {
 
         $datasourceClass = $dsConfig[$sourceName]['class'];
 
-        $datasource = new $datasourceClass($logger);
+        $datasource = new $datasourceClass($logger, null, $this->getCredentials($dsConfig[$sourceName]));
         unset($parser);
         $datasource->setDatasourceKey($sourceName);
 
         return $datasource;
+    }
+
+    private function getCredentials($config) {
+        if(!array_key_exists('credentials', $config)) {
+            return null;
+        }
+
+        return $config['credentials'];
     }
 
 }

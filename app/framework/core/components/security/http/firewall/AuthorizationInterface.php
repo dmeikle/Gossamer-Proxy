@@ -15,11 +15,19 @@ use core\components\security\core\SecurityContextInterface;
 use core\components\security\core\AuthenticationManager;
 
 /**
- * FirewallInterface
+ * AuthorizationInterface
  *
  * @author Dave Meikle
  */
 interface AuthorizationInterface {
 
-    public function __construct(SecurityContextInterface $context, AuthenticationManager $manager);
+    public function __construct(SecurityContextInterface $context, AuthorizationManager $manager);
+
+    public function loadServerByCredentials($credential);
+
+    public function refreshClient(ClientInterface $client);
+
+    public function supportsClass($class);
+
+    public function getRoles(ClientInterface $client);
 }

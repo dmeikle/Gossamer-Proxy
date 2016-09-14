@@ -25,8 +25,8 @@ use core\datasources\AdapterInterface;
  */
 class RestDataSource implements DataSourceInterface, AdapterInterface {
 
-    private $logger = null;
-    private $keyname = null;
+    protected $logger = null;
+    protected $keyname = null;
 
     const METHOD_DELETE = 'delete';
     const METHOD_SAVE = 'save';
@@ -76,7 +76,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
         $api->setLogger($this->logger);
 
         $result = $api->$queryType($entity->getTablename() . "/$verb/", $params);
-        //pr($result);
+      //  pr($result);
 
         if ($result->info->http_code == 200) {
             $decodedResult = $result->decode_response();
@@ -103,7 +103,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
         }
     }
 
-    private function handleError($result) {
+    protected function handleError($result) {
         if (!is_object($result)) {
             pr($result);
             die;
@@ -122,7 +122,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
      *
      * @return array
      */
-    private function buildHeaders($credentials) {
+    protected function buildHeaders($credentials) {
 
         $retval = $credentials['headers'];
 
@@ -146,7 +146,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
      *
      * @return array
      */
-    private function getCredentials($ymlKey) {
+    protected function getCredentials($ymlKey) {
 
         $config = new YAMLCredentialsConfiguration($this->logger);
 

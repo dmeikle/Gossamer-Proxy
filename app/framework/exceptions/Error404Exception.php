@@ -16,6 +16,10 @@ namespace exceptions;
  *
  * @author Dave Meikle
  */
-class Error404Exception extends \Exception {
-    
+class Error404Exception extends \Exception
+{
+    public function __construct($message)
+    {
+        parent::__construct($message, 404);
+    }
 }

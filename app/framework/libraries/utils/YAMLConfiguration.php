@@ -11,6 +11,7 @@
 
 namespace libraries\utils;
 
+use exceptions\Error404Exception;
 use Monolog\Logger;
 use exceptions\URINotFoundException;
 use libraries\utils\YAMLParser;
@@ -143,6 +144,7 @@ class YAMLConfiguration {
         unset($parser);
         $this->datasources = $config;
 
+
         //if we haven't found anything matching see if we can simply return a default config
         if (!array_key_exists($chunk, $config)) {
             if (!array_key_exists('default', $config)) {
@@ -173,7 +175,10 @@ class YAMLConfiguration {
      */
     public function findConfigKeyByURIPattern($configList, $uriPattern) {
         $comparator = new URIComparator(new \Gossamer\Caching\CacheManager());
-
+        if($configList === false) {
+            throw new Error404Exception('URI segment does not exist in application routing');
+        }
+        
         $uriConfig = $comparator->findPattern($configList, $uriPattern);
 
         unset($comparator);
@@ -191,7 +196,7 @@ class YAMLConfiguration {
     private function getYMLNodeParameters($ymlKey) {
 
         if ($ymlKey == '' || !array_key_exists($ymlKey, $this->config)) {
-          
+
             throw new \exceptions\YamlKeyNotFoundException('Yml Key not found in config routing file.');
         }
         return $nodeParams = $this->config[$ymlKey];

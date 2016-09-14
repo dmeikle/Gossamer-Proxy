@@ -26,10 +26,12 @@ abstract class ConnectionAdapter {
     protected $datasource = null;
     protected $logger = null;
     protected $keyname;
+    protected $credentials;
 
-    public function __construct(Logger $logger, AdapterInterface $datasource) {
+    public function __construct(Logger $logger = null, AdapterInterface $datasource, array $credentials = null) {
         $this->datasource = $datasource;
         $this->logger = $logger;
+        $this->credentials = $credentials;
     }
 
     public function setDatasourceKey($keyName) {

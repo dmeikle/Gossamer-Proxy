@@ -86,6 +86,8 @@ class Firewall {
         if (array_key_exists('authentication', $config[$key])) {
 
             return $config[$key]['authentication'];
+        } elseif (array_key_exists('authorization', $config[$key])) {
+            return $config[$key]['authorization'];
         }
 
         return null;

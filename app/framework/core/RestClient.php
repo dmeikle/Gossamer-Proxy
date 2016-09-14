@@ -36,7 +36,7 @@ class RestClient implements \Iterator, \ArrayAccess {
     // Populated as-needed.
     public $decoded_response; // Decoded response body.
     private $iterator_positon;
-    private $logger = null;
+    protected $logger = null;
     private $lastUrl = '';
 
     public function __construct($options = array()) {
@@ -251,14 +251,15 @@ class RestClient implements \Iterator, \ArrayAccess {
 
     public function decode_response() {
 
-        //fix for odd bug where header info gets cast into response data
-        if (strpos($this->response, '{') != 0) {
-            $tmp = explode('{', $this->response, 2);
-            $this->response = '{' . $tmp[1];
-        }
+//        //fix for odd bug where header info gets cast into response data
+//        if (strpos($this->response, '{') != 0) {
+//            $tmp = explode('{', $this->response, 2);
+//            $this->response = '{' . $tmp[1];
+//        }
 
         if (empty($this->decoded_response)) {
             $format = $this->get_response_format();
+
             if (!array_key_exists($format, $this->options['decoders']))
                 throw new RestClientException("'${format}' is not a supported " .
                 "format, register a decoder to handle this response.");

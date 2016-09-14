@@ -30,6 +30,7 @@ class URISectionComparator extends URIComparator {
         //break the uri into an array so we can pop it off in each iteration
         //this time we're simply looking for a matching parent folder
         $pieces = explode('/', $uri);
+      
         $key = false;
         while (!$key && count($pieces) > 0) {
 
@@ -42,6 +43,7 @@ class URISectionComparator extends URIComparator {
                 return $key;
             }
         }
+        
         return false;
     }
 

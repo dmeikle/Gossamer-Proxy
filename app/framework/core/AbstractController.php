@@ -194,6 +194,22 @@ class AbstractController {
         return $this->render($result);
     }
 
+
+    public function passThroughGet() {
+
+        $rawQueryParams = $this->httpRequest->getQueryParameters();
+        $queryParams = '';
+        foreach($rawQueryParams as $key => $value) {
+            $queryParams .= '&' . $key .'=' . $value;
+        }
+        $uri = $this->httpRequest->getUri();
+        $uri .= ((strlen($queryParams) > 0)? '?'.substr($queryParams,1) : '');
+
+        $result = $this->model->listallWithParams(array(), $uri);
+
+        return $this->render($result);
+    }
+
     /**
      * customPost - call a custom verb using POST method
      *
@@ -209,6 +225,28 @@ class AbstractController {
 
         $event = new Event('save_success', $data);
         $this->container->get('EventDispatcher')->dispatch(__YML_KEY, 'save_success', $event);
+
+        return $this->render($data);
+    }
+
+    public function passThroughPost() {
+        //find any querystring params if they exist (eg: apikey is passed on uri in older versions)
+        $rawQueryParams = $this->httpRequest->getQueryParameters();
+        $queryParams = '';
+        foreach($rawQueryParams as $key => $value) {
+            $queryParams .= '&' . $key .'=' . $value;
+        }
+
+        $segments = $this->httpRequest->getUrlSegments();
+
+        //drop the module name
+        //array_shift($segments);
+        $uri = $this->httpRequest->getUri();
+        $uri .= ((strlen($queryParams) > 0)? '?'.substr($queryParams,1) : '');
+
+        $params = $this->httpRequest->getPost();
+
+        $data = $this->model->save($params, $uri);
 
         return $this->render($data);
     }

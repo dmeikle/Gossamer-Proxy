@@ -27,10 +27,10 @@ class DBConnection implements AdapterInterface {
     // change these values. Yes, this should be a config file outside of web root
     // preferably in an environment variable if this were a dedicated server.
 
-    protected $host = 'localhost';
-    protected $user = 'phoenixdave';
-    protected $pass = '0s1r15';
-    protected $db = 'phoenix_local';
+    protected $host = '';
+    protected $user = '';
+    protected $pass = '';
+    protected $db = '';
     private $lastQuery = '';
     protected $logger = null;
     protected $stack;
