@@ -79,15 +79,22 @@ class YAMLViewConfiguration {
      * @return string   the filepath to use
      */
     public function getInitialRouting($requestURI) {
+
         $parser = new YAMLParser($this->logger);
 
         $pieces = array_filter(explode('/', $requestURI));
 
         $parser->setFilePath(__SITE_PATH . '/app/config/routing.yml');
         $chunk = array_shift($pieces);
+
+        //strip off any params on a single segment uri
+        if(strpos($chunk, '?') !==false) {
+            $chunk = substr($chunk, 0, strpos($chunk, '?'));
+        }
         if ($chunk == 'admin' || $chunk == 'portal' || $chunk == 'super' || $chunk == 'service') {
             $chunk = array_shift($pieces); //drop the admin for the routing file
         }
+
         $config = $parser->loadConfig();
 
         unset($parser);
@@ -137,6 +144,8 @@ class YAMLViewConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
+        pr($this->config);
+
         if (!is_array($this->config)) {
             throw new \Exception('yaml key not found in views config');
         }

@@ -11,7 +11,6 @@ namespace core\datasources;
 
 use core\ProxyRestClient;
 use core\AbstractModel;
-use exceptions\Error500Exception;
 
 class ProxyDataSource extends RestDataSource
 {
@@ -38,7 +37,7 @@ class ProxyDataSource extends RestDataSource
             'headers' => $this->buildHeaders($credentials)
         ));
         $api->setLogger($this->logger);
-die($uri);
+//die($uri);
         $result = $api->$queryType($uri, $params);
          // pr($result);
 
@@ -60,9 +59,7 @@ die($uri);
         } elseif ($result->info->http_code == 500) {
 
             $decodedResult = $result->decode_response();
-            if(is_null($decodedResult)) {
-                throw new Error500Exception('Invalid response from REST API', 500);
-            }
+
             if (array_key_exists('code', $decodedResult)) {
                 $this->handleError($decodedResult);
             }

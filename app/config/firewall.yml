@@ -51,20 +51,43 @@ portal_invite_login_submit:
 
 
 #members module
-member_reports:
+members_reports:
     pattern: members/*/reports
     authorization: member_info_auth
     methods: [POST]
 
-member_receipts:
+members_receipts:
     pattern: members/*/receipts/*
     authorization: member_info_auth
     methods: [GET]
 
-member_reports_v1:
+members_promote_v3:
+    pattern: promote/*
+    authorization: member_info_auth
+    methods: [POST]
+
+members_reports_v1:
     pattern: member_reports/*
     authorization: member_info_auth
     methods: [POST]
+
+memberSales_v3:
+    pattern: memberSales/*
+    authorization: member_info_auth
+    methods: [POST]
+
+member_get:
+    pattern: member/*
+    authorization: member_info_auth
+    methods: [GET]
+
+
+members_v3:
+    pattern: members
+    authorization: member_info_auth
+    methods: [POST]
+
+
 
 
 #receipts module
