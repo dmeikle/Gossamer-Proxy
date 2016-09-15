@@ -88,7 +88,10 @@ members_v3:
     methods: [POST]
 
 
-
+members_prefixstatus:
+    pattern: member/editPrefixStatus
+    authorization: server_by_key_auth
+    methods: [POST]
 
 #receipts module
 receipt_details:
@@ -109,4 +112,37 @@ receipt_backdate:
 receipt_comments:
     pattern: receiptComments/*
     authorization: receipt_comments_auth
+    methods: [GET]
+
+
+#invoicing module
+
+renewal_invoice:
+    pattern: renewal
+    authorization: server_by_key_auth
+    methods: [POST]
+
+fetch_invoice:
+    pattern: fetchInvoice
+    authorization: invoice_shop_auth
+    methods: [POST]
+
+#reports module - not yet started
+#reports:
+#    pattern: renewal
+#    authorization: server_by_key_auth
+#    methods: [POST]
+
+
+#postalcodes module
+
+postalcode_valid:
+    pattern: valid_postalcode
+    authorization: server_by_key_auth
+    methods: [GET]
+
+
+zipcode_valid:
+    pattern: valid_zipcode
+    authorization: server_by_key_auth
     methods: [GET]

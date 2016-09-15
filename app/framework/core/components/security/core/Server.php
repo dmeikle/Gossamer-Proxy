@@ -35,6 +35,9 @@ class Server extends Client implements ServerInterface
         if(array_key_exists('id', $params)) {
             $this->id = ($params['id']);
         }
+        if(array_key_exists('roles', $params)) {
+            $this->setRoles(explode(',', $params['roles']));
+        }
     }
 
     public function setApiKey($credentials)

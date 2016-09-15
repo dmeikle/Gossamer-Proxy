@@ -144,8 +144,7 @@ class YAMLViewConfiguration {
      * @return type
      */
     private function getYMLNodeParameters($ymlKey) {
-        pr($this->config);
-
+      
         if (!is_array($this->config)) {
             throw new \Exception('yaml key not found in views config');
         }
