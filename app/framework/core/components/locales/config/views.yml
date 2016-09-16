@@ -1,0 +1,15 @@
+locales_list:
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section3": "app/framework/core/components/locales/views/admin/locales-list.php"
+            "section4": "src/themes/default/templates/sections/footer.php"
+    
+locales_edit:
+    template: super-list.php
+    sections: 
+        -
+            "section1": "src/components/shoppingcart/views/admin/topnav.php"
+            "section3": "app/framework/core/components/locales/views/admin/locale-edit.php"
+            "section4": "src/themes/default/templates/sections/footer.php"

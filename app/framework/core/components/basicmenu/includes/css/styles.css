@@ -1,0 +1,21 @@
+
+#basicmenu {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    font-size: 10px;
+    line-height: 15px;
+    text-transform: uppercase;
+    text-align: left;
+    display: block;
+}
+
+#basicmenu li {
+    display: inline;
+    margin-left: 20px;
+    float: left;
+}
+#basicmenu li a {
+
+}
+#basicmenu-bottom {
+    clear:both;
+}

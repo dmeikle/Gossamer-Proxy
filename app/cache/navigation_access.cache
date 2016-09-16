@@ -1,0 +1,16 @@
+<?php
+return array (
+'admin_home' => array (
+'pattern' => 'admin',
+'roles' => array (
+'0' => 'IS_ADMINISTRATOR')),
+'admin_staff' => array (
+'pattern' => 'admin/staff',
+'roles' => array (
+'0' => 'IS_ADMIN',
+'1' => 'IS_ADMINISTRATOR')),
+'admin_contacts' => array (
+'pattern' => 'admin/contacts',
+'roles' => array (
+'0' => 'IS_ADMIN',
+'1' => 'IS_ADMINISTRATOR')));
