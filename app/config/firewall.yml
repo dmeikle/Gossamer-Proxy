@@ -66,6 +66,7 @@ members_promote_v3:
     authorization: member_info_auth
     methods: [POST]
 
+
 members_reports_v1:
     pattern: member_reports/*
     authorization: member_info_auth
@@ -92,6 +93,30 @@ members_prefixstatus:
     pattern: member/editPrefixStatus
     authorization: server_by_key_auth
     methods: [POST]
+
+members_memberbylevel:
+    pattern: member/memberByLevel
+    authorization: member_info_auth
+    methods: [POST]
+
+
+members_update:
+    pattern: members/*/update
+    authorization: member_info_auth
+    methods: [POST]
+
+
+members_sales:
+    pattern: memberSales/*
+    authorization: member_info_auth
+    methods: [POST]
+
+member_uplines:
+    pattern: memberUplines
+    authorization: member_info_auth
+    methods: [POST]
+
+
 
 #receipts module
 receipt_details:
@@ -127,7 +152,16 @@ fetch_invoice:
     authorization: invoice_shop_auth
     methods: [POST]
 
+
+invoicing:
+    pattern: invoicing
+    authorization: invoice_shop_auth
+    methods: [POST]
+
+
+
 #reports module - not yet started
+
 #reports:
 #    pattern: renewal
 #    authorization: server_by_key_auth
