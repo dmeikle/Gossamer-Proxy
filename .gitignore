@@ -2,14 +2,16 @@
 .sass-cache
 .Trash-1000
 nbproject/*
+
 .idea
 .idea/*
+
 app/cache/*
 app/logs/*
 app/config/credentials.yml
 app/config/routing.yml
 app/config/navigation-display.yml
-app/framework/core/components/*/dist
+
 
 bower_components
 
@@ -32,7 +34,7 @@ src/*
 !src/components/cssmenu
 !src/components/cms
 
-web-docs
+
 
 
 vendor
@@ -41,4 +43,3 @@ web/*
 !web/index.php
 !web/.htaccess
 
-/uploads
