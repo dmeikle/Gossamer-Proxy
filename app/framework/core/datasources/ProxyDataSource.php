@@ -37,7 +37,7 @@ class ProxyDataSource extends RestDataSource
             'headers' => $this->buildHeaders($credentials)
         ));
         $api->setLogger($this->logger);
-//die($uri);
+
         $result = $api->$queryType($uri, $params);
          // pr($result);
 

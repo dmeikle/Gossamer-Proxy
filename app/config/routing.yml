@@ -4,10 +4,20 @@ backoffice:
     component: "src/components/backoffice/config/routing.yml"
 
 
+
+invoicing:
+    component: "src/components/invoicing/config/routing.yml"
+fetchInvoice:
+    component: "src/components/invoicing/config/routing.yml"
+renewal:
+    component: "src/components/invoicing/config/routing.yml"
+
+
 locale:
     component: "app/framework/core/components/locales/config/routing.yml"
 locales:
     component: "app/framework/core/components/locales/config/routing.yml"
+
 
 
 member:
@@ -22,11 +32,20 @@ promote:
     component: "src/components/members/config/routing.yml"
 memberSales:
     component: "src/components/members/config/routing.yml"
+memberSearch:
+    component: "src/components/members/config/routing.yml"
+memberByLevel:
+    component: "src/components/members/config/routing.yml"
+memberUplines:
+    component: "src/components/members/config/routing.yml"
 
-reports:
-    component: "src/components/reports/config/routing.yml"
 
- 
+
+
+product:
+    component: "src/components/products/config/routing.yml"
+
+
 receiptDetails:
     component: "src/components/receipts/config/routing.yml"
 receipt:
@@ -35,12 +54,10 @@ receiptComments:
     component: "src/components/receipts/config/routing.yml"
 
 
-invoicing:
-    component: "src/components/invoicing/config/routing.yml"
-fetchInvoice:
-    component: "src/components/invoicing/config/routing.yml"
-renewal:
-    component: "src/components/invoicing/config/routing.yml"
+
+reports:
+    component: "src/components/reports/config/routing.yml"
+
 
 
 
@@ -48,6 +65,11 @@ valid_postalcode:
     component: "src/extensions/postalcodes/config/routing.yml"
 valid_zipcode:
     component: "src/extensions/postalcodes/config/routing.yml"
+
+
+
+wallet:
+    component: "src/components/wallet/config/routing.yml"
 
 #-------------------extensions-----------------
 

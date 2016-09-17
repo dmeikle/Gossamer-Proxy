@@ -105,7 +105,7 @@ class RestDataSource implements DataSourceInterface, AdapterInterface {
 
     protected function handleError($result) {
         if (!is_object($result)) {
-            pr($result);
+            echo json_encode($result);
             die;
         }
         if ($result->code == 1012) {
