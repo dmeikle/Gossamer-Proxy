@@ -116,10 +116,12 @@ member_uplines:
     authorization: member_info_auth
     methods: [POST]
 
+
 #member_search:
 #    pattern: memberSearch
 #    authorization: member_info_auth
 #    methods: [POST]
+
 
 #receipts module
 receipt_details:
@@ -160,6 +162,14 @@ invoicing:
     pattern: invoicing
     authorization: invoice_shop_auth
     methods: [POST]
+
+
+
+invoicing:
+    pattern: invoicing
+    authorization: invoice_shop_auth
+    methods: [POST]
+
 
 
 
