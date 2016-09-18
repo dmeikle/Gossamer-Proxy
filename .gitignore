@@ -1,15 +1,18 @@
-gg.idea
-.idea/*
+
 
 .sass-cache
 .Trash-1000
 nbproject/*
+
+.idea
+.idea/*
 
 app/cache/*
 app/logs/*
 app/config/credentials.yml
 app/config/routing.yml
 app/config/navigation-display.yml
+
 
 bower_components
 
@@ -40,3 +43,4 @@ vendor
 web/*
 !web/index.php
 !web/.htaccess
+
