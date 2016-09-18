@@ -58,8 +58,8 @@ class AuthorizationHandler extends DatasourceAware implements ServiceInterface {
             $this->manager->authorize($this->securityContext);
 
         } catch (\Exception $e) {
-            die($e->getMessage());
-            header('Location: ' . $this->getSiteURL() . $this->node['fail_url']);
+            echo json_encode(array('code'=>$e->getCode(), 'message' => $e->getMessage()));
+            die;
         }
     }
 

@@ -164,7 +164,7 @@ abstract class AbstractComponent {
 
                 return $controller->render($httpRequest->getAttribute('AJAX_ERROR_RESULT'));
             } catch (\Exception $e) {
-                echo $e->getMessage();
+                echo json_encode($e);
                 //die($e->getMessage());
                 //TODO: this currently is only for the template view
                 //$view = new TemplateExceptionView($this->logger, __YML_KEY, $this->agentType, $httpRequest, $e);
