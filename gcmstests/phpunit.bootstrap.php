@@ -24,6 +24,7 @@ $loader->add('libraries', __SITE_PATH . '/app/framework');
 $loader->add('Gossamer\\Horus', __SITE_PATH . '/vendor/horus/caching/src');
 $loader->add('Gossamer\\Caching', __SITE_PATH . '/vendor/gossamer/caching/src');
 $loader->add('Gossamer\\Pesedget', __SITE_PATH . '/vendor/gossamer/pesedget/src');
+$loader->add('Gossamer\\Aset', __SITE_PATH . '/vendor/gossamer/aset/src');
 
 $loader->add('Monolog', __SITE_PATH . '/vendor/monolog/monolog/src');
 

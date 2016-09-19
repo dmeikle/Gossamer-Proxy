@@ -153,7 +153,7 @@ class ServiceManager {
             return;
         }
         try {
-         
+
             $this->getService($key)->execute();
         } catch (\Exception $e) {
             die('here');

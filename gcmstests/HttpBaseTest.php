@@ -32,8 +32,9 @@ class HttpBaseTest extends BaseTest
     protected function get($uri, array $params = array())
     {
         if (count($params) > 0) {
-            $uri .= '?' . http_build_cookie($params);
+            $uri .= '?' . \http_build_query($params);
         }
+   
         $curl = curl_init();
         // Set some options - we are passing in a useragent too here
         curl_setopt_array($curl, array(
@@ -46,7 +47,7 @@ class HttpBaseTest extends BaseTest
         // Close request to clear up some resources
         curl_close($curl);
 
-        return $response;
+        return json_decode($response, true);
     }
 
     protected function post($url, array $data = array())
@@ -60,7 +61,7 @@ class HttpBaseTest extends BaseTest
         $response = curl_exec($curl);
         curl_close($curl);
 
-        return $response;
+        return json_decode($response, true);
 
     }
 }

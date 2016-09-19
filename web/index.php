@@ -12,7 +12,7 @@ include_once('../app/includes/init.php');
 
 include_once('../app/includes/bootstrap.php');
 
-//echo(__YML_KEY . "\r\n");
+//die(__YML_KEY . "\r\n");
 //error_log(__YML_KEY);
 
 

@@ -50,6 +50,70 @@ portal_invite_login_submit:
     methods: [POST]
 
 
+
+#backoffice section
+backoffice_login_get:
+    pattern: backoffice/login
+    authorization: server_by_key_auth
+    methods: [GET]
+
+
+backoffice_login_post:
+    pattern: backoffice/login
+    authorization: server_by_key_auth
+    methods: [POST]
+
+
+backoffice_apikeys_list:
+    pattern: backoffice/security/apikeys
+    authorization: server_by_key_auth
+    methods: [GET]
+
+
+backoffice_apikeys_view:
+    pattern: backoffice/security/apikeys/*
+    authorization: server_by_key_auth
+    methods: [GET]
+
+
+backoffice_apikeys_save:
+    pattern: backoffice/security/apikeys/*
+    authorization: server_by_key_auth
+    methods: [POST]
+
+backoffice_apikeys_remove:
+    pattern: backoffice/security/remove
+    authorization: server_by_key_auth
+    methods: [POST]
+
+
+
+#invoicing module
+renewal_invoice:
+    pattern: renewal
+    authorization: server_by_key_auth
+    methods: [POST]
+
+#fetch_invoice:
+#    pattern: fetchInvoice
+#    authorization: member_info_auth
+#    methods: [POST]
+
+
+
+invoicing:
+    pattern: invoicing
+    authorization: invoice_shop_auth
+    methods: [POST]
+
+
+
+invoicing:
+    pattern: invoicing
+    authorization: invoice_shop_auth
+    methods: [POST]
+
+
 #members module
 members_reports:
     pattern: members/*/reports
@@ -82,11 +146,11 @@ member_get:
     authorization: member_info_auth
     methods: [GET]
 
-
-members_v3:
-    pattern: members
-    authorization: member_info_auth
-    methods: [POST]
+#this route generates a new Member_ID on save, cannot really test by memberId
+#members_v3:
+#    pattern: members
+#    authorization: member_info_auth
+#    methods: [POST]
 
 
 members_prefixstatus:
@@ -95,8 +159,8 @@ members_prefixstatus:
     methods: [POST]
 
 members_memberbylevel:
-    pattern: member/memberByLevel
-    authorization: member_info_auth
+    pattern: memberByLevel
+    authorization: member_prefix_auth
     methods: [POST]
 
 
@@ -145,31 +209,6 @@ receipt_comments:
     methods: [GET]
 
 
-#invoicing module
-
-renewal_invoice:
-    pattern: renewal
-    authorization: server_by_key_auth
-    methods: [POST]
-
-#fetch_invoice:
-#    pattern: fetchInvoice
-#    authorization: member_info_auth
-#    methods: [POST]
-
-
-
-invoicing:
-    pattern: invoicing
-    authorization: invoice_shop_auth
-    methods: [POST]
-
-
-
-invoicing:
-    pattern: invoicing
-    authorization: invoice_shop_auth
-    methods: [POST]
 
 
 
