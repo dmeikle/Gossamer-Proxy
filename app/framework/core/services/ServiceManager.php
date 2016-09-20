@@ -110,6 +110,9 @@ class ServiceManager {
         if(array_key_exists('core\services\traits\MultipleDatasourcesTrait', $usedTraits)) {
             $class->setDatasourceFactory($this->datasourceFactory);
         }
+        if(array_key_exists('libraries\traits\ContainerAccessorsTrait', $usedTraits)) {
+            $class->setContainer($this->container);
+        }
 
         if ($class instanceof HttpAwareInterface) {
 

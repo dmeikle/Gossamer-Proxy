@@ -115,10 +115,10 @@ invoicing:
 
 
 #members module
-#members_reports:
-#    pattern: members/*/reports
-#    authorization: member_info_auth
-#    methods: [POST]
+members_reports:
+    pattern: members/*/reports
+    authorization: member_info_auth
+    methods: [POST]
 
 members_receipts:
     pattern: members/*/receipts/*
@@ -180,6 +180,10 @@ member_uplines:
     authorization: member_info_auth
     methods: [POST]
 
+member_save_upline_v3:
+    pattern: members/saveUplineID/*/*
+    authorization: member_info_auth
+    methods: [GET]
 
 #member_search:
 #    pattern: memberSearch

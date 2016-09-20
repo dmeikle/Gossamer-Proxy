@@ -141,7 +141,7 @@ class YAMLConfiguration {
             $chunk = array_shift($pieces); //drop the admin for the routing file
         }
         $config = $parser->loadConfig();
-die($chunk);
+
         unset($parser);
         $this->datasources = $config;
 
