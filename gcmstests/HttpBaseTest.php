@@ -46,7 +46,7 @@ class HttpBaseTest extends BaseTest
         // Close request to clear up some resources
         curl_close($curl);
 
-        return $response;
+        return json_decode($response, true);
     }
 
     protected function post($url, array $data = array())
@@ -60,7 +60,23 @@ class HttpBaseTest extends BaseTest
         $response = curl_exec($curl);
         curl_close($curl);
 
-        return $response;
+        return json_decode($response, true);
+
+//
+//
+//// use key 'http' even if you send the request to https://...
+//        $options = array(
+//            'http' => array(
+//                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+//                'method'  => 'POST',
+//                'content' => http_build_query($data)
+//            )
+//        );
+//        $context  = stream_context_create($options);
+//        $result = file_get_contents($url, false, $context);
+//        if ($result === FALSE) { /* Handle error */ }
+//
+//        return json_decode($result);
 
     }
 }

@@ -51,10 +51,10 @@ portal_invite_login_submit:
 
 
 #members module
-members_reports:
-    pattern: members/*/reports
-    authorization: member_info_auth
-    methods: [POST]
+#members_reports:
+#    pattern: members/*/reports
+#    authorization: member_info_auth
+#    methods: [POST]
 
 members_receipts:
     pattern: members/*/receipts/*
