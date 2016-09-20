@@ -39,7 +39,7 @@ class ProxyDataSource extends RestDataSource
         $api->setLogger($this->logger);
 
         $result = $api->$queryType($uri, $params);
-         // pr($result);
+         // print_r($result);
 
         if ($result->info->http_code == 200) {
             $decodedResult = $result->decode_response();

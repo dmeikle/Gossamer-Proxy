@@ -32,8 +32,9 @@ class HttpBaseTest extends BaseTest
     protected function get($uri, array $params = array())
     {
         if (count($params) > 0) {
-            $uri .= '?' . http_build_cookie($params);
+            $uri .= '?' . \http_build_query($params);
         }
+   
         $curl = curl_init();
         // Set some options - we are passing in a useragent too here
         curl_setopt_array($curl, array(
@@ -62,21 +63,6 @@ class HttpBaseTest extends BaseTest
 
         return json_decode($response, true);
 
-//
-//
-//// use key 'http' even if you send the request to https://...
-//        $options = array(
-//            'http' => array(
-//                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-//                'method'  => 'POST',
-//                'content' => http_build_query($data)
-//            )
-//        );
-//        $context  = stream_context_create($options);
-//        $result = file_get_contents($url, false, $context);
-//        if ($result === FALSE) { /* Handle error */ }
-//
-//        return json_decode($result);
 
     }
 }
