@@ -1,7 +1,0 @@
-
-
-website_cms_minimenu:
-    roles:
-        - IS_ADMINISTRATOR
-        - IS_EDITOR
-    
