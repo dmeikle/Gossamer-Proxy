@@ -107,11 +107,11 @@ invoicing:
     methods: [POST]
 
 
-
-invoicing:
-    pattern: invoicing
-    authorization: invoice_shop_auth
-    methods: [POST]
+# unable to filter, since some calls have no memberId based on guest lookup - only returning tax rates anyways
+#fetch_invoice:
+#    pattern: fetchInvoice
+#    authorization: invoice_shop_auth
+#    methods: [POST]
 
 
 #members module
