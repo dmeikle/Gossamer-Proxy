@@ -1,0 +1,55 @@
+
+all:
+    listeners:
+#        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadDefaultPreferencesListener'}
+#        - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocalesListener', 'datasource': 'datasource1', 'cacheKey': 'locales' }
+#        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\LoadUserPreferencesListener'}
+        #- { 'event': 'entry_point', 'listener': 'extensions\tabbedview\listeners\SetViewTypeListener'}
+#        - { 'event': 'entry_point', 'listener': 'core\components\locales\eventlisteners\LoadLocaleStringsListener'}
+        #TODO: commented out during development testing
+        #- { 'event': 'entry_point', 'listener': 'core\components\security\eventlisteners\VerifyFormTokenListener', 'methods': [POST]}
+   #     - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\LoadAccessNodeListener'}
+       # - { 'event': 'entry_point', 'listener': 'core\components\access\eventlisteners\CheckPageAccessPermissionsListener'}
+       # - { 'event': 'unauthorized_access', 'listener': 'core\components\access\eventlisteners\UnauthorizedAccessListener'}
+        
+     #   - { 'event': 'entry_point', 'listener': 'core\components\behaviors\listeners\LoadBehaviorsListener'}
+
+
+
+          
+    defaults:
+        langFiles: 
+            - 'src/components/defaultItem/locales/*/Navigation'
+
+#this is a placeholder to show that you can still call things in bootstrap as long as the 
+# ymlkey matches one from any of the routing files. Want proof? change index2 to index and
+# see an error for CheckServerCredentials on page load entry_point event being dispatched.
+index2:
+    listeners:
+        - { 'event': 'entry_point', 'listener': 'core\eventlisteners\CheckServerCredentialsListener'}
+    pattern:  /default/index
+    defaults: { _controller: ProductBundle:Default:new }
+    methods: [GET]
+    
+    
+exception:
+    defaults:        
+        viewKey: exception
+        #datasource: datasource1 - can be used for logging exceptions to database - not written yet
+        
+        
+        
+security:
+    #TODO: note to self - is this even implemented yet?
+    # authorization options are: 
+    #   precise (authorization on each uri) 
+    #       - this one requires a node in navigation-access.yml for each ymlKey that you want authorization on
+    #         if you don't want authorization on a uri/ymlkey then simply do not put the ymlkey/pattern in the 
+    #         navigation-access.yml file
+    #   general (authorization based on a uri section or folder)
+    #       - this one is 'sweeping' authorization. Authorization is based on finding the closest node above
+    #         the current URI, if no current node exists. Just like a folder structure security being defined
+    #         on the closest parent folder security options.
+    authorization: precise 
+    
+    

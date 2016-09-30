@@ -1,0 +1,6 @@
+
+
+compression_js:
+    listeners:
+        - { 'event': 'render_complete', 'listener': 'core\components\compression\listeners\SaveConcatenatedFileToCacheListener' }
+    

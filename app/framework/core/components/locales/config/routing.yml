@@ -1,0 +1,98 @@
+locales_list:
+    pattern: locales/list
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: locales_list
+        datasource: datasource1
+
+
+locale_change:
+    pattern: locale/change
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: change
+        view: core\views\TemplateView
+        viewKey: locale_change
+        datasource: datasource1 
+            
+     
+super_locales_remove:
+    pattern: super/locales/remove/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: delete
+        view: core\views\JSONView
+        viewKey: locales_edit
+        datasource: datasource1  
+        langFiles: 
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [POST]
+        
+super_locales_list:
+    pattern: super/locales/*/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: listall
+        view: core\views\TemplateView
+        viewKey: locales_list
+        datasource: datasource1  
+        langFiles: 
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'  
+    
+    
+super_locales_edit:
+    pattern: super/locales/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: edit
+        view: core\views\TemplateView
+        viewKey: super_locales_edit
+        datasource: datasource1  
+        langFiles: 
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [GET]
+            
+super_locales_save:
+    pattern: super/locales/*
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: save
+        view: core\views\JSONView
+        viewKey: super_locales_save
+        datasource: datasource1  
+        langFiles: 
+            - 'app/framework/core/components/locales/resources/*/Locales'
+            - 'src/components/shoppingcart/locales/*/Navigation'    
+    methods: [POST]            
+    
+    
+    
+    #------------------------- new stuff --------------
+    
+locales_list:
+    pattern: locales/locales/list
+    defaults:
+        component: core\components\locales\LocaleComponent
+        controller:  core\components\locales\controllers\LocaleController
+        model:  core\components\locales\models\LocaleModel
+        method: listall
+        view: core\views\JSONView
+        viewKey: locales_list
+        datasource: datasource1  
